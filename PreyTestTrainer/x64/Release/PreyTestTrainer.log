@@ -1,0 +1,8 @@
+﻿  dllmain.cpp
+  The contents of <optional> are available only with C++17 or later.
+  Generating code
+  2 of 14 functions (14.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  PreyTestTrainer.vcxproj -> C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\PreyTestTrainer\x64\Release\PreyTestTrainer.dll
