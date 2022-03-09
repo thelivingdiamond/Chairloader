@@ -27,7 +27,16 @@
     <ClInclude Include="proc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="preyDll.h">
+    <ClInclude Include="preyDllObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkBasicTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EArk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="preyDllFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +53,7 @@
     <ClCompile Include="proc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="preyDll.cpp">
+    <ClCompile Include="preyDllFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

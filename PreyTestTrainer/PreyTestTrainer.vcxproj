@@ -142,6 +142,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,10 +153,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ArkBasicTypes.h" />
+    <ClInclude Include="EArk.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="preyDll.h" />
+    <ClInclude Include="preyDllFunctions.h" />
+    <ClInclude Include="preyDllObjects.h" />
     <ClInclude Include="proc.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,7 +171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="preyDll.cpp" />
+    <ClCompile Include="preyDllFunctions.cpp" />
     <ClCompile Include="proc.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
