@@ -1,18 +1,69 @@
 #pragma once
 
 
-
-#include <vector>
-#include <optional>
-#include <unordered_map>
-#include <map>
-#include <DirectXMath.h>
-#include <array>
-#include <variant>
+#include <set>
 
 #include "ArkBasicTypes.h"
 #include "EArk.h"
+// #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
+
+class IEntityClass;
+//ArkGame * getArkGame(void)
+	// CGame* (18)0x2c09010
+	// GEnv		  0x22418c0
+class CGame;
+class IEntitySystem;
+class CEntitySystem;
+class staticObjectPointers {
+public:
+	// typedef CGame* _g_pGame;
+	 // _g_pGame g_pGame;
+	class _gEnv {
+	public:
+		void* pDialogSystem		   ;
+		void * p3DEngine	       ;
+		void *pNetwork			   ;
+		void* IOnline			   ;
+		void *pLobby			   ;
+		void *pArkRewardSystem	   ;
+		void *pArkEntitlementSystem;
+		void *pArkDlcSystem		   ;
+		void *pScriptSystem		   ;
+		void *pPhysicalWorld	   ;
+		void *pFlowSystem		   ;
+		void *pInput			   ;
+		void *pStatoscope		   ;
+		void *pCryPak			   ;
+		void* pFileChangeMonitor   ;
+		void* pProfileLogSystem	   ;
+		void *pParticleManager	   ;
+		void *pOpticsManager	   ;
+		void *pFrameProfileSystem  ;
+		void *pTimer			   ;
+		void *pCryFont			   ;
+		CGame*pGame				   ;
+		void *pLocalMemoryUsage	   ;
+		CEntitySystem*pEntitySystem;
+		void *pConsole			   ;
+		void *pAudioSystem		   ;
+		void *pSystem			   ;
+		void *pCharacterManager	   ;
+		void *pAISystem			   ;
+		void *pLog				   ;
+		void *pMovieSystem		   ;
+		void *pNameTable		   ;
+		void *pRenderer			   ;
+		void *pAuxGeomRenderer	   ;
+		void *pHardwareMouse	   ;
+	};
+	 _gEnv * gEnvPtr;
+	 _gEnv gEnv;
+	staticObjectPointers(uintptr_t moduleBase);
+
+};
+ 
+
 
 namespace ArkNpc {
 	class ArkRobotLight;
@@ -918,10 +969,29 @@ namespace ArkNpc {
 		TMannequinAutoInit<int32_t, -1> LookBlink;
 	};
 	class IUIElement {
+	public:
 		void* ptr;
 	};
-	class IEntityArchetype {
+	class SmartScriptTable {
+	public:
 		void* ptr;
+	};
+	class XmlNodeRef {
+	public:
+		void* ptr;
+	};
+	class CEntityArchetype {
+	public:
+		char pad[24];
+		CryStringT<char> m_name;
+		uint64_t m_id;
+		SmartScriptTable m_pProperties;
+		XmlNodeRef m_ObjectVars;
+		IEntityClass* m_pClass;
+	};
+	class IEntityArchetype {
+	public:
+		CEntityArchetype* ptr;
 		
 	};
 	class CArkWeapon {
@@ -2402,10 +2472,1392 @@ namespace ArkNpc {
 		};
 
 
+		class AABB {
+			Vec3 min;
+			Vec3 max;
+		};
+		
+		class CEntity {
+			//TODO
+		};
+		class IEntitySystemSink {
+		public:
+			void* ptr;
+		};
+		class ISystem {
+			void* ptr;
+		};
+		class OnEventSink {
+		public:
+			uint64_t subscriptions;
+			IEntitySystemSink* pSink;
+		};
+		class IEntitySystem {
+		public:
+			CEntitySystem* ptr;
+		};
+		class IEntityClass {
+		public:
+			CEntity* ptr;
+		};
+		class SEntityTimerEvent {
+		public:
+			uint32_t entityId;
+			int32_t nTimerId;
+			int32_t nMilliSeconds;
+		};
+
+		class CScriptBind_Entity {
+		public:
+		};
+		class CEntityClassRegistry {
+		public:
+		};
+		class CPhysicsEventListener {
+		public:
+		};
+		class CAreaManager {
+		public:
+		};
+		class CEntityLoadManager {
+		public:
+		};
+
+		class CEntityPoolManager {
+		public:
+		};
+
+		class IBreakableManager {
+		public:
+			void* ptr;
+		};
+
+		class CEntityArchetypeManager {
+		public:
+			std::map<const char*, CEntityArchetype*> m_nameToArchetypeMap;
+			std::unordered_map<unsigned __int64, CEntityArchetype*> m_idToArchetypeMap;
+			char pad[8];
+			char pad2[24];
+		};
+		class CGeomCacheAttachmentManager {
+		public:
+		};
+		class CCharacterBoneAttachmentManager {
+		public:
+		};
+		class IEntityEventListener {
+		public:
+			void* ptr;
+		};
+		class CPartitionGrid {
+		public:
+		};
+		class CProximityTriggerSystem {
+		public:
+		};
+		class CEntityLayer {
+		public:
+		};
+		class SEntityLayerGarbage {
+		public:
+			void* pHeap;
+			CryStringT<char> layerName;
+			int32_t nAge;
+			char pad[4];
+		};
+		class CEntitySystem {
+		public:
+			undefined field0_0x0;
+			undefined field1_0x1;
+			undefined field2_0x2;
+			undefined field3_0x3;
+			undefined field4_0x4;
+			undefined field5_0x5;
+			undefined field6_0x6;
+			undefined field7_0x7;
+			std::unordered_map<uint32_t, float, std::hash<uint32_t>, std::equal_to<uint32_t>> m_queuedEntityVisibilities;
+			std::vector<IEntitySystemSink*> m_sinks[5];
+			std::vector<OnEventSink> m_onEventSinks;
+			ISystem* m_pISystem;
+			std::vector<CEntity*> m_EntityArray;
+			std::vector<CEntity*> m_deletedEntities;
+			std::vector<CEntity*> m_deferredUsedEntities;
+			std::map<uint32_t, CEntity*, std::less<uint32_t>, std::allocator<std::pair<const uint32_t, CEntity*>>> m_mapActiveEntities;
+			bool m_tempActiveEntitiesValid;
+			undefined field17_0x139;
+			undefined field18_0x13a;
+			undefined field19_0x13b;
+			undefined field20_0x13c;
+			undefined field21_0x13d;
+			undefined field22_0x13e;
+			undefined field23_0x13f;
+			std::set<uint32_t, std::less<uint32_t>, std::allocator<uint32_t>> m_mapPrePhysicsEntities;
+			char pad[16];
+			//std::multimap<const char*, uint32_t, stl::less_stricmp<charconst*>, std::allocator<std::pair<const char* , uint32_t>>> m_mapEntityNames;
+			char pad2[262136];
+			//CSaltBufferArray<unsigned short, unsigned short, 65533> m_EntitySaltBuffer;
+			std::vector<uint32_t, std::allocator<uint32_t>> m_tempActiveEntities;
+			char pad3[8];
+			//CComponentEventDistributer* m_pEventDistributer;
+			char pad5[16];
+			//std::multimap<CTimeValue, SEntityTimerEvent, std::less<CTimeValue>, stl::STLPoolAllocator<std::pair<CTimeValue, SEntityTimerEvent>, stl::PSyncNone, 0, 0>> m_timersMap;
+			std::vector<SEntityTimerEvent, std::allocator<SEntityTimerEvent>> m_currentTimers;
+			bool m_bTimersPause;
+			undefined field32_0x401a1;
+			undefined field33_0x401a2;
+			undefined field34_0x401a3;
+			undefined field35_0x401a4;
+			undefined field36_0x401a5;
+			undefined field37_0x401a6;
+			undefined field38_0x401a7;
+			CTimeValue m_nStartPause;
+			CScriptBind_Entity* m_pEntityScriptBinding;
+			CEntityClassRegistry* m_pClassRegistry;
+			CPhysicsEventListener* m_pPhysicsEventListener;
+			CAreaManager* m_pAreaManager;
+			CEntityLoadManager* m_pEntityLoadManager;
+			CEntityPoolManager* m_pEntityPoolManager;
+			std::multimap<uint32_t, IEntityEventListener*, std::less<uint32_t>, std::allocator<std::pair<const uint32_t, IEntityEventListener*>>> m_eventListeners[60];
+			int m_eventListenerBeingProcessedRefCount;
+			undefined field48_0x405a4;
+			undefined field49_0x405a5;
+			undefined field50_0x405a6;
+			undefined field51_0x405a7;
+			std::map<unsigned __int64, uint32_t, std::less<unsigned __int64>, std::allocator<std::pair<const unsigned __int64, uint32_t>>> m_guidMap;
+			std::map<unsigned __int64, uint32_t, std::less<unsigned __int64>, std::allocator<std::pair<const unsigned __int64, uint32_t>>> m_genIdMap;
+			IBreakableManager* m_pBreakableManager;
+			CEntityArchetypeManager* m_pEntityArchetypeManager;
+			CGeomCacheAttachmentManager* m_pGeomCacheAttachmentManager;
+			CCharacterBoneAttachmentManager* m_pCharacterBoneAttachmentManager;
+			CPartitionGrid* m_pPartitionGrid;
+			CProximityTriggerSystem* m_pProximityTriggerSystem;
+			uint32_t m_idForced;
+			bool m_bLocked;
+			undefined field62_0x405fd;
+			undefined field63_0x405fe;
+			undefined field64_0x405ff;
+			char pad4[16];
+			//CEntityTimeoutList m_entityTimeoutList;
+			std::map<CryStringT<char>, CEntityLayer*, std::less<CryStringT<char>>, std::allocator<std::pair<CryStringT<char>const, CEntityLayer*>>> m_layers;
+			std::vector<SEntityLayerGarbage, std::allocator<SEntityLayerGarbage>> m_garbageLayerHeaps;
+			std::set<const IEntity*, std::less<const IEntity*>, std::allocator<const IEntity*>> m_EntitiesUsingPlayerTime;
+			std::vector<const IEntityClass*, std::allocator<const IEntityClass*>> m_areaTriggeringClasses;
+			AABB m_safeBounds;
+			bool m_bReseting;
+			undefined field72_0x40679;
+			undefined field73_0x4067a;
+			undefined field74_0x4067b;
+			undefined field75_0x4067c;
+			undefined field76_0x4067d;
+			undefined field77_0x4067e;
+			undefined field78_0x4067f;
+		};
+		enum class EHostMigrationState {
+
+			eHMS_NotMigrating = 0,
+			eHMS_WaitingForPlayers = 1,
+			eHMS_Resuming = 2
+		};
+
+		enum class ERichPresenceState {
+
+			eRPS_none = 0,
+			eRPS_idle = 1,
+			eRPS_frontend = 2,
+			eRPS_lobby = 3,
+			eRPS_inGame = 4
+		};
+
+		enum class EInviteAcceptedState {
+
+			eIAS_None = 0,
+			eIAS_Init = 1,
+			eIAS_StartAcceptInvite = 2,
+			eIAS_InitProfile = 3,
+			eIAS_WaitForInitProfile = 4,
+			eIAS_WaitForLoadToFinish = 5,
+			eIAS_DisconnectGame = 6,
+			eIAS_DisconnectLobby = 7,
+			eIAS_WaitForSessionDelete = 8,
+			eIAS_ConfirmInvite = 9,
+			eIAS_WaitForInviteConfirmation = 10,
+			eIAS_InitSinglePlayer = 11,
+			eIAS_WaitForInitSinglePlayer = 12,
+			eIAS_WaitForSplashScreen = 13,
+			eIAS_WaitForValidUser = 14,
+			eIAS_InitMultiplayer = 15,
+			eIAS_WaitForInitMultiplayer = 16,
+			eIAS_InitOnline = 17,
+			eIAS_WaitForInitOnline = 18,
+			eIAS_WaitForSquadManagerEnabled = 19,
+			eIAS_Accept = 20,
+			eIAS_Error = 21
+		};
+
+		enum class ESaveIconMode {
+
+			eSIM_Off = 0,
+			eSIM_SaveStart = 1,
+			eSIM_Saving = 2,
+			eSIM_Finished = 3
+		};
+
+		enum class EPlatform {
+
+			ePlatform_Unknown = 0,
+			ePlatform_PC = 1,
+			ePlatform_XBoxOne = 2,
+			ePlatform_PS4 = 3,
+			ePlatform_COUNT = 4
+		};
+
+		enum class State {
+
+			Idle = 0,
+			UpdatingModules = 1
+		};
+
+		enum class EControlScheme {
+
+			eControlScheme_NotSpecified = 0,
+			eControlScheme_Keyboard = 1,
+			eControlScheme_KeyboardMouse = 2,
+			eControlScheme_XBoxOneController = 3,
+			eControlScheme_PS4Controller = 4,
+			eControlScheme_SteamController = 5
+		};
+
+		enum class ECryLobbyService {
+
+			eCLS_LAN = 0,
+			eCLS_Online = 1,
+			eCLS_NumServices = 2
+		};
+
+		enum class ECryLobbyError {
+
+			eCLE_Success = 0,
+			eCLE_SuccessContinue = 1,
+			eCLE_ServiceNotSupported = 2,
+			eCLE_AlreadyInitialised = 3,
+			eCLE_NotInitialised = 4,
+			eCLE_TooManyTasks = 5,
+			eCLE_OutOfMemory = 6,
+			eCLE_OutOfSessionUserData = 7,
+			eCLE_UserDataNotRegistered = 8,
+			eCLE_UserDataTypeMissMatch = 9,
+			eCLE_TooManySessions = 10,
+			eCLE_InvalidSession = 11,
+			eCLE_InvalidRequest = 12,
+			eCLE_SPAFileOutOfDate = 13,
+			eCLE_ConnectionFailed = 14,
+			eCLE_SessionFull = 15,
+			eCLE_SessionWrongState = 16,
+			eCLE_UserNotSignedIn = 17,
+			eCLE_InvalidParam = 18,
+			eCLE_TimeOut = 19,
+			eCLE_InsufficientPrivileges = 20,
+			eCLE_AlreadyInSession = 21,
+			eCLE_LeaderBoardNotRegistered = 22,
+			eCLE_UserNotInSession = 23,
+			eCLE_OutOfUserData = 24,
+			eCLE_NoUserDataRegistered = 25,
+			eCLE_ReadDataNotWritten = 26,
+			eCLE_UserDataMissMatch = 27,
+			eCLE_InvalidUser = 28,
+			eCLE_PSNContextError = 29,
+			eCLE_PSNWrongSupportState = 30,
+			eCLE_SuccessUnreachable = 31,
+			eCLE_ServerNotDefined = 32,
+			eCLE_WorldNotDefined = 33,
+			eCLE_SystemIsBusy = 34,
+			eCLE_TooManyParameters = 35,
+			eCLE_NotEnoughParameters = 36,
+			eCLE_DuplicateParameters = 37,
+			eCLE_ExceededReadWriteLimits = 38,
+			eCLE_InvalidTitleID = 39,
+			eCLE_IllegalSessionJoin = 40,
+			eCLE_InternetDisabled = 41,
+			eCLE_NoOnlineAccount = 42,
+			eCLE_NotConnected = 43,
+			eCLE_CyclingForInvite = 44,
+			eCLE_CableNotConnected = 45,
+			eCLE_SessionNotMigratable = 46,
+			eCLE_SuccessInvalidSession = 47,
+			eCLE_RoomDoesNotExist = 48,
+			eCLE_PSNUnavailable = 49,
+			eCLE_TooManyOrders = 50,
+			eCLE_InvalidOrder = 51,
+			eCLE_OrderInUse = 52,
+			eCLE_OnlineAccountBlocked = 53,
+			eCLE_AgeRestricted = 54,
+			eCLE_ReadDataCorrupt = 55,
+			eCLE_PasswordIncorrect = 56,
+			eCLE_InvalidInviteFriendData = 57,
+			eCLE_InvalidJoinFriendData = 58,
+			eCLE_InvalidPing = 60,
+			eCLE_CDKeyMalformed = 61,
+			eCLE_CDKeyUnknown = 62,
+			eCLE_CDKeyAuthFailed = 63,
+			eCLE_CDKeyDisabled = 64,
+			eCLE_CDKeyInUse = 65,
+			eCLE_MultipleSignIn = 66,
+			eCLE_Banned = 67,
+			eCLE_CDKeyTimeOut = 68,
+			eCLE_IncompleteLoginCredentials = 69,
+			eCLE_WrongVersion = 70,
+			eCLE_NoServerAvailable = 71,
+			eCLE_ArbitratorTimeOut = 72,
+			eCLE_RequiresInvite = 73,
+			eCLE_SteamInitFailed = 74,
+			eCLE_SteamBlocked = 75,
+			eCLE_NothingToEnumerate = 76,
+			eCLE_ServiceNotConnected = 77,
+			eCLE_GlobalBan = 78,
+			eCLE_Cancelled = 79,
+			eCLE_Kicked = 79,
+			eCLE_UnhandledNickError = 80,
+			eCLE_InternalError = 81,
+			eCLE_NumErrors = 82
+		};
+
+		enum class ECryLobbyInviteType {
+
+			eCLIT_InviteToSquad = 0,
+			eCLIT_JoinSessionInProgress = 1,
+			eCLIT_InviteToSession = 2
+		};
+
+		enum class AsyncState {
+
+			AsyncFailed = 0,
+			AsyncReady = 1,
+			AsyncInProgress = 2,
+			AsyncComplete = 3
+		};
 
 
+		
 
+		
+		
+		class DeferredDeathReaction {
+		public:
+			std::multimap<float, uint32_t, std::less<float>> potentialWitnesses;
+			Vec3 deathPos;
+			uint32_t victimID,
+				closestID,
+				witnessID,
+				killerID;
+			int32_t groupID;
+			float timestamp;
+			unsigned char state;
+			char pad[3];
+		};
+		class DeadBody {
+		public:
+			Vec3 position;
+			int32_t groupID;
+			uint32_t entityID,
+				killerID;
+		};
+		class DeathManager {
+		public:
+			undefined field0_0x0;
+			undefined field1_0x1;
+			undefined field2_0x2;
+			undefined field3_0x3;
+			undefined field4_0x4;
+			undefined field5_0x5;
+			undefined field6_0x6;
+			undefined field7_0x7;
+			std::vector<DeferredDeathReaction> m_deferredDeathReactions;
+			std::vector<DeadBody> m_unseenDeadBodies;
+			enum AsyncState m_asyncState;
+			uint32_t m_rayID;
+		};
+		class SPlatformInfo {
+		public:
+			EPlatform platformId;
+			unsigned char devices;
+			char pad[3];
+		};
+		class CGameCache{};
+		class IGameFramework{};
+		class IConsole{};
+		class CGamePhysicsSettings{};
+		class CScriptBind_Actor				 {};
+		class CScriptBind_Item				 {};
+		class CScriptBind_GameRules			 {};
+		class CScriptBind_Game				 {};
+		class CScriptBind_GameAI			 {};
+		class CScriptBind_HitDeathReactions	 {};
+		class CScriptBind_ProtectedBinds	 {};
+		class CPlayerVisTable				 {};
+		class CDataPatchDownloader			 {};
+		class IAntiCheatManager				 {};
+		class CGameLocalizationManager		 {};
+		class ITelemetryCollector			 {};
+		class CGameActions					 {};
+		class IPlayerProfileManager			 {};
 
+		class SCVars {};
+		class SItemStrings {};
+		class CGameSharedParametersStorage {};
+		class CScreenEffects{};
+		class CDownloadMgr{};
+		class CDLCManager{};
+		class CLightningGameEffect{};
+		class CParameterGameEffect{};
+		class CWorldBuilder{};
+		class IInputEventListener{};
+		class CColorGradientManager{};
+		class CGameAISystem{};
+		
+		// class IntersectionTestQueue<43>{};
+		class CUIManager{};
+		class CHitDeathReactionsSystem{};
+		class CBodyDamageManager{};
+		class CMovementTransitionsSystem{};
+		class CGameMechanismManager{};
+		class CModInfoManager{};
+		class SCrySessionID {};
+		template<uint32_t i> class RayCastQueue {
+			public:
+				undefined field0_0x0;
+				undefined field1_0x1;
+				undefined field2_0x2;
+				undefined field3_0x3;
+				undefined field4_0x4;
+				undefined field5_0x5;
+				undefined field6_0x6;
+				undefined field7_0x7;
+				undefined field8_0x8;
+				undefined field9_0x9;
+				undefined field10_0xa;
+				undefined field11_0xb;
+				undefined field12_0xc;
+				undefined field13_0xd;
+				undefined field14_0xe;
+				undefined field15_0xf;
+				undefined field16_0x10;
+				undefined field17_0x11;
+				undefined field18_0x12;
+				undefined field19_0x13;
+				undefined field20_0x14;
+				undefined field21_0x15;
+				undefined field22_0x16;
+				undefined field23_0x17;
+				undefined field24_0x18;
+				undefined field25_0x19;
+				undefined field26_0x1a;
+				undefined field27_0x1b;
+				undefined field28_0x1c;
+				undefined field29_0x1d;
+				undefined field30_0x1e;
+				undefined field31_0x1f;
+				undefined field32_0x20;
+				undefined field33_0x21;
+				undefined field34_0x22;
+				undefined field35_0x23;
+				undefined field36_0x24;
+				undefined field37_0x25;
+				undefined field38_0x26;
+				undefined field39_0x27;
+				undefined field40_0x28;
+				undefined field41_0x29;
+				undefined field42_0x2a;
+				undefined field43_0x2b;
+				undefined field44_0x2c;
+				undefined field45_0x2d;
+				undefined field46_0x2e;
+				undefined field47_0x2f;
+				undefined field48_0x30;
+				undefined field49_0x31;
+				undefined field50_0x32;
+				undefined field51_0x33;
+				undefined field52_0x34;
+				undefined field53_0x35;
+				undefined field54_0x36;
+				undefined field55_0x37;
+				undefined field56_0x38;
+				undefined field57_0x39;
+				undefined field58_0x3a;
+				undefined field59_0x3b;
+				undefined field60_0x3c;
+				undefined field61_0x3d;
+				undefined field62_0x3e;
+				undefined field63_0x3f;
+				undefined field64_0x40;
+				undefined field65_0x41;
+				undefined field66_0x42;
+				undefined field67_0x43;
+				undefined field68_0x44;
+				undefined field69_0x45;
+				undefined field70_0x46;
+				undefined field71_0x47;
+				undefined field72_0x48;
+				undefined field73_0x49;
+				undefined field74_0x4a;
+				undefined field75_0x4b;
+				undefined field76_0x4c;
+				undefined field77_0x4d;
+				undefined field78_0x4e;
+				undefined field79_0x4f;
+				undefined field80_0x50;
+				undefined field81_0x51;
+				undefined field82_0x52;
+				undefined field83_0x53;
+				undefined field84_0x54;
+				undefined field85_0x55;
+				undefined field86_0x56;
+				undefined field87_0x57;
+				undefined field88_0x58;
+				undefined field89_0x59;
+				undefined field90_0x5a;
+				undefined field91_0x5b;
+				undefined field92_0x5c;
+				undefined field93_0x5d;
+				undefined field94_0x5e;
+				undefined field95_0x5f;
+				undefined field96_0x60;
+				undefined field97_0x61;
+				undefined field98_0x62;
+				undefined field99_0x63;
+				undefined field100_0x64;
+				undefined field101_0x65;
+				undefined field102_0x66;
+				undefined field103_0x67;
+				undefined field104_0x68;
+				undefined field105_0x69;
+				undefined field106_0x6a;
+				undefined field107_0x6b;
+				undefined field108_0x6c;
+				undefined field109_0x6d;
+				undefined field110_0x6e;
+				undefined field111_0x6f;
+				undefined field112_0x70;
+				undefined field113_0x71;
+				undefined field114_0x72;
+				undefined field115_0x73;
+				undefined field116_0x74;
+				undefined field117_0x75;
+				undefined field118_0x76;
+				undefined field119_0x77;
+				undefined field120_0x78;
+				undefined field121_0x79;
+				undefined field122_0x7a;
+				undefined field123_0x7b;
+				undefined field124_0x7c;
+				undefined field125_0x7d;
+				undefined field126_0x7e;
+				undefined field127_0x7f;
+				undefined field128_0x80;
+				undefined field129_0x81;
+				undefined field130_0x82;
+				undefined field131_0x83;
+				undefined field132_0x84;
+				undefined field133_0x85;
+				undefined field134_0x86;
+				undefined field135_0x87;
+				undefined field136_0x88;
+				undefined field137_0x89;
+				undefined field138_0x8a;
+				undefined field139_0x8b;
+				undefined field140_0x8c;
+				undefined field141_0x8d;
+				undefined field142_0x8e;
+				undefined field143_0x8f;
+				undefined field144_0x90;
+				undefined field145_0x91;
+				undefined field146_0x92;
+				undefined field147_0x93;
+				undefined field148_0x94;
+				undefined field149_0x95;
+				undefined field150_0x96;
+				undefined field151_0x97;
+				undefined field152_0x98;
+				undefined field153_0x99;
+				undefined field154_0x9a;
+				undefined field155_0x9b;
+				undefined field156_0x9c;
+				undefined field157_0x9d;
+				undefined field158_0x9e;
+				undefined field159_0x9f;
+				undefined field160_0xa0;
+				undefined field161_0xa1;
+				undefined field162_0xa2;
+				undefined field163_0xa3;
+				undefined field164_0xa4;
+				undefined field165_0xa5;
+				undefined field166_0xa6;
+				undefined field167_0xa7;
+				undefined field168_0xa8;
+				undefined field169_0xa9;
+				undefined field170_0xaa;
+				undefined field171_0xab;
+				undefined field172_0xac;
+				undefined field173_0xad;
+				undefined field174_0xae;
+				undefined field175_0xaf;
+				undefined field176_0xb0;
+				undefined field177_0xb1;
+				undefined field178_0xb2;
+				undefined field179_0xb3;
+				undefined field180_0xb4;
+				undefined field181_0xb5;
+				undefined field182_0xb6;
+				undefined field183_0xb7;
+				undefined field184_0xb8;
+				undefined field185_0xb9;
+				undefined field186_0xba;
+				undefined field187_0xbb;
+				undefined field188_0xbc;
+				undefined field189_0xbd;
+				undefined field190_0xbe;
+				undefined field191_0xbf;
+				undefined field192_0xc0;
+				undefined field193_0xc1;
+				undefined field194_0xc2;
+				undefined field195_0xc3;
+				undefined field196_0xc4;
+				undefined field197_0xc5;
+				undefined field198_0xc6;
+				undefined field199_0xc7;
+				undefined field200_0xc8;
+				undefined field201_0xc9;
+				undefined field202_0xca;
+				undefined field203_0xcb;
+				undefined field204_0xcc;
+				undefined field205_0xcd;
+				undefined field206_0xce;
+				undefined field207_0xcf;
+				undefined field208_0xd0;
+				undefined field209_0xd1;
+				undefined field210_0xd2;
+				undefined field211_0xd3;
+				undefined field212_0xd4;
+				undefined field213_0xd5;
+				undefined field214_0xd6;
+				undefined field215_0xd7;
+				undefined field216_0xd8;
+				undefined field217_0xd9;
+				undefined field218_0xda;
+				undefined field219_0xdb;
+				undefined field220_0xdc;
+				undefined field221_0xdd;
+				undefined field222_0xde;
+				undefined field223_0xdf;
+				undefined field224_0xe0;
+				undefined field225_0xe1;
+				undefined field226_0xe2;
+				undefined field227_0xe3;
+				undefined field228_0xe4;
+				undefined field229_0xe5;
+				undefined field230_0xe6;
+				undefined field231_0xe7;
+				undefined field232_0xe8;
+				undefined field233_0xe9;
+				undefined field234_0xea;
+				undefined field235_0xeb;
+				undefined field236_0xec;
+				undefined field237_0xed;
+				undefined field238_0xee;
+				undefined field239_0xef;
+				undefined field240_0xf0;
+				undefined field241_0xf1;
+				undefined field242_0xf2;
+				undefined field243_0xf3;
+				undefined field244_0xf4;
+				undefined field245_0xf5;
+				undefined field246_0xf6;
+				undefined field247_0xf7;
+				undefined field248_0xf8;
+				undefined field249_0xf9;
+				undefined field250_0xfa;
+				undefined field251_0xfb;
+				undefined field252_0xfc;
+				undefined field253_0xfd;
+				undefined field254_0xfe;
+				undefined field255_0xff;
+				undefined field256_0x100;
+				undefined field257_0x101;
+				undefined field258_0x102;
+				undefined field259_0x103;
+				undefined field260_0x104;
+				undefined field261_0x105;
+				undefined field262_0x106;
+				undefined field263_0x107;
+				undefined field264_0x108;
+				undefined field265_0x109;
+				undefined field266_0x10a;
+				undefined field267_0x10b;
+				undefined field268_0x10c;
+				undefined field269_0x10d;
+				undefined field270_0x10e;
+				undefined field271_0x10f;
+				undefined field272_0x110;
+				undefined field273_0x111;
+				undefined field274_0x112;
+				undefined field275_0x113;
+				undefined field276_0x114;
+				undefined field277_0x115;
+				undefined field278_0x116;
+				undefined field279_0x117;
+				undefined field280_0x118;
+				undefined field281_0x119;
+				undefined field282_0x11a;
+				undefined field283_0x11b;
+				undefined field284_0x11c;
+				undefined field285_0x11d;
+				undefined field286_0x11e;
+				undefined field287_0x11f;
+				undefined field288_0x120;
+				undefined field289_0x121;
+				undefined field290_0x122;
+				undefined field291_0x123;
+				undefined field292_0x124;
+				undefined field293_0x125;
+				undefined field294_0x126;
+				undefined field295_0x127;
+				undefined field296_0x128;
+				undefined field297_0x129;
+				undefined field298_0x12a;
+				undefined field299_0x12b;
+				undefined field300_0x12c;
+				undefined field301_0x12d;
+				undefined field302_0x12e;
+				undefined field303_0x12f;
+				undefined field304_0x130;
+				undefined field305_0x131;
+				undefined field306_0x132;
+				undefined field307_0x133;
+				undefined field308_0x134;
+				undefined field309_0x135;
+				undefined field310_0x136;
+				undefined field311_0x137;
+				undefined field312_0x138;
+				undefined field313_0x139;
+				undefined field314_0x13a;
+				undefined field315_0x13b;
+				undefined field316_0x13c;
+				undefined field317_0x13d;
+				undefined field318_0x13e;
+				undefined field319_0x13f;
+				undefined field320_0x140;
+				undefined field321_0x141;
+				undefined field322_0x142;
+				undefined field323_0x143;
+				undefined field324_0x144;
+				undefined field325_0x145;
+				undefined field326_0x146;
+				undefined field327_0x147;
+				undefined field328_0x148;
+				undefined field329_0x149;
+				undefined field330_0x14a;
+				undefined field331_0x14b;
+				undefined field332_0x14c;
+				undefined field333_0x14d;
+				undefined field334_0x14e;
+				undefined field335_0x14f;
+				undefined field336_0x150;
+				undefined field337_0x151;
+				undefined field338_0x152;
+				undefined field339_0x153;
+				undefined field340_0x154;
+				undefined field341_0x155;
+				undefined field342_0x156;
+				undefined field343_0x157;
+				undefined field344_0x158;
+				undefined field345_0x159;
+				undefined field346_0x15a;
+				undefined field347_0x15b;
+				undefined field348_0x15c;
+				undefined field349_0x15d;
+				undefined field350_0x15e;
+				undefined field351_0x15f;
+				undefined field352_0x160;
+				undefined field353_0x161;
+				undefined field354_0x162;
+				undefined field355_0x163;
+				undefined field356_0x164;
+				undefined field357_0x165;
+				undefined field358_0x166;
+				undefined field359_0x167;
+				undefined field360_0x168;
+				undefined field361_0x169;
+				undefined field362_0x16a;
+				undefined field363_0x16b;
+				undefined field364_0x16c;
+				undefined field365_0x16d;
+				undefined field366_0x16e;
+				undefined field367_0x16f;
+				undefined field368_0x170;
+				undefined field369_0x171;
+				undefined field370_0x172;
+				undefined field371_0x173;
+				undefined field372_0x174;
+				undefined field373_0x175;
+				undefined field374_0x176;
+				undefined field375_0x177;
+				undefined field376_0x178;
+				undefined field377_0x179;
+				undefined field378_0x17a;
+				undefined field379_0x17b;
+				undefined field380_0x17c;
+				undefined field381_0x17d;
+				undefined field382_0x17e;
+				undefined field383_0x17f;
+				undefined field384_0x180;
+				undefined field385_0x181;
+				undefined field386_0x182;
+				undefined field387_0x183;
+				undefined field388_0x184;
+				undefined field389_0x185;
+				undefined field390_0x186;
+				undefined field391_0x187;
+				undefined field392_0x188;
+				undefined field393_0x189;
+				undefined field394_0x18a;
+				undefined field395_0x18b;
+				undefined field396_0x18c;
+				undefined field397_0x18d;
+				undefined field398_0x18e;
+				undefined field399_0x18f;
+				undefined field400_0x190;
+				undefined field401_0x191;
+				undefined field402_0x192;
+				undefined field403_0x193;
+				undefined field404_0x194;
+				undefined field405_0x195;
+				undefined field406_0x196;
+				undefined field407_0x197;
+				undefined field408_0x198;
+				undefined field409_0x199;
+				undefined field410_0x19a;
+				undefined field411_0x19b;
+				undefined field412_0x19c;
+				undefined field413_0x19d;
+				undefined field414_0x19e;
+				undefined field415_0x19f;
+				undefined field416_0x1a0;
+				undefined field417_0x1a1;
+				undefined field418_0x1a2;
+				undefined field419_0x1a3;
+				undefined field420_0x1a4;
+				undefined field421_0x1a5;
+				undefined field422_0x1a6;
+				undefined field423_0x1a7;
+				undefined field424_0x1a8;
+				undefined field425_0x1a9;
+				undefined field426_0x1aa;
+				undefined field427_0x1ab;
+				undefined field428_0x1ac;
+				undefined field429_0x1ad;
+				undefined field430_0x1ae;
+				undefined field431_0x1af;
+				undefined field432_0x1b0;
+				undefined field433_0x1b1;
+				undefined field434_0x1b2;
+				undefined field435_0x1b3;
+				undefined field436_0x1b4;
+				undefined field437_0x1b5;
+				undefined field438_0x1b6;
+				undefined field439_0x1b7;
+				undefined field440_0x1b8;
+				undefined field441_0x1b9;
+				undefined field442_0x1ba;
+				undefined field443_0x1bb;
+				undefined field444_0x1bc;
+				undefined field445_0x1bd;
+				undefined field446_0x1be;
+				undefined field447_0x1bf;
+				undefined field448_0x1c0;
+				undefined field449_0x1c1;
+				undefined field450_0x1c2;
+				undefined field451_0x1c3;
+				undefined field452_0x1c4;
+				undefined field453_0x1c5;
+				undefined field454_0x1c6;
+				undefined field455_0x1c7;
+				undefined field456_0x1c8;
+				undefined field457_0x1c9;
+				undefined field458_0x1ca;
+				undefined field459_0x1cb;
+				undefined field460_0x1cc;
+				undefined field461_0x1cd;
+				undefined field462_0x1ce;
+				undefined field463_0x1cf;
+				undefined field464_0x1d0;
+				undefined field465_0x1d1;
+				undefined field466_0x1d2;
+				undefined field467_0x1d3;
+				undefined field468_0x1d4;
+				undefined field469_0x1d5;
+				undefined field470_0x1d6;
+				undefined field471_0x1d7;
+				undefined field472_0x1d8;
+				undefined field473_0x1d9;
+				undefined field474_0x1da;
+				undefined field475_0x1db;
+				undefined field476_0x1dc;
+				undefined field477_0x1dd;
+				undefined field478_0x1de;
+				undefined field479_0x1df;
+				undefined field480_0x1e0;
+				undefined field481_0x1e1;
+				undefined field482_0x1e2;
+				undefined field483_0x1e3;
+				undefined field484_0x1e4;
+				undefined field485_0x1e5;
+				undefined field486_0x1e6;
+				undefined field487_0x1e7;
+				undefined field488_0x1e8;
+				undefined field489_0x1e9;
+				undefined field490_0x1ea;
+				undefined field491_0x1eb;
+				undefined field492_0x1ec;
+				undefined field493_0x1ed;
+				undefined field494_0x1ee;
+				undefined field495_0x1ef;
+				undefined field496_0x1f0;
+				undefined field497_0x1f1;
+				undefined field498_0x1f2;
+				undefined field499_0x1f3;
+				undefined field500_0x1f4;
+				undefined field501_0x1f5;
+				undefined field502_0x1f6;
+				undefined field503_0x1f7;
+				undefined field504_0x1f8;
+				undefined field505_0x1f9;
+				undefined field506_0x1fa;
+				undefined field507_0x1fb;
+				undefined field508_0x1fc;
+				undefined field509_0x1fd;
+				undefined field510_0x1fe;
+				undefined field511_0x1ff;
+				undefined field512_0x200;
+				undefined field513_0x201;
+				undefined field514_0x202;
+				undefined field515_0x203;
+				undefined field516_0x204;
+				undefined field517_0x205;
+				undefined field518_0x206;
+				undefined field519_0x207;
+				undefined field520_0x208;
+				undefined field521_0x209;
+				undefined field522_0x20a;
+				undefined field523_0x20b;
+				undefined field524_0x20c;
+				undefined field525_0x20d;
+				undefined field526_0x20e;
+				undefined field527_0x20f;
+				undefined field528_0x210;
+				undefined field529_0x211;
+				undefined field530_0x212;
+				undefined field531_0x213;
+				undefined field532_0x214;
+				undefined field533_0x215;
+				undefined field534_0x216;
+				undefined field535_0x217;
+				undefined field536_0x218;
+				undefined field537_0x219;
+				undefined field538_0x21a;
+				undefined field539_0x21b;
+				undefined field540_0x21c;
+				undefined field541_0x21d;
+				undefined field542_0x21e;
+				undefined field543_0x21f;
+				undefined field544_0x220;
+				undefined field545_0x221;
+				undefined field546_0x222;
+				undefined field547_0x223;
+				undefined field548_0x224;
+				undefined field549_0x225;
+				undefined field550_0x226;
+				undefined field551_0x227;
+				undefined field552_0x228;
+				undefined field553_0x229;
+				undefined field554_0x22a;
+				undefined field555_0x22b;
+				undefined field556_0x22c;
+				undefined field557_0x22d;
+				undefined field558_0x22e;
+				undefined field559_0x22f;
+				undefined field560_0x230;
+				undefined field561_0x231;
+				undefined field562_0x232;
+				undefined field563_0x233;
+				undefined field564_0x234;
+				undefined field565_0x235;
+				undefined field566_0x236;
+				undefined field567_0x237;
+				undefined field568_0x238;
+				undefined field569_0x239;
+				undefined field570_0x23a;
+				undefined field571_0x23b;
+				undefined field572_0x23c;
+				undefined field573_0x23d;
+				undefined field574_0x23e;
+				undefined field575_0x23f;
+				undefined field576_0x240;
+				undefined field577_0x241;
+				undefined field578_0x242;
+				undefined field579_0x243;
+				undefined field580_0x244;
+				undefined field581_0x245;
+				undefined field582_0x246;
+				undefined field583_0x247;
+				undefined field584_0x248;
+				undefined field585_0x249;
+				undefined field586_0x24a;
+				undefined field587_0x24b;
+				undefined field588_0x24c;
+				undefined field589_0x24d;
+				undefined field590_0x24e;
+				undefined field591_0x24f;
+				undefined field592_0x250;
+				undefined field593_0x251;
+				undefined field594_0x252;
+				undefined field595_0x253;
+				undefined field596_0x254;
+				undefined field597_0x255;
+				undefined field598_0x256;
+				undefined field599_0x257;
+				undefined field600_0x258;
+				undefined field601_0x259;
+				undefined field602_0x25a;
+				undefined field603_0x25b;
+				undefined field604_0x25c;
+				undefined field605_0x25d;
+				undefined field606_0x25e;
+				undefined field607_0x25f;
+				undefined field608_0x260;
+				undefined field609_0x261;
+				undefined field610_0x262;
+				undefined field611_0x263;
+				undefined field612_0x264;
+				undefined field613_0x265;
+				undefined field614_0x266;
+				undefined field615_0x267;
+				undefined field616_0x268;
+				undefined field617_0x269;
+				undefined field618_0x26a;
+				undefined field619_0x26b;
+				undefined field620_0x26c;
+				undefined field621_0x26d;
+				undefined field622_0x26e;
+				undefined field623_0x26f;
+				undefined field624_0x270;
+				undefined field625_0x271;
+				undefined field626_0x272;
+				undefined field627_0x273;
+				undefined field628_0x274;
+				undefined field629_0x275;
+				undefined field630_0x276;
+				undefined field631_0x277;
+				undefined field632_0x278;
+				undefined field633_0x279;
+				undefined field634_0x27a;
+				undefined field635_0x27b;
+				undefined field636_0x27c;
+				undefined field637_0x27d;
+				undefined field638_0x27e;
+				undefined field639_0x27f;
+		};
+		template<uint32_t i> class IntersectionTestQueue {
+		public:
+			void* ptr;
+			void* ptrArray[i];
+		};
+		class IRenderSceneListener {};
+
+		class SInviteAcceptedData {
+		public:
+			ECryLobbyService m_service;
+			uint32_t m_user;
+			SCrySessionID* m_id;
+			ECryLobbyError m_error;
+			ECryLobbyInviteType m_type;
+			bool m_bannedFromSession;
+			bool m_failedToAcceptInviteAsNotSignedIn;
+		};
+		class ArkAiManager{};
+		class ArkAttentionManager{};
+		class ArkAttractionManager{};
+		class ArkAuralPerceptionManager{};
+		class ArkCharacterManager{};
+		class ArkCombatManager{};
+		class ArkCystoidManager{};
+		class ArkDistractionEntitySink{};
+		class ArkDistractionManager{};
+		class ArkDynamicCorpseManager{};
+		class ArkEncounterManager{};
+		class CArkFlowGraphManager{};
+		class ArkEthericFogManager{};
+		class ArkFactionManager{};
+		class ArkGameDataManager{};
+		class ArkGlintConfigManager{};
+		class CArkGlooIslandNavLinkManager{};
+		class ArkInstigationManager{};
+		class ArkLightTimeManager{};
+		class ArkListenerManager{};
+		class ArkLurkManager{};
+		class ArkMetaTagManager{};
+		class ArkNightmareEtherformManager{};
+		class ArkNightmareSpawnManager{};
+		class ArkNpcAbilityManager{};
+		class ArkNpcAreaManager{};
+		class ArkNpcBlackboardManager{};
+		class ArkNpcGameEffectManager{};
+		class ArkNpcManager{};
+		class ArkNpcSpawnManager{}; // 0x358
+		class ArkNpcThrowPropManager{};
+		class ArkNpcUnreachableTargetingManager{};
+		class CArkPADialogManager{};
+		class ArkPatrolManager{};
+		class ArkPostEffectManager{};
+		class CArkProjectileGooNetworkManager{};
+		class CArkProjectileGooPhysicsManager{};
+		class CArkProjectilePoolManager{};
+		class ArkResponseManager{};
+		class ArkRetreatManager{};
+		class ArkRoomPerceptionManager{};
+		class ArkSpatialManager{};
+		class ArkTimeScaleManager{};
+		class ArkVisualPerceptionManager{};
+		class ArkWorldUIManager{};
+		class CScriptBind_ArkBreakable{};
+		class CScriptBind_ArkItem{};
+		class CScriptBind_ArkFaction{};
+		class CScriptBind_ArkKiosk{};
+		class CScriptBind_ArkNpc{};
+		class CScriptBind_ArkRoster{};
+		class CScriptBind_ArkTurret{};
+		class CScriptBind_Inventory{};
+		class CScriptBind_ItemSystem{};
+		class CScriptBind_LightningArc{};
+		class ArkGame{};
+		class ArkActiveUserManagerBase{};
+
+		class CGame {
+		public:
+			undefined field0_0x0;
+			undefined field1_0x1;
+			undefined field2_0x2;
+			undefined field3_0x3;
+			undefined field4_0x4;
+			undefined field5_0x5;
+			undefined field6_0x6;
+			undefined field7_0x7;
+			undefined field8_0x8;
+			undefined field9_0x9;
+			undefined field10_0xa;
+			undefined field11_0xb;
+			undefined field12_0xc;
+			undefined field13_0xd;
+			undefined field14_0xe;
+			undefined field15_0xf;
+			undefined field16_0x10;
+			undefined field17_0x11;
+			undefined field18_0x12;
+			undefined field19_0x13;
+			undefined field20_0x14;
+			undefined field21_0x15;
+			undefined field22_0x16;
+			undefined field23_0x17;
+			undefined field24_0x18;
+			undefined field25_0x19;
+			undefined field26_0x1a;
+			undefined field27_0x1b;
+			undefined field28_0x1c;
+			undefined field29_0x1d;
+			undefined field30_0x1e;
+			undefined field31_0x1f;
+			undefined field32_0x20;
+			undefined field33_0x21;
+			undefined field34_0x22;
+			undefined field35_0x23;
+			undefined field36_0x24;
+			undefined field37_0x25;
+			undefined field38_0x26;
+			undefined field39_0x27;
+			undefined field40_0x28;
+			undefined field41_0x29;
+			undefined field42_0x2a;
+			undefined field43_0x2b;
+			undefined field44_0x2c;
+			undefined field45_0x2d;
+			undefined field46_0x2e;
+			undefined field47_0x2f;
+			SPlatformInfo m_platformInfo;
+			CGameCache* m_pGameCache;
+			CRndGen m_randomGenerator;
+			IGameFramework* m_pFramework;
+			IConsole* m_pConsole;
+			CGamePhysicsSettings* m_pGamePhysicsSettings;
+			bool m_bReload;
+			bool m_gameTypeMultiplayer;
+			bool m_gameTypeInitialized;
+			bool m_userProfileChanged;
+			bool m_bLastSaveDirty;
+			bool m_needsInitPatchables;
+			bool m_editorDisplayHelpers;
+			undefined field61_0x67;
+			CScriptBind_Actor* m_pScriptBindActor;
+			CScriptBind_Item* m_pScriptBindItem;
+			CScriptBind_GameRules* m_pScriptBindGameRules;
+			CScriptBind_Game* m_pScriptBindGame;
+			CScriptBind_GameAI* m_pScriptBindGameAI;
+			CScriptBind_HitDeathReactions* m_pScriptBindHitDeathReactions;
+			CScriptBind_ProtectedBinds* m_pScriptBindProtected;
+			CPlayerVisTable* m_pPlayerVisTable;
+			CDataPatchDownloader* m_pDataPatchDownloader;
+			IAntiCheatManager* m_pAntiCheatManager;
+			CGameLocalizationManager* m_pGameLocalizationManager;
+			ITelemetryCollector* m_telemetryCollector;
+			CGameActions* m_pGameActions;
+			IPlayerProfileManager* m_pPlayerProfileManager;
+			bool m_inDevMode;
+			bool m_hasExclusiveController;
+			bool m_bExclusiveControllerConnected;
+			bool m_rebindExclusiveControllerOnNextInput;
+			bool m_bPausedForControllerDisconnect;
+			bool m_bPausedForSystemMenu;
+			bool m_bDeferredSystemMenuPause;
+			bool m_previousPausedGameState;
+			bool m_wasGamePausedByPLM;
+			undefined field85_0xe1;
+			undefined field86_0xe2;
+			undefined field87_0xe3;
+			undefined field88_0xe4;
+			undefined field89_0xe5;
+			undefined field90_0xe6;
+			undefined field91_0xe7;
+			uint64_t m_exclusiveControllerDeviceId;
+			int32_t m_currentXboxLivePartySize;
+			uint32_t m_clientActorId;
+			SCVars* m_pCVars;
+			SItemStrings* m_pItemStrings;
+			CGameSharedParametersStorage* m_pGameParametersStorage;
+			CryStringT<char> m_lastSaveGame;
+			CScreenEffects* m_pScreenEffects;
+			CDownloadMgr* m_pDownloadMgr;
+			CDLCManager* m_pDLCManager;
+			CLightningGameEffect* m_pLightningGameEffect;
+			CParameterGameEffect* m_pParameterGameEffect;
+			CWorldBuilder* m_pWorldBuilder;
+			IInputEventListener* m_pInputEventListenerOverride;
+			std::map<CryStringT<char>, CryStringT<char>> m_variantOptions;
+			std::map<CryFixedStringT<128>, int32_t, std::less<CryFixedStringT<128>>, std::allocator<std::pair<CryFixedStringT<128>const, int32_t>>> m_richPresence;
+			std::vector<IRenderSceneListener*, std::allocator<IRenderSceneListener*>> m_renderSceneListeners;
+			CColorGradientManager* m_colorGradientManager;
+			CGameAISystem* m_pGameAISystem;
+			RayCastQueue<41>* m_pRayCaster;
+			IntersectionTestQueue<43>* m_pIntersectionTester;
+			CUIManager* m_pUIManager;
+			CHitDeathReactionsSystem* m_pHitDeathReactionsSystem;
+			CBodyDamageManager* m_pBodyDamageManager;
+			CMovementTransitionsSystem* m_pMovementTransitionsSystem;
+			CGameMechanismManager* m_gameMechanismManager;
+			CModInfoManager* m_pModInfoManager;
+			float m_hostMigrationTimeStateChanged;
+			float m_hostMigrationNetTimeoutLength;
+			EHostMigrationState m_hostMigrationState;
+			ERichPresenceState m_desiredRichPresenceState;
+			ERichPresenceState m_pendingRichPresenceState;
+			ERichPresenceState m_currentRichPresenceState;
+			SCrySessionID* m_pendingRichPresenceSessionID;
+			SCrySessionID* m_currentRichPresenceSessionID;
+			float m_updateRichPresenceTimer;
+			bool m_settingRichPresence;
+			bool m_bRefreshRichPresence;
+			bool m_bSignInOrOutEventOccured;
+			undefined field131_0x207;
+			SInviteAcceptedData m_inviteAcceptedData;
+			enum EInviteAcceptedState m_inviteAcceptedState;
+			bool m_bLoggedInFromInvite;
+			bool m_gameDataInstalled;
+			bool m_postLocalisationBootChecksDone;
+			undefined field137_0x22f;
+			class CTimeValue m_levelStartTime;
+			int32_t m_iCachedGsmValue;
+			float m_fCachedGsmRangeValue;
+			float m_fCachedGsmRangeStepValue;
+			enum ESaveIconMode m_saveIconMode;
+			float m_saveIconTimer;
+			int32_t m_cachedUserRegion;
+			bool m_bUserHasPhysicalStorage;
+			bool m_bCheckPointSave;
+			undefined field147_0x252;
+			undefined field148_0x253;
+			undefined field149_0x254;
+			undefined field150_0x255;
+			undefined field151_0x256;
+			undefined field152_0x257;
+			std::vector<uint32_t, std::allocator<uint32_t>> m_deferredKills;
+			std::unique_ptr<ArkAiManager, std::default_delete<ArkAiManager>> m_pArkAiManager;
+			std::unique_ptr<ArkAttentionManager, std::default_delete<ArkAttentionManager>> m_pArkAttentionManager;
+			std::unique_ptr<ArkAttractionManager, std::default_delete<ArkAttractionManager>> m_pArkAttractionManager;
+			std::unique_ptr<ArkAuralPerceptionManager, std::default_delete<ArkAuralPerceptionManager>> m_pArkAuralPerceptionManager;
+			std::unique_ptr<ArkCharacterManager, std::default_delete<ArkCharacterManager>> m_pArkCharacterManager;
+			std::unique_ptr<ArkCombatManager, std::default_delete<ArkCombatManager>> m_pArkCombatManager;
+			std::unique_ptr<ArkCystoidManager, std::default_delete<ArkCystoidManager>> m_pArkCystoidManager;
+			std::unique_ptr<ArkDistractionEntitySink, std::default_delete<ArkDistractionEntitySink>> m_pArkDistractionEntitySink;
+			std::unique_ptr<ArkDistractionManager, std::default_delete<ArkDistractionManager>> m_pArkDistractionManager;
+			std::unique_ptr<ArkDynamicCorpseManager, std::default_delete<ArkDynamicCorpseManager>> m_pArkDynamicCorpseManager;
+			std::unique_ptr<ArkEncounterManager, std::default_delete<ArkEncounterManager>> m_pArkEncounterManager;
+			std::unique_ptr<CArkFlowGraphManager, std::default_delete<CArkFlowGraphManager>> m_pArkFlowGraphManager;
+			std::unique_ptr<ArkEthericFogManager, std::default_delete<ArkEthericFogManager>> m_pArkEthericFogManager;
+			std::unique_ptr<ArkFactionManager, std::default_delete<ArkFactionManager>> m_pArkFactionManager;
+			std::unique_ptr<ArkGameDataManager, std::default_delete<ArkGameDataManager>> m_pArkGameDataManager;
+			std::unique_ptr<ArkGlintConfigManager, std::default_delete<ArkGlintConfigManager>> m_pArkGlintConfigManager;
+			std::unique_ptr<CArkGlooIslandNavLinkManager, std::default_delete<CArkGlooIslandNavLinkManager>> m_pArkGlooIslandNavLinkManager;
+			std::unique_ptr<ArkInstigationManager, std::default_delete<ArkInstigationManager>> m_pArkInstigationManager;
+			std::unique_ptr<ArkLightTimeManager, std::default_delete<ArkLightTimeManager>> m_pArkLightTimeManager;
+			std::unique_ptr<ArkListenerManager, std::default_delete<ArkListenerManager>> m_pArkListenerManager;
+			std::unique_ptr<ArkLurkManager, std::default_delete<ArkLurkManager>> m_pArkLurkManager;
+			std::unique_ptr<ArkMetaTagManager, std::default_delete<ArkMetaTagManager>> m_pArkMetaTagManager;
+			std::unique_ptr<ArkNightmareEtherformManager, std::default_delete<ArkNightmareEtherformManager>> m_pArkNightmareEtherformManager;
+			std::unique_ptr<ArkNightmareSpawnManager, std::default_delete<ArkNightmareSpawnManager>> m_pArkNightmareSpawnManager;
+			std::unique_ptr<ArkNpcAbilityManager, std::default_delete<ArkNpcAbilityManager>> m_pArkNpcAbilityManager;
+			std::unique_ptr<ArkNpcAreaManager, std::default_delete<ArkNpcAreaManager>> m_pArkNpcAreaManager;
+			std::unique_ptr<ArkNpcBlackboardManager, std::default_delete<ArkNpcBlackboardManager>> m_pArkNpcBlackboardManager;
+			std::unique_ptr<ArkNpcGameEffectManager, std::default_delete<ArkNpcGameEffectManager>> m_pArkNpcGameEffectManager;
+			std::unique_ptr<ArkNpcManager, std::default_delete<ArkNpcManager>> m_pArkNpcManager;
+			std::unique_ptr<ArkNpcSpawnManager, std::default_delete<ArkNpcSpawnManager>> m_pArkNpcSpawnManager; // 0x358
+			std::unique_ptr<ArkNpcThrowPropManager, std::default_delete<ArkNpcThrowPropManager>> m_pArkNpcThrowPropManager;
+			std::unique_ptr<ArkNpcUnreachableTargetingManager, std::default_delete<ArkNpcUnreachableTargetingManager>> m_pArkNpcUnreachableTargetingManager;
+			std::unique_ptr<CArkPADialogManager, std::default_delete<CArkPADialogManager>> m_pArkPADialogManager;
+			std::unique_ptr<ArkPatrolManager, std::default_delete<ArkPatrolManager>> m_pArkPatrolManager;
+			std::unique_ptr<ArkPostEffectManager, std::default_delete<ArkPostEffectManager>> m_pArkPostEffectManager;
+			std::unique_ptr<CArkProjectileGooNetworkManager, std::default_delete<CArkProjectileGooNetworkManager>> m_pArkProjectileGooNetworkManager;
+			std::unique_ptr<CArkProjectileGooPhysicsManager, std::default_delete<CArkProjectileGooPhysicsManager>> m_pArkProjectileGooPhysicsManager;
+			std::unique_ptr<CArkProjectilePoolManager, std::default_delete<CArkProjectilePoolManager>> m_pArkProjectilePoolManager;
+			std::unique_ptr<ArkResponseManager, std::default_delete<ArkResponseManager>> m_pArkResponseManager;
+			std::unique_ptr<ArkRetreatManager, std::default_delete<ArkRetreatManager>> m_pArkRetreatManager;
+			std::unique_ptr<ArkRoomPerceptionManager, std::default_delete<ArkRoomPerceptionManager>> m_pArkRoomPerceptionManager;
+			std::unique_ptr<ArkSpatialManager, std::default_delete<ArkSpatialManager>> m_pArkSpatialManager;
+			std::unique_ptr<ArkTimeScaleManager, std::default_delete<ArkTimeScaleManager>> m_pArkTimeScaleManager;
+			std::unique_ptr<ArkVisualPerceptionManager, std::default_delete<ArkVisualPerceptionManager>> m_pArkVisualPerceptionManager;
+			std::unique_ptr<ArkWorldUIManager, std::default_delete<ArkWorldUIManager>> m_pArkWorldUIManager;
+			class CScriptBind_Ark* m_pScriptBindArk;
+			std::unique_ptr<CScriptBind_ArkBreakable, std::default_delete<CScriptBind_ArkBreakable>> m_pScriptBindArkBreakable;
+			std::unique_ptr<CScriptBind_ArkItem, std::default_delete<CScriptBind_ArkItem>> m_pScriptBindArkItem;
+			std::unique_ptr<CScriptBind_ArkFaction, std::default_delete<CScriptBind_ArkFaction>> m_pScriptBindArkFaction;
+			std::unique_ptr<CScriptBind_ArkKiosk, std::default_delete<CScriptBind_ArkKiosk>> m_pScriptBindArkKiosk;
+			std::unique_ptr<CScriptBind_ArkNpc, std::default_delete<CScriptBind_ArkNpc>> m_pScriptBindArkNpc;
+			std::unique_ptr<CScriptBind_ArkRoster, std::default_delete<CScriptBind_ArkRoster>> m_pScriptBindArkRoster;
+			std::unique_ptr<CScriptBind_ArkTurret, std::default_delete<CScriptBind_ArkTurret>> m_pScriptBindArkTurret;
+			std::unique_ptr<CScriptBind_Inventory, std::default_delete<CScriptBind_Inventory>> m_pScriptBindInventory;
+			std::unique_ptr<CScriptBind_ItemSystem, std::default_delete<CScriptBind_ItemSystem>> m_pScriptBindItemSystem;
+			std::unique_ptr<CScriptBind_LightningArc, std::default_delete<CScriptBind_LightningArc>> m_pScriptBindLightningArc;
+			class CryStringT<char> m_arkLoadLocation;
+			class XmlNodeRef m_gameLevelToLevelSave;
+			std::unique_ptr<ArkGame, std::default_delete<ArkGame>> m_pArkGame;
+			std::unique_ptr<ArkActiveUserManagerBase, std::default_delete<ArkActiveUserManagerBase>> m_pActiveUserManager;
+		};
+		
 
 	
 	

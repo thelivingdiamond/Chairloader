@@ -1,16 +1,14 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
+#include <string>
 
 #include "mem.h"
+#include "preyDllFunctions.h"
 #include "proc.h"
 #include "preyDllObjects.h"
 #include "preyDllFunctions.h"
-// typedef uintptr_t(_fastcall* _GetPlayerInstance)();
-// typedef float (__thiscall * _playerGetHealth)(ArkPlayer*);
-// typedef void(__thiscall * _playerSetHealth)(ArkPlayer*, float);
-// _GetPlayerInstance get_player_instance;
-// _playerGetHealth get_player_health;
-// _playerSetHealth set_player_health;
+#include <thread>
+
 DWORD WINAPI HackThread(HMODULE hModule) {
 	// Create Console
     AllocConsole();
@@ -18,22 +16,22 @@ DWORD WINAPI HackThread(HMODULE hModule) {
     freopen_s(&f, "CONOUT$", "w", stdout);
 
     std::cout << "Welcome to funland sonic\n";
-    
+    // std::cout << "threadId: " << std
     
     // Get Module base
     uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
 
     preyDllFunctions prey(moduleBase);
-    preyDllFunctions::_GetPlayerInstance get_player_instance;
-    //get_player_instance = (preyDllFunctions::_GetPlayerInstance)(moduleBase + 0x154fa60);
-   // get_player_instance = prey.getFunctionAddr<preyDllFunctions::_GetPlayerInstance>(moduleBase, 0x154fa60);
-    // get_player_health = (_playerGetHealth)(moduleBase + 0x154fa40);
-    // set_player_health = (_playerSetHealth)(moduleBase + 0x15575c0);
-    //uintptr_t playerptr = get_player_instance();
+    staticObjectPointers staticPointers(moduleBase);
+
+    CEntitySystem* CEntitySystem = staticPointers.gEnvPtr->pEntitySystem;
+    CGame* CGamePtr = staticPointers.gEnvPtr->pGame;
+    ArkNpcSpawnManager* spawner = CGamePtr->m_pArkNpcSpawnManager.get();
     ArkPlayer* player = prey.getPlayerInstance();
-    //ArkPlayer playerObj = *prey.getPlayerInstance();
-    //ArkPlayer player = *(ArkPlayer*)get_player_instance();
     bool bGloo = 0;
+    // bypass thread check
+    mem::Nop((BYTE*)(moduleBase + 0x020e2c5), 20);
+
 
     std::cout << "ChairLoader Initialized...\n";
     std::cout << "\nModule Base: 0x" << std::hex << moduleBase << std::dec << "\n\n";
@@ -44,6 +42,7 @@ DWORD WINAPI HackThread(HMODULE hModule) {
         if (GetAsyncKeyState(VK_END) & 1) {
             break;
         }
+        
         if (GetAsyncKeyState(VK_F2) & 1) {
             thirdPerson = !thirdPerson;
             prey.showThirdPerson(player, thirdPerson);
@@ -82,6 +81,7 @@ DWORD WINAPI HackThread(HMODULE hModule) {
         if (GetAsyncKeyState(VK_F8) & 1) {
             std::cout  << "Current Player Instance Pointer: " << std::hex << prey.getPlayerInstance << std::endl;
             std::cout << "Current Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
+
             if (player->m_movementFSM.m_flyMode == EArkFlyMode::off) {
                 std::cout << "Fly mode: OFF\n";
             }
@@ -95,9 +95,106 @@ DWORD WINAPI HackThread(HMODULE hModule) {
             }
         }
         if (GetAsyncKeyState(VK_F10) & 1) {
-            std::cout << "Current Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
-            prey.setPlayerHealth(player, prey.getPlayerHealth(player) + 100.0f);
-            std::cout << "New Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
+                //
+                // std::cout << "Current Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
+                // prey.setPlayerHealth(player, prey.getPlayerHealth(player) + 100.0f);
+                // std::cout << "New Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
+            uint32_t newId = prey.generateEntityId(CEntitySystem, true);
+            std::cout << "new ID:" << newId << std::endl;
+        }
+        
+
+        if (GetAsyncKeyState(VK_F11) & 1) {
+            //CGame* cgameptr = staticPointers.g_pGame;
+            Vec3_tpl<float> playerPos;
+            prey.getPlayerWorldEyePos(player, &playerPos);
+            // std::cout << "x: " << playerPos.x << "\ny: " << playerPos.y << "\nz: " << playerPos.z << std::endl;
+            Quat_tpl<float> playerFacing;
+            prey.getViewRotation(player, &playerFacing);
+            uint32_t newId = prey.generateEntityId(CEntitySystem, true);
+            std::cout << "new ID:" << newId << std::endl;
+            CryStringT<char> entityName;
+            entityName.m_str = const_cast <char*>("ArkNpcs.Phantoms.BasePhantom");
+            CEntityArchetype* newArchetype = prey.findEntityArchetype(CEntitySystem, entityName.m_str);
+            if (newArchetype != 0)
+                std::cout << std::hex << newArchetype->m_name.m_str;
+            // std::cout << prey.getArchetype(CEntitySystem, (uint64_t)0x1C76A2E2840) << std::endl;
+            uint32_t spawnState = 2;
+            IEntity * entity = prey.createNpc(newArchetype, playerPos, playerFacing,newId,&spawnState);
+
+
+            try {
+                // std::cout << "gEnv: 0x" << std::hex << staticPointers.gEnvPtr << std::endl;
+                // std::cout << "pEntitySystem: 0x" << std::hex << staticPointers.gEnvPtr->pEntitySystem << std::endl;
+                // std::cout << "Timers Paused: " << CEntitySystem->m_bTimersPause << std::endl;
+                //CEntitySystem* manual = (CEntitySystem*)0x17E11F64DE0;
+                //std::cout << "Timers Paused: " << manual->m_bTimersPause << std::endl;
+                // std::cout << std::hex << 0x17E11F64DE0 << std::endl;
+                
+                
+                // IEntityArchetype* Iarchetype = prey.getArchetype(CEntitySystem, 717);
+                // CEntityArchetype* archetype = Iarchetype->ptr;
+                // std::cout << archetype->m_id << std::endl;
+                // CryStringT<char> libraryName;
+                // libraryName.m_str = const_cast <char*>("ArkNpcs");
+                
+                // std::cout << "paused: " << CGamePtr->m_bPausedForSystemMenu << std::endl;
+                // CEntityArchetypeManager* archetypeManager = CEntitySystem->m_pEntityArchetypeManager;
+              
+                
+                
+                // std::cout <<"ArkNpcSpawnManager Offset: 0x" << std::hex << (uintptr_t)&CGamePtr->m_pArkNpcSpawnManager - (uintptr_t)CGamePtr << std::endl;
+                // for (std::map<CryStringT<char>, CryStringT<char>>::const_iterator it = CGamePtr->m_variantOptions.begin();it != CGamePtr->m_variantOptions.end();++it) {
+                //     std::cout << it->first.m_str << ": " << it->second.m_str << std::endl;
+                // }
+                // CEntityArchetypeManager* archetypeManager = CEntitySystem->m_pEntityArchetypeManager;
+                // for (std::map<const char*, CEntityArchetype*>::const_iterator it = archetypeManager->m_nameToArchetypeMap.begin();it != archetypeManager->m_nameToArchetypeMap.end();++it) {
+                //     std::cout << it->first << ": " << it->second << std::endl;
+                // }
+               //  std::vector<CryStringT<char>> names = prey.getArchetypeNames(CEntitySystem, libraryName);
+               //  if(names.size() > 0) {
+               //     for (CryStringT<char> a : names) {
+               //         std::cout << a.m_str << std::endl;
+               //     }
+               // } else {
+               //     std::cout << "no return " << std::endl;
+               // }
+                // }
+
+
+
+                // std::cout << std::hex << moduleBase + 0x2c09010 << std::endl;
+                // std::cout << cgameptr << std::endl;
+                // std::cout << &cgameptr << std::endl;
+                // void* spawnManager = (&cgameptr +(uintptr_t)0x058);
+                // std::cout << spawnManager << std::endl;
+                // std::cout <<"gEnv: 0x" << std::hex << staticPointers.gEnvPtr << std::endl;
+                // // std::cout << "pEntitySystem: 0x" << std::hex << (uintptr_t)&staticPointers.gEnvPtr->pEntitySystem - (uintptr_t)staticPointers.gEnvPtr << std::endl;
+             //    std::cout << "pEntitySystem: 0x" << std::hex << *(CEntitySystem**)staticPointers.gEnvPtr->pEntitySystem << std::endl;
+             //    CEntitySystem* CEntitySystemPtr = *(CEntitySystem**)staticPointers.gEnvPtr->pEntitySystem->ptr;
+             //    std::cout << "m_tempActiveEntities: 0x" << std::hex << (uintptr_t)&CEntitySystemPtr->m_tempActiveEntities - (uintptr_t)staticPointers.gEnvPtr->pEntitySystem->ptr << std::endl;
+             //    std::cout << "pArchetypeManager: 0x" << std::hex << (uintptr_t)&CEntitySystemPtr->m_pEntityArchetypeManager - (uintptr_t)staticPointers.gEnvPtr->pEntitySystem->ptr << std::endl;
+             //    // std::cout << "Timers Paused: " << CEntitySystemPtr->m_bTimersPause << std::endl;
+             //    std::cout << std::hex << *(uintptr_t**)&CEntitySystemPtr->m_bTimersPause;
+                //CEntityArchetypeManager* CArchetypeManager = CEntitySystemPtr->m_pEntityArchetypeManager;
+
+                // ;
+                //
+                // prey.update(CEntitySystemPtr);
+                //std::cout << std::hex << CEntitySystemPtr << std::endl;
+                // CEntityArchetype * yes = CArchetypeManager->m_idToArchetypeMap.find(717);
+                // 
+                // std::cout << archetype->m_name.m_str << std::endl;
+
+
+            // std::cout << "GEnvOffset : 0x" << (uintptr_t)staticPointers.gEnvPtr - moduleBase << std::endl;
+            // std::cout << (uintptr_t)&staticPointers.gEnv - (uintptr_t)&staticPointers.gEnv.pEntitySystem<<std::endl;
+            // CEntitySystem* entitySystem = (CEntitySystem*)staticPointers.gEnv.pEntitySystem->ptr;
+            // CEntityArchetypeManager* archetypeManager = entitySystem->m_pEntityArchetypeManager;
+            // std::cout << prey.getArchetype(archetypeManager, 717);
+            } catch (...) {
+                break;
+            }
         }
         // continuous read/write
         if (bGloo) {

@@ -15,5 +15,13 @@
 #include <vector>
 #include <windows.h>
 #include <TlHelp32.h>
-
+#include <vector>
+#include <optional>
+#include <unordered_map>
+#include <map>
+#include <DirectXMath.h>
+#include <array>
+#include <variant>
+#include <functional>
+#include <memory>
 #endif //PCH_H

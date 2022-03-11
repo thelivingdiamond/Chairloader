@@ -53,3 +53,31 @@ template<typename T> struct Vec2_tpl { T x, y; };
 typedef Vec3_tpl<float> Vec3;
 typedef Quat_tpl<float> Vec4;
 typedef Vec2_tpl<float> Vec2;
+
+typedef char undefined;
+template<uint32_t i> class CryFixedStringT {
+public:
+	char pad[i];
+};
+
+template<typename T, uint32_t i> class CryFixedArray {
+public:
+	void* ptr;
+	uint32_t m_curSize;
+	T arr[i];
+};
+
+template<typename T> class CCryFlags {
+public:
+
+	T m_bitStorage;
+};
+
+class CryHashStringId {
+public:
+	uint32_t id;
+};
+class CRndGen {
+public:
+	uint64_t m_state;
+};
