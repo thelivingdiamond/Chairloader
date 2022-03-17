@@ -1,3 +1,5 @@
+#pragma once
+;
 enum class EArkMapObjectiveState {
     none=0,
     side=1,

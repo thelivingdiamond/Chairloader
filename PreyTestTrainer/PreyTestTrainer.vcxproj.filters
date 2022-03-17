@@ -36,7 +36,7 @@
     <ClInclude Include="EArk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="preyDllFunctions.h">
+    <ClInclude Include="preyFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header.h">
@@ -56,7 +56,7 @@
     <ClCompile Include="proc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="preyDllFunctions.cpp">
+    <ClCompile Include="preyFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PreyDllObjects.cpp">

@@ -24,4 +24,6 @@
 #include <variant>
 #include <functional>
 #include <memory>
+#include <boost/variant.hpp>
+#include <deque>
 #endif //PCH_H

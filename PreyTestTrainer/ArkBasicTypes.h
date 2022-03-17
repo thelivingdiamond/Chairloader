@@ -81,3 +81,28 @@ class CRndGen {
 public:
 	uint64_t m_state;
 };
+template<typename F> struct Matrix34_tpl {
+
+
+	F m00, m01, m02, m03;
+	F m10, m11, m12, m13;
+	F m20, m21, m22, m23;
+
+	inline Matrix34_tpl() {}
+
+	inline Matrix34_tpl<F>(F v00, F v01, F v02, F v03, F v10, F v11, F v12, F v13, F v20, F v21, F v22, F v23)
+	{
+		m00 = v00;
+		m01 = v01;
+		m02 = v02;
+		m03 = v03;
+		m10 = v10;
+		m11 = v11;
+		m12 = v12;
+		m13 = v13;
+		m20 = v20;
+		m21 = v21;
+		m22 = v22;
+		m23 = v23;
+	}
+};
