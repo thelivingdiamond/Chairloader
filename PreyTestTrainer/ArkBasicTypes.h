@@ -47,12 +47,16 @@ template<typename T> class ArkIntrusiveList;
 		T maximum;
 	};
 template<typename T> struct Vec3_tpl { T x, y, z; };
+template<typename T> struct Ang3_tpl{ T x, y, z; };
 template<typename T> struct Quat_tpl { T x, y, z, w; };
+template<typename T> struct Vec4_tpl { T x, y, z, w; };
 template<typename T> struct Vec2_tpl { T x, y; };
+
 
 typedef Vec3_tpl<float> Vec3;
 typedef Quat_tpl<float> Vec4;
 typedef Vec2_tpl<float> Vec2;
+template<typename t> struct Color_tpl { t r, g, b; };
 
 typedef char undefined;
 template<uint32_t i> class CryFixedStringT {
@@ -105,4 +109,39 @@ template<typename F> struct Matrix34_tpl {
 		m22 = v22;
 		m23 = v23;
 	}
+};
+
+template<typename t, uint64_t i> class CryStackStringT {
+public:
+	uint64_t m_nLength,
+		m_nAllocSize;
+	t* m_str;
+	t m_strBuf[i];
+};
+class BLOCK {
+public:
+	BLOCK* next;
+	int32_t size;
+	char s[1];
+};
+class SStringData {
+public:
+	char* m_szString;
+	int32_t m_nStrLen;
+	char pad[4];
+};
+class CSimpleStringPool {
+public:
+	uint32_t m_blockSize;
+	char pad[4];
+	BLOCK* m_blocks;
+	BLOCK* m_free_blocks;
+	char* m_end;
+	char* m_ptr;
+	char* m_start;
+	int32_t nUsedSpace;
+	int nUsedBlocks;
+	bool m_reuseStrings;
+	char pad2[7];
+	std::unordered_map<SStringData, char*> m_stringToExistingStringMap;
 };

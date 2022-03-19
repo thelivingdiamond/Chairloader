@@ -6,10 +6,26 @@
 
 #include "ArkBasicTypes.h"
 #include "EArk.h"
-
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
+class CBinaryXmlNode;
+class EEndianness;
+class ChunkTypes;
+enum class ELockMode;
+class SComponentInitializer;
+class ICrySizer;
+class ScriptAnyValue;
+class CTimeValue;
+class SNetObjectID;
+class ISerializeUpdateFunction;
+class SSerializeString;
+class ISerialize;
+class CXmlNode;
+class IEntity;
+class ArkNpcAbility;
+class ArkInventory;
+class StorageCell;
 class IAntiCheatManager;
 class IPhysicalEntity;
 class ArkAimAssistComponent;
@@ -1283,10 +1299,7 @@ namespace ArkNpc {
 	public:
 		uint32_t m_data;
 	};
-	class IEntity {
-	public:
-		void* ptr;
-	};
+	
 	class IAttachment {
 	public:
 		void* ptr;
@@ -1416,13 +1429,537 @@ namespace ArkNpc {
 	public:
 		void* ptr;
 	};
+	
+	class SSurfaceTypeAIParams {
+		
+	};
+	class IXmlStringData;
+	class CXmlStringPool;
+	class XmlString;
+	class XmlNodeRef;
+
+	class XmlAttribute {
+	public:
+		char* key;
+		char* value;
+	};
+
+	class CXmlNode {
+	public:
+		virtual void  DeleteThis() {}
+		virtual void* _ECXmlNode(uint32_t param_1) {}
+		virtual  XmlNodeRef* createNode(char* param_1) {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		virtual uint32_t  GetAudioObjectID() {}
+		virtual  ArkNpcAbilityInstance* GetAbilityInstance() {}
+		virtual void  setTag(char* param_1) {}
+		virtual bool  isTag(char* param_1) {}
+		virtual int  getNumAttributes() {}
+		virtual bool  getAttributeByIndex(int param_1, char** param_2, char** param_3) {}
+		virtual void  copyAttributes(XmlNodeRef* param_1) {}
+		virtual bool  removeAttr(char* param_1) {}
+		virtual bool  getAttr(char* param_1, Color_tpl<unsigned char>* param_2) {}
+		virtual bool  getAttr(char* param_1, XmlString* param_2) {}
+		virtual bool  getAttr(char* param_1, bool* param_2) {}
+		virtual bool  getAttr(char* param_1, Quat_tpl<float>* param_2) {}
+		virtual bool  getAttr(char* param_1, Vec3_tpl<double>* param_2) {}
+		virtual bool  getAttr(char* param_1, Vec4_tpl<float>* param_2) {}
+		virtual bool  getAttr(char* param_1, Vec3_tpl<float>* param_2) {}
+		virtual bool  getAttr(char* param_1, Ang3_tpl<float>* param_2) {}
+		virtual bool  getAttr(char* param_1, Vec2_tpl<double>* param_2) {}
+		virtual bool  getAttr(char* param_1, Vec2_tpl<float>* param_2) {}
+		virtual bool  getAttr(char* param_1, double* param_2) {}
+		virtual bool  getAttr(char* param_1, float* param_2) {}
+		virtual bool  getAttr(char* param_1, uint64_t* param_2) {}
+		virtual bool  getAttr(char* param_1, int64_t* param_2) {}
+		virtual bool  getAttr(char* param_1, uint32_t* param_2) {}
+		virtual bool  getAttr(char* param_1, int* param_2) {}
+		virtual bool  getAttr(char* param_1, char** param_2) {}
+		virtual char* getAttr(char* param_1) {}
+		virtual bool  haveAttr(char* param_1) {}
+		virtual void  addChild(XmlNodeRef* param_1) {}
+		virtual  XmlNodeRef* newChild(char* param_1) {}
+		virtual void  removeChild(XmlNodeRef* param_1) {}
+		virtual void  insertChild(XmlNodeRef* param_1, XmlNodeRef* param_2) {}
+		virtual void  insertChild(int param_1, XmlNodeRef* param_2) {}
+		virtual void  replaceChild(int param_1, XmlNodeRef* param_2) {}
+		virtual void  removeAllChilds() {}
+		virtual int  getChildCount() {}
+		virtual  XmlNodeRef* getChild(int param_1) {}
+		virtual void  _xPathFindNodes(std::function<void __cdecl(XmlNodeRef)>* param_1, char* param_2) {}
+		virtual  XmlNodeRef* ensureChild(char* param_1) {}
+		virtual  XmlNodeRef* getRoot() {}
+		virtual void  xPathIDFromAttribute(char* param_1, CryStackStringT<char, 512>* param_2) {}
+		virtual bool  MatchesXPath(char* param_1) {}
+		virtual int  findChildIndex(XmlNodeRef* param_1) {}
+		virtual  XmlNodeRef* findChild(char* param_1) {}
+		virtual  XmlNodeRef* findChildWithAttibuteValue(char* param_1, char* param_2) {}
+		virtual  XmlNodeRef* getParent() {}
+		virtual void  Initialize(SComponentInitializer* param_1) {}
+		virtual  SSurfaceTypeAIParams* GetAIParams() {}
+		virtual void  setContent(char* param_1) {}
+		virtual  XmlNodeRef* clone() {}
+		virtual int  GetActionMapsCount() {}
+		virtual void  SetTargetLock(ELockMode* param_1) {}
+		virtual  IXmlStringData* getXMLData(int param_1) {}
+		virtual  XmlString* getXML(int param_1) {}
+		virtual bool  saveToFile(char* param_1, uint64_t param_2, _iobuf* param_3, bool param_4) {}
+		virtual bool  saveToFile(char* param_1, bool param_2) {}
+		virtual void  setAttr(char* param_1, Quat_tpl<float>* param_2) {}
+		virtual void  setAttr(char* param_1, Vec3_tpl<double>* param_2) {}
+		virtual void  setAttr(char* param_1, Vec4_tpl<float>* param_2) {}
+		virtual void  setAttr(char* param_1, Ang3_tpl<float>* param_2) {}
+	private:
+		virtual void  garbage0() {}
+	public:
+		virtual void  setAttr(char* param_1, Vec2_tpl<double>* param_2) {}
+		virtual void  setAttr(char* param_1, Vec2_tpl<float>* param_2) {}
+		virtual void  setAttr(char* param_1, double param_2) {}
+		virtual void  setAttr(char* param_1, float param_2) {}
+		virtual void  setAttr(char* param_1, uint64_t param_2) {}
+		virtual void  setAttr(char* param_1, int64_t param_2) {}
+		virtual void  setAttr(char* param_1, uint32_t param_2) {}
+		virtual void  setAttr(char* param_1, int param_2) {}
+		virtual void  setAttr(char* param_1, char* param_2) {}
+		virtual void  setAttrHex(char* param_1, uint64_t param_2) {}
+		virtual void  delAttr(char* param_1) {}
+		virtual void  removeAllAttributes() {}
+		virtual bool  getAttrHex(char* param_1, uint64_t* param_2) {}
+		virtual void  GetMemoryUsage(ICrySizer* param_1) {}
+		virtual void  shareChildren(XmlNodeRef* param_1) {}
+		virtual void  deleteChildAt(int param_1) {}
+		virtual  XmlString* getXMLUnsafe(int param_1, char* param_2, uint32_t param_3) {}
+		virtual bool  getAttributeByIndex(int param_1, XmlString* param_2, XmlString* param_3) {}
+	private:
+		virtual void garbage() {}
+	public:
+		virtual void* _ECXmlNodeReuse(uint32_t param_1) {}
+	private:
+		virtual void garbage100() {}
+		virtual void garbage1() {}
+		virtual void garbage2() {}
+		virtual void garbage3() {}
+		virtual void garbage4() {}
+		virtual void garbage5() {}
+		virtual void garbage6() {}
+		virtual void garbage7() {}
+		virtual void garbage8() {}
+		virtual void garbage9() {}
+		virtual void garbage101() {}
+		virtual void garbage11() {}
+		virtual void garbage12() {}
+		virtual void garbage13() {}
+		virtual void garbage14() {}
+		virtual void garbage15() {}
+		virtual void garbage16() {}
+		virtual void garbage17() {}
+		virtual void garbage18() {}
+		virtual void garbage19() {}
+		virtual void garbage20() {}
+		virtual void garbage21() {}
+		virtual void garbage22() {}
+		virtual void garbage23() {}
+		virtual void garbage24() {}
+		virtual void garbage25() {}
+		virtual void garbage26() {}
+		virtual void garbage27() {}
+		virtual void garbage28() {}
+		virtual void garbage29() {}
+		virtual void garbage30() {}
+		virtual void garbage31() {}
+		virtual void garbage32() {}
+		virtual void garbage33() {}
+		virtual void garbage34() {}
+		virtual void garbage35() {}
+		virtual void garbage36() {}
+		virtual void garbage37() {}
+		virtual void garbage38() {}
+		virtual void garbage39() {}
+		virtual void garbage40() {}
+		virtual void garbage41() {}
+		virtual void garbage42() {}
+		virtual void garbage43() {}
+		virtual void garbage44() {}
+		virtual void garbage45() {}
+		virtual void garbage46() {}
+		virtual void garbage47() {}
+		virtual void garbage48() {}
+		virtual void garbage49() {}
+		virtual void garbage50() {}
+		virtual void garbage51() {}
+		virtual void garbage52() {}
+		virtual void garbage53() {}
+		virtual void garbage54() {}
+		virtual void garbage55() {}
+		virtual void garbage56() {}
+		virtual void garbage57() {}
+		virtual void garbage58() {}
+		virtual void garbage59() {}
+		virtual void garbage60() {}
+		virtual void garbage61() {}
+		virtual void garbage62() {}
+		virtual void garbage63() {}
+		virtual void garbage64() {}
+		virtual void garbage65() {}
+		virtual void garbage66() {}
+		virtual void garbage67() {}
+		virtual void garbage68() {}
+		virtual void garbage69() {}
+		virtual void garbage70() {}
+		virtual void garbage71() {}
+		virtual void garbage72() {}
+		virtual void garbage73() {}
+		virtual void garbage74() {}
+		virtual void garbage75() {}
+		virtual void garbage76() {}
+		virtual void garbage77() {}
+		virtual void garbage78() {}
+		virtual void garbage79() {}
+		virtual void garbage80() {}
+	public:
+		virtual void* _ECXmlNodePool(uint32_t param_1) {}
+		virtual void  OnRelease(int param_1, void* param_2) {}
+		char pad[8];
+		CXmlStringPool* m_pStringPool;
+		char* m_tag;
+		char* m_content;
+		CXmlNode* m_parent;
+		std::vector < CXmlNode*> m_pChilds;
+		std::vector<XmlAttribute> m_pAttributes;
+		int32_t m_line;
+		char pad2[4];
+	};
 	class XmlNodeRef {
 	public:
-		void* ptr;
+		CXmlNode* ptr;
 	};
+	class CXmlTableReader {
+	public:
+		virtual void* _ECXmlTableReader(uint32_t param_1) {}
+		virtual void  Complete() {}
+		virtual bool  Begin(XmlNodeRef* param_1) {}
+		virtual int  GetEstimatedRowCount() {}
+		virtual bool  ReadRow(int* param_1) {}
+		virtual bool  ReadCell(int* param_1, char** param_2, uint64_t* param_3) {}
+		bool m_bExcel;
+		char pad[7];
+		XmlNodeRef m_tableNode,
+			m_rowNode;
+		int32_t m_rowNodeIndex,
+			m_row,
+			m_columnNodeIndex,
+			m_column;
+		uint64_t m_rowTextSize,
+			rwoTextPos;
+	};
+
+	class IXmlStringData {
+	public:
+		char* m_str;
+	};
+	class XmlString {
+	public:
+		char* m_str;
+	};
+	class CXmlStringPool {
+	public:
+		virtual void* _ECXmlStringPool(uint32_t param_1) {}
+		virtual char* AddString(char* param_1) {}
+		virtual void  GetMemoryUsage(ICrySizer* param_1) {}
+		char pad[8];
+		CSimpleStringPool m_stringPool;
+	};
+
+
+	class IXmlSerializer {};
+	class IXmlParser {};
+	class IXmlTableReader {};
+	class IReadXMLSink {};
+	class IWriteXMLSource {};
+	class IReadWriteXmlSink {};
+	class CXmlNodePool {};
+	class CXMLPatcher {};
+	class Node {
+	public:
+		uint32_t nTagStringOffset,
+			nContentStringOffset;
+		unsigned short nAttributeCount,
+			nChildCount;
+		uint32_t nParentIndex,
+			nFirstAttributeIndex,
+			nFirstChildIndex;
+		char pad[4];
+	};
+	class Attribute {
+	public:
+		uint32_t nKeyStringOffset;
+		uint32_t nValueStringOffset;
+	};
+	class CBinaryXmlData {
+	public:
+		Node* pNodes;
+		Attribute* pAttributes;
+		uint32_t * pChildIndices;
+		char* pStringData;
+		char* pFileContents;
+		uint64_t nFileSize;
+		bool bOwnsFileContentsMemory;
+		char pad[7];
+		CBinaryXmlNode* pBinaryNodes;
+		int32_t nRefCount;
+		char pad2[4];
+	};
+	class CBinaryXmlNode {
+	public:
+		virtual void   $FunctionCaller( EArkNpcFacingDesireCallbackEvent* param_2) {}
+		virtual void*   _ECBinaryXmlNode(uint32_t param_1) {}
+		virtual void garbage0() {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		virtual uint32_t  GetAudioObjectID() {}
+		virtual char*  getTag() {}
+		virtual void   garbage1() {}
+		virtual bool  isTag(char* param_1) {}
+		virtual int32_t  getNumAttributes() {}
+		virtual bool  getAttributeByIndex(int32_t param_1, char** param_2, char** param_3) {}
+		virtual void   $destroy( XmlNodeRef* param_2) {}
+		virtual bool   RIArchive(char* param_1, char* param_2, char* param_3) {}
+		virtual bool  getAttr(char* param_1,  Color_tpl<unsigned char>*param_2) {}
+		virtual bool  getAttr(char* param_1,  XmlString* param_2) {}
+		virtual bool  getAttr(char* param_1, bool* param_2) {}
+		virtual bool  getAttr(char* param_1,  Quat_tpl<float>*param_2) {}
+		virtual bool  getAttr(char* param_1,  Vec3_tpl<double>*param_2) {}
+		virtual bool  getAttr(char* param_1,  Vec4_tpl<float>*param_2) {}
+		virtual bool  getAttr(char* param_1,  Vec3_tpl<float>*param_2) {}
+		virtual bool  getAttr(char* param_1,  Ang3_tpl<float>*param_2) {}
+		virtual bool  getAttr(char* param_1,  Vec2_tpl<double>*param_2) {}
+		virtual bool  getAttr(char* param_1,  Vec2_tpl<float>*param_2) {}
+		virtual bool  getAttr(char* param_1, double* param_2) {}
+		virtual bool  getAttr(char* param_1, float* param_2) {}
+		virtual bool  getAttr(char* param_1, uint64_t * param_2) {}
+		virtual bool  getAttr(char* param_1, int64_t* param_2) {}
+		virtual bool  getAttr(char* param_1, uint32_t * param_2) {}
+		virtual bool  getAttr(char* param_1, int32_t* param_2) {}
+		virtual bool  getAttr(char* param_1, char** param_2) {}
+		virtual char*  getAttr(char* param_1) {}
+		virtual bool  haveAttr(char* param_1) {}
+		virtual void garbage() {}
+		virtual void garbage2() {}
+		virtual void garbage19() {}
+		virtual void garbage18() {}
+		virtual void garbage3() {}
+		virtual void garbage4() {}
+		virtual void garbage5() {}
+		virtual int32_t  getChildCount() {}
+		virtual  XmlNodeRef*  getChild(int32_t param_1) {}
+		virtual void  _xPathFindNodes(std::function<void __cdecl(XmlNodeRef)>* param_1, char* param_2) {} 
+		virtual void garbage6() {}
+		virtual void garbage7() {}
+		virtual void garbage8() {}
+		virtual void garbage9() {}
+		virtual int32_t  AddChunk( ChunkTypes* param_1, int32_t param_2,  EEndianness* param_3, void* param_4, int32_t param_5) {}
+		virtual  XmlNodeRef*  findChild(char* param_1) {}
+		virtual void garbage10() {}
+		virtual  XmlNodeRef*  getParent() {}
+		virtual void   garbage11() {}
+		virtual char*  getContent() {}
+		virtual void  garbage12() {}
+		virtual void garbage13() {}
+		virtual wchar_t*  Action() {}
+		virtual void   garbage14() {}
+		virtual void  garbage15() {}
+		virtual  XmlString*  getXML(int32_t param_1) {}
+		virtual void garbage20(){}
+		virtual void garbage21(){}
+		virtual void garbage22(){}
+		virtual void garbage23(){}
+		virtual void garbage24(){}
+		virtual void garbage25(){}
+		virtual void garbage26(){}
+		virtual void garbage27(){}
+		virtual void garbage28(){}
+		virtual void garbage29(){}
+		virtual void garbage30() {}
+		virtual void garbage31() {}
+		virtual void garbage32() {}
+		virtual void garbage33() {}
+		virtual void garbage34() {}
+		virtual void garbage35() {}
+		virtual void garbage36() {}
+		virtual void garbage37() {}
+		virtual void garbage38() {}
+		virtual bool  getAttrHex(char* param_1, uint64_t * param_2) {}
+		virtual void  GetMemoryUsage( ICrySizer* param_1) {}
+		virtual void garbage39() {}
+		virtual void garbage40() {}
+		virtual  XmlString*  getXMLUnsafe(int32_t param_1, char* param_2, uint32_t param_3) {}
+		virtual bool  getAttributeByIndex(int32_t param_1,  XmlString* param_2,  XmlString* param_3) {}
+		char pad[8];
+		CBinaryXmlData* m_pData;
+	};
+	class CXmlUtils {
+	public:
+		char pad[8];
+		virtual void* _ECXmlUtils(uint32_t param_1) {}
+		virtual  XmlNodeRef LoadXmlFromFile(char* sFilename, bool bReuseStrings, bool bEnablePatching, bool bAllowUseFileSystem) {}
+		virtual  XmlNodeRef* LoadXmlFromBuffer(char* param_1, uint64_t param_2, bool param_3) {}
+		virtual char* HashXml(XmlNodeRef* param_1) {}
+		virtual  ArkNpcAbilityInstance* GetAbilityInstance() {}
+		virtual  IXmlSerializer* CreateXmlSerializer() {}
+		virtual  IXmlParser* CreateXmlParser() {}
+		virtual bool  SaveBinaryXmlFile(char* param_1, XmlNodeRef* param_2) {}
+		virtual  XmlNodeRef* LoadBinaryXmlFile(char* param_1, bool param_2) {}
+		virtual bool  EnableBinaryXmlLoading(bool param_1) {}
+		virtual  IXmlTableReader* CreateXmlTableReader() {}
+		virtual void  InitStatsXmlNodePool(uint32_t param_1) {}
+		virtual  XmlNodeRef* CreateStatsXmlNode(char* param_1) {}
+		virtual void   $FunctionCaller(EArkNpcFacingDesireCallbackEvent* param_2) {}
+		virtual void  FlushStatsXmlNodePool() {}
+		virtual void  SetXMLPatcher(XmlNodeRef* param_1) {}
+		virtual void  GetMemoryUsage(ICrySizer* param_1) {}
+		virtual void  garbage0() {}
+		virtual void  garbage1() {}
+		virtual void  OnSystemEvent(ESystemEvent* param_1, uint64_t param_2, uint64_t param_3) {}
+		virtual void* _ECReadWriteXMLSink(uint32_t param_1) {}
+		virtual bool  ReadXML(XmlNodeRef* param_1, XmlNodeRef* param_2, IReadXMLSink* param_3) {}
+		virtual bool  ReadXML(XmlNodeRef* param_1, char* param_2, IReadXMLSink* param_3) {}
+		virtual bool  ReadXML(char* param_1, XmlNodeRef* param_2, IReadXMLSink* param_3) {}
+		virtual bool  ReadXML(char* param_1, char* param_2, IReadXMLSink* param_3) {}
+		virtual  XmlNodeRef* CreateXMLFromSource(char* param_1, IWriteXMLSource* param_2) {}
+		virtual bool  WriteXML(char* param_1, char* param_2, IWriteXMLSource* param_3) {}
+		virtual void* _ECXmlSerializer(uint32_t param_1) {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		virtual  ISerialize* GetWriter(XmlNodeRef* param_1) {}
+		virtual  ISerialize* GetReader(XmlNodeRef* param_1) {}
+		virtual void  garbage2() {}
+		virtual void* $CSimpleSerialize(uint32_t param_1) {}
+		virtual void  ReadStringValue(char* param_1, SSerializeString* param_2, uint32_t param_3) {}
+		virtual void  garbage4() {}
+		virtual void  Update(ISerializeUpdateFunction* param_1) {}
+		virtual void  garbage5() {}
+		virtual void  BeginGroup(char* param_1) {}
+		virtual bool  BeginOptionalGroup(char* param_1, bool param_2) {}
+		virtual void  EndGroup() {}
+		virtual bool  Activating(float param_1) {}
+		virtual bool  ShouldCommitValues() {}
+		virtual wchar_t* Action() {}
+		virtual bool  Ok() {}
+		virtual void  Value(char* param_1, XmlNodeRef* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, SNetObjectID* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, CTimeValue* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, ScriptAnyValue* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, uint64_t* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, uint32_t* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, unsigned short* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, unsigned char* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, int64_t* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, int32_t* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, short* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, char* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, Ang3_tpl<float>* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, Quat_tpl<float>* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, Vec3_tpl<float>* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, Vec2_tpl<float>* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, float* param_2, uint32_t param_3) {}
+		virtual void  Value(char* param_1, bool* param_2, uint32_t param_3) {}
+		virtual void  ValueWithDefault(char* param_1, SSerializeString* param_2, SSerializeString* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, XmlNodeRef* param_2, XmlNodeRef* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, SNetObjectID* param_2, SNetObjectID* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, CTimeValue* param_2, CTimeValue* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, ScriptAnyValue* param_2, ScriptAnyValue* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, uint64_t* param_2, uint64_t* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, uint32_t* param_2, uint32_t* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, unsigned short* param_2, unsigned short* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, unsigned char* param_2, unsigned char* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, int64_t* param_2, int64_t* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, int32_t* param_2, int32_t* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, short* param_2, short* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, char* param_2, char* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, Ang3_tpl<float>* param_2, Ang3_tpl<float>* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, Quat_tpl<float>* param_2, Quat_tpl<float>* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, Vec3_tpl<float>* param_2, Vec3_tpl<float>* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, Vec2_tpl<float>* param_2, Vec2_tpl<float>* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, float* param_2, float* param_3) {}
+		virtual void  ValueWithDefault(char* param_1, bool* param_2, bool* param_3) {}
+		virtual void  garbage11() {}
+		virtual void  garbage12() {}
+		virtual void  garbage13() {}
+		virtual void  garbage14() {}
+		virtual void  garbage15() {}
+		virtual void  garbage16() {}
+		virtual void  garbage17() {}
+		virtual void  garbage18() {}
+		virtual bool   RIArchive(char* param_1, char* param_2, char* param_3) {}
+		virtual void  garbage20() {}
+		virtual void  garbage21() {}
+		virtual void  garbage22() {}
+		virtual void  garbage23() {}
+		virtual void  garbage24() {}
+		virtual void  garbage25() {}
+		virtual void  garbage26() {}
+		virtual void  garbage27() {}
+		virtual void  garbage28() {}
+		virtual void  garbage29() {}
+		virtual void  garbage30() {}
+		virtual void  garbage31() {}
+		virtual void  garbage32() {}
+		virtual void  garbage33() {}
+		virtual void  garbage34() {}
+		virtual void  garbage35() {}
+		virtual void  garbage36() {}
+		virtual void  garbage37() {}
+		virtual void  garbage38() {}
+		virtual void  garbage39() {}
+		virtual void  garbage40() {}
+		virtual void  garbage41() {}
+		virtual void  garbage42() {}
+		virtual void  garbage43() {}
+		virtual void  garbage44() {}
+		virtual void  garbage45() {}
+		virtual void  garbage46() {}
+		virtual void  garbage47() {}
+		virtual void  garbage48() {}
+		virtual void  garbage49() {}
+		virtual void  garbage50() {}
+		virtual void  garbage51() {}
+		virtual void  garbage52() {}
+		virtual void  garbage53() {}
+		virtual void  garbage54() {}
+		virtual void  garbage55() {}
+		virtual void  garbage56() {}
+		virtual void  garbage57() {}
+		virtual void  garbage58() {}
+		virtual void  garbage59() {}
+		virtual void* _ECXmlBinaryDataWriterFile(uint32_t param_1) {}
+		virtual void  Write(void* param_1, uint64_t param_2) {}
+		virtual bool  $ContainerArray() {}
+		virtual void* _ECXmlTableReader(uint32_t param_1) {}
+		virtual void  Complete() {}
+		virtual bool  Begin(XmlNodeRef* param_1) {}
+		virtual int32_t  GetEstimatedRowCount() {}
+		virtual bool  ReadRow(int32_t* param_1) {}
+		virtual bool  ReadCell(int32_t* param_1, char** param_2, uint64_t* param_3) {}
+		IReadWriteXmlSink* m_pReadWriteXMLSink;
+		CXmlNodePool* m_pStatsXmlNodePool;
+		CXMLPatcher* m_pXMLPatcher;
+	};
+
 	class CEntityArchetype {
 	public:
-		char pad[24];
+		virtual void*   _ECEntityArchetype(uint32_t param_1) {}
+		virtual IEntityClass*  GetClass() {}
+		virtual ArkNpcAbilityInstance*  GetAbilityInstance() {}
+		virtual SSurfaceTypeAIParams*  GetAIParams() {}
+		virtual ArkNpcAbility*  GetAbility() {}
+		virtual ArkNpcAbility*  garbage0() {}
+		virtual XmlNodeRef*  GetObjectVars() {}
+		virtual void  LoadFromXML(class XmlNodeRef* param_1, class XmlNodeRef* param_2) {}
+		virtual void*   garbage1() {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		char pad[16];
 		CryStringT<char> m_name;
 		uint64_t m_id;
 		SmartScriptTable m_pProperties;
@@ -1724,6 +2261,18 @@ namespace ArkNpc {
 	class SGameObjectEvent{};
 	class IMovementController{};
 	class IArkSpeaker{};
+
+
+
+
+
+
+
+
+
+
+
+
 	class ArkPlayer
 	{
 	public:
@@ -1926,7 +2475,7 @@ namespace ArkNpc {
 		void* m_pHeadBobbingAction; //0x17F8
 		void* m_pMovementController; //0x1800
 		void* m_pAnimatedCharacter; //0x1808
-		void* m_pInventory; //0x1810
+		ArkInventory* m_pInventory; //0x1810
 		void* m_pFragmentCache; //0x1818
 		uint64_t m_coralSignalPackageId; //0x1820
 		ArkSimpleTimer m_coralInteractionTimer; //0x1828
@@ -1975,10 +2524,37 @@ namespace ArkNpc {
 		int32_t m_width;
 		int32_t m_height;
 	};
+	class IArkItem {
+		
+	};
 	class ArkInventory
 	{
 	public:
-		char pad_0000[88]; //0x0000
+		virtual int  GetWidth() {}
+		virtual int  GetMaxWidth() {}
+		virtual int  GetHeight() {}
+		virtual bool  Contains(uint32_t param_1) {}
+		virtual int  GetCountOfArchetype(uint64_t param_1) {}
+		virtual  std::vector<IArkItem*>  GetItemsOfArchetype(uint64_t param_1) {}
+		virtual uint32_t  GetNextItem(int param_1, int param_2, uint32_t param_3) {}
+		virtual std::pair<int, int>  GetLocationOfItem(uint32_t param_1) {}
+		virtual uint32_t  GetItemAtLocation(int param_1, int param_2, uint32_t param_3) {}
+		virtual std::vector<uint32_t>  GetItemIDs() {}
+		virtual std::vector<uint32_t>  GetOverlappingItems(uint32_t param_1, int param_2, int param_3, int param_4, int param_5) {}
+		virtual bool  AddItem(uint32_t param_1) {}
+		virtual uint32_t  PlaceItem(uint32_t param_1, int param_2, int param_3) {}
+		virtual bool  CanPlaceItem(uint32_t param_1, int param_2, int param_3, bool param_4) {}
+		virtual bool  TryPlaceItem(uint32_t param_1, int param_2, int param_3) {}
+		virtual bool  CanPackItem(uint32_t param_1) {}
+		virtual void  RemoveItem(uint64_t param_1, int param_2) {}
+		virtual void  RemoveItem(uint32_t param_1) {}
+		virtual uint32_t  GetOwnerId() {}
+		virtual bool  GetTakesTrash() {}
+		virtual bool  IsEmpty() {}
+		virtual void  NotifyAdded(uint32_t param_1, uint32_t param_2) {}
+		virtual void  NotifyOfItemCountChange(uint32_t param_1) {}
+		virtual void  DoMetricsSnapshot( XmlNodeRef* param_1) {}
+		char pad_0000[80]; //0x0000
 		bool m_bSortDirty; //0x0058
 		bool m_bSerializeOpen; //0x0059
 		bool m_bPreventStorage; //0x005A
@@ -1989,6 +2565,7 @@ namespace ArkNpc {
 		InventorySort m_currentSort; //0x0080
 		char pad_0084[4]; //0x0084
 	}; //Size: 0x0088
+
 	class ArkRandomizedTimer {
 	public:
 		char pad[8];
@@ -3154,14 +3731,14 @@ namespace ArkNpc {
 		class CScriptBind_ArkPlayer{};
 		class CDLight{};
 		class SComponentInitializer{};
-
-		class CEntity {
+		class IEntity {
 		public:
-			virtual void*   _ECEntity(uint32_t param_1) {}
+		public:
+			virtual void* _ECEntity(uint32_t param_1) {}
 			virtual int32_t  GetControlPointIndex() {}
-			virtual  ArkNpcAbilityInstance*  GetAbilityInstance() {}
-			virtual  ArkNpcAbility*  GetAbility() {}
-			virtual  IEntityArchetype*  GetArchetype() {}
+			virtual  ArkNpcAbilityInstance* GetAbilityInstance() {}
+			virtual  ArkNpcAbility* GetAbility() {}
+			virtual  IEntityArchetype* GetArchetype() {}
 		private:
 			virtual  void garbage0() {}
 		public:
@@ -3174,135 +3751,135 @@ namespace ArkNpc {
 			virtual uint32_t  GetAIObjectID() {}
 			virtual bool  IsGarbage() {}
 			virtual void  SetName(char* param_1) {}
-			virtual  IAction*  GetAction() {}
+			virtual  IAction* GetAction() {}
 		private:
 			virtual  void garbage1() {}
 		public:
-			virtual void  SerializeXML( XmlNodeRef* param_1, bool param_2) {}
+			virtual void  SerializeXML(XmlNodeRef* param_1, bool param_2) {}
 			virtual bool  IsLoadedFromLevelFile() {}
-			virtual void  AttachChild( IEntity* param_1,  SChildAttachParams* param_2) {}
+			virtual void  AttachChild(IEntity* param_1, SChildAttachParams* param_2) {}
 			virtual void  DetachAll(int32_t param_1) {}
 			virtual void  DetachThis(int32_t param_1, int32_t param_2) {}
 			virtual int32_t  GetChildCount() {}
-			virtual  IEntity*  GetChild(int32_t param_1) {}
-			virtual  HWND*  GetParent() {}
-			virtual  Matrix34_tpl<float>*  GetParentAttachPointWorldTM( Matrix34_tpl<float>*__return_storage_ptr__) {}
+			virtual  IEntity* GetChild(int32_t param_1) {}
+			virtual  HWND* GetParent() {}
+			virtual  Matrix34_tpl<float>* GetParentAttachPointWorldTM(Matrix34_tpl<float>* __return_storage_ptr__) {}
 			virtual bool  IsParentAttachmentValid() {}
-			virtual void  SetWorldTM( Matrix34_tpl<float>*param_1, int32_t param_2) {}
-			virtual void  SetLocalTM( Matrix34_tpl<float>*param_1, int32_t param_2) {}
-			virtual float*   $GetConstReferenceFromMemberVariable() {}
-			virtual  Matrix34_tpl<float>*  GetLocalTM( Matrix34_tpl<float>*__return_storage_ptr__) {}
-			virtual void  GetWorldBounds( AABB* param_1) {}
-			virtual void  GetLocalBounds( AABB* param_1) {}
-			virtual void  SetPos( Vec3_tpl<float>*param_1, int32_t param_2, bool param_3, bool param_4) {}
+			virtual void  SetWorldTM(Matrix34_tpl<float>* param_1, int32_t param_2) {}
+			virtual void  SetLocalTM(Matrix34_tpl<float>* param_1, int32_t param_2) {}
+			virtual float* $GetConstReferenceFromMemberVariable() {}
+			virtual  Matrix34_tpl<float>* GetLocalTM(Matrix34_tpl<float>* __return_storage_ptr__) {}
+			virtual void  GetWorldBounds(AABB* param_1) {}
+			virtual void  GetLocalBounds(AABB* param_1) {}
+			virtual void  SetPos(Vec3_tpl<float>* param_1, int32_t param_2, bool param_3, bool param_4) {}
 		private:
 			virtual void garbage2() {}
 		public:
-			virtual void  SetRotation( Quat_tpl<float>*param_1, int32_t param_2) {}
+			virtual void  SetRotation(Quat_tpl<float>* param_1, int32_t param_2) {}
 		private:
 			virtual void garbage3() {}
 		public:
-			virtual void  SetScale( Vec3_tpl<float>*param_1, int32_t param_2) {}
+			virtual void  SetScale(Vec3_tpl<float>* param_1, int32_t param_2) {}
 		private:
 			virtual void garbage4() {}
 		public:
-			virtual void  SetPosRotScale( Vec3_tpl<float>*param_1,  Quat_tpl<float>*param_2,  Vec3_tpl<float>*param_3, int32_t param_4) {}
-			virtual  Vec3_tpl<float>*  GetWorldPos( Vec3_tpl<float>*__return_storage_ptr__) {}
-			virtual  Vec3_tpl<float>*  GetWorldAngles( Vec3_tpl<float>*__return_storage_ptr__) {}
-			virtual  Quat_tpl<float>*  GetWorldRotation( Quat_tpl<float>*__return_storage_ptr__) {}
-			virtual  Vec3_tpl<float>*  GetForwardDir() {}
+			virtual void  SetPosRotScale(Vec3_tpl<float>* param_1, Quat_tpl<float>* param_2, Vec3_tpl<float>* param_3, int32_t param_4) {}
+			virtual  Vec3_tpl<float>* GetWorldPos(Vec3_tpl<float>* __return_storage_ptr__) {}
+			virtual  Vec3_tpl<float>* GetWorldAngles(Vec3_tpl<float>* __return_storage_ptr__) {}
+			virtual  Quat_tpl<float>* GetWorldRotation(Quat_tpl<float>* __return_storage_ptr__) {}
+			virtual  Vec3_tpl<float>* GetForwardDir() {}
 			virtual void  Activate(bool param_1) {}
 			virtual bool  IsActive() {}
 			virtual bool  IsFromPool() {}
 			virtual void  PrePhysicsActivate(bool param_1) {}
 			virtual bool  IsPrePhysicsActive() {}
-			virtual void  Serialize( CSerializeWrapper<ISerialize>*param_1, int32_t param_2) {}
-			virtual bool  SendEvent( SEntityEvent* param_1) {}
-			virtual  uintptr_t*  SetTimer( uintptr_t* nIDEvent,  uint32_t* uElapse,  TIMERPROC* lpTimerFunc) {}
-			virtual  BOOL*  KillTimer( UINT_PTR* uIDEvent) {}
+			virtual void  Serialize(CSerializeWrapper<ISerialize>* param_1, int32_t param_2) {}
+			virtual bool  SendEvent(SEntityEvent* param_1) {}
+			virtual  uintptr_t* SetTimer(uintptr_t* nIDEvent, uint32_t* uElapse, TIMERPROC* lpTimerFunc) {}
+			virtual  BOOL* KillTimer(UINT_PTR* uIDEvent) {}
 			virtual void  Hide(bool param_1) {}
 			virtual bool  IsHidden() {}
 			virtual void  Invisible(bool param_1) {}
 			virtual bool  IsInvisible() {}
-			virtual  IAIObject*  GetAI() {}
+			virtual  IAIObject* GetAI() {}
 			virtual bool  HasAI() {}
 		private:
 			virtual void garbage5() {}
 		public:
 			virtual void  SetAIObjectID(uint32_t param_1) {}
-			virtual bool  RegisterInAISystem( AIObjectParams* param_1) {}
-			virtual void  SetUpdatePolicy( EEntityUpdatePolicy* param_1) {}
-			virtual  EEntityUpdatePolicy*  GetUpdatePolicy() {}
-			virtual  IEntityProxy*  GetProxy( EEntityProxy* param_1) {}
-			virtual void  SetProxy( EEntityProxy* param_1,  std::shared_ptr<IEntityProxy>*param_2) {}
-			virtual  std::shared_ptr<IEntityProxy>*  CreateProxy(EEntityProxy* param_1) {}
-			virtual void  RegisterComponent( std::shared_ptr<IComponent>*param_1, int32_t param_2) {}
-			virtual void  Physicalize( SEntityPhysicalizeParams* param_1) {}
-			virtual  IPhysicalEntity*  GetPhysics() {}
-			virtual int32_t  PhysicalizeSlot(int32_t param_1,  SEntityPhysicalizeParams* param_2) {}
+			virtual bool  RegisterInAISystem(AIObjectParams* param_1) {}
+			virtual void  SetUpdatePolicy(EEntityUpdatePolicy* param_1) {}
+			virtual  EEntityUpdatePolicy* GetUpdatePolicy() {}
+			virtual  IEntityProxy* GetProxy(EEntityProxy* param_1) {}
+			virtual void  SetProxy(EEntityProxy* param_1, std::shared_ptr<IEntityProxy>* param_2) {}
+			virtual  std::shared_ptr<IEntityProxy>* CreateProxy(EEntityProxy* param_1) {}
+			virtual void  RegisterComponent(std::shared_ptr<IComponent>* param_1, int32_t param_2) {}
+			virtual void  Physicalize(SEntityPhysicalizeParams* param_1) {}
+			virtual  IPhysicalEntity* GetPhysics() {}
+			virtual int32_t  PhysicalizeSlot(int32_t param_1, SEntityPhysicalizeParams* param_2) {}
 			virtual void  UnphysicalizeSlot(int32_t param_1) {}
 			virtual void  UpdateSlotPhysics(int32_t param_1) {}
-			virtual void  SetPhysicsState( XmlNodeRef* param_1) {}
+			virtual void  SetPhysicsState(XmlNodeRef* param_1) {}
 			virtual bool  HasPhysicsState() {}
-			virtual void  SetMaterial( IMaterial* param_1) {}
-			virtual  IAntiCheatManager*  GetAntiCheatManager() {}
+			virtual void  SetMaterial(IMaterial* param_1) {}
+			virtual  IAntiCheatManager* GetAntiCheatManager() {}
 			virtual bool  IsSlotValid(int32_t param_1) {}
 			virtual void  FreeSlot(int32_t param_1) {}
 			virtual int32_t  GetSlotCount() {}
-			virtual bool  GetSlotInfo(int32_t param_1,  SEntitySlotInfo* param_2) {}
-			virtual  Matrix34_tpl<float>*  GetSlotWorldTM(int32_t param_1) {}
-			virtual  Matrix34_tpl<float>*  GetSlotLocalTM(int32_t param_1, bool param_2) {}
-			virtual void  SetSlotLocalTM(int32_t param_1,  Matrix34_tpl<float>*param_2, int32_t param_3) {}
-			virtual void  SetSlotCameraSpacePos(int32_t param_1,  Vec3_tpl<float>*param_2) {}
-			virtual void  GetSlotCameraSpacePos(int32_t param_1,  Vec3_tpl<float>*param_2) {}
+			virtual bool  GetSlotInfo(int32_t param_1, SEntitySlotInfo* param_2) {}
+			virtual  Matrix34_tpl<float>* GetSlotWorldTM(int32_t param_1) {}
+			virtual  Matrix34_tpl<float>* GetSlotLocalTM(int32_t param_1, bool param_2) {}
+			virtual void  SetSlotLocalTM(int32_t param_1, Matrix34_tpl<float>* param_2, int32_t param_3) {}
+			virtual void  SetSlotCameraSpacePos(int32_t param_1, Vec3_tpl<float>* param_2) {}
+			virtual void  GetSlotCameraSpacePos(int32_t param_1, Vec3_tpl<float>* param_2) {}
 			virtual bool  SetParentSlot(int32_t param_1, int32_t param_2) {}
-			virtual void  SetSlotMaterial(int32_t param_1,  IMaterial* param_2) {}
+			virtual void  SetSlotMaterial(int32_t param_1, IMaterial* param_2) {}
 			virtual void  SetSlotFlags(int32_t param_1, uint32_t param_2) {}
 			virtual uint32_t  GetSlotFlags(int32_t param_1) {}
 			virtual bool   RIArchive(char* param_1, char* param_2, char* param_3) {}
-			virtual  ICharacterInstance*  GetCharacter(int32_t param_1) {}
-			virtual int32_t  SetCharacter( ICharacterInstance* param_1, int32_t param_2) {}
-			virtual  IStatObj*  GetStatObj(int32_t param_1) {}
-			virtual  IParticleEmitter*  GetParticleEmitter(int32_t param_1) {}
-			virtual  IGeomCacheRenderNode*  GetGeomCacheRenderNode(int32_t param_1) {}
-			virtual void  MoveSlot( IEntity* param_1, int32_t param_2) {}
-			virtual int32_t  SetStatObj( IStatObj* param_1, int32_t param_2, bool param_3, float param_4) {}
+			virtual  ICharacterInstance* GetCharacter(int32_t param_1) {}
+			virtual int32_t  SetCharacter(ICharacterInstance* param_1, int32_t param_2) {}
+			virtual  IStatObj* GetStatObj(int32_t param_1) {}
+			virtual  IParticleEmitter* GetParticleEmitter(int32_t param_1) {}
+			virtual  IGeomCacheRenderNode* GetGeomCacheRenderNode(int32_t param_1) {}
+			virtual void  MoveSlot(IEntity* param_1, int32_t param_2) {}
+			virtual int32_t  SetStatObj(IStatObj* param_1, int32_t param_2, bool param_3, float param_4) {}
 			virtual int32_t  LoadGeometry(int32_t param_1, char* param_2, char* param_3, int32_t param_4) {}
 			virtual int32_t  LoadCharacter(int32_t param_1, char* param_2, int32_t param_3) {}
 			virtual int32_t  LoadGeomCache(int32_t param_1, char* param_2) {}
-			virtual int32_t  LoadParticleEmitter(int32_t param_1,  IParticleEffect* param_2,  SpawnParams* param_3, bool param_4, bool param_5) {}
-			virtual int32_t  SetParticleEmitter(int32_t param_1,  IParticleEmitter* param_2, bool param_3) {}
-			virtual int32_t  SetBreakableGlass(int32_t param_1,  IArkGlass* param_2) {}
-			virtual  IArkGlass*  GetBreakableGlass(int32_t param_1) {}
-			virtual int32_t  LoadLight(int32_t param_1,  CDLight* param_2) {}
+			virtual int32_t  LoadParticleEmitter(int32_t param_1, IParticleEffect* param_2, SpawnParams* param_3, bool param_4, bool param_5) {}
+			virtual int32_t  SetParticleEmitter(int32_t param_1, IParticleEmitter* param_2, bool param_3) {}
+			virtual int32_t  SetBreakableGlass(int32_t param_1, IArkGlass* param_2) {}
+			virtual  IArkGlass* GetBreakableGlass(int32_t param_1) {}
+			virtual int32_t  LoadLight(int32_t param_1, CDLight* param_2) {}
 			virtual void  InvalidateTM(int32_t param_1, bool param_2) {}
 			virtual void  EnablePhysics(bool param_1) {}
-			virtual  ArkAimAssistComponent*  GetAimAssistComponent() {}
-			virtual  IEntityLink*  AddEntityLink(char* param_1, uint32_t param_2) {}
-			virtual void  RemoveEntityLink( IEntityLink* param_1) {}
+			virtual  ArkAimAssistComponent* GetAimAssistComponent() {}
+			virtual  IEntityLink* AddEntityLink(char* param_1, uint32_t param_2) {}
+			virtual void  RemoveEntityLink(IEntityLink* param_1) {}
 			virtual void  RemoveAllEntityLinks() {}
 			virtual void  SetSlotAlpha(int32_t param_1, float param_2) {}
-			virtual  IEntity*  UnmapAttachedChild(int32_t* param_1) {}
+			virtual  IEntity* UnmapAttachedChild(int32_t* param_1) {}
 			virtual bool  IsInitialized() {}
-			virtual void  DebugDraw( SGeometryDebugDrawInfo* param_1) {}
-			virtual void  GetMemoryUsage( ICrySizer* param_1) {}
+			virtual void  DebugDraw(SGeometryDebugDrawInfo* param_1) {}
+			virtual void  GetMemoryUsage(ICrySizer* param_1) {}
 			virtual void  IncKeepAliveCounter() {}
 			virtual void  DecKeepAliveCounter() {}
 			virtual void  ClearOverId() {}
 			virtual bool  IsKeptAlive() {}
-			virtual  CScriptBind_ArkPlayer*  GetArkPlayerScriptBind() {}
+			virtual  CScriptBind_ArkPlayer* GetArkPlayerScriptBind() {}
 			virtual void  SetDisplayName(char* param_1) {}
 			virtual void  EnableInheritXForm(bool param_1) {}
-			virtual  IEntity*  GetAdam() {}
-			virtual bool  UpdateLightClipBounds( CDLight* param_1) {}
-			virtual void*   _ECEntityNodeProxy(uint32_t param_1) {}
-			virtual void  ProcessEvent( SEntityEvent* param_1) {}
+			virtual  IEntity* GetAdam() {}
+			virtual bool  UpdateLightClipBounds(CDLight* param_1) {}
+			virtual void* _ECEntityNodeProxy(uint32_t param_1) {}
+			virtual void  ProcessEvent(SEntityEvent* param_1) {}
 			virtual int32_t  GetEventPriority(int32_t param_1) {}
-			virtual void  Initialize( SComponentInitializer* param_1) {}
-			virtual void   $FunctionCaller( EArkNpcFacingDesireCallbackEvent* param_2) {}
-			virtual  EArkPsiPowers*  GetEnum() {}
-			virtual bool  Init( IEntity* param_1,  SEntitySpawnParams* param_2) {}
-			virtual void  Reload( IEntity* param_1,  SEntitySpawnParams* param_2) {}
+			virtual void  Initialize(SComponentInitializer* param_1) {}
+			virtual void   $FunctionCaller(EArkNpcFacingDesireCallbackEvent* param_2) {}
+			virtual  EArkPsiPowers* GetEnum() {}
+			virtual bool  Init(IEntity* param_1, SEntitySpawnParams* param_2) {}
+			virtual void  Reload(IEntity* param_1, SEntitySpawnParams* param_2) {}
 		private:
 			virtual void garbage6() {}
 		public:
@@ -3314,7 +3891,7 @@ namespace ArkNpc {
 			virtual void garbage24() {}
 		public:
 			virtual bool  Activating(float param_1) {}
-			virtual void*   _ECEntityAttributesProxy(uint32_t param_1) {}
+			virtual void* _ECEntityAttributesProxy(uint32_t param_1) {}
 		private:
 			virtual void garbage10() {}
 			virtual void garbage11() {}
@@ -3333,7 +3910,11 @@ namespace ArkNpc {
 			virtual void unused0() {}
 			// virtual void  SetAttributes( DynArray<class_std::shared_ptr<IEntityAttribute>, int32_t, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc>_>_>*param_1) {}
 			virtual void garbage25() {}
+		};
+		class CEntity {
+		
 		public:
+			void* ptr;
 			unsigned char m_flags1;
 			unsigned char m_flags2;
 			unsigned char m_flags3;
@@ -3433,9 +4014,26 @@ namespace ArkNpc {
 		class CScriptBind_Entity {
 		public:
 		};
+		class IEntityRegistryListener {
+			
+		};
+		class SEntityDesc {
+			
+		};
 		class CEntityClassRegistry {
 		public:
-			char pad[8];
+			virtual void*   _ECEntityRegistry(uint32_t param_1) {}
+			virtual bool  RegisterEntity( IEntity* param_1) {}
+			virtual bool  UnregisterEntity( IEntity* param_1) {}
+			virtual  IEntity*  Find(char* param_1) {}
+			virtual  ArkNpcAbilityInstance*  GetAbilityInstance() {}
+			virtual void  Loades(char* param_1, bool param_2) {}
+			virtual  IEntity*  RegisterStd( SEntityDesc* param_1) {}
+			virtual void  RegisterListener( IEntityRegistryListener* param_1) {}
+			virtual void  UnregisterListener( IEntityRegistryListener* param_1) {}
+			virtual void  IteratorMoveFirst() {}
+			virtual  IEntity*  IteratorNext() {}
+			virtual uint32_t  DoGetCurrentRoomEntityId() {}
 			std::map<CryStringT<char>, CEntityClass*> m_mapClassName;
 			IEntityClass* m_pDefaultClass;
 			ISystem* m_pSystem;
@@ -3557,12 +4155,12 @@ namespace ArkNpc {
 			virtual  IAreaManager*  GetAreaManager() {}
 			virtual  IBreakableManager*  GetBreakableManager() {}
 			virtual  IEntityPoolManager*  GetIEntityPoolManager() {}
-			virtual  IEntityArchetype*  LoadEntityArchetype(char* param_1) {}
-			virtual  IEntityArchetype*  LoadEntityArchetype( XmlNodeRef* param_1) {}
-			virtual  IEntityArchetype*  FindEntityArchetype(char* param_1) {}
-			virtual  IEntityArchetype*  CreateEntityArchetype( IEntity* param_1, char* param_2, uint64_t param_3) {}
-			virtual  IEntityArchetype*  GetEntityArchetype(uint64_t param_1) {}
-			virtual  IEntityArchetype*  garbage0(uint64_t param_1) {}
+			virtual  CEntityArchetype*  LoadEntityArchetype(char* param_1) {}
+			virtual  CEntityArchetype*  LoadEntityArchetype( XmlNodeRef* param_1) {}
+			virtual  CEntityArchetype*  FindEntityArchetype(char* param_1) {}
+			virtual  CEntityArchetype*  CreateEntityArchetype( IEntity* param_1, char* param_2, uint64_t param_3) {}
+			virtual  CEntityArchetype*  GetEntityArchetype(uint64_t param_1) {}
+			virtual  CEntityArchetype*  garbage0(uint64_t param_1) {}
 			virtual uint64_t  GetArchetypeId(char* param_1) {}
 			virtual void  DeleteEntityArchetype(char* param_1) {}
 			virtual void  ReloadAllEntityArchetypes() {}
@@ -4031,7 +4629,7 @@ namespace ArkNpc {
 		class IZLibCompressor{};
 		class IZLibDecompressor{};
 		class ILZ4Decompressor{};
-		class CXmlUtils{};
+		
 		class IArchiveHost{};
 		class ISystemUserCallback{};
 		class ICVarsWhitelist{};
@@ -4058,6 +4656,15 @@ namespace ArkNpc {
 		class IArkBethesdaNetManage{};
 		class CLocalizedStringsManager{};
 		class CServerThrottle{};
+		enum class ELockMode {};
+		
+		class SSerializeString{};
+		class ISerializeUpdateFunction{};
+		class SNetObjectID{};
+		class ScriptAnyValue{};
+		
+
+		
 		class CTimer {
 		public:
 			char pad[1880];
@@ -5879,6 +6486,15 @@ namespace ArkNpc {
 		class CActor {};
 		class CActorIterator {};
 		class IActorCreator{};
+		class IEntityPropertyHandler{};
+		class IEntityScript{};
+		class IEntityEventHandler{};
+		class IEntityScriptFileHandler {};
+		class SEditorClassInfo {
+			char* sIcon;
+			char* sHelper;
+			char* sCategory;
+		};
 		class CEntityClass {
 		public:
 			char pad[8];
@@ -5886,15 +6502,17 @@ namespace ArkNpc {
 			char pad2[4];
 			CryStringT<char> m_sName,
 				m_SScriptFile;
-			void* m_pEntityScript;
+			IEntityScript* m_pEntityScript;
 			void* m_pfnUserProxyCreate;
 			void* m_pUserProxyUserData;
 			bool m_bScriptLoaded;
 			char pad3[7];
-			void* m_pPropertyHandler;
-			void* m_pEventHandler;
-			void* m_pScriptFileHandler;
-			char pad4[40];
+			IEntityPropertyHandler* m_pPropertyHandler;
+			IEntityEventHandler* m_pEventHandler;
+			IEntityScriptFileHandler* m_pScriptFileHandler;
+			SEditorClassInfo m_EditorClassInfo;
+			void* m_entityAttributes;
+			void* m_classAttributes;
 		};
 		class SActorClassDesc {
 		public:
@@ -6302,8 +6920,8 @@ namespace ArkNpc {
 			std::unique_ptr<CScriptBind_Inventory, std::default_delete<CScriptBind_Inventory>> m_pScriptBindInventory;
 			std::unique_ptr<CScriptBind_ItemSystem, std::default_delete<CScriptBind_ItemSystem>> m_pScriptBindItemSystem;
 			std::unique_ptr<CScriptBind_LightningArc, std::default_delete<CScriptBind_LightningArc>> m_pScriptBindLightningArc;
-			class CryStringT<char> m_arkLoadLocation;
-			class XmlNodeRef m_gameLevelToLevelSave;
+			CryStringT<char> m_arkLoadLocation;
+			XmlNodeRef m_gameLevelToLevelSave;
 			std::unique_ptr<ArkGame, std::default_delete<ArkGame>> m_pArkGame;
 			std::unique_ptr<ArkActiveUserManagerBase, std::default_delete<ArkActiveUserManagerBase>> m_pActiveUserManager;
 		};
@@ -6326,7 +6944,34 @@ namespace ArkNpc {
 
 		class CArkNpcSpawner {
 		public:
-			char pad[56];
+			virtual void*   _ECArkNpcSpawner(uint32_t param_1) {}
+			virtual void  ProcessEvent( SEntityEvent* param_1) {}
+			virtual  AKRESULT*  ActivateTrigger(bool param_2) {}
+			virtual void   garbage0() {}
+			virtual void   garbage1() {}
+			virtual bool  Init( IGameObject* param_1) {}
+			virtual void   garbage2() {}
+			virtual void   garbage3() {}
+			virtual void   garbage4() {}
+			virtual bool  Activating(float param_1) {}
+			virtual void   garbage5() {}
+			virtual bool  GetEntityPoolSignature( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual void  Complete() {}
+			virtual void  FullSerialize( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual bool  garbage6() {}
+			virtual int  AddChunk( ChunkTypes* param_1, int param_2,  EEndianness* param_3, void* param_4, int param_5) {}
+			virtual void  garbage7() {}
+			virtual void  garbage8() {}
+			virtual  IDatagramSocket*  CreateDatagramSocket( boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<4>, SNullAddr, boost::mpl::l_item<boost::mpl::long_<3>, unsigned short, boost::mpl::l_item<boost::mpl::long_<2>, SIPv4Addr, boost::mpl::l_item<boost::mpl::long_<1>, LobbyIdAddr, boost::mpl::l_end>>>>>>*param_1, uint32_t param_2) {}
+			virtual void  Update( SEntityUpdateContext* param_1, int param_2) {}
+			virtual void  garbage9() {}
+			virtual void  garbage10() {}
+			virtual void  garbage11() {}
+			virtual void*  GetRMIBase() {}
+			virtual void   garbage12() {}
+			virtual void   garbage13() {}
+			virtual void  OnFirstTimeInLevel() {}
+			char pad[48];
 			CEntity* m_Entity;
 			char pad2[8];
 			uint64_t m_pendingSpawnCount;

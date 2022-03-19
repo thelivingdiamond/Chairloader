@@ -46,6 +46,7 @@ public:
 		ArkNpcSpawnManagerPrivate(uintptr_t moduleBase);
 		typedef void(__thiscall* _ArkNpcSpawnManagerUpdate)(ArkNpcSpawnManager*, float); _ArkNpcSpawnManagerUpdate ArkNpcSpawnManagerUpdate;//151db30
 		typedef uint64_t(__thiscall* _RequestNpcSpawn)(ArkNpcSpawnManager*, ArkNpcSpawnRequester*, CArkNpcSpawner*); _RequestNpcSpawn requestNpcSpawn; //151dac0
+		typedef uintptr_t(__fastcall* _InternalCreateNpc)(IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3); _InternalCreateNpc internalCreateNpc;//151d450
 	};
 	
 	class CEntityPrivate : preyFunctionBase {
@@ -54,6 +55,7 @@ public:
 		typedef bool(__thiscall* _InitCEntity)(CEntity*, SEntitySpawnParams*);//0905cb0
 		typedef bool(__thiscall* _HasAi)(CEntity*); _HasAi hasAi;
 		typedef CArkNpcSpawner* (__fastcall* _GetArkNpcSpawner)(CEntity*); _GetArkNpcSpawner getArkNpcSpawner;//151c740
+		typedef void* (__thiscall* _CEntity)(CEntity*, SEntitySpawnParams* param_1); _CEntity CEntityConstructor;//09022a0
 
 	};
 

@@ -42,6 +42,7 @@ preyFunctions::ArkNpcSpawnManagerPrivate::ArkNpcSpawnManagerPrivate(uintptr_t mo
 preyFunctions::CEntityPrivate::CEntityPrivate(uintptr_t moduleBase) {
 	hasAi = getFunctionAddr<_HasAi>(moduleBase, 0x0905b70);//0905b70
 	getArkNpcSpawner = getFunctionAddr<_GetArkNpcSpawner>(moduleBase, 0x151c740);
+	CEntityConstructor = getFunctionAddr<_CEntity>(moduleBase, 0x09022a0);
 }
 preyFunctions::ArkNightmareSpawnManagerPrivate::ArkNightmareSpawnManagerPrivate(uintptr_t moduleBase) {
 	spawnNewNightmare = getFunctionAddr<_SpawnNewNightmare>(moduleBase, 0x11f58d0);
