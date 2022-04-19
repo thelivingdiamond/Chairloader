@@ -9,6 +9,15 @@
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
+class IActionListener;
+class INetChannel;
+class CEntity;
+class SScriptFuncHandle;
+class IScriptTable;
+class IGameObject;
+class SEntitySchedulingProfiles;
+class IGameObjectExtension;
+class IXmlStringPool;
 class CBinaryXmlNode;
 class EEndianness;
 class ChunkTypes;
@@ -21,6 +30,7 @@ class SNetObjectID;
 class ISerializeUpdateFunction;
 class SSerializeString;
 class ISerialize;
+class IXmlNode;
 class CXmlNode;
 class IEntity;
 class ArkNpcAbility;
@@ -41,6 +51,26 @@ class IEntityClass;
 	// GEnv		  0x22418c0
 class CGame;
 class IEntitySystem;
+enum class EWinVersion {
+	WinUndetected = 0,
+	Win2000 = 1,
+	WinXP = 2,
+	WinSrv2003 = 3,
+	WinVista = 4,
+	Win7 = 5,
+	Win8 = 6,
+	Win8Point1 = 7,
+	Win10 = 8
+};
+class SPlatformInfo {
+public:
+	uint32_t numCoresAvailableToProcess,
+		numLogicalProcessors;
+	EWinVersion winVer;
+	bool win64Bit;
+	bool vistaKB940105Required;
+	char pad[2];
+};
 class CEntitySystem;
 class staticObjectPointers {
 public:
@@ -93,13 +123,44 @@ public:
 		void* pFlashUI				;
 		void* pServiceNetwork		;
 		void* pRemoteCommandManager	;
+		uint32_t EPLM_State;
+		unsigned long mMainThreadId;
+		uint32_t nMainFrameID;
+		char pad[4];
+		char* szCmdLine;
+		char szDebugStatus[128];
+		bool bServer,
+			bMultiplayer,
+			bHostMigrating,
+			bProfilerEnabled;
+		char pad2[4];
+		void* callbackStartSection;
+		void* callbackEndSection;
+		void* pTelemetryAPI;
+		uint32_t nTelemetryCaptureMask;
+		bool bArkProfSystems[30],
+			bIgnoreAllAserts,
+			bNoAssertDialog,
+			bTesting,
+			bNoRandomSeed;
+		char pad3[2];
+		SPlatformInfo pi;
+		void* pProtectedFunctions;
+		undefined pad4[72];
+		bool bIsOutOfMemory,
+			bIsOutOfVideoMemory,
+			bClient,
+			m_isFMVPlaying,
+			m_isCutscenePlaying;
+
 	};
 	 _gEnv * gEnvPtr;
 	 _gEnv gEnv;
 	staticObjectPointers(uintptr_t moduleBase);
 
 };
- 
+
+
 
 
 namespace ArkNpc {
@@ -535,17 +596,7 @@ namespace ArkNpc {
 		EPLM_NOTRUNNING = 4,
 		EPLM_TERMINATED = 5
 	};
-	enum class EWinVersion {
-		WinUndetected = 0,
-		Win2000 = 1,
-		WinXP = 2,
-		WinSrv2003 = 3,
-		WinVista = 4,
-		Win7 = 5,
-		Win8 = 6,
-		Win8Point1 = 7,
-		Win10 = 8
-	};
+	
 	enum class ECpuVendor {
 		eCVendor_Unknown = 0,
 		eCVendor_Intel = 1,
@@ -794,7 +845,7 @@ namespace ArkNpc {
 	public:
 		char pad_0000[16]; //0x0000
 		std::vector<ModeAndHandle> m_modeStack; //0x0010
-		class TActionHandler m_actionHandler; //0x0028
+		TActionHandler m_actionHandler; //0x0028
 		Vec3 m_deltaRotation; //0x0038
 		Vec3 m_gamePadRotation; //0x0044
 		Vec3 m_adjustedGamePadRotation; //0x0050
@@ -969,7 +1020,10 @@ namespace ArkNpc {
 		bool m_bRemoteManipulatedCorpse; //0x00FE
 		bool m_bJustThrown; //0x00FF
 	}; //Size: 0x0100
-
+	class IEntityProxy {
+	public:
+		char pad[40];
+	};
 	class ArkInteractionInfo
 	{
 	public:
@@ -979,7 +1033,15 @@ namespace ArkNpc {
 		float m_holdDuration; //0x0010
 		char pad_0014[4]; //0x0014
 	}; //Size: 0x0018
-
+	class IGameObjectExtension {
+	public:
+		// char pad[32];
+		IEntityProxy m_proxy;
+		IGameObject* m_pGameObject;
+		uint32_t m_entityId;
+		char pad2[4];
+		IEntity* m_pEntity;
+	};
 	// class Map
 	// {
 	// public:
@@ -1425,9 +1487,102 @@ namespace ArkNpc {
 	public:
 		void* ptr;
 	};
-	class SmartScriptTable {
+	enum class ScriptAnyType {
+		ANY_ANY = 0,
+		ANY_TNIL = 1,
+		ANY_TBOOLEAN = 2,
+		ANY_THANDLE = 3,
+		ANY_TNUMBER = 4,
+		ANY_TSTRING = 5,
+		ANY_TTABLE = 6,
+		ANY_TFUNCTION = 7,
+		ANY_TUSERDATA = 8,
+		ANY_TVECTOR = 9,
+		ANY_COUNT = 0xa
+	};
+	class userData {
 	public:
 		void* ptr;
+		int32_t nRef;
+		char pad[4];
+	};
+	union ScriptAnyValue_u_8 {
+	public:
+		bool b;
+		float number;
+		char* str;
+		IScriptTable* table;
+		void* ptr;
+		SScriptFuncHandle* function;
+		Vec3_tpl<float> vec3;
+		userData ud;
+	};
+	class ScriptAnyValue {
+	public:
+		ScriptAnyType type;
+		char pad[4];
+		ScriptAnyValue_u_8 value;
+	};
+	class ScriptVarType {
+		
+	};
+	namespace CScriptTableName {
+		class Iterator {
+		public:
+			char* sKey;
+			int nKey;
+			char pad2[4];
+			ScriptAnyValue value;
+			ScriptAnyValue Key;
+			char unknownThing[12];
+			char pad[4];
+		};
+	}
+	class SUserFunctionDesc {
+	public:
+		char* sFunctioName;
+		char* sFunctioNParams;
+		char* sGlobalName;
+		char pFunctor[24];
+		void* pFunctorThunk;
+		int32_t nParamIdOffset;
+		char pad[4];
+		void* pUserDataFunc;
+		void* pDataBuffer;
+		int32_t nDataSize;
+		char pad2[4];
+	};
+	class IScriptTableDumpSink{};
+	class CScriptTable {
+	public:
+		virtual void*   _ECScriptTable(uint32_t param_1) {}
+		virtual  IScriptSystem*  GetScriptSystem() {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		virtual void  Delegate( IScriptTable* param_1) {}
+		virtual void*  GetUserDataValue() {}
+		virtual void  SetValueAny(char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
+		virtual bool  GetValueAny(char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
+		virtual bool  BeginSetGetChain() {}
+		virtual void  EndSetGetChain() {}
+		virtual  ScriptVarType*  GetValueType(char* param_1) {}
+		virtual  ScriptVarType*  GetAtType(int32_t param_1) {}
+		virtual void  SetAtAny(int32_t param_1,  ScriptAnyValue* param_2) {}
+		virtual bool  GetAtAny(int32_t param_1,  ScriptAnyValue* param_2) {}
+		virtual  CScriptTableName::Iterator*  BeginIteration(CScriptTableName::Iterator* __return_storage_ptr__, bool param_1) {}
+		virtual bool  MoveNext(CScriptTableName::Iterator* param_1) {}
+		virtual void  EndIteration(CScriptTableName::Iterator* param_1) {}
+		virtual void  Clear() {}
+		virtual int32_t  Count() {}
+		virtual bool  Clone( IScriptTable* param_1, bool param_2, bool param_3) {}
+		virtual void  Dump( IScriptTableDumpSink* param_1) {}
+		virtual bool  AddFunction( SUserFunctionDesc* param_1) {}
+		int32_t m_nRefCount;
+		int32_t m_nRef;
+	};
+	class SmartScriptTable {
+	public:
+		IScriptTable* ptr;
 	};
 	
 	class SSurfaceTypeAIParams {
@@ -1443,7 +1598,95 @@ namespace ArkNpc {
 		char* key;
 		char* value;
 	};
-
+	class IXmlNode {
+	public:
+		virtual undefined _purecall() {}
+		virtual void* _EIXmlNode(uint32_t param_1) {}
+		virtual undefined _purecall_1() {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		virtual uint32_t  GetAudioObjectID() {}
+	private:
+		virtual undefined _purecall_2() {}
+		virtual undefined _purecall_3() {}
+		virtual undefined _purecall_4() {}
+		virtual undefined _purecall_5() {}
+		virtual undefined _purecall_6() {}
+		virtual undefined _purecall_7() {}
+		virtual undefined _purecall_8() {}
+		virtual undefined _purecall_9() {}
+		virtual undefined _purecall_10() {}
+		virtual undefined _purecall_11() {}
+		virtual undefined _purecall_12() {}
+		virtual undefined _purecall_13() {}
+		virtual undefined _purecall_14() {}
+		virtual undefined _purecall_15() {}
+		virtual undefined _purecall_16() {}
+		virtual undefined _purecall_17() {}
+		virtual undefined _purecall_18() {}
+		virtual undefined _purecall_19() {}
+		virtual undefined _purecall_20() {}
+		virtual undefined _purecall_21() {}
+		virtual undefined _purecall_22() {}
+		virtual undefined _purecall_23() {}
+		virtual undefined _purecall_24() {}
+		virtual undefined _purecall_25() {}
+		virtual undefined _purecall_26() {}
+		virtual undefined _purecall_27() {}
+		virtual undefined _purecall_28() {}
+		virtual undefined _purecall_29() {}
+		virtual undefined _purecall_30() {}
+		virtual undefined _purecall_31() {}
+		virtual undefined _purecall_32() {}
+		virtual undefined _purecall_33() {}
+		virtual undefined _purecall_34() {}
+		virtual undefined _purecall_35() {}
+		virtual undefined _purecall_36() {}
+		virtual undefined _purecall_37() {}
+		virtual undefined _purecall_38() {}
+		virtual undefined _purecall_39() {}
+		virtual undefined _purecall_40() {}
+		virtual undefined _purecall_41() {}
+		virtual undefined _purecall_42() {}
+		virtual undefined _purecall_43() {}
+		virtual undefined _purecall_44() {}
+		virtual undefined _purecall_45() {}
+		virtual undefined _purecall_46() {}
+		virtual undefined _purecall_47() {}
+		virtual undefined _purecall_48() {}
+		virtual undefined _purecall_49() {}
+		virtual undefined _purecall_50() {}
+		virtual undefined _purecall_51() {}
+		virtual undefined _purecall_52() {}
+		virtual undefined _purecall_53() {}
+		virtual undefined _purecall_54() {}
+		virtual undefined _purecall_55() {}
+		virtual undefined _purecall_56() {}
+		virtual undefined _purecall_57() {}
+		virtual undefined _purecall_58() {}
+		virtual undefined _purecall_59() {}
+		virtual undefined _purecall_60() {}
+		virtual undefined _purecall_61() {}
+		virtual undefined _purecall_62() {}
+		virtual undefined _purecall_63() {}
+		virtual undefined _purecall_64() {}
+		virtual undefined _purecall_65() {}
+		virtual undefined _purecall_66() {}
+		virtual undefined _purecall_67() {}
+		virtual undefined _purecall_68() {}
+		virtual undefined _purecall_69() {}
+		virtual undefined _purecall_70() {}
+		virtual undefined _purecall_71() {}
+		virtual undefined _purecall_72() {}
+		virtual undefined _purecall_73() {}
+		virtual undefined _purecall_74() {}
+		virtual undefined _purecall_75() {}
+		virtual undefined _purecall_76() {}
+	public:
+		virtual XmlString* getXMLUnsafe(int param_1, char* param_2, uint32_t param_3) {}
+		int32_t m_nRefCount;
+		char pad[4];
+	};
 	class CXmlNode {
 	public:
 		virtual void  DeleteThis() {}
@@ -1621,18 +1864,19 @@ namespace ArkNpc {
 		virtual void* _ECXmlNodePool(uint32_t param_1) {}
 		virtual void  OnRelease(int param_1, void* param_2) {}
 		char pad[8];
-		CXmlStringPool* m_pStringPool;
+		IXmlStringPool* m_pStringPool;
 		char* m_tag;
 		char* m_content;
-		CXmlNode* m_parent;
-		std::vector < CXmlNode*> m_pChilds;
+		IXmlNode* m_parent;
+		std::vector < IXmlNode*> m_pChilds;
 		std::vector<XmlAttribute> m_pAttributes;
 		int32_t m_line;
 		char pad2[4];
 	};
+	
 	class XmlNodeRef {
 	public:
-		CXmlNode* ptr;
+		IXmlNode* ptr;
 	};
 	class CXmlTableReader {
 	public:
@@ -1662,6 +1906,14 @@ namespace ArkNpc {
 	public:
 		char* m_str;
 	};
+	class IXmlStringPool {
+	public:
+		virtual void* _EIXmlStringPool(uint32_t param_1) {}
+		virtual undefined _purecall() {}
+		virtual undefined _purecall_1() {}
+		int32_t m_refCount;
+		char pad[4];
+	};
 	class CXmlStringPool {
 	public:
 		virtual void* _ECXmlStringPool(uint32_t param_1) {}
@@ -1670,7 +1922,37 @@ namespace ArkNpc {
 		char pad[8];
 		CSimpleStringPool m_stringPool;
 	};
-
+	class SStackEntity {
+	public:
+		XmlNodeRef node;
+		std::vector<IXmlNode*> childs;
+	};
+	class XmlParserImp {
+	public:
+		virtual void* _EXmlParserImp(uint32_t param_1) {}
+		virtual char* AddString(char* param_1) {}
+		virtual void  GetMemoryUsage(ICrySizer* param_1) {}
+		char pad[8];
+		std::vector<SStackEntity> m_nodeStack;
+		int32_t m_nNodeStackTop;
+		char pad2[4];
+		XmlNodeRef m_root;
+		void* m_parser;
+		CSimpleStringPool m_stringPool;
+	};
+	class XmlParser {
+	public:
+		virtual void* _EXmlParser(uint32_t param_1) {}
+		virtual void  AddRef() {}
+		virtual void  Release() {}
+		virtual XmlNodeRef* ParseFile(char* param_1, bool param_2, bool param_3) {}
+		virtual XmlNodeRef* ParseBuffer(char* param_1, int32_t param_2, bool param_3) {}
+		virtual void  GetMemoryUsage(ICrySizer* param_1) {}
+		int32_t m_nRefCount;
+		char pad[4];
+		XmlString m_errorString;
+		XmlParserImp* m_pImpl;
+	};
 
 	class IXmlSerializer {};
 	class IXmlParser {};
@@ -1802,7 +2084,7 @@ namespace ArkNpc {
 	public:
 		char pad[8];
 		virtual void* _ECXmlUtils(uint32_t param_1) {}
-		virtual  XmlNodeRef LoadXmlFromFile(char* sFilename, bool bReuseStrings, bool bEnablePatching, bool bAllowUseFileSystem) {}
+		virtual  XmlNodeRef* LoadXmlFromFile(char* sFilename, bool bReuseStrings, bool bEnablePatching, bool bAllowUseFileSystem) {}
 		virtual  XmlNodeRef* LoadXmlFromBuffer(char* param_1, uint64_t param_2, bool param_3) {}
 		virtual char* HashXml(XmlNodeRef* param_1) {}
 		virtual  ArkNpcAbilityInstance* GetAbilityInstance() {}
@@ -1956,9 +2238,6 @@ namespace ArkNpc {
 		virtual ArkNpcAbility*  garbage0() {}
 		virtual XmlNodeRef*  GetObjectVars() {}
 		virtual void  LoadFromXML(class XmlNodeRef* param_1, class XmlNodeRef* param_2) {}
-		virtual void*   garbage1() {}
-		virtual void  AddRef() {}
-		virtual void  Release() {}
 		char pad[16];
 		CryStringT<char> m_name;
 		uint64_t m_id;
@@ -2676,7 +2955,11 @@ namespace ArkNpc {
 		falling = 2,
 		fallingOutOfGravShaft = 3
 	};
-	
+
+	class ArkMaterialAnimationType{};
+	class EventPhysCollision{};
+	class Package{};
+	class ArkInteractionTestResult{};
 	class ArkSpatiallySortedKey {
 	public:
 		uint64_t m_index;
@@ -3503,9 +3786,50 @@ namespace ArkNpc {
 		public:
 			char pad[64];
 		};
+		class ArkNpcSpeedDesire {
+
+		};
+		class ArkNpcAnimAction {};
+		class ArkNpcBodyStateObserver_Animated{};
+		class ArkNpcBodyStateObserver_Dissipate{};
+		class ArkNpcBodyStateObserver_Busy{};
+		class ArkCharacterEffectType{};
+		class ArkGlooEffectAccumulated{};
 		class ArkNpc {
 		public:
-			char pad[88];
+			virtual void  InitializeTrackviewTempNpc() {}
+			virtual void  OnAnimatedMovement_Start() {}
+			virtual void  OnAnimatedMovement_Stop() {}
+			virtual bool  IsMovementAnimated() {}
+			virtual void  OnJumpAnimActionSequence_Start() {}
+			virtual void  OnJumpAnimActionSequence_Stop() {}
+			virtual void  OnJumpAnimAction_Fall() {}
+			virtual void  OnMantleAnimAction_Start() {}
+			virtual void  OnMantleAnimAction_Stop() {}
+			virtual bool  PerformMimicReorientation( Vec2_tpl<float>*param_1) {}
+			virtual void  PerformMimicGlitch() {}
+			virtual void  StopMimicGlitch() {}
+			virtual uint32_t  GetTopAttentionTargetEntityId() {}
+			virtual void  OnTargetDead(uint32_t param_1) {}
+			virtual void  ShiftTelegraph( ShiftType* param_1) {}
+			virtual void  ShiftBegin( ShiftType* param_1) {}
+			virtual void  ShiftEnd( ShiftType* param_1) {}
+			virtual bool  SupportsLookAt() {}
+			virtual bool  IsGlooSlow() {}
+			virtual bool  IsFalling() {}
+			virtual void  SetBreakGlooEntity(uint32_t param_1) {}
+			virtual void  BreakGlooEntity() {}
+			virtual void  ForceMovementReplan() {}
+			virtual void  ForceReevaluateMovementAnimAction() {}
+			virtual void  CancelMovement() {}
+			virtual void  PushDisableHitReactions() {}
+			virtual void  PopDisableHitReactions() {}
+			virtual void  PushAIAlwaysUpdate() {}
+			virtual void  PopAIAlwaysUpdate() {}
+			virtual void  ResetAIAlwaysUpdate() {}
+			virtual void  OnNewAttentionTarget(uint32_t param_1, bool param_2) {}
+
+			char pad[80];
 			std::vector<Vec3> m_cachedDoppelgangerCandidatePositions;
 			std::vector<uint32_t> m_cachedNearbyNpcsForAbility;
 			Vec3 m_cachedThermogenesisLocation;
@@ -3679,12 +4003,16 @@ namespace ArkNpc {
 		class IEntityLink	   {};
 		class SGridLocation	   {};
 		class SProximityElement{};
-		class IEntityProxy {};
+		
 		class IComponent{};
 		class IScriptTable {
 			void* ptr;
 			uint32_t m_nrefCount,
 				m_nRef;
+		};
+		class ArkSafeScriptTable {
+		public:
+			CScriptTable* ptr;
 		};
 		class SEntitySpawnParams {
 		public:
@@ -3712,9 +4040,48 @@ namespace ArkNpc {
 			IScriptTable* pPropertiesTable;
 			IScriptTable* pPropertiesInstanceTable;
 		};
-		enum class EEntityUpdatePolicy{};
-		enum class EEntityProxy{};
-
+		class SEntityLoadParams {
+		public:
+			SEntitySpawnParams spawnParams;
+			CEntity* pReuseEntity;
+			bool bCallInit;
+			int32_t clonedLayerId;
+		};
+		enum class EEntityUpdatePolicy {
+			ENTITY_UPDATE_NEVER = 0x0,
+			ENTITY_UPDATE_IN_RANGE = 0x1,
+			ENTITY_UPDATE_POT_VISIBLE = 0x2,
+			ENTITY_UPDATE_VISIBLE = 0x3,
+			ENTITY_UPDATE_PHYSICS = 0x4,
+			ENTITY_UPDATE_PHYSICS_VISIBLE = 0x5,
+			ENTITY_UPDATE_ALWAYS = 0x6
+		};
+		enum class EEntityProxy {
+			ENTITY_PROXY_RENDER = 0x0,
+			ENTITY_PROXY_PHYSICS = 0x1,
+			ENTITY_PROXY_SCRIPT = 0x2,
+			ENTITY_PROXY_AUDIO = 0x3,
+			ENTITY_PROXY_AI = 0x4,
+			ENTITY_PROXY_AREA = 0x5,
+			ENTITY_PROXY_BOIDS = 0x6,
+			ENTITY_PROXY_BOID_OBJECT = 0x7,
+			ENTITY_PROXY_CAMERA = 0x8,
+			ENTITY_PROXY_FLOWGRAPH = 0x9,
+			ENTITY_PROXY_SUBSTITUTION = 0xa,
+			ENTITY_PROXY_TRIGGER =0xb,
+			ENTITY_PROXY_ROPE= 0xc,
+			ENTITY_PROXY_ENTITYNODE = 0xd,
+			ENTITY_PROXY_ATTRIBUTES =0xe,
+			ENTITY_PROXY_CLIPVOLUME = 0xf,
+			ENTITY_PROXY_USER =0x10,
+			ENTITY_PROXY_LAST = 0x11,
+		};
+		class ArkHealthExtension {
+		public:
+			IGameObjectExtension m_ext;
+			float m_health;
+			float m_maxHealth;
+		};
 		class ArkNpcAbility{};
 		class IAIObject{};
 		class SChildAttachParams{};
@@ -3732,7 +4099,6 @@ namespace ArkNpc {
 		class CDLight{};
 		class SComponentInitializer{};
 		class IEntity {
-		public:
 		public:
 			virtual void* _ECEntity(uint32_t param_1) {}
 			virtual int32_t  GetControlPointIndex() {}
@@ -3771,7 +4137,7 @@ namespace ArkNpc {
 			virtual  Matrix34_tpl<float>* GetLocalTM(Matrix34_tpl<float>* __return_storage_ptr__) {}
 			virtual void  GetWorldBounds(AABB* param_1) {}
 			virtual void  GetLocalBounds(AABB* param_1) {}
-			virtual void  SetPos(Vec3_tpl<float>* param_1, int32_t param_2, bool param_3, bool param_4) {}
+			virtual void  SetPos(Vec3_tpl<float>* param_1, int32_t nWhyFlags, bool recalcPhyBounds, bool bForce) {}
 		private:
 			virtual void garbage2() {}
 		public:
@@ -3808,10 +4174,10 @@ namespace ArkNpc {
 		public:
 			virtual void  SetAIObjectID(uint32_t param_1) {}
 			virtual bool  RegisterInAISystem(AIObjectParams* param_1) {}
-			virtual void  SetUpdatePolicy(EEntityUpdatePolicy* param_1) {}
+			virtual void  SetUpdatePolicy(EEntityUpdatePolicy param_1) {}
 			virtual  EEntityUpdatePolicy* GetUpdatePolicy() {}
-			virtual  IEntityProxy* GetProxy(EEntityProxy* param_1) {}
-			virtual void  SetProxy(EEntityProxy* param_1, std::shared_ptr<IEntityProxy>* param_2) {}
+			virtual  IEntityProxy* GetProxy(EEntityProxy param_1) {}
+			virtual void  SetProxy(EEntityProxy param_1, BYTE param_2) {}
 			virtual  std::shared_ptr<IEntityProxy>* CreateProxy(EEntityProxy* param_1) {}
 			virtual void  RegisterComponent(std::shared_ptr<IComponent>* param_1, int32_t param_2) {}
 			virtual void  Physicalize(SEntityPhysicalizeParams* param_1) {}
@@ -3872,49 +4238,11 @@ namespace ArkNpc {
 			virtual void  EnableInheritXForm(bool param_1) {}
 			virtual  IEntity* GetAdam() {}
 			virtual bool  UpdateLightClipBounds(CDLight* param_1) {}
-			virtual void* _ECEntityNodeProxy(uint32_t param_1) {}
-			virtual void  ProcessEvent(SEntityEvent* param_1) {}
-			virtual int32_t  GetEventPriority(int32_t param_1) {}
-			virtual void  Initialize(SComponentInitializer* param_1) {}
-			virtual void   $FunctionCaller(EArkNpcFacingDesireCallbackEvent* param_2) {}
-			virtual  EArkPsiPowers* GetEnum() {}
-			virtual bool  Init(IEntity* param_1, SEntitySpawnParams* param_2) {}
-			virtual void  Reload(IEntity* param_1, SEntitySpawnParams* param_2) {}
-		private:
-			virtual void garbage6() {}
-		public:
-			virtual void  Complete() {}
-		private:
-			virtual void garbage7() {}
-			virtual void garbage8() {}
-			virtual void garbage9() {}
-			virtual void garbage24() {}
-		public:
-			virtual bool  Activating(float param_1) {}
-			virtual void* _ECEntityAttributesProxy(uint32_t param_1) {}
-		private:
-			virtual void garbage10() {}
-			virtual void garbage11() {}
-			virtual void garbage12() {}
-			virtual void garbage13() {}
-			virtual void garbage14() {}
-			virtual void garbage15() {}
-			virtual void garbage16() {}
-			virtual void garbage17() {}
-			virtual void garbage18() {}
-			virtual void garbage19() {}
-			virtual void garbage20() {}
-			virtual void garbage21() {}
-			virtual void garbage22() {}
-			virtual void garbage23() {}
-			virtual void unused0() {}
-			// virtual void  SetAttributes( DynArray<class_std::shared_ptr<IEntityAttribute>, int32_t, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc>_>_>*param_1) {}
-			virtual void garbage25() {}
 		};
 		class CEntity {
 		
 		public:
-			void* ptr;
+			char pad[8];
 			unsigned char m_flags1;
 			unsigned char m_flags2;
 			unsigned char m_flags3;
@@ -4158,7 +4486,7 @@ namespace ArkNpc {
 			virtual  CEntityArchetype*  LoadEntityArchetype(char* param_1) {}
 			virtual  CEntityArchetype*  LoadEntityArchetype( XmlNodeRef* param_1) {}
 			virtual  CEntityArchetype*  FindEntityArchetype(char* param_1) {}
-			virtual  CEntityArchetype*  CreateEntityArchetype( IEntity* param_1, char* param_2, uint64_t param_3) {}
+			virtual  CEntityArchetype*  CreateEntityArchetype( IEntityClass* param_1, char* param_2, uint64_t param_3) {}
 			virtual  CEntityArchetype*  GetEntityArchetype(uint64_t param_1) {}
 			virtual  CEntityArchetype*  garbage0(uint64_t param_1) {}
 			virtual uint64_t  GetArchetypeId(char* param_1) {}
@@ -4518,12 +4846,14 @@ namespace ArkNpc {
 			enum AsyncState m_asyncState;
 			uint32_t m_rayID;
 		};
-		class SPlatformInfo {
-		public:
-			EPlatform platformId;
-			unsigned char devices;
-			char pad[3];
-		};
+		namespace CGameName {
+			class SPlatformInfo {
+			public:
+				EPlatform platformId;
+				unsigned char devices;
+				char pad[3];
+			};
+		}
 		class CGameCache{};
 		class IGameFramework{};
 		class IConsole{};
@@ -4540,10 +4870,1010 @@ namespace ArkNpc {
 		class IAntiCheatManager				 {};
 		class CGameLocalizationManager		 {};
 		class ITelemetryCollector			 {};
-		class CGameActions					 {};
+		class CGameActions {
+			
+		};
 		class IPlayerProfileManager			 {};
 
-		class SCVars {};
+		 class SPlayerMovement {
+		 public:
+			float nonCombat_heavy_weapon_speed_scale;
+			float nonCombat_heavy_weapon_sprint_scale;
+			float nonCombat_heavy_weapon_strafe_speed_scale;
+			float nonCombat_heavy_weapon_sneak_speed_scale;
+			float power_sprint_targetFov;
+			float ground_timeInAirToFall;
+			float speedScale;
+			float strafe_SpeedScale;
+			float sprint_SpeedScale;
+			float sneak_SpeedScale;
+			int sprintStamina_debug;
+			float mp_slope_speed_multiplier_uphill;
+			float mp_slope_speed_multiplier_downhill;
+			float mp_slope_speed_multiplier_minHill;
+		};
+
+		class SPlayerEnemyRamming {
+		public:
+			float player_to_player;
+			float ragdoll_to_player;
+			float fall_damage_threashold;
+			float safe_falling_speed;
+			float fatal_falling_speed;
+			float max_falling_damage;
+			float min_momentum_to_fall;
+		};
+
+		 class SDeathCamSPParams {
+		 public:
+			int enable;
+			int dof_enable;
+			float updateFrequency;
+			float dofRange;
+			float dofRangeNoKiller;
+			float dofRangeSpeed;
+			float dofDistanceSpeed;
+		};
+
+		 class SCaptureTheFlagParams {
+		 public:
+			float carryingFlag_SpeedScale;
+		};
+
+		 class SPlayerPickAndThrow {
+		 public:
+			int debugDraw;
+			int useProxies;
+			int cloakedEnvironmentalWeaponsAllowed;
+			float maxOrientationCorrectionTime;
+			float orientationCorrectionTimeMult;
+			float environmentalWeaponObjectImpulseScale;
+			float environmentalWeaponImpulseScale;
+			float environmentalWeaponHitConeInDegrees;
+			float minRequiredThrownEnvWeaponHitVelocity;
+			float awayFromPlayerImpulseRatio;
+			float environmentalWeaponDesiredRootedGrabAnimDuration;
+			float environmentalWeaponDesiredGrabAnimDuration;
+			float environmentalWeaponDesiredPrimaryAttackAnimDuration;
+			float environmentalWeaponDesiredComboAttackAnimDuration;
+			float environmentalWeaponUnrootedPickupTimeMult;
+			float environmentalWeaponThrowAnimationSpeed;
+			float environmentalWeaponFlippedImpulseOverrideMult;
+			float environmentalWeaponFlipImpulseThreshold;
+			float environmentalWeaponLivingToArticulatedImpulseRatio;
+			int enviromentalWeaponUseThrowInitialFacingOveride;
+			float environmentalWeaponMinViewClamp;
+			float environmentalWeaponViewLerpZOffset;
+			float environmentalWeaponViewLerpSmoothTime;
+			float complexMelee_snap_angle_limit;
+			float complexMelee_lerp_target_speed;
+			float objectImpulseLowMassThreshold;
+			float objectImpulseLowerScaleLimit;
+			float comboInputWindowSize;
+			float minComboInputWindowDurationInSecs;
+			float impactNormalGroundClassificationAngle;
+			float impactPtValidHeightDiffForImpactStick;
+			float reboundAnimPlaybackSpeedMultiplier;
+			int environmentalWeaponSweepTestsEnabled;
+			float chargedThrowAutoAimDistance;
+			float chargedThrowAutoAimConeSize;
+			float chargedThrowAutoAimDistanceHeuristicWeighting;
+			float chargedThrowAutoAimAngleHeuristicWeighting;
+			float chargedThrowAimHeightOffset;
+			int chargedthrowAutoAimEnabled;
+			int intersectionAssistDebugEnabled;
+			int intersectionAssistDeleteObjectOnEmbed;
+			float intersectionAssistCollisionsPerSecond;
+			float intersectionAssistTimePeriod;
+			float intersectionAssistTranslationThreshold;
+			float intersectionAssistPenetrationThreshold;
+		};
+
+		 class SPredatorParams {
+		 public:
+			float hudTimerAlertWhenTimeRemaining;
+			float hintMessagePauseTime;
+		};
+
+		 class SJumpAirControl {
+		 public:
+			float air_control_scale;
+			float air_resistance_scale;
+			float air_inertia_scale;
+		};
+
+		 class SAIPerceptionCVars{
+		 public:
+			int movement_useSurfaceType;
+			float movement_movingSurfaceDefault;
+			float movement_standingRadiusDefault;
+			float movement_crouchRadiusDefault;
+			float movement_standingMovingMultiplier;
+			float movement_crouchMovingMultiplier;
+			float landed_baseRadius;
+			float landed_speedMultiplier;
+		};
+
+		 class SPostEffect {
+		 public:
+			float FilterGrain_Amount;
+			float FilterRadialBlurring_Amount;
+			float FilterRadialBlurring_ScreenPosX;
+			float FilterRadialBlurring_ScreenPosY;
+			float FilterRadialBlurring_Radius;
+			float Global_User_ColorC;
+			float Global_User_ColorM;
+			float Global_User_ColorY;
+			float Global_User_ColorK;
+			float Global_User_Brightness;
+			float Global_User_Contrast;
+			float Global_User_Saturation;
+			float Global_User_ColorHue;
+		};
+
+		 class SPlayerLadder {
+		 public:
+			int ladder_renderPlayerLast;
+			int ladder_logVerbosity;
+		};
+
+		 class SGameReleaseConstantCVars {
+		 public:
+			undefined field0_0x0;
+		};
+
+		 class SPlayerSlideControl {
+		 public:
+			float min_speed_threshold;
+			float min_speed;
+			float deceleration_speed;
+			float min_downhill_threshold;
+			float max_downhill_threshold;
+			float max_downhill_acceleration;
+		};
+
+		 class SPowerSprintParams {
+		 public:
+			float foward_angle;
+		};
+
+		 class SSpectacularKillCVars {
+		 public:
+			float maxDistanceError;
+			float minTimeBetweenKills;
+			float minTimeBetweenSameKills;
+			float minKillerToTargetDotProduct;
+			float maxHeightBetweenActors;
+			float sqMaxDistanceFromPlayer;
+			int debug;
+		};
+
+		 class SPlayerMelee{
+		 public:
+			float melee_snap_angle_limit;
+			float melee_snap_blend_speed;
+			float melee_snap_target_select_range;
+			float melee_snap_end_position_range;
+			float melee_snap_move_speed_multiplier;
+			float damage_multiplier_from_behind;
+			float damage_multiplier_mp;
+			float angle_limit_from_behind;
+			float mp_victim_screenfx_intensity;
+			float mp_victim_screenfx_duration;
+			float mp_victim_screenfx_blendout_duration;
+			float mp_victim_screenfx_dbg_force_test_duration;
+			int impulses_enable;
+			int debug_gfx;
+			int mp_melee_system;
+			int mp_melee_system_camera_lock_and_turn;
+			int mp_knockback_enabled;
+			float mp_melee_system_camera_lock_time;
+			float mp_melee_system_camera_lock_crouch_height_offset;
+			float mp_knockback_strength_vert;
+			float mp_knockback_strength_hor;
+			int mp_sliding_auto_melee_enabled;
+		};
+
+		 class SExtractionParams {
+		 public:
+			float carryingTick_SpeedScale;
+			float carryingTick_EnergyCostPerHit;
+			float carryingTick_DamageAbsorbDesperateEnergyCost;
+		};
+
+		 class SPlayerLedgeClamber {
+		 public:
+			float cameraBlendWeight;
+			int debugDraw;
+			int enableVaultFromStanding;
+		};
+
+		 class SAICollisions {
+		 public:
+			float minSpeedForFallAndPlay;
+			float minMassForFallAndPlay;
+			float dmgFactorWhenCollidedByObject;
+			int showInLog;
+		};
+
+		 class SAIThreatModifierCVars {
+		 public:
+			char* DebugAgentName;
+			float SOMIgnoreVisualRatio;
+			float SOMDecayTime;
+			float SOMMinimumRelaxed;
+			float SOMMinimumCombat;
+			float SOMCrouchModifierRelaxed;
+			float SOMCrouchModifierCombat;
+			float SOMMovementModifierRelaxed;
+			float SOMMovementModifierCombat;
+			float SOMWeaponFireModifierRelaxed;
+			float SOMWeaponFireModifierCombat;
+			float SOMCloakMaxTimeRelaxed;
+			float SOMCloakMaxTimeCombat;
+			float SOMUncloakMinTimeRelaxed;
+			float SOMUncloakMinTimeCombat;
+			float SOMUncloakMaxTimeRelaxed;
+			float SOMUncloakMaxTimeCombat;
+		};
+
+		 class SAltNormalization {
+		 public:
+			int enable;
+			float hud_ctrl_Curve_Unified;
+			float hud_ctrl_Coeff_Unified;
+		};
+
+		 class SPlayerHealth {
+		 public:
+			float normal_regeneration_rateSP;
+			float critical_health_thresholdSP;
+			float critical_health_updateTimeSP;
+			float normal_threshold_time_to_regenerateSP;
+			float normal_regeneration_rateMP;
+			float critical_health_thresholdMP;
+			float fast_regeneration_rateMP;
+			float slow_regeneration_rateMP;
+			float normal_threshold_time_to_regenerateMP;
+			int enable_FallandPlay;
+			int collision_health_threshold;
+			float fallDamage_SpeedSafe;
+			float fallDamage_SpeedFatal;
+			float fallSpeed_HeavyLand;
+			float fallDamage_SpeedFatalArmor;
+			float fallSpeed_HeavyLandArmor;
+			float fallDamage_SpeedSafeArmorMP;
+			float fallDamage_SpeedFatalArmorMP;
+			float fallSpeed_HeavyLandArmorMP;
+			float fallDamage_CurveAttackMP;
+			float fallDamage_CurveAttack;
+			int fallDamage_health_threshold;
+			int debug_FallDamage;
+			int enableNewHUDEffect;
+			int minimalHudEffect;
+		};
+		 class ICVar {};
+		 class SCVars {
+		 public:
+		 	SGameReleaseConstantCVars m_releaseConstants;
+			char pad[3];
+			float cl_fov;
+			float cl_hfov;
+			float cl_mp_fov_scalar;
+			float cl_tpvDist;
+			float cl_tpvYaw;
+			float cl_sensitivity;
+			float cl_sensitivityController;
+			float cl_sensitivityControllerMP;
+			float cl_reticleSensitivityController;
+			int cl_invertMouse;
+			int cl_invertController;
+			int cl_sneakToggle;
+			int cl_worldUIExaminationToggle;
+			int cl_sprintToggle;
+			int cl_debugSwimming;
+			int cl_logAsserts;
+			int cl_zoomToggle;
+			float cl_motionBlurVectorScale;
+			float cl_motionBlurVectorScaleSprint;
+			int g_enableMPDoubleTapGrenadeSwitch;
+		 	ICVar* ca_GameControlledStrafingPtr;
+			float cl_shallowWaterSpeedMulPlayer;
+			float cl_shallowWaterSpeedMulAI;
+			float cl_shallowWaterDepthLo;
+			float cl_shallowWaterDepthHi;
+			float cl_speedToBobFactor;
+			float cl_bobAmount;
+			float cl_rollAmount;
+			float cl_bobWidth;
+			float cl_bobHeight;
+			float cl_bobSprintMultiplier;
+			float cl_bobVerticalMultiplier;
+			float cl_bobMaxHeight;
+			float cl_strafeHorzScale;
+			float g_highlightingMaxDistanceToHighlightSquared;
+			float g_highlightingMovementDistanceToUpdateSquared;
+			float g_highlightingTimeBetweenForcedRefresh;
+			float g_ledgeGrabClearHeight;
+			float g_ledgeGrabMovingledgeExitVelocityMult;
+			float g_vaultMinHeightDiff;
+			float g_vaultMinAnimationSpeed;
+			int g_cloakFlickerOnRun;
+			int kc_useAimAdjustment;
+			float kc_aimAdjustmentMinAngle;
+			float kc_precacheTimeStartPos;
+			float kc_precacheTimeWeaponModels;
+			int g_useQuickGrenadeThrow;
+			int g_debugWeaponOffset;
+			int g_MicrowaveBeamStaticObjectMaxChunkThreshold;
+			float i_fastSelectMultiplier;
+			float cl_idleBreaksDelayTime;
+			int cl_postUpdateCamera;
+			int p_collclassdebug;
+			float pl_cameraTransitionTime;
+			float pl_cameraTransitionTimeLedgeGrabIn;
+			float pl_cameraTransitionTimeLedgeGrabOut;
+			float pl_slideCameraFactor;
+			float cl_slidingBlurRadius;
+			float cl_slidingBlurAmount;
+			float cl_slidingBlurBlendSpeed;
+			int sv_votingTimeout;
+			int sv_votingCooldown;
+			int sv_votingEnable;
+			int sv_votingMinVotes;
+			float sv_votingRatio;
+			float sv_votingTeamRatio;
+			float sv_votingBanTime;
+			int sv_input_timeout;
+			ICVar* sv_aiTeamName;
+			ICVar* performance_profile_logname;
+			int g_infiniteAmmoTutorialMode;
+			int i_lighteffects;
+			int i_particleeffects;
+			int i_rejecteffects;
+			int i_grenade_showTrajectory;
+			float i_grenade_trajectory_resolution;
+			float i_grenade_trajectory_dashes;
+			float i_grenade_trajectory_gaps;
+			int i_grenade_trajectory_useGeometry;
+			int i_ironsight_while_jumping_mp;
+			int i_ironsight_while_falling_mp;
+			float i_ironsight_falling_unzoom_minAirTime;
+			float i_weapon_customisation_transition_time;
+			int i_highlight_dropped_weapons;
+			float i_laser_hitPosOffset;
+			float pl_inputAccel;
+			int pl_debug_energyConsumption;
+			int pl_debug_pickable_items;
+			float pl_useItemHoldTime;
+			int pl_autoPickupItemsWhenUseHeld;
+			float pl_autoPickupMinTimeBetweenPickups;
+			int pl_debug_projectileAimHelper;
+			float pl_nanovision_timeToRecharge;
+			float pl_nanovision_timeToDrain;
+			float pl_nanovision_minFractionToUse;
+			float pl_refillAmmoDelay;
+			int pl_spawnCorpseOnDeath;
+			int pl_doLocalHitImpulsesMP;
+			int kc_enable;
+			int kc_debug;
+			int kc_debugStressTest;
+			int kc_debugVictimPos;
+			int kc_debugWinningKill;
+			int kc_debugSkillKill;
+			int kc_memStats;
+			int kc_maxFramesToPlayAtOnce;
+			int kc_cameraCollision;
+			int kc_showHighlightsAtEndOfGame;
+			int kc_enableWinningKill;
+			int kc_canSkip;
+			float kc_length;
+			float kc_skillKillLength;
+			float kc_bulletSpeed;
+			float kc_bulletHoverDist;
+			float kc_bulletHoverTime;
+			float kc_bulletHoverTimeScale;
+			float kc_bulletPostHoverTimeScale;
+			float kc_bulletTravelTimeScale;
+			float kc_bulletCamOffsetX;
+			float kc_bulletCamOffsetY;
+			float kc_bulletCamOffsetZ;
+			float kc_bulletRiflingSpeed;
+			float kc_bulletZoomDist;
+			float kc_bulletZoomTime;
+			float kc_bulletZoomOutRatio;
+			float kc_kickInTime;
+			float kc_projectileDistance;
+			float kc_projectileHeightOffset;
+			float kc_largeProjectileDistance;
+			float kc_largeProjectileHeightOffset;
+			float kc_projectileVictimHeightOffset;
+			float kc_projectileMinimumVictimDist;
+			float kc_smoothing;
+			float kc_grenadeSmoothingDist;
+			float kc_cameraRaiseHeight;
+			float kc_resendThreshold;
+			float kc_chunkStreamTime;
+			float g_multikillTimeBetweenKills;
+			float g_flushed_timeBetweenGrenadeBounceAndSkillKill;
+			float g_gotYourBackKill_targetDistFromFriendly;
+			float g_gotYourBackKill_FOVRange;
+			float g_guardian_maxTimeSinceLastDamage;
+			float g_defiant_timeAtLowHealth;
+			float g_defiant_lowHealthFraction;
+			float g_intervention_timeBetweenZoomedAndKill;
+			float g_blinding_timeBetweenFlashbangAndKill;
+			float g_blinding_flashbangRecoveryDelayFrac;
+			float g_neverFlagging_maxMatchTimeRemaining;
+			float g_combinedFire_maxTimeBetweenWeapons;
+			float g_fovToRotationSpeedInfluence;
+			int dd_maxRMIsPerFrame;
+			float dd_waitPeriodBetweenRMIBatches;
+			int g_debugSpawnPointsRegistration;
+			int g_debugSpawnPointValidity;
+			float g_randomSpawnPointCacheTime;
+			int g_detachCamera;
+			int g_moveDetachedCamera;
+			float g_detachedCameraMoveSpeed;
+			float g_detachedCameraRotateSpeed;
+			float g_detachedCameraTurboBoost;
+			int g_detachedCameraDebug;
+			int g_difficultyLevel;
+			int g_difficultyLevelLowestPlayed;
+			float g_flashBangMinSpeedMultiplier;
+			float g_flashBangSpeedMultiplierFallOffEase;
+			float g_flashBangNotInFOVRadiusFraction;
+			float g_flashBangMinFOVMultiplier;
+			int g_flashBangFriends;
+			int g_flashBangSelf;
+			float g_friendlyLowerItemMaxDistance;
+			int g_holdObjectiveDebug;
+			int g_gameRayCastQuota;
+			int g_gameIntersectionTestQuota;
+			int g_STAPCameraAnimation;
+			float g_reticleYPercentage;
+			float g_ExplosionImpulseScale;
+			int g_debugaimlook;
+			float g_playerLowHealthThreshold;
+			float g_playerMidHealthThreshold;
+			int g_SurvivorOneVictoryConditions_watchLvl;
+			int g_SimpleEntityBasedObjective_watchLvl;
+			int g_CTFScoreElement_watchLvl;
+			int g_KingOfTheHillObjective_watchLvl;
+			float g_HoldObjective_secondsBeforeStartForSpawn;
+			int g_CombiCaptureObjective_watchLvl;
+			int g_CombiCaptureObjective_watchTerminalSignalPlayers;
+			int g_disable_OpponentsDisconnectedGameEnd;
+			int g_victoryConditionsDebugDrawResolution;
+			int g_restartWhenPrematchFinishes;
+			float g_predator_marineRedCrosshairDelay;
+			int sv_pacifist;
+			int g_devDemo;
+			int g_bulletPenetrationDebug;
+			float g_bulletPenetrationDebugTimeout;
+			int g_fpDbaManagementEnable;
+			int g_fpDbaManagementDebug;
+			int g_charactersDbaManagementEnable;
+			int g_charactersDbaManagementDebug;
+			int g_thermalVisionDebug;
+			float g_droppedItemVanishTimer;
+			float g_droppedHeavyWeaponVanishTimer;
+			int g_corpseManager_maxNum;
+			float g_corpseManager_timeoutInSeconds;
+			float g_explosion_materialFX_raycastLength;
+			int g_ec_enable;
+			float g_ec_radiusScale;
+			float g_ec_volume;
+			float g_ec_extent;
+			int g_ec_removeThreshold;
+			float g_radialBlur;
+			float g_timelimit;
+			float g_timelimitextratime;
+			float g_roundScoreboardTime;
+			float g_roundStartTime;
+			int g_roundlimit;
+			float g_friendlyfireratio;
+			int g_revivetime;
+			int g_minplayerlimit;
+			float g_hostMigrationResumeTime;
+			int g_hostMigrationUseAutoLobbyMigrateInPrivateGames;
+			int g_minPlayersForRankedGame;
+			float g_gameStartingMessageTime;
+			int g_mpRegenerationRate;
+			int g_mpHeadshotsOnly;
+			int g_mpNoVTOL;
+			int g_mpNoEnvironmentalWeapons;
+			int g_allowCustomLoadouts;
+			int g_allowFatalityBonus;
+			float g_spawnPrecacheTimeBeforeRevive;
+			float g_autoReviveTime;
+			float g_spawn_timeToRetrySpawnRequest;
+			float g_spawn_recentSpawnTimer;
+			float g_forcedReviveTime;
+			int g_numLives;
+			int g_autoAssignTeams;
+			float g_maxHealthMultiplier;
+			int g_mp_as_DefendersMaxHealth;
+			float g_xpMultiplyer;
+			int g_allowExplosives;
+			int g_forceWeapon;
+			int g_allowSpectators;
+			int g_infiniteCloak;
+			int g_allowWeaponCustomisation;
+			ICVar* g_forceHeavyWeapon;
+			ICVar* g_forceLoadoutPackage;
+			int g_switchTeamAllowed;
+			int g_switchTeamRequiredPlayerDifference;
+			int g_switchTeamUnbalancedWarningDifference;
+			float g_switchTeamUnbalancedWarningTimer;
+			int g_tk_punish;
+			int g_tk_punish_limit;
+			int g_debugNetPlayerInput;
+			int g_debugCollisionDamage;
+			int g_debugHits;
+			int g_suppressHitSanityCheckWarnings;
+			int g_drawLeaks;
+			int g_transcribeAutosaveFrequency;
+			int g_enableLanguageSelectionMenu;
+			int g_multiplayerDefault;
+			int g_multiplayerModeOnly;
+			int g_EPD;
+			int g_frontEndRequiredEPD;
+			int g_EnableDevMenuOptions;
+			int g_frontEndUnicodeInput;
+			int g_DisableMenuButtons;
+			int g_EnablePersistantStatsDebugScreen;
+			int g_craigNetworkDebugLevel;
+			int g_presaleUnlock;
+			int g_dlcPurchaseOverwrite;
+			int g_MatchmakingVersion;
+			int g_MatchmakingBlock;
+			int g_enableInitialLoadoutScreen;
+			int g_ProcessOnlineCallbacks;
+			float g_gameRules_startTimerLength;
+			float g_gameRules_postGame_HUDMessageTime;
+			float g_gameRules_postGame_Top3Time;
+			float g_gameRules_postGame_ScoreboardTime;
+			int g_gameRules_startTimerMinPlayers;
+			int g_gameRules_startTimerMinPlayersPerTeam;
+			float g_gameRules_startTimerPlayersRatio;
+			float g_gameRules_startTimerOverrideWait;
+			int g_gameRules_preGame_StartSpawnedFrozen;
+			int g_debug_fscommand;
+			int g_skipIntro;
+			int g_skipAfterLoadingScreen;
+			int g_goToCampaignAfterTutorial;
+			int g_aiCorpses_Enable;
+			int g_aiCorpses_DebugDraw;
+			int g_aiCorpses_MaxCorpses;
+			float g_aiCorpses_DelayTimeToSwap;
+			float g_aiCorpses_CullPhysicsDistance;
+			float g_aiCorpses_ForceDeleteDistance;
+			int g_scoreLimit;
+			int g_scoreLimitOverride;
+			float g_spawn_explosiveSafeDist;
+			int g_logPrimaryRound;
+			int g_server_region;
+			int g_enableInitialLoginSilent;
+			float g_dataRefreshFrequency;
+			int g_maxGameBrowserResults;
+			int g_inventoryNoLimits;
+			int g_inventoryWeaponCapacity;
+			int g_inventoryExplosivesCapacity;
+			int g_inventoryGrenadesCapacity;
+			int g_inventorySpecialCapacity;
+			int g_loadoutServerControlled;
+			 ICVar* pl_debug_filter;
+			int pl_debug_vistable;
+			int pl_debug_movement;
+			int pl_debug_jumping;
+			int pl_debug_aiming;
+			int pl_debug_aiming_input;
+			int pl_debug_view;
+			int pl_debug_hit_recoil;
+			int pl_debug_look_poses;
+			int pl_renderInNearest;
+			int pl_aim_assistance_enabled;
+			int pl_aim_assistance_disabled_atDifficultyLevel;
+			int pl_aim_acceleration_enabled;
+			float pl_aim_cloaked_multiplier;
+			float pl_aim_near_lookat_target_distance;
+			int pl_targeting_debug;
+			int pl_switchTPOnKill;
+			int pl_stealthKill_allowInMP;
+			int pl_stealthKill_uncloakInMP;
+			int pl_stealthKill_debug;
+			float pl_stealthKill_aimVsSpineLerp;
+			float pl_stealthKill_maxVelocitySquared;
+			int pl_slealth_cloakinterference_onactionMP;
+			int pl_stealthKill_usePhysicsCheck;
+			int pl_stealthKill_useExtendedRange;
+			float pl_stealth_shotgunDamageCap;
+			float pl_shotgunDamageCap;
+			float pl_freeFallDeath_cameraAngle;
+			float pl_freeFallDeath_fadeTimer;
+			float pl_fall_intensity_multiplier;
+			float pl_fall_intensity_max;
+			float pl_fall_time_multiplier;
+			float pl_fall_time_max;
+			float pl_fall_intensity_hit_multiplier;
+			float pl_TacticalScanDuration;
+			float pl_TacticalScanDurationMP;
+			float pl_TacticalTaggingDuration;
+			float pl_TacticalTaggingDurationMP;
+			float controller_power_curve;
+			float controller_multiplier_z;
+			float controller_multiplier_x;
+			float controller_full_turn_multiplier_x;
+			float controller_full_turn_multiplier_z;
+			int ctrlr_corner_smoother;
+			int ctrlr_corner_smoother_debug;
+			int ctrlr_OUTPUTDEBUGINFO;
+			float pl_stampTimeout;
+			int pl_stampTier;
+			float pl_jump_maxTimerValue;
+			float pl_jump_baseTimeAddedPerJump;
+			float pl_jump_currentTimeMultiplierOnJump;
+			float pl_jump_quickPressThresh;
+			int pl_showClimbIndicator;
+			int pl_boostedMelee_allowInMP;
+			float pl_velocityInterpAirControlScale;
+			int pl_velocityInterpSynchJump;
+			int pl_debugInterpolation;
+			float pl_velocityInterpAirDeltaFactor;
+			float pl_velocityInterpPathCorrection;
+			int pl_velocityInterpAlwaysSnap;
+			int pl_adjustJumpAngleWithFloorNormal;
+			float pl_netAimLerpFactor;
+			float pl_netSerialiseMaxSpeed;
+			int pl_serialisePhysVel;
+			float pl_clientInertia;
+			float pl_fallHeight;
+			float pl_legs_colliders_dist;
+			float pl_legs_colliders_scale;
+			float g_manualFrameStepFrequency;
+			SPowerSprintParams pl_power_sprint;
+			SJumpAirControl pl_jump_control;
+			SPlayerHealth pl_health;
+			SPlayerMovement pl_movement;
+			SPlayerLedgeClamber pl_ledgeClamber;
+			SPlayerLadder pl_ladderControl;
+			SPlayerPickAndThrow pl_pickAndThrow;
+			SPlayerSlideControl pl_sliding_control;
+			SPlayerSlideControl pl_sliding_control_mp;
+			SPlayerEnemyRamming pl_enemy_ramming;
+			SAICollisions AICollisions;
+			SPlayerMelee pl_melee;
+			SAltNormalization aim_altNormalization;
+			SCaptureTheFlagParams mp_ctfParams;
+			SExtractionParams mp_extractionParams;
+			SPredatorParams mp_predatorParams;
+			int g_FootstepSoundsFollowEntity;
+			int g_FootstepSoundsDebug;
+			float g_footstepSoundMaxDistanceSq;
+			float pl_swimBackSpeedMul;
+			float pl_swimSideSpeedMul;
+			float pl_swimVertSpeedMul;
+			float pl_swimNormalSprintSpeedMul;
+			int pl_swimAlignArmsToSurface;
+			int pl_drownDamage;
+			float pl_drownTime;
+			float pl_drownRecoveryTime;
+			float pl_drownDamageInterval;
+			int pl_mike_debug;
+			int pl_mike_maxBurnPoints;
+			int pl_impulseEnabled;
+			float pl_impulseDuration;
+			int pl_impulseLayer;
+			float pl_impulseFullRecoilFactor;
+			float pl_impulseMaxPitch;
+			float pl_impulseMaxTwist;
+			float pl_impulseCounterFactor;
+			int pl_ZeroGRollFixInputMode;
+			int pl_ZeroGRollMode;
+			int pl_ZeroGRollPivotOffset;
+			float pl_ExplosionUpImpulseScale;
+			float pl_PsiTargetingDepthCamSpeed;
+			float pl_fictionalTimeScale;
+			int pl_unlimitedPsi;
+			int pl_forceFlashlight;
+			int pl_infiniteFlashlight;
+			int pl_useFemaleModel;
+			float pl_cameraNearZ;
+			int pl_enableTraumas;
+			int g_assertWhenVisTableNotUpdatedForNumFrames;
+			float gl_time;
+			float gl_waitForBalancedGameTime;
+			int hud_ContextualHealthIndicator;
+			float hud_objectiveIcons_flashTime;
+			int hud_faderDebug;
+			int hud_ctrlZoomMode;
+			int hud_aspectCorrection;
+			float hud_canvas_width_adjustment;
+			int hud_colorLine;
+			int hud_colorOver;
+			int hud_colorText;
+			float hud_defaultObjectiveTaskOpaqueDistance;
+			float hud_objectiveTaskFadeDistance;
+			float hud_objectiveTaskTextFadeDistance;
+			float hud_logVisibleDuration;
+			int hud_subtitles;
+			int hud_tutorials;
+			int hud_playstationContext;
+			int hud_forceControllerGlyphs;
+			int hud_startPaused;
+			int hud_allowMouseInput;
+			int hud_reticleSetting;
+			int hud_showOptionalHud;
+			int hud_showPlayerState;
+			int hud_showHitFeedback;
+			int hud_showObjectiveMarkers;
+			int hud_showEnemyMarkers;
+			int hud_showPsiScanPrompt;
+			int hud_showHudLog;
+			int hud_showLegends;
+			int hud_showInteractPrompt;
+			int hud_showEnemyHealthBar;
+			int hud_psychoPsycho;
+			int hud_hide;
+			int menu3D_enabled;
+			int g_flashrenderingduringloading;
+			int g_levelfadein_levelload;
+			int g_levelfadein_quickload;
+			float aim_assistMinDistance;
+			float aim_assistMaxDistance;
+			float aim_assistMaxDistanceTagged;
+			float aim_assistFalloffDistance;
+			float aim_assistInputForFullFollow_Ironsight;
+			float aim_assistMinTurnScale;
+			float aim_assistSlowFalloffStartDistance;
+			float aim_assistSlowDisableDistance;
+			float aim_assistSlowThresholdOuter;
+			float aim_assistSlowDistanceModifier;
+			float aim_assistSlowStartFadeinDistance;
+			float aim_assistSlowStopFadeinDistance;
+			float aim_assistStrength;
+			float aim_assistSnapRadiusScale;
+			float aim_assistSnapRadiusTaggedScale;
+			float aim_assistStrength_IronSight;
+			float aim_assistMaxDistance_IronSight;
+			float aim_assistMinTurnScale_IronSight;
+			float aim_assistStrength_SniperScope;
+			float aim_assistMaxDistance_SniperScope;
+			float aim_assistMinTurnScale_SniperScope;
+			ICVar* i_debuggun_1;
+			ICVar* i_debuggun_2;
+			float slide_spread;
+			int i_debug_projectiles;
+			int i_debug_weaponActions;
+			int i_debug_spread;
+			int i_debug_recoil;
+			int i_auto_turret_target;
+			int i_auto_turret_target_tacshells;
+			int i_debug_zoom_mods;
+			int i_debug_turrets;
+			int i_debug_sounds;
+			int i_debug_mp_flowgraph;
+			int i_flashlight_has_shadows;
+			int i_flashlight_has_fog_volume;
+			int i_debug_itemparams_memusage;
+			int i_debug_weaponparams_memusage;
+			float i_failedDetonation_speedMultiplier;
+			float i_failedDetonation_lifetime;
+			float i_hmg_detachWeaponAnimFraction;
+			float i_hmg_impulseLocalDirection_x;
+			float i_hmg_impulseLocalDirection_y;
+			float i_hmg_impulseLocalDirection_z;
+			int g_displayIgnoreList;
+			int g_buddyMessagesIngame;
+			int g_enableFriendlyAIHits;
+			int g_enableFriendlyPlayerHits;
+			int g_mpAllSeeingRadar;
+			int g_mpAllSeeingRadarSv;
+			int g_mpDisableRadar;
+			int g_mpNoEnemiesOnRadar;
+			int g_mpHatsBootsOnRadar;
+			int g_spectate_TeamOnly;
+			int g_spectate_DisableManual;
+			int g_spectate_DisableDead;
+			int g_spectate_DisableFree;
+			int g_spectate_DisableFollow;
+			float g_spectate_skipInvalidTargetAfterTime;
+			float g_spectate_follow_orbitYawSpeedDegrees;
+			int g_spectate_follow_orbitAlsoRotateWithTarget;
+			float g_spectate_follow_orbitMouseSpeedMultiplier;
+			float g_spectate_follow_orbitMinPitchRadians;
+			float g_spectate_follow_orbitMaxPitchRadians;
+			int g_deathCam;
+			int g_spectatorOnly;
+			float g_spectatorOnlySwitchCooldown;
+			int g_forceIntroSequence;
+			int g_IntroSequencesEnabled;
+			 SDeathCamSPParams g_deathCamSP;
+			float g_tpdeathcam_timeOutKilled;
+			float g_tpdeathcam_timeOutSuicide;
+			float g_tpdeathcam_lookDistWhenNoKiller;
+			float g_tpdeathcam_camDistFromPlayerStart;
+			float g_tpdeathcam_camDistFromPlayerEnd;
+			float g_tpdeathcam_camDistFromPlayerMin;
+			float g_tpdeathcam_camHeightTweak;
+			float g_tpdeathcam_camCollisionRadius;
+			float g_tpdeathcam_maxBumpCamUpOnCollide;
+			float g_tpdeathcam_zVerticalLimit;
+			float g_tpdeathcam_testLenIncreaseRestriction;
+			float g_tpdeathcam_collisionEpsilon;
+			float g_tpdeathcam_directionalFocusGroundTestLen;
+			float g_tpdeathcam_camSmoothSpeed;
+			float g_tpdeathcam_maxTurn;
+			int g_killercam_disable;
+			float g_killercam_displayDuration;
+			float g_killercam_dofBlurAmount;
+			float g_killercam_dofFocusRange;
+			int g_killercam_canSkip;
+			float g_postkill_minTimeForDeathCamAndKillerCam;
+			float g_postkill_splitScaleDeathCam;
+			int g_useHitSoundFeedback;
+			int g_useSkillKillSoundEffects;
+			int g_hasWindowFocus;
+			int g_displayPlayerDamageTaken;
+			int g_displayDbgText_hud;
+			int g_displayDbgText_silhouettes;
+			int g_displayDbgText_plugins;
+			int g_displayDbgText_pmv;
+			int g_displayDbgText_actorState;
+			int g_spawn_vistable_numLineTestsPerFrame;
+			int g_spawn_vistable_numAreaTestsPerFrame;
+			int g_showShadowChar;
+			int g_infiniteAmmo;
+			float g_persistantStats_gamesCompletedFractionNeeded;
+			int g_animatorDebug;
+			int g_hideArms;
+			int g_debugSmokeGrenades;
+			float g_smokeGrenadeRadius;
+			float g_empOverTimeGrenadeLife;
+			int g_kickCarDetachesEntities;
+			float g_kickCarDetachStartTime;
+			float g_kickCarDetachEndTime;
+			int g_playerUsesDedicatedInput;
+			int watch_enabled;
+			float watch_text_render_start_pos_x;
+			float watch_text_render_start_pos_y;
+			float watch_text_render_size;
+			float watch_text_render_lineSpacing;
+			float watch_text_render_fxscale;
+			int autotest_enabled;
+			 ICVar* autotest_state_setup;
+			int autotest_quit_when_done;
+			int autotest_verbose;
+			int designer_warning_enabled;
+			int designer_warning_level_resources;
+			int g_teamDifferentiation;
+			 SPostEffect g_postEffect;
+			int g_gameFXSystemDebug;
+			int g_gameFXLightningProfile;
+			int g_DebugDrawPhysicsAccess;
+			int ai_DebugVisualScriptErrors;
+			int ai_EnablePressureSystem;
+			int ai_DebugPressureSystem;
+			int ai_DebugAggressionSystem;
+			int ai_DebugBattleFront;
+			int ai_DebugSearch;
+			int ai_DebugDeferredDeath;
+			float ai_CloakingDelay;
+			float ai_CompleteCloakDelay;
+			float ai_UnCloakingDelay;
+			int ai_HazardsDebug;
+			int ai_SquadManager_DebugDraw;
+			float ai_SquadManager_MaxDistanceFromSquadCenter;
+			float ai_SquadManager_UpdateTick;
+			float ai_ProximityToHostileAlertnessIncrementThresholdDistance;
+			int ai_invulnerable;
+			int ai_cantdie;
+			int ai_forceEnableNightmareManager;
+			int g_actorViewDistRatio;
+			int g_playerLodRatio;
+			float g_itemsLodRatioScale;
+			float g_itemsViewDistanceRatioScale;
+			int g_hitDeathReactions_enable;
+			int g_hitDeathReactions_useLuaDefaultFunctions;
+			int g_hitDeathReactions_disable_ai;
+			int g_hitDeathReactions_debug;
+			int g_hitDeathReactions_disableRagdoll;
+			int g_hitDeathReactions_usePrecaching;
+			int g_hitDeathReactions_logReactionAnimsOnLoading;
+			int g_hitDeathReactions_streaming;
+			 SSpectacularKillCVars g_spectacularKill;
+			int g_movementTransitions_enable;
+			int g_movementTransitions_log;
+			int g_movementTransitions_debug;
+			float g_maximumDamage;
+			float g_instantKillDamageThreshold;
+			int g_flyCamLoop;
+			int g_dummyPlayersFire;
+			int g_dummyPlayersMove;
+			int g_dummyPlayersChangeWeapon;
+			float g_dummyPlayersJump;
+			int g_dummyPlayersRespawnAtDeathPosition;
+			int g_dummyPlayersCommitSuicide;
+			int g_dummyPlayersShowDebugText;
+			float g_dummyPlayersMinInTime;
+			float g_dummyPlayersMaxInTime;
+			float g_dummyPlayersMinOutTime;
+			float g_dummyPlayersMaxOutTime;
+			 ICVar* g_dummyPlayersGameRules;
+			int g_dummyPlayersRanked;
+			int g_muzzleFlashCull;
+			float g_muzzleFlashCullDistance;
+			int g_rejectEffectVisibilityCull;
+			float g_rejectEffectCullDistance;
+			int g_mpCullShootProbablyHits;
+			float g_cloakRefractionScale;
+			float g_cloakBlendSpeedScale;
+			int g_telemetry_onlyInGame;
+			int g_telemetry_drawcall_budget;
+			int g_telemetry_memory_display;
+			int g_telemetry_memory_size_sp;
+			int g_telemetry_memory_size_mp;
+			int g_telemetry_gameplay_enabled;
+			int g_telemetry_gameplay_save_to_disk;
+			int g_telemetry_gameplay_gzip;
+			int g_telemetry_gameplay_copy_to_global_heap;
+			int g_telemetryEnabledSP;
+			float g_telemetrySampleRatePerformance;
+			float g_telemetrySampleRateBandwidth;
+			float g_telemetrySampleRateMemory;
+			float g_telemetrySampleRateSound;
+			float g_telemetry_xp_event_send_interval;
+			float g_telemetry_mp_upload_delay;
+			char* g_telemetryTags;
+			char* g_telemetryConfig;
+			int g_telemetry_serialize_method;
+			int g_telemetryDisplaySessionId;
+			char* g_telemetryEntityClassesToExport;
+			int g_modevarivar_proHud;
+			int g_modevarivar_disableKillCam;
+			int g_modevarivar_disableSpectatorCam;
+			char* g_dataCentreConfigStr;
+			char* g_downloadMgrDataCentreConfigStr;
+			int g_ignoreDLCRequirements;
+			float sv_netLimboTimeout;
+			float g_idleKickTime;
+			int g_useOnlineServiceForDedicated;
+			int g_enablePoolCache;
+			int g_setActorModelFromLua;
+			int g_loadPlayerModelOnLoad;
+			int g_enableActorLuaCache;
+			int g_enableSlimCheckpoints;
+			float g_mpLoaderScreenMaxTime;
+			float g_mpLoaderScreenMaxTimeSoftLimit;
+			int g_mpKickableCars;
+			float g_forceItemRespawnTimer;
+			float g_defaultItemRespawnTimer;
+			float g_updateRichPresenceInterval;
+			int g_useNetSyncToSpeedUpRMIs;
+			ICVar* g_presaleURL;
+			ICVar* g_messageOfTheDay;
+			ICVar* g_serverImageUrl;
+			SAIPerceptionCVars ai_perception;
+			SAIThreatModifierCVars ai_threatModifiers;
+			int pl_showInactiveTasks;
+			float pl_maxRegen;
+			float pl_taskLabelShowAngle;
+			int pl_enableFPIK;
+			float pl_incrementCameraYaw;
+			int g_debugTimerEvents;
+			int beta_debugShift;
+			int pl_playerVoiceOn;
+			int pl_playerVoiceFemale;
+			int pl_danielleRobo;
+			int s_DrawDialogAudioLatency;
+			int pl_traumaDebug;
+			int g_shownightmareheat;
+			int g_debugdistraction;
+			int g_debugDistractionCurrentAI;
+			int wpn_firstTimePickup;
+			float g_arkLightDisableDistance;
+		};
 		class SItemStrings {};
 		class CGameSharedParametersStorage {};
 		class CScreenEffects{};
@@ -4574,7 +5904,7 @@ namespace ArkNpc {
 		class IInput 		   {};
 		class ITimer 		   {};
 		class INetwork		   {};
-		class ICVar 		   {};
+		
 		class IConsoleArgumentAutoComplete {};
 		class IConsoleVarSink{};
 		class SInputSymbol{};
@@ -4661,7 +5991,7 @@ namespace ArkNpc {
 		class SSerializeString{};
 		class ISerializeUpdateFunction{};
 		class SNetObjectID{};
-		class ScriptAnyValue{};
+		
 		
 
 		
@@ -5614,7 +6944,39 @@ namespace ArkNpc {
 			undefined field114_0x23e;
 			undefined field115_0x23f;
 		};
-		
+		class CXConsoleFloatRef {
+		public:
+			virtual void*   _ECXConsoleVariableFloat(uint32_t param_1) {}
+			virtual void  Release() {}
+			virtual int  GetIVal() {}
+			virtual __int64  GetI64Val() {}
+			virtual float  GetFVal() {}
+			virtual char*  GetString() {}
+			virtual char*  GetDataProbeString() {}
+			virtual void  Set(int param_1) {}
+			virtual void  Set(float param_1) {}
+			virtual void  Set(char* param_1) {}
+			virtual void  ForceSet(char* param_1) {}
+			virtual void  ClearFlags(int param_1) {}
+			virtual int  GetDepth() {}
+			virtual int  SetFlags(int param_1) {}
+			virtual  EPriorityComparison*  ComparePriority( IAction* param_1) {}
+			virtual  HWND*   $GetValueFromMemberVariable() {}
+			virtual  ArkAudioLogComponent*  GetAudioLogComponent() {}
+			virtual bool  IsConstCVar() {}
+			virtual void  Init( IAudioSystemImplementation* param_1) {}
+			virtual void  AddOnChangeFunctor( SFunctor* param_1) {}
+			virtual uint64_t  GetNumberOfOnChangeFunctors() {}
+			virtual  SFunctor*  GetOnChangeFunctor(uint64_t param_1) {}
+			virtual bool  RemoveOnChangeFunctor(uint64_t param_1) {}
+			virtual  IEntityClass*  GetClass() {}
+			virtual void  GetMemoryUsage( ICrySizer* param_1) {}
+			virtual void  ExecuteDry( CPipeUser* param_1) {}
+			virtual void   $FunctionCaller( EArkNpcFacingDesireCallbackEvent* param_2) {}
+			virtual char*  GetOwnDataProbeString() {}
+			char pad[64];
+			float* m_fValue;
+		};
 		template<uint32_t i> class RayCastQueue {
 			public:
 				undefined field0_0x0;
@@ -6288,7 +7650,37 @@ namespace ArkNpc {
 		class ArkEncounterManager{};
 		class CArkFlowGraphManager{};
 		class ArkEthericFogManager{};
-		class ArkFactionManager{};
+		class IArkFactionListener{};
+		class ArkFactionManager {
+		public:
+			virtual uint32_t  GetFactionIndex(uint64_t * param_1) {}
+			virtual uint32_t  GetFactionIndex(char* param_1) {}
+			virtual  CryStringT<char>*  GetFactionName(uint64_t param_1) {}
+			virtual  CryStringT<char>*  GetFactionName(uint32_t param_1) {}
+			virtual uint64_t  GetFactionId(uint32_t param_1) {}
+			virtual uint64_t  GetFactionId(char* param_1) {}
+			virtual uint32_t  GetEntityFaction(uint32_t param_1) {}
+			virtual void  SetEntityDispositionToEntity(uint32_t _fromEntityId, uint32_t _toEntityId,  EArkDisposition* dispositiion, bool reciprocate) {}
+			virtual void  SetFactionDispositionToEntity(uint32_t _fromFaction, uint32_t _toEntityId,  EArkDisposition* dispositiion, bool reciprocate) {}
+			virtual void  SetFactionDispositionToFaction(uint32_t _fromFaction, uint32_t _toFaction,  EArkDisposition* param_3, bool param_4) {}
+			virtual  EArkDisposition*  GetEffectiveFactionDispositionToEntity(uint32_t param_1, uint32_t param_2) {}
+			virtual  EArkDisposition*  GetEffectiveEntityDispositionToEntity(uint32_t param_1, uint32_t param_2) {}
+			virtual void  ReloadFactions() {}
+			virtual uint64_t*   $GetConstReferenceFromMemberVariable() {}
+			uint32_t m_numberOfFactions;
+			char pad[4];
+			std::unordered_map<uint32_t, uint32_t> m_entityFactionMap;
+			std::vector<std::vector<uint32_t>> m_factionFollowers;
+			std::vector<EArkDisposition> m_factionDispositions;
+			std::unordered_map<std::pair<uint32_t, uint32_t>, EArkDisposition> m_factionToEntityDisposition;
+			std::unordered_map<std::pair<uint32_t, uint32_t>, EArkDisposition> m_entityToFactionDisposition;
+			std::unordered_map<std::pair<uint32_t, uint32_t>, EArkDisposition> m_entityToEntityDisposition;
+			std::set<IArkFactionListener*> m_factionListeners;
+			std::unordered_map<CryStringT<char>, uint32_t> m_nameToIndexMap;
+			std::unordered_map<uint64_t, uint32_t> m_idToIndexMap;
+			bool m_bDisableListeners;
+			char pad2[7];
+		};
 		class ArkGameDataManager{};
 		class ArkGlintConfigManager{};
 		class CArkGlooIslandNavLinkManager{};
@@ -6368,6 +7760,84 @@ namespace ArkNpc {
 			undefined field41_0x136;
 			undefined field42_0x137;
 		};
+		class SExtensionInfo{};
+		class SGameObjectExtensionRMI{};
+		class SNetMessageDef{};
+		class CProtocolDef {
+		public:
+			void* ptr;
+		};
+		class CGameObjectDispatch {
+		public:
+			bool m_bSafety;
+			char pad[7];
+			std::vector<SGameObjectExtensionRMI*> m_messages;
+			std::vector <SNetMessageDef> m_serverCalls;
+			std::vector<SNetMessageDef> m_clientCalls;
+			CProtocolDef m_serverDef,
+				m_clientDef;
+		};
+		class SSpawnSerializer{};
+		class IGameObjectSystemSink{};
+		class SEntitySchedulingProfiles {
+		public:
+			uint32_t normal;
+			uint32_t owned;
+		};
+		class IDebugHistory{};
+		class IGameObjectExtensionCreatorBase{};
+		class SEntityClassDesc{};
+		class IProtocolBuilder{};
+		class CGameObjectSystem {
+		public:
+			virtual void*   _ECGameObjectSystem(uint32_t param_1) {}
+			virtual unsigned short  GetID(char* param_1) {}
+			virtual char*  GetName(unsigned short param_1) {}
+			virtual uint32_t  GetExtensionSerializationPriority(unsigned short param_1) {}
+			virtual  std::shared_ptr<IGameObjectExtension>*  Instantiate(unsigned short param_1,  IGameObject* param_2) {}
+			virtual void  BroadcastEvent( SGameObjectEvent* param_1) {}
+			virtual void  RegisterEvent(uint32_t param_1, char* param_2) {}
+			virtual uint32_t  GetEventID(char* param_1) {}
+			virtual char*  GetEventName(uint32_t param_1) {}
+			virtual  IGameObject*  CreateGameObjectForEntity(uint32_t param_1) {}
+			virtual  std::shared_ptr<IEntityProxy>*  CreateGameObjectEntityProxy( IEntity* param_1,  IGameObject** param_2) {}
+			virtual void  RegisterExtension(char* param_1,  IGameObjectExtensionCreatorBase* param_2,  SEntityClassDesc* param_3) {}
+			virtual void  DefineProtocol(bool param_1,  IProtocolBuilder* param_2) {}
+			virtual void  PostUpdate(float param_1) {}
+			virtual void  SetPostUpdate( IGameObject* param_1, bool param_2) {}
+			virtual void  Reset() {}
+			virtual void  SetSpawnSerializerForEntity(uint32_t param_1,  CSerializeWrapper<ISerialize>*param_2) {}
+			virtual void  ClearSpawnSerializerForEntity(uint32_t param_1) {}
+			virtual void  AddSink( IGameObjectSystemSink* param_1) {}
+			virtual void  RemoveSink( IGameObjectSystemSink* param_1) {}
+			virtual void*   _ECNetworkStallTickerThread(uint32_t param_1) {}
+			virtual void  Run() {}
+			virtual void   $FunctionCaller( EArkNpcFacingDesireCallbackEvent* param_2) {}
+			virtual void garbage0() {}
+			virtual void garbage1() {}
+			virtual void*   _ECDebugHistoryManager(uint32_t param_1) {}
+			virtual  IDebugHistory*  CreateHistory(char* param_1, char* param_2) {}
+			virtual void  RemoveHistory(char* param_1) {}
+			virtual  IDebugHistory*  GetHistory(char* param_1) {}
+			virtual void  Clear() {}
+			virtual void  GetMemoryUsage( ICrySizer* param_1) {}
+			virtual void  Complete() {}
+			virtual void  LayoutHelper(char* param_1, char* param_2, bool param_3, float param_4, float param_5, float param_6, float param_7, float param_8, float param_9, float param_10, float param_11) {}
+			std::map<CryStringT<char>, unsigned short> m_nameToID;
+			std::vector<SExtensionInfo> m_extensionInfo;
+			CGameObjectDispatch m_dispatch;
+			IEntityClass* m_pClassPlayerProximityTrigger;
+			std::vector<SSpawnSerializer> m_spawnSerializers;
+			std::map<CryStringT<char>, SEntitySchedulingProfiles> m_schedulingParams;
+			SEntitySchedulingProfiles m_defaultProfiles;
+			std::map<CryStringT<char>, uint32_t> m_eventNameToID;
+			std::map<uint32_t, CryStringT<char>> m_eventIDToName;
+			std::list<IGameObjectSystemSink*> m_lstSinks;
+			std::vector<IGameObject*> m_tempObjects;
+			std::vector<unsigned short> m_activatedExtension_top;
+			std::vector<CryStringT<char>> m_serializationOrderList;
+		};
+		
 		class ArkNpcAbilityManager{};
 		class ArkNpcAreaManager{};
 		class ArkNpcBlackboardManager{};
@@ -6399,17 +7869,124 @@ namespace ArkNpc {
 		class CScriptBind_Inventory{};
 		class CScriptBind_ItemSystem{};
 		class CScriptBind_LightningArc{};
-		class ArkGame{};
+		class ArkCameraShakeManager{};
+		class ArkDialogSubtitleManager{};
+		class ArkDifficultyComponent{};
+		class ArkEventScheduler{};
+		class ArkGameStateConditionManager{};
+		class ArkHackingUI{};
+		class ArkIndicatorIconManager{};
+		class ArkItemSystem{};
+		class ArkLevelMapComponent{};
+		class ArkLightManager{};
+		class ArkLocationManager{};
+		class ArkNoiseAttentionParams{};
+		class ArkObjectiveComponent{};
+		class Manager{};
+		class ArkTipComponent{};
+		class ArkApexVolumeManager{};
+		class ArkGameModeManager{};
+		class ArkNewGamePlus {};
+		class ISaveGameEnumerator{};
+		class IArkGameLoadSaveListener{};
+		class LocationInfo {
+			CryStringT<char> label,
+				screenshotPath;
+		};
+		class ScreenBlackFadeInfo {
+		public:
+			float m_blackDuration,
+				m_fadeOutDuration;
+		};
+		enum class PauseRequestStatus {
+			none = 0,
+			pause = 1,
+			pausedByRequest = 2,
+			unpause = 3
+		};
+		class ArkGame {
+		public:
+			void* vftable;
+			char pad[8];
+			ScreenBlackFadeInfo m_levelLoadFade;
+			ScreenBlackFadeInfo m_quickLoadFade;
+			std::vector<CryStringT<char>, std::allocator<CryStringT<char>>> m_captureVolumeWhiteList;
+			std::array<ISaveGameEnumerator*, 3> m_saveGameEnumerators;
+			std::array<std::vector<CryStringT<char>, std::allocator<CryStringT<char>>>, 3> m_saveGameToUpdate;
+			std::array<uint64_t, 3> m_campaignGuids;
+			ArkSimpleTimer m_autoSaveDelay;
+			ArkSimpleTimer m_blockAutoSaveWindow;
+			ArkSimpleTimer m_screenBlackTimer;
+			ArkSimpleTimer m_screenFadeOutTimer;
+			CryStringT<char> m_saveFileToLoad;
+			CryStringT<char> m_loadLocationOverride;
+			IArkGameLoadSaveListener* m_pLoadListener;
+			uint64_t m_campaignPlayTime;
+			float m_campaignTimerAccumulator;
+			undefined field31_0xf4;
+			undefined field32_0xf5;
+			undefined field33_0xf6;
+			undefined field34_0xf7;
+			uint64_t m_currentLocationId;
+			 XmlNodeRef m_levelProperties;
+			std::unique_ptr<CScriptBind_ArkPlayer, std::default_delete<CScriptBind_ArkPlayer>> m_pScriptBindArkPlayer;
+			std::unique_ptr<ArkCameraShakeManager, std::default_delete<ArkCameraShakeManager>> m_pArkCameraShakeManager;
+			std::unique_ptr<ArkDialogSubtitleManager, std::default_delete<ArkDialogSubtitleManager>> m_pArkDialogSubtitleManager;
+			std::unique_ptr<ArkDifficultyComponent, std::default_delete<ArkDifficultyComponent>> m_pArkDifficultyComponent;
+			std::unique_ptr<ArkEventScheduler, std::default_delete<ArkEventScheduler>> m_pArkEventScheduler;
+			std::unique_ptr<ArkGameStateConditionManager, std::default_delete<ArkGameStateConditionManager>> m_pArkGameStateConditionManager;
+			std::unique_ptr<ArkHackingUI, std::default_delete<ArkHackingUI>> m_pArkHackingUI;
+			std::unique_ptr<ArkIndicatorIconManager, std::default_delete<ArkIndicatorIconManager>> m_pArkIndicatorIconManager;
+			std::unique_ptr<ArkItemSystem, std::default_delete<ArkItemSystem>> m_pArkItemSystem;
+			std::unique_ptr<ArkLevelMapComponent, std::default_delete<ArkLevelMapComponent>> m_pArkLevelMapComponent;
+			std::unique_ptr<ArkLightManager, std::default_delete<ArkLightManager>> m_pArkLightManager;
+			std::unique_ptr<ArkLocationManager, std::default_delete<ArkLocationManager>> m_pArkLocationManager;
+			std::unique_ptr<ArkNoiseAttentionParams, std::default_delete<ArkNoiseAttentionParams>> m_pArkNoiseAttentionParams;
+			std::unique_ptr<ArkObjectiveComponent, std::default_delete<ArkObjectiveComponent>> m_pArkObjectiveComponent;
+			std::unique_ptr<Manager, std::default_delete<Manager>> m_pArkSignalManager;
+			std::unique_ptr<ArkTipComponent, std::default_delete<ArkTipComponent>> m_pArkTipComponent;
+			std::unique_ptr<ArkTutorialSystem, std::default_delete<ArkTutorialSystem>> m_pArkTutorialSystem;
+			std::unique_ptr<ArkApexVolumeManager, std::default_delete<ArkApexVolumeManager>> m_pApexVolumeManager;
+			std::unique_ptr<ArkGameModeManager, std::default_delete<ArkGameModeManager>> m_pArkGameModeManager;
+			std::unique_ptr<ArkNewGamePlus, std::default_delete<ArkNewGamePlus>> m_pNewGamePlus;
+			AABB m_playerSafeBounds;
+			EArkLoadDisconnectReason m_loadDisconnectReason;
+			PauseRequestStatus m_pauseRequestStatus;
+			float m_playerWarningBuffer;
+			float m_timeSinceLastAutoSave;
+			bool m_bLevelToLevelTransition;
+			bool m_bSaveHasJustBeenDeletedBySystem;
+			bool m_bPreTextureStreamerRunning;
+			bool m_bNeedsToAutosaveOnMapLoad;
+			bool m_bPerformingIronmanSave;
+			undefined field67_0x1d5;
+			undefined field68_0x1d6;
+			undefined field69_0x1d7;
+		};
 		class ArkActiveUserManagerBase{};
 		class CLevelSystem{};
 		class CItemSystem{};
 		class CSharedParamsManager{};
-		class CActionMapManager{};
+		class IBlockingActionListener{};
+		class IActionMap{};
+		class IActionFilter{};
+		class IActionMapIterator{};
+		class IActionFilterIterator{};
+		class SActionInput{};
+		enum class EActionFilterType {};
+		enum class EActionInputDevice{};
+		class IActionMapPopulateCallBack{};
+		class SActionInputDeviceData{};
+		class IActionMapEventListener{};
+		class CActionMapManager {
+			
+
+		};
 		class CViewSystem{};
 		class CGameplayRecorder{};
 		class CGameRulesSystem{};
 		class CFlowSystem{};
-		class CGameObjectSystem{};
+		
 		class CUIDraw{};
 		class CScriptRMI{};
 		class CAnimationGraphCVars{};
@@ -6488,6 +8065,50 @@ namespace ArkNpc {
 		class IActorCreator{};
 		class IEntityPropertyHandler{};
 		class IEntityScript{};
+		class SScriptFuncHandle{};
+		class SScriptStateFunctions{};
+		enum class EventValueType : uint32_t {
+			EVT_INT = 0,
+			EVT_FLOAT = 1,
+			EVT_BOOL = 2,
+			EVT_VECTOR = 3,
+			EVT_ENTITY = 4,
+			EVT_STRING = 5
+		};
+		class SEntityScriptEvent {
+		public:
+			CryStringT<char> name;
+			SScriptFuncHandle* func;
+			EventValueType valueType;
+			unsigned char bflags;
+
+		};
+		class SScriptState {
+		public:
+			CryStringT<char> name;
+			SScriptStateFunctions* pStateFuns[2];
+		};
+		class CEntityScript {
+		public:
+			void* vtable;
+			IScriptSystem* m_pScriptSystem;
+			SmartScriptTable m_pEntityTable;
+			SmartScriptTable m_pPropertiesTable;
+			CryStringT<char> m_sTableName;
+			CryStringT<char> m_sScriptFilename;
+			SScriptFuncHandle* m_pOnSpawnfunc;
+			SScriptFuncHandle* m_pOnDestroyFunc;
+			SScriptFuncHandle* m_pOnInitFunc[2];
+			SScriptFuncHandle* m_pOnShutdown[2];
+			SScriptFuncHandle* m_pOnReset;
+			SScriptFuncHandle* m_pOnTransformFromEditorDone;
+			SScriptState m_defaultState;
+			std::vector<SScriptState> m_states;
+			std::vector<SEntityScriptEvent> m_events;
+			bool m_bScriptLoaded;
+			bool m_bDefaultOnly;
+			char pad[6];
+		};
 		class IEntityEventHandler{};
 		class IEntityScriptFileHandler {};
 		class SEditorClassInfo {
@@ -6497,7 +8118,30 @@ namespace ArkNpc {
 		};
 		class CEntityClass {
 		public:
-			char pad[8];
+			virtual void*   _ECEntityClass(uint32_t param_1) {}
+			virtual void  Complete() {}
+			virtual class ArkAudioLogComponent*  GetAudioLogComponent() {}
+			virtual uint32_t  GetAudioObjectID() {}
+			virtual void  SetFlags(int32_t param_1) {}
+			virtual class ArkNpcAbilityInstance*  GetAbilityInstance() {}
+			virtual class SSurfaceTypeAIParams*  GetAIParams() {}
+			virtual class IScriptTable*  GetScriptTable() {}
+			virtual class IBSPTree3D*  GetBspTree() {}
+			virtual int64_t  GetCurrentContextIndex() {}
+			virtual char*  GetCharacter() {}
+			virtual float*   $GetConstReferenceFromMemberVariable() {}
+			virtual void  SetEditorClassInfo(class SEditorClassInfo* param_1) {}
+			virtual bool  LoadScript(bool param_1) {}
+			virtual class ArkNpcAbility*  GetAbility() {}
+			virtual class IEntityArchetype*  GetArchetype() {}
+			virtual int32_t  GetEventCount() {}
+			virtual class SEventInfo*  GetEventInfo(class SEventInfo* __return_storage_ptr__, int32_t param_1) {}
+			virtual bool  FindEventInfo(char* param_1, class SEventInfo* param_2) {}
+			virtual int64_t*   garbage0() {}
+			virtual int64_t*   garbage1() {}
+			virtual int64_t*   garbage2() {}
+			virtual int64_t*   garbage3() {}
+			virtual void  GetMemoryUsage(class ICrySizer* param_1) {}
 			uint32_t m_nFlags;
 			char pad2[4];
 			CryStringT<char> m_sName,
@@ -6578,16 +8222,286 @@ namespace ArkNpc {
 			std::map<CryStringT<char>, SActorParamsDesc> m_actorParams;
 			CryStringT<char> m_actorParamsFolder;
 		};
+		class IGameObjectExtensionCreator{};
+		class  IItemCreator {};
+		class FuncDef60{};
+		class FuncDef61{};
+		enum class EUIDRAWVERTICAL{};
+		enum class EUIDRAWHORIZONTAL{};
+		class IUIDraw {
+			virtual void*  _ECCheckpointSystem(uint32_t param_1) {}
+			virtual void  Complete() {}
+			virtual void  PreRender() {}
+			virtual void  PostRender() {}
+			virtual void  DrawLine(float param_1, float param_2, float param_3, float param_4, uint32_t param_5) {}
+			virtual void  DrawTextSimple( IFFont* param_1, float param_2, float param_3, float param_4, float param_5, char* param_6,  Color_tpl<float>*param_7,  EUIDRAWHORIZONTAL* param_8,  EUIDRAWVERTICAL* param_9) {}
+			virtual void  DrawTextW( IFFont* param_1, float param_2, float param_3, float param_4, float param_5, char* param_6, float param_7, float param_8, float param_9, float param_10,  EUIDRAWHORIZONTAL* param_11,  EUIDRAWVERTICAL* param_12,  EUIDRAWHORIZONTAL* param_13,  EUIDRAWVERTICAL* param_14) {}
+			virtual void  GetTextDim( IFFont* param_1, float* param_2, float* param_3, float param_4, float param_5, char* param_6) {}
+			virtual int  DrawTextW( LPCWSTR* lpchText, int cchText,  LPRECT* lprc,  UINT* format) {}
+			virtual void  GetTextDimW( IFFont* param_1, float* param_2, float* param_3, float param_4, float param_5, wchar_t* param_6) {}
+		};
+		enum class  ELoadGameResult{};
+		enum class EFRAMEWORKLISTENERPRIORITY{};
+		class IGameObjectSystem {};
+		class ILevelSystem {};
+		class IActorSystem {};
+		class IItemSystem {};
+		class IActionMapManager {
+		public:
+			virtual void* _ECActionMapManager(uint32_t param_1) {}
+			virtual void  Update() {}
+			virtual void  Reset() {}
+			virtual void  ResetBindings() {}
+			virtual void  Clear() {}
+			virtual bool  InitActionMaps(char* param_1) {}
+			virtual void  SetLoadFromXMLPath(char* param_1) {}
+			virtual  ArkNpcAbility* GetAbility() {}
+			virtual bool  LoadFromXML(XmlNodeRef* param_1) {}
+			virtual bool  LoadRebindDataFromXML(XmlNodeRef* param_1) {}
+			virtual bool  SaveRebindDataToXML(XmlNodeRef* param_1) {}
+			virtual bool  AddExtraActionListener(IActionListener* param_1, char* param_2) {}
+			virtual bool  RemoveExtraActionListener(IActionListener* param_1, char* param_2) {}
+			virtual float* $GetConstReferenceFromMemberVariable() {}
+			virtual void  AddAlwaysActionListener(std::shared_ptr<IBlockingActionListener>* param_1) {}
+			virtual void  RemoveAlwaysActionListener(std::shared_ptr<IBlockingActionListener>* param_1) {}
+			virtual void  RemoveAllAlwaysActionListeners() {}
+			virtual  IActionMap* CreateActionMap(char* param_1) {}
+			virtual bool  RemoveActionMap(char* param_1) {}
+			virtual void  RemoveAllActionMaps() {}
+			virtual  IActionMap* GetActionMap(char* param_1) {}
+			virtual  IActionFilter* CreateActionFilter(char* param_1, EActionFilterType* param_2) {}
+			virtual  IActionFilter* GetActionFilter(char* param_1) {}
+			virtual  IActionMapIterator* CreateActionMapIterator() {}
+			virtual  IActionFilterIterator* CreateActionFilterIterator() {}
+			virtual  SActionInput* GetActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4) {}
+			virtual void  Enable(bool param_1, bool param_2) {}
+			virtual void  EnableActionMap(char* param_1, bool param_2) {}
+			virtual void  EnableFilter(char* param_1, bool param_2) {}
+			virtual bool  IsFilterEnabled(char* param_1) {}
+			virtual void  ReleaseFilteredActions() {}
+			virtual void  ClearStoredCurrentInputData() {}
+			virtual bool  ReBindActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4, char* param_5) {}
+			virtual bool  ReBindActionInput(char* param_1, CCryName* param_2, char* param_3, char* param_4) {}
+			virtual int  GetLockIdx() {}
+			virtual void  SetVersion(int param_1) {}
+			virtual void  EnumerateActions(IActionMapPopulateCallBack* param_1) {}
+			virtual int  GetActionsCount() {}
+			virtual int  GetActionMapsCount() {}
+			virtual bool  AddInputDeviceMapping(EActionInputDevice* param_1, char* param_2) {}
+			virtual bool  RemoveInputDeviceMapping(EActionInputDevice* param_1) {}
+			virtual void  ClearInputDevicesMappings() {}
+			virtual int  GetNumInputDeviceData() {}
+			virtual  SActionInputDeviceData* GetInputDeviceDataByIndex(int param_1) {}
+			virtual  SActionInputDeviceData* GetInputDeviceDataByType(char* param_1) {}
+			virtual  SActionInputDeviceData* GetInputDeviceDataByType(EActionInputDevice* param_1) {}
+			virtual void  RemoveAllRefireData() {}
+			virtual bool  LoadControllerLayoutFile(char* param_1) {}
+			virtual uint32_t  GetDefaultActionEntity() {}
+			virtual void  SetDefaultActionEntity(uint32_t param_1, bool param_2) {}
+			virtual void  RegisterActionMapEventListener(IActionMapEventListener* param_1) {}
+			virtual void  UnregisterActionMapEventListener(IActionMapEventListener* param_1) {}
+			virtual void   garbage() {}
+			virtual bool  ActionFiltered(CCryName* param_1) {}
+			virtual  void  garbage0() {}
+			virtual void  RemoveAllFilters() {}
+		};
+		
+		class IViewSystem {};
+		class IGameRulesSystem {};
+		class ISubtitleManager {};
+		class ITweakMenuController {};
+		class ICheckpointSystem {};
+		class IForceFeedbackSystem {};
+		class ICustomActionManager {};
+		class ICustomEventManager {};
+		class ISharedParamsManager {};
+		class SGameStartParams {};
+		class SGameContextParams {};
+		class ArkGameNoiseLoudness {};
+		class IGameToEditorInterface {};
+		class IActor {};
+		class ISerializeHelper {};
+		class SEntityTagParams{};
+		class IPersistantDebug {
+			virtual void*   _ECPersistantDebug(uint32_t param_1) {}
+			virtual void  Begin(char* param_1, bool param_2) {}
+			virtual void  AddSphere( Vec3_tpl<float>*param_1, float param_2,  Color_tpl<float>*param_3, float param_4) {}
+			virtual void  AddDirection( Vec3_tpl<float>*param_1, float param_2,  Vec3_tpl<float>*param_3,  Color_tpl<float>*param_4, float param_5) {}
+			virtual void  AddLine( Vec3_tpl<float>*param_1,  Vec3_tpl<float>*param_2,  Color_tpl<float>*param_3, float param_4) {}
+			virtual void  AddPlanarDisc( Vec3_tpl<float>*param_1, float param_2, float param_3,  Color_tpl<float>*param_4, float param_5) {}
+			virtual void  AddCone( Vec3_tpl<float>*param_1,  Vec3_tpl<float>*param_2, float param_3, float param_4,  Color_tpl<float>*param_5, float param_6) {}
+			virtual void  AddCylinder( Vec3_tpl<float>*param_1,  Vec3_tpl<float>*param_2, float param_3, float param_4,  Color_tpl<float>*param_5, float param_6) {}
+			virtual void  Add2DText(char* param_1, float param_2,  Color_tpl<float>*param_3, float param_4) {}
+			virtual void  AddText(float param_1, float param_2, float param_3,  Color_tpl<float>*param_4, float param_5, char* param_6) {}
+			virtual void  Add2DLine(float param_1, float param_2, float param_3, float param_4,  Color_tpl<float>*param_5, float param_6) {}
+			virtual void  AddQuat( Vec3_tpl<float>*param_1,  Quat_tpl<float>*param_2, float param_3,  Color_tpl<float>*param_4, float param_5) {}
+			virtual void  AddAABB( Vec3_tpl<float>*param_1,  Vec3_tpl<float>*param_2,  Color_tpl<float>*param_3, float param_4) {}
+			virtual void  AddEntityTag( SEntityTagParams* param_1, char* param_2) {}
+			virtual void  ClearEntityTags(uint32_t param_1) {}
+			virtual void  ClearStaticTag(uint32_t param_1, char* param_2) {}
+			virtual void  ClearTagContext(char* param_1, uint32_t param_2) {}
+			virtual void  ClearTagContext(char* param_1) {}
+			virtual void  Reset() {}
+		};
+		class IGameFrameworkListener {};
+		class INetNub {};
+		class INetContext {};
+		class IDebugHistoryManager {};
+		class CryGUID {};
+		class CGameServerNub {};
+		class IAIActorProxy {};
+		class Params{};
 		class CCryAction {
 		public:
-			undefined field0_0x0;
-			undefined field1_0x1;
-			undefined field2_0x2;
-			undefined field3_0x3;
-			undefined field4_0x4;
-			undefined field5_0x5;
-			undefined field6_0x6;
-			undefined field7_0x7;
+			virtual void  RegisterFactory(char* param_1,  IGameObjectExtensionCreator* param_2, bool param_3) {}
+			virtual void  RegisterFactory(char* param_1,  IItemCreator* param_2, bool param_3) {}
+			virtual void  RegisterFactory(char* param_1,  IActorCreator* param_2, bool param_3) {}
+			virtual void  RegisterFactory(char* param_1,  FuncDef60* param_2, bool param_3) {}
+			virtual void  RegisterFactory(char* param_1,  FuncDef61* param_2, bool param_3) {}
+			virtual void*   _ECCryAction(uint32_t param_1) {}
+			virtual bool  Init( SSystemInitParams* param_1) {}
+			virtual void  InitGameType(bool param_1, bool param_2) {}
+			virtual bool  CompleteInit() {}
+			virtual void  Shutdown() {}
+			virtual bool  PreUpdate(bool param_1, uint32_t param_2) {}
+			virtual void  PostUpdate(bool param_1, uint32_t param_2) {}
+			virtual void  Reset(bool param_1) {}
+			virtual void  PauseGame(bool param_1, bool param_2, uint32_t param_3, bool param_4) {}
+			virtual bool  IsGamePaused() {}
+			virtual bool  IsGameStarted() {}
+			virtual bool  IsLevelPrecachingDone() {}
+			virtual void  SetLevelPrecachingDone(bool param_1) {}
+			virtual  ArkAudioLogComponent*  GetAudioLogComponent() {}
+			virtual  ILanQueryListener*  GetILanQueryListener() {}
+			virtual  IUIDraw*  GetIUIDraw() {}
+			virtual  IMannequin*  GetMannequinInterface() {}
+			virtual  IGameObjectSystem*  GetIGameObjectSystem() {}
+			virtual  ILevelSystem*  GetILevelSystem() {}
+			virtual  IActorSystem*  GetIActorSystem() {}
+			virtual  IItemSystem*  GetIItemSystem() {}
+			virtual  IActionMapManager*  GetIActionMapManager() {}
+			virtual  IViewSystem*  GetIViewSystem() {}
+			virtual  IStatObj*  GetGeometry() {}
+			virtual  IGameRulesSystem*  GetIGameRulesSystem() {}
+			virtual  IFlowSystem*  GetIFlowSystem() {}
+			virtual  IGameTokenSystem*  GetIGameTokenSystem() {}
+			virtual  IEffectSystem*  GetIEffectSystem() {}
+			virtual  IMaterialEffects*  GetIMaterialEffects() {}
+			virtual  IDialogSystem*  GetIDialogSystem() {}
+			virtual  IPlayerProfileManager*  GetIPlayerProfileManager() {}
+			virtual  ISubtitleManager*  GetISubtitleManager() {}
+			virtual  ITweakMenuController*  CreateITweakMenuController() {}
+			virtual  IGameStatistics*  GetIGameStatistics() {}
+			virtual  IVisualLog*  GetIVisualLog() {}
+			virtual  ICooperativeAnimationManager*  GetICooperativeAnimationManager() {}
+			virtual  ICheckpointSystem*  GetICheckpointSystem() {}
+			virtual  IForceFeedbackSystem*  GetIForceFeedbackSystem() {}
+			virtual  ICustomActionManager*  GetICustomActionManager() {}
+			virtual  ICustomEventManager*  GetICustomEventManager() {}
+			virtual  IGameSessionHandler*  GetIGameSessionHandler() {}
+			virtual  ISharedParamsManager*  GetISharedParamsManager() {}
+			virtual bool  StartGameContext( SGameStartParams* param_1) {}
+			virtual bool  ChangeGameContext( SGameContextParams* param_1) {}
+			virtual void  EndGameContext() {}
+			virtual bool  StartedGameContext() {}
+			virtual bool  StartingGameContext() {}
+			virtual void  SetGameSessionHandler( IGameSessionHandler* param_1) {}
+			virtual bool  BlockingSpawnPlayer() {}
+			virtual void  FlushBreakableObjects() {}
+			virtual void  ResetBrokenGameObjects() {}
+			virtual  IEntityProxy*  CreateGameObject(uint32_t param_1) {}
+			virtual void  RegisterProjectileExtension(char* param_1) {}
+			virtual void  DeleteAllProjectiles() {}
+			virtual  ArkSaveLoadSystem*  GetArkSaveLoadSystem() {}
+			virtual void  OnGameModeChanged() {}
+			virtual void  ReloadArkGameNoises() {}
+			virtual void  EmitArkGameNoise(uint32_t param_1,  Vec3_tpl<float>*param_2,  Params* param_3) {}
+			virtual  ArkGameNoiseLoudness*  FindArkGameNoiseLoudness(uint64_t param_1) {}
+			virtual void  InitEditor( IGameToEditorInterface* param_1) {}
+			virtual void  SetEditorLevel(char* param_1, char* param_2) {}
+			virtual void  GetEditorLevel(char** param_1, char** param_2) {}
+			virtual void  BeginLanQuery() {}
+			virtual void  EndCurrentQuery() {}
+			virtual  IActor*  GetClientActor() {}
+			virtual uint32_t  GetClientActorId() {}
+			virtual  IEntity*  GetClientEntity() {}
+			virtual uint32_t  GetClientEntityId() {}
+			virtual  INetChannel*  GetClientChannel() {}
+			virtual void  DelegateAuthority(uint32_t param_1, unsigned short param_2) {}
+			virtual  CTimeValue*  GetServerTime() {}
+			virtual unsigned short  GetGameChannelId( INetChannel* param_1) {}
+			virtual bool  IsChannelOnHold(unsigned short param_1) {}
+			virtual  INetChannel*  GetNetChannel(unsigned short param_1) {}
+			virtual  IGameObject*  GetGameObject(uint32_t param_1) {}
+			virtual bool  GetNetworkSafeClassId(unsigned short * param_1, char* param_2) {}
+			virtual bool  GetNetworkSafeClassName(char* param_1, uint64_t param_2, unsigned short param_3) {}
+			virtual  IGameObjectExtension*  QueryGameObjectExtension(uint32_t param_1, char* param_2) {}
+			virtual bool  SaveGame(char* param_1, bool param_2, bool param_3,  ESaveGameReason* param_4, bool param_5, char* param_6) {}
+			virtual  ELoadGameResult*  LoadGame(char* param_1, bool param_2, bool param_3) {}
+			virtual void  ScheduleEndLevelNow(char* param_1) {}
+			virtual void  OnEditorSetGameMode(int param_1) {}
+			virtual bool  IsEditing() {}
+			virtual bool  IsInLevelLoad() {}
+			virtual bool  IsLoadingSaveGame() {}
+			virtual bool  IsInTimeDemo() {}
+			virtual bool  IsTimeDemoRecording() {}
+			virtual void  AllowSave(bool param_1) {}
+			virtual void  AllowLoad(bool param_1) {}
+			virtual bool  CanSave() {}
+			virtual bool  CanLoad() {}
+			virtual bool  IsSavePending() {}
+			virtual void  FinishWritingSave() {}
+			virtual bool  IsWritingSave() {}
+			virtual  ISerializeHelper*  GetSerializeHelper() {}
+			virtual bool  CanCheat() {}
+			virtual char*  GetLevelName() {}
+			virtual char*  GetAbsLevelPath(char* param_1, uint32_t param_2) {}
+			virtual  IPersistantDebug*  GetIPersistantDebug() {}
+			virtual void  AddBreakEventListener( IBreakEventListener* param_1) {}
+			virtual void  RemoveBreakEventListener( IBreakEventListener* param_1) {}
+			virtual void  RegisterListener( IGameFrameworkListener* param_1, char* param_2,  EFRAMEWORKLISTENERPRIORITY* param_3) {}
+			virtual void  UnregisterListener( IGameFrameworkListener* param_1) {}
+			virtual  INetNub*  GetServerNetNub() {}
+			virtual  INetNub*  GetClientNetNub() {}
+			virtual void  SetGameGUID(char* param_1) {}
+			virtual char*  GetGameGUID() {}
+			virtual  INetContext*  GetNetContext() {}
+			virtual void  GetMemoryUsage( ICrySizer* param_1) {}
+			virtual void  EnableVoiceRecording(bool param_1) {}
+			virtual void   $FunctionCaller( EArkNpcFacingDesireCallbackEvent* param_2) {}
+			virtual  IDebugHistoryManager*  CreateDebugHistoryManager() {}
+			virtual void  DumpMemInfo(char* param_1) {}
+			virtual bool  IsVoiceRecordingEnabled() {}
+			virtual bool  IsImmersiveMPEnabled() {}
+			virtual void  ExecuteCommandNextFrame(char* param_1) {}
+			virtual char*  GetNextFrameCommand() {}
+			virtual void  ClearNextFrameCommand() {}
+			virtual void  ShowPageInBrowser(char* param_1) {}
+			virtual bool  StartProcess(char* param_1) {}
+			virtual bool  SaveServerConfig(char* param_1) {}
+			virtual void  PrefetchLevelAssets(bool param_1) {}
+			virtual void  ReleaseGameStats() {}
+			virtual void  OnBreakageSpawnedEntity( IEntity* param_1,  IPhysicalEntity* param_2,  IPhysicalEntity* param_3) {}
+			virtual bool  IsGameSession(uint32_t param_1) {}
+			virtual bool  ShouldMigrateNub(uint32_t param_1) {}
+			// virtual uint32_t  AddTimer( CTimeValue* param_1, bool param_2,  Functor2<void* ___ptr64, unsigned_int> param_3, void* param_4) {}
+			virtual void GARBAGEaddTimer() {}
+			virtual void*  RemoveTimer(uint32_t param_1) {}
+			virtual void  ClearTimers() {}
+			virtual uint32_t  GetPreUpdateTicks() {}
+			virtual float  GetLoadSaveDelay() {}
+			virtual void  StartNetworkStallTicker(bool param_1) {}
+			virtual void  StopNetworkStallTicker() {}
+			virtual  IGameVolumes*  GetIGameVolumesManager() {}
+			virtual void  PreloadAnimatedCharacter( IScriptTable* param_1) {}
+			virtual void  RegisterExtension( std::shared_ptr<ICryUnknown>*param_1) {}
+			virtual void  ReleaseExtensions() {}
+			virtual  std::shared_ptr<ICryUnknown>*  QueryExtensionInterfaceById( CryGUID* param_1) {}
+			virtual  void garbage() {}
+			virtual void  ScheduleEndLevel(char* param_1) {}
+			virtual  CGameServerNub*  GetGameServerNub() {}
+			virtual  CGameStatsConfig*  GetGameStatsConfig() {}
+			virtual  IAIActorProxy*  GetAIActorProxy(uint32_t param_1) {}
 			bool m_paused;
 			bool m_forcedpause;
 			bool m_levelPrecachingDone;
@@ -6708,16 +8622,160 @@ namespace ArkNpc {
 			SAudioManagerRequestData<16777216> m_pauseAudioRequestData;
 			SAudioManagerRequestData<33554432> m_resumeAudioRequestData;
 		};
+		// class IGameToEditorInterface {};
+		class SRenderingPassInfo{};
+		class ExportFilesInfo{};
+		namespace ArkObjectiveUtils {
+			class CArkObjectiveTaskData {
+			public:
+				CryStringT<char> m_text,
+					m_displayName,
+					m_markerLabel,
+					m_timerLabel;
+				int64_t m_id;
+				uint64_t m_originalLocationId,
+					m_targetCharacterId,
+					m_descriptionId;
+				bool m_bOptional;
+				char pad[7];
+			};
+			class CArkObjectiveDescriptionData {
+			public:
+				uint64_t m_id;
+				CryStringT<char> m_text,
+					m_displayName;
+			};
+			class CArkObjectiveClueData {
+			public:
+				uint64_t m_id;
+				CryStringT<char> m_text,
+					m_displayName;
+			};
+		}
+		class CArkObjectiveData{
+		public:
+			std::vector<ArkObjectiveUtils::CArkObjectiveTaskData> m_tasks;
+			std::vector<ArkObjectiveUtils::CArkObjectiveDescriptionData> m_descriptions;
+			std::vector<ArkObjectiveUtils::CArkObjectiveClueData>m_clues;
+			CryStringT<char> m_title;
+			int64_t m_id;
+			bool m_bOptional;
+			char pad[7];
+		};
+		class IArkDoor {};
+		class IArkEncounterManager {};
+		class IArkFactionManager {};
+		class IArkGlintConfigManager {};
+		class IArkGravShaft {};
+		class IArkMetaTagManager {};
+		class IArkPADialogManager {};
+		class IArkPatrolManager {};
+		class IArkPlayer {};
+		class IArkPostEffectManager {};
+		class CGoalPipe {};
+		class CClearRegionPass {};
+		class IArkNpc {};
+		class CaptureVolumeInfo{};
+
 		class CGame {
 		public:
-			undefined field0_0x0;
-			undefined field1_0x1;
-			undefined field2_0x2;
-			undefined field3_0x3;
-			undefined field4_0x4;
-			undefined field5_0x5;
-			undefined field6_0x6;
-			undefined field7_0x7;
+			virtual void*   _ECGame(uint32_t param_1) {}
+			virtual bool  Init( IGameFramework* param_1) {}
+			virtual void  InitEditor( IGameToEditorInterface* param_1) {}
+			virtual void  GetMemoryStatistics( ICrySizer* param_1) {}
+			virtual bool  CompleteInit() {}
+			virtual void  Shutdown() {}
+			virtual int  Update(bool param_1, uint32_t param_2) {}
+			virtual void  EditorResetGame(bool param_1) {}
+			virtual void  PlayerIdSet(uint32_t param_1) {}
+			virtual char*  GetLongName() {}
+			virtual char*  GetName() {}
+			virtual void  LoadActionMaps(char* param_1) {}
+			virtual void   $FunctionCaller( EArkNpcFacingDesireCallbackEvent* param_2) {}
+			virtual  CryStackStringT<char, 256>*  CreateSaveGameName( CryStackStringT<char, 256>*__return_storage_ptr__) {}
+			virtual uint64_t  GetCurrentContextIndex() {}
+			virtual char*  GetMappedLevelName(char* param_1) {}
+			virtual  IAntiCheatManager*  GetAntiCheatManager() {}
+			virtual bool  Activating(float param_1) {}
+			virtual wchar_t*  Action() {}
+			virtual void  OnRenderScene( SRenderingPassInfo* param_1) {}
+			virtual void garbage0() {}
+			virtual void garbage1() {}
+			virtual bool   RIArchive(char* param_1, char* param_2, char* param_3) {}
+			virtual void  SetUserProfileChanged(bool param_1) {}
+			virtual unsigned char*  GetDRMKey(uint32_t * param_1) {}
+			virtual char*  GetDRMFileList() {}
+			virtual void garbage2() {}
+			virtual void  FullSerialize( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual void  FullSerializeBeforeEntities( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual void  SerializeForLevelState( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual void  PostSerialize() {}
+			virtual void  PostSerializeForLevelState() {}
+			virtual bool  CanSave() {}
+			virtual void  PostSerializeBeforeEntities() {}
+			virtual void  SerializeLTL(bool param_1) {}
+			virtual bool  LevelIsTalosExterior() {}
+			virtual  ExportFilesInfo*  ExportLevelData( ExportFilesInfo* __return_storage_ptr__, char* param_1, char* param_2) {}
+			virtual char*  ExportAudioPropagation(char* param_1) {}
+			virtual void  LoadExportedLevelData(char* param_1, char* param_2) {}
+			virtual void  LoadAudioPropagation(char* param_1) {}
+			virtual void  RegisterGameFlowNodes() {}
+			virtual  CArkObjectiveData*  GetData() {}
+			virtual void garbage3() {}
+			virtual  IArkDoor*  GetIArkDoorSafe(uint32_t param_1) {}
+			virtual  IArkEncounterManager*  GetIArkEncounterManager() {}
+			virtual  IArkFactionManager*  GetIArkFactionManager() {}
+			virtual  IArkGlintConfigManager*  GetIArkGlintConfigManager() {}
+			virtual  IArkGravShaft*  GetIArkGravShaftSafe(uint32_t param_1) {}
+			virtual  IArkMetaTagManager*  GetIArkMetaTagManager() {}
+			virtual  IArkPADialogManager*  GetIArkPADialogManager() {}
+			virtual  IArkPatrolManager*  GetIArkPatrolManager() {}
+			virtual  IArkPlayer*  GetIArkPlayerPtr() {}
+			virtual  IArkPostEffectManager*  GetIArkPostEffectManager() {}
+			virtual  CGoalPipe*  GetCurrentGoalPipe() {}
+			virtual  CClearRegionPass*  GetClearUtil() {}
+			virtual  IArkNpc*  SafeGetIArkNpc(uint32_t param_1) {}
+			virtual void  AddArkGameNoise(uint32_t param_1,  Vec3_tpl<float>*param_2, uint64_t param_3, uint64_t param_4) {}
+			virtual void  ResetGameState() {}
+			virtual void  OnLevelToLevelTransition() {}
+			virtual void  OnLevelTransitionFinished() {}
+			virtual  std::vector<CaptureVolumeInfo, std::allocator<CaptureVolumeInfo>>*  GetCaptureVolumeInfos() {}
+			virtual void  OnNewGame(int param_1) {}
+			virtual void  LoadArkLevelProperties( XmlNodeRef* param_1) {}
+			virtual void  SetArkAutoMapScale(float param_1) {}
+			virtual  XmlNodeRef*  GetArkLevelProperties() {}
+			virtual char*  GetCurrentArkLocationLabel() {}
+			virtual char*  GetArkLoadLocationLabel() {}
+			virtual void  SetArkLoadLocationLabel(char* param_1) {}
+			virtual char*  GetArkLoadingScreenTip(bool param_1) {}
+			virtual char*  GetArkGameMode() {}
+			virtual void  OnSaveDeletedBySystem() {}
+			virtual void  RequestDisconnect( EArkLoadDisconnectReason* param_1) {}
+			virtual  EArkLoadDisconnectReason*  GetDisconnectReason() {}
+			virtual void  RequestPause(bool param_1) {}
+			virtual void   garbage8() {}
+			virtual uint32_t  GetExclusiveControllerDeviceIndex() {}
+			virtual void garbage4() {}
+			virtual void garbage5() {}
+			virtual void garbage6() {}
+			virtual bool  IsPlayerProfileSignedInToOS(char* param_1) {}
+			virtual bool  IsPlatformUserSignedInToOS(uint32_t param_1) {}
+			virtual void  RefreshControlScheme() {}
+			virtual void  UnlockPlayerCamera(float param_1) {}
+			virtual void  LockPlayerCameraToAnimation(float param_1) {}
+			virtual void  LockPlayerCameraToEntityBone(uint32_t param_1, int param_2, float param_3) {}
+			virtual void  OpenPauseMenu(bool param_1) {}
+			virtual void  DumpObjectiveStateToFile(char* param_1) {}
+			virtual bool  IsReloading() {}
+			virtual  AKRESULT*  ActivateTrigger(bool param_2) {}
+			virtual void  UploadSessionTelemetry() {}
+			virtual void   garbage7() {}
+			virtual void  CheckReloadLevel() {}
+			virtual void  RegisterConsoleVars() {}
+			virtual void  RegisterConsoleCommands() {}
+			virtual void  UnregisterConsoleCommands() {}
+			virtual void  RegisterGameObjectEvents() {}
+		public:
 			undefined field8_0x8;
 			undefined field9_0x9;
 			undefined field10_0xa;
@@ -6758,7 +8816,7 @@ namespace ArkNpc {
 			undefined field45_0x2d;
 			undefined field46_0x2e;
 			undefined field47_0x2f;
-			SPlatformInfo m_platformInfo;
+			CGameName::SPlatformInfo m_platformInfo;
 			CGameCache* m_pGameCache;
 			CRndGen m_randomGenerator;
 			CCryAction* m_pFramework;
@@ -6941,44 +8999,212 @@ namespace ArkNpc {
 		public:
 			void* ptr;
 		};
-
-		class CArkNpcSpawner {
+		class CryMutex {
 		public:
-			virtual void*   _ECArkNpcSpawner(uint32_t param_1) {}
-			virtual void  ProcessEvent( SEntityEvent* param_1) {}
-			virtual  AKRESULT*  ActivateTrigger(bool param_2) {}
+			void* ptr;
+		};
+		class SExtension {
+		public:
+			uint64_t eventReg;
+			std::shared_ptr<IGameObjectExtension> pExtension;
+			unsigned short id;
+			unsigned char refCount;
+			unsigned char updateEnables[5];
+			unsigned char forceEnables[5];
+			char pad[11];
+		};
+		class IActionListener{};
+		class IGameObjectView{};
+		class IGameObjectProfileManager{};
+		
+		enum EPrePhysicsUpdate {
+			ePPU_Never = 0,
+			ePPU_Always = 1,
+			ePPU_WhenAIActivated = 2
+		};
+		enum class EBindToNetworkMode{};
+		enum class EEntityAspects{};
+		enum class EGameObjectAIActivationMode{};
+		enum class EAutoDisablePhysicsMode{};
+		enum class EUpdateEnableCondition{};
+		enum class EChangeExtension{};
+		class INetChannel{};
+		class IWorldQuery{};
+		class IProceduralContext{};
+		class CRMIBody{};
+		class CGameObject {
+		public:
+			virtual void*   _ECGameObject(uint32_t param_1) {}
+			virtual void  OnAction( CCryName* param_1, int param_2, float param_3) {}
+			virtual void  AfterAction() {}
+			virtual bool  BindToNetwork( EBindToNetworkMode* param_1) {}
+			virtual bool  BindToNetworkWithParent( EBindToNetworkMode* param_1, uint32_t param_2) {}
+			virtual void  ChangedNetworkState(uint32_t param_1) {}
+			virtual void  EnableAspect(uint32_t param_1, bool param_2) {}
+			virtual void  EnableDelegatableAspect(uint32_t param_1, bool param_2) {}
+			virtual void  DontSyncPhysics() {}
+			virtual unsigned short  GetExtensionId(char* param_1) {}
+			virtual  IGameObjectExtension*  QueryExtension(unsigned short param_1) {}
+			virtual bool  SetExtensionParams(char* param_1,  SmartScriptTable* param_2) {}
+			virtual bool  GetExtensionParams(char* param_1,  SmartScriptTable* param_2) {}
+			virtual void  SendEvent( SGameObjectEvent* param_1) {}
+			virtual void  ForceUpdate(bool param_1) {}
+			virtual void  ForceUpdateExtension( IGameObjectExtension* param_1, int param_2) {}
+			virtual unsigned short  GetChannelId() {}
+			virtual void  SetChannelId(unsigned short param_1) {}
+			virtual  INetChannel*  GetNetChannel() {}
+			virtual void  FullSerialize( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual bool  NetSerialize( CSerializeWrapper<ISerialize>*param_1,  EEntityAspects* param_2, unsigned char param_3, int param_4) {}
+			virtual void  PostSerialize() {}
+			virtual bool  IsProbablyVisible() {}
+			virtual bool  IsProbablyDistant() {}
+			virtual bool  SetAspectProfile( EEntityAspects* param_1, unsigned char param_2, bool param_3) {}
+			virtual unsigned char  GetAspectProfile( EEntityAspects* param_1) {}
+			virtual  IGameObjectExtension*  GetExtensionWithRMIBase(void* param_1) {}
+			virtual void  EnablePrePhysicsUpdate( EPrePhysicsUpdate* param_1) {}
+			virtual void  SetNetworkParent(uint32_t param_1) {}
+			virtual void  Pulse(uint32_t param_1) {}
+			virtual void  RegisterAsPredicted() {}
+			virtual void  RegisterAsValidated( IGameObject* param_1, int param_2) {}
+			virtual int  GetPredictionHandle() {}
+			virtual void  RegisterExtForEvents( IGameObjectExtension* param_1, int* param_2, int param_3) {}
+			virtual void  UnRegisterExtForEvents( IGameObjectExtension* param_1, int* param_2, int param_3) {}
+			virtual void  EnablePhysicsEvent(bool param_1, int param_2) {}
+			virtual bool  WantsPhysicsEvent(int param_1) {}
+			virtual bool  SetAIActivation( EGameObjectAIActivationMode* param_1) {}
+			virtual void  SetAutoDisablePhysicsMode( EAutoDisablePhysicsMode* param_1) {}
+			virtual void  ForceReevaluateUpdateActivation() {}
+			virtual bool  ShouldUpdate() {}
+			virtual bool  CheckShouldAIUpdate() {}
+			virtual uint32_t  GetAiActivationMode() {}
+			virtual void  SetCloseDistThreshold(float param_1) {}
+			virtual float  GetCloseDistThresholdSq() {}
+			virtual void  SetCurrDistFromPlayerSq(float param_1) {}
+			virtual void  RequestRemoteUpdate(uint32_t param_1) {}
+			virtual bool  CaptureView( IGameObjectView* param_1) {}
+			virtual void  ReleaseView( IGameObjectView* param_1) {}
+			virtual bool  CaptureActions( IActionListener* param_1) {}
+			virtual void  ReleaseActions( IActionListener* param_1) {}
+			virtual bool  CaptureProfileManager( IGameObjectProfileManager* param_1) {}
+			virtual void  ReleaseProfileManager( IGameObjectProfileManager* param_1) {}
+			virtual void  EnableUpdateSlot( IGameObjectExtension* param_1, int param_2) {}
+			virtual void  DisableUpdateSlot( IGameObjectExtension* param_1, int param_2) {}
+			virtual unsigned char  GetUpdateSlotEnables( IGameObjectExtension* param_1, int param_2) {}
+			virtual void  EnablePostUpdates( IGameObjectExtension* param_1) {}
+			virtual void  DisablePostUpdates( IGameObjectExtension* param_1) {}
+			virtual void  SetUpdateSlotEnableCondition( IGameObjectExtension* param_1, int param_2,  EUpdateEnableCondition* param_3) {}
+			virtual void  PostUpdate(float param_1) {}
+			virtual  IWorldQuery*  GetWorldQuery() {}
+			virtual bool  IsJustExchanging() {}
+			virtual  IMovementController*  GetMovementController() {}
+			virtual void  GetMemoryUsage( ICrySizer* param_1) {}
+			virtual  CArkObjectiveData*  GetData() {}
+			virtual void  SetContext( IProceduralContext* param_1) {}
+			virtual  IGameObjectExtension*  ChangeExtension(char* param_1,  EChangeExtension* param_2) {}
+			virtual void  DoInvokeRMI( CRMIBody* param_1, uint32_t param_2, int param_3) {}
+			char pad[64];
+			IActionListener* m_pActionDelegate;
+			IGameObjectView* m_pViewDelegate;
+			IGameObjectProfileManager* m_pProfileManager;
+			unsigned char m_profiles[32];
+			void* m_pUserData;
+			CryMutex m_mutex;
+			std::vector<SExtension> m_extensions;
+			unsigned short m_channelId;
+			char pad2[2];
+			uint32_t m_enabledAspects;
+			uint32_t m_delegatableAspects;
+			char pad3[12];
+			std::shared_ptr<IGameObjectExtension> m_pGameObjectExtensionCachedKey;
+			SExtension* m_pGameObjectExtensionCachedValue;
+			float m_updateTimer,
+				m_currDistFromPlayerSq,
+				m_closeDistThresholdSq;
+			int32_t m_enabledPhysicsEvents,
+				m_forceUpdate,
+				m_predictionHandle;
+			EPrePhysicsUpdate m_prePhysicsUpdateRule;
+			char pad4[4];
+			SEntitySchedulingProfiles* m_pSchedulingProfiles;
+			uint32_t m_currentSchedulingProfile,
+				m_cachedParentId;
+		};
+		class IArkNpcSpawner {
+			virtual void* _ECArkNpcSpawner(uint32_t param_1) {}
+			virtual void  ProcessEvent(SEntityEvent* param_1) {}
+			virtual  AKRESULT* ActivateTrigger(bool param_2) {}
 			virtual void   garbage0() {}
 			virtual void   garbage1() {}
-			virtual bool  Init( IGameObject* param_1) {}
+			virtual bool  Init(IGameObject* param_1) {}
 			virtual void   garbage2() {}
 			virtual void   garbage3() {}
 			virtual void   garbage4() {}
 			virtual bool  Activating(float param_1) {}
 			virtual void   garbage5() {}
-			virtual bool  GetEntityPoolSignature( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual bool  GetEntityPoolSignature(CSerializeWrapper<ISerialize>* param_1) {}
 			virtual void  Complete() {}
-			virtual void  FullSerialize( CSerializeWrapper<ISerialize>*param_1) {}
+			virtual void  FullSerialize(CSerializeWrapper<ISerialize>* param_1) {}
 			virtual bool  garbage6() {}
-			virtual int  AddChunk( ChunkTypes* param_1, int param_2,  EEndianness* param_3, void* param_4, int param_5) {}
+			virtual int  AddChunk(ChunkTypes* param_1, int param_2, EEndianness* param_3, void* param_4, int param_5) {}
 			virtual void  garbage7() {}
 			virtual void  garbage8() {}
-			virtual  IDatagramSocket*  CreateDatagramSocket( boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<4>, SNullAddr, boost::mpl::l_item<boost::mpl::long_<3>, unsigned short, boost::mpl::l_item<boost::mpl::long_<2>, SIPv4Addr, boost::mpl::l_item<boost::mpl::long_<1>, LobbyIdAddr, boost::mpl::l_end>>>>>>*param_1, uint32_t param_2) {}
-			virtual void  Update( SEntityUpdateContext* param_1, int param_2) {}
+			virtual  IDatagramSocket* CreateDatagramSocket(boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<4>, SNullAddr, boost::mpl::l_item<boost::mpl::long_<3>, unsigned short, boost::mpl::l_item<boost::mpl::long_<2>, SIPv4Addr, boost::mpl::l_item<boost::mpl::long_<1>, LobbyIdAddr, boost::mpl::l_end>>>>>>* param_1, uint32_t param_2) {}
+			virtual void  Update(SEntityUpdateContext* param_1, int param_2) {}
 			virtual void  garbage9() {}
 			virtual void  garbage10() {}
 			virtual void  garbage11() {}
-			virtual void*  GetRMIBase() {}
+			virtual void* GetRMIBase() {}
 			virtual void   garbage12() {}
 			virtual void   garbage13() {}
 			virtual void  OnFirstTimeInLevel() {}
-			char pad[48];
-			CEntity* m_Entity;
+		};
+		class CArkNpcSpawner {
+		public:
+			void* vtable;
+			// IGameObjectExtension m_ext;
+			char pad[32];
+			CGameObject* m_gameObject;
 			char pad2[8];
+			CEntity* m_Entity;
+			char pad3[8];
 			uint64_t m_pendingSpawnCount;
 			uint32_t m_lastSpawnedEntityId;
-			char pad3[4];
+			char pad4[4];
 			CryStringT<char> m_ManagedByEncounter;
 		};
-
+		class CArkNpcSpawnCystoid {
+		public:
+			virtual void* _ECArkNpcSpawner(uint32_t param_1) {}
+			virtual void  ProcessEvent(SEntityEvent* param_1) {}
+			virtual  AKRESULT* ActivateTrigger(bool param_2) {}
+			virtual void   garbage0() {}
+			virtual void   garbage1() {}
+			virtual bool  Init(IGameObject* param_1) {}
+			virtual void   garbage2() {}
+			virtual void   garbage3() {}
+			virtual void   garbage4() {}
+			virtual bool  Activating(float param_1) {}
+			virtual void   garbage5() {}
+			virtual bool  GetEntityPoolSignature(CSerializeWrapper<ISerialize>* param_1) {}
+			virtual void  Complete() {}
+			virtual void  FullSerialize(CSerializeWrapper<ISerialize>* param_1) {}
+			virtual bool  garbage6() {}
+			virtual int  AddChunk(ChunkTypes* param_1, int param_2, EEndianness* param_3, void* param_4, int param_5) {}
+			virtual void  garbage7() {}
+			virtual void  garbage8() {}
+			virtual  IDatagramSocket* CreateDatagramSocket(boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<4>, SNullAddr, boost::mpl::l_item<boost::mpl::long_<3>, unsigned short, boost::mpl::l_item<boost::mpl::long_<2>, SIPv4Addr, boost::mpl::l_item<boost::mpl::long_<1>, LobbyIdAddr, boost::mpl::l_end>>>>>>* param_1, uint32_t param_2) {}
+			virtual void  Update(SEntityUpdateContext* param_1, int param_2) {}
+			virtual void  garbage9() {}
+			virtual void  garbage10() {}
+			virtual void  garbage11() {}
+			virtual void* GetRMIBase() {}
+			virtual void   garbage12() {}
+			virtual void   garbage13() {}
+			virtual void  OnFirstTimeInLevel() {}
+			uint64_t m_pendingSpawnCount;
+			uint32_t m_lastSpawnedEntityId;
+			char pad4[4];
+			CryStringT<char> m_ManagedByEncounter;
+		};
 
 		

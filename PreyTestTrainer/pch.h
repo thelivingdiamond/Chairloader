@@ -26,4 +26,5 @@
 #include <memory>
 #include <boost/variant.hpp>
 #include <deque>
+#include "pugixml.hpp"
 #endif //PCH_H

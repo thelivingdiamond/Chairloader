@@ -166,6 +166,8 @@
     <ClInclude Include="preyFunctions.h" />
     <ClInclude Include="preyDllObjects.h" />
     <ClInclude Include="proc.h" />
+    <ClInclude Include="pugiconfig.hpp" />
+    <ClInclude Include="pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChairloaderUtils.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="preyFunctions.cpp" />
     <ClCompile Include="PreyDllObjects.cpp" />
     <ClCompile Include="proc.cpp" />
+    <ClCompile Include="pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />

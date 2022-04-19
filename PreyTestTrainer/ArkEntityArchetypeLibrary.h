@@ -2686,7 +2686,7 @@ public:
 		struct Turrets {
 			uint64_t Turret_Default = 372;
 		}Turrets;
-	};;
+	}ArkRobots;
 	struct ArkSpecialWeapons {
 		uint64_t DoubleWrench = 1113;
 		uint64_t EMPGrenadeWeapon = 1114;
