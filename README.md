@@ -12,14 +12,7 @@ The current list of capabilities includes:
 - Ability to spawn custom NPCs and entities added to the XML files
 - A mapped library of all pre-existing entity archetypes and their ID's
 
-An important note is that this is primarily designed for things that appear or happen spontaneously. If you need something to always exist in a level then XML file manipulation is still your best bet
-
-## Todo List
-- Working Cazavor (Cut Disc-Rifle weapon)
-- Generally more extensive mapping of functions and objects to enable more functionality
-- Documentation and Wiki (long term)
-
-And lastly I'm still a full time university student so please be lenient about consistent updates here. Working on this modding framework is very time intensive
+An important note is that this is primarily designed for things that appear or happen spontaneously. If you need something to always exist in a level then XML file manipulation is still your best bet.
 
 You can see the github.io website for more specific details:
 https://thelivingdiamond.github.io/ChairLoader/
