@@ -20,3 +20,6 @@ An important note is that this is primarily designed for things that appear or h
 - Documentation and Wiki (long term)
 
 And lastly I'm still a full time university student so please be lenient about consistent updates here. Working on this modding framework is very time intensive
+
+You can see the github.io website for more specific details:
+https://thelivingdiamond.github.io/ChairLoader/
