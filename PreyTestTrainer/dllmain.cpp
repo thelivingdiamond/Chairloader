@@ -9,847 +9,316 @@
 #include "ChairloaderUtils.h"
 #include "ArkEntityArchetypeLibrary.h"
 #include <thread>
-// #include "pugixml.hpp"
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include "ArkAbilityLibrary.h"
+#if _WIN32 || _WIN64
+#if _WIN64
+#define ENV64BIT
+#else
+#define ENV32BIT
+#endif
+#endif
+#define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }
 
-DWORD WINAPI HackThread(HMODULE hModule) {
+// #include "pugixml.hpp"
+// D3X HOOK DEFINITIONS
+typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
+typedef void(__stdcall* ID3D11DrawIndexed)(ID3D11DeviceContext* pContext, UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
+// Definition of WndProc Hook. Its here to avoid dragging dependencies on <windows.h> types.
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+// Main D3D11 Objects
+ID3D11DeviceContext* pContext = NULL;
+ID3D11Device* pDevice = NULL;
+ID3D11RenderTargetView* mainRenderTargetView;
+static IDXGISwapChain* pSwapChain = NULL;
+static WNDPROC OriginalWndProcHandler = nullptr;
+HWND window = nullptr;
+IDXGISwapChainPresent fnIDXGISwapChainPresent;
+
+// Boolean
+BOOL g_bInitialised = false;
+bool g_ShowMenu = false;
+bool g_PresentHooked = false;
+
+// Gui variables
+float my_color[4];
+const float TEXT_BASE_WIDTH = ImGui::CalcTextSize("A").x;
+const float TEXT_BASE_HEIGHT = ImGui::GetTextLineHeightWithSpacing();
+
+
+// GUI DRAWING FUNCTIONS
+LRESULT CALLBACK hWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    ImGuiIO& io = ImGui::GetIO();
+    POINT mPos;
+    GetCursorPos(&mPos);
+    ScreenToClient(window, &mPos);
+    ImGui::GetIO().MousePos.x = mPos.x;
+    ImGui::GetIO().MousePos.y = mPos.y;
+
+    // if (uMsg == WM_KEYUP)
+    // {
+    //     if (wParam == VK_INSERT)
+    //     {
+    //         g_ShowMenu = !g_ShowMenu;
+    //     }
+    //
+    // }
+
+    if (g_ShowMenu && GetForegroundWindow() == window)
+    {
+            ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
+            return true;
+    }
+
+    return CallWindowProc(OriginalWndProcHandler, hWnd, uMsg, wParam, lParam);
+}
+HRESULT GetDeviceAndCtxFromSwapchain(IDXGISwapChain* pSwapChain, ID3D11Device** ppDevice, ID3D11DeviceContext** ppContext)
+{
+    HRESULT ret = pSwapChain->GetDevice(__uuidof(ID3D11Device), (PVOID*)ppDevice);
+
+    if (SUCCEEDED(ret))
+        (*ppDevice)->GetImmediateContext(ppContext);
+
+    return ret;
+}
+void drawGUI(bool* bShow);
+
+HRESULT __fastcall Present(IDXGISwapChain* pChain, UINT SyncInterval, UINT Flags)
+{
+    if (!g_bInitialised) {
+        g_PresentHooked = true;
+        std::cout << "\t[+] Present Hook called by first time" << std::endl;
+        if (FAILED(GetDeviceAndCtxFromSwapchain(pChain, &pDevice, &pContext)))
+            return fnIDXGISwapChainPresent(pChain, SyncInterval, Flags);
+        pSwapChain = pChain;
+        DXGI_SWAP_CHAIN_DESC sd;
+        pChain->GetDesc(&sd);
+        ImGui::CreateContext();
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+        window = sd.OutputWindow;
+
+        //Set OriginalWndProcHandler to the Address of the Original WndProc function
+        OriginalWndProcHandler = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hWndProc);
+
+
+
+        ImGui_ImplWin32_Init(window);
+        ImGui_ImplDX11_Init(pDevice, pContext);
+        ImGui::GetIO().ImeWindowHandle = window;
+
+        ID3D11Texture2D* pBackBuffer;
+
+        pChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+        pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
+        pBackBuffer->Release();
+
+        g_bInitialised = true;
+    }
+    ImGui_ImplWin32_NewFrame();
+    ImGui_ImplDX11_NewFrame();
+
+    ImGui::NewFrame();
+    //Menu is displayed when g_ShowMenu is TRUE
+    
+    if (g_ShowMenu)
+    {
+        bool bShow = true;
+        ImGui::ShowDemoWindow(&bShow);
+        drawGUI(&bShow);
+    }
+    ImGui::EndFrame();
+
+    ImGui::Render();
+    pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+    return fnIDXGISwapChainPresent(pChain, SyncInterval, Flags);
+}
+
+
+void detourDirectXPresent()
+{
+    std::cout << "[+] Calling fnIDXGISwapChainPresent Detour" << std::endl;
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    // Detours the original fnIDXGISwapChainPresent with our Present
+    DetourAttach(&(LPVOID&)fnIDXGISwapChainPresent, (PBYTE)Present);
+    DetourTransactionCommit();
+}
+
+// void detourDirectXDrawIndexed()
+// {
+//     std::cout << "[+] Calling fnID3D11DrawIndexed Detour" << std::endl;
+//     DetourTransactionBegin();
+//     DetourUpdateThread(GetCurrentThread());
+//     // Detours the original fnIDXGISwapChainPresent with our Present fnID3D11DrawIndexed, (PBYTE)hookD3D11DrawIndexed
+//     DetourAttach(&(LPVOID&)fnID3D11DrawIndexed, (PBYTE)hookD3D11DrawIndexed);
+//     DetourTransactionCommit();
+// }
+
+void retrieveValues()
+{
+    DWORD_PTR hDxgi = (DWORD_PTR)GetModuleHandle(L"dxgi.dll");
+#if defined(ENV64BIT)
+    fnIDXGISwapChainPresent = (IDXGISwapChainPresent)((DWORD_PTR)hDxgi + 0x5070);
+#elif defined (ENV32BIT)
+    fnIDXGISwapChainPresent = (IDXGISwapChainPresent)((DWORD_PTR)hDxgi + 0x10230);
+#endif
+    std::cout << "[+] Present Addr: " << std::hex << fnIDXGISwapChainPresent << std::endl;
+}
+
+void printValues()
+{
+    std::cout << "[+] ID3D11DeviceContext Addr: " << std::hex << pContext << std::endl;
+    std::cout << "[+] ID3D11Device Addr: " << std::hex << pDevice << std::endl;
+    std::cout << "[+] ID3D11RenderTargetView Addr: " << std::hex << mainRenderTargetView << std::endl;
+    std::cout << "[+] IDXGISwapChain Addr: " << std::hex << pSwapChain << std::endl;
+}
+
+LRESULT CALLBACK DXGIMsgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) { return DefWindowProc(hwnd, uMsg, wParam, lParam); }
+
+void GetPresent()
+{
+    WNDCLASSEXA wc = { sizeof(WNDCLASSEX), CS_CLASSDC, DXGIMsgProc, 0L, 0L, GetModuleHandleA(NULL), NULL, NULL, NULL, NULL, "DX", NULL };
+    RegisterClassExA(&wc);
+    HWND hWnd = CreateWindowA("DX", NULL, WS_OVERLAPPEDWINDOW, 100, 100, 300, 300, NULL, NULL, wc.hInstance, NULL);
+
+    DXGI_SWAP_CHAIN_DESC sd;
+    ZeroMemory(&sd, sizeof(sd));
+    sd.BufferCount = 1;
+    sd.BufferDesc.Width = 2;
+    sd.BufferDesc.Height = 2;
+    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    sd.BufferDesc.RefreshRate.Numerator = 60;
+    sd.BufferDesc.RefreshRate.Denominator = 1;
+    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+    sd.OutputWindow = hWnd;
+    sd.SampleDesc.Count = 1;
+    sd.SampleDesc.Quality = 0;
+    sd.Windowed = TRUE;
+    sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+    D3D_FEATURE_LEVEL FeatureLevelsRequested = D3D_FEATURE_LEVEL_11_0;
+    UINT numFeatureLevelsRequested = 1;
+    D3D_FEATURE_LEVEL FeatureLevelsSupported;
+    HRESULT hr;
+    IDXGISwapChain* swapchain = 0;
+    ID3D11Device* dev = 0;
+    ID3D11DeviceContext* devcon = 0;
+    if (FAILED(hr = D3D11CreateDeviceAndSwapChain(NULL,
+        D3D_DRIVER_TYPE_HARDWARE,
+        NULL,
+        0,
+        &FeatureLevelsRequested,
+        numFeatureLevelsRequested,
+        D3D11_SDK_VERSION,
+        &sd,
+        &swapchain,
+        &dev,
+        &FeatureLevelsSupported,
+        &devcon)))
+    {
+        std::cout << "[-] Failed to hook Present with VT method." << std::endl;
+        return;
+    }
+    DWORD_PTR* pSwapChainVtable = NULL;
+    pSwapChainVtable = (DWORD_PTR*)swapchain;
+    pSwapChainVtable = (DWORD_PTR*)pSwapChainVtable[0];
+    fnIDXGISwapChainPresent = (IDXGISwapChainPresent)(DWORD_PTR)pSwapChainVtable[8];
+    g_PresentHooked = true;
+    std::cout << "[+] Present Addr:" << fnIDXGISwapChainPresent << std::endl;
+    Sleep(2000);
+}
+//Chairloader vars
+
+static bool spawnEntity = false;
+static uint64_t entityToBeSpawned = 0;
+static bool devMode = false;
+static bool freeCam = false;
+static ChairloaderUtils* chairloader;
+DWORD WINAPI ChairloaderThread(HMODULE hModule) {
 	// Create Console
     AllocConsole();
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
-    uint64_t nextId = 694206942969420;
     std::cout << "Welcome to funland sonic\n";
-    // std::cout << "threadId: " << std
-    
-    // Get Module base
-    uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
 
-    preyFunctions prey(moduleBase);
-    staticObjectPointers staticPointers(moduleBase);
-    CEntitySystem* EntitySystem = staticPointers.gEnvPtr->pEntitySystem;
-    CGame* CGamePtr = staticPointers.gEnvPtr->pGame;
-    ArkNpcSpawnManager* spawner = CGamePtr->m_pArkNpcSpawnManager.get();
-    ArkNightmareSpawnManager* nightmareSpawner = CGamePtr->m_pArkNightmareSpawnManager.get();
-    ArkPlayer* player = prey.ArkPlayerF->getInstance();
-    ArchetypeLibrary archetypeLibrary;
-    ChairloaderUtils::NpcSpawnerManager* spawnerManager = new ChairloaderUtils::NpcSpawnerManager(&prey,&staticPointers);
+    uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
+    chairloader = new ChairloaderUtils(moduleBase);
+
     
-    bool bGloo = 0;
-    // bypass thread check
+
+    // Get Module base
+   
+
+
+    // bypass thread check for entity Spawning
     mem::Nop((BYTE*)(moduleBase + 0x020e2c5), 20);
-    bool bConsole = false;
+    
 
     std::cout << "ChairLoader Initialized...\n";
     std::cout << "\nModule Base: 0x" << std::hex << moduleBase << std::dec << "\n\n";
 
-    // std::cout << "Main Thread: " << *(unsigned long*)(moduleBase + 0x242e514) << std::endl;
-    // std::cout << "Current Thread: "  << prey.CryGretCurrentThreadId() << std::endl;
-    // hack loop
+    // Chairloader Variables or something
+    bool bConsole = false;
+    bool bGloo = 0;
     bool thirdPerson = false;
-    bool devMode = false;
-    bool freeCam = false;
+    
     bool lockFreeCam = false;
-    std::vector<CEntity*> spawnedEntities; 
+    bool oldFreeCam = false;
+    // std::vector<CEntity*> spawnedEntities; 
     while(true) {
         // key input
         if (GetAsyncKeyState(VK_END) & 1) {
             break;
         }
-        if (GetAsyncKeyState(VK_NUMPAD2) & 1) {
-        	for (int i = 0; i < EntitySystem->m_EntityArray.size(); ++i) {
-                // CEntity* entity = *(CEntity**)it._Ptr;
-                // std::cout << entity << std::endl;
-                if (EntitySystem->m_EntityArray[i] != nullptr) {
-                    CEntity* entity = EntitySystem->m_EntityArray[i];
-                    // std::cout << entity << std::endl;
-                    if (entity->m_guid != 0x0) {
-                    	std::string entityName = entity->m_szName.m_str;
-                    	// std::cout << entityName << ": " << entity << std::endl;
-                        // std::cout << entity->m_pArchetype->m_name.m_str <<": " << entity << std::endl;
-                    // if (&entity->m_szName != 0x0) {
-                        // std::cout << &entity->m_szName.m_str << std::endl;)
-                        //"Igwe"
-                        //"ArkNpcSpawner_Mimic1"
-                        //"MikaLikaHiMikaHineyHo"
-                        //"ArkNpcSpawner_MedicalOperator1"
-                    if (entityName == "Igwe" ){
-                        Vec3_tpl<float> pos;
-                        prey.ArkPlayerF->getPlayerWorldEyePos(player, &pos);
-                        // entity->m_vPos = pos;
-                        if (entity == nullptr)
-                            break;
-                        // ChairloaderUtils::dumpEntity(entity, false);
-                        
-                        // CScriptTable* table = (CScriptTable*)&Itable;
-                        // std::cout << table->Count() << std::endl;
-                        std::cout << "entity: " << entity << std::endl;
-                        IEntityProxy* proxy = ((IEntity*)entity)->GetProxy(EEntityProxy::ENTITY_PROXY_USER);
-                        std::cout << "proxy: " << proxy << std::endl;
-                        ArkHealthExtension* healthExt = (ArkHealthExtension*)proxy;
-                        std::cout <<"Health Ext Entity: "<< healthExt->m_ext.m_pEntity << std::endl;
-                        std::cout <<"Health Ext Object: "<< healthExt->m_ext.m_pGameObject << std::endl;
-                        uintptr_t proxyBase = (uintptr_t)proxy;
-                        // entity->m_szName.m_str = (char*)"Igwe";
-                        CGameObject* obj = (CGameObject*)(proxyBase + 0x28);
-                        // CGameObject* obj = (CGameObject*)(((IGameObjectExtension*)proxy)->m_pGameObject);
-                        std::cout << "obj: " << obj << std::endl;
-                        // std::cout << "obj id: " << obj->QueryExtension(25) << std::endl;
-                        unsigned short extId;
-                        int32_t arr[32];
-                        extId = obj->GetExtensionId((char*)"ArkNpcSpawner");
-                        std::cout << "ext Id: " << extId << std::endl;
-                        CArkNpcSpawner* newishSpawner = (CArkNpcSpawner*)obj->QueryExtension(104);
-                        std::cout << "arknpcspawner: " << newishSpawner << std::endl << std::endl;
-                        CArkNpcSpawner newestSpawner = *newishSpawner;
-                        CEntity newestSpawnerEntity = *newishSpawner->m_Entity;
-                        newestSpawner.m_Entity = &newestSpawnerEntity;
-                        std::cout << "newest spawner" << &newestSpawner << std::endl;
-                        uint32_t test[8];
-                        // std::cout << "Testing New Spawner:" << prey.CArkNpcSpawnerF->createNpcSpawner(archetypeLibrary.ArkHumans.Engineers.MikhailaIlyushin_healthy, &test) << std::endl;
-                        
-                        // std::cout << "Check how well it copied over k? " << &newestSpawner << std::endl;
-
-
-                    	std::cout << prey.CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)newishSpawner) << std::endl;
-                        
-                        // std::cout << &propertiesTable << std::endl;
-                        // std::cout << ((IEntity*)entity)->GetProxy(EEntityProxy::ENTITY_PROXY_RENDER) << std::endl;
-                        // std::cout << ((CEntityClass*)entity->m_pClass)->GetScriptTable() << std::endl;
-
-                        // script tables
-                        
-                      
-                        // // // // std::cout << newishSpawner->m_Entity->m_pClass << std::endl;
-                        // // // safeTable = prey.CEntity->getSafePropertiesTable((IEntity*)entity);
-                        // // // std::cout << &safeTable2 << std::endl;
-                        //1160740
-                        // typedef bool(__thiscall* _GetSmartScripTableValue)(ArkSafeScriptTable*, char* param_1, SmartScriptTable* param_2);
-                        // // CryStringT<char> returnValue;
-                        // // // script
-                        // // bool success;
-                        
-                        // prey.ArkSafeScripTablefgetArkSafeScriptFromEntity = (_GetArkSafeScriptTableFromEntity)(moduleBase + 0x14801c0);
-                        
-                        // ArkSafeScriptTable safeTable2;
-                        // ArkSafeScriptTable safeTable3;
-                        // std::cout << "dllman table2" << prey.ArkSafeScriptTablef->getArkSafeScriptFromEntity(&safeTable2, (IEntity*)entity) << std::endl;
-                        // // CScriptTableName::Iterator iterator;
-                        // bool doit;
-                        // ScriptAnyValue TableValue;
-                        // ScriptAnyValue ArchetypeValue;
-                        // ScriptAnyValue NewArchetypeValue;
-                        // TableValue.type = ScriptAnyType::ANY_TTABLE;
-                        // ArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
-                        // NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
-                        // NewArchetypeValue.value.str = (char*)"ArkHumans.Scientists.MarcoSimmons";
-                        // safeTable2.ptr->GetValueAny((char*)"Properties", &TableValue, false);
-                        // std::cout << "Properties Table Value: " << TableValue.value.table << std::endl;
-                        // if(TableValue.value.table != nullptr)
-                        //     prey.ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&safeTable3, TableValue.value.table);
-                        // std::cout << "Safe Table From Properties: " << &safeTable3 << std::endl;
-                        // safeTable3.ptr->GetValueAny((char*)"sNpcArchetype", &ArchetypeValue, false);
-                        // if (ArchetypeValue.value.str != nullptr)
-                        //     std::cout << "Archetype: " << ArchetypeValue.value.str << std::endl;
-                        // safeTable3.ptr->SetValueAny((char*)"sNpcArchetype", &NewArchetypeValue, false);
-
-                        std::cout << "dllmain entity: " << (IEntity*)entity << std::endl;
-
-                        spawnerManager->setEntityArchetype(archetypeLibrary.ArkHumans.Scientists.MarcoSimmons, (IEntity*)entity);
-
-                        // safeTable2.ptr->BeginIteration(&iterator,true);
-                        //     for (int i = 0; i <= 10; i++) {
-                        //         doit = safeTable2.ptr->MoveNext(&iterator);
-                        //         std::cout << iterator.sKey << std::endl;
-                        //         std::cout << "type: " << (uint32_t)iterator.value.type << std::endl;
-                        //         std::cout << "ptr: " << iterator.value.value.ptr << std::endl;
-                        //         //     // safeTable2.ptr->MoveNext(&iterator);
-                        //         //     // safeTable2.ptr->MoveNext(&iterator);
-                        //         //     // safeTable2.ptr->MoveNext(&iterator);
-                        //         //     // safeTable2.ptr->MoveNext(&iterator); 
-                        //         //     // safeTable2.ptr->MoveNext(&iterator);
-                        //         //     // safeTable2.ptr->MoveNext(&iterator);
-                        //         }
-                        // std::cout << getArkSafeScriptFromScriptTable(&safeTable2, ((CEntityScript*)((CEntityClass*)entity->m_pClass)->m_pEntityScript)->m_pEntityTable.ptr) << std::endl;
-                        // 
-                        // 
-                        // std::cout <<"iterator: " << safeTable2.ptr->BeginIteration(&iterator, true) << std::endl;
-                        // bool doit = true;
-                        // // std::cout << safeTable2.ptr->Count() << std::endl;
-                        // 
-                        //
-                        // std::cout << getArkSafeScriptFromScriptTable(&safeTable3,iterator.value.value.table) << std::endl;
-       //                  safeTable2.ptr->EndIteration(&iterator);
-       //                  if (iterator.sKey != (char*)0x0);
-							// std::cout << "iterator: " << safeTable3.ptr->BeginIteration(&iterator, true) << std::endl;
-       //                  safeTable3.ptr->MoveNext(&iterator);
-       //                  std::cout << iterator.sKey << std::endl;
-                        // std::cout << "type: " << (uint32_t)iterator.value.type << std::endl;
-                        // std::cout << "ptr: " << iterator.value.value.ptr << std::endl;
-                        // success = getCryStringTValue(&safeTable2, (char*)"sNpcArchetype", &returnValue);
-                        // // staticPointers.gEnvPtr->pScriptSystem
-                        // std::cout << success << std::endl;
-                        // if(success) {
-                        //     std::cout << &returnValue << std::endl;
-                        // }
-                        // CArkNpcSpawner* newestSpawner = *(CArkNpcSpawner**)prey.CArkNpcSpawnerF->createNpcSpawner(archetypeLibrary.ArkHumans.Engineers.MikhailaIlyushin_healthy, (void*)&arr);
-                         // std::cout <<  prey.CArkNpcSpawnerF->createNpcSpawner(archetypeLibrary.ArkHumans.Engineers.MikhailaIlyushin_healthy, (void*)&arr) << std::endl;
-                        // entity->m_pArchetype = staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(archetypeLibrary.ArkHumans.Engineers.MikhailaIlyushin_healthy);
-                        CArkNpcSpawner* newSpawner = prey.CEntity->getArkNpcSpawner(entity);
-                        // prey.CArkNpcSpawnerF->requestSpawn(newestSpawner);
-                        // ScriptAnyValue value;
-                        // value.type = ScriptAnyType::ANY_ANY;
-                        // CScriptTable* properties = (CScriptTable*)((CEntityScript*)((CEntityClass*)(newSpawner->m_Entity->m_pClass))->m_pEntityScript)->m_pPropertiesTable.ptr;
-                        // value.value.ptr = (void*)archetypeLibrary.ArkHumans.Engineers.MikhailaIlyushin_healthy;
-                        // properties->SetValueAny((char*)"sNpcArchetype", &value, false);
-
-                        	// std::cout  << std::endl;
-						// Vec3_tpl<float> viewPos = prey.getReticleViewPositionAndDir(player).first;
-						// Vec3_tpl<float> viewDir = prey.getReticleViewPositionAndDir(player).second;
-                        // int32_t types[3];
-                        // types[1] = 1;
-                        // // std::cout << ((uint32_t)((CScriptTable*)((CEntityScript*)((CEntityClass*)(newSpawner->m_Entity->m_pClass))->m_pEntityScript)->m_pPropertiesTable.ptr)->GetValueType((char*)"sNpcArchetype")) << std::endl;
-                        // if (((CScriptTable*)((CEntityScript*)((CEntityClass*)(newSpawner->m_Entity->m_pClass))->m_pEntityScript)->m_pPropertiesTable.ptr)->GetValueAny((char*)"sNpcArchetype", &value, false)) {
-                        //     std::cout << value.value.ptr << std::endl;
-                        // }
-                        // if (((CScriptTable*)((CEntityScript*)((CEntityClass*)(entity->m_pClass))->m_pEntityScript)->m_pPropertiesTable.ptr)->GetValueAny((char*)"sNpcArchetype", &value, false)) {
-                        //     std::cout << value.value.ptr << std::endl;
-                        // }
-
-                        // std::cout << ((CScriptTable*)((CEntityScript*)((CEntityClass*)(newSpawner->m_Entity->m_pClass))->m_pEntityScript)->m_pEntityTable.ptr)->Count() << std::endl << std::endl;
-                       
-                        // CScriptTable* entities = (CScriptTable*)((CEntityScript*)((CEntityClass*)(newSpawner->m_Entity->m_pClass))->m_pEntityScript)->m_pEntityTable.ptr;
-                        // CScriptTableName::Iterator* iterator = new CScriptTableName::Iterator;
-                        // std::cout << "Properties Script Table: \n";
-                        // iterator = properties->BeginIteration(iterator, true);
-                        // // std::cout << iterator->sKey << std::endl;
-                        // for (int i = 0; i <= 15; i++) {
-                        //     // std::cout << iterator. << std::endl;
-                        //     if(properties->MoveNext(iterator))
-                        //         std::cout << iterator->sKey << std::endl;
-                        // }
-                        // properties->EndIteration(iterator);
-                        // entities->BeginIteration(iterator, true);
-                        // std::cout << "Entities Script Table: \n";
-                        // for (int i = 0; i <= 15; i++) {
-                        //     // std::cout << iterator. << std::endl;
-                        //     if (entities->MoveNext(iterator)) {
-                        //         std::cout << iterator->sKey << std::endl;
-                        //         // if (strcmp(iterator->Key.value.str, "Properties")) {
-                        //         //     std::cout << iterator->value.value.ptr << std::endl;
-                        //         // }
-                        //     }
-                        // }
-                        // entities->EndIteration(iterator);
-						// ScriptAnyValue* PropertiesValue = new ScriptAnyValue;
-      //                   ScriptAnyValue* archetypeValue = new ScriptAnyValue;
-						// PropertiesValue->type = ScriptAnyType::ANY_ANY;
-						// std::cout << entities->GetValueType((char*)"PropertiesInstance") << std::endl;
-      //                   
-						// std::cout << entities->GetValueAny((char*)"Properties", PropertiesValue, false) << std::endl;
-      //                   std::cout << PropertiesValue << std::endl;
-      //                   if(PropertiesValue->type == ScriptAnyType::ANY_TTABLE) {
-      //                       CScriptTable* table = (CScriptTable*)PropertiesValue->value.table;
-      //                       std::cout << "gotcha bitch\n";
-      //                       std::cout << table << std::endl;
-      //                       // table->BeginIteration(iterator, false);
-      //                       //  for (int i = 0; i <= 15; i++) {
-      //                       //         // std::cout << iterator. << std::endl;
-      //                       //         if (table->MoveNext(iterator)) {
-      //                       //             std::cout << iterator->sKey << std::endl;
-      //                       //             // if (strcmp(iterator->Key.value.str, "Properties")) {
-      //                       //             //     std::cout << iterator->value.value.ptr << std::endl;
-      //                       //             // }
-      //                       //         }
-      //                       //     }
-      //                       //  table->EndIteration(iterator);
-      //                       std::cout << table->GetValueAny((char*)"sNpcArchetype", archetypeValue, false) << std::endl;
-      //                       std::cout << (uint32_t)archetypeValue->type << std::endl;
-      //                       std::cout << archetypeValue->value.ptr << std::endl;
-                        // }
-						// std::cout << &PropertiesValue << std::endl;
-                        // if (iterator != nullptr) {
-                        //     for (int i = 0; i <= 20; i++) {
-                        //         if (iterator->sKey != 0x0 || iterator->nKey != 0x0) {
-                        //             std::cout << iterator->sKey << std::endl;
-                        //             std::cout << iterator->nKey << std::endl;
-                        //             // std::cout << (uint32_t)iterator->value.type << std::endl;
-                        //             // std::cout << iterator->value.value.ptr << std::endl << std::endl;;
-                        //         }
-                        //         if (!properties->MoveNext(iterator))
-                        //             i = 21;
-                        //     }
-                        // }
-                        // ChairloaderUtils::dumpEntity(entity, true);
-                        // if (newSpawner != nullptr) {
-                        //     std::cout << newSpawner << std::endl;
-                        //     ChairloaderUtils::dumpEntity(newSpawner->m_Entity, false);
-                        //     ChairloaderUtils::dumpGameObject(newSpawner->m_gameObject);
-                        // }
-                        // std::cout << "guid:" << newSpawner->m_Entity->m_guid << std::endl;
-                        if (newSpawner->m_Entity != nullptr) {
-                            newSpawner->m_Entity->m_vPos = pos;
-                            newSpawner->m_Entity->m_worldTM.m03 = pos.x + player->m_cachedReticleDir.x * 5;
-                            newSpawner->m_Entity->m_worldTM.m13 = pos.y + player->m_cachedReticleDir.y * 5;
-                            newSpawner->m_Entity->m_worldTM.m23 = pos.z;
-                        }
-                        if (newestSpawner.m_Entity != nullptr) {
-                            newestSpawner.m_Entity->m_vPos = pos;
-                            newestSpawner.m_Entity->m_worldTM.m03 = pos.x + player->m_cachedReticleDir.x * -5;
-                            newestSpawner.m_Entity->m_worldTM.m13 = pos.y + player->m_cachedReticleDir.y * 5;
-                            newestSpawner.m_Entity->m_worldTM.m23 = pos.z;
-                        } else {
-                            std::cout << "Oops, null newestSpawner.m_entity" << std::endl;
-                        }
-
-                        // newSpawner->m_Entity->m_vScale = {2,2,2};
-                        // newSpawner->m_Entity->m_szName.m_str = (char*)"GotchaBitch";
-
-                        prey.CArkNpcSpawnerF->requestSpawn(newSpawner);
-                        Sleep(50);
-                        spawnedEntities.emplace_back((CEntity*)staticPointers.gEnvPtr->pEntitySystem->GetEntity(newSpawner->m_lastSpawnedEntityId));
-                        CEntity* newEntity = (CEntity*)staticPointers.gEnvPtr->pEntitySystem->GetEntity(newSpawner->m_lastSpawnedEntityId);
-                        // ArkSafeScriptTable propertiesTable;
-                        // propertiesTable = prey.CEntity->getSafePropertiesTable((IEntity*)newEntity);
-                        // std::cout << "ArkNpc: " << prey.CEntity->safeGetArkNpcFromEntityPtr((IEntity*)newEntity) << std::endl;
-                        // std::cout << prey.ArkNpcF->PushDisableAudible(prey.CEntity->safeGetArkNpcFromEntityPtr((IEntity*)newEntity)) << std::endl;
-                        ArkNpc::ArkNpc* npc = prey.CEntity->safeGetArkNpcFromEntityPtr((IEntity*)newEntity);
-                        ArkNpc::ArkNpcProperties* properties = prey.ArkNpcF->GetProperties(npc);
-
-                        // prey.CArkNpcSpawnerF->requestSpawn(&newestSpawner);
-                        // properties->m_bCanRagdoll = true;
-                        // prey.ArkNpcF->PushIndefiniteRagdoll(npc);
-                        // prey.ArkNpcF->BecomeInactive(npc);
-                        
-                        // ChairloaderUtils::dumpEntity(newEntity, true);
-                        // prey.ArkFactionManagerF->setEntityFaction(CGamePtr->m_pArkFactionManager.get(), newEntity->m_nID, 3);
-
-                        // newEntity->m_pArchetype = staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(archetypeLibrary.ArkHumans.Engineers.MikhailaIlyushin_healthy);
-                        // CArkNpcSpawner* newerSpawner = prey.CEntity->getArkNpcSpawner(newEntity);
-                        // if (newerSpawner != nullptr)
-                        //     prey.CArkNpcSpawnerF->requestSpawn(newerSpawner);
-                        // else
-                        //     std::cout << "Null Spawner From Entity" << std::endl;
-                        
-                        // if (newEntity != nullptr) {
-                        //     std::cout << "spawned entity:" << staticPointers.gEnvPtr->pEntitySystem->GetEntity(newSpawner->m_lastSpawnedEntityId) << std::endl;
-                        //     std::cout << "id:" << newEntity->m_nID << std::endl;
-                        //     std::cout << "guid:" << newEntity->m_guid << std::endl;
-                        //     std::cout << "class:" << newEntity->m_pClass << std::endl;
-                        //     std::cout << "archetype:" << newEntity->m_pArchetype << std::endl;
-                        //     std::cout << "name:" << newEntity->m_szName.m_str << std::endl;
-                        //     std::cout << "flags:" << newEntity->m_flags << std::endl;
-                        //     std::cout << "flags_extended:" << newEntity->m_flagsExtended << std::endl;
-                        //     std::cout << "initialmask:" << newEntity->m_initialSceneMask << std::endl << std::endl;;
-                        // } else {
-                        //     std::cout << "spawned nullptr" << std::endl;
-                        // }
-                        // std::cout << "spawned" << std::endl;
-                        
-                        break;  
-                    }
-                    
-                    }
-                    
-                }
-                
+        //free cam
+        if (freeCam != oldFreeCam) {
+            // freeCam = !freeCam;
+            oldFreeCam = freeCam;
+            printf("Freecam state: %u\n", freeCam);
+            if(freeCam) {
+                devMode = true;
+                chairloader->internalPreyFunctions->CSystemF->setDevMode(chairloader->preyEnvironmentPointers->pSystem, devMode);
+                chairloader->preyEnvironmentPointers->pGame->m_pConsole->ExecuteString((char*)"FreeCamEnable", false, true);
+            } else {
+                devMode = true;
+                chairloader->internalPreyFunctions->CSystemF->setDevMode(chairloader->preyEnvironmentPointers->pSystem, devMode);
+                chairloader->preyEnvironmentPointers->pGame->m_pConsole->ExecuteString((char*)"FreeCamDisable", false, true);
             }
         }
-        //1713490239377285936 lobby
-        //12889009724983807463 neuromod division
+        // spawn Entity
         if (GetAsyncKeyState(VK_NUMPAD1) & 1) {
-            // std::cout << "load location label: " << std::dec <<prey.ArkLocationManagerF->GetCurrentLocation(CGamePtr->m_pArkGame->m_pArkLocationManager.get()) << std::endl;
-            // Interesting cvars:
-            // g_EnableDevMenuOptions
-            //i_debug
-            // kc_enable
-            // r_EnableDebugLayer
-            CVar* var = prey.CXConsoleF->getCvar(CGamePtr->m_pConsole, (char*)"g_EnableDevMenuOptions");
-            std::cout << "enableDevMenuOptions: 0x" << var << std::endl;
-            var = prey.CXConsoleF->getCvar(CGamePtr->m_pConsole, (char*)"i_debug");
-            std::cout << "debug: " << var << std::endl;
-            std::cout << "kc_enable: " << prey.CXConsoleF->getCvar(CGamePtr->m_pConsole, (char*)"kc_enable") << std::endl;
-            std::cout << "debuglayer: " << prey.CXConsoleF->getCvar(CGamePtr->m_pConsole, (char*)"r_EnableDebugLayer") << std::endl;
-            std::cout << &staticPointers.gEnvPtr->szDebugStatus << std::endl;
-            // CGamePtr->m_pConsole->AddCommand((char*)"debug_toggle", (char*)"ui_toggle_debug", 0, (char*)"toggles debug menu I hope");
-            // CGamePtr->m_pConsole->ExecuteString((char*)"debug_toggle", false, false);
-            std::cout << CGamePtr->m_pCVars->i_debuggun_1 << std::endl;
-            std::cout  << "g_EnablePersistantStatsDebugScreen: "<< CGamePtr->m_pCVars->g_EnablePersistantStatsDebugScreen << std::endl;
-            std::cout  << "g_EnableDevMenuOptions: "<< CGamePtr->m_pCVars->g_EnableDevMenuOptions << std::endl;
-            std::cout << "pl_debug_energyConsumption: " << CGamePtr->m_pCVars->pl_debug_energyConsumption << std::endl;
-            std::cout << "g_devDemo: " << CGamePtr->m_pCVars->g_devDemo << std::endl;
-            CGamePtr->m_pCVars->g_devDemo = 1;
-            std::cout << CGamePtr->m_pCVars->pl_movement.speedScale << std::endl;
-            // CGamePtr->m_pCVars->pl_movement.speedScale = 2.4;
-            std::cout << CGamePtr->m_pCVars->pl_movement.sprint_SpeedScale << std::endl;
-            // CGamePtr->m_pCVars->pl_movement.sprint_SpeedScale = 3.6;
-            CGamePtr->m_pCVars->pl_traumaDebug = 1;
-
-            // std::cout << staticPointers.gEnvPtr->pGame->m_pFramework->m_pCheats << std::endl;
-            // staticPointers.gEnvPtr->pEntitySystem->DebugDraw();
-            // IActionMapManager* mapmanager = staticPointers.gEnvPtr->pGame->m_pFramework->GetIActionMapManager();
-            // mapmanager->RemoveAllFilters();
-            // prey.ArkLocationManagerF->SetLoaded(CGamePtr->m_pArkGame->m_pArkLocationManager.get(), 12889009724983807463, true);
-     //        if (freeCam) {
-     //            lockFreeCam = !lockFreeCam;
-     //            if(lockFreeCam)
-					// CGamePtr->m_pConsole->ExecuteString((char*)"FreeCamLockCamera", false, true);
-     //            else
-					// CGamePtr->m_pConsole->ExecuteString((char*)"FreeCamUnlockCamera", false, true);
-     //        }
-            // CGodMode* godMode = prey.ArkPlayerF->getGodModeInstance();
-            // std::cout << godMode << std::endl;
-            // godMode->m_godMode = 1;
-            // for(auto it = spawnedEntities.begin(); it != spawnedEntities.end(); ++it) {
-            //     CEntity* entity = *it._Ptr;
-            //     // std::cout << entity->m_szName.m_str << std::endl;
-            //     Vec3_tpl<float> pos;
-            //     ((IEntity*)entity)->GetWorldPos(&pos);
-            //     Matrix34_tpl<float> matrix = {1,0,0,pos.x,0,1,0,pos.y,0,0,1,pos.z};
-            //     // matrix.m23 += 20;
-            //     // entity->SetWorldTM(&matrix,0);
-            //     float scaleT = 0.25f;
-            //     Vec3_tpl<float> scale = { scaleT,scaleT,scaleT };
-            //     ((IEntity*)entity)->SetScale(&scale, 0);
-            //     
-            // }
-            // prey.ragdollize(player, 1.0f);
-            // CVar* var = prey.getCvar(CGamePtr->m_pConsole, (char*)"g_EnableDevMenuOptions");
-            // std::cout << var << std::endl;
-            // // var->m_param = false;
-            // prey.executeString(CGamePtr->m_pConsole, (char*)"spawnActor ArkNightmare", false, true);
-         //    staticPointers.gEnvPtr->pEntitySystem->m_pClassRegistry->m_mapClassName;
-         //    IEntityClass* newClass = (IEntityClass*)staticPointers.gEnvPtr->pEntitySystem->m_pClassRegistry->Find((char*)"ArkNpcSpawner");
-         //    std::cout << staticPointers.gEnvPtr->pEntitySystem->CreateEntityArchetype(newClass, (char*)"ChairloaderTest1", 4206942069) << std::endl;
-         //    Quat_tpl<float> rot{ 0,0,0,1 };
-         //    Vec3_tpl<float> pos{ 0,0,350 };
-         //    uint32_t id = 69420420;
-         //    SEntitySpawnParams params;
-        	// ChairloaderUtils::CreateEntitySpawnParameters((char*)"ChairLoader0", &pos, &rot, &params);
-         //    std::cout << staticPointers.gEnvPtr->pEntitySystem->CreateEntity(&staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(4206942069)->m_ObjectVars, &params, &id) << std::endl;
-            //
-            // for (std::map<CryStringT<char>, CEntityClass*>::const_iterator it = staticPointers.gEnvPtr->pEntitySystem->m_pClassRegistry->m_mapClassName.begin(); it != staticPointers.gEnvPtr->pEntitySystem->m_pClassRegistry->m_mapClassName.end(); ++it) {
-            //     std::cout << it->first.m_str << ": " << it->second->m_sName.m_str << std::endl;
-            // }
-            
-            // bConsole = !bConsole;
-            // std::cout << CGamePtr->m_pConsole << std::endl;
-            //
-            // prey.showConsole(CGamePtr->m_pConsole, bConsole, 300);
-            // std::cout << CGamePtr->m_pConsole->m_bConsoleActive << std::endl;
-            // Sleep(100);
-            
-            // nightmareSpawner = CGamePtr->m_pArkNightmareSpawnManager.get();
-            // prey.enableNightmareSpawner(nightmareSpawner);
-            // prey.spawnNewNightmare(nightmareSpawner);
-            // thirdPerson = !thirdPerson;
-            // prey.showThirdPerson(player, thirdPerson);
-        }
-        if (GetAsyncKeyState(VK_NUMPAD9) & 1) {
-            for(auto it = CGamePtr->m_pArkNightmareSpawnManager.get()->m_currentLevelNightmareSpawners.begin(); it <= CGamePtr->m_pArkNightmareSpawnManager.get()->m_currentLevelNightmareSpawners.end(); ++it) {
-                std::cout << *it << std::endl;
-            }
-            CEntity* entity = (CEntity*)staticPointers.gEnvPtr->pEntitySystem->GetEntity(425);
-            CArkNpcSpawner* newSpawner = prey.CEntity->getArkNpcSpawner(entity);
-            std::cout << newSpawner << std::endl;
-            Vec3_tpl<float> pos;
-            prey.ArkPlayerF->getPlayerWorldEyePos(player, &pos);
-            // Vec3_tpl<float> viewPos = prey.getReticleViewPositionAndDir(player).first;
-            // Vec3_tpl<float> viewDir = prey.getReticleViewPositionAndDir(player).second;
-            newSpawner->m_Entity->m_vPos = pos;
-            newSpawner->m_Entity->m_worldTM.m03 = pos.x + player->m_cachedReticleDir.x * 5;
-            newSpawner->m_Entity->m_worldTM.m13 = pos.y + player->m_cachedReticleDir.y * 5;
-            newSpawner->m_Entity->m_worldTM.m23 = pos.z;
-            float scale = 2;
-            Vec3_tpl<float> newScale{ scale,scale,scale};
-            // newSpawner->m_Entity->m_szName.m_str = (char*)"GotchaBitch";
-            prey.CArkNpcSpawnerF->requestSpawn(newSpawner);
-            Sleep(50);
-            spawnedEntities.emplace_back((CEntity*)staticPointers.gEnvPtr->pEntitySystem->GetEntity(newSpawner->m_lastSpawnedEntityId));
-            ((IEntity*)spawnedEntities.back())->SetScale(&newScale,0);
-            // prey.CArkNpcSpawnerF->requestSpawn(newSpawner);
-            //
-            // Sleep(50);
-            // spawnedEntities.emplace_back((CEntity*)staticPointers.gEnvPtr->pEntitySystem->GetEntity(newSpawner->m_lastSpawnedEntityId));
-            // ((IEntity*)spawnedEntities.back())->SetScale(&newScale, 0);
-            prey.ArkFactionManagerF->setEntityFaction(CGamePtr->m_pArkFactionManager.get(), spawnedEntities.back()->m_nID, 3);
-            ArkNpc::ArkNpc* npc = prey.CEntity->safeGetArkNpcFromEntityPtr((IEntity*)spawnedEntities.back());
-            ArkNpc::ArkNpcProperties* properties = prey.ArkNpcF->GetProperties(npc);
-            properties->m_bCanRagdoll = true;
-            prey.ArkNpcF->PushIndefiniteRagdoll(npc);
-            // for (int i = 0; i < EntitySystem->m_EntityArray.size(); ++i) {
-            //     // CEntity* entity = *(CEntity**)it._Ptr;
-            //     // std::cout << entity << std::endl;
-            //     if (EntitySystem->m_EntityArray[i] != nullptr) {
-            //         CEntity* entity = EntitySystem->m_EntityArray[i];
-            //         // std::cout << entity << std::endl;
-            //         if (entity->m_guid != 0x0) {
-            //             std::string entityName = entity->m_szName.m_str;
-            //             // std::cout << entityName << ": " << entity << std::endl;
-            //             // std::cout << entity->m_pArchetype->m_name.m_str <<": " << entity << std::endl;
-            //         // if (&entity->m_szName != 0x0) {
-            //             std::cout << entity->m_szName.m_str << std::endl;
-            //             if (entityName == "yes") {
-            //                 std::cout << "gotcha bitch:" << entity << std::endl;
-            //                 break;
-            //             }
-            //             // }
-            //         }
-            //         // if (i >= 1000)
-            //         //     break;
-            //     }
-            //     // if (*(uintptr_t*)entity != 0x0) {
-            //         //if ((entity+0x38) != 0x0) {
-            //             // std::cout << entity << ": " << entity->m_szName.m_str << std::endl;
-            //         // }
-            //     // }
-            // }
-        }
-        if (GetAsyncKeyState(VK_NUMPAD3) & 1) {
-            CEntityArchetype* archetype = staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(archetypeLibrary.ArkNpcs.ArkNightmare);
-            Vec3_tpl<float> pos;
-            prey.ArkPlayerF->getPlayerWorldEyePos(player, &pos);
-            Vec3_tpl<float> localEyePos;
-            player->GetLocalEyePos(&localEyePos);
-            // std::cout << localEyePos.x << std::endl;
-            // std::cout << localEyePos.y << std::endl;
-            // std::cout << localEyePos.z << std::endl;
-            Quat_tpl<float> rot;
-            rot.x = 0; rot.x = 0; rot.z = 0; rot.w = 1;
-            SEntitySpawnParams* params = new SEntitySpawnParams;
-
-            // ChairloaderUtils::CreateEntitySpawnParameters((char*)"NewEntity0", &pos, &rot, params);
-            params->vScale.x = 1;
-            params->vScale.y = 1;
-            params->vScale.z = 1;
-            // params->entityNode = archetype->m_ObjectVars;
-            // params->pArchetype = archetype;
-            // params->pClass = (CEntityClass*)archetype->m_pClass;
-            uint32_t id = prey.CEntitySystemF->generateEntityId(staticPointers.gEnvPtr->pEntitySystem, true);
-            params->id = id;
-            params->vPosition.x = pos.x + player->m_cachedReticleDir.x * 2;
-            params->vPosition.y = pos.y + player->m_cachedReticleDir.y * 2;
-            params->vPosition.z = pos.z - localEyePos.z;
-            params->qRotation.x = 0;
-            params->qRotation.y = 0;
-            params->qRotation.z = 0;
-            params->qRotation.w = 1;
-            params->sLayerName = (char*)"";
-            params->pClass = (CEntityClass*)(0x0);
-            params->pArchetype = (CEntityArchetype*)(0x0);
-            params->guid = 0;
-            params->prevGuid = 0;
-            params->prevId = 0;
-            params->bCreatedThroughPool = 0;
-            params->bIgnoreLock = 0;
-            params->bStaticEntityId = 0;
-            params->nFlags = 0;
-            params->nFlagsExtended = 0;
-            params->sName = (char*)"newEntity0";
-            params->entityNode.ptr = (IXmlNode*)0x0;
-            params->shadowCasterType = '\0';
-            params->pUserData = (void*)0x0;
-            params->sceneMask = '\0';
-            // XmlNodeRef node = archetype->m_ObjectVars;
-            
-            // SEntityLoadParams* loadParams = new SEntityLoadParams;
-            // loadParams->spawnParams = *params;
-            // loadParams->bCallInit = false;
-            // loadParams->clonedLayerId = 0;
-            // staticPointers.gEnvPtr->pEntitySystem->CreateEntity(&node, params, &id);
-            // player->GetViewRotation(rot);
-            
-            // std::cout << archetype->GetObjectVars() << std::endl;
-            IEntity* entity;
-        	// std::cout << prey.ArkNpcSpawnManagerF->internalCreateNpc((IEntityArchetype*)staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(archetypeLibrary.ArkNpcs.ArkNightmare) , &pos, &rot);
-            entity = staticPointers.gEnvPtr->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(archetypeLibrary.ArkPhysicsProps.Tech.Reployer), params, true);
-            std::cout << entity->GetUpdatePolicy() << std::endl;
-            // EEntityUpdatePolicy policy = EEntityUpdatePolicy::ENTITY_UPDATE_IN_RANGE;
-            // entity->SetUpdatePolicy(policy);
-            // entity->EnablePhysics(true)
-            Vec3_tpl<float> newScale;
-            float scale = 20;
-            newScale.x = scale;
-        	newScale.y = scale;
-            newScale.z = scale;
-            entity->SetScale(&newScale, 0);
-            
-            // std::cout << staticPointers.gEnvPtr->pEntitySystem->FindEntityByName((char*)"newEntity0")<< std::endl;;
-            // std::cout << prey.ArkNpcSpawnManagerF->createNpc((IEntityArchetype*)staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(archetypeLibrary.ArkNpcs.ArkNightmare), &pos, &rot,1);
-            // staticPointers.gEnvPtr->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)archetype, params, false);
-            // CEntity* entity = new CEntity;
-            // ((IEntity*)entity)->Init()
-            // CArkObjectiveData * data = staticPointers.gEnvPtr->pGame->GetData();
-            // for (auto it = data->m_descriptions.begin(); it <= data->m_descriptions.end(); ++it) {
-            //     // std::string name;
-            //     // std::string text;
-            //     if (it._Ptr != nullptr) {
-            //         std::cout << it._Ptr << std::endl;
-            //         std::cout << it._Ptr->m_id << std::endl;
-            //         // name = it._Ptr->m_displayName.m_str;
-            //         // text = it._Ptr->m_text.m_str;
-            //         // std::cout << name << std::endl;
-            //         // std::cout << text << std::endl;
-            //
-            //     }
-            // }
-            // for (auto it = CGamePtr->m_pFramework->m_pGameObjectSystem->m_nameToID.begin(); it != CGamePtr->m_pFramework->m_pGameObjectSystem->m_nameToID.end(); ++it) {
-            //     std::cout << it->first.m_str << ": " << it->second << std::endl;
-            // }
-            // prey.initCXConsole(CGamePtr->m_pConsole, staticPointers.gEnvPtr->pSystem);
-	        //  devMode = !devMode;
-         //     
-	        //  //    // CGamePtr->m_pConsole->m_pSystem->m_bInDevMode = devMode;
-	        //  //    // CGamePtr->m_pConsole->m_pSystem->m_bWasInDevMode = devMode;
-	        //  prey.CSystemF->setDevMode(staticPointers.gEnvPtr->pSystem, true);
-         //     CGamePtr->m_pConsole->EnableActivationKey(true);
-         //
-        	// // std::cout << staticPointers.gEnvPtr->pSystem->m_bInDevMode << std::endl;
-         //     // if (devMode) {
-         //         CGamePtr->m_pConsole->ShowConsole(devMode, 300);
-         //         // prey.CXConsoleF->executeString(CGamePtr->m_pConsole, (char*)"ConsoleShow", false, true);
-         //         // Sleep(100);
-         //         if (devMode) {
-         //             CGamePtr->m_pConsole->PrintLine((char*)"Welcome to funland sonic");
-         //         }
-            // std::cout << staticPointers.gEnvPtr->pSystem->m_pTextModeConsole << std::endl;
-            // prey.beginDraw((CWindowsConsole*)staticPointers.gEnvPtr->pSystem->m_pTextModeConsole);
-	        // //    std::cout << staticPointers.gEnvPtr->pSystem << std::endl;
-	        // std::cout << prey.GetTextModeConsole(staticPointers.gEnvPtr->pSystem) << std::endl;
-            // prey.beginDraw(prey.GetTextModeConsole(staticPointers.gEnvPtr->pSystem));
-            // prey.enableActivationKey(CGamePtr->m_pConsole, true);
-            //
-            // char* blank = (char*)"";
-            // char* cmd = (char*)"ai_dumpCheckpoints";
-            // if (bConsole) {
-            //     prey.displayHelp(CGamePtr->m_pConsole, cmd, blank);
-            // }
-            // for (std::map<CryStringT<char>,CConsoleCommand>::const_iterator it = CGamePtr->m_pConsole->m_mapCommands.begin(); it != CGamePtr->m_pConsole->m_mapCommands.end(); ++it) {
-            //     std::cout << it->first.m_str << ": " << it->second.m_sName.m_str << std::endl;
-            //     std::cout << it->second.m_func << std::endl;
-            //     std::cout << it->second.m_sHelp.m_str << std::endl << std::endl;
-            // }
-            // //
-            // for (std::map<CryStringT<char>, CryStringT<char>>::const_iterator it = CGamePtr->m_pConsole->m_mapBinds.begin(); it != CGamePtr->m_pConsole->m_mapBinds.end(); ++it) {
-            //     std::cout << it->first.m_str << ": " << it->second.m_str << std::endl;
-            // }
-            
-             // for (std::map<const char*, ICVar*>::const_iterator it = CGamePtr->m_pConsole->m_mapVariables.begin(); it != CGamePtr->m_pConsole->m_mapVariables.end(); ++it) {
-             //     std::cout << it->first << std::endl;
-             //     }
-
-        }
-        // if (GetAsyncKeyState(VK_F3) & 1) {
-        //     player = prey.getPlayerInstance();
-        //    //  std::cout << "Current Player Instance Pointer: " << std::hex << prey.getPlayerInstance << std::endl;
-        //    //ArkPlayerWeaponComponent* wepCompPtr = (ArkPlayerWeaponComponent*)(player + 0x14B8);
-        //    CArkWeapon* currentWep = prey.getEquippedWeapon(&player->m_weaponComponent);
-        //    std::cout <<"Current Ammo: "<< std::dec << currentWep->m_numAmmoLoaded << "\n";
-        //    std::cout << "IArkPlayer: " << std::dec << player->IArkPlayer << "\n";
-        //    std::cout << "IEntity*: " << std::hex << currentWep->m_disruptionVFX.m_controller->m_pOwnerEntity->ptr << "\n";
-        //    std::cout << "PlayerClassName: " << std::hex << prey.getEntityClassName(player).m_str << "\n";
-        //   // std::cout << prey.getClipSize(currentWep);
-        //    //prey.setWeaponAmmoCount(currentWep, 42);
-        //    prey.fireWeapon(prey.getEquippedWeapon(&player->m_weaponComponent));
-        // }
-        if (GetAsyncKeyState(VK_NUMPAD4) & 1) {
-            player = prey.ArkPlayerF->getInstance();
-            std::cout << "Current Player Instance Pointer: " << std::hex << (uintptr_t)player << std::endl;
-            std::cout << "Current movementfsm: " << std::hex << (uintptr_t)&player->m_movementFSM - (uintptr_t)player << std::endl;
-            std::cout << "Current playerComponent: " << std::hex << (uintptr_t)&player->m_playerComponent - (uintptr_t)player << std::endl;
-            std::cout << "Current statsComponent " << std::hex << (uintptr_t)&player->m_statsComponent - (uintptr_t)player << std::endl;
-            std::cout << "Current suitChipsetComponent: " << std::hex << (uintptr_t)&player->m_suitChipsetComponent - (uintptr_t)player << std::endl;
-            std::cout << "Current scopeChipsetComponent: " << std::hex << (uintptr_t)&player->m_scopeChipsetComponent - (uintptr_t)player << std::endl;
-            std::cout << "Current input: " << std::hex << (uintptr_t)&player->m_input - (uintptr_t)player << std::endl;
-            std::cout << "Current examinationMode: " << std::hex << (uintptr_t)&player->m_examinationMode - (uintptr_t)player << std::endl;
-            std::cout << "Current Interaction: " << std::hex << (uintptr_t)&player->m_interaction - (uintptr_t)player << std::endl;
-            std::cout << "Current flashlight: " << std::hex << (uintptr_t)&player->m_flashlight - (uintptr_t)player << std::endl;
-            std::cout << "Current audio: " << std::hex << (uintptr_t)&player->m_audio - (uintptr_t)player << std::endl;
-            std::cout << "Current camera: " << std::hex << (uintptr_t)&player->m_camera - (uintptr_t)player << std::endl;
-            std::cout << "Current helmet: " << std::hex << (uintptr_t)&player->m_helmet - (uintptr_t)player << std::endl;
-            std::cout << "Current weaponComponent: " << std::hex << (uintptr_t)&player->m_weaponComponent - (uintptr_t)player << std::endl;
-            std::cout << "Current animationManager: " << std::hex << (uintptr_t)&player->m_materialAnimationManager - (uintptr_t)player << std::endl;
-            Vec3_tpl<float> pos;
-            player->SetHealth(500);
-            // std::cout << pos.x << std::endl;
-            // std::cout << pos.y << std::endl;
-            // std::cout << pos.z << std::endl;
-
-            // ArkPlayerFlashlight* flashlight = &player->m_flashlight;
-            // std::cout << flashlight->IsPowered(flashlight) << std::endl;
             
         }
-        
-        if (GetAsyncKeyState(VK_NUMPAD8) & 1) {
-            
-            Vec3_tpl<float> pos;
-            prey.ArkPlayerF->getPlayerWorldEyePos(player, &pos);
-            pos.x += player->m_cachedReticleDir.x * 5;
-            pos.y += player->m_cachedReticleDir.y * 5;
-            //12889009725056221348
-            IEntity* entity = nullptr;
-            for (uint64_t i = 0; i <= 7; i++) {
-                entity = spawnerManager->spawnNpcFromArchetype(760 + i, (char*)"miky", ChairloaderUtils::EntityType::mimic);
-                if (entity != nullptr) {
-                    std::cout << entity << std::endl;
-                	entity->SetPos(&pos, 0, false, false);
-                    prey.ArkFactionManagerF->setEntityFaction(CGamePtr->m_pArkFactionManager.get(), ((CEntity*)entity)->m_nID, 3);
+        if (GetAsyncKeyState(VK_NUMPAD2) & 1) {
+            std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+            if (!abilities->empty()) {
+                //ImGui::Text("Size: %d\n", abilities->size());
+                printf("Size: %llu\n", abilities->size());
+                int clip = 0;
+                for (auto itr = abilities->begin(); itr != abilities->end() && clip < abilities->size() + 100000; ++itr, clip++) {
+                    // printf("%llu\n", itr->m_id);
+                    if (itr->m_id != 0) {
+                        static ArkAbilityLibrary library;
+                        auto entry = library.arkAbilityMap.find(itr->m_id);
+                        if (entry != library.arkAbilityMap.end()) {
+                            // ImGui::Text(entry->second.c_str());
+                            printf("%s\n", entry->second.c_str());
+                            printf("Seen: %d\n Acquired: %d\n", itr->m_bSeen, itr->m_bAcquired);
+                        }
+                        else {
+                            // ImGui::Text(std::to_string(itr->m_id).c_str());
+                            // printf("%llu\n", itr->m_id);
+                        }
+
+                    }
                 }
-                Sleep(60);
             }
-            // if (entity != nullptr)
-            //     ChairloaderUtils::dumpEntity((CEntity*)entity, true);
-            // std::vector<IEntity*> entities = spawnerManager->spawnNpcFromArchetype(archetypeLibrary.ArkNpcs.Mimics.Mimic, (char*)"miky", ChairloaderUtils::EntityType::operators, &pos, 50);
-            // Sleep(200);
-            // for (auto i = entities.begin(); i<= entities.end(); ++i) {
-            //     std::cout << ((CEntity*)i._Ptr)->m_nID << std::endl;
-            //     prey.ArkFactionManagerF->setEntityFaction(CGamePtr->m_pArkFactionManager.get(), ((CEntity*)i._Ptr)->m_nID, 3);
-            //     // Sleep(1);
-            // }
-            // IEntity* entity = spawnerManager->spawnNpcFromArchetype(archetypeLibrary.ArkRobots.Operators.Named.Kaspar, (char*)"miky", ChairloaderUtils::EntityType::operators);
-            // entity->SetPos(&pos, )
-            // ArkNpc::ArkNpc* npc = prey.CEntity->safeGetArkNpcFromEntityPtr(entity);
-            // prey.ArkNpcF->PushDisableOperatorLevitatorsEffect(npc);
-            // for (auto it = CGamePtr->m_pArkFactionManager->m_nameToIndexMap.begin(); it != CGamePtr->m_pArkFactionManager->m_nameToIndexMap.end(); ++it) {
-            //     std::cout << it->first.m_str << ": " << it->second << std::endl;
-            // }
-            // Vec3_tpl<float> pos;
-            // prey.ArkPlayerF->getPlayerWorldEyePos(player, &pos);
-            // Quat_tpl<float> rot;
-            // // player->GetViewRotation(rot);
-            // rot.x = 0; rot.x = 0; rot.z = 0; rot.w = 0;
-            // ChairloaderUtils::CreateEntityBasic(staticPointers.gEnvPtr->pEntitySystem, (char*)"NewEntity0", &pos, &rot, archetypeLibrary.ArkNpcs.Mimics.Mimic, &prey);
-        }
-        if (GetAsyncKeyState(VK_NUMPAD0) & 1) {
-            prey.CSystemF->setDevMode(staticPointers.gEnvPtr->pSystem, true);
-            freeCam = !freeCam;
-            CXConsoleFloatRef* var =  (CXConsoleFloatRef*)prey.CXConsoleF->getCvar(CGamePtr->m_pConsole, (char*)"g_detachedCameraMoveSpeed");
-            var->Set(1.0f);
-            
-            if(freeCam)
-                CGamePtr->m_pConsole->ExecuteString((char*)"FreeCamEnable", false, true);
-            else
-                CGamePtr->m_pConsole->ExecuteString((char*)"FreeCamDisable", false, true);
-            // for(auto it = CGamePtr->m_pConsole->m_mapVariables.begin(); it != CGamePtr->m_pConsole->m_mapVariables.end();++it) {
-            //     std::cout << it->first << ": " << it->second << std::endl;
-            // }
-                // std::cout << "Current Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
-                // prey.setPlayerHealth(player, prey.getPlayerHealth(player) + 100.0f);
-                // std::cout << "New Player Health: " << std::dec << prey.getPlayerHealth(player) << std::endl;
-            // uint32_t newId = prey.generateEntityId(EntitySystem, true);
-            // std::cout << "new ID:" << newId << std::endl;
-            // for (std::map<CryStringT<char>, SActorClassDesc>::const_iterator it = CGamePtr->m_pFramework->m_pActorSystem->m_classes.begin(); it != CGamePtr->m_pFramework->m_pActorSystem->m_classes.end(); ++it) {
-            //     std::cout << it->second.pEntityClass->m_sName.m_str << std::endl;
-            //     }
-        }
-        
-
-        if (GetAsyncKeyState(VK_NUMPAD5) & 1) {
-            Vec3_tpl<float> pos;
-            prey.ArkPlayerF->getPlayerWorldEyePos(player, &pos);
-            pos.x += player->m_cachedReticleDir.x * 5;
-            pos.y += player->m_cachedReticleDir.y * 5;
-            //12889009725056221348
-            IEntity* entity = nullptr;
-            entity = spawnerManager->spawnNpcFromArchetype(760, (char*)"miky", ChairloaderUtils::EntityType::mimic);
-            if (entity != nullptr) {
-                std::cout << entity << std::endl;
-                entity->SetPos(&pos, 0, false, false);
-            }
-            Sleep(2000);
-            SEntityLoadParams *params = new SEntityLoadParams;
-            // SEntitySpawnParams* spawnParams = new SEntitySpawnParams;
-            CEntity* centity = (CEntity*)entity;
-            // params->spawnParams.bCreatedThroughPool = false;
-            // params->spawnParams.bIgnoreLock = false;
-            params->spawnParams.id = centity->m_nID;
-            params->spawnParams.vPosition.x = centity->m_vPos.x;
-            params->spawnParams.vPosition.y = centity->m_vPos.y;
-            params->spawnParams.vPosition.z = centity->m_vPos.z;
-            params->spawnParams.qRotation.x = centity->m_qRotation.x;
-            params->spawnParams.qRotation.y = centity->m_qRotation.y;
-            params->spawnParams.qRotation.z = centity->m_qRotation.z;
-            params->spawnParams.qRotation.w = centity->m_qRotation.w;
-            params->spawnParams.sLayerName = (char*)"";
-            params->spawnParams.pClass = (CEntityClass*)(0x0);
-            params->spawnParams.pArchetype = staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(762);
-            params->spawnParams.guid = centity->m_guid;
-            params->spawnParams.prevGuid = 0;
-            params->spawnParams.prevId = 0;
-            params->spawnParams.bCreatedThroughPool = 0;
-            params->spawnParams.bIgnoreLock = 0;
-            params->spawnParams.bStaticEntityId = 0;
-            params->spawnParams.nFlags = centity->m_flags;
-            params->spawnParams.nFlagsExtended = centity->m_flagsExtended;
-            params->spawnParams.sName = centity->m_szName.m_str;
-            params->spawnParams.entityNode = staticPointers.gEnvPtr->pEntitySystem->GetEntityArchetype(762)->m_ObjectVars;
-            params->spawnParams.shadowCasterType = '\0';
-            params->spawnParams.pUserData = (void*)0x0;
-            params->spawnParams.sceneMask = centity->m_initialSceneMask;
-            params->pReuseEntity = centity;
-            params->clonedLayerId = 1;
-            params->bCallInit = true;
-            std::cout << prey.CEntity->reloadEntity(centity, params) << std::endl;
-
-            // CryStringT<char> library;
-            // library.m_str = (char*)"NewNpcs";
-            // std::string filename;
-            // filename = "libs/entityarchetypes/arknpcs.xml";
-            //
-            // XmlNodeRef* ref = staticPointers.gEnvPtr->pSystem->LoadXmlFromFile((char*)filename.c_str() , false, true);
-            // std::cout << ref << std::endl;
-            // staticPointers.gEnvPtr->pEntitySystem->m_pEntityArchetypeManager()
-            // std::string filename;
-            // filename = "Libs/EntityArchetypes/ArkNpcs.xml";
-            // // filename = "C:\\Users\\theli\\Downloads\\crispy-system-master\\Libs\\EntityArchetypes\\ArkNpcs.xml";
-            // // pugi::xml_document doc;
-            // // pugi::xml_parse_result result = doc.load_file(filename.data());
-            // // std::cout << result.description() << std::endl;
-            // // // if (_stricmp(result.description(), "No error") == true) {
-            // //     std::cout << doc.first_child().name() << std::endl;
-            // // // doc.child
-            // // // };
-            //
-            // CXmlUtils* utils = (CXmlUtils*)staticPointers.gEnvPtr->pSystem->m_pXMLUtils;
-            // XmlParser* parser = (XmlParser*)utils->CreateXmlParser();
-            // // std::cout << parser << std::endl;
-            // XmlNodeRef* ref;
-            // bool fileSystem = false;
-            // ref = parser->ParseFile((char*)filename.data(), false, fileSystem);
-            // std::cout << ref->ptr << std::endl;
-            // // std::cout << ref << std::endl;
-            // // std::cout << ref->ptr << std::endl;
-            // ref = staticPointers.gEnvPtr->pSystem->LoadXmlFromFile((char*)filename.data(), false, fileSystem);
-            // std::cout << ref->ptr << std::endl;
-            // // std::cout << ref->ptr << std::endl;
-            // // utils->EnableBinaryXmlLoading(true);
-            // ref = utils->LoadBinaryXmlFile((char*)filename.data(), false);
-            // std::cout << ref->ptr << std::endl;
-            // ref = utils->LoadXmlFromFile((char*)filename.data(),false,false, fileSystem);
-            // std::cout << ref->ptr << std::endl;
-            // CXmlNode* topNode = ref.ptr;
-            // // tag = ;
-            // printf("%s\n", topNode->m_tag, '\n');
-            // // CXmlNode* childNode = topNode->m_pChilds[1];
-            // printf("%s\n", topNode->m_content, '\n');
-            // topNode->getChild(0);
-            // std::cout << topNode->findChild((char*)"ArkNullwave");
-            // std::cout << ref.ptr << std::endl;
-            // CBinaryXmlNode* node = (CBinaryXmlNode*)ref.ptr;
-            // std::cout << node->m_pData << std::endl;
-            // std::cout << node->m_pData->pNodes << std::endl;
-            // std::cout 
-            // if (ref.ptr != nullptr) {
-            //     std::cout << ref.ptr << std::endl;
-            //     CBinaryXmlNode* topNode = (CBinaryXmlNode*)ref.ptr;
-            //     std::cout << topNode << std::endl;
-            //     std::cout << topNode->m_pData->pStringData << std::endl;
-            // }
-        }
-        // continuous read/write
-        if (bGloo) {
-            // // gloo ammo
-            // *(int*)mem::FindDMAAddy(moduleBase + 0x02C1FEB8, { 0x30,0x8,0x2fC }) = 30;
-            // // gloo reserve
-            // *(int*)mem::FindDMAAddy(moduleBase + 0x024AE0B0, { 0x168,0x8,0x60,0x54 }) = 420;
         }
 	}
     // cleanup & eject
@@ -857,8 +326,793 @@ DWORD WINAPI HackThread(HMODULE hModule) {
         fclose(f);
     }
     FreeConsole();
+    // DetourDetach(&(LPVOID&)fnIDXGISwapChainPresent, (PBYTE)Present);
+    // DetourTransactionCommit(); 
     FreeLibraryAndExitThread(hModule, 0);
-    
+}
+struct ExampleAppConsole
+{
+    char                  InputBuf[256];
+    //TODO: implement a proper command structure
+    ImVector<char*>       Items;
+    ImVector<const char*> Commands;
+    ImVector<char*>       History;
+    int                   HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
+    ImGuiTextFilter       Filter;
+    bool                  AutoScroll;
+    bool                  ScrollToBottom;
+
+    ExampleAppConsole()
+    {
+        // IMGUI_DEMO_MARKER("Examples/Console");
+        ClearLog();
+        memset(InputBuf, 0, sizeof(InputBuf));
+        HistoryPos = -1;
+
+        // "CLASSIFY" is here to provide the test case where "C"+[tab] completes to "CL" and display multiple matches.
+        // TODO: load prey console commands
+        Commands.push_back("HELP");
+        Commands.push_back("HISTORY");
+        Commands.push_back("CLEAR");
+        Commands.push_back("CLASSIFY");
+        AutoScroll = true;
+        ScrollToBottom = false;
+        AddLog("Chairloader Console Initializeed");
+    }
+    ~ExampleAppConsole()
+    {
+        ClearLog();
+        for (int i = 0; i < History.Size; i++)
+            free(History[i]);
+    }
+
+    // Portable helpers
+    static int   Stricmp(const char* s1, const char* s2) { int d; while ((d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; } return d; }
+    static int   Strnicmp(const char* s1, const char* s2, int n) { int d = 0; while (n > 0 && (d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; n--; } return d; }
+    static char* Strdup(const char* s) { IM_ASSERT(s); size_t len = strlen(s) + 1; void* buf = malloc(len); IM_ASSERT(buf); return (char*)memcpy(buf, (const void*)s, len); }
+    static void  Strtrim(char* s) { char* str_end = s + strlen(s); while (str_end > s && str_end[-1] == ' ') str_end--; *str_end = 0; }
+
+    void    ClearLog()
+    {
+        for (int i = 0; i < Items.Size; i++)
+            free(Items[i]);
+        Items.clear();
+    }
+
+    void    AddLog(const char* fmt, ...) IM_FMTARGS(2)
+    {
+        // FIXME-OPT
+        char buf[1024];
+        va_list args;
+        va_start(args, fmt);
+        vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
+        buf[IM_ARRAYSIZE(buf) - 1] = 0;
+        va_end(args);
+        Items.push_back(Strdup(buf));
+    }
+
+    void Draw(const char* title, bool* p_open) {
+        // ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
+        if (!ImGui::BeginChild("ChildL", ImVec2(ImGui::GetContentRegionAvail().x * 0.5f, 260), false, ImGuiWindowFlags_None)) {
+            ImGui::End();
+            return;
+        }
+        // if (!ImGui::Begin(title, p_open))
+        // {
+        //     ImGui::End();
+        //     return;
+        // }
+
+        // As a specific feature guaranteed by the library, after calling Begin() the last Item represent the title bar.
+        // So e.g. IsItemHovered() will return true when hovering the title bar.
+        // Here we create a context menu only available from the title bar.
+        // if (ImGui::BeginPopupContextItem())
+        // {
+        //     if (ImGui::MenuItem("Close Console"))
+        //         *p_open = false;
+        //     ImGui::EndPopup();
+        // }
+
+        ImGui::TextWrapped(
+            "This example implements a console with basic coloring, completion (TAB key) and history (Up/Down keys). A more elaborate "
+            "implementation may want to store entries along with extra data such as timestamp, emitter, etc.");
+        ImGui::TextWrapped("Enter 'HELP' for help.");
+
+        // TODO: display items starting from the bottom
+
+        if (ImGui::SmallButton("Add Debug Text")) { AddLog("%d some text", Items.Size); AddLog("some more text"); AddLog("display very important message here!"); }
+        ImGui::SameLine();
+        if (ImGui::SmallButton("Add Debug Error")) { AddLog("[error] something went wrong"); }
+        ImGui::SameLine();
+        if (ImGui::SmallButton("Clear")) { ClearLog(); }
+        ImGui::SameLine();
+        bool copy_to_clipboard = ImGui::SmallButton("Copy");
+        //static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLog("Spam %f", t); }
+
+        ImGui::Separator();
+        // Options menu
+        if (ImGui::BeginPopup("Options"))
+        {
+            ImGui::Checkbox("Auto-scroll", &AutoScroll);
+            ImGui::EndPopup();
+        }
+
+        // Options, Filter
+        if (ImGui::Button("Options"))
+            ImGui::OpenPopup("Options");
+        ImGui::SameLine();
+        Filter.Draw("Filter (\"incl,-excl\") (\"error\")", 180);
+        ImGui::Separator();
+
+        // Reserve enough left-over height for 1 separator + 1 input text
+        const float footer_height_to_reserve = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
+        ImGui::BeginChild("ScrollingRegion", ImVec2(0, -footer_height_to_reserve), false, ImGuiWindowFlags_HorizontalScrollbar);
+        if (ImGui::BeginPopupContextWindow())
+        {
+            if (ImGui::Selectable("Clear")) ClearLog();
+            ImGui::EndPopup();
+        }
+
+        // Display every line as a separate entry so we can change their color or add custom widgets.
+        // If you only want raw text you can use ImGui::TextUnformatted(log.begin(), log.end());
+        // NB- if you have thousands of entries this approach may be too inefficient and may require user-side clipping
+        // to only process visible items. The clipper will automatically measure the height of your first item and then
+        // "seek" to display only items in the visible area.
+        // To use the clipper we can replace your standard loop:
+        //      for (int i = 0; i < Items.Size; i++)
+        //   With:
+        //      ImGuiListClipper clipper;
+        //      clipper.Begin(Items.Size);
+        //      while (clipper.Step())
+        //         for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++)
+        // - That your items are evenly spaced (same height)
+        // - That you have cheap random access to your elements (you can access them given their index,
+        //   without processing all the ones before)
+        // You cannot this code as-is if a filter is active because it breaks the 'cheap random-access' property.
+        // We would need random-access on the post-filtered list.
+        // A typical application wanting coarse clipping and filtering may want to pre-compute an array of indices
+        // or offsets of items that passed the filtering test, recomputing this array when user changes the filter,
+        // and appending newly elements as they are inserted. This is left as a task to the user until we can manage
+        // to improve this example code!
+        // If your items are of variable height:
+        // - Split them into same height items would be simpler and facilitate random-seeking into your list.
+        // - Consider using manual call to IsRectVisible() and skipping extraneous decoration from your items.
+        ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
+        if (copy_to_clipboard)
+            ImGui::LogToClipboard();
+        for (int i = 0; i < Items.Size; i++)
+        {
+            const char* item = Items[i];
+            if (!Filter.PassFilter(item))
+                continue;
+
+            // Normally you would store more information in your item than just a string.
+            // (e.g. make Items[] an array of structure, store color/type etc.)
+            ImVec4 color;
+            bool has_color = false;
+            if (strstr(item, "[error]")) { color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); has_color = true; }
+            else if (strncmp(item, "# ", 2) == 0) { color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f); has_color = true; }
+            if (has_color)
+                ImGui::PushStyleColor(ImGuiCol_Text, color);
+            ImGui::TextUnformatted(item);
+            if (has_color)
+                ImGui::PopStyleColor();
+        }
+        if (copy_to_clipboard)
+            ImGui::LogFinish();
+
+        if (ScrollToBottom || (AutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
+            ImGui::SetScrollHereY(1.0f);
+        ScrollToBottom = false;
+
+        ImGui::PopStyleVar();
+        ImGui::EndChild();
+        ImGui::Separator();
+
+        // Command-line
+        bool reclaim_focus = false;
+        ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory;
+        if (ImGui::InputText("Input", InputBuf, IM_ARRAYSIZE(InputBuf), input_text_flags, &TextEditCallbackStub, (void*)this))
+        {
+            char* s = InputBuf;
+            Strtrim(s);
+            if (s[0])
+                ExecCommand(s);
+            strcpy_s(s, 1, "");
+            reclaim_focus = true;
+        }
+
+        // Auto-focus on window apparition
+        ImGui::SetItemDefaultFocus();
+        if (reclaim_focus)
+            ImGui::SetKeyboardFocusHere(-1); // Auto focus previous widget
+
+        ImGui::EndChild();
+    }
+
+    void    ExecCommand(const char* command_line)
+    {
+        AddLog("# %s\n", command_line);
+
+        // Insert into history. First find match and delete it so it can be pushed to the back.
+        // This isn't trying to be smart or optimal.
+        HistoryPos = -1;
+        for (int i = History.Size - 1; i >= 0; i--)
+            if (Stricmp(History[i], command_line) == 0)
+            {
+                free(History[i]);
+                History.erase(History.begin() + i);
+                break;
+            }
+        History.push_back(Strdup(command_line));
+
+        // Process command
+        //TODO: Implement prey command execution and writeback
+        if (Stricmp(command_line, "CLEAR") == 0)
+        {
+            ClearLog();
+        }
+        else if (Stricmp(command_line, "HELP") == 0)
+        {
+            AddLog("Commands:");
+            for (int i = 0; i < Commands.Size; i++)
+                AddLog("- %s", Commands[i]);
+        }
+        else if (Stricmp(command_line, "HISTORY") == 0)
+        {
+            int first = History.Size - 10;
+            for (int i = first > 0 ? first : 0; i < History.Size; i++)
+                AddLog("%3d: %s\n", i, History[i]);
+        }
+        else
+        {
+            AddLog("Unknown command: '%s'\n", command_line);
+        }
+
+        // On command input, we scroll to bottom even if AutoScroll==false
+        ScrollToBottom = true;
+    }
+
+    // In C++11 you'd be better off using lambdas for this sort of forwarding callbacks
+    static int TextEditCallbackStub(ImGuiInputTextCallbackData* data)
+    {
+        ExampleAppConsole* console = (ExampleAppConsole*)data->UserData;
+        return console->TextEditCallback(data);
+    }
+
+    int     TextEditCallback(ImGuiInputTextCallbackData* data)
+    {
+        //AddLog("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);
+        switch (data->EventFlag)
+        {
+        case ImGuiInputTextFlags_CallbackCompletion:
+        {
+            // Example of TEXT COMPLETION
+
+            // Locate beginning of current word
+            const char* word_end = data->Buf + data->CursorPos;
+            const char* word_start = word_end;
+            while (word_start > data->Buf)
+            {
+                const char c = word_start[-1];
+                if (c == ' ' || c == '\t' || c == ',' || c == ';')
+                    break;
+                word_start--;
+            }
+
+            // Build a list of candidates
+            ImVector<const char*> candidates;
+            for (int i = 0; i < Commands.Size; i++)
+                if (Strnicmp(Commands[i], word_start, (int)(word_end - word_start)) == 0)
+                    candidates.push_back(Commands[i]);
+
+            if (candidates.Size == 0)
+            {
+                // No match
+                AddLog("No match for \"%.*s\"!\n", (int)(word_end - word_start), word_start);
+            }
+            else if (candidates.Size == 1)
+            {
+                // Single match. Delete the beginning of the word and replace it entirely so we've got nice casing.
+                data->DeleteChars((int)(word_start - data->Buf), (int)(word_end - word_start));
+                data->InsertChars(data->CursorPos, candidates[0]);
+                data->InsertChars(data->CursorPos, " ");
+            }
+            else
+            {
+                // Multiple matches. Complete as much as we can..
+                // So inputing "C"+Tab will complete to "CL" then display "CLEAR" and "CLASSIFY" as matches.
+                int match_len = (int)(word_end - word_start);
+                for (;;)
+                {
+                    int c = 0;
+                    bool all_candidates_matches = true;
+                    for (int i = 0; i < candidates.Size && all_candidates_matches; i++)
+                        if (i == 0)
+                            c = toupper(candidates[i][match_len]);
+                        else if (c == 0 || c != toupper(candidates[i][match_len]))
+                            all_candidates_matches = false;
+                    if (!all_candidates_matches)
+                        break;
+                    match_len++;
+                }
+
+                if (match_len > 0)
+                {
+                    data->DeleteChars((int)(word_start - data->Buf), (int)(word_end - word_start));
+                    data->InsertChars(data->CursorPos, candidates[0], candidates[0] + match_len);
+                }
+
+                // List matches
+                AddLog("Possible matches:\n");
+                for (int i = 0; i < candidates.Size; i++)
+                    AddLog("- %s\n", candidates[i]);
+            }
+
+            break;
+        }
+        case ImGuiInputTextFlags_CallbackHistory:
+        {
+            // Example of HISTORY
+            const int prev_history_pos = HistoryPos;
+            if (data->EventKey == ImGuiKey_UpArrow)
+            {
+                if (HistoryPos == -1)
+                    HistoryPos = History.Size - 1;
+                else if (HistoryPos > 0)
+                    HistoryPos--;
+            }
+            else if (data->EventKey == ImGuiKey_DownArrow)
+            {
+                if (HistoryPos != -1)
+                    if (++HistoryPos >= History.Size)
+                        HistoryPos = -1;
+            }
+
+            // A better implementation would preserve the data on the current input line along with cursor position.
+            if (prev_history_pos != HistoryPos)
+            {
+                const char* history_str = (HistoryPos >= 0) ? History[HistoryPos] : "";
+                data->DeleteChars(0, data->BufTextLen);
+                data->InsertChars(0, history_str);
+            }
+        }
+        }
+        return 0;
+    }
+};
+static void HelpMarker(const char* desc)
+{
+    ImGui::TextDisabled("(?)");
+    if (ImGui::IsItemHovered())
+    {
+        ImGui::BeginTooltip();
+        ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+        ImGui::TextUnformatted(desc);
+        ImGui::PopTextWrapPos();
+        ImGui::EndTooltip();
+    }
+}
+#define GET_VARIABLE_NAME(Variable) (#Variable)
+// gui variables
+//
+struct archetypeFilterRequest {
+    std::string text;
+};
+// archetype filter
+static std::string archetypeFilterText, oldArchetypeFilterText;
+std::queue<archetypeFilterRequest> archetypeFilterRequestQueue;
+std::vector<CEntityArchetype*> archetypeFilteredList;
+
+static CEntityArchetype* archetypeToSpawn;
+struct spawnRequest {
+    CEntityArchetype* archetype;
+    std::string name;
+    Vec3_tpl<float> pos;
+    Vec4_tpl<float> rot = { 0,0,0,1 };
+    int spawnCount;
+    bool usePlayerPos, offsetFromPlayer;
+};
+std::queue<spawnRequest> archetypeSpawnRequestQueue;
+
+void drawGUI(bool* bShow) {
+    if (*bShow) {
+        ImGui::Begin("Chairloader");                          // Create a window called "Hello, world!" and append into it.
+        if (ImGui::BeginMenuBar()) {
+            if(ImGui::BeginMenu("Menu")) {
+	            if(ImGui::MenuItem("Hide")) {
+                    g_ShowMenu = false;
+	            }
+                ImGui::EndMenu();
+            }
+            ImGui::EndMenuBar();
+        }
+                // ImGui::Text(usefulText.c_str());               // Display some text (you can use a format strings too)
+                // ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+                // ImGui::Checkbox("Another Window", &show_another_window);
+                //
+                // ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+                // ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+                //
+                // if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+                //     counter++;
+                // if (counter & 1) {
+                //     usefulText = "woo you pressed a button";
+                // }
+                // //else {
+                //     //usefulText = "dafuq where'd you go";
+                // //}
+                // ImGui::SameLine();
+                // ImGui::Text("counter = %d", counter);
+        ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_Reorderable;
+        if (ImGui::BeginTabBar("Chairloader Menu", tab_bar_flags)) {
+            if (ImGui::BeginTabItem("Entities")) {
+                const float TEXT_BASE_WIDTH = 7.0f;
+                const float TEXT_BASE_HEIGHT = 17.0f;
+                // Helper class to easy setup a text filter.
+                // You may want to implement a more feature-full filtering scheme in your own application.
+                static bool usePlayerPos, offsetFromPlayer;
+                static std::string inputId, inputName;
+                static std::string statusMessage;
+                static float spawnX, spawnY, spawnZ;
+                static ImVec4 color{ 1,1,1,1 };
+                static time_t statusTimer;
+                static int spawnCount{1};
+                ImGui::TextColored(color, statusMessage.c_str());
+                if (archetypeToSpawn == nullptr) {
+                    ImGui::Text("Entity Archetype Name: ");
+                    ImGui::Text("Entity ID: ");
+                    
+                } else {
+                    ImGui::Text("Entity Archetype Name: %s", archetypeToSpawn->m_name.m_str);
+                    ImGui::Text("Entity ID: %d", archetypeToSpawn->m_id);
+                }
+                ImGui::InputText("Entity Name", &inputName, ImGuiInputTextFlags_None);
+                ImGui::InputInt("Spawn Count", &spawnCount);
+                ImGui::Checkbox("Use Player Pos", &usePlayerPos);
+                if (usePlayerPos) {
+                    ImGui::Checkbox("Offset In front of Player", &offsetFromPlayer);
+                }
+                else {
+                    ImGui::InputFloat("X", &spawnX);
+                    ImGui::InputFloat("Y", &spawnY);
+                    ImGui::InputFloat("Z", &spawnZ);
+                }
+
+                if (ImGui::Button("Spawn Entity")) {
+                    //TODO: make it spawn an entity when the button is pushed
+                    try {
+                        if (archetypeToSpawn != nullptr) {
+                            if (inputName != "") {
+                                spawnRequest request;
+                                request.archetype = archetypeToSpawn;
+                                request.usePlayerPos = usePlayerPos;
+                                request.offsetFromPlayer = offsetFromPlayer;
+                                request.name = inputName;
+                                if (spawnCount >= 1) {
+                                    request.spawnCount = spawnCount;
+                                } else {
+                                	if (spawnCount > 999) {
+                                        throw("Error, invalid spawn count (spawn count too high)");
+	                                }
+
+                                    throw("Error, invalid spawn count");
+                                }
+                                request.pos.x = spawnX;
+                                request.pos.y = spawnY;
+                                request.pos.z = spawnZ;
+                                archetypeSpawnRequestQueue.push(request);
+                                // done
+                                color = { 1,1,1,1 };
+                                statusMessage = "spawned an entity: " + inputName;
+                                time(&statusTimer);
+                            } else {
+                                throw ("Error, invalid entity name");
+                            }
+                        } else {
+                            throw("Error, no archetype selected");
+                        }
+                    } catch(const char* c) {
+                        color = { 1,0,0,1 };
+                        statusMessage = c;
+                        time(&statusTimer);
+                    }
+                }
+                ImGui::Text("Filter:");
+                ImGui::InputText("", &archetypeFilterText);
+                if (archetypeFilterText != oldArchetypeFilterText) {
+                    oldArchetypeFilterText = archetypeFilterText;
+                    archetypeFilterRequestQueue.push(archetypeFilterRequest{archetypeFilterText});
+                    printf("requested: %s\n", archetypeFilterText.c_str());
+                }
+                // filter.Draw(" ");
+                ImGui::SameLine();
+                HelpMarker("Filter usage:\n"
+                    "  \"\"         display all lines\n"
+                    "  \"xxx\"      display lines containing \"xxx\"\n"
+                    "  \"xxx,yyy\"  display lines containing \"xxx\" or \"yyy\"\n"
+                    "  \"-xxx\"     hide lines containing \"xxx\"");
+                //TODO: Replace this with actual archetype list, potentially with custom struct for easy sorting
+                // struct entityData {
+                //     std::string name;
+                //     int id;
+                //     std::string library;
+                // };
+                
+                // static entityData entries[] = {
+                //     {"Marco Simmons", 69, "ArkHumans"},
+                //     {"Igwe", 1, "ArkHumans"},
+                //     {"Operator", 2, "ArkRobots"},
+                //     {"Reployer", 3, "ArkPhysicsObjects"},
+                //     {"Cazavor", 420, "ArkPickups"},
+                //     {"Nighmtare", 5, "ArkNpcs"},
+                //     {"Phantom", 6, "ArkNpcs"},
+                //     {"Cystoid Nest", 7, "ArkNpcs"},
+                //     {"Mikhaila", 8, "ArkHumans"},
+                //     {"Alex Yu", 9, "ArkHumans"}
+                // };
+                static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Hideable;
+                ImVec2 outer_size = ImVec2(0.0f, TEXT_BASE_HEIGHT * 16.0f);
+                if (ImGui::BeginTable("3ways", 3, flags, outer_size)) {
+
+                    ImGui::TableSetupScrollFreeze(0, 1);
+                    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_None);
+                    // if (ImGui::IsItemHovered())
+                    //     ImGui::SetTooltip("Click to view archetype information");
+                    ImGui::TableSetupColumn("ID", ImGuiTableColumnFlags_None);
+                    // if (ImGui::IsItemHovered())
+                    //     ImGui::SetTooltip("Click to select archetype");
+                    ImGui::TableSetupColumn("Library", ImGuiTableColumnFlags_None);
+                    ImGui::TableHeadersRow();
+                    //TODO: probably implement clipper
+                    // if filter changes
+                    // filter through all archetypes
+                    // if filter is empty or smaller than x characters do not update
+                    
+
+
+
+                    // ImGuiListClipper clipper;
+                    // clipper.Begin(200);
+                    // while (clipper.Step()) {
+                        auto itr = archetypeFilteredList.begin();
+	                    for(int clip = 0; clip < 200 && itr != archetypeFilteredList.end(); clip++, ++itr) {
+                            static bool nameClicked, idClicked;
+                            CEntityArchetype* archetype = *itr;
+                            ImGui::TableNextRow();
+                            //TODO: Context popup for archetype info?
+                            //TODO: Pull information out of archetypes
+                            ImGui::TableSetColumnIndex(0);
+                            
+                            nameClicked = ImGui::Selectable(archetype->m_name.m_str);
+                            // printf("Name Printed\n");
+                            if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
+                            {
+                                ImGui::Text("Display information about the archetype here");
+                                if (ImGui::Button("Choose"))
+                                    // inputId = std::to_string(archetype->m_id);
+                                    archetypeToSpawn = archetype;
+                                if (ImGui::Button("Close"))
+                                    ImGui::CloseCurrentPopup();
+                                ImGui::EndPopup();
+                            }
+
+                            ImGui::TableSetColumnIndex(1);
+                            if(ImGui::Selectable(std::to_string(archetype->m_id).c_str())) {
+                                // inputId = std::to_string(archetype->m_id);
+                                archetypeToSpawn = archetype;
+                            }
+                            // printf("id Printed\n");
+                            ImGui::TableSetColumnIndex(2);
+                            ImGui::Text("Thing");
+	                    }
+                    // }
+                    if (time(NULL) > statusTimer + 3)
+                        statusMessage = "";
+                    // }
+                    ImGui::EndTable();
+                    ImGui::EndTabItem();
+                }
+            }
+            if (ImGui::BeginTabItem("Console")) {
+                // ImGui::Text("This is the Broccoli tab!\nblah blah blah blah blah");
+                static bool consoleOpen, devMode;
+                static ExampleAppConsole console;
+                ImGui::Checkbox("Show Console", &consoleOpen);
+                if (consoleOpen)
+                    console.Draw("Console", &consoleOpen);
+                else
+                    ImGui::Checkbox("Dev Mode", &devMode);
+                if(ImGui::Button("Free Cam"))
+					freeCam = !freeCam;
+                ImGui::EndTabItem();
+            }
+            if (ImGui::BeginTabItem("Inventories")) {
+                
+                ImGui::EndTabItem();
+            }
+            if (ImGui::BeginTabItem("Abilities")) {
+                std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+                if (!abilities->empty()) {
+                    ImGui::Text("Size: %d\n", abilities->size());
+                    int clip = 0;
+                    for (auto itr = abilities->begin(); itr != abilities->end() && clip <= 1000; ++itr, clip++) {
+                        if (itr->m_id != 0) {
+                            static ArkAbilityLibrary library;
+                            auto entry = library.arkAbilityMap.find(itr->m_id);
+                            if(entry != library.arkAbilityMap.end()) {
+                                ImGui::Text(entry->second.c_str());
+                            } else {
+                                ImGui::Text(std::to_string(itr->m_id).c_str());
+                            }
+                            
+                        }
+                    }
+                }
+                ImGui::EndTabItem();
+            }
+            ImGui::EndTabBar();
+            
+        }
+        // ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::End();
+    }
+};
+static bool wentOutOfFocus;
+
+void archetypeSpawnRequestHandler() {
+    if (!archetypeSpawnRequestQueue.empty() && !chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
+        try {
+            spawnRequest request = archetypeSpawnRequestQueue.front();
+            archetypeSpawnRequestQueue.pop();
+            if (request.usePlayerPos) {
+                Vec3_tpl<float> playerPos;
+                ArkPlayer* player = chairloader->internalPreyFunctions->ArkPlayerF->getInstance();
+                chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(player, &playerPos);
+                if (player != nullptr) {
+                    // player->GetLocalEyePos(&playerPos);
+                    // printf("Player Position x: %f y: %f z:%f\n", playerPos.x, playerPos.y, playerPos.z);
+                    if (playerPos.x != 0 && playerPos.y != 0 && playerPos.z != 0) {
+                        if (request.offsetFromPlayer) {
+                            playerPos.x += chairloader->ArkPlayerPtr->m_cachedReticleDir.x * 5;
+                            playerPos.y += chairloader->ArkPlayerPtr->m_cachedReticleDir.y * 5;
+                        }
+                        request.pos = playerPos;
+                    }
+                    else {
+                        throw ("Error, null player position");
+                    }
+                }
+                else {
+                    throw("Error, null player pointer");
+                }
+            }
+            if (request.spawnCount == 1) {
+                IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                if (spawnerEntity != nullptr) {
+                    char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
+                    if (oldArchetypeName != nullptr) {
+                        CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                        IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                        printf("spawned an entity\n");
+                        if (newEntity != nullptr) {
+                            newEntity->SetPos(&request.pos, 0, true, false);
+                            // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
+                        } else {
+                            throw("Error, null entity spawned");
+                        }
+                        chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                    }
+                	else {
+                        throw("Error, Old archetype Was null (single spawn)");
+                    }
+                }
+            	else {
+                    throw("Error, spawner Entity Was null (single spawn)");
+                }
+            }
+            else {
+                IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                if (spawnerEntity != nullptr) {
+                    char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
+                    if (oldArchetypeName != nullptr) {
+                        CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                        for (int i = 0; i < request.spawnCount; i++) {
+                            IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                            if (newEntity != nullptr) {
+                                newEntity->SetPos(&request.pos, 0, true, false);
+                                // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
+                            }
+                            else {
+                                throw("Error, null entity spawned");
+                            }
+                        }
+                        chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                    }
+                    else {
+                        throw("Error, Old archetype Was null (single spawn)");
+                    } 
+                }
+                else {
+                    throw("Error, spawner Entity Was null (single spawn)");
+                }
+            }
+        } catch (const char* c) {
+            printf("%s\n", c);
+        }
+    }
+}
+
+void archetypeFilterRequestHandler() {
+    if (!archetypeFilterRequestQueue.empty()) {
+        archetypeFilterRequest request = archetypeFilterRequestQueue.front();
+        std::string filterText = request.text;
+
+        // static ImGuiTextFilter filter;
+        std::map<const char*, CEntityArchetype*>* archetypeList = &chairloader->CEntitySystemPtr->m_pEntityArchetypeManager->m_nameToArchetypeMap;
+        auto itr = archetypeList->begin();
+        archetypeFilteredList.clear();
+        // if (filterText.size() < strlen(filter.InputBuf)) {
+        // strcpy_s(filter.InputBuf, filterText.size(), filterText.c_str());
+        // }
+        for (int i = 0; i < 400 && itr != archetypeList->end(); ++itr) {
+            std::string archetypeName = itr->first;
+            // size_t last_period = archetypeName.find_last_of('.');
+            // archetypeName = archetypeName.substr(last_period, archetypeName.size());
+            std::transform(archetypeName.begin(), archetypeName.end(), archetypeName.begin(), ::tolower);
+            std::transform(filterText.begin(), filterText.end(), filterText.begin(), ::tolower);
+            if (archetypeName.find(filterText) != std::string::npos || filterText.empty()) {
+                archetypeFilteredList.emplace_back(itr->second);
+                i++;
+
+            }
+        }
+        archetypeFilterRequestQueue.pop();
+        printf("processed: %s\n", filterText.c_str());
+    }
+}
+
+
+
+
+DWORD WINAPI GUIThread(HMODULE hModule) {
+    AllocConsole();
+    FILE* f;
+    freopen_s(&f, "CONOUT$", "w", stdout);
+    GetPresent();
+    // begin gui hooking
+    if (!g_PresentHooked) {
+        retrieveValues();
+    }
+    // detour time
+    detourDirectXPresent();
+    while (!g_bInitialised) {
+        Sleep(1000);
+    }
+    while(true) {
+        if (GetAsyncKeyState(VK_END) & 1) {
+            break;
+        }
+        if (GetAsyncKeyState(VK_INSERT) & 1) {
+            g_ShowMenu = !g_ShowMenu;
+        }
+       
+        if(GetForegroundWindow() != window) {
+            g_ShowMenu = false;
+            // wentOutOfFocus = true;
+            // printf("went out of focus\n");
+        }
+        if (!chairloader->preyEnvironmentPointers->pGame->m_pFramework->IsInLevelLoad() || !chairloader->preyEnvironmentPointers->pGame->m_pFramework->IsLoadingSaveGame()) {
+            archetypeFilterRequestHandler();
+            archetypeSpawnRequestHandler();
+        }
+    	// if(GetForegroundWindow() == window && wentOutOfFocus) {
+     //        g_ShowMenu = true;
+     //        wentOutOfFocus = false;
+     //        printf("back in baby\n");
+     //    }
+    }
+    FreeLibraryAndExitThread(hModule, 0);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -868,7 +1122,9 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 {
     switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH: {
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
+        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ChairloaderThread, hModule, 0, nullptr));
+        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)GUIThread, hModule, 0, nullptr));
+        // CloseHandle(CreateThread(nullptr, 0 (LPTHREAD_START_ROUTINE), hModule, 0, nullptr));
     }
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:

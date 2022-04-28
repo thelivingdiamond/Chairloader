@@ -140,10 +140,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;PREYTESTTRAINER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>Default</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)boost_1_77_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)boost_1_77_0;$(SolutionDir)detours;$(SolutionDir)imgui-1.87;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,16 +151,21 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(SolutionDir)detours\detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_dx11.h" />
+    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_win32.h" />
+    <ClInclude Include="..\imgui-1.87\imgui.h" />
+    <ClInclude Include="..\imgui-1.87\misc\cpp\imgui_stdlib.h" />
+    <ClInclude Include="ArkAbilityLibrary.h" />
     <ClInclude Include="ArkBasicTypes.h" />
     <ClInclude Include="ArkEntityArchetypeLibrary.h" />
     <ClInclude Include="ArkEntityClassLibrary.h" />
     <ClInclude Include="ChairloaderUtils.h" />
-    <ClInclude Include="EArk.h" />
+    <ClInclude Include="ArkEnums.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="preyFunctions.h" />
@@ -170,6 +175,14 @@
     <ClInclude Include="pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\imgui-1.87\imgui.cpp" />
+    <ClCompile Include="..\imgui-1.87\imgui_demo.cpp" />
+    <ClCompile Include="..\imgui-1.87\imgui_draw.cpp" />
+    <ClCompile Include="..\imgui-1.87\imgui_tables.cpp" />
+    <ClCompile Include="..\imgui-1.87\imgui_widgets.cpp" />
+    <ClCompile Include="..\imgui-1.87\misc\cpp\imgui_stdlib.cpp" />
     <ClCompile Include="ChairloaderUtils.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="mem.cpp" />
@@ -185,6 +198,7 @@
     <ClCompile Include="pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="codeArchive.txt" />
     <Text Include="EntityArchetypesList.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

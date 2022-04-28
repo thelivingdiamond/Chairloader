@@ -19,4 +19,9 @@ boost_1_77_0/Jamroot
 boost_1_77_0/LICENSE_1_0.txt
 boost_1_77_0/README.md
 boost_1_77_0/rst.css
+boost_1_77_0/bin.v2
+boost_1_77_0/stage
+.vs/
+.vs\ChairLoader\v16\Browse.VC.db
 PreyTestTrainer\PreyDll.dll.gzf
+PreyTestTrainer/PreyDll.dll.gzf

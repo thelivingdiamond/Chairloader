@@ -27,4 +27,17 @@
 #include <boost/variant.hpp>
 #include <deque>
 #include "pugixml.hpp"
+#include <detours.h>
+#include <imgui.h>
+#include <imgui_impl_win32.h>
+#include <imgui_impl_dx11.h>
+#include <misc/cpp/imgui_stdlib.h>
+
+#include <d3d11.h>
+#include <D3Dcompiler.h>
+#pragma comment(lib, "D3dcompiler.lib")
+#pragma comment(lib, "d3d11.lib")
+#pragma comment(lib, "winmm.lib")
+
+
 #endif //PCH_H

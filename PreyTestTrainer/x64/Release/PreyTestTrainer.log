@@ -1,11 +1,12 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (PreyTestTrainer.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   dllmain.cpp
-C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(97,33): warning C4101: 'arr': unreferenced local variable
-C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(106,34): warning C4101: 'test': unreferenced local variable
-C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(670,29): warning C4101: 'pos': unreferenced local variable
+  The contents of <optional> are available only with C++17 or later.
+  The contents of <variant> are available only with C++17 or later.
+C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(59,37): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(60,37): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
   Generating code
-  0 of 812 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 3117 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    73 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PreyTestTrainer.vcxproj -> C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\x64\Release\ChairLoader.dll

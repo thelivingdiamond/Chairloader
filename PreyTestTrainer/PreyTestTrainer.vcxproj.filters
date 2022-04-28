@@ -13,78 +13,127 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Imgui">
+      <UniqueIdentifier>{b6742d2c-deaa-4dfa-be54-e516a1d6c39e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chairloader">
+      <UniqueIdentifier>{a2d95cdf-123a-4241-be9e-e51ecde3c772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey">
+      <UniqueIdentifier>{fcc57aea-6c99-420f-b126-e240bedc8041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pugixml">
+      <UniqueIdentifier>{c4bfa91b-57fd-44a7-af50-3bcf92ed6786}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\imgui-1.87\imgui.h">
+      <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="mem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_dx11.h">
+      <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="proc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="preyDllObjects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkBasicTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EArk.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_win32.h">
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="preyFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkEntityArchetypeLibrary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkEntityClassLibrary.h">
-      <Filter>Header Files</Filter>
+      <Filter>Prey</Filter>
     </ClInclude>
     <ClInclude Include="ChairloaderUtils.h">
-      <Filter>Header Files</Filter>
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="preyDllObjects.h">
+      <Filter>Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkBasicTypes.h">
+      <Filter>Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkEntityClassLibrary.h">
+      <Filter>Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkEntityArchetypeLibrary.h">
+      <Filter>Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkEnums.h">
+      <Filter>Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mem.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="proc.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="pugiconfig.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>pugixml</Filter>
     </ClInclude>
     <ClInclude Include="pugixml.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui-1.87\misc\cpp\imgui_stdlib.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkAbilityLibrary.h">
+      <Filter>Prey</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\imgui-1.87\imgui.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\imgui_demo.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\imgui_draw.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_dx11.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_win32.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\imgui_tables.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\imgui_widgets.cpp">
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="preyFunctions.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="PreyDllObjects.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Prey</Filter>
+    </ClCompile>
+    <ClCompile Include="preyFunctions.cpp">
+      <Filter>Prey</Filter>
     </ClCompile>
     <ClCompile Include="ChairloaderUtils.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="mem.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="proc.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="pugixml.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui-1.87\misc\cpp\imgui_stdlib.cpp">
+      <Filter>Imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />
+    <Text Include="codeArchive.txt" />
   </ItemGroup>
 </Project>

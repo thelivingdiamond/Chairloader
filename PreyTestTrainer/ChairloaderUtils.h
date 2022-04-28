@@ -1,9 +1,12 @@
 #pragma once
+#include "ArkEntityArchetypeLibrary.h"
+#include "ArkEntityClassLibrary.h"
 #include "pch.h"
 
 #include "preyDllObjects.h"
 #include "preyFunctions.h"
-namespace ChairloaderUtils {
+class ChairloaderUtils {
+public:
 	enum class EntityType {
 		human = 0,
 		mimic = 1,
@@ -22,14 +25,13 @@ namespace ChairloaderUtils {
 	class NpcUtils {
 	public:
 		NpcUtils();
-		
-	};
 
-	class NpcSpawnerManager {
+	};
+	class NpcSpawnHelper {
 	public:
-		NpcSpawnerManager(preyFunctions*,staticObjectPointers*);
+		NpcSpawnHelper(preyFunctions*, gameEnvironmentPointers*);
 		preyFunctions* privateFuncs;
-		staticObjectPointers* staticObjects;
+		gameEnvironmentPointers* staticObjects;
 		std::unordered_map<uint64_t, CArkNpcSpawner*> managedSpawners; // maybe?
 		char* setEntityArchetype(uint64_t archetypeId, IEntity* npcSpawner);
 		char* setEntityArchetype(char* archetypeName, IEntity* npcSpawner);
@@ -39,14 +41,34 @@ namespace ChairloaderUtils {
 		char* getLastUniqueName();
 		IEntity* getVictimSpawnerEntity(EntityType type);
 		IEntity* spawnNpc(CArkNpcSpawner* spawner, char* name);
-		std::vector<IEntity*> spawnNpc(CArkNpcSpawner* spawner, char* name,uint32_t spawnCount);
+		std::vector<IEntity*> spawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount);
 		IEntity* spawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type);
-		std::vector<IEntity*> spawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type,Vec3_tpl<float> * pos, uint32_t spawnCount);
+		std::vector<IEntity*> spawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type, Vec3_tpl<float>* pos, uint32_t spawnCount);
 		IEntity* spawnNpcFromArchetype(uint64_t archetypeId, EntityType type);
 		std::vector < IEntity*> spawnNpcFromArchetype(uint64_t archetypeId, EntityType type, uint32_t spawnCount);
+
+		
+
+
 	private:
 		std::string lastUniqueName;
 		std::string nextUniqueName;
 		int generatedCount;
 	};
-}
+public:
+	ChairloaderUtils(uintptr_t moduleBase);
+	// internal objects
+	preyFunctions* internalPreyFunctions;
+	gameEnvironmentPointers* preyEnvironmentPointers;
+	NpcSpawnHelper* spawnerHelper;
+	
+	// convenient pointers
+	CEntitySystem* CEntitySystemPtr;
+	CGame* CGamePtr;
+	ArkPlayer* ArkPlayerPtr;
+	// static NpcSpawnHelper* spawnerManager;
+
+	ArchetypeLibrary entityArchetypeLibrary;
+	ClassLibrary entityClassLibrary;
+	
+};

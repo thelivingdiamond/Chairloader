@@ -7,7 +7,6 @@ public:
 class preyFunctions : preyFunctionBase{
 public:
 	preyFunctions(uintptr_t moduleBase);
-
 	class ArkPlayerPrivate : preyFunctionBase {
 	public:
 		ArkPlayerPrivate(uintptr_t moduleBase);
@@ -642,7 +641,11 @@ public:
 		typedef void(__thiscall* _SetAlternateName)(ArkLocationManager* _this, uint64_t param_1, char* param_2, char* param_3);	_SetAlternateName					SetAlternateName;
 		typedef void(__thiscall* _SetLoaded)(ArkLocationManager* _this, uint64_t param_1, bool param_2);						_SetLoaded							SetLoaded;
 	};
-
+	class ArkAbilitiesPrivate : preyFunctionBase {
+	public:
+		ArkAbilitiesPrivate(uintptr_t moduleBase);
+		// typedef ArkAbilities*
+	};
 
 	typedef unsigned long(__cdecl *_CryGetCurrentThreadID)(); _CryGetCurrentThreadID CryGretCurrentThreadId;//0099910
 	typedef Vec2_tpl<float>(__thiscall* _BeginDraw)(CWindowsConsole*); _BeginDraw beginDraw;//0de9710

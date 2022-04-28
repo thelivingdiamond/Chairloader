@@ -5,10 +5,11 @@
 #include <unordered_set>
 
 #include "ArkBasicTypes.h"
-#include "EArk.h"
+#include "ArkEnums.h"
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
+class ArkResearchTopicData;
 class IActionListener;
 class INetChannel;
 class CEntity;
@@ -72,11 +73,9 @@ public:
 	char pad[2];
 };
 class CEntitySystem;
-class staticObjectPointers {
-public:
+class gameEnvironmentPointers {
 	// typedef CGame* _g_pGame;
 	 // _g_pGame g_pGame;
-	class _gEnv {
 	public:
 		void* pDialogSystem			;
 		void * p3DEngine			;
@@ -152,11 +151,7 @@ public:
 			bClient,
 			m_isFMVPlaying,
 			m_isCutscenePlaying;
-
-	};
-	 _gEnv * gEnvPtr;
-	 _gEnv gEnv;
-	staticObjectPointers(uintptr_t moduleBase);
+	// gameEnvironmentPointers(uintptr_t moduleBase);
 
 };
 
@@ -714,10 +709,116 @@ namespace ArkNpc {
 		float m_jumpRequestedTime; //0x0618
 		char pad_061C[4]; //0x061C
 	}; //Size: 0x0620
-
+	class CArkPsiComponent{ };
+	class ArkAbilityData {
+	public:
+		std::vector<ArkAbilityData*> m_prereqs;
+		std::vector<ArkAbilityData*> m_children;
+		std::vector<ArkResearchTopicData*> m_researchTopicData;
+		uint64_t m_id;
+		bool m_bSeen, m_bAcquired;
+		char pad[6];
+	};
+	class ArkResearchTopicData {
+		
+	};
+	class ArkAbilities {
+		
+	};
+	class ArkAbilityComponent {
+	public:
+		void* ptr;
+		std::vector<ArkAbilityData> m_abilities;
+		std::vector<ArkResearchTopicData> m_researchTopics;
+		uint64_t m_lastResearchedAbility;
+		int32_t m_partialTyphonThreshold,
+				m_fullTyphonThreshold;
+			
+	};
+	class ArkAudioLogComponent{ };
+	class ArkNoteComponent{ };
+	class ArkKeyCodeComponent{ };
+	class ArkLocationComponent{ };
+	class ArkLoreComponent{ };
+	class ArkKeyCardComponent{ };
+	class ArkEmailComponent{ };
+	class ArkQuickSelectComponent{ };
+	class ArkRosterComponent{ };
+	class ArkUtilityComponent{ };
+	class ArkPharmaComponent{ };
+	class ArkPDAComponent{ };
+	class ArkPlayerAchievementComponent{ };
+	class ArkPlayerAwarenessComponent{ };
+	class ArkPlayerEntitlementComponent{ };
+	class ArkPlayerFatigueComponent{ };
+	class ArkPlayerHealthComponent{ };
+	class ArkPlayerRadiationComponent{ };
+	class ArkPlayerLightManager{ };
+	class ArkPlayerFXComponent{ };
+	class ArkPlayerUIComponent{ };
+	class ArkFabricationPlanComponent{ };
+	class ArkPlayerStatusComponent{ };
+	class ArkPlayerPropulsionComponent{ };
+	class ArkPlayerSignalReceiver{ };
+	class ArkAimAssistComponent{ };
+	class ArkMarkedEnemyComponent{ };
+	class ArkPlayerScopeComponent{ };
+	template<typename t> class  ArkSpeaker{ };
+	class ArkGameMetricsComponent{ };
+	class ArkFocusModeComponent{ };
+	class ArkLiveTranscribeComponent{ };
+	class ArkStationAccessComponent{ };
+	class ArkPOIComponent{};
+	class ArkDialogPlayer{};
+	class ArkDialogPlayerTranscribe{};
 	class ArkPlayerComponent
 	{
 	public:
+		std::unique_ptr<CArkPsiComponent> m_pPsiComponent;
+		std::unique_ptr<ArkAbilityComponent> m_pAbilityComponent;
+		std::unique_ptr<ArkAudioLogComponent> m_pAudioLogComponent;
+		std::unique_ptr<ArkNoteComponent> m_pNoteComponent;
+		std::unique_ptr<ArkKeyCodeComponent> m_pKeyCodeComponent;
+		std::unique_ptr<ArkLocationComponent> m_pLocationComponent;
+		std::unique_ptr<ArkLoreComponent> m_pLoreComponent;
+		std::unique_ptr<ArkKeyCardComponent> m_pKeyCardComponent;
+		std::unique_ptr<ArkEmailComponent> m_pEmailComponent;
+		std::unique_ptr<ArkQuickSelectComponent> m_pQuickSelectComponent;
+		std::unique_ptr<ArkRosterComponent> m_pRosterComponent;
+		std::unique_ptr<ArkUtilityComponent> m_pUtilityComponent;
+		std::unique_ptr<ArkPharmaComponent> m_pPharmaComponent;
+		std::unique_ptr<ArkPDAComponent> m_pPDAComponent;
+		std::unique_ptr<ArkPlayerAchievementComponent> m_pAchievementComponent;
+		std::unique_ptr<ArkPlayerAwarenessComponent> m_pAwarenessComponent;
+		std::unique_ptr<ArkPlayerEntitlementComponent> m_pEntitlementComponent;
+		std::unique_ptr<ArkPlayerFatigueComponent> m_pFatigueComponent;
+		std::unique_ptr<ArkPlayerHealthComponent> m_pHealthComponent;
+		std::unique_ptr<ArkPlayerRadiationComponent> m_pRadiationComponent;
+		std::unique_ptr<ArkPlayerLightManager> m_pLightManager;
+		std::unique_ptr<ArkPlayerFXComponent> m_pFXComponent;
+		std::unique_ptr<ArkPlayerUIComponent> m_pUIComponent;
+		std::unique_ptr<ArkFabricationPlanComponent> m_pFabricationPlanComponent;
+		std::unique_ptr<ArkPlayerStatusComponent> m_pStatusComponent;
+		std::unique_ptr<ArkPlayerPropulsionComponent> m_pPropulsionComponent;
+		std::unique_ptr<ArkPlayerSignalReceiver> m_pSignalReceiver;
+		std::unique_ptr<ArkAimAssistComponent> m_pAimAssistComponent;
+		std::unique_ptr<ArkMarkedEnemyComponent> m_pMarkedEnemyComponent;
+		std::unique_ptr<ArkPlayerScopeComponent> m_pScopeComponent;
+		std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pPlayerSpeaker;
+		std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pSuitSpeaker;
+		std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pDiscRifleSpeaker;
+		std::unique_ptr<ArkSpeaker<ArkDialogPlayerTranscribe>> m_pTranscribeSpeaker;
+		std::unique_ptr<ArkGameMetricsComponent> m_pGameMetricsComponent;
+		std::unique_ptr<ArkFocusModeComponent> m_pFocusModeComponent;
+		std::unique_ptr<ArkLiveTranscribeComponent> m_pLiveTranscribeComponent;
+		std::unique_ptr<ArkStationAccessComponent> m_pStationAccessComponent;
+		std::unique_ptr<ArkPOIComponent> m_pPOIComponent;
+		float m_fShadowDissolveBlend;
+		float m_fShadowDissolveTarget;
+		float m_fShadowDissolveTimeScale;
+		bool m_bItemsRestricted;
+		bool m_bMarkerTextDisplayed;
+		/*
 		void* m_pPsiComponent; //0x0000
 		void* m_pAbilityComponent; //0x0008
 		void* m_pAudioLogComponent; //0x0010
@@ -763,6 +864,7 @@ namespace ArkNpc {
 		int8_t m_bItemsRestricted; //0x0144
 		int8_t m_bMarkerTextDisplayed; //0x0145
 		char pad_0146[2]; //0x0146
+		*/
 	}; //Size: 0x0148
 
 		class ArkStatModifier {
@@ -2744,8 +2846,8 @@ namespace ArkNpc {
 		std::vector<unsigned __int64> m_learnedNames; //0x15C8
 		std::vector<unsigned __int64> m_criticalHitMetaTags; //0x15E0
 		std::vector<CryStringT<char>> m_animationTagsSetFromFG; //0x15F8
-		class StanceInfo m_stanceInfos[18]; //0x1610
-		class CryStringT<char> m_modelName; //0x17C0
+		StanceInfo m_stanceInfos[18]; //0x1610
+		CryStringT<char> m_modelName; //0x17C0
 		Vec3 m_serializedVelocity; //0x17C8
 		Vec3 m_cachedReticlePos; //0x17D4
 		Vec3 m_cachedReticleDir; //0x17E0
@@ -4424,7 +4526,7 @@ namespace ArkNpc {
 		class IEntityIt{};
 		class SEntityProximityQuery{};
 		class IPhysicalEntity{};
-		class ArkAimAssistComponent{};
+		//class ArkAimAssistComponent{};
 		class EEntityEvent{};
 		class IAreaManager{};
 		class IEntityPoolManager{};
@@ -6566,7 +6668,7 @@ namespace ArkNpc {
 		class IKeyBindDumpSink{};
 		class EGoalOpResult{};
 		class CPipeUser{};
-		class ArkAudioLogComponent{};
+		//class ArkAudioLogComponent{};
 		class IAudioSystemImplementation{};
 		class SFunctor{};
 		class AKRESULT{};
