@@ -2,10 +2,13 @@
   dllmain.cpp
   The contents of <optional> are available only with C++17 or later.
   The contents of <variant> are available only with C++17 or later.
+C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\ArkEnums.h(1841,5): warning C4309: 'initializing': truncation of constant value
+C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\ArkEnums.h(1841,18): warning C4369: 'EArkPsiPowers::firstPower':  enumerator value '-1' cannot be represented as 'unsigned int', value is '4294967295'
+C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(58,37): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
 C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(59,37): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(60,37): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\theli\Documents\Modding\Learning2Hack\Learning2Hack\ChairLoader\PreyTestTrainer\dllmain.cpp(356,27): warning C4101: 'abilitiesPtr': unreferenced local variable
   Generating code
-  1 of 3117 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  3 of 3511 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     73 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

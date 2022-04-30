@@ -32,6 +32,7 @@
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
 #include <misc/cpp/imgui_stdlib.h>
+#include <fstream>
 
 #include <d3d11.h>
 #include <D3Dcompiler.h>

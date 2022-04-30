@@ -1,6 +1,7 @@
 #pragma once
 #include "ArkEntityArchetypeLibrary.h"
 #include "ArkEntityClassLibrary.h"
+#include "ArkAbilityLibrary.h"
 #include "pch.h"
 
 #include "preyDllObjects.h"
@@ -63,12 +64,13 @@ public:
 	NpcSpawnHelper* spawnerHelper;
 	
 	// convenient pointers
-	CEntitySystem* CEntitySystemPtr;
-	CGame* CGamePtr;
+	// CEntitySystem* CEntitySystemPtr;
+	// CGame* CGamePtr;
 	ArkPlayer* ArkPlayerPtr;
 	// static NpcSpawnHelper* spawnerManager;
 
 	ArchetypeLibrary entityArchetypeLibrary;
 	ClassLibrary entityClassLibrary;
+	ArkAbilityLibrary abilityLibrary;
 	
 };

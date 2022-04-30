@@ -602,6 +602,37 @@ preyFunctions::ArkLocationManagerPrivate::ArkLocationManagerPrivate(uintptr_t mo
 	SetLoaded = getFunctionAddr<_SetLoaded>(moduleBase, 0x1198750);
 }
 
+preyFunctions::ArkAbilityComponentPrivate::ArkAbilityComponentPrivate(uintptr_t moduleBase) {
+		ArkAbilityComponentConst1= getFunctionAddr<_ArkAbilityComponentConst>(moduleBase,0x153a390);
+		ArkAbilityComponentConst2 = getFunctionAddr < _ArkAbilityComponentConst2>(moduleBase, 0x153a410);
+		GetAbilityState = getFunctionAddr < _GetAbilityState >(moduleBase, 0x153a480);
+		GetAcquiredAbilities = getFunctionAddr < _GetAcquiredAbilities >(moduleBase, 0x153a5d0);
+		GetCurrencyArchetypeId = getFunctionAddr < _GetCurrencyArchetypeId >(moduleBase, 0x153a640);
+		GetNumNeuromodsUsed = getFunctionAddr < _GetNumNeuromodsUsed >(moduleBase, 0x153a6c0);
+		GetPlayerResearchFraction = getFunctionAddr < _GetPlayerResearchFraction >(moduleBase, 0x153a740);
+		GetResearchTopicScanCount = getFunctionAddr < _GetResearchTopicScanCount >(moduleBase, 0x153a780);
+		GetTyphonStatus = getFunctionAddr < _GetTyphonStatus >(moduleBase, 0x153a7b0);
+		GrantAbility = getFunctionAddr < _GrantAbility >(moduleBase, 0x153a800);
+		HasAbility = getFunctionAddr < _HasAbility >(moduleBase, 0x153ad80);
+		IncrementResearchTopicScanCount = getFunctionAddr < _IncrementResearchTopicScanCount >(moduleBase, 0x153adc0);
+		InitAbilityResearchTopicData = getFunctionAddr < _InitAbilityResearchTopicData >(moduleBase, 0x153b110);
+		IsAbilityNameRevealedByAbilityData = getFunctionAddr < _IsAbilityNameRevealedByAbilityData >(moduleBase, 0x153b360);
+		IsAbilityNameRevealedByID = getFunctionAddr < _IsAbilityNameRevealedByID >(moduleBase, 0x153b430);
+		IsAbilityNew = getFunctionAddr < _IsAbilityNew >(moduleBase, 0x153b480);
+		IsAbilityResearched = getFunctionAddr < _IsAbilityResearched >(moduleBase, 0x153b4d0);
+		IsAbilityVisible = getFunctionAddr < _IsAbilityVisible >(moduleBase, 0x153b560);
+		LoadConfig = getFunctionAddr < _LoadConfig >(moduleBase, 0x153b5d0);
+		MarkAbilitySeen = getFunctionAddr < _MarkAbilitySeen >(moduleBase, 0x153b630);
+		OnGrantAbilityCheat = getFunctionAddr < _OnGrantAbilityCheat >(moduleBase, 0x153b670);
+		OnPDAOpenComplete = getFunctionAddr < _OnPDAOpenComplete >(moduleBase, 0x153b960);
+		PostSerialize = getFunctionAddr < _PostSerialize >(moduleBase, 0x153b9b0);
+		PurchaseAbility = getFunctionAddr < _PurchaseAbility >(moduleBase, 0x153ba80);
+		Reset = getFunctionAddr < _Reset >(moduleBase, 0x153bd00);
+		Serialize = getFunctionAddr < _Serialize >(moduleBase, 0x153c2d0);
+		ShowLastResearchedAbility = getFunctionAddr < _ShowLastResearchedAbility >(moduleBase, 0x153c340);
+		UpdatePlayerMetrics = getFunctionAddr < _UpdatePlayerMetrics >(moduleBase, 0x153c3b0);
+}
+
 preyFunctions::preyFunctions(uintptr_t moduleBase) {
 	ArkPlayerF = new  ArkPlayerPrivate(moduleBase);
 	CArkWeaponF = new CArkWeaponPrivate(moduleBase);
@@ -617,7 +648,7 @@ preyFunctions::preyFunctions(uintptr_t moduleBase) {
 	CArkNpcSpawnCystoidF = new CArkNpcSpawnCystoidPrivate(moduleBase);
 	ArkSafeScriptTablef = new ArkSafeScriptTablePrivate(moduleBase);
 	ArkLocationManagerF = new ArkLocationManagerPrivate(moduleBase);
-
+	ArkAbilityComponentF = new ArkAbilityComponentPrivate(moduleBase);
 	CryGretCurrentThreadId = getFunctionAddr<_CryGetCurrentThreadID>(moduleBase, 0x0099910);
 	beginDraw = getFunctionAddr<_BeginDraw>(moduleBase, 0x0de9710);
 	

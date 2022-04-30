@@ -7,12 +7,11 @@
 #include "preyDllObjects.h"
 #include "preyFunctions.h"
 #include "ChairloaderUtils.h"
-#include "ArkEntityArchetypeLibrary.h"
+// #include "ArkEntityArchetypeLibrary.h
 #include <thread>
 #include <queue>
 #include <stack>
 #include <algorithm>
-#include "ArkAbilityLibrary.h"
 #if _WIN32 || _WIN64
 #if _WIN64
 #define ENV64BIT
@@ -151,6 +150,12 @@ void detourDirectXPresent()
     DetourTransactionCommit();
 }
 
+void killDetourDirectX() {
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    DetourDetach(&(LPVOID&)fnIDXGISwapChainPresent, (PBYTE)Present);
+    DetourTransactionCommit();
+}
 // void detourDirectXDrawIndexed()
 // {
 //     std::cout << "[+] Calling fnID3D11DrawIndexed Detour" << std::endl;
@@ -239,6 +244,7 @@ static bool spawnEntity = false;
 static uint64_t entityToBeSpawned = 0;
 static bool devMode = false;
 static bool freeCam = false;
+int GuiToggleKey, freeCamKey;
 static ChairloaderUtils* chairloader;
 DWORD WINAPI ChairloaderThread(HMODULE hModule) {
 	// Create Console
@@ -246,15 +252,41 @@ DWORD WINAPI ChairloaderThread(HMODULE hModule) {
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
     std::cout << "Welcome to funland sonic\n";
-
     uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
     chairloader = new ChairloaderUtils(moduleBase);
-
     
+    std::ifstream ifile;
+    char buf[MAX_PATH];
+    GetModuleFileNameA(hModule, buf, MAX_PATH);
+    std::string workingDir = buf;
+    workingDir.erase(workingDir.find("ChairLoader.dll"));
+    
+    printf("path = %s\n", buf);
+    printf("newpath = %s\n", workingDir.c_str());
+    // ifile.open("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Prey\\Binaries\\Danielle\\x64\\Release\\chairloaderconfig.xml");
+    ifile.open(workingDir + "chairloaderconfig.xml");
+    if (ifile.is_open()) {
+        printf("file exists\n");
+    }
+    else {
+        printf("file doesn't exist\n");
+        // return(-1);
+    }  
+    ifile.close();
 
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file((workingDir + "chairloaderconfig.xml").c_str());
+    std::cout << doc.child("config").child("filepaths").child("PreyDirectory").attribute("path").value() << std::endl;
+    for(auto itr = doc.child("config").child("keybinds").children().begin(); itr != doc.child("config").child("keybinds").children().end(); ++itr) {
+        std::cout << itr->attribute("name").name() << "=" << itr->attribute("name").value() << std::endl;
+        std::cout << itr->attribute("key").name() << "=" << itr->attribute("key").value() << std::endl;
+    }
+    std::cout << std::endl << doc.child("config").child("keybinds").find_child_by_attribute("action", "name", "GUIToggle").attribute("key").value() << std::endl;
     // Get Module base
-   
-
+    
+    GuiToggleKey = std::stoi(doc.child("config").child("keybinds").find_child_by_attribute("action", "name", "GUIToggle").attribute("key").value());
+    freeCamKey = std::stoi(doc.child("config").child("keybinds").find_child_by_attribute("action", "name", "FreeCam").attribute("key").value());
+    // std::cout << std::hex << GuiToggleKey << std::endl;
 
     // bypass thread check for entity Spawning
     mem::Nop((BYTE*)(moduleBase + 0x020e2c5), 20);
@@ -320,12 +352,32 @@ DWORD WINAPI ChairloaderThread(HMODULE hModule) {
                 }
             }
         }
+        if (GetAsyncKeyState(VK_NUMPAD3) & 1) {
+            ArkAbilities* abilitiesPtr;
+            // std::unordered_map<const ArkClass*, std::unique_ptr<ArkReflectedLibrary>>* classes = &chairloader->CGamePtr->m_pArkGameDataManager.get()->m_libraries;
+            // for(auto itr = classes->begin(); itr != classes->end(); ++itr) {
+            //     printf("%s: %p\n", itr->first->m_name, itr->second.get());
+            //     if (strcmp(itr->first->m_name, "ArkAbilities") == 0) {
+            //         abilitiesPtr = (ArkAbilities*)itr->second.get();
+            //     }
+            // }
+            
+            
+        }
+        if(GetAsyncKeyState(VK_NUMPAD4) & 1) {
+            auto acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->GetAcquiredAbilities(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get());
+            printf("%llu\n", acquired.size());
+            for (auto itr = acquired.begin(); itr != acquired.end(); ++itr) {
+                printf("%llu\nacquired: %u\n", (*itr)->m_id, (*itr)->m_bAcquired);
+            }
+        }
 	}
     // cleanup & eject
     if (f) {
         fclose(f);
     }
     FreeConsole();
+    
     // DetourDetach(&(LPVOID&)fnIDXGISwapChainPresent, (PBYTE)Present);
     // DetourTransactionCommit(); 
     FreeLibraryAndExitThread(hModule, 0);
@@ -715,6 +767,19 @@ struct spawnRequest {
 };
 std::queue<spawnRequest> archetypeSpawnRequestQueue;
 
+struct abilityEntry {
+    uint64_t id;
+    std::string name;
+    bool acquired{ false };
+};
+bool AbilityEntrySortByName(const abilityEntry& lhs, const abilityEntry& rhs) {
+    return lhs.name < rhs.name;
+}
+bool AbilityListInitialized, refreshAbilityList;
+std::vector<abilityEntry> abilityDisplayList;
+std::queue<uint64_t> abilityRequestQueue;
+// std::map<uint64_t, bool> abilitiesGiven;
+
 void drawGUI(bool* bShow) {
     if (*bShow) {
         ImGui::Begin("Chairloader");                          // Create a window called "Hello, world!" and append into it.
@@ -727,23 +792,6 @@ void drawGUI(bool* bShow) {
             }
             ImGui::EndMenuBar();
         }
-                // ImGui::Text(usefulText.c_str());               // Display some text (you can use a format strings too)
-                // ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-                // ImGui::Checkbox("Another Window", &show_another_window);
-                //
-                // ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-                // ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-                //
-                // if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-                //     counter++;
-                // if (counter & 1) {
-                //     usefulText = "woo you pressed a button";
-                // }
-                // //else {
-                //     //usefulText = "dafuq where'd you go";
-                // //}
-                // ImGui::SameLine();
-                // ImGui::Text("counter = %d", counter);
         ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_Reorderable;
         if (ImGui::BeginTabBar("Chairloader Menu", tab_bar_flags)) {
             if (ImGui::BeginTabItem("Entities")) {
@@ -823,7 +871,7 @@ void drawGUI(bool* bShow) {
                 if (archetypeFilterText != oldArchetypeFilterText) {
                     oldArchetypeFilterText = archetypeFilterText;
                     archetypeFilterRequestQueue.push(archetypeFilterRequest{archetypeFilterText});
-                    printf("requested: %s\n", archetypeFilterText.c_str());
+                    // printf("requested: %s\n", archetypeFilterText.c_str());
                 }
                 // filter.Draw(" ");
                 ImGui::SameLine();
@@ -833,24 +881,6 @@ void drawGUI(bool* bShow) {
                     "  \"xxx,yyy\"  display lines containing \"xxx\" or \"yyy\"\n"
                     "  \"-xxx\"     hide lines containing \"xxx\"");
                 //TODO: Replace this with actual archetype list, potentially with custom struct for easy sorting
-                // struct entityData {
-                //     std::string name;
-                //     int id;
-                //     std::string library;
-                // };
-                
-                // static entityData entries[] = {
-                //     {"Marco Simmons", 69, "ArkHumans"},
-                //     {"Igwe", 1, "ArkHumans"},
-                //     {"Operator", 2, "ArkRobots"},
-                //     {"Reployer", 3, "ArkPhysicsObjects"},
-                //     {"Cazavor", 420, "ArkPickups"},
-                //     {"Nighmtare", 5, "ArkNpcs"},
-                //     {"Phantom", 6, "ArkNpcs"},
-                //     {"Cystoid Nest", 7, "ArkNpcs"},
-                //     {"Mikhaila", 8, "ArkHumans"},
-                //     {"Alex Yu", 9, "ArkHumans"}
-                // };
                 static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Hideable;
                 ImVec2 outer_size = ImVec2(0.0f, TEXT_BASE_HEIGHT * 16.0f);
                 if (ImGui::BeginTable("3ways", 3, flags, outer_size)) {
@@ -916,13 +946,14 @@ void drawGUI(bool* bShow) {
             }
             if (ImGui::BeginTabItem("Console")) {
                 // ImGui::Text("This is the Broccoli tab!\nblah blah blah blah blah");
-                static bool consoleOpen, devMode;
+                static bool consoleOpen, devMode, godMode;
                 static ExampleAppConsole console;
                 ImGui::Checkbox("Show Console", &consoleOpen);
                 if (consoleOpen)
                     console.Draw("Console", &consoleOpen);
                 else
                     ImGui::Checkbox("Dev Mode", &devMode);
+                ImGui::Checkbox("Dev Mode", &godMode);
                 if(ImGui::Button("Free Cam"))
 					freeCam = !freeCam;
                 ImGui::EndTabItem();
@@ -932,23 +963,37 @@ void drawGUI(bool* bShow) {
                 ImGui::EndTabItem();
             }
             if (ImGui::BeginTabItem("Abilities")) {
-                std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
-                if (!abilities->empty()) {
-                    ImGui::Text("Size: %d\n", abilities->size());
-                    int clip = 0;
-                    for (auto itr = abilities->begin(); itr != abilities->end() && clip <= 1000; ++itr, clip++) {
-                        if (itr->m_id != 0) {
-                            static ArkAbilityLibrary library;
-                            auto entry = library.arkAbilityMap.find(itr->m_id);
-                            if(entry != library.arkAbilityMap.end()) {
-                                ImGui::Text(entry->second.c_str());
-                            } else {
-                                ImGui::Text(std::to_string(itr->m_id).c_str());
+                refreshAbilityList = ImGui::Button("Refresh");
+                if (ImGui::BeginChild("AbilityList", ImGui::GetContentRegionAvail(), false, ImGuiWindowFlags_HorizontalScrollbar)) {
+                    for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
+                        if (!itr->acquired) {
+                            if (ImGui::Selectable(itr->name.c_str())) {
+                                abilityRequestQueue.push(itr->id);
                             }
-                            
+                        }
+                        else {
+                            ImGui::TextColored(ImVec4{ 1.0f,1.0f,1.0f,0.7f}, "%s - acquired", itr->name.c_str());
                         }
                     }
+                    ImGui::EndChild();
                 }
+                // std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+                // if (!abilities->empty()) {
+                //     ImGui::Text("Size: %d\n", abilities->size());
+                //     int clip = 0;
+                //     for (auto itr = abilities->begin(); itr != abilities->end() && clip <= 1000; ++itr, clip++) {
+                //         if (itr->m_id != 0) {
+                //             static ArkAbilityLibrary library;
+                //             auto entry = library.arkAbilityMap.find(itr->m_id);
+                //             if(entry != library.arkAbilityMap.end()) {
+                //                 ImGui::Text(entry->second.c_str());
+                //             } else {
+                //                 ImGui::Text(std::to_string(itr->m_id).c_str());
+                //             }
+                //             
+                //         }
+                //     }
+                // }
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();
@@ -958,6 +1003,66 @@ void drawGUI(bool* bShow) {
         ImGui::End();
     }
 };
+void checkAbilities() {
+	if(refreshAbilityList) {
+        for(auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
+            if (chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+                itr->acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), itr->id);
+            }
+            //abilityDisplayList.emplace_back(entry);
+        }
+        std::sort(abilityDisplayList.begin(), abilityDisplayList.end(), AbilityEntrySortByName);
+        refreshAbilityList = false;
+	}
+}
+void abilityRequestHandler() {
+    try {
+        if (!AbilityListInitialized) {
+            for (auto itr = chairloader->abilityLibrary.arkAbilityMap.begin(); itr != chairloader->abilityLibrary.arkAbilityMap.end(); ++itr) {
+                abilityEntry entry = { itr->first, itr->second, false };
+                if (chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+                    if(chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
+                        entry.acquired = true;
+                    }
+                }
+                abilityDisplayList.emplace_back(entry);
+                
+            }
+            std::sort(abilityDisplayList.begin(), abilityDisplayList.end(), AbilityEntrySortByName);
+            AbilityListInitialized = true;
+        }
+        else {
+            if (!abilityRequestQueue.empty()) {
+                uint64_t id = abilityRequestQueue.front();
+                abilityRequestQueue.pop();
+                abilityEntry* entry = nullptr;
+                for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
+                    if (itr->id == id) {
+                        entry = itr._Ptr;
+                    }
+                }
+                if (entry != nullptr) {
+                    if (!entry->acquired) {
+                        if (chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get() != nullptr && !chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
+                            chairloader->internalPreyFunctions->ArkAbilityComponentF->GrantAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), entry->id);
+                            printf("Granted Ability: %s\n", chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
+                            entry->acquired = true;
+                        }
+                        else {
+                            throw("Error, Ability Component Not Found");
+                        }
+                    }
+                } else {
+                    throw("Error, invalid ability id");
+                }
+            }
+        }
+    } catch (char* c) {
+        printf("%s\n", c);
+    }
+}
+
+
 static bool wentOutOfFocus;
 
 void archetypeSpawnRequestHandler() {
@@ -965,6 +1070,9 @@ void archetypeSpawnRequestHandler() {
         try {
             spawnRequest request = archetypeSpawnRequestQueue.front();
             archetypeSpawnRequestQueue.pop();
+            std::string archetypeName = request.archetype->m_name.m_str;
+           
+                // chairloader->entityArchetypeLibrary.
             if (request.usePlayerPos) {
                 Vec3_tpl<float> playerPos;
                 ArkPlayer* player = chairloader->internalPreyFunctions->ArkPlayerF->getInstance();
@@ -987,38 +1095,15 @@ void archetypeSpawnRequestHandler() {
                     throw("Error, null player pointer");
                 }
             }
-            if (request.spawnCount == 1) {
-                IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
-                if (spawnerEntity != nullptr) {
-                    char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
-                    if (oldArchetypeName != nullptr) {
-                        CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-                        IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
-                        printf("spawned an entity\n");
-                        if (newEntity != nullptr) {
-                            newEntity->SetPos(&request.pos, 0, true, false);
-                            // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
-                        } else {
-                            throw("Error, null entity spawned");
-                        }
-                        chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
-                    }
-                	else {
-                        throw("Error, Old archetype Was null (single spawn)");
-                    }
-                }
-            	else {
-                    throw("Error, spawner Entity Was null (single spawn)");
-                }
-            }
-            else {
-                IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
-                if (spawnerEntity != nullptr) {
-                    char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
-                    if (oldArchetypeName != nullptr) {
-                        CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-                        for (int i = 0; i < request.spawnCount; i++) {
+            if (archetypeName.find("ArkRobots") != std::string::npos || archetypeName.find("ArkHumans") != std::string::npos || archetypeName.find("ArkNpcs") != std::string::npos) {
+                if (request.spawnCount == 1) {
+                    IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                    if (spawnerEntity != nullptr) {
+                        char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
+                        if (oldArchetypeName != nullptr) {
+                            CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                             IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                            printf("spawned an entity\n");
                             if (newEntity != nullptr) {
                                 newEntity->SetPos(&request.pos, 0, true, false);
                                 // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
@@ -1026,16 +1111,87 @@ void archetypeSpawnRequestHandler() {
                             else {
                                 throw("Error, null entity spawned");
                             }
+                            chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
                         }
-                        chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                        else {
+                            throw("Error, Old archetype Was null (single spawn)");
+                        }
                     }
                     else {
-                        throw("Error, Old archetype Was null (single spawn)");
-                    } 
+                        throw("Error, spawner Entity Was null (single spawn)");
+                    }
                 }
                 else {
-                    throw("Error, spawner Entity Was null (single spawn)");
+                    IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                    if (spawnerEntity != nullptr) {
+                        char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
+                        if (oldArchetypeName != nullptr) {
+                            CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                            for (int i = 0; i < request.spawnCount; i++) {
+                                IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                                if (newEntity != nullptr) {
+                                    newEntity->SetPos(&request.pos, 0, true, false);
+                                    // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
+                                }
+                                else {
+                                    throw("Error, null entity spawned");
+                                }
+                            }
+                            chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                        }
+                        else {
+                            throw("Error, Old archetype Was null (single spawn)");
+                        }
+                    }
+                    else {
+                        throw("Error, spawner Entity Was null (single spawn)");
+                    }
                 }
+            } else {
+                printf("Using non-npc spawning process\n");
+                SEntitySpawnParams* params = new SEntitySpawnParams;
+
+                params->vScale.x = 1;
+                params->vScale.y = 1;
+                params->vScale.z = 1;
+                uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(chairloader->preyEnvironmentPointers->pEntitySystem, true);
+                params->id = id;
+                params->vPosition.x = request.pos.x;
+                params->vPosition.y = request.pos.y;
+                params->vPosition.z = request.pos.z;
+                params->qRotation.x = request.rot.x;
+                params->qRotation.y = request.rot.y;
+                params->qRotation.z = request.rot.z;
+                params->qRotation.w = request.rot.w;
+                params->sLayerName = (char*)"";
+                params->pClass = (CEntityClass*)(0x0);
+                params->pArchetype = (CEntityArchetype*)(0x0);
+                params->guid = 0;
+                params->prevGuid = 0;
+                params->prevId = 0;
+                params->bCreatedThroughPool = 0;
+                params->bIgnoreLock = 0;
+                params->bStaticEntityId = 0;
+                params->nFlags = 0;
+                params->nFlagsExtended = 0;
+                params->sName = (char*)request.name.c_str();
+                params->entityNode.ptr = (IXmlNode*)0x0;
+                params->shadowCasterType = '\0';
+                params->pUserData = (void*)0x0;
+                params->sceneMask = '\0';
+                IEntity* entity;
+
+                // IEntityArchetype* archetype = (IEntityArchetype*)chairloader->preyEnvironmentPointers->pEntitySystem->GetEntityArchetype();
+                if (request.archetype != nullptr) {
+                    entity = chairloader->preyEnvironmentPointers->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
+                }
+                else {
+                    printf("Error, no archetype found\n");
+                }
+
+
+
+
             }
         } catch (const char* c) {
             printf("%s\n", c);
@@ -1049,7 +1205,7 @@ void archetypeFilterRequestHandler() {
         std::string filterText = request.text;
 
         // static ImGuiTextFilter filter;
-        std::map<const char*, CEntityArchetype*>* archetypeList = &chairloader->CEntitySystemPtr->m_pEntityArchetypeManager->m_nameToArchetypeMap;
+        std::map<const char*, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
         auto itr = archetypeList->begin();
         archetypeFilteredList.clear();
         // if (filterText.size() < strlen(filter.InputBuf)) {
@@ -1068,7 +1224,7 @@ void archetypeFilterRequestHandler() {
             }
         }
         archetypeFilterRequestQueue.pop();
-        printf("processed: %s\n", filterText.c_str());
+        // printf("processed: %s\n", filterText.c_str());
     }
 }
 
@@ -1105,6 +1261,8 @@ DWORD WINAPI GUIThread(HMODULE hModule) {
         if (!chairloader->preyEnvironmentPointers->pGame->m_pFramework->IsInLevelLoad() || !chairloader->preyEnvironmentPointers->pGame->m_pFramework->IsLoadingSaveGame()) {
             archetypeFilterRequestHandler();
             archetypeSpawnRequestHandler();
+            abilityRequestHandler();
+            checkAbilities();
         }
     	// if(GetForegroundWindow() == window && wentOutOfFocus) {
      //        g_ShowMenu = true;
@@ -1112,6 +1270,9 @@ DWORD WINAPI GUIThread(HMODULE hModule) {
      //        printf("back in baby\n");
      //    }
     }
+    g_ShowMenu = false;
+    g_PresentHooked = false;
+    g_bInitialised = false;
     FreeLibraryAndExitThread(hModule, 0);
 }
 
@@ -1129,6 +1290,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
+        killDetourDirectX();
         break;
     }
     return TRUE;

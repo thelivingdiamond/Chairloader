@@ -9,6 +9,7 @@
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
+class ArkStatModifier;
 class ArkResearchTopicData;
 class IActionListener;
 class INetChannel;
@@ -710,6 +711,29 @@ namespace ArkNpc {
 		char pad_061C[4]; //0x061C
 	}; //Size: 0x0620
 	class CArkPsiComponent{ };
+	class ArkSignalModifier{};
+	class ArkAbilityUpgradeState {
+		
+	};
+	class ArkTyphonStatus {
+		
+	};
+	class ArkAbility {
+		uint64_t m_ID;
+		CryStringT<char> m_Icon, m_Name, m_Label, m_description;
+		int32_t m_tier;
+		float m_NightmareHeat;
+		unsigned char m_Cost;
+		bool m_RequireScanner;
+		char pad[6];
+		std::vector<uint64_t> m_Prereqs;
+		EArkPsiPowers m_Power;
+		unsigned char m_PowerLevel;
+		char pad2[3];
+		std::vector<ArkSignalModifier> m_SignalModifiers;
+		std::vector<ArkStatModifier> m_StatModifiers;
+		CryStringT<char> m_Tutorial, m_TutorialPC, m_TutorialImage;
+	};
 	class ArkAbilityData {
 	public:
 		std::vector<ArkAbilityData*> m_prereqs;
@@ -723,7 +747,9 @@ namespace ArkNpc {
 		
 	};
 	class ArkAbilities {
-		
+	public:
+		void* ptr;
+		std::vector<ArkAbility> m_Abilities;
 	};
 	class ArkAbilityComponent {
 	public:
@@ -2823,10 +2849,11 @@ namespace ArkNpc {
 	public:
 		virtual void  OnSystemEvent( ESystemEvent* param_1, uint64_t param_2, uint64_t param_3) {}
 	public:
-		char pad_0000[56]; //0x0000
-		void* IArkPlayer; //0x0040
-		void* IArkPlayerCombatListener; //0x0048
-		void* ISystemEventListener; //0x0050
+		// char pad_0000[56]; //0x0000
+		// void* IArkPlayer; //0x0040
+		// void* IArkPlayerCombatListener; //0x0048
+		// void* ISystemEventListener; //0x0050
+		char pad[80];
 		ArkPlayerMovementFSM m_movementFSM; //0x0058
 		ArkPlayerComponent m_playerComponent; //0x0678
 		ArkStatsComponent m_statsComponent; //0x07C0
@@ -7783,7 +7810,28 @@ namespace ArkNpc {
 			bool m_bDisableListeners;
 			char pad2[7];
 		};
-		class ArkGameDataManager{};
+		class ArkProperty {
+		public:
+			void* ptr;
+			CryStringT<char> m_name;
+			char* m_typeStr;
+			EArkType m_arkType;
+			char pad[4];
+		};
+		class ArkClass {
+		public:
+			std::unordered_map<CryStringT<char>, ArkProperty*> m_properties;
+			ArkClass* m_baseClass;
+			char* m_name;
+			void* m_ObjectFactory;
+		};
+		class ArkReflectedLibrary {
+			void* ptr;
+		};
+		class ArkGameDataManager {
+		public:
+			std::unordered_map<const ArkClass*, std::unique_ptr<ArkReflectedLibrary>> m_libraries;
+		};
 		class ArkGlintConfigManager{};
 		class CArkGlooIslandNavLinkManager{};
 		class ArkInstigationManager{};
@@ -7800,6 +7848,7 @@ namespace ArkNpc {
 		};
 		class INightmareSpawnObserver {};
 		class SShakeParams {
+		public:
 			Vec3_tpl<float> shakeAngle;
 			Vec3_tpl<float> shakeShift;
 			float sustainDuration,

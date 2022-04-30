@@ -136,4 +136,9 @@
     <Text Include="EntityArchetypesList.txt" />
     <Text Include="codeArchive.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\x64\Release\chairloaderconfig.xml">
+      <Filter>Chairloader</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

@@ -342,9 +342,9 @@ std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(ui
 ChairloaderUtils::ChairloaderUtils(uintptr_t moduleBase) {
 	internalPreyFunctions = new preyFunctions(moduleBase);
 	preyEnvironmentPointers = (gameEnvironmentPointers*)(moduleBase + 0x22418c0);
-	CEntitySystemPtr = preyEnvironmentPointers->pEntitySystem;
+	// CEntitySystemPtr = preyEnvironmentPointers->pEntitySystem;
 	ArkPlayerPtr = internalPreyFunctions->ArkPlayerF->getInstance();
-	CGamePtr = preyEnvironmentPointers->pGame;
+	// CGamePtr = preyEnvironmentPointers->pGame;
 	spawnerHelper = new NpcSpawnHelper(internalPreyFunctions, preyEnvironmentPointers);
 
 }

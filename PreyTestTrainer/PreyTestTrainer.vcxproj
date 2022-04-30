@@ -201,6 +201,9 @@
     <Text Include="codeArchive.txt" />
     <Text Include="EntityArchetypesList.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\x64\Release\chairloaderconfig.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
