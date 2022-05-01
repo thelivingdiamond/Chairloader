@@ -14,5 +14,11 @@ The current list of capabilities includes:
 
 An important note is that this is primarily designed for things that appear or happen spontaneously. If you need something to always exist in a level then XML file manipulation is still your best bet.
 
+Other Resources used:
+Boost Libraries: https://www.boost.org/
+Pugixml: https://github.com/zeux/pugixml
+Dear Imgui: https://github.com/ocornut/imgui
+DX11 Hook: https://github.com/niemand-sec/DirectX11Hook
+
 You can see the github.io website for more specific details:
 https://thelivingdiamond.github.io/ChairLoader/
