@@ -19,7 +19,7 @@ Other Resources used:
 - Pugixml: https://github.com/zeux/pugixml
 - Dear Imgui: https://github.com/ocornut/imgui
 - DX11 Hook: https://github.com/niemand-sec/DirectX11Hook
-- Zip Library: https://github.com/kuba--/zip/
+- Zip Library:https://github.com/getnamo/7zip-cpp
 
 You can see the github.io website for more specific details:
 https://thelivingdiamond.github.io/ChairLoader/
