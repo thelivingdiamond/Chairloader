@@ -36,8 +36,7 @@ Installing Boost:
 Now the boost libraries are installed, which were used by the Prey developers, and additionally used with Chairloader for interprocess-communication to load mods. 
 
 Other includes:
-- currently they must be added in the Visual Studio Project settings under additional include directories. This will change in the near future because I am going to restructure the directories.
-
+- Currently the ImGui, Detours, and PugiXML directories must be added in the Visual Studio Project settings under additional include directories. This will change in the near future because I am going to restructure the directories.
 
 ## Resources used:
 - vcpkg: https://github.com/Microsoft/vcpkg
