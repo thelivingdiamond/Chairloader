@@ -31,8 +31,11 @@ Installing Boost:
 - Use Visual Studio 2019 (potentially moving to 2022 in future)
 - Download and place vcpkg in a low level directory as per the instructions on the github page
 - Run the following commands from the directory where vcpkg is:
+
 `./vcpkg.exe install boost` (Note, this command may take up to an hour to run, but only ever needs to be run once)
+
 `./vcpkg.exe integrate install` 
+
 Now the boost libraries are installed, which were used by the Prey developers, and additionally used with Chairloader for interprocess-communication to load mods. 
 
 Other includes:
