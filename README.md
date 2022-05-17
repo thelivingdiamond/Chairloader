@@ -32,21 +32,6 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. It
 
 The Gui functionality is achieved via DX11 hooking and uses Dear ImGui.
 
-## Development Guide: (WIP, not ready yet)
-Installing Boost:
-- Use Visual Studio 2019 (potentially moving to 2022 in future)
-- Download and place vcpkg in a low level directory as per the instructions on the github page
-- Run the following commands from the directory where vcpkg is:
-
-`./vcpkg.exe install boost` (Note, this command may take up to an hour to run, but only ever needs to be run once)
-
-`./vcpkg.exe integrate install` 
-
-Now the boost libraries are installed, which were used by the Prey developers, and additionally used with Chairloader for interprocess-communication to load mods. 
-
-Other includes:
-- Currently the ImGui, Detours, and PugiXML directories must be added in the Visual Studio Project settings under additional include directories. This will change in the near future because I am going to restructure the directories.
-
 ## Resources used:
 - vcpkg: https://github.com/Microsoft/vcpkg
 - Boost Libraries: https://www.boost.org/
