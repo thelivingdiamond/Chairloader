@@ -12,7 +12,7 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. It
 - Modders only need to include the elements that are new/edited in the mod files
 - Simple compatibility patches needed for pre-existing mods
 
-### Api Functionality:
+### API Functionality:
 - NPC Spawning (fully functional)
 - Entity Spawning (semi functional)
 - NPC and Entity Manipulation (fully functional)
