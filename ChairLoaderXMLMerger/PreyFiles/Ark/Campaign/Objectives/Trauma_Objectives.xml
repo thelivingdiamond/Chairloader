@@ -1,0 +1,58 @@
+
+<Objectives>
+ <Objective id="12889009724979631896" title="@loc_15373294129891632803" optional="true">
+  <Descriptions>
+   <Desc id="12889009724979631897" displayName="InitialDesc" text="@loc_15373294129891632804"/>
+   <Desc id="12889009725014389416" displayName="CompletedDesc" text="@loc_15373294129891632805"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009724979632704" displayName="Repair" optional="true" text="@loc_15373294129891632806"/>
+   <Task id="12889009724979632807" displayName="New" optional="true" text="@loc_15373294129891632807"/>
+   <Task id="12889009724980068896" displayName="FindMedicalOperator" optional="false" text="@loc_15373294129891632808"/>
+   <Task id="12889009724979648830" displayName="[DEPRECATED]PlaceMedicalOperator" optional="false" text="@loc_15373294129891632810" markerLabel="@loc_15373294129891632809"/>
+  </Tasks>
+  <Clues>
+   <Clue id="12889009725015854986" displayName="Clue1" text="@loc_15373294129891632811"/>
+   <Clue id="12889009725015855035" displayName="Clue2" text="@loc_15373294129891632812"/>
+  </Clues>
+ </Objective>
+ <Objective id="12889009724979632852" title="@loc_15373294129891632813" optional="false">
+  <Descriptions>
+   <Desc id="12889009724979632853" displayName="InitialDesc" text="@loc_15373294129891632814"/>
+   <Desc id="12889009725014389468" displayName="CompleteDesc" text="@loc_15373294129891632815"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009724979632909" displayName="Unlock Surgery Storage" optional="false" text="@loc_15373294129891632816"/>
+   <Task id="12889009724979632910" displayName="Get the Exogenuous Contrast Agent" optional="false" text="@loc_15373294129891632817"/>
+   <Task id="12889009724979632914" displayName="Get into the MRI Room" optional="false" text="@loc_15373294129891632818"/>
+   <Task id="12889009724979632915" displayName="Place Medical Operator in MRI" optional="false" text="@loc_15373294129891632819"/>
+   <Task id="12889009724979632916" displayName="Use MRI" optional="false" text="@loc_15373294129891632820"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+ <Objective id="12889009724981108226" title="@loc_15373294129891632821" optional="true">
+  <Descriptions>
+   <Desc id="12889009724981108227" displayName="InitialDesc_Corpse" text="@loc_15373294129891632822"/>
+   <Desc id="12889009725017046901" displayName="InitialDesc_Email" text="@loc_15373294129891632823"/>
+   <Desc id="12889009725043743317" displayName="EmailAndTranscribe_NoKey" text="@loc_15373294129891632824"/>
+   <Desc id="12889009725020510662" displayName="TranscribeDecrypted_NoEmail" text="@loc_15373294129891632825"/>
+   <Desc id="12889009725020506681" displayName="TranscribeDecrypted" text="@loc_15373294129891632826"/>
+   <Desc id="12889009725017050226" displayName="HeardTranscribe" text="@loc_15373294129891632827"/>
+   <Desc id="12889009725014389038" displayName="CompletedDesc" text="@loc_15373294129891632828"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009724981114892" displayName="DownloadDeVriesDecryption" optional="false" text="@loc_15373294129891632830" Location="1713490239377285936" markerLabel="@loc_15373294129891632829"/>
+   <Task id="12889009725020506604" displayName="ListenToTranscribe" optional="false" text="@loc_15373294129891632831"/>
+   <Task id="12889009724981114913" displayName="FindYourPsychEval" optional="false" text="@loc_15373294129891632833" markerLabel="@loc_15373294129891632832" Location="1713490239377285936"/>
+   <Task id="12889009725043736753" displayName="SearchKohlsOffice" optional="false" text="@loc_15373294129891632835" markerLabel="@loc_15373294129891632834" Location="1713490239377285936"/>
+   <Task id="12889009725043740219" displayName="SearchSafe" optional="false" text="@loc_15373294129891632837" markerLabel="@loc_15373294129891632836" Location="1713490239377285936"/>
+   <Task id="12889009725020508723" displayName="ListenToLog" optional="false" text="@loc_15373294129891632838"/>
+  </Tasks>
+  <Clues>
+   <Clue id="12889009725016984931" displayName="KohlLocationClue" text="@loc_15373294129891632839"/>
+   <Clue id="12889009725017050912" displayName="CodeClue" text="@loc_15373294129891632840"/>
+   <Clue id="12889009725016985214" displayName="DeVries" text="@loc_15373294129891632841"/>
+   <Clue id="12889009725017047384" displayName="Email_Clue1" text="@loc_15373294129891632842"/>
+  </Clues>
+ </Objective>
+</Objectives>

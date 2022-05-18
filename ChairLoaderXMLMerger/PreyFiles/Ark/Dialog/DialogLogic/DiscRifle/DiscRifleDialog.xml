@@ -1,0 +1,881 @@
+
+<ResponseRules>
+ <ResponseRule id="13680621263389632436" name="" cooldown="" response="13680621263389632480">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389630180" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <WritebackKeys>
+  <WritebackKey id="13680621263385300139" name="DiscRifleTimeToNextComment"/>
+  <WritebackKey id="13680621263385306799" name="FirstStrangeCommentPlayed"/>
+  <WritebackKey id="13680621263385307006" name="NumPhase1CommentsPlayed"/>
+  <WritebackKey id="13680621263389632094" name="NumPhase2CommentsPlayed"/>
+  <WritebackKey id="13680621263389632167" name="FirstPhase2CommentPlayed"/>
+  <WritebackKey id="13680621263389642851" name="FirstPhase3CommentPlayed"/>
+ </WritebackKeys>
+ <ResponseRule id="13680621263385257871" name="Disc Rifle: First Time Equiped" cooldown="" conversation="1" oneshot="1" response="13680621263385258188" description="First time the player equips the Disc Rifle">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389628103" name="Disc Rifle: Equiped, Phase 0 (First Strange Comment Not Ready)" cooldown="10" conversation="0" oneshot="0" response="13680621263389628395" description="First time a strange comment plays. This sets the logic in motion for all the other strange comments that fire.  On Equip or on Target killed. Whichever happens first.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385306361" name="Disc Rifle: Equiped, Phase 1 (First Strange Comment Plays)" cooldown="10" conversation="0" oneshot="1" response="13680621263385306609" description="Equip lines for if the player has not yet crossed into phase 1 and therfore the firs strange comment is not ready to play." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="1" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385306799" value="1" time="0"/>
+   <Fact id="13680621263385307006" value="1" time="0"/>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389630303" name="Disc Rifle: Equiped, Phase X (Normal Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263389630440" description="These comments play if the player is in phase 1 or 2 but it&apos;s not time to say somethign weird. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385261598" name="Disc Rifle: Equiped, Phase 1 (Strange Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263385261762" description="Player is in Phase 1 and it&apos;s time to make a weird comment.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263385307006" value="1" time="0" type="1"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389631514" name="Disc Rifle: Equiped, Phase 2 (First Phase 2 Comment)" cooldown="10" conversation="1" oneshot="1" response="13680621263389631557" description="The player has killed enough targets and heard enough comments that the rifle is ready to ask for the player to destroy. " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="1" passIfMissing="false" id="13680621263385307006" type="default" keyType="writeback" value="4"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="2" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263389632094" value="1" time="0" type="0"/>
+   <Fact id="13680621263389632167" value="1" time="0"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389629106" name="Disc Rifle: Equiped, Phase 2 (Strange Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263389630179">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="2" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263389632094" value="1" time="0" type="1"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389640139" name="Disc Rifle: Equiped, Phase 3 (First Phase 3 Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263389642551" description="Player has killed enough and re-rwritten the rifle&apos;s core so that now it has accepted its fate as a killer. " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263389642851" value="1" time="0"/>
+   <Fact id="13680621263385300139" value="" time="300"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263385261664" name="Disc Rifle: Equiped, Phase 3 (Killer)" cooldown="10" conversation="0" oneshot="0" response="13680621263385261743">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385258188">
+  <Response dialog="13680621263385258187" id="13680621263385258189" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="1"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385262592" name="Disc Rifle: Unequiped" cooldown="30" conversation="0" oneshot="0" response="13680621263385262815" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponUnequipped" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385261743">
+  <Response dialog="13680621263385261742" id="13680621263385261744" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385261762">
+  <Response dialog="13680621263385261761" id="13680621263385261763" cooldown="60" weight="1" oneshot="false" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263385261768" id="13680621263385261769" cooldown="60" weight="1" oneshot="false" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263385261775" id="13680621263385261776" cooldown="60" weight="1" oneshot="false" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263385261781" id="13680621263385261782" cooldown="60" weight="1" oneshot="false" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385262631" name="Disc Rifle: Target Aimed" cooldown="5" conversation="0" oneshot="0" response="13680621263385262765" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponAimed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262508" name="Disc Rifle: Target Locked" cooldown="30" conversation="0" oneshot="0" response="13680621263385262770" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetLocked" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262614" name="Disc Rifle: Target Hit" cooldown="30" conversation="0" oneshot="0" response="13680621263385262776" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetHit" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385306448" name="Disc Rifle: Target Killed, Phase 1 (First Strange Comment Plays)" cooldown="30" conversation="0" oneshot="0" response="13680621263385307499" description="When a target is locked down in the psychoscope." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="1" type="default"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385306799" value="1" time="0"/>
+   <Fact id="13680621263385307006" value="1" time="0" type="0"/>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389650449" name="Disc Rifle: Target Killed, Phase 1 (Strange Comment)" cooldown="30" conversation="0" oneshot="0" response="13680621263389664946" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="true" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263385307006" value="1" time="0" type="1"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389650494" name="Disc Rifle: Target Killed, Phase 2 (First Phase 2 Comment)" cooldown="10" conversation="1" oneshot="1" response="13680621263389665181" description="The player has killed enough targets and heard enough comments that the rifle is ready to ask for the player to destroy. " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="1" passIfMissing="false" id="13680621263385307006" type="default" keyType="writeback" value="3"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="2" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263389632167" value="1" time="0"/>
+   <Fact id="13680621263389632094" value="1" time="0"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389650533" name="Disc Rifle: Target Killed, Phase 2 (Strange Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263389665298">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="2" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263389632094" value="1" time="0" type="1"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263391458057" name="Disc Rifle: Target Killed, Phase 2 (Final Strange Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263391458140" description="This is in case we want it to finally shut up even if you decide not to pursue the quest at all.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="2" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="3" passIfMissing="false" id="13680621263389632094" type="default" keyType="writeback" value="10"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262195" name="Disc Rifle: Target Killed, Not Phase 3--Alien" cooldown="30" conversation="0" oneshot="0" response="13680621263385262783" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860498988665" value="1" keyType="metatag"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385308160" name="Disc Rifle: Target Killed, Not Phase 3--Human" cooldown="30" conversation="0" oneshot="0" response="13680621263389565878" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860498988629" value="1" keyType="metatag"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385308170" name="Disc Rifle: Target Killed, Not Phase 3--Operator" cooldown="30" conversation="0" oneshot="0" response="13680621263389632642" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860498988717" value="1" keyType="metatag"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389650642" name="Disc Rifle: Target Killed, Phase 3 (Alien)" cooldown="30" conversation="0" oneshot="0" response="13680621263389650907" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860498988665" value="1" keyType="metatag"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389650631" name="Disc Rifle: Target Killed, Phase 3 (Human)" cooldown="30" conversation="0" oneshot="0" response="13680621263391872180" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860498988629" value="1" keyType="metatag"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389650611" name="Disc Rifle: Target Killed, Phase 3 (Operator)" cooldown="30" conversation="0" oneshot="0" response="13680621263391872206" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetKilled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860498988717" value="1" keyType="metatag"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262509" name="Disc Rifle: Target Missed" cooldown="30" conversation="0" oneshot="0" response="13680621263385262788" description="When a target is locked down in the psychoscope.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponTargetMissed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262678" name="Disc Rifle: Reloaded" cooldown="30" conversation="0" oneshot="0" response="13680621263385262823">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponReload" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262688" name="Disc Rifle: Ammo Depleted" cooldown="30" conversation="0" oneshot="0" response="13680621263385262836">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponAmmoDepleted" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389664607" name="Disc Rifle: Ammo Depleted, Phase 3" cooldown="30" conversation="0" oneshot="0" response="13680621263391871962">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponAmmoDepleted" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263385262591" name="Disc Rifle: Malfunction" cooldown="30" conversation="0" oneshot="0" response="13680621263385262806" description="When jammed.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponMalfunction" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389666026" name="Disc Rifle: Malfunction, Phase 3" cooldown="30" conversation="0" oneshot="0" response="13680621263391871699" description="When jammed.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onWeaponMalfunction" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385257871" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385262765">
+  <Response dialog="13680621263385262764" id="13680621263385262766" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262770">
+  <Response dialog="13680621263385262769" id="13680621263385262771" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262776">
+  <Response dialog="13680621263385262775" id="13680621263385262777" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262783">
+  <Response dialog="13680621263389650216" id="13680621263389650217" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262788">
+  <Response dialog="13680621263385262787" id="13680621263385262789" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262806">
+  <Response dialog="13680621263385262805" id="13680621263385262807" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262815">
+  <Response dialog="13680621263385262814" id="13680621263385262816" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262823">
+  <Response dialog="13680621263385262822" id="13680621263385262824" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385262836">
+  <Response dialog="13680621263385262835" id="13680621263385262837" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385300216" name="" cooldown="" response="13680621263385300548" conversation="0">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385261763" fromResponse="1" type="guid"/>
+  </Criteria>
+  <Writeback/>
+ </ResponseRule>
+ <ResponseSet id="13680621263385300548">
+  <Response dialog="13680621263385300357" id="13680621263385300549" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="1.5"/>
+  <Response dialog="13680621263385306331" id="13680621263385306332" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="1.5"/>
+  <Response dialog="13680621263385306404" id="13680621263385306405" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="1.5"/>
+  <Response dialog="13680621263385306415" id="13680621263385306416" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="1.5"/>
+  <Response dialog="13680621263385306424" id="13680621263385306425" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="1.5"/>
+  <Response dialog="13680621263391455563" id="13680621263391455564" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="1.5" cutoff="0"/>
+  <Response dialog="13680621263391875087" id="13680621263391875088" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="1.5" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385306337" name="Phase 1 Comment" cooldown="" response="13680621263385300548">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385261769" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385306609">
+  <Response dialog="13680621263385261761" id="13680621263385306610" cooldown="60" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385306699" name="First Strange Comment Phase 1" cooldown="" response="13680621263385306994">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385306610" fromResponse="1" type="guid"/>
+  </Criteria>
+  <Writeback/>
+ </ResponseRule>
+ <ResponseSet id="13680621263385306994">
+  <Response dialog="13680621263385306993" id="13680621263385306995" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263385307499">
+  <Response dialog="13680621263385262782" id="13680621263385307500" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389565878">
+  <Response dialog="13680621263389565877" id="13680621263389565879" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389626100" name="First Strange Comment Phase 1" cooldown="" response="13680621263385306994">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385307500" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="1" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" value="1" type="default" id="13680621263385306799" keyType="writeback"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389628395">
+  <Response dialog="13680621263385261761" id="13680621263389628396" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263385261768" id="13680621263389628403" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263385261775" id="13680621263389628409" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263385261781" id="13680621263389628421" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389630179">
+  <Response dialog="13680621263385261761" id="13680621263389630180" cooldown="0" weight="1" oneshot="false" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263385261768" id="13680621263389632419" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263385261775" id="13680621263389632428" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263385261781" id="13680621263389632433" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389630440">
+  <Response dialog="13680621263385261761" id="13680621263389630441" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263385261768" id="13680621263389630448" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263385261775" id="13680621263389630457" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263385261781" id="13680621263389630466" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389630779" name="" cooldown="" response="13680621263385300548">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385261776" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389630782" name="" cooldown="" response="13680621263385300548">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385261782" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389631557">
+  <Response dialog="13680621263385261775" id="13680621263389631558" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389631577" name="" cooldown="" response="13680621263389631578">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389631558" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389631578">
+  <Response dialog="13680621263389631576" id="13680621263389631579" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="1"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389632480">
+  <Response dialog="13680621263389632479" id="13680621263389632481" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263389632491" id="13680621263389632492" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263389632498" id="13680621263389632499" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0"/>
+  <Response dialog="13680621263389632504" id="13680621263389632505" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263389632508" id="13680621263389632509" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263389644764" id="13680621263389644765" cooldown="900" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263391874897" id="13680621263391874898" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263391875034" id="13680621263391875035" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389632584" name="" cooldown="" response="13680621263389632480">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389632419" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389632592" name="" cooldown="" response="13680621263389632480">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389632428" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389632597" name="" cooldown="" response="13680621263389632480">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389632433" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389632642">
+  <Response dialog="13680621263389632641" id="13680621263389632643" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389632791" name="" cooldown="" response="13680621263389632792">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389631579" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389632792">
+  <Response dialog="13680621263389632790" id="13680621263389632793" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389642551">
+  <Response dialog="13680621263385258187" id="13680621263389642552" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389642589" name="" cooldown="" response="13680621263389642590">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389642552" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389642590">
+  <Response dialog="13680621263385258194" id="13680621263389642591" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389642599" name="" cooldown="" response="13680621263389642600">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389642591" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389642600">
+  <Response dialog="13680621263385258204" id="13680621263389642601" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389642631" name="" cooldown="" response="13680621263389642632">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389642601" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389642632">
+  <Response dialog="13680621263389642630" id="13680621263389642633" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389643122">
+  <Response dialog="13680621263389643121" id="13680621263389643123" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389643550" name="" cooldown="" response="13680621263389643551">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385258189" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389643551">
+  <Response dialog="13680621263385258194" id="13680621263389643552" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389643566" name="" cooldown="" response="13680621263389643567">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389643552" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389643567">
+  <Response dialog="13680621263385258204" id="13680621263389643568" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389643581" name="" cooldown="" response="13680621263389643582">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389643568" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389643582">
+  <Response dialog="13680621263385258210" id="13680621263389643583" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389644856" name="Disc Rifle: WhileEquiped, Phase 1 (Strange Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263389645387" description="Player is carrying around the rifle and it pipes up during phase 1.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263385306799" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263385307006" value="1" time="0" type="1"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389644910" name="Disc Rifle: WhileEquiped, Phase 2 (Strange Comment)" cooldown="10" conversation="0" oneshot="0" response="13680621263389645453" description="Player is carrying around the rifle and it pipes up during phase 2.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263389642851" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263389632167" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="1" time="300"/>
+   <Fact id="13680621263389632094" value="1" time="0" type="1"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389643081" name="Disc Rifle: WhileEquiped, Phase 3 (Killer)" cooldown="10" conversation="0" oneshot="0" response="13680621263389643122" description="Player is carrying around the killer version of the rifle and it pipes up.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263385300139" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263385300139" value="" time="300"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263389631592" name="Disc Rifle: You Recycled Me. Thanks!" cooldown="10" conversation="0" oneshot="0" response="13680621263389645471" description="Player put the disc rifle into the recycler and hit the button. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389645387">
+  <Response dialog="13680621263389645386" id="13680621263389645388" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389645420" name="" cooldown="" response="13680621263385300548">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389645388" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389645453">
+  <Response dialog="13680621263389645452" id="13680621263389645454" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389645471">
+  <Response dialog="13680621263389645470" id="13680621263389645472" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389645573" name="" cooldown="" response="13680621263389632480">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389645454" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389650907">
+  <Response dialog="13680621263389650906" id="13680621263389650908" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263389664946">
+  <Response dialog="13680621263385262782" id="13680621263389664947" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389665092" name="" cooldown="" response="13680621263385300548">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389664947" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389665181">
+  <Response dialog="13680621263385262782" id="13680621263389665182" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389665187" name="" cooldown="" response="13680621263389631578">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389665182" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263389665298">
+  <Response dialog="13680621263385262782" id="13680621263389665299" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263389665300" name="" cooldown="" response="13680621263389632480">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389665299" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389665593" name="Disc Rifle: In Psychotronics" cooldown="" conversation="0" oneshot="1" response="13680621263391872973" description="Disc Rifle makes a comment while the player is wandering around in Psychotronics.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="11824555372632688907"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263391873590" name="Disc Rifle: Comment About Dahl" cooldown="" conversation="0" oneshot="1" response="13680621263391873840" description="Disc Rifle makes a comment while Dahl is actively hunting the player.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1990946021" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263391873955" name="Disc Rifle: Comment About Exterior" cooldown="" conversation="0" oneshot="1" response="13680621263391874340" description="Disc Rifle makes a comment while the player is wandering space.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWeaponEquipped" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239386284337"/>
+   <Criterion comparison="5" passIfMissing="false" id="798239333" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263389665967" name="Disc Rifle: Touched Coral" cooldown="10" conversation="0" oneshot="0" response="13680621263391874802" description="Player put the disc rifle into the recycler and hit the button. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263391456347" name="" cooldown="" response="13680621263391456348">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389632793" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391456348">
+  <Response dialog="13680621263391456346" id="13680621263391456349" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391456359" name="" cooldown="" response="13680621263391456360">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391456349" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391456360">
+  <Response dialog="13680621263391456358" id="13680621263391456361" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391456371" name="" cooldown="" response="13680621263391456372">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391456361" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391456372">
+  <Response dialog="13680621263391456370" id="13680621263391456373" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391456382" name="" cooldown="" response="13680621263391456383">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391456373" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391456383">
+  <Response dialog="13680621263391456381" id="13680621263391456384" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391458140">
+  <Response dialog="13680621263385262782" id="13680621263391458141" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391458173" name="" cooldown="" response="13680621263391458174">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391458141" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391458174">
+  <Response dialog="13680621263391458172" id="13680621263391458175" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391871699">
+  <Response dialog="13680621263391871698" id="13680621263391871700" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391871726" name="" cooldown="" response="13680621263391871727">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391871700" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391871727">
+  <Response dialog="13680621263391871725" id="13680621263391871728" cooldown="1200" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263391871885" id="13680621263391871886" cooldown="1200" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391871962">
+  <Response dialog="13680621263391871961" id="13680621263391871963" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263391872028" id="13680621263391872029" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391872180">
+  <Response dialog="13680621263391872179" id="13680621263391872181" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391872193" name="" cooldown="1200" response="13680621263391872194">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391872181" fromResponse="1" type="guid"/>
+   <Criterion comparison="4" passIfMissing="false" id="15659330456318451412" type="default" keyType="default" value=".25"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391872194">
+  <Response dialog="13680621263391872192" id="13680621263391872195" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391872206">
+  <Response dialog="13680621263391872205" id="13680621263391872207" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391872834" name="" cooldown="1200" response="13680621263391872835">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389650908" fromResponse="1" type="guid"/>
+   <Criterion comparison="4" passIfMissing="false" id="15659330456318451412" type="default" keyType="default" value=".25"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391872835">
+  <Response dialog="13680621263391872833" id="13680621263391872836" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391872973">
+  <Response dialog="13680621263391872972" id="13680621263391872974" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391873342" name="" cooldown="" response="13680621263391873343">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391872974" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391873343">
+  <Response dialog="13680621263391873341" id="13680621263391873344" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391873450" name="" cooldown="" response="13680621263391873451">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391873344" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="137802088" keyType="gameToken"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391873451">
+  <Response dialog="13680621263391873449" id="13680621263391873452" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391873840">
+  <Response dialog="13680621263391873839" id="13680621263391873841" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391873904" name="" cooldown="" response="13680621263391873905">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391873841" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391873905">
+  <Response dialog="13680621263391873903" id="13680621263391873906" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391873934" name="" cooldown="" response="13680621263391873935">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391873906" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391873935">
+  <Response dialog="13680621263391873933" id="13680621263391873936" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391874340">
+  <Response dialog="13680621263391874339" id="13680621263391874341" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391874408" name="" cooldown="" response="13680621263391874409">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391874341" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391874409">
+  <Response dialog="13680621263391874407" id="13680621263391874410" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391874549" name="" cooldown="" response="13680621263391874550">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391874410" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391874550">
+  <Response dialog="13680621263391874548" id="13680621263391874551" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391874802">
+  <Response dialog="13680621263391874801" id="13680621263391874803" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391874962" name="" cooldown="" response="13680621263391874963">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389632499" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391874963">
+  <Response dialog="13680621263391874961" id="13680621263391874964" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391875103" name="" cooldown="" response="13680621263391875104">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391875088" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391875104">
+  <Response dialog="13680621263391875102" id="13680621263391875105" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391875110" name="" cooldown="" response="13680621263391875111">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391875105" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391875111">
+  <Response dialog="13680621263391875109" id="13680621263391875112" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="2" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391875116" name="" cooldown="" response="13680621263391875117">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263391875112" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391875117">
+  <Response dialog="13680621263391875115" id="13680621263391875118" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="2" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263392312438" name="" cooldown="" response="13680621263392312439">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="15659330456341074553" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263389645472" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263392312439">
+  <Response dialog="13680621263392312437" id="13680621263392312440" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

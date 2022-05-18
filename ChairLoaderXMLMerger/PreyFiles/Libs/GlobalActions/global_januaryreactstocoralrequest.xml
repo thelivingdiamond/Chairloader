@@ -1,0 +1,39 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2367" Class="Ark:RemoteEvent" pos="-167,-110,0">
+   <Inputs remoteEvent_Event="14667999412562863576"/>
+  </Node>
+  <Node Id="2368" Class="Ark:EventScheduler:RelativeTimeEvent" pos="220,-110,0">
+   <Inputs TimeFromNow="0.02" Period="0"/>
+  </Node>
+  <Node Id="2369" Class="Ark:Dialog:PlayTranscribeMessage" pos="1100,-30,0">
+   <Inputs dialogRule_Conversation="13680621263390768056" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2370" Class="Ark:Dialog:PlayTranscribeMessage" pos="2200,-470,0">
+   <Inputs dialogRule_Conversation="13680621263398643131" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2372" Class="Mission:GameTokenCheck" pos="540,-110,0">
+   <Inputs gametokenid_Token="1240200463" CheckValue="true"/>
+  </Node>
+  <Node Id="2373" Class="Mission:GameTokenCheck" pos="1150,-460,0">
+   <Inputs gametokenid_Token="485328027" CheckValue="true"/>
+  </Node>
+  <Node Id="2375" Name="DECEMBER_FINAL_NAG\n" Class="_commentbox" pos="1070,-516,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1590" Height="340"/>
+  </Node>
+  <Node Id="2380" Class="Ark:Objectives:GetObjectiveState" pos="1690,-460,0">
+   <Inputs objective_Objective="-5557734348673392200"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2368" nodeOut="2367" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2372" nodeOut="2368" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="2369" nodeOut="2372" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2372" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2373" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="2370" nodeOut="2380" portIn="Trigger" portOut="Assigned" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

@@ -1,0 +1,39 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2691" Class="Ark:SendRemoteEvent" pos="1636,130,0">
+   <Inputs remoteEvent_Event="761057047993462670"/>
+  </Node>
+  <Node Id="2694" Class="Ark:Dialog:PlayTranscribeMessage" pos="1116,110,0">
+   <Inputs dialogRule_Conversation="13680621263397831669" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="14744" Class="Mission:GameTokenCheck" pos="20,100,0">
+   <Inputs gametokenid_Token="1240200463" CheckValue="true"/>
+  </Node>
+  <Node Id="14745" Class="Mission:GameTokenCheck" pos="536,110,0">
+   <Inputs gametokenid_Token="1158433265" CheckValue="true"/>
+  </Node>
+  <Node Id="14747" Class="Mission:GameTokenSet" pos="1606,20,0">
+   <Inputs gametokenid_Token="1158433265" Value="true"/>
+  </Node>
+  <Node Id="14748" Name="January_First_Airlock" Class="_commentbox" pos="-760,-72,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="3040" Height="390"/>
+  </Node>
+  <Node Id="14750" Class="Ark:RemoteEvent" pos="-660,100,0">
+   <Inputs remoteEvent_Event="14667999412583549607"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2691" nodeOut="2694" portIn="Send" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2691" nodeOut="2694" portIn="Send" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2691" nodeOut="2694" portIn="Send" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="14747" nodeOut="2694" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="14747" nodeOut="2694" portIn="Trigger" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="14747" nodeOut="2694" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="14745" nodeOut="14744" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="2694" nodeOut="14745" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14744" nodeOut="14750" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

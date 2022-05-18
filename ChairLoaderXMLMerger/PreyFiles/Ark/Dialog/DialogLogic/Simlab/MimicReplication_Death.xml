@@ -1,0 +1,14 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263394304020" name="Mimic Attacks Jovan" cooldown="" description="A mimic jumps on Jovan, chokes him and then duplicates." response="13680621263394304109" conversation="1" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786169" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="12889009725019922733"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263394304109">
+  <Response dialog="13680621263386013236" id="13680621263394304110" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

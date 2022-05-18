@@ -1,0 +1,9 @@
+
+<CombatFocusPowerProperties>
+ <Common DisplayName="@rpg_CombatFocusName" PsiCost="20" Description="@rpg_CombatFocus1" PickerLabel="CombatFocus" InterruptsMimicGrabSequence="false" PersistentPostProcessVFX="12635110349613902643" CostReductionStat="psiCostScaleTelepathic"/>
+ <Levels>
+  <ArkPsiPowerCombatFocusProperties CooldownDurationSec="42" StatPackage="3149325216966331296" Duration="6" TimeScale="0.4" PlayerTimeScale="0.6" ActiveAudioTrigger="Play_Player_CombatFocus_Enter" InactiveAudioTrigger="Play_Player_CombatFocus_Exit" DisplayName="@rpg_CombatFocusName" Description="@rpg_CombatFocus1"/>
+  <ArkPsiPowerCombatFocusProperties CooldownDurationSec="42" StatPackage="3149325216966333953" Duration="9.6" TimeScale="0.4" PlayerTimeScale="0.8" ActiveAudioTrigger="Play_Player_CombatFocus_Enter" InactiveAudioTrigger="Play_Player_CombatFocus_Exit" OutboundSignalModifier="3149325216979649942" Description="@loc_3149325216979649417" DisplayName="@loc_3149325216979649416"/>
+  <ArkPsiPowerCombatFocusProperties CooldownDurationSec="42" StatPackage="3149325216980163972" Duration="15" TimeScale="0.4" PlayerTimeScale="1.0" ActiveAudioTrigger="Play_Player_CombatFocus_Enter" InactiveAudioTrigger="Play_Player_CombatFocus_Exit" OutboundSignalModifier="3149325216979649945" Description="@loc_3149325216979649414" DisplayName="@loc_3149325216979649413"/>
+ </Levels>
+</CombatFocusPowerProperties>

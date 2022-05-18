@@ -1,0 +1,239 @@
+
+<ForceFeedback>
+ <Patterns>
+  <Pattern name="100" samples="1"/>
+  <Pattern name="75" samples="0.75"/>
+  <Pattern name="50" samples="0.5"/>
+  <Pattern name="30" samples="0.3"/>
+  <Pattern name="20" samples="0.2"/>
+  <Pattern name="12" samples="0.12"/>
+  <Pattern name="7" samples="0.07"/>
+  <Pattern name="square" samples="1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0"/>
+  <Pattern name="hello" samples="1,1,1,1,1,1,1,1,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2"/>
+  <Pattern name="triangle" samples="0,0.15,0.3,0.45,0.6,0.75,0.9,1,1,0.9,0.75,0.6,0.45,0.3,0.15,0"/>
+  <Pattern name="swingTriangle" samples="0,0.075,0.15,0.225,0.3,0.375,0.45,.5,.5,0.45,0.375,0.3,0.225,0.15,0.075,0"/>
+ </Patterns>
+ <Envelopes>
+  <Envelope name="linearDecrease" samples="1,0"/>
+  <Envelope name="Gate" samples="1,1,1,1,1,1,1,0"/>
+  <Envelope name="CosineDecrease" samples="1,0.98,0.92,0.83,0.69,0.54,0.25,0"/>
+  <Envelope name="CosineIncrease" samples="0,0.25,0.54,0.69,0.83,0.92,0.98,1"/>
+  <Envelope name="constant" samples="1"/>
+  <Envelope name="50constant" samples="0.5"/>
+  <Envelope name="Gausscharge" samples="0,0,0,0,1,1,1,1"/>
+ </Envelopes>
+ <Effects>
+  <Effect name="smallexplosion" time="1.0">
+   <MotorAB frequency="1" pattern="100" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="suitactiveateFF" time="1.5">
+   <MotorA frequency="1" pattern="30" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="suitdeactiveateFF" time="1.5">
+   <MotorB frequency="1" pattern="12" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="cloakactiveateFF" time="1.5">
+   <MotorA frequency="1" pattern="20" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="cloakactiveFF" time="-1">
+   <MotorA frequency="1" pattern="12" envelope="constant"/>
+  </Effect>
+  <Effect name="landFF" time="0.1">
+   <MotorB frequency="1" pattern="75" envelope="Gate"/>
+  </Effect>
+  <Effect name="jumpFF" time="0.1">
+   <MotorB frequency="1" pattern="75" envelope="Gate"/>
+  </Effect>
+  <Effect name="weaponfirerapidsmall_slow" time="0.07">
+   <MotorA frequency="1" pattern="30" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="20" envelope="Gate"/>
+  </Effect>
+  <Effect name="weaponfirerapidsmall_fast" time="0.05">
+   <MotorA frequency="1" pattern="50" envelope="Gate"/>
+  </Effect>
+  <Effect name="weaponfiresinglesmall" time="0.2">
+   <MotorA frequency="1" pattern="50" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="20" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="weaponfiresinglemedium" time="0.2">
+   <MotorA frequency="1" pattern="50" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="20" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="weaponfirerapidheavy" time="0.12">
+   <MotorA frequency="1" pattern="20" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="50" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="weaponfiresingleheavy" time="0.2">
+   <MotorA frequency="1" pattern="50" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="50" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="weaponfiresinglegauss" time="1">
+   <MotorA frequency="1" pattern="75" envelope="Gausscharge"/>
+   <MotorB frequency="1" pattern="50" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="reloadsmallFF" time="0.2">
+   <MotorB frequency="1" pattern="50" envelope="Gate"/>
+  </Effect>
+  <Effect name="reloadshortFF" time="0.1">
+   <MotorA frequency="1" pattern="30" envelope="Gate"/>
+   <MotorB frequency="1" pattern="30" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="weakFF" time="0.2">
+   <MotorAB frequency="1" pattern="12" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="mediumFF" time="0.5">
+   <MotorB frequency="1" pattern="50" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="strongFF" time="0.5">
+   <MotorAB frequency="1" pattern="100" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="LaserDefault" time="0.15">
+   <MotorA frequency="1" pattern="swingTriangle" envelope="constant"/>
+   <MotorB frequency="1" pattern="triangle" envelope="constant"/>
+  </Effect>
+  <Effect name="StunGunChargeIn1" time=".45">
+   <MotorA frequency="1" pattern="7" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="12" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="StunGunChargeIn2" time=".45">
+   <MotorA frequency="1" pattern="12" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="20" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="StungunChargeLoop" time="0.15">
+   <MotorAB frequency="1" pattern="12" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="StunGunFire" time=".2">
+   <MotorAB frequency="1" pattern="50" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="ShotgunDefault" time="0.2">
+   <MotorA frequency="1" pattern="100" envelope="linearDecrease"/>
+   <MotorB frequency="1" pattern="75" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="PistolDefault" time="0.2">
+   <MotorA frequency="1" pattern="50" envelope="linearDecrease"/>
+   <MotorB frequency="1" pattern="20" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="GooGunDefault" time="0.15">
+   <MotorA frequency="1" pattern="hello" envelope="50constant"/>
+   <MotorB frequency="1" pattern="hello" envelope="50constant"/>
+  </Effect>
+  <Effect name="ToyGunDefault" time="0.15">
+   <MotorA frequency="1" pattern="20" envelope="linearDecrease"/>
+   <MotorB frequency="1" pattern="12" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="WrenchLeftLoop" time=".15">
+   <MotorA frequency="1" pattern="12" envelope="constant"/>
+  </Effect>
+  <Effect name="WrenchOrThrowLoop" time=".15">
+   <MotorB frequency="1" pattern="12" envelope="constant"/>
+  </Effect>
+  <Effect name="WrenchHitRightLeft" time="0.15">
+   <MotorA frequency="1" pattern="75" envelope="constant"/>
+  </Effect>
+  <Effect name="WrenchHitLeftRight" time="0.15">
+   <MotorB frequency="1" pattern="75" envelope="constant"/>
+  </Effect>
+  <Effect name="WrenchSwingRightLeft" time="0.2">
+   <MotorA frequency="1" pattern="12" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="20" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="WrenchSwingLeftRight" time="0.2">
+   <MotorA frequency="1" pattern="20" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="12" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="WrenchGenericFatality" time=".3">
+   <MotorA frequency="1" pattern="100" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="75" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="Stomp" time=".2">
+   <MotorAB frequency="1" pattern="50" envelope="constant"/>
+  </Effect>
+  <Effect name="WrenchPrep" time="0.2">
+   <MotorA frequency="1" pattern="20" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="20" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="Knockdown" time="0.2">
+   <MotorAB frequency="1" pattern="100" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="HeavyBump" time="0.2">
+   <MotorAB frequency="1" pattern="50" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="LightBump" time="0.1">
+   <MotorAB frequency="1" pattern="20" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="Hobbled" time="0.2">
+   <MotorA frequency="1" pattern="30" envelope="linearDecrease"/>
+   <MotorB frequency="1" pattern="12" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="SmackWeapon" time="0.2">
+   <MotorA frequency="1" pattern="30" envelope="linearDecrease"/>
+   <MotorB frequency="1" pattern="12" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="Fear" time="3">
+   <MotorAB frequency="1" pattern="30" envelope="constant"/>
+  </Effect>
+  <Effect name="Hit" time=".2">
+   <MotorA frequency="1" pattern="triangle" envelope="constant"/>
+   <MotorB frequency="1" pattern="square" envelope="constant"/>
+  </Effect>
+  <Effect name="MimicGrab" time="100">
+   <MotorA frequency="1" pattern="30" envelope="linearDecrease"/>
+   <MotorB frequency="1" pattern="12" envelope="linearDecrease"/>
+  </Effect>
+  <Effect name="WeaponReload" time="0.2">
+   <MotorA frequency="1" pattern="20" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="30" envelope="Gausscharge"/>
+  </Effect>
+  <Effect name="NightmareFootfall" time="0.25">
+   <MotorA frequency="1" pattern="75" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="75" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="LobbyExplosionIntro" time="5.0">
+   <MotorA frequency="1" pattern="20" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="20" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="LobbyExplosionOutro" time="2.5">
+   <MotorA frequency="1" pattern="100" envelope="CosineDecrease"/>
+   <MotorB frequency="1" pattern="100" envelope="CosineDecrease"/>
+  </Effect>
+  <Effect name="UserInterfaceMedium" time="0.1">
+   <MotorA frequency="1" pattern="square" envelope="CosineIncrease"/>
+   <MotorB frequency="1" pattern="square" envelope="CosineIncrease"/>
+  </Effect>
+  <Effect name="UserInterfaceSmall" time="0.06">
+   <MotorA frequency="1" pattern="7" envelope="constant"/>
+   <MotorB frequency="1" pattern="7" envelope="constant"/>
+  </Effect>
+  <Effect name="UserInterfaceBig" time="0.2">
+   <MotorA frequency="1" pattern="triangle" envelope="constant"/>
+   <MotorB frequency="1" pattern="triangle" envelope="constant"/>
+  </Effect>
+  <Effect name="GenericStationShake_0.5s" time="0.5">
+   <MotorAB frequency="1" pattern="swingTriangle" envelope="50constant"/>
+  </Effect>
+  <Effect name="GenericStationShake_0.75s" time="0.75">
+   <MotorAB frequency="1" pattern="swingTriangle" envelope="50constant"/>
+  </Effect>
+  <Effect name="GenericStationShake_1.0s" time="1">
+   <MotorAB frequency="1" pattern="swingTriangle" envelope="constant"/>
+  </Effect>
+  <Effect name="GenericStationShake_1.25s" time="1.25">
+   <MotorAB frequency="1" pattern="triangle" envelope="50constant"/>
+  </Effect>
+  <Effect name="GenericStationShake_1.5s" time="1.5">
+   <MotorAB frequency="1" pattern="triangle" envelope="constant"/>
+  </Effect>
+  <Effect name="EndGameTurnChairAround1" time="8">
+   <MotorAB frequency="1" pattern="12" envelope="constant"/>
+  </Effect>
+  <Effect name="EndGameTurnChairAround2" time="4">
+   <MotorAB frequency="1" pattern="12" envelope="constant"/>
+  </Effect>
+  <Effect name="ShakeHandsWithAlex" time="2">
+   <MotorB frequency="4" pattern="hello" envelope="50constant"/>
+  </Effect>
+  <Effect name="fireDamage" time=".5">
+   <MotorAB frequency="1" pattern="7" envelope="linearDecrease"/>
+  </Effect>
+ </Effects>
+</ForceFeedback>

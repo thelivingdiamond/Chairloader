@@ -1,0 +1,64 @@
+
+<HypnosisPowerProperties>
+ <Common DisplayName="@rpg_OverrideName" PsiCost="20" Description="@rpg_Override1" PickerLabel="Hypnosis" InterruptsMimicGrabSequence="true" PersistentPostProcessVFX="2428940965260272302" TargetHighlightColorAlpha="1.0" TargetHighlightColor="0.65,0.5,1.0" ExecutionPlayerEffect="Player.Powers.MindJack.MindJack_CastPV" CostReductionStat="psiCostScaleTelepathic"/>
+ <Faction ExecuteAudioTrigger="Play_Player_Power_Hypnosis"/>
+ <Levels>
+  <ArkPsiPowerHypnosisProperties DisplayName="@rpg_OverrideName" Description="@rpg_Override1" CooldownDurationSec="10" SignalPackageId="10641886185795236267">
+   <TargetingProperties MaxRange="25.0">
+    <ValidTargetClasses>
+     <Class value="ArkNightmare"/>
+     <Class value="ArkPoltergeist"/>
+     <Class value="ArkAlienJelly"/>
+     <Class value="ArkMimicElite"/>
+     <Class value="ArkMimic"/>
+     <Class value="ArkBeta"/>
+     <Class value="ArkTelepath"/>
+     <Class value="ArkWeaver"/>
+     <Class value="ArkPhantomVoltaic"/>
+     <Class value="ArkHuman"/>
+     <Class value="ArkTechnopath"/>
+     <Class value="ArkApexTentacle"/>
+     <Class value="ArkApexTentacleHead"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+  </ArkPsiPowerHypnosisProperties>
+  <ArkPsiPowerHypnosisProperties Description="@rpg_Override2" DisplayName="@rpg_OverrideName2" CooldownDurationSec="10" SignalPackageId="3149325216966419728">
+   <TargetingProperties MaxRange="25.0">
+    <ValidTargetClasses>
+     <Class value="ArkTechnopath"/>
+     <Class value="ArkNightmare"/>
+     <Class value="ArkPoltergeist"/>
+     <Class value="ArkAlienJelly"/>
+     <Class value="ArkMimicElite"/>
+     <Class value="ArkMimic"/>
+     <Class value="ArkBeta"/>
+     <Class value="ArkTelepath"/>
+     <Class value="ArkWeaver"/>
+     <Class value="ArkPhantomVoltaic"/>
+     <Class value="ArkHuman"/>
+     <Class value="ArkApexTentacle"/>
+     <Class value="ArkApexTentacleHead"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+  </ArkPsiPowerHypnosisProperties>
+  <ArkPsiPowerHypnosisProperties Description="@rpg_Override3" DisplayName="@rpg_OverrideName3" CooldownDurationSec="10" SignalPackageId="3149325216966419730">
+   <TargetingProperties MaxRange="25.0">
+    <ValidTargetClasses>
+     <Class value="ArkTechnopath"/>
+     <Class value="ArkNightmare"/>
+     <Class value="ArkPoltergeist"/>
+     <Class value="ArkAlienJelly"/>
+     <Class value="ArkMimicElite"/>
+     <Class value="ArkMimic"/>
+     <Class value="ArkBeta"/>
+     <Class value="ArkTelepath"/>
+     <Class value="ArkWeaver"/>
+     <Class value="ArkHuman"/>
+     <Class value="ArkPhantomVoltaic"/>
+     <Class value="ArkApexTentacle"/>
+     <Class value="ArkApexTentacleHead"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+  </ArkPsiPowerHypnosisProperties>
+ </Levels>
+</HypnosisPowerProperties>

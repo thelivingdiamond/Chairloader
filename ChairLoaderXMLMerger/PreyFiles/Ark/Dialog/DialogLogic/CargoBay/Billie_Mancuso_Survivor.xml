@@ -1,0 +1,261 @@
+
+<ResponseRules>
+ <WritebackKeys>
+  <WritebackKey id="4349723564913694228" name="DescribedMindControl"/>
+  <WritebackKey id="4349723564929942981" name="ExplainsArboretum"/>
+ </WritebackKeys>
+ <ResponseRule id="4349723564913694038" name="Billie Mancuso: OnApproach, Describes Mind Control" cooldown="" conversation="1" response="4349723564913694634" description="Billie is a character Morgan may have rescued from a Telepath in the Arboretum. If she survived she&apos;s now in the Cargo Bay. Follow-up thank you. " oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="4349723564913694228" value="1" time="0"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="4349723564913694220" name="Billie Mancuso: OnUse, Asks About Turrets" cooldown="" conversation="1" response="4349723564913694852" description="Telepath survivor from Arboretum. Follow-up thank you. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="4349723564929942981" value="1" time="0"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseSet id="4349723564913694634">
+  <Response dialog="4349723564913694633" id="4349723564913694635" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564913694852">
+  <Response dialog="4349723564913694851" id="4349723564913694853" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942360" name="" cooldown="" response="4349723564929942361">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913694635" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942361">
+  <Response dialog="4349723564929942359" id="4349723564929942362" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="1" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942364" name="" cooldown="" response="4349723564929942365">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929942362" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942365">
+  <Response dialog="4349723564929942363" id="4349723564929942366" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay=".5" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318053"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942368" name="" cooldown="" response="4349723564929942369">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929942366" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942369">
+  <Response dialog="4349723564929942367" id="4349723564929942370" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942631" name="Billie Mancuso: On Loiter, Talks to herself" cooldown="30" conversation="1" response="4349723564929942660" description="Billie is a character Morgan may have rescued from a Telepath in the Arboretum. If she survived she&apos;s now in the Cargo Bay. Follow-up thank you. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942660">
+  <Response dialog="4349723564929942659" id="4349723564929942661" cooldown="60" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564929942686" id="13680621263410736620" cooldown="60" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="4349723564929942690" id="13680621263410736628" cooldown="60" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942847" name="" cooldown="" response="4349723564929942848">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913694853" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942848">
+  <Response dialog="4349723564929942846" id="4349723564929942849" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942874" name="" cooldown="" response="4349723564929942875">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929942849" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942875">
+  <Response dialog="4349723564929942873" id="4349723564929942876" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942891" name="" cooldown="" response="4349723564929942892">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929942876" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942892">
+  <Response dialog="4349723564929942890" id="4349723564929942893" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318066"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929942901" name="" cooldown="" response="4349723564929942902">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929942893" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412531081542" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929942902">
+  <Response dialog="4349723564929942900" id="4349723564929942903" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929943032" name="Billie Mancuso: OnUse, Asks About Turrets" cooldown="" conversation="1" response="4349723564929943819" description="Telepath survivor from Arboretum. Follow-up thank you. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564929942981" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929943819">
+  <Response dialog="4349723564929943818" id="4349723564929943820" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318087"/>
+  <Response dialog="4349723564929943988" id="4349723564929943989" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423989"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929944090" name="Billie Mancuso: Player Attacks Guards" cooldown="" conversation="1" response="4349723564929944159" description="Telepath survivor from Arboretum. Comments on the player attacking her fellow security officers " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNewTarget" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451416" type="default" keyType="default" value="ArkPlayer"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929944159">
+  <Response dialog="4349723564929944158" id="4349723564929944160" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318060"/>
+  <Response dialog="4349723564929944172" id="4349723564929944173" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318060"/>
+  <Response dialog="4349723564929944962" id="4349723564929944963" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929944965" name="Player is Female" cooldown="" response="4349723564929945181">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929944963" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564929944970" name="Player is Male" cooldown="" response="4349723564929945192">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564929944963" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929945181">
+  <Response dialog="4349723564929945180" id="4349723564929945182" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564929945192">
+  <Response dialog="4349723564929945191" id="4349723564929945193" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929945768" name="Billie Mancuso: Uses Alien Powers" cooldown="" conversation="1" response="4349723564929945807" description="Telepath survivor from Arboretum. Player is manifesting powers that can only come from an alien influence. This alarms her.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerUsePower" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213148" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929945807">
+  <Response dialog="4349723564929945806" id="4349723564929945808" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+  <Response dialog="4349723564929945818" id="4349723564929945819" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929945984" name="Billie Mancuso: On Loiter, Dahl Announces Attack" cooldown="20" conversation="1" response="4349723564929946188" description="Billie is a character Morgan may have rescued from a Telepath in the Arboretum. If she survived she&apos;s now in the Cargo Bay. She reacts to the news that Dahl is going to try and murder them all.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="844024417287653111" keyType="objective" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929946188">
+  <Response dialog="4349723564929946187" id="4349723564929946189" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564929946203" id="4349723564929946204" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318026"/>
+  <Response dialog="4349723564929946214" id="4349723564929946215" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929947979" name="Billie Mancuso: On Loiter, Dahl Attack Failed" cooldown="20" conversation="1" response="4349723564929948266" description="Billie is a character Morgan may have rescued from a Telepath in the Arboretum. If she survived she&apos;s now in the Cargo Bay. Dahl tried to murder all the Security Officers but the player foiled the attack.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="844024417287653111" keyType="objective" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929948266">
+  <Response dialog="4349723564929946187" id="4349723564929948267" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564929948286" id="4349723564929948287" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564929948297" id="4349723564929948298" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564929948376" name="Billie Mancuso: No Hope, APEX arrived" cooldown="" conversation="1" response="4349723564929948492" description="Telepath survivor from Arboretum. She now sees the Apex alien attacking TranStar">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786238" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="14667999412531081542"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="659909599" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564929948492">
+  <Response dialog="4349723564929942659" id="4349723564929948493" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318010"/>
+  <Response dialog="4349723564929942686" id="4349723564929948511" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+</ResponseRules>

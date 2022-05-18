@@ -1,0 +1,85 @@
+
+<PrefabsLibrary Name="Beta_Variants">
+ <Prefab Name="Beta_Variants.Beta_Group2" Id="{FBB55589-A6B2-4619-8420-E0E4F36C8C4B}" Library="Beta_Variants">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{5548DB7C-7B3A-4AEA-89C0-A7A33FF0BD93}" Name="inner_beta_mtl8" Pos="0.875,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material9" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{6E5CCE72-90D8-47FF-B95F-9B02A63622A5}" Name="beta_mtl9" Pos="-2.625,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material9" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{A9930D44-6B0C-44AF-A247-CC2C35FD8A22}" Name="beta_mtl" Pos="13.875,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" Geometry="objects/characters/alien/beta/beta.cdf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{865E91EA-0A1B-4A78-9169-89D50F36C2F3}" Name="beta_mtl1" Pos="12.25,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material1" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{6533CA1B-82B3-48EA-8699-F2C38DB199F8}" Name="beta_mtl2" Pos="10.625,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material2" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{D242D962-75B8-47BB-8164-ED767AC10773}" Name="beta_mtl3" Pos="9,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material3" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{09973A2D-A95E-40C9-AD91-CC162800D1B7}" Name="beta_mtl4" Pos="7.375,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material4" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{6BB8C7A4-8C50-4EE4-8221-74A2CE0D9B64}" Name="beta_mtl5" Pos="5.75,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material5" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{97B90D24-FB2F-4FF8-82CA-60C23F2815CC}" Name="beta_mtl6" Pos="4.125,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material6" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{71D1630C-54A9-4255-8553-789DB3755052}" Name="beta_mtl7" Pos="2.5,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material7" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{04711608-4225-46E0-9741-9C17AE0C0A60}" Name="outer_beta_mtl8" Pos="0.875,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material8" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{AFA32CAD-1EE7-4BE5-A1BC-CB6B2186F9A0}" Name="beta_mtl10" Pos="-0.875,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material10" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Main" LayerGUID="{8AA8C31D-BD22-40D2-A788-B2C297E973CA}" Id="{2563E3B4-DE21-4FAB-AF67-E2B1B999554E}" Name="beta_mtl11" Pos="-4.625,0.25,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Objects/characters/Test/Beta/Beta_Material11" MatLayersMask="0" Geometry="objects/characters/test/beta/beta_test.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

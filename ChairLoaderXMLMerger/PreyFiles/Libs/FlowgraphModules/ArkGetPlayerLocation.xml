@@ -1,0 +1,104 @@
+
+<Graph isModule="1" moduleName="ArkGetPlayerLocation" isObjectList="0" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="Sim Labs" Type="-1" Input="0"/>
+  <Port Name="Lobby" Type="-1" Input="0"/>
+  <Port Name="Hardware Labs" Type="-1" Input="0"/>
+  <Port Name="VIP Shuttle Bay" Type="-1" Input="0"/>
+  <Port Name="Trauma Center" Type="-1" Input="0"/>
+  <Port Name="Psychotronics" Type="-1" Input="0"/>
+  <Port Name="GUTs" Type="-1" Input="0"/>
+  <Port Name="Arboretum" Type="-1" Input="0"/>
+  <Port Name="Crew Quarters" Type="-1" Input="0"/>
+  <Port Name="Deep Storage" Type="-1" Input="0"/>
+  <Port Name="Bridge" Type="-1" Input="0"/>
+  <Port Name="Cargo Bay" Type="-1" Input="0"/>
+  <Port Name="Exterior" Type="-1" Input="0"/>
+  <Port Name="Life Support" Type="-1" Input="0"/>
+  <Port Name="Power Plant" Type="-1" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_ArkGetPlayerLocation" pos="-670,490,0"/>
+  <Node Id="2" Class="Module:End_ArkGetPlayerLocation" pos="660,400,0">
+   <Inputs/>
+  </Node>
+  <Node Id="3" Class="Ark:Locations:CheckLocation" pos="-90,-30,0">
+   <Inputs location_Location="12889009724983807463"/>
+  </Node>
+  <Node Id="4" Class="Ark:Locations:CheckLocation" pos="-90,70,0">
+   <Inputs location_Location="1713490239377285936"/>
+  </Node>
+  <Node Id="5" Class="Ark:Locations:CheckLocation" pos="-90,170,0">
+   <Inputs location_Location="844024417263019221"/>
+  </Node>
+  <Node Id="6" Class="Ark:Locations:CheckLocation" pos="-90,270,0">
+   <Inputs location_Location="1713490239386284988"/>
+  </Node>
+  <Node Id="7" Class="Ark:Locations:CheckLocation" pos="-90,370,0">
+   <Inputs location_Location="12889009724980689392"/>
+  </Node>
+  <Node Id="8" Class="Ark:Locations:CheckLocation" pos="-90,480,0">
+   <Inputs location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="9" Class="Ark:Locations:CheckLocation" pos="-90,580,0">
+   <Inputs location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="10" Class="Ark:Locations:CheckLocation" pos="-90,680,0">
+   <Inputs location_Location="1713490239386284818"/>
+  </Node>
+  <Node Id="11" Class="Ark:Locations:CheckLocation" pos="-90,780,0">
+   <Inputs location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="12" Class="Ark:Locations:CheckLocation" pos="-90,880,0">
+   <Inputs location_Location="1713490239377738413"/>
+  </Node>
+  <Node Id="13" Class="Ark:Locations:CheckLocation" pos="-90,990,0">
+   <Inputs location_Location="844024417275035158"/>
+  </Node>
+  <Node Id="14" Class="Ark:Locations:CheckLocation" pos="-90,1090,0">
+   <Inputs location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="15" Class="Ark:Locations:CheckLocation" pos="-90,1190,0">
+   <Inputs location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="16" Class="Ark:Locations:CheckLocation" pos="-90,1290,0">
+   <Inputs location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="17" Class="Ark:Locations:CheckLocation" pos="-90,1390,0">
+   <Inputs location_Location="6732635291182790112"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="3" portIn="Sim Labs" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="4" portIn="Lobby" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="5" portIn="Hardware Labs" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="6" portIn="VIP Shuttle Bay" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="7" portIn="Trauma Center" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="8" portIn="Psychotronics" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="9" portIn="GUTs" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="10" portIn="Arboretum" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="11" portIn="Crew Quarters" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="12" portIn="Deep Storage" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="13" portIn="Bridge" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="14" portIn="Cargo Bay" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="15" portIn="Exterior" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="16" portIn="Life Support" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="17" portIn="Power Plant" portOut="True" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

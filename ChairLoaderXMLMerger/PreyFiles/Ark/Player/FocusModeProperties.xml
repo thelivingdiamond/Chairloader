@@ -1,0 +1,34 @@
+
+<ArkFocusModeComponentProperties MouseSensitivity="0.12" MouseRotationSpeed="80" MouseRotationDamping="20" ControllerAbsoluteDeadzone="0.3" ControllerDeltaDeadzone="0.5" ControllerInactiveStickDeadzone="0.8" DefaultPostProcessEffect="12635110349620313246" FocusParticleEffectPath="Player.FocusMenu.FocusModeScreen" ExitFromFocusParticleEffectPath="Player.FocusMenu.FocusModeExit" PsiParticleEffectPath="Player.FocusMenu.PsiMenuBackground" ExitFromPsiParticleEffectPath="Player.FocusMenu.PsiModeExit" FocusToPsiParticleEffectPath="Player.FocusMenu.PsiMenuBackground" PsiToFocusParticleEffectPath="Player.FocusMenu.PsiToFocus" NoPowersAudioTrigger="Play_Player_Powers_CannotCast">
+ <SelectPowerLegend ActionMap="focusmode">
+  <Items>
+   <ArkInputLegendItem Action="mouse_select_item" Label="@ui_FocusModeEquip" ControlScheme="keyboard"/>
+   <ArkInputLegendItem Action="mouse_cancel_select_item" Label="@ui_FocusModeCancel" ControlScheme="keyboard"/>
+   <ArkInputLegendItem Action="controller_cancel_focusmode" Label="@ui_FocusModeCancel" ControlScheme="controller"/>
+   <ArkInputLegendItem Label="@ui_FocusModeAssign " ActionMap="player" Hold="false" ControlScheme="controller">
+    <ActionList>
+     <ArkInputAction Action="quickselect_down"/>
+     <ArkInputAction Action="quickselect_left"/>
+     <ArkInputAction Action="quickselect_right"/>
+    </ActionList>
+   </ArkInputLegendItem>
+  </Items>
+ </SelectPowerLegend>
+ <SelectWeaponLegend ActionMap="focusmode">
+  <Items>
+   <ArkInputLegendItem Action="mouse_select_item" Label="@ui_FocusModeEquip" ControlScheme="keyboard"/>
+   <ArkInputLegendItem Action="mouse_cancel_select_item" Label="@ui_FocusModeCancel" ControlScheme="keyboard"/>
+   <ArkInputLegendItem Action="controller_cancel_focusmode" Label="@ui_FocusModeCancel" ControlScheme="controller"/>
+   <ArkInputLegendItem Label="@ui_FocusModeAssign " ActionMap="player" Hold="false" ControlScheme="controller">
+    <ActionList>
+     <ArkInputAction Action="quickselect_down"/>
+     <ArkInputAction Action="quickselect_left"/>
+     <ArkInputAction Action="quickselect_right"/>
+    </ActionList>
+   </ArkInputLegendItem>
+  </Items>
+ </SelectWeaponLegend>
+ <NoPowersStrings>
+  <String value=" "/>
+ </NoPowersStrings>
+</ArkFocusModeComponentProperties>

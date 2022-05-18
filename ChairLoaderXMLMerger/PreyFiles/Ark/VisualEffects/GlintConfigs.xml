@@ -1,0 +1,7 @@
+
+<GlintConfigs>
+ <Config Id="16934642289625103724" Name="Default" color=".7,.9,1"/>
+ <Config Id="16934642289625104095" Name="Recycler Junk" color=".45,.45,.45"/>
+ <Config Id="16934642289625112569" Name="HighValueItems" color=".9,.7,.4"/>
+ <Config Id="13856881013222815427" Name="None" color="0,0,0"/>
+</GlintConfigs>

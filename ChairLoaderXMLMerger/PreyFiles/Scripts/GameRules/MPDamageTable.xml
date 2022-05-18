@@ -1,0 +1,4 @@
+
+<DamageTable>
+ <VehicleDamage collisionKillSpeed="10.0"/>
+</DamageTable>

@@ -1,0 +1,187 @@
+
+<ATLConfig atl_name="Psychotronics">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_IGC_CosmoDeath_TV_Screen">
+   <WwiseEvent wwise_name="Play_IGC_CosmoDeath_TV_Screen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_AlienTestBuzzer" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_AlienTestBuzzer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_CelingTiles_Fall" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_CelingTiles_Fall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_Mimic_Hide" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_Mimic_Hide"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_Decontamination" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_Decontamination"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_DecontaminationDoor_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_DecontaminationDoor_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BlastShield_Move" path="Objects">
+   <WwiseEvent wwise_name="Play_BlastShield_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_BlastShield_Move" path="Objects">
+   <WwiseEvent wwise_name="Stop_BlastShield_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_Rumble" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_Rumble"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_Psychotronics_CreatureTank" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_Psychotronics_CreatureTank"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_Psychotronics_CreatureTank" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_Psychotronics_CreatureTank"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_OperatorScare" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_OperatorScare"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_Mimic_CeilingHatch" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_Mimic_CeilingHatch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_FlamingMimics" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_FlamingMimics"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Phantom_GlassGlitch_LP" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Phantom_GlassGlitch_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Phantom_GlassGlitch_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Phantom_GlassGlitch_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Toliet_Erupt" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Toliet_Erupt"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Toliet_Interest" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Toliet_Interest"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Security_Tube_Energy_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Security_Tube_Energy_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Security_Tube_Energy_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_Obj_Security_Tube_Energy_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_GooBreak" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_GooBreak"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_TyphoidContainment_Open" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Door_TyphoidContainment_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_HangingTiles_Fall" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_HangingTiles_Fall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_SecretDoor_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_SecretDoor_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_SecretDoor_Stop" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_SecretDoor_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_Mimic_ToiletSuck" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_Mimic_ToiletSuck"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Mimic_Psych_Toilet_LP" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Mimic_Psych_Toilet_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Mimic_Psych_Toilet_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Mimic_Psych_Toilet_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psych_Phantom_StepScare" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psych_Phantom_StepScare"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_ScareWall_UI" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_ScareWall_UI"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_Mimic_Door_Open" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_Mimic_Door_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psych_Mimic_Door_Button" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psych_Mimic_Door_Button"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psychotronics_Monitor_PowerOn" path="Events">
+   <WwiseEvent wwise_name="Play_Obj_Psychotronics_Monitor_PowerOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psychotronics_ExtractionMachine_Work" path="Events">
+   <WwiseEvent wwise_name="Play_Obj_Psychotronics_ExtractionMachine_Work"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_Contained" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_Contained"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_Phantom" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_Phantom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_TyphoidContainment_Close" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Door_TyphoidContainment_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psychotronics_ContainmentPods_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psychotronics_ContainmentPods_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Psychotronics_ContainmentPods_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_Obj_Psychotronics_ContainmentPods_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_PhantomScare_InCapsule" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_PhantomScare_InCapsule"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_PhantomScare_Capsule_Hit" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_PhantomScare_Capsule_Hit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psychotronics_Lure_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psychotronics_Lure_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Psychotronics_Lure_Stop" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Psychotronics_Lure_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psychotronics_Mimic_Stab_SQ03" path="Events">
+   <WwiseEvent wwise_name="Play_Psychotronics_Mimic_Stab_SQ03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_LiveExam_CorpseToPhantom_LP" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_LiveExam_CorpseToPhantom_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_LiveExam_Corpse_Lift" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_LiveExam_Corpse_Lift"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_LiveExam_Weaver_Appear" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_LiveExam_Weaver_Appear"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_LiveExam_Weaver_Appear_01" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_LiveExam_Weaver_Appear_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Psychotronics_LiveExam_Weaver_Cast" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Psychotronics_LiveExam_Weaver_Cast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Psychotronics_LiveExam_CorpseToPhantom_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Psychotronics_LiveExam_CorpseToPhantom_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_Psychotronics_AlienLureTestArm_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_Psychotronics_AlienLureTestArm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_Psychotronics_CalibrationScannerRing_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_Psychotronics_CalibrationScannerRing_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_Psychotronics_CalibrationScreen_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_Psychotronics_CalibrationScreen_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_Psychotronics_AlienLureTestArm_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_Psychotronics_AlienLureTestArm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_Psychotronics_CalibrationScannerRing_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_Psychotronics_CalibrationScannerRing_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_Psychotronics_CalibrationScreen_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_Psychotronics_CalibrationScreen_LP"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Psychotronics" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Psychotronics.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

@@ -1,0 +1,39 @@
+
+<ElectrostaticBurstPowerProperties>
+ <Common DisplayName="@rpg_ElecBurstName" PsiCost="30" Description="@rpg_ElecBurstShort" PickerLabel="Electrostatic Burst" InterruptsMimicGrabSequence="false" TargetHighlightColorAlpha="0.75" TargetHighlightColor="0.67,1.0,1.0" NoiseId="9469288860501649125" LoudnessId="10850392949532183296" PersistentPostProcessVFX="" CostReductionStat="psiCostScaleKineticEnergy" ExecutionPlayerEffect="Player.Powers.ElectrostaticBurst.ElectrostaticBurst_CastPV"/>
+ <Levels>
+  <ArkPsiElectrostaticBurstProperties DisplayName="@rpg_ElecBurstName" Description="@rpg_ElecBurst1" CooldownDurationSec="6">
+   <TargetingProperties MinRange="0" MaxRange="20" TargetParticleEffect="Player.Powers.ElectrostaticBurst.ElectroBurstTarget_lvl_01" TargetParticleLightEffect="Player.Powers.ElectrostaticBurst.ElectroBurstTarget_Light_01">
+    <ValidTargetMetaTags>
+     <MetaTag value="17591291352642463355"/>
+     <MetaTag value="9469288860517748071"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <BlastTypeProperties>
+    <BlastProperties Radius="3" DelaySec="0.5" StopDelayAudioTrigger="" ExplosionAudioTrigger="Play_Player_Power_Electrostatic_Start" StartPersistentAudioTrigger="Play_Player_Power_Electrostatic_InWorld_Start" StopPersistentAudioTrigger="" StartDelayAudioTrigger="" PreExplosionParticleEffect="Player.Powers.ElectrostaticBurst.ElectrostaticTelegraph" ExplosionParticleEffect="Player.Powers.ElectrostaticBurst.ElectrostaticBurst_lvl_01" NoiseId="9469288860501649125" LoudnessId="10850392949532183296" FalloffRadius="0" FalloffScale="1" CameraShake="10739735956147043737" ExplosionSignalPackageId="10641886185795236096"/>
+   </BlastTypeProperties>
+  </ArkPsiElectrostaticBurstProperties>
+  <ArkPsiElectrostaticBurstProperties DisplayName="@rpg_ElecBurstName2" Description="@rpg_ElecBurst2" CooldownDurationSec="6">
+   <TargetingProperties MinRange="0" MaxRange="20" TargetParticleEffect="Player.Powers.ElectrostaticBurst.ElectroBurstTarget_lvl_02" TargetParticleLightEffect="Player.Powers.ElectrostaticBurst.ElectroBurstTarget_Light_01">
+    <ValidTargetMetaTags>
+     <MetaTag value="17591291352642463355"/>
+     <MetaTag value="9469288860517748071"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <BlastTypeProperties>
+    <BlastProperties Radius="4" DelaySec="0.5" StopDelayAudioTrigger="" ExplosionAudioTrigger="Play_Player_Power_Electrostatic_Start" StartPersistentAudioTrigger="" StopPersistentAudioTrigger="" StartDelayAudioTrigger="" PreExplosionParticleEffect="Player.Powers.ElectrostaticBurst.ElectrostaticTelegraph" ExplosionParticleEffect="Player.Powers.ElectrostaticBurst.ElectrostaticBurst_lvl_02" NoiseId="9469288860501649125" LoudnessId="10850392949532183296" FalloffRadius="0" FalloffScale="1" CameraShake="10739735956147043737" ExplosionSignalPackageId="3149325216945625460"/>
+   </BlastTypeProperties>
+  </ArkPsiElectrostaticBurstProperties>
+  <ArkPsiElectrostaticBurstProperties DisplayName="@rpg_ElecBurstName3" Description="@rpg_ElecBurst3" CooldownDurationSec="6">
+   <TargetingProperties MinRange="0" MaxRange="20" TargetParticleEffect="Player.Powers.ElectrostaticBurst.ElectroBurstTarget_lvl_03" TargetParticleLightEffect="Player.Powers.ElectrostaticBurst.ElectroBurstTarget_Light_01">
+    <ValidTargetMetaTags>
+     <MetaTag value="17591291352642463355"/>
+     <MetaTag value="9469288860517748071"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <BlastTypeProperties>
+    <BlastProperties Radius="5" DelaySec="0.5" StopDelayAudioTrigger="" ExplosionAudioTrigger="Play_Player_Power_Electrostatic_Start" StartPersistentAudioTrigger="" StopPersistentAudioTrigger="" StartDelayAudioTrigger="" PreExplosionParticleEffect="Player.Powers.ElectrostaticBurst.ElectrostaticTelegraph" ExplosionParticleEffect="Player.Powers.ElectrostaticBurst.ElectrostaticBurst_lvl_03" NoiseId="9469288860501649125" LoudnessId="9469288860501649219" FalloffRadius="0" FalloffScale="1" CameraShake="10739735956147043737" ExplosionSignalPackageId="3149325216945625462"/>
+   </BlastTypeProperties>
+  </ArkPsiElectrostaticBurstProperties>
+ </Levels>
+</ElectrostaticBurstPowerProperties>

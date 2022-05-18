@@ -1,0 +1,62 @@
+
+<Dialog>
+ <Dialog id="13680621263359124520" facefx="3" sync="true" notes="Test_A_Start. " text="Good morning, Morgan. I&apos;m Dr. Bellamy. " modified="04/14/2015 02:29:49 PM"/>
+ <Dialog id="13680621263359124522" facefx="3" sync="true" notes="Test_A_Start. " text="Looks like we have some tests to run through today. " modified="04/14/2015 02:30:01 PM"/>
+ <Dialog id="13680621263359124523" facefx="3" sync="true" notes="Test_A_Start. " text="Probably not the kind of thing you&apos;re used to, I imagine. But, trust me, you&apos;re going to do fantastic."/>
+ <Dialog id="13680621263359124524" facefx="3" sync="0" notes="Test_A_Start. " text="You&apos;re going to do fantastic." modified="04/14/2015 02:30:30 PM"/>
+ <Dialog id="13680621263359124525" facefx="3" sync="true" notes="Test_A_Start. " text="All good? Great. Let&apos;s begin. " modified="04/14/2015 02:30:38 PM"/>
+ <Dialog id="13680621263359124526" facefx="0" sync="0" notes="" text="Do you see those little boxes? Wonderful. " modified="04/14/2015 02:30:47 PM"/>
+ <Dialog id="13680621263359124527" facefx="3" sync="true" notes="Test_A_Start. " text="For this first test, I&apos;d like you to remove the boxes from the red circle as quickly as you can. " modified="04/14/2015 02:31:06 PM"/>
+ <Dialog id="13680621263359124529" facefx="0" sync="true" notes="" text="Take your time, relax. Think it over. " modified="04/14/2015 02:32:12 PM"/>
+ <Dialog id="13680621263359124530" facefx="0" sync="true" notes="" text="No, I&apos;m kidding. You only have five seconds." modified="04/14/2015 02:32:26 PM"/>
+ <Dialog id="13680621263359124665" facefx="0" sync="0" notes="Alt" text="No, I&apos;m kidding. You only have three seconds." modified="04/14/2015 02:32:30 PM"/>
+ <Dialog id="13680621263359124751" facefx="0" sync="true" notes="" text="Hit the red button when you&apos;re ready to start." modified="04/14/2015 02:32:48 PM"/>
+ <Dialog id="13680621263359124776" facefx="0" sync="true" notes="" text="Wonderful. That&apos;s... you&apos;re absolutely fine. Let&apos;s move on to Room B then." modified="05/09/2016 04:31:33 AM"/>
+ <Dialog id="13680621263359124811" facefx="0" sync="true" notes="Still cheerful." text="Ok, Morgan. Listen carefully. I&apos;d like you to do your best to hide in this room." modified="04/14/2015 02:34:24 PM"/>
+ <Dialog id="13680621263359124812" facefx="3" sync="true" notes="Test_A_Start. " text="Just go with your gut. Okay? Wonderful. Press the red button when you&apos;re ready." modified="04/14/2015 02:34:52 PM"/>
+ <Dialog id="13680621263359124813" facefx="0" sync="true" notes="" text="Hmph. I ..." modified="04/14/2015 02:35:13 PM"/>
+ <Dialog id="13680621263359124814" facefx="0" sync="0" notes="Told someting dissapointing by his staff, trying to maintain positivity." text="Can we reset? No? That&apos;s fine." modified="04/14/2015 02:35:48 PM"/>
+ <Dialog id="13680621263359124815" facefx="0" sync="true" notes="Back to morgan." text="Sorry. Let&apos;s keep things moving, Morgan. Head into Room C. You&apos;re doing marvelous. " modified="07/12/2016 05:47:32 PM"/>
+ <Dialog id="13680621263359124949" facefx="0" sync="true" notes="" text="All right. Here we go. " modified="04/14/2015 02:37:01 PM"/>
+ <Dialog id="13680621263359124950" facefx="0" sync="true" notes="" text="For this test, please press the blue button across the room as quickly as you can, in the most natural intuitive way possible." modified="07/12/2016 05:47:34 PM"/>
+ <Dialog id="13680621263359124951" facefx="0" sync="true" notes="" text="Without thinking. Just ... go for it. " modified="04/14/2015 02:37:30 PM"/>
+ <Dialog id="13680621263359124952" facefx="0" sync="true" notes="" text="Press the red button when you&apos;re ready." modified="04/14/2015 02:37:36 PM"/>
+ <Dialog id="13680621263359124953" facefx="0" sync="true" notes="To staff. Really irritated under the surface." text="I&apos;m sorry, can someone please explain to me what&apos;s happening? Simmons?" modified="04/14/2015 02:37:51 PM"/>
+ <Dialog id="13680621263359124966" facefx="0" sync="true" notes="subtext: you dumbass." text="Did you double-check?" modified="04/14/2015 02:38:21 PM"/>
+ <Dialog id="13680621263359125079" facefx="0" sync="true" notes="game face back on." text="I apologize Morgan, we&apos;re having some trouble with... the equipment. " modified="04/14/2015 02:38:58 PM"/>
+ <Dialog id="13680621263359125080" facefx="0" sync="true" notes="" text="Not your fault. You&apos;re doing fabulous, actually. One last room. Let&apos;s step into D." modified="07/12/2016 05:47:42 PM"/>
+ <Dialog id="13680621263359125081" facefx="0" sync="true" notes="To staff." text="Can someone get me a cup of coffee? I would appreciate it. Thank you. " modified="04/14/2015 02:39:26 PM"/>
+ <Dialog id="13680621263359125146" facefx="0" sync="true" notes="" text="Ok, Morgan. Have a seat at the table for me, please." modified="04/14/2015 02:39:45 PM"/>
+ <Dialog id="13680621263359125147" facefx="0" sync="true" notes="" text="Wonderful job. Take a look at the screen in front of you." modified="04/14/2015 02:39:52 PM"/>
+ <Dialog id="13680621263359125148" facefx="0" sync="true" notes="" text="I&apos;m going to show you a series of questions. Pick the answer that makes the most sense to you. " modified="04/14/2015 02:40:04 PM"/>
+ <Dialog id="13680621263359125149" facefx="0" sync="true" notes="" text="Press start on the screen when you&apos;re ready." modified="04/14/2015 02:40:08 PM"/>
+ <Dialog id="13680621263359125193" facefx="0" sync="true" notes="" text="Good. Looks like you&apos;ve got the hang of it. Keep going." modified="04/14/2015 02:40:25 PM"/>
+ <Dialog id="13680621263359125194" facefx="0" sync="true" notes="" text="Oh, that&apos;s heavy stuff." modified="04/14/2015 02:40:35 PM"/>
+ <Dialog id="13680621263359125195" facefx="0" sync="0" notes="non-commital acknowledgment" text="(Grunt)" modified="07/12/2016 05:48:05 PM"/>
+ <Dialog id="13680621263359125196" facefx="0" sync="true" notes="" text="Good. Next." modified="04/14/2015 02:41:17 PM"/>
+ <Dialog id="13680621263359125197" facefx="0" sync="true" notes="" text="Almost done." modified="04/14/2015 02:41:28 PM"/>
+ <Dialog id="13680621263359125198" facefx="0" sync="true" notes="" text="Well done, well done. We&apos;re nearly through it. For this next part, I&apos;m going to display an image." modified="04/14/2015 02:42:07 PM"/>
+ <Dialog id="13680621263359125289" facefx="0" sync="true" notes="Distracted by wanting his coffee. " text="I want you to take a good look at it. In a moment I&apos;m going to ask you what ... uh..." modified="06/10/2015 09:16:52 PM"/>
+ <Dialog id="13680621263359125333" facefx="0" sync="true" notes="A creature grabs him before he can finish his sentence." text="This my coffee? It&apos;s empty." modified="06/07/2016 11:36:27 PM"/>
+ <Dialog id="13680621263359125336" facefx="0" sync="true" notes="Being strangled, drained of life. " text="(Choking)" modified="07/12/2016 05:48:11 PM"/>
+ <Dialog id="13680621263359125393" facefx="0" sync="0" notes="Waiting around. One-shots." text="Whenever you&apos;re ready, Morgan." modified="04/14/2015 02:44:23 PM"/>
+ <Dialog id="13680621263359125430" facefx="0" sync="0" notes="Waiting around. One-shots." text="Just press the red button." modified="04/14/2015 02:44:29 PM"/>
+ <Dialog id="13680621263359125436" facefx="0" sync="0" notes="Waiting around. One-shots." text="The red button starts the test." modified="04/14/2015 02:44:54 PM"/>
+ <Dialog id="13680621263359125438" facefx="0" sync="0" notes="Waiting around. One-shots." text="Is it warm in here? " modified="04/14/2015 02:45:01 PM"/>
+ <Dialog id="13680621263359125439" facefx="0" sync="0" notes="Waiting around. One-shots." text="Dr. Yu? Morgan. We&apos;re ready." modified="05/23/2016 09:33:51 PM"/>
+ <Dialog id="13680621263359125491" facefx="0" sync="0" notes="" text="Did you see what they had in the cafeteria this morning? Crepes." modified="04/14/2015 02:45:16 PM"/>
+ <Dialog id="13680621263359125520" facefx="0" sync="0" notes="" text="(Cough)" modified="07/12/2016 05:48:16 PM"/>
+ <Dialog id="13680621263359320332" text="(Sigh)" modified="07/12/2016 05:48:23 PM" notes="Impatient."/>
+ <Dialog id="13680621263365378820" text="Interesting." modified="06/25/2015 11:47:16 PM" sync="true"/>
+ <Dialog id="13680621263365378865" text="Wow. I&apos;m... impressed." modified="06/25/2015 11:48:01 PM" sync="true"/>
+ <Dialog id="13680621263365379098" text="You know what? I&apos;d probably do the same thing." modified="06/25/2015 11:51:54 PM" sync="true"/>
+ <Dialog id="13680621263365379364" text="Not your problem, right?" modified="06/25/2015 11:56:20 PM" sync="true"/>
+ <Dialog id="13680621263365801130" facefx="0" sync="true" notes="Spoken softer, aside to his staff. Told someting dissapointing by his staff, trying to maintain positivity." text="Any... synaptic register? At all? No? That&apos;s fine." modified="06/30/2015 09:08:29 PM"/>
+ <Dialog id="13680621263376920489" text="Morgan. We can see you there." modified="11/06/2015 01:48:25 PM"/>
+ <Dialog id="13680621263376921130" text="Uh- Morgan. You won&apos;t need that." modified="07/12/2016 05:49:05 PM"/>
+ <Dialog id="13680621263376921764" text="You seem excited today. Good." modified="11/06/2015 02:09:40 PM"/>
+ <Dialog id="13680621263376921957" text="Uh... Morgan. I&apos;ll have to ask you not to block the doors, please. Thanks." modified="11/06/2015 02:12:53 PM"/>
+ <Dialog id="13680621263391396594" facefx="0" sync="0" notes="Alt line for test A results." text="Wonderful. That was... a result. You&apos;re absolutely fine. Let&apos;s move on to Room B then." modified="05/09/2016 04:31:42 AM"/>
+ <Dialog id="13680621263391868341" facefx="0" sync="true" notes="" text="No, I&apos;m kidding. You only have nine seconds." modified="04/27/2016 01:59:31 PM"/>
+ <Dialog id="13680621263395445443" text="I thought Simm-" modified="10/21/2016 07:46:09 PM" sync="true"/>
+</Dialog>

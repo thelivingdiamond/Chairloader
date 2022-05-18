@@ -1,0 +1,11 @@
+
+<Dialog>
+ <Dialog id="13680621263374355079" text="(muffled yelling)" modified="02/04/2016 04:20:54 PM"/>
+ <Dialog id="13680621263374355183" text="(choking gasp)" modified="02/04/2016 03:58:16 PM" notes="Subject&apos;s death throws, then husking. 3-5 seconds."/>
+ <Dialog id="13680621263384704600" text="Do you have a family?" modified="02/04/2016 04:29:04 PM" notes="Addressing his captors. Voice is more distant, thru a speaker."/>
+ <Dialog id="13680621263384704718" text="I have a daughter. They took me from her. " modified="02/04/2016 04:07:33 PM"/>
+ <Dialog id="13680621263384704943" text="I was promised I would see her again. I signed your papers." modified="02/04/2016 04:09:19 PM" notes="He knows he&apos;s doomed. Shaming them for what they are about to do."/>
+ <Dialog id="13680621263384705159" text="Your family. You must hate them very much to do this. I hear it in your voices. " modified="02/04/2016 04:12:55 PM"/>
+ <Dialog id="13680621263384705445" text="Look at me. Look at the man you are killing." modified="02/04/2016 04:17:41 PM"/>
+ <Dialog id="13680621263384705547" text="What you do, kills us both." modified="02/04/2016 04:19:23 PM"/>
+</Dialog>

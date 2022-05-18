@@ -1,0 +1,59 @@
+
+<UIElements name="DanielleCharacterSelect">
+ <UIElement name="DanielleCharacterSelect" render_lockless="1" mouseevents="1" keyevents="0" cursor="0" controller_input="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_character_select.gfx" layer="15">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="openPage" funcname="gender.openPage"/>
+   <function name="exitPage" funcname="gender.exitPage"/>
+   <function name="loadTransition" funcname="loadTransition"/>
+   <function name="highlightID" funcname="highlightID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="HLLeft" funcname="gender.HLLeft"/>
+   <function name="HLRight" funcname="gender.HLRight"/>
+   <function name="btnSelect" funcname="gender.tnSelect"/>
+   <function name="btnBack" funcname="gender.btnBack"/>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="setPrompt" funcname="global.setPrompt">
+    <param name="Place" desc="1-8" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="global.formatPrompts"/>
+   <function name="screenRotate" funcname="camera.rotateOffset">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="GenderSelect" fscommand="GenderSelect" desc="">
+    <param name="Gender" desc="Male or Female" type="string"/>
+   </event>
+   <event name="menuTransition" fscommand="menuTransition" desc="">
+    <param name="Page" desc="" type="string"/>
+   </event>
+   <event name="loadTransition" fscommand="loadTransition" desc="">
+    <param name="Page" desc="" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+   <event name="backPressed" fscommand="backPressed"/>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

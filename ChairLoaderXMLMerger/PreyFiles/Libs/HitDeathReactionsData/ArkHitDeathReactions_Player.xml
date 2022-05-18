@@ -1,0 +1,9 @@
+
+<DeathHitReactionsParams>
+ <HitReactionParams>
+  <HitReactionParam validationFunc="DefaultHit_Validation" reactionFunc="DefaultHit_Reaction"/>
+ </HitReactionParams>
+ <DeathReactionParams>
+  <DeathReactionParam validationFunc="DefaultDeath_Validation" reactionFunc="DefaultDeath_Reaction"/>
+ </DeathReactionParams>
+</DeathHitReactionsParams>

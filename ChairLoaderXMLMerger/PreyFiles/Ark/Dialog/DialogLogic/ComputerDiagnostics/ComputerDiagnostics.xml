@@ -1,0 +1,398 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263369958951" name="LG Error" cooldown="" conversation="1" description="Error message read out when the player access the diagnostic function in Calvino&apos;s lab. " response="13680621263369959089">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263369958773"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263369959089">
+  <Response dialog="13680621263369959088" id="13680621263369959090" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263370149017" name="Power Plant Reactor Reboot--WARNING!" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting rebooting." response="13680621263370149069" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263370149069">
+  <Response dialog="13680621263370149068" id="13680621263370149070" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263370149105" name="" cooldown="" response="13680621263370149106">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263370149070" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="1590340168" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263370149106">
+  <Response dialog="13680621263370149104" id="13680621263370149107" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0.25"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652054897" name="Power Plant Reactor Shut Down_NEW" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652054927" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652054927">
+  <Response dialog="13680621263370034887" id="11824555372652054928" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055169" name="Substation power grid... offline." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055223" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055223">
+  <Response dialog="13680621263370146705" id="11824555372652055224" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055240" name="Magnetosphere... offline." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055272" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055272">
+  <Response dialog="13680621263370146842" id="11824555372652055273" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055328" name="Photovoltaic rings... offline." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055344" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055344">
+  <Response dialog="13680621263370146960" id="11824555372652055345" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055386" name="Life support... offline." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055406" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055406">
+  <Response dialog="13680621263370146971" id="11824555372652055407" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055415" name="Gravity... offline" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055429" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055429">
+  <Response dialog="13680621263370146989" id="11824555372652055430" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055439" name="Main reactor cold shutdown in..." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055455" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055455">
+  <Response dialog="13680621263370147019" id="11824555372652055456" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055466" name="Three..." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055483" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055483">
+  <Response dialog="13680621263370147023" id="11824555372652055484" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055487" name="Two..." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055502" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055502">
+  <Response dialog="13680621263370147027" id="11824555372652055503" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055506" name="One..." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055521" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055521">
+  <Response dialog="13680621263370147031" id="11824555372652055522" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652055534" name="Reactor successfuly shut down." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652055552" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652055552">
+  <Response dialog="13680621263370147040" id="11824555372652055553" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056330" name="Initiating main reactor ignition sequence in" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056341" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056341">
+  <Response dialog="13680621263370148518" id="11824555372652056342" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056345" name="Three... Back on" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056371" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056371">
+  <Response dialog="13680621263370147023" id="11824555372652056372" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056393" name="Two... Back on" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056406" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056406">
+  <Response dialog="13680621263370147027" id="11824555372652056407" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056415" name="One... Back on" cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056448" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056448">
+  <Response dialog="13680621263370147031" id="11824555372652056449" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056460" name="Sustained fusion... online." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056470" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056470">
+  <Response dialog="13680621263370148900" id="11824555372652056471" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056480" name="Gravity... online." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056488" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056488">
+  <Response dialog="13680621263370148921" id="11824555372652056489" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056503" name="Life support... online." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056515" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056515">
+  <Response dialog="13680621263370148939" id="11824555372652056516" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652056523" name="Magnetosphere..." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652056532" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652056532">
+  <Response dialog="13680621263370149011" id="11824555372652056533" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652057975" name="Resuming reactor initialization." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652057987" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652057987">
+  <Response dialog="13680621263370149168" id="11824555372652057988" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652057999" name="Magnetosphere...online." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652058007" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652058007">
+  <Response dialog="13680621263370149176" id="11824555372652058008" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652058018" name="Substation power grids... online." cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652058029" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652058029">
+  <Response dialog="13680621263370149191" id="11824555372652058030" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="11824555372652058038" name="Reactor initializtion complete. Systems restored. " cooldown="" conversation="1" description="A computer voice spits out the various steps of the reactor shutting down. " response="11824555372652058051" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="11824555372652058051">
+  <Response dialog="13680621263370149248" id="11824555372652058052" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460484" name="Life Support: Prep Machines For Flush" cooldown="" conversation="1" description="A computer voice gives feedback about air decontamination process in life support. " response="13680621263375460531" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="4349723564895209499"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460531">
+  <Response dialog="13680621263375460530" id="13680621263375460532" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460593" name="" cooldown="" conversation="" description="" response="13680621263375460640" oneshot="" priority="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263392336447" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460640">
+  <Response dialog="13680621263375460639" id="13680621263375460641" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460778" name="" cooldown="" response="13680621263375460779">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263375460641" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460779">
+  <Response dialog="13680621263370539429" id="13680621263375460780" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460786" name="" cooldown="" response="13680621263375460787">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263375460780" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460787">
+  <Response dialog="13680621263370539433" id="13680621263375460788" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460802" name="" cooldown="" response="13680621263375460803">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263375460788" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460803">
+  <Response dialog="11824555372652054530" id="13680621263375460804" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460820" name="" cooldown="" response="13680621263375460821">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263375460804" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460821">
+  <Response dialog="13680621263370147027" id="13680621263375460822" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460831" name="" cooldown="" response="13680621263375460832">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263375460822" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460832">
+  <Response dialog="13680621263370147031" id="13680621263375460833" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460886" name="Life Support: Decontamination Finished" cooldown="" conversation="1" description="A computer voice gives feedback about air decontamination process in life support. " response="13680621263375460970" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="4349723564895209499"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460970">
+  <Response dialog="13680621263375460969" id="13680621263375460971" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263375460986" name="" cooldown="" response="13680621263375460987">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263375460971" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263375460987">
+  <Response dialog="13680621263375460985" id="13680621263375460988" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="5"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263392336445" name="Life Support: Decontamination Started" cooldown="" description="A computer voice gives feedback about air decontamination process in life support. " priority="" conversation="1" oneshot="1" response="13680621263392336446">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="4349723564895209499"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263392336446">
+  <Response dialog="13680621263392336444" id="13680621263392336447" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263392408540" name="Deep Storage Lockdown" cooldown="" conversation="1" description="A computer voice says the airlock door is on lockdown in an out of Deep Storage." response="13680621263392408697" oneshot="0">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263392408697">
+  <Response dialog="13680621263392408696" id="13680621263392408698" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263397834393" name="Airlock, Propulsion System Required" cooldown="" conversation="1" description="A computer voice says you need a propuslion system to exit to the exterior." response="13680621263397834456" oneshot="0">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263397834456">
+  <Response dialog="13680621263397834455" id="13680621263397834457" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263397834464" name="" cooldown="" response="13680621263397834465">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263397834457" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263415497407"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263397834465">
+  <Response dialog="13680621263397834463" id="13680621263397834466" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

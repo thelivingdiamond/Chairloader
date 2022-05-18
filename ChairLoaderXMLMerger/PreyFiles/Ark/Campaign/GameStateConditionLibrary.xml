@@ -1,0 +1,437 @@
+
+<ArkGameStateConditionLibrary>
+ <GameStateConditions>
+  <ArkGameStateCondition ID="15373294129880577056" Name="Reminder_WeaponDamage" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="10739735956125685179"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkWeaponDurabilityCondition Amount="25" ComparisonType="LessThanOrEqualTo"/>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="15373294129871669539"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="15373294129871669539" CardTutorial="10739735956125685179"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="10739735956114987815" Name="Reminder_Medkit" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkHasItemCondition Archetype="ArkPickups.Medical.MedKit" Quantity="1" ComparisonType="GreaterThanOrEqualTo"/>
+     <ArkHealthAmountCondition Amount="400" ComparisonType="LessThan"/>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="10739735956114985275"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkConditionExecutedCondition GameStateCondition="10739735956114987815" Count="5" ComparisonType="LessThan"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayTutorialResult Tutorial="10739735956114985275"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216955757483" Name="Reminder_PickupAll" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216955757372"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkLookingAtNearCondition CheckIsAlive="false" MetaTags="3149325216955757563"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayTutorialResult Tutorial="3149325216955757372"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216937925510" Name="Reminder_PsiHypo" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkHasItemCondition Archetype="ArkPickups.Medical.PsiHypo" Quantity="1" ComparisonType="GreaterThanOrEqualTo"/>
+     <ArkPsiAmountCondition Amount="20" ComparisonType="LessThan"/>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216937925744"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkConditionExecutedCondition GameStateCondition="3149325216937925510" Count="5" ComparisonType="LessThan"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayTutorialResult Tutorial="3149325216937925744"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216937932704" Name="Intro_Fabricator" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="10739735956114884557"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkInteractedWithCondition Archetype="ArkGameplayObjects.Fabricator.Fabricator_Default"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkEnableGameStateConditionResult GameStateCondition="3149325216937932704" Enable="false"/>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="15373294129871669726" CardTutorial="10739735956114884557"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216955746453" Name="Intro_Favorites" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216955745209"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkConditionGroup And="false">
+      <Conditions>
+       <ArkGainedItemCondition Quantity="1" ComparisonType="GreaterThanOrEqualTo" Archetype="ArkPickups.Weapons.Shotgun"/>
+       <ArkGainedItemCondition Quantity="1" ComparisonType="GreaterThanOrEqualTo" Archetype="ArkPickups.Weapons.Pistol"/>
+       <ArkGainedItemCondition Quantity="1" ComparisonType="GreaterThanOrEqualTo" Archetype="ArkPickups.Medical.PsiHypo"/>
+       <ArkGainedItemCondition Quantity="1" ComparisonType="GreaterThanOrEqualTo" Archetype="ArkPickups.Medical.MedKit"/>
+      </Conditions>
+     </ArkConditionGroup>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkEnableGameStateConditionResult GameStateCondition="3149325216955746453" Enable="false"/>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="3149325216955746303" CardTutorial="3149325216955745209"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="15373294129880402993" Name="Intro_Objectives" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkObjectiveCondition State="Completed" Objective="4349723564877481579"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkEnableGameStateConditionResult GameStateCondition="15373294129880402993" Enable="false"/>
+    <ArkDisplayTutorialResult Tutorial="3149325216937758416"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216937933190" Name="Intro_PickAndCarry" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtNearCondition Archetype="ArkPhysicsProps.Apartment.Test_Sim_Box_A"/>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216937905917"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayTutorialResult Tutorial="3149325216937905917"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="3149325216937933190" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216937932753" Name="Intro_Recycler" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216937909725"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkInteractedWithCondition Archetype="ArkGameplayObjects.Recycler.Recycler_Default"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkEnableGameStateConditionResult GameStateCondition="3149325216937932753" Enable="false"/>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="15373294129871669671" CardTutorial="3149325216937909725"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216937932247" Name="Intro_SecurityStations" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216937909644"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkInteractedWithCondition Archetype="ArkGameplayObjects.InteractiveScreens.SecurityStation"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkEnableGameStateConditionResult GameStateCondition="3149325216937932247" Enable="false"/>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="15373294129895072219" CardTutorial="3149325216937909644"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="15373294129880547033" Name="Intro_WeaponKit" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="15373294129880572437"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkGainedItemCondition Quantity="1" ComparisonType="GreaterThanOrEqualTo" Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit"/>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="10739735956140467226"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="10739735956140467226" CardTutorial="15373294129880572437"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="15373294129899860273" Name="Intro_Chipsets" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="15373294129899852942"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="15373294129899858526"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkAcquiredChipsetCondition/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="15373294129899858526" CardTutorial="15373294129899852942"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="3149325216937932051" Name="Intro_Workstations" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="3149325216937909688"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkInteractedWithCondition Archetype="ArkGameplayObjects.InteractiveScreens.Workstation"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkEnableGameStateConditionResult GameStateCondition="3149325216937932051" Enable="false"/>
+    <ArkDisplayPromptTutorialCallbackResult PromptTutorial="15373294129871669700" CardTutorial="3149325216937909688"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="15373294129903485241" Name="Intro_SuitIntegrity" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkNotCondition>
+      <ConditionGroup And="true">
+       <Conditions>
+        <ArkTutorialOnCooldownCondition Tutorial="15373294129903485095"/>
+       </Conditions>
+      </ConditionGroup>
+     </ArkNotCondition>
+     <ArkTraumaActiveCondition Trauma="12348086275155884667"/>
+     <ArkHealthAmountCondition Amount="0" ComparisonType="GreaterThan"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkDisplayTutorialResult Tutorial="15373294129903485095"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="10739735956129679563" Name="AutoSave_ImportantPickups" Enabled="true">
+   <ConditionGroup And="false">
+    <Conditions>
+     <ArkGainedItemCondition Quantity="1" ComparisonType="GreaterThanOrEqualTo" MetaTags="3149325216957278742"/>
+     <ArkInteractedWithCondition MetaTags="3149325216957278742"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkAutoSaveResult/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491343094" Name="TipLock_CystoidsAndNests" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtNearCondition CheckIsAlive="false" MetaTags="3149325216945014945"/>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="3149325216951915782"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953139" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491343094" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491341773" Name="TipLock_Mimic" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860498988674"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953093" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491341773" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491433975" Name="TipLock_MindControlledHuman" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860518010452"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="418270515491433934" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491433975" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491431996" Name="TipLock_Operator" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860498988717"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="418270515491426391" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491431996" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491424025" Name="TipLock_OperatorCorrupted" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="3149325216945013533"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953325" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491424025" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491345174" Name="TipLock_OperatorEngineering" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860517748098"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953202" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491345174" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491340485" Name="TipLock_OperatorMedical" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860517748104"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953297" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491340485" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491424338" Name="TipLock_OperatorMilitary" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860517748113"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953208" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491424338" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491432148" Name="TipLock_OperatorScience" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860517748082"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953195" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491432148" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491433619" Name="TipLock_PhantomThermal" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860501638616"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953116" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491433619" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491344827" Name="TipLock_PhantomVoltaic" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="3149325216938884708"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953123" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491344827" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491423799" Name="TipLock_Poltergeist" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="3149325216945014930"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953129" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491423799" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+  <ArkGameStateCondition ID="418270515491345368" Name="TipLock_Turret" Enabled="true">
+   <ConditionGroup And="true">
+    <Conditions>
+     <ArkLookingAtFarCondition CheckIsAlive="false" MetaTags="9469288860498988699"/>
+    </Conditions>
+   </ConditionGroup>
+   <Results>
+    <ArkLockTipResult TipLock="3149325216969953192" Locked="false"/>
+    <ArkEnableGameStateConditionResult GameStateCondition="418270515491345368" Enable="false"/>
+   </Results>
+  </ArkGameStateCondition>
+ </GameStateConditions>
+</ArkGameStateConditionLibrary>

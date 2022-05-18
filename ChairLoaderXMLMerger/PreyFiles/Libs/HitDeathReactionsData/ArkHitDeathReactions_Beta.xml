@@ -1,0 +1,51 @@
+
+<DeathHitReactionsParams>
+ <HitDeathReactionsConfig collisionBone="spine1_jnt"/>
+ <HitReactionParams>
+  <HitReactionParam validationFunc="IsStandingUp" reactionFunc="RagdollAndImpulse" MinTimeInRagdoll="2.5" MaxTimeInRagdoll="7.5" EHitReactionType="0"/>
+  <HitReactionParam CustomOnlyWhenValid="1" shotOrigin="all90" EHitReactionType="1" validationFunc="Throw" reactionFunc="Throw" ThrowHitImpulseScale="8" ThrowHitRailVertOffset="1.35" ThrowHitCheckDistance="2.0" ThrowHitCheckSphereR="0.25" ThrowHitSweepHeight="1.0"/>
+  <HitReactionParam CustomOnlyWhenValid="1" shotOrigin="all90" EHitReactionType="0" validationFunc="Throw" reactionFunc="Throw" ThrowHitImpulseScale="8" ThrowHitRailVertOffset="1.35" ThrowHitCheckDistance="2.5" ThrowHitCheckSphereR="1.0" ThrowHitSweepHeight="1.5"/>
+  <HitReactionParam shotOrigin="all90" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="all90" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="all90" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="3"/>
+  <HitReactionParam shotOrigin="all90" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="3"/>
+  <HitReactionParam shotOrigin="ahead" EHitReactionType="0"/>
+  <HitReactionParam shotOrigin="behind" EHitReactionType="0"/>
+  <HitReactionParam shotOrigin="all90" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="all90" EHitReactionType="3"/>
+ </HitReactionParams>
+ <DeathReactionParams>
+  <DeathReactionParam reactionFunc="LaserDeath" validationFunc="LaserDeath" EHitReactionType="4"/>
+  <DeathReactionParam shotOrigin="all90" reactionFunc="DramaticDeath" validationFunc="DramaticDeath" EHitReactionType="4"/>
+  <DeathReactionParam shotOrigin="all90" EHitReactionType="4">
+   <AllowedSignals>
+    <Signal id="3149325216971884872" minValue="1.75"/>
+    <Signal id="3149325216915554009" minValue="350"/>
+    <Signal id="3149325216913726733" minValue="200"/>
+   </AllowedSignals>
+   <SetTags>
+    <Tag value="Impact_High"/>
+   </SetTags>
+  </DeathReactionParam>
+  <DeathReactionParam shotOrigin="all90" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="4">
+   <AllowedSignals>
+    <Signal id="3149325216939210391" minValue="0"/>
+   </AllowedSignals>
+  </DeathReactionParam>
+  <DeathReactionParam shotOrigin="all90" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="4">
+   <AllowedSignals>
+    <Signal id="3149325216939210391" minValue="0"/>
+   </AllowedSignals>
+  </DeathReactionParam>
+  <DeathReactionParam shotOrigin="all90" EHitReactionType="4">
+   <AllowedSignals>
+    <Signal id="3149325216939211670" minValue="0"/>
+    <Signal id="3149325216939210401" minValue="0"/>
+   </AllowedSignals>
+   <SetTags>
+    <Tag value="Impact_Low"/>
+   </SetTags>
+  </DeathReactionParam>
+  <DeathReactionParam shotOrigin="all90" EHitReactionType="4" ragdollOnCollision="1"/>
+ </DeathReactionParams>
+</DeathHitReactionsParams>

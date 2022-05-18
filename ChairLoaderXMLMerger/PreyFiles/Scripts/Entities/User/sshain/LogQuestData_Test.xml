@@ -1,0 +1,69 @@
+
+<LogQuestData version="LogQuest 0.1">
+ <quest questLength="6">
+  <locations>
+   <location value="Engineering deck"/>
+   <location value="Hydroponics deck"/>
+   <location value="Crew Quarters"/>
+   <location value="Mission Control deck"/>
+   <location value="Recreation area"/>
+   <location value="Research deck"/>
+   <location value="Cargo bay"/>
+   <location value="Docking bay"/>
+   <location value="Executive deck"/>
+  </locations>
+  <objectives>
+   <objective>
+    <objectiveTexts>
+     <objectiveText value="Jorjo, on behalf of the Transtar Human Resources department, Happy Birthday! We have a celebration planned in the "/>
+     <objectiveText value="NEXT_LOCATION"/>
+     <objectiveText value=". There will be cake enough for everyone, but we&apos;re on a schedule and will commence the cutting at 1800 hours. Don&apos;t stick around too long in the "/>
+     <objectiveText value="THIS_LOCATION"/>
+     <objectiveText value=" or you&apos;ll miss your own birthday cake! That&apos;d be tragic."/>
+    </objectiveTexts>
+   </objective>
+   <objective>
+    <objectiveTexts>
+     <objectiveText value="If you&apos;ve come to the "/>
+     <objectiveText value="THIS_LOCATION"/>
+     <objectiveText value=" to celebrate Jorjo&apos;s birthday and enjoy delicious cake please be advised that the celebraton has been moved to the "/>
+     <objectiveText value="NEXT_LOCATION"/>
+     <objectiveText value=". The Transtar Human Resources department apologizes for the sudden change of venue but unforseen events force us to consider the safety of our staff above all else."/>
+    </objectiveTexts>
+   </objective>
+   <objective>
+    <objectiveTexts>
+     <objectiveText value="To all those hoping to attend Jorjo&apos;s birthday celebration, we thought this area in the "/>
+     <objectiveText value="THIS_LOCATION"/>
+     <objectiveText value=" would be a good place to enjoy cake but apparently this area was already booked for another meeting. Sorry for the runaround, please join us in the "/>
+     <objectiveText value="NEXT_LOCATION"/>
+     <objectiveText value=" and bring your good cheer to celebrate Jorjo&apos;s birthday."/>
+    </objectiveTexts>
+   </objective>
+   <objective>
+    <objectiveTexts>
+     <objectiveText value="I know what you&apos;re thinking, &apos;The cake is a lie, right?&apos; Well, as soon as we arrived in the "/>
+     <objectiveText value="THIS_LOCATION"/>
+     <objectiveText value=" there was a containment breach and we were forced to relocate once again. The final meeting place for Jorjo&apos;s birthday celebration will be in the "/>
+     <objectiveText value="NEXT_LOCATION"/>
+     <objectiveText value=". There&apos;s definitely cake plenty of cake left. Sorry but all this running around and we&apos;ve worked up quite an appetite and may have indulged in once slice."/>
+    </objectiveTexts>
+   </objective>
+   <objective>
+    <objectiveTexts>
+     <objectiveText value="NEXT_LOCATION"/>
+     <objectiveText value=", do you know the place? Hurry there now for cake. We&apos;re running out of time it&apos;s already 1830 and we haven&apos;t even seen the birthday boy yet. "/>
+     <objectiveText value="THIS_LOCATION"/>
+     <objectiveText value=" turned out to be &apos;off-limits&apos; for celebration and revelry by executive order from Dr. Tran himself."/>
+    </objectiveTexts>
+   </objective>
+   <objective>
+    <objectiveTexts>
+     <objectiveText value="Jorjo, we finally found a place here in the "/>
+     <objectiveText value="THIS_LOCATION"/>
+     <objectiveText value=" to enjoy cake, but we waiting until 1900 for you to arrive and we were just too famished from all the running around and, well, we ate all your cake. Happy Birthday though."/>
+    </objectiveTexts>
+   </objective>
+  </objectives>
+ </quest>
+</LogQuestData>

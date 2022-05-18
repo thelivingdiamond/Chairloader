@@ -1,0 +1,5 @@
+
+<GameTokensLibrary Name="GT_selliott_test1">
+ <GameToken Id="491579870" Name="Selliott_testing.picked up item" Type="Bool" Value="false"/>
+ <GameToken Id="1054452153" Name="Selliott_testing.Used_item" Type="Bool" Value="false"/>
+</GameTokensLibrary>

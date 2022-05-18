@@ -1,0 +1,55 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263387825054" name="Rodney Ambient Loop--Off Screen" cooldown="" description="Rodney is trapped on the other side of a door in Arboretum. Banging on the glass trying to get someone to hear him. " response="13680621263387826342" conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911794648"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239386284818"/>
+  </Criteria>
+  <Writeback/>
+ </ResponseRule>
+ <ResponseRule id="13680621263387825085" name="Rodney First See&apos;s Player" cooldown="" description="Rodney is trapped on the other side of a door in Arboretum. Shouts when he first sees the player. " response="13680621263387826649" priority="1" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911794648"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239386284818"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263387826342">
+  <Response dialog="13680621263387826341" id="13680621263387826343" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263387826345" id="13680621263387826346" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263387826348" id="13680621263387826349" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263387826353" id="13680621263387826354" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263387826443" name="Rodney See&apos;s Player--Loop" cooldown="" description="Rodney is trapped on the other side of a door in Arboretum. Has seen the player.  " response="13680621263387826912" priority="1" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911794648"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239386284818"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263387826649">
+  <Response dialog="13680621263387826648" id="13680621263387826650" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263387826716" name="" cooldown="" response="13680621263387826717" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263387826650" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911794648" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263387826717">
+  <Response dialog="13680621263387826715" id="13680621263387826718" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263387826912">
+  <Response dialog="13680621263387826911" id="13680621263387826913" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318053"/>
+  <Response dialog="13680621263387829090" id="13680621263387829091" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318053"/>
+  <Response dialog="13680621263387826715" id="13680621263387829144" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318053"/>
+ </ResponseSet>
+</ResponseRules>

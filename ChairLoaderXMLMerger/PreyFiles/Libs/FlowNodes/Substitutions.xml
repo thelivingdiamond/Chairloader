@@ -1,0 +1,18 @@
+
+<Substitutions>
+ <Node OldClass="Ark:NPC:MimickEntity" NewClass="Ark:NPC:Mimic:StartMimicking">
+  <InputPort OldName="MimickEntity" NewName="Start"/>
+  <InputPort OldName="EntityIDToMimic" NewName="EntityToMimic"/>
+  <InputPort OldName="ReplaceEntity" NewName="Replace"/>
+  <OutputPort OldName="Out" NewName="Out"/>
+  <OutputPort OldName="Completed" NewName="Succeeded"/>
+  <OutputPort OldName="Failed" NewName="Failed"/>
+ </Node>
+ <Node OldClass="Ark:NPC:MimicRequest" NewClass="Ark:NPC:Mimic:StartMimicking">
+  <InputPort OldName="Request" NewName="Start"/>
+  <InputPort OldName="ItemID" NewName="EntityToMimic"/>
+  <OutputPort OldName="Out" NewName="Out"/>
+  <OutputPort OldName="Requested" NewName="Out"/>
+  <OutputPort OldName="Failed" NewName="Failed"/>
+ </Node>
+</Substitutions>

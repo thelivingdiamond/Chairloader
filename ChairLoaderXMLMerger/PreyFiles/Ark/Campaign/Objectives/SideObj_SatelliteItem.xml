@@ -1,0 +1,26 @@
+
+<Objectives>
+ <Objective id="761057047969796145" title="@loc_15373294129891632629" optional="true">
+  <Clues>
+   <Clue id="761057047998833716" displayName="MachineShop" text="@loc_15373294129891632630"/>
+   <Clue id="761057047998835759" displayName="LostDevice" text="@loc_15373294129891632631"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="761057047969796146" displayName="Mixed Signals Start" text="@loc_15373294129891632632"/>
+   <Desc id="761057047969796616" displayName="Exterior Satellite[DEPRECATED]" text="@loc_15373294129891632633"/>
+   <Desc id="761057047975756295" displayName="SatelliteFixed" text="@loc_15373294129891632634"/>
+   <Desc id="761057048011457588" displayName="Complete" text="@loc_761057048011457589"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="761057047969796220" displayName="Take Device" optional="true" text="@loc_15373294129891632636" markerLabel="@loc_15373294129891632635" description="761057047969796146" Location="844024417263019221"/>
+   <Task id="761057047998834533" displayName="Pre-Take Device" optional="true" text="@loc_15373294129891632638" markerLabel="@loc_15373294129891632637" description="761057047969796146" targetCharacterId="761057047998834534"/>
+   <Task id="761057047969796506" displayName="Place Device" optional="true" text="@loc_15373294129891632640" Location="1713490239386284337" markerLabel="@loc_15373294129891632639" description="761057047969796146"/>
+   <Task id="761057048011456705" displayName="Charges Remaining-4" optional="true" text="@loc_761057048011456706" description="761057047975756295"/>
+   <Task id="761057048011456988" displayName="Charges Remaining-3" optional="true" text="@loc_761057048011456991" description="761057047975756295" targetCharacterId="761057048011456989" markerLabel="@loc_761057048011456990" timerLabel="@loc_761057048011456992"/>
+   <Task id="761057048011457010" displayName="Charges Remaining-2" optional="true" text="@loc_761057048011457013" description="761057047975756295" targetCharacterId="761057048011457011" markerLabel="@loc_761057048011457012" timerLabel="@loc_761057048011457014"/>
+   <Task id="761057048011457047" displayName="Charges Remaining-1" optional="true" text="@loc_761057048011457050" description="761057047975756295" targetCharacterId="761057048011457048" markerLabel="@loc_761057048011457049" timerLabel="@loc_761057048011457051"/>
+   <Task id="761057048011457088" displayName="Charges Used" optional="true" text="@loc_761057048011457091" description="761057047975756295" targetCharacterId="761057048011457089" markerLabel="@loc_761057048011457090" timerLabel="@loc_761057048011457092"/>
+   <Task id="761057048011457121" displayName="Satellite Cooldown" optional="true" text="@loc_761057048011457124" description="761057047975756295" targetCharacterId="761057048011457122" markerLabel="@loc_761057048011457123" timerLabel="@loc_761057048011457125"/>
+  </Tasks>
+ </Objective>
+</Objectives>

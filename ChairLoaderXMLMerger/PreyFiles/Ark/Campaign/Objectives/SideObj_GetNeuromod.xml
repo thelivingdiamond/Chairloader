@@ -1,0 +1,13 @@
+
+<Objectives>
+ <Objective id="844024417276074081" title="@loc_15373294129891632325" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="844024417276074082" displayName="Get It" text="@loc_15373294129891632326"/>
+   <Desc id="844024417276074103" displayName="Got It" text="@loc_15373294129891632327"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417276074250" displayName="GrabNeuromod" optional="true" text="@loc_15373294129891632329" markerLabel="@loc_15373294129891632328" Location="1713490239377285936"/>
+  </Tasks>
+ </Objective>
+</Objectives>

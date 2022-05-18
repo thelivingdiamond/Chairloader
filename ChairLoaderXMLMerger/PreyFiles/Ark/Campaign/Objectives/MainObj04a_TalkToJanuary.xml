@@ -1,0 +1,15 @@
+
+<Objectives>
+ <Objective id="844024417282123000" title="@loc_15373294129891630253" optional="false">
+  <Clues/>
+  <Descriptions>
+   <Desc id="844024417282123001" displayName="SpeakWithJanuary" text="@loc_15373294129891630254"/>
+   <Desc id="844024417282123134" displayName="Completed" text="@loc_15373294129891630255"/>
+   <Desc id="844024417326373838" displayName="Completed - Dead January" text="@loc_844024417326373839"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417282123010" displayName="SpeakWithJanuary" optional="false" text="@loc_15373294129891630257" markerLabel="@loc_15373294129891630256" Location="1713490239377285936" description="844024417282123001"/>
+   <Task id="844024417326373782" displayName="SearchJanuary" optional="false" text="@loc_844024417326373783" markerLabel="@loc_844024417326373795" Location="1713490239377285936"/>
+  </Tasks>
+ </Objective>
+</Objectives>

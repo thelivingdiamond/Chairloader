@@ -1,0 +1,22 @@
+
+<ArkEmotions>
+ <Emotions>
+  <ArkEmotion ID="15659330456346423977" Name="Angry" Animation="Angry" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="15659330456346423989" Name="Happy" Animation="Happy" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="15659330456346424000" Name="Pain" Animation="Pain" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="15659330456346424008" Name="Puzzled" Animation="Puzzled" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748317787" Name="Amused" Animation="Amused" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748317984" Name="Curious" Animation="Curious" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748317994" Name="Disappointed" Animation="Disappointed" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318010" Name="Distressed" Animation="Distressed" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318026" Name="Frustrated" Animation="Frustrated" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318033" Name="Grin" Animation="Grin" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318046" Name="Sad" Animation="Sad" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318053" Name="Scared" Animation="Scared" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318060" Name="Shocked" Animation="Shocked" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318066" Name="Skeptical" Animation="Skeptical" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318076" Name="Sneering" Animation="Sneering" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318081" Name="Tender" Animation="Tender" BlendIn="0.5" BlendOut="0.5"/>
+  <ArkEmotion ID="3152439162748318087" Name="Worried" Animation="Worried" BlendIn="0.5" BlendOut="0.5"/>
+ </Emotions>
+</ArkEmotions>

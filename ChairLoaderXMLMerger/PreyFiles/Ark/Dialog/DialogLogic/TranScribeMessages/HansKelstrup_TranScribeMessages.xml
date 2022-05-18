@@ -1,0 +1,94 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263368795570" name="LG Touchscreen Callibration" cooldown="" conversation="0" oneshot="0" response="13680621263368795695" description="PLACEHOLDER: Calvino installed a prototype touchsceen on Kelstrup&apos;s LG screen. Explains how to callibrate it.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTranscribeTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="11824555372635636731"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263368795695">
+  <Response dialog="13680621263368795694" id="13680621263368795696" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263368795849" name="" cooldown="" response="13680621263368795998">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358695499" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263368795696" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="844024417266061858"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263368795998">
+  <Response dialog="13680621263368795997" id="13680621263368795999" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.75" targetType="2" targetId="11824555372635636731" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263368796010" name="" cooldown="" response="13680621263368796011">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263368795999" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="11824555372635636731" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263368796011">
+  <Response dialog="13680621263368796009" id="13680621263368796012" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.25" targetType="2" targetId="844024417266061858" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263368796128" name="" cooldown="" response="13680621263368796129">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358695499" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263368796012" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="844024417266061858" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263368796129">
+  <Response dialog="13680621263368796127" id="13680621263368796130" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.5" targetType="2" targetId="11824555372635636731" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263368796144" name="" cooldown="" response="13680621263368796145">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263368796130" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="11824555372635636731" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263368796145">
+  <Response dialog="13680621263368796143" id="13680621263368796146" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.6" targetType="2" targetId="844024417266061858" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263368796754" name="We Need to Talk About Annalise" cooldown="" conversation="0" oneshot="0" response="13680621263368796903" description="Alex leaves an ominous message on Kelstrups TS about Annalise. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353091230" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTranscribeTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389130908"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263368796903">
+  <Response dialog="13680621263368796902" id="13680621263368796904" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385166094" name="" cooldown="" response="13680621263385166095">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358695499" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263368796146" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="844024417266061858" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385166095">
+  <Response dialog="13680621263385166093" id="13680621263385166096" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.5" targetType="2" targetId="11824555372635636731" speakerTrackMethod="1" targetTrackMethod="0" cutoff="0.15"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385166819" name="" cooldown="" response="13680621263385166820">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385166096" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="11824555372635636731" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385166820">
+  <Response dialog="13680621263385166818" id="13680621263385166821" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="844024417266061858" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385166869" name="" cooldown="" response="13680621263385166870">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263385166821" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="11824555372635636731" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385166870">
+  <Response dialog="13680621263368796185" id="13680621263385166871" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0.25" targetType="2" targetId="844024417266061858" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+</ResponseRules>

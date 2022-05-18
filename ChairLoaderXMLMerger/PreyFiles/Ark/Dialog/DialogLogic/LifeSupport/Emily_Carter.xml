@@ -1,0 +1,64 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="4349723564913701368" name="Where is Price (In the Eel Tank)" cooldown="" oneshot="1" conversation="1" response="4349723564913701509" description="Emily is worried about Price Broadway who&apos;s been missing for a while. The truth is he fell into the eel tank.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTranscribeTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564906961888"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913701509">
+  <Response dialog="4349723564913701508" id="4349723564913701510" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913701703" name="" cooldown="" response="4349723564913701704">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913701510" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911793352"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913701704">
+  <Response dialog="4349723564913701702" id="4349723564913701705" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay=".5" targetType="2" targetId="4349723564906961888" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913701778" name="" cooldown="" response="4349723564913701882">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913701705" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564906961888" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913701882">
+  <Response dialog="4349723564913701880" id="4349723564913701883" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay=".25" targetType="2" targetId="12889009724999010490" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913702016" name="" cooldown="" response="4349723564913702017">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913701883" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911793352" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913702017">
+  <Response dialog="4349723564913702015" id="4349723564913702018" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay=".5" targetType="2" targetId="4349723564906961888" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913702027" name="" cooldown="" response="4349723564913702028">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913702018" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564906961888" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913702028">
+  <Response dialog="4349723564913702026" id="4349723564913702029" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="12889009724999010490" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263385403426" name="" cooldown="" response="13680621263385403427">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913702029" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911793352" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263385403427">
+  <Response dialog="13680621263385403425" id="13680621263385403428" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetType="2" targetId="4349723564906961888" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+</ResponseRules>

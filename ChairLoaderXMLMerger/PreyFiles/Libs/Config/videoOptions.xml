@@ -1,0 +1,68 @@
+
+<ArkOptionLayout>
+ <Pages>
+  <ArkOptionLayoutPage Label="@ui_Video">
+   <SubPages>
+    <ArkOptionLayoutSubPage Label="Main">
+     <Attributes>
+      <ArkOptionAttribute Action="sys_spec" Label="@ui_SpecPreset" SetOnChange="false">
+       <Widget>
+        <ArkOptionList>
+         <Options>
+          <ArkOption Label="@ui_SpecLow" Value="1"/>
+          <ArkOption Label="@ui_SpecMedium" Value="2"/>
+          <ArkOption Label="@ui_SpecHigh" Value="3"/>
+          <ArkOption Label="@ui_SpecVeryHigh" Value="4"/>
+         </Options>
+        </ArkOptionList>
+       </Widget>
+      </ArkOptionAttribute>
+      <ArkOptionAttribute Action="r_fullscreen" Label="@ui_FullScreen" SetOnChange="false">
+       <Widget>
+        <ArkOptionList>
+         <Options>
+          <ArkOption Label="@ui_Windowed" Value="0"/>
+          <ArkOption Label="@ui_Fullscreen" Value="1"/>
+          <ArkOption Label="@ui_FullWindowed" Value="2"/>
+         </Options>
+        </ArkOptionList>
+       </Widget>
+      </ArkOptionAttribute>
+      <ArkOptionAttribute Action="r_vsync" Label="@ui_Vsync" SetOnChange="false">
+       <Widget>
+        <ArkOptionToggle>
+         <Option0 Label="@ui_Off" Value="0"/>
+         <Option1 Label="@ui_On" Value="1"/>
+        </ArkOptionToggle>
+       </Widget>
+      </ArkOptionAttribute>
+      <ArkOptionAttribute Action="resolution" Label="@ui_Resolution" SetOnChange="false">
+       <Widget>
+        <ArkOptionList>
+         <Options>
+          <ArkOption Label="800x600" Value="0"/>
+          <ArkOption Label="1920x1080" Value="1"/>
+         </Options>
+        </ArkOptionList>
+       </Widget>
+      </ArkOptionAttribute>
+      <ArkOptionAttribute Action="r_AntialiasingMode" Label="@ui_Antialiasing" SetOnChange="false">
+       <Widget>
+        <ArkOptionList>
+         <Options>
+          <ArkOption Label="@ui_Off" Value="0"/>
+          <ArkOption Label="FXAA" Value="5"/>
+          <ArkOption Label="TSAA" Value="4"/>
+          <ArkOption Label="SMAA 1X" Value="1"/>
+          <ArkOption Label="SMAA 1TX" Value="2"/>
+          <ArkOption Label="SMAA 2TX" Value="3"/>
+         </Options>
+        </ArkOptionList>
+       </Widget>
+      </ArkOptionAttribute>
+     </Attributes>
+    </ArkOptionLayoutSubPage>
+   </SubPages>
+  </ArkOptionLayoutPage>
+ </Pages>
+</ArkOptionLayout>

@@ -1,0 +1,19 @@
+
+<HitTypes>
+ <hit_type name="impulse_hit" flags="SinglePlayerOnly"/>
+ <hit_type name="disableCollisions" flags="Server"/>
+ <hit_type name="ArkInstalaserBeam" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileGoo" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectilePistolBullet" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileShotgunShell" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileShotgunBlast" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileRecyclerGrenade" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileExplosiveGrenade" flags="ValidationRequired"/>
+ <hit_type name="ArkMeleeWrenchStrike" flags="ValidationRequired"/>
+ <hit_type name="ArkPhantomKineticProjectile" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileTurretBullet" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileDiscRifle" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileToyGun" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileStunGun" flags="ValidationRequired"/>
+ <hit_type name="ArkProjectileNightmareEtherForm" flags="ValidationRequired"/>
+</HitTypes>

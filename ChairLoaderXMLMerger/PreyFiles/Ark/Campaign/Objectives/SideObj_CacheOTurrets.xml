@@ -1,0 +1,18 @@
+
+<Objectives>
+ <Objective id="14667999412532732456" title="@loc_15373294129891632072" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="14667999412532732457" displayName="Get Turrets" text="@loc_15373294129891632073"/>
+   <Desc id="14667999412548025646" displayName="Save Billie" text="@loc_15373294129891632074"/>
+   <Desc id="14667999412570401814" displayName="Talk to Rani" text="@loc_14667999412570401815"/>
+   <Desc id="14667999412575501563" displayName="Come back later" text="@loc_14667999412575501564"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="14667999412548025540" displayName="Save Rani" optional="false" text="@loc_15373294129891632076" Location="1713490239386284818" description="14667999412548025646" markerLabel="@loc_14667999412575501690"/>
+   <Task id="14667999412570401642" displayName="Talk to Rani" optional="false" text="@loc_14667999412570401643" Location="1713490239386284818" description="14667999412570401814" markerLabel="@loc_14667999412575501694"/>
+   <Task id="14667999412575501476" displayName="Come back later" optional="false" text="@loc_14667999412575501477" Location="1713490239386284818" description="14667999412575501563"/>
+   <Task id="14667999412532732647" displayName="Get turrets" optional="false" text="@loc_15373294129891632075" Location="1713490239386284818" description="14667999412532732457" markerLabel="@loc_14667999412575501678"/>
+  </Tasks>
+ </Objective>
+</Objectives>

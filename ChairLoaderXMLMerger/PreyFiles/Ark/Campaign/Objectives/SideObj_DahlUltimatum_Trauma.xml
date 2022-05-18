@@ -1,0 +1,17 @@
+
+<Objectives>
+ <Objective id="844024417287652328" title="@loc_15373294129891632138" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="844024417287652329" displayName="Initial" text="@loc_15373294129891632139"/>
+   <Desc id="12889009725024933873" displayName="SuriveAmbush" text="@loc_15373294129891632140"/>
+   <Desc id="844024417287652430" displayName="Completed" text="@loc_15373294129891632141"/>
+   <Desc id="12889009725024933814" displayName="Failed" text="@loc_15373294129891632142"/>
+   <Desc id="844024417327564570" displayName="Complete-Dahl Defeat" text="@loc_844024417327564571"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417287652378" displayName="Meet Luther Glass" optional="true" text="@loc_15373294129891632144" markerLabel="@loc_15373294129891632143" Location="1713490239377285936"/>
+   <Task id="844024417287652459" displayName="Survive Ambush" optional="true" text="@loc_15373294129891632145" Location="1713490239377285936"/>
+  </Tasks>
+ </Objective>
+</Objectives>

@@ -1,0 +1,82 @@
+
+<ATLConfig atl_name="ArkGlobal">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Debug_7_3D" path="PLACEHOLDER/Debug">
+   <WwiseEvent wwise_name="Play_Debug_7_3D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Debug_8_3D" path="PLACEHOLDER/Debug">
+   <WwiseEvent wwise_name="Play_Debug_8_3D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Piano" path="GlobalObjects/Ark_Interactive_Props">
+   <WwiseEvent wwise_name="Play_Obj_Piano"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Recycler_Trap_Beep_LP" path="GlobalObjects">
+   <WwiseEvent wwise_name="Stop_Obj_Recycler_Trap_Beep_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Recycler_Trap_Beep_LP" path="GlobalObjects">
+   <WwiseEvent wwise_name="Play_Obj_Recycler_Trap_Beep_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Projector_Screen_LP" path="GlobalObjects/Ark_Interactive_Props">
+   <WwiseEvent wwise_name="Play_Obj_Projector_Screen_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Projector_Screen_LP" path="GlobalObjects/Ark_Interactive_Props">
+   <WwiseEvent wwise_name="Stop_Obj_Projector_Screen_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_CrewFacilities_Treadmill_LP" path="GlobalObjects/Ark_Interactive_Props">
+   <WwiseEvent wwise_name="Play_OBJ_CrewFacilities_Treadmill_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_CrewFacilities_Treadmill_LP" path="GlobalObjects/Ark_Interactive_Props">
+   <WwiseEvent wwise_name="Stop_OBJ_CrewFacilities_Treadmill_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_Recycler_Repaired" path="GlobalObjects/Recycler">
+   <WwiseEvent wwise_name="Play_OBJ_Recycler_Repaired"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Fabricator_Repaired" path="GlobalObjects/Fabricator">
+   <WwiseEvent wwise_name="Play_Fabricator_Repaired"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Debug_7_3D" path="PLACEHOLDER/Debug">
+   <WwiseEvent wwise_name="Stop_Debug_7_3D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Decontamination_WhiteNoise" path="GlobalObjects">
+   <WwiseEvent wwise_name="Play_Decontamination_WhiteNoise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Decontamination_WhiteNoise" path="GlobalObjects">
+   <WwiseEvent wwise_name="Stop_Decontamination_WhiteNoise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Transcribe_Repair_Complete" path="GlobalObjects/Transcribe_Repair">
+   <WwiseEvent wwise_name="Play_Obj_Transcribe_Repair_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Transcribe_Repair_Start" path="GlobalObjects/Transcribe_Repair">
+   <WwiseEvent wwise_name="Play_Obj_Transcribe_Repair_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Transcribe_Repair" path="GlobalObjects/Transcribe_Repair">
+   <WwiseEvent wwise_name="Stop_Obj_Transcribe_Repair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Turret_Stunned_LP" path="GlobalObjects/Turret">
+   <WwiseEvent wwise_name="Play_Turret_Stunned_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Turret_Stunned_LP" path="GlobalObjects/Turret">
+   <WwiseEvent wwise_name="Stop_Turret_Stunned_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Enemy_Electrified_LP" path="GlobalObjects/Enemy_Shared">
+   <WwiseEvent wwise_name="Play_Enemy_Electrified_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Enemy_Electrified_LP" path="GlobalObjects/Enemy_Shared">
+   <WwiseEvent wwise_name="Stop_Enemy_Electrified_LP"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Physics.bnk" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Physics.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

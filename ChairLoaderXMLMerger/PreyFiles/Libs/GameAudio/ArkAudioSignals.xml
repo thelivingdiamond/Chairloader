@@ -1,0 +1,67 @@
+
+<AudioSignals>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrust_Forward">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Thruster_Forward" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrust_Back">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Thruster_Back" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrust_Right">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Thruster_Right" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrust_Left">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Thruster_Left" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrust_Up">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Thruster_Up" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrust_Down">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Thruster_Down" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGThrustBoost">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Boost" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGRotate_Yaw">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Yaw_LP" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGRotate_Pitch">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Pitch_LP" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGRotate_Roll">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Roll_LP" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGBreathing">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:Breathing" semantic="Player_Foley_Voice"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGAmbient">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:Ambiance_ZeroG" semantic="Player_Foley_Voice"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGBrake">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Break" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGLand">
+  <Sound name="Sounds/Ark/ArkPlayer:ZeroG:ZeroG_Land" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_ZeroGCollision">
+  <Sound name="Sounds/physics:foleys/player:bodyhit" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="Menu_Psi_Main_LP_Option1">
+  <Sound name="Sounds/Ark/ArkPlayer:UI/HUD:Menu_Psi_Main_LP_Option1" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="Menu_Psi_SelectTarget">
+  <Sound name="Sounds/Ark/ArkPlayer:UI/HUD:Menu_Psi_SelectTarget" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_SneakIn">
+  <Sound name="Sounds/Ark/ArkPlayer:Player:Player_Sneak_In" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_SneakOut">
+  <Sound name="Sounds/Ark/ArkPlayer:Player:Player_Sneak_Out" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_CrawlIn">
+  <Sound name="Sounds/Ark/ArkPlayer:Player:Player_Crawl_In" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="PlayerFeedback_CrawlOut">
+  <Sound name="Sounds/Ark/ArkPlayer:Player:Player_Crawl_Out" semantic="Player_Foley"/>
+ </SignalInfo>
+ <SignalInfo signal="ClientDamageArkHeavyLaserBeam"/>
+</AudioSignals>

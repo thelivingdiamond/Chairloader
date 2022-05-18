@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ChairloaderConfig>
+	<LoadOrder>
+		<Mod Name="ExtMod" LoadOrder="-1" XmlLoad="true" DllLoad="true" />
+		<Mod Name="ExtMod2" LoadOrder="-1" XmlLoad="true" DllLoad="true" />
+		<Mod Name="ExtMod3" LoadOrder="-1" XmlLoad="true" DllLoad="true" />
+		<Mod Name="mimicAllHats" LoadOrder="-1" XmlLoad="true" DllLoad="true" />
+	</LoadOrder>
+	<FilePaths>
+		<Prey Path="C:\Program Files (x86)\Steam\steamapps\common\Prey" />
+	</FilePaths>
+</ChairloaderConfig>

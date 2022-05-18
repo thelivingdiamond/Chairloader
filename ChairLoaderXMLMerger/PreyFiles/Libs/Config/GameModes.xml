@@ -1,0 +1,7 @@
+
+<ArkGameModes>
+ <GameModes>
+  <ArkGameMode Name="Campaign" MappedPathOverride="/libs/config/MappedPathLocations.xml"/>
+  <ArkGameMode Name="DLC_TEST" MappedPathOverride="/libs/config/MappedPathLocations.xml"/>
+ </GameModes>
+</ArkGameModes>

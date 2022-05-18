@@ -1,0 +1,107 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Ark:RemoteEvent" pos="-710,440,0">
+   <Inputs remoteEvent_Event="4349723564928478394"/>
+  </Node>
+  <Node Id="9" Class="Ark:RemoteEvent" pos="-700,350,0">
+   <Inputs remoteEvent_Event="4349723564928478374"/>
+  </Node>
+  <Node Id="20" Class="Mission:GameTokenSet" pos="-280,350,0">
+   <Inputs gametokenid_Token="1429872010" Value="true"/>
+  </Node>
+  <Node Id="453" Class="Ark:EventScheduler:TimeEvent" pos="320,480,0">
+   <Inputs Time="4" Period="24"/>
+  </Node>
+  <Node Id="454" Class="Ark:EventScheduler:TimeEvent" pos="320,780,0">
+   <Inputs Time="8" Period="24"/>
+  </Node>
+  <Node Id="455" Class="Ark:EventScheduler:TimeEvent" pos="320,1030,0">
+   <Inputs Time="12" Period="24"/>
+  </Node>
+  <Node Id="459" Class="Ark:EventScheduler:TimeEvent" pos="320,1290,0">
+   <Inputs Time="18" Period="24"/>
+  </Node>
+  <Node Id="461" Class="Ark:EventScheduler:TimeEvent" pos="310,1630,0">
+   <Inputs Time="22" Period="24"/>
+  </Node>
+  <Node Id="472" Class="Mission:GameTokenSet" pos="630,470,0">
+   <Inputs gametokenid_Token="1762391380" Value="true"/>
+  </Node>
+  <Node Id="474" Class="Mission:GameTokenSet" pos="640,770,0">
+   <Inputs gametokenid_Token="91049999" Value="true"/>
+  </Node>
+  <Node Id="476" Class="Mission:GameTokenSet" pos="640,1020,0">
+   <Inputs gametokenid_Token="298668457" Value="true"/>
+  </Node>
+  <Node Id="478" Class="Mission:GameTokenSet" pos="640,1280,0">
+   <Inputs gametokenid_Token="1754964857" Value="true"/>
+  </Node>
+  <Node Id="480" Class="Mission:GameTokenSet" pos="630,1620,0">
+   <Inputs gametokenid_Token="1644364888" Value="true"/>
+  </Node>
+  <Node Id="487" Class="Mission:GameTokenSet" pos="930,1380,0">
+   <Inputs gametokenid_Token="1754964857" Value="false"/>
+  </Node>
+  <Node Id="495" Class="Ark:EventScheduler:RelativeTimeEvent" pos="640,1370,0">
+   <Inputs TimeFromNow="0.5" Period="0"/>
+  </Node>
+  <Node Id="496" Class="Ark:EventScheduler:RelativeTimeEvent" pos="630,1710,0">
+   <Inputs TimeFromNow="0.5" Period="0"/>
+  </Node>
+  <Node Id="497" Class="Mission:GameTokenSet" pos="930,1710,0">
+   <Inputs gametokenid_Token="1644364888" Value="false"/>
+  </Node>
+  <Node Id="498" Class="Ark:EventScheduler:RelativeTimeEvent" pos="640,1100,0">
+   <Inputs TimeFromNow="0.5" Period="0"/>
+  </Node>
+  <Node Id="499" Class="Mission:GameTokenSet" pos="970,1100,0">
+   <Inputs gametokenid_Token="298668457" Value="false"/>
+  </Node>
+  <Node Id="500" Class="Ark:EventScheduler:RelativeTimeEvent" pos="640,850,0">
+   <Inputs TimeFromNow="0.5" Period="0"/>
+  </Node>
+  <Node Id="501" Class="Ark:EventScheduler:RelativeTimeEvent" pos="630,550,0">
+   <Inputs TimeFromNow="0.5" Period="0"/>
+  </Node>
+  <Node Id="502" Class="Mission:GameTokenSet" pos="970,560,0">
+   <Inputs gametokenid_Token="1762391380" Value="false"/>
+  </Node>
+  <Node Id="503" Class="Mission:GameTokenSet" pos="970,860,0">
+   <Inputs gametokenid_Token="91049999" Value="false"/>
+  </Node>
+  <Node Id="536" Class="Module:End_ArkConvertDecimalTime" pos="-600,-280,0">
+   <Inputs Hours="0" Minutes="0" Seconds="0"/>
+  </Node>
+  <Node Id="537" Class="Module:Start_ArkConvertDecimalTime" pos="-600,-380,0"/>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="453" nodeOut="1" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="454" nodeOut="1" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="455" nodeOut="1" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="459" nodeOut="1" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="461" nodeOut="1" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="9" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="453" nodeOut="9" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="454" nodeOut="9" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="455" nodeOut="9" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="459" nodeOut="9" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="461" nodeOut="9" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="472" nodeOut="453" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="501" nodeOut="453" portIn="Enable" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="474" nodeOut="454" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="500" nodeOut="454" portIn="Enable" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="476" nodeOut="455" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="498" nodeOut="455" portIn="Enable" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="478" nodeOut="459" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="495" nodeOut="459" portIn="Enable" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="480" nodeOut="461" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="496" nodeOut="461" portIn="Enable" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="487" nodeOut="495" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="497" nodeOut="496" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="499" nodeOut="498" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="503" nodeOut="500" portIn="Trigger" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="502" nodeOut="501" portIn="Trigger" portOut="Alarm" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

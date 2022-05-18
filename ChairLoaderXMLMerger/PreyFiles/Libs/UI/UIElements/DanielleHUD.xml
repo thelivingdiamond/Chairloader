@@ -1,0 +1,1122 @@
+
+<UIElements name="DanielleHUD">
+ <UIElement name="DanielleHUD" render_lockless="1" is_Hud="1">
+  <GFx file="GFX/danielle_hud.gfx" layer="1">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="setSafeFrame" funcname="sf.initStage">
+    <param name="Width" desc="Screen Width" type="int"/>
+    <param name="Height" desc="Screen Height" type="int"/>
+    <param name="SafeFrame" desc="Percentage of area.  Typically 85-90" type="int"/>
+   </function>
+   <function name="setWidgetsScale" funcname="sf.resizeWidgets">
+    <param name="Scale" desc="0-100%" type="int"/>
+   </function>
+   <function name="debugDrawSafeFrame" funcname="sf.drawSafeFrame"/>
+   <function name="debugRemoveSafeFrame" funcname="sf.removeSafeFrame"/>
+   <function name="HUDFadeOn" funcname="vis.HUDFadeOn"/>
+   <function name="HUDFadeOut" funcname="vis.HUDFadeOut"/>
+   <function name="HUDAlpha" funcname="vis.HUDAlpha">
+    <param name="Alpha" desc="0-100" type="int"/>
+   </function>
+   <function name="pauseUI" funcname="util.pauseUI">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+   <function name="openPDA" funcname="vis.openPDA"/>
+   <function name="closePDA" funcname="vis.closePDA"/>
+   <function name="openAbilities" funcname="vis.openAbilities"/>
+   <function name="closeAbilities" funcname="vis.closeAbilities"/>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="abilityClear" funcname="psi.clearAbilities"/>
+   <function name="abilityAdd" funcname="psi.addAbility">
+    <param name="Icon" desc="icon string" type="string"/>
+    <param name="Enabled" desc="1=enabled; 0=disabled" type="bool"/>
+    <param name="isActive" desc="" type="bool"/>
+    <param name="Cooldown" desc="0-100" type="int"/>
+   </function>
+   <function name="abilityUpdatePower" funcname="psi.updateAbility">
+    <param name="PowerIndex" desc="" type="int"/>
+    <param name="Icon" desc="icon string" type="string"/>
+    <param name="Enabled" desc="1=enabled; 0=disabled" type="bool"/>
+    <param name="isActive" desc="" type="bool"/>
+    <param name="Cooldown" desc="0-100" type="int"/>
+   </function>
+   <function name="abilityUpdate" funcname="psi.updateAbilities"/>
+   <function name="abilityUpdateDetails" funcname="psi.updateDetails">
+    <param name="Name" desc="ability name" type="string"/>
+    <param name="Desc" desc="ability description" type="string"/>
+    <param name="Cost" desc="ability cost" type="string"/>
+    <param name="Enabled" desc="1=enabled; 0=disabled" type="bool"/>
+   </function>
+   <function name="abilityHL" funcname="psi.abilityHL">
+    <param name="PowerIndex" desc="" type="int"/>
+   </function>
+   <function name="abilityOpen" funcname="psi.abilityOpen">
+    <param name="PowerIndex" desc="" type="int"/>
+   </function>
+   <function name="abilityClose" funcname="psi.abilityClose"/>
+   <function name="abilityFlash" funcname="psi.abilityFlashWhite"/>
+   <function name="abilityFlashRed" funcname="psi.abilityFlashRed"/>
+   <function name="abilityPromptOpen" funcname="psi.abilityPrompt">
+    <param name="htmlText" desc="" type="string"/>
+   </function>
+   <function name="abilityPromptClose" funcname="psi.abilityPromptClose"/>
+   <function name="abilityNoticeOpen" funcname="psi.abilityNoticeOpen">
+    <param name="headerText" desc="" type="string"/>
+    <param name="bodyText" desc="" type="string"/>
+   </function>
+   <function name="abilityNoticeClose" funcname="psi.abilityNoticeClose"/>
+   <function name="wheelClear" funcname="spiral.clearWheel"/>
+   <function name="wheelAddAbility" funcname="spiral.addAbility">
+    <param name="Index" desc="" type="int"/>
+    <param name="Icon" desc="icon string" type="string"/>
+    <param name="Enabled" desc="1=enabled; 0=disabled" type="bool"/>
+    <param name="isActive" desc="" type="bool"/>
+    <param name="Cooldown" desc="0-100" type="float"/>
+   </function>
+   <function name="wheelUpdateAbility" funcname="spiral.updateAbility">
+    <param name="Index" desc="" type="int"/>
+    <param name="Icon" desc="icon string" type="string"/>
+    <param name="Enabled" desc="1=enabled; 0=disabled" type="bool"/>
+    <param name="isActive" desc="" type="bool"/>
+    <param name="Cooldown" desc="0-100" type="int"/>
+   </function>
+   <function name="wheelAddWeapon" funcname="spiral.addWeapon">
+    <param name="Index" desc="" type="int"/>
+    <param name="Icon" desc="icon string" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="wheelUpdate" funcname="spiral.update">
+    <param name="time" type="float"/>
+   </function>
+   <function name="wheelUpdateWeapon" funcname="spiral.updateWeapon">
+    <param name="Index" desc="" type="int"/>
+    <param name="Icon" desc="icon string" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="wheelAnalogInput" funcname="spiral.analogWheel">
+    <param name="Angle" desc="0-359" type="float"/>
+   </function>
+   <function name="wheelMouseWheelInput" funcname="spiral.scrollWheelDelta">
+    <param name="Delta" desc="" type="float"/>
+   </function>
+   <function name="wheelHL" funcname="spiral.wheelHL">
+    <param name="Index" desc="" type="int"/>
+   </function>
+   <function name="wheelOpen" funcname="spiral.wheelOpen">
+    <param name="Index" desc="" type="int"/>
+   </function>
+   <function name="wheelClose" funcname="spiral.wheelClose"/>
+   <function name="wheelFlashWhite" funcname="spiral.wheelFlashWhite"/>
+   <function name="wheelFlashRed" funcname="spiral.wheelFlashRed"/>
+   <function name="wheelFadeIn" funcname="spiral.wheelFadeIn"/>
+   <function name="wheelFadeOut" funcname="spiral.wheelFadeOut"/>
+   <function name="wheelEquipPower" funcname="spiral.assignPower"/>
+   <function name="wheelAssignQuickSelect" funcname="spiral.assignQuickSelect">
+    <param name="direction" desc="0=up, 1=right, 2=down, 3=left" type="int"/>
+   </function>
+   <function name="wheelUpdateDetailsAbility" funcname="spiralDetails.updateDetailsAbility">
+    <param name="Name" desc="ability name" type="string"/>
+    <param name="Desc" desc="ability description" type="string"/>
+    <param name="Cost" desc="ability cost" type="string"/>
+    <param name="Enabled" desc="1=enabled; 0=disabled" type="bool"/>
+    <param name="StatTitle" desc="" type="string"/>
+    <param name="statValue" desc="" type="string"/>
+   </function>
+   <function name="updateDetailsWeapon" funcname="spiralDetails.updateDetailsWeapon">
+    <param name="Name" desc="ability name" type="string"/>
+    <param name="Ammo" desc="" type="string"/>
+    <param name="Equipped" desc="" type="bool"/>
+    <param name="Durability" desc="" type="float"/>
+    <param name="showMods" desc="" type="bool"/>
+    <param name="StatTitle" desc="" type="string"/>
+    <param name="statValue" desc="" type="string"/>
+   </function>
+   <function name="updateSimpleWeapon" funcname="spiralDetails.updateSimpleWeapon">
+    <param name="Name" desc="ability name" type="string"/>
+    <param name="Description" desc="" type="string"/>
+    <param name="Ammo" desc="" type="string"/>
+    <param name="Equipped" desc="" type="bool"/>
+    <param name="StatTitle" desc="" type="string"/>
+    <param name="statValue" desc="" type="string"/>
+   </function>
+   <function name="wheelDetailsClose" funcname="spiralDetails.detailsClose"/>
+   <function name="wheelSetWeaponMod" funcname="spiralDetails.setWeaponMod">
+    <param name="Place" desc="" type="int"/>
+    <param name="Name" desc="ability name" type="string"/>
+    <param name="Level" desc="" type="int"/>
+    <param name="MaxLevel" desc="" type="int"/>
+   </function>
+   <function name="wheelPromptOpen" funcname="spiralDetails.wheelPrompt">
+    <param name="htmlText" desc="" type="string"/>
+   </function>
+   <function name="wheelPromptClose" funcname="spiralDetails.wheelPromptClose"/>
+   <function name="updatePrompts" funcname="spiralPrompts.updatePrompts">
+    <param name="hasMedkit" desc="" type="bool"/>
+    <param name="noOfMedkits" desc="" type="int"/>
+    <param name="medkitString" desc="" type="string"/>
+    <param name="hasHypo" desc="" type="bool"/>
+    <param name="noOfHypo" desc="" type="int"/>
+    <param name="hypoString" desc="" type="string"/>
+    <param name="hasFood" desc="" type="bool"/>
+    <param name="noOfFood" desc="" type="int"/>
+    <param name="foodString" desc="" type="string"/>
+    <param name="foodIcon" desc="" type="string"/>
+   </function>
+   <function name="wheelItemFlash" funcname="spiralPrompts.flashPrompt">
+    <param name="whatPrompt" desc="1=medkit, 2=hypo" type="int"/>
+    <param name="isWhite" desc="white if true, red if false" type="bool"/>
+   </function>
+   <function name="wheelItemPromptsOpen" funcname="spiralPrompts.itemPromptsOpen"/>
+   <function name="wheelItemPromptsClose" funcname="spiralPrompts.itemPromptsClose"/>
+   <function name="cooldownOpen" funcname="cooldown.cooldownOpen"/>
+   <function name="cooldownClose" funcname="cooldown.cooldownClose"/>
+   <function name="cooldownAdd" funcname="cooldown.cooldownAdd">
+    <param name="icon" desc="" type="string"/>
+    <param name="Value" desc="0-100" type="float"/>
+   </function>
+   <function name="cooldownUpdate" funcname="cooldown.cooldownUpdate">
+    <param name="icon" desc="" type="string"/>
+    <param name="Value" desc="0-100" type="float"/>
+   </function>
+   <function name="cooldownRemove" funcname="cooldown.cooldownRemove">
+    <param name="icon" desc="" type="string"/>
+   </function>
+   <function name="objectiveUpdate" funcname="obj.objectiveStateUpdate">
+    <param name="objectiveId" type="string"/>
+    <param name="text" type="string"/>
+    <param name="state" type="int"/>
+    <param name="isOptional" desc="0=Main, 1=side, 3=roster" type="int"/>
+   </function>
+   <function name="objectiveTaskUpdate" funcname="obj.objectiveTaskUpdate">
+    <param name="TaskId" desc="" type="string"/>
+    <param name="ObjectiveText" desc="" type="string"/>
+    <param name="ObjectiveState" desc="" type="int"/>
+    <param name="TaskText" desc="" type="string"/>
+    <param name="TaskState" desc="" type="int"/>
+    <param name="LocationText" desc="" type="string"/>
+    <param name="isOptional" desc="0=Main, 1=side, 3=roster" type="int"/>
+    <param name="isTimed" desc="" type="bool"/>
+    <param name="objectiveId" type="string"/>
+   </function>
+   <function name="objectiveClose" funcname="obj.objectiveClose"/>
+   <function name="objectiveClear" funcname="obj.objectiveClear"/>
+   <function name="healthUpdate" funcname="health.healthUpdate">
+    <param name="HealthValue" desc="" type="int"/>
+    <param name="HealthMax" desc="" type="int"/>
+    <param name="RegenValue" desc="" type="int"/>
+    <param name="Animate" desc="" type="bool"/>
+    <param name="isRed" desc="true=red" type="bool"/>
+    <param name="LimitedValue" desc="" type="int"/>
+    <param name="DamageValue" desc="" type="int"/>
+   </function>
+   <function name="healthOpen" funcname="health.healthOpen"/>
+   <function name="healthClose" funcname="health.healthClose"/>
+   <function name="healthStatic" funcname="health.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="bleedUpdate" funcname="health.bleedUpdate">
+    <param name="BleedVisible" desc="" type="bool"/>
+    <param name="BleedValue" desc="" type="int"/>
+    <param name="HealthMax" desc="" type="int"/>
+   </function>
+   <function name="healthLastChance" funcname="health.lastChance"/>
+   <function name="psiUpdate" funcname="psiM.psiUpdate">
+    <param name="PsiValue" desc="" type="int"/>
+    <param name="PsiMax" desc="" type="int"/>
+    <param name="PsiCostPreview" desc="" type="int"/>
+    <param name="LimitedValue" desc="" type="int"/>
+   </function>
+   <function name="psiOpen" funcname="psiM.psiOpen"/>
+   <function name="psiClose" funcname="psiM.psiClose"/>
+   <function name="psiStatic" funcname="psiM.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="psiFlash" funcname="psiM.psiFlash"/>
+   <function name="psiBlocked" funcname="psiM.psiBlocked">
+    <param name="isBlocked" desc="" type="bool"/>
+   </function>
+   <function name="sprintUpdate" funcname="sprint.sprintUpdate">
+    <param name="SprintValue" desc="0-100" type="int"/>
+   </function>
+   <function name="sprintOpen" funcname="sprint.sprintOpen"/>
+   <function name="sprintClose" funcname="sprint.sprintClose"/>
+   <function name="boostOpen" funcname="boost.boostOpen"/>
+   <function name="boostUpdate" funcname="boost.boostUpdate">
+    <param name="Value" desc="0-1" type="float"/>
+   </function>
+   <function name="boostClose" funcname="boost.boostClose"/>
+   <function name="boostStatic" funcname="boost.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="staminaOpen" funcname="stamina.staminaOpen"/>
+   <function name="staminaUpdate" funcname="stamina.staminaUpdate">
+    <param name="Value" desc="0-100" type="float"/>
+    <param name="Alpha" desc="0-100" type="float"/>
+    <param name="isExhausted" desc="" type="bool"/>
+   </function>
+   <function name="staminaPreviewUpdate" funcname="stamina.staminaPreviewUpdate">
+    <param name="Delta" desc="0-100" type="float"/>
+   </function>
+   <function name="staminaClose" funcname="stamina.staminaClose"/>
+   <function name="staminaDrained" funcname="stamina.staminaDrained"/>
+   <function name="ammoUpdate" funcname="ammo.ammoUpdate">
+    <param name="ClipAmmo" desc="" type="int"/>
+    <param name="TotalAmmo" desc="" type="int"/>
+    <param name="isGrenade" desc="" type="bool"/>
+   </function>
+   <function name="ammoOpen" funcname="ammo.ammoOpen"/>
+   <function name="ammoClose" funcname="ammo.ammoClose"/>
+   <function name="subtitleUpdate" funcname="sub.subtitleUpdate">
+    <param name="subtitleText" desc="html supported text" type="string"/>
+   </function>
+   <function name="subtitleClose" funcname="sub.subtitleClose"/>
+   <function name="tutorialUpdate" funcname="tut.tutorialUpdate">
+    <param name="tutorialText" desc="html supported text" type="string"/>
+   </function>
+   <function name="tutorialClose" funcname="tut.tutorialClose"/>
+   <function name="tutorialHint" funcname="tut.tutorialHint">
+    <param name="hintText" desc="" type="string"/>
+   </function>
+   <function name="tutorialHintClose" funcname="tut.tutorialHintClose"/>
+   <function name="tutorialPrompt" funcname="tut.tutorialPrompt">
+    <param name="headerText" desc="html supported text" type="string"/>
+    <param name="bodyText" desc="html supported text" type="string"/>
+    <param name="image" desc="send the tutorial card" type="string"/>
+    <param name="promptTxt" desc="used if prompting to open the large tutorial" type="string"/>
+   </function>
+   <function name="tutorialPromptClose" funcname="tut.tutorialPromptClose"/>
+   <function name="speedUpdate" funcname="zg.speedUpdate">
+    <param name="SpeedValue" desc="" type="float"/>
+    <param name="SpeedRedline" desc="" type="float"/>
+    <param name="SpeedMax" desc="" type="float"/>
+   </function>
+   <function name="speedOpen" funcname="zg.speedOpen"/>
+   <function name="speedClose" funcname="zg.speedClose"/>
+   <function name="speedStatic" funcname="zg.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="thrustUpdate" funcname="zg.thrustUpdate">
+    <param name="ThrustValue" desc="" type="float"/>
+    <param name="ThrustRedline" desc="" type="float"/>
+    <param name="ThrustMax" desc="" type="float"/>
+   </function>
+   <function name="thrustOpen" funcname="zg.thrustOpen"/>
+   <function name="thrustClose" funcname="zg.thrustClose"/>
+   <function name="thrustStatic" funcname="zg.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="oxygenUpdate" funcname="o2.oxygenUpdate">
+    <param name="OxygenValue" desc="" type="int"/>
+    <param name="Timer" desc="" type="string"/>
+    <param name="isInfinite" desc="" type="bool"/>
+   </function>
+   <function name="oxygenOpen" funcname="o2.oxygenOpen"/>
+   <function name="oxygenClose" funcname="o2.oxygenClose"/>
+   <function name="oxygenStatic" funcname="o2.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="throwUpdate" funcname="grenade.throwUpdate">
+    <param name="Percent" desc="0-100" type="float"/>
+   </function>
+   <function name="throwOpen" funcname="grenade.throwOpen"/>
+   <function name="throwClose" funcname="grenade.throwClose"/>
+   <function name="thrustVectorUpdate" funcname="zg.thrustVectorUpdate">
+    <param name="thrustXValue" desc="-1 to +1" type="float"/>
+    <param name="thrustYValue" desc="-1 to +1" type="float"/>
+    <param name="thrustZValue" desc="-1 to +1" type="float"/>
+   </function>
+   <function name="thrustVectorOpen" funcname="zg.thrustVectorOpen"/>
+   <function name="thrustVectorClose" funcname="zg.thrustVectorClose"/>
+   <function name="interactPrompt" funcname="action.interactPrompt">
+    <param name="itemName" desc="" type="string"/>
+    <param name="isNewPrompt" desc="enables animation on" type="bool"/>
+   </function>
+   <function name="interactFormatPrompts" funcname="action.formatPrompts"/>
+   <function name="interactClose" funcname="action.interactClose">
+    <param name="immediate" type="bool"/>
+   </function>
+   <function name="interactDisplay" funcname="action.interactDisplay">
+    <param name="visibility" desc="true=visible, false=off" type="bool"/>
+   </function>
+   <function name="interactPosition" funcname="action.interactPos">
+    <param name="X" desc="" type="float"/>
+    <param name="Y" desc="" type="float"/>
+   </function>
+   <function name="holdMeterUpdate" funcname="action.holdMeterUpdate">
+    <param name="meterValue" desc="0-1" type="float"/>
+   </function>
+   <function name="holdMeterOpen" funcname="action.holdMeterOpen"/>
+   <function name="holdMeterClose" funcname="action.holdMeterClose"/>
+   <function name="feedbackOpen" funcname="action.feedbackOpen">
+    <param name="displayText" desc="" type="string"/>
+   </function>
+   <function name="feedbackClose" funcname="action.feedbackClose"/>
+   <function name="errorOpen" funcname="action.showErrorText">
+    <param name="Text" desc="" type="String"/>
+    <param name="isBlinking" desc="" type="bool"/>
+   </function>
+   <function name="errorClose" funcname="action.hideErrorText"/>
+   <function name="lootOpen" funcname="loot.lootOpen"/>
+   <function name="lootClose" funcname="loot.lootClose"/>
+   <function name="lootSetGridSize" funcname="loot.setGridSize">
+    <param name="rows" desc="" type="int"/>
+    <param name="cols" desc="" type="int"/>
+   </function>
+   <function name="lootUpdateScrollBar" funcname="loot.updateScrollBar">
+    <param name="startRow" desc="" type="int"/>
+    <param name="maxRows" desc="" type="int"/>
+   </function>
+   <function name="lootClearItems" funcname="loot.clearItems"/>
+   <function name="lootAddItem" funcname="loot.addInventoryItem">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Icon" desc="icon file" type="string"/>
+    <param name="Width" desc="" type="int"/>
+    <param name="Height" desc="" type="int"/>
+    <param name="Rotation" desc="" type="int"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Quantity" desc="" type="int"/>
+    <param name="Stackable" desc="" type="bool"/>
+    <param name="Equipped" desc="" type="bool"/>
+    <param name="Favorite" desc="" type="bool"/>
+    <param name="isType" desc="" type="int"/>
+    <param name="isBlocked" desc="" type="bool"/>
+   </function>
+   <function name="lootUpdateGrid" funcname="loot.updateGrid"/>
+   <function name="lootNav" funcname="loot.itemNav">
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Width" desc="" type="int"/>
+    <param name="Height" desc="" type="int"/>
+    <param name="Conflict" desc="conflicting=true" type="bool"/>
+   </function>
+   <function name="lootUpdateItemName" funcname="loot.updateItemName">
+    <param name="Item" desc="" type="string"/>
+   </function>
+   <function name="lootFormatPrompts" funcname="loot.formatPrompts"/>
+   <function name="showErrorText" funcname="loot.showErrorText">
+    <param name="Text" desc="" type="String"/>
+   </function>
+   <function name="hideErrorText" funcname="loot.hideErrorText"/>
+   <function name="audioLogOpen" funcname="im.audioLogOpen"/>
+   <function name="audioLogDisplay" funcname="im.audioLogDisplay">
+    <param name="OnlineStatus" desc="0=Empty, 1=Live, 2=Recorded, 3=Portrait" type="int"/>
+   </function>
+   <function name="audioLogUpdate" funcname="im.audioLogUpdate">
+    <param name="Name" desc="" type="string"/>
+    <param name="OnlineStatus" desc="1=Live, 2=Recorded" type="int"/>
+    <param name="OnlineStatusText" desc="Live or Recorded" type="string"/>
+    <param name="Portrait" desc="" type="string"/>
+   </function>
+   <function name="audioLogClose" funcname="im.audioLogClose"/>
+   <function name="audioLogStatic" funcname="im.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="quickSelectClearItems" funcname="fav.clearItems"/>
+   <function name="quickSelectUpdateAbility" funcname="fav.updateAbility">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="cost" desc="" type="int"/>
+    <param name="isEnabled" desc="" type="bool"/>
+    <param name="active" desc="" type="bool"/>
+    <param name="cooldown" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateWeapon" funcname="fav.updateWeapon">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="ammo" desc="" type="string"/>
+    <param name="durability" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateItem" funcname="fav.updateItem">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="quantity" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateCooldown" funcname="fav.updateCooldown">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+    <param name="cooldown" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateNone" funcname="fav.updateNone">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+   </function>
+   <function name="quickSelectOpen" funcname="fav.quickSelectOpen">
+    <param name="Text" desc="ASSIGN or EMPTY" type="string"/>
+   </function>
+   <function name="quickSelectClose" funcname="fav.quickSelectClose"/>
+   <function name="quickSelectHL" funcname="fav.itemHL">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+    <param name="fillValue" desc="0-100" type="float"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="quickSelectFlashWhite" funcname="fav.itemFlashWhite">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+   </function>
+   <function name="quickSelectFlashRed" funcname="fav.itemFlashRed">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+   </function>
+   <function name="quickSelectDpadEnable" funcname="fav.dpadEnabled">
+    <param name="Right" desc="" type="bool"/>
+    <param name="Down" desc="" type="bool"/>
+    <param name="Left" desc="" type="bool"/>
+    <param name="Up" desc="" type="bool"/>
+   </function>
+   <function name="quickSelectPCSetShortcuts" funcname="favPC.setShortcuts">
+    <param name="1" desc="" type="string"/>
+    <param name="2" desc="" type="string"/>
+    <param name="3" desc="" type="string"/>
+    <param name="4" desc="" type="string"/>
+    <param name="5" desc="" type="string"/>
+    <param name="6" desc="" type="string"/>
+    <param name="7" desc="" type="string"/>
+    <param name="8" desc="" type="string"/>
+    <param name="9" desc="" type="string"/>
+    <param name="0" desc="" type="string"/>
+   </function>
+   <function name="quickSelectPCClearItems" funcname="favPC.clearItems"/>
+   <function name="quickSelectPCUpdateAbility" funcname="favPC.updateAbility">
+    <param name="index" desc="" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="cost" desc="" type="int"/>
+    <param name="isEnabled" desc="" type="bool"/>
+    <param name="active" desc="" type="bool"/>
+    <param name="cooldown" desc="" type="int"/>
+   </function>
+   <function name="quickSelectPCUpdateWeapon" funcname="favPC.updateWeapon">
+    <param name="index" desc="" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="ammo" desc="" type="string"/>
+    <param name="durability" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="quickSelectPCUpdateItem" funcname="favPC.updateItem">
+    <param name="index" desc="" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="quantity" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="quickSelectPCUpdateCooldown" funcname="favPC.updateCooldown">
+    <param name="index" desc="" type="int"/>
+    <param name="cooldown" desc="" type="int"/>
+   </function>
+   <function name="quickSelectPCUpdateNone" funcname="favPC.updateNone">
+    <param name="index" desc="" type="int"/>
+   </function>
+   <function name="quickSelectPCOpen" funcname="favPC.quickSelectOpen">
+    <param name="Text" desc="ASSIGN or EMPTY" type="string"/>
+   </function>
+   <function name="quickSelectPCClose" funcname="favPC.quickSelectClose"/>
+   <function name="quickSelectPCHL" funcname="favPC.itemHL">
+    <param name="index" desc="" type="int"/>
+    <param name="fillValue" desc="0-100" type="float"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="quickSelectPCFlashWhite" funcname="favPC.itemFlashWhite">
+    <param name="index" desc="" type="int"/>
+   </function>
+   <function name="quickSelectPCFlashRed" funcname="favPC.itemFlashRed">
+    <param name="index" desc="" type="int"/>
+   </function>
+   <function name="clearItems" funcname="inv.clearItems"/>
+   <function name="addItem" funcname="inv.addItem">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="quantity" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="updateItem" funcname="inv.updateItem">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="quantity" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="updateItemList" funcname="inv.updateList"/>
+   <function name="itemOpen" funcname="inv.itemOpen">
+    <param name="uniqueID" desc="" type="string"/>
+   </function>
+   <function name="itemClose" funcname="inv.itemClose"/>
+   <function name="itemHL" funcname="inv.itemHL">
+    <param name="ItemIndex" desc="" type="int"/>
+   </function>
+   <function name="itemNext" funcname="inv.itemNext"/>
+   <function name="itemPrev" funcname="inv.itemPrev"/>
+   <function name="itemPrompt" funcname="inv.itemPrompt">
+    <param name="promptButton" desc="" type="string"/>
+   </function>
+   <function name="clearWeapons" funcname="weap.clearWeapons"/>
+   <function name="addWeapon" funcname="weap.addWeapon">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="ammo" desc="" type="string"/>
+    <param name="durability" desc="0-100" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="updateWeapon" funcname="weap.updateWeapon">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="ammo" desc="" type="string"/>
+    <param name="durability" desc="0-100" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="updateWeaponList" funcname="weap.updateList"/>
+   <function name="weaponOpen" funcname="weap.weaponOpen">
+    <param name="WeaponIndex" desc="" type="int"/>
+   </function>
+   <function name="weaponClose" funcname="weap.weaponClose"/>
+   <function name="weaponHL" funcname="weap.weaponHL">
+    <param name="WeaponIndex" desc="" type="int"/>
+   </function>
+   <function name="weaponNext" funcname="weap.weaponNext"/>
+   <function name="weaponPrev" funcname="weap.weaponPrev"/>
+   <function name="weaponDamageUpdate" funcname="weapDamage.updateWeapon">
+    <param name="name" desc="" type="string"/>
+    <param name="ammo" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+    <param name="durability" desc="0-100" type="int"/>
+    <param name="threshold" desc="0-100" type="int"/>
+   </function>
+   <function name="weaponDamageOpen" funcname="weapDamage.weaponOpen"/>
+   <function name="weaponDamageClose" funcname="weapDamage.weaponClose"/>
+   <function name="pickupDisplay" funcname="pick.pickupDisplay">
+    <param name="ID" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="slot" desc="" type="int"/>
+    <param name="category" desc="1=important 2=crit 3=sneak" type="int"/>
+   </function>
+   <function name="pickupPrompt" funcname="pick.pickupPrompt">
+    <param name="headerText" desc="html supported text" type="string"/>
+    <param name="promptText" desc="html supported text" type="string"/>
+    <param name="image" desc="neuromod, transcribe, weaponkit, psychoscope, fabricationplan, keycard, keycode, password" type="string"/>
+   </function>
+   <function name="pickupPromptClose" funcname="pick.pickupPromptClose"/>
+   <function name="reticleYOffset" funcname="ret.reticleYOffset">
+    <param name="ReticleYOffset" desc="0-1 percent from top of the screen" type="float"/>
+   </function>
+   <function name="reticleXOffset" funcname="ret.reticleXOffset">
+    <param name="ReticleXOffset" desc="0-1 percent from left of the screen" type="float"/>
+   </function>
+   <function name="reticlePosition" funcname="ret.reticlePosition">
+    <param name="ReticleX" desc="0-1 percent from left of the screen" type="float"/>
+    <param name="ReticleY" desc="0-1 percent from top of the screen" type="float"/>
+   </function>
+   <function name="reticleDisplay" funcname="ret.reticleDisplay">
+    <param name="reticleDisplay" desc="none, default, crosshair, shotgun, grenade, goo" type="string"/>
+   </function>
+   <function name="interactIconDisplay" funcname="ret.interactDisplay">
+    <param name="whichIcon" desc="none, interact, pickup, carry, examine" type="string"/>
+   </function>
+   <function name="reticleColor" funcname="ret.reticleColor">
+    <param name="reticleColor" desc="1=red, 0=white" type="bool"/>
+   </function>
+   <function name="reticleHit" funcname="ret.reticleHit">
+    <param name="strength" desc="1=ineffective, 2=default, 3=effective" type="int"/>
+   </function>
+   <function name="reticleDispersion" funcname="ret.reticleDispersion">
+    <param name="" desc="0=0, 1=screen resolution height" type="float"/>
+   </function>
+   <function name="reticleThrowDistance" funcname="ret.reticleThrowDistance">
+    <param name="" desc="0 - 100" type="float"/>
+   </function>
+   <function name="reticleGooRange" funcname="ret.reticleGooRange">
+    <param name="isInRange" desc="" type="bool"/>
+   </function>
+   <function name="damageClear" funcname="hit.clearAll"/>
+   <function name="damageRingAdd" funcname="hit.damageRingAdd">
+    <param name="ID" desc="unique identifier" type="int"/>
+    <param name="Angle" desc="0-360" type="float"/>
+   </function>
+   <function name="shieldRingAdd" funcname="hit.shieldRingAdd">
+    <param name="ID" desc="unique identifier" type="int"/>
+    <param name="Angle" desc="0-360" type="float"/>
+   </function>
+   <function name="damageRingAngle" funcname="hit.damageRingAngle">
+    <param name="Angle" desc="0-360" type="float"/>
+   </function>
+   <function name="damageRedFlash" funcname="hit.damageRedFlash"/>
+   <function name="awarenessRingAdd" funcname="aware.awarenessRingAdd">
+    <param name="ID" desc="unique identifier" type="int"/>
+   </function>
+   <function name="awarenessRingUpdate" funcname="aware.awarenessRingUpdate">
+    <param name="ID" desc="unique identifier" type="int"/>
+    <param name="Angle" desc="0-360" type="float"/>
+    <param name="Level" desc="0-1" type="float"/>
+    <param name="ArrowDir" desc="-1=inside, 0=hidden, 1=outside" type="int"/>
+   </function>
+   <function name="awarenessRingRemove" funcname="aware.awarenessRingRemove">
+    <param name="ID" desc="unique identifier" type="int"/>
+    <param name="isAware" desc="true if in combat, false if else" type="bool"/>
+   </function>
+   <function name="statusEffectAdd" funcname="stat.addStatusEffect">
+    <param name="statusName" desc="bleeding/radiation/hunger/psi/rested/food/pharma/burns/fear/crippled/concussion/suit/psi" type="string"/>
+   </function>
+   <function name="statusEffectRemove" funcname="stat.removeStatusEffect">
+    <param name="statusName" desc="bleeding/radiation/hunger/psi/rested/food/pharma/burns/fear/crippled/concussion/suit/psi" type="string"/>
+   </function>
+   <function name="statusEffectUpdate" funcname="stat.updateStatusEffect">
+    <param name="statusName" desc="bleeding/radiation/hunger/psi/rested/food/pharma/burns/fear/crippled/concussion/suit/psi" type="string"/>
+    <param name="fillPercent" desc="0-100" type="float"/>
+    <param name="blinkRate" desc="timer in seconds for blink" type="float"/>
+   </function>
+   <function name="statusEffectsShow" funcname="stat.openStatusEffects"/>
+   <function name="statusEffectsHide" funcname="stat.closeStatusEffects"/>
+   <function name="statusEffectStatic" funcname="stat.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="keyCodeUpdate" funcname="kc.keyCodeUpdate">
+    <param name="keyCodeText" desc="" type="string"/>
+    <param name="hintType" desc="" type="string"/>
+   </function>
+   <function name="keyCodeClose" funcname="kc.keyCodeClose"/>
+   <function name="hackingOpen" funcname="hack.hackingOpen">
+    <param name="Difficulty" desc="" type="int"/>
+    <param name="Distance" desc="" type="int"/>
+    <param name="Tries" desc="" type="int"/>
+   </function>
+   <function name="hackingClose" funcname="hack.hackingClose"/>
+   <function name="hackingUpdateDistance" funcname="hack.hackingUpdateDistance">
+    <param name="Distance" desc="" type="int"/>
+   </function>
+   <function name="hackingUpdateTries" funcname="hack.hackingUpdateLives">
+    <param name="Tried" desc="" type="int"/>
+   </function>
+   <function name="hackingInteract" funcname="hack.hackingInteract"/>
+   <function name="hackingSuccess" funcname="hack.hackingSuccess"/>
+   <function name="hackingFail" funcname="hack.hackingFail"/>
+   <function name="hackingCancel" funcname="hack.hackingCancel"/>
+   <function name="locationDisplay" funcname="ff.locationDisplay">
+    <param name="text" desc="text to be displayed" type="string"/>
+    <param name="isFirstTime" desc="" type="bool"/>
+   </function>
+   <function name="stealthOn" funcname="stealth.stealthShow"/>
+   <function name="stealthOff" funcname="stealth.stealthHide"/>
+   <function name="crawlOn" funcname="stealth.crawlShow"/>
+   <function name="crawlOff" funcname="stealth.crawlHide"/>
+   <function name="shieldOn" funcname="shield.shieldShow"/>
+   <function name="shieldOff" funcname="shield.shieldHide"/>
+   <function name="shieldBlink" funcname="shield.shieldBlink">
+    <param name="Rate" desc="0-1 in seconds" type="float"/>
+   </function>
+   <function name="autosaveOpen" funcname="save.autosaveOpen"/>
+   <function name="autosaveClose" funcname="save.autosaveClose"/>
+   <function name="climbOpen" funcname="climb.climbOpen"/>
+   <function name="climbClose" funcname="climb.climbClose"/>
+   <function name="climbPrompt" funcname="climb.interactPrompt">
+    <param name="htmlText" desc="" type="string"/>
+   </function>
+   <function name="flashlightOpen" funcname="light.flashlightOpen"/>
+   <function name="flashlightClose" funcname="light.flashlightClose"/>
+   <function name="flashlightStatic" funcname="light.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="flashlightUpdate" funcname="light.flashlightUpdate">
+    <param name="Meter" desc="0-1" type="float"/>
+   </function>
+   <function name="flashlightIsOn" funcname="light.flashlightOn">
+    <param name="isOn" desc="" type="bool"/>
+   </function>
+   <function name="timerUpdate" funcname="timer.timerUpdate">
+    <param name="timer" desc="html formatted" type="string"/>
+   </function>
+   <function name="timerOpen" funcname="timer.timerOpen">
+    <param name="title" desc="" type="string"/>
+   </function>
+   <function name="timerClose" funcname="timer.timerClose"/>
+   <function name="radiationUpdate" funcname="rad.radiationUpdate">
+    <param name="Level" desc="1,2,3" type="int"/>
+    <param name="BlinkRate" desc="seconds per blink" type="float"/>
+    <param name="Percent" desc="0-1" type="float"/>
+   </function>
+   <function name="radiationOpen" funcname="rad.radiationOpen"/>
+   <function name="radiationClose" funcname="rad.radiationClose"/>
+   <function name="radiationStatic" funcname="rad.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="mashPromptOpen" funcname="action.mashPromptOpen">
+    <param name="platform" desc="&apos;xbox&apos;, &apos;ps4&apos;, &apos;mouse&apos;, &apos;key&apos;" type="string"/>
+    <param name="keyRemap" desc="" type="string"/>
+   </function>
+   <function name="mashPromptClose" funcname="action.mashPromptClose"/>
+   <function name="enemyHealthUpdate" funcname="enemy.enemyUpdate">
+    <param name="EnemyName" desc="" type="string"/>
+    <param name="EnemyHealth" desc="" type="int"/>
+    <param name="EnemyHealthMax" desc="" type="int"/>
+    <param name="isFriendly" desc="" type="bool"/>
+    <param name="isFortified" desc="" type="bool"/>
+    <param name="chargeValue" desc="" type="int"/>
+   </function>
+   <function name="enemyHealthOpen" funcname="enemy.enemyOpen"/>
+   <function name="enemyHealthClose" funcname="enemy.enemyClose"/>
+   <function name="enemyStatic" funcname="enemy.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="focusUpdate" funcname="focus.focusUpdate">
+    <param name="Percent" desc="0-100" type="int"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="focusOpen" funcname="focus.focusOpen"/>
+   <function name="focusClose" funcname="focus.focusClose"/>
+   <function name="setEquippedPower" funcname="power.setEquippedPower">
+    <param name="Icon" desc="" type="string"/>
+   </function>
+   <function name="powerUpdate" funcname="power.powerUpdate">
+    <param name="Percent" desc="0-100" type="int"/>
+    <param name="isEnabledd" desc="" type="bool"/>
+   </function>
+   <function name="powerFlash" funcname="power.powerFlash">
+    <param name="flashType" desc="1=cooldownComplete, 2=white, 3=red" type="int"/>
+   </function>
+   <function name="powerOpen" funcname="power.powerOpen"/>
+   <function name="powerClose" funcname="power.powerClose"/>
+   <function name="powerStatic" funcname="power.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="armorOpen" funcname="armor.armorOpen"/>
+   <function name="armorClose" funcname="armor.armorClose"/>
+   <function name="armorUpdate" funcname="armor.armorUpdate">
+    <param name="Value" desc="0-100" type="int"/>
+    <param name="Max" desc="" type="int"/>
+   </function>
+   <function name="armorFlash" funcname="armor.armorFlash"/>
+   <function name="armorStatic" funcname="armor.setIsStatic">
+    <param name="isStatic" desc="" type="bool"/>
+   </function>
+   <function name="HUDPos" funcname="cam.HUDPos">
+    <param name="X" desc="" type="int"/>
+    <param name="Y" desc="" type="int"/>
+   </function>
+   <function name="shakeStart" funcname="cam.startRandomizePos">
+    <param name="Amp" desc="" type="float"/>
+    <param name="Freq" desc="" type="float"/>
+   </function>
+   <function name="shakeStop" funcname="cam.stopRandomizePos"/>
+  </functions>
+  <Events>
+   <event name="hackingSuccess" fscommand="UIHackingSuccess" desc="">
+    <param name="Success" desc="" type="bool"/>
+   </event>
+   <event name="hackingFail" fscommand="UIHackingFail" desc="">
+    <param name="Fail" desc="" type="bool"/>
+   </event>
+   <event name="hackingCancel" fscommand="UIHackingCancel" desc="">
+    <param name="Cancel" desc="" type="bool"/>
+   </event>
+   <event name="UISelectWeapon" fscommand="UISelectWeapon" desc="">
+    <param name="indexNumber" desc="" type="int"/>
+   </event>
+   <event name="UISelectItem" fscommand="UISelectItem" desc="">
+    <param name="indexNumber" desc="" type="int"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+   <event name="OnShowCurrentObjective" fscommand="onCurrentObjective">
+    <param name="taskId" type="string"/>
+   </event>
+   <event name="removeDamageRing" fscommand="removeDamageRing">
+    <param name="uniqueID" type="string"/>
+   </event>
+   <event name="removeShieldRing" fscommand="removeShieldRing">
+    <param name="uniqueID" type="string"/>
+   </event>
+   <event name="audioLogOpen" fscommand="audioLogOpen"/>
+   <event name="audioLogClose" fscommand="audioLogClose"/>
+   <event name="UIAbilityMenuOpen" fscommand="UIAbilityMenuOpen"/>
+   <event name="UIAbilityMenuClose" fscommand="UIAbilityMenuClose"/>
+   <event name="spiralWheelOpen" fscommand="spiralWheelOpen"/>
+   <event name="spiralWheelClose" fscommand="spiralWheelClose"/>
+   <event name="spiralWheelHL" fscommand="spiralWheelHL">
+    <param name="Index" desc="" type="int"/>
+   </event>
+   <event name="spiralWheelSelect" fscommand="spiralWheelSelect">
+    <param name="Index" desc="" type="int"/>
+   </event>
+   <event name="refreshEquippedPower" fscommand="refreshEquippedPower"/>
+   <event name="refreshQuickSelect" fscommand="refreshQuickSelect">
+    <param name="Dir" desc="" type="int"/>
+   </event>
+   <event name="staminaPreviewComplete" fscommand="staminaPreviewComplete"/>
+  </Events>
+  <Arrays>
+   <Array name="abilityArray" varname="psi.abilityArray" desc=""/>
+   <Array name="waveformArray" varname="im.audioLevelsArray" desc="Range of audio levels (currently 50)"/>
+   <Array name="interactPromptArray" varname="action.promptArray" desc=""/>
+   <Array name="lootPromptArray" varname="loot.promptArray" desc=""/>
+  </Arrays>
+  <variables>
+   <variable name="DebugMode" varname="testing" type="bool"/>
+   <variable name="tutorialText" varname="tutorialText" type="string"/>
+  </variables>
+ </UIElement>
+ <UIElement name="DanielleMarkers" render_lockless="1" is_Hud="1">
+  <GFx file="GFX/danielle_markers.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="1"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="targetsAlpha" funcname="ar.targetsAlpha">
+    <param name="alpha" desc="" type="int"/>
+   </function>
+   <function name="objectivesAlpha" funcname="obj.objectivesAlpha">
+    <param name="alpha" desc="" type="int"/>
+   </function>
+   <function name="scanTargetsAlpha" funcname="scanTarget.scanTargetsAlpha">
+    <param name="alpha" desc="" type="int"/>
+   </function>
+   <function name="setMarkerAlpha" funcname="vis.setMarkerAlpha">
+    <param name="alpha" desc="" type="int"/>
+   </function>
+   <function name="setScannerAlpha" funcname="vis.setScannerAlpha">
+    <param name="alpha" desc="" type="int"/>
+   </function>
+   <function name="openPDA" funcname="vis.openPDA"/>
+   <function name="closePDA" funcname="vis.closePDA"/>
+   <function name="openAbilities" funcname="vis.openAbilities"/>
+   <function name="closeAbilities" funcname="vis.closeAbilities"/>
+   <function name="MarkersFadeOn" funcname="vis.HUDFadeOn"/>
+   <function name="MarkersFadeOut" funcname="vis.HUDFadeOut"/>
+   <function name="attachObjectiveMarker" funcname="obj.attachObjectiveMarker">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="ObjectiveType" desc="0=Main, 1=Side, 2=Roster" type="int"/>
+   </function>
+   <function name="removeObjectiveMarker" funcname="obj.removeObjectiveMarker">
+    <param name="ID" desc="unique identifier" type="string"/>
+   </function>
+   <function name="flashObjectiveMarker" funcname="obj.flashObjectiveMarker">
+    <param name="ID" desc="unique identifier" type="string"/>
+   </function>
+   <function name="updateObjectiveMarkerPosition" funcname="obj.updateObjectiveMarkerPosition">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="X" desc="targetXPos" type="float"/>
+    <param name="Y" desc="targetYPos" type="float"/>
+    <param name="Level" desc="0=same, 1=below, 2=above" type="int"/>
+    <param name="Alpha" desc="0-100" type="int"/>
+    <param name="TextAlpha" desc="0-100" type="int"/>
+   </function>
+   <function name="updateObjectiveMarkerLabel" funcname="obj.updateObjectiveMarkerLabel">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Text" type="string"/>
+    <param name="Alpha" desc="0-100" type="int"/>
+   </function>
+   <function name="attachPOIMarker" funcname="obj.attachPOIMarker">
+    <param name="ID" desc="unique identifier" type="string"/>
+   </function>
+   <function name="removePOIMarker" funcname="obj.removePOIMarker">
+    <param name="ID" desc="unique identifier" type="string"/>
+   </function>
+   <function name="updatePOIMarkers" funcname="obj.updatePOIMarkerPositions"/>
+   <function name="updatePOIMarkerLabel" funcname="obj.updatePOIMarkerLabel">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Text" type="string"/>
+   </function>
+   <function name="clearPOIMarkers" funcname="obj.clearPOIMarkers"/>
+   <function name="pauseMarkers" funcname="util.pauseUI">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+   <function name="targetAdd" funcname="ar.targetAdd">
+    <param name="targetID" desc="" type="int"/>
+    <param name="targetText" desc="" type="string"/>
+    <param name="targetXPos" desc="" type="float"/>
+    <param name="targetYPos" desc="" type="float"/>
+    <param name="targetIsActive" desc="" type="bool"/>
+   </function>
+   <function name="targetUpdate" funcname="ar.targetUpdate">
+    <param name="targetID" desc="" type="int"/>
+    <param name="targetXPos" desc="" type="float"/>
+    <param name="targetYPos" desc="" type="float"/>
+    <param name="targetIsActive" desc="" type="bool"/>
+   </function>
+   <function name="targetRemove" funcname="ar.targetRemove">
+    <param name="targetID" desc="" type="int"/>
+   </function>
+   <function name="markerUpdate" funcname="ar.markerUpdate"/>
+   <function name="dangerAdd" funcname="ar.dangerAdd">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="XPos" desc="0-1" type="float"/>
+    <param name="YPos" desc="0-1" type="float"/>
+    <param name="Rotation" desc="0-360" type="int"/>
+    <param name="ArrowVis" desc="" type="bool"/>
+   </function>
+   <function name="dangerUpdate" funcname="ar.dangerUpdate">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="XPos" desc="0-1" type="float"/>
+    <param name="YPos" desc="0-1" type="float"/>
+    <param name="Rotation" desc="0-360" type="int"/>
+    <param name="ArrowVis" desc="" type="bool"/>
+   </function>
+   <function name="dangerRemove" funcname="ar.dangerRemove">
+    <param name="uniqueID" desc="" type="string"/>
+   </function>
+   <function name="repairAdd" funcname="ar.repairAdd">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="XPos" desc="0-1" type="float"/>
+    <param name="YPos" desc="0-1" type="float"/>
+   </function>
+   <function name="repairUpdate" funcname="ar.repairUpdate">
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="XPos" desc="0-1" type="float"/>
+    <param name="YPos" desc="0-1" type="float"/>
+   </function>
+   <function name="repairRemove" funcname="ar.repairRemove">
+    <param name="uniqueID" desc="" type="string"/>
+   </function>
+   <function name="enemyMeterShow" funcname="scan.enemyMeterShow">
+    <param name="healthVis" desc="" type="bool"/>
+    <param name="psiVis" desc="" type="bool"/>
+   </function>
+   <function name="enemyMeterUpdate" funcname="scan.enemyMeterUpdate">
+    <param name="Name" desc="Enemy Name" type="string"/>
+    <param name="health" desc="0-1 percentage" type="float"/>
+    <param name="psi" desc="0-1 percentage" type="float"/>
+   </function>
+   <function name="enemyPsiBlocked" funcname="scan.psiBlocked">
+    <param name="isBlocked" desc="" type="bool"/>
+   </function>
+   <function name="scanningUpdateTargetReticle" funcname="scanTarget.updateTargetReticle">
+    <param name="x" desc="0-1 percentage" type="float"/>
+    <param name="y" desc="0-1 percentage" type="float"/>
+    <param name="state" desc="0:noTarget, 1:newTarget, 2:oldTarget, 3:lockedTarget" type="int"/>
+    <param name="isVisible" desc="" type="bool"/>
+   </function>
+   <function name="scanningUpdateLockedReticle" funcname="scanTarget.updateLockedReticle">
+    <param name="x" desc="0-1 percentage" type="float"/>
+    <param name="y" desc="0-1 percentage" type="float"/>
+    <param name="state" desc="0:unlocked, 1:locked" type="int"/>
+   </function>
+   <function name="reticleColor" funcname="scanTarget.reticleColor">
+    <param name="isRed" desc="" type="bool"/>
+   </function>
+   <function name="reticleAlpha" funcname="scanTarget.reticleAlpha">
+    <param name="Percent" desc="0-100" type="int"/>
+   </function>
+   <function name="scanningUpdateTargetResearch" funcname="scanTarget.updateTargetResearch">
+    <param name="MaxPips" desc="0-15" type="int"/>
+    <param name="CurrentPips" desc="0-15" type="int"/>
+    <param name="isVisible" desc="" type="bool"/>
+   </function>
+   <function name="scanningYOffset" funcname="scan.scanningYOffset">
+    <param name="yOffset" desc="0-1 percent from top of the screen" type="float"/>
+   </function>
+   <function name="scanningXOffset" funcname="scan.scanningXOffset">
+    <param name="xOffset" desc="0-1 percent from left of the screen" type="float"/>
+   </function>
+   <function name="scanningModeOpen" funcname="scan.scanningModeOpen"/>
+   <function name="scanningModeClose" funcname="scan.scanningModeClose"/>
+   <function name="scanningDetailsOpen" funcname="scan.detailsPanelOpen"/>
+   <function name="scanningDetailsUpdate" funcname="scan.detailsPanelUpdate">
+    <param name="Name" desc="Alien Name" type="string"/>
+    <param name="MaxPips" desc="0-15" type="int"/>
+    <param name="CurrentPips" desc="0-15" type="int"/>
+    <param name="BodyText" desc="html formatted text" type="string"/>
+   </function>
+   <function name="scanningDetailsClose" funcname="scan.detailsPanelClose"/>
+   <function name="detailsPanelAlpha" funcname="scan.detailsPanelAlpha">
+    <param name="Alpha" desc="" type="int"/>
+   </function>
+   <function name="updateEnemyMeter" funcname="scanTarget.updateEnemyMeter">
+    <param name="Percent" desc="0-100" type="float"/>
+   </function>
+   <function name="scanningColor" funcname="scan.scanningColor">
+    <param name="isRed" desc="" type="bool"/>
+   </function>
+   <function name="scanningAlpha" funcname="scan.scanningAlpha">
+    <param name="Percent" desc="" type="int"/>
+   </function>
+   <function name="scanningStatic" funcname="scan.setStatic">
+    <param name="isEMPd" desc="" type="bool"/>
+   </function>
+   <function name="reticleDiscUpdate" funcname="ret.reticleDiscUpdate">
+    <param name="Percent" desc="0-1 percent" type="float"/>
+   </function>
+   <function name="reticleDiscHide" funcname="ret.reticleDiscHide"/>
+   <function name="reticleDiscColor" funcname="ret.reticleDiscColor">
+    <param name="reticleColor" desc="1=red, 0=white" type="bool"/>
+   </function>
+   <function name="enemyInit" funcname="damage.init">
+    <param name="num" type="int"/>
+   </function>
+   <function name="enemyHits" funcname="damage.hit"/>
+   <function name="enemyUpdate" funcname="damage.update"/>
+   <function name="enemyClear" funcname="damage.clear">
+    <param name="index" type="int"/>
+   </function>
+   <function name="scanningMessage" funcname="scan.scanningMessage">
+    <param name="Text" desc="Text to display in center of screen" type="string"/>
+   </function>
+   <function name="scanningFeedbackOpen" funcname="scan.scanningFeedbackOpen">
+    <param name="Text" desc="Text to display in center of screen" type="string"/>
+   </function>
+   <function name="scanningFeedbackClose" funcname="scan.scanningFeedbackClose"/>
+   <function name="scanningPrompt" funcname="scan.scanningPrompt">
+    <param name="Text" desc="text prompt" type="string"/>
+   </function>
+   <function name="scanningFanfareMessage" funcname="scan.scanningFanfareMessage">
+    <param name="Text" desc="Text to display when unlocking power" type="string"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="awareFadeOutComplete" fscommand="awareFadeOutComplete" desc="">
+    <param name="ID" desc="" type="string"/>
+   </event>
+   <event name="awareFanfareComplete" fscommand="awareFanfareComplete" desc="">
+    <param name="ID" desc="" type="string"/>
+   </event>
+   <event name="scannerDiameter" fscommand="scannerDiameter">
+    <param name="Diameter" desc="" type="int"/>
+   </event>
+  </Events>
+  <Arrays>
+   <Array name="hitDamageAttach" varname="damage.hitArgs" desc=""/>
+   <Array name="hitDamageUpdate" varname="damage.updateArgs" desc=""/>
+   <Array name="poiPositions" varname="obj.m_poiPositions" desc=""/>
+   <Array name="markerAddArray" varname="ar.addMarkerArray" desc=""/>
+   <Array name="markerRemoveArray" varname="ar.removeMarkerArray" desc=""/>
+   <Array name="markerUpdateArray" varname="ar.updateMarkerArray" desc=""/>
+  </Arrays>
+ </UIElement>
+</UIElements>

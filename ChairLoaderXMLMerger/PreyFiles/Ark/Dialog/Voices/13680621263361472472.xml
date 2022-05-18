@@ -1,0 +1,311 @@
+
+<Dialog>
+ <Dialog id="4349723564909117406" text="So you came all this way - only to get back into Talos? " modified="03/01/2016 09:18:48 PM" notes="Incredulous"/>
+ <Dialog id="4349723564909119255" text="Only way in is through the door to Cargo Bay B... which is filled with those creatures that your brother insisted couldn&apos;t escape confinement. Kind of like you." modified="03/01/2016 09:18:59 PM" notes=""/>
+ <Dialog id="4349723564909119270" text="No turrets, no code. It&apos;s for our safety - and yours." modified="03/01/2016 09:17:23 PM" notes=""/>
+ <Dialog id="4349723564909119342" text="We&apos;re not going to last five seconds if we don&apos;t have some E.A.T.s backing us up." modified="03/01/2016 09:17:37 PM" notes=""/>
+ <Dialog id="4349723564910676363" text="I see you, Morgan. We&apos;ve locked down the Cargo Bay, we&apos;re safe. For the moment." modified="03/28/2016 10:22:12 PM" notes="Sarah contacts Morgan as soon as he enters Cargo Bay and says where to find her. He has been adrift in space and is still outside the station. She can see him through some windows." facefx="2"/>
+ <Dialog id="4349723564910676973" text="You found the Eradicator schematic..." modified="02/29/2016 11:19:00 PM" notes="Sarah confirms when Morgan as found the turret schematic that she told him about. Relieved" facefx="2"/>
+ <Dialog id="4349723564912141212" text="I&apos;m the only one with the code. It&apos;s yours if you can help us secure the firepower we should have had when assigned here - the Eradicator turret fabrication plan, then-" modified="03/01/2016 09:20:48 PM" notes=""/>
+ <Dialog id="4349723564912141364" text="Find the plans, get to the Fabricator, help us set up some emplacements, and we&apos;ll help you." modified="03/01/2016 09:17:49 PM"/>
+ <Dialog id="13680621263369584100" text="You made it." modified="05/05/2016 09:34:57 PM"/>
+ <Dialog id="13680621263369584139" text="I&apos;ll have a full report Earthside. If you value your family name, I suggest you use the ride home to think about how you can redeem what little of it you can." modified="05/05/2016 09:37:09 PM" notes="A little gruff"/>
+ <Dialog id="13680621263369585137" text="What are we waiting for?" modified="05/05/2016 09:41:44 PM"/>
+ <Dialog id="13680621263369585159" text="I didn&apos;t come all this way to die now, Morgan." modified="05/05/2016 09:42:16 PM"/>
+ <Dialog id="13680621263369667001" text="Don&apos;t take too long, all right? You&apos;ve played the hero enough, and the clock&apos;s ticking." modified="02/29/2016 11:30:08 PM" notes="Player triggered self destruct and survivors are ready to go in the Shuttle Bay. A little hurried, but good natured compliment at the end" facefx="2"/>
+ <Dialog id="4349723564913345529" text="Dr. Yu, it&apos;s been three days. I&apos;m following up to see-" modified="02/26/2016 11:56:44 PM" notes="Recorded convo of Sarah asking for advanced weapons and Alex saying they don&apos;t need them. This is on Sarah&apos;s transcribe. She has been holding onto it to cover her ass" facefx="2"/>
+ <Dialog id="4349723564913345900" text="Not until you give me an answer that makes sense. You&apos;ve told me about the organisms. You admit you don&apos;t know everything about their physiology - I&apos;ve read the reports, I&apos;ve read what they can do. Yet the weapons you&apos;ve provided us are substandard, especially considering the technology present on the station..." modified="07/08/2016 03:46:13 PM" facefx="2"/>
+ <Dialog id="4349723564913346256" text="We are the best for a reason, Dr. Yu. It would be in your interest to invest a little more in light of the... unusual circumstances. If even one of those organisms escapes-" modified="02/26/2016 11:57:47 PM" notes="Tries the financial route" facefx="2"/>
+ <Dialog id="4349723564913349796" text="Maddox, did you lock down that door?" modified="07/08/2016 03:38:46 PM" notes="Sarah: Records the code for the big door keeping the aliens out. (So if she dies Morgan can get it)" facefx="2"/>
+ <Dialog id="4349723564913349916" text="Send me the code, then forget you ever knew it. Can&apos;t have anyone doing what Teague did, enough lives have been lost today." modified="07/08/2016 04:08:41 PM" facefx="2"/>
+ <Dialog id="4349723564913350399" text="Good. Stay alert, Maddox." modified="08/14/2015 09:00:47 PM" facefx="2"/>
+ <Dialog id="4349723564913352178" text="No. The Recycler&apos;s part of it. We&apos;d need more firepower than just our PPNs to cut our way through - we&apos;d need Eradicator turrets, and that&apos;s why we need the Recycler and the Fabricator plans. " modified="07/08/2016 03:40:33 PM" facefx="2"/>
+ <Dialog id="4349723564913352408" text="What?" modified="02/26/2016 04:57:16 PM" notes="" facefx="2"/>
+ <Dialog id="4349723564913356622" text="Morgan? Morgan. This is Chief Elazar. The airlocks on Talos are sealed, but there&apos;s a... opening at the Cargo Bay you could use." modified="03/28/2016 10:16:47 PM" notes="Sarah contacts Morgan as soon as he is ejected into space. She sees him on her security station, I guess." facefx="2"/>
+ <Dialog id="4349723564913357181" text="Hague. Are you there? " modified="02/26/2016 11:51:41 PM" notes="Sarah tells Kevin Hague that he is getting a bonus. The idea is to support fiction that very wealthy, famous and influential people sometimes visit Talos" facefx="2"/>
+ <Dialog id="4349723564913357545" text="I wanted to speak to you about the most recent VIP visit. Leitner. The pianist." modified="02/26/2016 11:52:11 PM" facefx="2"/>
+ <Dialog id="4349723564913357566" text="You did an excellent job. In fact, Leitner praised you specifically. There&apos;ll be a bonus for you in your next pay cycle. Take Nicole out for a nice dinner, all right? " modified="02/26/2016 11:53:19 PM" facefx="2"/>
+ <Dialog id="4349723564913357740" text="Log Entry. Chief Elazar. I and five of my officers, plus one civilian, are sealed in the Cargo Bay. " modified="02/29/2016 11:11:31 PM" notes="" facefx="2"/>
+ <Dialog id="4349723564913358082" text="Attempts to reach the escape pods... have failed. Escape pod... malfunction, it seems. All of them." modified="02/29/2016 11:11:53 PM" notes="Gets colder, suspects foul play" facefx="2"/>
+ <Dialog id="4349723564913358156" text="Almost three dozen lives were lost as we attempted to correct the problem, but we were forced to retreat... only to find the elevators had also been locked down. With no other option available, we secured ourselves in the Cargo Bay." modified="02/29/2016 11:12:10 PM" notes="Colder, this should be a litany of &quot;errors&quot; that she hates TranStar for" facefx="2"/>
+ <Dialog id="4349723564913358296" text="Officers Teague and Remmer... in order to help the last remaining survivors... attempted to mount a rescue operation." modified="07/08/2016 04:14:45 PM" notes="Swallows, but doesn&apos;t hate them for this, is proud of them" facefx="2"/>
+ <Dialog id="4349723564913358363" text="We are surrounded. The creatures on the station... they have escaped confinement. As expected, standard munitions proved ineffective. The creatures... began to multiply among the people they killed. " modified="02/29/2016 11:12:40 PM" facefx="2"/>
+ <Dialog id="4349723564913358572" text="What do you have for me, Cothron?" modified="07/08/2016 04:01:03 PM" notes="secretly reports to Sarah that shuttle dockings are being concealed. Matt Cothron - Reports on Mysterious Shuttle Activity. They are putting thier careers, and perhaps lives, on the line by investigating this." facefx="2"/>
+ <Dialog id="4349723564913359117" text="Solid. Sweep the area again, word is the smuggler is moving the contraband out during the next cycle." modified="02/26/2016 12:21:04 AM" facefx="2"/>
+ <Dialog id="4349723564913359210" text="Not funny." modified="08/14/2015 11:27:38 PM" notes="Cold" facefx="2"/>
+ <Dialog id="4349723564913359240" text="Sweep the area again and report back. Elazar out." modified="02/26/2016 12:21:34 AM" notes="Cold, a little slower" facefx="2"/>
+ <Dialog id="4349723564913359506" text="Morgan, Dahl&apos;s cut off oxygen to the Cargo Bay. " modified="03/28/2016 01:57:30 AM" notes="Sarah calls Morgan (if they are friends) and says they are suffocating (Dahl trap) A little worried" facefx="2"/>
+ <Dialog id="4349723564913359644" text="Power circuit checks out... and Fabricator&apos;s on-line, you did it. " modified="02/29/2016 11:24:24 PM" notes="Sarah tells Morgan &quot;good work&quot; when the power to the Fabricator comes on. She has tasked him with fabricating turrets and this is one of the steps." facefx="2"/>
+ <Dialog id="13680621263369935042" text="Morgan? Chief Elazar... can you hear me? If you can... we&apos;re departing on the shuttle, we couldn&apos;t wait any longer. I&apos;m sorry. " modified="02/29/2016 11:16:46 PM" notes="Sarah&apos;s final good bye as the shuttle leaves without Morgan. She may hold Morgan partially responsible for the disaster and will not be overly sentimental. But Morgan did help her by providing turrets." facefx="2"/>
+ <Dialog id="4349723564913606232" text="We still need those Eradicator Turrets, which means we need the Fabricator - and the turret fabricator plan. Do that for us, and I&apos;m happy to pop that hatch." modified="03/01/2016 09:09:50 PM" notes="Asked him to make turrets, waiting on them before doing anything else."/>
+ <Dialog id="4349723564913608528" text="E.A.T.s are on-line and primed. Can&apos;t wait until our friends get a taste of these - here&apos;s the code for Cargo Bay B." modified="03/01/2016 12:12:20 AM" notes="Defensive turrets are set and ready. Sarah has some trepidation about opening the door, but part of her wants to slaughter aliens as revenge for what happened to the crew."/>
+ <Dialog id="4349723564913608674" text="What kind of game are you playing? Keep away with the Eradicators? Put them back." modified="07/08/2016 03:48:46 PM" notes="Player set up defenses but then took them away again."/>
+ <Dialog id="4349723564913611132" text="Now that we are secure here we can hold out indefinitely. If you send other survivors here I will protect them." modified="08/17/2015 09:26:20 PM" notes="[We may not use this] Sarah offers to protect any survivors that make way to where she is holed up."/>
+ <Dialog id="4349723564913611241" text="Doctor... Morgan. Thank you. I feel like we have a chance now. " modified="03/01/2016 12:14:29 AM" notes="Morgan helped he slaughter the aliens in the adjacent bay, they are all dead"/>
+ <Dialog id="4349723564913611847" text="Still enjoying the taste of air - never thought the antiseptic smell would be so welcome. " modified="03/01/2016 12:13:15 AM" notes="Morgan saved her (and any surviving officers) from Dahl. Dahl cut off air to the section in an effort to force Morgan into a confrontation."/>
+ <Dialog id="4349723564913700440" text="Teague, talk to me." modified="02/24/2016 11:10:56 PM" notes="" facefx="2"/>
+ <Dialog id="4349723564913700489" text="You should have held position in the Cargo Bay." modified="07/08/2016 04:12:54 PM" notes="Stern, cold, but half to herself" facefx="2"/>
+ <Dialog id="4349723564913700531" text="Can you get to the escape pods? " modified="02/24/2016 11:29:35 PM" notes="Snaps, trying to refocus her" facefx="2"/>
+ <Dialog id="4349723564913700556" text="Five. I&apos;m picking up Remmer behind you. " modified="02/24/2016 11:29:56 PM" notes="Correcting" facefx="2"/>
+ <Dialog id="4349723564913700593" text="Teague? Teague? Erica. Respond!" modified="02/24/2016 11:30:13 PM" facefx="2"/>
+ <Dialog id="4349723564913702231" text="Morgan, the air&apos;s flowing again, I can breathe - " modified="03/28/2016 01:59:35 AM" notes="Sarah calls Morgan (if they are friends) and says they can breathe again (Dahl trap)" facefx="2"/>
+ <Dialog id="13680621263372627833" text="Morgan? Was that you? Whatever you did, I felt it in my gut. If this is some kind of payback..." modified="02/29/2016 10:18:14 PM" notes="Power on Talos was just rebooted. For a moment Sarah and her survivors were without lights, gravity or circulation." facefx="2"/>
+ <Dialog id="4349723564917924634" text="Morgan Yu. I&apos;m surprised you escaped Sim Lab - yes, I knew about that, I checked the shuttle logs when the rumors about you being demoted started circulating." modified="07/08/2016 08:26:06 PM" notes="She has known that Morgan is going to arrive soon, so not surprised to see them. But mildly surprised that the player is still alive. Purposely not using &quot;doctor&quot;"/>
+ <Dialog id="13680621263375542484" text="It&apos;s Sarah. But you can call me Chief Elazar... Matt." modified="02/24/2016 12:38:40 AM" notes=""/>
+ <Dialog id="13680621263378055616" text="Officer Jia. This is Chief Elazar." modified="11/19/2015 05:07:33 PM" notes="Sarah calls Morgan (if they are friends) and says they can breathe again (Dahl trap)" facefx="2"/>
+ <Dialog id="4349723564927260728" text="Morgan. Chief Elazar... can you hear me? If you can... we&apos;re departing on the shuttle. " modified="02/29/2016 11:17:57 PM" notes="Sarah&apos;s final good bye as the shuttle leaves without Morgan. She may hold Morgan partially responsibel for the disaster and will not be overly sentimental. Since he did not manage to help her when she was in need she feels justice is being served." facefx="2"/>
+ <Dialog id="4349723564927527466" text="Austin-" modified="02/26/2016 04:57:39 PM" notes="Warning" facefx="2"/>
+ <Dialog id="13680621263383921084" text="Lucky you." modified="01/26/2016 02:25:00 PM" notes="Whatever." sync="true"/>
+ <Dialog id="13680621263383921175" text="How long were you in the crate for?" modified="07/08/2016 04:15:56 PM" notes="Thinks he&apos;s bragging, so she sets him up for a fall." sync="true"/>
+ <Dialog id="13680621263383921206" text="And what about the bathroom, Doctor?" modified="01/26/2016 02:27:02 PM" sync="true"/>
+ <Dialog id="13680621263383921222" text="When you had to take a shit, doctor. What did you do then?" modified="01/26/2016 02:27:18 PM" notes="Goes into slight bullying mode." sync="true"/>
+ <Dialog id="13680621263383921259" text="So you admit you&apos;re full of shit, then. Like the rest of you up in Psychotronics, right? The ones who let this happen to us?" modified="07/08/2016 04:17:18 PM" notes="Accusing, full hostility comes out." sync="true"/>
+ <Dialog id="13680621263383921578" text="Whatever. Tell it to the ones who didn&apos;t get down here in time." modified="07/08/2016 04:17:43 PM" sync="true"/>
+ <Dialog id="13680621263384014885" text="Could really use a cigarette. If I smoked." modified="03/01/2016 08:41:07 PM"/>
+ <Dialog id="13680621263384095794" text="(Screech of Static) -it&apos;s about time, Sam." modified="07/08/2016 03:38:50 PM" notes="Screech of static as new voice breaks in - Sarah, talking to Sam Hertz (guard), he finally got the PA on-line." facefx="2"/>
+ <Dialog id="13680621263384095990" text="Mika, this is Security Chief Elazar, can you hear me?" modified="01/28/2016 03:00:25 PM" facefx="2"/>
+ <Dialog id="13680621263384096092" text="Been trying to patch into the PA... my team&apos;s in the Cargo Bay, and those things are in here, too, they&apos;re crawling all over the station." modified="07/05/2016 06:51:41 PM" facefx="2"/>
+ <Dialog id="13680621263384096205" text="Check everything around you, hit it with a wrench..." modified="01/28/2016 03:03:41 PM" facefx="2"/>
+ <Dialog id="13680621263384096293" text="Sam... he&apos;s right. These things - smash every freestanding thing and see if it comes back at you." modified="07/08/2016 04:18:51 PM" notes="First word is like &quot;quit interrupting.&quot;" facefx="2"/>
+ <Dialog id="13680621263384096477" text="Get to a secure area, and when you&apos;re safe, call me via TranScribe. I&apos;m sending you a secure contact. All right?" modified="01/28/2016 03:16:22 PM" facefx="2"/>
+ <Dialog id="13680621263384096654" text="Are you okay?" modified="07/05/2016 06:52:23 PM" notes="Notices wheezing." facefx="2"/>
+ <Dialog id="13680621263384096771" text="Mika, get safe, then call." modified="07/05/2016 06:52:36 PM" notes="Terse, doesn&apos;t have time for chit-chat. Emphasis on SAFE." facefx="2"/>
+ <Dialog id="13680621263384097249" text="This is Security Chief Elazar. Who the hell shut down the elevators and airlocks? " modified="01/28/2016 03:21:05 PM"/>
+ <Dialog id="13680621263384097270" text="Answer me. My team&apos;s locked down tight here, we need those lifts working." modified="01/28/2016 03:21:26 PM"/>
+ <Dialog id="13680621263384097811" text="Sam, it can&apos;t be a power loss, can it?" modified="05/02/2016 02:50:14 PM"/>
+ <Dialog id="13680621263384098470" text="Dammit. First they give us pop guns, put us on babysitting duty, then open the gates of hell and lock us in." modified="01/28/2016 03:41:26 PM" notes="Rambling to herself."/>
+ <Dialog id="13680621263384098495" text="TranStar&apos;s going to need an army of lawyers when I get Earthside. " modified="01/28/2016 03:41:51 PM" notes="Rambling to herself."/>
+ <Dialog id="13680621263384098521" text="Anyone else on the station - get to a safe area, check your surroundings, walls, floor, ceiling, then seal yourself in. " modified="01/28/2016 03:43:03 PM"/>
+ <Dialog id="13680621263384098569" text="We&apos;re working on the problem and will be there to retrieve you as soon as we can." modified="01/28/2016 03:43:05 PM"/>
+ <Dialog id="13680621263384098575" text="Elazar out." modified="07/05/2016 06:58:32 PM" facefx="2"/>
+ <Dialog id="13680621263384444073" text="Mika, not sure you got your TranScribe..." modified="02/01/2016 03:59:59 PM" facefx="2"/>
+ <Dialog id="13680621263384444080" text="Morgan&apos;s making his way to you now." modified="07/05/2016 06:58:36 PM" facefx="2"/>
+ <Dialog id="13680621263384444293" text="Mika - not sure you got your TranScribe - Morgan&apos;s on the way." modified="07/05/2016 06:58:24 PM" facefx="2"/>
+ <Dialog id="13680621263384444303" text="Don&apos;t open the door for him unless you&apos;re sure it&apos;s clear." modified="02/01/2016 03:45:19 PM" notes="Angry (Morgan opened a door and that screwed her and her crew). " facefx="2"/>
+ <Dialog id="13680621263384444379" text="We would be so lucky. Cargo Bay got hit hard, and it could have been avoided with a little caution." modified="07/05/2016 06:58:29 PM" facefx="2"/>
+ <Dialog id="13680621263384445245" text="Warning you - and anyone else - so you don&apos;t shoot him accidentally. Or on purpose." modified="02/01/2016 04:01:01 PM" facefx="2"/>
+ <Dialog id="13680621263384445695" text="Morgan is making her way to you now." modified="02/01/2016 04:08:31 PM" facefx="2"/>
+ <Dialog id="13680621263384445758" text="Warning you - and anyone else - so you don&apos;t shoot her accidentally. Or on purpose." modified="02/01/2016 04:09:34 PM" facefx="2"/>
+ <Dialog id="13680621263384445873" text="Don&apos;t open the door for her unless you&apos;re sure it&apos;s clear." modified="02/01/2016 04:11:29 PM" notes="Angry (Morgan opened a door and that screwed her and her crew). " facefx="0"/>
+ <Dialog id="13680621263386268151" text="What was that?" modified="02/22/2016 06:22:47 PM" notes="Suspicious."/>
+ <Dialog id="13680621263386268175" text="I got something." modified="02/22/2016 06:23:11 PM" notes="Alert."/>
+ <Dialog id="13680621263386268200" text="Shhh - over there." modified="07/08/2016 03:40:41 PM" notes="Tense."/>
+ <Dialog id="13680621263386268377" text="What wrong with you?" modified="02/22/2016 06:26:33 PM" notes="Pissed."/>
+ <Dialog id="13680621263386268396" text="Don&apos;t be an idiot." modified="02/22/2016 06:26:52 PM" notes="Irritated."/>
+ <Dialog id="13680621263386268439" text="Cut it out." modified="02/22/2016 06:27:35 PM" notes="Irritated."/>
+ <Dialog id="13680621263386268453" text="(Sigh)" modified="02/22/2016 06:27:49 PM" notes="Irritated grumble."/>
+ <Dialog id="13680621263386268484" text="Your whole family is poisonous." modified="02/22/2016 06:30:01 PM"/>
+ <Dialog id="13680621263386268502" text="You&apos;re a monster." modified="02/22/2016 06:28:38 PM"/>
+ <Dialog id="13680621263386268525" text="(Grunt)" modified="02/22/2016 06:29:01 PM" notes="Almost a growl of exertion as she squeezes the trigger."/>
+ <Dialog id="13680621263386268609" text="Eat a bullet, you piece of shit." modified="02/22/2016 06:30:25 PM"/>
+ <Dialog id="13680621263386268738" text="I knew there was something wrong with you." modified="02/22/2016 06:32:34 PM" notes="Alarmed"/>
+ <Dialog id="13680621263386268748" text="We&apos;ve got one!" modified="02/22/2016 06:32:44 PM" notes="Alarmed."/>
+ <Dialog id="13680621263386268763" text="You&apos;re one of them." modified="02/22/2016 06:32:59 PM" notes="Disgusted."/>
+ <Dialog id="13680621263386268804" text="Keep your eyes open, Sarah." modified="02/22/2016 06:33:40 PM" notes="Self talk, searching."/>
+ <Dialog id="13680621263386268847" text="You can&apos;t hide forever." modified="02/22/2016 06:34:23 PM" notes="Calling out a little."/>
+ <Dialog id="13680621263386268994" text="All your twisted bullshit eventually catches up to you. No way around it." modified="02/22/2016 06:37:13 PM"/>
+ <Dialog id="13680621263386269201" text="I won&apos;t let you or your sick brother get away with this." modified="02/22/2016 06:40:17 PM"/>
+ <Dialog id="13680621263386269239" text="Come on out." modified="02/22/2016 06:40:55 PM" notes="Call out."/>
+ <Dialog id="13680621263386269325" text="I got a Typhon!" modified="02/22/2016 06:42:21 PM"/>
+ <Dialog id="13680621263386269372" text="More Typhon!" modified="02/22/2016 06:44:34 PM"/>
+ <Dialog id="13680621263386269469" text="Kill it quick!" modified="02/22/2016 06:44:45 PM"/>
+ <Dialog id="13680621263386269522" text="We don&apos;t have enough problems. Now this?" modified="02/22/2016 06:45:47 PM" notes="Weary. Tense."/>
+ <Dialog id="13680621263386269561" text="If we survive this..." modified="02/22/2016 06:46:17 PM" notes="Thinking about strangling alex and other scientists."/>
+ <Dialog id="13680621263386269595" text="I don&apos;t know. It&apos;s gone now." modified="02/22/2016 07:07:59 PM"/>
+ <Dialog id="13680621263386269608" text="Hmm. Didn&apos;t find anything." modified="02/22/2016 06:47:04 PM"/>
+ <Dialog id="13680621263386270495" text="Gone." modified="02/22/2016 07:01:51 PM"/>
+ <Dialog id="13680621263386270513" text="That was the last one. I hope." modified="02/22/2016 07:02:13 PM"/>
+ <Dialog id="13680621263386270534" text="Just vanished." modified="02/22/2016 07:02:30 PM"/>
+ <Dialog id="13680621263386270552" text="I have no visual. " modified="02/22/2016 07:02:48 PM"/>
+ <Dialog id="13680621263386270586" text="Stay alert. Might be more." modified="02/22/2016 07:03:50 PM"/>
+ <Dialog id="13680621263386270595" text="They just keep coming!" modified="02/22/2016 07:03:35 PM"/>
+ <Dialog id="13680621263386270786" text="Nothing is worth this shit." modified="02/22/2016 07:06:42 PM"/>
+ <Dialog id="13680621263386377184" text="We&apos;ve been over this. My mother Americanized it." modified="07/08/2016 04:24:22 PM" notes="Cold" facefx="2"/>
+ <Dialog id="13680621263386377198" text="Will we be spending the next 59 minutes like this? Because we could cut it short right now." modified="02/24/2016 12:40:14 AM" notes="" facefx="2"/>
+ <Dialog id="13680621263386377245" text="Serving in the military wasn&apos;t an excuse to get away from her nagging. Matt. I was just - restless. " modified="02/24/2016 12:41:01 AM" notes="" facefx="2"/>
+ <Dialog id="13680621263386377264" text="I&apos;m fine. " modified="02/24/2016 12:41:20 AM" notes="Suspicious, veneer drops a bit" facefx="2"/>
+ <Dialog id="13680621263386377280" text="I saved as many as I could. For every soldier we lost, we were able to save a hundred civilians." modified="07/08/2016 04:26:05 PM" notes="Snaps, angry" facefx="2"/>
+ <Dialog id="13680621263386377302" text="The cost was worth it, both in lives and the unification of the region. " modified="02/24/2016 12:41:58 AM" notes="" facefx="2"/>
+ <Dialog id="13680621263386377377" text="It wasn&apos;t natural, it was man-made. It prepared me for here, Dr. Kohl. " modified="02/24/2016 12:43:13 AM" notes="" facefx="2"/>
+ <Dialog id="13680621263386377396" text="Because this station? It&apos;s the same thing, a disaster waiting to happen. We are well-trained and poorly equipped. " modified="02/24/2016 12:43:32 AM" notes="" facefx="2"/>
+ <Dialog id="13680621263386377403" text="The research is dangerous. Keeping secrets secret is dangerous. " modified="02/24/2016 12:43:39 AM" notes="" facefx="2"/>
+ <Dialog id="13680621263386377410" text="I&apos;m sure you would agree. " modified="02/24/2016 12:43:46 AM" notes="Cold." facefx="2"/>
+ <Dialog id="4349723564930202085" text="I need you to report to Deep Storage and get Chief Sho to reactivate the tracker on Grant. Lockwood. HR deactivated it as part of the termination, but we don&apos;t have a record of him on the departing shuttle. I want to know where he is - and escort him where he needs to go." modified="07/08/2016 03:55:50 PM" facefx="2"/>
+ <Dialog id="4349723564930270439" text="Hold on... keep position by the catwalk. Morgan Yu may be joining us shortly - keep an eye out for her." modified="02/26/2016 05:01:27 PM" facefx="2"/>
+ <Dialog id="4349723564930270468" text="Hold on... keep position by the catwalk. Morgan Yu may be joining us shortly - keep an eye out for him." modified="02/26/2016 05:01:56 PM" facefx="2"/>
+ <Dialog id="4349723564930270560" text="Send her to me. And stay alert. " modified="02/26/2016 05:03:28 PM" facefx="2"/>
+ <Dialog id="4349723564930270630" text="Send him to me. And stay alert." modified="02/26/2016 05:04:38 PM" facefx="2"/>
+ <Dialog id="4349723564930295988" text="Twelve Minutes? What about the other shuttles? " modified="02/27/2016 12:07:16 AM" facefx="2"/>
+ <Dialog id="4349723564930296046" text="Got it. Don&apos;t talk to anyone about this." modified="02/27/2016 12:08:14 AM" facefx="2"/>
+ <Dialog id="4349723564930296064" text="Exactly - good work, Matt. Elazar out." modified="02/27/2016 12:08:32 AM" facefx="2"/>
+ <Dialog id="4349723564930548535" text="It will be a trick to get inside... there&apos;s not an airlock anymore, that explosion took care of that." modified="02/29/2016 10:16:23 PM" facefx="2"/>
+ <Dialog id="4349723564930548584" text="Maybe you can do something with the shipping containers. " modified="03/28/2016 10:29:43 PM" facefx="2"/>
+ <Dialog id="4349723564930548604" text="Morgan, the more I think about the shipping container idea, the more I think it could work. See if there&apos;s an intact one you can use as a makeshift airlock." modified="02/29/2016 10:17:32 PM" facefx="2"/>
+ <Dialog id="4349723564930548663" text="Power&apos;s coming back on-line. Ah... and that means the main lift, too, I hope. " modified="02/29/2016 10:18:31 PM" facefx="2"/>
+ <Dialog id="4349723564930551931" text="We are fortifying our position, looking for anything that could help us defend ourselves. If we do not survive, commendations are in order for Officers Hayashi, Hertz, Hague, Cool, and Rose... and posthumous commendations for Teague and Remmer." modified="02/29/2016 11:15:15 PM" facefx="2"/>
+ <Dialog id="4349723564930551956" text="Hertz, check the comm... see if you can raise anyone on the station through the announcement system, then-" modified="02/29/2016 11:13:24 PM" notes="Glances away, calls &quot;off-screen,&quot; trails off as if she&apos;s distracted by business" facefx="2"/>
+ <Dialog id="4349723564930552171" text="Look... I know what happened... you aren&apos;t solely to blame. You helped me and my officers when we needed it... but the fact remains, you and your brother... TranStar caused this." modified="02/29/2016 11:16:59 PM" facefx="0"/>
+ <Dialog id="4349723564930552180" text="If you can fix this mess, please... I&apos;ll be sure to let Earthside know what you did to help us in the Cargo Bay." modified="02/29/2016 11:17:08 PM" facefx="2"/>
+ <Dialog id="4349723564930552238" text="I don&apos;t know how much longer you have left on Talos, but... fix this mess." modified="02/29/2016 11:18:06 PM" facefx="2"/>
+ <Dialog id="4349723564930552246" text="I&apos;ll have a full report Earthside, but if you value your family name, I suggest you start working right now to redeem what little of it you can. " modified="02/29/2016 11:18:14 PM" facefx="0"/>
+ <Dialog id="4349723564930552304" text="If only we&apos;d had those turrets earlier..." modified="07/08/2016 04:07:21 PM" notes="to herself, thinking about lives saved, but not blaming Morgan" facefx="2"/>
+ <Dialog id="4349723564930552313" text="Keep an eye out for materials to build them. Schematic&apos;s half the battle. Once they&apos;re built, though... I can&apos;t wait to see what they do to our new friends. " modified="02/29/2016 11:19:21 PM" notes="Course-corrects, back on Morgan" facefx="2"/>
+ <Dialog id="4349723564930552540" text="And I hope this means Dahl - can&apos;t. Thank you. A little longer and... " modified="07/08/2016 04:10:26 PM" facefx="2"/>
+ <Dialog id="4349723564930552551" text="Never mind, Elazar out." modified="07/08/2016 03:54:31 PM" notes="she shakes head, doesn&apos;t want to dwell" facefx="2"/>
+ <Dialog id="4349723564930552626" text="We&apos;re not done with you yet, so get back here safe, all right? " modified="02/29/2016 11:24:34 PM" notes="Smiles, encouraging" facefx="2"/>
+ <Dialog id="4349723564930552693" text="There&apos;s nothing I can do from here and none of the doors are responding. Atmosphere controls are in Life Support. " modified="03/28/2016 01:57:43 AM" facefx="2"/>
+ <Dialog id="4349723564930552712" text="If you can help... do it quick, or this is the last time we&apos;ll be talking." modified="03/28/2016 01:57:49 AM" facefx="2"/>
+ <Dialog id="4349723564930552755" text="Morgan... air&apos;s almost gone. Please... kill that sociopathic wirehead." modified="03/28/2016 01:55:01 AM" notes="Second warning, difficulty breathing" facefx="2"/>
+ <Dialog id="4349723564930552986" text="Don&apos;t take too long - you&apos;re coming with us. I&apos;m not letting you get away with what happened here, trust me." modified="02/29/2016 11:31:06 PM" notes="Cold" facefx="2"/>
+ <Dialog id="4349723564930553149" text="Morgan, I don&apos;t mean to rush you, but the shuttle&apos;s about to depart." modified="02/29/2016 11:33:33 PM" facefx="2"/>
+ <Dialog id="4349723564930553152" text="And if we didn&apos;t need Dahl..." modified="02/29/2016 11:33:54 PM" notes="under her breath" facefx="2"/>
+ <Dialog id="4349723564930553156" text="Hurry." modified="02/29/2016 11:34:17 PM" notes="normal voice" facefx="2"/>
+ <Dialog id="4349723564930553234" text="If you don&apos;t make it back to Earth with us, there&apos;s no way I can explain all this by myself." modified="02/29/2016 11:34:42 PM" notes="Tries to inject a little humor" facefx="2"/>
+ <Dialog id="4349723564930555578" text="Figures TranStar would promote assholes like him. I heard about him during the Middle East Evac - not a huge socializer, prefers Operators to people. I guess real troops would have shot him by now." modified="03/01/2016 12:13:46 AM"/>
+ <Dialog id="4349723564930555635" text="This... this doesn&apos;t wipe away what you and your brother did, but... you&apos;re different than I expected. Good in a fight, too. " modified="03/01/2016 12:14:43 AM"/>
+ <Dialog id="4349723564930555653" text="If you ever want a job in security, let me know. I... could put in a good word. I might know some people. " modified="03/01/2016 12:15:01 AM"/>
+ <Dialog id="4349723564930555669" text="You know, if you ever wanted to work with my team when we get off this deathtrap, I&apos;d... consider it. " modified="03/01/2016 12:15:17 AM"/>
+ <Dialog id="4349723564930555681" text="You&apos;d have to report to me, though. And I&apos;m not as friendly as it may seem." modified="03/01/2016 12:15:29 AM" notes="Stern, but joking"/>
+ <Dialog id="4349723564930618919" text="Never should have let you in here." modified="03/01/2016 05:49:27 PM"/>
+ <Dialog id="4349723564930618928" text="Has everyone on this station gone insane?!" modified="03/01/2016 05:49:36 PM"/>
+ <Dialog id="4349723564930618944" text="Thought I&apos;d be killing your brother first." modified="03/01/2016 05:49:52 PM"/>
+ <Dialog id="4349723564930619073" text="Take him down!" modified="03/01/2016 05:52:01 PM"/>
+ <Dialog id="4349723564930619081" text="Take her down!" modified="03/01/2016 05:52:09 PM"/>
+ <Dialog id="4349723564930619108" text="These shitty pistols may not work against those creatures, but they&apos;ll be just fine for you." modified="03/01/2016 05:52:36 PM"/>
+ <Dialog id="4349723564930619122" text="Pleasure to use this TranStar cap gun on you." modified="03/01/2016 05:52:50 PM"/>
+ <Dialog id="4349723564930619261" text="Before sliding the door open, check your surroundings, take a mental snapshot - you start seeing double of anything, be sure you know which target to shoot. " modified="03/01/2016 05:55:09 PM"/>
+ <Dialog id="4349723564930619270" text="Anything comes through that door, fire - don&apos;t let the Eradicators do all the work, there&apos;s enough for everyone." modified="03/01/2016 05:55:18 PM"/>
+ <Dialog id="4349723564930619284" text="You men ready? We only get one shot at this." modified="03/01/2016 05:55:32 PM"/>
+ <Dialog id="4349723564930619296" text="Damn PPNs. These small magazines are for civilians." modified="03/01/2016 05:55:44 PM"/>
+ <Dialog id="4349723564930619484" text="Looks like Officer Rose will be right next to the posthumous commendations for Teague and Remmer." modified="03/01/2016 05:58:52 PM"/>
+ <Dialog id="4349723564930619514" text="Goddamit, Austin... always have to be in the thick of things. " modified="03/01/2016 05:59:22 PM"/>
+ <Dialog id="4349723564930619540" text="Always hoped Hague would see his wife again." modified="03/01/2016 05:59:48 PM"/>
+ <Dialog id="4349723564930619576" text="Sam didn&apos;t deserve this. No one on this station did." modified="03/01/2016 06:00:24 PM"/>
+ <Dialog id="4349723564930619653" text="Tamiko was one of our newest recruits." modified="03/01/2016 06:01:41 PM"/>
+ <Dialog id="4349723564930619682" text="Looks like Officer Maddox will be right next to the posthumous commendations for Teague and Remmer." modified="03/01/2016 06:02:10 PM"/>
+ <Dialog id="4349723564930619743" text="Morgan, you will need a doctor if you go near that keypad again. " modified="03/01/2016 06:03:11 PM"/>
+ <Dialog id="4349723564930620049" text="Good work on the lifts - and smart thing, rebooting the Power Plant. That was Mika&apos;s idea, right? Figures." modified="07/08/2016 03:58:35 PM"/>
+ <Dialog id="4349723564930620060" text="She probably just wanted some attention." modified="03/01/2016 06:08:28 PM" notes="to herself"/>
+ <Dialog id="4349723564930620080" text="Guess your brother&apos;s due for a little... brotherly insubordination now that the lifts are working again." modified="07/08/2016 03:58:18 PM"/>
+ <Dialog id="4349723564930620091" text="Those lifts were shut down during the evacuation... if they&apos;d been running... we might have saved more lives." modified="03/01/2016 06:08:59 PM"/>
+ <Dialog id="4349723564930620120" text="We&apos;ve got one! " modified="03/01/2016 06:09:28 PM" notes="Alarmed"/>
+ <Dialog id="4349723564930620133" text="I knew there was something wrong with Morgan!" modified="03/01/2016 06:09:41 PM"/>
+ <Dialog id="4349723564930620407" text="If I could make a layer of hell for you..." modified="03/01/2016 06:14:15 PM"/>
+ <Dialog id="4349723564930620417" text="I don&apos;t care if you and your brother kill yourselves, but when you put my men at risk..." modified="03/01/2016 06:14:25 PM"/>
+ <Dialog id="4349723564930620426" text="I&apos;ll remember this, Morgan. I swear it. All of this." modified="03/01/2016 06:14:34 PM"/>
+ <Dialog id="4349723564930620477" text="If there&apos;s no place to retreat, then the only way is forward. Let&apos;s do this." modified="03/01/2016 06:15:25 PM"/>
+ <Dialog id="4349723564930620572" text="Looks like the malfunctioning escape pods screwed us both - but it&apos;s better that way. Some people might have had... second thoughts, and those things might get back to Earth. " modified="03/01/2016 06:17:27 PM"/>
+ <Dialog id="4349723564930620582" text="Morgan, we&apos;re behind you. Let us know what we can do." modified="03/01/2016 06:17:10 PM"/>
+ <Dialog id="4349723564930620634" text="And just when I think these creatures can&apos;t get any worse, Mother shows up." modified="03/01/2016 06:18:02 PM"/>
+ <Dialog id="4349723564930620650" text="So all we were seeing were the small ones..." modified="03/01/2016 06:18:18 PM"/>
+ <Dialog id="4349723564930620661" text="Great. Mother&apos;s home. " modified="03/01/2016 06:18:29 PM"/>
+ <Dialog id="4349723564930620671" text="Should meet my mother. " modified="03/01/2016 06:18:39 PM"/>
+ <Dialog id="4349723564930622315" text="We&apos;re secure here, door is covered, no hostiles - but there&apos;s bound to be other survivors in the station. If you find any, send them here. " modified="03/01/2016 06:46:03 PM"/>
+ <Dialog id="4349723564930622557" text="Unless - Mika, of course. She might prefer your office, if you think you can get to it." modified="03/01/2016 06:50:05 PM" notes="A little embarrassed"/>
+ <Dialog id="4349723564930622578" text="Igwe better go, however. He might have an &quot;accident&quot; if he stays any longer. Besides, he&apos;s a little too Typhon-curious for my tastes." modified="07/08/2016 03:56:48 PM" notes="A little angry, under her breath"/>
+ <Dialog id="4349723564930622597" text="By the way... thanks for getting to Rani. She told us what you did. I&apos;m glad I&apos;m getting to know the real Morgan Yu. " modified="07/08/2016 03:56:21 PM"/>
+ <Dialog id="4349723564930622691" text="What are you playing at - setting up the E.A.T.s, then pulling them? You&apos;re acting like your brother." modified="03/01/2016 06:52:19 PM"/>
+ <Dialog id="4349723564930622702" text="You see these standard issue PPN&apos;s? These cap guns are useless against those things - we need those Eradicators back. " modified="03/01/2016 06:52:30 PM"/>
+ <Dialog id="4349723564930623170" text="No turrets, no code. It&apos;s for our safety - and yours." modified="03/01/2016 07:00:18 PM"/>
+ <Dialog id="4349723564930623180" text="We&apos;re not going to last five seconds if we don&apos;t have some E.A.T.s backing us up. Find the plans, get to the Fabricator, help us set up some emplacements, and we&apos;ll help you." modified="03/01/2016 07:00:28 PM"/>
+ <Dialog id="4349723564930623326" text="That&apos;s close, but not enough. Two more should do it." modified="03/01/2016 07:02:54 PM"/>
+ <Dialog id="4349723564930623334" text="Close, but not enough - one more turret should do it, then we&apos;re good to go." modified="03/01/2016 07:03:02 PM"/>
+ <Dialog id="4349723564930623555" text="Any luck with those turrets?" modified="03/01/2016 07:06:43 PM"/>
+ <Dialog id="4349723564930623563" text="We&apos;re not going anywhere, but that doesn&apos;t mean we don&apos;t have places to be. We need those turrets." modified="03/01/2016 07:06:51 PM"/>
+ <Dialog id="4349723564930623572" text="Those things will eventually find a way in here if we don&apos;t take the fight to them. " modified="03/01/2016 07:07:00 PM"/>
+ <Dialog id="4349723564930623582" text="Remember - it&apos;s the Eradicator fabrication plan we want, not the Reployer plan. Whatever the hell a &quot;Reployer&quot; is." modified="03/01/2016 09:11:19 PM"/>
+ <Dialog id="4349723564930623598" text="Morgan, you saved our asses. Now, you might want to get out there and see if you can save a few more. " modified="07/08/2016 03:55:39 PM"/>
+ <Dialog id="4349723564930623611" text="Not going to lie, that felt good. Haven&apos;t seen that much action since the Middle East Evacuation." modified="03/01/2016 07:07:39 PM"/>
+ <Dialog id="4349723564930623621" text="Didn&apos;t realize how much I&apos;d missed combat... and how much I didn&apos;t." modified="03/01/2016 07:07:49 PM" notes="Thoughtful, a little troubled"/>
+ <Dialog id="4349723564930623638" text="Always thought something was bound to go wrong... but I couldn&apos;t even have imagined this." modified="03/01/2016 07:08:06 PM"/>
+ <Dialog id="4349723564930623663" text="Dr. Igwe... figures he&apos;d survive. Dumb luck, I suppose." modified="03/01/2016 07:08:31 PM" notes="Under her breath"/>
+ <Dialog id="4349723564930623675" text="If you find a way out of here, take Dr. Igwe with you. Maybe he can be of some help - elsewhere. " modified="03/01/2016 07:08:43 PM"/>
+ <Dialog id="4349723564930627826" text="Any luck helping Mika yet? I&apos;m worried about her - her voice... sounded ragged, like her throat was - seizing up." modified="07/08/2016 04:00:27 PM" notes="[RICARDO SCRIPT: May not play if Mika didn&apos;t do annoucement.]"/>
+ <Dialog id="4349723564930627834" text="I don&apos;t know what happened between you and Mika, but you need to get to her. Let the past stay in the past." modified="03/01/2016 08:18:02 PM" notes="[RICARDO SCRIPT: May not play if Mika didn&apos;t do annoucement.]"/>
+ <Dialog id="4349723564930627847" text="Last message from Mika was she was making her way to the coolant monitoring station. " modified="03/01/2016 08:18:15 PM" notes="[RICARDO SCRIPT: May not play if Mika didn&apos;t do annoucement.] Worried."/>
+ <Dialog id="4349723564930627959" text="You got to Mika - thank god. I wasn&apos;t sure she&apos;d be able to hold out. " modified="03/01/2016 08:20:07 PM"/>
+ <Dialog id="4349723564930627969" text="Why isn&apos;t Mika with you? Are you trying to get her to the lobby?" modified="03/01/2016 08:20:17 PM"/>
+ <Dialog id="4349723564930627979" text="Or your office? " modified="03/01/2016 08:20:27 PM" notes="Beat, suspicious, since Mika and the player used to hook up in there - well, only once that is, but enough for the gossip train"/>
+ <Dialog id="4349723564930628065" text="Why did Mika go to your office? Are you two back..." modified="03/01/2016 08:21:53 PM" notes="&quot;together,&quot; beat"/>
+ <Dialog id="4349723564930628102" text="Never mind, I don&apos;t want to know." modified="07/08/2016 03:54:48 PM"/>
+ <Dialog id="4349723564930628110" text="That girl, can barely see her past that torch she&apos;s carrying..." modified="03/01/2016 08:22:38 PM" notes="To herself"/>
+ <Dialog id="4349723564930628876" text="&quot;Commander&quot; Dahl. As if giving orders to Operators makes you a commander..." modified="03/01/2016 08:35:24 PM"/>
+ <Dialog id="4349723564930628894" text="Dahl. Should have known when anything TranStar does goes to shit, he&apos;s on it like a fly. " modified="03/01/2016 08:35:42 PM"/>
+ <Dialog id="4349723564930628931" text="Dahl must have been on the Argus Orbital to get here so fast. And why all the Operators? It&apos;s too many, even for a combat operation." modified="03/01/2016 08:36:19 PM"/>
+ <Dialog id="4349723564930628975" text="When I get my hands on that drone-thumper..." modified="03/01/2016 08:37:03 PM"/>
+ <Dialog id="4349723564930628986" text="I catch Dahl, I&apos;ll choke him out." modified="03/01/2016 08:37:14 PM"/>
+ <Dialog id="4349723564930628997" text="Thanks for getting the air flowing again, Morgan - you really saved our asses. " modified="03/01/2016 08:37:25 PM"/>
+ <Dialog id="4349723564930629062" text="Dahl&apos;s dead? That&apos;s one more blessing to count." modified="03/01/2016 08:38:30 PM"/>
+ <Dialog id="4349723564930629073" text="Heard Dahl got... demoted. Hope you erased the evidence, because I sure didn&apos;t see anything." modified="03/01/2016 08:38:41 PM"/>
+ <Dialog id="4349723564930629086" text="It&apos;s amazing how Dahl accidentally killed himself to death during a Combat Op. And not a single witness." modified="03/01/2016 08:38:54 PM"/>
+ <Dialog id="4349723564930629095" text="Ding dong, the Dahl is dead. Best news I&apos;ve heard all day. " modified="03/01/2016 08:39:03 PM"/>
+ <Dialog id="4349723564930629157" text="I heard Dahl... got convinced to help us. " modified="03/01/2016 08:40:05 PM"/>
+ <Dialog id="4349723564930629169" text="Can we trust Dahl? An asshole&apos;s still an asshole if you yank his Neuromod." modified="03/01/2016 08:40:17 PM"/>
+ <Dialog id="4349723564930629179" text="If Dahl&apos;s alive, it means he can answer for what he tried to do here as well. " modified="03/01/2016 08:40:27 PM"/>
+ <Dialog id="4349723564930629252" text="My mother is going to find some way to blame me for this." modified="03/01/2016 08:41:40 PM" notes="To herself"/>
+ <Dialog id="4349723564930629276" text="&quot;Sarai, find a good man. Sarai, why did you enter the military? Sarai, why did you go into space?&quot; Because I was just too bored, Mom." modified="07/12/2016 05:42:16 PM" notes="To herself, echoing her Mom, Sarai is her &quot;given&quot; name"/>
+ <Dialog id="4349723564930629297" text="Never seen a situation this bad, even during the Middle East Evacuation. " modified="03/01/2016 08:42:25 PM"/>
+ <Dialog id="4349723564930629311" text="Can&apos;t believe all the escape pods failed like that. It&apos;s... it&apos;s too convenient, depending on who&apos;s going for the pod. " modified="03/01/2016 08:42:39 PM"/>
+ <Dialog id="4349723564930629321" text="Did you do something to the escape pods? Did your brother?" modified="03/01/2016 08:42:49 PM"/>
+ <Dialog id="4349723564930629331" text="A lot of people could have been saved if the pods had been working. " modified="03/01/2016 08:42:59 PM"/>
+ <Dialog id="4349723564930630315" text="All I found? Was you&apos;d checked into the Sim Lab, but never signed out. Not sure you could - but it seems you&apos;ve escaped." modified="03/01/2016 09:00:25 PM"/>
+ <Dialog id="4349723564930630324" text="Just like these creatures of yours - the ones your brother said couldn&apos;t get free." modified="03/01/2016 09:00:30 PM"/>
+ <Dialog id="4349723564930630344" text="Wish I had better news. We&apos;re holding out here, but just barely. " modified="03/01/2016 09:01:14 PM"/>
+ <Dialog id="4349723564930630354" text="These standard issue PPNs might as well be cap guns for all the good they do to those things..." modified="07/08/2016 03:45:35 PM"/>
+ <Dialog id="4349723564930630440" text="Only way back into Talos is through Cargo Bay B, and that&apos;s locked tight for our safety - and yours." modified="03/01/2016 09:01:28 PM"/>
+ <Dialog id="4349723564930630453" text="You want the code, help us fortify things here. That means Eradicator Turrets, and lots of them. " modified="09/06/2016 07:39:17 PM"/>
+ <Dialog id="4349723564930630463" text="To do that, though... we&apos;d need fabrication plans and a working Fabricator, and both of those are out of reach at the moment." modified="03/01/2016 09:08:29 PM"/>
+ <Dialog id="4349723564930630473" text="The Fabrication plan is in the safe in the Security Office, but the hull breach puts it out of my reach. Still... if you have a suit and are up for another walk... we could really use the additional firepower." modified="03/01/2016 09:08:58 PM" notes="Frowns"/>
+ <Dialog id="4349723564930631519" text="Wait - you have the fabrication plan already." modified="03/01/2016 09:58:53 PM"/>
+ <Dialog id="4349723564930631568" text="Let&apos;s get the E.A.T.s built, deployed, and then... then we&apos;ll see how fast those bastards can shapeshift into corpses." modified="03/01/2016 09:20:16 PM" notes="smiles, imagining the slaughter"/>
+ <Dialog id="4349723564930633661" text="My men told me power&apos;s been restored to the Fabricator - that was you, wasn&apos;t it?" modified="03/01/2016 09:55:09 PM"/>
+ <Dialog id="4349723564930633671" text="I was quick to underestimate you, Doctor." modified="03/01/2016 09:55:19 PM" notes="Beat, can&apos;t help but smile"/>
+ <Dialog id="4349723564930633905" text="That means all we need is a working Fabricator... but there was an accident in Fuel Storage, so power&apos;s down... we&apos;d need to get the power back on. " modified="03/01/2016 09:59:21 PM"/>
+ <Dialog id="4349723564930633931" text="I couldn&apos;t ask you to risk yourself - the explosion in fuel storage nearly killed Ekaterina, I can&apos;t ask anyone to risk themselves. Not even you." modified="03/01/2016 09:59:39 PM"/>
+ <Dialog id="4349723564930633943" text="Still, look around - maybe there&apos;s some angle you see we don&apos;t. You&apos;ve been... resourceful so far. " modified="03/01/2016 09:59:51 PM"/>
+ <Dialog id="4349723564930634114" text="That means... all we need is the turret fabricator plan..." modified="03/01/2016 10:02:42 PM"/>
+ <Dialog id="4349723564930634138" text="There&apos;s one in the safe in the Security Office, but the hull breach puts it of my reach. Still... if you have a suit and are up for another walk... we could really use the additional firepower." modified="03/01/2016 10:03:06 PM"/>
+ <Dialog id="13680621263389234471" text="Doors are working again, Morgan. Nice work." modified="03/28/2016 02:29:29 AM" facefx="2"/>
+ <Dialog id="13680621263389234516" text="I&apos;m taking what&apos;s left of my crew to the atmosphere controls in Life Support." modified="03/28/2016 02:29:13 AM" facefx="2"/>
+ <Dialog id="13680621263389234617" text="We&apos;re going to clear out Dahl&apos;s shitcan Operators and make sure there are no more mishaps with the air on this station." modified="07/08/2016 04:11:49 PM" facefx="2"/>
+ <Dialog id="13680621263389235034" text="I&apos;m heading to the atmosphere controls in Life Support. " modified="03/28/2016 02:32:17 AM" facefx="2"/>
+ <Dialog id="13680621263389235097" text="I&apos;ll see if I can clear out Dahl&apos;s shitcan Operators and prevent any further mishaps with the air on this station." modified="07/08/2016 04:11:47 PM" facefx="2"/>
+ <Dialog id="13680621263389235389" text="Wouldn&apos;t mind taking a shot at Dahl, either. Though I doubt he&apos;s still there." modified="07/08/2016 04:12:19 PM" facefx="2"/>
+ <Dialog id="13680621263389235818" text="Morgan. I&apos;m in Life Support now." modified="07/08/2016 04:11:08 PM" notes="A little out of breath." facefx="2"/>
+ <Dialog id="13680621263389235866" text="Morgan. We&apos;re in Life Support now. " modified="03/28/2016 02:44:42 AM" notes="A little out of breath." facefx="2"/>
+ <Dialog id="13680621263389235919" text="It&apos;s all clear. Air&apos;s normal across the board." modified="03/28/2016 02:50:45 AM" notes="A little out of breath." facefx="2"/>
+ <Dialog id="13680621263389235959" text="I lost some good people fighting the Blackboxes." modified="03/28/2016 02:50:52 AM" notes="Takes a moment. Grim." facefx="2"/>
+ <Dialog id="13680621263389235967" text="And Dahl wasn&apos;t here. If you see him before I do... make him pay." modified="03/28/2016 02:51:26 AM" notes="Angry at the end." facefx="2"/>
+ <Dialog id="13680621263389236420" text="Dahl wasn&apos;t here. Watch your back." modified="03/28/2016 02:53:56 AM" facefx="2"/>
+ <Dialog id="13680621263389306200" text="I think you can get back inside the station here." modified="11/01/2016 05:41:30 PM" facefx="2"/>
+ <Dialog id="13680621263392587033" text="For what it&apos;s worth - I won&apos;t fail to mention what you did to save some of us." modified="07/08/2016 03:40:47 PM" notes="Softens a little." facefx="0"/>
+ <Dialog id="13680621263392587152" text="Look... I know what happened... you aren&apos;t solely to blame. You helped me and my officers when we needed it..." modified="07/08/2016 08:27:42 PM" facefx="0"/>
+ <Dialog id="13680621263392587170" text="I&apos;ll be sure to let Earthside know what you did to help us in the Cargo Bay." modified="05/05/2016 09:41:01 PM" facefx="0"/>
+ <Dialog id="13680621263392587329" text="Put your ass in that seat." modified="05/05/2016 09:42:32 PM"/>
+ <Dialog id="13680621263392871472" text="Mom was right. You hear that, Mom? You were right. But it was my decision." modified="05/09/2016 04:38:08 AM" notes="Almost to herself, under her breath."/>
+ <Dialog id="4349723564942128414" text="I see you made use of the Medical Operator. That thing has saved us repeatedly." modified="07/12/2016 10:54:22 PM"/>
+ <Dialog id="4349723564942128444" text="We have a Medical Operator if you need to use it. We&apos;ve been depending on that thing." modified="07/12/2016 10:54:52 PM"/>
+ <Dialog id="13680621263399217089" text="Morgan? This is Chief Elazar." modified="08/01/2016 01:25:12 PM" notes="Confused at first." facefx="2"/>
+ <Dialog id="13680621263399217382" text="This is Security Chief Elazar - there&apos;s been an explosion in the Cargo Bay." modified="07/31/2016 10:17:44 PM" notes="Raising her voice but not shouting, keeping her &quot;in command&quot; voice, explosions in background. Alarms." facefx="0"/>
+ <Dialog id="13680621263399946869" text="It killed me. That can&apos;t be ignored." modified="07/30/2016 02:01:25 AM" facefx="2"/>
+ <Dialog id="13680621263399947180" text="The situation in the Cargo Bay was bad." modified="07/30/2016 02:07:43 AM" facefx="2"/>
+ <Dialog id="13680621263399947191" text="None of us would have survived without its help." modified="07/30/2016 02:08:00 AM" facefx="2"/>
+ <Dialog id="13680621263399947256" text="I didn&apos;t survive, but at least it tried to help." modified="07/30/2016 02:07:52 AM" facefx="2"/>
+ <Dialog id="13680621263399947553" text="But it also destroyed a large number of Typhon. Who&apos;s to say what that means." modified="07/30/2016 02:12:49 AM" facefx="2"/>
+ <Dialog id="13680621263399947614" text="And it destroyed a large number of Typhon across the station. That has to be a good sign." modified="07/30/2016 02:13:50 AM" facefx="2"/>
+ <Dialog id="13680621263399948082" text="Unfortunately, it was unable - or unwilling - to help when Dahl held us hostage." modified="07/30/2016 02:21:38 AM" facefx="2"/>
+ <Dialog id="13680621263399948100" text="Further, it thwarted Dahl&apos;s attempt to use us as hostages. If it were one of my officers, I would give it a commendation." modified="07/30/2016 02:21:56 AM" facefx="2"/>
+ <Dialog id="13680621263400009325" text="Alex. It killed you." modified="07/30/2016 07:22:21 PM" notes="As in, &apos;lets not forget.&apos;" facefx="2"/>
+ <Dialog id="13680621263400106281" text="We have a hull breach. (Beeping Noises of Keys Being Hit) Am sealing the docking bay..." modified="07/31/2016 10:18:17 PM"/>
+ <Dialog id="13680621263400106297" text="We&apos;ve lost... Vale, Wiley... no sign of Igwe... can someone shut off that alarm?!" modified="07/31/2016 10:18:33 PM" notes="Under her breath. Checking readouts. Beat at every ellipses. Raises her voice to shout the last question to an officer."/>
+ <Dialog id="13680621263400106337" text="And now we&apos;re trapped down here. Only way in or out is spacewalking, and that won&apos;t get us back to Earth." modified="07/31/2016 10:19:13 PM" notes="Alarm cuts out at start of this line. Sighs, exasperated, under her breath. Beat before &quot;ONLY&quot; and sarcastic emphasis on &quot;Spacewalking&quot; and &quot;that.&quot;"/>
+ <Dialog id="13680621263400106426" text="Elazar out." modified="07/31/2016 10:20:42 PM" notes="From PA."/>
+ <Dialog id="13680621263400160736" text="Morgan, Cargo Bay door&apos;s been sealed shut... there&apos;s creatures flooding the area, we don&apos;t want them getting out... any more than they already have." modified="08/01/2016 01:26:35 PM" notes="Rallies, lays out situation. Emphasis &quot;DON&apos;T.&quot; Under her breath at &quot;...any more than they already have.&quot; "/>
+ <Dialog id="13680621263400160754" text="We&apos;re safe in here - for the moment. Do what you can for anyone else still out there, and maybe we can salvage this." modified="08/01/2016 01:52:27 PM" notes="Voice rises to normal, telling Morgan to go help others."/>
+ <Dialog id="13680621263400160893" text="Morgan - there&apos;s nothing you can do for us in Cargo Bay." modified="08/01/2016 01:28:29 PM" notes="Firm, Morgan shouldn&apos;t be back knocking on the door."/>
+ <Dialog id="13680621263400160906" text="Door&apos;s sealed - there&apos;s too many creatures between you and us, there&apos;s nothing you can do from out there." modified="08/01/2016 01:45:54 PM" notes=""/>
+ <Dialog id="13680621263400160936" text="I&apos;ll send an update if anything changes. Now go." modified="08/01/2016 01:29:12 PM" notes="Not rude at the end, but final."/>
+ <Dialog id="13680621263400162798" text="Look... I don&apos;t know what you&apos;re planning, Morgan, but just remember - the only thing that matters is how you treat the people that are still alive." modified="08/01/2016 02:01:48 PM"/>
+ <Dialog id="13680621263400861301" text="Would a sedative work?" modified="08/09/2016 04:01:57 PM"/>
+ <Dialog id="13680621263400861374" text="You&apos;d better do something - the reconstruction is destabilizing." modified="08/09/2016 04:08:21 PM" notes="Emphasis on &quot;something&quot;. Time is running out. "/>
+</Dialog>

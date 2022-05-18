@@ -1,0 +1,246 @@
+
+<SurfaceTypes>
+ <SurfaceType name="mat_Flesh_Apex">
+  <Physics can_shatter="1" elasticity="-2" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Cystoid">
+  <Physics can_shatter="1" elasticity="-2" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Mimic">
+  <Physics can_shatter="1" elasticity="-2" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Phantom">
+  <Physics can_shatter="1" elasticity="0" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Nightmare">
+  <Physics can_shatter="1" elasticity="-2" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Mechanical" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Mechanical_Armored" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Human">
+  <Physics can_shatter="1" elasticity="-2" friction="1.1" pierceability="0"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="destroy"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Weaver">
+  <Physics can_shatter="1" elasticity="-2" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Flesh_Alien_Gib">
+  <Physics can_shatter="1" elasticity="0.9" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_death_Ragdoll">
+  <Physics elasticity=".1" friction="0.8" pierceability="14"/>
+ </SurfaceType>
+ <SurfaceType name="mat_default">
+  <Physics can_shatter="1" elasticity="0" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_nodraw">
+  <Physics elasticity="0" friction="0.8" pierceability="15"/>
+ </SurfaceType>
+ <SurfaceType name="mat_obstruct">
+  <Physics elasticity="0" friction="1.5" no_collide="1" pierceability="10"/>
+ </SurfaceType>
+ <SurfaceType name="mat_player_collider">
+  <Physics friction="0.6"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Debug_Bounce">
+  <Physics elasticity="10" friction="1" pierceability="14"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Weap_Grenade">
+  <Physics can_shatter="0" elasticity="0.4" friction="10" pierceability="14"/>
+  <Ark can_attach_goo="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Weap_Recycler">
+  <Physics elasticity="0.4" friction="10.0" pierceability="14"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Gloo_Soft">
+  <Physics can_shatter="0" elasticity=".01" friction="10" pierceability="0"/>
+  <Ark is_goo="1"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Gloo_Hard">
+  <Physics can_shatter="0" elasticity=".01" friction="10" pierceability="0"/>
+  <Ark can_attach_goo="0"/>
+  <Ark is_goo="1"/>
+ </SurfaceType>
+ <SurfaceType name="mat_canopy">
+  <Physics can_shatter="1" elasticity="0.05" friction="1.5" no_collide="1" pierceability="14"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" effect="MaterialEffects.Ammo.Hit_Leaf.A" scale="1" type="breakage"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" effect="MaterialEffects.Ammo.Hit_Leaf.A" scale="1" type="destroy"/>
+  <BreakageParticles effect="MaterialEffects.Ammo.Hit_Leaf.A" type="joint_break"/>
+  <BreakageParticles effect="MaterialEffects.Ammo.Hit_Leaf.A" type="joint_shatter"/>
+ </SurfaceType>
+ <SurfaceType name="mat_vegetation">
+  <Physics can_shatter="1" elasticity="0" friction="0.5" no_collide="1" pierceability="14"/>
+  <AI crouchMult="0.5" fFootStepRadius="30" fImpactRadius="2.5" fImpactSoundRadius="20" movingMult="2.5" proneMult="0.2"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="breakage"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="destroy"/>
+  <BreakageParticles type="joint_break"/>
+  <BreakageParticles type="joint_shatter"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Dirt">
+  <Physics can_shatter="1" elasticity="0" friction="0.35" pierceability="7"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Rock">
+  <Physics elasticity="0" friction="0.7" pierceability="0"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="2.5" fImpactSoundRadius="20" movingMult="2.5" proneMult="0.2"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Water">
+  <Physics elasticity="0" friction="1" pierceability="14"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Wood_Small" type="wood">
+  <Physics can_shatter="1" elasticity="0.05" friction="0.5" pierceability="0"/>
+  <BreakageParticles type="joint_break"/>
+  <BreakageParticles type="joint_shatter"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="destroy"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="2.5" fImpactSoundRadius="30" movingMult="2.5" proneMult="0.2"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Wood_Medium" type="wood">
+  <Physics can_shatter="1" elasticity="0.05" friction="0.5" pierceability="0"/>
+  <BreakageParticles type="joint_break"/>
+  <BreakageParticles type="joint_shatter"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="destroy"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="2.5" fImpactSoundRadius="30" movingMult="2.5" proneMult="0.2"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Wood_Large" type="wood">
+  <Physics can_shatter="1" elasticity="0.05" friction="0.5" pierceability="0"/>
+  <BreakageParticles type="joint_break"/>
+  <BreakageParticles type="joint_shatter"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="destroy"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="2.5" fImpactSoundRadius="30" movingMult="2.5" proneMult="0.2"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Carpet">
+  <Physics elasticity="0" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Glass" type="glass">
+  <Physics break_energy="6000" breakable_2d="1" can_shatter="1" elasticity="0.3" friction="0.6" hit_maxdmg="1" hit_maxhits="4" hit_points="0" hit_radius="0.4" pierceability="14"/>
+  <breakable_2d blast_radius="0.25" cell_size="0.1" filter_angle="70" max_patch_tris="8" rigid_body="0" shard_density="900"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="5" fImpactSoundRadius="25" movingMult="2.5" proneMult="0.2"/>
+  <Ark can_attach_goo="0" see_through="1" breakable_glass="1"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Glass_Unbreakable">
+  <Physics elasticity="0.3" friction="0.6" pierceability="0"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="5" fImpactSoundRadius="25" movingMult="2.5" proneMult="0.2"/>
+  <Ark can_attach_goo="0" see_through="1"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Glass_Dynamic_Objects">
+  <Physics elasticity="0.3" friction="0.6" pierceability="0"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="5" fImpactSoundRadius="25" movingMult="2.5" proneMult="0.2"/>
+  <Ark can_attach_goo="0" see_through="1"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Glass_Looking" type="glass">
+  <Physics break_energy="6000" breakable_2d="1" can_shatter="1" elasticity="0.3" friction="0.6" hit_maxdmg="1" hit_maxhits="4" hit_points="0" hit_radius="0.4" pierceability="14"/>
+  <breakable_2d blast_radius="0.25" cell_size="0.1" filter_angle="70" max_patch_tris="8" rigid_body="0" shard_density="900"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="5" fImpactSoundRadius="25" movingMult="2.5" proneMult="0.2"/>
+  <Ark can_attach_goo="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Glass_Healing" type="glass">
+  <Physics elasticity="0.3" friction="0.6" pierceability="0"/>
+  <AI crouchMult="0.5" fFootStepRadius="20" fImpactRadius="5" fImpactSoundRadius="25" movingMult="2.5" proneMult="0.2"/>
+  <Ark can_attach_goo="0" see_through="1"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Metal_Thick_Small" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Metal_Thick_Medium" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Metal_Thick_Large" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Metal_Thin_Small" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Metal_Thin_Medium" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Metal_Thin_Large" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Electrical">
+  <Physics can_shatter="1" elasticity=".2" friction="1.1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Concrete">
+  <Physics elasticity="0.2" friction="1" pierceability="3"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="breakage"/>
+  <BreakageParticles type="joint_break"/>
+  <BreakageParticles type="joint_shatter"/>
+  <BreakageParticles count_per_unit="1" count_scale="1" scale="1" type="destroy"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Rubber">
+  <Physics can_shatter="1" elasticity="1" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Paper">
+  <Physics elasticity="0" friction="1" pierceability="15"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Plastic_Thick_Small">
+  <Physics elasticity=".6" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Plastic_Thick_Medium">
+  <Physics elasticity=".6" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Plastic_Thick_Large">
+  <Physics elasticity=".6" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Plastic_Thin_Small">
+  <Physics elasticity=".6" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Plastic_Thin_Medium">
+  <Physics elasticity=".6" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Plastic_Thin_Large">
+  <Physics elasticity=".6" friction="0.5" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Leather_Small">
+  <Physics elasticity=".1" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Leather_Medium">
+  <Physics elasticity=".1" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Leather_Large">
+  <Physics elasticity=".1" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Porcelain_Small">
+  <Physics elasticity=".2" friction="1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Porcelain_Medium">
+  <Physics elasticity=".2" friction="1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Porcelain_Large">
+  <Physics elasticity=".2" friction="1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Cardboard_Small">
+  <Physics elasticity=".2" friction="1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Cardboard_Medium">
+  <Physics elasticity=".2" friction="1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Cardboard_Large">
+  <Physics elasticity=".2" friction="1" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Ice">
+  <Physics elasticity=".1" friction="1" pierceability="14"/>
+  <Ark can_attach_goo="0" see_through="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Weap_Wrench_1P">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Weap_Laser_1P">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Weap_Stungun_1P">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Decal_Paper">
+  <Physics elasticity="0" friction="1" pierceability="15"/>
+ </SurfaceType>
+ <SurfaceType name="mat_NoGloo" type="metal">
+  <Physics elasticity=".2" friction="0.8" pierceability="0"/>
+  <Ark can_attach_goo="0" see_through="0"/>
+ </SurfaceType>
+ <SurfaceType name="mat_Oil">
+  <Physics elasticity="0" friction="1" pierceability="14"/>
+ </SurfaceType>
+</SurfaceTypes>

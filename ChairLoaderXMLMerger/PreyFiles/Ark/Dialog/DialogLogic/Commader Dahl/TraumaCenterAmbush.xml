@@ -1,0 +1,151 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263383411011" name="Military Operator: Trauma Ambush" cooldown="" description="A military operator with a voice synthesizer program uses a dead employee&apos;s identity to try and lure Morgan to the trauma center." response="13680621263383428008">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTranscribeTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911793352"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383428008">
+  <Response dialog="13680621263383428007" id="13680621263383428009" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383428230" name="" cooldown="" response="13680621263383428231">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383428009" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911793352" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383428231">
+  <Response dialog="13680621263383428229" id="13680621263383428232" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.25"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383428274" name="" cooldown="" response="13680621263383428275">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383428232" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911793352" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383428275">
+  <Response dialog="13680621263383428273" id="13680621263383428276" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.5"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383428380" name="" cooldown="" response="13680621263383428381">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383428276" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911793352" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383428381">
+  <Response dialog="13680621263383428379" id="13680621263383428382" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.25"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383428489" name="" cooldown="" response="13680621263383428490">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383428382" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911793352" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383428490">
+  <Response dialog="13680621263383428488" id="13680621263383428491" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0.5"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383434748" name="Luther Glass: Fake Calls for Help Lines" cooldown="" description="NOTE: Don&apos;t use this convo in game. It&apos;s just so we get the lines from the right actor, then transfer over to the operator.     A military operator with a voice synthesizer program uses a dead employee&apos;s identity. When Morgan arrives in Traume the operator begins to call for help. " response="13680621263383435133">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTranscribeTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911793352"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263383434808" name="Military Operator: Fake Calls for Help Approach" cooldown="" description="A military operator with a voice synthesizer program uses a dead employee&apos;s identity. When Morgan arrives in Traume the operator begins to call for help. " response="13680621263383435428" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361476039" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263383437700"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263383435019" name="Military Operator: Fake Calls for Help While Loiter" cooldown="" description="Loiter version. A military operator with a voice synthesizer program uses a dead employee&apos;s identity. When Morgan arrives in Traume the operator begins to call for help. " response="13680621263383435748" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361476039" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263383437700"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383435133">
+  <Response dialog="13680621263383435132" id="13680621263383435134" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435150" id="13680621263383435151" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435169" id="13680621263383435170" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435178" id="13680621263383435179" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435184" id="13680621263383435185" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435223" id="13680621263383435224" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435238" id="13680621263383435239" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435254" id="13680621263383435255" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435288" id="13680621263383435289" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435322" id="13680621263383435323" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435394" id="13680621263383435395" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263383435428">
+  <Response dialog="13680621263383435427" id="13680621263383435429" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435624" id="13680621263383435625" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435624" id="13680621263383435673" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383435485" name="Military Operator: Trauma Ambush--Kill Him" cooldown="" description="A military operator with a voice synthesizer program uses a dead employee&apos;s identity to try and lure Morgan to the trauma center." response="13680621263415894633" conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361476039" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263383437700"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263383435692" name="" cooldown="" response="13680621263383435693">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361476039" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383435673" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="14667999412535744113" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383435693">
+  <Response dialog="13680621263383435691" id="13680621263383435694" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263383435748">
+  <Response dialog="13680621263383435624" id="13680621263383435749" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435756" id="13680621263383435757" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435767" id="13680621263383435768" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435775" id="13680621263383435776" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435783" id="13680621263383435784" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435791" id="13680621263383435792" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435802" id="13680621263383435803" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435812" id="13680621263383435813" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435820" id="13680621263383435821" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263383435835" id="13680621263383435836" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="13680621263395450508" id="13680621263395450509" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263395450525" id="13680621263395450526" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263415894633">
+  <Response dialog="13680621263383586216" id="13680621263415894634" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="1"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263415894655" name="" cooldown="" response="13680621263415894656">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361476039" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263415894634" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263383437700" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263415894656">
+  <Response dialog="13680621263383586101" id="13680621263415894657" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263415894818" name="" cooldown="" response="13680621263415894819">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361476039" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263415894657" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263383437700" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263415894819">
+  <Response dialog="13680621263383586086" id="13680621263415894820" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay=".5" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

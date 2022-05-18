@@ -1,0 +1,156 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Ark:RemoteEvent" pos="-360,60,0">
+   <Inputs remoteEvent_Event="6732635291230579603"/>
+  </Node>
+  <Node Id="2" Class="Ark:SendRemoteEvent" pos="670,60,0">
+   <Inputs remoteEvent_Event="6732635291230579638"/>
+  </Node>
+  <Node Id="45" Class="Ark:Dialog:PlayTranscribeMessage" pos="-40,1010,0">
+   <Inputs dialogRule_Conversation="13680621263382990800" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2258" Class="Ark:Dialog:PlayTranscribeMessage" pos="260,280,0">
+   <Inputs dialogRule_Conversation="13680621263364140290" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2378" Class="Ark:Dialog:PlayTranscribeMessage" pos="-40,60,0">
+   <Inputs dialogRule_Conversation="13680621263382374698" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2380" Class="Logic:Gate" pos="410,60,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="2381" Class="Ark:RemoteEvent" pos="-360,-440,0">
+   <Inputs remoteEvent_Event="6732635291230579862"/>
+  </Node>
+  <Node Id="3190" Class="Mission:GameTokenSet" pos="620,-720,0">
+   <Inputs gametokenid_Token="-2023624554" Value="true"/>
+  </Node>
+  <Node Id="4597" Class="Ark:Dialog:PlayTranscribeMessage" pos="-30,-440,0">
+   <Inputs dialogRule_Conversation="13680621263399406310" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="4604" Class="Ark:SendRemoteEvent" pos="680,-430,0">
+   <Inputs remoteEvent_Event="6732635291230580019"/>
+  </Node>
+  <Node Id="4605" Class="Logic:Gate" pos="400,-430,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="4606" Class="Ark:RemoteEvent" pos="-310,280,0">
+   <Inputs remoteEvent_Event="6732635291230580143"/>
+  </Node>
+  <Node Id="4608" Class="Ark:SendRemoteEvent" pos="1030,280,0">
+   <Inputs remoteEvent_Event="6732635291230580162"/>
+  </Node>
+  <Node Id="4609" Class="Logic:Gate" pos="750,280,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="4610" Class="Ark:Dialog:PlayTranscribeMessage" pos="270,500,0">
+   <Inputs dialogRule_Conversation="13680621263364140290" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="4611" Class="Ark:RemoteEvent" pos="-320,500,0">
+   <Inputs remoteEvent_Event="6732635291230580300"/>
+  </Node>
+  <Node Id="4612" Class="Ark:SendRemoteEvent" pos="1040,500,0">
+   <Inputs remoteEvent_Event="6732635291230580331"/>
+  </Node>
+  <Node Id="4613" Class="Logic:Gate" pos="760,500,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="4615" Class="Logic:Gate" pos="-10,500,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="4616" Class="Logic:Gate" pos="-20,280,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="4617" Class="Ark:Dialog:PlayTranscribeMessage" pos="0,770,0">
+   <Inputs dialogRule_Conversation="13680621263370125960" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="4618" Class="Ark:RemoteEvent" pos="-330,770,0">
+   <Inputs remoteEvent_Event="6732635291230580500"/>
+  </Node>
+  <Node Id="4620" Class="Ark:SendRemoteEvent" pos="820,770,0">
+   <Inputs remoteEvent_Event="6732635291230580518"/>
+  </Node>
+  <Node Id="4621" Class="Logic:Gate" pos="540,770,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="4623" Class="Ark:RemoteEvent" pos="-340,1010,0">
+   <Inputs remoteEvent_Event="6732635291230580725"/>
+  </Node>
+  <Node Id="4624" Class="Ark:SendRemoteEvent" pos="810,1010,0">
+   <Inputs remoteEvent_Event="6732635291230580773"/>
+  </Node>
+  <Node Id="4625" Class="Logic:Gate" pos="550,1010,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="4632" Class="Ark:RemoteEvent" pos="-380,-230,0">
+   <Inputs remoteEvent_Event="6732635291230580933"/>
+  </Node>
+  <Node Id="4633" Class="Ark:SendRemoteEvent" pos="660,-230,0">
+   <Inputs remoteEvent_Event="6732635291230580955"/>
+  </Node>
+  <Node Id="4634" Class="Logic:Gate" pos="390,-230,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="4636" Class="Ark:Dialog:PlayTranscribeMessage" pos="-20,-230,0">
+   <Inputs dialogRule_Conversation="13680621263399406310" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="4637" Class="Ark:Dialog:PlayTranscribeMessage" pos="-30,-720,0">
+   <Inputs dialogRule_Conversation="13680621263369491286" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="4638" Class="Ark:RemoteEvent" pos="-380,-720,0">
+   <Inputs remoteEvent_Event="6732635291230581199"/>
+  </Node>
+  <Node Id="4640" Class="Logic:Gate" pos="370,-720,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2378" nodeOut="1" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4625" nodeOut="45" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4625" nodeOut="45" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4625" nodeOut="45" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4609" nodeOut="2258" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4609" nodeOut="2258" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4609" nodeOut="2258" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2378" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2378" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2378" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2380" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4597" nodeOut="2381" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4634" nodeOut="2381" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4605" nodeOut="4597" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4605" nodeOut="4597" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4605" nodeOut="4597" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4604" nodeOut="4605" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4613" nodeOut="4606" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4616" nodeOut="4606" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4608" nodeOut="4609" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4613" nodeOut="4610" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4613" nodeOut="4610" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4613" nodeOut="4610" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4609" nodeOut="4611" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4615" nodeOut="4611" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4612" nodeOut="4613" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4610" nodeOut="4615" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2258" nodeOut="4616" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4621" nodeOut="4617" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4621" nodeOut="4617" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4621" nodeOut="4617" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4617" nodeOut="4618" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4620" nodeOut="4621" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="4623" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4624" nodeOut="4625" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4605" nodeOut="4632" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4636" nodeOut="4632" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4633" nodeOut="4634" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4634" nodeOut="4636" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4634" nodeOut="4636" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4634" nodeOut="4636" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4640" nodeOut="4637" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4640" nodeOut="4637" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="4640" nodeOut="4637" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4637" nodeOut="4638" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3190" nodeOut="4640" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

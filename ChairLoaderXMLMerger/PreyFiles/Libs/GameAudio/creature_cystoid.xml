@@ -1,0 +1,41 @@
+
+<ATLConfig atl_name="Creature_Cystoid">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Cystoid_Alerted">
+   <WwiseEvent wwise_name="Play_Cystoid_Alerted"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Cystoid_Idle_Vox">
+   <WwiseEvent wwise_name="Play_Cystoid_Idle_Vox"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Cystoid_Idle_Vox">
+   <WwiseEvent wwise_name="Stop_Cystoid_Idle_Vox"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Cystoid_FollowPlayer">
+   <WwiseEvent wwise_name="Play_Cystoid_FollowPlayer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Cystoid_FollowPlayer">
+   <WwiseEvent wwise_name="Stop_Cystoid_FollowPlayer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Cystoid_Explode">
+   <WwiseEvent wwise_name="Play_Cystoid_Explode"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Cystoid_Proximity">
+   <WwiseEvent wwise_name="Play_Cystoid_Proximity"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Excrete_Cystoid_1">
+   <WwiseEvent wwise_name="Play_Weaver_Excrete_Cystoid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_CystoidNest_Alert" path="CystoidNest">
+   <WwiseEvent wwise_name="Play_CystoidNest_Alert"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_CystoidNest_Exist" path="CystoidNest">
+   <WwiseEvent wwise_name="Play_CystoidNest_Exist"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_CystoidNest_Explode" path="CystoidNest">
+   <WwiseEvent wwise_name="Play_CystoidNest_Explode"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Cystoid_PlayerDamage">
+   <WwiseEvent wwise_name="Play_Cystoid_PlayerDamage"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

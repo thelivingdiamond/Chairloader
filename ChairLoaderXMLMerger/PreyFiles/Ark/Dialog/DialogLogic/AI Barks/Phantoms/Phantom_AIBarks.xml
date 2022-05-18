@@ -1,0 +1,100 @@
+
+<ResponseRules>
+ <ResponseRule id="13680621263399762728" name="Noticed Something" cooldown="20" description="Saw/Heard something suspicious." response="13680621263400262523">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onGainedAttentionOnTarget" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183293" type="default" keyType="default" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213158" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263400262100" name="Patrolling" cooldown="20" description="Saw/Heard something suspicious." response="13680621263400262576">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whilePatrolling" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263400265420" name="Wandering" cooldown="20" description="Phantom Wandering." response="13680621263400262576">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileWandering" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263400265734" name="OnApproach" cooldown="60" description="Saw/Heard something suspicious." response="13680621263400262576" oneshot="0" conversation="0">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213158" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263399762734" name="Phantom Searching" cooldown="20" description="Ran away from combat or from the player." response="13680621263400262481">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="whileSearching" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <WritebackKeys>
+  <WritebackKey id="13680621263386018246" name="RecentlyCommentedAboutPowers"/>
+  <WritebackKey id="13680621263386019846" name="RecentlyTaunted"/>
+ </WritebackKeys>
+ <ResponseRule id="13680621263399762737" name="Give Up Search" cooldown="5" description="Ran away from combat or from the player." response="13680621263400262561">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onHuntGaveUp" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263400261970" name="Lost Target, Combat" cooldown="5" description="Ran away from combat or from the player." response="13680621263400262561">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onLostTarget" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400262481">
+  <Response dialog="13680621263400262480" id="13680621263400262482" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262547" id="13680621263400262548" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262700" id="13680621263400262701" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262969" id="13680621263400262970" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262977" id="13680621263400262978" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262987" id="13680621263400262988" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857482" id="13680621263402857483" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263400262523">
+  <Response dialog="13680621263400262522" id="13680621263400262524" cooldown="40" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262534" id="13680621263400262535" cooldown="40" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262640" id="13680621263400262641" cooldown="40" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262676" id="13680621263400262677" cooldown="40" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262743" id="13680621263400262744" cooldown="40" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857510" id="13680621263402857511" cooldown="40" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263400262561">
+  <Response dialog="13680621263400262560" id="13680621263400262562" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" entityOneshot="true"/>
+  <Response dialog="13680621263400262687" id="13680621263400262688" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" entityOneshot="true"/>
+  <Response dialog="13680621263400262785" id="13680621263400262786" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" entityOneshot="true"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263400262576">
+  <Response dialog="13680621263400262575" id="13680621263400262577" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262587" id="13680621263400262588" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262712" id="13680621263400262713" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262721" id="13680621263400262722" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262776" id="13680621263400262777" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262802" id="13680621263400262803" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263400262920" id="13680621263400262921" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857309" id="13680621263402857310" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857360" id="13680621263402857361" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857393" id="13680621263402857394" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857430" id="13680621263402857431" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="13680621263402857460" id="13680621263402857461" cooldown="160" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263409622215" name="Combat Busted" cooldown="1" description="Initiating Combat" response="13680621263409622254">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263400262208" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onGainedAttentionOnTarget" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183293" type="default" keyType="default" value="4"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263409622254">
+  <Response dialog="13680621263409622253" id="13680621263409622255" cooldown="10" weight="1" oneshot="0" completeConversation="1" delay="1" cutoff="0"/>
+  <Response dialog="13680621263409622308" id="13680621263409622309" cooldown="10" weight="1" oneshot="0" completeConversation="1" delay="1" cutoff="0"/>
+  <Response dialog="13680621263409622319" id="13680621263409622320" cooldown="10" weight="1" oneshot="0" completeConversation="1" delay="1" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

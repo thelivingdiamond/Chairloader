@@ -1,0 +1,50 @@
+
+<UIElements name="DanielleSimlabsWorkstation">
+ <UIElement name="DanielleSimlabsWorkstation" render_lockless="1">
+  <WorldUI enable="1" distance="3" cursorEvents="true"/>
+  <GFx file="GFX/danielle_workstation_simlabs.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="0" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="initPowerState" funcname="pc.initOn">
+    <param name="isPowerOn" desc="false if powered off" type="bool"/>
+   </function>
+   <function name="powerOn" funcname="pc.powerOn"/>
+   <function name="powerOff" funcname="pc.powerOff"/>
+   <function name="initAttract" funcname="pc.initAttract"/>
+   <function name="addQuestion" funcname="pc.addQuestion">
+    <param name="Text" desc="player facing text" type="string"/>
+   </function>
+   <function name="addAnswer" funcname="pc.addAnswer">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Text" desc="player facing text" type="string"/>
+   </function>
+   <function name="showQuestionPage" funcname="pc.showQuestionPage"/>
+   <function name="resetQuestionPage" funcname="pc.resetQuestionPage"/>
+   <function name="showLogoPage" funcname="pc.showLogoPage"/>
+   <function name="showRorschachTest" funcname="pc.showRorschachTest"/>
+   <function name="terminalInteract" funcname="pc.terminalInteract"/>
+   <function name="pauseUI" funcname="util.pauseUI">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="mouseBtnPress" fscommand="mouseBtnPress" desc="returns unique ID">
+    <param name="Button" desc="Button Name or ID" type="string"/>
+   </event>
+   <event name="gotoNextPage" fscommand="gotoNextPage" desc=""/>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

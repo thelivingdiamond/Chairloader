@@ -1,0 +1,106 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263384791538" name="Dispenser: Requesting New Operator" cooldown="" response="13680621263384791722">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseStart" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384791722">
+  <Response dialog="13680621263384791721" id="13680621263384791723" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384791736" name="Dispenser: New Operator Complete--Military" cooldown="" response="13680621263384791768">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseComplete" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860517748113" value="1" keyType="metatag"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384791768">
+  <Response dialog="13680621263384791767" id="13680621263384791769" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384791852" name="" cooldown="" response="13680621263384791853">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384791769" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263384791370" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384791853">
+  <Response dialog="13680621263384791851" id="13680621263384791854" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386347471" name="Dispenser: New Operator Complete--Engineering" cooldown="" response="13680621263386347537">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseComplete" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860517748098" value="1" keyType="metatag"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386347472" name="Dispenser: New Operator Complete--Science" cooldown="" response="13680621263386347552">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseComplete" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860517748082" value="1" keyType="metatag"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386347473" name="Dispenser: New Operator Complete--Medical" cooldown="" response="13680621263386347752">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseComplete" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="9469288860517748104" value="1" keyType="metatag"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386347537">
+  <Response dialog="13680621263386347536" id="13680621263386347538" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386347539" name="" cooldown="" response="13680621263384791853">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263386347538" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386347552">
+  <Response dialog="13680621263386347551" id="13680621263386347553" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386347752">
+  <Response dialog="13680621263386347751" id="13680621263386347753" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386347754" name="" cooldown="" response="13680621263384791853">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263386347553" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386347755" name="" cooldown="" response="13680621263384791853">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263386347753" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386347766" name="Dispenser: Error, Opening Blocked." cooldown="" response="13680621263386349054">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseErrorBlocked" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386347816" name="Dispenser: Error, Opening Blockage Cleared" cooldown="" response="13680621263386349080">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263369958846" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDispenseErrorCleared" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263384791370"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386349054">
+  <Response dialog="13680621263386349053" id="13680621263386349055" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386349080">
+  <Response dialog="13680621263386349079" id="13680621263386349081" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+</ResponseRules>

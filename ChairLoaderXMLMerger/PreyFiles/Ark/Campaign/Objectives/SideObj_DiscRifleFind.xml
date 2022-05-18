@@ -1,0 +1,12 @@
+
+<Objectives>
+ <Objective id="13680621263389641732" title="@loc_15373294129891632193" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="13680621263389641733" displayName="Start" text="@loc_15373294129891632194"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="13680621263389641763" displayName="Retrieve Disc Rife" optional="false" text="@loc_15373294129891632195" Location="844024417252490146"/>
+  </Tasks>
+ </Objective>
+</Objectives>

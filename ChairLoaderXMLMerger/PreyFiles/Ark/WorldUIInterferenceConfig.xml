@@ -1,0 +1,22 @@
+
+<WorldUIInterferenceConfig>
+ <StandardInterference>
+  <MaterialParam paramName="ChromaShift" paramValue="1"/>
+  <MaterialParam paramName="GrainAmount" paramValue="8"/>
+  <MaterialParam paramName="GrainTilling" paramValue="2"/>
+  <MaterialParam paramName="InterlacingAmount" paramValue=".3"/>
+  <MaterialParam paramName="InterlacingTilling" paramValue=".05"/>
+  <MaterialParam paramName="ViewAngle" paramValue="135"/>
+  <MaterialParam paramName="GlitchEnabled" paramValue="1"/>
+ </StandardInterference>
+ <TranscribeDisruption>
+  <MaterialParam paramName="ChromaShift" paramValue=".2"/>
+  <MaterialParam paramName="GrainAmount" paramValue="3"/>
+  <MaterialParam paramName="GrainTilling" paramValue="2"/>
+  <MaterialParam paramName="InterlacingAmount" paramValue="0"/>
+  <MaterialParam paramName="InterlacingTilling" paramValue=".5"/>
+  <MaterialParam paramName="ViewAngle" paramValue="135"/>
+  <MaterialParam paramName="VSyncFreq" paramValue="16"/>
+  <MaterialParam paramName="GlitchEnabled" paramValue="1"/>
+ </TranscribeDisruption>
+</WorldUIInterferenceConfig>

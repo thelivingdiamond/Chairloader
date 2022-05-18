@@ -1,0 +1,6 @@
+
+<GameTokensLibrary Name="GT_GameTime">
+ <GameToken Id="337408671" Name="Current.Day" Type="Int" Value="0"/>
+ <GameToken Id="2145008015" Name="Current.Time" Type="Float" Value="8.000000"/>
+ <GameToken Id="1894662982" Name="Current.GlobalTimeOfDayEnabled" Type="Bool" Value="false"/>
+</GameTokensLibrary>

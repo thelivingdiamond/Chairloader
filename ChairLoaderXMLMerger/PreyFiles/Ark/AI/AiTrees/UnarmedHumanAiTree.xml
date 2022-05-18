@@ -1,0 +1,23 @@
+
+<ArkAiTree>
+ <Root>
+  <ArkAiTreeStackNode>
+   <Children>
+    <ArkAiTreeFleeNode corneredBehavior="1" bCanShift="false" bFleesFromHostileEntity="true" chanceToCowerAfterMove="0.75" endFearDelayTime="5.0" overrideFleeSpeedLiteral="0.0" resumeFleeAfterCowerRadius="5.0" retryBreakCowerAfterFailedFleeTime="5.0">
+     <FleeSearchRadius minimum="7" maximum="25"/>
+    </ArkAiTreeFleeNode>
+    <ArkAiTreeHypnotizedNode/>
+    <ArkAiTreeScriptMoveNode/>
+    <ArkAiTreeNoticeNode speed="fastest">
+     <InterruptNoticeAnimDistance minimum="0.0" maximum="4.0"/>
+     <InterruptNoticeAnimMinPlayTime minimum="0.0" maximum="0.5"/>
+    </ArkAiTreeNoticeNode>
+    <ArkAiTreeDistractedNode>
+     <config distractionCloseArrivalDistance="1.75" distractionCloseFailTimerDuration="10.0" distractionStopArrivalDistance="0.1" distractionMoveDistanceFail="4.0"/>
+    </ArkAiTreeDistractedNode>
+    <ArkAiTreePatrolNode patrolDialogPulseTime="1.0" timeToGiveupUnreachablePatrol="20.0" patrolIdleCooldown="2.0"/>
+    <ArkAiTreeGuardNode/>
+   </Children>
+  </ArkAiTreeStackNode>
+ </Root>
+</ArkAiTree>

@@ -1,0 +1,97 @@
+
+<ATLConfig atl_name="Operator">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Operator_Damage_State" path="Shared">
+   <WwiseEvent wwise_name="Play_Operator_Damage_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Disabled_State" path="Shared">
+   <WwiseEvent wwise_name="Play_Operator_Disabled_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Healthy_State" path="Shared">
+   <WwiseEvent wwise_name="Play_Operator_Healthy_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_Explosion" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_Explosion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_HitReact" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_HitReact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_GetUp" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_GetUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_HitReact_Knockdown" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_HitReact_Knockdown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_HitReact_Small" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_HitReact_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_Disable" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_Disable"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Disable" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Disable"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_CRPT_Medical_Corrupt_Zap" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_CRPT_Medical_Corrupt_Zap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_LP_Science" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_LP_Science"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Kasper_Hack_LP" path="Kasper">
+   <WwiseEvent wwise_name="Play_Kasper_Hack_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Kasper_Hack_LP" path="Kasper">
+   <WwiseEvent wwise_name="Stop_Kasper_Hack_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Science_Notice" path="Operator_Science">
+   <WwiseEvent wwise_name="Play_Operator_Science_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Notice" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_Exist_LP" path="Military">
+   <WwiseEvent wwise_name="Play_Operator_Military_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Military_Exist_LP" path="Military">
+   <WwiseEvent wwise_name="Stop_Operator_Military_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Med_Sparkle_LP" path="Operator_Science">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Med_Sparkle_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Corrupted_Med_Sparkle_LP" path="Operator_Science">
+   <WwiseEvent wwise_name="Stop_Operator_Corrupted_Med_Sparkle_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Sparkler_Zap">
+   <WwiseEvent wwise_name="Play_Operator_Sparkler_Zap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Med_Sparkle_LP">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Med_Sparkle_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Corrupted_Med_Sparkle_LP">
+   <WwiseEvent wwise_name="Stop_Operator_Corrupted_Med_Sparkle_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_State" path="Shared">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_Gas_LP" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_Gas_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Engineering_Gas_LP" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Stop_Operator_Engineering_Gas_LP"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Operator_Military.bnk" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Operator_Military.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

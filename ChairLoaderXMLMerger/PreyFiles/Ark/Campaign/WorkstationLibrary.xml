@@ -1,0 +1,2137 @@
+
+<ArkWorkstations>
+ <Workstations>
+  <ArkWorkstation ID="4349723564928462749" Name="BR_RunawayOperator" User="4349723564911787735">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564928823272"/>
+    <Email value="4349723564928822238"/>
+    <Email value="4349723564946451846"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13680621263404437625" Name="BR_SkyeBraxton" User="4349723564911796626" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails>
+    <Email value="13680621263404437702"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564946459906" Name="BR_JadaMarks" User="4349723564911790718" UseEmployeeMode="false" WorkstationTitle="@loc_4349723564946459954" UtilitiesTitle="@loc_4349723564946459963">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564946459989"/>
+    <Email value="4349723564933225188"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="4349723564946527791" Name="BR_PA_StopTimePA" Label="@loc_4349723564946527792" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405807483">
+     <Buttons>
+      <Button ID="13680621263405807293" Name="Enable" Label="@loc_13680621263405807294" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405807312" Name="Disable" Label="@loc_13680621263405807313" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="4349723564946527684" Name="BR_PA_StopEvacuatePA" Label="@loc_4349723564946527685" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405808731">
+     <Buttons>
+      <Button ID="13680621263405808612" Name="Disable" Label="@loc_13680621263405808613" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405808614" Name="Enable" Label="@loc_13680621263405808615" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417314938091" Name="BR_LookingGlassControls" User="4349723564911790718" UseEmployeeMode="false" WorkstationTitle="@loc_844024417314938138" UtilitiesTitle="@loc_844024417314939373">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417314938143" Name="LGControls" Label="@loc_844024417314938144" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405809586">
+     <Buttons>
+      <Button ID="844024417314938309" Name="PowerOn" Label="@loc_844024417314938310" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314938323" Name="PowerOff" Label="@loc_844024417314938324" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314938179" Name="CamOrbit" Label="@loc_844024417314938180" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405810316">
+     <Buttons>
+      <Button ID="844024417314938338" Name="CamFwd" Label="@loc_844024417314938339" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314938349" Name="CamPause" Label="@loc_844024417314938350" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314938351" Name="CamReverse" Label="@loc_844024417314938352" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314938195" Name="CamElevation" Label="@loc_844024417314938196" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405810338">
+     <Buttons>
+      <Button ID="844024417314938255" Name="ExecLevel" Label="@loc_844024417314938256" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314938270" Name="RnDLevel" Label="@loc_844024417314938271" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314938283" Name="EngLevel" Label="@loc_844024417314938284" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314940319" Name="CamZoom" Label="@loc_844024417314940320" Enabled="true" Hidden="true" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417314940345" Name="Zoom1X" Label="@loc_844024417314940346" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314940347" Name="Zoom2x" Label="@loc_844024417314940348" Enabled="true" Hidden="false"/>
+      <Button ID="844024417314940349" Name="Zoom3X" Label="@loc_844024417314940350" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564948843919" Name="CB_CrateDocking_B" User="4349723564911798043" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkKeypadUtility ID="4349723564948844423" Name="CB_CrateOpeningKeypad" Label="@loc_4349723564948844424" Enabled="true" Hidden="false"/>
+    <ArkButtonUtility ID="4349723564953627235" Name="CB_OpenGUTS_Door" Label="@loc_4349723564953627236" Enabled="false" Hidden="true" NoDefaultButton="true">
+     <Buttons>
+      <Button ID="4349723564953626867" Name="CB_OpenGUTS_Door" Label="@loc_4349723564953626868" Enabled="false" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="4349723564948844581" Name="CB_OpeningControls" Label="@loc_4349723564948844582" Enabled="true" Hidden="true" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="4349723564948844651" Name="CB_OpenBayB_Containers" Label="@loc_4349723564948844652" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564935985724" Name="CB_CrateDocking_A" User="4349723564911798043">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkKeypadUtility ID="4349723564935985857" Name="CB_CrateDockingKeypad" Label="@loc_15373294129887559107" Enabled="true"/>
+    <ArkButtonUtility ID="4349723564936069330" Name="CB_DockingControls" Label="@loc_15373294129887559108" Enabled="true" Description="@loc_15373294129887559109">
+     <Buttons>
+      <Button ID="4349723564936165987" Name="CB_DockActive" Label="@loc_15373294129887559110" Enabled="true"/>
+      <Button ID="4349723564936069435" Name="CB_UndockBay1" Label="@loc_15373294129887559111" Enabled="false"/>
+      <Button ID="4349723564936069458" Name="CB_UndockBay2" Label="@loc_15373294129887559112" Enabled="false"/>
+      <Button ID="4349723564936069496" Name="CB_UndockBay3" Label="@loc_15373294129887559113" Enabled="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="4349723564936151078" Name="CB_Procedures" Label="@loc_15373294129887559114" Enabled="true" Description="@loc_15373294129887559115">
+     <Buttons>
+      <Button ID="4349723564939025114" Name="CB_OK" Label="@loc_15373294129887559116" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564914816212" Name="CB_GussMagill" User="4349723564911793119">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564914562445"/>
+    <Email value="4349723564942897707"/>
+    <Email value="4349723564914911490"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="4349723564915074368" Name="CB_OpenCageDoor1" Label="@loc_15373294129887559117" Enabled="true" Description="@loc_13680621263405813279">
+     <Buttons>
+      <Button ID="13680621263405812994" Name="OpenCage1" Label="@loc_13680621263405812995" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405813144" Name="Close Cage1" Label="@loc_13680621263405813145" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="4349723564915074699" Name="CB_OpenCageDoor2" Label="@loc_15373294129887559118" Enabled="true" Description="@loc_13680621263405813386">
+     <Buttons>
+      <Button ID="13680621263405813398" Name="Open Cage 2" Label="@loc_13680621263405813399" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405813402" Name="Close Cage 2" Label="@loc_13680621263405813403" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564914915756" Name="CB_CargoBayBoss" User="4349723564911798262">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564914913804"/>
+    <Email value="4349723564947052047"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564933226455" Name="CB_SarahTempStation" User="4349723564897456793">
+   <Downloads>
+    <Download ID="4349723564933227134" Name="TaserFabPlan" Label="@loc_15373294129887559119" Description="@loc_844024417316952444"/>
+   </Downloads>
+   <Emails>
+    <Email value="4349723564933225188"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047994504412" Name="CB_CargoProcessing" User="4349723564911798616" WorkstationTitle="@loc_15373294129887559511">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564945747750"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="761057047994504413" Name="Process Cargo" Label="@loc_15373294129887559512" Enabled="true" Hidden="false" Description="@loc_15373294129887559513">
+     <Buttons>
+      <Button ID="761057047994504416" Name="GUTs -OFFLINE" Label="@loc_15373294129887559516" Enabled="false" Hidden="false"/>
+      <Button ID="761057047994504561" Name="Reboot GUTs Processing" Label="@loc_15373294129887559517" Enabled="true" Hidden="false"/>
+      <Button ID="761057047994504417" Name="GUTs -ONLINE" Label="@loc_15373294129887559518" Enabled="false" Hidden="true"/>
+      <Button ID="761057047994504418" Name="Cargo Bay -OFFLINE" Label="@loc_15373294129887559519" Enabled="false" Hidden="false"/>
+      <Button ID="761057047994504865" Name="Reboot Cargo Bay Processing" Label="@loc_15373294129887559520" Enabled="true" Hidden="false"/>
+      <Button ID="761057047994504419" Name="Cargo Bay -ONLINE" Label="@loc_15373294129887559521" Enabled="false" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725007132803" Name="SL_AliceAiken" User="12889009724998299272">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725007132540"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725030781608" Name="SL_CalebConnolly" User="12889009725030781547">
+   <Downloads>
+    <Download ID="12889009725030781894" Name="DartGunFabPlan" Label="@loc_15373294129887559129" Description="@loc_844024417322650744" Hidden="false"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009724998299763"/>
+    <Email value="12889009725032090795"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725003058038" Name="SL_DemetriBowser" User="13680621263355514849" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724998299763"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725004184066" Name="SwitchScene" Label="@loc_15373294129887559130" Enabled="true" Description="@loc_13680621263405814820">
+     <Buttons>
+      <Button ID="12889009725038324106" Name="RooftopEntrance" Label="@loc_15373294129887559131" Enabled="false" Hidden="false"/>
+      <Button ID="12889009725038324126" Name="TestingFacilityIntake" Label="@loc_15373294129887559132" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="12889009725057502654" Name="ResetTestsNew" Label="@loc_12889009725057502655" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_12889009725057502860">
+     <Buttons>
+      <Button ID="12889009725057502761" Name="ResetTestButton" Label="@loc_12889009725057502762" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724995039010" Name="SL_DrBellamysWorkstation" User="4349723564897457011">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724995117694"/>
+    <Email value="12889009724994599658"/>
+    <Email value="12889009724999597135"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724995038831" Name="SL_EvelynMcCarthy" User="4349723564897457772">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724995724105"/>
+    <Email value="12889009724998299763"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725013779068" Name="SendCall" Label="@loc_15373294129887559134" Enabled="true" Description="@loc_13680621263405815473">
+     <Buttons>
+      <Button ID="13680621263405815164" Name="Wake Up" Label="@loc_13680621263405815165" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405815231" Name="Chopper" Label="@loc_13680621263405815232" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405815288" Name="Pigeon Test" Label="@loc_13680621263405815289" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725033806142" Name="SL_GreteMikkelsen" User="844024417277873710">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725033807506" Name="SwitchScene" Label="@loc_15373294129887559135" Enabled="true" Description="@loc_15373294129887559136">
+     <Buttons>
+      <Button ID="12889009725033807556" Name="Echelon Roof" Label="@loc_15373294129887559137" Enabled="false"/>
+      <Button ID="12889009725033807721" Name="TranStarRoof" Label="@loc_15373294129887559138" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="12889009725033808149" Name="ToggleLG" Label="@loc_15373294129887559139" Enabled="true" Description="@loc_15373294129887559140">
+     <Buttons>
+      <Button ID="12889009725033808168" Name="LookingGlassON" Label="@loc_15373294129887559141" Enabled="false"/>
+      <Button ID="12889009725033808186" Name="LookingGlassOFf" Label="@loc_15373294129887559142" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725032090904" Name="SL_HadleyDalton" User="4349723564911541234">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724998299763"/>
+    <Email value="12889009725032090559"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725001249779" Name="SL_HaldenGraves" User="844024417277873812">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725044696597"/>
+    <Email value="12889009725044697384"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725001249825" Name="UnlockDoors" Label="@loc_15373294129887559144" Enabled="true" Description="@loc_13680621263405820075">
+     <Buttons>
+      <Button ID="13680621263405820083" Name="Unlock" Label="@loc_13680621263405820084" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405820085" Name="Lock" Label="@loc_13680621263405820086" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="12889009725014112561" Name="ResetNeuromodLicense " Label="@loc_15373294129887559145" Enabled="true" Description="@loc_13680621263405820485" Hidden="true">
+     <Buttons>
+      <Button ID="13680621263405820139" Name="ResetLic" Label="@loc_13680621263405820140" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724996257178" Name="SL_MorgansApartmentWorkstation" User="1713490239389131093">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724998732370"/>
+    <Email value="12889009725005381700"/>
+    <Email value="12889009725005063914"/>
+    <Email value="13680621263371421518"/>
+    <Email value="13680621263371423623"/>
+    <Email value="13680621263371423637"/>
+    <Email value="13680621263371423642"/>
+    <Email value="13680621263371423653"/>
+    <Email value="13680621263371423659"/>
+    <Email value="13680621263371423666"/>
+    <Email value="13680621263371423673"/>
+    <Email value="13680621263371423680"/>
+    <Email value="13680621263371423687"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725010762547" Name="SL_JiaoLongHeng" User="4349723564911777851">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724998299763"/>
+    <Email value="13680621263404434005"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725025894350" Name="SL_JohnHaskins" User="12889009724998299407">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725030354742"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725037028864" Name="UnlockVolunteerQuarters" Label="@loc_15373294129887559146" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_15373294129887559147">
+     <Buttons>
+      <Button ID="12889009725037028895" Name="Unlock" Label="@loc_15373294129887559148" Enabled="true" Hidden="false"/>
+      <Button ID="12889009725037028930" Name="Lock" Label="@loc_15373294129887559149" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725019922817" Name="SL_JovanGavrilovic" User="12889009725019922733">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725007123423"/>
+    <Email value="12889009724998299763"/>
+    <Email value="12889009725019901286"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725030106010" Name="SL_JuniorBookman" User="844024417277873629">
+   <Downloads>
+    <Download ID="12889009725030701264" Name="DartGunFabPlan" Label="@loc_15373294129887559150" Description="@loc_844024417322650494" Hidden="true"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009725044696706"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725003054166" Name="SL_MikeTurner" User="12889009725003052598">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725003054198"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724995038993" Name="SL_PatriciaVarma" User="13680621263389037313">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725019901286"/>
+    <Email value="12889009724998299763"/>
+    <Email value="12889009725007123423"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725030701319" Name="SL_RichIvers" User="12889009725001340109">
+   <Downloads>
+    <Download ID="12889009725030701341" Name="DartAmmoFabPlan" Label="@loc_15373294129887559153" Duration="5" Description="@loc_844024417322650115" Hidden="true"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009725032090412"/>
+    <Email value="12889009725044696811"/>
+    <Email value="12889009725044696476"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725007113310" Name="SL_RobertGage" User="12889009725001339882">
+   <Downloads>
+    <Download ID="12889009725007113362" Name="PictureAlice" Label="@loc_15373294129887559154"/>
+   </Downloads>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725000644747" Name="SL_Simmons" User="13680621263355513733">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725000652130"/>
+    <Email value="12889009724998299763"/>
+    <Email value="12889009725000645605"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725020780192" Name="SL_TestLab1" User="12889009725020780352">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725020780430" Name="SL_TestLab2" User="12889009725020780397">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013220224461" Name="SL_BrainwashLab" User="13680621263378671321" UseEmployeeMode="false" WorkstationTitle="@loc_13680621263405865852" UtilitiesTitle="@loc_13680621263405865875">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="13856881013222557064" Name="SL_BrainwashFlavor_Default" Label="@loc_13856881013222557065" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13856881013222557066">
+     <Buttons>
+      <Button ID="13856881013222557067" Name="SL_BrainwashScan_Default" Label="@loc_13856881013222557068" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="13856881013220224540" Name="SL_BrainwashUtil" Label="@loc_13856881013220224541" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13856881013220224699">
+     <Buttons>
+      <Button ID="13856881013220225054" Name="SL_BrainwashButton" Label="@loc_13856881013220225055" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405867522" Name="SL_EngageChair" Label="@loc_13680621263405867523" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="13856881013220225792" Name="SL_BrainwashFlavor" Label="@loc_13856881013220225793" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_13856881013220225914">
+     <Buttons>
+      <Button ID="13856881013220225957" Name="SL_BrainwashScan" Label="@loc_13856881013220225958" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="13680621263405868659" Name="BiancaDebrief" Label="@loc_13680621263405868660" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405868825">
+     <Buttons>
+      <Button ID="13680621263405868677" Name="StartVO" Label="@loc_13680621263405868678" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405868673" Name="StopVO" Label="@loc_13680621263405868674" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724999249111" Name="TC_HendrikDeVries" User="12889009724999248819">
+   <Downloads>
+    <Download ID="12889009725015847656" Name="EncryptionKey" Label="@loc_15373294129887559155"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009725017057712"/>
+    <Email value="12889009725018188635"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724999009601" Name="TC_Reception" User="12889009724999010166">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724999012109" Name="TC_ChristopherWade" User="12889009724999010102">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724999012251"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725015840824" Name="TC_ReginaSellers" User="12889009724999010068">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725032012403"/>
+    <Email value="12889009725032013899"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724999012463" Name="TC_MarcSellers" User="12889009724999010018">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009724999012251"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724999013863" Name="TC_MathiasKohl" User="12889009724995723365">
+   <Downloads>
+    <Download ID="12889009725033218988" Name="CalvinoLog" Label="@loc_15373294129887559165" Duration="5" Description="@loc_844024417322651762"/>
+    <Download ID="12889009725033219192" Name="ElazarLog" Label="@loc_15373294129887559166" Duration="5" Description="@loc_844024417322651802"/>
+    <Download ID="12889009725033219225" Name="ShoLog" Label="@loc_15373294129887559167" Duration="5" Description="@loc_844024417322651846"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009724995723655"/>
+    <Email value="1713490239435949890"/>
+    <Email value="12889009725018193747"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725015774987" Name="TurnOnTest" Label="@loc_15373294129887559168" Enabled="true" Description="@loc_13680621263405874554">
+     <Buttons>
+      <Button ID="1713490239435954228" Name="LoadTest" Label="@loc_1713490239435954229" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725013444015" Name="TC_DavidCole" User="12889009724999010490">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725013419755" Name="TC_AnnaGoldcrest" User="12889009724999010140">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725018193747"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009724999249654" Name="TC_ICU_Workstation" User="12889009724999009743">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372635802030" Name="PT_AnnaliseGallegosWorkStation" User="11824555372635796966">
+   <Downloads/>
+   <Emails>
+    <Email value="11824555372635800911"/>
+    <Email value="11824555372636315794"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372635637067" Name="PT_HansKelstrupWorkstation" User="11824555372635636731">
+   <Downloads/>
+   <Emails>
+    <Email value="11824555372635709466"/>
+    <Email value="11824555372659494696"/>
+    <Email value="11824555372659494823"/>
+    <Email value="11824555372659495267"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="11824555372635637190" Name="Looking Glass Station" Label="@loc_15373294129887559178" Enabled="true">
+     <Buttons>
+      <Button ID="6732635291216820402" Name="Allow access" Label="@loc_15373294129887559179" Enabled="true"/>
+      <Button ID="6732635291216820418" Name="Deny Access" Label="@loc_15373294129887559180" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="11824555372671565849" Name="IncidentPlayback" Label="@loc_15373294129887559181" Enabled="true" Description="@loc_13680621263405876306">
+     <Buttons>
+      <Button ID="13680621263405875933" Name="First Contact" Label="@loc_13680621263405875934" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405875935" Name="Weaver" Label="@loc_13680621263405875936" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="6732635291182869822" Name="PT_RoryManionWorkStation" User="6732635291181144338">
+   <Downloads>
+    <Download ID="6732635291182871563" Name="DomeTakerIII" Label="@loc_15373294129887559182" Duration="1" Hidden="true"/>
+    <Download ID="11824555372674516763" Name="PapmanMakesAHugeMistake" Label="@loc_15373294129887559183" Description="@loc_15373294129887559184" Duration="1" Hidden="true"/>
+    <Download ID="11824555372674517127" Name="  ALinearPairOfAngles.wav" Label="@loc_15373294129887559185" Duration="1" Description="@loc_15373294129887559186" Hidden="true"/>
+    <Download ID="11824555372674518308" Name="PlatformMasters.exe" Label="@loc_15373294129887559187" Description="@loc_15373294129887559188" Duration="1" Hidden="true"/>
+   </Downloads>
+   <Emails>
+    <Email value="13680621263403382623"/>
+    <Email value="6732635291182868804"/>
+    <Email value="6732635291183045167"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="6732635291221557786" Name="Deploy Nullwave Transmitter" Label="@loc_15373294129887559189" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_15373294129887559190">
+     <Buttons>
+      <Button ID="13680621263405877758" Name="DeployNWT" Label="@loc_13680621263405877759" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372636317681" Name="PT_DemianLinnWorkStation" User="11824555372636314779">
+   <Downloads/>
+   <Emails>
+    <Email value="11824555372636316904"/>
+    <Email value="6732635291182961777"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372659559223" Name="PT_Mitsuo Kimura" User="4349723564911787553">
+   <Downloads/>
+   <Emails>
+    <Email value="11824555372659494927"/>
+    <Email value="6732635291222874990"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="11824555372670204271" Name="Unlock Door" Label="@loc_15373294129887559191" Enabled="true" Description="@loc_13680621263405878079">
+     <Buttons>
+      <Button ID="13680621263405878025" Name="Lock" Label="@loc_13680621263405878026" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405878027" Name="Unlock" Label="@loc_13680621263405878028" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372674500118" Name="PT_LiveExam" User="4349723564911778518" WorkstationTitle="@loc_13680621263406297763">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="11824555372674510991" Name="Procedure" Label="@loc_15373294129887559193" Enabled="true" Description="@loc_13680621263405878481">
+     <Buttons>
+      <Button ID="11824555372674511078" Name="Metabolic Analytics" Label="@loc_15373294129887559194" Enabled="false"/>
+      <Button ID="11824555372674511109" Name="Diagnostic Ultrasound" Label="@loc_15373294129887559195" Enabled="false"/>
+      <Button ID="11824555372674511095" Name="Magnetic Resonance Imaging" Label="@loc_15373294129887559196" Enabled="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="11824555372674500473" Name="Manage Live Exam" Label="@loc_15373294129887559197" Enabled="true" Description="@loc_13680621263405878998">
+     <Buttons>
+      <Button ID="11824555372674500577" Name="Open Containment Shield" Label="@loc_15373294129887559198" Enabled="true"/>
+      <Button ID="6732635291234536102" Name="DeployNWTinLiveExam" Label="@loc_6732635291234536103" Enabled="true" Hidden="false"/>
+      <Button ID="11824555372674500607" Name="Terminate Specimen" Label="@loc_15373294129887559199" Enabled="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372674521065" Name="PT_MimicMultiplication" User="6732635291181144338" WorkstationTitle="@loc_13680621263406297782">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="11824555372674597623" Name="Volunteer Records" Label="@loc_15373294129887559200" Enabled="true" Description="@loc_13680621263405881790">
+     <Buttons>
+      <Button ID="13680621263405881793" Name="RequestRec" Label="@loc_13680621263405881794" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="11824555372674521292" Name="Mimic Multiplication" Label="@loc_15373294129887559202" Enabled="true" Description="@loc_15373294129887559203">
+     <Buttons>
+      <Button ID="11824555372674521325" Name="Extract Mimic  " Label="@loc_15373294129887559204" Enabled="true" Hidden="false"/>
+      <Button ID="6732635291224064196" Name="Release Mimic" Label="@loc_6732635291224064197" Enabled="false" Hidden="false"/>
+      <Button ID="11824555372674521426" Name="Extract Exotic Material" Label="@loc_15373294129887559205" Enabled="false" Hidden="false"/>
+      <Button ID="6732635291224064254" Name="Process Material" Label="@loc_6732635291224064255" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="11824555372674521263" Name="Door Control" Label="@loc_15373294129887559206" Enabled="true">
+     <Buttons>
+      <Button ID="11824555372674521450" Name="Open Door" Label="@loc_15373294129887559207" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="6732635291226569743" Name="PT_HelenBarkerCombs" User="4349723564911542199" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails>
+    <Email value="11824555372659495087"/>
+    <Email value="11824555372659559041"/>
+    <Email value="13680621263403382073"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="6732635291182870181" Name="PP_Matthew Conolly" User="6732635291182868408">
+   <Downloads/>
+   <Emails>
+    <Email value="418270515490821741"/>
+    <Email value="11824555372641859992"/>
+    <Email value="418270515490733461"/>
+    <Email value="6732635291182869606"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768493" Name="PP_Lan Nguyen" User="6732635291182868501">
+   <Downloads/>
+   <Emails>
+    <Email value="418270515490822161"/>
+    <Email value="11824555372641671166"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768574" Name="PP_Duncan Krassikoff" User="6732635291182868331">
+   <Downloads/>
+   <Emails>
+    <Email value="418270515490493831"/>
+    <Email value="418270515490733721"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768648" Name="PP_Anthony Aquilante" User="6732635291182868247">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768674" Name="PP_Mikhaila Ilyushin" User="6732635291182789988">
+   <Downloads/>
+   <Emails>
+    <Email value="418270515490489303"/>
+    <Email value="418270515490487440"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768705" Name="PP_Nicholas Stillwater" User="6732635291182868573">
+   <Downloads/>
+   <Emails>
+    <Email value="11824555372641859460"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768744" Name="PP_Anders Kline" User="761057047955715756">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768825" Name="PP_Laurel Davis" User="761057047956314385">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372641768900" Name="PP_Talia Brooks" User="11824555372641671002">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="11824555372674426383" Name="PP_ReactorControl" User="6732635291182868573" WorkstationTitle="@loc_13680621263405882411" UtilitiesTitle="@loc_13680621263405882422">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="11824555372674426610" Name="Reboot sequence" Label="@loc_15373294129887559209" Enabled="true" Description="@loc_13680621263405882713">
+     <Buttons>
+      <Button ID="11824555372674426846" Name="Enable Reboot " Label="@loc_15373294129887559210" Enabled="true"/>
+      <Button ID="11824555372674433218" Name="Commence Reboot" Label="@loc_15373294129887559211" Enabled="true"/>
+      <Button ID="11824555372674433068" Name="Complete Reboot" Label="@loc_15373294129887559212" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013195396316" Name="PP_EmmanuelMendez" User="4349723564906961892">
+   <Downloads/>
+   <Emails>
+    <Email value="13856881013195396091"/>
+    <Email value="418270515490733888"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239391540115" Name="LO_JasonChang" User="1713490239391539906">
+   <Downloads/>
+   <Emails>
+    <Email value="1713490239391540354"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239389130779" Name="LO_MorganKarl" User="1713490239389131093">
+   <Downloads/>
+   <Emails>
+    <Email value="1713490239429913080"/>
+    <Email value="13680621263404431075"/>
+    <Email value="13680621263404436353"/>
+    <Email value="13680621263417809589"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="1713490239429219326" Name="PlayVideo" Label="@loc_15373294129887559170" Enabled="true" Hidden="false" Description="@loc_15373294129887559171">
+     <Buttons>
+      <Button ID="1713490239429825135" Name="PlayVideo" Label="@loc_15373294129887559172" Enabled="true" Hidden="false"/>
+      <Button ID="1713490239429826218" Name="ResumeVideo" Label="@loc_15373294129887559173" Enabled="true" Hidden="true"/>
+      <Button ID="1713490239437080314" Name="LGRepair" Label="@loc_1713490239437080315" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="1713490239429824403" Name="mika" Label="@loc_15373294129887559174" Enabled="true" Hidden="true" Description="@loc_15373294129887559175">
+     <Buttons>
+      <Button ID="1713490239429825470" Name="Play" Label="@loc_15373294129887559176" Enabled="true" Hidden="false"/>
+      <Button ID="1713490239429825690" Name="delete" Label="@loc_15373294129887559177" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239396468893" Name="LO_BiancaGoodwin" User="1713490239396469022">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725015337613"/>
+    <Email value="1713490239419476998"/>
+    <Email value="12889009725032084209"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239396470622" Name="LO_RichardCoveney" User="12889009724998731622">
+   <Downloads>
+    <Download ID="1713490239435715233" Name="toy_gun" Label="@loc_1713490239435715234" Hidden="true" Description="@loc_844024417316950995"/>
+   </Downloads>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239396470732" Name="LO_KellyRandolph" User="1713490239396469775">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239396470651" Name="LO_HarleyGrainger" User="1713490239396469284">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239396470689" Name="LO_YukiKimura" User="1713490239396469578">
+   <Downloads>
+    <Download ID="1713490239435713714" Name="Toy_Gun" Label="@loc_1713490239435713715" Hidden="true" Description="@loc_844024417316950937"/>
+   </Downloads>
+   <Emails>
+    <Email value="1713490239424377441"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239424377952" Name="LO_Elias" User="844024417277875007">
+   <Downloads>
+    <Download ID="844024417315652856" Name="EliasMap" Label="@loc_844024417315652857" Hidden="true" Description="@loc_844024417315652888" Duration="2"/>
+   </Downloads>
+   <Emails>
+    <Email value="1713490239424377632"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239396470765" Name="LO_ThomasTucker" User="1713490239396469982">
+   <Downloads>
+    <Download ID="1713490239435715326" Name="toy_gun" Label="@loc_1713490239435715327" Hidden="true" Description="@loc_844024417316950979"/>
+   </Downloads>
+   <Emails>
+    <Email value="4349723564926657060"/>
+    <Email value="1713490239404506780"/>
+    <Email value="13680621263403918439"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239402623314" Name="LO_SarahElazar" User="4349723564897456793">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725007297479"/>
+    <Email value="1713490239402710783"/>
+    <Email value="1713490239418941679"/>
+    <Email value="13680621263403478820"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239402713163" Name="LO_Bellamy" User="4349723564897457011">
+   <Downloads/>
+   <Emails>
+    <Email value="1713490239402712525"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417266060378" Name="HL_DrThorstein" User="844024417266061744">
+   <Downloads/>
+   <Emails>
+    <Email value="844024417285400087"/>
+    <Email value="13680621263404435026"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417303640080" Name="HL_LookingGlassStation" User="844024417266061858" UtilitiesTitle="@loc_15373294129887559215" WorkstationTitle="@loc_13680621263405887059">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417303640081" Name="Video Playback" Label="@loc_15373294129887559216" Enabled="true" Description="@loc_15373294129887559217">
+     <Buttons>
+      <Button ID="844024417303644748" Name="LGVideo01" Label="@loc_15373294129887559218" Enabled="true"/>
+      <Button ID="844024417303645022" Name="LGVideo02" Label="@loc_15373294129887559219" Enabled="true"/>
+      <Button ID="761057047988483146" Name="Stop Playback" Label="@loc_15373294129887559220" Enabled="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="761057047988369387" Name="NetworkUtilities" Label="@loc_15373294129887559221" Enabled="true" Description="@loc_15373294129887559222">
+     <Buttons>
+      <Button ID="761057047988369426" Name="Rack1" Label="@loc_15373294129887559223" Enabled="true"/>
+      <Button ID="761057047988372667" Name="Rack3" Label="@loc_15373294129887559224" Enabled="true"/>
+      <Button ID="761057047988372521" Name="Rack4" Label="@loc_15373294129887559225" Enabled="true"/>
+      <Button ID="761057047988372730" Name="Rack5" Label="@loc_15373294129887559226" Enabled="true"/>
+      <Button ID="761057047988372746" Name="Rack6" Label="@loc_15373294129887559227" Enabled="true"/>
+      <Button ID="761057047988386096" Name="Rack7" Label="@loc_15373294129887559228" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417303642590" Name="Diagnostics" Label="@loc_15373294129887559229" Enabled="true" Description="@loc_15373294129887559230">
+     <Buttons>
+      <Button ID="844024417303645309" Name="DiagnoseNetwork" Label="@loc_15373294129887559231" Enabled="true"/>
+      <Button ID="844024417303645232" Name="DiagnoseScreen" Label="@loc_15373294129887559232" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047959422154" Name="HL_ThaddeusYork" User="761057047958921852">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047960719598"/>
+    <Email value="4349723564915147154"/>
+    <Email value="761057047959422033"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047959962663" Name="HL_MiyuSato" User="844024417266061926">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="761057047959962688" Name="EnableLookingGlass" Label="@loc_15373294129887559245" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="761057047959962698" Name="DisableLookingGlass" Label="@loc_15373294129887559246" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047960649492" Name="HL_FranklinGoode" User="761057047960289042">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047992095075"/>
+    <Email value="761057047960649366"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047961759590" Name="HL_HopeEllis" User="761057047958921012">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047961759394"/>
+    <Email value="761057047961759489"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047962386806" Name="HL_GroupWorkstation" User="761057047963313144">
+   <Downloads>
+    <Download ID="761057047985602578" Name="Toy Gun" Label="@loc_15373294129887559254" Description="@loc_761057047997800866" Duration="2" Hidden="true"/>
+    <Download ID="761057047985628335" Name="Toy Gun Ammo" Label="@loc_15373294129887559255" Description="@loc_761057047997800888" Duration="2" Hidden="true"/>
+   </Downloads>
+   <Emails>
+    <Email value="761057047992973975"/>
+    <Email value="761057047967544064"/>
+    <Email value="761057047963584048"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417266062302" Name="HL_DrCalvino" User="844024417266061858">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047966162938"/>
+    <Email value="761057047966163662"/>
+    <Email value="844024417267951210"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047970935677" Name="HL_GregoryKepner" User="761057047960287400">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047970935445"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047974142601" Name="HL_CliveLawrence" User="13680621263360508503">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564947122639"/>
+    <Email value="761057047974136749"/>
+    <Email value="761057047979924344"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047987525640" Name="HL_PeterColeman" User="844024417271589273">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564928461445"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564947041466" Name="HL_MaryMalinaro" User="761057047958922251">
+   <Downloads>
+    <Download ID="4349723564947041671" Name="ToyGun" Label="@loc_4349723564947041672" Hidden="false" Description="@loc_4349723564947041821" Duration="2"/>
+    <Download ID="4349723564947041674" Name="ToyGunAmmo" Label="@loc_4349723564947041675" Hidden="false" Description="@loc_4349723564947041849" Duration="2"/>
+   </Downloads>
+   <Emails>
+    <Email value="418270515490501024"/>
+    <Email value="4349723564947122633"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047994074117" Name="HL_LilyMorris" User="761057047964793306" UseEmployeeMode="false" WorkstationTitle="@loc_15373294129887559510">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047994072257"/>
+    <Email value="761057047998408149"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047971603673" Name="HL_JoshDalton" User="4349723564911778216">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047979578377"/>
+    <Email value="761057047979578251"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047999532016" Name="HL_MachineCargo" User="13680621263360508503" UseEmployeeMode="false" WorkstationTitle="@loc_761057047999532074">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="761057047999532085" Name="Transport" Label="@loc_761057047999532086" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263416190490">
+     <Buttons>
+      <Button ID="761057047999532116" Name="MoveCargo" Label="@loc_761057047999532117" Enabled="true" Hidden="false"/>
+      <Button ID="761057047999532139" Name="--To Fabrication Bay --" Label="@loc_761057047999532140" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="761057047999532170" Name="Error" Label="@loc_761057047999532171" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047996231334" Name="HL_Ballistics" User="761057047964793306" UseEmployeeMode="false" UtilitiesTitle="@loc_761057047996240290">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="761057047996231443" Name="ChamberControls" Label="@loc_761057047996231444" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_761057047996232110">
+     <Buttons>
+      <Button ID="761057047996232118" Name="OpenChamber" Label="@loc_761057047996232119" Enabled="true" Hidden="true"/>
+      <Button ID="761057047996232155" Name="SealChamber" Label="@loc_761057047996232156" Enabled="true" Hidden="false"/>
+      <Button ID="761057047996232167" Name="Add Grenade" Label="@loc_761057047996232168" Enabled="false" Hidden="true"/>
+      <Button ID="761057047996232191" Name="ReleaseRecycler" Label="@loc_761057047996232192" Enabled="false" Hidden="false"/>
+      <Button ID="761057047996232213" Name="ReleaseEMP" Label="@loc_761057047996232214" Enabled="false" Hidden="true"/>
+      <Button ID="761057047998993269" Name="ReleaseUnknown" Label="@loc_761057047998993270" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047996861035" Name="HL_Blackbox" User="4349723564911778280" UseEmployeeMode="false" WorkstationTitle="@loc_761057047996861084">
+   <Downloads>
+    <Download ID="761057047996861087" Name="DesignDoc" Label="@loc_761057047996861088" Hidden="false" Description="@loc_761057047996861125" Duration="3"/>
+    <Download ID="761057047998408059" Name="LaserGun" Label="@loc_761057047998408060" Hidden="false" Description="@loc_761057047998408130" Duration="3"/>
+   </Downloads>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047998161363" Name="HL_Laser" User="4349723564911778280" UseEmployeeMode="false" UtilitiesTitle="@loc_761057047998161428" WorkstationTitle="@loc_13680621263405897092">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="761057047998161389" Name="TestLaser" Label="@loc_761057047998161390" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_761057047998161419">
+     <Buttons>
+      <Button ID="761057047998161446" Name="FireLaser" Label="@loc_761057047998161447" Enabled="true" Hidden="false"/>
+      <Button ID="761057047998161485" Name="Undock" Label="@loc_761057047998161486" Enabled="true" Hidden="false"/>
+      <Button ID="761057047998161523" Name="Dock" Label="@loc_761057047998161524" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047971603713" Name="HL_LaneCarpenter" User="4349723564911778280">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047996338241"/>
+    <Email value="761057047979578664"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412530895137" Name="AR_AlexKarl" User="1713490239389130908">
+   <Downloads>
+    <Download ID="14667999412555273079" Name="DownloadNeuroFab" Label="@loc_15373294129887559249" Description="@loc_844024417316952466"/>
+   </Downloads>
+   <Emails>
+    <Email value="14667999412535819308"/>
+    <Email value="1713490239412906699"/>
+    <Email value="844024417294918812"/>
+    <Email value="13680621263404435276"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="14667999412562529816" Name="Coral_Upload" Label="@loc_15373294129887559250" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_15373294129887559251">
+     <Buttons>
+      <Button ID="14667999412568564144" Name="Upload" Label="@loc_14667999412568564145" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="14667999412562536313" Name="Error" Label="@loc_15373294129887559252" Enabled="false" Hidden="true" NoDefaultButton="false" Description="@loc_15373294129887559253">
+     <Buttons>
+      <Button ID="14667999412568576239" Name="Upload" Label="@loc_14667999412568576240" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="14667999412566750919" Name="PlayVideo" Label="@loc_14667999412566750920" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_14667999412566751065">
+     <Buttons>
+      <Button ID="14667999412566751068" Name="PlayVideo" Label="@loc_14667999412566751069" Enabled="true" Hidden="true"/>
+      <Button ID="14667999412568401660" Name="LG_Repair" Label="@loc_14667999412568401661" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315396538" Name="EscapePodUtility" Label="@loc_844024417315396539" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315396586">
+     <Buttons>
+      <Button ID="844024417315396590" Name="RetractEPBridge" Label="@loc_844024417315396591" Enabled="false" Hidden="false"/>
+      <Button ID="844024417315396593" Name="ExtendEPBridge" Label="@loc_844024417315396594" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412558046837" Name="AR_Greenhouse" User="14667999412531069952" WorkstationTitle="@loc_13680621263405897265">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="14667999412558109528" Name="GreenhouseControl" Label="@loc_15373294129887559351" Enabled="true" Description="@loc_15373294129887559352">
+     <Buttons>
+      <Button ID="14667999412558109579" Name="DoorsUnlock" Label="@loc_15373294129887559353" Enabled="true"/>
+      <Button ID="14667999412558109643" Name="DoorsLocked" Label="@loc_15373294129887559354" Enabled="true"/>
+      <Button ID="14667999412559854592" Name="Water Plants" Label="@loc_15373294129887559355" Enabled="true"/>
+      <Button ID="14667999412559854594" Name="Release Bot" Label="@loc_15373294129887559356" Enabled="false" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417315396666" Name="AR_EscapePod" User="1713490239389130908" UseEmployeeMode="false" UtilitiesTitle="@loc_844024417315396694" WorkstationTitle="@loc_844024417326041608">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417315396739" Name="LaunchControls" Label="@loc_844024417315396740" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405888150">
+     <Buttons>
+      <Button ID="844024417315397102" Name="EPLaunchInit" Label="@loc_844024417315397103" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417282479333" Name="StagingAreaWorkstation1" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417282479370" Name="2nd Awakening" Label="@loc_15373294129887559256" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417282479425" Name="Escape" Label="@loc_15373294129887559257" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417282479510" Name="GotToOffice" Label="@loc_15373294129887559258" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417282479534" Name="FoundLGData" Label="@loc_15373294129887559259" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417295511221" Name="Watched2ndHalf" Label="@loc_15373294129887559260" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284281498" Name="DetourPsych" Label="@loc_15373294129887559261" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417295514641" Name="StagingAreaWorkstation1B" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417284280866" Name="StagingAreaWorkstation2" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417284280873" Name="DetourGUTs" Label="@loc_15373294129887559262" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284280874" Name="DetourArboretum" Label="@loc_15373294129887559263" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284280875" Name="DeepStorageLocked" Label="@loc_15373294129887559264" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284280940" Name="GotVoiceSamples" Label="@loc_15373294129887559265" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284281514" Name="RestoreLookingGlass" Label="@loc_15373294129887559266" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284281541" Name="GetOut" Label="@loc_15373294129887559267" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417284281722" Name="StagingAreaWorkstation3" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417284281724" Name="ThroughCargo" Label="@loc_15373294129887559268" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284281725" Name="RebootLifeSupport" Label="@loc_15373294129887559269" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284281726" Name="RebootPowerPlant" Label="@loc_15373294129887559270" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417284281727" Name="KeysToTheKingdom" Label="@loc_15373294129887559271" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417286009340" Name="GoScanCoral" Label="@loc_15373294129887559272" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417286527736" Name="Scanned coral" Label="@loc_15373294129887559273" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417286009594" Name="StagingAreaWorkstation4" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417286526655" Name="Find Tech Officer" Label="@loc_15373294129887559274" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417286009601" Name="DealWithTO1" Label="@loc_15373294129887559275" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417287048543" Name="TODead" Label="@loc_15373294129887559276" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417287059758" Name="MetAlex" Label="@loc_15373294129887559277" Enabled="true" Description="@loc_844024417328171299">
+     <Buttons>
+      <Button ID="844024417328171234" Name="MetAlexDahlDead" Label="@loc_844024417328171235" Enabled="true" Hidden="false"/>
+      <Button ID="844024417328171200" Name="MetAlexDahlAlive" Label="@loc_844024417328171201" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417287229841" Name="SelfDestructPrimed" Label="@loc_15373294129887559278" Enabled="true">
+     <Buttons>
+      <Button ID="844024417328172351" Name="SDPrimedDahlAlive" Label="@loc_844024417328172352" Enabled="true" Hidden="false"/>
+      <Button ID="844024417328172346" Name="SDPrimedDahlDead" Label="@loc_844024417328172347" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417328172389" Name="Planted Nullwave" Label="@loc_844024417328172390" Enabled="true" Description="@loc_844024417328172391">
+     <Buttons>
+      <Button ID="844024417328172392" Name="MetAlexDahlAlive" Label="@loc_844024417328172393" Enabled="true" Hidden="false"/>
+      <Button ID="844024417328172394" Name="MetAlexDahlDead" Label="@loc_844024417328172395" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417287230442" Name="StagingAreaWorkstation5" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417287294178" Name="Self Destruct Keys" Label="@loc_15373294129887559279" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417287294787" Name="NWT and Keys" Label="@loc_15373294129887559280" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417320221766" Name="StagingAreaEndGameStation" User="1713490239389131093" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417320230432" Name="Launch" Label="@loc_844024417320230433" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417320238725">
+     <Buttons>
+      <Button ID="844024417320323406" Name="Initialize" Label="@loc_844024417320323407" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320238729" Name="travel" Label="@loc_844024417320238730" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417320322249" Name="PlayerEmpathy" Label="@loc_844024417320322250" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417320322277">
+     <Buttons>
+      <Button ID="844024417320322779" Name="GenderDivider" Label="@loc_844024417320322780" Enabled="false" Hidden="false"/>
+      <Button ID="844024417320322739" Name="PlayerIsFemale" Label="@loc_844024417320322740" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320322737" Name="PlayerIsMale" Label="@loc_844024417320322738" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320322716" Name="EmpathyDivider" Label="@loc_844024417320322717" Enabled="false" Hidden="false"/>
+      <Button ID="844024417320322281" Name="PlayerEmpathyHigh" Label="@loc_844024417320322282" Enabled="false" Hidden="false"/>
+      <Button ID="844024417320322295" Name="PlayerEmpathyMedium" Label="@loc_844024417320322296" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320322298" Name="PlayerEmpathyLow" Label="@loc_844024417320322299" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417320322418" Name="NPCMetrics" Label="@loc_844024417320322419" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417320322451">
+     <Buttons>
+      <Button ID="844024417320322440" Name="ALotOfHumansSaved" Label="@loc_844024417320322441" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320322442" Name="FewHumansSaved" Label="@loc_844024417320322443" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320322929" Name="ALotOfAliensKilled" Label="@loc_844024417320322930" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320322931" Name="FewAliensKilled" Label="@loc_844024417320322932" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320491922" Name="AlienUpgrades" Label="@loc_844024417320491923" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320491937" Name="NoAlienUpgrades" Label="@loc_844024417320491938" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417320238788" Name="Character Fates 1" Label="@loc_844024417320238789" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417320238816">
+     <Buttons>
+      <Button ID="844024417320309427" Name="IgweFound" Label="@loc_844024417320309428" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320309448" Name="IgweNotFound" Label="@loc_844024417320309449" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320392371" Name="IgweRescued" Label="@loc_844024417320392372" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320392394" Name="IgweNotRescued" Label="@loc_844024417320392395" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320392431" Name="PKIgweTrue" Label="@loc_844024417320392432" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320392443" Name="PKIgweFalse" Label="@loc_844024417320392444" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320492492" Name="IngramAlive" Label="@loc_844024417320492493" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320492494" Name="IngramDead" Label="@loc_844024417320492495" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320492539" Name="CookAlive" Label="@loc_844024417320492540" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320492541" Name="CookDead" Label="@loc_844024417320492542" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417320393106" Name="CharacterFates" Label="@loc_844024417320393107" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417320393108">
+     <Buttons>
+      <Button ID="844024417320406680" Name="MikhailaDead" Label="@loc_844024417320406681" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320406683" Name="MikhailaAlive" Label="@loc_844024417320406684" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320393121" Name="MikhailaPKFalse" Label="@loc_844024417320393122" Enabled="false" Hidden="false"/>
+      <Button ID="844024417320393123" Name="MikhailaPKTrue" Label="@loc_844024417320393124" Enabled="false" Hidden="true"/>
+      <Button ID="844024417320393125" Name="AlexAlive" Label="@loc_844024417320393126" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320393127" Name="AlexDead" Label="@loc_844024417320393128" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320405977" Name="SarahDead" Label="@loc_844024417320405978" Enabled="true" Hidden="true"/>
+      <Button ID="844024417320405979" Name="SarahAlive" Label="@loc_844024417320405980" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320393438" Name="SarahPKFalse" Label="@loc_844024417320393439" Enabled="false" Hidden="false"/>
+      <Button ID="844024417320393440" Name="SarahPKTrue" Label="@loc_844024417320393441" Enabled="false" Hidden="true"/>
+      <Button ID="844024417320393480" Name="DanielleMet" Label="@loc_844024417320393481" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320393510" Name="DanielleNotMet" Label="@loc_844024417320393511" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417320238829" Name="Station Fate" Label="@loc_844024417320238830" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417320238863">
+     <Buttons>
+      <Button ID="844024417320240884" Name="Nullwave Device" Label="@loc_844024417320240885" Enabled="true" Hidden="false"/>
+      <Button ID="844024417320240900" Name="Self Destruct" Label="@loc_844024417320240901" Enabled="false" Hidden="false"/>
+      <Button ID="844024417320240932" Name="Escape Pod" Label="@loc_844024417320240933" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417297925269" Name="StagingAreaChapterWorkstation" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417309590100" Name="ChapterSkips" Label="@loc_15373294129887559281" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_15373294129887559282">
+     <Buttons>
+      <Button ID="844024417309590138" Name="Chapter1Skip" Label="@loc_15373294129887559283" Enabled="true" Hidden="false"/>
+      <Button ID="844024417309590141" Name="Chapter2Skip" Label="@loc_15373294129887559284" Enabled="true" Hidden="false"/>
+      <Button ID="844024417309590241" Name="Chapter3Skip" Label="@loc_15373294129887559285" Enabled="true" Hidden="false"/>
+      <Button ID="844024417309590255" Name="Chapter4Skip" Label="@loc_15373294129887559286" Enabled="true" Hidden="false"/>
+      <Button ID="844024417309590256" Name="Chapter5Skip" Label="@loc_15373294129887559287" Enabled="true" Hidden="false"/>
+      <Button ID="844024417309590258" Name="Chapter6Skip" Label="@loc_15373294129887559288" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417309591481" Name="TeamPlaythroughs" Label="@loc_15373294129887559289" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417309591500" Name="TP772016" Label="@loc_15373294129887559290" Enabled="false" Hidden="false"/>
+      <Button ID="844024417310202990" Name="TP07142016" Label="@loc_15373294129887559291" Enabled="false" Hidden="false"/>
+      <Button ID="844024417312697914" Name="TP08122016" Label="@loc_844024417312697915" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417306660962" Name="StagingAreaDestinationWorkstation" User="1713490239389131093" UtilitiesTitle="@loc_844024417315736809" WorkstationTitle="@loc_844024417315736819">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417306660990" Name="DestinationLobby" Label="@loc_15373294129887559292" Enabled="true" Hidden="false" Description="@loc_15373294129887559293">
+     <Buttons>
+      <Button ID="844024417306661054" Name="Neuromod" Label="@loc_15373294129887559294" Enabled="true" Hidden="false"/>
+      <Button ID="844024417306661069" Name="hardware" Label="@loc_15373294129887559295" Enabled="true" Hidden="false"/>
+      <Button ID="844024417306661081" Name="shuttlebay" Label="@loc_15373294129887559296" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315736722" Name="psych" Label="@loc_844024417315736723" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315736724" Name="arb" Label="@loc_844024417315736725" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315736726" Name="lifesupport" Label="@loc_844024417315736727" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417306661097" Name="destinationHardware" Label="@loc_15373294129887559297" Enabled="true" Hidden="false" Description="@loc_15373294129887559298">
+     <Buttons>
+      <Button ID="844024417306661120" Name="Lobby" Label="@loc_15373294129887559299" Enabled="true" Hidden="false"/>
+      <Button ID="844024417306661123" Name="exterior" Label="@loc_15373294129887559300" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417306661943" Name="ShuttleBay" Label="@loc_15373294129887559303" Enabled="true" Hidden="false" Description="@loc_15373294129887559304">
+     <Buttons>
+      <Button ID="844024417306662043" Name="FromLobby" Label="@loc_15373294129887559305" Enabled="true" Hidden="false"/>
+      <Button ID="844024417306662173" Name="FromGUTS" Label="@loc_15373294129887559306" Enabled="true" Hidden="false"/>
+      <Button ID="844024417306662182" Name="FromExterior" Label="@loc_15373294129887559307" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417306662545" Name="ToPsychotronics" Label="@loc_15373294129887559308" Enabled="true" Hidden="false" Description="@loc_844024417315738532">
+     <Buttons>
+      <Button ID="844024417306662556" Name="GUTs" Label="@loc_15373294129887559309" Enabled="true" Hidden="false"/>
+      <Button ID="844024417306662569" Name="Exterior" Label="@loc_15373294129887559310" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738035" Name="Lobby" Label="@loc_844024417315738036" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738141" Name="ToArboretum" Label="@loc_844024417315738142" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738544">
+     <Buttons>
+      <Button ID="844024417315738430" Name="exterior" Label="@loc_844024417315738431" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738433" Name="bridge" Label="@loc_844024417315738434" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738435" Name="crew" Label="@loc_844024417315738436" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738437" Name="deepstorage" Label="@loc_844024417315738438" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738439" Name="guts" Label="@loc_844024417315738440" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738163" Name="ToCrew" Label="@loc_844024417315738164" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738540">
+     <Buttons>
+      <Button ID="844024417315738744" Name="fromarb" Label="@loc_844024417315738745" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738304" Name="ToGUTS" Label="@loc_844024417315738305" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738553">
+     <Buttons>
+      <Button ID="844024417315738760" Name="psych" Label="@loc_844024417315738761" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738762" Name="cargo" Label="@loc_844024417315738763" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738764" Name="arb" Label="@loc_844024417315738765" Enabled="true" Hidden="false"/>
+      <Button ID="844024417315738766" Name="shuttle" Label="@loc_844024417315738767" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738318" Name="ToDeepStorage" Label="@loc_844024417315738319" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738537">
+     <Buttons>
+      <Button ID="844024417315738860" Name="arb" Label="@loc_844024417315738861" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738336" Name="ToBridge" Label="@loc_844024417315738337" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738550">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738355" Name="ToExterior" Label="@loc_844024417315738356" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738547">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738389" Name="ToCargo" Label="@loc_844024417315738390" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738556">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738400" Name="ToLifeSupport" Label="@loc_844024417315738401" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738559">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417315738415" Name="ToPower" Label="@loc_844024417315738416" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417315738562">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417266579604" Name="ShowpieceStagingAreaWorkstation" User="1713490239389130908">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417266579649" Name="StartFromStart" Label="@loc_15373294129887559161" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417266579665" Name="SkipToLobby" Label="@loc_15373294129887559162" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417266579687" Name="SkipToPrototype" Label="@loc_15373294129887559163" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417268989869" Name="SkipToLobbyReturn" Label="@loc_15373294129887559164" Enabled="true">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13680621263404438777" Name="CQ_AlexYu" User="1713490239389130908" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564947228335"/>
+    <Email value="844024417294918812"/>
+    <Email value="13680621263404438806"/>
+    <Email value="13680621263404438890"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417297494711" Name="CQ_Bellamy" User="4349723564897457011">
+   <Downloads>
+    <Download ID="844024417297494757" Name="MorgansResearchData" Label="@loc_15373294129887559311"/>
+   </Downloads>
+   <Emails>
+    <Email value="844024417297495298"/>
+    <Email value="4349723564947212898"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417289738471" Name="CQ_AbigailFoy" User="844024417273151649">
+   <Downloads>
+    <Download ID="12889009725030440700" Name="DartAmmoFabPlan" Label="@loc_15373294129887559312" Description="@loc_844024417316952910" Hidden="false"/>
+    <Download ID="12889009725035298856" Name="DanielleAbbyConvoAchive" Label="@loc_15373294129887559313"/>
+   </Downloads>
+   <Emails>
+    <Email value="844024417289737864"/>
+    <Email value="844024417289738027"/>
+    <Email value="844024417289738032"/>
+    <Email value="844024417289738038"/>
+    <Email value="844024417315570399"/>
+   </Emails>
+   <Utilities>
+    <ArkKeypadUtility ID="844024417315571859" Name="TreasurePrizeUtility" Label="@loc_844024417315571860" Enabled="true" Hidden="false"/>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417273153016" Name="CQ_DanielleSho" User="844024417273151090">
+   <Downloads>
+    <Download ID="844024417278847358" Name="DanielleAbbyConvoArchive" Label="@loc_15373294129887559314"/>
+   </Downloads>
+   <Emails>
+    <Email value="844024417284875592"/>
+    <Email value="844024417298529929"/>
+    <Email value="844024417315570188"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725030439094" Name="CQ_SarahElazar" User="4349723564897456793">
+   <Downloads>
+    <Download ID="12889009725030439130" Name="WeaponKitFabPlan" Label="@loc_15373294129887559315"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009725007297479"/>
+    <Email value="1713490239402710783"/>
+    <Email value="13680621263403478820"/>
+    <Email value="1713490239418941679"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417295023926" Name="CQ_EmmaBeatty" User="4349723564911791736">
+   <Downloads>
+    <Download ID="12889009725030440865" Name="DartGunFabPlan" Label="@loc_15373294129887559316" Duration="5" Hidden="false" Description="@loc_844024417316952964"/>
+   </Downloads>
+   <Emails>
+    <Email value="12889009725042790744"/>
+    <Email value="12889009725042788775"/>
+    <Email value="844024417315570188"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725030437082" Name="CQ_Igwe" User="4349723564897457173">
+   <Downloads>
+    <Download ID="12889009725030437111" Name="PsyHypoFabricationPlan" Label="@loc_15373294129887559317"/>
+   </Downloads>
+   <Emails>
+    <Email value="13680621263404579838"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725042787319" Name="CQ_WillMitchell" User="844024417273152045" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails>
+    <Email value="12889009725042786898"/>
+    <Email value="13680621263404435914"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417285411024" Name="CQ_MorgansQuarters" User="1713490239389131093">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="12889009725043138131" Name="Memory Logs" Label="@loc_12889009725043138132" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_12889009725043138373">
+     <Buttons>
+      <Button ID="12889009725043138163" Name="Calvino" Label="@loc_12889009725043138164" Enabled="true" Hidden="false"/>
+      <Button ID="12889009725043138136" Name="Danielle" Label="@loc_12889009725043138137" Enabled="true" Hidden="false"/>
+      <Button ID="12889009725043138161" Name="Igwe" Label="@loc_12889009725043138162" Enabled="true" Hidden="false"/>
+      <Button ID="12889009725043138165" Name="Mikhaila" Label="@loc_12889009725043138166" Enabled="true" Hidden="false"/>
+      <Button ID="12889009725043138158" Name="Paraplexis" Label="@loc_12889009725043138159" Enabled="true" Hidden="false"/>
+      <Button ID="12889009725043138156" Name="SarahElazar" Label="@loc_12889009725043138157" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417297504992" Name="CQ_SoundSystemWorkstation" User="844024417297505062">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417304854740" Name="SessionPlayback" Label="@loc_15373294129887559323" Enabled="true" Description="@loc_15373294129887559324">
+     <Buttons>
+      <Button ID="844024417304856998" Name="pepTalk" Label="@loc_15373294129887559327" Enabled="true"/>
+      <Button ID="844024417304856773" Name="DaniellesBand" Label="@loc_15373294129887559325" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417304856933" Name="Ambient" Label="@loc_15373294129887559328" Enabled="true" Description="@loc_15373294129887559329">
+     <Buttons>
+      <Button ID="844024417304856957" Name="Muzak 1" Label="@loc_15373294129887559330" Enabled="true"/>
+      <Button ID="844024417304856976" Name="Muzak 2" Label="@loc_15373294129887559331" Enabled="true"/>
+      <Button ID="844024417304857018" Name="whiteNoise" Label="@loc_15373294129887559332" Enabled="true"/>
+      <Button ID="13680621263405892923" Name="Stop" Label="@loc_13680621263405892924" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047992107508" Name="CQ_DrCalvino" User="844024417266061858">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="13680621263405897704" Name="LGControls" Label="@loc_13680621263405897705" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405899811">
+     <Buttons>
+      <Button ID="13680621263405899446" Name="On" Label="@loc_13680621263405899447" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405899448" Name="Off" Label="@loc_13680621263405899449" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="13680621263405897707" Name="LG Prototype" Label="@loc_13680621263405897708" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405899718">
+     <Buttons>
+      <Button ID="13680621263405899364" Name="Entry1" Label="@loc_13680621263405899365" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405899366" Name="Entry2" Label="@loc_13680621263405899367" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405899368" Name="Entry3" Label="@loc_13680621263405899369" Enabled="true" Hidden="false"/>
+      <Button ID="13680621263405899370" Name="Entry4" Label="@loc_13680621263405899371" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="6732635291217413581" Name="CQ_HansKelstrup" User="11824555372635636731">
+   <Downloads>
+    <Download ID="6732635291217413710" Name="Dutch Masters" Label="@loc_15373294129887559379" Description="@loc_15373294129887559380" Duration="2" Hidden="true"/>
+   </Downloads>
+   <Emails>
+    <Email value="6732635291217413988"/>
+    <Email value="6732635291217512990"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="12889009725047058273" Name="CQ_Comm1" User="13680621263378671321" UseEmployeeMode="false" WorkstationTitle="@loc_12889009725047058317" UtilitiesTitle="@loc_13680621263406296293">
+   <Downloads>
+    <Download ID="12889009725047058367" Name="BirthdayKid" Label="@loc_12889009725047058368" Hidden="false" Duration="5" Description="@loc_13680621263406296937"/>
+   </Downloads>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="6732635291217418206" Name="CQ_Mikhaila" User="6732635291182789988">
+   <Downloads/>
+   <Emails>
+    <Email value="6732635291217512878"/>
+    <Email value="4349723564947225922"/>
+    <Email value="4349723564947225707"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239409687903" Name="DS_FionaBanks" User="844024417273151090">
+   <Downloads>
+    <Download ID="1713490239425423662" Name="chargefab" Label="@loc_15373294129887559318"/>
+    <Download ID="844024417315652947" Name="TreasureMapDanielle" Label="@loc_844024417315652948" Hidden="false" Description="@loc_844024417315653008"/>
+   </Downloads>
+   <Emails>
+    <Email value="1713490239409772872"/>
+    <Email value="13680621263403914677"/>
+    <Email value="844024417315570188"/>
+    <Email value="13680621263417809589"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="1713490239432754445" Name="VaultAccess" Label="@loc_15373294129887559319" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_15373294129887559320">
+     <Buttons>
+      <Button ID="1713490239432754624" Name="VaultA" Label="@loc_15373294129887559321" Enabled="true" Hidden="false"/>
+      <Button ID="1713490239432754642" Name="VaultB" Label="@loc_15373294129887559322" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239409687973" Name="DS_ZacharyWest" User="4349723564911797141">
+   <Downloads>
+    <Download ID="1713490239425344040" Name="toy_ammo" Label="@loc_15373294129887559333" Description="@loc_844024417316950958" Hidden="false"/>
+   </Downloads>
+   <Emails>
+    <Email value="1713490239409707711"/>
+    <Email value="844024417315570188"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239409688024" Name="DS_AndrewBrown" User="4349723564911797234">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239409688075" Name="DS_IvyPark" User="4349723564911797192">
+   <Downloads>
+    <Download ID="1713490239425335597" Name="toy_gun" Label="@loc_15373294129887559334" Description="@loc_844024417316950899"/>
+   </Downloads>
+   <Emails>
+    <Email value="1713490239409708062"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239409688112" Name="DS_HeatherBentz" User="4349723564911797280">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239430504981" Name="DS_doorcontrol" User="844024417279951238" WorkstationTitle="@loc_15373294129887559393">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="1713490239430507353" Name="DS_CRdoors" Label="@loc_15373294129887559394" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_15373294129887559395">
+     <Buttons>
+      <Button ID="1713490239430507792" Name="dooropen" Label="@loc_15373294129887559396" Enabled="true" Hidden="false"/>
+      <Button ID="1713490239430507810" Name="doorclose" Label="@loc_15373294129887559397" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="1713490239430962287" Name="DS_CRdoorError" Label="@loc_15373294129887559398" Enabled="false" Hidden="true" NoDefaultButton="true" Description="@loc_15373294129887559399">
+     <Buttons/>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239430955761" Name="DS_Downloads" User="844024417279951238" WorkstationTitle="@loc_15373294129887559400">
+   <Downloads>
+    <Download ID="1713490239430955870" Name="MorganKeyDL" Label="@loc_15373294129887559401" Hidden="false" Description="@loc_15373294129887559402" Duration="10"/>
+    <Download ID="1713490239430955890" Name="ds_toygun" Label="@loc_15373294129887559403" Hidden="true" Description="@loc_15373294129887559404" Duration="2"/>
+   </Downloads>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239431050431" Name="DS_trackingchips" User="844024417279951238" WorkstationTitle="@loc_15373294129887559405">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="1713490239431051493" Name="trackingchipinfo" Label="@loc_15373294129887559406" Enabled="true" Hidden="false" NoDefaultButton="true" Description="@loc_15373294129887559407">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkKeypadUtility ID="1713490239431051484" Name="trackingchippad" Label="@loc_15373294129887559408" Enabled="true" Hidden="false"/>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239431552772" Name="DS_FatherQuestStation" User="1713490239432330764" WorkstationTitle="@loc_15373294129887559409" UtilitiesTitle="@loc_15373294129887559410" UseEmployeeMode="true">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="1713490239431553060" Name="info" Label="@loc_15373294129887559411" Enabled="true" Hidden="false" NoDefaultButton="true" Description="@loc_15373294129887559412">
+     <Buttons>
+      <Button ID="1713490239432331307" Name="Listen" Label="@loc_15373294129887559413" Enabled="true" Hidden="false"/>
+      <Button ID="1713490239432331312" Name="Transfer" Label="@loc_15373294129887559414" Enabled="true" Hidden="false"/>
+      <Button ID="1713490239432331314" Name="Delete" Label="@loc_15373294129887559415" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="1713490239431384069" Name="DS_ARX76" User="844024417279951238" WorkstationTitle="@loc_15373294129887559416" UtilitiesTitle="@loc_15373294129887559417">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="1713490239431384210" Name="Install A Drive" Label="@loc_15373294129887559418" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_15373294129887559419">
+     <Buttons>
+      <Button ID="1713490239431384397" Name="Install Drive" Label="@loc_15373294129887559420" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013192549969" Name="LS_AbigailFoy" User="844024417273151649">
+   <Downloads/>
+   <Emails>
+    <Email value="13856881013191949333"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013209928639" Name="LS_EelHarvestTerminal" User="844024417273151649" WorkstationTitle="@loc_13680621263405895518">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="13856881013209928640" Name="EelProcess" Label="@loc_15373294129887559339" Enabled="false" Description="@loc_15373294129887559340">
+     <Buttons>
+      <Button ID="13856881013209928641" Name="HarvestEels" Label="@loc_15373294129887559341" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013212440247" Name="LS_PriceBroadway" User="4349723564911543962">
+   <Downloads/>
+   <Emails>
+    <Email value="13856881013212439367"/>
+    <Email value="13856881013212439002"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="13856881013225557054" Name="UnlockEelTankKiosk" Label="@loc_13856881013225557055" Enabled="true" Description="@loc_13856881013225557056">
+     <Buttons>
+      <Button ID="13856881013225557057" Name="UnlockEelTerminal" Label="@loc_13856881013225557058" Enabled="true"/>
+      <Button ID="13856881013225557059" Name="Lock Terminal" Label="@loc_13856881013225557060" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="4349723564946621537" Name="LS_JoseCosta" User="4349723564911796920" UseEmployeeMode="false" WorkstationTitle="@loc_4349723564946621618">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564946615402"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013209919198" Name="LS_AirDeconMain" User="4349723564911797665">
+   <Downloads/>
+   <Emails>
+    <Email value="13856881013211822601"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="13856881013209919230" Name="BeginDecon" Label="@loc_15373294129887559369" Enabled="true" Description="@loc_15373294129887559370">
+     <Buttons>
+      <Button ID="13856881013209920117" Name="PerformDecontamination" Label="@loc_15373294129887559372" Enabled="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013209922169" Name="LS_AirDeconAux1" User="4349723564911797665" WorkstationTitle="@loc_13680621263405904911" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="13856881013209922170" Name="AuxDecon1" Label="@loc_15373294129887559373" Enabled="true" Description="@loc_15373294129887559374">
+     <Buttons>
+      <Button ID="13680621263405905018" Name="Diagnose" Label="@loc_13680621263405905019" Enabled="true" Hidden="false"/>
+      <Button ID="13856881013209922171" Name="Aux1Activate" Label="@loc_15373294129887559375" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412544818984" Name="SB_Dahl" User="13680621263361472147">
+   <Downloads>
+    <Download ID="14667999412544819240" Name="Takedown File" Label="@loc_15373294129887559343" Description="@loc_844024417322652557"/>
+   </Downloads>
+   <Emails>
+    <Email value="13680621263378671162"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412535916664" Name="SB_FranklinJones" User="4349723564911797398">
+   <Downloads/>
+   <Emails>
+    <Email value="14667999412535917790"/>
+    <Email value="14667999412535916718"/>
+    <Email value="14667999412535918642"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412569013608" Name="SB_FlightControl" User="14667999412526072954" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="14667999412569013662" Name="Control" Label="@loc_14667999412569013663" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13680621263405896957">
+     <Buttons>
+      <Button ID="14667999412569013700" Name="Bridge" Label="@loc_14667999412569013701" Enabled="false" Hidden="false"/>
+      <Button ID="14667999412569013842" Name="SystemCheck" Label="@loc_14667999412569013843" Enabled="false" Hidden="false"/>
+      <Button ID="14667999412569015821" Name="Flush" Label="@loc_14667999412569015822" Enabled="false" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412526073156" Name="SB_MiaBayer" User="14667999412526072954">
+   <Downloads>
+    <Download ID="14667999412555274003" Name="FabRandomPharma" Label="@loc_15373294129887559238" Hidden="true"/>
+   </Downloads>
+   <Emails>
+    <Email value="418270515490482546"/>
+    <Email value="14667999412555274121"/>
+    <Email value="418270515490482880"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412541797987" Name="SB_ScottParker" User="4349723564911797550">
+   <Downloads/>
+   <Emails>
+    <Email value="418270515490483171"/>
+    <Email value="418270515490483326"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="14667999412541798221" Name="TurnOnGravShaft" Label="@loc_15373294129887559335" Enabled="true" Description="@loc_13680621263405895341">
+     <Buttons>
+      <Button ID="14667999412565368442" Name="Activate" Label="@loc_14667999412565368443" Enabled="true" Hidden="false"/>
+      <Button ID="14667999412565368729" Name="Deactivate" Label="@loc_14667999412565368730" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="14667999412568501272" Name="SB_EscapePod" User="4349723564911797398" UseEmployeeMode="false" WorkstationTitle="@loc_14667999412568501283">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="14667999412568501323" Name="Status" Label="@loc_14667999412568501324" Enabled="true" Hidden="false" NoDefaultButton="true" Description="@loc_13680621263405901976">
+     <Buttons/>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="14667999412568501552" Name="Auxiliary launch" Label="@loc_14667999412568501553" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="14667999412568501713" Name="Pod1" Label="@loc_14667999412568501714" Enabled="true" Hidden="false"/>
+      <Button ID="14667999412568506216" Name="Pod2" Label="@loc_14667999412568506217" Enabled="true" Hidden="false"/>
+      <Button ID="14667999412568506218" Name="Pod3" Label="@loc_14667999412568506219" Enabled="true" Hidden="false"/>
+      <Button ID="14667999412568506220" Name="Pod4" Label="@loc_14667999412568506221" Enabled="true" Hidden="false"/>
+      <Button ID="14667999412568506222" Name="Pod5" Label="@loc_14667999412568506223" Enabled="true" Hidden="false"/>
+      <Button ID="14667999412568506228" Name="Pod6" Label="@loc_14667999412568506229" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417308808965" Name="AITest_Misc" User="1713490239389130908" WorkstationTitle="@loc_15373294129887559421" UtilitiesTitle="@loc_15373294129887559422">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417308808980" Name="Nightmare" Label="@loc_15373294129887559423" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308813065" Name="NightmareSpawn" Label="@loc_15373294129887559424" Enabled="true" Hidden="false"/>
+      <Button ID="243995946796709939" Name="NightmareEtherFormSpawn" Label="@loc_15373294129887559425" Enabled="true" Hidden="false"/>
+      <Button ID="243995946796709977" Name="NightmareLargeFormSpawn" Label="@loc_15373294129887559426" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308808994" Name="Apex" Label="@loc_15373294129887559427" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308814300" Name="SpawnSmallTentacle" Label="@loc_15373294129887559428" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308813077" Name="SpawnMediumTentacles" Label="@loc_15373294129887559429" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308814314" Name="SpawnLargeTentacle" Label="@loc_15373294129887559430" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308809003" Name="Cystoids" Label="@loc_15373294129887559431" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308813093" Name="SpawnNests" Label="@loc_15373294129887559432" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308812231" Name="Poltergeist" Label="@loc_15373294129887559433" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308813104" Name="SpawnPoltergeist" Label="@loc_15373294129887559434" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308809030" Name="Environment" Label="@loc_15373294129887559435" Enabled="false" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308813116" Name="SpawnFire" Label="@loc_15373294129887559436" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308813126" Name="WaterPuddles" Label="@loc_15373294129887559437" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308813137" Name="ElectricBox" Label="@loc_15373294129887559438" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308813151" Name="RadHazard" Label="@loc_15373294129887559439" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308813168" Name="OilPuddles" Label="@loc_15373294129887559440" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308813186" Name="Fire" Label="@loc_15373294129887559441" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417308223292" Name="AITest_Floaters" User="1713490239389130908" WorkstationTitle="@loc_15373294129887559442" UtilitiesTitle="@loc_15373294129887559443">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417308223323" Name="AITEST_TELEPATH" Label="@loc_15373294129887559444" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308289460" Name="SpawnSingleTele" Label="@loc_15373294129887559445" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308223341" Name="AITEST_TECHNO" Label="@loc_15373294129887559446" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308289560" Name="SpawnTechWithFriends" Label="@loc_15373294129887559447" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308289550" Name="SpawnSingleTech" Label="@loc_15373294129887559448" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308223353" Name="AITEST_WEAVER" Label="@loc_15373294129887559449" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308292860" Name="SpawnWeaver" Label="@loc_15373294129887559450" Enabled="true" Hidden="false"/>
+      <Button ID="844024417309004008" Name="SpawnCorpses" Label="@loc_15373294129887559451" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417308219730" Name="AITest_Phantoms" User="1713490239389130908" WorkstationTitle="@loc_15373294129887559452" UtilitiesTitle="@loc_15373294129887559453">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417308219878" Name="RegularPhantom" Label="@loc_15373294129887559454" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_15373294129887559455">
+     <Buttons>
+      <Button ID="844024417308221484" Name="NormalPhWander" Label="@loc_15373294129887559456" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308221478" Name="NormalPhPatrol" Label="@loc_15373294129887559457" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308220258" Name="Elite-Thermal" Label="@loc_15373294129887559458" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308221436" Name="EliteThermalWander" Label="@loc_15373294129887559459" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308221456" Name="EliteThermalPatrol" Label="@loc_15373294129887559460" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308221512" Name="EliteVoltaic" Label="@loc_15373294129887559461" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308221513" Name="EliteVoltWander" Label="@loc_15373294129887559462" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308221514" Name="EliteVoltPatrol" Label="@loc_15373294129887559463" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308221558" Name="EliteEtheric" Label="@loc_15373294129887559464" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308221559" Name="EliteEtherWander" Label="@loc_15373294129887559465" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308221560" Name="EliteEtherPatrol" Label="@loc_15373294129887559466" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308809602" Name="RegularMimic" Label="@loc_15373294129887559467" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308809603" Name="NormalWander" Label="@loc_15373294129887559468" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809604" Name="NormalAmbush" Label="@loc_15373294129887559469" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308809608" Name="EliteMimic" Label="@loc_15373294129887559470" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308809609" Name="EliteMimicWander" Label="@loc_15373294129887559471" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809610" Name="EliteMimicAmbush" Label="@loc_15373294129887559472" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417308302701" Name="AITest_Humans" User="1713490239389130908" WorkstationTitle="@loc_15373294129887559473" UtilitiesTitle="@loc_15373294129887559474">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417308809344" Name="RegularOps" Label="@loc_15373294129887559475" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308809345" Name="ScienceOp" Label="@loc_15373294129887559476" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809346" Name="EngineerOp" Label="@loc_15373294129887559477" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809347" Name="SecurityOp" Label="@loc_15373294129887559478" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809348" Name="AdminOp" Label="@loc_15373294129887559479" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308809401" Name="CorruptedOps" Label="@loc_15373294129887559480" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308809402" Name="CorScienceOp" Label="@loc_15373294129887559481" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809403" Name="CorEngineerOp" Label="@loc_15373294129887559482" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809404" Name="CorSecurityOp" Label="@loc_15373294129887559483" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809405" Name="CorMedOp" Label="@loc_15373294129887559484" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308302702" Name="RegularHumans" Label="@loc_15373294129887559485" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308302703" Name="ScienceHumanPatrol" Label="@loc_15373294129887559486" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308744196" Name="ScienceHumanWander" Label="@loc_15373294129887559487" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308302704" Name="EngineerHumanPatrol" Label="@loc_15373294129887559488" Enabled="false" Hidden="false"/>
+      <Button ID="844024417308744295" Name="EngineerHumanWander" Label="@loc_15373294129887559489" Enabled="false" Hidden="false"/>
+      <Button ID="844024417308302928" Name="SecurityHumanPatrol" Label="@loc_15373294129887559490" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308743267" Name="SecurityHumanWander" Label="@loc_15373294129887559491" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308302956" Name="AdminHuman" Label="@loc_15373294129887559492" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308302973" Name="CorruptedHumans" Label="@loc_15373294129887559493" Enabled="false" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308302974" Name="CorScienceHuman" Label="@loc_15373294129887559494" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308302975" Name="CorEngineerHuman" Label="@loc_15373294129887559495" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308302976" Name="CorSecurityHuman" Label="@loc_15373294129887559496" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308302977" Name="CorAdminHuman" Label="@loc_15373294129887559497" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308302797" Name="NamedHumans" Label="@loc_15373294129887559498" Enabled="false" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308302893" Name="SpawnAlex" Label="@loc_15373294129887559499" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308303039" Name="SpawnIgwe" Label="@loc_15373294129887559500" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308303064" Name="SpawnMikhaila" Label="@loc_15373294129887559501" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308303077" Name="SpawnSarah" Label="@loc_15373294129887559502" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308303088" Name="SpawnDahl" Label="@loc_15373294129887559503" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308303109" Name="SpawnLuka" Label="@loc_15373294129887559504" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417308809470" Name="NamedOps" Label="@loc_15373294129887559505" Enabled="false" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417308809471" Name="SpawnJanuary" Label="@loc_15373294129887559506" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809472" Name="SpawnKaspar" Label="@loc_15373294129887559507" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809473" Name="SpawnDecember" Label="@loc_15373294129887559508" Enabled="true" Hidden="false"/>
+      <Button ID="844024417308809477" Name="SpawnSkillet" Label="@loc_15373294129887559509" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417313586985" Name="RW_TestLGBreakage" User="1713490239389130908" UseEmployeeMode="false" WorkstationTitle="@loc_844024417313587013" UtilitiesTitle="@loc_844024417313587021">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417313587040" Name="Maintenance" Label="@loc_844024417313587041" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417313587241" Name="Repair" Label="@loc_844024417313587242" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417313587269" Name="Operation" Label="@loc_844024417313587270" Enabled="true" Hidden="false" NoDefaultButton="false">
+     <Buttons>
+      <Button ID="844024417313587280" Name="Play" Label="@loc_844024417313587281" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047998993510" Name="ZG_BrittanyLaValley" User="761057047998841799" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564947214533"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047955716460" Name="ZG_Laurel Davis" User="761057047956314385" UtilitiesTitle="@loc_13680621263405907114">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047955716050"/>
+    <Email value="761057047992197542"/>
+    <Email value="761057047985969893"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="761057047955792160" Name="Second Phase" Label="@loc_15373294129887559157" Enabled="true" Description="@loc_761057047998851104" Hidden="false">
+     <Buttons>
+      <Button ID="761057047998851189" Name="Reboot" Label="@loc_761057047998851190" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="761057047998851983" Name="Power" Label="@loc_761057047998851984" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_761057047998852018">
+     <Buttons>
+      <Button ID="761057047998852021" Name="Power On" Label="@loc_761057047998852022" Enabled="false" Hidden="true"/>
+      <Button ID="761057047998852034" Name="Shut Down" Label="@loc_761057047998852035" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047990897662" Name="ZG_CargoProcessing" User="761057047998841594" WorkstationTitle="@loc_15373294129887559381">
+   <Downloads/>
+   <Emails>
+    <Email value="4349723564945745672"/>
+   </Emails>
+   <Utilities>
+    <ArkButtonUtility ID="761057047990897711" Name="Process Cargo" Label="@loc_15373294129887559382" Enabled="true" Hidden="false" Description="@loc_15373294129887559383">
+     <Buttons>
+      <Button ID="761057047994503774" Name="Open Door" Label="@loc_15373294129887559386" Enabled="true" Hidden="true"/>
+      <Button ID="761057047990898129" Name="GUTs -OFFLINE" Label="@loc_15373294129887559387" Enabled="false" Hidden="false"/>
+      <Button ID="761057047994504939" Name="Reboot G.U.T.s Processing" Label="@loc_15373294129887559388" Enabled="true" Hidden="false"/>
+      <Button ID="761057047994503645" Name="GUTs -ONLINE" Label="@loc_15373294129887559389" Enabled="false" Hidden="true"/>
+      <Button ID="761057047990898716" Name="Cargo Bay -OFFLINE" Label="@loc_15373294129887559390" Enabled="false" Hidden="false"/>
+      <Button ID="761057047994504917" Name="Reboot Cargo Bay Processing" Label="@loc_15373294129887559391" Enabled="true" Hidden="false"/>
+      <Button ID="761057047994503592" Name="Cargo Bay -ONLINE" Label="@loc_15373294129887559392" Enabled="false" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047979067051" Name="ZG_EricBerger" User="4349723564911778940">
+   <Downloads/>
+   <Emails>
+    <Email value="761057047979067002"/>
+   </Emails>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047998993658" Name="ZG_EdwardDouglas" User="761057047998841594" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047998993704" Name="ZG_RamonRidley" User="761057047998841708" UseEmployeeMode="false">
+   <Downloads/>
+   <Emails/>
+   <Utilities/>
+  </ArkWorkstation>
+  <ArkWorkstation ID="761057047999619667" Name="EX_ExteriorChallenge" User="761057047960289042" UseEmployeeMode="false" WorkstationTitle="@loc_761057047999619714">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="761057047999619988" Name="Beginner&apos;sChallenge" Label="@loc_761057047999619989" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_761057047999619990">
+     <Buttons>
+      <Button ID="761057047999619991" Name="BeginChallenge" Label="@loc_761057047999619992" Enabled="true" Hidden="false"/>
+      <Button ID="761057047999619993" Name="ClaimPrize" Label="@loc_761057047999619994" Enabled="false" Hidden="true"/>
+      <Button ID="761057047999619995" Name="UnlockNextTier" Label="@loc_761057047999619996" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="761057047999619736" Name="IntermediateChallenge" Label="@loc_761057047999619737" Enabled="false" Hidden="false" NoDefaultButton="false" Description="@loc_761057047999619870">
+     <Buttons>
+      <Button ID="761057047999619874" Name="BeginChallenge" Label="@loc_761057047999619875" Enabled="true" Hidden="false"/>
+      <Button ID="761057047999619915" Name="ClaimPrize" Label="@loc_761057047999619916" Enabled="false" Hidden="true"/>
+      <Button ID="761057047999619949" Name="UnlockNextTier" Label="@loc_761057047999619950" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="761057047999620071" Name="ExpertChallenge" Label="@loc_761057047999620072" Enabled="false" Hidden="false" NoDefaultButton="false" Description="@loc_761057047999620073">
+     <Buttons>
+      <Button ID="761057047999620074" Name="BeginChallenge" Label="@loc_761057047999620075" Enabled="true" Hidden="false"/>
+      <Button ID="761057047999620076" Name="ClaimPrize" Label="@loc_761057047999620077" Enabled="false" Hidden="true"/>
+      <Button ID="761057047999620131" Name="DownloadFabPlan" Label="@loc_761057047999620132" Enabled="false" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="13856881013219686584" Name="EX_TranstarSign" User="13680621263378671321" UseEmployeeMode="false" WorkstationTitle="@loc_13856881013219686694">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="13856881013219686711" Name="EX_TranstarButton" Label="@loc_13856881013219686712" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_13856881013219686880">
+     <Buttons>
+      <Button ID="13856881013219686745" Name="EX_TranstarButtonActivate" Label="@loc_13856881013219686746" Enabled="false" Hidden="false"/>
+      <Button ID="13680621263405908627" Name="Default" Label="@loc_13680621263405908628" Enabled="true" Hidden="true"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+  <ArkWorkstation ID="844024417314458832" Name="ChipsetScrambler" User="1713490239389131093" UseEmployeeMode="false" WorkstationTitle="@loc_844024417314458885" UtilitiesTitle="@loc_844024417314459096">
+   <Downloads/>
+   <Emails/>
+   <Utilities>
+    <ArkButtonUtility ID="844024417314460899" Name="Reconfigure10_0" Label="@loc_844024417314460900" Enabled="true" Hidden="true" NoDefaultButton="true" Description="@loc_844024417314460901">
+     <Buttons>
+      <Button ID="844024417314460902" Name="Reconfig0" Label="@loc_844024417314460903" Enabled="false" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460605" Name="Reconfigure10_10" Label="@loc_844024417314460606" Enabled="true" Hidden="false" NoDefaultButton="false" Description="@loc_844024417314460607">
+     <Buttons>
+      <Button ID="844024417314460608" Name="Reconfig10" Label="@loc_844024417314460609" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460600" Name="Reconfigure10_9" Label="@loc_844024417314460601" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460602">
+     <Buttons>
+      <Button ID="844024417314460603" Name="Reconfig9" Label="@loc_844024417314460604" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314458895" Name="Reconfigure10_1" Label="@loc_844024417314458896" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460514">
+     <Buttons>
+      <Button ID="844024417314459022" Name="Reconfig1" Label="@loc_844024417314459023" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460595" Name="Reconfigure10_8" Label="@loc_844024417314460596" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460597">
+     <Buttons>
+      <Button ID="844024417314460598" Name="Reconfig8" Label="@loc_844024417314460599" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460590" Name="Reconfigure10_7" Label="@loc_844024417314460591" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460592">
+     <Buttons>
+      <Button ID="844024417314460593" Name="Reconfig7" Label="@loc_844024417314460594" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460585" Name="Reconfigure10_6" Label="@loc_844024417314460586" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460587">
+     <Buttons>
+      <Button ID="844024417314460588" Name="Reconfig6" Label="@loc_844024417314460589" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460580" Name="Reconfigure10_5" Label="@loc_844024417314460581" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460582">
+     <Buttons>
+      <Button ID="844024417314460583" Name="Reconfig5" Label="@loc_844024417314460584" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460575" Name="Reconfigure10_4" Label="@loc_844024417314460576" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460577">
+     <Buttons>
+      <Button ID="844024417314460578" Name="Reconfig4" Label="@loc_844024417314460579" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460570" Name="Reconfigure10_3" Label="@loc_844024417314460571" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460572">
+     <Buttons>
+      <Button ID="844024417314460573" Name="Reconfig3" Label="@loc_844024417314460574" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+    <ArkButtonUtility ID="844024417314460565" Name="Reconfigure10_2" Label="@loc_844024417314460566" Enabled="true" Hidden="true" NoDefaultButton="false" Description="@loc_844024417314460567">
+     <Buttons>
+      <Button ID="844024417314460568" Name="Reconfig2" Label="@loc_844024417314460569" Enabled="true" Hidden="false"/>
+     </Buttons>
+    </ArkButtonUtility>
+   </Utilities>
+  </ArkWorkstation>
+ </Workstations>
+</ArkWorkstations>

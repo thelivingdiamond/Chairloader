@@ -1,0 +1,295 @@
+
+<ATLConfig atl_name="Prototype">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Amb_Prototype" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Prototype"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Apartment" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Apartment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_LargeOpenSpace_1" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_LargeOpenSpace_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Room_Large" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Room_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Room_Machine_3" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Room_Machine_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_LargeOpenSpace_2" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_LargeOpenSpace_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_OpenAir_3" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_OpenAir_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Room_Machine_2" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Room_Machine_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_OpenAir_1" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_OpenAir_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_OpenAir_2" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_OpenAir_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Hallway_Medium" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Hallway_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Hallway_Short" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Hallway_Short"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_OpenAir_4" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_OpenAir_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Room_Small" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Room_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Hallway_Long" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Hallway_Long"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Room_Machine_1" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Room_Machine_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Stairwell" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Stairwell"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Transtar_Testing" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Transtar_Testing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Atrium" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Atrium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_Room_Medium" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_Room_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Prototype_HeliPad" path="2D_Amb">
+   <WwiseEvent wwise_name="Set_State_Amb_Prototype_HeliPad"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Sparks" path="Environmental_FX">
+   <WwiseEvent wwise_name="Play_Env_Sparks"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_Static_Screen" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_Static_Screen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_Static_Screen" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_Static_Screen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_Clock_Tick" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_Clock_Tick"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_Clock_Tick" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_Clock_Tick"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_Machine_Dark" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_Machine_Dark"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_Machine_Dark" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_Machine_Dark"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_Machine_Dark_2" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_Machine_Dark_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_Machine_Dark_2" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_Machine_Dark_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_MachineToneA" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_MachineToneA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_MachineToneA" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_MachineToneA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_MachinePartsA" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_MachinePartsA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_MachinePartsA" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_MachinePartsA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Ptype_NeonBuzz" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Ptype_NeonBuzz"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Ptype_NeonBuzz" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Ptype_NeonBuzz"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_LookingGlassScreen_Display_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_LookingGlassScreen_Display_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_LookingGlassScreen_Display_Stop" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_LookingGlassScreen_Display_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Prototype_CalvinoScreen_On" path="Objects">
+   <WwiseEvent wwise_name="Stop_Obj_Prototype_CalvinoScreen_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Prototype_CalvinoScreen_On" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Prototype_CalvinoScreen_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_Operator_Rise" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_Operator_Rise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GrenadeMachine_Close" path="Objects">
+   <WwiseEvent wwise_name="Play_GrenadeMachine_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GrenadeMachine_Open" path="Objects">
+   <WwiseEvent wwise_name="Play_GrenadeMachine_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GrenadeMachine_Seal" path="Objects">
+   <WwiseEvent wwise_name="Play_GrenadeMachine_Seal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GrenadeMachine_Stop_Vertical" path="Objects">
+   <WwiseEvent wwise_name="Play_GrenadeMachine_Stop_Vertical"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_GrendadeMachine_Shield_Move_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_GrendadeMachine_Shield_Move_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LookingGlass_Generator_Light_On" path="Objects">
+   <WwiseEvent wwise_name="Play_LookingGlass_Generator_Light_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LookingGlass_Generator_Off" path="Objects">
+   <WwiseEvent wwise_name="Play_LookingGlass_Generator_Off"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LookingGlass_Generator_On" path="Objects">
+   <WwiseEvent wwise_name="Play_LookingGlass_Generator_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_CraneTrack_Cart_Init" path="Objects">
+   <WwiseEvent wwise_name="Play_CraneTrack_Cart_Init"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_CraneTrack_Derail" path="Objects">
+   <WwiseEvent wwise_name="Play_CraneTrack_Derail"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_CraneTrack_Tilt" path="Objects">
+   <WwiseEvent wwise_name="Play_CraneTrack_Tilt"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_CraneTrack_Move_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_CraneTrack_Move_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GrenadeMachine_TubeDelivery_Pt1" path="Objects">
+   <WwiseEvent wwise_name="Play_GrenadeMachine_TubeDelivery_Pt1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GrenadeMachine_TubeDelivery_Pt2" path="Objects">
+   <WwiseEvent wwise_name="Play_GrenadeMachine_TubeDelivery_Pt2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_MicroG_Puzzle_BootUp" path="Objects">
+   <WwiseEvent wwise_name="Play_MicroG_Puzzle_BootUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_MicroG_Puzzle_Emergency_Power" path="Objects">
+   <WwiseEvent wwise_name="Play_MicroG_Puzzle_Emergency_Power"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_MicroG_Puzzle_GlassRemove" path="Objects">
+   <WwiseEvent wwise_name="Play_MicroG_Puzzle_GlassRemove"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_Quake_Debris" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_Quake_Debris"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Emitter_Area_Decompression_Prototype_LP" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Emitter_Area_Decompression_Prototype_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Emitter_Area_Decompression_Prototype_LP" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Emitter_Area_Decompression_Prototype_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Emitter_GateAlarm_LP" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Emitter_GateAlarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Emitter_GateAlarm_LP" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Emitter_GateAlarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Alarm_Buzzer" path="Objects">
+   <WwiseEvent wwise_name="Play_Alarm_Buzzer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_Bodyfall" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_Bodyfall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_HandsOnGlass" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_HandsOnGlass"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_Mimic_Split" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_Mimic_Split"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_Mimic_Wrap" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_Mimic_Wrap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_Steps" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_Steps"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_ThroatStab" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_ThroatStab"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Sq14_Mimic_Rise" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Sq14_Mimic_Rise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Calvino_Mug_Placement" path="Objects">
+   <WwiseEvent wwise_name="Play_Calvino_Mug_Placement"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_Video_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_Video_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Arm_Lift" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Arm_Lift"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Arm_LiftAndStop" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Arm_LiftAndStop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Arm_Lift_Stop" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Arm_Lift_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Arm_Motor_Run" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Arm_Motor_Run"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Arm_Motor_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Arm_Motor_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Arm_OpenAndGrip" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Arm_OpenAndGrip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Door_Motor" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Door_Motor"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Door_Open_Full" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Door_Open_Full"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Door_Open_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Door_Open_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Lift_Mechanisim_Full" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Lift_Mechanisim_Full"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Lower" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Lower"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Crane_Door_Close" path="Objects">
+   <WwiseEvent wwise_name="Play_Crane_Door_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Laser_Unlock_End" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Laser_Unlock_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Laser_Unlock_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Laser_Unlock_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_Laser_Charge" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_Laser_Charge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_Laser_Fire" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_Laser_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Prototype_Laser_Fire" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Prototype_Laser_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_CalvinoLab_ReConnect" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_CalvinoLab_ReConnect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Prototype_Sq09_Cargo_Snap" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Prototype_Sq09_Cargo_Snap"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Prototype.bnk" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Prototype.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

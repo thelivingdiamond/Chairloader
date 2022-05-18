@@ -1,0 +1,83 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="193" Name="ability_-_MimicPower\n" Class="_commentbox" pos="-320,-265,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1010" Height="600"/>
+  </Node>
+  <Node Id="203" Class="Time:Delay" pos="-10,-80,0">
+   <Inputs delay="2" resetOnInput="0"/>
+  </Node>
+  <Node Id="205" Class="ArkPlayer:NotifyPsiPowerMenuActive" pos="-1730,-360,0"/>
+  <Node Id="212" Name="MENU_SELECT" Class="_commentbox" pos="-1760,-408,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="810" Height="710"/>
+  </Node>
+  <Node Id="213" Class="Image:ColorCorrection" pos="-1120,60,0">
+   <Inputs entityId="0" Enabled="0" Disabled="1" Force="1" Global_User_ColorC="0.18" Global_User_ColorM="0.2" Global_User_ColorY="0" Global_User_ColorK="-0.25" Global_User_Brightness="1" Global_User_Contrast="1" Global_User_Saturation="0.75" Global_User_ColorHue="0"/>
+  </Node>
+  <Node Id="215" Class="Image:EffectVolumetricScattering" pos="-1370,100,0">
+   <Inputs entityId="0" Enabled="1" Disabled="1" Force="1" VolumetricScattering_Amount="1" VolumetricScattering_Tilling="1" VolumetricScattering_Speed="1" clr_VolumetricScattering_Color="0.168269,0.194618,0.577581" VolumetricScattering_Type="0"/>
+  </Node>
+  <Node Id="400" Class="Interpol:Float" pos="180,-220,0">
+   <Inputs StartValue="0" EndValue="4" Time="0.5" UpdateFrequency="0" Timer="0"/>
+  </Node>
+  <Node Id="402" Class="Interpol:Float" pos="190,-50,0">
+   <Inputs StartValue="0" EndValue="0" Time="0.5" UpdateFrequency="0" Timer="0"/>
+  </Node>
+  <Node Id="409" Class="Ark:PostEffect" pos="-1430,-360,0">
+   <Inputs posteffect_PostEffect="2"/>
+  </Node>
+  <Node Id="410" Class="Ark:PostEffectParam" pos="440,-220,0">
+   <Inputs posteffectoverrideparam_PostEffectParam="2428940965259661758"/>
+  </Node>
+  <Node Id="413" Class="Game:Start" pos="-700,30,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="414" Class="ArkPlayer:NotifyPsiPowerActive" pos="-280,-240,0">
+   <Inputs psiPower_Power="Mimic"/>
+  </Node>
+  <Node Id="418" Class="Camera:ViewShakeEx" pos="-200,430,0">
+   <Inputs entityId="0" Restrict="0" View="1" GroundOnly="0" Smooth="1" Angle="0,0,0" Shift="0.01,0.01,0.01" Speed="0.5" Frequency="12" Randomness="1" Distance="0" RangeMin="0" RangeMax="30" SustainDuration="0" FadeInDuration="4" FadeOutDuration="0" Preset="0"/>
+  </Node>
+  <Node Id="420" Class="Actor:LocalPlayer" pos="-490,360,0">
+   <Inputs/>
+  </Node>
+  <Node Id="422" Class="Time:Delay" pos="-600,450,0">
+   <Inputs delay="5" resetOnInput="0"/>
+  </Node>
+  <Node Id="423" Class="Camera:ViewShakeEx" pos="-200,800,0">
+   <Inputs entityId="0" Restrict="0" View="1" GroundOnly="0" Smooth="1" Angle="0.5,0.5,0.52" Shift="0.03,0.03,0.03" Speed="0.5" Frequency="15" Randomness="2" Distance="0" RangeMin="0" RangeMax="30" SustainDuration="0.2" FadeInDuration="0" FadeOutDuration="2.75" Preset="0"/>
+  </Node>
+  <Node Id="424" Class="Time:Delay" pos="-600,820,0">
+   <Inputs delay="9" resetOnInput="0"/>
+  </Node>
+  <Node Id="426" Class="Time:Delay" pos="-590,1130,0">
+   <Inputs delay="11.25" resetOnInput="0"/>
+  </Node>
+  <Node Id="427" Class="Camera:ViewShakeEx" pos="-200,1180,0">
+   <Inputs entityId="0" Restrict="0" View="1" GroundOnly="0" Smooth="1" Angle="0.01,0.01,0.01" Shift="0.01,0.01,0.01" Speed="0.5" Frequency="15" Randomness="2" Distance="0" RangeMin="0" RangeMax="30" SustainDuration="0" FadeInDuration="0" FadeOutDuration="3" Preset="0"/>
+  </Node>
+  <Node Id="429" Class="entity:ParticleEffect" pos="-370,930,0">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="402" nodeOut="203" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="409" nodeOut="205" portIn="Enable" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="409" nodeOut="205" portIn="Disable" portOut="Deactivated" enabled="1"/>
+  <Edge nodeIn="410" nodeOut="400" portIn="Value" portOut="Value" enabled="1"/>
+  <Edge nodeIn="410" nodeOut="402" portIn="Value" portOut="Value" enabled="1"/>
+  <Edge nodeIn="414" nodeOut="413" portIn="psiPower_Power" portOut="output" enabled="1"/>
+  <Edge nodeIn="203" nodeOut="414" portIn="in" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="400" nodeOut="414" portIn="Start" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="418" nodeOut="420" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="423" nodeOut="420" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="427" nodeOut="420" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="418" nodeOut="422" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="423" nodeOut="424" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="429" nodeOut="424" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="427" nodeOut="426" portIn="Trigger" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

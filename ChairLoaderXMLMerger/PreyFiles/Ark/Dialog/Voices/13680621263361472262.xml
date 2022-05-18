@@ -1,0 +1,220 @@
+
+<Dialog>
+ <Dialog id="13680621263367712137" facefx="2" sync="0" notes="" text="This is Commander Walther Dahl. The TranStar Board of Directors has authorized me to take full command of Talos I. Effective immediately." modified="05/06/2016 12:04:52 AM"/>
+ <Dialog id="13680621263367712162" facefx="2" sync="0" notes="" text="All employees must now report to the Shuttle Bay for evacuation." modified="05/06/2016 12:05:05 AM"/>
+ <Dialog id="13680621263367712185" facefx="2" sync="0" notes="" text="Those of you unable to comply, transmit an SOS and my team of rescue Operators will locate you." modified="07/08/2016 11:00:49 PM"/>
+ <Dialog id="13680621263367712202" facefx="2" sync="0" notes="" text="One last thing. Alex and Morgan Yu have been relieved of their positions. Do not consent to their requests or assist them in any way." modified="01/20/2016 02:39:46 AM"/>
+ <Dialog id="13680621263367712949" text="Dahl out." modified="07/23/2015 12:09:25 AM" notes="Curt." facefx="3" sync="true"/>
+ <Dialog id="13680621263369498227" text="I&apos;ll deal with it." modified="01/21/2016 02:10:34 AM" notes="Dahl moves to secret door panel to begin hacking the keypad."/>
+ <Dialog id="13680621263369498760" text="Alex? Did you hear? We found your hiding spot. It won&apos;t take me long to get through the security. " modified="07/11/2016 11:53:29 PM"/>
+ <Dialog id="13680621263369498782" text="I came prepared, Alex. Voice samples. Fingerprints. Retinal. You&apos;re favorite cereal as a kid. " modified="01/21/2016 03:09:08 AM" notes="A little absent-minded as he&apos;s working."/>
+ <Dialog id="13680621263369498788" text="Ah - Ah - No. Scheisse." modified="07/11/2016 11:52:40 PM" notes="Almost cracked the security. A little under his breath."/>
+ <Dialog id="13680621263369498798" text="I have to wonder... do you think your parents argued even a little with the other directors?" modified="01/21/2016 02:55:13 AM"/>
+ <Dialog id="13680621263369498810" text="Mmmh. This sample is no good. I need something cleaner.  " modified="01/21/2016 02:17:56 AM" notes="To himself."/>
+ <Dialog id="13680621263369498817" text="Let&apos;s hear it." modified="05/05/2016 11:42:08 PM" notes="Mil bot comes close. "/>
+ <Dialog id="13680621263369498823" text="I&apos;m almost done. Bravo Rodeo all units." modified="05/05/2016 11:41:08 PM" notes="Be ready"/>
+ <Dialog id="13680621263369499022" text="That&apos;s it. I got it." modified="01/13/2016 11:35:39 PM" notes="Dahl finished hacking the panel." sync="true"/>
+ <Dialog id="13680621263369499222" text="Alex! You can come out now. Or - fine - I can send an Operator in after-" modified="05/05/2016 11:40:06 PM" sync="true"/>
+ <Dialog id="13680621263369499301" text="Over here." modified="01/13/2016 11:38:30 PM" sync="true"/>
+ <Dialog id="13680621263369499352" text="Turn around. On your knees. " modified="01/13/2016 11:38:47 PM" notes="Dahl executes Alex."/>
+ <Dialog id="13680621263369499482" text="Watch out!" modified="08/12/2015 04:24:58 PM"/>
+ <Dialog id="13680621263369499692" text="Don&apos;t let anything within ten meters of this site." modified="05/05/2016 11:39:39 PM" notes="Irked. Resumes hacking security on Alex&apos;s door."/>
+ <Dialog id="13680621263369500253" text="Where are you, rat?" modified="07/08/2016 11:00:37 PM"/>
+ <Dialog id="13680621263369500302" text="I&apos;ll kill you quickly. No speeches. No torture. Clean and simple." modified="05/05/2016 11:44:03 PM" notes="Delivered like an invitation."/>
+ <Dialog id="13680621263369500308" text="You&apos;re out of your depth, Morgan. Just come out. " modified="02/22/2016 12:10:20 AM" notes="Under his breath."/>
+ <Dialog id="13680621263369500314" text="Come on, Morgan. Even if you get past me. The Board will never let you live. " modified="01/21/2016 03:26:22 AM"/>
+ <Dialog id="13680621263369500320" text="Stop hiding, Morgan. Your head&apos;s already on the chopping block. You just haven&apos;t realized it." modified="05/05/2016 11:43:06 PM"/>
+ <Dialog id="13680621263369500429" text="There he is! Take him down!" modified="08/12/2015 04:40:45 PM"/>
+ <Dialog id="13680621263369500495" text="Visual contact confirmed. Sierra and Delta. " modified="01/21/2016 03:29:14 AM" notes="Search and Destroy."/>
+ <Dialog id="13680621263369500636" text="(Sigh)" modified="07/08/2016 11:02:22 PM" notes="Well, that&apos;s done."/>
+ <Dialog id="13680621263369500678" text="Cover the entrances. He&apos;ll show." modified="05/05/2016 11:44:36 PM"/>
+ <Dialog id="13680621263369501420" text="Morgan. I&apos;m enjoying our talks. I feel like I can share anything with you." modified="01/19/2016 10:50:56 PM" facefx="2"/>
+ <Dialog id="13680621263369501494" text="So... good news. I found your brother. We pulled him out of his secret CEO cave just a moment ago. Now I&apos;m going to execute him." modified="01/19/2016 10:51:18 PM" facefx="2"/>
+ <Dialog id="13680621263369581109" text="Hnnnnnnnnh!" modified="01/20/2016 02:10:15 AM" notes="Struggling, thrashing in the chair." sync="true"/>
+ <Dialog id="13680621263369581334" text="What? Who are you?" modified="07/08/2016 11:12:30 PM" notes="Takes a deep breath. Blinking. " sync="true" facefx="3"/>
+ <Dialog id="13680621263369585058" text="Ready or not, starting debark operations. Pre-flight check is who gives a shit. " modified="01/22/2016 12:46:52 AM" sync="true"/>
+ <Dialog id="13680621263369585287" text="We don&apos;t have a lot of time, Morgan. Take a seat." modified="05/02/2016 08:29:52 PM"/>
+ <Dialog id="13680621263369585397" text="Let&apos;s go!" modified="01/22/2016 12:47:33 AM" notes="Get in the plane."/>
+ <Dialog id="13680621263369585406" text="What&apos;s the delay?" modified="01/22/2016 12:48:07 AM"/>
+ <Dialog id="13680621263374846859" text="Kaspar. Report. " modified="05/05/2016 11:46:16 PM"/>
+ <Dialog id="13680621263374846896" text="Kaspar. Transmit your status. " modified="10/13/2015 01:49:25 PM"/>
+ <Dialog id="844024417287313272" text="The shuttle is ready to go, Morgan." modified="01/19/2016 10:55:13 PM" facefx="2"/>
+ <Dialog id="844024417287313305" text="I&apos;ll wait a few minutes before detonation, but then I&apos;m gone." modified="05/06/2016 01:10:59 AM" facefx="2"/>
+ <Dialog id="844024417287313314" text="You&apos;re on your own after that." modified="01/19/2016 10:58:28 PM" facefx="2"/>
+ <Dialog id="844024417287317723" text="Last warning, Morgan. Your window to leave aboard this shuttle is closing fast." modified="01/20/2016 02:48:19 PM" facefx="2"/>
+ <Dialog id="844024417287317741" text="Times up. I can&apos;t wait any longer. " modified="05/06/2016 01:10:22 AM" facefx="2"/>
+ <Dialog id="844024417287317759" text="You&apos;ll have to find another way off." modified="01/19/2016 11:03:09 PM" facefx="2"/>
+ <Dialog id="13680621263378651840" text="I will need your credentials to authorize this mission." modified="11/26/2015 07:59:49 PM" notes="Nothing but business." facefx="2"/>
+ <Dialog id="13680621263378651857" text="Sign checks out. Good morning, Director Yu. Shuttle is hot and holding orbit. Awaiting mission parameters." modified="11/26/2015 02:44:33 PM" facefx="2"/>
+ <Dialog id="13680621263378652031" text="All personnel?" modified="11/26/2015 02:47:27 PM" notes="Goading a little. Like--are you ordering me to kill your kids, really?" facefx="2"/>
+ <Dialog id="13680621263378652105" text="It&apos;s your show. And their funeral." modified="05/06/2016 12:18:34 AM" notes="Last sentence under breath to himself." facefx="2"/>
+ <Dialog id="13680621263378652147" text="I&apos;ll leave my Operator feeds on. Just keep watching." modified="05/06/2016 12:19:08 AM" notes="A little irked since he considerds his abilities beyond question. Calling Yu out on his bloodthirstyness. " facefx="2"/>
+ <Dialog id="13680621263378653014" text="Yes, I&apos;ve seen the schematics, Mr. Yu. Goodbye." modified="05/06/2016 12:17:57 AM" notes="You don&apos;t have to tell me how to do my job." facefx="2"/>
+ <Dialog id="13680621263382831151" text="Turn around." modified="01/13/2016 11:39:27 PM" sync="true"/>
+ <Dialog id="13680621263382831158" text="On your knees." modified="01/13/2016 11:39:34 PM" sync="true"/>
+ <Dialog id="13680621263382831194" text="Alex. I don&apos;t care." modified="01/21/2016 02:30:39 AM" notes="Dahl executes alex." sync="true"/>
+ <Dialog id="13680621263383226936" text="Go ahead." modified="01/18/2016 01:35:52 PM"/>
+ <Dialog id="13680621263383227028" text="Sorry to hear that. " modified="01/18/2016 01:38:13 PM"/>
+ <Dialog id="13680621263383227144" text="Affirmative. Shuttle is ready. Good luck to you, Morgan." modified="07/08/2016 11:13:22 PM"/>
+ <Dialog id="13680621263383227171" text="Dahl out." modified="01/18/2016 01:39:47 PM" facefx="2"/>
+ <Dialog id="13680621263383318060" text="Don&apos;t just float there like an idiot. " modified="01/21/2016 02:10:40 AM"/>
+ <Dialog id="13680621263383320362" text="Set a perimeter in case his brother makes an appearance." modified="05/05/2016 11:39:23 PM"/>
+ <Dialog id="13680621263383320487" text="Set a perimeter in case his sister makes an appearance." modified="05/05/2016 11:39:26 PM"/>
+ <Dialog id="13680621263383324674" text="Your brother he likes a microphone. A spotlight. He can&apos;t resist - even though he&apos;s hiding." modified="07/08/2016 11:04:29 PM" facefx="2"/>
+ <Dialog id="13680621263383324750" text="Morgan. I&apos;ve been thinking about what you&apos;ve done. What you&apos;re doing." modified="07/11/2016 11:49:45 PM" facefx="2"/>
+ <Dialog id="13680621263383324768" text="We all must act according to our nature. No matter what the psychologists and priests say." modified="05/08/2016 11:03:50 PM" facefx="2"/>
+ <Dialog id="13680621263383324872" text="And your nature... I think I was right before - you are like a rat." modified="05/08/2016 11:04:22 PM" facefx="2"/>
+ <Dialog id="13680621263383334963" text="Resourceful. Sly. Burdened with a kind of... pestilence of the mind." modified="05/08/2016 11:04:32 PM" facefx="2"/>
+ <Dialog id="13680621263383335059" text="This station was your laboratory. The experiment was a failure." modified="05/08/2016 11:04:48 PM" facefx="2"/>
+ <Dialog id="13680621263383335068" text="And, of course, sadly you know what happens to the rats when they are no longer needed." modified="05/08/2016 11:11:17 PM" facefx="2"/>
+ <Dialog id="13680621263383335990" text="I hear you... chewing the wires and shitting in the walls. " modified="01/19/2016 08:45:28 PM" facefx="2"/>
+ <Dialog id="13680621263383336003" text="Are you trying to fix the mess you&apos;ve made? Or just get away? I pride myself in being prepared for the worst." modified="01/19/2016 07:53:39 PM" facefx="2"/>
+ <Dialog id="13680621263383336027" text="But this... this is truly a masterpiece. You should be proud." modified="05/06/2016 01:11:51 AM" facefx="2"/>
+ <Dialog id="13680621263383336352" text="Clever lab rat. Now I can&apos;t see you. Your brother won&apos;t be so lucky. I&apos;m closing in on him." modified="07/11/2016 11:50:07 PM" facefx="2"/>
+ <Dialog id="13680621263383336424" text="I have a hard time working with others, Morgan. The nature thing I was telling you about earlier." modified="01/19/2016 08:55:56 PM" facefx="2"/>
+ <Dialog id="13680621263383336540" text="I&apos;m told my ops are hidden as an HR expense in the TranStar books. It&apos;s true. I do solve people problems. " modified="01/20/2016 03:01:31 PM" facefx="2"/>
+ <Dialog id="13680621263383336856" text="Your workmates hiding in the Cargo Bay are going to suffocate in a few minutes. " modified="01/20/2016 03:59:05 PM" facefx="2"/>
+ <Dialog id="13680621263383336870" text="Maybe you can save them. " modified="01/19/2016 10:25:40 PM" facefx="2"/>
+ <Dialog id="13680621263383339612" text="I have my Operators, sure. But it&apos;s not the same... it&apos;s better. You know what I mean - you have one, too, right?" modified="07/08/2016 11:00:52 PM" facefx="2"/>
+ <Dialog id="13680621263383339673" text="Project... January? Is that something important? My technical officer is finding all kinds of interesting data." modified="11/30/2016 08:53:03 PM" facefx="2"/>
+ <Dialog id="13680621263383344897" text="Oh. Here&apos;s another one. An order signed by your brother, authorizing TranStar to cut out your brain and ship it back to the family. " modified="01/20/2016 03:02:53 PM" facefx="2"/>
+ <Dialog id="13680621263383345128" text="But you&apos;ll have to come out of the walls, rat." modified="07/08/2016 11:00:55 PM" facefx="2"/>
+ <Dialog id="13680621263383346718" text="How should... Do you want to say goodbye? Yes?" modified="07/08/2016 10:58:08 PM" notes="To Alex." facefx="2"/>
+ <Dialog id="13680621263383346872" text="He wanted you to have some things. I&apos;ll keep them safe for you... let me just wipe the blood off them. Come get them whenever you&apos;re ready, all right?" modified="05/06/2016 01:04:30 AM" facefx="2"/>
+ <Dialog id="13680621263383347571" text="Morgan. This is Dahl. You really are the son of Will and Cathy Yu." modified="01/20/2016 12:36:08 AM" facefx="2"/>
+ <Dialog id="13680621263383347833" text="I&apos;d heard you were clever so I came prepared to flush you out. Ambushes and hostage scenarios. " modified="01/20/2016 12:36:32 AM" facefx="2"/>
+ <Dialog id="13680621263383347896" text="Ah well. No one told me you&apos;d be on my side. There&apos;s hardly anyone left for me to kill.  " modified="01/20/2016 12:36:47 AM" facefx="2"/>
+ <Dialog id="13680621263383347946" text="So. I say... let&apos;s work together. " modified="01/20/2016 12:39:33 AM" facefx="2"/>
+ <Dialog id="13680621263383347974" text="My tech officer will send you the names of a few... hard-to-reach employees. Mop them up and we can fly home before the futbol match." modified="07/12/2016 12:20:14 AM" facefx="2"/>
+ <Dialog id="13680621263383348083" text="Well, that&apos;s it. There&apos;s just the matter of your brother, but I&apos;m handling it. " modified="01/20/2016 03:30:03 PM" facefx="2"/>
+ <Dialog id="13680621263383348347" text="That - was my favorite Operator. I suppose this means we&apos;re not on the same team anymore." modified="07/08/2016 11:03:27 PM" facefx="2"/>
+ <Dialog id="13680621263383353863" text="Run away, rat. I&apos;ll catch you. But first, I&apos;m going to find your brother and yank his fat ass out of that secret cave he&apos;s hiding in." modified="07/08/2016 11:01:20 PM" facefx="2"/>
+ <Dialog id="13680621263383357760" text="Morgan, this wasn&apos;t was part of our contract. You help me clean up and we both go home early. Why are you here?" modified="01/20/2016 03:44:19 PM" facefx="2"/>
+ <Dialog id="13680621263383358719" text="Morgan?" modified="01/20/2016 02:12:15 AM" notes="Blinking. Still foggy. " sync="true" facefx="3"/>
+ <Dialog id="13680621263383358750" text="Your father&apos;s... enh... been asking about you. And Alex." modified="07/08/2016 11:12:04 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383358781" text="I was supposed to report to him about a retrieval after modding up - where am I?" modified="07/05/2016 09:03:00 PM" notes="Slightly to himself. Thinking it thru." sync="true" facefx="3"/>
+ <Dialog id="13680621263383358805" text="Why am I restrained." modified="01/20/2016 02:13:41 AM" notes="Suspicious. Notices restraints." sync="true" facefx="3"/>
+ <Dialog id="13680621263383358940" text="I&apos;ve seen your face in the company directory. Alex&apos;s pet - the discredited parapsychologist." modified="01/20/2016 02:25:41 AM" notes="Frowning. Working it out. " sync="true" facefx="3"/>
+ <Dialog id="13680621263383359581" text="What?" modified="01/20/2016 02:26:37 AM" notes="A little confused. Irritated." sync="true" facefx="3"/>
+ <Dialog id="13680621263383359617" text="Yes, of course, I can pilot a - wait, what emergency? Is this Argus installation-? Where&apos;s Kaspar?" modified="07/08/2016 11:12:39 PM" notes="A little confused. Irritated." sync="true" facefx="3"/>
+ <Dialog id="13680621263383359923" text="Of course." modified="07/05/2016 09:03:24 PM" notes="Blinks. Thinking." sync="true" facefx="3"/>
+ <Dialog id="13680621263383359955" text="Morgan, you look like shit." modified="07/05/2016 09:03:29 PM" notes="Looks at morgan, scoffs." sync="true" facefx="3"/>
+ <Dialog id="13680621263383360057" text="All right, let&apos;s get Daddy&apos;s precious child off the station or TranStar will blackbox me." modified="01/20/2016 02:37:24 AM" notes="Grunts. Climbing out of the chair." sync="true" facefx="3"/>
+ <Dialog id="13680621263383404965" text="No expiration date on that one." modified="01/20/2016 03:03:01 PM" facefx="2"/>
+ <Dialog id="13680621263383405273" text="I&apos;ll be honest with you, Morgan. My orders were to wipe everyone. Including you." modified="01/20/2016 03:16:53 PM" facefx="2"/>
+ <Dialog id="13680621263383405512" text="But it&apos;s clear you&apos;ve come to the same conclusion as the Board. A complete reset is necessary." modified="05/06/2016 12:56:40 AM" facefx="2"/>
+ <Dialog id="13680621263383405546" text="I explained the situation to them, and they were impressed by your initiative, and are happy for you to come back with me." modified="07/12/2016 12:19:37 AM" facefx="2"/>
+ <Dialog id="13680621263383405948" text="That&apos;s good news, no?" modified="01/20/2016 03:19:24 PM" facefx="2"/>
+ <Dialog id="13680621263383406341" text="And you are running around like a nervous rat." modified="04/20/2016 01:02:35 AM" facefx="2"/>
+ <Dialog id="13680621263383406613" text="Come to the Shuttle Bay. We&apos;ll prep for departure." modified="05/06/2016 01:14:52 AM" facefx="2"/>
+ <Dialog id="13680621263383406769" text="Ah well. You&apos;re not an idiot. You knew I was going to kill you in the end." modified="01/20/2016 03:34:55 PM" facefx="2"/>
+ <Dialog id="13680621263383406777" text="No pretend games now." modified="01/20/2016 03:33:13 PM" facefx="2"/>
+ <Dialog id="13680621263383407075" text="I&apos;ll give you to the count of ten to leave the Shuttle Bay. " modified="05/06/2016 01:04:59 AM" facefx="2"/>
+ <Dialog id="13680621263383407197" text="One..." modified="01/20/2016 03:40:13 PM" facefx="2"/>
+ <Dialog id="13680621263383407202" text="Two..." modified="01/20/2016 03:40:18 PM" facefx="2"/>
+ <Dialog id="13680621263383407243" text="Three-four-five-six-ten-(Laughs)" modified="07/08/2016 11:05:53 PM" notes="All comes out in a rush. Then he laughs." facefx="2"/>
+ <Dialog id="13680621263383407296" text="I&apos;ll just kill you now. " modified="05/06/2016 01:06:01 AM" notes="I was going to wait... but" facefx="2"/>
+ <Dialog id="13680621263383440983" text="Morgan. Come." modified="01/21/2016 01:33:31 AM" notes="Call him over." sync="true"/>
+ <Dialog id="13680621263383442892" text="There&apos;s bad news. You won&apos;t be flying back with me." modified="01/21/2016 01:39:46 AM" notes="Could add a tsk and dissapointed sigh at the front." sync="true"/>
+ <Dialog id="13680621263383442922" text="But you already knew that, right?" modified="01/21/2016 01:36:15 AM" sync="true"/>
+ <Dialog id="13680621263383442964" text="Kill him." modified="05/06/2016 12:00:50 AM" notes="" sync="true"/>
+ <Dialog id="13680621263383446635" text="I never understood why Will put this one in charge." modified="01/21/2016 02:44:49 AM"/>
+ <Dialog id="13680621263383446659" text="You. Gather report." modified="01/21/2016 02:37:55 AM"/>
+ <Dialog id="13680621263383446966" text="Big brother had some presents he wanted to give away." modified="01/21/2016 02:43:26 AM"/>
+ <Dialog id="13680621263383447637" text="Or... maybe the decision came from them. " modified="01/21/2016 02:57:34 AM"/>
+ <Dialog id="13680621263383447647" text="Yes. That&apos;s probably right. " modified="01/21/2016 02:57:58 AM"/>
+ <Dialog id="13680621263383447873" text="If anyone else were forced to raise the issue of your catastrophic failure, it would be a sign of weakness." modified="01/21/2016 02:58:09 AM"/>
+ <Dialog id="13680621263383448539" text="I know the names of all the women who turned you down. " modified="01/21/2016 03:14:18 AM" notes="A littel absent-minded as he&apos;s working."/>
+ <Dialog id="13680621263383448845" text="Just a matter of time." modified="01/21/2016 03:14:21 AM" notes="More to himself. A littel absent-minded as he&apos;s working."/>
+ <Dialog id="13680621263383449742" text="Now!" modified="01/21/2016 03:29:18 AM" notes="Gruff."/>
+ <Dialog id="13680621263383498132" text="On again? The constant Neuromod cycling has left a porridge sloshing around in your skull. " modified="01/21/2016 07:09:43 PM" facefx="2"/>
+ <Dialog id="13680621263383498144" text="Back off. Back on. He loves me. He loves me not. What&apos;s it going to be, rat?" modified="05/08/2016 11:10:58 PM" facefx="2"/>
+ <Dialog id="13680621263383520420" text="Kaspar." modified="05/05/2016 11:46:19 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520462" text="What&apos;s the situation in Cargo Bay?" modified="01/21/2016 11:07:58 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520482" text="I&apos;m about to push all the oxygen out of there." modified="05/05/2016 11:51:31 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520508" text="We&apos;ll see how our friend Morgan responds. " modified="01/21/2016 11:08:44 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520517" text="Progress on the rest?" modified="01/21/2016 11:08:53 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520574" text="Let me know when it reaches 100." modified="05/05/2016 11:52:16 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520756" text="Have you been able to put a tap on Morgan&apos;s TranScribe?" modified="05/06/2016 12:02:11 AM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520904" text="You can&apos;t stand to be beaten. No. Keep current allocations. Is it Alex?" modified="01/21/2016 11:16:28 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383520997" text="It&apos;s another Operator." modified="07/08/2016 11:03:37 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383521016" text="Every one of you thinks that. Keep working.   " modified="01/22/2016 12:11:07 AM" sync="true" facefx="3"/>
+ <Dialog id="13680621263383521041" text="I&apos;m about to pull all the air from Cargo Bay.   " modified="01/21/2016 11:17:37 PM"/>
+ <Dialog id="13680621263383522159" text="Morgan. " modified="05/06/2016 12:03:10 AM" notes="Mix of surprise and impressed."/>
+ <Dialog id="13680621263383522225" text="My guess is you&apos;ve forgotten every employee aboard this station is issued a tracking bracelet. Yes, including you." modified="05/05/2016 11:52:54 PM"/>
+ <Dialog id="13680621263383523337" text="This makes it very easy for me to do my job." modified="05/05/2016 11:57:56 PM"/>
+ <Dialog id="13680621263383523600" text="Seems you do give a damn about your... employees. Your father would be disappointed." modified="05/06/2016 12:03:40 AM"/>
+ <Dialog id="13680621263383523811" text="Or maybe... you just really want to kill me." modified="05/06/2016 12:04:00 AM"/>
+ <Dialog id="13680621263383525157" text="Good." modified="01/22/2016 12:26:13 AM" notes="Quick acknowledge." sync="true" facefx="3"/>
+ <Dialog id="13680621263383525897" text="This shuttle is departing momentarily. Whether you&apos;re strapped in or not." modified="02/23/2016 11:50:28 PM"/>
+ <Dialog id="13680621263383526028" text="Hang on to your seat. This will be a rough ride." modified="05/09/2016 04:35:44 AM" sync="true"/>
+ <Dialog id="13680621263384043463" text="Tell him to move his ass. We&apos;re wheels up in two minutes." modified="01/28/2016 12:24:39 AM" notes="In the background." facefx="2"/>
+ <Dialog id="13680621263384043783" text="Tell her to move her ass. We&apos;re wheels up in two minutes." modified="01/28/2016 12:29:59 AM" facefx="2"/>
+ <Dialog id="13680621263384737422" text="Tell Dr. Yu Junior to hurry." modified="07/05/2016 07:22:57 PM" notes="Heard in the background" facefx="2"/>
+ <Dialog id="13680621263384737628" text="This shuttle is wheels up in-" modified="05/05/2016 11:40:15 PM" notes="Heard in background." facefx="2"/>
+ <Dialog id="13680621263386202631" text="I&apos;ll find you eventually." modified="02/22/2016 12:10:54 AM"/>
+ <Dialog id="13680621263386202806" text="Don&apos;t die a coward." modified="05/05/2016 11:43:20 PM"/>
+ <Dialog id="13680621263386255095" text="Your parents will be pleased to know all that time and money hasn&apos;t gone to waste. " modified="02/22/2016 03:29:33 PM" notes="Wry."/>
+ <Dialog id="13680621263386255866" text="You do a good impression of the Typhon organisms, Morgan." modified="02/22/2016 03:06:04 PM"/>
+ <Dialog id="13680621263386255992" text="Are you done showing off?" modified="02/22/2016 03:00:08 PM"/>
+ <Dialog id="13680621263386256053" text="If I could do what you do... " modified="02/22/2016 03:01:09 PM" notes="Dahl, imagining the world with him in charge. Scary."/>
+ <Dialog id="13680621263386256130" text="A little taste of power and some people lose their sense." modified="02/22/2016 03:06:30 PM"/>
+ <Dialog id="13680621263386256406" text="You&apos;re fond of games?" modified="02/22/2016 03:07:02 PM" notes="Threatening."/>
+ <Dialog id="13680621263386256584" text="Lack of impulse regulation." modified="02/22/2016 03:11:17 PM" notes="Clinical diagnosis."/>
+ <Dialog id="13680621263386256730" text="I know the feeling." modified="02/22/2016 03:12:26 PM"/>
+ <Dialog id="13680621263386256815" text="If you&apos;re bored, I&apos;m sure there are plenty of Typhon left to kill." modified="02/22/2016 03:13:56 PM" notes="Irritated."/>
+ <Dialog id="13680621263386256832" text="(Sigh)" modified="02/22/2016 03:14:08 PM" notes="Annoyed"/>
+ <Dialog id="13680621263386256878" text="Goodbye, Morgan." modified="02/22/2016 03:15:20 PM"/>
+ <Dialog id="13680621263386256936" text="Nothing." modified="02/22/2016 03:15:52 PM"/>
+ <Dialog id="13680621263386256945" text="Gone." modified="02/22/2016 03:16:01 PM"/>
+ <Dialog id="13680621263386256976" text="What was that?" modified="02/22/2016 03:16:32 PM" notes="Suspicious."/>
+ <Dialog id="13680621263386256982" text="Something. Over there." modified="02/22/2016 03:16:38 PM" notes="Hushed, warning."/>
+ <Dialog id="13680621263386257062" text="Hmm?" modified="02/22/2016 03:17:58 PM" notes="Inquisitive"/>
+ <Dialog id="13680621263386257847" text="Kill the damn thing." modified="02/22/2016 03:31:03 PM" notes="Shooting an alien."/>
+ <Dialog id="13680621263386260204" text="I need you to die now." modified="02/22/2016 04:10:20 PM"/>
+ <Dialog id="13680621263386260225" text="Your brother can&apos;t save you from me." modified="07/08/2016 11:01:54 PM"/>
+ <Dialog id="13680621263386261286" text="Time&apos;s up." modified="02/22/2016 04:29:02 PM"/>
+ <Dialog id="13680621263386261319" text="You&apos;re finished." modified="02/22/2016 04:28:55 PM"/>
+ <Dialog id="13680621263386261392" text="Wipe them out!" modified="02/22/2016 04:30:29 PM" notes="Shooting an alien."/>
+ <Dialog id="13680621263386261400" text="Another Typhon!" modified="02/22/2016 04:30:25 PM" notes="Shooting an alien."/>
+ <Dialog id="13680621263386261462" text="(Grunt)" modified="02/22/2016 04:31:18 PM" notes="Half-growl, half frustrated sigh."/>
+ <Dialog id="13680621263386261680" text="What have these fools unleashed?" modified="02/22/2016 04:35:44 PM" notes="Self-talk. Angry. Tense. Reacting to arrival of Nightmare."/>
+ <Dialog id="13680621263386261775" text="What is that... the seventh Yu family member I&apos;ve put to sleep?" modified="05/02/2016 08:30:26 PM"/>
+ <Dialog id="13680621263386261788" text="I expected to exert myself more." modified="02/22/2016 05:06:44 PM"/>
+ <Dialog id="13680621263386261951" text="I will tell your mother and father that you died bravely." modified="04/25/2016 09:26:22 PM"/>
+ <Dialog id="13680621263386261962" text="Of course, it will be a lie." modified="02/22/2016 04:39:38 PM"/>
+ <Dialog id="13680621263386262099" text="Sierra revealed nothing." modified="02/22/2016 04:41:55 PM"/>
+ <Dialog id="13680621263386262109" text="That was a waste." modified="02/22/2016 04:42:05 PM"/>
+ <Dialog id="13680621263386262138" text="Kill you now. Kill you later. I get paid either way." modified="02/22/2016 04:43:21 PM"/>
+ <Dialog id="13680621263386262160" text="You&apos;re boring me now." modified="02/22/2016 04:42:56 PM"/>
+ <Dialog id="13680621263386262288" text="(Laugh) You run? Well, I misjudged you." modified="02/22/2016 04:45:04 PM" notes="Quick, mocking laugh. "/>
+ <Dialog id="13680621263386366835" text="You&apos;re supposed to be some kind of genius. You know I can see you coming?" modified="02/23/2016 09:57:27 PM" notes="Dry. Mocking. " facefx="2"/>
+ <Dialog id="13680621263386367496" text="Here. At least let me speed things along." modified="05/06/2016 01:03:18 AM" notes="Slightly detached, punching something in on a console." facefx="2"/>
+ <Dialog id="13680621263386373810" text="I&apos;m not a patient man, Morgan. Don&apos;t make me wait." modified="02/23/2016 11:43:46 PM"/>
+ <Dialog id="13680621263386373953" text="Well. I&apos;ll assume you knew I was going to kill you anyway." modified="05/06/2016 12:19:41 AM"/>
+ <Dialog id="13680621263386374072" text="What are you up to, Morgan, sneaking around like a rat?" modified="02/23/2016 11:53:37 PM"/>
+ <Dialog id="13680621263386374367" text="Morgan!" modified="02/23/2016 11:53:03 PM" notes="Surprised. Player crept up on him."/>
+ <Dialog id="13680621263389231912" text="Life Support. The clock is ticking." modified="03/28/2016 01:38:48 AM" facefx="2"/>
+ <Dialog id="13680621263391218882" text="There&apos;s nothing wrong with me." modified="04/20/2016 01:34:58 AM"/>
+ <Dialog id="13680621263391219865" text="I&apos;m in the flight control room. Waiting." modified="04/20/2016 01:51:21 AM"/>
+ <Dialog id="13680621263391219971" text="I&apos;m going to give you... to the count of twenty to get up here." modified="04/20/2016 01:53:07 AM"/>
+ <Dialog id="13680621263391219997" text="Ten seconds left." modified="04/20/2016 01:53:33 AM"/>
+ <Dialog id="13680621263391220036" text="Three... two... one. Time&apos;s up." modified="05/06/2016 12:20:50 AM" notes="Said quikcly. Like he&apos;s a bored with the charade."/>
+ <Dialog id="13680621263391220072" text="I was going to kill you anyway." modified="04/20/2016 01:54:48 AM" notes="Whatevs. "/>
+ <Dialog id="13680621263391372122" text="Morgan..." modified="05/06/2016 01:12:07 AM" facefx="2"/>
+ <Dialog id="13680621263391372133" text="Do you want to know what I think? I think you wanted to forget." modified="07/08/2016 10:58:12 PM" facefx="2"/>
+ <Dialog id="13680621263391372151" text="You weren&apos;t being brave for science. You wanted to stop feeling like a monster. Three years of feeding your fellow human beings to the Typhon. Oof." modified="05/06/2016 01:12:17 AM" facefx="2"/>
+ <Dialog id="13680621263391372185" text="I understand.  " modified="04/21/2016 08:10:01 PM" facefx="2"/>
+ <Dialog id="13680621263391372198" text="You see, I do the same. Before every mission, I poke a Neuromod into my eye. Then, I am free to do whatever I must. " modified="05/06/2016 01:12:36 AM" facefx="2"/>
+ <Dialog id="13680621263391372206" text="So, I will kill you. I will kill your brother. I will butcher everyone on this station without pause." modified="04/21/2016 08:10:22 PM" facefx="2"/>
+ <Dialog id="13680621263391372216" text="And when I go home, I will have this Neuromod removed. Where did the time go?" modified="05/06/2016 01:13:29 AM" facefx="2"/>
+ <Dialog id="13680621263391372223" text="My only thought will be, &quot;how did I earn so much money?&quot; " modified="04/21/2016 08:10:39 PM" facefx="2"/>
+ <Dialog id="13680621263391372228" text="It&apos;s a wonderful invention." modified="04/21/2016 08:10:44 PM" facefx="2"/>
+ <Dialog id="13680621263392336687" text="I can only assume you had a good reason for that." modified="05/03/2016 12:05:03 AM"/>
+ <Dialog id="13680621263392336709" text="Makes no difference to me, as long as I&apos;m still flying the shuttle." modified="05/03/2016 12:05:25 AM"/>
+ <Dialog id="13680621263392336736" text="I&apos;ll meet you there." modified="05/03/2016 12:05:52 AM"/>
+ <Dialog id="13680621263392594673" facefx="0" sync="0" notes="" text="Cover the entrances. She&apos;ll show." modified="05/05/2016 11:45:02 PM"/>
+ <Dialog id="13680621263392595657" facefx="0" sync="0" notes="" text="Kill her." modified="05/06/2016 12:01:17 AM"/>
+ <Dialog id="13680621263394228148" text="Back off. Back on. She loves me. She loves me not. What&apos;s it going to be, rat?" modified="05/24/2016 09:29:24 PM"/>
+ <Dialog id="13680621263394228280" text="Morgan. This is Dahl. You really are the daughter of Will and Cathy Yu." modified="05/24/2016 09:31:36 PM"/>
+</Dialog>

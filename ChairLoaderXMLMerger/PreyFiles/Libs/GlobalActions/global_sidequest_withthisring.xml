@@ -1,0 +1,555 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="6" Class="Ark:Dialog:ConversationEvent" pos="40,190,0">
+   <Inputs conversation_Conversation="4349723564913692474"/>
+  </Node>
+  <Node Id="7" Class="Ark:Objectives:SetObjectiveDescription" pos="1430,230,0">
+   <Inputs objectiveDescription_Description="4349723564927784706"/>
+  </Node>
+  <Node Id="9" Class="Ark:Objectives:TaskState" pos="1430,300,0">
+   <Inputs task_Task="4349723564927784871" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="10" Class="Ark:Objectives:ObjectiveState" pos="1050,250,0">
+   <Inputs objective_Objective="4349723564927784705" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="15" Name="Start_Wedding_Ring_Side_Obj_at_end_of_Dialog" Class="_commentbox" pos="10,160,0">
+   <Inputs TextSize="1" Color="0.89627,0.89627,0.171441" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1860" Height="410"/>
+  </Node>
+  <Node Id="18" Class="Ark:Dialog:ConversationEvent" pos="40,290,0">
+   <Inputs conversation_Conversation="4349723564930186452"/>
+  </Node>
+  <Node Id="33" Class="Mission:GameTokenSet" pos="1730,1180,0">
+   <Inputs gametokenid_Token="1669935990" Value="false"/>
+  </Node>
+  <Node Id="1371" Class="Mission:GameTokenCheck" pos="600,250,0">
+   <Inputs gametokenid_Token="1669935990" CheckValue="true"/>
+  </Node>
+  <Node Id="1372" Class="Ark:Objectives:GetTaskState" pos="2980,190,0">
+   <Inputs task_Task="4349723564927784871"/>
+  </Node>
+  <Node Id="1373" Class="Ark:Objectives:ObjectiveState" pos="4000,180,0">
+   <Inputs objective_Objective="4349723564927784705" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="1374" Class="Ark:Objectives:GetObjectiveState" pos="2590,250,0">
+   <Inputs objective_Objective="4349723564927784705"/>
+  </Node>
+  <Node Id="1375" Class="Ark:Objectives:GetTaskState" pos="2970,360,0">
+   <Inputs task_Task="4349723564927785023"/>
+  </Node>
+  <Node Id="1376" Class="Ark:Objectives:TaskState" pos="3490,170,0">
+   <Inputs task_Task="4349723564927784871" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1377" Class="Ark:Objectives:TaskState" pos="3480,370,0">
+   <Inputs task_Task="4349723564927785023" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1378" Name="Fail_Quest_if_Kevin_dies_or_stunned" Class="_commentbox" pos="2040,120,0">
+   <Inputs TextSize="1" Color="0.799103,0.904661,0.171441" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2310" Height="640"/>
+  </Node>
+  <Node Id="2152" Name="WeddingRing_Task_Marker" Class="_commentbox" pos="-107,920,0">
+   <Inputs TextSize="1" Color="0.162029,0.921582,0.921582" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="4860" Height="4830"/>
+  </Node>
+  <Node Id="2154" Class="Ark:Objectives:GetTaskState" pos="1693.2792,1031.5457,0">
+   <Inputs task_Task="4349723564927785023"/>
+  </Node>
+  <Node Id="2155" Class="Inventory:ItemCheck" pos="383.27917,1271.5457,0">
+   <Inputs entityId="0" Active="1" archetype="ArkPickups.MissionItems.WeddingRing" itemClass=""/>
+  </Node>
+  <Node Id="2156" Class="Actor:LocalPlayer" pos="200,1270,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2157" Class="Ark:Locations:CheckLocation" pos="2482.1426,1015.4092,0">
+   <Inputs location_Location="1713490239386284818"/>
+  </Node>
+  <Node Id="2160" Class="Ark:Locations:CheckLocation" pos="2490,1140,0">
+   <Inputs location_Location="844024417263019221"/>
+  </Node>
+  <Node Id="2188" Class="Game:Start" pos="-150,1310,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="2196" Class="Logic:Gate" pos="2183.2793,1031.5457,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="2200" Class="Ark:Locations:CheckLocation" pos="2482.1426,1295.4092,0">
+   <Inputs location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="2203" Class="Ark:Locations:CheckLocation" pos="2522.1426,1435.4092,0">
+   <Inputs location_Location="15659330456296333985"/>
+  </Node>
+  <Node Id="2206" Class="Ark:Locations:CheckLocation" pos="2522.1426,1555.4092,0">
+   <Inputs location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="2209" Class="Ark:Locations:CheckLocation" pos="2522.1426,1675.4092,0">
+   <Inputs location_Location="1713490239377738413"/>
+  </Node>
+  <Node Id="2212" Class="Ark:Locations:CheckLocation" pos="2522.1426,1795.4092,0">
+   <Inputs location_Location="1713490239386284988"/>
+  </Node>
+  <Node Id="2215" Class="Ark:Locations:CheckLocation" pos="2532.1426,1905.4092,0">
+   <Inputs location_Location="1713490239377285936"/>
+  </Node>
+  <Node Id="2218" Class="Ark:Locations:CheckLocation" pos="2532.1426,2025.4092,0">
+   <Inputs location_Location="12889009724983807463"/>
+  </Node>
+  <Node Id="2221" Class="Ark:Locations:CheckLocation" pos="2532.0986,2154.2444,0">
+   <Inputs location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="2224" Class="Ark:Locations:CheckLocation" pos="2532.1426,2275.4092,0">
+   <Inputs location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="2227" Class="Ark:Locations:CheckLocation" pos="2532.1426,2395.4092,0">
+   <Inputs location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2230" Class="Ark:Locations:CheckLocation" pos="2532.1426,2525.4092,0">
+   <Inputs location_Location="6732635291182790112"/>
+  </Node>
+  <Node Id="2233" Class="Ark:Locations:CheckLocation" pos="2532.1426,2645.4092,0">
+   <Inputs location_Location="844024417275035158"/>
+  </Node>
+  <Node Id="2236" Class="Mission:GameTokenSet" pos="1570,1340,0">
+   <Inputs gametokenid_Token="710071565" Value="true"/>
+  </Node>
+  <Node Id="2416" Class="Mission:GameTokenUpdated" pos="2100,200,0">
+   <Inputs gametokenid_Token="1074463772" compare_Value="true"/>
+  </Node>
+  <Node Id="2417" Class="Mission:GameTokenUpdated" pos="2100,300,0">
+   <Inputs gametokenid_Token="749395437" compare_Value="true"/>
+  </Node>
+  <Node Id="2551" Class="Inventory:ItemCheck" pos="523.27917,3841.5457,0">
+   <Inputs entityId="0" Active="1" archetype="ArkPickups.MissionItems.WeddingRing" itemClass=""/>
+  </Node>
+  <Node Id="2552" Class="Actor:LocalPlayer" pos="343.27917,3841.5457,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2555" Class="Ark:Locations:CheckLocation" pos="1972.1427,3215.4094,0">
+   <Inputs location_Location="1713490239386284818"/>
+  </Node>
+  <Node Id="2556" Class="Ark:Locations:CheckLocation" pos="1962.1427,3385.4094,0">
+   <Inputs location_Location="844024417263019221"/>
+  </Node>
+  <Node Id="2557" Class="Ark:Locations:CheckLocation" pos="1962.1427,3535.4094,0">
+   <Inputs location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="2558" Class="Ark:Locations:CheckLocation" pos="1962.1427,3685.4094,0">
+   <Inputs location_Location="15659330456296333985"/>
+  </Node>
+  <Node Id="2559" Class="Ark:Locations:CheckLocation" pos="1962.1427,3845.4094,0">
+   <Inputs location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="2560" Class="Ark:Locations:CheckLocation" pos="1962.1427,3995.4094,0">
+   <Inputs location_Location="1713490239377738413"/>
+  </Node>
+  <Node Id="2561" Class="Ark:Locations:CheckLocation" pos="1962.1427,4175.4092,0">
+   <Inputs location_Location="1713490239386284988"/>
+  </Node>
+  <Node Id="2562" Class="Ark:Locations:CheckLocation" pos="1962.1427,4335.4092,0">
+   <Inputs location_Location="1713490239377285936"/>
+  </Node>
+  <Node Id="2563" Class="Ark:Locations:CheckLocation" pos="1962.1427,4505.4092,0">
+   <Inputs location_Location="12889009724983807463"/>
+  </Node>
+  <Node Id="2564" Class="Ark:Locations:CheckLocation" pos="1962.1427,4655.4092,0">
+   <Inputs location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="2565" Class="Ark:Locations:CheckLocation" pos="1962.1427,4825.4092,0">
+   <Inputs location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="2566" Class="Ark:Locations:CheckLocation" pos="1962.1427,4985.4092,0">
+   <Inputs location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2567" Class="Ark:Locations:CheckLocation" pos="1962.1427,5125.4092,0">
+   <Inputs location_Location="6732635291182790112"/>
+  </Node>
+  <Node Id="2568" Class="Ark:Locations:CheckLocation" pos="1962.1427,5305.4092,0">
+   <Inputs location_Location="844024417275035158"/>
+  </Node>
+  <Node Id="2569" Name="Player_Dropped_WeddingRing" Class="_commentbox" pos="273,3066,0">
+   <Inputs TextSize="2" Color="0.760525,0.791298,0.913099" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="3120" Height="2530"/>
+  </Node>
+  <Node Id="2570" Class="Logic:Gate" pos="1572.1427,3835.4094,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="2572" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3185.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239386284818"/>
+  </Node>
+  <Node Id="2573" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3265.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239386284818"/>
+  </Node>
+  <Node Id="2574" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3345.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="844024417263019221"/>
+  </Node>
+  <Node Id="2575" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3425.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="844024417263019221"/>
+  </Node>
+  <Node Id="2576" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3505.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="2577" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3585.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="2578" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3665.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="15659330456296333985"/>
+  </Node>
+  <Node Id="2579" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3745.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="15659330456296333985"/>
+  </Node>
+  <Node Id="2580" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3825.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="2581" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3905.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="2582" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,3985.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239377738413"/>
+  </Node>
+  <Node Id="2583" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4065.4094,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239377738413"/>
+  </Node>
+  <Node Id="2584" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4145.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239386284988"/>
+  </Node>
+  <Node Id="2585" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4225.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239386284988"/>
+  </Node>
+  <Node Id="2586" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4305.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239377285936"/>
+  </Node>
+  <Node Id="2587" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4385.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239377285936"/>
+  </Node>
+  <Node Id="2588" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4465.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="12889009724983807463"/>
+  </Node>
+  <Node Id="2589" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4545.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="12889009724983807463"/>
+  </Node>
+  <Node Id="2590" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4625.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="2591" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4705.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="2592" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4785.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="2593" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4865.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="2594" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,4945.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2595" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,5025.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2596" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,5105.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="6732635291182790112"/>
+  </Node>
+  <Node Id="2597" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,5185.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="6732635291182790112"/>
+  </Node>
+  <Node Id="2598" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,5265.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="844024417275035158"/>
+  </Node>
+  <Node Id="2599" Class="Ark:Objectives:SetTaskLocation" pos="2302.1426,5345.4092,0">
+   <Inputs task_Task="844024417323429978" location_Location="844024417275035158"/>
+  </Node>
+  <Node Id="2600" Class="Mission:GameTokenSet" pos="1570,1260,0">
+   <Inputs gametokenid_Token="710071565" Value="false"/>
+  </Node>
+  <Node Id="2605" Class="Time:Delay" pos="1493.2792,1031.5457,0">
+   <Inputs delay="0.1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2608" Class="Mission:GameTokenCheck" pos="1060,3840,0">
+   <Inputs gametokenid_Token="710071565" CheckValue="true"/>
+  </Node>
+  <Node Id="2609" Class="Inventory:ItemCheck" pos="1013.2792,1271.5457,0">
+   <Inputs entityId="0" Active="0" archetype="ArkPickups.MissionItems.WeddingRing" itemClass=""/>
+  </Node>
+  <Node Id="2611" Class="Ark:IsArchetypeInWorld" pos="2760,990,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2612" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3270,990,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2613" Class="Ark:IsArchetypeInWorld" pos="2770,1120,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2614" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3280,1120,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2617" Class="Ark:IsArchetypeInWorld" pos="2810,1290,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2618" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3320,1290,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2619" Class="Ark:IsArchetypeInWorld" pos="2810,1440,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2620" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3320,1440,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2621" Class="Ark:IsArchetypeInWorld" pos="2810,1550,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2622" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3320,1550,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2623" Class="Ark:IsArchetypeInWorld" pos="2810,1670,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2624" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3320,1670,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2625" Class="Ark:IsArchetypeInWorld" pos="2820,1790,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2626" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3330,1790,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2627" Class="Ark:IsArchetypeInWorld" pos="2860,1900,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2628" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3370,1900,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2629" Class="Ark:IsArchetypeInWorld" pos="2860,2020,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2630" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3370,2020,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2631" Class="Ark:IsArchetypeInWorld" pos="2860,2150,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2632" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3370,2150,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2633" Class="Ark:IsArchetypeInWorld" pos="2850,2270,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2634" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3360,2270,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2635" Class="Ark:IsArchetypeInWorld" pos="2830,2400,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2636" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3340,2400,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2637" Class="Ark:IsArchetypeInWorld" pos="2830,2520,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2638" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3340,2520,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2639" Class="Ark:IsArchetypeInWorld" pos="2820,2640,0">
+   <Inputs archetype="ArkPickups.MissionItems.WeddingRing"/>
+  </Node>
+  <Node Id="2640" Class="Ark:Objectives:SetTaskMarkerEntity" pos="3330,2640,0">
+   <Inputs entityId="0" task_Task="844024417323429978" OpaqueDistance="10"/>
+  </Node>
+  <Node Id="2649" Class="Ark:Objectives:TaskState" pos="3880,1440,0">
+   <Inputs task_Task="844024417323429978" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2654" Class="Ark:Objectives:TaskState" pos="4300,1440,0">
+   <Inputs task_Task="4349723564927785023" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2655" Name="Drop_Ring" Class="_comment" pos="650,3810,0"/>
+  <Node Id="2657" Name="DROP" Class="_comment" pos="1460,1260,0"/>
+  <Node Id="2658" Name="PICKUP" Class="_comment" pos="1450,1390,0"/>
+  <Node Id="2659" Class="Time:Delay" pos="1030,3670,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2660" Class="Ark:Objectives:GetTaskState" pos="1510,1590,0">
+   <Inputs task_Task="844024417323429978"/>
+  </Node>
+  <Node Id="2661" Class="Ark:Objectives:TaskState" pos="1970,1500,0">
+   <Inputs task_Task="4349723564927785023" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2662" Class="Ark:Objectives:TaskState" pos="1970,1670,0">
+   <Inputs task_Task="844024417323429978" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2663" Class="Mission:GameTokenSet" pos="1740,1420,0">
+   <Inputs gametokenid_Token="1669935990" Value="true"/>
+  </Node>
+  <Node Id="2666" Class="Ark:Objectives:TaskState" pos="3480,560,0">
+   <Inputs task_Task="844024417323429978" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2667" Class="Ark:Objectives:GetTaskState" pos="2970,520,0">
+   <Inputs task_Task="844024417323429978"/>
+  </Node>
+  <Node Id="2668" Name="Kevin_location_changes_to_Life_Support" Class="_commentbox" pos="10,-222,0">
+   <Inputs TextSize="1" Color="0.89627,0.89627,0.171441" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1860" Height="280"/>
+  </Node>
+  <Node Id="2669" Class="Mission:GameTokenUpdated" pos="60,-120,0">
+   <Inputs gametokenid_Token="1480792858" compare_Value=""/>
+  </Node>
+  <Node Id="2670" Class="Ark:Objectives:SetTaskLocation" pos="710,-120,0">
+   <Inputs task_Task="4349723564927785023" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2671" Class="Ark:Debug:ConsoleEvent" pos="40,400,0">
+   <Inputs Command="StartRing"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="1371" nodeOut="6" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="1371" nodeOut="6" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="10" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="10" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1371" nodeOut="18" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="1371" nodeOut="18" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="1371" portIn="Add" portOut="False" enabled="1"/>
+  <Edge nodeIn="1376" nodeOut="1372" portIn="Fail" portOut="Active" enabled="1"/>
+  <Edge nodeIn="1372" nodeOut="1374" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1375" nodeOut="1374" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="2667" nodeOut="1374" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1377" nodeOut="1375" portIn="Fail" portOut="Active" enabled="1"/>
+  <Edge nodeIn="1373" nodeOut="1376" portIn="Fail" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="1373" nodeOut="1377" portIn="Fail" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="2196" nodeOut="2154" portIn="In" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2609" nodeOut="2155" portIn="check" portOut="False" enabled="1"/>
+  <Edge nodeIn="2609" nodeOut="2155" portIn="check" portOut="True" enabled="1"/>
+  <Edge nodeIn="2155" nodeOut="2156" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2609" nodeOut="2156" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2611" nodeOut="2157" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2613" nodeOut="2160" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2155" nodeOut="2188" portIn="check" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2155" nodeOut="2188" portIn="check" portOut="output" enabled="1"/>
+  <Edge nodeIn="2157" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2160" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2200" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2203" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2206" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2209" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2212" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2215" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2218" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2221" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2224" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2227" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2230" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2233" nodeOut="2196" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2617" nodeOut="2200" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2619" nodeOut="2203" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2621" nodeOut="2206" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2623" nodeOut="2209" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2625" nodeOut="2212" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2627" nodeOut="2215" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2629" nodeOut="2218" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2631" nodeOut="2221" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2633" nodeOut="2224" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2635" nodeOut="2227" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2637" nodeOut="2230" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2639" nodeOut="2233" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="1374" nodeOut="2416" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1374" nodeOut="2417" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2659" nodeOut="2551" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="2551" nodeOut="2552" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2572" nodeOut="2555" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2573" nodeOut="2555" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2574" nodeOut="2556" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2575" nodeOut="2556" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2576" nodeOut="2557" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2577" nodeOut="2557" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2578" nodeOut="2558" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2579" nodeOut="2558" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2580" nodeOut="2559" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2581" nodeOut="2559" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2582" nodeOut="2560" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2583" nodeOut="2560" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2584" nodeOut="2561" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2585" nodeOut="2561" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2586" nodeOut="2562" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2587" nodeOut="2562" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2588" nodeOut="2563" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2589" nodeOut="2563" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2590" nodeOut="2564" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2591" nodeOut="2564" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2592" nodeOut="2565" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2593" nodeOut="2565" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2594" nodeOut="2566" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2595" nodeOut="2566" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2596" nodeOut="2567" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2597" nodeOut="2567" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2598" nodeOut="2568" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2599" nodeOut="2568" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2555" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2556" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2557" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2558" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2559" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2560" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2561" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2562" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2563" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2564" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2565" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2566" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2567" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2568" nodeOut="2570" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2154" nodeOut="2605" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2570" nodeOut="2608" portIn="In" portOut="False" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="2609" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="2236" nodeOut="2609" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2600" nodeOut="2609" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="2605" nodeOut="2609" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="2660" nodeOut="2609" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2663" nodeOut="2609" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="2612" nodeOut="2611" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2612" nodeOut="2611" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2612" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2614" nodeOut="2613" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2614" nodeOut="2613" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2614" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2618" nodeOut="2617" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2618" nodeOut="2617" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2618" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2620" nodeOut="2619" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2620" nodeOut="2619" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2620" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2622" nodeOut="2621" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2622" nodeOut="2621" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2622" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2624" nodeOut="2623" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2624" nodeOut="2623" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2624" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2626" nodeOut="2625" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2626" nodeOut="2625" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2626" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2628" nodeOut="2627" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2628" nodeOut="2627" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2628" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2630" nodeOut="2629" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2630" nodeOut="2629" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2630" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2632" nodeOut="2631" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2632" nodeOut="2631" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2632" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2634" nodeOut="2633" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2634" nodeOut="2633" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2634" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2636" nodeOut="2635" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2636" nodeOut="2635" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2636" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2638" nodeOut="2637" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2638" nodeOut="2637" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2638" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2640" nodeOut="2639" portIn="entityId" portOut="Entity" enabled="1"/>
+  <Edge nodeIn="2640" nodeOut="2639" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="2649" nodeOut="2640" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2654" nodeOut="2649" portIn="Deactivate" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="2608" nodeOut="2659" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2661" nodeOut="2660" portIn="Activate" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2662" nodeOut="2660" portIn="Deactivate" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2666" nodeOut="2667" portIn="Deactivate" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2670" nodeOut="2669" portIn="Set" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1371" nodeOut="2671" portIn="Trigger" portOut="Triggered" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

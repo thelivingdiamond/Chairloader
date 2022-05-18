@@ -1,0 +1,771 @@
+
+<ArkAbilities>
+ <Abilities>
+  <ArkAbility ID="12348086275133482358" Label="@rpg_backlashname" Description="@rpg_backlash1" Cost="3" NightmareHeat="1.0" RequireScanner="true" Power="KineticShield" PowerLevel="1" Icon="ui_icon_ability_kineticshield_1" Name="Backlash I" Tier="1">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348608" Label="@rpg_backlashname2" Description="@rpg_backlash2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_kineticshield_2" Power="KineticShield" PowerLevel="2" Name="Backlash II" Tier="1">
+   <Prereqs>
+    <Prereq value="12348086275133482358"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348616" Label="@rpg_backlashname3" Description="@rpg_backlash3" Cost="8" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_kineticshield_3" Power="KineticShield" PowerLevel="3" Name="Backlash III" Tier="1">
+   <Prereqs>
+    <Prereq value="3149325216929348608"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216951898868" Name="Combat Focus I" Label="@rpg_CombatFocusName" Description="@rpg_CombatFocus1" Cost="2" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_combatfocus_1" Power="CombatFocus" PowerLevel="1">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216979649415" Name="Combat Focus II" Label="@loc_3149325216979649416" Description="@loc_3149325216979649417" Cost="5" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_combatfocus_2" Power="CombatFocus" PowerLevel="2">
+   <Prereqs>
+    <Prereq value="3149325216951898868"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216979649412" Name="Combat Focus III" Label="@loc_3149325216979649413" Description="@loc_3149325216979649414" Cost="8" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_combatfocus_3" Power="CombatFocus" PowerLevel="3">
+   <Prereqs>
+    <Prereq value="3149325216979649415"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216964528002" Name="Conditioning" Label="@rpg_ConditioningName" Description="@rpg_Conditioning" NightmareHeat="0.0" Cost="1" RequireScanner="false" Icon="ui_icon_ability_conditioning_1">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="hitPoints" Modifier="150"/>
+    <StatModifier StatName="fatigueMax" Modifier="5"/>
+    <StatModifier StatName="maxSpeedStand" Modifier="0.2"/>
+    <StatModifier StatName="maxSpeedSneak" Modifier="0.08"/>
+    <StatModifier StatName="maxSpeedCrawl" Modifier="0.08"/>
+    <StatModifier StatName="fatigueDrainRate" Modifier="0.875"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348919" Label="@rpg_PhantomGenesisName" Description="@rpg_PhantomGenesis1" Cost="4" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_createphantom_1" Power="CreatePhantom" PowerLevel="1" Name="Create Phantom I" Tier="2" TutorialPC="@loc_15373294129902594795" Tutorial="@loc_15373294129902594849" TutorialImage="ability_phantomgenesis">
+   <Prereqs>
+    <Prereq value="3149325216929348840"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348928" Label="@rpg_PhantomGenesisName2" Description="@rpg_PhantomGenesis2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_createphantom_2" Power="CreatePhantom" PowerLevel="2" Name="Create Phantom II" Tier="2" TutorialPC="@loc_15373294129902594795" Tutorial="@loc_15373294129902594849" TutorialImage="ability_phantomgenesis">
+   <Prereqs>
+    <Prereq value="3149325216929348919"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348752" Label="@rpg_MachineMindName" Description="@rpg_MachineMind1" Cost="2" NightmareHeat="1" RequireScanner="true" Power="Cyberkinesis" PowerLevel="1" Icon="ui_icon_ability_cyberkinesis_1" Name="Cyberkinesis I" Tier="1" Tutorial="@loc_15373294129902594872" TutorialPC="@loc_15373294129902594879" TutorialImage="ability_machinemind">
+   <Prereqs>
+    <Prereq value="3149325216929348589"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348761" Label="@rpg_MachineMindName2" Description="@rpg_MachineMind2" Cost="3" NightmareHeat="2" RequireScanner="true" Power="Cyberkinesis" PowerLevel="2" Icon="ui_icon_ability_cyberkinesis_2" Name="Cyberkinesis II" Tier="1" Tutorial="@loc_15373294129902594872" TutorialPC="@loc_15373294129902594879" TutorialImage="ability_machinemind">
+   <Prereqs>
+    <Prereq value="3149325216929348752"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348766" Label="@rpg_MachineMindName3" Description="@rpg_MachineMind3" Cost="5" NightmareHeat="3" RequireScanner="true" Power="Cyberkinesis" PowerLevel="3" Icon="ui_icon_ability_cyberkinesis_3" Name="Cyberkinesis III" Tier="1" Tutorial="@loc_15373294129902594872" TutorialPC="@loc_15373294129902594879" TutorialImage="ability_machinemind">
+   <Prereqs>
+    <Prereq value="3149325216929348761"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347172" Label="@rpg_DismantleName" Description="@rpg_Dismantle" Cost="3" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_dismantle_1" Name="Dismantle I">
+   <Prereqs>
+    <Prereq value="3149325216929347161"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348335" Label="@rpg_ElecAbsorbName" Description="@rpg_ElecAbsorb" Cost="4" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_electrostaticabsorption_1" Name="Electrostatic Absorption I">
+   <Prereqs>
+    <Prereq value="3149325216929348322"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="electrostaticAbsorption" Modifier="0.05"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348280" Label="@rpg_ElecBurstName" Description="@rpg_ElecBurst1" Cost="3" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_electrostaticpulse_1" Power="ElectrostaticBurst" PowerLevel="1" Name="Electrostatic Burst I" Tier="1" Tutorial="@loc_15373294129902594952" TutorialPC="@loc_15373294129902594961" TutorialImage="ability_electrostatic">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348297" Label="@rpg_ElecBurstName2" Description="@rpg_ElecBurst2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_electrostaticpulse_2" Power="ElectrostaticBurst" PowerLevel="2" Name="Electrostatic Burst II" Tier="1" Tutorial="@loc_15373294129902594952" TutorialPC="@loc_15373294129902594961" TutorialImage="ability_electrostatic">
+   <Prereqs>
+    <Prereq value="3149325216929348280"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348303" Label="@rpg_ElecBurstName3" Description="@rpg_ElecBurst3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_electrostaticpulse_3" Power="ElectrostaticBurst" PowerLevel="3" Name="Electrostatic Burst III" Tier="1" Tutorial="@loc_15373294129902594952" TutorialPC="@loc_15373294129902594961" TutorialImage="ability_electrostatic">
+   <Prereqs>
+    <Prereq value="3149325216929348297"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348322" Label="@rpg_ElecResistName" Description="@rpg_ElecResist" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_electrostaticresistance_1" Name="Electrostatic Resistance I">
+   <Prereqs>
+    <Prereq value="3149325216929348280"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611596" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216969124537" Label="@rpg_EtherAbsorbName" Description="@rpg_EtherAbsorb" Cost="3" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_etherealabsorption_1" Name="Ether Absorption">
+   <Prereqs>
+    <Prereq value="3149325216969124146"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="etherAbsorption" Modifier="0.05"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216969124146" Label="@rpg_EtherResistName" Description="@rpg_EtherResist" Cost="1" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_etherealresistance_1" Name="Ether Resistance">
+   <Prereqs>
+    <Prereq value="3149325216929348840"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216969124662" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929349159" Label="@rpg_FearResistName" Description="@rpg_FearResist" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_fearresistance_1" Name="Fear Resistance I">
+   <Prereqs>
+    <Prereq value="12348086275133482358"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611619" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929346739" Label="@rpg_FieldSurgeonName" Description="@rpg_FieldSurgeon" Cost="5" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_fieldsurgeon_1" Name="Field Surgeon I">
+   <Prereqs>
+    <Prereq value="3149325216929346738"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347337" Label="@rpg_FirearmsName" Description="@rpg_Firearms1" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_firearms_1" Name="Firearms I">
+   <Prereqs/>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929612335" IsInbound="false"/>
+   </SignalModifiers>
+   <StatModifiers>
+    <StatModifier StatName="shotgunCriticalHitChance" Modifier=".04"/>
+    <StatModifier StatName="pistolCriticalHitChance" Modifier=".04"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347338" Label="@rpg_FirearmsName2" Description="@rpg_Firearms2" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_firearms_2" Name="Firearms II">
+   <Prereqs>
+    <Prereq value="3149325216929347337"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929612347" IsInbound="false"/>
+   </SignalModifiers>
+   <StatModifiers>
+    <StatModifier StatName="shotgunCriticalHitChance" Modifier=".04"/>
+    <StatModifier StatName="pistolCriticalHitChance" Modifier=".04"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347173" Label="@rpg_GunsmithName" Description="@rpg_Gunsmith1" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_gunsmith_1" Name="Gunsmith I">
+   <Prereqs>
+    <Prereq value="3149325216929347161"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347317" Label="@rpg_GunsmithName2" Description="@rpg_Gunsmith2" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_gunsmith_2" Name="Gunsmith II">
+   <Prereqs>
+    <Prereq value="3149325216929347173"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="12348086275133481755" Label="@rpg_HackingName" Description="@rpg_Hacking1" Cost="1" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_hacking_1" Name="Hacking I">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="12348086275133481459" Label="@rpg_HackingName2" Description="@rpg_Hacking2" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_hacking_2" Name="Hacking II">
+   <Prereqs>
+    <Prereq value="12348086275133481755"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216928600147" Label="@rpg_HackingName3" Description="@rpg_Hacking3" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_hacking_3" Name="Hacking III">
+   <Prereqs>
+    <Prereq value="12348086275133481459"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216928600154" Label="@rpg_HackingName4" Description="@rpg_Hacking4" Cost="8" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_hacking_4" Name="Hacking IV">
+   <Prereqs>
+    <Prereq value="3149325216928600147"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="10641886185852603001" Label="@loc_10641886185852603002" Description="@loc_10641886185852603003" Cost="0" NightmareHeat="0.0" RequireScanner="false" Name="Hacking V">
+   <Prereqs>
+    <Prereq value="3149325216928600154"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929349177" Label="@rpg_OverrideName" Description="@rpg_Override1" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_hypnosis_1" Power="Hypnosis" PowerLevel="1" Name="Hypnosis I" Tutorial="@loc_15373294129902594987" TutorialPC="@loc_15373294129902594995" TutorialImage="ability_mindjack">
+   <Prereqs>
+    <Prereq value="3149325216929349114"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929349169" Label="@rpg_OverrideName2" Description="@rpg_Override2" Cost="4" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_hypnosis_2" Power="Hypnosis" PowerLevel="2" Name="Hypnosis II" Tutorial="@loc_15373294129902594987" TutorialPC="@loc_15373294129902594995" TutorialImage="ability_mindjack">
+   <Prereqs>
+    <Prereq value="3149325216929349177"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348807" Label="@rpg_OverrideName3" Description="@rpg_Override3" Cost="6" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_hypnosis_3" Power="Hypnosis" PowerLevel="3" Name="Hypnosis III" Tutorial="@loc_15373294129902594987" TutorialPC="@loc_15373294129902594995" TutorialImage="ability_mindjack">
+   <Prereqs>
+    <Prereq value="3149325216929349169"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="12348086275133482478" Label="@rpg_KineticBlastName" Description="@rpg_KineticBlast1" Cost="3" NightmareHeat="1" RequireScanner="true" Power="KineticBlast" PowerLevel="1" Icon="ui_icon_ability_kineticblast_1" Name="Kinetic Blast I" Tier="1" Tutorial="@loc_15373294129902449692" TutorialPC="@loc_15373294129902449721" TutorialImage="ability_kineticblast">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348629" Label="@rpg_KineticBlastName2" Description="@rpg_KineticBlast2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_kineticblast_2" Power="KineticBlast" PowerLevel="2" Name="Kinetic Blast II" Tier="1" Tutorial="@loc_15373294129902449770" TutorialPC="@loc_15373294129902449773" TutorialImage="ability_kineticblast">
+   <Prereqs>
+    <Prereq value="12348086275133482478"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348634" Label="@rpg_KineticBlastName3" Description="@rpg_KineticBlast3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_kineticblast_3" PowerLevel="3" Power="KineticBlast" Name="Kinetic Blast III" Tier="1" Tutorial="@loc_15373294129902449777" TutorialPC="@loc_15373294129902449773" TutorialImage="ability_kineticblast">
+   <Prereqs>
+    <Prereq value="3149325216929348629"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929346685" Label="@rpg_LabTechName" Description="@rpg_LabTech1" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_labtech_1" Name="Lab Tech I">
+   <Prereqs>
+    <Prereq value="3149325216957631045"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929346734" Label="@rpg_LabTechName2" Description="@rpg_LabTech2" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_labtech_2" Name="Lab Tech II">
+   <Prereqs>
+    <Prereq value="3149325216929346685"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216928599448" Label="@rpg_LeverageName" Description="@rpg_Leverage1" Cost="1" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_leverage_1" Name="Leverage I">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="throwImpulse" Modifier="7"/>
+    <StatModifier StatName="throwArticulatedImpulse" Modifier="3"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216928599824" Label="@rpg_LeverageName2" Description="@rpg_Leverage2" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_leverage_2" Name="Leverage II">
+   <Prereqs>
+    <Prereq value="3149325216928599448"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216962190866" IsInbound="false"/>
+   </SignalModifiers>
+   <StatModifiers>
+    <StatModifier StatName="throwArticulatedImpulse" Modifier="3"/>
+    <StatModifier StatName="throwImpulse" Modifier="5"/>
+    <StatModifier StatName="carryLeverage1SpeedScale" Modifier="0.25"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216933436173" Label="@rpg_LeverageName3" Description="@rpg_Leverage3" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_leverage_3" Name="Leverage III">
+   <Prereqs>
+    <Prereq value="3149325216928599824"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216962190976" IsInbound="false"/>
+   </SignalModifiers>
+   <StatModifiers>
+    <StatModifier StatName="throwArticulatedImpulse" Modifier="3"/>
+    <StatModifier StatName="throwImpulse" Modifier="5"/>
+    <StatModifier StatName="carryLeverage1SpeedScale" Modifier="0.25"/>
+    <StatModifier StatName="carryLeverage2SpeedScale" Modifier="0.4"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348643" Label="@rpg_LiftName" Description="@rpg_Lift1" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_lift_1" Power="Lift" PowerLevel="1" Name="Lift I" Tier="1" Tutorial="@loc_15373294129902595024" TutorialPC="@loc_15373294129902595032" TutorialImage="ability_lift">
+   <Prereqs>
+    <Prereq value="12348086275133482478"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348650" Label="@rpg_LiftName2" Description="@rpg_Lift2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_lift_2" Power="Lift" PowerLevel="2" Name="Lift II" Tier="1" Tutorial="@loc_15373294129902595024" TutorialPC="@loc_15373294129902595032" TutorialImage="ability_lift">
+   <Prereqs>
+    <Prereq value="3149325216929348643"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216957631045" Name="Materials Expert" Label="@rpg_MaterialsExpertName" Description="@rpg_MaterialsExpert" Cost="3" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_materialsexpert_1">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="recyclingYieldScale" Modifier=".2"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347144" Label="@rpg_MetaConversionName" Description="@rpg_MetaConversion" Cost="2" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_metabolicconversion_1" Name="Metabolic Conversion I">
+   <Prereqs>
+    <Prereq value="3149325216929346737"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611827" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="12348086275133481882" Label="@rpg_MimicName" Description="@rpg_Mimic1" Cost="2" NightmareHeat="1" RequireScanner="true" Power="Mimic" PowerLevel="1" Icon="ui_icon_ability_mimic_1" Name="Mimic I" Tier="2" Tutorial="@loc_15373294129902595045" TutorialPC="@loc_15373294129902595051" TutorialImage="ability_mimic">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="12348086275133482182" Label="@rpg_MimicName2" Description="@rpg_Mimic2" Cost="4" NightmareHeat="2" RequireScanner="true" Power="Mimic" PowerLevel="2" Icon="ui_icon_ability_mimic_2" Name="Mimic II" Tier="2" Tutorial="@loc_15373294129902595045" TutorialPC="@loc_15373294129902595051" TutorialImage="ability_mimic">
+   <Prereqs>
+    <Prereq value="12348086275133481882"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348778" Label="@rpg_MimicName3" Description="@rpg_Mimic3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_mimic_3" Power="Mimic" PowerLevel="3" Name="Mimic III" Tier="2" Tutorial="@loc_15373294129902595045" TutorialPC="@loc_15373294129902595051" TutorialImage="ability_mimic">
+   <Prereqs>
+    <Prereq value="12348086275133482182"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347345" Label="@rpg_FitnessName" Description="@rpg_Fitness1" Cost="3" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_fitness_1" Name="Mobility I">
+   <Prereqs>
+    <Prereq value="3149325216964528002"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="maxSpeedCrawl" Modifier="0.42"/>
+    <StatModifier StatName="maxSpeedSneak" Modifier="0.42"/>
+    <StatModifier StatName="maxSpeedStand" Modifier="1.05"/>
+    <StatModifier StatName="hfovDuringSprint" Modifier="-3"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347498" Label="@rpg_FitnessName2" Description="@rpg_Fitness2" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_fitness_2" Name="Mobility II">
+   <Prereqs>
+    <Prereq value="3149325216929347345"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="jumpHeight" Modifier="1.75"/>
+    <StatModifier StatName="acceleratedSprintSpeedScale" Modifier="0.345"/>
+    <StatModifier StatName="hfovDuringSprint" Modifier="-3"/>
+    <StatModifier StatName="hfovSprintInterpTime" Modifier=".7"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929346740" Label="@rpg_NecropsyName" Description="@rpg_Necropsy" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_necropsytech_1" Name="Necropsy Tech I">
+   <Prereqs>
+    <Prereq value="3149325216929346737"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929346737" Label="@rpg_PhysicianName" Description="@rpg_Physician1" Cost="1" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_physician_1" Name="Physician I">
+   <Prereqs/>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611857" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929346738" Label="@rpg_PhysicianName2" Description="@rpg_Physician2" Cost="3" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_physician_2" Name="Physician II">
+   <Prereqs>
+    <Prereq value="3149325216929346737"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611868" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347147" Label="@rpg_NeurostimulantName" Description="@rpg_Neurostimulant" Cost="2" NightmareHeat="0.0" RequireScanner="true" Icon="ui_icon_ability_psihypoconversion_1" Name="Neurostimulant I">
+   <Prereqs>
+    <Prereq value="3149325216929347148"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611879" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216977824648" Label="@loc_3149325216977824649" Description="@loc_3149325216977824650" Cost="3" NightmareHeat="0.0" RequireScanner="true" Icon="ui_icon_ability_psihypoconversion_2" Name="Neurostimulant II">
+   <Prereqs>
+    <Prereq value="3149325216929347147"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216977825257" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347148" Label="@rpg_PsiAptitudeName" Description="@rpg_PsiAptitude1" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_psionicaptitude_1" Name="Psionic Aptitude I">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="psiPointsPool" Modifier="50"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347150" Label="@rpg_PsiAptitudeName2" Description="@rpg_PsiAptitude2" Cost="3" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_psionicaptitude_2" Name="Psionic Aptitude II">
+   <Prereqs>
+    <Prereq value="3149325216929347148"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="psiPointsPool" Modifier="50"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347152" Label="@rpg_PsiAptitudeName3" Description="@rpg_PsiAptitude3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_psionicaptitude_3" Name="Psionic Aptitude III">
+   <Prereqs>
+    <Prereq value="3149325216929347150"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="psiPointsPool" Modifier="50"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929349114" Label="@rpg_PsychoshockName" Description="@rpg_PsychoshockShort" Cost="3" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_mindblast_1" Power="MindBlast" PowerLevel="1" Name="Psychoshock I" Tier="1" Tutorial="@loc_15373294129902595080" TutorialPC="@loc_15373294129902595087" TutorialImage="ability_psychoshock">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929349124" Label="@rpg_PsychoshockName2" Description="@rpg_PsychoshockShort2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_mindblast_2" Power="MindBlast" PowerLevel="2" Name="Psychoshock II" Tier="1" Tutorial="@loc_15373294129902595080" TutorialPC="@loc_15373294129902595087" TutorialImage="ability_psychoshock">
+   <Prereqs>
+    <Prereq value="3149325216929349114"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929349128" Label="@rpg_PsychoshockName3" Description="@rpg_PsychoshockShort3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_mindblast_3" Power="MindBlast" PowerLevel="3" Name="Psychoshock III" Tier="1" Tutorial="@loc_15373294129902595080" TutorialPC="@loc_15373294129902595087" TutorialImage="ability_psychoshock">
+   <Prereqs>
+    <Prereq value="3149325216929349124"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347153" Label="@rpg_PsychotronicsName" Description="@rpg_Psychotronics1" Cost="3" NightmareHeat="0.0" RequireScanner="true" Icon="ui_icon_ability_psychotronics_1" Name="Psychotronics I">
+   <Prereqs>
+    <Prereq value="3149325216929347148"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="scopeModSlots" Modifier="2"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347155" Label="@rpg_PsychotronicsName2" Description="@rpg_Psychotronics2" Cost="5" NightmareHeat="0.0" RequireScanner="true" Icon="ui_icon_ability_psychotronics_2" Name="Psychotronics II">
+   <Prereqs>
+    <Prereq value="3149325216929347153"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="scopeModSlots" Modifier="2"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347156" Label="@rpg_PsychotronicsName3" Description="@rpg_Psychotronics3" Cost="6" NightmareHeat="0.0" RequireScanner="true" Icon="ui_icon_ability_psychotronics_3" Name="Psychotronics III">
+   <Prereqs>
+    <Prereq value="3149325216929347155"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="scopeModSlots" Modifier="2"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347327" Label="@rpg_PulverizeName" Description="@rpg_Pulverize" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_pulverize_1" Name="Pulverize I">
+   <Prereqs>
+    <Prereq value="3149325216929347322"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="wrenchCriticalHitChance" Modifier=".25"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348911" Label="@rpg_RegenerationName" Description="@rpg_Regeneration" Cost="3" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_regeneration_1" Name="Regeneration I">
+   <Prereqs>
+    <Prereq value="12348086275133481882"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="regenPowerMaxRegen" Modifier="100"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216957629675" Label="@rpg_RegenerationName2" Description="@rpg_Regeneration2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_regeneration_2" Name="Regeneration II">
+   <Prereqs>
+    <Prereq value="3149325216929348911"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="regenPowerMaxRegen" Modifier="150"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348589" Label="@rpg_RemoteManiName" Description="@rpg_RemoteMani1" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_remotemanipulation_1" Power="RemoteManipulation" PowerLevel="1" Name="Remote Manipulation I" Tier="1" Tutorial="@loc_15373294129902595110" TutorialPC="@loc_15373294129902595112" TutorialImage="ability_remote">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348687" Label="@rpg_RemoteManiName2" Description="@rpg_RemoteMani2" Cost="3" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_remotemanipulation_2" Power="RemoteManipulation" PowerLevel="2" Name="Remote Manipulation II" Tier="1" Tutorial="@loc_15373294129902595110" TutorialPC="@loc_15373294129902595112" TutorialImage="ability_remote">
+   <Prereqs>
+    <Prereq value="3149325216929348589"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348694" Label="@rpg_RemoteManiName3" Description="@rpg_RemoteMani3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_remotemanipulation_3" Power="RemoteManipulation" PowerLevel="3" Name="Remote Manipulation III" Tier="1" Tutorial="@loc_15373294129902595110" TutorialPC="@loc_15373294129902595112" TutorialImage="ability_remote">
+   <Prereqs>
+    <Prereq value="3149325216929348687"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347161" Label="@rpg_RepairName" Description="@rpg_Repair1" Cost="1" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_repair_1" Name="Repair I">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347163" Label="@rpg_RepairName2" Description="@rpg_Repair2" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_repair_2" Name="Repair II">
+   <Prereqs>
+    <Prereq value="3149325216929347161"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="repairDiscount" Modifier="1"/>
+    <StatModifier StatName="repairTimeScale" Modifier="-0.25"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347167" Label="@rpg_RepairName3" Description="@rpg_Repair3" Cost="8" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_repair_3" Name="Repair III">
+   <Prereqs>
+    <Prereq value="3149325216929347163"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="repairDiscount" Modifier="1"/>
+    <StatModifier StatName="repairTimeScale" Modifier="-0.25"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348840" Label="@rpg_ShiftName1" Description="@rpg_ShiftDesc1" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_etherduplicate_1" Power="Shift" PowerLevel="1" Name="Shift I" Tier="2" Tutorial="@loc_15373294129902595197" TutorialPC="@loc_15373294129902595204" TutorialImage="ability_phantomshift">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348853" Label="@rpg_ShiftName2" Description="@rpg_ShiftDesc2" Cost="4" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_etherduplicate_2" Power="Shift" Name="Shift II" PowerLevel="2" Tier="2" Tutorial="@loc_15373294129902595197" TutorialPC="@loc_15373294129902595204" TutorialImage="ability_phantomshift">
+   <Prereqs>
+    <Prereq value="3149325216929348840"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347574" Label="@rpg_SneakAttackName" Description="@rpg_SneakAttack" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_sneakattack_1" Name="Sneak Attack I">
+   <Prereqs>
+    <Prereq value="3149325216929347556"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="sneakAttackSignalScale" Modifier="0.5"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216957629639" Label="@rpg_SneakAttackName2" Description="@rpg_SneakAttack2" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_sneakattack_2" Name="Sneak Attack II">
+   <Prereqs>
+    <Prereq value="3149325216929347574"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="sneakAttackSignalScale" Modifier="0.5"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216964511506" Name="Stamina I" Label="@rpg_Stamina" Description="@rpg_staminadesc" NightmareHeat="0.0" Cost="3" RequireScanner="false" Icon="ui_icon_ability_stamina_1">
+   <Prereqs>
+    <Prereq value="3149325216964528002"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="fatigueMax" Modifier="20"/>
+    <StatModifier StatName="fatigueDrainRate" Modifier="3.5"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216964516907" Name="Stamina II" Label="@rpg_Stamina2" Description="@rpg_staminadesc2" NightmareHeat="0.0" Cost="5" RequireScanner="false" Icon="ui_icon_ability_stamina_2">
+   <Prereqs>
+    <Prereq value="3149325216964511506"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="fatigueMax" Modifier="25"/>
+    <StatModifier StatName="fatigueDrainRate" Modifier="4.375"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347556" Label="@rpg_StealthName" Description="@rpg_Stealth1" Cost="2" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_stealth_1" Name="Stealth I">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="sneakVisibilityScalar" Modifier="-0.15"/>
+    <StatModifier StatName="crawlVisibilityScalar" Modifier="-0.1"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347559" Label="@rpg_StealthName2" Description="@rpg_Stealth2" Cost="5" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_stealth_2" Name="Stealth II">
+   <Prereqs>
+    <Prereq value="3149325216929347556"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347561" Label="@rpg_StealthName3" Description="@rpg_Stealth3" Cost="8" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_stealth_3" Name="Stealth III">
+   <Prereqs>
+    <Prereq value="3149325216929347559"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347329" Label="@rpg_SuitModName" Description="@rpg_SuitMod1" Cost="2" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_suitmodification_1" Name="Suit Modification I">
+   <Prereqs>
+    <Prereq value="3149325216929347161"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="suitModSlots" Modifier="2"/>
+    <StatModifier StatName="inventoryRows" Modifier="1"/>
+    <StatModifier StatName="inventoryColumns" Modifier="1"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347333" Label="@rpg_SuitModName2" Description="@rpg_SuitMod2" Cost="4" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_suitmodification_2" Name="Suit Modification II">
+   <Prereqs>
+    <Prereq value="3149325216929347329"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="inventoryColumns" Modifier="1"/>
+    <StatModifier StatName="inventoryRows" Modifier="1"/>
+    <StatModifier StatName="suitModSlots" Modifier="2"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347335" Label="@rpg_SuitModName3" Description="@rpg_SuitMod3" Cost="6" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_suitmodification_3" Name="Suit Modification III">
+   <Prereqs>
+    <Prereq value="3149325216929347333"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="inventoryRows" Modifier="1"/>
+    <StatModifier StatName="inventoryColumns" Modifier="1"/>
+    <StatModifier StatName="suitModSlots" Modifier="2"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348418" Label="@rpg_ThermAbsorbName" Description="@rpg_ThermAbsorb" Cost="4" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_thermalabsorption_1" Name="Thermal Absorption I">
+   <Prereqs>
+    <Prereq value="3149325216929348410"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="thermalAbsorption" Modifier=".05"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348386" Label="@rpg_ThermBlastName" Description="@rpg_ThermBlast1" Cost="3" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_thermalblast_1" Power="ThermalBlast" PowerLevel="1" Name="Thermal Blast I" Tier="1" Tutorial="@loc_15373294129902595163" TutorialPC="@loc_15373294129902595167" TutorialImage="ability_superthermal">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348396" Label="@rpg_ThermBlastName2" Description="@rpg_ThermBlast2" Cost="5" NightmareHeat="2" RequireScanner="true" Icon="ui_icon_ability_thermalblast_2" Power="ThermalBlast" PowerLevel="2" Name="Thermal Blast II" Tier="1" Tutorial="@loc_15373294129902595163" TutorialPC="@loc_15373294129902595167" TutorialImage="ability_superthermal">
+   <Prereqs>
+    <Prereq value="3149325216929348386"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348401" Label="@rpg_ThermBlastName3" Description="@rpg_ThermBlast3" Cost="5" NightmareHeat="3" RequireScanner="true" Icon="ui_icon_ability_thermalblast_3" Power="ThermalBlast" PowerLevel="3" Name="Thermal Blast III" Tier="1" Tutorial="@loc_15373294129902595163" TutorialPC="@loc_15373294129902595167" TutorialImage="ability_superthermal">
+   <Prereqs>
+    <Prereq value="3149325216929348396"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929348410" Label="@rpg_ThermResistName" Description="@rpg_ThermResist" Cost="2" NightmareHeat="1" RequireScanner="true" Icon="ui_icon_ability_thermalresistance_1" Name="Thermal Resistance I">
+   <Prereqs>
+    <Prereq value="3149325216929348386"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611941" IsInbound="true"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347520" Label="@rpg_ToughnessName" Description="@rpg_Toughness1" Cost="3" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_toughness_1" Name="Toughness I">
+   <Prereqs>
+    <Prereq value="3149325216964528002"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="hitPoints" Modifier="350"/>
+    <StatModifier StatName="lowHealthRegenThreshold" Modifier="100"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347518" Label="@rpg_ToughnessName2" Description="@rpg_Toughness2" Cost="5" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_toughness_2" Name="Toughness II">
+   <Prereqs>
+    <Prereq value="3149325216929347520"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="hitPoints" Modifier="500"/>
+    <StatModifier StatName="lowHealthRegenThreshold" Modifier="100"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347516" Label="@rpg_ToughnessName3" Description="@rpg_Toughness3" Cost="8" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_toughness_3" Name="Toughness III">
+   <Prereqs>
+    <Prereq value="3149325216929347518"/>
+   </Prereqs>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="hitPoints" Modifier="1000"/>
+    <StatModifier StatName="lowHealthRegenThreshold" Modifier="100"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347318" Label="@rpg_WrenchFuName" Description="@rpg_WrenchFu1" Cost="3" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_wrenchfu_1" Name="Wrench Fu I">
+   <Prereqs/>
+   <SignalModifiers/>
+   <StatModifiers>
+    <StatModifier StatName="fatigueGainedFromChargedWrench" Modifier="-4.375"/>
+    <StatModifier StatName="fatigueGainedFromWrench" Modifier="-4.375"/>
+   </StatModifiers>
+  </ArkAbility>
+  <ArkAbility ID="3149325216929347322" Label="@rpg_WrenchFuName2" Description="@rpg_WrenchFu2" Cost="5" NightmareHeat="0.0" RequireScanner="false" Icon="ui_icon_ability_wrenchfu_2" Name="Wrench Fu II">
+   <Prereqs>
+    <Prereq value="3149325216929347318"/>
+   </Prereqs>
+   <SignalModifiers>
+    <SignalModifier ModifierId="3149325216929611973" IsInbound="false"/>
+   </SignalModifiers>
+   <StatModifiers/>
+  </ArkAbility>
+ </Abilities>
+</ArkAbilities>

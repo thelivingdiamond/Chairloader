@@ -1,0 +1,27 @@
+
+<TargetSelectionConfig>
+ <InteractionBehavior>
+  <param name="InitialPickupCooldownSec" value="0.2"/>
+  <param name="ItemPickupMaxCooldownSec" value="0.085"/>
+  <param name="InnerAimDistance" value="0.98"/>
+  <param name="OuterAimDistance" value="0.96"/>
+  <param name="InteractDistance" value="2.5"/>
+ </InteractionBehavior>
+ <TargetPriority>
+  <TargetType priority="1" value="ArkPickups.Player.Neuromod"/>
+  <TargetType priority="2" value="ArkPickups.Medical.MedKit"/>
+  <TargetType priority="3" value="ArkPickups.Kits.WeaponMod"/>
+  <TargetType priority="4" value="ArkPickups.Medical.Pharmas.Antihazard"/>
+  <TargetType priority="5" value="ArkPickups.Medical.Pharmas.AntiPhysicalDamage"/>
+  <TargetType priority="6" value="ArkPickups.Ammo.ShotgunShells"/>
+  <TargetType priority="7" value="ArkPickups.Ammo.PistolBullets"/>
+  <TargetType priority="8" value="ArkPickups.Ammo.InstaLaser"/>
+  <TargetType priority="9" value="ArkPickups.Ammo.GooGun"/>
+  <TargetType priority="10" value="ArkPickups.Data.TranScribe"/>
+  <TargetType priority="11" value="ArkPickups.Player.O2Bottle"/>
+  <TargetType priority="12" value="ArkPickups.Crafting.Ingredients.Organic"/>
+  <TargetType priority="13" value="ArkPickups.Crafting.Ingredients.Mineral"/>
+  <TargetType priority="14" value="ArkPickups.Crafting.Ingredients.Exotic"/>
+  <TargetType priority="15" value="ArkPickups.Crafting.Ingredients.Synthetic"/>
+ </TargetPriority>
+</TargetSelectionConfig>

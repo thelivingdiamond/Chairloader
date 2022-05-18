@@ -1,0 +1,83 @@
+<EntityPrototypeLibrary Name="ArkNpcs">
+  <EntityPrototype Name="Phantoms.BasePhantom" Id="{3FC7EAE5-683D-4303-A06A-077EEDD64FDC}" Library="ArkNpcs" Class="ArkBeta" Description="ExtMod2 Funniest Phantom" ArchetypeId="717">
+    <Properties AbortTrackviewOnHostileAttentionLevel="3" fileAccumulatorConfig="ark/ai/aisignalaccumulatorconfigs/phantomaccumulatorconfig.xml" fileAiTree="Ark/AI/AiTrees/PhantomAiTree2.xml" faction_ArkFaction="17591291352618367186" metaTags_ArkMetaTags="9469288860498988665,3149325216938884081,17591291352642463355,9469288860498988679" attentionModel_AttentionModel="2" fBrokenRepeatDialogCD="10" bCanFall="1" eiColliderMode="0" signalpackage_collisionDamagePackage="3149325216948552760" fCombatIntensityContribution="18" fCombatIntensityRange="15" loottable_ContainerLootTable="NPC_Phantom_Base" textCorpseName="@npc_corpse" esElitePhantomType="BASE" bEnableHitReaction="1" signalpackage_fallDamagePackageId="10850392949533909004" fFallDamagePerMeter="100" fFallDistanceForDamage="1.5" fFallDistanceForDialog="1.5" fFallDistanceForFallAnim="0.2" fFallDistanceForGlooBreak="1.5" fFallDistanceForLandAnim="1.5" fFlickerDuration="5" fForceResistScrunchDistance="4" fHealth="1000" fileHitDeathReactionsParamsDataFile="libs/hitdeathreactionsdata/arkhitdeathreactions_beta.xml" loottables_HumanLootTable="NPC_Phantom_Scientist,NPC_Phantom_Security,NPC_Phantom_Engineer" bInvulnerable="0" attachmenteffects_LifetimeEffects="14610450286763654353" signalmodifier_markedByPlayerInboundModifier="" fMinDamageForSmallHitReaction="1" fileModel="Objects/characters/Aliens/Phantom/Phantom.cdf" esNavigationType="ArkAlien_Medium" npcManagerCombatPoints="500" bOverrideAllowLookAimStrafing="1" physicMassMult="1" playerPowerTierTriggerThreshold="-1" signalModifier_ragdollSignalModifier="3149325216984939231" fRecycleResistScrunchDistance="4" roomPerceptionModel_RoomPerceptionModel="" scanningDisplayName="Funny Phantom" signalmodifier_SignalModifier="9469288860503571891" fileSignalReceiverConfig="ark/ai/aisignalreceiverconfigs/aliensignalreceiverconfig.xml" fSmallHitCooldown="0.5" SmallHitSignalId="9469288860523156056" soclasses_SmartObjectClass="Human, Actor" bSpawner="0" bSupportsLookAt="1" bSupportsSmallAdditives="1" TagList="" bUsable="0" bUseFacialFrameRateLimiting="1" UseMessage="" useSpecialMovementTransitions="1" visionCone_SecondaryVisionCone="3" visionCone_VisionCone="1" visionDirection="0">
+      <AI bPlayDeathSound="1" sndDeathSound="" bUseRadioChatter="0"/>
+      <AIBehaviorFlags bGrenadier="0" bSniper="0"/>
+      <ArkAbility npcAbilityContextProfileId="1"/>
+      <ArkAccumulator signalGroup_FearAccumulatorSignalGroupId="3473393341384819471" signalGroup_GooAccumulatorSignalGroupId="3473393341384819343" signalGroup_KnockdownAccumulatorSignalGroupId="7293080054622468800" signalGroup_PsiSuppressingAccumulatorSignalGroupId="3473393341384819491" signalGroup_StaggerAccumulatorSignalGroupId="10739735956146799720" signalGroup_StopGooAccumulatorSignalGroupId="3473393341384819344"/>
+      <ArkAudio distanceToPlayerParam="Ark_NPC_Distance"/>
+      <ArkCallForHelp gameNoiseLoudness_OnAttackNoiseLoudness="9469288860501649190" gameNoiseType_OnAttackNoiseType="10850392949532183295" gameNoiseLoudness_OnNewCombatAttentionNoiseLoudness="9469288860501649190" gameNoiseType_OnNewCombatAttentionNoiseType="10850392949532183295"/>
+      <ArkCharacter character_Character="13680621263400265247" voice_VoiceOverride="13680621263400262208"/>
+      <ArkCombatRoleInfo bCanGetStaleInMeleeRole="1" fMeleeRolePreference="0" fMeleeRoleScoreBias="0" fMeleeRoleSlotCost="101" fMinDistanceToAllowRangeRoleSwitch="2.5" bUsesCombatRoles="1"/>
+      <ArkCorrupted corruptedDisplayText="@npc_corrupted" mindcontrolledDisplayText="@npc_mindcontrol"/>
+      <ArkDeathInfo particleeffect_CameraEffect="Screen.ScreenBlood.AlienScreenSplash_lv2" fCameraEffectChance="1" bCorpseOrGibsVisible="1" fDistToPlayerForCameraEffect="3" bExplodesOnContact="0" bExplodesOnDeath="1" fFlingSpreadAngle="25" gameEffect_Disintegration="1000" GibAttachmentPrefix_Large="fx_gibspawnlrg" GibAttachmentPrefix_Limb="fx_gibspawnlimb" GibAttachmentPrefix_Medium="fx_gibspawnmed" GibAttachmentPrefix_Particle="fx_gibspawnprt" GibAttachmentPrefix_Small="fx_gibspawnsml" GibAttachmentPrefix_XLarge="fx_gibspawnxlrg" particleeffect_gibEffect="Characters.Aliens.Phantom.Death.ParticleGib_Phantom" bGibsInheritVelocity="1" inheritVelocityScalar="0.1" fLimbChanceToSpawn="0.5" limbGibClassName="ArkAlienGibletPhantomLimb" LimbGibsMaxNumber="1" fMaxExplosionGibFlingForce="65" fMaxFlingForce="90" fMaxFlingForceCalcDamage="1000" fMinExplosionGibFlingForce="40" fMinFlingAngle="45" fMinFlingForce="20" fMinFlingForceCalcDamage="1" numExtraLargeGibs="0" numLargeGibs="0" numMediumGibs="1" numParticleGibs="5" numSmallGibs="1" attachmenteffects_onDeathEffect="12635110349629274672" particleeffect_onKillingBlowHitEffect="" bStartDisintegrationTimerFromDeath="1" bStartGibExplosionTimerFromDeath="1" fTimeUntilDisintegration="0" fTimeUntilEntityHide="5" fTimeUntilGib="0.2" fTimeUntilOptimizedDeadUpdates="20"/>
+      <ArkDialog fAttenuationScale="0.4" fPlayerApproachCDFar="30" fPlayerApproachCDMedium="30" fPlayerApproachCDNear="30" fPlayerApproachDistanceFar="20" fPlayerApproachDistanceMedium="20" fPlayerApproachDistanceNear="20" fPlayerLoiterCD="5" fPlayerLoiterDistance="10" bUseResearchNameForSubtitles="1"/>
+      <ArkDiscHit signalpackage_discDirectHitPackage=""/>
+      <ArkDodge fChance="0.35" fCooldown="4" signalpackage_DodgeRipostePackageId="3149325216914175777" bEnabled="1"/>
+      <ArkEnergized attachmenteffects_energizedLaserExplosion="12635110349634203346" gameEffect_EnergizedGameEffectId="24" attachmenteffects_laserEnergize=""/>
+      <ArkFatality ability_alwaysVulnerableRequirement="" fFatalityFlingForce="27" maxRotationDelta="60" minDownwardAngle="-10" vulnerabilityHealthThreshold="200"/>
+      <ArkFear gameEffect_Feared="19" attachmenteffects_OnFeared="12635110349647076210" signalmodifier_OnFearedModifier="3149325216980539353"/>
+      <ArkGeneralEffects attachmenteffects_glitch="14610450286760879101" attachmenteffects_onHit=""/>
+      <ArkGooed animation_GlooGrowAnimation="goo_torse" attachment_GlooSkinAttachment="FX_Goo01" particleeffect_BreakGlooEffect="Characters.Aliens.Generic.Goo.GooBreak_00" signalModifier_FrozenInGoo="8109010857446316334" gameEffect_GlooSlow="4000" audioTrigger_glooBreakSFX="Play_GLOO_BreakOut" glooFrozenDuration="-1" glooHardenDuration="0.75" audioTrigger_glooHardenSFX="Play_GLOO_Freeze_Big" glooOnHitCooldown="0.15" glooSlowDuration="1.5" glooSlowFadeDuration="1" audioTrigger_glooStartSFX="" npcAbilityContext_OnNpcGlooedAbilityId="" particleeffect_OnHitGlooEffect="Characters.Aliens.Generic.Goo.GooHit_00"/>
+      <ArkHitReaction gameEffect_HitReactionMaterialAnimation="21"/>
+      <ArkInteractMessages textAliveInteractText="@use_npc" textDeadInteractText="@use_search"/>
+      <ArkLaserExplosion signalpackage_laserExplosionPackage="8109010857459426814"/>
+      <ArkMannequin LifetimeTag=""/>
+      <ArkMetrics gameMetric_increaseOnDeath="8109010857463648563"/>
+      <ArkMindControl arkNpcGameEffectId="401" machineMindDisplayText="@npc_machinemind" attachmenteffects_MindControlEffects="12635110349623487529" attachmenteffects_MindControlEffectsEnd="12635110349632389642" attachmenteffects_MindControlEffectsStart="12635110349632389592" mindJackDisplayText="@npc_mindjack"/>
+      <ArkMoveInfo moveShift="1" pushLeverageMax="2"/>
+      <ArkNullwave signalModifier_nullwavedSignalModifier="3149325216980539351"/>
+      <ArkOnFire attachmenteffects_OnFireEffects="12635110349622811405" onFireGameEffectId="27"/>
+      <ArkPlayerControlled gameEffect_PlayerControlledGameEffectId="3000"/>
+      <ArkPsiBlast attachmenteffects_CastEffect="17591291352656540600"/>
+      <ArkStunned gameEffect_StunnedGameEffectId="2000"/>
+      <ArkUnreachableTargeting chanceToSearchInReverseOrder="0.5" defaultCombatReachabilityCheckDown="1" defaultCombatReachabilityCheckHorizontal="0.65" defaultCombatReachabilityCheckUp="0.5" horizontalOffsetStanding="0.73" standardCombatHeight="1.62" startingMinSearchRadius="4" startingTraceRadius="0.5"/>
+      <AttentionFacing bUsesAttentionFacing="1" bUsesAttentionLook="1"/>
+      <CharacterSounds bodyFallEffect="" foleyEffect="foley_player" footstepEffect="footstep_phantom" bFootstepGearEffect="0" footstepIndGearAudioSignal_Run="" footstepIndGearAudioSignal_Walk="" remoteFootstepEffect="footstep_phantom"/>
+      <ContainerInfo es_ContainerSize="" bPreventStorage="0">
+        <Animation anim_close="" anim_open=""/>
+        <Sound audioTrigger_Close="" audioTrigger_Open=""/>
+      </ContainerInfo>
+      <Damage arkHitImpulseScale="5" fileBodyDamage="Libs/BodyDamage/BodyDamage_Default.xml" fileBodyDamageParts="libs/bodydamage/bodyparts_default.xml" fileBodyDestructibility="libs/bodydamage/bodydestructibility_default.xml" CanFall="0" FallSleepTime="1" heatAbsobsion="0.5" heatDissipation="200" bLogDamages="0" minHeatDamage="100"/>
+      <ElectricAura attachmenteffects_ElectricAura=""/>
+      <Hypnotize timeBetweenHypnotize="20.25"/>
+      <MaterialAnimations materialanimations_AlienSpikeDisintegration="0" materialanimations_Disintegrate="12635110349625232039" materialanimations_HitReaction="" materialanimations_LaserBurn="12635110349633790760" materialanimations_PhantomRaisedFromCorpse="12635110349646558793"/>
+      <MeleeAttack fLongMaxDistance="6" fMaxForwardAngle="30" fMaxSideAngle="135" fMediumMaxDistance="6" fMinSideAngle="30" fShortMaxDistance="6"/>
+      <OnDeath particleeffect_FearAOEParticle="Characters.AffectedFromPlayerPowers.Fear.npc_FearBomb" signalpackage_FearAOESignal="12348086275179630488" fFearRadius="10" fFearScale="1"/>
+      <OnElectrocuted attachmenteffects_OnElectrocutedEffects=""/>
+      <OnKineticBacklashed attachmenteffects_OnKineticBacklashedEffects="2428940965261401845"/>
+      <OnPsiSuppressed attachmenteffects_OnPsiSuppressed="12635110349617466496"/>
+      <OnPsychoShocked attachmenteffects_OnPsychoShockedEffects="12635110349633691050"/>
+      <OnPsychoshockTargeting attachmenteffects_OnPsychoshockTargeting="12635110349633668793"/>
+      <OnStunned attachmenteffects_OnStunEffects="12635110349616062298"/>
+      <Perception audioScale="1" cloakMaxDistCrouchedAndMoving="1.5" cloakMaxDistCrouchedAndStill="1.3" cloakMaxDistMoving="3" cloakMaxDistStill="2" collisionReactionScale="1" config="Human" FOVPrimary="80" FOVSecondary="160" bIsAffectedByLight="0" minAlarmLevel="0" minDistanceToSpotDeadBodies="20" persistence="0" sightrange="70" sightrangeVehicle="-1" stanceScale="1.9" stuntReactionTimeOut="3">
+        <TargetTracks classThreat="1" targetLimit="0"/>
+      </Perception>
+      <Physics>
+        <CollisionFiltering>
+          <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+          <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="1" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="1" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+        </CollisionFiltering>
+      </Physics>
+      <PlayerInteractions bCanBeGrabbed="0" esGrabType="" bStealthKill="0"/>
+      <PsiAttackEffects attachmenteffects_phantomAttackGlow="14610450286760874655"/>
+      <PsiBlast fMaterialParamMaxValue="50" sMaterialParamName="glow" fMaterialParamRampInTime="0.5" fMaterialParamRampOutTime="0.5" nMaterialSlot="0" nSubMaterialSlot="0"/>
+      <RaiseFromCorpse gameEffect_RaiseFromCorpse="987" attachmenteffects_RaiseStartEffect="12635110349646568595"/>
+      <RecycleData exotic="35" mineral="0" organic="15" synthetic="0"/>
+      <Rendering bWrinkleMap="0"/>
+      <Shift attachmenteffects_lurkShiftMove="" attachmenteffects_lurkShiftOut="12635110349641464850" attachmenteffects_lurkShiftTelegraph="12635110349641456885" fShiftDeltaAngleRate="1080" fShiftDistMin="1.5" signalmodifier_shiftingSignalModifier="" attachmenteffects_shiftMove="" attachmenteffects_shiftOut="" fShiftSpeed="44" attachmenteffects_shiftTelegraph="14610450286761482000" fTelegraphTime="0.23"/>
+      <Sound audioTrigger_AmbientLivingStart="Play_Phantom_Exist_LP" audioTrigger_AmbientLivingStop="Stop_Phantom_Exist_LP" audioTrigger_Death="Play_Phantom_DeathStinger">
+        <NoiseStates audioTrigger_CombatState="Play_Phantom_State_Combat" audioTrigger_IdleState="Play_Phantom_State_Idle" audioTrigger_NoticeState="Play_Phantom_State_Notice" audioTrigger_SearchState="Play_Phantom_State_Search" audioTrigger_StareState="Play_Phantom_State_Stare"/>
+        <ThermalAura audioTrigger_BurnLoop="" audioTrigger_Cooldown="" audioTrigger_Explode=""/>
+      </Sound>
+      <Stun ragdollRootJointName="" bRagdollStun="0" bStunLastsForever="0" signalModifier_stunnedSignalModifierId="3149325216969007122"/>
+      <Surprise gameNoiseLoudness_surprisedNoiseLoudness="9469288860501649202" gameNoiseType_surprisedNoiseType="10850392949532183299"/>
+      <ThermalAura attachmenteffects_ThermalAura="" attachmentEffects_ThermalAuraCastWarmup=""/>
+      <Thermogenesis attachmenteffects_ThermogenesisCast=""/>
+      <Unconscious unconsciousDisplayText="@ui_stasis"/>
+      <ZeroG visionCone_VisionCone="0"/>
+      <AdditionalArchetypeProperties PrototypeMaterial=""/>
+    </Properties>
+    <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="4" CastSunShadowMinSpec="1" LodRatio="75" ViewDistRatio="100" CastShadowViewDistRatio="20" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1"/>
+  </EntityPrototype>
+</EntityPrototypeLibrary>

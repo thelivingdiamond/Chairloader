@@ -1,0 +1,6 @@
+
+<EquipPack name="ArkPlayer_EMPCharge" primary="ArkAmmoPickupEMPGrenades">
+ <Items>
+  <ArkAmmoPickupEMPGrenades type="" archetype="ArkPickups.Ammo.EMPGrenades" count="25"/>
+ </Items>
+</EquipPack>

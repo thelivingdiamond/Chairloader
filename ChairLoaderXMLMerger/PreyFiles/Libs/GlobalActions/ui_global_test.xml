@@ -1,0 +1,122 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="294" Class="UI:Display:Display" pos="-280,920,0" InHideMask="1023" OutHideMask="255">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1"/>
+  </Node>
+  <Node Id="508" Class="UI:Functions:DanielleHUD:setSafeFrame" pos="-270,-10,0">
+   <Inputs instanceID="-1" Width="1920" Height="1080" SafeFrame="75"/>
+  </Node>
+  <Node Id="509" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="-260,-220,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="515" Class="Ark:Debug:ConsoleEvent" pos="-630,-220,0">
+   <Inputs Command="ui_safeframeOn"/>
+  </Node>
+  <Node Id="516" Class="Ark:Debug:ConsoleEvent" pos="-650,-10,0">
+   <Inputs Command="ui_setSafeframe_75"/>
+  </Node>
+  <Node Id="517" Class="Ark:Debug:ConsoleEvent" pos="-630,-120,0">
+   <Inputs Command="ui_safeframeOff"/>
+  </Node>
+  <Node Id="518" Class="UI:Functions:DanielleHUD:debugRemoveSafeFrame" pos="-270,-120,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="520" Class="UI:Functions:DanielleHUD:setSafeFrame" pos="-270,300,0">
+   <Inputs instanceID="-1" Width="1920" Height="1080" SafeFrame="85"/>
+  </Node>
+  <Node Id="521" Class="Ark:Debug:ConsoleEvent" pos="-650,300,0">
+   <Inputs Command="ui_setSafeframe_85"/>
+  </Node>
+  <Node Id="522" Class="UI:Functions:DanielleHUD:setSafeFrame" pos="-280,440,0">
+   <Inputs instanceID="-1" Width="1920" Height="1080" SafeFrame="90"/>
+  </Node>
+  <Node Id="523" Class="Ark:Debug:ConsoleEvent" pos="-650,440,0">
+   <Inputs Command="ui_setSafeframe_90"/>
+  </Node>
+  <Node Id="524" Class="UI:Functions:DanielleHUD:setSafeFrame" pos="-280,580,0">
+   <Inputs instanceID="-1" Width="1920" Height="1080" SafeFrame="95"/>
+  </Node>
+  <Node Id="525" Class="Ark:Debug:ConsoleEvent" pos="-650,580,0">
+   <Inputs Command="ui_setSafeframe_95"/>
+  </Node>
+  <Node Id="534" Class="UI:Functions:DanielleHUD:setSafeFrame" pos="-270,140,0">
+   <Inputs instanceID="-1" Width="1920" Height="1080" SafeFrame="80"/>
+  </Node>
+  <Node Id="535" Class="Ark:Debug:ConsoleEvent" pos="-650,140,0">
+   <Inputs Command="ui_setSafeframe_80"/>
+  </Node>
+  <Node Id="536" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="40,140,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="537" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="40,300,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="538" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="40,440,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="539" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="30,580,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="540" Class="UI:Functions:DanielleHUD:setSafeFrame" pos="-270,720,0">
+   <Inputs instanceID="-1" Width="1920" Height="1080" SafeFrame="100"/>
+  </Node>
+  <Node Id="541" Class="Ark:Debug:ConsoleEvent" pos="-640,720,0">
+   <Inputs Command="ui_setSafeframe_100"/>
+  </Node>
+  <Node Id="542" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="40,720,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="543" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="30,-10,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="546" Class="Ark:Debug:ConsoleEvent" pos="-610,1200,0">
+   <Inputs Command="ui_hackingOff"/>
+  </Node>
+  <Node Id="547" Class="UI:Functions:DanielleHUD:hackingClose" pos="-270,1200,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="548" Class="Ark:Debug:ConsoleEvent" pos="-610,1350,0">
+   <Inputs Command="ui_locDiscovery"/>
+  </Node>
+  <Node Id="549" Class="UI:Functions:DanielleHUD:locationDisplay" pos="-210,1350,0">
+   <Inputs instanceID="-1" text="Warm Vessels" isFirstTime="0"/>
+  </Node>
+  <Node Id="550" Class="Ark:Debug:ConsoleEvent" pos="-610,970,0">
+   <Inputs Command="ui_showhud"/>
+  </Node>
+  <Node Id="552" Class="Ark:Debug:ConsoleEvent" pos="-600,900,0">
+   <Inputs Command="ui_hidehud"/>
+  </Node>
+  <Node Id="553" Class="UI:Display:Display" pos="-130,920,0" InHideMask="1023" OutHideMask="255">
+   <Inputs uiElements_Element="DanielleMarkers" instanceID="-1"/>
+  </Node>
+  <Node Id="555" Name="Show/Hide_HUD" Class="_commentbox" pos="-640,860,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1030" Height="170"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="543" nodeOut="508" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="509" nodeOut="515" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="508" nodeOut="516" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="518" nodeOut="517" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="537" nodeOut="520" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="520" nodeOut="521" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="538" nodeOut="522" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="522" nodeOut="523" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="539" nodeOut="524" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="524" nodeOut="525" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="536" nodeOut="534" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="534" nodeOut="535" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="542" nodeOut="540" portIn="Call" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="540" nodeOut="541" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="547" nodeOut="546" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="549" nodeOut="548" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="550" portIn="show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="553" nodeOut="550" portIn="show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="552" portIn="hide" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="553" nodeOut="552" portIn="hide" portOut="Triggered" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

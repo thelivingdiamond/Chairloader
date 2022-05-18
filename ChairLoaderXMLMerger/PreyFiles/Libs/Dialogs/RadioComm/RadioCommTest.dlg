@@ -1,0 +1,6 @@
+
+<DialogScript Name="RadioComm.RadioCommTest" Description="">
+ <Line actor="0" lookatActor="255" flagLookAtSticky="0" flagSoundStopsAnim="0" flagAGSignal="0" flagAGEP="0" sound="examples/greetings_traveller" anim="" facial="" delay="0" facialWeight="0.5" facialFadeTime="0.5" desc=""/>
+ <Line actor="0" lookatActor="255" flagLookAtSticky="0" flagSoundStopsAnim="0" flagAGSignal="0" flagAGEP="0" sound="examples/sword_size_fool" anim="" facial="" delay="0" facialWeight="0.5" facialFadeTime="0.5" desc=""/>
+ <Line actor="0" lookatActor="255" flagLookAtSticky="0" flagSoundStopsAnim="0" flagAGSignal="0" flagAGEP="0" sound="examples/thank_you" anim="" facial="" delay="0" facialWeight="0.5" facialFadeTime="0.5" desc=""/>
+</DialogScript>

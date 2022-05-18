@@ -1,0 +1,109 @@
+
+<ATLConfig atl_name="LifeSupport">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_LifeSupport_Oxygen_Disable" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_Oxygen_Disable"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_Oxygen_Enable" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_Oxygen_Enable"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_LifeSupport_Decontamination_01" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_LifeSupport_Decontamination_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_LifeSupport_Experiment_Decontamination_01" path="Objects">
+   <WwiseEvent wwise_name="Stop_Obj_LifeSupport_Experiment_Decontamination_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_LifeSupport_Fan_BrokenPipe" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_LifeSupport_Fan_BrokenPipe"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LifeSupport_OxygenDecontam_BeginProcess" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LifeSupport_OxygenDecontam_BeginProcess"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LifeSupport_OxygenDecontam_Complete" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LifeSupport_OxygenDecontam_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LifeSupport_OxygenDecontam_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LifeSupport_OxygenDecontam_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_VentFan_Huge_Off" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_VentFan_Huge_Off"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_VentFan_Huge_On" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_VentFan_Huge_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_EelTank_Splat" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_EelTank_Splat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_EelTank_ambient_tone" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_EelTank_ambient_tone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_EelTank_hatch_close" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_EelTank_hatch_close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_EelTank_hatch_open" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_EelTank_hatch_open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_EelTank_water_splash" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_EelTank_water_splash"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_LifeSupport_EelTank_ambient_tone" path="Objects">
+   <WwiseEvent wwise_name="Stop_LifeSupport_EelTank_ambient_tone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_EelTank_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_LifeSupport_EelTank_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LifeSupport_PsiWater_Place" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LifeSupport_PsiWater_Place"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LifeSupport_PsiWater_LP" path="Events">
+   <WwiseEvent wwise_name="Play_LifeSupport_PsiWater_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_LifeSupport_PsiWater_Machine_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_LifeSupport_PsiWater_Machine_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_LifeSupport_VentFan_Huge_LP_01" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_LifeSupport_VentFan_Huge_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_LifeSupport_VentFan_Huge_LP_02" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_LifeSupport_VentFan_Huge_LP_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_LifeSupport_VentFan_Huge_LP_02" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_LifeSupport_VentFan_Huge_LP_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_LifeSupport_VentFan_Huge_LP_01" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_LifeSupport_VentFan_Huge_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Dahl_Choke_01" path="Events">
+   <WwiseEvent wwise_name="Play_Dahl_Choke_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Dahl_Choke_02" path="Events">
+   <WwiseEvent wwise_name="Play_Dahl_Choke_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Dahl_Choke_03" path="Events">
+   <WwiseEvent wwise_name="Play_Dahl_Choke_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Dahl_Choke_04" path="Events">
+   <WwiseEvent wwise_name="Play_Dahl_Choke_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Dahl_Choke_05" path="Events">
+   <WwiseEvent wwise_name="Play_Dahl_Choke_05"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Dahl_Choke_06" path="Events">
+   <WwiseEvent wwise_name="Play_Dahl_Choke_06"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="LifeSupport.bnk" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="LifeSupport.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

@@ -1,0 +1,2505 @@
+
+<modifiers>
+ <modifier name="Alien_ApexTentacle" id="3149325216954238976">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549045" scale="500"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Cystoid" id="3149325216937656319">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216937655757"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale=".4"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565404"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="100"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Cystoid_Nest" id="3149325216976359587">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216937655757"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale=".1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565404"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="1000"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Mimic" id="9469288860503571830">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565404"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale=".25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211670"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="4"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Mimic_Elite" id="3149325216971801494">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565404"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale=".25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="3"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Mimic_Glooed" id="9469288860532525380">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="2"/>
+    <effect signalID="3149325216911145914" scale="2"/>
+    <effect signalID="3149325216913726733" scale="2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Mimic_Disguised" id="3149325216939733383"/>
+ <modifier name="Alien_Mimic_Ignited" id="8109010857438863890">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Mimic_Energized" id="5310807215636213074">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+    <effect signalID="3149325216914689627" scale="0"/>
+    <effect signalID="3149325216954346631" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Nightmare" id="9469288860503571928">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689729" scale=".5"/>
+    <effect signalID="3149325216915549079" scale="0.2"/>
+    <effect signalID="3149325216938445621" scale="0.25"/>
+    <effect signalID="3149325216914689633" scale="1.5"/>
+    <effect signalID="3149325216914689683" scale="0.75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Nightmare_Smokeform" id="3149325216954852652">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549079" scale="0.33"/>
+    <effect signalID="3149325216914689729" scale=".2"/>
+    <effect signalID="3149325216915554009" scale="0"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+    <effect signalID="3149325216913726733" scale="2.0"/>
+    <effect signalID="3149325216914689683" scale="2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Phantom" id="9469288860503571891">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Phantom_Etheric" id="9469288860503212088">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549079" scale="0.5"/>
+    <effect signalID="3149325216938445621" scale="0"/>
+    <effect signalID="3149325216914689729" scale="0.5"/>
+    <effect signalID="3149325216914689683" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Phantom_Etheric_Doppleganger_DamageOut" id="9469288860526468776">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0.2"/>
+    <effect signalID="3149325216913726733" scale=".2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Phantom_Lurking" id="8109010857481751978"/>
+ <modifier name="Alien_Phantom_Thermal" id="9469288860493715642">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="7745561656291547931"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="0"/>
+    <effect signalID="3149325216954857386" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549079" scale="0.5"/>
+    <effect signalID="7745561656291547931" scale="0"/>
+    <effect signalID="3149325216914689729" scale="0.5"/>
+    <effect signalID="3149325216914689633" scale="1.5"/>
+    <effect signalID="3149325216915549045" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Phantom_Voltaic" id="5310807215636213093">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216989680495"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689627" scale="0"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549026"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689627" scale="0"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549045" scale="1.5"/>
+    <effect signalID="3149325216915549079" scale="0.5"/>
+    <effect signalID="3149325216914689729" scale="0.5"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+    <effect signalID="3149325216914689633" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Poltergeist" id="243995946798610409">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216954857347" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Technopath" id="3149325216954845659">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689581"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale=".75"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549026"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689627" scale="0"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549079" scale="0.5"/>
+    <effect signalID="3149325216914689633" scale="1.5"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+    <effect signalID="3149325216913726733" scale="1.5"/>
+    <effect signalID="7745561656291547931" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_TechnopathTurrets" id="3149325216954609881">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954609926"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689627" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565432"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Telepath" id="3149325216954845712">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale=".2"/>
+    <effect signalID="3149325216915549079" scale="0.25"/>
+    <effect signalID="3149325216914689633" scale=".75"/>
+    <effect signalID="3149325216913726733" scale="1.5"/>
+    <effect signalID="7745561656291547931" scale="1.5"/>
+    <effect signalID="3149325216914689729" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Alien_Weaver" id="3149325216970241487">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216937655757"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale="0"/>
+    <effect signalID="3149325216954857347" scale="0"/>
+    <effect signalID="3149325216954857386" scale=".1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689729" scale="0.5"/>
+    <effect signalID="3149325216915549079" scale="0.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Bot_Corrupted" id="9469288860525160118">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860526959409"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="9469288860524730735" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549045" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Bot_Default" id="3149325216954845217">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689612"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="2"/>
+    <effect signalID="3149325216914689729" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+    <effect signalID="7745561656291547931" scale="0.2"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+    <effect signalID="3149325216913727213" scale="5"/>
+    <effect signalID="3149325216913726733" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Bot_Turret" id="9469288860554965905">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689612"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860534058129"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="0"/>
+    <effect signalID="3149325216914689729" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+    <effect signalID="7745561656291547931" scale="0.15"/>
+    <effect signalID="3149325216915554009" scale=".375"/>
+    <effect signalID="3149325216913727228" scale="1.25"/>
+    <effect signalID="3149325216913727213" scale="4"/>
+    <effect signalID="3149325216913726733" scale=".95"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="2"/>
+    <effect signalID="3149325216914689729" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+    <effect signalID="7745561656291547931" scale="0.2"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+    <effect signalID="3149325216913727213" scale="5"/>
+    <effect signalID="3149325216913726733" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Bot_Military" id="3149325216984418607">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale=".5"/>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689612"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216971884872"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+    <effect signalID="3149325216954857347" scale="1.5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="0"/>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="2"/>
+    <effect signalID="3149325216914689729" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+    <effect signalID="7745561656291547931" scale="0.2"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+    <effect signalID="3149325216913727213" scale="5"/>
+    <effect signalID="3149325216913726733" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Bot_DispenserSpawn" id="243995946810793617">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549017"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689627"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689627" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Charge_Default" id="3149325216965814264">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="10850392949542894854"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_BuffControlPowers" id="10641886185854669188">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549079" scale="1.5"/>
+    <effect signalID="3149325216915549106" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_BuffDamagePowers" id="10641886185854330321">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="1.2"/>
+    <effect signalID="3149325216913727228" scale="1.2"/>
+    <effect signalID="3149325216913726733" scale="1.2"/>
+    <effect signalID="3149325216914689633" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ElectrostaticBuff" id="10641886185845262320">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689627" scale="1.1"/>
+    <effect signalID="3149325216913727228" scale="1.10"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_EMPShielding" id="10641886185842407982">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216943882667" scale="0.0"/>
+    <effect signalID="3149325216914689627" scale="0.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_KineticBlastBuff" id="10641886185845262560">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale="1.10"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_FearResistance" id="10641886185863493436">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860534058129"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689729" scale=".25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_LaserShield" id="10641886185854668665">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860534058121"/>
+    <matchingKey signalID="3149325216973146201"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727213" scale=".5"/>
+    <effect signalID="3149325216973146201" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_NeverDrunk" id="10641886185853917005">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216943890277" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_NoKnockdown" id="10641886185853972161">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="0.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_NullwaveShield" id="10641886185838180339">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549045" scale="0.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_PlayerNotRecyclable" id="10641886185853731259">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689612"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="10641886185820022055" scale="0"/>
+    <effect signalID="3149325216914689612" scale="0"/>
+    <effect signalID="3149325216954857347" scale="0"/>
+    <effect signalID="3149325216913727213" scale="0"/>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216911145914" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_PhysicalDamageShield" id="10641886185855806855">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689581" scale=".8"/>
+    <effect signalID="3149325216915554009" scale=".8"/>
+    <effect signalID="3149325216911145914" scale=".8"/>
+    <effect signalID="3149325216914689654" scale=".8"/>
+    <effect signalID="3149325216914689676" scale=".8"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_PsychoshockBuff" id="10641886185845262533">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689633" scale="1.10"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_PsychoshockResist" id="10641886185863417069">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216974304965"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689633" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ReduceSpaceCrashDamage" id="10641886185854081204">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="10641886185854080993"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale=".5"/>
+    <effect signalID="3149325216966700921" scale=".5"/>
+    <effect signalID="3149325216947006941" scale=".5"/>
+    <effect signalID="3149325216913727213" scale=".5"/>
+    <effect signalID="3149325216947007897" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ResistEther" id="10641886185853914829">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ResistFire" id="10641886185853914868">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ResistElectric" id="10641886185853914875">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ResistRad" id="10641886185853914870">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689641" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_SuitIntegrityBuff" id="10641886185853910643">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913727213" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_SlidingReduceDamage" id="10641886185854074838">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale=".5"/>
+    <effect signalID="3149325216938445621" scale=".5"/>
+    <effect signalID="3149325216913727228" scale=".5"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+    <effect signalID="3149325216973146201" scale=".5"/>
+    <effect signalID="3149325216915549119" scale=".5"/>
+    <effect signalID="3149325216914689633" scale=".5"/>
+    <effect signalID="3149325216913726733" scale=".5"/>
+    <effect signalID="3149325216914689676" scale=".5"/>
+    <effect signalID="7745561656291547931" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_ThermalBlastBuff" id="10641886185845262223">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="1.10"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Chipset_WrenchKnockback" id="10641886185854004656">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="4"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Difficulty_Easy_Incoming" id="3149325216951320767">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216963998992"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="5"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954694561"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="2"/>
+    <effect signalID="7745561656291547931" scale="2"/>
+    <effect signalID="3149325216913727228" scale="2"/>
+    <effect signalID="3149325216938445621" scale="2"/>
+    <effect signalID="3149325216913726733" scale="2"/>
+    <effect signalID="3149325216911145914" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale=".50"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216954346631" scale="0.5"/>
+    <effect signalID="3149325216911145914" scale="0.5"/>
+    <effect signalID="3149325216913727228" scale="0.5"/>
+    <effect signalID="3149325216914689627" scale="0.5"/>
+    <effect signalID="7745561656291547931" scale="0.5"/>
+    <effect signalID="3149325216915554009" scale="0.5"/>
+    <effect signalID="3149325216915549119" scale="0.5"/>
+    <effect signalID="3149325216914689633" scale="0.5"/>
+    <effect signalID="7745561652447168043" scale="0.5"/>
+    <effect signalID="3149325216913726733" scale="0.5"/>
+    <effect signalID="3149325216914689676" scale="0.5"/>
+    <effect signalID="12348086275117776764" scale="1.2"/>
+    <effect signalID="7745561656291547932" scale="1.2"/>
+    <effect signalID="3149325216929787188" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Difficulty_Easy_Outgoing" id="3149325216985438765">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+    <effect signalID="3149325216913727228" scale="1.1"/>
+    <effect signalID="3149325216914689683" scale="1.1"/>
+    <effect signalID="3149325216915549017" scale="1.1"/>
+    <effect signalID="7745561656291547931" scale="1.1"/>
+    <effect signalID="3149325216914689633" scale="1.1"/>
+    <effect signalID="3149325216913726733" scale="1.1"/>
+    <effect signalID="3149325216911145914" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Difficulty_Normal" id="3149325216955206813">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216963998992"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="10"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954694561"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="5"/>
+    <effect signalID="3149325216915554009" scale="5"/>
+    <effect signalID="7745561656291547931" scale="5"/>
+    <effect signalID="3149325216913727228" scale="5"/>
+    <effect signalID="3149325216938445621" scale="5"/>
+    <effect signalID="3149325216913726733" scale="5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Difficulty_Hard" id="3149325216951328068">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216963998992"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="12"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954694561"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="7.5"/>
+    <effect signalID="3149325216915554009" scale="7.5"/>
+    <effect signalID="7745561656291547931" scale="7.5"/>
+    <effect signalID="3149325216913727228" scale="7.5"/>
+    <effect signalID="3149325216938445621" scale="7.5"/>
+    <effect signalID="3149325216913726733" scale="7.5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="1.2"/>
+    <effect signalID="3149325216913727228" scale="1.4"/>
+    <effect signalID="3149325216914689627" scale="1.4"/>
+    <effect signalID="7745561656291547931" scale="1.4"/>
+    <effect signalID="3149325216915554009" scale="1.4"/>
+    <effect signalID="3149325216915549119" scale="1.4"/>
+    <effect signalID="3149325216914689633" scale="1.4"/>
+    <effect signalID="7745561652447168043" scale="1.4"/>
+    <effect signalID="3149325216913726733" scale="1.4"/>
+    <effect signalID="3149325216914689676" scale="1.4"/>
+    <effect signalID="12348086275117776764" scale="0.8"/>
+    <effect signalID="3149325216929787188" scale="0.8"/>
+    <effect signalID="7745561656291547932" scale="0.8"/>
+    <effect signalID="3149325216954346631" scale="1.4"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Difficulty_Nightmare" id="3149325216951327986">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216963998992"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="14"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954694561"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="10"/>
+    <effect signalID="3149325216915554009" scale="10"/>
+    <effect signalID="7745561656291547931" scale="10"/>
+    <effect signalID="3149325216913727228" scale="10"/>
+    <effect signalID="3149325216938445621" scale="10"/>
+    <effect signalID="3149325216913726733" scale="10"/>
+    <effect signalID="3149325216914689612" scale="10"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="1.4"/>
+    <effect signalID="3149325216913727228" scale="1.6"/>
+    <effect signalID="3149325216914689627" scale="1.6"/>
+    <effect signalID="7745561656291547931" scale="1.6"/>
+    <effect signalID="3149325216915554009" scale="1.6"/>
+    <effect signalID="3149325216915549119" scale="1.6"/>
+    <effect signalID="3149325216914689633" scale="1.6"/>
+    <effect signalID="7745561652447168043" scale="1.6"/>
+    <effect signalID="3149325216913726733" scale="1.6"/>
+    <effect signalID="3149325216914689676" scale="1.6"/>
+    <effect signalID="12348086275117776764" scale="0.8"/>
+    <effect signalID="7745561656291547932" scale="0.8"/>
+    <effect signalID="3149325216929787188" scale="0.8"/>
+    <effect signalID="3149325216954346631" scale="1.6"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Difficulty_Nightmare_Outgoing" id="3149325216989857139">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale=".8"/>
+    <effect signalID="3149325216913727228" scale=".8"/>
+    <effect signalID="3149325216914689683" scale=".8"/>
+    <effect signalID="7745561656291547931" scale=".8"/>
+    <effect signalID="3149325216914689633" scale=".8"/>
+    <effect signalID="3149325216913726733" scale=".8"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="ElectricalBox" id="5310807215636213104">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="10"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="ExplosiveTanks" id="3149325216958565397">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689581"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Human_Corrupted" id="3149325216954329551">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860523156056"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="300"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549045" scale="0"/>
+    <effect signalID="3149325216915549079" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860534058129"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689633" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Human_AaronIngram" id="3149325216975226221">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860523156056"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="300"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565404"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Human_DanielleSho" id="3149325216983025758">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860523156056"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="300"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Human_Default" id="3149325216954858475">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860523156056"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="300"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".3"/>
+    <effect signalID="3149325216954857347" scale=".3"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954240791"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="9999"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Human_Dahl" id="9469288860534057903">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216915549045"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216915549045" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Human_PatriciaVarma" id="3149325216971351109">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860523156056"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="300"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939211715"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale=".5"/>
+    <effect signalID="3149325216954857347" scale=".5"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0"/>
+    <effect signalID="3149325216954857386" scale="0"/>
+    <effect signalID="3149325216954857347" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="NPC_Fleeing_Default" id="3149325216980539353">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1"/>
+    <effect signalID="3149325216911145914" scale="1"/>
+    <effect signalID="3149325216913726733" scale="1"/>
+    <effect signalID="7745561656291547931" scale="1"/>
+    <effect signalID="3149325216913727228" scale="1"/>
+    <effect signalID="3149325216914689683" scale="1"/>
+    <effect signalID="3149325216914689633" scale="1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="NPC_Glooed" id="8109010857446316334">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1"/>
+    <effect signalID="3149325216915549018" scale="2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="2"/>
+    <effect signalID="3149325216911145914" scale="2"/>
+    <effect signalID="3149325216913726733" scale="2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="NPC_IgnoreGloo" id="3149325216984939231">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="NPC_PsiNullified_Default" id="3149325216980539351">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+    <effect signalID="3149325216911145914" scale="1.25"/>
+    <effect signalID="3149325216913726733" scale="1.25"/>
+    <effect signalID="7745561656291547931" scale="1.25"/>
+    <effect signalID="3149325216913727228" scale="1.25"/>
+    <effect signalID="3149325216914689683" scale="1.25"/>
+    <effect signalID="3149325216914689633" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="NPC_Stunned_Default" id="3149325216969007122">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860534058129"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549026" scale="0.01"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216958565328"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.5"/>
+    <effect signalID="3149325216911145914" scale="1.5"/>
+    <effect signalID="3149325216913726733" scale="1.5"/>
+    <effect signalID="7745561656291547931" scale="1.5"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+    <effect signalID="3149325216914689683" scale="1.5"/>
+    <effect signalID="3149325216914689633" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Obj_PlayerMimicForm" id="3149325216954695084">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="10850392949542894854"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="0"/>
+    <effect signalID="3149325216966700921" scale="0"/>
+    <effect signalID="3149325216914689641" scale="0"/>
+    <effect signalID="3149325216913726733" scale=".35"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_Alcohol" id="10641886185840085613">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689729" scale="0.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiHazard" id="10641886185812950564">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale=".5"/>
+    <effect signalID="3149325216913727213" scale=".5"/>
+    <effect signalID="3149325216913727228" scale=".5"/>
+    <effect signalID="3149325216914689641" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiBleed" id="10641886185831963307">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiConcussion" id="10641886185831966425">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216947006941" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiCripple" id="10641886185831966648">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216947007897" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiRad" id="10641886185831966685">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689641" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiBurns" id="10641886185831966735">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_AntiPhysicalDamage" id="10641886185813122905">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689581" scale=".5"/>
+    <effect signalID="3149325216915554009" scale=".5"/>
+    <effect signalID="3149325216911145914" scale=".5"/>
+    <effect signalID="3149325216914689654" scale=".5"/>
+    <effect signalID="3149325216914689676" scale=".5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_BurstPowersBooster" id="10641886185844825863">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="1.25"/>
+    <effect signalID="3149325216913727228" scale="1.25"/>
+    <effect signalID="3149325216914689627" scale="1.25"/>
+    <effect signalID="3149325216914689633" scale="1.25"/>
+    <effect signalID="3149325216913726733" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_PsiPowersShield" id="10641886185852496573">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565432"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale=".75"/>
+    <effect signalID="3149325216913727228" scale=".75"/>
+    <effect signalID="3149325216914689627" scale=".75"/>
+    <effect signalID="3149325216914689633" scale=".75"/>
+    <effect signalID="3149325216913726733" scale=".75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Pharma_StrengthEnhancer" id="10641886185813125621">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="3"/>
+    <effect signalID="3149325216911145914" scale="3"/>
+    <effect signalID="3149325216914689654" scale="3"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_CombatFocus2" id="3149325216979649942">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+    <effect signalID="3149325216913727228" scale="1.1"/>
+    <effect signalID="3149325216913726733" scale="1.1"/>
+    <effect signalID="3149325216914689627" scale="1.1"/>
+    <effect signalID="3149325216915549026" scale="1.1"/>
+    <effect signalID="7745561656291547931" scale="1.1"/>
+    <effect signalID="3149325216914689633" scale="1.1"/>
+    <effect signalID="3149325216915549045" scale="1.1"/>
+    <effect signalID="3149325216914689612" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_CombatFocus3" id="3149325216979649945">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+    <effect signalID="3149325216913727228" scale="1.25"/>
+    <effect signalID="3149325216913726733" scale="1.25"/>
+    <effect signalID="3149325216914689627" scale="1.25"/>
+    <effect signalID="3149325216915549026" scale="1.25"/>
+    <effect signalID="7745561656291547931" scale="1.25"/>
+    <effect signalID="3149325216914689633" scale="1.25"/>
+    <effect signalID="3149325216915549045" scale="1.25"/>
+    <effect signalID="3149325216914689612" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Default" id="3149325216964000591">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216954694561"/>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857347" scale="0"/>
+    <effect signalID="3149325216914689729" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216985620954"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Drunk" id="3149325216970140748">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_ElectrostaticResistance" id="3149325216929611596">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+    <effect signalID="3149325216954346631" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0.5"/>
+    <effect signalID="3149325216954346631" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_EtherResistance" id="3149325216969124662">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216938445621" scale="0.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_FearResistance" id="3149325216929611619">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689729" scale="0.75"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Firearms1" id="3149325216929612335">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689581"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.2"/>
+    <effect signalID="3149325216915554009" scale="1.2"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Firearms2" id="3149325216929612347">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689581"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.25"/>
+    <effect signalID="3149325216915554009" scale="1.25"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216945625551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_HelmetDeployed" id="3149325216951318987">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689676" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Invulnerability" id="3149325216984838961">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="0"/>
+    <effect signalID="3149325216947007897" scale="0"/>
+    <effect signalID="3149325216913727213" scale="0"/>
+    <effect signalID="3149325216947006941" scale="0"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+    <effect signalID="3149325216938445621" scale="0"/>
+    <effect signalID="3149325216914689641" scale="0"/>
+    <effect signalID="3149325216914689676" scale="0"/>
+    <effect signalID="7745561656291547931" scale="0"/>
+    <effect signalID="3149325216915554009" scale="0"/>
+    <effect signalID="3149325216913726733" scale="0"/>
+    <effect signalID="7745561652447168043" scale="0"/>
+    <effect signalID="3149325216914689627" scale="0"/>
+    <effect signalID="3149325216915549119" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+    <effect signalID="3149325216954346631" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_KineticShield" id="3149325216929612280">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Leverage2" id="3149325216962190866">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216962190937"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.5"/>
+    <effect signalID="3149325216954857386" scale="2.0"/>
+    <effect signalID="3149325216954857347" scale="2.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Leverage3" id="3149325216962190976">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216962190937"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216954857386" scale="2.0"/>
+    <effect signalID="3149325216915554009" scale="1.5"/>
+    <effect signalID="3149325216954857347" scale="2.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_MetabolicConversion" id="3149325216929611827">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549059" scale="2"/>
+    <effect signalID="3149325216929787165" scale="2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_MimicForm" id="3149325216983792495">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216983792551"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216914689641" scale="1"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689641" scale="0"/>
+    <effect signalID="3149325216913727228" scale="0"/>
+    <effect signalID="3149325216913726733" scale="0"/>
+    <effect signalID="3149325216915554009" scale="0"/>
+    <effect signalID="7745561656291547931" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_NegateCoral" id="3149325216982680897">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216975843628"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216929787188" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Neurostimulant1" id="3149325216929611879">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="12348086275117776764" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Neurostimulant2" id="3149325216977825257">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="12348086275117776764" scale="1.33333333"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_NightmareForm" id="3149325216937325440">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216975843628"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216975843628" scale="0"/>
+    <effect signalID="3149325216914689633" scale="0"/>
+    <effect signalID="3149325216929787188" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0"/>
+    <effect signalID="7745561656291547931" scale=".75"/>
+    <effect signalID="3149325216938445621" scale="0"/>
+    <effect signalID="3149325216915549119" scale="0"/>
+    <effect signalID="3149325216913726733" scale="0"/>
+    <effect signalID="3149325216913727228" scale=".75"/>
+    <effect signalID="3149325216911145914" scale="0"/>
+    <effect signalID="3149325216914689627" scale="0"/>
+    <effect signalID="7745561652447168043" scale="0"/>
+    <effect signalID="3149325216947006941" scale="0"/>
+    <effect signalID="3149325216947007897" scale="0"/>
+    <effect signalID="3149325216954857347" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Pharmacology" id="3149325216929611844">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689753" scale="1.5"/>
+    <effect signalID="3149325216915549039" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Physician1" id="3149325216929611857">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547932" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Physician2" id="3149325216929611868">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547932" scale="2.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_ThermalResistance" id="3149325216929611941">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216955628299"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561656291547931" scale="0.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_Bleeding" id="12348086275137997949">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_Exhausted" id="3149325216964369238">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216939210391"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="0.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_Concussion" id="3149325216945080615">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689729" scale="1.5"/>
+    <effect signalID="3149325216914689633" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_Radiation" id="12348086275148083147">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549059" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_Stunned" id="3149325216984829765">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216954346631" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_SuitDamage1" id="12348086275155886608">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216911145914" scale="1.15"/>
+    <effect signalID="3149325216913727228" scale="1.15"/>
+    <effect signalID="7745561656291547931" scale="1.15"/>
+    <effect signalID="3149325216915554009" scale="1.15"/>
+    <effect signalID="3149325216938445621" scale="1.15"/>
+    <effect signalID="3149325216914689676" scale="1.15"/>
+    <effect signalID="3149325216973146201" scale="1.15"/>
+    <effect signalID="3149325216913726733" scale="1.15"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_SuitDamage2" id="12348086275184903613">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale="1.3"/>
+    <effect signalID="3149325216973146201" scale="1.3"/>
+    <effect signalID="3149325216911145914" scale="1.3"/>
+    <effect signalID="3149325216913727228" scale="1.3"/>
+    <effect signalID="7745561656291547931" scale="1.3"/>
+    <effect signalID="3149325216915554009" scale="1.3"/>
+    <effect signalID="3149325216938445621" scale="1.3"/>
+    <effect signalID="3149325216914689676" scale="1.3"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_Trauma_SuitDamage3" id="12348086275184917639">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216913726733" scale="1.5"/>
+    <effect signalID="3149325216973146201" scale="1.5"/>
+    <effect signalID="3149325216911145914" scale="1.5"/>
+    <effect signalID="3149325216913727228" scale="1.5"/>
+    <effect signalID="7745561656291547931" scale="1.5"/>
+    <effect signalID="3149325216915554009" scale="1.5"/>
+    <effect signalID="3149325216938445621" scale="1.5"/>
+    <effect signalID="3149325216914689676" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Ply_WrenchFu2" id="3149325216929611973">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216914689654"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.5"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="SurfaceHazard_Default" id="3149325216964011952">
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="3149325216963998992"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216913727228" scale="0"/>
+   </outputEffects>
+  </rule>
+  <rule>
+   <inputFilters>
+    <matchingKey signalID="9469288860522565404"/>
+   </inputFilters>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Weaver_Shield" id="3149325216954329552">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="0.0"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_GloogunEfficiencyMod1" id="3149325216954343039">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_GloogunEfficiencyMod2" id="3149325216966099667">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_GloogunEfficiencyMod3" id="3149325216966099668">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_GloogunEfficiencyMod4" id="3149325216966099670">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549017" scale="1.25"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_LaserDamageMod1" id="3149325216939217218">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_LaserDamageMod2" id="3149325216959691056">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="1.090909091"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_LaserDamageMod3" id="3149325216959691059">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="1.083333333"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_LaserDamageMod4" id="3149325216959691060">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="1.076923077"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_LaserDamageMod5" id="3149325216959691058">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216914689683" scale="1.071428571"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_PistolDamageMod1" id="3149325216953725056">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.125"/>
+    <effect signalID="3149325216915554009" scale="1.125"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_PistolDamageMod2" id="3149325216959681717">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.11"/>
+    <effect signalID="3149325216915554009" scale="1.11"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_ShotgunDamageMod1" id="3149325216933091814">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+    <effect signalID="7745561652447168043" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_ShotgunDamageMod2" id="3149325216959678104">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.1"/>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_ShotgunDamageMod3" id="3149325216959678116">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.11"/>
+    <effect signalID="3149325216915554009" scale="1.11"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_ShotgunDamageMod4" id="3149325216959678119">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.1"/>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_ShotgunDamageMod5" id="3149325216959678118">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="7745561652447168043" scale="1.1"/>
+    <effect signalID="3149325216915554009" scale="1.1"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_StungunDurationMod1" id="3149325216954329550">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549026" scale="1.125"/>
+    <effect signalID="3149325216913727228" scale="1.125"/>
+    <effect signalID="3149325216914689627" scale="1.125"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_StungunDurationMod2" id="3149325216972477794">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549026" scale="1.167"/>
+    <effect signalID="3149325216913727228" scale="1.167"/>
+    <effect signalID="3149325216914689627" scale="1.167"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_StungunDurationMod3" id="3149325216972477796">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549026" scale="1.19"/>
+    <effect signalID="3149325216913727228" scale="1.19"/>
+    <effect signalID="3149325216914689627" scale="1.19"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_StungunDurationMod4" id="3149325216972477797">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549026" scale="1.2"/>
+    <effect signalID="3149325216913727228" scale="1.2"/>
+    <effect signalID="3149325216914689627" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+ <modifier name="Wpn_StungunDurationMod5" id="3149325216972477799">
+  <rule>
+   <inputFilters/>
+   <outputEffects>
+    <effect signalID="3149325216915549026" scale="1.2"/>
+    <effect signalID="3149325216913727228" scale="1.2"/>
+    <effect signalID="3149325216914689627" scale="1.2"/>
+   </outputEffects>
+  </rule>
+ </modifier>
+</modifiers>

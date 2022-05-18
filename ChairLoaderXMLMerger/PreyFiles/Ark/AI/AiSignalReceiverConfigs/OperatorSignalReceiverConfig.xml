@@ -1,0 +1,11 @@
+
+<SignalReceivers>
+ <Imports>
+  <File file="Ark/AI/AiSignalReceiverConfigs/NpcBaseSignalReceiverConfig.xml"/>
+ </Imports>
+ <SignalData>
+  <signal id="3149325216914689654" does_damage="true" block_hit_react="false" callback_luaCallbackFunc="OnMeleeSignal"/>
+  <signal id="3149325216914689627" does_damage="false" block_hit_react="false" is_stun="true"/>
+  <signal id="3149325216913727213" does_damage="true" block_hit_react="false" is_bump_signal="false" is_emp="false" is_fear="false" is_fire="false" is_flare="false" is_grenadeattached="false" is_laser="false" is_mindcontrol="false" is_nullwave="false" is_playerpower="false" is_recycle_begin="false" is_remote_manipulation="false" is_stun="false" is_stungun="false" is_collision="false" is_critical="false"/>
+ </SignalData>
+</SignalReceivers>

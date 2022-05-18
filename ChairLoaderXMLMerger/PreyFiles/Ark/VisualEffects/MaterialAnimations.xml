@@ -1,0 +1,2725 @@
+
+<ArkMaterialAnimations>
+ <Animations>
+  <ArkMaterialAnimation Id="5897280292631830168" Name="LargeFormOut" MaterialReference="objects/characters/aliens/technopath/technopath01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="243995946793615109" Name="LargeFormIn" MaterialReference="objects/characters/aliens/nightmare/nightmare01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0.0" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0.0" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0.0" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349625231646" Name="MimicDisintegration" MaterialReference="objects/characters/aliens/mimic/mimic01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0.12" Value="100"/>
+       <Key Time="0.60000002" Value="0"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.47999999"/>
+       <Key Time="0.60000002" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.57999998"/>
+       <Key Time="0.80000001" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349625232008" Name="NightmareDisintegrate" MaterialReference="objects/characters/aliens/nightmare/nightmare01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.89999998" Value="0.88"/>
+       <Key Time="1.5" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.80000001" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="0.60000002" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349625232039" Name="PhantomDisintegrate" MaterialReference="objects/characters/aliens/phantom/phantom01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.029999999"/>
+       <Key Time="0.44999999" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.60000002" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.79999995"/>
+       <Key Time="0.80000001" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349625296610" Name="MimicPlayerMorphInto" MaterialReference="Objects/characters/Player/Male/Player1P_Male_Powers" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.2" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Diffuse>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0.067470744" Value="0"/>
+       <Key Time="0.85815752" Value=".19999999"/>
+       <Key Time="1.0004857" Value=".50"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349625919174" Name="PhantomHit" MaterialReference="objects/characters/aliens/phantom/phantom01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.28289112" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0.35153267"/>
+       <RgbKey Time="0.28289112" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.50016588" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50026095" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.38918257" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.52711529" Blue="0.095307469"/>
+       <RgbKey Time="0.38918164" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.48514998" Green="0.18447503" Blue="0.059511248"/>
+       <RgbKey Time="0.080000006" Red="0.14412852" Green="0" Blue="0"/>
+       <RgbKey Time="0.38" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.38" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349629030361" Name="MimicHit" MaterialReference="Objects/characters/Aliens/Mimic/Mimic01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.61720675" Green="0.61720675" Blue="0.61720675"/>
+       <RgbKey Time="0.5" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.75294238" Green="0.75294238" Blue="0.75294238"/>
+       <RgbKey Time="0.50016582" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.30498737" Green="0.090841725" Blue="0.040915202"/>
+       <RgbKey Time="0.25999999" Red="0.040915202" Green="0.0047769542" Blue="0.0047769542"/>
+       <RgbKey Time="0.5" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.5" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0.00040002912" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.5" Red="0.040915202" Green="0.040915202" Blue="0.040915202"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.87136734" Green="0.87136734" Blue="0.87136734"/>
+       <RgbKey Time="0.5" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.57758063" Green="0.57758063" Blue="0.57758063"/>
+       <RgbKey Time="0.5" Red="0.038204379" Green="0.038204379" Blue="0.038204379"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.50038093" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.21586053" Blue="0.095307469"/>
+       <RgbKey Time="0.28" Red="0.0065120915" Green="0.001214108" Blue="0.00060705398"/>
+       <RgbKey Time="0.5" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.5" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669235855" Name="PlayerShift_In" MaterialReference="Objects/characters/Player/ShiftPower/PlayerMale_Shift" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="2" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669236625" Name="PlayerShift_Legs_In" MaterialReference="objects/characters/Player/ShiftPower/PlayerMale_Shift_Legs" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.99000001" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669236646" Name="PlayerShift_Head_In" MaterialReference="objects/characters/Player/ShiftPower/PlayerMale_Shift_Head" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.99000001" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669236686" Name="PlayerShift_PropulsionPack_In" MaterialReference="objects/characters/Player/ShiftPower/Player_Shift_PropulsionPack" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.99000001" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669236713" Name="PlayerShift_Pychoscope_In" MaterialReference="objects/characters/Player/ShiftPower/Player_Shift_Psychoscope" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.99000001" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669236769" Name="PlayerShift_Arms_In" MaterialReference="objects/characters/Player/ShiftPower/PlayerMale_Shift_Arms" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.99000001" Value="0"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5780464964669252178" Name="PlayerShift_Out" MaterialReference="Objects/characters/Player/ShiftPower/PlayerMale_Shift" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349632485361" Name="MimicLaserBurn" MaterialReference="objects/characters/aliens/mimic/mimic01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.0085681267" Green="0.021219013" Blue="0.006048834"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.068478182" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+       <RgbKey Time="1" Red="0.010960096" Green="0.027320895" Blue="0.0074990327"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349633523908" Name="MimicLaserBurnFadeOut" MaterialReference="objects/characters/aliens/mimic/mimic01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0.18782081"/>
+       <RgbKey Time="1" Red="0.10946172" Green="0.10946172" Blue="0.10946172"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.71569365" Blue="0"/>
+       <RgbKey Time="1" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1000"/>
+       <Key Time="1" Value="0.001"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0.35153267"/>
+       <RgbKey Time="1" Red="0.24620137" Green="0.24620137" Blue="0.24620137"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0"/>
+       <RgbKey Time="1.00024" Red="0.029556843" Green="0.029556843" Blue="0.029556843"/>
+      </RgbKeys>
+     </Specular>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="100"/>
+       <Key Time="1" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349633790760" Name="PhantomLaserBurn" MaterialReference="objects/characters/aliens/phantom/phantom01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.031896044" Green="0.10224175" Blue="0.0047769542"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.070360109" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+       <RgbKey Time="1" Red="0.013702085" Green="0.034339812" Blue="0.011612248"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349633791827" Name="NightmareLaserBurn" MaterialReference="objects/characters/aliens/nightmare/nightmare01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.0069954111" Green="0.024157636" Blue="0.0091340607"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.068478182" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.045186214" Green="0.045186214" Blue="0.045186214"/>
+       <RgbKey Time="1" Red="0.004391443" Green="0.017641956" Blue="0.006048834"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.52711529" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+       <RgbKey Time="1" Red="0.0056053926" Green="0.031896044" Blue="0.0056053926"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.10224175" Green="0.10224175" Blue="0.10224175"/>
+       <RgbKey Time="1" Red="0.23839761" Green="0.64447981" Blue="0.22696592"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.52711529" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349633794033" Name="TelepathLaserBurn" MaterialReference="objects/characters/aliens/telepath/telepath01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.012286491" Green="0.02315337" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="5000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.049706575" Green="0.049706575" Blue="0.049706575"/>
+       <RgbKey Time="1" Red="0.018500222" Green="0.043735035" Blue="0"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.013702085" Green="0.37626219" Blue="0.010329826"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="500"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349633845538" Name="WeaverLaserBurn" MaterialReference="objects/characters/aliens/weaver/weaver01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.015996294" Green="0.072271861" Blue="0.03071345"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.064803272" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.031896044" Green="0.031896044" Blue="0.031896044"/>
+       <RgbKey Time="1" Red="0.006048834" Green="0.040915202" Blue="0.019382363"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349633848035" Name="PoltergeistLaserBurn" MaterialReference="objects/characters/aliens/poltergeist/poltergeist01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.020288566" Green="0.074213579" Blue="0.018500222"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.012983034" Green="0.012983034" Blue="0.012983034"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.070360109" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.020288566" Green="0.049706575" Blue="0"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.012983034" Green="0.012983034" Blue="0.012983034"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349634801416" Name="WeaverDisintegrate" MaterialReference="objects/characters/aliens/weaver/weaver01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.98999995"/>
+       <Key Time="0.34000021" Value="0.75"/>
+       <Key Time="1.0199999" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.34000021" Value="0.75"/>
+       <Key Time="1.01" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.34000021" Value="0.75"/>
+       <Key Time="1.01" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349636008600" Name="TechnopathDisintegrate" MaterialReference="objects/characters/aliens/technopath/technopath01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.80000001" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.5" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349636009035" Name="PoltergeistDisintegrate" MaterialReference="objects/characters/aliens/poltergeist/poltergeist01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.98000002"/>
+       <Key Time="1" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.63"/>
+       <Key Time="0.80000001" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="0.60000002" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349636011042" Name="TelepathDisintegrate" MaterialReference="objects/characters/Aliens/Telepath/Telepath01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.98999995"/>
+       <Key Time="1" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.34"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349636012458" Name="TechnopathLaserBurn" MaterialReference="objects/characters/aliens/technopath/technopath01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.068478182" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637239227" Name="WeaverShieldStart" MaterialReference="objects/characters/aliens/weaver/weaver01" MeshSlot="0" AttachmentName="shield_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.052860655" Green="0.020288566" Blue="0.0065120915"/>
+       <RgbKey Time="1" Red="0.85499281" Green="0.65140575" Blue="0.24228117"/>
+      </RgbKeys>
+     </Diffuse>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.064803272" Green="0.029556843" Blue="0"/>
+       <RgbKey Time="1" Red="0.8879233" Green="0.57112503" Blue="0.16826943"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="0.89999998"/>
+      </Keys>
+     </Opacity>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637239465" Name="WeaverShieldEnd" MaterialReference="objects/characters/aliens/weaver/weaver01" MeshSlot="0" AttachmentName="shield_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.85499281" Green="0.65140575" Blue="0.24228117"/>
+       <RgbKey Time="0.49967331" Red="0.052860655" Green="0.016807377" Blue="0.0065120915"/>
+      </RgbKeys>
+     </Diffuse>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.8879233" Green="0.57112503" Blue="0.16826943"/>
+       <RgbKey Time="0.49807361" Red="0.064803272" Green="0.029556843" Blue="0"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.89999998"/>
+       <Key Time="0.5" Value="0"/>
+      </Keys>
+     </Opacity>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1000"/>
+       <Key Time="0.5" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637239553" Name="WeaverShieldExplode" MaterialReference="objects/characters/aliens/weaver/weaver01" MeshSlot="0" AttachmentName="shield_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.35153267" Blue="1"/>
+       <RgbKey Time="0.50028801" Red="0.052860655" Green="0.020288566" Blue="0.0065120915"/>
+      </RgbKeys>
+     </Diffuse>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.52711529" Blue="0.095307469"/>
+       <RgbKey Time="0.50043201" Red="0.064803272" Green="0.029556843" Blue="0"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.89999998"/>
+       <Key Time="0.50040013" Value="0"/>
+      </Keys>
+     </Opacity>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1000"/>
+       <Key Time="0.15999998" Value="2500"/>
+       <Key Time="0.50028801" Value="5000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637740383" Name="PoltergeistAppear" MaterialReference="objects/characters/aliens/poltergeist/poltergeist01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.31260219" Value="0.029999999"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.31260219" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.31260219" Value="0.63"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.31260219" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637740724" Name="PoltergeistDisappear" MaterialReference="objects/characters/aliens/poltergeist/poltergeist01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.029999999"/>
+       <Key Time="0.31202886" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.31202886" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.63"/>
+       <Key Time="0.31202886" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="0.31202886" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637906548" Name="NightmareIntoEther" MaterialReference="Objects/characters/Aliens/Nightmare/Nightmare01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.63" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.31"/>
+       <Key Time="0.63" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.63" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="0.63" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="5">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.47999999"/>
+       <Key Time="0.63" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349637906801" Name="NightmareOutOfEther" MaterialReference="objects/characters/aliens/nightmare/nightmare01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.70010728" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.70010728" Value="0.31"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.70010728" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.70000005" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="5">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.70010728" Value="0.47999999"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349638353850" Name="PoltergeistPsychoscopeView" MaterialReference="objects/characters/aliens/poltergeist/poltergeist01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.30999991" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.18447503" Green="0.2917707" Blue="0.40197784"/>
+       <RgbKey Time="0.30999991" Red="0.18447503" Green="0.2917707" Blue="0.40197784"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.30999991" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.25"/>
+       <Key Time="0.30999991" Value="0.25"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.79999995"/>
+       <Key Time="0.30999991" Value="0.79999995"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="5"/>
+       <Key Time="0.30999991" Value="5"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.072271861" Green="0.2015563" Blue="0.35640019"/>
+       <RgbKey Time="0.30999991" Red="0.072271861" Green="0.2015563" Blue="0.35640019"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.35153267" Green="0.52711529" Blue="1"/>
+       <RgbKey Time="0.30999991" Red="0.35153267" Green="0.52711529" Blue="1"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.12477185" Green="0.24620137" Blue="0.39157254"/>
+       <RgbKey Time="0.30999991" Red="0.12477185" Green="0.24620137" Blue="0.39157254"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.0099999998"/>
+       <Key Time="0.30999991" Value="0.0099999998"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.75"/>
+       <Key Time="0.30999991" Value="0.75"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="75"/>
+       <Key Time="0.30999991" Value="75"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.30999991" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.22696592" Green="0.36130685" Blue="0.46778381"/>
+       <RgbKey Time="0.30999991" Red="0.22696592" Green="0.36130685" Blue="0.46778381"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.031896044" Green="0.066625953" Blue="0.13286835"/>
+       <RgbKey Time="0.30999991" Red="0.031896044" Green="0.066625953" Blue="0.13286835"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0.049999997"/>
+       <Key Time="0.30999991" Value="0.049999997"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.30999991" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.30999991" Value="150"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349638420382" Name="PoltergeistPsychoscopeViewOut" MaterialReference="objects/characters/aliens/poltergeist/poltergeist01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.25" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.18447503" Green="0.2917707" Blue="0.40197784"/>
+       <RgbKey Time="0.2504741" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.25" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="25"/>
+       <Key Time="0.25" Value="100"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.79999995"/>
+       <Key Time="0.25" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="5"/>
+       <Key Time="0.25" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.072271861" Green="0.2015563" Blue="0.35640019"/>
+       <RgbKey Time="0.25" Red="0.040915202" Green="0.040915202" Blue="0.040915202"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.35153267" Green="0.52711529" Blue="1"/>
+       <RgbKey Time="0.25" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.12477185" Green="0.24620137" Blue="0.39157254"/>
+       <RgbKey Time="0.25" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.25" Value="100"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.75"/>
+       <Key Time="0.25" Value="0.63"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="75"/>
+       <Key Time="0.25" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.25" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.22696592" Green="0.36130685" Blue="0.46778381"/>
+       <RgbKey Time="0.25071117" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.031896044" Green="0.066625953" Blue="0.13286835"/>
+       <RgbKey Time="0.25" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="5"/>
+       <Key Time="0.25" Value="100"/>
+      </Keys>
+     </Opacity>
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.25" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.25" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642076022" Name="OperatorScience_LaserBurn" MaterialReference="objects/characters/robots/operatorscience/OperatorScience01" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.52711529" Green="1" Blue="0.35153267"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="5000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642078373" Name="OperatorMilitary_LaserBurn" MaterialReference="objects/characters/robots/operatormilitary/operatormilitary01" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.52711529" Green="1" Blue="0.35153267"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="5000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642078639" Name="OperatorMedic_LaserBurn" MaterialReference="objects/characters/robots/OperatorMedic/OperatorMedic01" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.52711529" Green="1" Blue="0.35153267"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="5000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642078840" Name="OperatorEngineer_LaserBurn" MaterialReference="objects/characters/robots/operatorengineer/operatorengineer01" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0" Green="0" Blue="0"/>
+       <RgbKey Time="1" Red="0.52711529" Green="1" Blue="0.35153267"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1" Value="5000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642166458" Name="NightmareHit" MaterialReference="objects/characters/aliens/nightmare/nightmare01" MeshSlot="0" AttachmentName="nightmare01_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.18782081" Green="0.18782081" Blue="0.18782081"/>
+       <RgbKey Time="0.50001413" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50002486" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.30498737" Green="0.30498737" Blue="0.30498737"/>
+       <RgbKey Time="0.49999997" Red="0.040915202" Green="0.040915202" Blue="0.040915202"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50000113" Red="0.045186214" Green="0.045186214" Blue="0.045186214"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.26225069" Green="0.033104774" Blue="0.015996294"/>
+       <RgbKey Time="0.099999994" Red="0.059511248" Green="0.0065120915" Blue="0.0065120915"/>
+       <RgbKey Time="0.5" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="25"/>
+       <Key Time="0.5" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.10224175" Green="0.10224175" Blue="0.10224175"/>
+       <RgbKey Time="0.5" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50000846" Red="0.10224175" Green="0.10224175" Blue="0.10224175"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.072271861" Green="0.029556843" Blue="0.0091340607"/>
+       <RgbKey Time="0.12" Red="0.14412852" Green="0" Blue="0"/>
+       <RgbKey Time="0.5" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.5" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642582619" Name="TelepathHit" MaterialReference="objects/characters/Aliens/Telepath/Telepath01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50004297" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.96468645" Green="0.43415371" Blue="0.24228117"/>
+       <RgbKey Time="0.18000001" Red="0.34191447" Green="0.048171833" Blue="0.015208517"/>
+       <RgbKey Time="0.50007224" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="250"/>
+       <Key Time="0.50007224" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50004297" Red="0.045186214" Green="0.045186214" Blue="0.045186214"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.96468645" Green="0.43415371" Blue="0.24228117"/>
+       <RgbKey Time="0.14" Red="0.34191447" Green="0.048171833" Blue="0.015208517"/>
+       <RgbKey Time="0.50006914" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="0.50001955" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50004297" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.96468645" Green="0.43415371" Blue="0.24228117"/>
+       <RgbKey Time="0.30000001" Red="0.34191447" Green="0.048171833" Blue="0.015208517"/>
+       <RgbKey Time="0.50006914" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="500"/>
+       <Key Time="0.5000723" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642597272" Name="WeaverHit" MaterialReference="objects/characters/aliens/weaver/weaver01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.24917409" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.8468734" Green="0.36130685" Blue="0.13843165"/>
+       <RgbKey Time="0.20127198" Red="0.14412852" Green="0.0074990327" Blue="0.0074990327"/>
+       <RgbKey Time="0.50013602" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="25"/>
+       <Key Time="0.49971199" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.24967627" Red="0.031896044" Green="0.031896044" Blue="0.031896044"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.8468734" Green="0.33716366" Blue="0.13843165"/>
+       <RgbKey Time="0.049999997" Red="1" Green="0.21586053" Blue="0.095307469"/>
+       <RgbKey Time="0.22212002" Red="0.14412852" Green="0.0074990327" Blue="0.0074990327"/>
+       <RgbKey Time="0.49971199" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="0.49971199" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349642602661" Name="TechnopathHit" MaterialReference="objects/characters/aliens/technopath/technopath01" MeshSlot="0" AttachmentName="body_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.25159973" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.7991029" Green="0.27889434" Blue="0.16202942"/>
+       <RgbKey Time="0.123304" Red="0.11443539" Green="0.014443845" Blue="0.014443845"/>
+       <RgbKey Time="0.49971199" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="25"/>
+       <Key Time="0.49971199" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.25159973" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.7991029" Green="0.27889434" Blue="0.16202942"/>
+       <RgbKey Time="0.123304" Red="0.11443539" Green="0.014443845" Blue="0.014443845"/>
+       <RgbKey Time="0.49971199" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.093079999" Value="20"/>
+       <Key Time="0.49971199" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354703425369" Name="Fabrication_Small_01" MaterialReference="Objects/ArkEffects/Gameplay/Fabricator/FabMat_TestBlock_Mat_00" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="2.9802322e-008" Value="1"/>
+       <Key Time="0.96465564" Value="1"/>
+       <Key Time="1.1412371" Value="0"/>
+       <Key Time="2.2995834" Value="0"/>
+       <Key Time="2.625" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="20"/>
+       <Key Time="0.88798904" Value="20"/>
+       <Key Time="2.5263846" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354703426606" Name="Fabrication_Turret_01" MaterialReference="Objects/ArkEffects/Gameplay/Fabricator/FabMat_TestBlock_Mat_00" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="5.9604645e-008" Value="1"/>
+       <Key Time="0.99234468" Value="1"/>
+       <Key Time="1.1374689" Value="0"/>
+       <Key Time="2.2591619" Value="0"/>
+       <Key Time="2.7124834" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="20"/>
+       <Key Time="0.91567802" Value="20"/>
+       <Key Time="2.5852842" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354703427651" Name="Fabrication_Laser_01" MaterialReference="Objects/ArkEffects/Gameplay/Fabricator/FabMat_TestBlock_Mat_00" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.97284794" Value="1"/>
+       <Key Time="1.1428324" Value="0"/>
+       <Key Time="2.1767511" Value="0"/>
+       <Key Time="2.6031218" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="20"/>
+       <Key Time="0.89618134" Value="20"/>
+       <Key Time="2.5605869" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354703427873" Name="Fabrication_Medium_01" MaterialReference="Objects/ArkEffects/Gameplay/Fabricator/FabMat_TestBlock_Mat_00" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.98359978" Value="1"/>
+       <Key Time="1.1601813" Value="0"/>
+       <Key Time="2.3444304" Value="0"/>
+       <Key Time="2.6928942" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="20"/>
+       <Key Time="0.90693319" Value="20"/>
+       <Key Time="2.6569631" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354703443216" Name="OperatorScience_Dispenser_01" MaterialReference="objects/characters/robots/operatorscience/OperatorScience_Dispenser_01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.9333334" Value="1"/>
+       <Key Time="3.3666668" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="1.9333334" Value="50"/>
+       <Key Time="4.6333337" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="4.3333335" Value="1"/>
+       <Key Time="5.2000027" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="80"/>
+       <Key Time="4.3333335" Value="80"/>
+       <Key Time="5.5666671" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349644736338" Name="ApexDisintegrate" MaterialReference="objects/characters/aliens/apextentacle/apextentacle" MeshSlot="0" AttachmentName="skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.39999998"/>
+       <Key Time="0.26063299" Value="0.75"/>
+       <Key Time="0.33991876" Value="0.85999995"/>
+       <Key Time="0.41170311" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0.13720834" Value="0.68000001"/>
+       <Key Time="0.40040264" Value="0.73840892"/>
+       <Key Time="0.49626568" Value="0.79999995"/>
+       <Key Time="0.59664011" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.42880005" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.34000003" Red="0.21586053" Green="0" Blue="0"/>
+       <RgbKey Time="0.57000005" Red="0.0056053926" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0.17000005" Value="200"/>
+       <Key Time="0.57000005" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354705613120" Name="OperatorEngineer_Dispenser_01" MaterialReference="Objects/characters/Robots/OperatorEngineer/OperatorEngineer_Dispenser_01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.9333334" Value="1"/>
+       <Key Time="3.3666668" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="1.9333334" Value="50"/>
+       <Key Time="4.6333337" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="4.2309337" Value="1"/>
+       <Key Time="5.2000027" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="4.3333335" Value="50"/>
+       <Key Time="6.0999999" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354705622102" Name="OperatorMilitary_Dispenser_01" MaterialReference="Objects/characters/Robots/OperatorMilitary/OperatorMilitary_Dispenser_01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.9" Value="1"/>
+       <Key Time="3.436667" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="1.9" Value="50"/>
+       <Key Time="4.6333332" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="4.2309337" Value="1"/>
+       <Key Time="5.3500028" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="4.3333335" Value="50"/>
+       <Key Time="6.118464" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354705623059" Name="OperatorMedic_Dispenser_01" MaterialReference="Objects/characters/Robots/OperatorMedic/OperatorMedic_Dispenser_01" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.9333334" Value="1"/>
+       <Key Time="3.3666668" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="50"/>
+       <Key Time="1.9333334" Value="50"/>
+       <Key Time="4.6333332" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="4.2309337" Value="1"/>
+       <Key Time="5.3500028" Value="0"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="80"/>
+       <Key Time="4.3333335" Value="80"/>
+       <Key Time="5.908464" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645289526" Name="PhantomVoltaicHit" MaterialReference="objects/characters/aliens/phantom/phantomvoltaic01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.38918257" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.52711529" Blue="0.095307469"/>
+       <RgbKey Time="0.38918164" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.48514995" Green="0.18447503" Blue="0.059511248"/>
+       <RgbKey Time="0.080000006" Red="0.14412852" Green="0" Blue="0"/>
+       <RgbKey Time="0.38" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.38" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.28289112" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0.35153267"/>
+       <RgbKey Time="0.28305307" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.49957961" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50026095" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645338950" Name="PhantomVoltaicLaserBurn" MaterialReference="objects/characters/aliens/phantom/phantomvoltaic01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="4">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+       <RgbKey Time="1" Red="0.013702085" Green="0.034339812" Blue="0.011612248"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.031896044" Green="0.10224175" Blue="0.0047769542"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.043735035" Green="0.16513224" Blue="0.53947967"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.070360109" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0.0017655045" Value="500"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645341165" Name="PhantomThermalHit" MaterialReference="objects/characters/aliens/phantom/phantomthermal01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.50016588" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50026095" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0.049392123" Red="1" Green="0.52711529" Blue="0.35153267"/>
+       <RgbKey Time="0.13839188" Red="0.61720675" Green="0.090841725" Blue="0.046665095"/>
+      </RgbKeys>
+     </Emissive>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.28289112" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0.35153267"/>
+       <RgbKey Time="0.28289112" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.38918257" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.52711529" Blue="0.095307469"/>
+       <RgbKey Time="0.38918164" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.048171833" Green="0.020288566" Blue="0.054480284"/>
+       <RgbKey Time="0.11403961" Red="0.0091340607" Green="0.0033465358" Blue="0.0033465358"/>
+       <RgbKey Time="0.1375" Red="0.019382363" Green="0.0065120915" Blue="0"/>
+       <RgbKey Time="0.38901675" Red="0.56471169" Green="0.76052463" Blue="0.85499281"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.38964748" Value="500"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645342211" Name="PhantomThermalLaserBurn" MaterialReference="objects/characters/aliens/phantom/phantomthermal01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="4">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+       <RgbKey Time="1.0001926" Red="0.20863691" Green="0.46207705" Blue="0.79129809"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.56471169" Green="0.76052463" Blue="0.85499281"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="500"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.031896044" Green="0.10224175" Blue="0.0047769542"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.61720675" Green="0.090841725" Blue="0.046665095"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.070360109" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="25"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645343615" Name="PhantomEthericHit" MaterialReference="objects/characters/aliens/phantom/phantometheric01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="3">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.86315739" Green="0.74540442" Blue="0.61720675"/>
+       <RgbKey Time="0.044564482" Red="1" Green="0.52711529" Blue="0.35153267"/>
+       <RgbKey Time="0.175" Red="0.0085681267" Green="0.004391443" Blue="0.006048834"/>
+       <RgbKey Time="0.28242049" Red="0.049706575" Green="0.042311415" Blue="0.11193244"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.28049409" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.28289112" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="0.35153267"/>
+       <RgbKey Time="0.28289112" Red="1" Green="1" Blue="1"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.50016588" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="1" Blue="1"/>
+       <RgbKey Time="0.50026095" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.38918257" Red="0.0097212186" Green="0.0097212186" Blue="0.0097212186"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.52711529" Blue="0.095307469"/>
+       <RgbKey Time="0.38918164" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.48514995" Green="0.18447503" Blue="0.059511248"/>
+       <RgbKey Time="0.11451424" Red="0.0091340607" Green="0.0030352701" Blue="0.0030352701"/>
+       <RgbKey Time="0.37519264" Red="0.038204379" Green="0.038204379" Blue="0.099898733"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.37737855" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645344203" Name="PhantomEthericLaserBurn" MaterialReference="objects/characters/aliens/phantom/phantometheric01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="3">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.049706575" Green="0.042311415" Blue="0.11193244"/>
+       <RgbKey Time="1" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="100"/>
+       <Key Time="1" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.031896044" Green="0.10224175" Blue="0.0047769542"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.0033465358" Green="0.070360109" Blue="0.00060705398"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="100"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+       <RgbKey Time="1" Red="0.013702085" Green="0.034339812" Blue="0.011612248"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.038204379" Green="0.038204379" Blue="0.099898733"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="100"/>
+       <Key Time="1" Value="500"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645359388" Name="MimicEliteDisintegrate" MaterialReference="objects/characters/aliens/mimic/mimicelite01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.47999999"/>
+       <Key Time="0.60000002" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.57999998"/>
+       <Key Time="0.80000001" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.55000001"/>
+       <Key Time="1" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.5" Value="0"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645359586" Name="MimicEliteHit" MaterialReference="objects/characters/aliens/mimic/mimicelite01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.61720675" Green="0.61720675" Blue="0.61720675"/>
+       <RgbKey Time="0.5" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.75294238" Green="0.75294238" Blue="0.75294238"/>
+       <RgbKey Time="0.50016582" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.30498737" Green="0.090841725" Blue="0.040915202"/>
+       <RgbKey Time="0.25180799" Red="0.040915202" Green="0.0047769542" Blue="0.0047769542"/>
+       <RgbKey Time="0.5" Red="0.26225069" Green="0.2015563" Blue="0.48514995"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.5" Value="46"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0.00040002912" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.5" Red="0.040915202" Green="0.040915202" Blue="0.040915202"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.87136734" Green="0.87136734" Blue="0.87136734"/>
+       <RgbKey Time="0.5" Red="0" Green="0" Blue="0"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.57758063" Green="0.57758063" Blue="0.57758063"/>
+       <RgbKey Time="0.5" Red="0.038204379" Green="0.038204379" Blue="0.038204379"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.50038093" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="1" Green="0.21586053" Blue="0.095307469"/>
+       <RgbKey Time="0.25132799" Red="0.0065120915" Green="0.001214108" Blue="0.00060705398"/>
+       <RgbKey Time="0.5" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="150"/>
+       <Key Time="0.5" Value="1"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="5">
+     <Diffuse>
+      <RgbKeys>
+       <RgbKey Time="0.00040002912" Red="0.21586053" Green="0.21586053" Blue="0.21586053"/>
+       <RgbKey Time="0.5" Red="0.021219013" Green="0.021219013" Blue="0.021219013"/>
+      </RgbKeys>
+     </Diffuse>
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.87136734" Green="0.87136734" Blue="0.87136734"/>
+       <RgbKey Time="0.49999997" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+      </RgbKeys>
+     </Specular>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645360442" Name="MimicEliteLaserBurn" MaterialReference="objects/characters/aliens/mimic/mimicelite01" MeshSlot="0" AttachmentName="body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.1046165" Green="0.1046165" Blue="0.1046165"/>
+       <RgbKey Time="1" Red="0.0085681267" Green="0.021219013" Blue="0.006048834"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.26225069" Green="0.2015563" Blue="0.48514995"/>
+       <RgbKey Time="1.0007041" Red="0.039546244" Green="0.26635563" Blue="0.026241224"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="46"/>
+       <Key Time="1" Value="500"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.038204379" Green="1" Blue="0.0091340607"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="500"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <Specular>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.088655598" Green="0.088655598" Blue="0.088655598"/>
+       <RgbKey Time="1" Red="0.010960096" Green="0.027320895" Blue="0.0074990327"/>
+      </RgbKeys>
+     </Specular>
+     <Emissive>
+      <RgbKeys>
+       <RgbKey Time="0" Red="0.00030352699" Green="0.00030352699" Blue="0.00030352699"/>
+       <RgbKey Time="1" Red="0.21586053" Green="1" Blue="0.095307469"/>
+      </RgbKeys>
+     </Emissive>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1" Value="1000"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354706302093" Name="Fabrication_MediumShort_01" MaterialReference="Objects/ArkEffects/Gameplay/Fabricator/FabMat_TestBlock_Mat_00" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="0.9979403" Value="1"/>
+       <Key Time="1.1376367" Value="0"/>
+       <Key Time="2.3152671" Value="0"/>
+       <Key Time="2.6729589" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="20"/>
+       <Key Time="0.89208508" Value="20"/>
+       <Key Time="2.6034729" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="5424032354706302416" Name="Fabrication_SmallShort_01" MaterialReference="Objects/ArkEffects/Gameplay/Fabricator/FabMat_TestBlock_Mat_00" MeshSlot="0" AttachmentName="">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="0">
+     <AlphaTest>
+      <Keys>
+       <Key Time="2.9802322e-008" Value="1"/>
+       <Key Time="0.99001813" Value="1"/>
+       <Key Time="1.1201603" Value="0"/>
+       <Key Time="2.3037262" Value="0"/>
+       <Key Time="2.6881986" Value="1"/>
+      </Keys>
+     </AlphaTest>
+     <EmissiveIntensity>
+      <Keys>
+       <Key Time="0" Value="20"/>
+       <Key Time="0.8797971" Value="20"/>
+       <Key Time="2.6003206" Value="0"/>
+      </Keys>
+     </EmissiveIntensity>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349645893826" Name="PhantomVoltaicGenesis" MaterialReference="objects/characters/aliens/phantom/phantomvoltaic01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1.5" Value="98"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.49664" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.49664" Value="0.79999995"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.49664" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349646558042" Name="PhantomThermalGenesis" MaterialReference="objects/characters/aliens/phantom/phantomthermal01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1.50304" Value="98"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.50304" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.50304" Value="0.79999995"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.50304" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349646558307" Name="PhantomEthericGenesis" MaterialReference="objects/characters/aliens/phantom/phantometheric01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1.49" Value="98"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.49" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.49" Value="0.79999995"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.49" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349646558793" Name="PhantomGenesis" MaterialReference="objects/characters/aliens/phantom/phantom01" MeshSlot="0" AttachmentName="inner_body">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <Opacity>
+      <Keys>
+       <Key Time="0" Value="0"/>
+       <Key Time="1.4992" Value="98"/>
+      </Keys>
+     </Opacity>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="2">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.4992" Value="0.39999998"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="3">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.4992" Value="0.79999995"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+    <SubMaterial SubMaterialSlot="4">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="1"/>
+       <Key Time="1.4992" Value="0.55000001"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349648033615" Name="MimicEliteSpikeDisintegrate" MaterialReference="objects/characters/aliens/mimic/mimicelite01" MeshSlot="0" AttachmentName="spike_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="5">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.47999999"/>
+       <Key Time="0.75" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349648034227" Name="PhantomEliteSpikeDisintegrate" MaterialReference="objects/characters/aliens/phantom/phantomelite01" MeshSlot="0" AttachmentName="elite_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="1">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.47999999"/>
+       <Key Time="0.75" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+  <ArkMaterialAnimation Id="12635110349648034367" Name="NightmareSpikeDisintegrate" MaterialReference="objects/characters/aliens/nightmare/nightmare01" MeshSlot="0" AttachmentName="spike_skin">
+   <SubMaterials>
+    <SubMaterial SubMaterialSlot="5">
+     <AlphaTest>
+      <Keys>
+       <Key Time="0" Value="0.47999999"/>
+       <Key Time="0.75" Value="1"/>
+      </Keys>
+     </AlphaTest>
+    </SubMaterial>
+   </SubMaterials>
+  </ArkMaterialAnimation>
+ </Animations>
+</ArkMaterialAnimations>

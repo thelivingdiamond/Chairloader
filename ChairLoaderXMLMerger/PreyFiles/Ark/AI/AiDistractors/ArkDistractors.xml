@@ -1,0 +1,466 @@
+
+<ArkDistractions>
+ <Distractions>
+  <Distraction ID="6677752055908907783" Name="Phantom_Investigate_Forward" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_Investigate_Forward" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="6677752055908811743" Name="Phantom_Investigate_Right" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_Investigate_Right" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".6" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="6677752055908788615" Name="Phantom_Investigate_Left" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_Investigate_Left" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".6" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394893760" Name="Phantom_InspectCorpse" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="5" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectCorpse" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".6" MaxValidStandRadius="1.25" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="761057048010848136" Name="Phantom_InspectCorpse_HWIntro" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectCorpse" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".2" MaxValidStandRadius="2" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394893302" Name="Phantom_SpeakerReact" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_SpeakerReact" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".4" MaxValidStandRadius="1.1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="761057048010853940" Name="Phantom_SpeakerReact_B_360" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_SpeakerReact" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".2" MaxValidStandRadius="1.1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="13535578624394893604" Name="Phantom_LightReact" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LightReact"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="761057048011972657" Name="Phantom_LightReact_UpClose" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LightReact"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="13535578624394894005" Name="Phantom_InspectWindow_High" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectWindow_High" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".3" MaxValidStandRadius=".9" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894047" Name="Phantom_InspectWindow_Mid" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="10" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectWindow_Mid" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".3" MaxValidStandRadius=".9" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894082" Name="Phantom_InspectObject_High" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectObject_High" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894121" Name="Phantom_InspectObject_ Mid" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectObject_Mid" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894727" Name="Phantom_InvestigateHatch_High" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InvestigateHatch_High"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="100"/>
+  </Distraction>
+  <Distraction ID="13535578624394894770" Name="Phantom_InvestigateHatch_Low" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InvestigateHatch_Low"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="100"/>
+  </Distraction>
+  <Distraction ID="13535578624394894394" Name="Phantom_InteractHazard_High" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractHazard_High"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".3" MaxValidStandRadius=".9" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="120"/>
+  </Distraction>
+  <Distraction ID="13535578624394894483" Name="Phantom_InteractHazard_Mid" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractHazard_Mid"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".3" MaxValidStandRadius=".9" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="70"/>
+  </Distraction>
+  <Distraction ID="761057048010838176" Name="Phantom_InteractHazard_Mid_ArmReach" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractDoors_Mid"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="45"/>
+  </Distraction>
+  <Distraction ID="761057048011971466" Name="Phantom_InteractHazard_Mid_ArmReach_UpClose" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractDoors_Mid"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".3" MaxValidStandRadius=".9" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="70"/>
+  </Distraction>
+  <Distraction ID="761057048011956530" Name="Phantom_InteractHazard_Mid_ArmReach_360" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractDoors_Mid"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="13535578624394894547" Name="Phantom_InteractHazard_Low" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractHazard_Low"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="761057048010838272" Name="Phantom_InteractHazard_Low_B_Crouch" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InvestigateHatch_Low"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="120"/>
+  </Distraction>
+  <Distraction ID="13535578624394894626" Name="Phantom_InteractDoors_Mid" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_InteractDoors_Mid"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".3" MaxValidStandRadius=".9" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="120"/>
+  </Distraction>
+  <Distraction ID="17591291352637043903" Name="Phantom_LookAt" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="100"/>
+  </Distraction>
+  <Distraction ID="13535578624394894174" Name="Phantom_LookAt_High" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookAt_High"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894227" Name="Phantom_LookAt_Mid" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookAt_Mid"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894253" Name="Phantom_LookAt_Low" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookAt_Low"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="45"/>
+  </Distraction>
+  <Distraction ID="761057048002894122" Name="Phantom_LookAround" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="20" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_LookAround" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624394894693" Name="Phantom_LookUnderDesk" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookUnderDesk"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="761057048010851830" Name="Phantom_LookUnderDesk_A_UpClose" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="10" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookUnderDesk"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="120"/>
+  </Distraction>
+  <Distraction ID="761057048011117002" Name="Phantom_PT_LookIntoHole" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="10" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookUnderDesk"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="2" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="45"/>
+  </Distraction>
+  <Distraction ID="761057048012042596" Name="Phantom_PT_LookIntoHole_360" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="10" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0" Fragment="Distractor_LookUnderDesk"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="2" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="6677752055908788536" Name="Phantom_DeskSwipe" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_DeskSwipe" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".6" MaxValidStandRadius=".8" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="45"/>
+  </Distraction>
+  <Distraction ID="761057048002894776" Name="Phantom_HitObject_Low" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="120" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_HitObject_Low" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="761057048002894811" Name="Phantom_HitObject_Mid" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="120" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_HitObject_Mid" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="9469288860522304000" Name="Phantom_EnergyLeech" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_EnergyLeech" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="2"/>
+   <DistractionPositioning MinValidStandRadius=".4" MaxValidStandRadius=".8" Mode="0" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="40"/>
+  </Distraction>
+  <Distraction ID="17591291352659926400" Name="Phantom_Automatic_Investigate_Forward_A" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="5" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_Investigate_Forward" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0" MaxValidStandRadius="1" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="75" PositionRelativePosX="0" PositionRelativePosY="2" PositionRelativePosZ="-1.0"/>
+  </Distraction>
+  <Distraction ID="17591291352660543214" Name="Phantom_Automatic_EnergyLeech_InteractiveScreens" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="4" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_EnergyLeech" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius=".4" MaxValidStandRadius="1.1" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="40" PositionRelativePosZ="-1" PositionRelativePosX="0.0" PositionRelativePosY="2"/>
+  </Distraction>
+  <Distraction ID="17591291352660270177" Name="Phantom_Automatic_EnergyLeech_Recycler" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="30" MaxDistractDistance="5" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_EnergyLeech" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius=".4" MaxValidStandRadius="1.1" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="40" PositionRelativePosZ="-1.5" PositionRelativePosX="0.0" PositionRelativePosY="2.0"/>
+  </Distraction>
+  <Distraction ID="17591291352660270574" Name="Phantom_Automatic_EnergyLeech_Fabricator" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="30.0" MaxDistractDistance="3" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_EnergyLeech" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius=".4" MaxValidStandRadius="1.1" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="40" PositionRelativePosZ="-1.5" PositionRelativePosX="-1.1" PositionRelativePosY="1.5"/>
+  </Distraction>
+  <Distraction ID="17591291352660609347" Name="Phantom_Automatic_EnergyLeech_ComputerCart" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="30" MaxDistractDistance="5" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_EnergyLeech" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.5" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0" MaxValidStandRadius="1.0" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="40" PositionRelativePosZ="-0.75" PositionRelativePosX="0" PositionRelativePosY="1.5"/>
+  </Distraction>
+  <Distraction ID="17591291352659926485" Name="Phantom_Automatic_LookAt" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="120" MaxDistractDistance="3" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="5.0" MaxDuration="12.0" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="2.0" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="9469288860548159738" Name="Phantom_Automatic_InspectCorpse_A" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="5" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="15.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988679">
+   <DistractionAnimation Fragment="Distractor_InspectCorpse" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".6" MaxValidStandRadius="1.25" Mode="1" MoveSpeed="1" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624395051299" Name="Operator_Distractor_Inspect_A (all)" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="8" MaxDuration="10" NpcUseColdown="30" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988717">
+   <DistractionAnimation Fragment="Distractor_Inspect_A" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="1.5" MaxValidStandRadius="2.0" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="9469288860549452410" Name="Operator_Distractor_Inspect_A (flavor only)" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="8" MaxDuration="10" NpcUseColdown="30" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860549452252">
+   <DistractionAnimation Fragment="Distractor_Inspect_A" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="1" MaxValidStandRadius="1.5" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="70"/>
+  </Distraction>
+  <Distraction ID="761057048012855145" Name="Operator_Distractor_Inspect_A (flavor only)_Close" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="8" MaxDuration="10" NpcUseColdown="30" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860549452252">
+   <DistractionAnimation Fragment="Distractor_Inspect_A" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="761057048012861505" Name="Operator_Distractor_Inspect_A (flavor only)_AmbientLoop" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="10" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="10" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860549452252">
+   <DistractionAnimation Fragment="Distractor_Inspect_A" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".5" MaxValidStandRadius="1" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624395327911" Name="Operator_Distractor_Inspect_B (Mil. only)" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860517748113">
+   <DistractionAnimation Fragment="Distractor_Inspect_B" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="1.5" MaxValidStandRadius="2.0" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="13535578624395051374" Name="Operator_Distractor_Inspect_High_A (Eng. only)" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="8" MaxDuration="10" NpcUseColdown="30.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860517748098">
+   <DistractionAnimation Fragment="Distractor_Inspect_High_A" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".1" MaxValidStandRadius=".5" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="761057048012861555" Name="Operator_Distractor_Inspect_High_A (Eng. only)_AmbientLoop" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="10" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="10" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860517748098">
+   <DistractionAnimation Fragment="Distractor_Inspect_High_A" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".1" MaxValidStandRadius=".5" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="17591291352641427754" Name="Operator_Corrupted_Collision" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="3149325216945013533">
+   <DistractionAnimation Fragment="Distractor_Collision_Forward" Type="1" LoopMinTime="8" LoopMaxTime="12" HoverAddRootMotion="true"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0" MaxValidStandRadius=".1" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="90"/>
+  </Distraction>
+  <Distraction ID="17591291352637020490" Name="Mimic_Poke" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="0.0" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Poke" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0.5" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="17591291352637020640" Name="Mimic_Swipe" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="0.0" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Swipe" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0.5" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="6677752055908799042" Name="Mimic_Swipe_B" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Swipe_B" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".15" MaxValidStandRadius=".5" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="17591291352637020619" Name="Mimic_Sniff" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="0.0" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Sniff" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="1.5" MaxValidStandRadius="2.0" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="17591291352637020572" Name="Mimic_Snake" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="0.0" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_SnakesCheck" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="1.5" MaxValidStandRadius="2.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="6677752055908799021" Name="Mimic_DeskSwipe" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_DeskSwipe" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="1.0" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="243995946782051482" Name="Poltergeist_UseInteractable" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="10" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="true" CanBeSimultaneous="true" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="5" MaxDistractDistance="15" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="0.0" MaxDuration="0.0" NpcUseColdown="1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="3149325216945014930">
+   <DistractionAnimation Type="1"/>
+   <DistractionEvent Event="UseInteractiveObject"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0" MaxValidStandRadius="10" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="243995946803376132" Name="Poltergeist_UseDoor" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="10" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="true" CanBeSimultaneous="true" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="5" MaxDistractDistance="15" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="0.0" MaxDuration="0.0" NpcUseColdown="1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="3149325216945014930">
+   <DistractionAnimation Type="1"/>
+   <DistractionEvent Event="UseDoor"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0" MaxValidStandRadius="10" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="9469288860531907221" Name="Weaver_CreateCoral" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="true" Reusable="true" SkipMovement="false" CanBeSimultaneous="true" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="15" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="3149325216945014919">
+   <DistractionAnimation Type="1" LoopMinTime="5" LoopMaxTime="15" Fragment="Create_Coral"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius="0.0" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="16039652232763873751" Name="Weaver_CreatePhantom" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="0.0" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="true" CanBeSimultaneous="false" CanRetreatTo="true" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="10.0" MaxDistractDistance="15" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="0" MaxDuration="0" NpcUseColdown="-1.0" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="3149325216945014919">
+   <DistractionAnimation Type="0" LoopMinTime="0.0" LoopMaxTime="1.0"/>
+   <DistractionEvent Event="CreatePhantom"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius="0.0" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+  <Distraction ID="13856881013208627593" Name="Human_ExamineDownArmsDown" Debug="true" IgnoreNpcFacingCheck="true" OnUseCooldown="75" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="1" Fragment="Distractor_ArmsDown_EyesDown" LoopMinTime="15" LoopMaxTime="30"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".25" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="5" PositionRelativePosY="1"/>
+  </Distraction>
+  <Distraction ID="13856881013221481317" Name="Human_ExamineDownArmsCrossed" Debug="true" IgnoreNpcFacingCheck="true" OnUseCooldown="75" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="1" Fragment="Distractor_ArmsCrossed_EyesDown" LoopMinTime="15" LoopMaxTime="30"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".25" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="5" PositionRelativePosY="1"/>
+  </Distraction>
+  <Distraction ID="13856881013211303568" Name="Human_ExamineUpArmsDown" Debug="true" IgnoreNpcFacingCheck="true" OnUseCooldown="75" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="1" LoopMinTime="15" LoopMaxTime="30" Fragment="Distractor_ArmsDown"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="-1" LookAtRelativePosZ="1.8" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".25" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="5" PositionRelativePosY="1" PositionRelativePosX="0"/>
+  </Distraction>
+  <Distraction ID="13856881013221481357" Name="Human_ExamineUpArmsCrossed" Debug="true" IgnoreNpcFacingCheck="true" OnUseCooldown="75" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="1" LoopMinTime="15" LoopMaxTime="30" Fragment="Distractor_ArmsCrossed"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="-1" LookAtRelativePosZ="1.8" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".25" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="5" PositionRelativePosY="1" PositionRelativePosX="0"/>
+  </Distraction>
+  <Distraction ID="13856881013211303580" Name="Human_ExamineTable" Debug="true" IgnoreNpcFacingCheck="true" OnUseCooldown="75" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="0" Fragment="Distractor_Desk"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".1" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="5" PositionRelativePosY="1"/>
+  </Distraction>
+  <Distraction ID="13856881013221481395" Name="Human_AroundRoom" Debug="true" IgnoreNpcFacingCheck="true" OnUseCooldown="75" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="10.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="0" Fragment="Distractor_AroundTheRoom"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".1" Mode="0" MoveSpeed="0" AngleOffset="0.0" ValidStandAngle="5" PositionRelativePosY="1"/>
+  </Distraction>
+  <Distraction ID="13856881013212254782" Name="Mikhaila_Pouts" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="145" CanBeUsedInZeroG="false" Reusable="false" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="2" MaxDistractDistance="7" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1" MaxDuration="-1" NpcUseColdown="-1" MinHeightDifference="0.0" MaxHeightDifference="5.0" UseableByTag="9469288860498988629">
+   <DistractionAnimation Type="1" LoopMinTime="60" LoopMaxTime="120" Fragment="Distractor_ArmsCrossed_EyesDown"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="1" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius=".1" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="30"/>
+  </Distraction>
+  <Distraction ID="17591291352660532139" Name="Mimic_Automatic_Swipe" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="30" MaxDistractDistance="5" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-0.5" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Swipe" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.5" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="9469288860548658788" Name="Mimic_Automatic_Swipe_B" Debug="false" IgnoreNpcFacingCheck="false" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="25" MaxDistractDistance="7.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-10" MaxHeightDifference="10" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Swipe_B" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="0"/>
+   <DistractionPositioning MinValidStandRadius=".15" MaxValidStandRadius=".5" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="17591291352660617894" Name="Mimic_Automatic_Poke" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="30" MaxDistractDistance="5" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-0.5" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Poke" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.5" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="17591291352660617939" Name="Mimic_Automatic_Sniff" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="60" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="true" UsesAreaCooldown="true" TryDistractRateSec="30" MaxDistractDistance="5" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="-1.0" MaxDuration="-1.0" NpcUseColdown="30.0" MinHeightDifference="-0.5" MaxHeightDifference="0.5" UseableByTag="9469288860498988674">
+   <DistractionAnimation Fragment="Distractor_Sniff" Type="0"/>
+   <DistractionEvent Event="Empty"/>
+   <DistractionLookAt LookAtRelativePosX="0.0" LookAtRelativePosY="0.0" LookAtRelativePosZ="0.0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.5" MaxValidStandRadius="1.25" Mode="0" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360"/>
+  </Distraction>
+  <Distraction ID="17591291352626149203" Name="Mimic_Automatic_Mimicry" Debug="false" IgnoreNpcFacingCheck="true" OnUseCooldown="300" CanBeUsedInZeroG="false" Reusable="true" SkipMovement="false" CanBeSimultaneous="false" CanRetreatTo="false" TriggersAreaCooldown="false" UsesAreaCooldown="false" TryDistractRateSec="60.0" MaxDistractDistance="10.0" MaxDistractDistanceVertical="5.0" MaxDistractionAngleDegreesOffForward="75.0" MinDuration="0.0f" MaxDuration="0.0f" NpcUseColdown="30.0" MinHeightDifference="-2.0" MaxHeightDifference="4.0" UseableByTag="9469288860498988674">
+   <DistractionAnimation Type="0"/>
+   <DistractionEvent Event="MimicEntity"/>
+   <DistractionLookAt LookAtRelativePosX="0" LookAtRelativePosY="0" LookAtRelativePosZ="0" Mode="1"/>
+   <DistractionPositioning MinValidStandRadius="0.0" MaxValidStandRadius="2.0" Mode="1" MoveSpeed="2" AngleOffset="0.0" ValidStandAngle="360.0"/>
+  </Distraction>
+ </Distractions>
+ <LookAtModes>
+  <Mode Name="EntityPosition" Mode="0"/>
+  <Mode Name="EntityCenterBounds" Mode="1"/>
+  <Mode Name="Disabled" Mode="2"/>
+ </LookAtModes>
+ <PositionModes>
+  <Mode Name="EntityPosition" Mode="0"/>
+  <Mode Name="EntityCenterBounds" Mode="1"/>
+ </PositionModes>
+ <PositionMoveSpeed>
+  <MoveSpeed Name="Normal" MoveSpeed="0"/>
+  <MoveSpeed Name="Fast" MoveSpeed="1"/>
+  <MoveSpeed Name="Fastest" MoveSpeed="2"/>
+ </PositionMoveSpeed>
+ <FragmentTypes>
+  <Type Name="Normal" Type="0"/>
+  <Type Name="MultiStage" Type="1"/>
+ </FragmentTypes>
+ <DistractorLifetimes>
+  <Lifetime Name="Dead" Value="0"/>
+  <Lifetime Name="Alive" Value="1"/>
+  <Lifetime Name="DeadOrAlive" Value="2"/>
+ </DistractorLifetimes>
+</ArkDistractions>

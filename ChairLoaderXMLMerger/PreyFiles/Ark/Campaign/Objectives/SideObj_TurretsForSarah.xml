@@ -1,0 +1,28 @@
+
+<Objectives>
+ <Objective id="4349723564915764486" title="@loc_15373294129891632738" optional="true">
+  <Clues>
+   <Clue id="4349723564918800866" displayName="SearchForTurrets" text="@loc_15373294129891632739"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="4349723564915764639" displayName="(1) Make Turrets for Sarah" text="@loc_15373294129891632740"/>
+   <Desc id="4349723564915764612" displayName="Have Turret Fab Plan" text="@loc_15373294129891632741"/>
+   <Desc id="4349723564915764746" displayName="Restored power to Fabricator" text="@loc_15373294129891632742"/>
+   <Desc id="4349723564915764487" displayName="Have Fab Plan and Fabricator on" text="@loc_15373294129891632743"/>
+   <Desc id="4349723564915764711" displayName="Turrets Ready" text="@loc_15373294129891632744"/>
+   <Desc id="4349723564928230470" displayName="Completed - success" text="@loc_15373294129891632745"/>
+   <Desc id="844024417316861244" displayName="Completed - fail" text="@loc_844024417316861245"/>
+   <Desc id="844024417316861388" displayName="Completed - killed aliens yourself" text="@loc_844024417316861389"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564915765035" displayName="Set up Turrets" optional="false" text="@loc_15373294129891632747" markerLabel="@loc_15373294129891632746" Location="15659330456296333985"/>
+   <Task id="4349723564915765029" displayName="Recover Turret Schematic" optional="true" text="@loc_15373294129891632749" markerLabel="@loc_15373294129891632748" Location="1713490239386284337"/>
+   <Task id="4349723564915765040" displayName="Restore Fabricator Power" optional="true" text="@loc_15373294129891632751" markerLabel="@loc_15373294129891632750" Location="15659330456296333985"/>
+   <Task id="4349723564915765037" displayName="Fabricate Turrets" optional="true" text="@loc_15373294129891632753" markerLabel="@loc_15373294129891632752" Location="15659330456296333985"/>
+   <Task id="4349723564916118324" displayName="Open Door" optional="true" text="@loc_15373294129891632755" markerLabel="@loc_15373294129891632754" Location="15659330456296333985"/>
+   <Task id="4349723564915765026" displayName="Return to Sarah" optional="true" text="@loc_15373294129891632757" markerLabel="@loc_15373294129891632756" Location="15659330456296333985"/>
+   <Task id="4349723564917927318" displayName="Place Two More Turrets" optional="false" text="@loc_15373294129891632759" markerLabel="@loc_15373294129891632758" Location="15659330456296333985"/>
+   <Task id="4349723564917927312" displayName="Place One More Turret" optional="false" text="@loc_15373294129891632761" markerLabel="@loc_15373294129891632760" Location="15659330456296333985"/>
+  </Tasks>
+ </Objective>
+</Objectives>

@@ -1,0 +1,59 @@
+
+<ResponseRules description="">
+ <ResponseRule id="13680621263355519951" name="Officer Bowser Barks (Morgan is male)" cooldown="10" description="Officer Bowser is waiting in the security booth for Morgan to enter the test rooms. " response="13680621263355520840">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" value="13680621263355514849"/>
+   <Criterion comparison="4" passIfMissing="false" id="15659330456318451417" type="default" keyType="default" value="5"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318446488" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken" value="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263355506822" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263355520840">
+  <Response dialog="13680621263355520892" id="13680621263355520894" cooldown="0" weight="1" oneshot="true" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263355520936" id="13680621263355520938" cooldown="0" weight="1" oneshot="true" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263355521005" id="13680621263355521007" cooldown="20" weight="1" oneshot="false" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263355521616" id="13680621263355521618" cooldown="20" weight="1" oneshot="false" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263362338985" id="13680621263362339287" cooldown="20" weight="1" oneshot="0" completeConversation="1" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263359301328" name="Officer Bowser Greeting" cooldown="10" description="Officer Bowser is waiting in the security booth for Morgan to enter the test rooms. " response="13680621263359301379" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" value="13680621263355514849"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263355506822" keyType="conversation" value="3"/>
+  </Criteria>
+  <Writeback>
+   <Fact value="1" time="0" id="15659330456318446488"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseSet id="13680621263359301379">
+  <Response dialog="13680621263355520838" id="13680621263359301380" cooldown="0" weight="1" oneshot="true" completeConversation="1" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263360871603" name="Officer Bowser Barks (Morgan is female)" cooldown="10" description="Officer Bowser is waiting in the security booth for Morgan to enter the test rooms. " response="13680621263360871676">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094521" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" value="13680621263355514849"/>
+   <Criterion comparison="4" passIfMissing="false" id="15659330456318451417" type="default" keyType="default" value="5"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318446488" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken" value="1" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263355506822" keyType="conversation" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263360871676">
+  <Response dialog="13680621263355520892" id="13680621263360871677" cooldown="0" weight="1" oneshot="true" completeConversation="1" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263359122703" id="13680621263360871683" cooldown="0" weight="1" oneshot="true" completeConversation="1" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263355521005" id="13680621263360871694" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263355521616" id="13680621263360871700" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263362338985" id="13680621263362339295" cooldown="20" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <WritebackKeys>
+  <WritebackKey id="15659330456318446488" name="OffBowserGreetedMorgan"/>
+ </WritebackKeys>
+</ResponseRules>

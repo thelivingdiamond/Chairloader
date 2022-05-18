@@ -1,0 +1,245 @@
+
+<ATLConfig atl_name="Amb_2D_Shared">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Amb_2D_Main">
+   <WwiseEvent wwise_name="Play_Amb_2D_Main"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_FrontRoom">
+   <WwiseEvent wwise_name="Set_State_FrontRoom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Hallway_Long">
+   <WwiseEvent wwise_name="Set_State_Hallway_Long"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Hallway_Medium">
+   <WwiseEvent wwise_name="Set_State_Hallway_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Hallway_Short">
+   <WwiseEvent wwise_name="Set_State_Hallway_Short"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_LargeOpenSpace_1">
+   <WwiseEvent wwise_name="Set_State_Large_LargeOpenSpace_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_LargeOpenSpace_2">
+   <WwiseEvent wwise_name="Set_State_Large_LargeOpenSpace_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_MachineRoom">
+   <WwiseEvent wwise_name="Set_State_Large_MachineRoom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_OpenAir_1">
+   <WwiseEvent wwise_name="Set_State_Large_OpenAir_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_OpenAir_2">
+   <WwiseEvent wwise_name="Set_State_Large_OpenAir_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_OpenAir_3">
+   <WwiseEvent wwise_name="Set_State_Large_OpenAir_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Large_OpenAir_4">
+   <WwiseEvent wwise_name="Set_State_Large_OpenAir_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Large">
+   <WwiseEvent wwise_name="Set_State_Room_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Machine_1">
+   <WwiseEvent wwise_name="Set_State_Room_Machine_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Machine_2">
+   <WwiseEvent wwise_name="Set_State_Room_Machine_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Machine_3">
+   <WwiseEvent wwise_name="Set_State_Room_Machine_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Medium">
+   <WwiseEvent wwise_name="Set_State_Room_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Small">
+   <WwiseEvent wwise_name="Set_State_Room_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Stairwell">
+   <WwiseEvent wwise_name="Set_State_Room_Stairwell"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Room_Standard_HighFreq">
+   <WwiseEvent wwise_name="Set_State_Room_Standard_HighFreq"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Bathroom_Nice">
+   <WwiseEvent wwise_name="Set_State_Bathroom_Nice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Bathroom_WetTiled">
+   <WwiseEvent wwise_name="Set_State_Bathroom_WetTiled"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Computer_Small">
+   <WwiseEvent wwise_name="Set_State_Computer_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_ControlRoom_Med">
+   <WwiseEvent wwise_name="Set_State_ControlRoom_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Freezer_Interior">
+   <WwiseEvent wwise_name="Set_State_Freezer_Interior"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Hangar_Med">
+   <WwiseEvent wwise_name="Set_State_Hangar_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialUndercarriage_Large">
+   <WwiseEvent wwise_name="Set_State_IndustrialUndercarriage_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Kitchen_Large">
+   <WwiseEvent wwise_name="Set_State_Kitchen_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Kitchen_Storage">
+   <WwiseEvent wwise_name="Set_State_Kitchen_Storage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_LobbyStairwell_Large">
+   <WwiseEvent wwise_name="Set_State_LobbyStairwell_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_LobbyVista_Huge">
+   <WwiseEvent wwise_name="Set_State_LobbyVista_Huge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Lobby_Huge">
+   <WwiseEvent wwise_name="Set_State_Lobby_Huge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Lobby_Large">
+   <WwiseEvent wwise_name="Set_State_Lobby_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_ScienceIndustrial_Huge">
+   <WwiseEvent wwise_name="Set_State_ScienceIndustrial_Huge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_ScienceIndustrial_Large">
+   <WwiseEvent wwise_name="Set_State_ScienceIndustrial_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Science_Large">
+   <WwiseEvent wwise_name="Set_State_Science_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Science_Med">
+   <WwiseEvent wwise_name="Set_State_Science_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Science_Small">
+   <WwiseEvent wwise_name="Set_State_Science_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_ColdStorage">
+   <WwiseEvent wwise_name="Set_State_Special_ColdStorage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_FreezerTunnel">
+   <WwiseEvent wwise_name="Set_State_Special_FreezerTunnel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_HabitationPods">
+   <WwiseEvent wwise_name="Set_State_Special_HabitationPods"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Terror_ScienceIndustrial_Large">
+   <WwiseEvent wwise_name="Set_State_Terror_ScienceIndustrial_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialHallway_Large">
+   <WwiseEvent wwise_name="Set_State_IndustrialHallway_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialHallway_Med">
+   <WwiseEvent wwise_name="Set_State_IndustrialHallway_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Industrial_Huge">
+   <WwiseEvent wwise_name="Set_State_Industrial_Huge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Industrial_Large">
+   <WwiseEvent wwise_name="Set_State_Industrial_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Terror_Science_Small">
+   <WwiseEvent wwise_name="Set_State_Terror_Science_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_CargoBay">
+   <WwiseEvent wwise_name="Set_State_CargoBay"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Computer_Large">
+   <WwiseEvent wwise_name="Set_State_Computer_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Computer_Med">
+   <WwiseEvent wwise_name="Set_State_Computer_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialTunnel_1">
+   <WwiseEvent wwise_name="Set_State_IndustrialTunnel_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialTunnel_2">
+   <WwiseEvent wwise_name="Set_State_IndustrialTunnel_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialTunnel_3">
+   <WwiseEvent wwise_name="Set_State_IndustrialTunnel_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Office_Med">
+   <WwiseEvent wwise_name="Set_State_Office_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Sterile_Med">
+   <WwiseEvent wwise_name="Set_State_Sterile_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Sterile_Small">
+   <WwiseEvent wwise_name="Set_State_Sterile_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Terror_CargoBay">
+   <WwiseEvent wwise_name="Set_State_Terror_CargoBay"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Terror_IndustrialTunnel">
+   <WwiseEvent wwise_name="Set_State_Terror_IndustrialTunnel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Industrial_Huge_2">
+   <WwiseEvent wwise_name="Set_State_Industrial_Huge_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Industrial_Large_2">
+   <WwiseEvent wwise_name="Set_State_Industrial_Large_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Machine_Large_1">
+   <WwiseEvent wwise_name="Set_State_Machine_Large_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialHallway_Med_2">
+   <WwiseEvent wwise_name="Set_State_IndustrialHallway_Med_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_IndustrialHallway_Large_2">
+   <WwiseEvent wwise_name="Set_State_IndustrialHallway_Large_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Apartment">
+   <WwiseEvent wwise_name="Set_State_Apartment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Transtar_Helipad">
+   <WwiseEvent wwise_name="Set_State_Transtar_Helipad"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Transtar_Testing">
+   <WwiseEvent wwise_name="Set_State_Transtar_Testing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Pool">
+   <WwiseEvent wwise_name="Set_State_Pool"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Arboretum">
+   <WwiseEvent wwise_name="Set_State_Arboretum"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_MetalRattles_Global">
+   <WwiseEvent wwise_name="Play_Amb_MetalRattles_Global"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_MetalRattles_Global">
+   <WwiseEvent wwise_name="Stop_Amb_MetalRattles_Global"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_Power_Coolant">
+   <WwiseEvent wwise_name="Set_State_Special_Power_Coolant"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_Power_Lower">
+   <WwiseEvent wwise_name="Set_State_Special_Power_Lower"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_Power_Upper">
+   <WwiseEvent wwise_name="Set_State_Special_Power_Upper"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_GUTS">
+   <WwiseEvent wwise_name="Set_State_GUTS"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_AMB_Hectic">
+   <WwiseEvent wwise_name="Set_State_Special_AMB_Hectic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_AMB_Normal">
+   <WwiseEvent wwise_name="Set_State_Special_AMB_Normal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Special_AMB_Quiet">
+   <WwiseEvent wwise_name="Set_State_Special_AMB_Quiet"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_ReactorCore_Off">
+   <WwiseEvent wwise_name="Set_State_ReactorCore_Off"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_ZeroG">
+   <WwiseEvent wwise_name="Set_State_ZeroG"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_2D_Main">
+   <WwiseEvent wwise_name="Stop_Amb_2D_Main"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>
