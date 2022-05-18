@@ -6,11 +6,12 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. It
 **Be warned, this is extremely experimental code at the moment. I don't have much in terms of documentation or examples yet. This is the cutting edge of runtime modding for this game and as such, things will change sporadically and quickly. Many many things you can do will crash the game. This is very much a WIP project**
 
 ## Capabilities:
-### Mod Manager Functionality (coming soon)
-- Automatic merging, packing, and deploying of XML files
-- Injection and starting of DLL mods
-- Modders only need to include the elements that are new/edited in the mod files
+### Mod Manager Functionality
+- Automatic merging, packing, and deploying of XML file based mods (all pre-existing mods)
+- Injection and starting of DLL mods (WIP Coming Soon)
+- Modders now only need to include the elements that are new/edited in the mod files
 - Simple compatibility patches needed for pre-existing mods
+- Works for GameSDK xml files (Level files coming soon)
 
 ### API Functionality:
 - NPC Spawning (fully functional)
