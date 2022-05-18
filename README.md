@@ -42,5 +42,8 @@ The Gui functionality is achieved via DX11 hooking and uses Dear ImGui.
 - DX11 Hook: https://github.com/niemand-sec/DirectX11Hook
 - Zip Library: https://libzip.org/
 
-You can see the github.io website for a mod list, examples, and more documentation for modders:
+For information on how to setup and develop mods for Chairloader please see the wiki:
+https://github.com/thelivingdiamond/ChairLoader/wiki
+
+You can see the github.io website for a mod list and examples:
 https://thelivingdiamond.github.io/ChairLoader/
