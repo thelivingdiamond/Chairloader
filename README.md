@@ -29,7 +29,14 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. It
 - Re-implement in-game console (WIP)
 - Allow other mods to display elements in the GUI (Documentation coming soon)
 
-*Pictures coming soon*
+The entity spawner: able to set position, entity name, and spawn any entity
+![Chairloader Entity Spawner](https://user-images.githubusercontent.com/11778849/169223208-29e3e67f-8cef-4d91-b566-6e7051283f70.png)
+
+The entity list: able to view and set position of every entity
+![Chairloader Entity List](https://user-images.githubusercontent.com/11778849/169223201-fa357e04-2620-40be-824e-09facbbf6c0d.png)
+
+The ability list: able to grant any neuromod in the game
+![Chairloader Ability List](https://user-images.githubusercontent.com/11778849/169223185-419fe8f8-b48d-4dc5-b0cb-955cc761e1ce.png)
 
 The Gui functionality is achieved via DX11 hooking and uses Dear ImGui.
 
