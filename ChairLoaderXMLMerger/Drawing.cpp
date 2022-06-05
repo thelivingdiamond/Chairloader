@@ -44,11 +44,29 @@ void merge() {
 
 static std::string statusMessage;
 static time_t statusTimer;
+
+class StorageCell {
+public:
+	uint32_t m_entityId;
+	int32_t m_x;
+	int32_t m_y;
+	int32_t m_width;
+	int32_t m_height;
+};
+//Id to item map
+static std::vector<StorageCell> inventoryItems{
+	// add 50 storage cells to the vector
+	{ 0, 0, 0, 1, 1 },
+	{ 1, 2, 1, 2, 2 },
+	{ 2, 1, 1, 1, 1 }
+	 
+};
+
 void Drawing::Draw()
 {
 	if (isActive())
 	{
-		// ImGui::ShowDemoWindow(&bDraw);
+		ImGui::ShowDemoWindow(&bDraw);
 		ImGui::SetNextWindowSize(vWindowSize);
 		ImGui::SetNextWindowBgAlpha(1.0f);
 		ImGui::Begin(lpWindowName, &bDraw, WindowFlags);
@@ -171,6 +189,54 @@ void Drawing::Draw()
 			}
 		}
 		ImGui::End();
+		/*
+		// ImGui::SetNextWindowSize(vWindowSize);
+		ImGui::Begin("Inventory Test", &bDraw); {
+			ImGui::Text("Player Inventory");
+			ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x);
+			ImVec2 p = ImGui::GetCursorScreenPos();
+			// 12 grids across at max size
+			// 8 grids down
+			float size;
+			if(ImGui::GetContentRegionAvail().x / 12 <= ImGui::GetContentRegionAvail().y / 8) {
+				size = ImGui::GetContentRegionAvail().x / 12;
+			} else {
+				size = ImGui::GetContentRegionAvail().y / 8;
+			}
+			float padding = 4.0f;
+			ImDrawList* draw_list = ImGui::GetWindowDrawList();
+			//iterate through inventoryItems
+			// draw_list->AddCircleFilled(ImVec2(p.x, p.y), 20.0f, 0xFFFFFFFF);
+			ImU32 gridColor = ImColor(188,188,188);
+			ImColor itemColor = ImColor(255, 180, 255, 255);
+			int columns = 12, rows = 8;
+			// iterate 12 times
+			for (int i = 0; i < rows + 1; i++) {
+				draw_list->AddLine(ImVec2(p.x, p.y + i * size), ImVec2(p.x + columns * size, p.y + i * size), gridColor);
+			}
+			for (int i = 0; i < columns + 1; i++) {
+				draw_list->AddLine(ImVec2(p.x + i*size, p.y), ImVec2(p.x + i*size, p.y + rows*size), gridColor);
+			}
+			ImVec2 pos = ImGui::GetCursorPos();
+			for (auto &itr :inventoryItems) {
+				//draw item
+				ImGui::SetCursorPos(ImVec2(pos.x + itr.m_x * size + padding, pos.y + itr.m_y*size + padding));
+				if (ImGui::Button(((std::string)("button") + std::to_string(itr.m_entityId)).c_str(), ImVec2(itr.m_width * size - 2 * padding, itr.m_height * size - 2 * padding))) {
+					if (ImGui::BeginPopupModal("Information")) {
+						// if (ImGui::BeginPopupContextItem(((std::string)"context" + std::to_string(itr.m_entityId)).c_str())) {
+						ImGui::Text("Information");
+
+						ImGui::EndPopup();
+					}
+				}
+				// draw_list->AddRectFilled(
+				// 	ImVec2(p.x + itr.m_x*size + padding, p.y + itr.m_y*size + padding), 
+				// 	ImVec2(p.x + itr.m_x*size + itr.m_width*size - padding, p.y+ itr.m_y*size + itr.m_height*size - padding),
+				// 	itemColor);
+			}
+			ImGui::End();
+			*/
+		}
 	}
 
 	#ifdef _WINDLL

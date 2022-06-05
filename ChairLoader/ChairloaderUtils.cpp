@@ -160,7 +160,7 @@ char* ChairloaderUtils::NpcSpawnHelper::setEntityArchetype(uint64_t archetypeId,
 		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
 
 		CEntityArchetype* archetype = staticObjects->pEntitySystem->GetEntityArchetype(archetypeId);
-		NewArchetypeValue.value.str = archetype->m_name.m_str;
+		NewArchetypeValue.value.str = (char*)archetype->m_name.m_str;
 
 		if (EntityScriptTable.ptr->GetValueAny((char*)"Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
@@ -258,7 +258,7 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpc(CArkNpcSpawner* spawner, cha
 // 		std::string strname = name;
 // 		for(unsigned int i = 0; i<=spawnCount; i++) {
 // 			strname += std::to_string(i);
-// 			spawner->m_Entity->m_szName.m_str = (char*)strname.c_str();
+// 			spawner->m_Entity->m_szName.m_str = (char*)strname.m_str;
 // 			uint32_t oldId = spawner->m_lastSpawnedEntityId;
 //
 // 			privateFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
@@ -337,16 +337,22 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(uint64_t archet
 }
 
 std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(uint64_t archetypeId, EntityType type,
-	uint32_t spawnCount) {}
+	uint32_t spawnCount) {
+	return {};
+}
 
 ChairloaderUtils::ChairloaderUtils(uintptr_t moduleBase) {
 	internalPreyFunctions = new preyFunctions(moduleBase);
 	preyEnvironmentPointers = (gameEnvironmentPointers*)(moduleBase + 0x22418c0);
 	// CEntitySystemPtr = preyEnvironmentPointers->pEntitySystem;
-	ArkPlayerPtr = internalPreyFunctions->ArkPlayerF->getInstance();
+	// ArkPlayerPtr = internalPreyFunctions->ArkPlayerF->getInstance();
 	// CGamePtr = preyEnvironmentPointers->pGame;
 	spawnerHelper = new NpcSpawnHelper(internalPreyFunctions, preyEnvironmentPointers);
 
+}
+
+ArkPlayer* ChairloaderUtils::ArkPlayerPtr() {
+	 return internalPreyFunctions->ArkPlayerF->getInstance();
 }
 
 

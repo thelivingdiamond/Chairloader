@@ -19,6 +19,7 @@
 #endif
 #define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }
 
+
 // #include "pugixml.hpp"
 // D3X HOOK DEFINITIONS
 typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
@@ -142,7 +143,7 @@ DWORD WINAPI ChairloaderThread(HMODULE hModule) {
             
         }
         if (GetAsyncKeyState(VK_NUMPAD2) & 1) {
-            std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+            std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
             if (!abilities->empty()) {
                 //ImGui::Text("Size: %d\n", abilities->size());
                 printf("Size: %llu\n", abilities->size());
@@ -179,12 +180,14 @@ DWORD WINAPI ChairloaderThread(HMODULE hModule) {
             
         }
         if(GetAsyncKeyState(VK_NUMPAD4) & 1) {
-            auto acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->GetAcquiredAbilities(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get());
+            //if the player pointer is null do nothing
+            auto acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->GetAcquiredAbilities(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get());
             printf("%llu\n", acquired.size());
             for (auto itr = acquired.begin(); itr != acquired.end(); ++itr) {
                 printf("%llu\nacquired: %u\n", (*itr)->m_id, (*itr)->m_bAcquired);
             }
         }
+		
 	}
     // cleanup & eject
     if (f) {
@@ -466,6 +469,10 @@ DWORD WINAPI GUIThread(HMODULE hModule) {
     safeToEject.unlock();
     FreeLibraryAndExitThread(hModule, 0);
 }
+
+
+
+
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,

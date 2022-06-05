@@ -30,15 +30,6 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\imgui-1.87\imgui.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_dx11.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_win32.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
     <ClInclude Include="preyFunctions.h">
       <Filter>Prey</Filter>
     </ClInclude>
@@ -66,15 +57,6 @@
     <ClInclude Include="proc.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="pugiconfig.hpp">
-      <Filter>pugixml</Filter>
-    </ClInclude>
-    <ClInclude Include="pugixml.hpp">
-      <Filter>pugixml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui-1.87\misc\cpp\imgui_stdlib.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
     <ClInclude Include="ArkAbilityLibrary.h">
       <Filter>Prey</Filter>
     </ClInclude>
@@ -86,27 +68,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\imgui-1.87\imgui.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\imgui_demo.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\imgui_draw.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_dx11.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_win32.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\imgui_tables.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\imgui_widgets.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
     <ClCompile Include="PreyDllObjects.cpp">
       <Filter>Prey</Filter>
     </ClCompile>
@@ -124,12 +85,6 @@
     </ClCompile>
     <ClCompile Include="proc.cpp">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pugixml.cpp">
-      <Filter>pugixml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.87\misc\cpp\imgui_stdlib.cpp">
-      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="ChairloaderGui.cpp">
       <Filter>Chairloader</Filter>

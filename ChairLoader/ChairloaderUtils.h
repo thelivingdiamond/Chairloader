@@ -66,7 +66,7 @@ public:
 	// convenient pointers
 	// CEntitySystem* CEntitySystemPtr;
 	// CGame* CGamePtr;
-	ArkPlayer* ArkPlayerPtr;
+	ArkPlayer* ArkPlayerPtr();
 	// static NpcSpawnHelper* spawnerManager;
 
 	// ArchetypeLibrary entityArchetypeLibrary;
