@@ -6,8 +6,9 @@ PreyTestTrainer/PreyDll.dll.gzf
 .vs/ChairLoader/v16/Browse.VC.db
 .vs/ChairLoader/v16/ipch/fce6e5a3e905bec2.ipch
 ChairLoaderXMLMerger/Mods/
-ChairLoaderXMLMerger/Debug
-ChairLoader/Debug
-ChairLoader/x64
-ChairLoaderXMLMerger/x64
+ChairLoaderXMLMerger/Debug/
+ChairLoader/Debug/
+ChairLoader/x64/
+ChairLoaderXMLMerger/x64/
 ChairLoader/PreyDll.dll.gzf
+x64/
