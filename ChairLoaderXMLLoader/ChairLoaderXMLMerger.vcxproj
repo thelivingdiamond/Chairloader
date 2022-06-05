@@ -24,6 +24,7 @@
     <ProjectGuid>{6b5e7880-80d0-457e-beba-8674e574538a}</ProjectGuid>
     <RootNamespace>ChairLoaderXMLMerger</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>ChairLoaderXMLLoader</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,7 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ChairLoaderXMLMerger.cpp" />
+    <ClCompile Include="ChairLoaderXMLLoader.cpp" />
     <ClCompile Include="Drawing.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_demo.cpp" />
