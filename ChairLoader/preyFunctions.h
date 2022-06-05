@@ -679,6 +679,13 @@ public:
 		typedef void(__thiscall* _UpdatePlayerMetrics)(ArkAbilityComponent* _this);;																					_UpdatePlayerMetrics				UpdatePlayerMetrics	  ;
 	};
 
+	class CGamePrivate : preyFunctionBase {
+    public:
+        CGamePrivate(uintptr_t moduleBase);
+		typedef int(__thiscall *_Update)(CGame *_this, bool haveFocus, unsigned int updateFlags);
+        _Update Update;
+	};
+
 	typedef unsigned long(__cdecl *_CryGetCurrentThreadID)(); _CryGetCurrentThreadID CryGretCurrentThreadId;//0099910
 	typedef Vec2_tpl<float>(__thiscall* _BeginDraw)(CWindowsConsole*); _BeginDraw beginDraw;//0de9710
 	// typedef void (__thiscall* _OnToggleDebugMenu)();
@@ -697,6 +704,7 @@ public:
 	ArkNpcPrivate* ArkNpcF;
 	ArkLocationManagerPrivate* ArkLocationManagerF;
 	ArkAbilityComponentPrivate* ArkAbilityComponentF;
+	CGamePrivate* CGameF;
 };
 
 

@@ -178,6 +178,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -196,7 +197,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -218,7 +219,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)boost_1_77_0;$(SolutionDir)detours;$(SolutionDir)imgui-1.87;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -235,6 +236,7 @@
     <ClInclude Include="ArkBasicTypes.h" />
     <ClInclude Include="ArkEntityArchetypeLibrary.h" />
     <ClInclude Include="ArkEntityClassLibrary.h" />
+    <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="ChairloaderUtils.h" />
     <ClInclude Include="ArkEnums.h" />
@@ -246,6 +248,7 @@
     <ClInclude Include="proc.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
     <ClCompile Include="ChairloaderUtils.cpp" />
     <ClCompile Include="dllmain.cpp" />

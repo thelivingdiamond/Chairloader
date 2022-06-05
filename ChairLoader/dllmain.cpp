@@ -8,6 +8,7 @@
 #include "preyFunctions.h"
 #include "ChairloaderUtils.h"
 #include "ChairloaderGui.h"
+#include "ChairLoader.h"
 // #include "ArkEntityArchetypeLibrary.h
 
 #if _WIN32 || _WIN64
@@ -56,7 +57,6 @@ std::mutex safeToEject;
 static bool devMode = false;
 static bool freeCam = false;
 int GuiToggleKey, freeCamKey;
-static ChairloaderUtils* chairloader = nullptr;
 static ChairloaderGui* gui = nullptr;
 
 DWORD WINAPI ChairloaderThread(HMODULE hModule) {
@@ -481,9 +481,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 {
     switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH: {
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ChairloaderThread, hModule, 0, nullptr));
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)GUIThread, hModule, 0, nullptr));
+        gCL = new ChairLoader();
+        // CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ChairloaderThread, hModule, 0, nullptr));
+        // CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)GUIThread, hModule, 0, nullptr));
         // CloseHandle(CreateThread(nullptr, 0 (LPTHREAD_START_ROUTINE), hModule, 0, nullptr));
+        break;
     }
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:

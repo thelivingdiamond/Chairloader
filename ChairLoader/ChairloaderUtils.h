@@ -74,3 +74,5 @@ public:
 	ArkAbilityLibrary abilityLibrary;
 	
 };
+
+extern ChairloaderUtils *chairloader;
