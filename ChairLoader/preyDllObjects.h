@@ -1157,7 +1157,7 @@ namespace ArkNpc {
 	public:
 		EArkInteractionType m_interactionType; //0x0000
 		char pad_0004[4]; //0x0004
-		class CryStringT<char> m_displayText; //0x0008
+		CryStringT<char> m_displayText; //0x0008
 		float m_holdDuration; //0x0010
 		char pad_0014[4]; //0x0014
 	}; //Size: 0x0018
@@ -1197,8 +1197,8 @@ namespace ArkNpc {
 	class ArkButtonPrompt : public CCryName
 	{
 	public:
-		class CryStringT<char> m_actionMap; //0x0008
-		class ArkSimpleTimer m_holdTimer; //0x0010
+		CryStringT<char> m_actionMap; //0x0008
+		ArkSimpleTimer m_holdTimer; //0x0010
 		float m_baseHoldDuration; //0x0018
 		bool m_bUseHoldTriggerDelay; //0x001C
 		char pad_001D[3]; //0x001D
@@ -1217,10 +1217,10 @@ namespace ArkNpc {
 		char pad_0000[16]; //0x0000
 		bool m_bIgnoreActionMapState; //0x0010
 		char pad_0011[7]; //0x0011
-		class CryStringT<char> m_filterName; //0x0018
-		class CryStringT<char> m_actionMap; //0x0020
-		class std::vector<CCryName> m_filteredActionIds; //0x0028
-		class std::vector<CCryName> m_allowedActionIds; //0x0040
+		CryStringT<char> m_filterName; //0x0018
+		CryStringT<char> m_actionMap; //0x0020
+		std::vector<CCryName> m_filteredActionIds; //0x0028
+		std::vector<CCryName> m_allowedActionIds; //0x0040
 	}; //Size: 0x0058
 
 	class ArkButtonPromptCollection
@@ -1289,8 +1289,8 @@ namespace ArkNpc {
 		char pad_0000[32]; //0x0000
 		uint32_t m_attachmentEntity; //0x0020
 		uint32_t m_lightEntity; //0x0024
-		class CryStringT<char> m_archetypeName; //0x0028
-		class CryStringT<char> m_attachmentName; //0x0030
+		CryStringT<char> m_archetypeName; //0x0028
+		CryStringT<char> m_attachmentName; //0x0030
 	}; //Size: 0x0038
 
 
@@ -1420,7 +1420,7 @@ namespace ArkNpc {
 	class ArkPlayerCamera
 	{
 	public:
-		class CryStringT<char> m_boneNames[17]; //0x0008
+		CryStringT<char> m_boneNames[17]; //0x0008
 		char m_customUpdateFunction[64];
 		char m_customOffsetFunction[64];
 		char m_customViewFunction[64];
@@ -2935,27 +2935,99 @@ namespace ArkNpc {
 	class IArkItem {
 		
 	};
+	enum class Category : uint32_t {
+		none = 0,
+		weapons = 1,
+		consumable = 2,
+		junk = 3,
+		special = 4
+	};
+	class CArkItem {
+		//TODO: add vtable here
+		undefined pad[72];
+		int32_t m_maxRandomCount, m_minRandomCount;
+		bool m_bFabricating;
+		undefined pad2[3];
+		int32_t m_count;
+		uint32_t m_ownerId;
+		bool m_bIsRandom,
+			m_bUniqueRandom,
+			m_bHideOnSerialize,
+			m_bPhysicalizeStatic,
+			m_bAddToInventory;
+		undefined pad3[3];
+		int32_t m_maxStackSize;
+		ArkAudioTrigger m_pickupAudioTrigger;
+		undefined pad4[4];
+		uint64_t m_lootRequirement;
+		bool m_bFavorite;
+		bool m_bJunk;
+		undefined pad5[6];
+		uint64_t m_associatedEntitlement;
+		uint64_t m_selectedArchetype;
+		CryStringT<char> m_pickupModel,
+			m_pickupMaterial,
+			m_equippedModel,
+			m_equippedMaterial;
+		float m_pickupLerpSpeed;
+		undefined pad6[4];
+		CryStringT<char> m_inventoryDescription,
+			m_inventoryName;
+		CryStringT<wchar_t> m_descKeyword, m_descKeyword2;
+		int32_t m_baseDuration;
+		undefined pad7[4];
+		uint64_t m_consumeSignalId,
+			m_consumeSignalId2,
+			m_consumeSignalPackage,
+			m_consueInboundSignalModPkgId;
+		float m_signalDescScale,
+			m_signalDescScale2;
+		CryStringT<char> m_inventoryIcon,
+			m_hudIcon,
+			m_stylizedIcon;
+		int32_t m_inventoryWidth,
+			m_inventoryHeight;
+		Category m_category;
+		bool m_bStackable;
+		undefined pad8[3];
+		CryStringT<char> m_consumeVerb;
+		float m_dropHeightOffset,
+			m_dropDistance,
+			m_dropRotationMin,
+			m_dropRotationMax;
+		bool m_bIsGrenade,
+			m_bIsUsable,
+			m_bIsConsumable;
+		undefined pad9[5];
+		CryStringT<char> m_type;
+		bool m_bIsUnlimited,
+			m_bIsImportant;
+		undefined pad10[2];
+		int32_t m_dismantleCount;
+		bool m_bPlotCritical;
+		undefined pad11[7];
+	};
 	class ArkInventory
 	{
 	public:
 		virtual int  GetWidth() {}
 		virtual int  GetMaxWidth() {}
 		virtual int  GetHeight() {}
-		virtual bool  Contains(uint32_t param_1) {}
-		virtual int  GetCountOfArchetype(uint64_t param_1) {}
-		virtual  std::vector<IArkItem*>  GetItemsOfArchetype(uint64_t param_1) {}
+		virtual bool  Contains(uint32_t entityId) {}
+		virtual int  GetCountOfArchetype(uint64_t archetypeId) {}
+		virtual  std::vector<IArkItem*>  GetItemsOfArchetype(uint64_t archetypeId) {}
 		virtual uint32_t  GetNextItem(int param_1, int param_2, uint32_t param_3) {}
-		virtual std::pair<int, int>  GetLocationOfItem(uint32_t param_1) {}
-		virtual uint32_t  GetItemAtLocation(int param_1, int param_2, uint32_t param_3) {}
+		virtual std::pair<int, int>  GetLocationOfItem(uint32_t entityId) {}
+		virtual uint32_t  GetItemAtLocation(int x, int y, uint32_t param_3) {}
 		virtual std::vector<uint32_t>  GetItemIDs() {}
 		virtual std::vector<uint32_t>  GetOverlappingItems(uint32_t param_1, int param_2, int param_3, int param_4, int param_5) {}
-		virtual bool  AddItem(uint32_t param_1) {}
-		virtual uint32_t  PlaceItem(uint32_t param_1, int param_2, int param_3) {}
-		virtual bool  CanPlaceItem(uint32_t param_1, int param_2, int param_3, bool param_4) {}
-		virtual bool  TryPlaceItem(uint32_t param_1, int param_2, int param_3) {}
+		virtual bool  AddItem(uint32_t entityId) {}
+		virtual uint32_t  PlaceItem(uint32_t entityId, int param_2, int param_3) {}
+		virtual bool  CanPlaceItem(uint32_t entityId, int param_2, int param_3, bool param_4) {}
+		virtual bool  TryPlaceItem(uint32_t entityId, int param_2, int param_3) {}
 		virtual bool  CanPackItem(uint32_t param_1) {}
-		virtual void  RemoveItem(uint64_t param_1, int param_2) {}
-		virtual void  RemoveItem(uint32_t param_1) {}
+		virtual void  RemoveItem(uint64_t entityId, int count) {}
+		virtual void  RemoveItem(uint32_t entityId) {}
 		virtual uint32_t  GetOwnerId() {}
 		virtual bool  GetTakesTrash() {}
 		virtual bool  IsEmpty() {}
@@ -3247,7 +3319,7 @@ namespace ArkNpc {
 			float m_startGeometryMorphInTime;
 			float m_stopCharacterMorphInTime;
 			float m_stopGeometryMorphOutTime;
-			class CryStringT<char> m_MorphOutBamfBoneName;
+			CryStringT<char> m_MorphOutBamfBoneName;
 			uint64_t m_signalModifierId;
 			IParticleEffect* m_pMorphInParticlefEffect;
 			IParticleEffect* m_pMorphOutBamParticlefEffect;
@@ -8425,7 +8497,7 @@ namespace ArkNpc {
 			virtual  IActionMapIterator* CreateActionMapIterator() {}
 			virtual  IActionFilterIterator* CreateActionFilterIterator() {}
 			virtual  SActionInput* GetActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4) {}
-			virtual void  Enable(bool param_1, bool param_2) {}
+			virtual void  Enable(bool enable, bool resetStateOnDisable = false) {}
 			virtual void  EnableActionMap(char* param_1, bool param_2) {}
 			virtual void  EnableFilter(char* param_1, bool param_2) {}
 			virtual bool  IsFilterEnabled(char* param_1) {}

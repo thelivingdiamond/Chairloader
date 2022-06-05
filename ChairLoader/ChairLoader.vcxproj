@@ -183,6 +183,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -230,10 +231,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_dx11.h" />
-    <ClInclude Include="..\imgui-1.87\backends\imgui_impl_win32.h" />
-    <ClInclude Include="..\imgui-1.87\imgui.h" />
-    <ClInclude Include="..\imgui-1.87\misc\cpp\imgui_stdlib.h" />
     <ClInclude Include="ArkAbilityLibrary.h" />
     <ClInclude Include="ArkBasicTypes.h" />
     <ClInclude Include="ArkEntityArchetypeLibrary.h" />
@@ -247,18 +244,8 @@
     <ClInclude Include="preyFunctions.h" />
     <ClInclude Include="preyDllObjects.h" />
     <ClInclude Include="proc.h" />
-    <ClInclude Include="pugiconfig.hpp" />
-    <ClInclude Include="pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_dx11.cpp" />
-    <ClCompile Include="..\imgui-1.87\backends\imgui_impl_win32.cpp" />
-    <ClCompile Include="..\imgui-1.87\imgui.cpp" />
-    <ClCompile Include="..\imgui-1.87\imgui_demo.cpp" />
-    <ClCompile Include="..\imgui-1.87\imgui_draw.cpp" />
-    <ClCompile Include="..\imgui-1.87\imgui_tables.cpp" />
-    <ClCompile Include="..\imgui-1.87\imgui_widgets.cpp" />
-    <ClCompile Include="..\imgui-1.87\misc\cpp\imgui_stdlib.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
     <ClCompile Include="ChairloaderUtils.cpp" />
     <ClCompile Include="dllmain.cpp" />
@@ -274,7 +261,6 @@
     <ClCompile Include="preyFunctions.cpp" />
     <ClCompile Include="PreyDllObjects.cpp" />
     <ClCompile Include="proc.cpp" />
-    <ClCompile Include="pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="codeArchive.txt" />

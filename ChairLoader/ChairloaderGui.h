@@ -1,9 +1,8 @@
 #pragma once
-
+#include "pch.h"
 
 #include "ArkBasicTypes.h"
 #include "ChairloaderUtils.h"
-#include "pch.h"
 #include "preyDllObjects.h"
 #include "ArkEntityArchetypeLibrary.h"
 // #include <stack>
@@ -187,7 +186,7 @@ private:
         };
         std::queue<entityModifyRequest> modifyQueue;
 
-        chairloaderGuiEntityManager(ChairloaderUtils* chairloader) {
+        chairloaderGuiEntityManager() {
             archetypeToSpawn = nullptr;
             archetypeFilterRequestQueue.push(archetypeFilterRequest{ "" });
         }
@@ -257,34 +256,29 @@ private:
                         //TODO: make it spawn an entity when the button is pushed
                         try {
                             if (archetypeToSpawn != nullptr) {
-                                if (inputName != "") {
-                                    spawnRequest request;
-                                    request.archetype = archetypeToSpawn;
-                                    request.usePlayerPos = usePlayerPos;
-                                    request.offsetFromPlayer = offsetFromPlayer;
-                                    request.name = inputName;
-                                    if (spawnCount >= 1) {
-                                        request.spawnCount = spawnCount;
-                                    }
-                                    else {
-                                        if (spawnCount > 999) {
-                                            throw("Error, invalid spawn count (spawn count too high)");
-                                        }
-
-                                        throw("Error, invalid spawn count");
-                                    }
-                                    request.pos.x = spawnX;
-                                    request.pos.y = spawnY;
-                                    request.pos.z = spawnZ;
-                                    archetypeSpawnRequestQueue.push(request);
-                                    // done
-                                    color = { 1,1,1,1 };
-                                    statusMessage = "spawned an entity: " + inputName;
-                                    time(&statusTimer);
+                                spawnRequest request;
+                                request.archetype = archetypeToSpawn;
+                                request.usePlayerPos = usePlayerPos;
+                                request.offsetFromPlayer = offsetFromPlayer;
+                                request.name = inputName;
+                                if (spawnCount >= 1) {
+                                    request.spawnCount = spawnCount;
                                 }
                                 else {
-                                    throw ("Error, invalid entity name");
+                                    if (spawnCount > 999) {
+                                        throw("Error, invalid spawn count (spawn count too high)");
+                                    }
+
+                                    throw("Error, invalid spawn count");
                                 }
+                                request.pos.x = spawnX;
+                                request.pos.y = spawnY;
+                                request.pos.z = spawnZ;
+                                archetypeSpawnRequestQueue.push(request);
+                                // done
+                                color = { 1,1,1,1 };
+                                statusMessage = "spawned an entity: " + inputName;
+                                time(&statusTimer);
                             }
                             else {
                                 throw("Error, no archetype selected");
@@ -793,9 +787,9 @@ private:
                             throw("Null Scale");
                         }
                     } if (request.type == entityModifyType::playerPos) {
-	                    if(chairloader->ArkPlayerPtr != nullptr) {
+	                    if(chairloader->ArkPlayerPtr() != nullptr) {
                             Vec3_tpl<float> pos;
-                            chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(chairloader->ArkPlayerPtr, &pos);
+                            chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(chairloader->ArkPlayerPtr(), &pos);
                             ((IEntity*)request.entity)->SetPos(&pos, 0, false, false);
                             log->logItem("set entity pos to player pos", modName);
 	                    }
@@ -848,8 +842,8 @@ private:
                             // printf("Player Position x: %f y: %f z:%f\n", playerPos.x, playerPos.y, playerPos.z);
                             if (playerPos.x != 0 && playerPos.y != 0 && playerPos.z != 0) {
                                 if (request.offsetFromPlayer) {
-                                    playerPos.x += chairloader->ArkPlayerPtr->m_cachedReticleDir.x * 5;
-                                    playerPos.y += chairloader->ArkPlayerPtr->m_cachedReticleDir.y * 5;
+                                    playerPos.x += chairloader->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
+                                    playerPos.y += chairloader->ArkPlayerPtr()->m_cachedReticleDir.y * 5;
                                 }
                                 request.pos = playerPos;
                             }
@@ -922,7 +916,7 @@ private:
                         }
                     }
                     else {
-                        log->logItem("Using non - npc spawning process", modName);
+                        log->logItem("Using non - npc spawning process", modName, logLevel::warning);
                         // printf("Using non-npc spawning process\n");
                         SEntitySpawnParams* params = new SEntitySpawnParams;
 
@@ -1396,6 +1390,8 @@ private:
         bool AbilityListInitialized, refreshAbilityList;
         std::vector<abilityEntry> abilityDisplayList;
         std::queue<uint64_t> abilityRequestQueue;
+
+        std::map<uint32_t, StorageCell> inventoryItems;
     public:
         void draw(bool* bShow) {
             if (!ImGui::Begin("Player Manager", bShow)) {
@@ -1404,6 +1400,28 @@ private:
             }
             if (ImGui::BeginTabBar("Player Bar")) {
                 if (ImGui::BeginTabItem("Inventories")) {
+                    //Make an ImGui Table that iterates through the inventoryItems map, and displays and x y coordinates
+                    if (ImGui::BeginChild("InventoryTable", ImVec2(0, 0), true)) {
+                        if (ImGui::BeginTable("InventoryTable", 3, ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuterV | ImGuiTableFlags_BordersOuterH)) {
+                            ImGui::TableSetupColumn("Item", ImGuiTableColumnFlags_WidthFixed);
+                            ImGui::TableSetupColumn("x", ImGuiTableColumnFlags_WidthFixed);
+                            ImGui::TableSetupColumn("y", ImGuiTableColumnFlags_WidthFixed);
+                            ImGui::TableHeadersRow();
+                            // loop through the inventoryItems map and display and x y coordinates
+                            for (auto& item : inventoryItems) {
+                                ImGui::TableNextRow();
+                                ImGui::TableSetColumnIndex(0);
+                                ImGui::Text("%d", item.first);
+                                ImGui::TableSetColumnIndex(1);
+                                ImGui::Text("%d", item.second.m_x);
+                                ImGui::TableSetColumnIndex(2);
+                                ImGui::Text("%d", item.second.m_y);
+                            }
+                            ImGui::EndTable();
+                        }
+                        ImGui::EndChild();
+                    }
+
 
                     ImGui::EndTabItem();
                 }
@@ -1423,7 +1441,7 @@ private:
                         ImGui::EndChild();
                     }
                     //TODO: figure out how to remove abilities too
-                    // std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+                    // std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
                     // if (!abilities->empty()) {
                     //     ImGui::Text("Size: %d\n", abilities->size());
                     //     int clip = 0;
@@ -1457,35 +1475,43 @@ private:
         // Handlers
         void checkAbilities(ChairloaderUtils* chairloader, chairloaderGuiLog* log) {
             if (refreshAbilityList) {
-                for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
-                    if (chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-                        itr->acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), itr->id);
+                if (chairloader->ArkPlayerPtr() != nullptr) {
+                    for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
+                        if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+                            itr->acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->id);
+                        }
+                        //abilityDisplayList.emplace_back(entry);
                     }
-                    //abilityDisplayList.emplace_back(entry);
+                    std::sort(abilityDisplayList.begin(), abilityDisplayList.end(), AbilityEntrySortByName);
+                    refreshAbilityList = false;
+                    log->logItem("Ability list refreshed", modName);
+                    // return logMessage{"Ability list refreshed", time(nullptr), logLevel::normal};
+                } else {
+                    log->logItem("Player pointer null", modName);
                 }
-                std::sort(abilityDisplayList.begin(), abilityDisplayList.end(), AbilityEntrySortByName);
-                refreshAbilityList = false;
-                log->logItem("Ability list refreshed", modName);
-                // return logMessage{"Ability list refreshed", time(nullptr), logLevel::normal};
             }
         }
         void abilityRequestHandler(ChairloaderUtils* chairloader, chairloaderGuiLog* log) {
             try {
                 if (!AbilityListInitialized) {
-                    for (auto itr = chairloader->abilityLibrary.arkAbilityMap.begin(); itr != chairloader->abilityLibrary.arkAbilityMap.end(); ++itr) {
-                        abilityEntry entry = { itr->first, itr->second, false };
-                        if (chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-                            if (chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
-                                entry.acquired = true;
+                    if (chairloader->ArkPlayerPtr() != nullptr) {
+                        for (auto itr = chairloader->abilityLibrary.arkAbilityMap.begin(); itr != chairloader->abilityLibrary.arkAbilityMap.end(); ++itr) {
+                            abilityEntry entry = { itr->first, itr->second, false };
+                            if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+                                if (chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
+                                    entry.acquired = true;
+                                }
                             }
-                        }
-                        abilityDisplayList.emplace_back(entry);
+                            abilityDisplayList.emplace_back(entry);
 
+                        }
+                        std::sort(abilityDisplayList.begin(), abilityDisplayList.end(), AbilityEntrySortByName);
+                        AbilityListInitialized = true;
+                        log->logItem("Ability List Initialized", modName);
+                        // return logMessage{"Ability List Initialized", time(nullptr), logLevel::normal};
+                    } else {
+                        throw("Player pointer null");
                     }
-                    std::sort(abilityDisplayList.begin(), abilityDisplayList.end(), AbilityEntrySortByName);
-                    AbilityListInitialized = true;
-                    log->logItem("Ability List Initialized", modName);
-                    // return logMessage{"Ability List Initialized", time(nullptr), logLevel::normal};
                 }
                 else {
                     if (!abilityRequestQueue.empty()) {
@@ -1499,12 +1525,13 @@ private:
                         }
                         if (entry != nullptr) {
                             if (!entry->acquired) {
-                                if (chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get() != nullptr && !chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
-                                    chairloader->internalPreyFunctions->ArkAbilityComponentF->GrantAbility(chairloader->ArkPlayerPtr->m_playerComponent.m_pAbilityComponent.get(), entry->id);
+                                if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
+                                    chairloader->internalPreyFunctions->ArkAbilityComponentF->GrantAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id);
 
                                     // printf("Granted Ability: %s\n", chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
                                     entry->acquired = true;
                                     std::string msg = "Granted Ability: " + chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n";
+                                    log->logItem(msg, modName);
                                 }
                                 else {
                                     throw("Error, Ability Component Not Found");
@@ -1855,7 +1882,7 @@ private:
     chairloaderGuiControl control;
     chairloaderGuiLog log;
     chairloaderGuiPlayerManager playerManager; 
-    chairloaderGuiEntityManager entityManager{chairloaderGlobal};
+    chairloaderGuiEntityManager entityManager;
     PreyConsole console;
 
     // std::vector<std::string> modsWithDrawFuncs;
