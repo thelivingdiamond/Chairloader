@@ -42,9 +42,9 @@ bool g_ShowMenu = false;
 bool g_PresentHooked = false;
 
 // Gui variables
-float my_color[4];
-const float TEXT_BASE_WIDTH = ImGui::CalcTextSize("A").x;
-const float TEXT_BASE_HEIGHT = ImGui::GetTextLineHeightWithSpacing();
+// float my_color[4];
+// const float TEXT_BASE_WIDTH = ImGui::CalcTextSize("A").x;
+// const float TEXT_BASE_HEIGHT = ImGui::GetTextLineHeightWithSpacing();
 
 std::mutex safeToEject;
 // GUI DRAWING FUNCTIONS
