@@ -2,6 +2,7 @@
 #include <filesystem>
 #include "ChairLoader.h"
 #include "ChairloaderUtils.h"
+#include "ChairloaderGui.h"
 
 ChairLoader *gCL = nullptr;
 
@@ -16,6 +17,7 @@ ChairLoader::ChairLoader() {
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
+	gui = new ChairloaderGui(chairloader);
 }
 
 ChairLoader::~ChairLoader()
@@ -32,6 +34,9 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PreUpdate(haveFocus);
 	UpdateFreeCam();
 	ImGui::ShowDemoWindow();
+	gui->update();
+	bool todo = true;
+	gui->draw(&todo);
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {

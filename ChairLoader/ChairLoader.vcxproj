@@ -239,10 +239,15 @@
     <ClInclude Include="ArkEntityClassLibrary.h" />
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
+    <ClInclude Include="ChairloaderGUIConsole.h" />
+    <ClInclude Include="ChairloaderGUIEntityManager.h" />
+    <ClInclude Include="ChairloaderGUILog.h" />
+    <ClInclude Include="ChairloaderGUIPlayerManager.h" />
     <ClInclude Include="ChairloaderUtils.h" />
     <ClInclude Include="ArkEnums.h" />
     <ClInclude Include="CharLoaderImGui.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="preyFunctions.h" />

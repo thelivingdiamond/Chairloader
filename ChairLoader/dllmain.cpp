@@ -57,7 +57,6 @@ std::mutex safeToEject;
 static bool devMode = false;
 static bool freeCam = false;
 int GuiToggleKey, freeCamKey;
-static ChairloaderGui* gui = nullptr;
 
 DWORD WINAPI ChairloaderThread(HMODULE hModule) {
 	// Create Console
@@ -456,7 +455,7 @@ DWORD WINAPI GUIThread(HMODULE hModule) {
             // printf("went out of focus\n");
         }
         //TODO: work out this shit
-        gui->Handlers();
+        //gui->Handlers();
        
     	// if(GetForegroundWindow() == window && wentOutOfFocus) {
      //        g_ShowMenu = true;
