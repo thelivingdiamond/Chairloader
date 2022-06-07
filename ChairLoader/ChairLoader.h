@@ -1,3 +1,4 @@
+#pragma once
 #include "preyFunctions.h"
 
 class ChairLoader {
