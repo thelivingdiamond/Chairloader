@@ -179,6 +179,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -198,7 +199,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -220,7 +221,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)boost_1_77_0;$(SolutionDir)detours;$(SolutionDir)imgui-1.87;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)boost_1_77_0;$(SolutionDir)detours;$(SolutionDir)imgui-1.87;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -240,17 +241,42 @@
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="ChairloaderUtils.h" />
     <ClInclude Include="ArkEnums.h" />
+    <ClInclude Include="CharLoaderImGui.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="preyFunctions.h" />
     <ClInclude Include="preyDllObjects.h" />
+    <ClInclude Include="Prey\CryCore\BaseTypes.h" />
+    <ClInclude Include="Prey\CryCore\Compiler\MSVCspecific.h" />
+    <ClInclude Include="Prey\CryCore\platform.h" />
+    <ClInclude Include="Prey\CryInput\BaseInput.h" />
+    <ClInclude Include="Prey\CryInput\IHardwareMouse.h" />
+    <ClInclude Include="Prey\CryInput\IInput.h" />
+    <ClInclude Include="Prey\CryMath\Cry_Math.h" />
+    <ClInclude Include="Prey\CryMath\Cry_Matrix33.h" />
+    <ClInclude Include="Prey\CryMath\Cry_Matrix44.h" />
+    <ClInclude Include="Prey\CryMath\Cry_MatrixDiag.h" />
+    <ClInclude Include="Prey\CryMath\Cry_Vector2.h" />
+    <ClInclude Include="Prey\CryMath\Cry_Vector3.h" />
+    <ClInclude Include="Prey\CryMath\Cry_Vector4.h" />
+    <ClInclude Include="Prey\CryNetwork\ISerialize.h" />
+    <ClInclude Include="Prey\CryRenderer\CommonResource.h" />
+    <ClInclude Include="Prey\CryRenderer\DeviceResources.h" />
+    <ClInclude Include="Prey\CryRenderer\IRenderer.h" />
+    <ClInclude Include="Prey\CryRenderer\ITexture.h" />
+    <ClInclude Include="Prey\CryRenderer\Renderer.h" />
+    <ClInclude Include="Prey\CryRenderer\Texture.h" />
+    <ClInclude Include="Prey\CrySystem\HardwareMouse.h" />
+    <ClInclude Include="Prey\CrySystem\ISystem.h" />
+    <ClInclude Include="Prey\CrySystem\ITimer.h" />
     <ClInclude Include="proc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
     <ClCompile Include="ChairloaderUtils.cpp" />
+    <ClCompile Include="CharLoaderImGui.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="pch.cpp">

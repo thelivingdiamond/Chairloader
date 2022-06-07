@@ -637,6 +637,14 @@ preyFunctions::CGamePrivate::CGamePrivate(uintptr_t moduleBase){
     Update = getFunctionAddr<_Update>(moduleBase, 0x16d6230);
 }
 
+preyFunctions::CKeyboardPrivate::CKeyboardPrivate(uintptr_t moduleBase) {
+	Update = getFunctionAddr<_Update>(moduleBase, 0x09D2DA0);
+}
+
+preyFunctions::CBaseInputPrivate::CBaseInputPrivate(uintptr_t moduleBase) {
+	PostInputEvent = getFunctionAddr<_PostInputEvent>(moduleBase, 0x09D58D0);
+}
+
 preyFunctions::preyFunctions(uintptr_t moduleBase) {
 	ArkPlayerF = new  ArkPlayerPrivate(moduleBase);
 	CArkWeaponF = new CArkWeaponPrivate(moduleBase);
@@ -656,4 +664,6 @@ preyFunctions::preyFunctions(uintptr_t moduleBase) {
 	CryGretCurrentThreadId = getFunctionAddr<_CryGetCurrentThreadID>(moduleBase, 0x0099910);
 	beginDraw = getFunctionAddr<_BeginDraw>(moduleBase, 0x0de9710);
     CGameF = new CGamePrivate(moduleBase);
+	CKeyboardF = new CKeyboardPrivate(moduleBase);
+	CBaseInputF = new CBaseInputPrivate(moduleBase);
 }

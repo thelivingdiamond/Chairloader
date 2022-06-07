@@ -47,16 +47,9 @@ template<typename T> class ArkIntrusiveList;
 		T minimum;
 		T maximum;
 	};
-template<typename T> struct Vec3_tpl { T x, y, z; };
-template<typename T> struct Ang3_tpl{ T x, y, z; };
 template<typename T> struct Quat_tpl { T x, y, z, w; };
-template<typename T> struct Vec4_tpl { T x, y, z, w; };
-template<typename T> struct Vec2_tpl { T x, y; };
 
 
-typedef Vec3_tpl<float> Vec3;
-typedef Quat_tpl<float> Vec4;
-typedef Vec2_tpl<float> Vec2;
 template<typename t> struct Color_tpl { t r, g, b; };
 
 typedef char undefined;

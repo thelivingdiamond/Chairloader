@@ -15,6 +15,7 @@ ChairLoader::ChairLoader() {
 
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
+	m_ImGui = std::make_unique<ChairLoaderImGui>();
 }
 
 ChairLoader::~ChairLoader()
@@ -28,11 +29,13 @@ ChairLoader::~ChairLoader()
 }
 
 void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
+	m_ImGui->PreUpdate(haveFocus);
 	UpdateFreeCam();
+	ImGui::ShowDemoWindow();
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
-	
+	m_ImGui->PostUpdate();
 }
 
 void ChairLoader::CreateConsole() {

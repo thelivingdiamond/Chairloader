@@ -1,5 +1,9 @@
 #pragma once
 #include "preyDllObjects.h"
+
+class CKeyboard;
+class CBaseInput;
+
 class preyFunctionBase {
 public:
 	template<typename t> t getFunctionAddr(uintptr_t moduleBase, uint64_t offset);
@@ -686,6 +690,20 @@ public:
         _Update Update;
 	};
 
+	class CKeyboardPrivate : preyFunctionBase {
+	public:
+		CKeyboardPrivate(uintptr_t moduleBase);
+		using _Update = bool (*)(CKeyboard *_this, bool bFocus);
+		_Update Update;
+	};
+
+	class CBaseInputPrivate : preyFunctionBase {
+	public:
+		CBaseInputPrivate(uintptr_t moduleBase);
+		using _PostInputEvent = void (*)(CBaseInput *_this, const SInputEvent &event, bool bForce);
+		_PostInputEvent PostInputEvent;
+	};
+
 	typedef unsigned long(__cdecl *_CryGetCurrentThreadID)(); _CryGetCurrentThreadID CryGretCurrentThreadId;//0099910
 	typedef Vec2_tpl<float>(__thiscall* _BeginDraw)(CWindowsConsole*); _BeginDraw beginDraw;//0de9710
 	// typedef void (__thiscall* _OnToggleDebugMenu)();
@@ -705,6 +723,8 @@ public:
 	ArkLocationManagerPrivate* ArkLocationManagerF;
 	ArkAbilityComponentPrivate* ArkAbilityComponentF;
 	CGamePrivate* CGameF;
+	CKeyboardPrivate* CKeyboardF;
+	CBaseInputPrivate* CBaseInputF;
 };
 
 

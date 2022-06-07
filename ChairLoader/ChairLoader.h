@@ -1,5 +1,7 @@
 #pragma once
+#include <memory>
 #include "preyFunctions.h"
+#include "CharLoaderImGui.h"
 
 class ChairLoader {
 public:
@@ -16,6 +18,7 @@ public:
 	void PostUpdate(bool haveFocus, unsigned int updateFlags);
 
 private:
+	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	FILE *m_pConsoleFile = nullptr;
 	preyFunctions::CGamePrivate::_Update m_CGameUpdate = nullptr;
 	int m_GuiToggleKey = 0;
