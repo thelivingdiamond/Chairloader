@@ -10,6 +10,8 @@
 #include "ChairloaderGUIPlayerManager.h"
 #include "ChairloaderGUIConsole.h"
 #include "GUIUtils.h"
+#include "PerfOverlay.h"
+#include "Profiler.h"
 // #include <stack>
 //TODO: INCLUDE LISTENER/HANDLER FUNCTIONS
 
@@ -26,6 +28,7 @@ private:
             showLogHistory = false,
             showDemoWindow = false,
             showStyleManager = false,
+            showProfilerDialog = false,
             freeCam = false,
             devMode = false;
     };
@@ -39,6 +42,8 @@ private:
     ChairloaderGUIPlayerManager playerManager; 
     ChairloaderGUIEntityManager entityManager;
     ChairloaderGUIConsole console;
+    PerfOverlay perfOverlay;
+    ProfilerDialog profilerDialog;
     // std::vector<std::string> modsWithDrawFuncs;
     std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;
     std::mutex drawHandleMutex;
@@ -73,6 +78,14 @@ public:
                     ImGui::Separator();
                     ImGui::MenuItem("Show Log History", nullptr, &control.showLogHistory);
                     ImGui::Separator();
+
+                    if (ImGui::BeginMenu("Performance")) {
+                        ImGui::MenuItem("Profiler", nullptr, &control.showProfilerDialog);
+                        ImGui::Separator();
+                        perfOverlay.ShowMenu();
+                        ImGui::EndMenu();
+                    }
+
                     ImGui::MenuItem("Show ImGui Demo", NULL, &control.showDemoWindow);
                     ImGui::MenuItem("Show Style Editor", NULL, &control.showStyleManager);
                     // ImGui::ShowStyleEditor();
@@ -117,7 +130,11 @@ public:
                 playerManager.draw(&control.showPlayerManager);
             if(control.showConsole)
                 console.Draw(&control.showConsole);
-            
+
+            if (control.showProfilerDialog) {
+                profilerDialog.Show(&control.showProfilerDialog);
+            }
+
             drawHandleMutex.unlock();
             
         }
@@ -130,6 +147,8 @@ public:
             //TODO: run other GUI handlers in here 
             drawHandleMutex.unlock();
         }
+
+        perfOverlay.Update();
     }
     bool addDrawFunction(std::string modName, std::function<void()> drawFunction) {
         if (std::find_if(drawFuncs.begin(), drawFuncs.end(), [modName](std::tuple < std::function<void()>, std::string>& e) {return std::get<1>(e) == modName; }) == drawFuncs.end()) {

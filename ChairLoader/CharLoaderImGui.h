@@ -12,17 +12,19 @@ public:
 	~ChairLoaderImGui();
 	void PreUpdate(bool haveFocus);
 	void PostUpdate();
+	inline std::thread::id GetRenderThreadId() { return m_RenderThreadId; }
 
 private:
 	static constexpr int BUFFER_SIZE_INCREMENT = 5000;
 	static constexpr float MOUSE_WHEEL_DELTA = 120.0f;
 
+	ITexture *m_pFontAtlas = nullptr;
+	std::thread::id m_RenderThreadId;
+
 	void InitBackend();
 	void CreateFontsTexture();
 	void HookPresent();
 	void SubmitRenderData();
-
-	ITexture *m_pFontAtlas = nullptr;
 
 	static ImGuiKey KeyIdToImGui(EKeyId keyId);
 

@@ -3,6 +3,7 @@
 #include "ChairLoader.h"
 #include "ChairloaderUtils.h"
 #include "ChairloaderGui.h"
+#include "Profiler.h"
 
 ChairLoader *gCL = nullptr;
 
@@ -16,8 +17,10 @@ ChairLoader::ChairLoader() {
 
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
+	m_MainThreadId = std::this_thread::get_id();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
 	gui = new ChairloaderGui(chairloader);
+	g_pProfiler = new Profiler();
 }
 
 ChairLoader::~ChairLoader()

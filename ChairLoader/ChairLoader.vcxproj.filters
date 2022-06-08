@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Imgui">
-      <UniqueIdentifier>{b6742d2c-deaa-4dfa-be54-e516a1d6c39e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Chairloader">
       <UniqueIdentifier>{a2d95cdf-123a-4241-be9e-e51ecde3c772}</UniqueIdentifier>
     </Filter>
@@ -45,6 +42,12 @@
     </Filter>
     <Filter Include="Prey\CryNetwork">
       <UniqueIdentifier>{c5d7683f-e49b-4ae4-b5df-83e5e018756f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryThreading">
+      <UniqueIdentifier>{fc931bb6-3df7-4d31-af25-f2d448b06228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{b6742d2c-deaa-4dfa-be54-e516a1d6c39e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +180,24 @@
     <ClInclude Include="GUIUtils.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
+    <ClInclude Include="PerfOverlay.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryThreading\IJobManager.h">
+      <Filter>Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="VTableHook.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_widget_flamegraph.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CrySystem\Profiling.h">
+      <Filter>Prey\CrySystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreyDllObjects.cpp">
@@ -208,6 +229,18 @@
     </ClCompile>
     <ClCompile Include="CharLoaderImGui.cpp">
       <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfOverlay.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiler.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="VTableHook.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widget_flamegraph.cpp">
+      <Filter>ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

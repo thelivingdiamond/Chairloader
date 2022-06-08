@@ -6,6 +6,7 @@
 #include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/CryRenderer/Renderer.h>
 #include <Prey/CryRenderer/Texture.h>
+#include <Prey/CrySystem/Profiling.h>
 
 ChairLoaderImGui *ChairLoaderImGui::m_pInstance = nullptr;
 
@@ -34,6 +35,7 @@ ChairLoaderImGui::~ChairLoaderImGui() {
 }
 
 void ChairLoaderImGui::PreUpdate(bool haveFocus) {
+	CRY_PROFILE_MARKER("ImGui::NewFrame");
 	ImGuiIO &io = ImGui::GetIO();
 
 	// Setup display size (every frame to accommodate for window resizing)
@@ -52,6 +54,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 }
 
 void ChairLoaderImGui::PostUpdate() {
+	CRY_PROFILE_MARKER("ImGui::Render");
 	ImGui::Render();
 	SubmitRenderData();
 }
@@ -394,6 +397,7 @@ bool ChairLoaderImGui::RT_Initialize() {
 
 void ChairLoaderImGui::RT_Render() {
 	// Based on ImGui_ImplDX11_RenderDrawData
+	CRY_PROFILE_MARKER("ImGui");
 	RenderThreadData &data = m_pInstance->m_RTData;
 	RenderLists *list = nullptr;
 
@@ -674,6 +678,7 @@ HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UIN
 	RenderThreadData &data = m_pInstance->m_RTData;
 
 	if (!data.bIsInitialized) {
+		m_pInstance->m_RenderThreadId = std::this_thread::get_id();
 		if (m_pInstance->RT_Initialize()) {
 			data.bIsReady = true;
 		} else {

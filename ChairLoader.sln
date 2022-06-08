@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChairLoader", "ChairLoader\ChairLoader.vcxproj", "{4983A09C-D87D-4050-AE0F-7B8EC5B9EAF1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChairLoaderXMLMerger", "ChairLoaderXMLLoader\ChairLoaderXMLMerger.vcxproj", "{6B5E7880-80D0-457E-BEBA-8674E574538A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChairLoaderXMLLoader", "ChairLoaderXMLLoader\ChairLoaderXMLMerger.vcxproj", "{6B5E7880-80D0-457E-BEBA-8674E574538A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChairLoaderLoader", "ChairLoaderLoader\ChairLoaderLoader.vcxproj", "{7E920E20-6B96-4302-8B15-05B385E650AB}"
 EndProject
