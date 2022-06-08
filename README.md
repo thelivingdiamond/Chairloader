@@ -57,7 +57,7 @@ The Gui functionality is achieved via DX11 hooking and uses Dear ImGui.
 - Pugixml: https://github.com/zeux/pugixml
 - Dear Imgui: https://github.com/ocornut/imgui
 - ImGui Standalone: https://github.com/adamhlt/ImGui-Standalone
-- DX11 Hook: https://github.com/niemand-sec/DirectX11Hook
+- ImGui Flame Graph https://github.com/bwrsandman/imgui-flame-graph
 - Zip Library: https://libzip.org/
 
 For information on how to setup and develop mods for Chairloader please see the wiki:
