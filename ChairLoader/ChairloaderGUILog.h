@@ -41,7 +41,7 @@ public:
         if (!displayLogQueue.empty()) {
             ImGui::SetNextWindowPos(ImVec2(5.0f, 20.0f));
             ImGui::SetNextWindowSize(ImVec2(700, 150));
-            if (ImGui::Begin("Log", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground)) {
+            if (ImGui::Begin("Log", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNavInputs)) {
                 float nextCursorPos = ImGui::GetContentRegionAvail().y;
                 // std::vector::reverse_iterator
                 for (auto itr = displayLogQueue.rbegin(); itr != displayLogQueue.rend(); ++itr) {
@@ -78,7 +78,7 @@ public:
     }
     // Draw the log history window to display all previous log messages
     void drawHistory(bool* bShow) {
-        if (ImGui::Begin("Log History", bShow)) {
+        if (ImGui::Begin("Log History", bShow, ImGuiWindowFlags_NoNavInputs)) {
             if (ImGui::BeginTable("Log Table", 2, ImGuiTableFlags_SizingFixedFit)) {
                 ImGui::TableSetupColumn("Time");
                 ImGui::TableSetupColumn("Message", ImGuiTableColumnFlags_WidthStretch);

@@ -29,7 +29,7 @@ public:
     ChairloaderGUIPlayerManager() = default;
 
     void draw(bool* bShow) {
-        if (!ImGui::Begin("Player Manager", bShow)) {
+        if (!ImGui::Begin("Player Manager", bShow, ImGuiWindowFlags_NoNavInputs)) {
             ImGui::End();
             return;
         }

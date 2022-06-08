@@ -50,7 +50,7 @@ private:
     std::queue<archetypeFilterRequest> archetypeFilterRequestQueue;
     std::vector<CEntityArchetype*> archetypeFilteredList;
     std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
-	std::queue<entityModifyRequest> modifyQueue;
+    std::queue<entityModifyRequest> modifyQueue;
 
     // ChairloaderUtils* chairloaderGlobal;
 
@@ -62,11 +62,11 @@ public:
         archetypeFilterRequestQueue.push(archetypeFilterRequest{ "" });
     }
     ~ChairloaderGUIEntityManager() {
-        
+
     }
 
     void draw(bool* bShow) {
-        if (!ImGui::Begin("Entity Manager", bShow)) {
+        if (!ImGui::Begin("Entity Manager", bShow, ImGuiWindowFlags_NoNavInputs)) {
             ImGui::End();
             return;
         }
@@ -151,7 +151,7 @@ public:
                     "  \"-xxx\"     hide lines containing \"xxx\"");
 
                 static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Hideable;
-                ImVec2 outer_size = ImVec2(0.0f, ImGui::CalcTextSize("A").x * 16.0f);
+                ImVec2 outer_size = ImVec2(0.0f, 0.0f);
 
                 if (ImGui::BeginTable("EntityArchetypeList", 2, flags, outer_size)) {
                     ImGui::TableSetupScrollFreeze(0, 1);
@@ -325,7 +325,7 @@ public:
 
                                 ImGui::Text("Rotation: ");
                                 ImGui::InputFloat4("rot", rot, "%.1f", ImGuiInputTextFlags_ReadOnly);
-                                
+
                                 ImGui::Text("Scale: ");
                                 ImGui::InputFloat3("scale", scale, "%.1f", ImGuiInputTextFlags_ReadOnly);
                                 ImGui::NewLine();
@@ -360,8 +360,14 @@ public:
                                     newScale[1] = newScale[0];
                                     newScale[2] = newScale[0];
                                     ImGui::InputFloat3("scale", newScale, "%.2f");
-                                    if (ImGui::Button("Set"))
-                                        modifyQueue.push(entityModifyRequest{ selected, entityModifyType::scale, Vec3_tpl<float>{newScale[0], newScale[0], newScale[0]} });
+                                    if (ImGui::Button("Set")) {
+                                        printf("%f\n", newScale[0]);
+                                        Vec3_tpl<float> scalar;
+                                        scalar.x = newScale[0];
+                                        scalar.y = newScale[0];
+                                        scalar.z = newScale[0];
+                                        modifyQueue.push(entityModifyRequest{ selected, entityModifyType::scale, {},{}, scalar });
+                                    }
                                     ImGui::EndPopup();
                                 }
                                 // ImGui::Text("Rotation");
@@ -496,7 +502,7 @@ public:
     }
     void drawMenuBar(bool* control, ChairloaderUtils* chairloader) {
         if (ImGui::BeginMenu("Entity")) {
-            
+
             if (ImGui::BeginMenu("Spawn Entity")) {
                 ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != nullptr);
                 ImGui::Separator();
@@ -590,9 +596,10 @@ public:
 
     void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
         if (!chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
-            entityModifyHandler(chairloader, log);
-            archetypeSpawnRequestHandler(chairloader, log);
+            
         }
+        entityModifyHandler(chairloader, log);
+        archetypeSpawnRequestHandler(chairloader, log);
         archetypeFilterRequestHandler(chairloader, log);
         filterEntityList(chairloader, log);
     }
@@ -603,7 +610,10 @@ private:
             if (!modifyQueue.empty()) {
                 entityModifyRequest request = modifyQueue.front();
                 if (request.entity == nullptr) {
-                    throw("Null Entity");
+                    printf("this shit's wack\n");
+                    modifyQueue.pop();
+                    return;
+                    // throw("Null Entity");
                 }
                 modifyQueue.pop();
                 if (request.type == entityModifyType::pos) {
@@ -615,7 +625,9 @@ private:
                         throw("Null Pos");
                     }
                 } if (request.type == entityModifyType::scale) {
-                    if ((request.scale.x != 0 && request.scale.y != 0 && request.scale.z != 0) && (request.scale.x == request.scale.y && request.scale.y == request.scale.z)) {
+                    if(true){
+                    // if ((request.scale.x != 0 && request.scale.y != 0 && request.scale.z != 0) && (request.scale.x == request.scale.y && request.scale.y == request.scale.z)) {
+                        printf("new scale = %f", request.scale.x);
                         ((IEntity*)request.entity)->SetScale(&request.scale, 0);
                     }
                     else {
@@ -631,7 +643,7 @@ private:
                 }
             }
         }
-        catch (char* c) {
+        catch (std::string c) {
             std::string msg = "Error handling entity modification request: ";
             log->logItem(msg + c, modName, ChairloaderGUILog::logLevel::error);
         }
@@ -696,18 +708,32 @@ private:
                             char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
                                 CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-                                IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                                // chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawner);
+                                spawner->m_Entity->m_worldTM.m03 = request.pos.x;
+                                spawner->m_Entity->m_worldTM.m13 = request.pos.y;
+                                spawner->m_Entity->m_worldTM.m23 = request.pos.z;
+
+                                chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
+                                // while(spawner->m_lastSpawnedEntityId == oldId) {
+                                // 	// Sleep(1);
+                                // }// Sleep(50);
+                                // IEntity* newEntity = newEntity = chairloader->preyEnvironmentPointers->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
+                                // Sleep(5);
+                                // return newEntity;
+
+                                // IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+
                                 // printf("spawned an entity\n");
-                                if (newEntity != nullptr) {
-                                    newEntity->SetPos(&request.pos, 0, true, false);
-                                    newEntity->SetName((char*)request.name.c_str());
-                                    // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
-                                }
-                                else {
-                                    throw("Error, null entity spawned");
-                                }
-                                chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
-                                log->logItem("Spawned entity successfully", modName);
+                                // if (newEntity != nullptr) {
+                                //     newEntity->SetPos(&request.pos, 0, true, false);
+                                //     newEntity->SetName((char*)request.name.c_str());
+                                //     // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
+                                // }
+                                // else {
+                                //     throw("Error, null entity spawned");
+                                // }
+                                // chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                                log->logItem("Spawned entity", modName);
                             }
                             else {
                                 throw("Error, Old archetype Was null (single spawn)");
@@ -750,50 +776,54 @@ private:
                     }
                 }
                 else {
-                    log->logItem("Using non - npc spawning process", modName, ChairloaderGUILog::logLevel::warning);
-                    // printf("Using non-npc spawning process\n");
-                    SEntitySpawnParams* params = new SEntitySpawnParams;
+                    log->logItem("Using non-npc spawning process", modName, ChairloaderGUILog::logLevel::warning);
+                    for (int i = 0; i < request.spawnCount; i++) {
+                        // printf("Using non-npc spawning process\n");
+                        SEntitySpawnParams* params = new SEntitySpawnParams;
 
-                    params->vScale.x = 1;
-                    params->vScale.y = 1;
-                    params->vScale.z = 1;
-                    uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(chairloader->preyEnvironmentPointers->pEntitySystem, true);
-                    params->id = id;
-                    params->vPosition.x = request.pos.x;
-                    params->vPosition.y = request.pos.y;
-                    params->vPosition.z = request.pos.z;
-                    params->qRotation.x = request.rot.x;
-                    params->qRotation.y = request.rot.y;
-                    params->qRotation.z = request.rot.z;
-                    params->qRotation.w = request.rot.w;
-                    params->sLayerName = (char*)"";
-                    params->pClass = (CEntityClass*)(0x0);
-                    params->pArchetype = (CEntityArchetype*)(0x0);
-                    params->guid = 0;
-                    params->prevGuid = 0;
-                    params->prevId = 0;
-                    params->bCreatedThroughPool = 0;
-                    params->bIgnoreLock = 0;
-                    params->bStaticEntityId = 0;
-                    params->nFlags = 0;
-                    params->nFlagsExtended = 0;
-                    params->sName = (char*)request.name.c_str();
-                    params->entityNode.ptr = (IXmlNode*)0x0;
-                    params->shadowCasterType = '\0';
-                    params->pUserData = (void*)0x0;
-                    params->sceneMask = '\0';
-                    IEntity* entity;
+                        params->vScale.x = 1;
+                        params->vScale.y = 1;
+                        params->vScale.z = 1;
+                        uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(chairloader->preyEnvironmentPointers->pEntitySystem, true);
+                        params->id = id;
+                        params->vPosition.x = request.pos.x;
+                        params->vPosition.y = request.pos.y;
+                        params->vPosition.z = request.pos.z;
+                        params->qRotation.x = request.rot.x;
+                        params->qRotation.y = request.rot.y;
+                        params->qRotation.z = request.rot.z;
+                        params->qRotation.w = request.rot.w;
+                        params->sLayerName = (char*)"";
+                        params->pClass = (CEntityClass*)(0x0);
+                        params->pArchetype = (CEntityArchetype*)(0x0);
+                        params->guid = 0;
+                        params->prevGuid = 0;
+                        params->prevId = 0;
+                        params->bCreatedThroughPool = 0;
+                        params->bIgnoreLock = 0;
+                        params->bStaticEntityId = 0;
+                        params->nFlags = 0;
+                        params->nFlagsExtended = 0;
+                        params->sName = (char*)request.name.c_str();
+                        params->entityNode.ptr = (IXmlNode*)0x0;
+                        params->shadowCasterType = '\0';
+                        params->pUserData = (void*)0x0;
+                        params->sceneMask = '\0';
+                        IEntity* entity;
 
-                    // IEntityArchetype* archetype = (IEntityArchetype*)chairloader->preyEnvironmentPointers->pEntitySystem->GetEntityArchetype();
-                    if (request.archetype != nullptr) {
-                        entity = chairloader->preyEnvironmentPointers->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
+                        // IEntityArchetype* archetype = (IEntityArchetype*)chairloader->preyEnvironmentPointers->pEntitySystem->GetEntityArchetype();
+                        if (request.archetype != nullptr) {
+                            // log->logItem("Spawn count: " + std::to_string(request.spawnCount), modName.c_str());
+
+                            params->vPosition.x += 0.05f;
+                            // printf("Spawning\n");
+                            entity = chairloader->preyEnvironmentPointers->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
+
+                        }
+                        else {
+                            throw("Error, no archetype found\n");
+                        }
                     }
-                    else {
-                        throw("Error, no archetype found\n");
-                    }
-
-
-
 
                 }
             }
@@ -806,9 +836,6 @@ private:
     }
     void archetypeFilterRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
         if (!archetypeFilterRequestQueue.empty()) {
-            if (!chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager)
-                return;
-
             archetypeFilterRequest request = archetypeFilterRequestQueue.front();
             std::string filterText = request.text;
             std::map<const char*, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
@@ -1208,6 +1235,6 @@ private:
              "Fear",
              "ForceRigidOnGloo",
              "IndefiniteRagdoll"
-        };
+    };
 };
 

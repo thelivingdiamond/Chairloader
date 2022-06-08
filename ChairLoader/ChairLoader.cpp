@@ -33,7 +33,7 @@ ChairLoader::~ChairLoader()
 void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PreUpdate(haveFocus);
 	UpdateFreeCam();
-	ImGui::ShowDemoWindow();
+	// ImGui::ShowDemoWindow();
 	gui->update();
 	bool todo = true;
 	gui->draw(&todo);

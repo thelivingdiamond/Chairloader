@@ -70,7 +70,7 @@ public:
         void Draw(bool* p_open)
         {
             // ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
-            if (!ImGui::BeginChild("Console", ImGui::GetContentRegionAvail(), true, ImGuiWindowFlags_None)) {
+            if (!ImGui::BeginChild("Console", ImGui::GetContentRegionAvail(), true, ImGuiWindowFlags_NoNavInputs)) {
                 ImGui::EndChild();
                 return;
             }

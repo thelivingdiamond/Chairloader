@@ -663,8 +663,11 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 
 	//if (event.deviceType == eIDT_Mouse)
 	//    printf("%d, %d - %s, %d, %f\n", event.deviceType, event.keyId, event.keyName.key, event.state, event.value);
-
+	// if(!io.WantCaptureKeyboard){
+	if ((event.deviceType == eIDT_Keyboard) && io.WantTextInput)
+		return;
 	m_pInstance->m_hookCBaseInputPostInputEvent(_this, event, bForce);
+	// }
 }
 
 HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags) {
