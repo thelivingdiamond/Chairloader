@@ -445,14 +445,8 @@ void ChairLoaderImGui::RT_Render() {
 		return;
 	ImDrawVert *vtx_dst = (ImDrawVert *)vtx_resource.pData;
 	ImDrawIdx *idx_dst = (ImDrawIdx *)idx_resource.pData;
-	for (int n = 0; n < list->drawLists.size(); n++)
-	{
-		const DrawList &drawList = list->drawLists[n];
-		memcpy(vtx_dst, list->vtxBuffer.data() + drawList.vtxOffset, drawList.vtxCount * sizeof(ImDrawVert));
-		memcpy(idx_dst, list->idxBuffer.data() + drawList.idxOffset, drawList.idxCount * sizeof(ImDrawIdx));
-		vtx_dst += drawList.vtxCount;
-		idx_dst += drawList.idxCount;
-	}
+	memcpy(vtx_dst, list->vtxBuffer.data(), list->vtxBuffer.size() * sizeof(ImDrawVert));
+	memcpy(idx_dst, list->idxBuffer.data(), list->idxBuffer.size() * sizeof(ImDrawIdx));
 	ctx->Unmap(data.pVB, 0);
 	ctx->Unmap(data.pIB, 0);
 
