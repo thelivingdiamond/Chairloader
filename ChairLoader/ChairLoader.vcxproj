@@ -254,6 +254,7 @@
     <ClInclude Include="CharLoaderImGui.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GUIUtils.h" />
+    <ClInclude Include="ImGui\imgui_widget_flamegraph.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PerfOverlay.h" />
@@ -282,7 +283,11 @@
     <ClInclude Include="Prey\CrySystem\HardwareMouse.h" />
     <ClInclude Include="Prey\CrySystem\ISystem.h" />
     <ClInclude Include="Prey\CrySystem\ITimer.h" />
+    <ClInclude Include="Prey\CrySystem\Profiling.h" />
+    <ClInclude Include="Prey\CryThreading\IJobManager.h" />
     <ClInclude Include="proc.h" />
+    <ClInclude Include="Profiler.h" />
+    <ClInclude Include="VTableHook.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChairLoader.cpp" />
@@ -290,6 +295,7 @@
     <ClCompile Include="ChairloaderUtils.cpp" />
     <ClCompile Include="CharLoaderImGui.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="ImGui\imgui_widget_flamegraph.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -303,6 +309,8 @@
     <ClCompile Include="preyFunctions.cpp" />
     <ClCompile Include="PreyDllObjects.cpp" />
     <ClCompile Include="proc.cpp" />
+    <ClCompile Include="Profiler.cpp" />
+    <ClCompile Include="VTableHook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="codeArchive.txt" />

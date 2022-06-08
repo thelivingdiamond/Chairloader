@@ -11,6 +11,7 @@
 #include "ChairloaderGUIConsole.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"
+#include "Profiler.h"
 // #include <stack>
 //TODO: INCLUDE LISTENER/HANDLER FUNCTIONS
 
@@ -27,6 +28,7 @@ private:
             showLogHistory = false,
             showDemoWindow = false,
             showStyleManager = false,
+            showProfilerDialog = false,
             freeCam = false,
             devMode = false;
     };
@@ -41,6 +43,7 @@ private:
     ChairloaderGUIEntityManager entityManager;
     ChairloaderGUIConsole console;
     PerfOverlay perfOverlay;
+    ProfilerDialog profilerDialog;
     // std::vector<std::string> modsWithDrawFuncs;
     std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;
     std::mutex drawHandleMutex;
@@ -77,6 +80,8 @@ public:
                     ImGui::Separator();
 
                     if (ImGui::BeginMenu("Performance")) {
+                        ImGui::MenuItem("Profiler", nullptr, &control.showProfilerDialog);
+                        ImGui::Separator();
                         perfOverlay.ShowMenu();
                         ImGui::EndMenu();
                     }
@@ -125,7 +130,11 @@ public:
                 playerManager.draw(&control.showPlayerManager);
             if(control.showConsole)
                 console.Draw(&control.showConsole);
-            
+
+            if (control.showProfilerDialog) {
+                profilerDialog.Show(&control.showProfilerDialog);
+            }
+
             drawHandleMutex.unlock();
             
         }

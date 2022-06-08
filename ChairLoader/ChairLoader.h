@@ -17,9 +17,13 @@ public:
 	// After CGame::Update
 	void PostUpdate(bool haveFocus, unsigned int updateFlags);
 
+	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
+	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
+
 private:
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	FILE *m_pConsoleFile = nullptr;
+	std::thread::id m_MainThreadId;
 	preyFunctions::CGamePrivate::_Update m_CGameUpdate = nullptr;
 	int m_GuiToggleKey = 0;
 	int m_FreeCamKey = 0;

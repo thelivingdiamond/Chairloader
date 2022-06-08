@@ -60,6 +60,11 @@ class ITimer;
 class IRenderer;
 class ITexture;
 class IHardwareMouse;
+
+namespace JobManager {
+class IJobManager;
+}
+
 enum class EWinVersion {
 	WinUndetected = 0,
 	Win2000 = 1,
@@ -125,7 +130,7 @@ class gameEnvironmentPointers {
 		void *pAuxGeomRenderer		;
 		IHardwareMouse *pHardwareMouse		;
 		void* pMaterialEffects		;
-		void* pJobManager			;
+		JobManager::IJobManager* pJobManager;
 		void* pOverloadSceneManager	;
 		void* pFlashUI				;
 		void* pServiceNetwork		;
