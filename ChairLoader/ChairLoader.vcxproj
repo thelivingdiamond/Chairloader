@@ -179,7 +179,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PREYTESTTRAINER_EXPORTS;_WINDOWS;_USRDLL;_HAS_ITERATOR_DEBUGGING=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PREYTESTTRAINER_EXPORTS;_WINDOWS;_USRDLL;_HAS_ITERATOR_DEBUGGING=0;DEBUG_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -256,6 +256,7 @@
     <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PerfOverlay.h" />
     <ClInclude Include="preyFunctions.h" />
     <ClInclude Include="preyDllObjects.h" />
     <ClInclude Include="Prey\CryCore\BaseTypes.h" />
@@ -298,6 +299,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Library|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PerfOverlay.cpp" />
     <ClCompile Include="preyFunctions.cpp" />
     <ClCompile Include="PreyDllObjects.cpp" />
     <ClCompile Include="proc.cpp" />

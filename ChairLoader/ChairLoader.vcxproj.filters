@@ -177,6 +177,9 @@
     <ClInclude Include="GUIUtils.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
+    <ClInclude Include="PerfOverlay.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreyDllObjects.cpp">
@@ -207,6 +210,9 @@
       <Filter>Chairloader</Filter>
     </ClCompile>
     <ClCompile Include="CharLoaderImGui.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfOverlay.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
   </ItemGroup>
