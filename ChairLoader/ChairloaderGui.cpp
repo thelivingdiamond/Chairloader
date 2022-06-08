@@ -1,2 +1,4 @@
 #include "pch.h"
-#include "ChairloaderGui.h"
+#include "ChairloaderGUI.h"
+
+ChairloaderGui *gui = nullptr;

@@ -25,6 +25,27 @@
     <Filter Include="pugixml">
       <UniqueIdentifier>{c4bfa91b-57fd-44a7-af50-3bcf92ed6786}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Prey\CrySystem">
+      <UniqueIdentifier>{54b6ee91-aa5b-4515-9774-aef13f7c6632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryInput">
+      <UniqueIdentifier>{0d0fa3a3-efc8-4704-86e6-d0d755977028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryRenderer">
+      <UniqueIdentifier>{5b47143b-c775-45dd-acae-b17be64bbb82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryMath">
+      <UniqueIdentifier>{49fce3df-66d7-4359-b3de-7b698f5efe15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryCore">
+      <UniqueIdentifier>{c1aecf6c-cd6d-48dc-9fbc-641940d3de4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryCore\Compiler">
+      <UniqueIdentifier>{ba37ab3a-710a-4d05-b00e-13884f97679d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prey\CryNetwork">
+      <UniqueIdentifier>{c5d7683f-e49b-4ae4-b5df-83e5e018756f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -66,6 +87,96 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ChairLoader.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="CharLoaderImGui.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CrySystem\ISystem.h">
+      <Filter>Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryInput\BaseInput.h">
+      <Filter>Prey\CryInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryInput\IInput.h">
+      <Filter>Prey\CryInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryInput\IHardwareMouse.h">
+      <Filter>Prey\CryInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CrySystem\HardwareMouse.h">
+      <Filter>Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryRenderer\IRenderer.h">
+      <Filter>Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_Matrix44.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryCore\platform.h">
+      <Filter>Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_MatrixDiag.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_Matrix33.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryCore\BaseTypes.h">
+      <Filter>Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryCore\Compiler\MSVCspecific.h">
+      <Filter>Prey\CryCore\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_Vector2.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_Vector3.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_Vector4.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryMath\Cry_Math.h">
+      <Filter>Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryRenderer\Renderer.h">
+      <Filter>Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryRenderer\ITexture.h">
+      <Filter>Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryRenderer\CommonResource.h">
+      <Filter>Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryRenderer\Texture.h">
+      <Filter>Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryRenderer\DeviceResources.h">
+      <Filter>Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CrySystem\ITimer.h">
+      <Filter>Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Prey\CryNetwork\ISerialize.h">
+      <Filter>Prey\CryNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="ChairloaderGUIConsole.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="ChairloaderGUIEntityManager.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="ChairloaderGUILog.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="ChairloaderGUIPlayerManager.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIUtils.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreyDllObjects.cpp">
@@ -91,6 +202,12 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChairLoader.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="CharLoaderImGui.cpp">
+      <Filter>Chairloader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

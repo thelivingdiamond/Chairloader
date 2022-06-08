@@ -11,4 +11,11 @@ namespace mem {
 	void Patch(BYTE* dst, BYTE* src, unsigned int size);
 	void Nop(BYTE* dst, unsigned int size);
 	uintptr_t FindDMAAddy(uintptr_t ptr, std::vector<unsigned int>);
+
+	template <typename T, typename S>
+	T &OffsetInStruct(S *s, size_t offset) {
+		uintptr_t ptr = reinterpret_cast<uintptr_t>(s);
+		uintptr_t field = ptr + offset;
+		return *reinterpret_cast<T *>(field);
+	}
 }

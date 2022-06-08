@@ -4,6 +4,9 @@
 #include <set>
 #include <unordered_set>
 
+#include <Prey/CryMath/Cry_Math.h>
+#include <Prey/CryInput/IInput.h>
+#include <Prey/CrySystem/ISystem.h>
 #include "ArkBasicTypes.h"
 #include "ArkEnums.h"
 // #include "Header.h"
@@ -53,6 +56,10 @@ class IEntityClass;
 	// GEnv		  0x22418c0
 class CGame;
 class IEntitySystem;
+class ITimer;
+class IRenderer;
+class ITexture;
+class IHardwareMouse;
 enum class EWinVersion {
 	WinUndetected = 0,
 	Win2000 = 1,
@@ -97,7 +104,7 @@ class gameEnvironmentPointers {
 		void *pParticleManager		;
 		void *pOpticsManager		;
 		void *pFrameProfileSystem	;
-		void *pTimer				;
+		ITimer *pTimer				;
 		void *pCryFont				;
 		CGame*pGame					;
 		void *pLocalMemoryUsage		;
@@ -114,9 +121,9 @@ class gameEnvironmentPointers {
 		void *pMovieSystem			;
 		void *pNameTable			;
 		void* pVisualLog			;
-		void *pRenderer				;
+		IRenderer *pRenderer				;
 		void *pAuxGeomRenderer		;
-		void *pHardwareMouse		;
+		IHardwareMouse *pHardwareMouse		;
 		void* pMaterialEffects		;
 		void* pJobManager			;
 		void* pOverloadSceneManager	;
@@ -258,214 +265,7 @@ namespace ArkNpc {
 		sdUP = 1,
 		sdNONE = 2
 	};
-	enum class EInputDeviceType {
-		eIDT_Keyboard = 0,
-		eIDT_Mouse = 1,
-		eIDT_Joystick = 2,
-		eIDT_Gamepad = 3,
-		eIDT_Unknown = 255
-	};
 
-	enum class EInputState {
-		eIS_Unknown = 0,
-		eIS_Pressed = 1,
-		eIS_Released = 2,
-		eIS_Down = 4,
-		eIS_Changed = 8,
-		eIS_UI = 16
-	} ;
-	enum class EKeyId {
-		eKI_Unknown = -1,
-		eKI_Escape = 0,
-		eKI_1 = 1,
-		eKI_2 = 2,
-		eKI_3 = 3,
-		eKI_4 = 4,
-		eKI_5 = 5,
-		eKI_6 = 6,
-		eKI_7 = 7,
-		eKI_8 = 8,
-		eKI_9 = 9,
-		eKI_0 = 10,
-		eKI_Minus = 11,
-		eKI_Equals = 12,
-		eKI_Backspace = 13,
-		eKI_Tab = 14,
-		eKI_Q = 15,
-		eKI_W = 16,
-		eKI_E = 17,
-		eKI_R = 18,
-		eKI_T = 19,
-		eKI_Y = 20,
-		eKI_U = 21,
-		eKI_I = 22,
-		eKI_O = 23,
-		eKI_P = 24,
-		eKI_LBracket = 25,
-		eKI_RBracket = 26,
-		eKI_Enter = 27,
-		eKI_LCtrl = 28,
-		eKI_A = 29,
-		eKI_S = 30,
-		eKI_D = 31,
-		eKI_F = 32,
-		eKI_G = 33,
-		eKI_H = 34,
-		eKI_J = 35,
-		eKI_K = 36,
-		eKI_L = 37,
-		eKI_Semicolon = 38,
-		eKI_Apostrophe = 39,
-		eKI_Tilde = 40,
-		eKI_LShift = 41,
-		eKI_Backslash = 42,
-		eKI_Z = 43,
-		eKI_X = 44,
-		eKI_C = 45,
-		eKI_V = 46,
-		eKI_B = 47,
-		eKI_N = 48,
-		eKI_M = 49,
-		eKI_Comma = 50,
-		eKI_Period = 51,
-		eKI_Slash = 52,
-		eKI_RShift = 53,
-		eKI_NP_Multiply = 54,
-		eKI_LAlt = 55,
-		eKI_Space = 56,
-		eKI_CapsLock = 57,
-		eKI_F1 = 58,
-		eKI_F2 = 59,
-		eKI_F3 = 60,
-		eKI_F4 = 61,
-		eKI_F5 = 62,
-		eKI_F6 = 63,
-		eKI_F7 = 64,
-		eKI_F8 = 65,
-		eKI_F9 = 66,
-		eKI_F10 = 67,
-		eKI_NumLock = 68,
-		eKI_ScrollLock = 69,
-		eKI_NP_7 = 70,
-		eKI_NP_8 = 71,
-		eKI_NP_9 = 72,
-		eKI_NP_Substract = 73,
-		eKI_NP_4 = 74,
-		eKI_NP_5 = 75,
-		eKI_NP_6 = 76,
-		eKI_NP_Add = 77,
-		eKI_NP_1 = 78,
-		eKI_NP_2 = 79,
-		eKI_NP_3 = 80,
-		eKI_NP_0 = 81,
-		eKI_F11 = 82,
-		eKI_F12 = 83,
-		eKI_F13 = 84,
-		eKI_F14 = 85,
-		eKI_F15 = 86,
-		eKI_Colon = 87,
-		eKI_Underline = 88,
-		eKI_NP_Enter = 89,
-		eKI_RCtrl = 90,
-		eKI_NP_Period = 91,
-		eKI_NP_Divide = 92,
-		eKI_Print = 93,
-		eKI_RAlt = 94,
-		eKI_Pause = 95,
-		eKI_Home = 96,
-		eKI_Up = 97,
-		eKI_PgUp = 98,
-		eKI_Left = 99,
-		eKI_Right = 100,
-		eKI_End = 101,
-		eKI_Down = 102,
-		eKI_PgDn = 103,
-		eKI_Insert = 104,
-		eKI_Delete = 105,
-		eKI_LWin = 106,
-		eKI_RWin = 107,
-		eKI_Apps = 108,
-		eKI_OEM_102 = 109,
-		eKI_Mouse1 = 256,
-		eKI_Mouse2 = 257,
-		eKI_Mouse3 = 258,
-		eKI_Mouse4 = 259,
-		eKI_Mouse5 = 260,
-		eKI_Mouse6 = 261,
-		eKI_Mouse7 = 262,
-		eKI_Mouse8 = 263,
-		eKI_MouseWheelUp = 264,
-		eKI_MouseWheelDown = 265,
-		eKI_MouseX = 266,
-		eKI_MouseY = 267,
-		eKI_MouseZ = 268,
-		eKI_MouseXAbsolute = 269,
-		eKI_MouseYAbsolute = 270,
-		eKI_MouseLast = 271,
-		eKI_XI_DPadUp = 512,
-		eKI_XI_DPadDown = 513,
-		eKI_XI_DPadLeft = 514,
-		eKI_XI_DPadRight = 515,
-		eKI_XI_Start = 516,
-		eKI_XI_Back = 517,
-		eKI_XI_ThumbL = 518,
-		eKI_XI_ThumbR = 519,
-		eKI_XI_ShoulderL = 520,
-		eKI_XI_ShoulderR = 521,
-		eKI_XI_A = 522,
-		eKI_XI_B = 523,
-		eKI_XI_X = 524,
-		eKI_XI_Y = 525,
-		eKI_XI_TriggerL = 526,
-		eKI_XI_TriggerR = 527,
-		eKI_XI_ThumbLX = 528,
-		eKI_XI_ThumbLY = 529,
-		eKI_XI_ThumbLUp = 530,
-		eKI_XI_ThumbLDown = 531,
-		eKI_XI_ThumbLLeft = 532,
-		eKI_XI_ThumbLRight = 533,
-		eKI_XI_ThumbRX = 534,
-		eKI_XI_ThumbRY = 535,
-		eKI_XI_ThumbRUp = 536,
-		eKI_XI_ThumbRDown = 537,
-		eKI_XI_ThumbRLeft = 538,
-		eKI_XI_ThumbRRight = 539,
-		eKI_XI_TriggerLBtn = 540,
-		eKI_XI_TriggerRBtn = 541,
-		eKI_XI_Connect = 542,
-		eKI_XI_Disconnect = 543,
-		eKI_Orbis_Select = 1024,
-		eKI_Orbis_L3 = 1025,
-		eKI_Orbis_R3 = 1026,
-		eKI_Orbis_Start = 1027,
-		eKI_Orbis_Up = 1028,
-		eKI_Orbis_Right = 1029,
-		eKI_Orbis_Down = 1030,
-		eKI_Orbis_Left = 1031,
-		eKI_Orbis_L2 = 1032,
-		eKI_Orbis_R2 = 1033,
-		eKI_Orbis_L1 = 1034,
-		eKI_Orbis_R1 = 1035,
-		eKI_Orbis_Triangle = 1036,
-		eKI_Orbis_Circle = 1037,
-		eKI_Orbis_Cross = 1038,
-		eKI_Orbis_Square = 1039,
-		eKI_Orbis_StickLX = 1040,
-		eKI_Orbis_StickLY = 1041,
-		eKI_Orbis_StickRX = 1042,
-		eKI_Orbis_StickRY = 1043,
-		eKI_Orbis_RotX = 1044,
-		eKI_Orbis_RotY = 1045,
-		eKI_Orbis_RotZ = 1046,
-		eKI_Orbis_RotX_KeyL = 1047,
-		eKI_Orbis_RotX_KeyR = 1048,
-		eKI_Orbis_RotZ_KeyD = 1049,
-		eKI_Orbis_RotZ_KeyU = 1050,
-		eKI_Orbis_Touch = 1051,
-		eKI_SYS_Commit = 8192,
-		eKI_SYS_ConnectDevice = 8193,
-		eKI_SYS_DisconnectDevice = 8194
-	};
 	enum class ESaveGameMethod {
 		eSGM_NoSave = 0,
 		eSGM_QuickSave = 1,
@@ -505,77 +305,6 @@ namespace ArkNpc {
 		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_TEXTURES = 11,
 		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_END = 12,
 		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_COMPLETE = 13
-	};
-	enum class ESystemEvent {
-		ESYSTEM_EVENT_RANDOM_SEED = 1,
-		ESYSTEM_EVENT_RANDOM_ENABLE = 2,
-		ESYSTEM_EVENT_RANDOM_DISABLE = 3,
-		ESYSTEM_EVENT_CHANGE_FOCUS = 10,
-		ESYSTEM_EVENT_MOVE = 11,
-		ESYSTEM_EVENT_RESIZE = 12,
-		ESYSTEM_EVENT_ACTIVATE = 13,
-		ESYSTEM_EVENT_POS_CHANGED = 14,
-		ESYSTEM_EVENT_STYLE_CHANGED = 15,
-		ESYSTEM_EVENT_LEVEL_LOAD_START_PRELOADINGSCREEN = 16,
-		ESYSTEM_EVENT_LEVEL_LOAD_RESUME_GAME = 17,
-		ESYSTEM_EVENT_LEVEL_LOAD_PREPARE = 18,
-		ESYSTEM_EVENT_LEVEL_LOAD_START_LOADINGSCREEN = 19,
-		ESYSTEM_EVENT_LEVEL_LOAD_LOADINGSCREEN_ACTIVE = 20,
-		ESYSTEM_EVENT_LEVEL_LOAD_START = 21,
-		ESYSTEM_EVENT_LEVEL_LOAD_END = 22,
-		ESYSTEM_EVENT_LEVEL_LOAD_ERROR = 23,
-		ESYSTEM_EVENT_LEVEL_NOT_READY = 24,
-		ESYSTEM_EVENT_LEVEL_PRECACHE_START = 25,
-		ESYSTEM_EVENT_LEVEL_PRECACHE_CAMERA_READY = 26,
-		ESYSTEM_EVENT_LEVEL_PRECACHE_FIRST_FRAME = 27,
-		ESYSTEM_EVENT_LEVEL_GAMEPLAY_START = 28,
-		ESYSTEM_EVENT_LEVEL_UNLOAD = 29,
-		ESYSTEM_EVENT_LEVEL_POST_UNLOAD = 30,
-		ESYSTEM_EVENT_GAME_MATERIALS_UNLOADED = 31,
-		ESYSTEM_EVENT_GAME_CONTEXT_END_START = 32,
-		ESYSTEM_EVENT_GAME_CONTEXT_END_DONE = 33,
-		ESYSTEM_EVENT_TRANSITION_GAME_STATE_LOADED = 34,
-		ESYSTEM_EVENT_GAME_POST_INIT = 35,
-		ESYSTEM_EVENT_GAME_POST_INIT_DONE = 36,
-		ESYSTEM_EVENT_FULL_SHUTDOWN = 37,
-		ESYSTEM_EVENT_FAST_SHUTDOWN = 38,
-		ESYSTEM_EVENT_LANGUAGE_CHANGE = 39,
-		ESYSTEM_EVENT_TOGGLE_FULLSCREEN = 40,
-		ESYSTEM_EVENT_SHARE_SHADER_COMBINATIONS = 41,
-		ESYSTEM_EVENT_3D_POST_RENDERING_START = 42,
-		ESYSTEM_EVENT_3D_POST_RENDERING_END = 43,
-		ESYSTEM_EVENT_SWITCHING_TO_LEVEL_HEAP = 44,
-		ESYSTEM_EVENT_SWITCHED_TO_LEVEL_HEAP = 45,
-		ESYSTEM_EVENT_SWITCHING_TO_GLOBAL_HEAP = 46,
-		ESYSTEM_EVENT_SWITCHED_TO_GLOBAL_HEAP = 47,
-		ESYSTEM_EVENT_LEVEL_PRECACHE_END = 48,
-		ESYSTEM_EVENT_GAME_MODE_SWITCH_START = 49,
-		ESYSTEM_EVENT_GAME_MODE_SWITCH_END = 50,
-		ESYSTEM_EVENT_VIDEO = 51,
-		ESYSTEM_EVENT_GAME_PAUSED = 52,
-		ESYSTEM_EVENT_GAME_RESUMED = 53,
-		ESYSTEM_EVENT_TIME_OF_DAY_SET = 54,
-		ESYSTEM_EVENT_EDITOR_ON_INIT = 55,
-		ESYSTEM_EVENT_FRONTEND_INITIALISED = 56,
-		ESYSTEM_EVENT_EDITOR_GAME_MODE_CHANGED = 57,
-		ESYSTEM_EVENT_EDITOR_SIMULATION_MODE_CHANGED = 58,
-		ESYSTEM_EVENT_FRONTEND_RELOADED = 59,
-		ESYSTEM_EVENT_PLM_ON_RESUMING = 60,
-		ESYSTEM_EVENT_PLM_ON_SUSPENDING = 61,
-		ESYSTEM_EVENT_PLM_ON_CONSTRAINED = 62,
-		ESYSTEM_EVENT_PLM_ON_FULL = 63,
-		ESYSTEM_EVENT_PLM_ON_TERMINATED = 64,
-		ESYSTEM_EVENT_PLM_ON_SUSPENDING_COMPLETED = 65,
-		ESYSTEM_EVENT_CONTROLLER_REMOVED = 66,
-		ESYSTEM_EVENT_CONTROLLER_ADDED = 67,
-		ESYSTEM_EVENT_STREAMING_INSTALL_ERROR = 68,
-		ESYSTEM_EVENT_ONLINE_SERVICES_INITIALISED = 69,
-		ESYSTEM_EVENT_AUDIO_IMPLEMENTATION_LOADED = 70,
-		ESYSTEM_EVENT_USER = 4096,
-		ESYSTEM_EVENT_CRYSYSTEM_INIT_DONE = 4097,
-		ESYSTEM_EVENT_ENTITY_UNLOAD = 4098,
-		ESYSTEM_EVENT_LOAD_SAVE_STARTED = 4099,
-		ESYSTEM_EVENT_QUICKLOAD_SAVE_FINISHED = 4100
 	};
 	enum class EType {
 		Button = 0,
@@ -665,8 +394,6 @@ namespace ArkNpc {
 	{
 		TODO = 0
 	};
-
-
 
 	class StagingInfo
 	{
@@ -1634,22 +1361,26 @@ namespace ArkNpc {
 		int32_t nRef;
 		char pad[4];
 	};
-	union ScriptAnyValue_u_8 {
-	public:
-		bool b;
-		float number;
-		char* str;
-		IScriptTable* table;
-		void* ptr;
-		SScriptFuncHandle* function;
-		Vec3_tpl<float> vec3;
-		userData ud;
-	};
+
 	class ScriptAnyValue {
 	public:
+		struct Vec3Triv {
+			float x, y, z;
+		};
+
 		ScriptAnyType type;
 		char pad[4];
-		ScriptAnyValue_u_8 value;
+
+		union {
+			bool b;
+			float number;
+			char *str;
+			IScriptTable *table;
+			void *ptr;
+			SScriptFuncHandle *function;
+			Vec3Triv vec3;
+			userData ud;
+		} value;
 	};
 	class ScriptVarType {
 		
@@ -2657,8 +2388,6 @@ namespace ArkNpc {
 	class SEntityEvent{};
 	class ICrySizer{};
 	class IGameObject{};
-	template<typename T> class CSerializeWrapper{};
-	class ISerialize{};
 	class ChunkTypes{};
 	class EEndianness{};
 	class SIPv4Addr{};
@@ -3188,10 +2917,6 @@ namespace ArkNpc {
 			m_head,
 			m_eyes,
 			m_aim;
-	};
-	class CTimeValue {
-	public:
-		uint64_t m_lValue;
 	};
 	
 	namespace ArkNpc {
@@ -6083,7 +5808,6 @@ namespace ArkNpc {
 		class CLightningGameEffect{};
 		class CParameterGameEffect{};
 		class CWorldBuilder{};
-		class IInputEventListener{};
 		class CColorGradientManager{};
 		class CGameAISystem{};
 		
@@ -6098,17 +5822,12 @@ namespace ArkNpc {
 
 		
 		class IOutputPrintSink {};
-		class ITexture		   {};
-		
 		class IFFont		   {};
-		class IRenderer		   {};
-		class IInput 		   {};
-		class ITimer 		   {};
+		class IRenderer;
 		class INetwork		   {};
 		
 		class IConsoleArgumentAutoComplete {};
 		class IConsoleVarSink{};
-		class SInputSymbol{};
 		// class CXConsoleVariableFloatRef {
 		// 	
 		// };
@@ -6127,19 +5846,6 @@ namespace ArkNpc {
 			CryStringT<char> command;
 			bool silentMode;
 			char pad[7];
-		};
-		class SInputEvent {
-		public:
-			EInputDeviceType deviceType;
-			EInputState state;
-			wchar_t inputChar;
-			char pad[6];
-			EKeyId keyId;
-			int32_t modifiers;
-			float value;
-			SInputSymbol* pSymbol;
-			unsigned char deviceIndex;
-			char pad2[7];
 		};
 		class SConfigVar {
 		public:
@@ -6264,7 +5970,6 @@ namespace ArkNpc {
 			bool m_param;
 		};
 		class ArkNpcAbilityInstance {};
-		class IHardwareMouse{};
 		class IDialogSystem{};
 		class IFlowSystem{};
 		class INameTable{};

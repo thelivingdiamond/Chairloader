@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "ChairloaderUtils.h"
+
+ChairloaderUtils *chairloader = nullptr;
+
 SEntitySpawnParams* ChairloaderUtils::
 CreateEntitySpawnParameters(char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, SEntitySpawnParams* params) {
 	params->vScale.x = 1;
