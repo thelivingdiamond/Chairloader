@@ -251,7 +251,7 @@
     <ClInclude Include="ChairloaderGUIPlayerManager.h" />
     <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="ArkEnums.h" />
-    <ClInclude Include="CharLoaderImGui.h" />
+    <ClInclude Include="ChairLoaderImGui.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="ImGui\imgui_widget_flamegraph.h" />
@@ -293,7 +293,7 @@
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
     <ClCompile Include="EntityUtils.cpp" />
-    <ClCompile Include="CharLoaderImGui.cpp" />
+    <ClCompile Include="ChairLoaderImGui.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="ImGui\imgui_widget_flamegraph.cpp" />
     <ClCompile Include="mem.cpp" />

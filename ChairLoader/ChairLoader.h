@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include "PreyFunctions.h"
-#include "CharLoaderImGui.h"
+#include "ChairLoaderImGui.h"
 
 class ChairLoader {
 public:

@@ -93,7 +93,7 @@
     <ClInclude Include="ChairLoader.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="CharLoaderImGui.h">
+    <ClInclude Include="ChairLoaderImGui.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
     <ClInclude Include="Prey\CrySystem\ISystem.h">
@@ -227,7 +227,7 @@
     <ClCompile Include="ChairLoader.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
-    <ClCompile Include="CharLoaderImGui.cpp">
+    <ClCompile Include="ChairLoaderImGui.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
     <ClCompile Include="PerfOverlay.cpp">
