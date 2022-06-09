@@ -48,8 +48,8 @@ public:
 		int generatedCount;
 	};
 public:
-	ChairloaderUtils(uintptr_t moduleBase);
-	NpcSpawnHelper* spawnerHelper;
+	ChairloaderUtils();
+	NpcSpawnHelper spawnerHelper;
 	
 	ArkPlayer* ArkPlayerPtr();
 

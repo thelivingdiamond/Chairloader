@@ -702,12 +702,12 @@ private:
                 }
                 if ((archetypeName.find("ArkRobots") != std::string::npos || archetypeName.find("ArkHumans") != std::string::npos || archetypeName.find("ArkNpcs") != std::string::npos) && archetypeName != "Turrets.Turret_Default") {
                     if (request.spawnCount == 1) {
-                        IEntity* spawnerEntity = chairloader->spawnerHelper->GetVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                        IEntity* spawnerEntity = chairloader->spawnerHelper.GetVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
                         if (spawnerEntity != nullptr) {
-                            const char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
+                            const char* oldArchetypeName = chairloader->spawnerHelper.SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
                                 CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-                                // chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawner);
+                                // chairloader->spawnerHelper.setEntityArchetype(request.archetype->m_id, spawner);
                                 spawner->m_Entity->m_worldTM.m03 = request.pos.x;
                                 spawner->m_Entity->m_worldTM.m13 = request.pos.y;
                                 spawner->m_Entity->m_worldTM.m23 = request.pos.z;
@@ -720,7 +720,7 @@ private:
                                 // Sleep(5);
                                 // return newEntity;
 
-                                // IEntity* newEntity = chairloader->spawnerHelper->SpawnNpc(spawner, (char*)request.name.c_str());
+                                // IEntity* newEntity = chairloader->spawnerHelper.SpawnNpc(spawner, (char*)request.name.c_str());
 
                                 // printf("spawned an entity\n");
                                 // if (newEntity != nullptr) {
@@ -731,7 +731,7 @@ private:
                                 // else {
                                 //     throw("Error, null entity spawned");
                                 // }
-                                // chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                                // chairloader->spawnerHelper.setEntityArchetype(oldArchetypeName, spawnerEntity);
                                 log->logItem("Spawned entity", modName);
                             }
                             else {
@@ -743,13 +743,13 @@ private:
                         }
                     }
                     else {
-                        IEntity* spawnerEntity = chairloader->spawnerHelper->GetVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                        IEntity* spawnerEntity = chairloader->spawnerHelper.GetVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
                         if (spawnerEntity != nullptr) {
-                            const char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
+                            const char* oldArchetypeName = chairloader->spawnerHelper.SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
                                 CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                                 for (int i = 0; i < request.spawnCount; i++) {
-                                    IEntity* newEntity = chairloader->spawnerHelper->SpawnNpc(spawner, (char*)request.name.c_str());
+                                    IEntity* newEntity = chairloader->spawnerHelper.SpawnNpc(spawner, (char*)request.name.c_str());
                                     if (newEntity != nullptr) {
                                         newEntity->SetPos(&request.pos, 0, true, false);
                                         //                                 if(!request.name.empty())
@@ -761,7 +761,7 @@ private:
                                     }
                                     Sleep(10);
                                 }
-                                chairloader->spawnerHelper->SetEntityArchetype(oldArchetypeName, spawnerEntity);
+                                chairloader->spawnerHelper.SetEntityArchetype(oldArchetypeName, spawnerEntity);
                                 log->logItem("Spawned entity successfully", modName);
                                 // return logMessage{ , time(nullptr), logLevel::normal };
                             }
