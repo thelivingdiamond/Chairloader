@@ -54,7 +54,7 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="preyFunctions.h">
+    <ClInclude Include="PreyFunctions.h">
       <Filter>Prey</Filter>
     </ClInclude>
     <ClInclude Include="ChairloaderUtils.h">
@@ -203,7 +203,7 @@
     <ClCompile Include="PreyDllObjects.cpp">
       <Filter>Prey</Filter>
     </ClCompile>
-    <ClCompile Include="preyFunctions.cpp">
+    <ClCompile Include="PreyFunctions.cpp">
       <Filter>Prey</Filter>
     </ClCompile>
     <ClCompile Include="ChairloaderUtils.cpp">

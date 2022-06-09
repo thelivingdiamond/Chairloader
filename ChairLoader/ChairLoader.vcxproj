@@ -258,7 +258,7 @@
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PerfOverlay.h" />
-    <ClInclude Include="preyFunctions.h" />
+    <ClInclude Include="PreyFunctions.h" />
     <ClInclude Include="preyDllObjects.h" />
     <ClInclude Include="Prey\CryCore\BaseTypes.h" />
     <ClInclude Include="Prey\CryCore\Compiler\MSVCspecific.h" />
@@ -306,7 +306,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Library|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="PerfOverlay.cpp" />
-    <ClCompile Include="preyFunctions.cpp" />
+    <ClCompile Include="PreyFunctions.cpp" />
     <ClCompile Include="PreyDllObjects.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="Profiler.cpp" />
