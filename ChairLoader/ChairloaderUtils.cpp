@@ -36,7 +36,7 @@ CreateEntitySpawnParameters(char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* r
 	return params;
 }
 
-void ChairloaderUtils::dumpEntity(CEntity* entity, bool dumpProxies) {
+void ChairloaderUtils::DumpEntity(CEntity* entity, bool dumpProxies) {
 	if (entity != nullptr) {
 		std::cout << "entity: " << entity << std::endl;
 		std::cout << "id:" << entity->m_nID << std::endl;
@@ -76,7 +76,7 @@ void ChairloaderUtils::dumpEntity(CEntity* entity, bool dumpProxies) {
 		std::cout << "Null Entity" << std::endl << std::endl;
 	}
 }
-void ChairloaderUtils::dumpGameObject(CGameObject* obj) {
+void ChairloaderUtils::DumpGameObject(CGameObject* obj) {
 	if (obj != nullptr) {
 		std::cout << "CGameObject:" << obj << std::endl;
 		std::cout << "Action Delegate:" << obj->m_pActionDelegate << std::endl;
@@ -105,18 +105,18 @@ void ChairloaderUtils::dumpGameObject(CGameObject* obj) {
 }
 
 
-char* ChairloaderUtils::NpcSpawnHelper::getNextUniqueName() {
+char* ChairloaderUtils::NpcSpawnHelper::GetNextUniqueName() {
 	lastUniqueName = nextUniqueName;
 	generatedCount++;
 	nextUniqueName = "newEntity";
 	nextUniqueName += std::to_string(generatedCount);
 	return (char*)lastUniqueName.c_str();
 }
-char* ChairloaderUtils::NpcSpawnHelper::getLastUniqueName() {
+char* ChairloaderUtils::NpcSpawnHelper::GetLastUniqueName() {
 	return (char*)lastUniqueName.c_str();
 }
 
-IEntity* ChairloaderUtils::NpcSpawnHelper::getVictimSpawnerEntity(EntityType type) {
+IEntity* ChairloaderUtils::NpcSpawnHelper::GetVictimSpawnerEntity(EntityType type) {
 	IEntity* spawnerEntity = nullptr;
 	if (type == EntityType::human) {
 		spawnerEntity = staticObjects->pEntitySystem->FindEntityByName((char*)"Igwe");
@@ -140,7 +140,7 @@ ChairloaderUtils::NpcSpawnHelper::NpcSpawnHelper(preyFunctions* functions, gameE
 	lastUniqueName = "";
 	nextUniqueName = "newEntity0";
 }
-char* ChairloaderUtils::NpcSpawnHelper::setEntityArchetype(uint64_t archetypeId, IEntity* spawnerEntity) {
+char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archetypeId, IEntity* spawnerEntity) {
 	if(privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return nullptr;
@@ -177,7 +177,7 @@ char* ChairloaderUtils::NpcSpawnHelper::setEntityArchetype(uint64_t archetypeId,
 	}
 	return nullptr;
 }
-char* ChairloaderUtils::NpcSpawnHelper::setEntityArchetype(char* archetypeName, IEntity* spawnerEntity) {
+char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(char* archetypeName, IEntity* spawnerEntity) {
 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return nullptr;
@@ -214,7 +214,7 @@ char* ChairloaderUtils::NpcSpawnHelper::setEntityArchetype(char* archetypeName, 
 }
 
 
-IEntityArchetype* ChairloaderUtils::NpcSpawnHelper::getEntityArchetype(CArkNpcSpawner* npcSpawner) {
+IEntityArchetype* ChairloaderUtils::NpcSpawnHelper::GetEntityArchetype(CArkNpcSpawner* npcSpawner) {
 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return nullptr;
@@ -222,14 +222,14 @@ IEntityArchetype* ChairloaderUtils::NpcSpawnHelper::getEntityArchetype(CArkNpcSp
 
 	return privateFuncs->CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)npcSpawner);
 }
-// CArkNpcSpawner* ChairloaderUtils::NpcSpawnHelper::createNewNpcSpawner(uint64_t archetypeId, char* name) {
+// CArkNpcSpawner* ChairloaderUtils::NpcSpawnHelper::CreateNewNpcSpawner(uint64_t archetypeId, char* name) {
 // 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 // 		std::cout << "Error, private functions or static objects uninitialized";
 // 		return nullptr;
 // 	}
 //
 // }
-IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpc(CArkNpcSpawner* spawner, char* name) {
+IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, char* name) {
 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return nullptr;
@@ -250,7 +250,7 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpc(CArkNpcSpawner* spawner, cha
 	}
 	return nullptr;
 }
-// std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::spawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount) {
+// std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount) {
 // 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 // 		std::cout << "Error, private functions or static objects uninitialized";
 // 		return {};
@@ -277,69 +277,69 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpc(CArkNpcSpawner* spawner, cha
 // 	}
 // 	return {};
 // }
-IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type) {
+IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type) {
 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return nullptr;
 	}
-	IEntity* spawnerEntity = getVictimSpawnerEntity(type);
+	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
 
 	if (spawnerEntity != nullptr) {
-		char* oldArchetypeName = setEntityArchetype(archetypeId, spawnerEntity);
+		char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
 		if (oldArchetypeName != nullptr) {
 			CArkNpcSpawner* spawner = privateFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-			IEntity* newEntity = spawnNpc(spawner, name);
-			setEntityArchetype(oldArchetypeName, spawnerEntity);
+			IEntity* newEntity = SpawnNpc(spawner, name);
+			SetEntityArchetype(oldArchetypeName, spawnerEntity);
 			return newEntity;
 		}
 	}
 	return nullptr;
 }
 
-std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type, Vec3_tpl<float> * pos, uint32_t spawnCount) {
+std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, char* name, EntityType type, Vec3_tpl<float> * pos, uint32_t spawnCount) {
 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return {};
 	}
-	IEntity* spawnerEntity = getVictimSpawnerEntity(type);
+	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
 	std::vector<IEntity*> newEntities;
 	if (spawnerEntity != nullptr) {
-		char* oldArchetypeName = setEntityArchetype(archetypeId, spawnerEntity);
+		char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
 		CArkNpcSpawner* spawner = privateFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 		Vec3_tpl<float> oldpos = spawner->m_Entity->m_vPos;
 		spawner->m_Entity->m_vPos.x = pos->x;
 		spawner->m_Entity->m_vPos.y = pos->y;
 		spawner->m_Entity->m_vPos.z = pos->z;
 		for (auto i = 0; i <= spawnCount; i++) {
-			IEntity* newEntity = spawnNpc(spawner, name);
+			IEntity* newEntity = SpawnNpc(spawner, name);
 			newEntity->SetPos(pos, 0, false, false);
 			newEntities.emplace_back(newEntity);
 		}
 		spawner->m_Entity->m_vPos = oldpos;
-		setEntityArchetype(oldArchetypeName, spawnerEntity);
+		SetEntityArchetype(oldArchetypeName, spawnerEntity);
 		return newEntities;
 	}
 	return {};
 }
 
-IEntity* ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(uint64_t archetypeId, EntityType type) {
+IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type) {
 	if (privateFuncs == nullptr || staticObjects == nullptr) {
 		std::cout << "Error, private functions or static objects uninitialized";
 		return nullptr;
 	}
-	IEntity* spawnerEntity = getVictimSpawnerEntity(type);
+	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
 
 	if (spawnerEntity != nullptr) {
-		char* oldArchetypeName = setEntityArchetype(archetypeId, spawnerEntity);
+		char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
 		CArkNpcSpawner* spawner = privateFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-		IEntity* newEntity = spawnNpc(spawner, getNextUniqueName());
-		setEntityArchetype(oldArchetypeName, spawnerEntity);
+		IEntity* newEntity = SpawnNpc(spawner, GetNextUniqueName());
+		SetEntityArchetype(oldArchetypeName, spawnerEntity);
 		return newEntity;
 	}
 	return nullptr;
 }
 
-std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::spawnNpcFromArchetype(uint64_t archetypeId, EntityType type,
+std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type,
 	uint32_t spawnCount) {
 	return {};
 }
