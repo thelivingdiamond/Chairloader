@@ -3,7 +3,6 @@
 #include <Prey/CrySystem/Profiling.h>
 #include "Profiler.h"
 #include "ChairLoader.h"
-#include "ChairloaderUtils.h"
 #include "ImGui/imgui_widget_flamegraph.h"
 
 Profiler *g_pProfiler = nullptr;
@@ -209,7 +208,7 @@ void ProfilerValueGetter(float *startTimestamp, float *endTimestamp, ImU8 *level
 
 Profiler::Profiler() {
 	UpdateTicksPerSecond();
-	m_JobManagerHook.HookObject(chairloader->preyEnvironmentPointers->pJobManager);
+	m_JobManagerHook.HookObject(gEnv->pJobManager);
 	g_TickOffset = GetCPUTickCount();
 }
 

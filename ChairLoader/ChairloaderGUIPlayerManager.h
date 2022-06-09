@@ -1,10 +1,10 @@
 #pragma once
 #include "pch.h"
 
-#include "ArkBasicTypes.h"
-#include "ChairloaderUtils.h"
+#include <Prey/ArkBasicTypes.h>
+#include "EntityUtils.h"
 #include "preyDllObjects.h"
-#include "ArkEntityArchetypeLibrary.h"
+#include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"
 class ChairloaderGUIPlayerManager
 {
@@ -50,7 +50,7 @@ public:
                     ImGui::EndChild();
                 }
                 //TODO: figure out how to remove abilities too
-                // std::vector<ArkAbilityData>* abilities = &chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+                // std::vector<ArkAbilityData>* abilities = &gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
                 // if (!abilities->empty()) {
                 //     ImGui::Text("Size: %d\n", abilities->size());
                 //     int clip = 0;
@@ -105,20 +105,20 @@ public:
         }
     }
 
-    void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
-        if (!chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
-            abilityRequestHandler(chairloader, log);
+    void update(ChairloaderGUILog* log) {
+        if (!gEnv->pSystem->IsPaused()) {
+            abilityRequestHandler(log);
         }
-        checkAbilities(chairloader, log);
+        checkAbilities(log);
     }
 private:
     // Handlers
-    void checkAbilities(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void checkAbilities(ChairloaderGUILog* log) {
         if (refreshAbilityList) {
-            if (chairloader->ArkPlayerPtr() != nullptr) {
+            if (gEntUtils->ArkPlayerPtr() != nullptr) {
                 for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
-                    if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-                        itr->acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->id);
+                    if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+                        itr->acquired = gPreyFuncs->ArkAbilityComponentF->HasAbility(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->id);
                     }
                     //abilityDisplayList.emplace_back(entry);
                 }
@@ -132,14 +132,14 @@ private:
             }
         }
     }
-    void abilityRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void abilityRequestHandler(ChairloaderGUILog* log) {
         try {
             if (!AbilityListInitialized) {
-                if (chairloader->ArkPlayerPtr() != nullptr) {
-                    for (auto itr = chairloader->abilityLibrary.arkAbilityMap.begin(); itr != chairloader->abilityLibrary.arkAbilityMap.end(); ++itr) {
+                if (gEntUtils->ArkPlayerPtr() != nullptr) {
+                    for (auto itr = gEntUtils->abilityLibrary.arkAbilityMap.begin(); itr != gEntUtils->abilityLibrary.arkAbilityMap.end(); ++itr) {
                         abilityEntry entry = { itr->first, itr->second, false };
-                        if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-                            if (chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
+                        if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+                            if (gPreyFuncs->ArkAbilityComponentF->HasAbility(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
                                 entry.acquired = true;
                             }
                         }
@@ -164,13 +164,13 @@ private:
                     }
                     if (entry != nullptr) {
                         if (!entry->acquired) {
-                            if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
-                                chairloader->internalPreyFunctions->ArkAbilityComponentF->GrantAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id);
+                            if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !gPreyFuncs->ArkAbilityComponentF->HasAbility(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
+                                gPreyFuncs->ArkAbilityComponentF->GrantAbility(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id);
 
-                                // printf("Granted Ability: %s\n", chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
+                                // printf("Granted Ability: %s\n", gEntUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
                                 entry->acquired = true;
-                                // std::string msg = "Granted Ability: " + chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n";
-                                log->logItem(("Granted Ability: " + chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n"), modName);
+                                // std::string msg = "Granted Ability: " + gEntUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n";
+                                log->logItem(("Granted Ability: " + gEntUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n"), modName);
                             }
                             else {
                                 throw("Error, Ability Component Not Found");

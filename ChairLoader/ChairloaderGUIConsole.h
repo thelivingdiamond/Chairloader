@@ -1,10 +1,9 @@
 #pragma once
 #include "pch.h"
 
-#include "ArkBasicTypes.h"
-#include "ChairloaderUtils.h"
+#include <Prey/ArkBasicTypes.h>
 #include "preyDllObjects.h"
-#include "ArkEntityArchetypeLibrary.h"
+#include <Prey/ArkEntityArchetypeLibrary.h>
 class ChairloaderGUIConsole
 {
 public:

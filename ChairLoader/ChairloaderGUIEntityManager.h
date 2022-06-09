@@ -1,11 +1,12 @@
 #pragma once
 #include "pch.h"
 
-#include "ArkBasicTypes.h"
-#include "ChairloaderUtils.h"
+#include <Prey/ArkBasicTypes.h>
+#include "EntityUtils.h"
 #include "preyDllObjects.h"
-#include "ArkEntityArchetypeLibrary.h"
+#include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"
+#include "ChairLoader.h"
 
 class ChairloaderGUIEntityManager
 {
@@ -49,16 +50,14 @@ private:
     std::string archetypeFilterText, oldArchetypeFilterText;
     std::queue<archetypeFilterRequest> archetypeFilterRequestQueue;
     std::vector<CEntityArchetype*> archetypeFilteredList;
-    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
+    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
     std::queue<entityModifyRequest> modifyQueue;
 
-    // ChairloaderUtils* chairloaderGlobal;
-
 public:
-    ChairloaderGUIEntityManager(ChairloaderUtils* chairloaderIn) {
+    ChairloaderGUIEntityManager() {
         archetypeToSpawn = nullptr;
         // chairloaderGlobal = chairloaderIn;
-        archetypeList = &chairloaderIn->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
+        archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
         archetypeFilterRequestQueue.push(archetypeFilterRequest{ "" });
     }
     ~ChairloaderGUIEntityManager() {
@@ -500,7 +499,7 @@ public:
         }
         ImGui::End();
     }
-    void drawMenuBar(bool* control, ChairloaderUtils* chairloader) {
+    void drawMenuBar(bool* control) {
         if (ImGui::BeginMenu("Entity")) {
 
             if (ImGui::BeginMenu("Spawn Entity")) {
@@ -594,18 +593,18 @@ public:
         }
     }
 
-    void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
-        if (!chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
+    void update(ChairloaderGUILog* log) {
+        if (!gEnv->pSystem->IsPaused()) {
             
         }
-        entityModifyHandler(chairloader, log);
-        archetypeSpawnRequestHandler(chairloader, log);
-        archetypeFilterRequestHandler(chairloader, log);
-        filterEntityList(chairloader, log);
+        entityModifyHandler(log);
+        archetypeSpawnRequestHandler(log);
+        archetypeFilterRequestHandler(log);
+        filterEntityList(log);
     }
 
 private:
-    void entityModifyHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void entityModifyHandler(ChairloaderGUILog* log) {
         try {
             if (!modifyQueue.empty()) {
                 entityModifyRequest request = modifyQueue.front();
@@ -634,9 +633,9 @@ private:
                         throw("Null Scale");
                     }
                 } if (request.type == entityModifyType::playerPos) {
-                    if (chairloader->ArkPlayerPtr() != nullptr) {
+                    if (gEntUtils->ArkPlayerPtr() != nullptr) {
                         Vec3_tpl<float> pos;
-                        chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(chairloader->ArkPlayerPtr(), &pos);
+                        gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(gEntUtils->ArkPlayerPtr(), &pos);
                         ((IEntity*)request.entity)->SetPos(&pos, 0, false, false);
                         log->logItem("set entity pos to player pos", modName);
                     }
@@ -648,13 +647,13 @@ private:
             log->logItem(msg + c, modName, ChairloaderGUILog::logLevel::error);
         }
     }
-    void filterEntityList(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void filterEntityList(ChairloaderGUILog* log) {
         if (refreshDisplayList) {
-            selected == nullptr;
+            selected = nullptr;
             entityDisplayList.clear();
             int i = 0;
 
-            for (auto itr = chairloader->preyEnvironmentPointers->pEntitySystem->m_EntityArray.begin(); itr != chairloader->preyEnvironmentPointers->pEntitySystem->m_EntityArray.end(); ++itr) {
+            for (auto itr = gEnv->pEntitySystem->m_EntityArray.begin(); itr != gEnv->pEntitySystem->m_EntityArray.end(); ++itr) {
                 if (*itr != nullptr) {
                     if ((*itr)->m_szName.m_str != nullptr) {
                         std::string name = (*itr)->m_szName.m_str;
@@ -670,26 +669,26 @@ private:
             refreshDisplayList = false;
         }
     }
-    void archetypeSpawnRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
-        if (!archetypeSpawnRequestQueue.empty() && !chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
+    void archetypeSpawnRequestHandler(ChairloaderGUILog* log) {
+        if (!archetypeSpawnRequestQueue.empty() && !gEnv->pSystem->IsPaused()) {
             try {
 
                 spawnRequest request = archetypeSpawnRequestQueue.front();
                 archetypeSpawnRequestQueue.pop();
                 std::string archetypeName = request.archetype->m_name.m_str;
 
-                // chairloader->entityArchetypeLibrary.
+                // gEntUtils->entityArchetypeLibrary.
                 if (request.usePlayerPos) {
                     Vec3_tpl<float> playerPos;
-                    ArkPlayer* player = chairloader->internalPreyFunctions->ArkPlayerF->getInstance();
-                    chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(player, &playerPos);
+                    ArkPlayer* player = gPreyFuncs->ArkPlayerF->getInstance();
+                    gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(player, &playerPos);
                     if (player != nullptr) {
                         // player->GetLocalEyePos(&playerPos);
                         // printf("Player Position x: %f y: %f z:%f\n", playerPos.x, playerPos.y, playerPos.z);
                         if (playerPos.x != 0 && playerPos.y != 0 && playerPos.z != 0) {
                             if (request.offsetFromPlayer) {
-                                playerPos.x += chairloader->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
-                                playerPos.y += chairloader->ArkPlayerPtr()->m_cachedReticleDir.y * 5;
+                                playerPos.x += gEntUtils->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
+                                playerPos.y += gEntUtils->ArkPlayerPtr()->m_cachedReticleDir.y * 5;
                             }
                             request.pos = playerPos;
                         }
@@ -703,25 +702,25 @@ private:
                 }
                 if ((archetypeName.find("ArkRobots") != std::string::npos || archetypeName.find("ArkHumans") != std::string::npos || archetypeName.find("ArkNpcs") != std::string::npos) && archetypeName != "Turrets.Turret_Default") {
                     if (request.spawnCount == 1) {
-                        IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                        IEntity* spawnerEntity = gEntUtils->spawnerHelper.GetVictimSpawnerEntity(EntityUtils::EntityType::mimic);
                         if (spawnerEntity != nullptr) {
-                            char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
+                            const char* oldArchetypeName = gEntUtils->spawnerHelper.SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
-                                CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-                                // chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawner);
+                                CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                                // gEntUtils->spawnerHelper.setEntityArchetype(request.archetype->m_id, spawner);
                                 spawner->m_Entity->m_worldTM.m03 = request.pos.x;
                                 spawner->m_Entity->m_worldTM.m13 = request.pos.y;
                                 spawner->m_Entity->m_worldTM.m23 = request.pos.z;
 
-                                chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
+                                gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
                                 // while(spawner->m_lastSpawnedEntityId == oldId) {
                                 // 	// Sleep(1);
                                 // }// Sleep(50);
-                                // IEntity* newEntity = newEntity = chairloader->preyEnvironmentPointers->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
+                                // IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
                                 // Sleep(5);
                                 // return newEntity;
 
-                                // IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                                // IEntity* newEntity = gEntUtils->spawnerHelper.SpawnNpc(spawner, (char*)request.name.c_str());
 
                                 // printf("spawned an entity\n");
                                 // if (newEntity != nullptr) {
@@ -732,7 +731,7 @@ private:
                                 // else {
                                 //     throw("Error, null entity spawned");
                                 // }
-                                // chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                                // gEntUtils->spawnerHelper.setEntityArchetype(oldArchetypeName, spawnerEntity);
                                 log->logItem("Spawned entity", modName);
                             }
                             else {
@@ -744,13 +743,13 @@ private:
                         }
                     }
                     else {
-                        IEntity* spawnerEntity = chairloader->spawnerHelper->getVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
+                        IEntity* spawnerEntity = gEntUtils->spawnerHelper.GetVictimSpawnerEntity(EntityUtils::EntityType::mimic);
                         if (spawnerEntity != nullptr) {
-                            char* oldArchetypeName = chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawnerEntity);
+                            const char* oldArchetypeName = gEntUtils->spawnerHelper.SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
-                                CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                                CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                                 for (int i = 0; i < request.spawnCount; i++) {
-                                    IEntity* newEntity = chairloader->spawnerHelper->spawnNpc(spawner, (char*)request.name.c_str());
+                                    IEntity* newEntity = gEntUtils->spawnerHelper.SpawnNpc(spawner, (char*)request.name.c_str());
                                     if (newEntity != nullptr) {
                                         newEntity->SetPos(&request.pos, 0, true, false);
                                         //                                 if(!request.name.empty())
@@ -762,7 +761,7 @@ private:
                                     }
                                     Sleep(10);
                                 }
-                                chairloader->spawnerHelper->setEntityArchetype(oldArchetypeName, spawnerEntity);
+                                gEntUtils->spawnerHelper.SetEntityArchetype(oldArchetypeName, spawnerEntity);
                                 log->logItem("Spawned entity successfully", modName);
                                 // return logMessage{ , time(nullptr), logLevel::normal };
                             }
@@ -784,7 +783,7 @@ private:
                         params->vScale.x = 1;
                         params->vScale.y = 1;
                         params->vScale.z = 1;
-                        uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(chairloader->preyEnvironmentPointers->pEntitySystem, true);
+                        uint32_t id = gPreyFuncs->CEntitySystemF->generateEntityId(gEnv->pEntitySystem, true);
                         params->id = id;
                         params->vPosition.x = request.pos.x;
                         params->vPosition.y = request.pos.y;
@@ -811,13 +810,13 @@ private:
                         params->sceneMask = '\0';
                         IEntity* entity;
 
-                        // IEntityArchetype* archetype = (IEntityArchetype*)chairloader->preyEnvironmentPointers->pEntitySystem->GetEntityArchetype();
+                        // IEntityArchetype* archetype = (IEntityArchetype*)gEnv->pEntitySystem->GetEntityArchetype();
                         if (request.archetype != nullptr) {
                             // log->logItem("Spawn count: " + std::to_string(request.spawnCount), modName.c_str());
 
                             params->vPosition.x += 0.05f;
                             // printf("Spawning\n");
-                            entity = chairloader->preyEnvironmentPointers->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
+                            entity = gEnv->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
 
                         }
                         else {
@@ -834,11 +833,11 @@ private:
             }
         }
     }
-    void archetypeFilterRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void archetypeFilterRequestHandler(ChairloaderGUILog* log) {
         if (!archetypeFilterRequestQueue.empty()) {
             archetypeFilterRequest request = archetypeFilterRequestQueue.front();
             std::string filterText = request.text;
-            std::map<const char*, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
+            std::map<const char*, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
             // static ImGuiTextFilter filter;
             auto itr = archetypeList->begin();
             archetypeFilteredList.clear();

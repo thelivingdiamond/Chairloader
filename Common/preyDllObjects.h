@@ -7,8 +7,8 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
-#include "ArkBasicTypes.h"
-#include "ArkEnums.h"
+#include <Prey/ArkBasicTypes.h>
+#include <Prey/ArkEnums.h>
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
@@ -86,7 +86,7 @@ public:
 	char pad[2];
 };
 class CEntitySystem;
-class gameEnvironmentPointers {
+class SSystemGlobalEnvironment {
 	// typedef CGame* _g_pGame;
 	 // _g_pGame g_pGame;
 	public:
@@ -1379,9 +1379,9 @@ namespace ArkNpc {
 		union {
 			bool b;
 			float number;
-			char *str;
+			const char *str;
 			IScriptTable *table;
-			void *ptr;
+			const void *ptr;
 			SScriptFuncHandle *function;
 			Vec3Triv vec3;
 			userData ud;
@@ -1425,8 +1425,8 @@ namespace ArkNpc {
 		virtual void  Release() {}
 		virtual void  Delegate( IScriptTable* param_1) {}
 		virtual void*  GetUserDataValue() {}
-		virtual void  SetValueAny(char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
-		virtual bool  GetValueAny(char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
+		virtual void  SetValueAny(const char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
+		virtual bool  GetValueAny(const char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
 		virtual bool  BeginSetGetChain() {}
 		virtual void  EndSetGetChain() {}
 		virtual  ScriptVarType*  GetValueType(char* param_1) {}
@@ -4379,7 +4379,7 @@ namespace ArkNpc {
 			virtual  IEntity*  GetEntity(uint32_t param_1) {}
 			virtual  IEntity*  ArkSafeGetEntity(uint32_t param_1) {}
 			virtual uint32_t  GetClonedEntityId(uint32_t param_1, uint32_t param_2) {}
-			virtual  IEntity*  FindEntityByName(char* param_1) {}
+			virtual  IEntity*  FindEntityByName(const char* param_1) {}
 			virtual void  ReserveEntityId(uint32_t param_1) {}
 			virtual uint32_t  ReserveUnknownEntityId() {}
 			virtual void  RemoveEntity(uint32_t param_1, bool param_2) {}
@@ -5858,7 +5858,6 @@ namespace ArkNpc {
 			bool m_partOfGroup;
 			char pad[7];
 		};
-		class SSystemGlobalEnvironment{};
 		class IValidator{};
 		class SDefaultValidator{};
 		class CCpuFeatures{};

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <Prey/CrySystem/ITimer.h>
 #include "PerfOverlay.h"
-#include "ChairloaderUtils.h"
+#include "ChairLoader.h"
 
 PerfOverlay::PerfOverlay() {
 #ifdef DEBUG_BUILD
@@ -23,7 +23,7 @@ void PerfOverlay::Update() {
 
 	if (ImGui::Begin("PerfOverlay", nullptr, window_flags)) {
 		// A bit of filtering so it doesn't jump around
-		float frametime = chairloader->preyEnvironmentPointers->pTimer->GetRealFrameTime();
+		float frametime = gEnv->pTimer->GetRealFrameTime();
 		m_LastFrameTime = FILTER_K * frametime + (1 - FILTER_K) * m_LastFrameTime;
 
 		ImGui::Text("FPS: %5.1f", 1.0f / m_LastFrameTime);

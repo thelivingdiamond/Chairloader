@@ -2,7 +2,7 @@
 #include <mutex>
 #include <imgui.h>
 #include <Prey/CryInput/BaseInput.h>
-#include "preyFunctions.h"
+#include "PreyFunctions.h"
 
 class ITexture;
 
@@ -94,7 +94,7 @@ private:
 	void RT_SetupRenderState(RenderLists *list, ID3D11DeviceContext *ctx);
 
 	// Hooks
-	preyFunctions::CBaseInputPrivate::_PostInputEvent m_hookCBaseInputPostInputEvent = nullptr;
+	PreyFunctions::CBaseInputPrivate::_PostInputEvent m_hookCBaseInputPostInputEvent = nullptr;
 	static void CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce);
 
 	using IDXGISwapChain_Present = HRESULT (*)(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags);

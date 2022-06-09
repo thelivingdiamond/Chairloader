@@ -29,7 +29,7 @@ enum EFullscreenMode : int8_t
 	fullscreenWindowed = 0x2,
 };
 
-enum EDeviceMemoryHeap : int8_t
+enum EDeviceMemoryHeap : uint8_t
 {
 	kDeviceMemoryHeap_Invalid = 0xFF,
 	kDeviceMemoryHeap_Textures = 0x0,

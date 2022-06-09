@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
-#include "preyFunctions.h"
-#include "CharLoaderImGui.h"
+#include "PreyFunctions.h"
+#include "ChairLoaderImGui.h"
 
 class ChairLoader {
 public:
@@ -24,13 +24,14 @@ private:
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	FILE *m_pConsoleFile = nullptr;
 	std::thread::id m_MainThreadId;
-	preyFunctions::CGamePrivate::_Update m_CGameUpdate = nullptr;
+	PreyFunctions::CGamePrivate::_Update m_CGameUpdate = nullptr;
 	int m_GuiToggleKey = 0;
 	int m_FreeCamKey = 0;
 	bool m_DevMode;
 	bool m_FreeCamEnabled = false;
 
 	void CreateConsole();
+	void LoadPreyPointers(uintptr_t moduleBase);
 	void HookGameUpdate(uintptr_t moduleBase);
 	void LoadConfigFile();
 	void UpdateFreeCam();
@@ -39,3 +40,4 @@ private:
 };
 
 extern ChairLoader *gCL;
+extern SSystemGlobalEnvironment *gEnv;

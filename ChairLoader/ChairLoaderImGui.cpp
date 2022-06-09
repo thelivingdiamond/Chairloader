@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "CharLoaderImGui.h"
-#include "ChairloaderUtils.h"
+#include "ChairLoaderImGui.h"
+#include "ChairLoader.h"
 #include "mem.h"
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
@@ -23,7 +23,7 @@ ChairLoaderImGui::ChairLoaderImGui() {
 	// Hook functions
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
-	m_hookCBaseInputPostInputEvent = chairloader->internalPreyFunctions->CBaseInputF->PostInputEvent;
+	m_hookCBaseInputPostInputEvent = gPreyFuncs->CBaseInputF->PostInputEvent;
 	DetourAttach(&(LPVOID &)m_hookCBaseInputPostInputEvent, (PBYTE)CBaseInput_PostInputEvent);
 	HookPresent();
 	DetourTransactionCommit();
@@ -40,15 +40,15 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 
 	// Setup display size (every frame to accommodate for window resizing)
 	int x, y, width, height;
-	chairloader->preyEnvironmentPointers->pRenderer->GetViewport(x, y, width, height);
-	io.DisplaySize = ImVec2(width, height);
+	gEnv->pRenderer->GetViewport(x, y, width, height);
+	io.DisplaySize = ImVec2((float)width, (float)height);
 
 	// Setup time step
-	io.DeltaTime = chairloader->preyEnvironmentPointers->pTimer->GetRealFrameTime();
+	io.DeltaTime = gEnv->pTimer->GetRealFrameTime();
 
 	// Update mouse
 	if (haveFocus && io.WantSetMousePos)
-		chairloader->preyEnvironmentPointers->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
+		gEnv->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
 
 	ImGui::NewFrame();
 }
@@ -77,7 +77,7 @@ void ChairLoaderImGui::CreateFontsTexture() {
 	unsigned char *pixels;
 	int width, height;
 	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
-	m_pFontAtlas = chairloader->preyEnvironmentPointers->pRenderer->CreateTexture(
+	m_pFontAtlas = gEnv->pRenderer->CreateTexture(
 		"ImGui Font Atlas", width, height, 1, pixels, eTF_R8G8B8A8, FT_TEX_FONT
 	);
 
@@ -86,7 +86,7 @@ void ChairLoaderImGui::CreateFontsTexture() {
 }
 
 void ChairLoaderImGui::HookPresent() {
-	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(chairloader->preyEnvironmentPointers->pRenderer);
+	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
 	auto pSwapChain = mem::OffsetInStruct<IDXGISwapChain *>(pRenderer, CD3D9Renderer::OFFSET_SWAP_CHAIN);
 
 	DWORD_PTR *pSwapChainVtable = nullptr;
@@ -121,17 +121,17 @@ void ChairLoaderImGui::SubmitRenderData() {
 		DrawList &drawList = data->drawLists.emplace_back();
 		drawList.flags = imDrawList.Flags;
 
-		drawList.cmdOffset = data->drawCmds.size();
+		drawList.cmdOffset = (int)data->drawCmds.size();
 		data->drawCmds.insert(data->drawCmds.end(), imDrawList.CmdBuffer.begin(), imDrawList.CmdBuffer.end());
-		drawList.cmdCount = data->drawCmds.size() - drawList.cmdOffset;
+		drawList.cmdCount = (int)data->drawCmds.size() - drawList.cmdOffset;
 
-		drawList.idxOffset = data->idxBuffer.size();
+		drawList.idxOffset = (int)data->idxBuffer.size();
 		data->idxBuffer.insert(data->idxBuffer.end(), imDrawList.IdxBuffer.begin(), imDrawList.IdxBuffer.end());
-		drawList.idxCount = data->idxBuffer.size() - drawList.idxOffset;
+		drawList.idxCount = (int)data->idxBuffer.size() - drawList.idxOffset;
 
-		drawList.vtxOffset = data->vtxBuffer.size();
+		drawList.vtxOffset = (int)data->vtxBuffer.size();
 		data->vtxBuffer.insert(data->vtxBuffer.end(), imDrawList.VtxBuffer.begin(), imDrawList.VtxBuffer.end());
-		drawList.vtxCount = data->vtxBuffer.size() - drawList.vtxOffset;
+		drawList.vtxCount = (int)data->vtxBuffer.size() - drawList.vtxOffset;
 	}
 }
 
@@ -250,7 +250,7 @@ bool ChairLoaderImGui::RT_Initialize() {
 	RenderThreadData &data = m_pInstance->m_RTData;
 	data.bIsInitialized = true;
 
-	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(chairloader->preyEnvironmentPointers->pRenderer);
+	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
 	const DeviceInfo &devInfo = mem::OffsetInStruct<DeviceInfo>(pRenderer, CD3D9Renderer::OFFSET_DEV_INFO);
 
 	data.pd3dDevice = devInfo.m_pDevice;
@@ -416,7 +416,7 @@ void ChairLoaderImGui::RT_Render() {
 	if (!data.pVB || data.vertexBufferSize < list->vtxBuffer.size())
 	{
 		if (data.pVB) { data.pVB->Release(); data.pVB = NULL; }
-		data.vertexBufferSize = list->vtxBuffer.size() + BUFFER_SIZE_INCREMENT;
+		data.vertexBufferSize = (int)list->vtxBuffer.size() + BUFFER_SIZE_INCREMENT;
 		D3D11_BUFFER_DESC desc;
 		memset(&desc, 0, sizeof(D3D11_BUFFER_DESC));
 		desc.Usage = D3D11_USAGE_DYNAMIC;
@@ -430,7 +430,7 @@ void ChairLoaderImGui::RT_Render() {
 	if (!data.pIB || data.indexBufferSize < list->idxBuffer.size())
 	{
 		if (data.pIB) { data.pIB->Release(); data.pIB = NULL; }
-		data.indexBufferSize = list->idxBuffer.size() + 2 * BUFFER_SIZE_INCREMENT;
+		data.indexBufferSize = (int)list->idxBuffer.size() + 2 * BUFFER_SIZE_INCREMENT;
 		D3D11_BUFFER_DESC desc;
 		memset(&desc, 0, sizeof(D3D11_BUFFER_DESC));
 		desc.Usage = D3D11_USAGE_DYNAMIC;
@@ -658,7 +658,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 		case eKI_MouseXAbsolute: 
 		case eKI_MouseYAbsolute: {
 			float x, y;
-			chairloader->preyEnvironmentPointers->pHardwareMouse->GetHardwareMouseClientPosition(x, y);
+			gEnv->pHardwareMouse->GetHardwareMouseClientPosition(x, y);
 			io.AddMousePosEvent(x, y);
 			break;
 		}
