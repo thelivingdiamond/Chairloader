@@ -649,7 +649,7 @@ private:
     }
     void filterEntityList(ChairloaderGUILog* log) {
         if (refreshDisplayList) {
-            selected == nullptr;
+            selected = nullptr;
             entityDisplayList.clear();
             int i = 0;
 

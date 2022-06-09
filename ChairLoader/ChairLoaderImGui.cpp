@@ -41,7 +41,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	// Setup display size (every frame to accommodate for window resizing)
 	int x, y, width, height;
 	gEnv->pRenderer->GetViewport(x, y, width, height);
-	io.DisplaySize = ImVec2(width, height);
+	io.DisplaySize = ImVec2((float)width, (float)height);
 
 	// Setup time step
 	io.DeltaTime = gEnv->pTimer->GetRealFrameTime();
@@ -121,17 +121,17 @@ void ChairLoaderImGui::SubmitRenderData() {
 		DrawList &drawList = data->drawLists.emplace_back();
 		drawList.flags = imDrawList.Flags;
 
-		drawList.cmdOffset = data->drawCmds.size();
+		drawList.cmdOffset = (int)data->drawCmds.size();
 		data->drawCmds.insert(data->drawCmds.end(), imDrawList.CmdBuffer.begin(), imDrawList.CmdBuffer.end());
-		drawList.cmdCount = data->drawCmds.size() - drawList.cmdOffset;
+		drawList.cmdCount = (int)data->drawCmds.size() - drawList.cmdOffset;
 
-		drawList.idxOffset = data->idxBuffer.size();
+		drawList.idxOffset = (int)data->idxBuffer.size();
 		data->idxBuffer.insert(data->idxBuffer.end(), imDrawList.IdxBuffer.begin(), imDrawList.IdxBuffer.end());
-		drawList.idxCount = data->idxBuffer.size() - drawList.idxOffset;
+		drawList.idxCount = (int)data->idxBuffer.size() - drawList.idxOffset;
 
-		drawList.vtxOffset = data->vtxBuffer.size();
+		drawList.vtxOffset = (int)data->vtxBuffer.size();
 		data->vtxBuffer.insert(data->vtxBuffer.end(), imDrawList.VtxBuffer.begin(), imDrawList.VtxBuffer.end());
-		drawList.vtxCount = data->vtxBuffer.size() - drawList.vtxOffset;
+		drawList.vtxCount = (int)data->vtxBuffer.size() - drawList.vtxOffset;
 	}
 }
 
@@ -416,7 +416,7 @@ void ChairLoaderImGui::RT_Render() {
 	if (!data.pVB || data.vertexBufferSize < list->vtxBuffer.size())
 	{
 		if (data.pVB) { data.pVB->Release(); data.pVB = NULL; }
-		data.vertexBufferSize = list->vtxBuffer.size() + BUFFER_SIZE_INCREMENT;
+		data.vertexBufferSize = (int)list->vtxBuffer.size() + BUFFER_SIZE_INCREMENT;
 		D3D11_BUFFER_DESC desc;
 		memset(&desc, 0, sizeof(D3D11_BUFFER_DESC));
 		desc.Usage = D3D11_USAGE_DYNAMIC;
@@ -430,7 +430,7 @@ void ChairLoaderImGui::RT_Render() {
 	if (!data.pIB || data.indexBufferSize < list->idxBuffer.size())
 	{
 		if (data.pIB) { data.pIB->Release(); data.pIB = NULL; }
-		data.indexBufferSize = list->idxBuffer.size() + 2 * BUFFER_SIZE_INCREMENT;
+		data.indexBufferSize = (int)list->idxBuffer.size() + 2 * BUFFER_SIZE_INCREMENT;
 		D3D11_BUFFER_DESC desc;
 		memset(&desc, 0, sizeof(D3D11_BUFFER_DESC));
 		desc.Usage = D3D11_USAGE_DYNAMIC;

@@ -1837,7 +1837,7 @@ enum class EArkPsiPowerError {
     NoTargets=1
 };
 
-enum class EArkPsiPowers:uint32_t {
+enum class EArkPsiPowers : int32_t {
     firstPower=-1,
     electrostaticBurst=0,
     thermalBlast=1,
