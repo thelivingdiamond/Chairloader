@@ -2,10 +2,10 @@
 #include "pch.h"
 #include <string>
 #include "mem.h"
-#include "preyFunctions.h"
+#include "PreyFunctions.h"
 #include "proc.h"
 #include "preyDllObjects.h"
-#include "preyFunctions.h"
+#include "PreyFunctions.h"
 #include "ChairloaderUtils.h"
 #include "ChairloaderGui.h"
 #include "ChairLoader.h"

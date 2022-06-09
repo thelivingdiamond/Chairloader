@@ -309,7 +309,7 @@ std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(ui
 }
 
 ChairloaderUtils::ChairloaderUtils(uintptr_t moduleBase) {
-	internalPreyFunctions = new preyFunctions(moduleBase);
+	internalPreyFunctions = new PreyFunctions(moduleBase);
 	// CEntitySystemPtr = preyEnvironmentPointers->pEntitySystem;
 	// ArkPlayerPtr = internalPreyFunctions->ArkPlayerF->getInstance();
 	// CGamePtr = preyEnvironmentPointers->pGame;
@@ -322,7 +322,7 @@ ArkPlayer* ChairloaderUtils::ArkPlayerPtr() {
 }
 
 
-// CEntity* ChairloaderUtils::CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, preyFunctions* functions) {
+// CEntity* ChairloaderUtils::CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions) {
 // 	SEntitySpawnParams params;
 // 	if (CreateEntitySpawnParameters(name, pos, rot, &params) == nullptr)
 // 		return nullptr;
@@ -343,7 +343,7 @@ ArkPlayer* ChairloaderUtils::ArkPlayerPtr() {
 // 	return (CEntity*)functions->CEntity->CEntityConstructor(&newEntity, &params);
 // 	return nullptr;
 // }
-// CEntity* ChairloaderUtils::CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, preyFunctions* functions) {
+// CEntity* ChairloaderUtils::CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions) {
 // 	SEntitySpawnParams params;
 // 	if (CreateEntitySpawnParameters(name, pos, rot, &params) == nullptr)
 // 		return nullptr;

@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "preyFunctions.h"
+#include "PreyFunctions.h"
 #include "CharLoaderImGui.h"
 
 class ChairLoader {
@@ -24,7 +24,7 @@ private:
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	FILE *m_pConsoleFile = nullptr;
 	std::thread::id m_MainThreadId;
-	preyFunctions::CGamePrivate::_Update m_CGameUpdate = nullptr;
+	PreyFunctions::CGamePrivate::_Update m_CGameUpdate = nullptr;
 	int m_GuiToggleKey = 0;
 	int m_FreeCamKey = 0;
 	bool m_DevMode;

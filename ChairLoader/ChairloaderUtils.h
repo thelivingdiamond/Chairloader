@@ -5,7 +5,7 @@
 #include "pch.h"
 
 #include "preyDllObjects.h"
-#include "preyFunctions.h"
+#include "PreyFunctions.h"
 class ChairloaderUtils {
 public:
 	enum class EntityType {
@@ -16,8 +16,8 @@ public:
 	};
 
 	// entities (WIP)
-	CEntity* CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, preyFunctions* functions);
-	CEntity* CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, preyFunctions* functions);
+	CEntity* CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
+	CEntity* CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
 	SEntitySpawnParams* CreateEntitySpawnParameters(char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, SEntitySpawnParams* params);
 
 	// Dumping Utilities
@@ -50,7 +50,7 @@ public:
 public:
 	ChairloaderUtils(uintptr_t moduleBase);
 	// internal objects
-	preyFunctions* internalPreyFunctions;
+	PreyFunctions* internalPreyFunctions;
 	NpcSpawnHelper* spawnerHelper;
 	
 	ArkPlayer* ArkPlayerPtr();

@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "preyFunctions.h"
+#include "PreyFunctions.h"
 
 template <typename t>
-t preyFunctionBase::getFunctionAddr(uintptr_t moduleBaseIn, uintptr_t offset) {
+t PreyFunctionBase::getFunctionAddr(uintptr_t moduleBaseIn, uintptr_t offset) {
 	return (t)(moduleBaseIn + offset);
 }
-preyFunctions::ArkPlayerPrivate::ArkPlayerPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkPlayerPrivate::ArkPlayerPrivate(uintptr_t moduleBase) {
 	// getEntityClassName = getFunctionAddr<_GetEntityClassName>(moduleBase, 0x154f9b0);//154f9b0
 	// getViewRotation = getFunctionAddr<_GetViewRotation>(moduleBase, 0x154ff50);
 
@@ -17,13 +17,13 @@ preyFunctions::ArkPlayerPrivate::ArkPlayerPrivate(uintptr_t moduleBase) {
 	getGodModeInstance = getFunctionAddr<_GetGodModeInstance>(moduleBase, 0x173c050);
 }
 
-preyFunctions::CArkWeaponPrivate::CArkWeaponPrivate(uintptr_t moduleBase) {
+PreyFunctions::CArkWeaponPrivate::CArkWeaponPrivate(uintptr_t moduleBase) {
 	getEquippedWeapon = getFunctionAddr<_GetEquippedWeapon>(moduleBase, 0x1248500);
 	fireWeapon = getFunctionAddr<_FireWeapon>(moduleBase, 0x16659b0);
 	setWeaponAmmoCount = getFunctionAddr<_SetWeaponAmmoCount>(moduleBase, 0x166d840);
 	getClipSize = getFunctionAddr<_GetClipSize>(moduleBase, 0x161665f50);
 }
-preyFunctions::CEntitySystemPrivate::CEntitySystemPrivate(uintptr_t moduleBase) {
+PreyFunctions::CEntitySystemPrivate::CEntitySystemPrivate(uintptr_t moduleBase) {
 	findEntityArchetype = getFunctionAddr<_FindEntityArchetype>(moduleBase, 0x0922910);//090fb70
 	getArchetype = getFunctionAddr<_GetArchetype>(moduleBase, 0x0922de0);
 	getArchetypeNames = getFunctionAddr<_GetArchetypeNames>(moduleBase, 0x0922d00);
@@ -34,12 +34,12 @@ preyFunctions::CEntitySystemPrivate::CEntitySystemPrivate(uintptr_t moduleBase) 
 	
 }
 
-preyFunctions::ArkNpcSpawnManagerPrivate::ArkNpcSpawnManagerPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkNpcSpawnManagerPrivate::ArkNpcSpawnManagerPrivate(uintptr_t moduleBase) {
 	ArkNpcSpawnManagerUpdate = getFunctionAddr<_ArkNpcSpawnManagerUpdate>(moduleBase, 0x151db30);
 	requestNpcSpawn = getFunctionAddr<_RequestNpcSpawn>(moduleBase, 0x151dac0);
 	createNpc = getFunctionAddr<_CreateNpc>(moduleBase, 0x151d6d0);
 }
-preyFunctions::CEntityPrivate::CEntityPrivate(uintptr_t moduleBase) {
+PreyFunctions::CEntityPrivate::CEntityPrivate(uintptr_t moduleBase) {
 	hasAi = getFunctionAddr<_HasAi>(moduleBase, 0x0905b70);//0905b70
 	getArkNpcSpawner = getFunctionAddr<_GetArkNpcSpawner>(moduleBase, 0x151c740);
 	CEntityConstructor = getFunctionAddr<_CEntity>(moduleBase, 0x09022a0);
@@ -49,18 +49,18 @@ preyFunctions::CEntityPrivate::CEntityPrivate(uintptr_t moduleBase) {
 	getSafePropertiesTable = getFunctionAddr<_getSafePropertiesTable>(moduleBase, 0x1480480);
 	reloadEntity = getFunctionAddr<_ReloadEntity>(moduleBase, 0x0908650);
 }
-preyFunctions::ArkNightmareSpawnManagerPrivate::ArkNightmareSpawnManagerPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkNightmareSpawnManagerPrivate::ArkNightmareSpawnManagerPrivate(uintptr_t moduleBase) {
 	spawnNewNightmare = getFunctionAddr<_SpawnNewNightmare>(moduleBase, 0x11f58d0);
 	enableNightmareSpawner = getFunctionAddr <_enableNightmareSpawner >(moduleBase, 0x11f47a0);
 }
 
-preyFunctions::CArkNpcSpawnerPrivate::CArkNpcSpawnerPrivate(uintptr_t moduleBase) {
+PreyFunctions::CArkNpcSpawnerPrivate::CArkNpcSpawnerPrivate(uintptr_t moduleBase) {
 	cArkNpcSpawnerConstructor = getFunctionAddr<_CArkNpcSpawner>(moduleBase, 0x151bed0);
 	createNpcSpawner = getFunctionAddr<_CreateNpcSpawner>(moduleBase, 0x1703f00);//1703f00
 	requestSpawn = getFunctionAddr<_RequestSpawn>(moduleBase, 0x151cd80);
 }
 
-preyFunctions::CXConsolePrivate::CXConsolePrivate(uintptr_t moduleBase) {
+PreyFunctions::CXConsolePrivate::CXConsolePrivate(uintptr_t moduleBase) {
 	showConsole = getFunctionAddr<_ShowConsole>(moduleBase, 0x0df85f0);
 	displayHelp = getFunctionAddr<_DisplayHelp>(moduleBase, 0x0df0fa0);
 	enableActivationKey = getFunctionAddr<_EnableActivationKey>(moduleBase, 0x0df23b0);
@@ -70,16 +70,16 @@ preyFunctions::CXConsolePrivate::CXConsolePrivate(uintptr_t moduleBase) {
 	addLine = getFunctionAddr<_AddLine>(moduleBase, 0x0defa00);
 }
 
-preyFunctions::CSystemPrivate::CSystemPrivate(uintptr_t moduleBase) {
+PreyFunctions::CSystemPrivate::CSystemPrivate(uintptr_t moduleBase) {
 	setDevMode = getFunctionAddr<_SetDevMode>(moduleBase, 0x0dc7720);
 	GetTextModeConsole = getFunctionAddr<_GetTextModeConsole>(moduleBase, 0x0dc4cb0);
 }
 
-preyFunctions::ArkFactionManagerPrivate::ArkFactionManagerPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkFactionManagerPrivate::ArkFactionManagerPrivate(uintptr_t moduleBase) {
 	setEntityFaction = getFunctionAddr<_SetEntityFaction>(moduleBase, 0x14336a0);
 }
 
-preyFunctions::ArkNpcPrivate::ArkNpcPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkNpcPrivate::ArkNpcPrivate(uintptr_t moduleBase) {
 		ActivateWander = getFunctionAddr<_ActivateWander>(moduleBase, 0x14f36c0);
 		AddCollisionObserver = getFunctionAddr<_AddCollisionObserver>(moduleBase, 0x14f37a0);
 		AddFacingDesire = getFunctionAddr<_AddFacingDesire>(moduleBase, 0x14f3810);
@@ -578,17 +578,17 @@ preyFunctions::ArkNpcPrivate::ArkNpcPrivate(uintptr_t moduleBase) {
 		WaitForAnimatedStunned = getFunctionAddr<_WaitForAnimatedStunned>(moduleBase, 0x1506f60);
 }
 
-preyFunctions::CArkNpcSpawnCystoidPrivate::CArkNpcSpawnCystoidPrivate(uintptr_t moduleBase) {
+PreyFunctions::CArkNpcSpawnCystoidPrivate::CArkNpcSpawnCystoidPrivate(uintptr_t moduleBase) {
 	getEntityArchetype = getFunctionAddr<_GetEntityArchetype>(moduleBase, 0x151c800);
 }
 
-preyFunctions::ArkSafeScriptTablePrivate::ArkSafeScriptTablePrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkSafeScriptTablePrivate::ArkSafeScriptTablePrivate(uintptr_t moduleBase) {
 	getArkSafeScriptFromScriptTable = getFunctionAddr<_GetArkSafeScriptTableFromScriptTable>(moduleBase, 0x1480240);
 	getArkSafeScriptFromEntity = getFunctionAddr<_GetArkSafeScriptTableFromEntity>(moduleBase, 0x14801c0);
 	getCryStringTValue = getFunctionAddr<_GetCryStringTValue>(moduleBase, 0x1160740);
 }
 
-preyFunctions::ArkLocationManagerPrivate::ArkLocationManagerPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkLocationManagerPrivate::ArkLocationManagerPrivate(uintptr_t moduleBase) {
 	GetAlternateNameInfo =	getFunctionAddr<_GetAlternateNameInfo>(moduleBase,			0x1197ed0);
 	GetCurrentLocation = getFunctionAddr<_GetCurrentLocation>(moduleBase, 0x1197fd0);
 	GetCurrentLocationLabel = getFunctionAddr<_GetCurrentLocationLabel>(moduleBase, 0x1198080);
@@ -602,7 +602,7 @@ preyFunctions::ArkLocationManagerPrivate::ArkLocationManagerPrivate(uintptr_t mo
 	SetLoaded = getFunctionAddr<_SetLoaded>(moduleBase, 0x1198750);
 }
 
-preyFunctions::ArkAbilityComponentPrivate::ArkAbilityComponentPrivate(uintptr_t moduleBase) {
+PreyFunctions::ArkAbilityComponentPrivate::ArkAbilityComponentPrivate(uintptr_t moduleBase) {
 		ArkAbilityComponentConst1= getFunctionAddr<_ArkAbilityComponentConst>(moduleBase,0x153a390);
 		ArkAbilityComponentConst2 = getFunctionAddr < _ArkAbilityComponentConst2>(moduleBase, 0x153a410);
 		GetAbilityState = getFunctionAddr < _GetAbilityState >(moduleBase, 0x153a480);
@@ -633,19 +633,19 @@ preyFunctions::ArkAbilityComponentPrivate::ArkAbilityComponentPrivate(uintptr_t 
 		UpdatePlayerMetrics = getFunctionAddr < _UpdatePlayerMetrics >(moduleBase, 0x153c3b0);
 }
 
-preyFunctions::CGamePrivate::CGamePrivate(uintptr_t moduleBase){
+PreyFunctions::CGamePrivate::CGamePrivate(uintptr_t moduleBase){
     Update = getFunctionAddr<_Update>(moduleBase, 0x16d6230);
 }
 
-preyFunctions::CKeyboardPrivate::CKeyboardPrivate(uintptr_t moduleBase) {
+PreyFunctions::CKeyboardPrivate::CKeyboardPrivate(uintptr_t moduleBase) {
 	Update = getFunctionAddr<_Update>(moduleBase, 0x09D2DA0);
 }
 
-preyFunctions::CBaseInputPrivate::CBaseInputPrivate(uintptr_t moduleBase) {
+PreyFunctions::CBaseInputPrivate::CBaseInputPrivate(uintptr_t moduleBase) {
 	PostInputEvent = getFunctionAddr<_PostInputEvent>(moduleBase, 0x09D58D0);
 }
 
-preyFunctions::preyFunctions(uintptr_t moduleBase) {
+PreyFunctions::PreyFunctions(uintptr_t moduleBase) {
 	ArkPlayerF = new  ArkPlayerPrivate(moduleBase);
 	CArkWeaponF = new CArkWeaponPrivate(moduleBase);
 	CEntitySystemF = new CEntitySystemPrivate(moduleBase);
