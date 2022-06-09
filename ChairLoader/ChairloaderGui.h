@@ -140,7 +140,7 @@ public:
         }
     }
     void update() {
-        if (!chairloaderGlobal->preyEnvironmentPointers->pGame->m_pFramework->IsInLevelLoad() || !chairloaderGlobal->preyEnvironmentPointers->pGame->m_pFramework->IsLoadingSaveGame()) {
+        if (!gEnv->pGame->m_pFramework->IsInLevelLoad() || !gEnv->pGame->m_pFramework->IsLoadingSaveGame()) {
             drawHandleMutex.lock();
             entityManager.update(chairloaderGlobal, &log);
             playerManager.update(chairloaderGlobal, &log);

@@ -1,16 +1,16 @@
 #pragma once
 #include <Prey/CryThreading/IJobManager.h>
-#include "ChairloaderUtils.h"
+#include "ChairLoader.h"
 
 namespace CryProfile {
 class CScopedProfileMarker {
 public:
 	CScopedProfileMarker(const char *name) {
-		chairloader->preyEnvironmentPointers->pJobManager->PushProfilingMarker(name);
+		gEnv->pJobManager->PushProfilingMarker(name);
 	}
 
 	~CScopedProfileMarker() {
-		chairloader->preyEnvironmentPointers->pJobManager->PopProfilingMarker();
+		gEnv->pJobManager->PopProfilingMarker();
 	}
 };
 }

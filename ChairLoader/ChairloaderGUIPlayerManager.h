@@ -106,7 +106,7 @@ public:
     }
 
     void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
-        if (!chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
+        if (!gEnv->pSystem->IsPaused()) {
             abilityRequestHandler(chairloader, log);
         }
         checkAbilities(chairloader, log);

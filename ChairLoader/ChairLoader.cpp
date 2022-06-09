@@ -6,6 +6,7 @@
 #include "Profiler.h"
 
 ChairLoader *gCL = nullptr;
+SSystemGlobalEnvironment *gEnv = nullptr;
 
 ChairLoader::ChairLoader() {
 	CreateConsole();
@@ -15,6 +16,7 @@ ChairLoader::ChairLoader() {
 
 	chairloader = new ChairloaderUtils(moduleBase);
 
+	LoadPreyPointers(moduleBase);
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
@@ -52,6 +54,10 @@ void ChairLoader::CreateConsole() {
 	std::cout << "Welcome to funland sonic\n";
 }
 
+void ChairLoader::LoadPreyPointers(uintptr_t moduleBase) {
+	gEnv = (SSystemGlobalEnvironment *)(moduleBase + 0x22418c0);
+}
+
 void ChairLoader::HookGameUpdate(uintptr_t moduleBase) {
 	m_CGameUpdate = chairloader->internalPreyFunctions->CGameF->Update;
 	DetourTransactionBegin();
@@ -81,12 +87,12 @@ void ChairLoader::UpdateFreeCam() {
 		printf("Freecam state: %u\n", m_FreeCamEnabled);
 		if (m_FreeCamEnabled) {
 			m_DevMode = true;
-			chairloader->internalPreyFunctions->CSystemF->setDevMode(chairloader->preyEnvironmentPointers->pSystem, m_DevMode);
-			chairloader->preyEnvironmentPointers->pGame->m_pConsole->ExecuteString((char *)"FreeCamEnable", false, true);
+			chairloader->internalPreyFunctions->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
+			gEnv->pGame->m_pConsole->ExecuteString((char *)"FreeCamEnable", false, true);
 		}
 		else {
-			chairloader->internalPreyFunctions->CSystemF->setDevMode(chairloader->preyEnvironmentPointers->pSystem, m_DevMode);
-			chairloader->preyEnvironmentPointers->pGame->m_pConsole->ExecuteString((char *)"FreeCamDisable", false, true);
+			chairloader->internalPreyFunctions->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
+			gEnv->pGame->m_pConsole->ExecuteString((char *)"FreeCamDisable", false, true);
 		}
 	}
 }

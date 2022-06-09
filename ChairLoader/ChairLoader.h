@@ -31,6 +31,7 @@ private:
 	bool m_FreeCamEnabled = false;
 
 	void CreateConsole();
+	void LoadPreyPointers(uintptr_t moduleBase);
 	void HookGameUpdate(uintptr_t moduleBase);
 	void LoadConfigFile();
 	void UpdateFreeCam();
@@ -39,3 +40,4 @@ private:
 };
 
 extern ChairLoader *gCL;
+extern SSystemGlobalEnvironment *gEnv;

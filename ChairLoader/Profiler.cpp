@@ -209,7 +209,7 @@ void ProfilerValueGetter(float *startTimestamp, float *endTimestamp, ImU8 *level
 
 Profiler::Profiler() {
 	UpdateTicksPerSecond();
-	m_JobManagerHook.HookObject(chairloader->preyEnvironmentPointers->pJobManager);
+	m_JobManagerHook.HookObject(gEnv->pJobManager);
 	g_TickOffset = GetCPUTickCount();
 }
 

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CharLoaderImGui.h"
 #include "ChairloaderUtils.h"
+#include "ChairLoader.h"
 #include "mem.h"
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
@@ -40,15 +41,15 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 
 	// Setup display size (every frame to accommodate for window resizing)
 	int x, y, width, height;
-	chairloader->preyEnvironmentPointers->pRenderer->GetViewport(x, y, width, height);
+	gEnv->pRenderer->GetViewport(x, y, width, height);
 	io.DisplaySize = ImVec2(width, height);
 
 	// Setup time step
-	io.DeltaTime = chairloader->preyEnvironmentPointers->pTimer->GetRealFrameTime();
+	io.DeltaTime = gEnv->pTimer->GetRealFrameTime();
 
 	// Update mouse
 	if (haveFocus && io.WantSetMousePos)
-		chairloader->preyEnvironmentPointers->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
+		gEnv->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
 
 	ImGui::NewFrame();
 }
@@ -77,7 +78,7 @@ void ChairLoaderImGui::CreateFontsTexture() {
 	unsigned char *pixels;
 	int width, height;
 	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
-	m_pFontAtlas = chairloader->preyEnvironmentPointers->pRenderer->CreateTexture(
+	m_pFontAtlas = gEnv->pRenderer->CreateTexture(
 		"ImGui Font Atlas", width, height, 1, pixels, eTF_R8G8B8A8, FT_TEX_FONT
 	);
 
@@ -86,7 +87,7 @@ void ChairLoaderImGui::CreateFontsTexture() {
 }
 
 void ChairLoaderImGui::HookPresent() {
-	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(chairloader->preyEnvironmentPointers->pRenderer);
+	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
 	auto pSwapChain = mem::OffsetInStruct<IDXGISwapChain *>(pRenderer, CD3D9Renderer::OFFSET_SWAP_CHAIN);
 
 	DWORD_PTR *pSwapChainVtable = nullptr;
@@ -250,7 +251,7 @@ bool ChairLoaderImGui::RT_Initialize() {
 	RenderThreadData &data = m_pInstance->m_RTData;
 	data.bIsInitialized = true;
 
-	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(chairloader->preyEnvironmentPointers->pRenderer);
+	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
 	const DeviceInfo &devInfo = mem::OffsetInStruct<DeviceInfo>(pRenderer, CD3D9Renderer::OFFSET_DEV_INFO);
 
 	data.pd3dDevice = devInfo.m_pDevice;
@@ -658,7 +659,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 		case eKI_MouseXAbsolute: 
 		case eKI_MouseYAbsolute: {
 			float x, y;
-			chairloader->preyEnvironmentPointers->pHardwareMouse->GetHardwareMouseClientPosition(x, y);
+			gEnv->pHardwareMouse->GetHardwareMouseClientPosition(x, y);
 			io.AddMousePosEvent(x, y);
 			break;
 		}

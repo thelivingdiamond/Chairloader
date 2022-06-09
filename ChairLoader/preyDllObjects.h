@@ -86,7 +86,7 @@ public:
 	char pad[2];
 };
 class CEntitySystem;
-class gameEnvironmentPointers {
+class SSystemGlobalEnvironment {
 	// typedef CGame* _g_pGame;
 	 // _g_pGame g_pGame;
 	public:
@@ -5858,7 +5858,6 @@ namespace ArkNpc {
 			bool m_partOfGroup;
 			char pad[7];
 		};
-		class SSystemGlobalEnvironment{};
 		class IValidator{};
 		class SDefaultValidator{};
 		class CCpuFeatures{};

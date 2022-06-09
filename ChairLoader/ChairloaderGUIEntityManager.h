@@ -6,6 +6,7 @@
 #include "preyDllObjects.h"
 #include "ArkEntityArchetypeLibrary.h"
 #include "GUIUtils.h"
+#include "ChairLoader.h"
 
 class ChairloaderGUIEntityManager
 {
@@ -49,7 +50,7 @@ private:
     std::string archetypeFilterText, oldArchetypeFilterText;
     std::queue<archetypeFilterRequest> archetypeFilterRequestQueue;
     std::vector<CEntityArchetype*> archetypeFilteredList;
-    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
+    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
     std::queue<entityModifyRequest> modifyQueue;
 
     // ChairloaderUtils* chairloaderGlobal;
@@ -58,7 +59,7 @@ public:
     ChairloaderGUIEntityManager(ChairloaderUtils* chairloaderIn) {
         archetypeToSpawn = nullptr;
         // chairloaderGlobal = chairloaderIn;
-        archetypeList = &chairloaderIn->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
+        archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
         archetypeFilterRequestQueue.push(archetypeFilterRequest{ "" });
     }
     ~ChairloaderGUIEntityManager() {
@@ -595,7 +596,7 @@ public:
     }
 
     void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
-        if (!chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
+        if (!gEnv->pSystem->IsPaused()) {
             
         }
         entityModifyHandler(chairloader, log);
@@ -654,7 +655,7 @@ private:
             entityDisplayList.clear();
             int i = 0;
 
-            for (auto itr = chairloader->preyEnvironmentPointers->pEntitySystem->m_EntityArray.begin(); itr != chairloader->preyEnvironmentPointers->pEntitySystem->m_EntityArray.end(); ++itr) {
+            for (auto itr = gEnv->pEntitySystem->m_EntityArray.begin(); itr != gEnv->pEntitySystem->m_EntityArray.end(); ++itr) {
                 if (*itr != nullptr) {
                     if ((*itr)->m_szName.m_str != nullptr) {
                         std::string name = (*itr)->m_szName.m_str;
@@ -671,7 +672,7 @@ private:
         }
     }
     void archetypeSpawnRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
-        if (!archetypeSpawnRequestQueue.empty() && !chairloader->preyEnvironmentPointers->pSystem->IsPaused()) {
+        if (!archetypeSpawnRequestQueue.empty() && !gEnv->pSystem->IsPaused()) {
             try {
 
                 spawnRequest request = archetypeSpawnRequestQueue.front();
@@ -717,7 +718,7 @@ private:
                                 // while(spawner->m_lastSpawnedEntityId == oldId) {
                                 // 	// Sleep(1);
                                 // }// Sleep(50);
-                                // IEntity* newEntity = newEntity = chairloader->preyEnvironmentPointers->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
+                                // IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
                                 // Sleep(5);
                                 // return newEntity;
 
@@ -784,7 +785,7 @@ private:
                         params->vScale.x = 1;
                         params->vScale.y = 1;
                         params->vScale.z = 1;
-                        uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(chairloader->preyEnvironmentPointers->pEntitySystem, true);
+                        uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(gEnv->pEntitySystem, true);
                         params->id = id;
                         params->vPosition.x = request.pos.x;
                         params->vPosition.y = request.pos.y;
@@ -811,13 +812,13 @@ private:
                         params->sceneMask = '\0';
                         IEntity* entity;
 
-                        // IEntityArchetype* archetype = (IEntityArchetype*)chairloader->preyEnvironmentPointers->pEntitySystem->GetEntityArchetype();
+                        // IEntityArchetype* archetype = (IEntityArchetype*)gEnv->pEntitySystem->GetEntityArchetype();
                         if (request.archetype != nullptr) {
                             // log->logItem("Spawn count: " + std::to_string(request.spawnCount), modName.c_str());
 
                             params->vPosition.x += 0.05f;
                             // printf("Spawning\n");
-                            entity = chairloader->preyEnvironmentPointers->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
+                            entity = gEnv->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
 
                         }
                         else {
@@ -838,7 +839,7 @@ private:
         if (!archetypeFilterRequestQueue.empty()) {
             archetypeFilterRequest request = archetypeFilterRequestQueue.front();
             std::string filterText = request.text;
-            std::map<const char*, CEntityArchetype*>* archetypeList = &chairloader->preyEnvironmentPointers->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
+            std::map<const char*, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
             // static ImGuiTextFilter filter;
             auto itr = archetypeList->begin();
             archetypeFilteredList.clear();

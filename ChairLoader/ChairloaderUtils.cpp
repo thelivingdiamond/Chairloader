@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ChairloaderUtils.h"
+#include "ChairLoader.h"
 
 ChairloaderUtils *chairloader = nullptr;
 
@@ -119,39 +120,32 @@ const char* ChairloaderUtils::NpcSpawnHelper::GetLastUniqueName() {
 IEntity* ChairloaderUtils::NpcSpawnHelper::GetVictimSpawnerEntity(EntityType type) {
 	IEntity* spawnerEntity = nullptr;
 	if (type == EntityType::human) {
-		spawnerEntity = staticObjects->pEntitySystem->FindEntityByName((char*)"Igwe");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"Igwe");
 	}
 	else if (type == EntityType::mimic) {
-		spawnerEntity = staticObjects->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_Mimic1");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_Mimic1");
 	}
 	else if (type == EntityType::phantom) {
-		spawnerEntity = staticObjects->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_BasePhantom1");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_BasePhantom1");
 	}
 	else if (type == EntityType::operators) {
-		spawnerEntity = staticObjects->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_MedicalOperator1");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_MedicalOperator1");
 	}
 	return spawnerEntity;
 }
 
-ChairloaderUtils::NpcSpawnHelper::NpcSpawnHelper(preyFunctions* functions, gameEnvironmentPointers* pointers) {
-	privateFuncs = functions;
-	staticObjects = pointers;
+ChairloaderUtils::NpcSpawnHelper::NpcSpawnHelper() {
 	generatedCount = 0;
 	lastUniqueName = "";
 	nextUniqueName = "newEntity0";
 }
 const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archetypeId, IEntity* spawnerEntity) {
-	if(privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return nullptr;
-	}
-
 	ArkSafeScriptTable EntityScriptTable;
 	EntityScriptTable.ptr = nullptr;
 	ArkSafeScriptTable PropertiesTable;
 	PropertiesTable.ptr = nullptr;
 
-	privateFuncs->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
+	chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
 	if (EntityScriptTable.ptr != nullptr) {
 		ScriptAnyValue TableValue;
 		ScriptAnyValue ArchetypeValue;
@@ -162,12 +156,12 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archet
 		ArchetypeValue.value.str = nullptr;
 		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
 
-		CEntityArchetype* archetype = staticObjects->pEntitySystem->GetEntityArchetype(archetypeId);
+		CEntityArchetype* archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeId);
 		NewArchetypeValue.value.str = (char*)archetype->m_name.m_str;
 
 		if (EntityScriptTable.ptr->GetValueAny((char*)"Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
-				privateFuncs->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
+				chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
 				if (PropertiesTable.ptr->GetValueAny((char*)"sNpcArchetype", &ArchetypeValue, false)) {
 					PropertiesTable.ptr->SetValueAny((char*)"sNpcArchetype", &NewArchetypeValue, false);
 					return ArchetypeValue.value.str;
@@ -178,17 +172,12 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archet
 	return nullptr;
 }
 const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* archetypeName, IEntity* spawnerEntity) {
-	if (privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return nullptr;
-	}
-
 	ArkSafeScriptTable EntityScriptTable;
 	EntityScriptTable.ptr = nullptr;
 	ArkSafeScriptTable PropertiesTable;
 	PropertiesTable.ptr = nullptr;
 
-	privateFuncs->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
+	chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
 	if (EntityScriptTable.ptr != nullptr) {
 		ScriptAnyValue TableValue;
 		ScriptAnyValue ArchetypeValue;
@@ -202,7 +191,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* arc
 
 		if (EntityScriptTable.ptr->GetValueAny((char*)"Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
-				privateFuncs->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
+				chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
 				if (PropertiesTable.ptr->GetValueAny((char*)"sNpcArchetype", &ArchetypeValue, false)) {
 					PropertiesTable.ptr->SetValueAny((char*)"sNpcArchetype", &NewArchetypeValue, false);
 					return ArchetypeValue.value.str;
@@ -215,12 +204,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* arc
 
 
 IEntityArchetype* ChairloaderUtils::NpcSpawnHelper::GetEntityArchetype(CArkNpcSpawner* npcSpawner) {
-	if (privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return nullptr;
-	}
-
-	return privateFuncs->CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)npcSpawner);
+	return chairloader->internalPreyFunctions->CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)npcSpawner);
 }
 // CArkNpcSpawner* ChairloaderUtils::NpcSpawnHelper::CreateNewNpcSpawner(uint64_t archetypeId, char* name) {
 // 	if (privateFuncs == nullptr || staticObjects == nullptr) {
@@ -230,31 +214,23 @@ IEntityArchetype* ChairloaderUtils::NpcSpawnHelper::GetEntityArchetype(CArkNpcSp
 //
 // }
 IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, const char* name) {
-	if (privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return nullptr;
-	}
 	if (spawner != nullptr) {
 		char* oldName = spawner->m_Entity->m_szName.m_str;
 		spawner->m_Entity->m_szName.m_str = (char *)name;
 		uint32_t oldId = spawner->m_lastSpawnedEntityId;
-		privateFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
+		chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
 		while(spawner->m_lastSpawnedEntityId == oldId) {
 			Sleep(1);
 		}
 		spawner->m_Entity->m_szName.m_str = oldName;
 		// Sleep(50);
-		IEntity* newEntity = newEntity = staticObjects->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
+		IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
 		// Sleep(5);
 		return newEntity;
 	}
 	return nullptr;
 }
 // std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount) {
-// 	if (privateFuncs == nullptr || staticObjects == nullptr) {
-// 		std::cout << "Error, private functions or static objects uninitialized";
-// 		return {};
-// 	}
 // 	std::vector<IEntity*> entities;
 // 	if (spawner != nullptr) {
 // 		char* oldName = spawner->m_Entity->m_szName.m_str;
@@ -264,12 +240,12 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, con
 // 			spawner->m_Entity->m_szName.m_str = (char*)strname.m_str;
 // 			uint32_t oldId = spawner->m_lastSpawnedEntityId;
 //
-// 			privateFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
+// 			chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
 //
 // 			while(spawner->m_lastSpawnedEntityId == oldId) {
 // 			// wait for shit to happen
 // 			}
-// 			IEntity* newEntity = newEntity = staticObjects->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
+// 			IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
 // 			entities.emplace_back(newEntity);
 // 		}
 // 		spawner->m_Entity->m_szName.m_str = oldName;
@@ -278,16 +254,12 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, con
 // 	return {};
 // }
 IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, const char* name, EntityType type) {
-	if (privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return nullptr;
-	}
 	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
 
 	if (spawnerEntity != nullptr) {
 		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
 		if (oldArchetypeName != nullptr) {
-			CArkNpcSpawner* spawner = privateFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+			CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 			IEntity* newEntity = SpawnNpc(spawner, name);
 			SetEntityArchetype(oldArchetypeName, spawnerEntity);
 			return newEntity;
@@ -297,15 +269,11 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archet
 }
 
 std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, const char* name, EntityType type, Vec3_tpl<float> * pos, uint32_t spawnCount) {
-	if (privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return {};
-	}
 	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
 	std::vector<IEntity*> newEntities;
 	if (spawnerEntity != nullptr) {
 		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		CArkNpcSpawner* spawner = privateFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+		CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 		Vec3_tpl<float> oldpos = spawner->m_Entity->m_vPos;
 		spawner->m_Entity->m_vPos.x = pos->x;
 		spawner->m_Entity->m_vPos.y = pos->y;
@@ -323,15 +291,11 @@ std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(ui
 }
 
 IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type) {
-	if (privateFuncs == nullptr || staticObjects == nullptr) {
-		std::cout << "Error, private functions or static objects uninitialized";
-		return nullptr;
-	}
 	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
 
 	if (spawnerEntity != nullptr) {
 		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		CArkNpcSpawner* spawner = privateFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+		CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 		IEntity* newEntity = SpawnNpc(spawner, GetNextUniqueName());
 		SetEntityArchetype(oldArchetypeName, spawnerEntity);
 		return newEntity;
@@ -346,11 +310,10 @@ std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(ui
 
 ChairloaderUtils::ChairloaderUtils(uintptr_t moduleBase) {
 	internalPreyFunctions = new preyFunctions(moduleBase);
-	preyEnvironmentPointers = (gameEnvironmentPointers*)(moduleBase + 0x22418c0);
 	// CEntitySystemPtr = preyEnvironmentPointers->pEntitySystem;
 	// ArkPlayerPtr = internalPreyFunctions->ArkPlayerF->getInstance();
 	// CGamePtr = preyEnvironmentPointers->pGame;
-	spawnerHelper = new NpcSpawnHelper(internalPreyFunctions, preyEnvironmentPointers);
+	spawnerHelper = new NpcSpawnHelper();
 
 }
 

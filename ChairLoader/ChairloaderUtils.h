@@ -26,9 +26,7 @@ public:
 
 	class NpcSpawnHelper {
 	public:
-		NpcSpawnHelper(preyFunctions*, gameEnvironmentPointers*);
-		preyFunctions* privateFuncs;
-		gameEnvironmentPointers* staticObjects;
+		NpcSpawnHelper();
 		std::unordered_map<uint64_t, CArkNpcSpawner*> managedSpawners; // maybe?
 		const char* SetEntityArchetype(uint64_t archetypeId, IEntity* npcSpawner);
 		const char* SetEntityArchetype(const char* archetypeName, IEntity* npcSpawner);
@@ -53,7 +51,6 @@ public:
 	ChairloaderUtils(uintptr_t moduleBase);
 	// internal objects
 	preyFunctions* internalPreyFunctions;
-	gameEnvironmentPointers* preyEnvironmentPointers;
 	NpcSpawnHelper* spawnerHelper;
 	
 	ArkPlayer* ArkPlayerPtr();
