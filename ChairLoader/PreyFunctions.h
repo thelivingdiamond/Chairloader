@@ -727,6 +727,7 @@ public:
 	CBaseInputPrivate* CBaseInputF;
 };
 
+extern PreyFunctions *gPreyFuncs;
 
 // class ArkPlayer {
 // 	

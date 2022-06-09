@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "PreyFunctions.h"
 
+PreyFunctions *gPreyFuncs = nullptr;
+
 template <typename t>
 t PreyFunctionBase::getFunctionAddr(uintptr_t moduleBaseIn, uintptr_t offset) {
 	return (t)(moduleBaseIn + offset);

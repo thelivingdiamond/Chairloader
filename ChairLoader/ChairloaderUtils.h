@@ -49,8 +49,6 @@ public:
 	};
 public:
 	ChairloaderUtils(uintptr_t moduleBase);
-	// internal objects
-	PreyFunctions* internalPreyFunctions;
 	NpcSpawnHelper* spawnerHelper;
 	
 	ArkPlayer* ArkPlayerPtr();

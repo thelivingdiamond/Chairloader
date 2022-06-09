@@ -24,7 +24,7 @@ ChairLoaderImGui::ChairLoaderImGui() {
 	// Hook functions
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
-	m_hookCBaseInputPostInputEvent = chairloader->internalPreyFunctions->CBaseInputF->PostInputEvent;
+	m_hookCBaseInputPostInputEvent = gPreyFuncs->CBaseInputF->PostInputEvent;
 	DetourAttach(&(LPVOID &)m_hookCBaseInputPostInputEvent, (PBYTE)CBaseInput_PostInputEvent);
 	HookPresent();
 	DetourTransactionCommit();

@@ -145,7 +145,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archet
 	ArkSafeScriptTable PropertiesTable;
 	PropertiesTable.ptr = nullptr;
 
-	chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
+	gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
 	if (EntityScriptTable.ptr != nullptr) {
 		ScriptAnyValue TableValue;
 		ScriptAnyValue ArchetypeValue;
@@ -161,7 +161,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archet
 
 		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
-				chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
+				gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
 				if (PropertiesTable.ptr->GetValueAny("sNpcArchetype", &ArchetypeValue, false)) {
 					PropertiesTable.ptr->SetValueAny("sNpcArchetype", &NewArchetypeValue, false);
 					return ArchetypeValue.value.str;
@@ -177,7 +177,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* arc
 	ArkSafeScriptTable PropertiesTable;
 	PropertiesTable.ptr = nullptr;
 
-	chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
+	gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
 	if (EntityScriptTable.ptr != nullptr) {
 		ScriptAnyValue TableValue;
 		ScriptAnyValue ArchetypeValue;
@@ -191,7 +191,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* arc
 
 		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
-				chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
+				gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
 				if (PropertiesTable.ptr->GetValueAny("sNpcArchetype", &ArchetypeValue, false)) {
 					PropertiesTable.ptr->SetValueAny("sNpcArchetype", &NewArchetypeValue, false);
 					return ArchetypeValue.value.str;
@@ -204,7 +204,7 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* arc
 
 
 IEntityArchetype* ChairloaderUtils::NpcSpawnHelper::GetEntityArchetype(CArkNpcSpawner* npcSpawner) {
-	return chairloader->internalPreyFunctions->CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)npcSpawner);
+	return gPreyFuncs->CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)npcSpawner);
 }
 // CArkNpcSpawner* ChairloaderUtils::NpcSpawnHelper::CreateNewNpcSpawner(uint64_t archetypeId, char* name) {
 // 	if (privateFuncs == nullptr || staticObjects == nullptr) {
@@ -218,7 +218,7 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, con
 		char* oldName = spawner->m_Entity->m_szName.m_str;
 		spawner->m_Entity->m_szName.m_str = (char *)name;
 		uint32_t oldId = spawner->m_lastSpawnedEntityId;
-		chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
+		gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
 		while(spawner->m_lastSpawnedEntityId == oldId) {
 			Sleep(1);
 		}
@@ -240,7 +240,7 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, con
 // 			spawner->m_Entity->m_szName.m_str = (char*)strname.m_str;
 // 			uint32_t oldId = spawner->m_lastSpawnedEntityId;
 //
-// 			chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
+// 			gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
 //
 // 			while(spawner->m_lastSpawnedEntityId == oldId) {
 // 			// wait for shit to happen
@@ -259,7 +259,7 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archet
 	if (spawnerEntity != nullptr) {
 		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
 		if (oldArchetypeName != nullptr) {
-			CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+			CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 			IEntity* newEntity = SpawnNpc(spawner, name);
 			SetEntityArchetype(oldArchetypeName, spawnerEntity);
 			return newEntity;
@@ -273,7 +273,7 @@ std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(ui
 	std::vector<IEntity*> newEntities;
 	if (spawnerEntity != nullptr) {
 		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+		CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 		Vec3_tpl<float> oldpos = spawner->m_Entity->m_vPos;
 		spawner->m_Entity->m_vPos.x = pos->x;
 		spawner->m_Entity->m_vPos.y = pos->y;
@@ -295,7 +295,7 @@ IEntity* ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archet
 
 	if (spawnerEntity != nullptr) {
 		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+		CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
 		IEntity* newEntity = SpawnNpc(spawner, GetNextUniqueName());
 		SetEntityArchetype(oldArchetypeName, spawnerEntity);
 		return newEntity;
@@ -309,7 +309,6 @@ std::vector<IEntity*> ChairloaderUtils::NpcSpawnHelper::SpawnNpcFromArchetype(ui
 }
 
 ChairloaderUtils::ChairloaderUtils(uintptr_t moduleBase) {
-	internalPreyFunctions = new PreyFunctions(moduleBase);
 	// CEntitySystemPtr = preyEnvironmentPointers->pEntitySystem;
 	// ArkPlayerPtr = internalPreyFunctions->ArkPlayerF->getInstance();
 	// CGamePtr = preyEnvironmentPointers->pGame;
@@ -318,7 +317,7 @@ ChairloaderUtils::ChairloaderUtils(uintptr_t moduleBase) {
 }
 
 ArkPlayer* ChairloaderUtils::ArkPlayerPtr() {
-	 return internalPreyFunctions->ArkPlayerF->getInstance();
+	 return gPreyFuncs->ArkPlayerF->getInstance();
 }
 
 

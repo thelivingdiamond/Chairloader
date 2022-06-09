@@ -118,7 +118,7 @@ private:
             if (chairloader->ArkPlayerPtr() != nullptr) {
                 for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
                     if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-                        itr->acquired = chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->id);
+                        itr->acquired = gPreyFuncs->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->id);
                     }
                     //abilityDisplayList.emplace_back(entry);
                 }
@@ -139,7 +139,7 @@ private:
                     for (auto itr = chairloader->abilityLibrary.arkAbilityMap.begin(); itr != chairloader->abilityLibrary.arkAbilityMap.end(); ++itr) {
                         abilityEntry entry = { itr->first, itr->second, false };
                         if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-                            if (chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
+                            if (gPreyFuncs->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), itr->first)) {
                                 entry.acquired = true;
                             }
                         }
@@ -164,8 +164,8 @@ private:
                     }
                     if (entry != nullptr) {
                         if (!entry->acquired) {
-                            if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !chairloader->internalPreyFunctions->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
-                                chairloader->internalPreyFunctions->ArkAbilityComponentF->GrantAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id);
+                            if (chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !gPreyFuncs->ArkAbilityComponentF->HasAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id)) {
+                                gPreyFuncs->ArkAbilityComponentF->GrantAbility(chairloader->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get(), entry->id);
 
                                 // printf("Granted Ability: %s\n", chairloader->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
                                 entry->acquired = true;

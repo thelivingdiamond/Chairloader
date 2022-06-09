@@ -637,7 +637,7 @@ private:
                 } if (request.type == entityModifyType::playerPos) {
                     if (chairloader->ArkPlayerPtr() != nullptr) {
                         Vec3_tpl<float> pos;
-                        chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(chairloader->ArkPlayerPtr(), &pos);
+                        gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(chairloader->ArkPlayerPtr(), &pos);
                         ((IEntity*)request.entity)->SetPos(&pos, 0, false, false);
                         log->logItem("set entity pos to player pos", modName);
                     }
@@ -682,8 +682,8 @@ private:
                 // chairloader->entityArchetypeLibrary.
                 if (request.usePlayerPos) {
                     Vec3_tpl<float> playerPos;
-                    ArkPlayer* player = chairloader->internalPreyFunctions->ArkPlayerF->getInstance();
-                    chairloader->internalPreyFunctions->ArkPlayerF->getPlayerWorldEyePos(player, &playerPos);
+                    ArkPlayer* player = gPreyFuncs->ArkPlayerF->getInstance();
+                    gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(player, &playerPos);
                     if (player != nullptr) {
                         // player->GetLocalEyePos(&playerPos);
                         // printf("Player Position x: %f y: %f z:%f\n", playerPos.x, playerPos.y, playerPos.z);
@@ -708,13 +708,13 @@ private:
                         if (spawnerEntity != nullptr) {
                             const char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
-                                CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                                CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                                 // chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawner);
                                 spawner->m_Entity->m_worldTM.m03 = request.pos.x;
                                 spawner->m_Entity->m_worldTM.m13 = request.pos.y;
                                 spawner->m_Entity->m_worldTM.m23 = request.pos.z;
 
-                                chairloader->internalPreyFunctions->CArkNpcSpawnerF->requestSpawn(spawner);
+                                gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
                                 // while(spawner->m_lastSpawnedEntityId == oldId) {
                                 // 	// Sleep(1);
                                 // }// Sleep(50);
@@ -749,7 +749,7 @@ private:
                         if (spawnerEntity != nullptr) {
                             const char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
-                                CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
+                                CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                                 for (int i = 0; i < request.spawnCount; i++) {
                                     IEntity* newEntity = chairloader->spawnerHelper->SpawnNpc(spawner, (char*)request.name.c_str());
                                     if (newEntity != nullptr) {
@@ -785,7 +785,7 @@ private:
                         params->vScale.x = 1;
                         params->vScale.y = 1;
                         params->vScale.z = 1;
-                        uint32_t id = chairloader->internalPreyFunctions->CEntitySystemF->generateEntityId(gEnv->pEntitySystem, true);
+                        uint32_t id = gPreyFuncs->CEntitySystemF->generateEntityId(gEnv->pEntitySystem, true);
                         params->id = id;
                         params->vPosition.x = request.pos.x;
                         params->vPosition.y = request.pos.y;

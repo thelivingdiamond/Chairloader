@@ -56,10 +56,11 @@ void ChairLoader::CreateConsole() {
 
 void ChairLoader::LoadPreyPointers(uintptr_t moduleBase) {
 	gEnv = (SSystemGlobalEnvironment *)(moduleBase + 0x22418c0);
+	gPreyFuncs = new PreyFunctions(moduleBase);
 }
 
 void ChairLoader::HookGameUpdate(uintptr_t moduleBase) {
-	m_CGameUpdate = chairloader->internalPreyFunctions->CGameF->Update;
+	m_CGameUpdate = gPreyFuncs->CGameF->Update;
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetourAttach(&(LPVOID &)m_CGameUpdate, (PBYTE)&GameUpdate);
@@ -87,11 +88,11 @@ void ChairLoader::UpdateFreeCam() {
 		printf("Freecam state: %u\n", m_FreeCamEnabled);
 		if (m_FreeCamEnabled) {
 			m_DevMode = true;
-			chairloader->internalPreyFunctions->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
+			gPreyFuncs->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
 			gEnv->pGame->m_pConsole->ExecuteString((char *)"FreeCamEnable", false, true);
 		}
 		else {
-			chairloader->internalPreyFunctions->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
+			gPreyFuncs->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
 			gEnv->pGame->m_pConsole->ExecuteString((char *)"FreeCamDisable", false, true);
 		}
 	}
