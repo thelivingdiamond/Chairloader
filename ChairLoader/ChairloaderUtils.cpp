@@ -120,16 +120,16 @@ const char* ChairloaderUtils::NpcSpawnHelper::GetLastUniqueName() {
 IEntity* ChairloaderUtils::NpcSpawnHelper::GetVictimSpawnerEntity(EntityType type) {
 	IEntity* spawnerEntity = nullptr;
 	if (type == EntityType::human) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"Igwe");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("Igwe");
 	}
 	else if (type == EntityType::mimic) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_Mimic1");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("ArkNpcSpawner_Mimic1");
 	}
 	else if (type == EntityType::phantom) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_BasePhantom1");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("ArkNpcSpawner_BasePhantom1");
 	}
 	else if (type == EntityType::operators) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName((char*)"ArkNpcSpawner_MedicalOperator1");
+		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("ArkNpcSpawner_MedicalOperator1");
 	}
 	return spawnerEntity;
 }
@@ -157,13 +157,13 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archet
 		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
 
 		CEntityArchetype* archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeId);
-		NewArchetypeValue.value.str = (char*)archetype->m_name.m_str;
+		NewArchetypeValue.value.str = archetype->m_name.m_str;
 
-		if (EntityScriptTable.ptr->GetValueAny((char*)"Properties", &TableValue, false)) {
+		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
 				chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
-				if (PropertiesTable.ptr->GetValueAny((char*)"sNpcArchetype", &ArchetypeValue, false)) {
-					PropertiesTable.ptr->SetValueAny((char*)"sNpcArchetype", &NewArchetypeValue, false);
+				if (PropertiesTable.ptr->GetValueAny("sNpcArchetype", &ArchetypeValue, false)) {
+					PropertiesTable.ptr->SetValueAny("sNpcArchetype", &NewArchetypeValue, false);
 					return ArchetypeValue.value.str;
 				}
 			}
@@ -189,11 +189,11 @@ const char* ChairloaderUtils::NpcSpawnHelper::SetEntityArchetype(const char* arc
 		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
 		NewArchetypeValue.value.str = archetypeName;
 
-		if (EntityScriptTable.ptr->GetValueAny((char*)"Properties", &TableValue, false)) {
+		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
 				chairloader->internalPreyFunctions->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
-				if (PropertiesTable.ptr->GetValueAny((char*)"sNpcArchetype", &ArchetypeValue, false)) {
-					PropertiesTable.ptr->SetValueAny((char*)"sNpcArchetype", &NewArchetypeValue, false);
+				if (PropertiesTable.ptr->GetValueAny("sNpcArchetype", &ArchetypeValue, false)) {
+					PropertiesTable.ptr->SetValueAny("sNpcArchetype", &NewArchetypeValue, false);
 					return ArchetypeValue.value.str;
 				}
 			}

@@ -1425,8 +1425,8 @@ namespace ArkNpc {
 		virtual void  Release() {}
 		virtual void  Delegate( IScriptTable* param_1) {}
 		virtual void*  GetUserDataValue() {}
-		virtual void  SetValueAny(char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
-		virtual bool  GetValueAny(char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
+		virtual void  SetValueAny(const char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
+		virtual bool  GetValueAny(const char* param_1,  ScriptAnyValue* param_2, bool param_3) {}
 		virtual bool  BeginSetGetChain() {}
 		virtual void  EndSetGetChain() {}
 		virtual  ScriptVarType*  GetValueType(char* param_1) {}
@@ -4379,7 +4379,7 @@ namespace ArkNpc {
 			virtual  IEntity*  GetEntity(uint32_t param_1) {}
 			virtual  IEntity*  ArkSafeGetEntity(uint32_t param_1) {}
 			virtual uint32_t  GetClonedEntityId(uint32_t param_1, uint32_t param_2) {}
-			virtual  IEntity*  FindEntityByName(char* param_1) {}
+			virtual  IEntity*  FindEntityByName(const char* param_1) {}
 			virtual void  ReserveEntityId(uint32_t param_1) {}
 			virtual uint32_t  ReserveUnknownEntityId() {}
 			virtual void  RemoveEntity(uint32_t param_1, bool param_2) {}
