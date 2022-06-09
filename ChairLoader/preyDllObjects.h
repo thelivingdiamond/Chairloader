@@ -1379,9 +1379,9 @@ namespace ArkNpc {
 		union {
 			bool b;
 			float number;
-			char *str;
+			const char *str;
 			IScriptTable *table;
-			void *ptr;
+			const void *ptr;
 			SScriptFuncHandle *function;
 			Vec3Triv vec3;
 			userData ud;

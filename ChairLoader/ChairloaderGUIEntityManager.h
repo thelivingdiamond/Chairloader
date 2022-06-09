@@ -705,7 +705,7 @@ private:
                     if (request.spawnCount == 1) {
                         IEntity* spawnerEntity = chairloader->spawnerHelper->GetVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
                         if (spawnerEntity != nullptr) {
-                            char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
+                            const char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
                                 CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                                 // chairloader->spawnerHelper->setEntityArchetype(request.archetype->m_id, spawner);
@@ -746,7 +746,7 @@ private:
                     else {
                         IEntity* spawnerEntity = chairloader->spawnerHelper->GetVictimSpawnerEntity(ChairloaderUtils::EntityType::mimic);
                         if (spawnerEntity != nullptr) {
-                            char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
+                            const char* oldArchetypeName = chairloader->spawnerHelper->SetEntityArchetype(request.archetype->m_id, spawnerEntity);
                             if (oldArchetypeName != nullptr) {
                                 CArkNpcSpawner* spawner = chairloader->internalPreyFunctions->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
                                 for (int i = 0; i < request.spawnCount; i++) {
