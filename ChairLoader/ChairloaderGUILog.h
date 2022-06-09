@@ -1,8 +1,8 @@
 #pragma once
 #include "pch.h"
-#include "ArkBasicTypes.h"
+#include <Prey/ArkBasicTypes.h>
+#include <Prey/ArkEntityArchetypeLibrary.h>
 #include "preyDllObjects.h"
-#include "ArkEntityArchetypeLibrary.h"
 class ChairloaderGUILog {
 public:
     // Basic Logging Structs

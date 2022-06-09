@@ -7,8 +7,8 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
-#include "ArkBasicTypes.h"
-#include "ArkEnums.h"
+#include <Prey/ArkBasicTypes.h>
+#include <Prey/ArkEnums.h>
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "ArkEntityArchetypeLibrary.h"
-#include "ArkEntityClassLibrary.h"
-#include "ArkAbilityLibrary.h"
+#include <Prey/ArkEntityArchetypeLibrary.h>
+#include <Prey/ArkEntityClassLibrary.h>
+#include <Prey/ArkAbilityLibrary.h>
 #include "pch.h"
 
 #include "preyDllObjects.h"

@@ -1,10 +1,10 @@
 #pragma once
 #include "pch.h"
 
-#include "ArkBasicTypes.h"
+#include <Prey/ArkBasicTypes.h>
 #include "EntityUtils.h"
 #include "preyDllObjects.h"
-#include "ArkEntityArchetypeLibrary.h"
+#include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"
 class ChairloaderGUIPlayerManager
 {

@@ -1,9 +1,9 @@
 #pragma once
 #include "pch.h"
 
-#include "ArkBasicTypes.h"
+#include <Prey/ArkBasicTypes.h>
+#include <Prey/ArkEntityArchetypeLibrary.h>
 #include "preyDllObjects.h"
-#include "ArkEntityArchetypeLibrary.h"
 #include "ChairloaderGUILog.h"
 #include "ChairloaderGUIEntityManager.h"
 #include "ChairloaderGUIPlayerManager.h"
