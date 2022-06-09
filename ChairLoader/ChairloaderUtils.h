@@ -70,7 +70,6 @@ public:
 	// static NpcSpawnHelper* spawnerManager;
 
 	// ArchetypeLibrary entityArchetypeLibrary;
-	ClassLibrary entityClassLibrary;
 	ArkAbilityLibrary abilityLibrary;
 	
 };
