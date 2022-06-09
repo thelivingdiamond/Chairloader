@@ -1,7 +1,6 @@
 #include "pch.h"
 #include <Prey/CrySystem/ITimer.h>
 #include "PerfOverlay.h"
-#include "ChairloaderUtils.h"
 #include "ChairLoader.h"
 
 PerfOverlay::PerfOverlay() {

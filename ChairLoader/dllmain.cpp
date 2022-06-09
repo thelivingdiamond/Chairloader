@@ -6,7 +6,6 @@
 #include "proc.h"
 #include "preyDllObjects.h"
 #include "PreyFunctions.h"
-#include "ChairloaderUtils.h"
 #include "ChairloaderGui.h"
 #include "ChairLoader.h"
 

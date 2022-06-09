@@ -6,7 +6,7 @@
 
 #include "preyDllObjects.h"
 #include "PreyFunctions.h"
-class ChairloaderUtils {
+class EntityUtils {
 public:
 	enum class EntityType {
 		human = 0,
@@ -48,7 +48,7 @@ public:
 		int generatedCount;
 	};
 public:
-	ChairloaderUtils();
+	EntityUtils();
 	NpcSpawnHelper spawnerHelper;
 	
 	ArkPlayer* ArkPlayerPtr();
@@ -58,4 +58,4 @@ public:
 	
 };
 
-extern ChairloaderUtils *chairloader;
+extern EntityUtils *gEntUtils;

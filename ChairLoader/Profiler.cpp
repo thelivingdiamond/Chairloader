@@ -3,7 +3,6 @@
 #include <Prey/CrySystem/Profiling.h>
 #include "Profiler.h"
 #include "ChairLoader.h"
-#include "ChairloaderUtils.h"
 #include "ImGui/imgui_widget_flamegraph.h"
 
 Profiler *g_pProfiler = nullptr;
