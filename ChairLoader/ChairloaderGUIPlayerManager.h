@@ -105,15 +105,15 @@ public:
         }
     }
 
-    void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void update(ChairloaderGUILog* log) {
         if (!gEnv->pSystem->IsPaused()) {
-            abilityRequestHandler(chairloader, log);
+            abilityRequestHandler(log);
         }
-        checkAbilities(chairloader, log);
+        checkAbilities(log);
     }
 private:
     // Handlers
-    void checkAbilities(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void checkAbilities(ChairloaderGUILog* log) {
         if (refreshAbilityList) {
             if (chairloader->ArkPlayerPtr() != nullptr) {
                 for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
@@ -132,7 +132,7 @@ private:
             }
         }
     }
-    void abilityRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void abilityRequestHandler(ChairloaderGUILog* log) {
         try {
             if (!AbilityListInitialized) {
                 if (chairloader->ArkPlayerPtr() != nullptr) {

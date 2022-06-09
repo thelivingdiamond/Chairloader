@@ -18,7 +18,6 @@
 class ChairloaderGui {
 
 private:
-    ChairloaderUtils* chairloaderGlobal;
     const std::string modName = "ChairloaderGUI";
     //TODO: rethink this one
     struct chairloaderGuiControl {
@@ -48,10 +47,9 @@ private:
     std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;
     std::mutex drawHandleMutex;
 public:
-    ChairloaderGui(ChairloaderUtils* chairloader_global)
-	    : chairloaderGlobal(chairloader_global),
+    ChairloaderGui() :
         playerManager(),
-        entityManager(chairloader_global),
+        entityManager(),
         console() {
         // gui = this;
     }
@@ -100,7 +98,7 @@ public:
                     ImGui::EndMenu();
                 }
                 playerManager.drawMenuBar(&control.showPlayerManager);
-                entityManager.drawMenuBar(&control.showEntityManager, chairloaderGlobal);
+                entityManager.drawMenuBar(&control.showEntityManager);
                 ImGui::EndMainMenuBar();
             }
             
@@ -142,8 +140,8 @@ public:
     void update() {
         if (!gEnv->pGame->m_pFramework->IsInLevelLoad() || !gEnv->pGame->m_pFramework->IsLoadingSaveGame()) {
             drawHandleMutex.lock();
-            entityManager.update(chairloaderGlobal, &log);
-            playerManager.update(chairloaderGlobal, &log);
+            entityManager.update(&log);
+            playerManager.update(&log);
             //TODO: run other GUI handlers in here 
             drawHandleMutex.unlock();
         }

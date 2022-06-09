@@ -53,10 +53,8 @@ private:
     std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
     std::queue<entityModifyRequest> modifyQueue;
 
-    // ChairloaderUtils* chairloaderGlobal;
-
 public:
-    ChairloaderGUIEntityManager(ChairloaderUtils* chairloaderIn) {
+    ChairloaderGUIEntityManager() {
         archetypeToSpawn = nullptr;
         // chairloaderGlobal = chairloaderIn;
         archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
@@ -501,7 +499,7 @@ public:
         }
         ImGui::End();
     }
-    void drawMenuBar(bool* control, ChairloaderUtils* chairloader) {
+    void drawMenuBar(bool* control) {
         if (ImGui::BeginMenu("Entity")) {
 
             if (ImGui::BeginMenu("Spawn Entity")) {
@@ -595,18 +593,18 @@ public:
         }
     }
 
-    void update(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void update(ChairloaderGUILog* log) {
         if (!gEnv->pSystem->IsPaused()) {
             
         }
-        entityModifyHandler(chairloader, log);
-        archetypeSpawnRequestHandler(chairloader, log);
-        archetypeFilterRequestHandler(chairloader, log);
-        filterEntityList(chairloader, log);
+        entityModifyHandler(log);
+        archetypeSpawnRequestHandler(log);
+        archetypeFilterRequestHandler(log);
+        filterEntityList(log);
     }
 
 private:
-    void entityModifyHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void entityModifyHandler(ChairloaderGUILog* log) {
         try {
             if (!modifyQueue.empty()) {
                 entityModifyRequest request = modifyQueue.front();
@@ -649,7 +647,7 @@ private:
             log->logItem(msg + c, modName, ChairloaderGUILog::logLevel::error);
         }
     }
-    void filterEntityList(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void filterEntityList(ChairloaderGUILog* log) {
         if (refreshDisplayList) {
             selected == nullptr;
             entityDisplayList.clear();
@@ -671,7 +669,7 @@ private:
             refreshDisplayList = false;
         }
     }
-    void archetypeSpawnRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void archetypeSpawnRequestHandler(ChairloaderGUILog* log) {
         if (!archetypeSpawnRequestQueue.empty() && !gEnv->pSystem->IsPaused()) {
             try {
 
@@ -835,7 +833,7 @@ private:
             }
         }
     }
-    void archetypeFilterRequestHandler(ChairloaderUtils* chairloader, ChairloaderGUILog* log) {
+    void archetypeFilterRequestHandler(ChairloaderGUILog* log) {
         if (!archetypeFilterRequestQueue.empty()) {
             archetypeFilterRequest request = archetypeFilterRequestQueue.front();
             std::string filterText = request.text;

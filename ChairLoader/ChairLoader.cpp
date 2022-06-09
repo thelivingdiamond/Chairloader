@@ -14,14 +14,13 @@ ChairLoader::ChairLoader() {
 	uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
 	std::cout << "Module Base: 0x" << std::hex << moduleBase << std::dec << "\n\n";
 
-	chairloader = new ChairloaderUtils(moduleBase);
-
 	LoadPreyPointers(moduleBase);
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
+	chairloader = new ChairloaderUtils(moduleBase);
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
-	gui = new ChairloaderGui(chairloader);
+	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
 }
 
