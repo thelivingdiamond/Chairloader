@@ -14,6 +14,7 @@ public:
 		phantom = 2,
 		operators = 3
 	};
+
 	// entities (WIP)
 	CEntity* CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, preyFunctions* functions);
 	CEntity* CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, preyFunctions* functions);
@@ -23,11 +24,6 @@ public:
 	void DumpEntity(CEntity* entity, bool dumpProxies);
 	void DumpGameObject(CGameObject* obj);
 
-	class NpcUtils {
-	public:
-		NpcUtils();
-
-	};
 	class NpcSpawnHelper {
 	public:
 		NpcSpawnHelper(preyFunctions*, gameEnvironmentPointers*);
@@ -48,9 +44,6 @@ public:
 		IEntity* SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type);
 		std::vector < IEntity*> SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type, uint32_t spawnCount);
 
-		
-
-
 	private:
 		std::string lastUniqueName;
 		std::string nextUniqueName;
@@ -63,11 +56,7 @@ public:
 	gameEnvironmentPointers* preyEnvironmentPointers;
 	NpcSpawnHelper* spawnerHelper;
 	
-	// convenient pointers
-	// CEntitySystem* CEntitySystemPtr;
-	// CGame* CGamePtr;
 	ArkPlayer* ArkPlayerPtr();
-	// static NpcSpawnHelper* spawnerManager;
 
 	// ArchetypeLibrary entityArchetypeLibrary;
 	ArkAbilityLibrary abilityLibrary;
