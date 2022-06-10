@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <Prey/CrySystem/ISystem.h>
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
 #include "Logging.h"

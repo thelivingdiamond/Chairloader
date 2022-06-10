@@ -88,7 +88,7 @@ public:
 	char pad[2];
 };
 class CEntitySystem;
-class SSystemGlobalEnvironment {
+struct SSystemGlobalEnvironment {
 	// typedef CGame* _g_pGame;
 	 // _g_pGame g_pGame;
 	public:
