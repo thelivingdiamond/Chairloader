@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>
+#include <Prey/CrySystem/IConsole.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
 #include "ChairloaderGui.h"
@@ -9,6 +10,37 @@
 ChairLoader *gCL = nullptr;
 SSystemGlobalEnvironment *gEnv = nullptr;
 
+namespace {
+
+class ConsoleStdoutSink : public IOutputPrintSink {
+public:
+	void Init() {
+		gEnv->pConsole->AddOutputPrintSink(this);
+		PrintExistingMessages();
+	}
+
+	void Print(const char *inszText) override {
+		printf("%s\n", inszText);
+	}
+
+	void PrintExistingMessages() {
+		Print(">>>>>>>> Printing console log");
+		int count = gEnv->pConsole->GetLineCount();
+
+		for (int i = count - 1; i >= 0; i--) {
+			char buf[1024];
+			gEnv->pConsole->GetLineNo(i, buf, sizeof(buf));
+			printf("%s\n", buf);
+		}
+
+		Print(">>>>>>>> Finished printing console log");
+	}
+};
+
+ConsoleStdoutSink g_StdoutConsole;
+
+}
+
 ChairLoader::ChairLoader() {
 	CreateConsole();
 	std::cout << "ChairLoader Initializing...\n";
@@ -16,6 +48,7 @@ ChairLoader::ChairLoader() {
 	std::cout << "Module Base: 0x" << std::hex << moduleBase << std::dec << "\n\n";
 
 	LoadPreyPointers(moduleBase);
+	g_StdoutConsole.Init();
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
