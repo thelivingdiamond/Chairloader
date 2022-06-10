@@ -356,6 +356,7 @@ int DevConsoleDialog::TextEditCallback(ImGuiInputTextCallbackData *data) {
 }
 
 void DevConsoleDialog::ExecCommand(const char *cmd) {
+	CryLog("$7> %s", cmd);
 	m_pConsole->AddCommandToHistory(cmd);
 	m_pConsole->ExecuteString(cmd);
 	m_bScrollToBottom = true;
