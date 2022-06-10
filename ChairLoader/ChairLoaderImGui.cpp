@@ -633,7 +633,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 
 		// Send key events
 		// Ignore tilde key as it controls the console
-		if (event.keyId != eKI_Tilde) {
+		if (event.keyId != eKI_Tilde && event.inputChar != '`') {
 			ImGuiKey key = KeyIdToImGui(event.keyId);
 			if (key != ImGuiKey_None) {
 				io.AddKeyEvent(key, event.value != 0.0f);
