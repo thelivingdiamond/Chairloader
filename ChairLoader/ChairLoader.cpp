@@ -99,6 +99,7 @@ void ChairLoader::CreateConsole() {
 void ChairLoader::LoadPreyPointers(uintptr_t moduleBase) {
 	gEnv = (SSystemGlobalEnvironment *)(moduleBase + 0x22418c0);
 	gPreyFuncs = new PreyFunctions(moduleBase);
+	CryLog("ChairLoader: gEnv = %p\n", gEnv);
 }
 
 void ChairLoader::HookGameUpdate(uintptr_t moduleBase) {

@@ -2,6 +2,7 @@
 #include <memory>
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
+#include "Logging.h"
 
 struct SInputEvent;
 

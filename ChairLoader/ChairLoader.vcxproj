@@ -239,6 +239,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\Logging.h" />
     <ClInclude Include="..\Common\mem.h" />
     <ClInclude Include="..\Common\preyDllObjects.h" />
     <ClInclude Include="..\Common\PreyFunctions.h" />
@@ -271,6 +272,8 @@
     <ClInclude Include="..\Common\Prey\CryRenderer\Texture.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\HardwareMouse.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\ILog.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\IMiniLog.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ISystem.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h" />
@@ -293,6 +296,7 @@
     <ClInclude Include="Profiler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\Logging.cpp" />
     <ClCompile Include="..\Common\mem.cpp" />
     <ClCompile Include="..\Common\PreyDllObjects.cpp" />
     <ClCompile Include="..\Common\PreyFunctions.cpp" />

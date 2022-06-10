@@ -47,7 +47,6 @@ class IPhysicalEntity;
 class ArkAimAssistComponent;
 class ArkNpcAbilityInstance;
 class IScriptSystem;
-class ILog;
 class I3DEngine;
 class CEntityClass;
 class CSystem;
@@ -62,6 +61,7 @@ class IRenderer;
 class ITexture;
 class IHardwareMouse;
 class ICVarsWhitelist;
+struct ILog;
 
 namespace JobManager {
 class IJobManager;
@@ -123,7 +123,7 @@ class SSystemGlobalEnvironment {
 		CSystem *pSystem			;
 		void *pCharacterManager		;
 		void *pAISystem				;
-		void *pLog					;
+		ILog *pLog					;
 		void *pCodeCheckpointMgr	;	
 		void *pMovieSystem			;
 		void *pNameTable			;
@@ -6044,8 +6044,8 @@ namespace ArkNpc {
 			virtual int32_t  IsSerializingFile() {}
 			virtual bool  IsRelaunch() {}
 			virtual void  DisplayErrorMessage(char* param_1, float param_2, float* param_3, bool param_4) {}
-			virtual void  FatalError(char* param_1) {}
-			virtual void  ReportBug(char* param_1) {}
+			virtual void  FatalError(const char* param_1, ...) {}
+			virtual void  ReportBug(const char* param_1, ...) {}
 		private:
 			virtual void   garbage0() {}
 		public:
@@ -7952,7 +7952,6 @@ namespace ArkNpc {
 		class CNetworkStallTickerThread{};
 		class I3DEngine{};
 		class IScriptSystem{};
-		class ILog{};
 		class CActionGame{};
 		class CMaterialEffectsCVars{};
 		class CCryActionPhysicQueues{};

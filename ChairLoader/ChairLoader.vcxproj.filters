@@ -210,6 +210,15 @@
     <ClInclude Include="DevConsoleDialog.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Logging.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ILog.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IMiniLog.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -256,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="DevConsoleDialog.cpp">
       <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Logging.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
