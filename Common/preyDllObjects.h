@@ -7,6 +7,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
+#include <Prey/CrySystem/IConsole.h>
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEnums.h>
 // #include "Header.h"
@@ -46,7 +47,6 @@ class IPhysicalEntity;
 class ArkAimAssistComponent;
 class ArkNpcAbilityInstance;
 class IScriptSystem;
-class ILog;
 class I3DEngine;
 class CEntityClass;
 class CSystem;
@@ -60,6 +60,8 @@ class ITimer;
 class IRenderer;
 class ITexture;
 class IHardwareMouse;
+class ICVarsWhitelist;
+struct ILog;
 
 namespace JobManager {
 class IJobManager;
@@ -86,7 +88,7 @@ public:
 	char pad[2];
 };
 class CEntitySystem;
-class SSystemGlobalEnvironment {
+struct SSystemGlobalEnvironment {
 	// typedef CGame* _g_pGame;
 	 // _g_pGame g_pGame;
 	public:
@@ -114,14 +116,14 @@ class SSystemGlobalEnvironment {
 		CGame*pGame					;
 		void *pLocalMemoryUsage		;
 		CEntitySystem*pEntitySystem	;
-		void *pConsole				;
+		IConsole *pConsole				;
 		void* pTelemetrySystem		;
 		void *pAudioSystem			;
 		void* pArkRoomVolume		;
 		CSystem *pSystem			;
 		void *pCharacterManager		;
 		void *pAISystem				;
-		void *pLog					;
+		ILog *pLog					;
 		void *pCodeCheckpointMgr	;	
 		void *pMovieSystem			;
 		void *pNameTable			;
@@ -4787,7 +4789,6 @@ namespace ArkNpc {
 		}
 		class CGameCache{};
 		class IGameFramework{};
-		class IConsole{};
 		class CGamePhysicsSettings{};
 		class CScriptBind_Actor				 {};
 		class CScriptBind_Item				 {};
@@ -5083,7 +5084,6 @@ namespace ArkNpc {
 			int enableNewHUDEffect;
 			int minimalHudEffect;
 		};
-		 class ICVar {};
 		 class SCVars {
 		 public:
 		 	SGameReleaseConstantCVars m_releaseConstants;
@@ -5826,16 +5826,10 @@ namespace ArkNpc {
 		class SCrySessionID {};
 
 		
-		class IOutputPrintSink {};
 		class IFFont		   {};
 		class IRenderer;
 		class INetwork		   {};
 		
-		class IConsoleArgumentAutoComplete {};
-		class IConsoleVarSink{};
-		// class CXConsoleVariableFloatRef {
-		// 	
-		// };
 		class CConsoleCommand {
 		public:
 			CryStringT<char> m_sName,
@@ -5873,7 +5867,6 @@ namespace ArkNpc {
 		
 		class IArchiveHost{};
 		class ISystemUserCallback{};
-		class ICVarsWhitelist{};
 		class ILoadConfigurationEntrySink{};
 		class CrySizerStats{};
 		class CrySizerImpl{};
@@ -5990,7 +5983,6 @@ namespace ArkNpc {
 		class IPhysicalWorld{};
 		class IAudioSystem{};
 		class IArkRoomVolumeManager{};
-		class IRemoteConsole{};
 		class IArkBethesdaNetManager{};
 		class IResourceManager{};
 		class IThreadTaskManager{};
@@ -6052,8 +6044,8 @@ namespace ArkNpc {
 			virtual int32_t  IsSerializingFile() {}
 			virtual bool  IsRelaunch() {}
 			virtual void  DisplayErrorMessage(char* param_1, float param_2, float* param_3, bool param_4) {}
-			virtual void  FatalError(char* param_1) {}
-			virtual void  ReportBug(char* param_1) {}
+			virtual void  FatalError(const char* param_1, ...) {}
+			virtual void  ReportBug(const char* param_1, ...) {}
 		private:
 			virtual void   garbage0() {}
 		public:
@@ -6471,14 +6463,11 @@ namespace ArkNpc {
 		typedef void(_cdecl FuncDef254)();
 		typedef void(_cdecl FuncDef253)();
 		typedef void(_cdecl FuncDef252)();
-		class ICVarDumpSink{};
 		class ArkTutorialSystem{};
-		class IKeyBindDumpSink{};
 		class EGoalOpResult{};
 		class CPipeUser{};
 		//class ArkAudioLogComponent{};
 		class IAudioSystemImplementation{};
-		class SFunctor{};
 		class AKRESULT{};
 		enum class EPriorityComparison{};
 		class CXConsole {
@@ -7963,7 +7952,6 @@ namespace ArkNpc {
 		class CNetworkStallTickerThread{};
 		class I3DEngine{};
 		class IScriptSystem{};
-		class ILog{};
 		class CActionGame{};
 		class CMaterialEffectsCVars{};
 		class CCryActionPhysicQueues{};

@@ -231,7 +231,7 @@ public:
                     {
                         if (ImGui::BeginTabItem("Entity Details"))
                         {
-                            // printf("at the entity check\n");
+                            // CryLog("at the entity check\n");
 
                             if (selected != nullptr) {
                                 if (ImGui::BeginTable("Details", 2, ImGuiTableFlags_NoClip | ImGuiTableFlags_BordersH)) {
@@ -256,12 +256,12 @@ public:
                                     ImGui::Text("ID:");
                                     ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                                     ImGui::TableNextColumn();
-                                    // printf("at id\n");
+                                    // CryLog("at id\n");
                                     ImGui::Text("%llu", selected->m_nID);
                                     // GUID
                                     ImGui::TableNextRow();
                                     ImGui::TableNextColumn();
-                                    // printf("at guid\n");
+                                    // CryLog("at guid\n");
                                     ImGuiUtils::RightAlignText("GUID:");
                                     ImGui::Text("GUID:");
                                     ImGui::SetCursorPosX(ImGui::GetColumnWidth());
@@ -270,7 +270,7 @@ public:
                                     // Class
                                     ImGui::TableNextRow();
                                     ImGui::TableNextColumn();
-                                    // printf("at class\n");
+                                    // CryLog("at class\n");
                                     ImGuiUtils::RightAlignText("Class:");
                                     ImGui::Text("Class:");
                                     ImGui::SetCursorPosX(ImGui::GetColumnWidth());
@@ -360,7 +360,7 @@ public:
                                     newScale[2] = newScale[0];
                                     ImGui::InputFloat3("scale", newScale, "%.2f");
                                     if (ImGui::Button("Set")) {
-                                        printf("%f\n", newScale[0]);
+                                        CryLog("%f", newScale[0]);
                                         Vec3_tpl<float> scalar;
                                         scalar.x = newScale[0];
                                         scalar.y = newScale[0];
@@ -609,7 +609,7 @@ private:
             if (!modifyQueue.empty()) {
                 entityModifyRequest request = modifyQueue.front();
                 if (request.entity == nullptr) {
-                    printf("this shit's wack\n");
+                    CryLog("this shit's wack");
                     modifyQueue.pop();
                     return;
                     // throw("Null Entity");
@@ -626,7 +626,7 @@ private:
                 } if (request.type == entityModifyType::scale) {
                     if(true){
                     // if ((request.scale.x != 0 && request.scale.y != 0 && request.scale.z != 0) && (request.scale.x == request.scale.y && request.scale.y == request.scale.z)) {
-                        printf("new scale = %f", request.scale.x);
+                        CryLog("new scale = %f", request.scale.x);
                         ((IEntity*)request.entity)->SetScale(&request.scale, 0);
                     }
                     else {
@@ -684,7 +684,7 @@ private:
                     gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(player, &playerPos);
                     if (player != nullptr) {
                         // player->GetLocalEyePos(&playerPos);
-                        // printf("Player Position x: %f y: %f z:%f\n", playerPos.x, playerPos.y, playerPos.z);
+                        // CryLog("Player Position x: %f y: %f z:%f\n", playerPos.x, playerPos.y, playerPos.z);
                         if (playerPos.x != 0 && playerPos.y != 0 && playerPos.z != 0) {
                             if (request.offsetFromPlayer) {
                                 playerPos.x += gEntUtils->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
@@ -722,11 +722,11 @@ private:
 
                                 // IEntity* newEntity = gEntUtils->spawnerHelper.SpawnNpc(spawner, (char*)request.name.c_str());
 
-                                // printf("spawned an entity\n");
+                                // CryLog("spawned an entity\n");
                                 // if (newEntity != nullptr) {
                                 //     newEntity->SetPos(&request.pos, 0, true, false);
                                 //     newEntity->SetName((char*)request.name.c_str());
-                                //     // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
+                                //     // CryLog("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
                                 // }
                                 // else {
                                 //     throw("Error, null entity spawned");
@@ -754,7 +754,7 @@ private:
                                         newEntity->SetPos(&request.pos, 0, true, false);
                                         //                                 if(!request.name.empty())
                                                                             // newEntity->SetName((char*)(request.name + std::to_string(i)).c_str());
-                                                                        // printf("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
+                                                                        // CryLog("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
                                     }
                                     else {
                                         throw("Error, null entity spawned");
@@ -777,7 +777,7 @@ private:
                 else {
                     log->logItem("Using non-npc spawning process", modName, ChairloaderGUILog::logLevel::warning);
                     for (int i = 0; i < request.spawnCount; i++) {
-                        // printf("Using non-npc spawning process\n");
+                        // CryLog("Using non-npc spawning process\n");
                         SEntitySpawnParams* params = new SEntitySpawnParams;
 
                         params->vScale.x = 1;
@@ -815,7 +815,7 @@ private:
                             // log->logItem("Spawn count: " + std::to_string(request.spawnCount), modName.c_str());
 
                             params->vPosition.x += 0.05f;
-                            // printf("Spawning\n");
+                            // CryLog("Spawning\n");
                             entity = gEnv->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
 
                         }
@@ -829,7 +829,7 @@ private:
             catch (const char* c) {
                 log->logItem(c, modName, ChairloaderGUILog::logLevel::error);
                 // return {c, time(nullptr), logLevel::error}
-                // printf("%s\n", c);
+                // CryLog("%s\n", c);
             }
         }
     }
@@ -857,7 +857,7 @@ private:
                 }
             }
             archetypeFilterRequestQueue.pop();
-            // printf("processed: %s\n", filterText.c_str());
+            // CryLog("processed: %s\n", filterText.c_str());
         }
     }
 

@@ -72,9 +72,6 @@
     <ClInclude Include="ChairLoaderImGui.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="ChairloaderGUIConsole.h">
-      <Filter>Chairloader</Filter>
-    </ClInclude>
     <ClInclude Include="ChairloaderGUIEntityManager.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
@@ -207,6 +204,21 @@
     <ClInclude Include="..\Common\proc.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="DevConsoleDialog.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Logging.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ILog.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IMiniLog.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -249,6 +261,12 @@
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\proc.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="DevConsoleDialog.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Logging.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>

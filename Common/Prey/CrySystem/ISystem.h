@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <Prey/CrySystem/ITimer.h>
+#include <Prey/CrySystem/IConsole.h>
 
 enum ESystemEvent : __int32
 {
@@ -80,3 +81,47 @@ struct ISystemEventListener
 	virtual ~ISystemEventListener() {}
 	virtual void OnSystemEvent(ESystemEvent event, uintptr_t wparam, uintptr_t lparam) = 0;
 };
+
+struct SSystemGlobalEnvironment;
+extern SSystemGlobalEnvironment *gEnv;
+
+#define CVARHELP(_comment) _comment
+
+//! Preferred way to register a CVar
+#define REGISTER_CVAR(_var, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(( # _var), &(_var), (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Preferred way to register a CVar with a callback
+#define REGISTER_CVAR_CB(_var, _def_val, _flags, _comment, _onchangefunction) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(( # _var), &(_var), (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+
+//! Preferred way to register a string CVar
+#define REGISTER_STRING(_name, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterString(_name, (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Preferred way to register a string CVar with a callback
+#define REGISTER_STRING_CB(_name, _def_val, _flags, _comment, _onchangefunction) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterString(_name, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+
+//! Preferred way to register an int CVar
+#define REGISTER_INT(_name, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterInt(_name, (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Preferred way to register an int CVar with a callback
+#define REGISTER_INT_CB(_name, _def_val, _flags, _comment, _onchangefunction) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterInt(_name, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+
+//! Preferred way to register an int64 CVar
+#define REGISTER_INT64(_name, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterInt64(_name, (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Preferred way to register a float CVar
+#define REGISTER_FLOAT(_name, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterFloat(_name, (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Offers more flexibility but more code is required
+#define REGISTER_CVAR2(_name, _var, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, _var, (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Offers more flexibility but more code is required
+#define REGISTER_CVAR2_CB(_name, _var, _def_val, _flags, _comment, _onchangefunction) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, _var, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+
+//! Offers more flexibility but more code is required, explicit address taking of destination variable
+#define REGISTER_CVAR3(_name, _var, _def_val, _flags, _comment) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, &(_var), (_def_val), (_flags), CVARHELP(_comment)))
+
+//! Offers more flexibility but more code is required, explicit address taking of destination variable
+#define REGISTER_CVAR3_CB(_name, _var, _def_val, _flags, _comment, _onchangefunction) (gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, &(_var), (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+
+//! Preferred way to register a console command
+#define REGISTER_COMMAND(_name, _func, _flags, _comment) (gEnv->pConsole == 0 ? (void)0 : gEnv->pConsole->AddCommand(_name, _func, (_flags), CVARHELP(_comment)))

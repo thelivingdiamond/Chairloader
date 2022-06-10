@@ -1,7 +1,11 @@
 #pragma once
 #include <memory>
+#include <Prey/CrySystem/ISystem.h>
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
+#include "Logging.h"
+
+struct SInputEvent;
 
 class ChairLoader {
 public:
@@ -16,6 +20,10 @@ public:
 
 	// After CGame::Update
 	void PostUpdate(bool haveFocus, unsigned int updateFlags);
+
+	//! Process a key press.
+	//! @returns whether it was handled and shouldn't be passed over to the game.
+	bool HandleKeyPress(const SInputEvent &event);
 
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }

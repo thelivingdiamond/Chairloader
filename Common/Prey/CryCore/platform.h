@@ -31,3 +31,7 @@ ILINE bool IsAligned(T nData, size_t nAlign)
 #else
 #define IF_DEBUG(expr)
 #endif
+
+// Define BIT macro for use in enums and bit masks.
+#define BIT(x)   (1 << (x))
+#define BIT64(x) (1ull << (x))

@@ -632,13 +632,20 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 		io.AddKeyEvent(ImGuiKey_ModSuper, event.modifiers & eMM_Win);
 
 		// Send key events
-		ImGuiKey key = KeyIdToImGui(event.keyId);
-		if (key != ImGuiKey_None) {
-			io.AddKeyEvent(key, event.value != 0.0f);
+		// Ignore tilde key as it controls the console
+		if (event.keyId != eKI_Tilde && event.inputChar != '`') {
+			ImGuiKey key = KeyIdToImGui(event.keyId);
+			if (key != ImGuiKey_None) {
+				io.AddKeyEvent(key, event.value != 0.0f);
+			}
+
+			if (event.inputChar > 0 && event.inputChar < 0x10000 && event.state == eIS_UI) {
+				io.AddInputCharacterUTF16(event.inputChar);
+			}
 		}
 
-		if (event.inputChar > 0 && event.inputChar < 0x10000 && event.state == eIS_UI) {
-			io.AddInputCharacterUTF16(event.inputChar);
+		if (gCL->HandleKeyPress(event)) {
+			return;
 		}
 	} else if (event.deviceType == eIDT_Mouse) {
 		switch (event.keyId) {
@@ -666,7 +673,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 	}
 
 	//if (event.deviceType == eIDT_Mouse)
-	//    printf("%d, %d - %s, %d, %f\n", event.deviceType, event.keyId, event.keyName.key, event.state, event.value);
+	//    CryLog("%d, %d - %s, %d, %f\n", event.deviceType, event.keyId, event.keyName.key, event.state, event.value);
 	// if(!io.WantCaptureKeyboard){
 	if ((event.deviceType == eIDT_Keyboard) && io.WantTextInput)
 		return;
@@ -683,7 +690,7 @@ HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UIN
 			data.bIsReady = true;
 		} else {
 			data.bIsReady = false;
-			printf("ImGui RT: Failed to initialize. God help you.\n");
+			CryFatalError("ImGui RT: Failed to initialize. God help you.");
 		}
 	}
 

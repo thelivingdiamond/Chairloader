@@ -1,5 +1,7 @@
 #include "pch.h"
 #include <filesystem>
+#include <Prey/CryInput/IInput.h>
+#include <Prey/CrySystem/IConsole.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
 #include "ChairloaderGui.h"
@@ -8,6 +10,37 @@
 ChairLoader *gCL = nullptr;
 SSystemGlobalEnvironment *gEnv = nullptr;
 
+namespace {
+
+class ConsoleStdoutSink : public IOutputPrintSink {
+public:
+	void Init() {
+		gEnv->pConsole->AddOutputPrintSink(this);
+		PrintExistingMessages();
+	}
+
+	void Print(const char *inszText) override {
+		printf("%s\n", inszText);
+	}
+
+	void PrintExistingMessages() {
+		Print(">>>>>>>> Printing console log");
+		int count = gEnv->pConsole->GetLineCount();
+
+		for (int i = count - 1; i >= 0; i--) {
+			char buf[1024];
+			gEnv->pConsole->GetLineNo(i, buf, sizeof(buf));
+			printf("%s\n", buf);
+		}
+
+		Print(">>>>>>>> Finished printing console log");
+	}
+};
+
+ConsoleStdoutSink g_StdoutConsole;
+
+}
+
 ChairLoader::ChairLoader() {
 	CreateConsole();
 	std::cout << "ChairLoader Initializing...\n";
@@ -15,6 +48,7 @@ ChairLoader::ChairLoader() {
 	std::cout << "Module Base: 0x" << std::hex << moduleBase << std::dec << "\n\n";
 
 	LoadPreyPointers(moduleBase);
+	g_StdoutConsole.Init();
 	HookGameUpdate(moduleBase);
 	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
@@ -47,6 +81,15 @@ void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
 }
 
+bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
+	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed) {
+		gui->SetDevConsoleVisible(!gui->IsDevConsoleVisible());
+		return true;
+	}
+
+	return false;
+}
+
 void ChairLoader::CreateConsole() {
 	AllocConsole();
 	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
@@ -56,6 +99,7 @@ void ChairLoader::CreateConsole() {
 void ChairLoader::LoadPreyPointers(uintptr_t moduleBase) {
 	gEnv = (SSystemGlobalEnvironment *)(moduleBase + 0x22418c0);
 	gPreyFuncs = new PreyFunctions(moduleBase);
+	CryLog("ChairLoader: gEnv = %p\n", gEnv);
 }
 
 void ChairLoader::HookGameUpdate(uintptr_t moduleBase) {
@@ -84,7 +128,7 @@ void ChairLoader::LoadConfigFile() {
 void ChairLoader::UpdateFreeCam() {
 	if (GetAsyncKeyState(m_FreeCamKey) & 1) {
 		m_FreeCamEnabled = !m_FreeCamEnabled;
-		printf("Freecam state: %u\n", m_FreeCamEnabled);
+		CryLog("Freecam state: %u\n", m_FreeCamEnabled);
 		if (m_FreeCamEnabled) {
 			m_DevMode = true;
 			gPreyFuncs->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
