@@ -160,6 +160,9 @@ void DevConsoleDialog::Show(bool *p_open) {
 	ImGui::SameLine();
 	if (ImGui::Button("Clear"))
 		m_pConsole->Clear();
+	
+	ImGui::TextWrapped("'cvar_name ?' for help. '?string' for search. 'find string' for search (variables only) with help.");
+
 	ImGui::Separator();
 
 	// Reserve enough left-over height for 1 separator + 1 input text
