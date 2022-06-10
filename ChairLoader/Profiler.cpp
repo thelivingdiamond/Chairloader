@@ -102,7 +102,7 @@ void PushProfilingMarker(JobManager::IJobManager *_this, char *name) {
 	std::unique_lock lock(data.mutex);
 
 	if (data.nodes.size() >= Profiler::MAX_NODES_CHILDREN) {
-		printf("PushProfilingMarker: too many nodes\n");
+		CryWarning("PushProfilingMarker: too many nodes");
 		return;
 	}
 
@@ -120,7 +120,7 @@ void PushProfilingMarker(JobManager::IJobManager *_this, char *name) {
 		Node &parent = data.nodes[data.currentNode];
 		
 		if (parent.childCount == Profiler::MAX_DIRECT_CHILDREN) {
-			printf("PushProfilingMarker: too many children\n");
+			CryWarning("PushProfilingMarker: too many children");
 			return;
 		}
 
@@ -226,7 +226,7 @@ void Profiler::Enable() {
 	}
 
 	if (gCL->GetRenderThreadId() == std::thread::id()) {
-		printf("Render thread ID must be set before profiler is enabled\n");
+		CryError("Render thread ID must be set before profiler is enabled");
 		return;
 	}
 

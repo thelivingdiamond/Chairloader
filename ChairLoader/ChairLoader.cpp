@@ -128,7 +128,7 @@ void ChairLoader::LoadConfigFile() {
 void ChairLoader::UpdateFreeCam() {
 	if (GetAsyncKeyState(m_FreeCamKey) & 1) {
 		m_FreeCamEnabled = !m_FreeCamEnabled;
-		printf("Freecam state: %u\n", m_FreeCamEnabled);
+		CryLog("Freecam state: %u\n", m_FreeCamEnabled);
 		if (m_FreeCamEnabled) {
 			m_DevMode = true;
 			gPreyFuncs->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
