@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <boost/algorithm/string/find.hpp>
 #include "DevConsoleDialog.h"
 #include "ChairLoader.h"
 
@@ -51,7 +52,24 @@ struct ParseBuffer {
 	}
 };
 
-static ImVec4 g_ConColors[] = {
+struct FindDumpSink : ICVarDumpSink {
+	std::vector<ICVar *> cvars;
+	const char *str = nullptr;
+
+	void OnElementFound(ICVar *pCVar) {
+		const char *name = pCVar->GetName();
+		const char *help = pCVar->GetHelp();
+
+		bool isFound = boost::ifind_first(name, str);
+		isFound = isFound || (help && boost::ifind_first(help, str));
+
+		if (isFound) {
+			cvars.push_back(pCVar);
+		}
+	}
+};
+
+ImVec4 g_ConColors[] = {
 	ImColor(0, 0, 0, 0),		// 0 Default
 	ImColor(255, 255, 255, 255),// 1 White
 	ImColor(64, 64, 255, 255),	// 2 Blue
@@ -66,6 +84,43 @@ static ImVec4 g_ConColors[] = {
 
 CBetterCVarsWhitelist g_CVarsWhitelist;
 
+void Command_Find(IConsoleCmdArgs *args) {
+	if (args->GetArgCount() != 2) {
+		CryLog("Prints all variables matching input text.");
+		CryLog("Usage: find <text>");
+		return;
+	}
+
+	FindDumpSink sink;
+	sink.cvars.reserve(gEnv->pConsole->GetNumVars());
+	sink.str = args->GetArg(1);
+
+	gEnv->pConsole->DumpCVars(&sink);
+
+	for (ICVar *cvar : sink.cvars) {
+		CryLog("$3%s = $6%s", cvar->GetName(), cvar->GetString());
+
+		const char *help = cvar->GetHelp();
+		if (help) {
+			std::string line;
+			line.reserve(256);
+
+			for (const char *str = help; *str; str++) {
+				if (*str == '\n') {
+					CryLog("    %s", line.c_str());
+					line.clear();
+				} else {
+					line += *str;
+				}
+			}
+
+			if (!line.empty()) {
+				CryLog("    %s", line.c_str());
+			}
+		}
+	}
+}
+
 } // namespace
 
 DevConsoleDialog::DevConsoleDialog() {
@@ -73,6 +128,8 @@ DevConsoleDialog::DevConsoleDialog() {
 
 	auto pSystem = static_cast<CSystem *>(gEnv->pSystem);
 	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
+
+	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
 }
 
 void DevConsoleDialog::Show(bool *p_open) {
