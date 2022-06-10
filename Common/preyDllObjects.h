@@ -7,6 +7,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
+#include <Prey/CrySystem/IConsole.h>
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEnums.h>
 // #include "Header.h"
@@ -60,6 +61,7 @@ class ITimer;
 class IRenderer;
 class ITexture;
 class IHardwareMouse;
+class ICVarsWhitelist;
 
 namespace JobManager {
 class IJobManager;
@@ -114,7 +116,7 @@ class SSystemGlobalEnvironment {
 		CGame*pGame					;
 		void *pLocalMemoryUsage		;
 		CEntitySystem*pEntitySystem	;
-		void *pConsole				;
+		IConsole *pConsole				;
 		void* pTelemetrySystem		;
 		void *pAudioSystem			;
 		void* pArkRoomVolume		;
@@ -4787,7 +4789,6 @@ namespace ArkNpc {
 		}
 		class CGameCache{};
 		class IGameFramework{};
-		class IConsole{};
 		class CGamePhysicsSettings{};
 		class CScriptBind_Actor				 {};
 		class CScriptBind_Item				 {};
@@ -5083,7 +5084,6 @@ namespace ArkNpc {
 			int enableNewHUDEffect;
 			int minimalHudEffect;
 		};
-		 class ICVar {};
 		 class SCVars {
 		 public:
 		 	SGameReleaseConstantCVars m_releaseConstants;
@@ -5826,16 +5826,10 @@ namespace ArkNpc {
 		class SCrySessionID {};
 
 		
-		class IOutputPrintSink {};
 		class IFFont		   {};
 		class IRenderer;
 		class INetwork		   {};
 		
-		class IConsoleArgumentAutoComplete {};
-		class IConsoleVarSink{};
-		// class CXConsoleVariableFloatRef {
-		// 	
-		// };
 		class CConsoleCommand {
 		public:
 			CryStringT<char> m_sName,
@@ -5873,7 +5867,6 @@ namespace ArkNpc {
 		
 		class IArchiveHost{};
 		class ISystemUserCallback{};
-		class ICVarsWhitelist{};
 		class ILoadConfigurationEntrySink{};
 		class CrySizerStats{};
 		class CrySizerImpl{};
@@ -5990,7 +5983,6 @@ namespace ArkNpc {
 		class IPhysicalWorld{};
 		class IAudioSystem{};
 		class IArkRoomVolumeManager{};
-		class IRemoteConsole{};
 		class IArkBethesdaNetManager{};
 		class IResourceManager{};
 		class IThreadTaskManager{};
@@ -6471,14 +6463,11 @@ namespace ArkNpc {
 		typedef void(_cdecl FuncDef254)();
 		typedef void(_cdecl FuncDef253)();
 		typedef void(_cdecl FuncDef252)();
-		class ICVarDumpSink{};
 		class ArkTutorialSystem{};
-		class IKeyBindDumpSink{};
 		class EGoalOpResult{};
 		class CPipeUser{};
 		//class ArkAudioLogComponent{};
 		class IAudioSystemImplementation{};
-		class SFunctor{};
 		class AKRESULT{};
 		enum class EPriorityComparison{};
 		class CXConsole {

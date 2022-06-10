@@ -632,13 +632,20 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 		io.AddKeyEvent(ImGuiKey_ModSuper, event.modifiers & eMM_Win);
 
 		// Send key events
-		ImGuiKey key = KeyIdToImGui(event.keyId);
-		if (key != ImGuiKey_None) {
-			io.AddKeyEvent(key, event.value != 0.0f);
+		// Ignore tilde key as it controls the console
+		if (event.keyId != eKI_Tilde) {
+			ImGuiKey key = KeyIdToImGui(event.keyId);
+			if (key != ImGuiKey_None) {
+				io.AddKeyEvent(key, event.value != 0.0f);
+			}
+
+			if (event.inputChar > 0 && event.inputChar < 0x10000 && event.state == eIS_UI) {
+				io.AddInputCharacterUTF16(event.inputChar);
+			}
 		}
 
-		if (event.inputChar > 0 && event.inputChar < 0x10000 && event.state == eIS_UI) {
-			io.AddInputCharacterUTF16(event.inputChar);
+		if (gCL->HandleKeyPress(event)) {
+			return;
 		}
 	} else if (event.deviceType == eIDT_Mouse) {
 		switch (event.keyId) {

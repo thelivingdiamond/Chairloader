@@ -3,6 +3,8 @@
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
 
+struct SInputEvent;
+
 class ChairLoader {
 public:
 	// After CGame::Init
@@ -16,6 +18,10 @@ public:
 
 	// After CGame::Update
 	void PostUpdate(bool haveFocus, unsigned int updateFlags);
+
+	//! Process a key press.
+	//! @returns whether it was handled and shouldn't be passed over to the game.
+	bool HandleKeyPress(const SInputEvent &event);
 
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }

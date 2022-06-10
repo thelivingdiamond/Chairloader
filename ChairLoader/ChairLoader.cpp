@@ -1,5 +1,6 @@
 #include "pch.h"
 #include <filesystem>
+#include <Prey/CryInput/IInput.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
 #include "ChairloaderGui.h"
@@ -45,6 +46,15 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
+}
+
+bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
+	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed) {
+		gui->SetDevConsoleVisible(!gui->IsDevConsoleVisible());
+		return true;
+	}
+
+	return false;
 }
 
 void ChairLoader::CreateConsole() {

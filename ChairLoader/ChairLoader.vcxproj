@@ -270,6 +270,7 @@
     <ClInclude Include="..\Common\Prey\CryRenderer\Renderer.h" />
     <ClInclude Include="..\Common\Prey\CryRenderer\Texture.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\HardwareMouse.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ISystem.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h" />
@@ -278,10 +279,10 @@
     <ClInclude Include="..\Common\VTableHook.h" />
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
-    <ClInclude Include="ChairloaderGUIConsole.h" />
     <ClInclude Include="ChairloaderGUIEntityManager.h" />
     <ClInclude Include="ChairloaderGUILog.h" />
     <ClInclude Include="ChairloaderGUIPlayerManager.h" />
+    <ClInclude Include="DevConsoleDialog.h" />
     <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="ChairLoaderImGui.h" />
     <ClInclude Include="framework.h" />
@@ -299,6 +300,7 @@
     <ClCompile Include="..\Common\VTableHook.cpp" />
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
+    <ClCompile Include="DevConsoleDialog.cpp" />
     <ClCompile Include="EntityUtils.cpp" />
     <ClCompile Include="ChairLoaderImGui.cpp" />
     <ClCompile Include="dllmain.cpp" />

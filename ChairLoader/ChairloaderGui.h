@@ -7,10 +7,10 @@
 #include "ChairloaderGUILog.h"
 #include "ChairloaderGUIEntityManager.h"
 #include "ChairloaderGUIPlayerManager.h"
-#include "ChairloaderGUIConsole.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"
 #include "Profiler.h"
+#include "DevConsoleDialog.h"
 // #include <stack>
 //TODO: INCLUDE LISTENER/HANDLER FUNCTIONS
 
@@ -20,13 +20,13 @@ private:
     const std::string modName = "ChairloaderGUI";
     //TODO: rethink this one
     struct chairloaderGuiControl {
-        bool showConsole = false,
-            showPlayerManager = false,
+        bool showPlayerManager = false,
             showEntityManager = false,
             showLogHistory = false,
             showDemoWindow = false,
             showStyleManager = false,
             showProfilerDialog = false,
+            showDevConsole = false,
             freeCam = false,
             devMode = false;
     };
@@ -39,19 +39,21 @@ private:
     ChairloaderGUILog log;
     ChairloaderGUIPlayerManager playerManager; 
     ChairloaderGUIEntityManager entityManager;
-    ChairloaderGUIConsole console;
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
+    DevConsoleDialog devConsoleDialog;
     // std::vector<std::string> modsWithDrawFuncs;
     std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;
     std::mutex drawHandleMutex;
 public:
     ChairloaderGui() :
         playerManager(),
-        entityManager(),
-        console() {
+        entityManager() {
         // gui = this;
     }
+
+    bool IsDevConsoleVisible() { return control.showDevConsole; }
+    void SetDevConsoleVisible(bool state) { control.showDevConsole = state; }
 
     void logItem(std::string msg, const std::string modName, ChairloaderGUILog::logLevel level = ChairloaderGUILog::logLevel::normal, bool displayToScreen = true) {
         log.logItem(msg, modName, level, displayToScreen);
@@ -69,7 +71,7 @@ public:
                 //     alphaVar = false;
                 // }
                 if (ImGui::BeginMenu("Chairloader")) {
-                    ImGui::MenuItem("Show Console", NULL, &control.showConsole);
+                    ImGui::MenuItem("Show Console", NULL, &control.showDevConsole);
                     ImGui::MenuItem("Show Player Manager", NULL, &control.showPlayerManager);
                     ImGui::MenuItem("Show Entity Manager", NULL, &control.showEntityManager);
                     ImGui::Separator();
@@ -125,11 +127,13 @@ public:
                 entityManager.draw(&control.showEntityManager);
             if(control.showPlayerManager)
                 playerManager.draw(&control.showPlayerManager);
-            if(control.showConsole)
-                console.Draw(&control.showConsole);
 
             if (control.showProfilerDialog) {
                 profilerDialog.Show(&control.showProfilerDialog);
+            }
+
+            if (control.showDevConsole) {
+                devConsoleDialog.Show(&control.showDevConsole);
             }
 
             drawHandleMutex.unlock();
