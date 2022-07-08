@@ -37,6 +37,9 @@
     <Filter Include="Common\Prey\CryAction">
       <UniqueIdentifier>{a32b6f72-cdc0-4be7-98bb-3e7bdb812a5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\CryAssert">
+      <UniqueIdentifier>{0b3f1cdb-6e56-46ee-9b6d-e73f99db4f96}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Common\Prey\CryCore">
       <UniqueIdentifier>{d2b9e77f-0e76-4c87-9581-5079886c09fe}</UniqueIdentifier>
     </Filter>
@@ -584,6 +587,15 @@
     </ClInclude>
     <ClInclude Include="..\Common\Prey\CryThreading\CryThread_win32.h">
       <Filter>Common\Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Assert\CryAssert_impl.h">
+      <Filter>Common\Prey\CryCore\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAssert\CryAssert_Windows.h">
+      <Filter>Common\Prey\CryAssert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IValidator.h">
+      <Filter>Common\Prey\CrySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

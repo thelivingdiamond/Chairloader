@@ -90,7 +90,8 @@ void InitCRTHandlers() {}
 extern "C" DLL_EXPORT void ModuleInitISystem(ISystem* pSystem, const char* moduleName)
 {
 	#if defined(USE_CRY_ASSERT)
-	CryAssertSetGlobalFlagAddress(pSystem->GetAssertFlagAddress());
+	//CryAssertSetGlobalFlagAddress(pSystem->GetAssertFlagAddress());
+	CryAssertSetGlobalFlagAddress(nullptr);
 	#endif
 
 	if (gEnv) // Already registered.
@@ -136,8 +137,7 @@ namespace CryRandom_Internal
 		//#include <CryMemory/CryMemoryManager_impl.h>
 	#endif
 
-	// TODO: Add asserts
-	//#include <CryCore/Assert/CryAssert_impl.h>
+	#include <Prey/CryCore/Assert/CryAssert_impl.h>
 
 //////////////////////////////////////////////////////////////////////////
 void CrySleep(unsigned int dwMilliseconds)

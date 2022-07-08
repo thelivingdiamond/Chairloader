@@ -261,9 +261,11 @@
     <ClInclude Include="..\Common\Prey\CryAction\IGameObjectSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IMovementController.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IViewSystem.h" />
+    <ClInclude Include="..\Common\Prey\CryAssert\CryAssert_Windows.h" />
     <ClInclude Include="..\Common\Prey\CryCore\Assert\CompileTimeAssert.h" />
     <ClInclude Include="..\Common\Prey\CryCore\Assert\CompileTimeUtils.h" />
     <ClInclude Include="..\Common\Prey\CryCore\Assert\CryAssert.h" />
+    <ClInclude Include="..\Common\Prey\CryCore\Assert\CryAssert_impl.h" />
     <ClInclude Include="..\Common\Prey\CryCore\BaseTypes.h" />
     <ClInclude Include="..\Common\Prey\CryCore\BitMask.h" />
     <ClInclude Include="..\Common\Prey\CryCore\BoostHelpers.h" />
@@ -374,6 +376,7 @@
     <ClInclude Include="..\Common\Prey\CrySystem\IProcess.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ISystem.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\IValidator.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\TimeValue.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\TimeValue_info.h" />
