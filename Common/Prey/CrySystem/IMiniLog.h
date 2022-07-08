@@ -15,7 +15,6 @@
 ////////////////////////////////////////////////////////////////////////////
 #ifndef _CRY_ENGINE_MINI_LOG_HDR_
 #define _CRY_ENGINE_MINI_LOG_HDR_
-#include <Prey/CryCore/platform.h>
 #include <cstdarg>
 
 struct IMiniLog

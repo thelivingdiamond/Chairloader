@@ -1,7 +1,6 @@
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
-#include <Prey/CryCore/platform.h>
 
 template<typename T> struct Vec2_tpl;
 
@@ -148,6 +147,12 @@ template<class F> struct Vec2_tpl
 		Vec2_tpl v;
 		v.SetSlerp(p, q, t);
 		return v;
+	}
+
+	//! @returns (a.x * b.x; a.y * b.y)
+	ILINE static Vec2_tpl Scale(const Vec2_tpl &a, const Vec2_tpl &b)
+	{
+		return Vec2_tpl(a.x * b.x, a.y * b.y);
 	}
 
 	AUTO_STRUCT_INFO;

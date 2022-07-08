@@ -74,6 +74,8 @@ typedef Plane_tpl<f32> Plane;
 typedef Vec4_tpl<f32>  Vec4f;
 typedef Vec4_tpl<f64>  Vec4d;
 
+typedef Vec4_tpl<f32> Vec4A;
+
 typedef Plane_tpl<f32>  Planef;
 typedef Plane_tpl<f64>  Planed;
 

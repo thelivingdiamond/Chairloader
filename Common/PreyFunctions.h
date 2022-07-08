@@ -3,6 +3,7 @@
 
 class CKeyboard;
 class CBaseInput;
+struct ArkPlayerWeaponComponent;
 
 class PreyFunctionBase {
 public:

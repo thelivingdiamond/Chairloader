@@ -24,7 +24,7 @@ public:
 	virtual void OnHardwareMouseEvent(int, int, EHARDWAREMOUSEEVENT, int) = 0;
 };
 
-class IHardwareMouse
+struct IHardwareMouse
 {
 public:
 	virtual ~IHardwareMouse() = 0;

@@ -50,14 +50,16 @@ private:
     std::string archetypeFilterText, oldArchetypeFilterText;
     std::queue<archetypeFilterRequest> archetypeFilterRequestQueue;
     std::vector<CEntityArchetype*> archetypeFilteredList;
-    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
+    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &((CEntitySystem *)gEnv->pEntitySystem)->m_pEntityArchetypeManager->m_idToArchetypeMap;
     std::queue<entityModifyRequest> modifyQueue;
+
+    inline CEntitySystem *GetEntitySystem() { return static_cast<CEntitySystem*>(gEnv->pEntitySystem); }
 
 public:
     ChairloaderGUIEntityManager() {
         archetypeToSpawn = nullptr;
         // chairloaderGlobal = chairloaderIn;
-        archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_idToArchetypeMap;
+        archetypeList = &GetEntitySystem()->m_pEntityArchetypeManager->m_idToArchetypeMap;
         archetypeFilterRequestQueue.push(archetypeFilterRequest{ "" });
     }
     ~ChairloaderGUIEntityManager() {
@@ -85,7 +87,7 @@ public:
                     ImGui::Text("Entity ID: ");
                 }
                 else {
-                    ImGui::Text("Entity Archetype Name: %s", archetypeToSpawn->m_name.m_str);
+                    ImGui::Text("Entity Archetype Name: %s", archetypeToSpawn->m_name.c_str());
                     ImGui::Text("Entity ID: %d", archetypeToSpawn->m_id);
                 }
                 ImGui::InputText("Entity Name", &inputName, ImGuiInputTextFlags_None);
@@ -165,7 +167,7 @@ public:
                         ImGui::TableNextRow();
                         ImGui::TableSetColumnIndex(0);
 
-                        nameClicked = ImGui::Selectable(archetype->m_name.m_str);
+                        nameClicked = ImGui::Selectable(archetype->m_name.c_str());
                         if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
                         {
                             ImGui::Text("Display information about the archetype here");
@@ -202,8 +204,8 @@ public:
                     for (int i = 0; itr != entityDisplayList.end() && i < 500; i++, ++itr) {
                         // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
                         std::string label;
-                        if ((*itr)->m_szName.m_str != nullptr) {
-                            label = (*itr)->m_szName.m_str;
+                        if ((*itr)->m_szName.c_str() != nullptr) {
+                            label = (*itr)->m_szName.c_str();
                         }
                         else {
                             label = "invalid name";
@@ -245,8 +247,8 @@ public:
                                     ImGui::Text("Name:");
                                     ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                                     ImGui::TableNextColumn();
-                                    if (selected->m_szName.m_str != nullptr)
-                                        ImGui::Text("%s", selected->m_szName.m_str);
+                                    if (selected->m_szName.c_str() != nullptr)
+                                        ImGui::Text("%s", selected->m_szName.c_str());
                                     else
                                         ImGui::Text("%s", "--Null Name--");
                                     // ID
@@ -276,8 +278,8 @@ public:
                                     ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                                     ImGui::TableNextColumn();
                                     if (selected->m_pClass != nullptr) {
-                                        if (((CEntityClass*)selected->m_pClass)->m_sName.m_str != nullptr)
-                                            ImGui::Text("%s", ((CEntityClass*)selected->m_pClass)->m_sName.m_str);
+                                        if (((CEntityClass*)selected->m_pClass)->m_sName.c_str() != nullptr)
+                                            ImGui::Text("%s", ((CEntityClass*)selected->m_pClass)->m_sName.c_str());
                                         else
                                             ImGui::Text("%s", "--Null Class--");
                                     }
@@ -291,8 +293,8 @@ public:
                                     ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                                     ImGui::TableNextColumn();
                                     if (selected->m_pArchetype != nullptr) {
-                                        if (selected->m_pArchetype->m_name.m_str != nullptr)
-                                            ImGui::Text("%s", selected->m_pArchetype->m_name.m_str);
+                                        if (selected->m_pArchetype->m_name.c_str() != nullptr)
+                                            ImGui::Text("%s", selected->m_pArchetype->m_name.c_str());
                                         else
                                             ImGui::Text("%s", "--Null Archetype--");
                                     }
@@ -308,9 +310,9 @@ public:
                                 pos[2] = selected->m_vPos.z;
                                 static float newPos[3];
                                 static float rot[4];
-                                rot[0] = selected->m_qRotation.x;
-                                rot[1] = selected->m_qRotation.y;
-                                rot[2] = selected->m_qRotation.z;
+                                rot[0] = selected->m_qRotation.v.x;
+                                rot[1] = selected->m_qRotation.v.y;
+                                rot[2] = selected->m_qRotation.v.z;
                                 rot[2] = selected->m_qRotation.w;
                                 static float newRot[3];
                                 static float scale[3]{ 1,1,1 };
@@ -617,7 +619,7 @@ private:
                 modifyQueue.pop();
                 if (request.type == entityModifyType::pos) {
                     if (request.pos.x != 0 && request.pos.y != 0 && request.pos.z != 0) {
-                        ((IEntity*)request.entity)->SetPos(&request.pos, 0, false, false);
+                        ((IEntity*)request.entity)->SetPos(request.pos, 0, false, false);
                         log->logItem("set entity pos", modName);
                     }
                     else {
@@ -627,7 +629,7 @@ private:
                     if(true){
                     // if ((request.scale.x != 0 && request.scale.y != 0 && request.scale.z != 0) && (request.scale.x == request.scale.y && request.scale.y == request.scale.z)) {
                         CryLog("new scale = %f", request.scale.x);
-                        ((IEntity*)request.entity)->SetScale(&request.scale, 0);
+                        ((IEntity*)request.entity)->SetScale(request.scale, 0);
                     }
                     else {
                         throw("Null Scale");
@@ -636,7 +638,7 @@ private:
                     if (gEntUtils->ArkPlayerPtr() != nullptr) {
                         Vec3_tpl<float> pos;
                         gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(gEntUtils->ArkPlayerPtr(), &pos);
-                        ((IEntity*)request.entity)->SetPos(&pos, 0, false, false);
+                        ((IEntity*)request.entity)->SetPos(pos, 0, false, false);
                         log->logItem("set entity pos to player pos", modName);
                     }
                 }
@@ -653,10 +655,10 @@ private:
             entityDisplayList.clear();
             int i = 0;
 
-            for (auto itr = gEnv->pEntitySystem->m_EntityArray.begin(); itr != gEnv->pEntitySystem->m_EntityArray.end(); ++itr) {
+            for (auto itr = GetEntitySystem()->m_EntityArray.begin(); itr != GetEntitySystem()->m_EntityArray.end(); ++itr) {
                 if (*itr != nullptr) {
-                    if ((*itr)->m_szName.m_str != nullptr) {
-                        std::string name = (*itr)->m_szName.m_str;
+                    if ((*itr)->m_szName.c_str() != nullptr) {
+                        std::string name = (*itr)->m_szName.c_str();
                         std::string newFilterText = filterText;
                         std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
                         std::transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -675,7 +677,7 @@ private:
 
                 spawnRequest request = archetypeSpawnRequestQueue.front();
                 archetypeSpawnRequestQueue.pop();
-                std::string archetypeName = request.archetype->m_name.m_str;
+                std::string archetypeName = request.archetype->m_name.c_str();
 
                 // gEntUtils->entityArchetypeLibrary.
                 if (request.usePlayerPos) {
@@ -716,7 +718,7 @@ private:
                                 // while(spawner->m_lastSpawnedEntityId == oldId) {
                                 // 	// Sleep(1);
                                 // }// Sleep(50);
-                                // IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
+                                // IEntity* newEntity = newEntity = GetEntitySystem()->GetEntity(spawner->m_lastSpawnedEntityId);
                                 // Sleep(5);
                                 // return newEntity;
 
@@ -751,7 +753,7 @@ private:
                                 for (int i = 0; i < request.spawnCount; i++) {
                                     IEntity* newEntity = gEntUtils->spawnerHelper.SpawnNpc(spawner, (char*)request.name.c_str());
                                     if (newEntity != nullptr) {
-                                        newEntity->SetPos(&request.pos, 0, true, false);
+                                        newEntity->SetPos(request.pos, 0, true, false);
                                         //                                 if(!request.name.empty())
                                                                             // newEntity->SetName((char*)(request.name + std::to_string(i)).c_str());
                                                                         // CryLog("set position of an entity to x: %f y: %f z:%f\n", request.pos.x, request.pos.y, request.pos.z);
@@ -783,18 +785,18 @@ private:
                         params->vScale.x = 1;
                         params->vScale.y = 1;
                         params->vScale.z = 1;
-                        uint32_t id = gPreyFuncs->CEntitySystemF->generateEntityId(gEnv->pEntitySystem, true);
+                        uint32_t id = gPreyFuncs->CEntitySystemF->generateEntityId(GetEntitySystem(), true);
                         params->id = id;
                         params->vPosition.x = request.pos.x;
                         params->vPosition.y = request.pos.y;
                         params->vPosition.z = request.pos.z;
-                        params->qRotation.x = request.rot.x;
-                        params->qRotation.y = request.rot.y;
-                        params->qRotation.z = request.rot.z;
+                        params->qRotation.v.x = request.rot.x;
+                        params->qRotation.v.y = request.rot.y;
+                        params->qRotation.v.z = request.rot.z;
                         params->qRotation.w = request.rot.w;
-                        params->sLayerName = (char*)"";
-                        params->pClass = (CEntityClass*)(0x0);
-                        params->pArchetype = (CEntityArchetype*)(0x0);
+                        params->sLayerName = "";
+                        params->pClass = nullptr;
+                        params->pArchetype = nullptr;
                         params->guid = 0;
                         params->prevGuid = 0;
                         params->prevId = 0;
@@ -804,19 +806,19 @@ private:
                         params->nFlags = 0;
                         params->nFlagsExtended = 0;
                         params->sName = (char*)request.name.c_str();
-                        params->entityNode.ptr = (IXmlNode*)0x0;
+                        params->entityNode = nullptr;
                         params->shadowCasterType = '\0';
                         params->pUserData = (void*)0x0;
                         params->sceneMask = '\0';
                         IEntity* entity;
 
-                        // IEntityArchetype* archetype = (IEntityArchetype*)gEnv->pEntitySystem->GetEntityArchetype();
+                        // IEntityArchetype* archetype = (IEntityArchetype*)GetEntitySystem()->GetEntityArchetype();
                         if (request.archetype != nullptr) {
                             // log->logItem("Spawn count: " + std::to_string(request.spawnCount), modName.c_str());
 
                             params->vPosition.x += 0.05f;
                             // CryLog("Spawning\n");
-                            entity = gEnv->pEntitySystem->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, params, true);
+                            entity = GetEntitySystem()->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, *params, true);
 
                         }
                         else {
@@ -837,7 +839,7 @@ private:
         if (!archetypeFilterRequestQueue.empty()) {
             archetypeFilterRequest request = archetypeFilterRequestQueue.front();
             std::string filterText = request.text;
-            std::map<const char*, CEntityArchetype*>* archetypeList = &gEnv->pEntitySystem->m_pEntityArchetypeManager->m_nameToArchetypeMap;
+            std::map<const char*, CEntityArchetype*>* archetypeList = &GetEntitySystem()->m_pEntityArchetypeManager->m_nameToArchetypeMap;
             // static ImGuiTextFilter filter;
             auto itr = archetypeList->begin();
             archetypeFilteredList.clear();

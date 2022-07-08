@@ -2,7 +2,6 @@
 
 #ifndef _ICONSOLE_H_
 #define _ICONSOLE_H_
-#include <Prey/CryCore/platform.h>
 
 struct SFunctor;
 
@@ -507,17 +506,17 @@ struct ICVar
 	//! \return The data probe string value of the variable.
 	virtual const char* GetDataProbeString() const = 0;
 
-	//! Set the float value of the variable.
-	//! \param s integer representation the value.
-	virtual void Set(const int i) = 0;
+	//! Set the string value of the variable.
+	//! \param s String representation the value.
+	virtual void Set(const char *s) = 0;
 
 	//! Set the float value of the variable.
 	//! \param s Float representation the value.
 	virtual void Set(const float f) = 0;
 
-	//! Set the string value of the variable.
-	//! \param s String representation the value.
-	virtual void Set(const char* s) = 0;
+	//! Set the float value of the variable.
+	//! \param s integer representation the value.
+	virtual void Set(const int i) = 0;
 
 	//! Force to set the string value of the variable - can only be called from inside code.
 	//! \param s String representation the value.

@@ -1,0 +1,164 @@
+#include "pch.h"
+#include "Texture.h"
+
+ETEX_Format CTexture::TexFormatFromDeviceFormat(DXGI_FORMAT nFormat) {
+	switch (nFormat) {
+	case DXGI_FORMAT_R8G8B8A8_TYPELESS:
+		return eTF_R8G8B8A8;
+	case DXGI_FORMAT_R8G8B8A8_UNORM:
+		return eTF_R8G8B8A8;
+	case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
+		return eTF_R8G8B8A8;
+	case DXGI_FORMAT_R8G8B8A8_SNORM:
+		return eTF_R8G8B8A8S;
+
+	case DXGI_FORMAT_R1_UNORM:
+		return eTF_R1;
+	case DXGI_FORMAT_A8_UNORM:
+		return eTF_A8;
+	case DXGI_FORMAT_R8_UNORM:
+		return eTF_R8;
+	case DXGI_FORMAT_R8_SNORM:
+		return eTF_R8S;
+	case DXGI_FORMAT_R16_UNORM:
+		return eTF_R16;
+	case DXGI_FORMAT_R16_FLOAT:
+		return eTF_R16F;
+	case DXGI_FORMAT_R16_TYPELESS:
+		return eTF_R16F;
+	case DXGI_FORMAT_R32_FLOAT:
+		return eTF_R32F;
+	case DXGI_FORMAT_R32_TYPELESS:
+		return eTF_R32F;
+	case DXGI_FORMAT_R8G8_UNORM:
+		return eTF_R8G8;
+	case DXGI_FORMAT_R8G8_SNORM:
+		return eTF_R8G8S;
+	case DXGI_FORMAT_R16G16_UNORM:
+		return eTF_R16G16;
+	case DXGI_FORMAT_R16G16_SNORM:
+		return eTF_R16G16S;
+	case DXGI_FORMAT_R16G16_FLOAT:
+		return eTF_R16G16F;
+	case DXGI_FORMAT_R11G11B10_FLOAT:
+		return eTF_R11G11B10F;
+	case DXGI_FORMAT_R10G10B10A2_UNORM:
+		return eTF_R10G10B10A2;
+	case DXGI_FORMAT_R16G16B16A16_UNORM:
+		return eTF_R16G16B16A16;
+	case DXGI_FORMAT_R16G16B16A16_SNORM:
+		return eTF_R16G16B16A16S;
+	case DXGI_FORMAT_R16G16B16A16_FLOAT:
+		return eTF_R16G16B16A16F;
+	case DXGI_FORMAT_R32G32B32A32_FLOAT:
+		return eTF_R32G32B32A32F;
+	case DXGI_FORMAT_R32G32B32A32_TYPELESS:
+		return eTF_R32G32B32A32F;
+
+	case DXGI_FORMAT_BC1_TYPELESS:
+		return eTF_BC1;
+	case DXGI_FORMAT_BC1_UNORM:
+		return eTF_BC1;
+	case DXGI_FORMAT_BC1_UNORM_SRGB:
+		return eTF_BC1;
+	case DXGI_FORMAT_BC2_TYPELESS:
+		return eTF_BC2;
+	case DXGI_FORMAT_BC2_UNORM:
+		return eTF_BC2;
+	case DXGI_FORMAT_BC2_UNORM_SRGB:
+		return eTF_BC2;
+	case DXGI_FORMAT_BC3_TYPELESS:
+		return eTF_BC3;
+	case DXGI_FORMAT_BC3_UNORM:
+		return eTF_BC3;
+	case DXGI_FORMAT_BC3_UNORM_SRGB:
+		return eTF_BC3;
+	case DXGI_FORMAT_BC4_TYPELESS:
+		return eTF_BC4U;
+	case DXGI_FORMAT_BC4_UNORM:
+		return eTF_BC4U;
+	case DXGI_FORMAT_BC4_SNORM:
+		return eTF_BC4S;
+	case DXGI_FORMAT_BC5_TYPELESS:
+		return eTF_BC5U;
+	case DXGI_FORMAT_BC5_UNORM:
+		return eTF_BC5U;
+	case DXGI_FORMAT_BC5_SNORM:
+		return eTF_BC5S;
+	case DXGI_FORMAT_BC6H_UF16:
+		return eTF_BC6UH;
+	case DXGI_FORMAT_BC6H_SF16:
+		return eTF_BC6SH;
+	case DXGI_FORMAT_BC7_TYPELESS:
+		return eTF_BC7;
+	case DXGI_FORMAT_BC7_UNORM:
+		return eTF_BC7;
+	case DXGI_FORMAT_BC7_UNORM_SRGB:
+		return eTF_BC7;
+	case DXGI_FORMAT_R9G9B9E5_SHAREDEXP:
+		return eTF_R9G9B9E5;
+
+		// hardware depth buffers
+	case DXGI_FORMAT_D16_UNORM:
+		return eTF_D16;
+	case DXGI_FORMAT_D24_UNORM_S8_UINT:
+		return eTF_D24S8;
+	case DXGI_FORMAT_D32_FLOAT:
+		return eTF_D32F;
+	case DXGI_FORMAT_D32_FLOAT_S8X24_UINT:
+		return eTF_D32FS8;
+
+	case DXGI_FORMAT_R24_UNORM_X8_TYPELESS:
+		return eTF_D24S8;
+	case DXGI_FORMAT_R24G8_TYPELESS:
+		return eTF_D24S8;
+	case DXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS:
+		return eTF_D32FS8;
+	case DXGI_FORMAT_X32_TYPELESS_G8X24_UINT:
+		return eTF_D32FS8;
+	case DXGI_FORMAT_R32G8X24_TYPELESS:
+		return eTF_D32FS8;
+
+		// only available as hardware format under DX11.1 with DXGI 1.2
+	case DXGI_FORMAT_B5G6R5_UNORM:
+		return eTF_B5G6R5;
+	case DXGI_FORMAT_B5G5R5A1_UNORM:
+		return eTF_B5G5R5;
+		//	case DXGI_FORMAT_B4G4R4A4_UNORM:        return eTF_B4G4R4A4;
+
+#if defined(OPENGL)
+	// only available as hardware format under OpenGL
+	case DXGI_FORMAT_EAC_R11_UNORM:
+		return eTF_EAC_R11;
+	case DXGI_FORMAT_EAC_RG11_UNORM:
+		return eTF_EAC_RG11;
+	case DXGI_FORMAT_ETC2_UNORM:
+		return eTF_ETC2;
+	case DXGI_FORMAT_ETC2_UNORM_SRGB:
+		return eTF_ETC2;
+	case DXGI_FORMAT_ETC2A_UNORM:
+		return eTF_ETC2A;
+	case DXGI_FORMAT_ETC2A_UNORM_SRGB:
+		return eTF_ETC2A;
+#endif //defined(OPENGL)
+
+		// only available as hardware format under DX9
+	case DXGI_FORMAT_B8G8R8A8_TYPELESS:
+		return eTF_B8G8R8A8;
+	case DXGI_FORMAT_B8G8R8A8_UNORM:
+		return eTF_B8G8R8A8;
+	case DXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
+		return eTF_B8G8R8A8;
+	case DXGI_FORMAT_B8G8R8X8_TYPELESS:
+		return eTF_B8G8R8X8;
+	case DXGI_FORMAT_B8G8R8X8_UNORM:
+		return eTF_B8G8R8X8;
+	case DXGI_FORMAT_B8G8R8X8_UNORM_SRGB:
+		return eTF_B8G8R8X8;
+
+	default:
+		assert(0);
+	}
+
+	return eTF_Unknown;
+}

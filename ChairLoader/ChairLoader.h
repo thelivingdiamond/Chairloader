@@ -27,8 +27,10 @@ public:
 
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
+	inline uintptr_t GetModuleBase() { return m_ModuleBase; }
 
 private:
+	uintptr_t m_ModuleBase = 0;
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	FILE *m_pConsoleFile = nullptr;
 	std::thread::id m_MainThreadId;

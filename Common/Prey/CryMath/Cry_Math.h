@@ -17,7 +17,6 @@
 #endif
 
 #include <cassert>
-#include <Prey/CryCore/platform.h>
 
 template<typename F> using vector4_t = F;
 template<typename V> using scalar_t = V;
@@ -104,9 +103,43 @@ template<class T, class U> ILINE T Lerp(const T &a, const T &b, U t) { return a 
 template<typename S, typename T> ILINE T if_else(S test, T a, T b) { return test ? a : b; }
 template<typename S, typename T> ILINE T if_else_zero(S test, T a) { return test ? a : convert<T>(); }
 
+// Deprecated
+template<typename T> ILINE T __fsel(T a, T b, T c) { return if_else(a >= convert<T>(), b, c); }
+
+ILINE int32 iszero(f32 x) {
+	union
+	{
+		f32   f;
+		int32 i;
+	} u;
+	u.f = x;
+	u.i &= 0x7FFFFFFF;
+	return -(u.i >> 31 ^ (u.i - 1) >> 31);
+}
+ILINE int32 iszero(f64 x) {
+	union
+	{
+		f32   f;
+		int32 i;
+	} u;
+	u.f = (f32)x;
+	u.i &= 0x7FFFFFFF;
+	return -((u.i >> 31) ^ (u.i - 1) >> 31);
+}
+
+ILINE int32 iszero(int32 x) { return -(x >> 31 ^ (x - 1) >> 31); }
+ILINE int64 iszero(__int64 x) { return -(x >> 63 ^ (x - 1) >> 63); }
+
 // Comparison test functions, can be overloaded for SIMD types
 ILINE bool All(bool b) { return b; }
 ILINE bool Any(bool b) { return b; }
+
+//! \return i if x==1<<i (i=0..63)
+ILINE int ilog2(uint64 x) {
+	unsigned long i;
+	_BitScanReverse64(&i, x);
+	return i;
+}
 
 //! Create namespace for standard math functions, imported from std, and our extended versions.
 //! SSE versions implemented in Cry_Math_SSE.h
@@ -291,17 +324,57 @@ float solve_quadratic_in_range(T a, T b, T c, T lo, T hi)
 const int32 inc_mod3[] = { 1, 2, 0 }, dec_mod3[] = { 2, 0, 1 };
 
 template<typename T>
-bool IsValid(const T &val)
+inline bool IsValid(const T &val)
 {
 	// HACK
 	return true;
 }
 
+template<>
+inline bool IsValid(const float &val) {
+	return !isnan(val);
+}
+
 template<typename T>
-void SetInvalid(T &val)
+inline void SetInvalid(T &val)
 {
 	// HACK
 }
+
+// Legacy math function names
+#define clamp_tpl      crymath::clamp
+
+#define fabs_tpl       crymath::abs
+#define floor_tpl      crymath::floor
+#define ceil_tpl       crymath::ceil
+
+#define sin_tpl        crymath::sin
+#define cos_tpl        crymath::cos
+#define tan_tpl        crymath::tan
+#define asin_tpl       crymath::asin
+#define acos_tpl       crymath::acos
+#define atan_tpl       crymath::atan
+#define atan2_tpl      crymath::atan2
+#define sincos_tpl     crymath::sincos
+
+#define exp_tpl        crymath::exp
+#define log_tpl        crymath::log
+#define pow_tpl        crymath::pow
+#define fmod_tpl       crymath::mod
+
+#define sqrt_tpl       crymath::sqrt
+#define sqrt_fast_tpl  crymath::sqrt_fast
+
+#define isqrt_tpl      crymath::rsqrt
+#define isqrt_fast_tpl crymath::rsqrt_fast
+#define isqrt_safe_tpl crymath::rsqrt_safe
+
+#define __fres         crymath::rcp
+
+// Previously in Cry_XOptimise.h
+#define FtoI               int
+#define fastftol_positive  int
+#define fastround_positive pos_round
 
 //////////////////////////////////////////////////////////////////////////
 enum type_zero { ZERO };
@@ -315,9 +388,9 @@ enum type_identity { IDENTITY };
 #include "Cry_Vector4.h"
 #include "Cry_MatrixDiag.h"
 #include "Cry_Matrix33.h"
-//#include "Cry_Matrix34.h"
+#include "Cry_Matrix34.h"
 #include "Cry_Matrix44.h"
-//#include "Cry_Quat.h"
-//#include "CryHalf.inl"
+#include "Cry_Quat.h"
+#include "CryHalf.inl"
 
 #endif //math
