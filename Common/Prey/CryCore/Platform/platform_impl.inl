@@ -131,7 +131,7 @@ namespace CryRandom_Internal
 //////////////////////////////////////////////////////////////////////////
 
 // If we use cry memory manager this should be also included in every module.
-// But ChairLoader uses memeory functions in PreyDll.dll
+// But ChairLoader uses memory functions in PreyDll.dll
 	#if defined(USING_CRY_MEMORY_MANAGER)
 		//#include <CryMemory/CryMemoryManager_impl.h>
 	#endif
@@ -192,7 +192,7 @@ threadID CryGetCurrentThreadId()
 //////////////////////////////////////////////////////////////////////////
 void CryDebugBreak()
 {
-	#if CRY_PLATFORM_WINDOWS && !defined(RELEASE)
+	#if CRY_PLATFORM_WINDOWS && defined(DEBUG_BUILD)
 	if (IsDebuggerPresent())
 	#endif
 	{

@@ -47,6 +47,7 @@ ChairLoader::ChairLoader() {
 	std::cout << "Module Base: 0x" << std::hex << m_ModuleBase << std::dec << "\n\n";
 
 	LoadPreyPointers(m_ModuleBase);
+	ModuleInitISystem(gEnv->pSystem, "ChairLoader");
 	g_StdoutConsole.Init();
 	HookGameUpdate(m_ModuleBase);
 	LoadConfigFile();
