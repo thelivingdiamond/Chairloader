@@ -351,48 +351,6 @@
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h">
       <Filter>Common\Prey\CryInput</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix44.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_MatrixDiag.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Quat.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector2.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector3.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector4.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_XOptimise.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\NumberVector.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Camera.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Color.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Geo.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Math.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix33.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix34.h">
-      <Filter>Common\Prey\CryMath</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\Prey\CryMemory\STLAlignedAlloc.h">
       <Filter>Common\Prey\CryMemory</Filter>
     </ClInclude>
@@ -597,6 +555,147 @@
     <ClInclude Include="..\Common\Prey\CrySystem\IValidator.h">
       <Filter>Common\Prey\CrySystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoProjection.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Math.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Math_SSE.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix33.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix34.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix34H.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix44.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix44H.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_MatrixDiag.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Quat.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_ValidNumber.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector2.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector3.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector4.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector4H.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_XOptimise.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\CryHalf_info.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\CryRandomInternal.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\FinalizingSpline.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\GeomQuery.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\ISplines.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\ISplineSerialization_impl.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\LCGRandom.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\MTPseudoRandom.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\NumberVector.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\PNoise3.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\QTangent.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\RadixSort.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\RadixSortImpl.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Random.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Range.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Rotation.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\SimpleHashLookUp.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\SNoise.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\TCBSpline.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Transform.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\AABBSV.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Angle.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Bezier.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Bezier_impl.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Camera.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Color.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Geo.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoDistance.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoIntersect.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoOverlap.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\BitFiddling.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -650,6 +749,9 @@
     <ClCompile Include="..\Common\Prey\CryRenderer\Texture.cpp">
       <Filter>Common\Prey\CryRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="HeaderTestFile.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />
@@ -669,6 +771,9 @@
       <Filter>Common\Prey\CryCore</Filter>
     </None>
     <None Include="..\Common\Prey\CryMath\CryHalf.inl">
+      <Filter>Common\Prey\CryMath</Filter>
+    </None>
+    <None Include="..\Common\Prey\CryMath\GeomQuery.inl">
       <Filter>Common\Prey\CryMath</Filter>
     </None>
   </ItemGroup>

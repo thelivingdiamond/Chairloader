@@ -17,7 +17,7 @@
 #endif
 
 #include "Cry_Math.h"
-//#include "Random.h"
+#include "Random.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Forward declarations                                                      //
@@ -793,11 +793,11 @@ public:
 		vRot += (vv.vRot - vRot) * f;
 	}
 };
-/*
+
 #include "Cry_GeoDistance.h"
 #include "Cry_GeoOverlap.h"
 #include "Cry_GeoIntersect.h"
-*/
+
 //this is some special engine stuff, should be moved to a better location
 
 // for bbox's checks and calculations

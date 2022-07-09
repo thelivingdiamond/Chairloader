@@ -127,7 +127,7 @@ int g_iTraceAllocations = 0;
 // global random number generator used by cry_random functions
 namespace CryRandom_Internal
 {
-//CRndGen g_random_generator;
+CRndGen g_random_generator;
 }
 //////////////////////////////////////////////////////////////////////////
 

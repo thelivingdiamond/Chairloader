@@ -163,6 +163,7 @@ template<class F> struct Vec2_tpl
 typedef Vec2_tpl<f32>  Vec2;  //!< Always 32 bit.
 typedef Vec2_tpl<f64>  Vec2d; //!< Always 64 bit.
 typedef Vec2_tpl<int>  Vec2i;
+typedef Vec2_tpl<real> Vec2r; //!< Variable float precision. depending on the target system it can be 32, 64 or 80 bit.
 
 #if !defined(SWIG)
 template<typename T> Vec2_tpl<T> Vec2Constants<T >::fVec2_Zero(0, 0);

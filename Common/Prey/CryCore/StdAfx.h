@@ -23,3 +23,5 @@
 // Reference additional interface headers your program requires here (not local headers)
 
 // TOOD: CryEngine has a bunch of Cry headers here. Add them later.
+#include <Prey/CryMath/Cry_Math.h>
+#include <Prey/CryMath/Random.h>

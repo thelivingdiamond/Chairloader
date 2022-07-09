@@ -479,13 +479,12 @@ template<class F1, class F2> ILINE Vec3_tpl<F1> operator-(const Vec3_tpl<F1>& v0
 typedef Vec3_tpl<f32>  Vec3;   //!< Always 32 bit.
 typedef Vec3_tpl<f64>  Vec3d;  //!< Always 64 bit.
 typedef Vec3_tpl<int>  Vec3i;
+typedef Vec3_tpl<real> Vec3r;  //!< Variable float precision. Depending on the target system it can be 32, 64 or 80 bit.
 
-#if 0
 template<> inline Vec3_tpl<f64>::Vec3_tpl(type_min) { x = y = z = -1.7E308; }
 template<> inline Vec3_tpl<f64>::Vec3_tpl(type_max) { x = y = z = 1.7E308; }
 template<> inline Vec3_tpl<f32>::Vec3_tpl(type_min) { x = y = z = -3.3E38f; }
 template<> inline Vec3_tpl<f32>::Vec3_tpl(type_max) { x = y = z = 3.3E38f; }
-#endif
 
 template<typename F> struct Quat_tpl;
 template<typename F> struct Matrix33_tpl;
@@ -592,6 +591,7 @@ template<typename F> struct Ang3_tpl
 };
 
 typedef Ang3_tpl<f32>  Ang3;
+typedef Ang3_tpl<real> Ang3r;
 typedef Ang3_tpl<f64>  Ang3_f64;
 
 //---------------------------------------

@@ -56,10 +56,6 @@ class CryHashStringId {
 public:
 	uint32_t id;
 };
-class CRndGen {
-public:
-	uint64_t m_state;
-};
 
 class BLOCK {
 public:

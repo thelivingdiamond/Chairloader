@@ -1,4 +1,4 @@
-// Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
+// Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef CRY_HALF_INL
 #define CRY_HALF_INL
@@ -13,6 +13,13 @@ typedef union floatint_union
 	float  f;
 	uint32 i;
 } floatint_union;
+
+// Convert half to integer magnitude sortable form
+static inline uint16 HalfFlip(uint16 h)
+{
+	uint16 mask = -int16(h >> 15) | 0x8000;
+	return h ^ mask;
+}
 
 ILINE CryHalf CryConvertFloatToHalf(const float Value)
 {
@@ -134,6 +141,11 @@ struct CryHalf2
 	bool operator!=(const CryHalf2& rhs) const
 	{
 		return x != rhs.x || y != rhs.y;
+	}
+
+	bool operator==(const CryHalf2& rhs) const
+	{
+		return x == rhs.x && y == rhs.y;
 	}
 
 	void GetMemoryUsage(ICrySizer* pSizer) const {}

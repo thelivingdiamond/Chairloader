@@ -516,6 +516,20 @@ inline T* non_const(const T* t)
 	return const_cast<T*>(t);
 }
 
+// Member operator generators
+
+//! Define simple operator, automatically generate compound.
+//! Example: COMPOUND_MEMBER_OP(TThis, +, TOther) { return add(a, b); }
+#define COMPOUND_MEMBER_OP(T, op, B)                                     \
+  ILINE T& operator op ## = (const B& b) { return *this = *this op b; }  \
+  ILINE T operator op(const B& b) const                                  \
+
+//! Define compound operator, automatically generate simple.
+//! Example: COMPOUND_STRUCT_MEMBER_OP(TThis, +, TOther) { return a = add(a, b); }
+#define COMPOUND_MEMBER_OP_EQ(T, op, B)                                      \
+  ILINE T operator op(const B& b) const { T t = *this; return t op ## = b; } \
+  ILINE T& operator op ## = (const B& b)   
+
 #define using_type(super, type) \
   typedef typename super::type type;
 
