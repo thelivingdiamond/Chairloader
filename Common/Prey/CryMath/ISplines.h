@@ -683,7 +683,7 @@ struct ClampedKey : public SplineKey<T>
 		}
 	}
 
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 	// Verify clamped values
 	void interpolate(const ClampedKey& key2, float tr, T& val) const
 	{

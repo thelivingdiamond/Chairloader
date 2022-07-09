@@ -652,7 +652,7 @@ template<typename F> struct Plane_tpl
 
 	ILINE Plane_tpl()
 	{
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 		SetInvalid(d);
 #endif
 	}

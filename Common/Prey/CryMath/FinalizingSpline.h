@@ -399,7 +399,7 @@ protected:
 		Spline(int nKeys)
 			: nKeys(nKeys)
 		{
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 			if (nKeys)
 				((char*)this)[alloc_size()] = 77;
 #endif
@@ -492,7 +492,7 @@ protected:
 
 		void validate() const
 		{
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 			if (nKeys)
 			{
 				assert(((char const*)this)[alloc_size()] == 77);
@@ -645,7 +645,7 @@ public:
 			for (int i = 0; i < nKeys - 1; i++)
 				m_pSpline->aElems[i].set_slopes(source.dd(i), source.ds(i + 1));
 
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 			// Verify accurate conversion to OptSpline.
 			for (int i = 0; i < nKeys; i++)
 			{

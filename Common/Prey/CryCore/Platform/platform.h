@@ -353,6 +353,13 @@ inline int IsHeapValid()
 #undef STATIC_CHECK
 #define STATIC_CHECK(expr, msg) static_assert((expr) != 0, # msg)
 
+// Conditionally execute code in debug only
+#ifdef DEBUG_BUILD
+#define IF_DEBUG(expr) (expr)
+#else
+#define IF_DEBUG(expr)
+#endif
+
 // Assert dialog box macros
 #include <Prey/CryCore/Assert/CryAssert.h>
 
@@ -725,18 +732,6 @@ extern "C" {
 #define MEMSTAT_UNBIND_FROM_CONTAINER(key, ptr)
 #define MEMSTAT_SWAP_CONTAINERS(keyA, keyB)
 #define MEMSTAT_REBIND_TO_CONTAINER(key, oldPtr, newPtr)
-
-// TODO: Remove this
-#if 1
-
-// Conditionally execute code in debug only
-#ifdef _DEBUG
-#define IF_DEBUG(expr) (expr)
-#else
-#define IF_DEBUG(expr)
-#endif
-
-#endif // 1
 
 #ifdef _WINDOWS_
 	#error windows.h should not be included through any headers within platform.h

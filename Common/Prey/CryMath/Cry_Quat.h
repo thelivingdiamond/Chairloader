@@ -964,7 +964,7 @@ template<typename F> struct QuatTS_tpl
 	// constructors
 	ILINE QuatTS_tpl()
 	{
-#if defined(_DEBUG)
+#if defined(DEBUG_BUILD)
 		SetInvalid(s);
 #endif
 	}

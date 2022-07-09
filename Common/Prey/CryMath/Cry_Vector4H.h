@@ -32,7 +32,7 @@ template<typename F> struct Vec4H
 
 	ILINE Vec4H()
 	{
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 		SetInvalid(v);
 #endif
 	}
@@ -140,7 +140,7 @@ template<typename F> struct PlaneH
 
 	ILINE PlaneH()
 	{
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 		SetInvalid(v);
 #endif
 	}
