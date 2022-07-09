@@ -1,18 +1,20 @@
 #include "pch.h"
 #include <Prey/CryMemory/CryMemoryManager.h>
 #include "PreyFunctions.h"
+#include <ChairLoader/PreyFunction.h>
 
 PreyFunctions *gPreyFuncs = nullptr;
 
 namespace {
 constexpr int kCryMMIAT_None = 0x0;
 
-void *(*g_pfnCryModuleMalloc)(size_t size, int _module, int _type);
-void *(*g_pfnCryModuleRealloc)(void *ptr, size_t size, int _module, int _type);
-void (*g_pfnCryModuleFree)(void *ptr);
-void *(*g_pfnCryModuleMemalign)(size_t size, size_t alignment, int _module, int _type);
-void *(*g_pfnCryModuleReallocAlign)(void *ptr, size_t size, size_t alignment, int _module, int _type);
-void (*g_pfnCryModuleMemalignFree)(void *ptr);
+PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryModuleMalloc(0xA8C70);
+PreyFunction<void* (void* ptr, size_t size, int _module, int _type)> g_pfnCryModuleRealloc(0xA8D40);
+PreyFunction<void* (void* ptr)> g_pfnCryModuleFree(0xA8C60);
+PreyFunction<void* (size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleMemalign(0xA8CC0);
+PreyFunction<void* (void* ptr, size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleReallocAlign(0xA8DB0);
+PreyFunction<void* (void* ptr)> g_pfnCryModuleMemalignFree(0xA8D20);
+
 }
 
 extern "C" void *CryModuleMalloc(size_t size) throw() {
@@ -41,7 +43,7 @@ extern "C" void  CryModuleMemalignFree(void *memblock) {
 }
 
 template <typename t>
-t PreyFunctionBase::getFunctionAddr(uintptr_t moduleBaseIn, uintptr_t offset) {
+t PreyFunctionBaseOld::getFunctionAddr(uintptr_t moduleBaseIn, uintptr_t offset) {
 	return (t)(moduleBaseIn + offset);
 }
 PreyFunctions::ArkPlayerPrivate::ArkPlayerPrivate(uintptr_t moduleBase) {
@@ -705,10 +707,4 @@ PreyFunctions::PreyFunctions(uintptr_t moduleBase) {
     CGameF = new CGamePrivate(moduleBase);
 	CKeyboardF = new CKeyboardPrivate(moduleBase);
 	CBaseInputF = new CBaseInputPrivate(moduleBase);
-	g_pfnCryModuleMalloc = getFunctionAddr<decltype(g_pfnCryModuleMalloc)>(moduleBase, 0xA8C70);
-	g_pfnCryModuleRealloc = getFunctionAddr<decltype(g_pfnCryModuleRealloc)>(moduleBase, 0xA8D40);
-	g_pfnCryModuleFree = getFunctionAddr<decltype(g_pfnCryModuleFree)>(moduleBase, 0xA8C60);
-	g_pfnCryModuleMemalign = getFunctionAddr<decltype(g_pfnCryModuleMemalign)>(moduleBase, 0xA8CC0);
-	g_pfnCryModuleReallocAlign = getFunctionAddr<decltype(g_pfnCryModuleReallocAlign)>(moduleBase, 0xA8DB0);
-	g_pfnCryModuleMemalignFree = getFunctionAddr<decltype(g_pfnCryModuleMemalignFree)>(moduleBase, 0xA8D20);
 }

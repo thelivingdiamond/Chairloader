@@ -97,6 +97,9 @@
     <Filter Include="Common\Prey\CryThreading">
       <UniqueIdentifier>{5d516fbd-7b3a-4499-8596-a08083fb7468}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\ChairLoader">
+      <UniqueIdentifier>{cb29669f-0ce1-460f-a1df-e4a067034d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -696,6 +699,9 @@
     <ClInclude Include="..\Common\Prey\CryCore\BitFiddling.h">
       <Filter>Common\Prey\CryCore</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\PreyFunction.h">
+      <Filter>Common\ChairLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -754,6 +760,9 @@
     </ClCompile>
     <ClCompile Include="ChairloaderGUILog.cpp">
       <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp">
+      <Filter>Common\ChairLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

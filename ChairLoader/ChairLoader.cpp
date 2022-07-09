@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/IConsole.h>
+#include <ChairLoader/PreyFunction.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
 #include "ChairloaderGui.h"
@@ -100,6 +101,7 @@ void ChairLoader::CreateConsole() {
 void ChairLoader::LoadPreyPointers(uintptr_t moduleBase) {
 	gEnv = (SSystemGlobalEnvironment *)(moduleBase + 0x22418c0);
 	gPreyFuncs = new PreyFunctions(moduleBase);
+	PreyFunctionSystem::Init(moduleBase);
 	CryLog("ChairLoader: gEnv = %p\n", gEnv);
 }
 
