@@ -47,5 +47,8 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "winmm.lib")
 
+// TODO: This needs to be gone
+#include <preyDllObjects.h>
+
 
 #endif //PCH_H
