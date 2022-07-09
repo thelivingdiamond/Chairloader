@@ -214,11 +214,6 @@ static INT_PTR CALLBACK DlgProc(HWND _hDlg, UINT _uiMsg, WPARAM _wParam, LPARAM 
 				EndDialog(_hDlg, 1);
 				break;
 
-			case IDC_CRYASSERT_BUTTON_REPORT:
-				pAssertInfo->btnChosen = SCryAssertInfo::BUTTON_REPORT_AS_BUG;
-				EndDialog(_hDlg, 0);
-				break;
-
 			case IDC_CRYASSERT_BUTTON_MODULE:
 				g_bAssertsAreDisabledForThisModule = true;
 				pAssertInfo->btnChosen = SCryAssertInfo::BUTTON_CONTINUE;
@@ -405,13 +400,6 @@ bool CryAssert(const char* _pszCondition, const char* _pszFile, unsigned int _ui
 		case SCryAssertInfo::BUTTON_STOP:
 			abort();
 			return true;
-		case SCryAssertInfo::BUTTON_REPORT_AS_BUG:
-			if (gEnv && gEnv->pSystem)
-			{
-				const char* pszSafeMessage = (assertInfo.pszMessage && assertInfo.pszMessage[0]) ? assertInfo.pszMessage : "<no reason>";
-				gEnv->pSystem->ReportBug("Assert: %s - %s", assertInfo.pszCondition, pszSafeMessage);
-			}
-			break;
 		}
 	}
 	if (gEnv)
