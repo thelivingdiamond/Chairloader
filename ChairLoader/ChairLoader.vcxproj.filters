@@ -702,6 +702,9 @@
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h">
       <Filter>Common\ChairLoader</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\FunctionHook.h">
+      <Filter>Common\ChairLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -762,6 +765,9 @@
       <Filter>Chairloader</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp">
+      <Filter>Common\ChairLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp">
       <Filter>Common\ChairLoader</Filter>
     </ClCompile>
   </ItemGroup>

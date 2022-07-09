@@ -239,6 +239,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\ChairLoader\FunctionHook.h" />
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
     <ClInclude Include="..\Common\Logging.h" />
     <ClInclude Include="..\Common\mem.h" />
@@ -441,6 +442,7 @@
     <ClInclude Include="Profiler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp" />
     <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp" />
     <ClCompile Include="..\Common\Logging.cpp" />
     <ClCompile Include="..\Common\mem.cpp" />
