@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <Prey/CryCore/Platform/platform_impl.inl>
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/IConsole.h>
@@ -8,8 +9,6 @@
 #include "Profiler.h"
 
 ChairLoader *gCL = nullptr;
-SSystemGlobalEnvironment *gEnv = nullptr;
-
 namespace {
 
 class ConsoleStdoutSink : public IOutputPrintSink {
@@ -44,18 +43,20 @@ ConsoleStdoutSink g_StdoutConsole;
 ChairLoader::ChairLoader() {
 	CreateConsole();
 	std::cout << "ChairLoader Initializing...\n";
-	uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
-	std::cout << "Module Base: 0x" << std::hex << moduleBase << std::dec << "\n\n";
+	m_ModuleBase = (uintptr_t)GetModuleHandle(L"PreyDll.dll");
+	std::cout << "Module Base: 0x" << std::hex << m_ModuleBase << std::dec << "\n\n";
 
-	LoadPreyPointers(moduleBase);
+	LoadPreyPointers(m_ModuleBase);
+	ModuleInitISystem(gEnv->pSystem, "ChairLoader");
 	g_StdoutConsole.Init();
-	HookGameUpdate(moduleBase);
+	HookGameUpdate(m_ModuleBase);
 	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
 	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
+	gCL = this;
 }
 
 ChairLoader::~ChairLoader()
@@ -131,12 +132,12 @@ void ChairLoader::UpdateFreeCam() {
 		CryLog("Freecam state: %u\n", m_FreeCamEnabled);
 		if (m_FreeCamEnabled) {
 			m_DevMode = true;
-			gPreyFuncs->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
-			gEnv->pGame->m_pConsole->ExecuteString((char *)"FreeCamEnable", false, true);
+			gPreyFuncs->CSystemF->setDevMode((CSystem *)gEnv->pSystem, m_DevMode);
+			gEnv->pConsole->ExecuteString("FreeCamEnable", false, true);
 		}
 		else {
-			gPreyFuncs->CSystemF->setDevMode(gEnv->pSystem, m_DevMode);
-			gEnv->pGame->m_pConsole->ExecuteString((char *)"FreeCamDisable", false, true);
+			gPreyFuncs->CSystemF->setDevMode((CSystem*)gEnv->pSystem, m_DevMode);
+			gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
 		}
 	}
 }

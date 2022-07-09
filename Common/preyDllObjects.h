@@ -4,10 +4,17 @@
 #include <set>
 #include <unordered_set>
 
+#include <Prey/CryCore/CryEndian.h>
 #include <Prey/CryMath/Cry_Math.h>
+#include <Prey/CryMath/Cry_Color.h>
+#include <Prey/CryMath/Cry_Camera.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CrySystem/IConsole.h>
+#include <Prey/CrySystem/ITimer.h>
+#include <Prey/CryThreading/CryThread_win32.h>
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEnums.h>
 // #include "Header.h"
@@ -15,17 +22,11 @@
 
 class ArkStatModifier;
 class ArkResearchTopicData;
-class IActionListener;
-class INetChannel;
 class CEntity;
 class SScriptFuncHandle;
-class IScriptTable;
-class IGameObject;
-class SEntitySchedulingProfiles;
-class IGameObjectExtension;
+struct IGameObject;
 class IXmlStringPool;
 class CBinaryXmlNode;
-class EEndianness;
 class ChunkTypes;
 enum class ELockMode;
 class SComponentInitializer;
@@ -35,37 +36,42 @@ class CTimeValue;
 class SNetObjectID;
 class ISerializeUpdateFunction;
 class SSerializeString;
-class ISerialize;
+struct ISerialize;
 class IXmlNode;
 class CXmlNode;
-class IEntity;
+struct IEntity;
 class ArkNpcAbility;
 class ArkInventory;
 class StorageCell;
 class IAntiCheatManager;
-class IPhysicalEntity;
+struct IPhysicalEntity;
 class ArkAimAssistComponent;
 class ArkNpcAbilityInstance;
-class IScriptSystem;
-class I3DEngine;
+struct I3DEngine;
 class CEntityClass;
 class CSystem;
-class IEntityClass;
+struct IEntityClass;
+struct CActor;
+struct IActor;
+struct IArkPlayer;
+struct ArkPlayer;
 //ArkGame * getArkGame(
 	// CGame* (18)0x2c09010
 	// GEnv		  0x22418c0
 class CGame;
-class IEntitySystem;
-class ITimer;
-class IRenderer;
 class ITexture;
-class IHardwareMouse;
-class ICVarsWhitelist;
 struct ILog;
-
-namespace JobManager {
-class IJobManager;
-}
+struct SRenderingPassInfo;
+struct IViewSystem;
+class CryMutex;
+class CGameObject;
+struct IParticleManager;
+struct IProcess;
+struct IPhysicsDebugRenderer;
+struct IPhysicalWorld;
+struct IPhysRenderer;
+struct IThreadTask;
+struct EventPhysCollision;
 
 enum class EWinVersion {
 	WinUndetected = 0,
@@ -78,100 +84,7 @@ enum class EWinVersion {
 	Win8Point1 = 7,
 	Win10 = 8
 };
-class SPlatformInfo {
-public:
-	uint32_t numCoresAvailableToProcess,
-		numLogicalProcessors;
-	EWinVersion winVer;
-	bool win64Bit;
-	bool vistaKB940105Required;
-	char pad[2];
-};
 class CEntitySystem;
-struct SSystemGlobalEnvironment {
-	// typedef CGame* _g_pGame;
-	 // _g_pGame g_pGame;
-	public:
-		void* pDialogSystem			;
-		void * p3DEngine			;
-		void *pNetwork				;
-		void* IOnline				;
-		void *pLobby				;
-		void *pArkRewardSystem		;
-		void *pArkEntitlementSystem	;
-		void *pArkDlcSystem			;
-		void *pScriptSystem			;
-		void *pPhysicalWorld		;
-		void *pFlowSystem			;
-		void *pInput				;
-		void *pStatoscope			;
-		void *pCryPak				;
-		void* pFileChangeMonitor	;
-		void* pProfileLogSystem		;
-		void *pParticleManager		;
-		void *pOpticsManager		;
-		void *pFrameProfileSystem	;
-		ITimer *pTimer				;
-		void *pCryFont				;
-		CGame*pGame					;
-		void *pLocalMemoryUsage		;
-		CEntitySystem*pEntitySystem	;
-		IConsole *pConsole				;
-		void* pTelemetrySystem		;
-		void *pAudioSystem			;
-		void* pArkRoomVolume		;
-		CSystem *pSystem			;
-		void *pCharacterManager		;
-		void *pAISystem				;
-		ILog *pLog					;
-		void *pCodeCheckpointMgr	;	
-		void *pMovieSystem			;
-		void *pNameTable			;
-		void* pVisualLog			;
-		IRenderer *pRenderer				;
-		void *pAuxGeomRenderer		;
-		IHardwareMouse *pHardwareMouse		;
-		void* pMaterialEffects		;
-		JobManager::IJobManager* pJobManager;
-		void* pOverloadSceneManager	;
-		void* pFlashUI				;
-		void* pServiceNetwork		;
-		void* pRemoteCommandManager	;
-		uint32_t EPLM_State;
-		unsigned long mMainThreadId;
-		uint32_t nMainFrameID;
-		char pad[4];
-		char* szCmdLine;
-		char szDebugStatus[128];
-		bool bServer,
-			bMultiplayer,
-			bHostMigrating,
-			bProfilerEnabled;
-		char pad2[4];
-		void* callbackStartSection;
-		void* callbackEndSection;
-		void* pTelemetryAPI;
-		uint32_t nTelemetryCaptureMask;
-		bool bArkProfSystems[30],
-			bIgnoreAllAserts,
-			bNoAssertDialog,
-			bTesting,
-			bNoRandomSeed;
-		char pad3[2];
-		SPlatformInfo pi;
-		void* pProtectedFunctions;
-		undefined pad4[72];
-		bool bIsOutOfMemory,
-			bIsOutOfVideoMemory,
-			bClient,
-			m_isFMVPlaying,
-			m_isCutscenePlaying;
-	// gameEnvironmentPointers(uintptr_t moduleBase);
-
-};
-
-
-
 
 namespace ArkNpc {
 	class ArkRobotLight;
@@ -285,48 +198,13 @@ namespace ArkNpc {
 		eSGR_Command = 2,
 		eSGR_QuickSave = 3
 	};
-		
-	enum class ESystemConfigSpec {
-		CONFIG_CUSTOM = 0,
-		CONFIG_LOW_SPEC = 1,
-		CONFIG_MEDIUM_SPEC = 2,
-		CONFIG_HIGH_SPEC = 3,
-		CONFIG_VERYHIGH_SPEC = 4,
-		CONFIG_DURANGO = 5,
-		CONFIG_ORBIS = 6,
-		CONFIG_DETAIL_SPEC = 7,
-		END_CONFIG_SPEC_ENUM = 8
-	};
-	enum class ESystemGlobalState {
-		ESYSTEM_GLOBAL_STATE_UNKNOWN = 0,
-		ESYSTEM_GLOBAL_STATE_INIT = 1,
-		ESYSTEM_GLOBAL_STATE_RUNNING = 2,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_PREPARE = 3,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START = 4,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_MATERIALS = 5,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_OBJECTS = 6,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_CHARACTERS = 7,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_STATIC_WORLD = 8,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_ENTITIES = 9,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_PRECACHE = 10,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_START_TEXTURES = 11,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_END = 12,
-		ESYSTEM_GLOBAL_STATE_LEVEL_LOAD_COMPLETE = 13
-	};
+
 	enum class EType {
 		Button = 0,
 		Toggle = 1,
 		RawAxis = 2,
 		Axis = 3,
 		Trigger = 4
-	};
-	enum class EPLM_State {
-		EPLM_UNDEFINED = 0,
-		EPLM_RUNNING = 1,
-		EPLM_CONSTRAINED = 2,
-		EPLM_SUSPENDED = 3,
-		EPLM_NOTRUNNING = 4,
-		EPLM_TERMINATED = 5
 	};
 	
 	enum class ECpuVendor {
@@ -420,30 +298,6 @@ namespace ArkNpc {
 	public:
 		char pad_0000[64]; //0x0000
 	}; //Size: 0x0040
-	class ArkPlayerMovementFSM
-	{
-	public:
-		char pad_0000[1472]; //0x0000
-		ClimbPosInfo m_climbPosInfo; //0x05C0
-		class StagingInfo m_stagingInfo; //0x05D4
-		EArkFlyMode m_flyMode; //0x05E8
-		float m_carrySpeedScale; //0x05EC
-		float m_climbHorizontalFromEdgeProbeDistance; //0x05F0
-		float m_climbVerticalReachDistance; //0x05F4
-		float m_climbVerticalNormalMaxAngle; //0x05F8
-		float m_cameraRoll; //0x05FC
-		float m_cameraRollMaxAngle; //0x0600
-		float m_cameraRollIncreaseSpeed; //0x0604
-		float m_cameraRollRecoverySpeed; //0x0608
-		float m_airControl; //0x060C
-		bool m_bInputSneak; //0x0610
-		bool m_bInputJumpPressed; //0x0611
-		bool m_bInputJumpRequested; //0x0612
-		bool m_bMovementRestricted; //0x0613
-		float m_verticalSpeed; //0x0614
-		float m_jumpRequestedTime; //0x0618
-		char pad_061C[4]; //0x061C
-	}; //Size: 0x0620
 	class CArkPsiComponent{ };
 	class ArkSignalModifier{};
 	class ArkAbilityUpgradeState {
@@ -531,101 +385,6 @@ namespace ArkNpc {
 	class ArkPOIComponent{};
 	class ArkDialogPlayer{};
 	class ArkDialogPlayerTranscribe{};
-	class ArkPlayerComponent
-	{
-	public:
-		std::unique_ptr<CArkPsiComponent> m_pPsiComponent;
-		std::unique_ptr<ArkAbilityComponent> m_pAbilityComponent;
-		std::unique_ptr<ArkAudioLogComponent> m_pAudioLogComponent;
-		std::unique_ptr<ArkNoteComponent> m_pNoteComponent;
-		std::unique_ptr<ArkKeyCodeComponent> m_pKeyCodeComponent;
-		std::unique_ptr<ArkLocationComponent> m_pLocationComponent;
-		std::unique_ptr<ArkLoreComponent> m_pLoreComponent;
-		std::unique_ptr<ArkKeyCardComponent> m_pKeyCardComponent;
-		std::unique_ptr<ArkEmailComponent> m_pEmailComponent;
-		std::unique_ptr<ArkQuickSelectComponent> m_pQuickSelectComponent;
-		std::unique_ptr<ArkRosterComponent> m_pRosterComponent;
-		std::unique_ptr<ArkUtilityComponent> m_pUtilityComponent;
-		std::unique_ptr<ArkPharmaComponent> m_pPharmaComponent;
-		std::unique_ptr<ArkPDAComponent> m_pPDAComponent;
-		std::unique_ptr<ArkPlayerAchievementComponent> m_pAchievementComponent;
-		std::unique_ptr<ArkPlayerAwarenessComponent> m_pAwarenessComponent;
-		std::unique_ptr<ArkPlayerEntitlementComponent> m_pEntitlementComponent;
-		std::unique_ptr<ArkPlayerFatigueComponent> m_pFatigueComponent;
-		std::unique_ptr<ArkPlayerHealthComponent> m_pHealthComponent;
-		std::unique_ptr<ArkPlayerRadiationComponent> m_pRadiationComponent;
-		std::unique_ptr<ArkPlayerLightManager> m_pLightManager;
-		std::unique_ptr<ArkPlayerFXComponent> m_pFXComponent;
-		std::unique_ptr<ArkPlayerUIComponent> m_pUIComponent;
-		std::unique_ptr<ArkFabricationPlanComponent> m_pFabricationPlanComponent;
-		std::unique_ptr<ArkPlayerStatusComponent> m_pStatusComponent;
-		std::unique_ptr<ArkPlayerPropulsionComponent> m_pPropulsionComponent;
-		std::unique_ptr<ArkPlayerSignalReceiver> m_pSignalReceiver;
-		std::unique_ptr<ArkAimAssistComponent> m_pAimAssistComponent;
-		std::unique_ptr<ArkMarkedEnemyComponent> m_pMarkedEnemyComponent;
-		std::unique_ptr<ArkPlayerScopeComponent> m_pScopeComponent;
-		std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pPlayerSpeaker;
-		std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pSuitSpeaker;
-		std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pDiscRifleSpeaker;
-		std::unique_ptr<ArkSpeaker<ArkDialogPlayerTranscribe>> m_pTranscribeSpeaker;
-		std::unique_ptr<ArkGameMetricsComponent> m_pGameMetricsComponent;
-		std::unique_ptr<ArkFocusModeComponent> m_pFocusModeComponent;
-		std::unique_ptr<ArkLiveTranscribeComponent> m_pLiveTranscribeComponent;
-		std::unique_ptr<ArkStationAccessComponent> m_pStationAccessComponent;
-		std::unique_ptr<ArkPOIComponent> m_pPOIComponent;
-		float m_fShadowDissolveBlend;
-		float m_fShadowDissolveTarget;
-		float m_fShadowDissolveTimeScale;
-		bool m_bItemsRestricted;
-		bool m_bMarkerTextDisplayed;
-		/*
-		void* m_pPsiComponent; //0x0000
-		void* m_pAbilityComponent; //0x0008
-		void* m_pAudioLogComponent; //0x0010
-		void* m_pNoteComponent; //0x0018
-		void* m_pKeyCodeComponent; //0x0020
-		void* m_pLocationComponent; //0x0028
-		void* m_pLoreComponent; //0x0030
-		void* m_pKeyCardComponent; //0x0038
-		void* m_pEmailComponent; //0x0040
-		void* m_pQuickSelectComponent; //0x0048
-		void* m_pRosterComponent; //0x0050
-		void* m_pUtilityComponent; //0x0058
-		void* m_pPharmaComponent; //0x0060
-		void* m_pPDAComponent; //0x0068
-		void* m_pAchievementComponent; //0x0070
-		void* m_pAwarenessComponent; //0x0078
-		void* m_pEntitlementComponent; //0x0080
-		void* m_pFatigueComponent; //0x0088
-		void* m_pHealthComponent; //0x0090
-		void* m_pRadiationComponent; //0x0098
-		void* m_pLightManager; //0x00A0
-		void* m_pFXComponent; //0x00A8
-		void* m_pUIComponent; //0x00B0
-		void* m_pFabricationPlanComponent; //0x00B8
-		void* m_pStatusComponent; //0x00C0
-		void* m_pPropulsionComponent; //0x00C8
-		void* m_pSignalReceiver; //0x00D0
-		void* m_pAimAssistComponent; //0x00D8
-		void* m_pMarkedEnemyComponent; //0x00E0
-		void* m_pScopeComponent; //0x00E8
-		void* m_pPlayerSpeaker; //0x00F0
-		void* m_pSuitSpeaker; //0x00F8
-		void* m_pDiscRifleSpeaker; //0x0100
-		void* m_pTranscribeSpeaker; //0x0108
-		void* m_pGameMetricsComponent; //0x0110
-		void* m_pFocusModeComponent; //0x0118
-		void* m_pLiveTranscribeComponent; //0x0120
-		void* m_pStationAccessComponent; //0x0128
-		void* m_pPOIComponent; //0x0130
-		float m_fShadowDissolveBlend; //0x0138
-		float m_fShadowDissolveTarget; //0x013C
-		float m_fShadowDissolveTimeScale; //0x0140
-		int8_t m_bItemsRestricted; //0x0144
-		int8_t m_bMarkerTextDisplayed; //0x0145
-		char pad_0146[2]; //0x0146
-		*/
-	}; //Size: 0x0148
 
 		class ArkStatModifier {
 		public:
@@ -671,23 +430,6 @@ namespace ArkNpc {
 		}; //Size: 0x00A0
 
 
-	
-
-	class ArkEquipmentModComponent
-	{
-	public:
-		bool m_bSuitMods; //0x0000
-		char pad_0001[7]; //0x0001
-		std::vector<uint32_t> m_ownedChipsets; //0x0008
-		int32_t m_installedChipsets[8]; //0x0020
-	}; //Size: 0x0040
-
-
-	class TActionHandler
-	{
-	public:
-		char pad_0000[16]; //0x0000
-	}; //Size: 0x0010
 
 	class MovementButtonPressInfo
 	{
@@ -702,52 +444,6 @@ namespace ArkNpc {
 		Mode m_mode;
 		uint32_t m_handle;
 	};
-	class ArkPlayerInput
-	{
-	public:
-		char pad_0000[16]; //0x0000
-		std::vector<ModeAndHandle> m_modeStack; //0x0010
-		TActionHandler m_actionHandler; //0x0028
-		Vec3 m_deltaRotation; //0x0038
-		Vec3 m_gamePadRotation; //0x0044
-		Vec3 m_adjustedGamePadRotation; //0x0050
-		Vec2 m_movement; //0x005C
-		Vec2 m_reticleMovement; //0x0064
-		class MovementButtonPressInfo m_movementButtonPressInfo; //0x006C
-		void* m_player; //0x0070
-		float m_debugTimeScale; //0x0078
-		float m_lean; //0x007C
-		float m_rawLean; //0x0080
-		float m_lastRegisteredInputTime; //0x0084
-		float m_currentGamePadRotationSpeed; //0x0088
-		int32_t m_mashesRemaining; //0x008C
-		int32_t m_mimicGrabMashesRequired; //0x0090
-		CinematicMode m_cinematicMode; //0x0094
-		float m_sprintCameraRotationRateScale; //0x0098
-		float m_zoomCameraRotationRateScale; //0x009C
-		float m_sprintCancelForwardThreshold; //0x00A0
-		float m_sprintCancelBackwardThreshold; //0x00A4
-		float m_sprintCancelStrafeThreshold; //0x00A8
-		bool m_bSprint; //0x00AC
-		bool m_bUseHeld; //0x00AD
-		bool m_bTriggeredUse; //0x00AE
-		bool m_bTriggeredHoldUse; //0x00AF
-		bool m_bTriggeredSpecialUse; //0x00B0
-		bool m_bZeroGBraking; //0x00B1
-		bool m_bSprintInhibited; //0x00B2
-		bool m_bJumpInhibited; //0x00B3
-		bool m_bRotationInhibited; //0x00B4
-		bool m_bLeftLean; //0x00B5
-		bool m_bRightLean; //0x00B6
-		char pad_00B7[1]; //0x00B7
-		float m_deadzone; //0x00B8
-		float m_curvePercentTurnSpeed; //0x00BC
-		float m_accelerationThreshold; //0x00C0
-		float m_accelerationRate; //0x00C4
-		float m_accelerationMaxTurnSpeed; //0x00C8
-		Mode m_disabledMode; //0x00CC
-	}; //Size: 0x00D0
-
 
 	class ArkInputAction {
 	public:
@@ -782,38 +478,6 @@ namespace ArkNpc {
 		uint32_t m_handle; //0x0000
 	}; //Size: 0x0004
 
-	class ArkExaminationMode
-	{
-	public:
-		char pad_0000[24]; //0x0000
-		Vec4 m_initialRotation; //0x0018
-		Vec3 m_playerCameraPosition; //0x0028
-		Vec4 m_playerCameraRotation; //0x0034
-		Vec3 m_localRotation; //0x0044
-		Vec4 m_rotation; //0x0050
-		Vec2 m_reticlePos; //0x0060
-		Vec3 m_optimalCameraPos; //0x0068
-		float m_cameraLerpStartTime; //0x0074
-		float m_activeLerpDuration; //0x0078
-		float m_viewingBuffer; //0x007C
-		float m_maxCameraRotation; //0x0080
-		float m_cameraSpeedMultiplier; //0x0084
-		float m_cameraLerpDuration; //0x0088
-		float m_telescopeLerpDuration; //0x008C
-		float m_distFromNonWorldUI; //0x0090
-		EArkExaminationType m_examinationType; //0x0094
-		EArkExaminationState m_examinationState; //0x0098
-		uint32_t m_targetEntity; //0x009C
-		int32_t m_inputHandle; //0x00A0
-		int32_t m_zoomHandle; //0x00A4
-		ExamineMode m_mode; //0x00A8
-		char pad_00AC[4]; //0x00AC
-		class ArkInputLegend m_inputLegendWorldUI; //0x00B0
-		class ArkInputLegend m_inputLegendDefault; //0x00D0
-		class ArkInputLegend m_inputLegendTelescope; //0x00F0
-		class ArkInputLegendHandler m_examinationLegendHandler; //0x0110
-		char pad_0114[4]; //0x0114
-	}; //Size: 0x0118
 
 	class ArkEntityGrabber
 	{
@@ -882,10 +546,6 @@ namespace ArkNpc {
 		bool m_bRemoteManipulatedCorpse; //0x00FE
 		bool m_bJustThrown; //0x00FF
 	}; //Size: 0x0100
-	class IEntityProxy {
-	public:
-		char pad[40];
-	};
 	class ArkInteractionInfo
 	{
 	public:
@@ -895,15 +555,6 @@ namespace ArkNpc {
 		float m_holdDuration; //0x0010
 		char pad_0014[4]; //0x0014
 	}; //Size: 0x0018
-	class IGameObjectExtension {
-	public:
-		// char pad[32];
-		IEntityProxy m_proxy;
-		IGameObject* m_pGameObject;
-		uint32_t m_entityId;
-		char pad2[4];
-		IEntity* m_pEntity;
-	};
 	// class Map
 	// {
 	// public:
@@ -988,34 +639,6 @@ namespace ArkNpc {
 		class ArkSimpleTimer m_errorTimer; //0x0280
 	}; //Size: 0x0288
 
-	class ArkPlayerInteraction : public ArkEntityGrabber
-	{
-	public:
-		class ArkPlayerCarry m_playerCarry; //0x0028
-		class ArkInteractionInfo m_interactionInfo[4]; //0x0128
-		bool m_interactionHidden[4]; //0x0188
-		char pad_018C[4]; //0x018C
-		class ArkPlayerTargetSelector m_targetSelector; //0x0190
-		class ArkInventoryPreview m_inventoryPreview; //0x01D8
-		class ArkSimpleTimer m_carryDelay; //0x0460
-		int32_t m_disableInteractionPromptCount; //0x0468
-		uint32_t m_usableEntityId; //0x046C
-		bool m_bCanClimb; //0x0470
-		bool m_bHideFailedAbilityInteractions; //0x0471
-		char pad_0472[6]; //0x0472
-		class ArkButtonPromptCollection m_buttonPrompts; //0x0478
-		class ArkInputLegend m_alternativePrompts; //0x06C0
-		class ArkInputLegendHandler m_alternativePromptHandler; //0x06E0
-		char pad_06E4[4]; //0x06E4
-	}; //Size: 0x06E8
-
-	class ArkGroundColliderComponent
-	{
-	public:
-		void* m_pOwner; //0x0000
-		uint32_t m_groundEntity; //0x0008
-		char pad_000C[4]; //0x000C
-	}; //Size: 0x0010
 
 	class ArkPlayerLightEntity
 	{
@@ -1033,38 +656,7 @@ namespace ArkNpc {
 		float m_diffuseMultiplier;
 	};
 	class XmlNodeRef;
-	class ArkPlayerFlashlight
-	{
-	public:
-		// virtual void* ArkPlayerFlashlightf(void*);
-		// virtual float GetTargetDimRangeDiffuse(void*);
-		// virtual bool IsPowered(void*);
-		// virtual bool LightVisibilityUpdated(void*, bool);
-		// virtual bool LoadConfig(void*, XmlNodeRef*);
-		// virtual void OnStatChange(void*, uint32_t, CCryName,float,float);
-		// virtual void PostSerialize(void*);
-		// virtual void Reset(void*);
-		// virtual void Toggle(void*);
-		// virtual void Update(void*);
-		// virtual ~ArkPlayerFlashlight();
-		char pad_0000[16]; //0x0000
-		class ArkPlayerLightEntity m_playerLight; //0x0010
-		class ArkAudioTrigger m_toggleAudio; //0x0048
-		char pad_004C[4]; //0x004C
-		std::vector<DimRange> m_dimRanges; //0x0050
-		float m_dimRangeDeltaRate; //0x0068
-		float m_currentDimRangeDiffuse; //0x006C
-		float m_drainRate; //0x0070
-		float m_chargeRate; //0x0074
-		float m_maxCharge; //0x0078
-		float m_currentCharge; //0x007C
-		float m_dimStart; //0x0080
-		float m_minDimAmount; //0x0084
-		bool m_bEnabled; //0x0088
-		bool m_bShowingUI; //0x0089
-		bool m_bFlashlightOn; //0x008A
-		char pad_008B[5]; //0x008B
-	}; //Size: 0x0090
+	
 
 
 	
@@ -1093,126 +685,6 @@ namespace ArkNpc {
 		uint32_t m_id; //0x0000
 	}; //Size: 0x0004
 
-	class ArkPlayerAudio
-	{
-	public:
-		char pad_0000[8]; //0x0000
-		TArkAudioSwitch<enumEPlayerSex> m_genderAudioSwitch; //0x0008
-		ArkAudioRtpc m_combatIntensityRtpc; //0x0014
-		ArkAudioRtpc m_jumpHeightRtpc; //0x0018
-		ArkAudioSwitch m_combatAudioSwitch; //0x001C
-		ArkAudioSwitchState m_combatOnAudioState; //0x0020
-		ArkAudioSwitchState m_combatOffAudioState; //0x0024
-		ArkAudioTrigger m_combatEndAudio; //0x0028
-		ArkAudioTrigger m_setHelmetOnAtmosphere; //0x002C
-		ArkAudioTrigger m_setHelmetOnNoAtmosphere; //0x0030
-		ArkAudioTrigger m_setHelmetOffAtmosphere; //0x0034
-		ArkAudioTrigger m_setHelmetOffNoAtmosphere; //0x0038
-		ArkAudioTrigger m_helmetOn; //0x003C
-		ArkAudioTrigger m_helmetOff; //0x0040
-		float m_combatIntensity; //0x0044
-		float m_combatIntensityEventStartThreshold; //0x0048
-		float m_combatIntensityEventStopThreshold; //0x004C
-	}; //Size: 0x0050
-
-	class SViewParams {
-	public:
-		Vec3 position;
-		Vec4 rotation;
-		Vec4 localRotationLast;
-		float nearplane;
-		float fov;
-		float fovBase;
-		unsigned char viewID;
-		bool groundOnly;
-		float shakingRatio;
-		Vec4 currentShakeQuat;
-		Vec3 currentShakeShift;
-		uint32_t idTarget;
-		Vec3 targetPos;
-		float frameTime;
-		float angleVel;
-		float vel;
-		float dist;
-		bool blend;
-		char pad_07c[3];
-		float blendPosSpeed;
-		float blendRotSpeed;
-		float blendFOVSpeed;
-		Vec3 blendPosOffset;
-		Vec4 blendRotOffset;
-		float blendFOVOffset;
-		bool justActivated;
-		unsigned char viewIDLast;
-		char pad_0ad[2];
-		Vec3 positionLast;
-		Vec4 rotationLast;
-		float FOVLast;
-	};
-	
-
-	class ArkPlayerCamera
-	{
-	public:
-		CryStringT<char> m_boneNames[17]; //0x0008
-		char m_customUpdateFunction[64];
-		char m_customOffsetFunction[64];
-		char m_customViewFunction[64];
-		// float m_customUpdateFunction(Vec4);
-		// float m_customOffsetFunction(Vec3);
-		// SViewParams& m_customViewFunction();
-		Vec4 m_rotation; //0x0150
-		Vec2 m_recoilStep; //0x0160
-		float m_recoilTimeRemaining; //0x0168
-		float m_recoilDelayRemaining; //0x016C
-		float m_leanAmount; //0x0170
-		float m_leanAngle; //0x0174
-		float m_leanOffset; //0x0178
-		float m_eyeOffset; //0x017C
-		float m_transitionTime; //0x0180
-		float m_transitionTimeRemain; //0x0184
-		Vec4 m_transitionStartRot; //0x0188
-		Vec3 m_deathPos; //0x0198
-		Mode m_mode; //0x01A4
-		float m_bRecycleGrenadeDeathSpeed; //0x01A8
-		Vec3 m_nonLeaningTargetPosition; //0x01AC
-		float m_FPIKWeight; //0x01B8
-		float m_FPIKWeightTarget; //0x01BC
-		float m_stanceChangeInterSpeed; //0x01C0
-		char pad_01C4[4]; //0x01C4
-
-		virtual void Function0();
-		virtual void Function1();
-		virtual void Function2();
-		virtual void Function3();
-		virtual void Function4();
-		virtual void Function5();
-		virtual void Function6();
-		virtual void Function7();
-		virtual void Function8();
-		virtual void Function9();
-	}; //Size: 0x01C8
-
-	class ArkPlayerHelmet
-	{
-	public:
-		void* ptr;
-		Vec4 m_target; //0x0008
-		void* m_pOxygenComponent; //0x0018
-		Vec2 m_tolerance; //0x0020
-		ArkSimpleTimer m_reactTimer; //0x0028
-		uint64_t m_signalModifier; //0x0030
-		float m_catchUpSpeed; //0x0038
-		EQueuedDialog m_queuedDialog; //0x003C
-		int32_t m_crackSubMatId; //0x0040
-		bool m_bActive; //0x0044
-		bool m_bPaused; //0x0045
-		bool m_bNonReactActivated; //0x0046
-		bool m_bCatchUp; //0x0047
-		bool m_bConsideredCaughtUp; //0x0048
-		char pad_0049[7]; //0x0049
-
-	}; //Size: 0x0050
 
 	class ArkTimeRemaining {
 	public:
@@ -1328,7 +800,7 @@ namespace ArkNpc {
 		CryStringT<char> m_paramName;
 		float m_paramValue;
 	};
-	class IParticleEffect {
+	struct IParticleEffect {
 	public:
 		void* ptr1;
 		void* ptr2;
@@ -1454,7 +926,7 @@ namespace ArkNpc {
 	class SSurfaceTypeAIParams {
 		
 	};
-	class IXmlStringData;
+	struct IXmlStringData;
 	class CXmlStringPool;
 	class XmlString;
 	class XmlNodeRef;
@@ -1463,95 +935,6 @@ namespace ArkNpc {
 	public:
 		char* key;
 		char* value;
-	};
-	class IXmlNode {
-	public:
-		virtual undefined _purecall() {}
-		virtual void* _EIXmlNode(uint32_t param_1) {}
-		virtual undefined _purecall_1() {}
-		virtual void  AddRef() {}
-		virtual void  Release() {}
-		virtual uint32_t  GetAudioObjectID() {}
-	private:
-		virtual undefined _purecall_2() {}
-		virtual undefined _purecall_3() {}
-		virtual undefined _purecall_4() {}
-		virtual undefined _purecall_5() {}
-		virtual undefined _purecall_6() {}
-		virtual undefined _purecall_7() {}
-		virtual undefined _purecall_8() {}
-		virtual undefined _purecall_9() {}
-		virtual undefined _purecall_10() {}
-		virtual undefined _purecall_11() {}
-		virtual undefined _purecall_12() {}
-		virtual undefined _purecall_13() {}
-		virtual undefined _purecall_14() {}
-		virtual undefined _purecall_15() {}
-		virtual undefined _purecall_16() {}
-		virtual undefined _purecall_17() {}
-		virtual undefined _purecall_18() {}
-		virtual undefined _purecall_19() {}
-		virtual undefined _purecall_20() {}
-		virtual undefined _purecall_21() {}
-		virtual undefined _purecall_22() {}
-		virtual undefined _purecall_23() {}
-		virtual undefined _purecall_24() {}
-		virtual undefined _purecall_25() {}
-		virtual undefined _purecall_26() {}
-		virtual undefined _purecall_27() {}
-		virtual undefined _purecall_28() {}
-		virtual undefined _purecall_29() {}
-		virtual undefined _purecall_30() {}
-		virtual undefined _purecall_31() {}
-		virtual undefined _purecall_32() {}
-		virtual undefined _purecall_33() {}
-		virtual undefined _purecall_34() {}
-		virtual undefined _purecall_35() {}
-		virtual undefined _purecall_36() {}
-		virtual undefined _purecall_37() {}
-		virtual undefined _purecall_38() {}
-		virtual undefined _purecall_39() {}
-		virtual undefined _purecall_40() {}
-		virtual undefined _purecall_41() {}
-		virtual undefined _purecall_42() {}
-		virtual undefined _purecall_43() {}
-		virtual undefined _purecall_44() {}
-		virtual undefined _purecall_45() {}
-		virtual undefined _purecall_46() {}
-		virtual undefined _purecall_47() {}
-		virtual undefined _purecall_48() {}
-		virtual undefined _purecall_49() {}
-		virtual undefined _purecall_50() {}
-		virtual undefined _purecall_51() {}
-		virtual undefined _purecall_52() {}
-		virtual undefined _purecall_53() {}
-		virtual undefined _purecall_54() {}
-		virtual undefined _purecall_55() {}
-		virtual undefined _purecall_56() {}
-		virtual undefined _purecall_57() {}
-		virtual undefined _purecall_58() {}
-		virtual undefined _purecall_59() {}
-		virtual undefined _purecall_60() {}
-		virtual undefined _purecall_61() {}
-		virtual undefined _purecall_62() {}
-		virtual undefined _purecall_63() {}
-		virtual undefined _purecall_64() {}
-		virtual undefined _purecall_65() {}
-		virtual undefined _purecall_66() {}
-		virtual undefined _purecall_67() {}
-		virtual undefined _purecall_68() {}
-		virtual undefined _purecall_69() {}
-		virtual undefined _purecall_70() {}
-		virtual undefined _purecall_71() {}
-		virtual undefined _purecall_72() {}
-		virtual undefined _purecall_73() {}
-		virtual undefined _purecall_74() {}
-		virtual undefined _purecall_75() {}
-		virtual undefined _purecall_76() {}
-	public:
-		virtual XmlString* getXMLUnsafe(int param_1, char* param_2, uint32_t param_3) {}
-		int32_t m_nRefCount;
-		char pad[4];
 	};
 	class CXmlNode {
 	public:
@@ -1739,11 +1122,6 @@ namespace ArkNpc {
 		int32_t m_line;
 		char pad2[4];
 	};
-	
-	class XmlNodeRef {
-	public:
-		IXmlNode* ptr;
-	};
 	class CXmlTableReader {
 	public:
 		virtual void* _ECXmlTableReader(uint32_t param_1) {}
@@ -1764,14 +1142,6 @@ namespace ArkNpc {
 			rwoTextPos;
 	};
 
-	class IXmlStringData {
-	public:
-		char* m_str;
-	};
-	class XmlString {
-	public:
-		char* m_str;
-	};
 	class IXmlStringPool {
 	public:
 		virtual void* _EIXmlStringPool(uint32_t param_1) {}
@@ -1820,9 +1190,6 @@ namespace ArkNpc {
 		XmlParserImp* m_pImpl;
 	};
 
-	class IXmlSerializer {};
-	class IXmlParser {};
-	class IXmlTableReader {};
 	class IReadXMLSink {};
 	class IWriteXMLSource {};
 	class IReadWriteXmlSink {};
@@ -2094,27 +1461,14 @@ namespace ArkNpc {
 		CXMLPatcher* m_pXMLPatcher;
 	};
 
-	class CEntityArchetype {
+	class CEntityArchetype : public IEntityArchetype {
 	public:
-		virtual void*   _ECEntityArchetype(uint32_t param_1) {}
-		virtual IEntityClass*  GetClass() {}
-		virtual ArkNpcAbilityInstance*  GetAbilityInstance() {}
-		virtual SSurfaceTypeAIParams*  GetAIParams() {}
-		virtual ArkNpcAbility*  GetAbility() {}
-		virtual ArkNpcAbility*  garbage0() {}
-		virtual XmlNodeRef*  GetObjectVars() {}
-		virtual void  LoadFromXML(class XmlNodeRef* param_1, class XmlNodeRef* param_2) {}
 		char pad[16];
 		CryStringT<char> m_name;
 		uint64_t m_id;
 		SmartScriptTable m_pProperties;
 		XmlNodeRef m_ObjectVars;
 		IEntityClass* m_pClass;
-	};
-	class IEntityArchetype {
-	public:
-		CEntityArchetype* ptr;
-		
 	};
 	class CArkWeapon {
 	public:
@@ -2212,33 +1566,7 @@ namespace ArkNpc {
 		ArkTimeRemaining m_timer;
 		EArkZoomPriority m_priority;
 	};
-	class ArkPlayerWeaponComponent
-	{
-		
-	public:
-		char pad_0000[24]; //0x0000
-		std::vector<uint32_t> m_weaponEntityIds; //0x0018
-		std::vector<uint32_t> m_specialWeaponIds; //0x0030
-		void* m_player; //0x0048
-		ArkAudioTrigger m_triggerSneakAttack; //0x0050
-		ArkAudioTrigger m_triggerCriticalHit; //0x0054
-		uint32_t m_equippedWeaponId; //0x0058
-		uint32_t m_lastEquippedWeaponId; //0x005C
-		uint32_t m_backupWeaponId; //0x0060
-		uint32_t m_toBeEquippedWeaponId; //0x0064
-		float m_weaponCameraSpeedMultiplierAcceleration; //0x0068
-		float m_weaponCameraSpeedMultiplier; //0x006C
-		float m_aimAssistTargetRangeSq; //0x0070
-		float m_gameLogReportWindow; //0x0074
-		bool m_bIsUnequipping; //0x0078
-		bool m_bCanEquip; //0x0079
-		char pad_007A[6]; //0x007A
-		std::vector<unsigned __int64> m_weaponTypesAcquired; //0x0080
-		std::vector<GameLogData> m_sneakAttackData; //0x0098
-		std::vector<GameLogData> m_criticalHitData; //0x00B0
-		std::vector<GameLogData> m_mimicHitData; //0x00C8
-
-	}; //Size: 0x00E0
+	
 
 	
 
@@ -2280,7 +1608,7 @@ namespace ArkNpc {
 		int32_t m_handleGenerator; //0x002C
 	}; //Size: 0x0030
 
-	class IMaterial {
+	struct IMaterial {
 	public:
 		char pad1[8];
 		unsigned char m_ucDefaultMappingAxis;
@@ -2392,271 +1720,12 @@ namespace ArkNpc {
 		uint64_t N0000349A; //0x0000
 	}; //Size: 0x0008
 	class IDatagramSocket{};
-	class SEntityEvent{};
 	class ICrySizer{};
-	class IGameObject{};
 	class ChunkTypes{};
-	class EEndianness{};
 	class SIPv4Addr{};
 	class SNullAddr{};
 	class LobbyIdAddr{};
-	class SEntityUpdateContext{};
-	class SGameObjectEvent{};
-	class IMovementController{};
 	class IArkSpeaker{};
-
-
-
-
-
-
-
-
-
-
-
-
-	class ArkPlayer
-	{
-	public:
-		virtual void*   _EArkPlayer(uint32_t param_1) {}
-		virtual void  ProcessEvent( SEntityEvent* param_1) {}
-		virtual int32_t  GetEventPriority(int32_t param_1) {}
-	private:
-		virtual void   undefinedFunc0(){}
-	public:
-		virtual void  GetMemoryUsage( ICrySizer* param_1) {}
-		virtual bool  Init( IGameObject* param_1) {}
-		virtual void  PostInit( IGameObject* param_1) {}
-	private:
-		virtual void   undefinedfunc0( EArkNpcFacingDesireCallbackEvent* param_2) {}
-		virtual void   undefinedfunc1( EArkNpcFacingDesireCallbackEvent* param_2) {}
-	public:
-		virtual bool   RIArchive(char* param_1, char* param_2, char* param_3) {}
-	private:
-		virtual void   undefinedfunc2( EArkNpcFacingDesireCallbackEvent* param_2) {}
-		virtual bool   duplicate0(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual void  Complete() {}
-		virtual void  FullSerialize( CSerializeWrapper<ISerialize>*param_1) {}
-	private:
-		virtual bool   duplicate1(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual int32_t  AddChunk( ChunkTypes* param_1, int32_t param_2,  EEndianness* param_3, void* param_4, int32_t param_5) {}
-		virtual void  PostSerialize() {}
-	private:
-		virtual void   undefinedFunc3(){}
-	public:
-		virtual  IDatagramSocket*  CreateDatagramSocket( boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<4>, SNullAddr, boost::mpl::l_item<boost::mpl::long_<3>, unsigned short, boost::mpl::l_item<boost::mpl::long_<2>, SIPv4Addr, boost::mpl::l_item<boost::mpl::long_<1>, LobbyIdAddr, boost::mpl::l_end>>>>>>*param_1, uint32_t param_2) {}
-		virtual void  Update( SEntityUpdateContext* param_1, int32_t param_2) {}
-		virtual void  HandleEvent( SGameObjectEvent* param_1) {}
-		virtual void  SetChannelId(unsigned short param_1) {}
-	private:
-		virtual void   undefinedFunc4(){}
-	public:
-		virtual void*  GetRMIBase() {}
-	private:
-		virtual void   undefinedFunc5(){}
-		virtual void   undefinedFunc6(){}
-	public:
-		virtual void  SetHealth(float param_1) {}
-		virtual float  GetHealth() {}
-		virtual wchar_t*  Action() {}
-	private:
-		virtual void   undefinedFunc7(){}
-	public:
-		virtual float  GetMaxHealth() {}
-	private:
-		virtual wchar_t*  duplicate2() {}
-		virtual wchar_t*  duplicate3() {}
-		virtual wchar_t*  duplicate4() {}
-		virtual bool   duplicate5(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual bool  IsDead() {}
-		virtual int32_t  IsGod() {}
-	private:
-		virtual void   undefinedFunc8(){}
-		virtual bool   duplicate6(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual  EStance*  GetLockedStance() {}
-		virtual  EStance*  GetStance() {}
-	private:
-		virtual void   undefinedFunc9(){}
-		virtual wchar_t* duplicate7() {}
-		virtual void   undefinedFunc10(){}
-		virtual void   undefinedFunc11(){}
-		virtual bool   duplicate8(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc12(){}
-		virtual void   undefinedFunc13(){}
-		virtual void   undefinedFunc14(){}
-		virtual wchar_t* duplicate9() {}
-		virtual void   undefinedFunc15(){}
-		virtual void   undefinedFunc16(){}
-	public:
-		virtual void  SetViewRotation( Quat_tpl<float>*param_1) {}
-		virtual  Quat_tpl<float>*  GetViewRotation( Quat_tpl<float>*__return_storage_ptr__) {}
-	private:
-		virtual bool   duplicate10(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual  Vec3_tpl<float>*  GetLocalEyePos( Vec3_tpl<float>*__return_storage_ptr__) {}
-	private:
-		virtual void   undefinedFunc17(){}
-		virtual wchar_t* duplicate11() {}
-		virtual void   undefinedFunc18(){}
-		virtual wchar_t* duplicate12() {}
-		virtual bool   duplicate13(char* param_1, char* param_2, char* param_3) {}
-		virtual wchar_t* duplicate14() {}
-		virtual void   undefinedFunc19(){}
-	public:
-		virtual  IMovementController*  GetMovementController() {}
-	private:
-		virtual wchar_t* duplicate15() {}
-		virtual bool   duplicate16(char* param_1, char* param_2, char* param_3) {}
-		virtual bool   duplicate17(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc42(){}
-		virtual bool   duplicate18(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc20(){}
-		virtual void   undefinedFunc21(){}
-		virtual bool   duplicate19(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual bool  Activating(float param_1) {}
-	private:
-		virtual bool  duplicate20(float param_1) {}
-		virtual bool   duplicate21(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc22(){}
-		virtual void   undefinedFunc23(){}
-	public:
-		virtual char*  GetActorName() {}
-	private:
-		virtual wchar_t* duplicate22() {}
-	public:
-		virtual char*  GetEntityName() {}
-	private:
-		virtual void   undefinedFunc24(){}
-	public:
-		virtual void  SerializeLevelToLevel( CSerializeWrapper<ISerialize>*param_1) {}
-		virtual  IAnimatedCharacter*  GetAnimatedCharacter() {}
-	private:
-		virtual  IAnimatedCharacter*  duplicate32() {}
-		virtual void   undefinedFunc25(){}
-		virtual void   undefinedFunc26(){}
-		virtual void   undefinedFunc27(){}
-		virtual void   undefinedFunc28(){}
-		virtual void   undefinedFunc29(){}
-	public:
-		virtual  IArkSpeaker*  GetArkSpeaker() {}
-		virtual bool  Respawn() {}
-		virtual void  ResetToSpawnLocation() {}
-	private:
-		virtual bool   duplicate23(char* param_1, char* param_2, char* param_3) {}
-		virtual bool   duplicate24(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc30(){}
-		virtual void   undefinedFunc31(){}
-		virtual void   undefinedFunc32(){}
-		virtual void   undefinedFunc33(){}
-		virtual void   undefinedFunc34(){}
-		virtual void   undefinedFunc35(){}
-		virtual bool   duplicate25(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc36(){}
-		virtual bool   duplicate26(char* param_1, char* param_2, char* param_3) {}
-		virtual wchar_t* duplicate27() {}
-		virtual void   undefinedFunc37(){}
-		virtual void   undefinedFunc38(){}
-	public:
-		virtual  Vec3_tpl<float>*  GetAttackTargetPos( Vec3_tpl<float>*__return_storage_ptr__) {}
-		private:
-		virtual bool   duplicate28(char* param_1, char* param_2, char* param_3) {}
-		virtual void   undefinedFunc39(){}
-		virtual bool   duplicate29(char* param_1, char* param_2, char* param_3) {}
-	public:
-		virtual bool  IsZeroG() {}
-		virtual  Quat_tpl<float>*  GetBoneTransform(int32_t param_1) {}
-		private:
-		virtual wchar_t* duplicate30() {}
-	public:
-		virtual  std::pair<Vec3_tpl<float>, Vec3_tpl<float>>*  GetReticleViewPositionAndDir() {}
-		virtual void  EnableIdleBreak(bool param_1) {}
-		virtual void  InhibitRotation(bool param_1) {}
-		virtual void  OnCombatChange(bool param_1) {}
-	private:
-		virtual void   undefinedFunc40(){}
-		virtual void* duplicate31(uint32_t param_1) {}
-		virtual void   undefinedFunc41(){}
-	public:
-		virtual void  OnSystemEvent( ESystemEvent* param_1, uint64_t param_2, uint64_t param_3) {}
-	public:
-		// char pad_0000[56]; //0x0000
-		// void* IArkPlayer; //0x0040
-		// void* IArkPlayerCombatListener; //0x0048
-		// void* ISystemEventListener; //0x0050
-		char pad[80];
-		ArkPlayerMovementFSM m_movementFSM; //0x0058
-		ArkPlayerComponent m_playerComponent; //0x0678
-		ArkStatsComponent m_statsComponent; //0x07C0
-		ArkEquipmentModComponent m_suitChipsetComponent; //0x0860
-		ArkEquipmentModComponent m_scopeChipsetComponent; //0x08A0
-		ArkPlayerInput m_input; //0x08E0
-		ArkExaminationMode m_examinationMode; //0x09B0
-		ArkPlayerInteraction m_interaction; //0x0AC8
-		ArkGroundColliderComponent m_groundColliderComponent; //0x11B0
-		ArkPlayerFlashlight m_flashlight; //0x11C0
-		ArkPlayerAudio m_audio; //0x1250
-		ArkPlayerCamera m_camera; //0x12A0
-		ArkPlayerHelmet m_helmet; //0x1468
-		ArkPlayerWeaponComponent m_weaponComponent; //0x14B8
-		std::vector<IPlayerEventListener*> m_playerEventListenersVector; //0x1598
-		std::vector<std::pair<CryStringT<char>, uint32_t>> m_attachmentFlagsVector; //0x15B0
-		std::vector<unsigned __int64> m_learnedNames; //0x15C8
-		std::vector<unsigned __int64> m_criticalHitMetaTags; //0x15E0
-		std::vector<CryStringT<char>> m_animationTagsSetFromFG; //0x15F8
-		StanceInfo m_stanceInfos[18]; //0x1610
-		CryStringT<char> m_modelName; //0x17C0
-		Vec3 m_serializedVelocity; //0x17C8
-		Vec3 m_cachedReticlePos; //0x17D4
-		Vec3 m_cachedReticleDir; //0x17E0
-		Vec2 m_reticlePos; //0x17EC
-		char pad_17F4[4]; //0x17F4
-		void* m_pHeadBobbingAction; //0x17F8
-		void* m_pMovementController; //0x1800
-		void* m_pAnimatedCharacter; //0x1808
-		ArkInventory* m_pInventory; //0x1810
-		void* m_pFragmentCache; //0x1818
-		uint64_t m_coralSignalPackageId; //0x1820
-		ArkSimpleTimer m_coralInteractionTimer; //0x1828
-		float m_knockdownLoopDuration; //0x1830
-		float m_idleFragmentSpeedThreshold; //0x1834
-		EStance m_stance; //0x1838
-		char pad_183C[4]; //0x183C
-		ArkPlayerAttentionObject m_attentionObject; //0x1840
-		float m_fearNoiseAmplitude; //0x1870
-		float m_autoSaveHealthThreshold; //0x1874
-		float m_autoSaveOxygenThreshold; //0x1878
-		float m_attackTargetPosHeightPercent; //0x187C
-		float m_lookAtFarRange; //0x1880
-		bool m_bInTrackview; //0x1884
-		bool m_bInAir; //0x1885
-		bool m_bShowArmor; //0x1886
-		bool m_bShowHealth; //0x1887
-		bool m_bAllowIdleBreak; //0x1888
-		bool m_bJustPhysicalized; //0x1889
-		bool m_bShowContinuePrompt; //0x188A
-		bool m_bReceivedStartLevelEvent; //0x188B
-		bool m_bRetcileViewPositionValid; //0x188C
-		char pad_188D[3]; //0x188D
-		ArkSimpleTimer m_autoSaveBlockedBySignalTimer; //0x1890
-		ArkPlayerZoomManager m_zoomManager; //0x1898
-		int32_t m_rotationModifierHandleGenerator; //0x18C8
-		char pad_18CC[4]; //0x18CC
-		std::vector<std::pair<uint32_t, Vec3&>> m_rotationModifiers; //0x18D0
-		int32_t m_mimicGrabSequenceEntityId; //0x18E8
-		char pad_18EC[4]; //0x18EC
-		 ArkMaterialAnimationManager m_materialAnimationManager; //0x18F0
-	}; //Size: 0x1B38
-
-
-
-	
-
 	
 
 
@@ -2894,7 +1963,6 @@ namespace ArkNpc {
 	};
 
 	class ArkMaterialAnimationType{};
-	class EventPhysCollision{};
 	class Package{};
 	class ArkInteractionTestResult{};
 	class ArkSpatiallySortedKey {
@@ -3063,8 +2131,8 @@ namespace ArkNpc {
 
 		class TurretWeapon {
 		public:
-			class IEntityArchetype* m_pLootAmmoLaserArchetype;
-			class IEntityArchetype* m_pLootAmmoStunArchetype;
+			IEntityArchetype* m_pLootAmmoLaserArchetype;
+			IEntityArchetype* m_pLootAmmoStunArchetype;
 		};
 
 
@@ -3165,7 +2233,7 @@ namespace ArkNpc {
 			bool m_bIsArmed;
 			int m_magSize;
 			char* m_pGunAttachmentName;
-			class IEntityArchetype* m_pLootWeaponEntityArchetype;
+			IEntityArchetype* m_pLootWeaponEntityArchetype;
 		};
 
 		class AttentionFacing {
@@ -3265,8 +2333,8 @@ namespace ArkNpc {
 			char* m_pLaserGeometryName;
 			char* m_pLaserMaterialEffectName;
 			char* m_pReflectionGeometryName;
-			class IEntityArchetype* m_pLootAmmoLaserArchetype;
-			class IEntityArchetype* m_pLootAmmoStunArchetype;
+			IEntityArchetype* m_pLootAmmoLaserArchetype;
+			IEntityArchetype* m_pLootAmmoStunArchetype;
 		};
 
 		class MindControl {
@@ -3928,17 +2996,11 @@ namespace ArkNpc {
 		};
 
 
-		class AABB {
-			Vec3 min;
-			Vec3 max;
-		};
 		class SBindings		   {};
-		class IEntityLink	   {};
 		class SGridLocation	   {};
 		class SProximityElement{};
 		
-		class IComponent{};
-		class IScriptTable {
+		struct IScriptTable {
 			void* ptr;
 			uint32_t m_nrefCount,
 				m_nRef;
@@ -3947,32 +3009,6 @@ namespace ArkNpc {
 		public:
 			CScriptTable* ptr;
 		};
-		class SEntitySpawnParams {
-		public:
-			uint32_t id;
-			uint32_t prevId;
-			uint64_t guid;
-			uint64_t prevGuid;
-			CEntityClass* pClass;
-			CEntityArchetype* pArchetype;
-			char* sLayerName;
-			XmlNodeRef entityNode;
-			char* sName;
-			uint32_t nFlags;
-			uint32_t nFlagsExtended;
-			bool bIgnoreLock;
-			bool bStaticEntityId;
-			bool bCreatedThroughPool;
-			unsigned char sceneMask;
-			unsigned char shadowCasterType;
-			char pad[3];
-			Vec3_tpl<float> vPosition;
-			Quat_tpl<float> qRotation;
-			Vec3_tpl<float> vScale;
-			void* pUserData;
-			IScriptTable* pPropertiesTable;
-			IScriptTable* pPropertiesInstanceTable;
-		};
 		class SEntityLoadParams {
 		public:
 			SEntitySpawnParams spawnParams;
@@ -3980,198 +3016,19 @@ namespace ArkNpc {
 			bool bCallInit;
 			int32_t clonedLayerId;
 		};
-		enum class EEntityUpdatePolicy {
-			ENTITY_UPDATE_NEVER = 0x0,
-			ENTITY_UPDATE_IN_RANGE = 0x1,
-			ENTITY_UPDATE_POT_VISIBLE = 0x2,
-			ENTITY_UPDATE_VISIBLE = 0x3,
-			ENTITY_UPDATE_PHYSICS = 0x4,
-			ENTITY_UPDATE_PHYSICS_VISIBLE = 0x5,
-			ENTITY_UPDATE_ALWAYS = 0x6
-		};
-		enum class EEntityProxy {
-			ENTITY_PROXY_RENDER = 0x0,
-			ENTITY_PROXY_PHYSICS = 0x1,
-			ENTITY_PROXY_SCRIPT = 0x2,
-			ENTITY_PROXY_AUDIO = 0x3,
-			ENTITY_PROXY_AI = 0x4,
-			ENTITY_PROXY_AREA = 0x5,
-			ENTITY_PROXY_BOIDS = 0x6,
-			ENTITY_PROXY_BOID_OBJECT = 0x7,
-			ENTITY_PROXY_CAMERA = 0x8,
-			ENTITY_PROXY_FLOWGRAPH = 0x9,
-			ENTITY_PROXY_SUBSTITUTION = 0xa,
-			ENTITY_PROXY_TRIGGER =0xb,
-			ENTITY_PROXY_ROPE= 0xc,
-			ENTITY_PROXY_ENTITYNODE = 0xd,
-			ENTITY_PROXY_ATTRIBUTES =0xe,
-			ENTITY_PROXY_CLIPVOLUME = 0xf,
-			ENTITY_PROXY_USER =0x10,
-			ENTITY_PROXY_LAST = 0x11,
-		};
-		class ArkHealthExtension {
+		class ArkHealthExtension : public IGameObjectExtension{
 		public:
-			IGameObjectExtension m_ext;
 			float m_health;
 			float m_maxHealth;
 		};
 		class ArkNpcAbility{};
-		class IAIObject{};
-		class SChildAttachParams{};
-		class AIObjectParams{};
-		class SEntityPhysicalizeParams{};
-		class SEntitySlotInfo{};
-		class ICharacterInstance{};
-		class IGeomCacheRenderNode{};
-		class IStatObj{};
-		class IParticleEmitter{};
-		class SpawnParams{};
-		class IArkGlass{};
-		class SGeometryDebugDrawInfo{};
+		struct AIObjectParams{};
+		struct ICharacterInstance{};
+		struct IParticleEmitter{};
+		struct SpawnParams{};
 		class CScriptBind_ArkPlayer{};
 		class CDLight{};
 		class SComponentInitializer{};
-		class IEntity {
-		public:
-			virtual void* _ECEntity(uint32_t param_1) {}
-			virtual int32_t  GetControlPointIndex() {}
-			virtual  ArkNpcAbilityInstance* GetAbilityInstance() {}
-			virtual  ArkNpcAbility* GetAbility() {}
-			virtual  IEntityArchetype* GetArchetype() {}
-		private:
-			virtual  void garbage0() {}
-		public:
-			virtual void  SetFlags(uint32_t param_1) {}
-			virtual int32_t  GetActionsCount() {}
-			virtual void  AddFlags(uint32_t param_1) {}
-			virtual void  ClearFlags(uint32_t param_1) {}
-			virtual bool  CheckFlag(uint32_t param_1) {}
-			virtual void  SetFlagsExtended(uint32_t param_1) {}
-			virtual uint32_t  GetAIObjectID() {}
-			virtual bool  IsGarbage() {}
-			virtual void  SetName(char* param_1) {}
-			virtual  IAction* GetAction() {}
-		private:
-			virtual  void garbage1() {}
-		public:
-			virtual void  SerializeXML(XmlNodeRef* param_1, bool param_2) {}
-			virtual bool  IsLoadedFromLevelFile() {}
-			virtual void  AttachChild(IEntity* param_1, SChildAttachParams* param_2) {}
-			virtual void  DetachAll(int32_t param_1) {}
-			virtual void  DetachThis(int32_t param_1, int32_t param_2) {}
-			virtual int32_t  GetChildCount() {}
-			virtual  IEntity* GetChild(int32_t param_1) {}
-			virtual  HWND* GetParent() {}
-			virtual  Matrix34_tpl<float>* GetParentAttachPointWorldTM(Matrix34_tpl<float>* __return_storage_ptr__) {}
-			virtual bool  IsParentAttachmentValid() {}
-			virtual void  SetWorldTM(Matrix34_tpl<float>* param_1, int32_t param_2) {}
-			virtual void  SetLocalTM(Matrix34_tpl<float>* param_1, int32_t param_2) {}
-			virtual float* $GetConstReferenceFromMemberVariable() {}
-			virtual  Matrix34_tpl<float>* GetLocalTM(Matrix34_tpl<float>* __return_storage_ptr__) {}
-			virtual void  GetWorldBounds(AABB* param_1) {}
-			virtual void  GetLocalBounds(AABB* param_1) {}
-			virtual void  SetPos(Vec3_tpl<float>* param_1, int32_t nWhyFlags, bool recalcPhyBounds, bool bForce) {}
-		private:
-			virtual void garbage2() {}
-		public:
-			virtual void  SetRotation(Quat_tpl<float>* param_1, int32_t param_2) {}
-		private:
-			virtual void garbage3() {}
-		public:
-			virtual void  SetScale(Vec3_tpl<float>* param_1, int32_t param_2) {}
-		private:
-			virtual void garbage4() {}
-		public:
-			virtual void  SetPosRotScale(Vec3_tpl<float>* param_1, Quat_tpl<float>* param_2, Vec3_tpl<float>* param_3, int32_t param_4) {}
-			virtual  Vec3_tpl<float>* GetWorldPos(Vec3_tpl<float>* __return_storage_ptr__) {}
-			virtual  Vec3_tpl<float>* GetWorldAngles(Vec3_tpl<float>* __return_storage_ptr__) {}
-			virtual  Quat_tpl<float>* GetWorldRotation(Quat_tpl<float>* __return_storage_ptr__) {}
-			virtual  Vec3_tpl<float>* GetForwardDir() {}
-			virtual void  Activate(bool param_1) {}
-			virtual bool  IsActive() {}
-			virtual bool  IsFromPool() {}
-			virtual void  PrePhysicsActivate(bool param_1) {}
-			virtual bool  IsPrePhysicsActive() {}
-			virtual void  Serialize(CSerializeWrapper<ISerialize>* param_1, int32_t param_2) {}
-			virtual bool  SendEvent(SEntityEvent* param_1) {}
-			virtual  uintptr_t* SetTimer(uintptr_t* nIDEvent, uint32_t* uElapse, TIMERPROC* lpTimerFunc) {}
-			virtual  BOOL* KillTimer(UINT_PTR* uIDEvent) {}
-			virtual void  Hide(bool param_1) {}
-			virtual bool  IsHidden() {}
-			virtual void  Invisible(bool param_1) {}
-			virtual bool  IsInvisible() {}
-			virtual  IAIObject* GetAI() {}
-			virtual bool  HasAI() {}
-		private:
-			virtual void garbage5() {}
-		public:
-			virtual void  SetAIObjectID(uint32_t param_1) {}
-			virtual bool  RegisterInAISystem(AIObjectParams* param_1) {}
-			virtual void  SetUpdatePolicy(EEntityUpdatePolicy param_1) {}
-			virtual  EEntityUpdatePolicy* GetUpdatePolicy() {}
-			virtual  IEntityProxy* GetProxy(EEntityProxy param_1) {}
-			virtual void  SetProxy(EEntityProxy param_1, BYTE param_2) {}
-			virtual  std::shared_ptr<IEntityProxy>* CreateProxy(EEntityProxy* param_1) {}
-			virtual void  RegisterComponent(std::shared_ptr<IComponent>* param_1, int32_t param_2) {}
-			virtual void  Physicalize(SEntityPhysicalizeParams* param_1) {}
-			virtual  IPhysicalEntity* GetPhysics() {}
-			virtual int32_t  PhysicalizeSlot(int32_t param_1, SEntityPhysicalizeParams* param_2) {}
-			virtual void  UnphysicalizeSlot(int32_t param_1) {}
-			virtual void  UpdateSlotPhysics(int32_t param_1) {}
-			virtual void  SetPhysicsState(XmlNodeRef* param_1) {}
-			virtual bool  HasPhysicsState() {}
-			virtual void  SetMaterial(IMaterial* param_1) {}
-			virtual  IAntiCheatManager* GetAntiCheatManager() {}
-			virtual bool  IsSlotValid(int32_t param_1) {}
-			virtual void  FreeSlot(int32_t param_1) {}
-			virtual int32_t  GetSlotCount() {}
-			virtual bool  GetSlotInfo(int32_t param_1, SEntitySlotInfo* param_2) {}
-			virtual  Matrix34_tpl<float>* GetSlotWorldTM(int32_t param_1) {}
-			virtual  Matrix34_tpl<float>* GetSlotLocalTM(int32_t param_1, bool param_2) {}
-			virtual void  SetSlotLocalTM(int32_t param_1, Matrix34_tpl<float>* param_2, int32_t param_3) {}
-			virtual void  SetSlotCameraSpacePos(int32_t param_1, Vec3_tpl<float>* param_2) {}
-			virtual void  GetSlotCameraSpacePos(int32_t param_1, Vec3_tpl<float>* param_2) {}
-			virtual bool  SetParentSlot(int32_t param_1, int32_t param_2) {}
-			virtual void  SetSlotMaterial(int32_t param_1, IMaterial* param_2) {}
-			virtual void  SetSlotFlags(int32_t param_1, uint32_t param_2) {}
-			virtual uint32_t  GetSlotFlags(int32_t param_1) {}
-			virtual bool   RIArchive(char* param_1, char* param_2, char* param_3) {}
-			virtual  ICharacterInstance* GetCharacter(int32_t param_1) {}
-			virtual int32_t  SetCharacter(ICharacterInstance* param_1, int32_t param_2) {}
-			virtual  IStatObj* GetStatObj(int32_t param_1) {}
-			virtual  IParticleEmitter* GetParticleEmitter(int32_t param_1) {}
-			virtual  IGeomCacheRenderNode* GetGeomCacheRenderNode(int32_t param_1) {}
-			virtual void  MoveSlot(IEntity* param_1, int32_t param_2) {}
-			virtual int32_t  SetStatObj(IStatObj* param_1, int32_t param_2, bool param_3, float param_4) {}
-			virtual int32_t  LoadGeometry(int32_t param_1, char* param_2, char* param_3, int32_t param_4) {}
-			virtual int32_t  LoadCharacter(int32_t param_1, char* param_2, int32_t param_3) {}
-			virtual int32_t  LoadGeomCache(int32_t param_1, char* param_2) {}
-			virtual int32_t  LoadParticleEmitter(int32_t param_1, IParticleEffect* param_2, SpawnParams* param_3, bool param_4, bool param_5) {}
-			virtual int32_t  SetParticleEmitter(int32_t param_1, IParticleEmitter* param_2, bool param_3) {}
-			virtual int32_t  SetBreakableGlass(int32_t param_1, IArkGlass* param_2) {}
-			virtual  IArkGlass* GetBreakableGlass(int32_t param_1) {}
-			virtual int32_t  LoadLight(int32_t param_1, CDLight* param_2) {}
-			virtual void  InvalidateTM(int32_t param_1, bool param_2) {}
-			virtual void  EnablePhysics(bool param_1) {}
-			virtual  ArkAimAssistComponent* GetAimAssistComponent() {}
-			virtual  IEntityLink* AddEntityLink(char* param_1, uint32_t param_2) {}
-			virtual void  RemoveEntityLink(IEntityLink* param_1) {}
-			virtual void  RemoveAllEntityLinks() {}
-			virtual void  SetSlotAlpha(int32_t param_1, float param_2) {}
-			virtual  IEntity* UnmapAttachedChild(int32_t* param_1) {}
-			virtual bool  IsInitialized() {}
-			virtual void  DebugDraw(SGeometryDebugDrawInfo* param_1) {}
-			virtual void  GetMemoryUsage(ICrySizer* param_1) {}
-			virtual void  IncKeepAliveCounter() {}
-			virtual void  DecKeepAliveCounter() {}
-			virtual void  ClearOverId() {}
-			virtual bool  IsKeptAlive() {}
-			virtual  CScriptBind_ArkPlayer* GetArkPlayerScriptBind() {}
-			virtual void  SetDisplayName(char* param_1) {}
-			virtual void  EnableInheritXForm(bool param_1) {}
-			virtual  IEntity* GetAdam() {}
-			virtual bool  UpdateLightClipBounds(CDLight* param_1) {}
-		};
 		class CEntity {
 		
 		public:
@@ -4245,25 +3102,10 @@ namespace ArkNpc {
 			undefined field70_0x107;
 			CryStringT<char> m_displayName;
 		};
-		class IEntitySystemSink {
-		public:
-			void* ptr;
-		};
-		class ISystem {
-			void* ptr;
-		};
 		class OnEventSink {
 		public:
 			uint64_t subscriptions;
 			IEntitySystemSink* pSink;
-		};
-		class IEntitySystem {
-		public:
-			CEntitySystem* ptr;
-		};
-		class IEntityClass {
-		public:
-			CEntity* ptr;
 		};
 		class SEntityTimerEvent {
 		public:
@@ -4315,11 +3157,6 @@ namespace ArkNpc {
 		public:
 		};
 
-		class IBreakableManager {
-		public:
-			void* ptr;
-		};
-
 		class CEntityArchetypeManager {
 		public:
 			std::map<const char*, CEntityArchetype*> m_nameToArchetypeMap;
@@ -4332,10 +3169,6 @@ namespace ArkNpc {
 		};
 		class CCharacterBoneAttachmentManager {
 		public:
-		};
-		class IEntityEventListener {
-		public:
-			void* ptr;
 		};
 		class CPartitionGrid {
 		public:
@@ -4354,129 +3187,10 @@ namespace ArkNpc {
 			char pad[4];
 		};
 		class IEntityRegistry{};
-		class IEntityIt{};
-		class SEntityProximityQuery{};
-		class IPhysicalEntity{};
 		//class ArkAimAssistComponent{};
-		class EEntityEvent{};
-		class IAreaManager{};
-		class IEntityPoolManager{};
-		class IEntityArchetypeListener{};
-		class CEntitySystem {
-		public:
-			virtual void*   _ECEntitySystem(uint32_t param_1) {}
-			virtual void  RegisterCharactersForRendering() {}
-			virtual void  Complete() {}
-			virtual void  PrePhysicsUpdate() {}
-			virtual void  Update() {}
-			virtual void  Reset() {}
-			virtual void  Unload() {}
-			virtual void  PurgeHeaps() {}
-			virtual void  DeletePendingEntities() {}
-			virtual void  EditorReset(bool param_1) {}
-			virtual  IEntityRegistry*  GetRegistry() {}
-			virtual  IEntity*  SpawnEntity( SEntitySpawnParams* param_1, bool param_2) {}
-			virtual  IEntity*  SpawnEntityFromArchetype( IEntityArchetype* param_1,  SEntitySpawnParams* param_2, bool param_3) {}
-			virtual bool  InitEntity( IEntity* param_1,  SEntitySpawnParams* param_2) {}
-			virtual  IEntity*  GetEntity(uint32_t param_1) {}
-			virtual  IEntity*  ArkSafeGetEntity(uint32_t param_1) {}
-			virtual uint32_t  GetClonedEntityId(uint32_t param_1, uint32_t param_2) {}
-			virtual  IEntity*  FindEntityByName(const char* param_1) {}
-			virtual void  ReserveEntityId(uint32_t param_1) {}
-			virtual uint32_t  ReserveUnknownEntityId() {}
-			virtual void  RemoveEntity(uint32_t param_1, bool param_2) {}
-			virtual uint32_t  GetNumEntities() {}
-			virtual  IEntityIt*  GetEntityIterator() {}
-			virtual void  SendEventToAll( SEntityEvent* param_1) {}
-			virtual void  SendEventViaEntityEvent( IEntity* param_1,  SEntityEvent* param_2) {}
-			virtual int32_t  QueryProximity( SEntityProximityQuery* param_1) {}
-			virtual void  ResizeProximityGrid(int32_t param_1, int32_t param_2) {}
-			virtual int32_t  GetPhysicalEntitiesInBox( Vec3_tpl<float>*param_1, float param_2,  IPhysicalEntity*** param_3, int32_t param_4) {}
-			virtual  IEntity*  GetEntityFromPhysics( IPhysicalEntity* param_1) {}
-			virtual void  AddSink( IEntitySystemSink* param_1, uint32_t param_2, uint64_t param_3) {}
-			virtual void  RemoveSink( IEntitySystemSink* param_1) {}
-			virtual void  PauseTimers(bool param_1, bool param_2) {}
-			virtual bool  IsIDUsed(uint32_t param_1) {}
-			virtual void  GetMemoryStatistics( ICrySizer* param_1) {}
-			virtual  ArkAimAssistComponent*  GetAimAssistComponent() {}
-			virtual bool  ExtractEntityLoadParams( XmlNodeRef* param_1,  SEntitySpawnParams* param_2) {}
-			virtual void  BeginCreateEntities(int32_t param_1) {}
-			virtual bool  CreateEntity( XmlNodeRef* param_1,  SEntitySpawnParams* param_2, uint32_t * param_3) {}
-			virtual void  EndCreateEntities() {}
-			virtual void  LoadEntities( XmlNodeRef* param_1, bool param_2,  Vec3_tpl<float>*param_3, std::vector<IEntity*>*param_4,  std::vector<IEntity* >*param_5) {}
-			virtual void  LoadEntities( XmlNodeRef* param_1, bool param_2) {}
-			virtual void  HoldLayerEntities(char* param_1) {}
-			virtual void  CloneHeldLayerEntities(char* param_1,  Vec3_tpl<float>*param_2,  Matrix34_tpl<float>*param_3, char** param_4, int32_t param_5) {}
-			virtual void  ReleaseHeldEntities() {}
-			virtual void  AddEntityEventListener(uint32_t param_1,  EEntityEvent* param_2,  IEntityEventListener* param_3) {}
-			virtual void  RemoveEntityEventListener(uint32_t param_1,  EEntityEvent* param_2,  IEntityEventListener* param_3) {}
-			virtual bool  HasEntityEventListener( IEntityEventListener* param_1) {}
-			virtual uint32_t  FindEntityByGuid(uint64_t * param_1) {}
-			virtual uint32_t  FindEntityByEditorGuid(char* param_1) {}
-			virtual  IAreaManager*  GetAreaManager() {}
-			virtual  IBreakableManager*  GetBreakableManager() {}
-			virtual  IEntityPoolManager*  GetIEntityPoolManager() {}
-			virtual  CEntityArchetype*  LoadEntityArchetype(char* param_1) {}
-			virtual  CEntityArchetype*  LoadEntityArchetype( XmlNodeRef* param_1) {}
-			virtual  CEntityArchetype*  FindEntityArchetype(char* param_1) {}
-			virtual  CEntityArchetype*  CreateEntityArchetype( IEntityClass* param_1, char* param_2, uint64_t param_3) {}
-			virtual  CEntityArchetype*  GetEntityArchetype(uint64_t param_1) {}
-			virtual  CEntityArchetype*  garbage0(uint64_t param_1) {}
-			virtual uint64_t  GetArchetypeId(char* param_1) {}
-			virtual void  DeleteEntityArchetype(char* param_1) {}
-			virtual void  ReloadAllEntityArchetypes() {}
-			virtual void  ReloadEntityArchetype(char* param_1) {}
-			virtual void  RenameArchetype(char* param_1, char* param_2) {}
-			virtual  std::vector<CryStringT<char>, std::allocator<CryStringT<char>>>*  GetArchetypeNames( CryStringT<char>*param_1) {}
-			virtual  std::vector<IEntityArchetype*> GetArchetypes( CryStringT<char>*param_1) {}
-			virtual bool  LoadArchetypeLibrary( CryStringT<char>*param_1) {}
-			virtual void  RegisterEntityArchetypeListener( IEntityArchetypeListener* param_1) {}
-			virtual void  UnregisterEntityArchetypeListener( IEntityArchetypeListener* param_1) {}
-			virtual void  Serialize( CSerializeWrapper<ISerialize>*param_1) {}
-			virtual void  SetNextSpawnId(uint32_t param_1) {}
-			virtual void  ResetAreas() {}
-			virtual void  UnloadAreas() {}
-			virtual void  DumpEntities() {}
-			virtual void  LockSpawning(bool param_1) {}
-			virtual bool  IsSpawningLocked() {}
-			virtual bool  OnLoadLevel(char* param_1) {}
-			virtual void  OnLevelEnd() {}
-			virtual  CEntityLayer*  AddLayer(char* param_1, char* param_2, unsigned short param_3, bool param_4, int32_t param_5, bool param_6, int32_t param_7, int32_t param_8) {}
-			virtual std::vector<bool, std::allocator<bool>>  GetLayersState() {}
-			virtual void  LoadLayers(char* param_1) {}
-			virtual void  LinkLayerChildren() {}
-			virtual void  AddEntityToLayer(char* param_1, uint32_t param_2) {}
-			virtual void  RemoveEntityFromLayers(uint32_t param_1) {}
-			virtual char*  GetLayerNameForEntity(uint32_t param_1) {}
-			virtual void  ClearLayers() {}
-			virtual void  EnableDefaultLayers(bool param_1) {}
-			virtual void  EnableLayer(char* param_1, bool param_2, bool param_3, bool param_4) {}
-			virtual bool  IsLayerEnabled(char* param_1, bool param_2) {}
-			virtual bool  ShouldSerializedEntity( IEntity* param_1) {}
-			virtual void  RegisterPhysicCallbacks() {}
-			virtual void  UnregisterPhysicCallbacks() {}
-			virtual void  PurgeDeferredCollisionEvents(bool param_1) {}
-			virtual void  ComponentEnableEvent(uint32_t param_1, int32_t param_2, bool param_3) {}
-			virtual void  DebugDraw() {}
-			virtual int32_t  GetLayerId(char* param_1) {}
-			virtual char*  GetLayerName(int32_t param_1) {}
-			virtual int32_t  GetLayerChildCount(char* param_1) {}
-			virtual char*  GetLayerChild(char* param_1, int32_t param_2) {}
-			virtual int32_t  GetVisibleLayerIDs(unsigned char * param_1, uint32_t param_2) {}
-			virtual  void* unused0() {}
-			virtual void  unused1() {}
-			virtual void  MarkEntityAsUsingPlayerTime( IEntity* param_1) {}
-			virtual void  UnmarkEntityAsUsingPlayerTime( IEntity* param_1) {}
-			virtual bool  ShouldEntityUsePlayerTime( IEntity* param_1) {}
-			virtual void  SetSafeBounds( AABB* param_1) {}
-			virtual bool  IsInSafeBounds( Vec3_tpl<float>*param_1) {}
-			virtual void*   _ECEntityItMap(uint32_t param_1) {}
-			virtual void  AddRef() {}
-			virtual void  Release() {}
-			virtual bool  IsEnd() {}
-			virtual  IEntity*  Next() {}
-			virtual  IEntity*  This() {}
-			virtual void  MoveFirst() {}
+		struct IEntityPoolManager{};
+		struct IEntityArchetypeListener{};
+		class CEntitySystem : public IEntitySystem {
 		public:
 			std::unordered_map<uint32_t, float, std::hash<uint32_t>, std::equal_to<uint32_t>> m_queuedEntityVisibilities;
 			std::vector<IEntitySystemSink*> m_sinks[5];
@@ -5827,8 +4541,6 @@ namespace ArkNpc {
 
 		
 		class IFFont		   {};
-		class IRenderer;
-		class INetwork		   {};
 		
 		class CConsoleCommand {
 		public:
@@ -5852,40 +4564,23 @@ namespace ArkNpc {
 			bool m_partOfGroup;
 			char pad[7];
 		};
-		class IValidator{};
 		class SDefaultValidator{};
 		class CCpuFeatures{};
 		class CStreamEngine{};
-		class IProcess{};
-		class IMemoryManager{};
 		class CPhysRenderer{};
-		class ISystemEventDispatcher{};
-		class IBudgetingSystem{};
-		class IZLibCompressor{};
-		class IZLibDecompressor{};
-		class ILZ4Decompressor{};
 		
 		class IArchiveHost{};
-		class ISystemUserCallback{};
-		class ILoadConfigurationEntrySink{};
 		class CrySizerStats{};
 		class CrySizerImpl{};
 		class CThreadProfiler{};
 		class IDiskProfiler{};
-		class IDataProbe{};
-		class IThreadTask{};
 		class CFileStream{};
 		class CUDPStream{};
 		class CDownloadManager{};
-		class IErrorObserver{};
 		class ILoadingProgressListener{};
 		class CCmdLine{};
-		class ITestSystem{};
 		class CThreadTaskManager{};
 		class CResourceManager{};
-		class ITextModeConsole{};
-		class INotificationNetwork{};
-		class ICryPerfHUD{};
 		class IMiniGUI{};
 		class IArkBethesdaNetManage{};
 		class CLocalizedStringsManager{};
@@ -5903,10 +4598,6 @@ namespace ArkNpc {
 		public:
 			char pad[1880];
 		};
-		class CCamera {
-		public:
-			char pad[576];
-		};
 		class SDllHandles {
 		public:
 			char pad[120];
@@ -5915,25 +4606,9 @@ namespace ArkNpc {
 		public:
 			uint32_t m_nId;
 		};
-		class SArkFrameProfileInfo {
-		public:
-			char pad[3112];
-		};
 		class CFrameProfileSystem {
 		public:
 			void* ptr;
-		};
-		class IPlatformOS {
-		public:
-			void* ptr;
-		};
-		class SFileVersion {
-		public:
-			int32_t v[4];
-		};
-		class ArkBuildInfo {
-		public:
-			char pad[144];
 		};
 		class CNameTable {
 		public:
@@ -5955,10 +4630,6 @@ namespace ArkNpc {
 		public:
 			void* ptr;
 		};
-		class sUpdateTimes {
-		public:
-			char pad[56];
-		};
 		class CWindowsConsole {
 		public:
 		};
@@ -5967,50 +4638,22 @@ namespace ArkNpc {
 			bool m_param;
 		};
 		class ArkNpcAbilityInstance {};
-		class IDialogSystem{};
-		class IFlowSystem{};
-		class INameTable{};
-		class IFrameProfileSystem{};
-		class IPhysicsDebugRenderer{};
-		class IPhysRenderer{};
-		class ICharacterManager{};
-		class IStreamEngine{};
 		class ICmdLine{};
-		class ICryPak{};
-		class ICryFont{};
-		class IAISystem{};
-		class IMovieSystem{};
-		class IPhysicalWorld{};
-		class IAudioSystem{};
-		class IArkRoomVolumeManager{};
-		class IArkBethesdaNetManager{};
-		class IResourceManager{};
-		class IThreadTaskManager{};
-		class IProfilingSystem{};
-		class IVisualLog{};
-		class IFileChangeMonitor{};
-		class IGame{};
-		class IXmlUtils{};
-		class IMaterialEffects{};
-		class IParticleManager{};
-		class IOpticsManager{};
-		class IFlashUI{};
-		enum class EValidatorModule {};
-		enum class EValidatorSeverity {};
-		enum class ESubsystem{};
-		class ILocalizationManager{};
-		class IFlashPlayer{};
-		class IFlashPlayerBootStrapper{};
-		class IFlashLoadMovieHandler{};
-		class IAVI_Reader{};
 		class IAISignalExtraData{};
 		class CPNoise3{};
-		class ICryFactoryRegistry{};
-		class IDebugCallStack{};
-		class SSystemUpdateStats{};
-		class EPLM_Event{};
 		class SModuleInitInfo{};
-		class SSystemInitParams{};
+
+		struct ArkBuildInfo
+		{
+			bool m_isLocalBuild;
+			std::map<string, string> m_buildInfo;
+			const string k_buildIDKey;
+			const string k_branchKey;
+			const string k_changeListKey;
+			string m_Description;
+			string m_FullInfo;
+			std::mutex m_buildInfoMutex;
+		};
 
 		class CSystem {
 		public:
@@ -7682,8 +6325,6 @@ namespace ArkNpc {
 			undefined field42_0x137;
 		};
 		class SExtensionInfo{};
-		class SGameObjectExtensionRMI{};
-		class SNetMessageDef{};
 		class CProtocolDef {
 		public:
 			void* ptr;
@@ -7699,16 +6340,15 @@ namespace ArkNpc {
 				m_clientDef;
 		};
 		class SSpawnSerializer{};
-		class IGameObjectSystemSink{};
-		class SEntitySchedulingProfiles {
-		public:
-			uint32_t normal;
-			uint32_t owned;
-		};
 		class IDebugHistory{};
-		class IGameObjectExtensionCreatorBase{};
 		class SEntityClassDesc{};
-		class IProtocolBuilder{};
+
+		struct SEntitySchedulingProfiles
+		{
+			unsigned int normal;
+			unsigned int owned;
+		};
+
 		class CGameObjectSystem {
 		public:
 			virtual void*   _ECGameObjectSystem(uint32_t param_1) {}
@@ -7888,17 +6528,6 @@ namespace ArkNpc {
 		class CLevelSystem{};
 		class CItemSystem{};
 		class CSharedParamsManager{};
-		class IBlockingActionListener{};
-		class IActionMap{};
-		class IActionFilter{};
-		class IActionMapIterator{};
-		class IActionFilterIterator{};
-		class SActionInput{};
-		enum class EActionFilterType {};
-		enum class EActionInputDevice{};
-		class IActionMapPopulateCallBack{};
-		class SActionInputDeviceData{};
-		class IActionMapEventListener{};
 		class CActionMapManager {
 			
 
@@ -7950,13 +6579,11 @@ namespace ArkNpc {
 		class CNetworkCVars{};
 		class CCryActionCVars{};
 		class CNetworkStallTickerThread{};
-		class I3DEngine{};
-		class IScriptSystem{};
 		class CActionGame{};
 		class CMaterialEffectsCVars{};
 		class CCryActionPhysicQueues{};
 		class SLocalAllocs{};
-		class IBreakEventListener{};
+		struct IBreakEventListener{};
 		class CNetMessageDistpatcher{};
 		class ICryUnknown{};
 		class SGameFrameworkListener{};
@@ -7980,11 +6607,9 @@ namespace ArkNpc {
 		public:
 			char pad[24];
 		};
-		class CActor {};
 		class CActorIterator {};
 		class IActorCreator{};
-		class IEntityPropertyHandler{};
-		class IEntityScript{};
+		struct IEntityScript{};
 		class SScriptFuncHandle{};
 		class SScriptStateFunctions{};
 		enum class EventValueType : uint32_t {
@@ -8029,13 +6654,6 @@ namespace ArkNpc {
 			bool m_bDefaultOnly;
 			char pad[6];
 		};
-		class IEntityEventHandler{};
-		class IEntityScriptFileHandler {};
-		class SEditorClassInfo {
-			char* sIcon;
-			char* sHelper;
-			char* sCategory;
-		};
 		class CEntityClass {
 		public:
 			virtual void*   _ECEntityClass(uint32_t param_1) {}
@@ -8045,15 +6663,15 @@ namespace ArkNpc {
 			virtual void  SetFlags(int32_t param_1) {}
 			virtual class ArkNpcAbilityInstance*  GetAbilityInstance() {}
 			virtual class SSurfaceTypeAIParams*  GetAIParams() {}
-			virtual class IScriptTable*  GetScriptTable() {}
-			virtual class IBSPTree3D*  GetBspTree() {}
+			virtual IScriptTable*  GetScriptTable() {}
+			virtual IBSPTree3D*  GetBspTree() {}
 			virtual int64_t  GetCurrentContextIndex() {}
 			virtual char*  GetCharacter() {}
 			virtual float*   $GetConstReferenceFromMemberVariable() {}
-			virtual void  SetEditorClassInfo(class SEditorClassInfo* param_1) {}
+			virtual void  SetEditorClassInfo(SEditorClassInfo* param_1) {}
 			virtual bool  LoadScript(bool param_1) {}
 			virtual class ArkNpcAbility*  GetAbility() {}
-			virtual class IEntityArchetype*  GetArchetype() {}
+			virtual IEntityArchetype*  GetArchetype() {}
 			virtual int32_t  GetEventCount() {}
 			virtual class SEventInfo*  GetEventInfo(class SEventInfo* __return_storage_ptr__, int32_t param_1) {}
 			virtual bool  FindEventInfo(char* param_1, class SEventInfo* param_2) {}
@@ -8162,7 +6780,6 @@ namespace ArkNpc {
 		};
 		enum class  ELoadGameResult{};
 		enum class EFRAMEWORKLISTENERPRIORITY{};
-		class IGameObjectSystem {};
 		class ILevelSystem {};
 		class IActorSystem {};
 		class IItemSystem {};
@@ -8226,7 +6843,6 @@ namespace ArkNpc {
 			virtual void  RemoveAllFilters() {}
 		};
 		
-		class IViewSystem {};
 		class IGameRulesSystem {};
 		class ISubtitleManager {};
 		class ITweakMenuController {};
@@ -8239,7 +6855,6 @@ namespace ArkNpc {
 		class SGameContextParams {};
 		class ArkGameNoiseLoudness {};
 		class IGameToEditorInterface {};
-		class IActor {};
 		class ISerializeHelper {};
 		class SEntityTagParams{};
 		class IPersistantDebug {
@@ -8543,7 +7158,6 @@ namespace ArkNpc {
 			SAudioManagerRequestData<33554432> m_resumeAudioRequestData;
 		};
 		// class IGameToEditorInterface {};
-		class SRenderingPassInfo{};
 		class ExportFilesInfo{};
 		namespace ArkObjectiveUtils {
 			class CArkObjectiveTaskData {
@@ -8590,7 +7204,6 @@ namespace ArkNpc {
 		class IArkMetaTagManager {};
 		class IArkPADialogManager {};
 		class IArkPatrolManager {};
-		class IArkPlayer {};
 		class IArkPostEffectManager {};
 		class CGoalPipe {};
 		class CClearRegionPass {};
@@ -8919,10 +7532,6 @@ namespace ArkNpc {
 		public:
 			void* ptr;
 		};
-		class CryMutex {
-		public:
-			void* ptr;
-		};
 		class SExtension {
 		public:
 			uint64_t eventReg;
@@ -8933,122 +7542,9 @@ namespace ArkNpc {
 			unsigned char forceEnables[5];
 			char pad[11];
 		};
-		class IActionListener{};
-		class IGameObjectView{};
-		class IGameObjectProfileManager{};
 		
-		enum EPrePhysicsUpdate {
-			ePPU_Never = 0,
-			ePPU_Always = 1,
-			ePPU_WhenAIActivated = 2
-		};
-		enum class EBindToNetworkMode{};
-		enum class EEntityAspects{};
-		enum class EGameObjectAIActivationMode{};
-		enum class EAutoDisablePhysicsMode{};
-		enum class EUpdateEnableCondition{};
-		enum class EChangeExtension{};
-		class INetChannel{};
-		class IWorldQuery{};
 		class IProceduralContext{};
 		class CRMIBody{};
-		class CGameObject {
-		public:
-			virtual void*   _ECGameObject(uint32_t param_1) {}
-			virtual void  OnAction( CCryName* param_1, int param_2, float param_3) {}
-			virtual void  AfterAction() {}
-			virtual bool  BindToNetwork( EBindToNetworkMode* param_1) {}
-			virtual bool  BindToNetworkWithParent( EBindToNetworkMode* param_1, uint32_t param_2) {}
-			virtual void  ChangedNetworkState(uint32_t param_1) {}
-			virtual void  EnableAspect(uint32_t param_1, bool param_2) {}
-			virtual void  EnableDelegatableAspect(uint32_t param_1, bool param_2) {}
-			virtual void  DontSyncPhysics() {}
-			virtual unsigned short  GetExtensionId(char* param_1) {}
-			virtual  IGameObjectExtension*  QueryExtension(unsigned short param_1) {}
-			virtual bool  SetExtensionParams(char* param_1,  SmartScriptTable* param_2) {}
-			virtual bool  GetExtensionParams(char* param_1,  SmartScriptTable* param_2) {}
-			virtual void  SendEvent( SGameObjectEvent* param_1) {}
-			virtual void  ForceUpdate(bool param_1) {}
-			virtual void  ForceUpdateExtension( IGameObjectExtension* param_1, int param_2) {}
-			virtual unsigned short  GetChannelId() {}
-			virtual void  SetChannelId(unsigned short param_1) {}
-			virtual  INetChannel*  GetNetChannel() {}
-			virtual void  FullSerialize( CSerializeWrapper<ISerialize>*param_1) {}
-			virtual bool  NetSerialize( CSerializeWrapper<ISerialize>*param_1,  EEntityAspects* param_2, unsigned char param_3, int param_4) {}
-			virtual void  PostSerialize() {}
-			virtual bool  IsProbablyVisible() {}
-			virtual bool  IsProbablyDistant() {}
-			virtual bool  SetAspectProfile( EEntityAspects* param_1, unsigned char param_2, bool param_3) {}
-			virtual unsigned char  GetAspectProfile( EEntityAspects* param_1) {}
-			virtual  IGameObjectExtension*  GetExtensionWithRMIBase(void* param_1) {}
-			virtual void  EnablePrePhysicsUpdate( EPrePhysicsUpdate* param_1) {}
-			virtual void  SetNetworkParent(uint32_t param_1) {}
-			virtual void  Pulse(uint32_t param_1) {}
-			virtual void  RegisterAsPredicted() {}
-			virtual void  RegisterAsValidated( IGameObject* param_1, int param_2) {}
-			virtual int  GetPredictionHandle() {}
-			virtual void  RegisterExtForEvents( IGameObjectExtension* param_1, int* param_2, int param_3) {}
-			virtual void  UnRegisterExtForEvents( IGameObjectExtension* param_1, int* param_2, int param_3) {}
-			virtual void  EnablePhysicsEvent(bool param_1, int param_2) {}
-			virtual bool  WantsPhysicsEvent(int param_1) {}
-			virtual bool  SetAIActivation( EGameObjectAIActivationMode* param_1) {}
-			virtual void  SetAutoDisablePhysicsMode( EAutoDisablePhysicsMode* param_1) {}
-			virtual void  ForceReevaluateUpdateActivation() {}
-			virtual bool  ShouldUpdate() {}
-			virtual bool  CheckShouldAIUpdate() {}
-			virtual uint32_t  GetAiActivationMode() {}
-			virtual void  SetCloseDistThreshold(float param_1) {}
-			virtual float  GetCloseDistThresholdSq() {}
-			virtual void  SetCurrDistFromPlayerSq(float param_1) {}
-			virtual void  RequestRemoteUpdate(uint32_t param_1) {}
-			virtual bool  CaptureView( IGameObjectView* param_1) {}
-			virtual void  ReleaseView( IGameObjectView* param_1) {}
-			virtual bool  CaptureActions( IActionListener* param_1) {}
-			virtual void  ReleaseActions( IActionListener* param_1) {}
-			virtual bool  CaptureProfileManager( IGameObjectProfileManager* param_1) {}
-			virtual void  ReleaseProfileManager( IGameObjectProfileManager* param_1) {}
-			virtual void  EnableUpdateSlot( IGameObjectExtension* param_1, int param_2) {}
-			virtual void  DisableUpdateSlot( IGameObjectExtension* param_1, int param_2) {}
-			virtual unsigned char  GetUpdateSlotEnables( IGameObjectExtension* param_1, int param_2) {}
-			virtual void  EnablePostUpdates( IGameObjectExtension* param_1) {}
-			virtual void  DisablePostUpdates( IGameObjectExtension* param_1) {}
-			virtual void  SetUpdateSlotEnableCondition( IGameObjectExtension* param_1, int param_2,  EUpdateEnableCondition* param_3) {}
-			virtual void  PostUpdate(float param_1) {}
-			virtual  IWorldQuery*  GetWorldQuery() {}
-			virtual bool  IsJustExchanging() {}
-			virtual  IMovementController*  GetMovementController() {}
-			virtual void  GetMemoryUsage( ICrySizer* param_1) {}
-			virtual  CArkObjectiveData*  GetData() {}
-			virtual void  SetContext( IProceduralContext* param_1) {}
-			virtual  IGameObjectExtension*  ChangeExtension(char* param_1,  EChangeExtension* param_2) {}
-			virtual void  DoInvokeRMI( CRMIBody* param_1, uint32_t param_2, int param_3) {}
-			char pad[64];
-			IActionListener* m_pActionDelegate;
-			IGameObjectView* m_pViewDelegate;
-			IGameObjectProfileManager* m_pProfileManager;
-			unsigned char m_profiles[32];
-			void* m_pUserData;
-			CryMutex m_mutex;
-			std::vector<SExtension> m_extensions;
-			unsigned short m_channelId;
-			char pad2[2];
-			uint32_t m_enabledAspects;
-			uint32_t m_delegatableAspects;
-			char pad3[12];
-			std::shared_ptr<IGameObjectExtension> m_pGameObjectExtensionCachedKey;
-			SExtension* m_pGameObjectExtensionCachedValue;
-			float m_updateTimer,
-				m_currDistFromPlayerSq,
-				m_closeDistThresholdSq;
-			int32_t m_enabledPhysicsEvents,
-				m_forceUpdate,
-				m_predictionHandle;
-			EPrePhysicsUpdate m_prePhysicsUpdateRule;
-			char pad4[4];
-			SEntitySchedulingProfiles* m_pSchedulingProfiles;
-			uint32_t m_currentSchedulingProfile,
-				m_cachedParentId;
-		};
 		class IArkNpcSpawner {
 			virtual void* _ECArkNpcSpawner(uint32_t param_1) {}
 			virtual void  ProcessEvent(SEntityEvent* param_1) {}

@@ -1,4 +1,5 @@
 #pragma once
+#include <mem.h>
 #include <d3d11.h>
 #include <Prey/CryRenderer/IRenderer.h>
 
@@ -61,11 +62,39 @@ struct DeviceInfo
 #endif
 };
 
+class CCryDeviceWrapper
+{
+public:
+	ID3D11Device *m_pDevice;
+	void *m_pDeviceHooks;
+};
+
 class CRenderer : public IRenderer, public CRendererCVars {};
 
 // Do not be fooled, this is in fact a D3D11 renderer
 struct __declspec(align(128)) CD3D9Renderer : public CRenderer {
 public:
+	static constexpr size_t OFFSET_RP = 0x4700;
 	static constexpr size_t OFFSET_SWAP_CHAIN = 0xAE88;
+	static constexpr size_t OFFSET_DEVICE_WRAPPER = 0xAF28;
 	static constexpr size_t OFFSET_DEV_INFO = 0xAF80;
+	static constexpr size_t OFFSET_m_nRTStackLevel = 41476;
+	static constexpr size_t OFFSET_m_DepthBufferOrig = 39176;
+	static constexpr size_t OFFSET_m_DepthBufferNative = 39256;
+	static constexpr size_t OFFSET_m_pBackbuffer = 44544;
+	static constexpr size_t OFFSET_m_nativeWidth = 38292;
+	static constexpr size_t OFFSET_m_nativeHeight = 38296;
+	static constexpr size_t OFFSET_m_pBackbufferTexture = 44560;
+	static constexpr size_t OFFSET_m_width = 0x9580;
+	static constexpr size_t OFFSET_m_height = 0x9584;
+	static constexpr size_t OFFSET_m_windowParametersOverridden = 0xB328; // bool
+	static constexpr size_t OFFSET_m_overriddenWindowSize = 0xB32C; // Vec2i
+	static constexpr size_t OFFSET_m_overriddenWindowFullscreenState = 0xB334; // bool
+	static constexpr size_t OFFSET_m_pRT = 0xD90; // SRenderThread *
+
+	CCryDeviceWrapper &GetDevice_Unsynchronized() { return mem::OffsetInStruct<CCryDeviceWrapper>(this, OFFSET_DEVICE_WRAPPER); }
+};
+
+struct SRenderThread {
+	static constexpr size_t OFFSET_m_nCurThreadProcess = 0x48; // int
 };

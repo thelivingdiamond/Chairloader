@@ -1,6 +1,8 @@
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
+
+#include "Cry_Vector3.h"
 	
 template<typename F> struct Vec4_tpl
 	: INumberVector<F, 4, Vec4_tpl<F>>
@@ -49,6 +51,9 @@ template<typename F> ILINE Vec4_tpl<F> max(const Vec4_tpl<F>& a, const Vec4_tpl<
 	return Vec4_tpl<F>(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
 }
 
+// Typedefs
+#include "Cry_Vector4H.h"
+
 #ifdef CRY_HARDWARE_VECTOR4
 
 typedef Vec4H<f32>  Vec4;
@@ -73,7 +78,9 @@ typedef Plane_tpl<f32> Plane;
 
 typedef Vec4_tpl<f32>  Vec4f;
 typedef Vec4_tpl<f64>  Vec4d;
+typedef Vec4_tpl<real> Vec4r; //!< Variable float precision. depending on the target system it can be 32, 64 or 80 bit.
 
 typedef Plane_tpl<f32>  Planef;
 typedef Plane_tpl<f64>  Planed;
+typedef Plane_tpl<real> Planer;   //!< Variable float precision. depending on the target system it can be between 32, 64 or 80 bit.
 

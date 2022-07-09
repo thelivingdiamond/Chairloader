@@ -7,13 +7,15 @@
 #ifndef PCH_H
 #define PCH_H
 
+#include <Prey/CryCore/StdAfx.h>
+
 // add headers that you want to pre-compile here
+#include <Prey/CryCore/Platform/CryWindows.h>
 #include "framework.h"
 #include <cstdio>
 #include <iostream>
 #include <tchar.h>
 #include <vector>
-#include <Windows.h>
 #include <TlHelp32.h>
 #include <vector>
 #include <optional>
@@ -44,6 +46,9 @@
 #pragma comment(lib, "D3dcompiler.lib")
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "winmm.lib")
+
+// TODO: This needs to be gone
+#include <preyDllObjects.h>
 
 
 #endif //PCH_H

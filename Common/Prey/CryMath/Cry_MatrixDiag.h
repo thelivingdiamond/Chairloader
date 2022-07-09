@@ -127,6 +127,7 @@ struct Diag33_tpl
 
 typedef Diag33_tpl<f32>  Diag33;   //!< Always 32 bit.
 typedef Diag33_tpl<f64>  Diag33d;  //!< Always 64 bit.
+typedef Diag33_tpl<real> Diag33r;  //!< Variable float precision. depending on the target system it can be between 32, 64 or 80 bit.
 
 template<class F1, class F2>
 Diag33_tpl<F1> operator*(const Diag33_tpl<F1>& lhs, const Diag33_tpl<F2>& rhs)

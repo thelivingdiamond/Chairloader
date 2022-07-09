@@ -6,6 +6,8 @@
 
 #include "preyDllObjects.h"
 #include "PreyFunctions.h"
+#include <Prey/ArkPlayer.h>
+
 class EntityUtils {
 public:
 	enum class EntityType {

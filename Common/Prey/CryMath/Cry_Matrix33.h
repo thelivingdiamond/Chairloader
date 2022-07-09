@@ -853,6 +853,7 @@ template<typename F> struct Matrix33_tpl
 
 typedef Matrix33_tpl<f32>  Matrix33;  //!< Always 32 bit.
 typedef Matrix33_tpl<f64>  Matrix33d; //!< Always 64 bit.
+typedef Matrix33_tpl<real> Matrix33r; //!< Variable float precision. depending on the target system it can be between 32, 64 or 80 bit.
 #if CRY_COMPILER_GCC
 /* GCC has a bug where TYPE_USER_ALIGN is ignored in certain situations with template layouts
  * the user speficied alignment is not correctly stored with the new type unless it's layed before.

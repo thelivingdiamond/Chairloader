@@ -339,7 +339,7 @@ public:
 	virtual void ActivateSteamActionSet(const char *const) = 0;
 };
 
-class IInput
+struct IInput
 {
 public:
 	virtual ~IInput() = 0;

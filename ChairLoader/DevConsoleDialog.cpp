@@ -3,19 +3,13 @@
 #include "DevConsoleDialog.h"
 #include "ChairLoader.h"
 
-class ICVarsWhitelist {
-public:
-	virtual ~ICVarsWhitelist() {};
-	virtual bool IsWhiteListed(const CryStringT<char> *, bool) = 0;
-};
-
 namespace {
 
 class CBetterCVarsWhitelist : public ICVarsWhitelist {
 public:
 	~CBetterCVarsWhitelist() {}
 
-	bool IsWhiteListed(const CryStringT<char> *, bool)  override {
+	bool IsWhiteListed(const string&, bool)  override {
 		return true;
 	}
 };
@@ -126,7 +120,7 @@ void Command_Find(IConsoleCmdArgs *args) {
 DevConsoleDialog::DevConsoleDialog() {
 	m_pConsole = gEnv->pConsole;
 
-	auto pSystem = static_cast<CSystem *>(gEnv->pSystem);
+	auto pSystem = reinterpret_cast<CSystem *>(gEnv->pSystem);
 	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
 
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");

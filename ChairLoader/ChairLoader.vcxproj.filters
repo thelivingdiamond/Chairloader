@@ -26,31 +26,76 @@
       <UniqueIdentifier>{8d9d86a9-0ef3-4190-bb46-8cef09d213e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Common\Prey">
-      <UniqueIdentifier>{6f201743-5490-42f0-b1b7-004913ff45f3}</UniqueIdentifier>
+      <UniqueIdentifier>{89f181e7-0d1e-4fb3-92a3-d5e463eecb4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\Cry3DEngine">
+      <UniqueIdentifier>{32207e66-baff-439f-a4a4-ef448d879c80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\Cry3DEngine\CGF">
+      <UniqueIdentifier>{9cb1ddfb-090f-404e-8da8-020c56429a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryAction">
+      <UniqueIdentifier>{a32b6f72-cdc0-4be7-98bb-3e7bdb812a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryAssert">
+      <UniqueIdentifier>{0b3f1cdb-6e56-46ee-9b6d-e73f99db4f96}</UniqueIdentifier>
     </Filter>
     <Filter Include="Common\Prey\CryCore">
-      <UniqueIdentifier>{86247711-e914-4ffe-beba-df663f50a20c}</UniqueIdentifier>
+      <UniqueIdentifier>{d2b9e77f-0e76-4c87-9581-5079886c09fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\Prey\CryInput">
-      <UniqueIdentifier>{e78f4729-d3d7-4a59-9df3-d2ec41bbf87e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Prey\CryMath">
-      <UniqueIdentifier>{d2cfd206-8ead-4112-b06d-f6555da4f8ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Prey\CryNetwork">
-      <UniqueIdentifier>{761829b5-11a6-4669-b6ad-86a63fe8c566}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Prey\CryRenderer">
-      <UniqueIdentifier>{01c4db4f-769a-4ad7-a574-b10f8df41ac4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Prey\CrySystem">
-      <UniqueIdentifier>{e8f6e5be-43a2-4735-a6be-5b1d0cb896b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Prey\CryThreading">
-      <UniqueIdentifier>{8b40f693-b510-4818-a325-cdc541ae10c0}</UniqueIdentifier>
+    <Filter Include="Common\Prey\CryCore\Assert">
+      <UniqueIdentifier>{9c97e20a-bd4b-4e5d-8908-a6d2df53708c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Common\Prey\CryCore\Compiler">
-      <UniqueIdentifier>{8b2ddd96-95aa-4ef0-979f-b591b207334f}</UniqueIdentifier>
+      <UniqueIdentifier>{49375cb5-4292-4b8e-801f-075a75ad2be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryCore\Containers">
+      <UniqueIdentifier>{562fca14-aabf-4732-9143-3510993cfbfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryCore\Platform">
+      <UniqueIdentifier>{23a1e38b-426b-45db-8030-f613bb25b003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryCore\Project">
+      <UniqueIdentifier>{eb603706-a4ef-4017-9121-874e9faadc60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryEntitySystem">
+      <UniqueIdentifier>{aac44d27-6404-482c-b393-16d909c2bdb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryInput">
+      <UniqueIdentifier>{ebe54b63-1efe-4634-bdc3-d4786fb4497b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryMath">
+      <UniqueIdentifier>{70d86c6d-b340-4209-84d9-61d9a90d6406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryMemory">
+      <UniqueIdentifier>{e50b9245-95ee-438a-a7ac-15ce3f1629af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryNetwork">
+      <UniqueIdentifier>{b0cea036-6022-4a78-9cee-b371e178eebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryParticleSystem">
+      <UniqueIdentifier>{54219966-9cda-4f8b-80a1-3916e3b6012f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryPhysics">
+      <UniqueIdentifier>{06256e97-ace0-49f4-9c9b-6601bd0cc5db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryRenderer">
+      <UniqueIdentifier>{c1ab870b-bfb3-42bb-9bcd-9227050b1d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CrySerialization">
+      <UniqueIdentifier>{114c6358-13b1-4ca7-8a6c-3de841bea35a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryString">
+      <UniqueIdentifier>{6dd95ce2-05ae-4103-9cf0-8e25f4ab4692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CrySystem">
+      <UniqueIdentifier>{88977628-dcab-4a2e-8e72-4a2b9ea97e10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CrySystem\XML">
+      <UniqueIdentifier>{dccd3b4f-6871-4550-98df-b52cd091d1d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\CryThreading">
+      <UniqueIdentifier>{5d516fbd-7b3a-4499-8596-a08083fb7468}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +150,15 @@
     <ClInclude Include="..\Common\VTableHook.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\proc.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DevConsoleDialog.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Logging.h">
+      <Filter>Common</Filter>
+    </ClInclude>
     <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
@@ -120,14 +174,170 @@
     <ClInclude Include="..\Common\Prey\ArkEnums.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkPlayer.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Cry3DEngine\CGF\CryHeaders.h">
+      <Filter>Common\Prey\Cry3DEngine\CGF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Cry3DEngine\CryPodArray.h">
+      <Filter>Common\Prey\Cry3DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Cry3DEngine\I3DEngine.h">
+      <Filter>Common\Prey\Cry3DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Cry3DEngine\IIndexedMesh.h">
+      <Filter>Common\Prey\Cry3DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Cry3DEngine\IMeshObj.h">
+      <Filter>Common\Prey\Cry3DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Cry3DEngine\IStatObj.h">
+      <Filter>Common\Prey\Cry3DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IActionMapManager.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IGameObject.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IGameObjectSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IMovementController.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IViewSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\GameObject.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Assert\CompileTimeUtils.h">
+      <Filter>Common\Prey\CryCore\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Assert\CryAssert.h">
+      <Filter>Common\Prey\CryCore\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Assert\CompileTimeAssert.h">
+      <Filter>Common\Prey\CryCore\Assert</Filter>
+    </ClInclude>
     <ClInclude Include="..\Common\Prey\CryCore\Compiler\MSVCspecific.h">
       <Filter>Common\Prey\CryCore\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Containers\CryArray.h">
+      <Filter>Common\Prey\CryCore\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryLibrary.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryPlatform.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryPlatform.Win64.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryPlatformDefines.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryStlConfig.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryWindows.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\IPlatformOS.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\platform.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\Win64specific.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\WindowsUtils.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryAtlMfc.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Platform\CryDLMalloc.h">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Project\ProjectDefines.h">
+      <Filter>Common\Prey\CryCore\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Project\CryModuleDefs.h">
+      <Filter>Common\Prey\CryCore\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\CryEndian.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\CryFlags.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\CryTypeInfo.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\functor.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\MetaUtils.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\smartptr.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\StdAfx.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\StlUtils.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\stridedptr.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\TypeInfo_decl.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\TypeInfo_impl.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Wrapper.h">
+      <Filter>Common\Prey\CryCore</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Prey\CryCore\BaseTypes.h">
       <Filter>Common\Prey\CryCore</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryCore\platform.h">
+    <ClInclude Include="..\Common\Prey\CryCore\BitMask.h">
       <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\BoostHelpers.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\CryCrc32.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\CryCustomTypes.h">
+      <Filter>Common\Prey\CryCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityClass.h">
+      <Filter>Common\Prey\CryEntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityProxy.h">
+      <Filter>Common\Prey\CryEntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityRenderState.h">
+      <Filter>Common\Prey\CryEntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntitySystem.h">
+      <Filter>Common\Prey\CryEntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryEntitySystem\IComponent.h">
+      <Filter>Common\Prey\CryEntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntity.h">
+      <Filter>Common\Prey\CryEntitySystem</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Prey\CryInput\IHardwareMouse.h">
       <Filter>Common\Prey\CryInput</Filter>
@@ -141,6 +351,243 @@
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h">
       <Filter>Common\Prey\CryInput</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMemory\STLAlignedAlloc.h">
+      <Filter>Common\Prey\CryMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMemory\CryMemoryManager.h">
+      <Filter>Common\Prey\CryMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMemory\IGeneralMemoryHeap.h">
+      <Filter>Common\Prey\CryMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryNetwork\ISerialize.h">
+      <Filter>Common\Prey\CryNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryNetwork\SerializeFwd.h">
+      <Filter>Common\Prey\CryNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryNetwork\INetwork.h">
+      <Filter>Common\Prey\CryNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryParticleSystem\Options.h">
+      <Filter>Common\Prey\CryParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\physinterface.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\polynomial.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\primitives.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\primitives_info.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\RayCastQueue.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\AgePriorityQueue.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\DeferredActionQueue.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\IDeferredCollisionEvent.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\IntersectionTestQueue.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\IPhysics.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryPhysics\IPhysicsDebugRenderer.h">
+      <Filter>Common\Prey\CryPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\Renderer.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\RenderPipeline.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\RenderView.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\Texture.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\VertexFormats.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\CommonResource.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\CryDX.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\DeviceResources.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\DeviceTexture.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\IRenderer.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryRenderer\ITexture.h">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySerialization\Forward.h">
+      <Filter>Common\Prey\CrySerialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\HashedString.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\Name_TypeInfo.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\NameCRCHelper.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\StringUtils.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\UnicodeBinding.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\UnicodeEncoding.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\UnicodeFunctions.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\UnicodeIterator.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\CryFixedString.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\CryName.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\CryPath.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\CryString.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryString\CryStringUtils.h">
+      <Filter>Common\Prey\CryString</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\XML\XMLAttrReader.h">
+      <Filter>Common\Prey\CrySystem\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\XML\XMLBinaryHeaders.h">
+      <Filter>Common\Prey\CrySystem\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\XML\IReadWriteXMLSink.h">
+      <Filter>Common\Prey\CrySystem\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\XML\IXml.h">
+      <Filter>Common\Prey\CrySystem\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\TimeValue.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\TimeValue_info.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\CryUtils.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\CryVersion.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\HardwareMouse.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ILocalizationManager.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ILog.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IMiniLog.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IProcess.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ISystem.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryThreading\IJobManager.h">
+      <Filter>Common\Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryThreading\IThreadTask.h">
+      <Filter>Common\Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryThreading\CryAtomics.h">
+      <Filter>Common\Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryThreading\CryAtomics_win32.h">
+      <Filter>Common\Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryThreading\CryThread_win32.h">
+      <Filter>Common\Prey\CryThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryCore\Assert\CryAssert_impl.h">
+      <Filter>Common\Prey\CryCore\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAssert\CryAssert_Windows.h">
+      <Filter>Common\Prey\CryAssert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\IValidator.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoProjection.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Math.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Math_SSE.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix33.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix34.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix34H.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix44.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix44H.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_MatrixDiag.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Quat.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_ValidNumber.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
     <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector2.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
@@ -150,74 +597,104 @@
     <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector4.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Vector4H.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_XOptimise.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\CryHalf_info.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\CryRandomInternal.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\FinalizingSpline.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\GeomQuery.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\ISplines.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\ISplineSerialization_impl.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\LCGRandom.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMath\MTPseudoRandom.h">
+      <Filter>Common\Prey\CryMath</Filter>
+    </ClInclude>
     <ClInclude Include="..\Common\Prey\CryMath\NumberVector.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Math.h">
+    <ClInclude Include="..\Common\Prey\CryMath\PNoise3.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix33.h">
+    <ClInclude Include="..\Common\Prey\CryMath\QTangent.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_Matrix44.h">
+    <ClInclude Include="..\Common\Prey\CryMath\RadixSort.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryMath\Cry_MatrixDiag.h">
+    <ClInclude Include="..\Common\Prey\CryMath\RadixSortImpl.h">
       <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryNetwork\ISerialize.h">
-      <Filter>Common\Prey\CryNetwork</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Random.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryRenderer\DeviceResources.h">
-      <Filter>Common\Prey\CryRenderer</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Range.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryRenderer\IRenderer.h">
-      <Filter>Common\Prey\CryRenderer</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Rotation.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryRenderer\ITexture.h">
-      <Filter>Common\Prey\CryRenderer</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\SimpleHashLookUp.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryRenderer\Renderer.h">
-      <Filter>Common\Prey\CryRenderer</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\SNoise.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryRenderer\Texture.h">
-      <Filter>Common\Prey\CryRenderer</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\TCBSpline.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryRenderer\CommonResource.h">
-      <Filter>Common\Prey\CryRenderer</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Transform.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\ISystem.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\AABBSV.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Angle.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Bezier.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\HardwareMouse.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Bezier_impl.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CryThreading\IJobManager.h">
-      <Filter>Common\Prey\CryThreading</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Camera.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\proc.h">
-      <Filter>Common</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Color.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_Geo.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="DevConsoleDialog.h">
-      <Filter>Chairloader</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoDistance.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Logging.h">
-      <Filter>Common</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoIntersect.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\ILog.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryMath\Cry_GeoOverlap.h">
+      <Filter>Common\Prey\CryMath</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\CrySystem\IMiniLog.h">
-      <Filter>Common\Prey\CrySystem</Filter>
+    <ClInclude Include="..\Common\Prey\CryCore\BitFiddling.h">
+      <Filter>Common\Prey\CryCore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +746,12 @@
     <ClCompile Include="..\Common\Logging.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\Common\Prey\CryRenderer\Texture.cpp">
+      <Filter>Common\Prey\CryRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="HeaderTestFile.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />
@@ -281,5 +764,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="..\Common\Prey\CryCore\Platform\platform_impl.inl">
+      <Filter>Common\Prey\CryCore\Platform</Filter>
+    </None>
+    <None Include="..\Common\Prey\CryCore\CryTypeInfo.inl">
+      <Filter>Common\Prey\CryCore</Filter>
+    </None>
+    <None Include="..\Common\Prey\CryMath\CryHalf.inl">
+      <Filter>Common\Prey\CryMath</Filter>
+    </None>
+    <None Include="..\Common\Prey\CryMath\GeomQuery.inl">
+      <Filter>Common\Prey\CryMath</Filter>
+    </None>
   </ItemGroup>
 </Project>

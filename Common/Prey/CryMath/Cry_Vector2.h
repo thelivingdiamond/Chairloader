@@ -1,7 +1,6 @@
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
-#include <Prey/CryCore/platform.h>
 
 template<typename T> struct Vec2_tpl;
 
@@ -150,6 +149,12 @@ template<class F> struct Vec2_tpl
 		return v;
 	}
 
+	//! @returns (a.x * b.x; a.y * b.y)
+	ILINE static Vec2_tpl Scale(const Vec2_tpl &a, const Vec2_tpl &b)
+	{
+		return Vec2_tpl(a.x * b.x, a.y * b.y);
+	}
+
 	AUTO_STRUCT_INFO;
 };
 
@@ -158,6 +163,7 @@ template<class F> struct Vec2_tpl
 typedef Vec2_tpl<f32>  Vec2;  //!< Always 32 bit.
 typedef Vec2_tpl<f64>  Vec2d; //!< Always 64 bit.
 typedef Vec2_tpl<int>  Vec2i;
+typedef Vec2_tpl<real> Vec2r; //!< Variable float precision. depending on the target system it can be 32, 64 or 80 bit.
 
 #if !defined(SWIG)
 template<typename T> Vec2_tpl<T> Vec2Constants<T >::fVec2_Zero(0, 0);

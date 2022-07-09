@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <Prey/CryAction/GameObject.h>
 #include "EntityUtils.h"
 #include "ChairLoader.h"
 
@@ -12,16 +13,16 @@ CreateEntitySpawnParameters(char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* r
 	params->vPosition.x = pos->x;
 	params->vPosition.y = pos->y;
 	params->vPosition.z = pos->z;
-	params->qRotation.x = rot->x;
-	params->qRotation.y = rot->y;
-	params->qRotation.z = rot->z;
+	params->qRotation.v.x = rot->v.x;
+	params->qRotation.v.y = rot->v.y;
+	params->qRotation.v.z = rot->v.z;
 	params->qRotation.w = rot->w;
 	params->sLayerName = (char*)"";
 	params->guid = 0;
 	params->prevGuid = 0;
 	params->pClass = nullptr;
 	params->pArchetype = nullptr;
-	params->entityNode.ptr = nullptr;
+	params->entityNode = nullptr;
 	params->id = 0;
 	params->prevId = 0;
 	params->nFlags = 0;
@@ -69,10 +70,10 @@ void EntityUtils::DumpEntity(CEntity* entity, bool dumpProxies) {
 		std::cout << "SGridLocation:" << entity->m_pGridLocation << std::endl;
 		std::cout << "ProximityEntity:" << entity->m_pProximityEntity << std::endl;
 		std::cout << "keepAliveCounter:" << entity->m_nKeepAliveCounter << std::endl;
-		std::cout << "Name:" << entity->m_szName.m_str << std::endl;
+		std::cout << "Name:" << entity->m_szName.c_str() << std::endl;
 		std::cout << "cloneLayerId:" << entity->m_cloneLayerId << std::endl;
 		std::cout << "initial scene Mask:" << entity->m_guid << std::endl;
-		std::cout << "displayName:" << entity->m_displayName.m_str << std::endl << std::endl;
+		std::cout << "displayName:" << entity->m_displayName.c_str() << std::endl << std::endl;
 	} else {
 		std::cout << "Null Entity" << std::endl << std::endl;
 	}
@@ -85,7 +86,7 @@ void EntityUtils::DumpGameObject(CGameObject* obj) {
 		std::cout << "Profile Manager:" << obj->m_pProfileManager << std::endl;
 		std::cout << "profiles:" << &obj->m_profiles << std::endl;
 		std::cout << "user data:" << obj->m_pUserData << std::endl;
-		std::cout << "Mutex:" << obj->m_mutex.ptr << std::endl;
+		//std::cout << "Mutex:" << obj->m_mutex.ptr << std::endl;
 		std::cout << "extensions:" << obj->m_extensions.begin()._Ptr << std::endl;
 		std::cout << "channel ID:" << obj->m_channelId << std::endl;
 		std::cout << "enabled aspects:" << obj->m_enabledAspects << std::endl;
@@ -156,8 +157,8 @@ const char* EntityUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archetypeId
 		ArchetypeValue.value.str = nullptr;
 		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
 
-		CEntityArchetype* archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeId);
-		NewArchetypeValue.value.str = archetype->m_name.m_str;
+		auto archetype = static_cast<CEntityArchetype*>(gEnv->pEntitySystem->GetEntityArchetype(archetypeId));
+		NewArchetypeValue.value.str = archetype->m_name.c_str();
 
 		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
 			if (TableValue.value.table != nullptr) {
@@ -215,14 +216,14 @@ IEntityArchetype* EntityUtils::NpcSpawnHelper::GetEntityArchetype(CArkNpcSpawner
 // }
 IEntity* EntityUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, const char* name) {
 	if (spawner != nullptr) {
-		char* oldName = spawner->m_Entity->m_szName.m_str;
-		spawner->m_Entity->m_szName.m_str = (char *)name;
+		const char* oldName = spawner->m_Entity->m_szName.c_str();
+		spawner->m_Entity->m_szName = name;
 		uint32_t oldId = spawner->m_lastSpawnedEntityId;
 		gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
 		while(spawner->m_lastSpawnedEntityId == oldId) {
 			Sleep(1);
 		}
-		spawner->m_Entity->m_szName.m_str = oldName;
+		spawner->m_Entity->m_szName = oldName;
 		// Sleep(50);
 		IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
 		// Sleep(5);
@@ -233,11 +234,11 @@ IEntity* EntityUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, const ch
 // std::vector<IEntity*> EntityUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount) {
 // 	std::vector<IEntity*> entities;
 // 	if (spawner != nullptr) {
-// 		char* oldName = spawner->m_Entity->m_szName.m_str;
+// 		char* oldName = spawner->m_Entity->m_szName.c_str();
 // 		std::string strname = name;
 // 		for(unsigned int i = 0; i<=spawnCount; i++) {
 // 			strname += std::to_string(i);
-// 			spawner->m_Entity->m_szName.m_str = (char*)strname.m_str;
+// 			spawner->m_Entity->m_szName.c_str() = (char*)strname.m_str;
 // 			uint32_t oldId = spawner->m_lastSpawnedEntityId;
 //
 // 			gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
@@ -248,7 +249,7 @@ IEntity* EntityUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, const ch
 // 			IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
 // 			entities.emplace_back(newEntity);
 // 		}
-// 		spawner->m_Entity->m_szName.m_str = oldName;
+// 		spawner->m_Entity->m_szName.c_str() = oldName;
 // 		return entities;
 // 	}
 // 	return {};
@@ -280,7 +281,7 @@ std::vector<IEntity*> EntityUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_
 		spawner->m_Entity->m_vPos.z = pos->z;
 		for (auto i = 0; i <= spawnCount; i++) {
 			IEntity* newEntity = SpawnNpc(spawner, name);
-			newEntity->SetPos(pos, 0, false, false);
+			newEntity->SetPos(*pos, 0, false, false);
 			newEntities.emplace_back(newEntity);
 		}
 		spawner->m_Entity->m_vPos = oldpos;

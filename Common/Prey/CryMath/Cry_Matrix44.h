@@ -570,7 +570,7 @@ ILINE Vec4_tpl<F1> operator*(const Vec4_tpl<F1>& v, const Matrix44_tpl<F2>& m)
 
 // Typedefs
 
-//#include "Cry_Matrix44H.h"
+#include "Cry_Matrix44H.h"
 
 #ifdef CRY_HARDWARE_VECTOR4
 
@@ -586,6 +586,7 @@ typedef CRY_ALIGN (16) Matrix44_tpl<f32> Matrix44A;
 
 typedef Matrix44_tpl<f32>  Matrix44f;
 typedef Matrix44_tpl<f64>  Matrix44d;
+typedef Matrix44_tpl<real> Matrix44r;  //!< Variable float precision. depending on the target system it can be between 32, 64 or 80 bit.
 
 #if CRY_COMPILER_GCC
 /* GCC has a bug where TYPE_USER_ALIGN is ignored in certain situations with template layouts

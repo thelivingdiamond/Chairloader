@@ -141,7 +141,8 @@ public:
         }
     }
     void update() {
-        if (!gEnv->pGame->m_pFramework->IsInLevelLoad() || !gEnv->pGame->m_pFramework->IsLoadingSaveGame()) {
+        auto pGame = reinterpret_cast<CGame*>(gEnv->pGame);
+        if (!pGame->m_pFramework->IsInLevelLoad() || !pGame->m_pFramework->IsLoadingSaveGame()) {
             drawHandleMutex.lock();
             entityManager.update(&log);
             playerManager.update(&log);

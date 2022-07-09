@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include <Prey/CryCore/platform.h>
 #include <Prey/CrySystem/IMiniLog.h> // <> required for Interfuscator
 
 // enable this define to support log scopes to provide more context information for log lines
