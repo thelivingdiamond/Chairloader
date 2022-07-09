@@ -127,3 +127,4 @@ public:
     }
 };
 
+extern ChairloaderGUILog* GUILog;

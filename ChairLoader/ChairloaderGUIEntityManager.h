@@ -503,7 +503,6 @@ public:
     }
     void drawMenuBar(bool* control) {
         if (ImGui::BeginMenu("Entity")) {
-
             if (ImGui::BeginMenu("Spawn Entity")) {
                 ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != nullptr);
                 ImGui::Separator();
@@ -544,6 +543,8 @@ public:
                         archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.EngineeringOperator)->second });
                     if (ImGui::MenuItem("Science"))
                         archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.ScienceOperator)->second });
+                    if (ImGui::MenuItem("Military"))
+                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.MilitaryOperator)->second });
                     ImGui::EndMenu();
                 }
                 if (ImGui::BeginMenu("Spawn Turrets")) {
@@ -552,11 +553,13 @@ public:
                     ImGui::EndMenu();
                 }
                 ImGui::Separator();
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4{ 1,1,1,0.5f });
-                ImGui::TextWrapped("Item Spawning Not Stable, use at own risk");
-                ImGui::PopStyleColor();
+                // ImGui::PushStyleColor(ImGuiCol_Text, ImVec4{ 1,1,1,0.5f });
+                // ImGui::TextWrapped("Item Spawning Not Stable, use at own risk");
+            	// ImGui::PopStyleColor();
                 if (ImGui::BeginMenu("Spawn Items")) {
                     if (ImGui::BeginMenu("Weapons")) {
+                        if (ImGui::MenuItem("Wrench"))
+                            archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.Wrench)->second });
                         if (ImGui::MenuItem("Shotgun"))
                             archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.Shotgun)->second });
                         if (ImGui::MenuItem("Shotgun Ammo"))

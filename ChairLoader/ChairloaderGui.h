@@ -50,6 +50,7 @@ public:
         playerManager(),
         entityManager() {
         // gui = this;
+        GUILog = &log;
     }
 
     bool IsDevConsoleVisible() { return control.showDevConsole; }
@@ -105,7 +106,23 @@ public:
             
             if (ImGui::BeginMainMenuBar()) {
                 if (ImGui::BeginMenu("Console")) {
-                    ImGui::MenuItem("Free Cam", NULL, &control.freeCam);
+                    if (control.freeCam) {
+                        ImGui::Text("Free Cam: enabled");
+                    } else {
+                        ImGui::Text("Free Cam: disabled");
+                    }
+                    if(ImGui::Button("Toggle Free Cam")) {
+                        control.freeCam = !control.freeCam;
+                        if(control.freeCam) {
+								control.devMode = true;
+								gPreyFuncs->CSystemF->setDevMode((CSystem *)gEnv->pSystem, control.devMode);
+								gEnv->pConsole->ExecuteString("FreeCamEnable", false, true);
+                        } else {
+                            gPreyFuncs->CSystemF->setDevMode((CSystem*)gEnv->pSystem, control.devMode);
+                            gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
+                        }
+                    }
+                    
                     ImGui::EndMenu();
                     // }
                 }
@@ -149,7 +166,6 @@ public:
             //TODO: run other GUI handlers in here 
             drawHandleMutex.unlock();
         }
-
         perfOverlay.Update();
     }
     bool addDrawFunction(std::string modName, std::function<void()> drawFunction) {

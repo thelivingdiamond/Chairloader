@@ -449,6 +449,7 @@
     <ClCompile Include="..\Common\VTableHook.cpp" />
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
+    <ClCompile Include="ChairloaderGUILog.cpp" />
     <ClCompile Include="DevConsoleDialog.cpp" />
     <ClCompile Include="EntityUtils.cpp" />
     <ClCompile Include="ChairLoaderImGui.cpp" />
