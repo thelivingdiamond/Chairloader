@@ -239,6 +239,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\ChairLoader\FunctionHook.h" />
+    <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
     <ClInclude Include="..\Common\Logging.h" />
     <ClInclude Include="..\Common\mem.h" />
     <ClInclude Include="..\Common\preyDllObjects.h" />
@@ -306,6 +308,7 @@
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityProxy.h" />
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityRenderState.h" />
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntitySystem.h" />
+    <ClInclude Include="..\Common\Prey\CryGame\Game.h" />
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IHardwareMouse.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IInput.h" />
@@ -402,6 +405,7 @@
     <ClInclude Include="..\Common\Prey\CrySystem\CryUtils.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\CryVersion.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\HardwareMouse.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\ICmdLine.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ILocalizationManager.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ILog.h" />
@@ -411,6 +415,7 @@
     <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\IValidator.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\System.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\TimeValue.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\TimeValue_info.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\XML\IReadWriteXMLSink.h" />
@@ -432,14 +437,16 @@
     <ClInclude Include="DevConsoleDialog.h" />
     <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="ChairLoaderImGui.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="ImGui\imgui_widget_flamegraph.h" />
+    <ClInclude Include="LibD3D11.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PerfOverlay.h" />
     <ClInclude Include="Profiler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp" />
+    <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp" />
     <ClCompile Include="..\Common\Logging.cpp" />
     <ClCompile Include="..\Common\mem.cpp" />
     <ClCompile Include="..\Common\PreyDllObjects.cpp" />

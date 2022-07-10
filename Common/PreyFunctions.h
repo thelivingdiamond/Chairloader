@@ -5,14 +5,14 @@ class CKeyboard;
 class CBaseInput;
 struct ArkPlayerWeaponComponent;
 
-class PreyFunctionBase {
+class PreyFunctionBaseOld {
 public:
 	template<typename t> t getFunctionAddr(uintptr_t moduleBase, uint64_t offset);
 };
-class PreyFunctions : PreyFunctionBase{
+class PreyFunctions : PreyFunctionBaseOld{
 public:
 	PreyFunctions(uintptr_t moduleBase);
-	class ArkPlayerPrivate : PreyFunctionBase {
+	class ArkPlayerPrivate : PreyFunctionBaseOld {
 	public:
 		ArkPlayerPrivate(uintptr_t moduleBase);
 		typedef void(__thiscall* _ShowThirdPerson)(ArkPlayer*, bool); _ShowThirdPerson showThirdPerson; //1557e20
@@ -24,7 +24,7 @@ public:
 
 	};
 
-	class CArkWeaponPrivate :PreyFunctionBase {
+	class CArkWeaponPrivate :PreyFunctionBaseOld {
 	public:
 		CArkWeaponPrivate(uintptr_t moduleBase);
 		typedef CArkWeapon* (__thiscall* _GetEquippedWeapon)(ArkPlayerWeaponComponent*); _GetEquippedWeapon getEquippedWeapon;
@@ -33,7 +33,7 @@ public:
 		typedef uint32_t(__thiscall* _GetClipSize)(CArkWeapon*); _GetClipSize getClipSize;
 	};
 
-	class CEntitySystemPrivate :PreyFunctionBase {
+	class CEntitySystemPrivate :PreyFunctionBaseOld {
 	public:
 		CEntitySystemPrivate(uintptr_t moduleBase);
 		typedef std::vector<CryStringT<char>>(__thiscall* _GetArchetypeNames)(CEntitySystem*, CryStringT<char>); _GetArchetypeNames getArchetypeNames;
@@ -45,7 +45,7 @@ public:
 		typedef uint32_t(__thiscall* _GenerateEntityId)(CEntitySystem*, bool); _GenerateEntityId generateEntityId;
 	};
 
-	class ArkNpcSpawnManagerPrivate : PreyFunctionBase {
+	class ArkNpcSpawnManagerPrivate : PreyFunctionBaseOld {
 	public:
 		ArkNpcSpawnManagerPrivate(uintptr_t moduleBase);
 		typedef void(__thiscall* _ArkNpcSpawnManagerUpdate)(ArkNpcSpawnManager*, float); _ArkNpcSpawnManagerUpdate ArkNpcSpawnManagerUpdate;//151db30
@@ -55,7 +55,7 @@ public:
 		typedef IEntity* (__fastcall* _CreateNpc)(IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3, uint16_t); _CreateNpc createNpc; // 151d6d0
 	};
 	
-	class CEntityPrivate : PreyFunctionBase {
+	class CEntityPrivate : PreyFunctionBaseOld {
 	public:
 		CEntityPrivate(uintptr_t moduleBase);
 		typedef bool(__thiscall* _InitCEntity)(CEntity*, SEntitySpawnParams*);//0905cb0
@@ -69,14 +69,14 @@ public:
 		typedef bool(__thiscall* _ReloadEntity)(CEntity*, SEntityLoadParams*); _ReloadEntity reloadEntity; //0908650
 	};
 
-	class ArkNightmareSpawnManagerPrivate : PreyFunctionBase {
+	class ArkNightmareSpawnManagerPrivate : PreyFunctionBaseOld {
 	public:
 		ArkNightmareSpawnManagerPrivate(uintptr_t moduleBase);
 		typedef void(__thiscall* _SpawnNewNightmare)(ArkNightmareSpawnManager*); _SpawnNewNightmare spawnNewNightmare;//11f58d0
 		typedef void(__thiscall* _enableNightmareSpawner)(ArkNightmareSpawnManager*); _enableNightmareSpawner enableNightmareSpawner;
 	};
 
-	class CArkNpcSpawnerPrivate : PreyFunctionBase{
+	class CArkNpcSpawnerPrivate : PreyFunctionBaseOld{
 	public:
 		CArkNpcSpawnerPrivate(uintptr_t moduleBase);
 		typedef void* (__fastcall* _CreateNpcSpawner)(uint64_t, void*); _CreateNpcSpawner createNpcSpawner;//1703f00
@@ -86,7 +86,7 @@ public:
 	// typedef CryStringT<char>(__thiscall* _GetEntityClassName)(ArkPlayer*); _GetEntityClassName getEntityClassName;//1557e20
 	// typedef Quat_tpl<float>* (__thiscall* _GetViewRotation)(ArkPlayer*, Quat_tpl<float>*); _GetViewRotation getViewRotation;
 
-	class CXConsolePrivate : PreyFunctionBase {
+	class CXConsolePrivate : PreyFunctionBaseOld {
 	public:
 		CXConsolePrivate(uintptr_t moduleBase);
 		typedef void(__thiscall* _ShowConsole)(CXConsole*, bool, int32_t); _ShowConsole showConsole;
@@ -98,25 +98,19 @@ public:
 		typedef void(__thiscall* _AddLine)(CXConsole*, char*); _AddLine addLine;//0defa00
 	};
 
-	class CSystemPrivate : PreyFunctionBase {
-	public:
-		CSystemPrivate(uintptr_t moduleBase);
-		typedef void(__thiscall* _SetDevMode)(CSystem*, bool); _SetDevMode setDevMode;//0dc7720
-		typedef CWindowsConsole* (__thiscall* _GetTextModeConsole)(CSystem*); _GetTextModeConsole GetTextModeConsole;//0dc4cb0
-	};
-	class ArkHealthExtensionPrivate : PreyFunctionBase{
+	class ArkHealthExtensionPrivate : PreyFunctionBaseOld{
 	public:
 		typedef void(__thiscall* _FullSerialize)(ArkHealthExtension*, CSerializeWrapper<ISerialize>); _FullSerialize fullSerialize;
 		typedef ArkHealthExtension* (__fastcall* _GetExtensionFromGameObject)(IGameObjectExtension* param_1); _GetExtensionFromGameObject getExtensionFromGameObject;
 		typedef ArkHealthExtension* (__fastcall* _GetExtensionFromEntityID)(uint32_t param_1); _GetExtensionFromEntityID getExtensionFromEntityID;
 		typedef ArkHealthExtension* (__fastcall* _GetExtensionFromEntityPtr)(IEntity* param_1); _GetExtensionFromEntityPtr getExtensionFromEntityPtr;
 	};
-	class ArkFactionManagerPrivate : PreyFunctionBase {
+	class ArkFactionManagerPrivate : PreyFunctionBaseOld {
 	public:
 		ArkFactionManagerPrivate(uintptr_t moduleBase);
 		typedef void(__thiscall* _SetEntityFaction)(ArkFactionManager*,uint32_t entityId, uint32_t factionId); _SetEntityFaction setEntityFaction;//14336a0
 	};
-	class ArkNpcPrivate : PreyFunctionBase {
+	class ArkNpcPrivate : PreyFunctionBaseOld {
 	public:
 		ArkNpcPrivate(uintptr_t moduleBase);
 		/*14f36c0);*/typedef void(__thiscall*  _ActivateWander)(ArkNpc::ArkNpc* _this); _ActivateWander ActivateWander;
@@ -616,12 +610,12 @@ public:
 		/*1506f50);*/typedef bool(__thiscall* _UpdateMaterialAnimation)(ArkNpc::ArkNpc* _this, ArkMaterialAnimationType param_1, float param_2, float param_3); _UpdateMaterialAnimation	  UpdateMaterialAnimation;
 		/*1506f60);*/typedef bool(__thiscall* _WaitForAnimatedStunned)(ArkNpc::ArkNpc* _this); _WaitForAnimatedStunned	  WaitForAnimatedStunned;
 	};
-	class CArkNpcSpawnCystoidPrivate : PreyFunctionBase{
+	class CArkNpcSpawnCystoidPrivate : PreyFunctionBaseOld{
 	public:
 		CArkNpcSpawnCystoidPrivate(uintptr_t moduleBase);
 		typedef IEntityArchetype* (__thiscall* _GetEntityArchetype)(CArkNpcSpawnCystoid*); _GetEntityArchetype getEntityArchetype;
 	};
-	class ArkSafeScriptTablePrivate : PreyFunctionBase {
+	class ArkSafeScriptTablePrivate : PreyFunctionBaseOld {
 	public:
 		ArkSafeScriptTablePrivate(uintptr_t moduleBase);
 		typedef void* (__thiscall* _GetArkSafeScriptTableFromEntity)(ArkSafeScriptTable*, IEntity*);
@@ -631,7 +625,7 @@ public:
 		_GetArkSafeScriptTableFromEntity getArkSafeScriptFromEntity;
 		_GetArkSafeScriptTableFromScriptTable getArkSafeScriptFromScriptTable;// = (_GetArkSafeScriptTableFromScriptTable)(moduleBase + 0x1480240);
 	};
-	class ArkLocationManagerPrivate : PreyFunctionBase {
+	class ArkLocationManagerPrivate : PreyFunctionBaseOld {
 	public:
 		ArkLocationManagerPrivate(uintptr_t moduleBase);
 		typedef LocationInfo* (__thiscall* _GetAlternateNameInfo)(ArkLocationManager* _this, uint64_t param_1);					_GetAlternateNameInfo				GetAlternateNameInfo;
@@ -646,12 +640,12 @@ public:
 		typedef void(__thiscall* _SetAlternateName)(ArkLocationManager* _this, uint64_t param_1, char* param_2, char* param_3);	_SetAlternateName					SetAlternateName;
 		typedef void(__thiscall* _SetLoaded)(ArkLocationManager* _this, uint64_t param_1, bool param_2);						_SetLoaded							SetLoaded;
 	};
-	class ArkAbilitiesPrivate : PreyFunctionBase {
+	class ArkAbilitiesPrivate : PreyFunctionBaseOld {
 	public:
 		ArkAbilitiesPrivate(uintptr_t moduleBase);;
 		// typedef ArkAbilities*
 	};
-	class ArkAbilityComponentPrivate : PreyFunctionBase {
+	class ArkAbilityComponentPrivate : PreyFunctionBaseOld {
 	public:
 		ArkAbilityComponentPrivate(uintptr_t moduleBase);;
 		typedef undefined(__thiscall* _ArkAbilityComponentConst)(ArkAbilityComponent* _this);;																			_ArkAbilityComponentConst			ArkAbilityComponentConst1	  ;
@@ -684,21 +678,14 @@ public:
 		typedef void(__thiscall* _UpdatePlayerMetrics)(ArkAbilityComponent* _this);;																					_UpdatePlayerMetrics				UpdatePlayerMetrics	  ;
 	};
 
-	class CGamePrivate : PreyFunctionBase {
-    public:
-        CGamePrivate(uintptr_t moduleBase);
-		typedef int(__thiscall *_Update)(CGame *_this, bool haveFocus, unsigned int updateFlags);
-        _Update Update;
-	};
-
-	class CKeyboardPrivate : PreyFunctionBase {
+	class CKeyboardPrivate : PreyFunctionBaseOld {
 	public:
 		CKeyboardPrivate(uintptr_t moduleBase);
 		using _Update = bool (*)(CKeyboard *_this, bool bFocus);
 		_Update Update;
 	};
 
-	class CBaseInputPrivate : PreyFunctionBase {
+	class CBaseInputPrivate : PreyFunctionBaseOld {
 	public:
 		CBaseInputPrivate(uintptr_t moduleBase);
 		using _PostInputEvent = void (*)(CBaseInput *_this, const SInputEvent &event, bool bForce);
@@ -718,12 +705,10 @@ public:
 	ArkNightmareSpawnManagerPrivate *ArkNightmareSpawnManagerF;
 	CArkNpcSpawnerPrivate *CArkNpcSpawnerF;
 	CXConsolePrivate *CXConsoleF;
-	CSystemPrivate *CSystemF;
 	ArkFactionManagerPrivate* ArkFactionManagerF;
 	ArkNpcPrivate* ArkNpcF;
 	ArkLocationManagerPrivate* ArkLocationManagerF;
 	ArkAbilityComponentPrivate* ArkAbilityComponentF;
-	CGamePrivate* CGameF;
 	CKeyboardPrivate* CKeyboardF;
 	CBaseInputPrivate* CBaseInputF;
 };

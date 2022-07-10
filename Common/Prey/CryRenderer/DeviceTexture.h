@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include <ChairLoader/PreyFunction.h>
 #include "ITexture.h"
 #include "CryDX.h"
 
@@ -97,7 +98,7 @@ private:
 class CDeviceTexture : public CDeviceTextureBase
 {
 public:
-	static inline int (*FCleanup)(CDeviceTextureBase *_this);
+	static inline auto FCleanup = PreyFunction<int(CDeviceTextureBase* _this)>(0x1054080);
 	using CDeviceTextureBase::CDeviceTextureBase;
 	~CDeviceTexture();
 

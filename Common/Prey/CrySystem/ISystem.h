@@ -57,7 +57,7 @@ struct IMemoryManager;
 struct IAudioSystem;
 struct IFrameProfileSystem;
 struct IStatoscope;
-class IDiskProfiler;
+struct IDiskProfiler;
 struct FrameProfiler;
 struct IStreamEngine;
 struct ICharacterManager;

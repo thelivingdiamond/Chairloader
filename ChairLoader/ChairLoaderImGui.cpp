@@ -7,6 +7,8 @@
 #include <Prey/CryRenderer/Renderer.h>
 #include <Prey/CryRenderer/Texture.h>
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include <detours/detours.h>
 
 ChairLoaderImGui *ChairLoaderImGui::m_pInstance = nullptr;
 

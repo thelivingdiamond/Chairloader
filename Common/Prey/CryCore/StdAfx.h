@@ -34,6 +34,12 @@
 #include <utility>
 #include <memory>
 #include <limits>
+#include <optional>
+
+// Threading
+#include <mutex>
+#include <condition_variable>
+#include <thread>
 
 // File system
 #include <filesystem>
