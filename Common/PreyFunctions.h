@@ -678,13 +678,6 @@ public:
 		typedef void(__thiscall* _UpdatePlayerMetrics)(ArkAbilityComponent* _this);;																					_UpdatePlayerMetrics				UpdatePlayerMetrics	  ;
 	};
 
-	class CGamePrivate : PreyFunctionBaseOld {
-    public:
-        CGamePrivate(uintptr_t moduleBase);
-		typedef int(__thiscall *_Update)(CGame *_this, bool haveFocus, unsigned int updateFlags);
-        _Update Update;
-	};
-
 	class CKeyboardPrivate : PreyFunctionBaseOld {
 	public:
 		CKeyboardPrivate(uintptr_t moduleBase);
@@ -716,7 +709,6 @@ public:
 	ArkNpcPrivate* ArkNpcF;
 	ArkLocationManagerPrivate* ArkLocationManagerF;
 	ArkAbilityComponentPrivate* ArkAbilityComponentF;
-	CGamePrivate* CGameF;
 	CKeyboardPrivate* CKeyboardF;
 	CBaseInputPrivate* CBaseInputF;
 };

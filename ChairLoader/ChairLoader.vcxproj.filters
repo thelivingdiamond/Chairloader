@@ -61,6 +61,9 @@
     <Filter Include="Common\Prey\CryEntitySystem">
       <UniqueIdentifier>{aac44d27-6404-482c-b393-16d909c2bdb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\CryGame">
+      <UniqueIdentifier>{02ac69c4-d944-4d66-b8b0-75d7cc3ecef9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Common\Prey\CryInput">
       <UniqueIdentifier>{ebe54b63-1efe-4634-bdc3-d4786fb4497b}</UniqueIdentifier>
     </Filter>
@@ -707,6 +710,9 @@
     </ClInclude>
     <ClInclude Include="..\Common\Prey\CrySystem\System.h">
       <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\Game.h">
+      <Filter>Common\Prey\CryGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

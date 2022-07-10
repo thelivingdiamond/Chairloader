@@ -110,6 +110,12 @@ public:
 	};
 
 	static inline auto FSetDevMode = PreyFunction<void(CSystem* _this, bool bEnable)>(0xDC7720);
+	static inline auto FInitializeEngineModule = PreyFunction<bool(
+		CSystem* _this,
+		const SModuleInitInfo* _initInfo,
+		const SSystemInitParams* initParams,
+		bool bQuitIfNotFound)>(0xDD7A50);
+	static inline auto FShutdown = PreyFunction<void(CSystem* _this)>(0xDC79F0);
 
 	//! Sets whether dev mode is enabled.
 	inline void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }

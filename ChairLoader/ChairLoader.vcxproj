@@ -308,6 +308,7 @@
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityProxy.h" />
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityRenderState.h" />
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntitySystem.h" />
+    <ClInclude Include="..\Common\Prey\CryGame\Game.h" />
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IHardwareMouse.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IInput.h" />

@@ -669,10 +669,6 @@ PreyFunctions::ArkAbilityComponentPrivate::ArkAbilityComponentPrivate(uintptr_t 
 		UpdatePlayerMetrics = getFunctionAddr < _UpdatePlayerMetrics >(moduleBase, 0x153c3b0);
 }
 
-PreyFunctions::CGamePrivate::CGamePrivate(uintptr_t moduleBase){
-    Update = getFunctionAddr<_Update>(moduleBase, 0x16d6230);
-}
-
 PreyFunctions::CKeyboardPrivate::CKeyboardPrivate(uintptr_t moduleBase) {
 	Update = getFunctionAddr<_Update>(moduleBase, 0x09D2DA0);
 }
@@ -698,7 +694,6 @@ PreyFunctions::PreyFunctions(uintptr_t moduleBase) {
 	ArkAbilityComponentF = new ArkAbilityComponentPrivate(moduleBase);
 	CryGretCurrentThreadId = getFunctionAddr<_CryGetCurrentThreadID>(moduleBase, 0x0099910);
 	beginDraw = getFunctionAddr<_BeginDraw>(moduleBase, 0x0de9710);
-    CGameF = new CGamePrivate(moduleBase);
 	CKeyboardF = new CKeyboardPrivate(moduleBase);
 	CBaseInputF = new CBaseInputPrivate(moduleBase);
 }

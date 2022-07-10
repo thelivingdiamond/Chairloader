@@ -1,16 +1,9 @@
 #include <string>
 #include <windows.h>
-#include <detours/detours.h>
 #include "mswsock_proxy.h"
 
 namespace {
-constexpr uintptr_t OFFSET_CGAME_INIT = 0x16D0A90;
-
-class CGame;
-class IGameFramework;
-using CGame_Init = char(__fastcall *)(CGame *thisPtr, IGameFramework *pFramework);
-
-CGame_Init pfnGameInit;
+HMODULE g_CLModule = nullptr;
 
 // Returns the last Win32 error, in string format. Returns an empty string if there is no error.
 // https://stackoverflow.com/questions/1387064/how-to-get-the-error-message-from-the-error-code-returned-by-getlasterror
@@ -39,27 +32,25 @@ std::string GetLastErrorAsString()
     return message;
 }
 
-char __fastcall CGameInitHook(CGame *thisPtr, IGameFramework *pFramework) {
-    int ret = pfnGameInit(thisPtr, pFramework);
-
-    HMODULE loader = LoadLibraryA("ChairLoader.dll");
-    if (!loader) {
+void LoadChairLoader()
+{
+    g_CLModule = LoadLibraryA("ChairLoader.dll");
+    if (!g_CLModule) {
         std::string text = "Failed to load ChairLoader\n" + GetLastErrorAsString();
         MessageBoxA(nullptr, text.c_str(), "ChairLoader Loader Error", MB_OK | MB_ICONERROR);
-        return 0;
+        std::abort();
     }
-
-    return ret;
 }
 
-void InstallHooks() {
-    HMODULE prey = LoadLibraryA("PreyDll.dll");
-    pfnGameInit = reinterpret_cast<CGame_Init>((uintptr_t)prey + OFFSET_CGAME_INIT);
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
-    DetourAttach(&(LPVOID &)pfnGameInit, (PBYTE)CGameInitHook);
-    DetourTransactionCommit();
+void ShutdownChairLoader()
+{
+    if (g_CLModule)
+    {
+        FreeLibrary(g_CLModule);
+        g_CLModule = nullptr;
+    }
 }
+
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -71,12 +62,13 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
     case DLL_PROCESS_ATTACH:
         MSWSProxy_Init();
-        InstallHooks();
+        LoadChairLoader();
         break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
         break;
     case DLL_PROCESS_DETACH:
+        ShutdownChairLoader();
         MSWSProxy_Shutdown();
         break;
     }

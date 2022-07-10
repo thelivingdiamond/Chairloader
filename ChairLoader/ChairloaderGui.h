@@ -158,8 +158,8 @@ public:
         }
     }
     void update() {
-        auto pGame = reinterpret_cast<CGame*>(gEnv->pGame);
-        if (!pGame->m_pFramework->IsInLevelLoad() || !pGame->m_pFramework->IsLoadingSaveGame()) {
+        auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
+        if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
             drawHandleMutex.lock();
             entityManager.update(&log);
             playerManager.update(&log);
