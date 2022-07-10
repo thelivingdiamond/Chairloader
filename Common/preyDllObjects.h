@@ -248,21 +248,21 @@ namespace ArkNpc {
 		eCpu_CenWinChip = 26,
 		eCpu_CenWinChip2 = 27
 	};
-	enum class ELanguageID {
-		eLID_English = 0,
-		eLID_French = 1,
-		eLID_Italian = 2,
-		eLID_German = 3,
-		eLID_Spanish = 4,
-		eLID_Latin_American_Spanish = 5,
-		eLID_Brazilian_Portuguese = 6,
-		eLID_Russian = 7,
-		eLID_Polish = 8,
-		eLID_Japanese = 9,
-		eLID_Traditional_Chinese = 10,
-		eLID_Simplified_Chinese = 11,
-		eLID_MAX_OR_INVALID = 12
-	};
+	// enum class ELanguageID {
+	// 	eLID_English = 0,
+	// 	eLID_French = 1,
+	// 	eLID_Italian = 2,
+	// 	eLID_German = 3,
+	// 	eLID_Spanish = 4,
+	// 	eLID_Latin_American_Spanish = 5,
+	// 	eLID_Brazilian_Portuguese = 6,
+	// 	eLID_Russian = 7,
+	// 	eLID_Polish = 8,
+	// 	eLID_Japanese = 9,
+	// 	eLID_Traditional_Chinese = 10,
+	// 	eLID_Simplified_Chinese = 11,
+	// 	eLID_MAX_OR_INVALID = 12
+	// };
 	enum class EStreamSourceMediaType {
 		eStreamSourceTypeUnknown = 0,
 		eStreamSourceTypeHDD = 1,

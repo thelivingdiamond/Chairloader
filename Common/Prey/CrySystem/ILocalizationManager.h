@@ -145,10 +145,10 @@ struct ILocalizationManager
 	//! \param[out] outLocalizedString  Translated version of the string.
 	//! \param[in]  bEnglish            If true, translates the string into the always present English language.
 	//! \return true if localization was successful, false otherwise.
-	virtual bool LocalizeString(const char* sString, string& outLocalizedString, bool bEnglish = false) = 0;
+	virtual bool LocalizeString(const char* sString, wstring& outLocalizedString, bool bEnglish = false) = 0;
 
 	//! Same as LocalizeString( const char* sString, string& outLocalizedString, bool bEnglish=false ) but at the moment this is faster.
-	virtual bool LocalizeString(const string& sString, string& outLocalizedString, bool bEnglish = false) = 0;
+	virtual bool LocalizeString(const string& sString, wstring& outLocalizedString, bool bEnglish = false) = 0;
 
 	//! Provides the localized version corresponding to a label.
 	//! A label has to start with '@' sign.
@@ -156,7 +156,7 @@ struct ILocalizationManager
 	//! \param[out]outLocalizedString Localized version of the label.
 	//! \param[in] bEnglish           If true, returns the always present English version of the label.
 	//! \return true if localization was successful, false otherwise.
-	virtual bool LocalizeLabel(const char* sLabel, string& outLocalizedString, bool bEnglish = false) = 0;
+	virtual bool LocalizeLabel(const char* sLabel, wstring& outLocalizedString, bool bEnglish = false) = 0;
 
 	//! Get localization info structure corresponding to a key (key=label without the '@' sign).
 	//! \param[in] sKey         Key to be looked up. Key = Label without '@' sign.
@@ -196,7 +196,7 @@ struct ILocalizationManager
 	//! \param[in] sKey Key to be looked up. Key = Label without '@' sign.
 	//! \param[out] sLocalizedString Corresponding english language string.
 	//! \return true if successful, false otherwise (key not found).
-	virtual bool GetEnglishString(const char* sKey, string& sLocalizedString) = 0;
+	virtual bool GetEnglishString(const char* sKey, wstring& sLocalizedString) = 0;
 
 	//! Get Subtitle for Key or Label.
 	//! \param[in] sKeyOrLabel    Key or Label to be used for subtitle lookup. Key = Label without '@' sign.

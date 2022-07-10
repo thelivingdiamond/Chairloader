@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "ChairloaderGUIPlayerManager.h"
 
+#include "Prey/CrySystem/ILocalizationManager.h"
+#include "boost/algorithm/string.hpp"
+#include "Prey/CryAction/GameObject.h"
+#include "Prey/CryGame/Game.h"
 
 // PUBLIC:
 void ChairloaderGUIPlayerManager::draw(bool* bShow) {
@@ -183,21 +187,38 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 		ImGui::EndTabItem();
 	}
 	if(ImGui::BeginTabItem("Inventory Test")) {
-		float size = 64.0f;
-		ImGui::Text("Inventory: ");
+		float size = 100.0f;
+		ImGui::Text("Inventory: "); 
 		// ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 20, ImGui::GetCursorPos().y + 20));
 		ImVec2 windowPos = ImGui::GetCursorPos();
 		for (auto& item : inventoryItems) {
-			std::string name;
+			std::wstring name;
+			wstring localizedName;
+			std::string stringname = "";
 			IEntity* itemEntity = gEnv->pEntitySystem->GetEntity(item.first);
 			if (itemEntity != nullptr) {
 				if (itemEntity->GetArchetype() != nullptr) {
-					name = itemEntity->GetArchetype()->GetName();
+					// auto proxy = (IGameObject*)itemEntity->GetProxy(EEntityProxy::ENTITY_PROXY_USER);
+					// // printf("%p", proxy);
+					// for (auto& extension : ((CGameObject*)proxy)->m_extensions) {
+					// 	printf("%p\n", &extension);
+					// }
+					std::string tempstring = itemEntity->GetArchetype()->GetName();
+					tempstring = tempstring.substr(tempstring.find_first_of(".") + 1, tempstring.size() - tempstring.find_first_of(".") - 1);
+					stringname = stringname + tempstring;
+					// boost::algorithm::to_lower(stringname);
+					if (gEnv->pSystem->GetLocalizationManager()->LocalizeString(stringname.c_str(), localizedName)) {
+						name = localizedName.c_str();
+					}
+					else {
+						name = L"fuck";
+					}
 				}
-
+				// name = itemEntity->GetDisplayName();
 			}
+			std::string name_string = std::string(name.begin(), name.end());
 			ImGui::SetCursorPos(ImVec2(windowPos.x + item.second.m_x * size, windowPos.y + item.second.m_y * size));
-			ImGuiUtils::selectableRectangle(name, item.second.m_width * size, item.second.m_height * size, ImColor(255, 180, 255, 255));
+			ImGuiUtils::selectableRectangle(name_string, item.second.m_width * size, item.second.m_height * size, ImColor(255, 180, 255, 255));
 		}
 		// ImGuiUtils::selectableRectangle("Fuck", 128, 128, ImColor(255, 180, 255, 255));
 
