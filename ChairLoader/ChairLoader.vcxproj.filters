@@ -755,6 +755,12 @@
     <ClCompile Include="ChairloaderGUILog.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
+    <ClCompile Include="ChairloaderGUIPlayerManager.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="ChairloaderGUIEntityManager.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />

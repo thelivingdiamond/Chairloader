@@ -1737,8 +1737,45 @@ namespace ArkNpc {
 		int32_t m_width;
 		int32_t m_height;
 	};
-	class IArkItem {
-		
+	class IArkItem : IGameObjectExtension
+	{
+	public:
+		virtual bool GiveOwner(const unsigned int) = 0;
+		virtual bool PickUp(const unsigned int, bool) = 0;
+		virtual void Drop(int, const Vec3_tpl<float>* const) = 0;
+		virtual bool CanPlayerCollect() = 0;
+		virtual int GetCount() = 0;
+		virtual void ResetCount(int) = 0;
+		virtual bool IsStackFull() = 0;
+		virtual bool Combine(IArkItem*, bool) = 0;
+		virtual const char* GetType() = 0;
+		virtual const char* GetName() = 0;
+		virtual unsigned __int64 GetArchetype() = 0;
+		virtual CryStringT<wchar_t>* GetDescription(CryStringT<wchar_t>* result) = 0;
+		virtual const char* GetIcon() = 0;
+		virtual std::pair<int, int>* GetInventoryDimensions(std::pair<int, int>* result) = 0;
+		virtual bool IsStackable() = 0;
+		virtual int GetMaxStackSize() = 0;
+		virtual bool IsGrenade() = 0;
+		virtual bool IsEquippable() = 0;
+		virtual bool IsTrash() = 0;
+		virtual void SetLootRequirement(unsigned __int64) = 0;
+		virtual bool CanLoot() = 0;
+		virtual bool CanUse() = 0;
+		virtual void Use() = 0;
+		virtual void UseFromWorld() = 0;
+		virtual void UseFromInventory() = 0;
+		virtual void Consume(int) = 0;
+		virtual bool CanConsume() = 0;
+		virtual bool CanConsumeFromWorld() = 0;
+		virtual bool IsWeapon() = 0;
+		virtual bool IsEqual(const IArkItem*) = 0;
+		virtual bool IsArchetype(const unsigned __int64) = 0;
+		virtual bool IsArchetype(const IEntityArchetype*) = 0;
+		virtual bool HasMetaTags(const std::vector<unsigned __int64>*) = 0;
+		virtual unsigned int GetOwnerId() = 0;
+
+
 	};
 	enum class Category : uint32_t {
 		none = 0,

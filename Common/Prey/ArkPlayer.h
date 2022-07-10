@@ -15,14 +15,93 @@ struct IItem;
 struct HitInfo;
 class CFragmentCache;
 
-struct IInventory {
-	enum class EArkInventorySizes
+struct IInventoryListener
+{
+public:
+	virtual ~IInventoryListener() = 0;
+	virtual void OnAddItem(unsigned int) = 0;
+	virtual void OnRemoveItem(unsigned int) = 0;
+	virtual void OnSetAmmoCount(const IEntityClass*) = 0;
+	virtual void OnClearInventory() = 0;
+
+
+};
+
+struct IInventory : public IGameObjectExtension {
+	enum EArkInventorySizes
 	{
-		smallExternal = 0x1,
-		mediumExternal = 0x2,
-		largeExternal = 0x3,
-		player = 0x4,
+		smallExternal = 1,
+		mediumExternal = 2,
+		largeExternal = 3,
+		player = 4
 	};
+	enum EInventorySlots
+	{
+		eInventorySlot_Weapon = 0,
+		eInventorySlot_Explosives = 1,
+		eInventorySlot_Grenades = 2,
+		eInventorySlot_Special = 3,
+		eInventorySlot_Last = 4
+	};
+	virtual bool AddItem(unsigned int) = 0;
+	virtual void RemoveItem(const IEntityClass* const, CCryName, int) = 0;
+	virtual bool RemoveItem(unsigned int, int) = 0;
+	virtual bool RemoveItemStack(unsigned int) = 0;
+	virtual void RemoveAllItems(bool) = 0;
+	virtual void Destroy() = 0;
+	virtual void Clear(bool) = 0;
+	virtual int GetCount() = 0;
+	virtual int GetCountOfClass(const char*) = 0;
+	virtual int GetCountOfClass(const char*, const CCryName) = 0;
+	virtual int GetCountOfCategory(const char*) = 0;
+	virtual int GetCountOfUniqueId(unsigned __int8) = 0;
+	virtual std::pair<int, int>* GetLocationOfItem(std::pair<int, int>* result, unsigned int) = 0;
+	virtual unsigned int GetItemAtLocation(int, int) = 0;
+	virtual bool SetItemLocation(unsigned int, int, int) = 0;
+	virtual bool PlaceItem(unsigned int) = 0;
+	virtual std::vector<unsigned int>* GetItemOverlap(std::vector<unsigned int>* result, int, int, int, int) = 0;
+	virtual int GetMaxInventoryWidth() = 0;
+	virtual int GetMaxInventoryHeight() = 0;
+	virtual IInventory::EArkInventorySizes GetSize() = 0;
+	virtual bool CanPlaceItem(unsigned int, int, int, bool) = 0;
+	virtual const char* GetIcon(unsigned int) = 0;
+	virtual int GetSlotCount(int) = 0;
+	virtual IScriptTable* GetAllItems(const char*) = 0;
+	virtual unsigned int GetItem(int) = 0;
+	virtual const char* GetItemString(int) = 0;
+	virtual unsigned int GetItemByClass(const IEntityClass*, CCryName) = 0;
+	virtual IItem* GetItemByName(const char*) = 0;
+	virtual IArkItem* GetArkItemByName(const char*) = 0;
+	virtual IArkItem* GetSmallestStack(const IEntityClass*, CCryName, int) = 0;
+	virtual IArkItem* GetLargestStack(const IEntityClass*, CCryName, int) = 0;
+	virtual bool ConsumeArkItem(const char*, int) = 0;
+	virtual bool ConsumeArkItem(const IEntityClass*, int) = 0;
+	virtual int FindItem(unsigned int) = 0;
+	virtual int FindNext(const IEntityClass*, const char*, int, bool) = 0;
+	virtual int FindPrev(const IEntityClass*, const char*, int, bool) = 0;
+	virtual unsigned int GetCurrentItem() = 0;
+	virtual unsigned int GetHolsteredItem() = 0;
+	virtual void SetCurrentItem(unsigned int) = 0;
+	virtual void SetHolsteredItem(unsigned int) = 0;
+	virtual void SetLastItem(unsigned int) = 0;
+	virtual unsigned int GetLastItem() = 0;
+	virtual unsigned int GetLastSelectedInSlot(IInventory::EInventorySlots) = 0;
+	virtual void HolsterItem(bool) = 0;
+	virtual void SerializeInventoryForLevelChange(CSerializeWrapper<ISerialize>) = 0;
+	virtual bool IsSerializingForLevelChange() = 0;
+	virtual int GetAmmoCount(const IEntityClass*) = 0;
+	virtual void GiveAmmo(const IEntityClass*, int) = 0;
+	virtual void RemoveAmmo(const IEntityClass*, int) = 0;
+	virtual bool CanGiveAmmo(const IEntityClass*) = 0;
+	virtual IActor* GetActor() = 0;
+	virtual void SetInventorySlotCapacity(IInventory::EInventorySlots, unsigned int) = 0;
+	virtual void AssociateItemCategoryToSlot(const char*, IInventory::EInventorySlots) = 0;
+	virtual bool IsAvailableSlotForItemClass(const char*) = 0;
+	virtual bool IsAvailableSlotForItemCategory(const char*) = 0;
+	virtual bool AreItemsInSameSlot(const char*, const char*) = 0;
+	virtual IInventory::EInventorySlots GetSlotForItemCategory(const char*) = 0;
+	virtual void AddListener(IInventoryListener*) = 0;
+	virtual void RemoveListener(IInventoryListener*) = 0;
 };
 
 struct IArkPlayer
