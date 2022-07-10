@@ -9,6 +9,8 @@
 #include "EntityUtils.h"
 #include "ChairloaderGui.h"
 #include "Profiler.h"
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include <detours/detours.h>
 
 ChairLoader *gCL = nullptr;
 namespace {
@@ -220,7 +222,7 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 void ChairLoader::CreateConsole() {
 	AllocConsole();
 	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
-	std::cout << "Welcome to funland sonic\n";
+	printf("Welcome to funland sonic\n");
 }
 
 void ChairLoader::LoadPreyPointers() {

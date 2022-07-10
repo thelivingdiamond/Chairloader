@@ -105,9 +105,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EntityUtils.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
@@ -713,6 +710,9 @@
     </ClInclude>
     <ClInclude Include="..\Common\Prey\CryGame\Game.h">
       <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="LibD3D11.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

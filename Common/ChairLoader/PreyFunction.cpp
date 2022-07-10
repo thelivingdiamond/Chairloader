@@ -1,5 +1,7 @@
 #include "pch.h"
 #include <ChairLoader/PreyFunction.h>
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include <detours/detours.h>
 
 namespace {
 bool s_bFuncsInited = false;

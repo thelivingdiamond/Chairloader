@@ -17,6 +17,7 @@
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEnums.h>
+#include <Prey/CryCore/Platform/CryWindows.h>
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 

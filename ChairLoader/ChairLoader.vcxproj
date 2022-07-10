@@ -436,9 +436,9 @@
     <ClInclude Include="DevConsoleDialog.h" />
     <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="ChairLoaderImGui.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="ImGui\imgui_widget_flamegraph.h" />
+    <ClInclude Include="LibD3D11.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PerfOverlay.h" />
     <ClInclude Include="Profiler.h" />

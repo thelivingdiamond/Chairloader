@@ -3,6 +3,7 @@
 #include <imgui.h>
 #include <Prey/CryInput/BaseInput.h>
 #include "PreyFunctions.h"
+#include "LibD3D11.h"
 
 class ITexture;
 
