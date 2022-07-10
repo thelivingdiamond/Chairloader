@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-
+#include <Prey/CrySystem/System.h>
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "preyDllObjects.h"
@@ -115,10 +115,10 @@ public:
                         control.freeCam = !control.freeCam;
                         if(control.freeCam) {
 								control.devMode = true;
-								gPreyFuncs->CSystemF->setDevMode((CSystem *)gEnv->pSystem, control.devMode);
+                                ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
 								gEnv->pConsole->ExecuteString("FreeCamEnable", false, true);
                         } else {
-                            gPreyFuncs->CSystemF->setDevMode((CSystem*)gEnv->pSystem, control.devMode);
+                            ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
                             gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
                         }
                     }

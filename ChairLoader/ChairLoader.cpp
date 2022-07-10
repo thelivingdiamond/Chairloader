@@ -2,7 +2,7 @@
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>
-#include <Prey/CrySystem/IConsole.h>
+#include <Prey/CrySystem/System.h>
 #include <ChairLoader/PreyFunction.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
@@ -134,11 +134,11 @@ void ChairLoader::UpdateFreeCam() {
 		CryLog("Freecam state: %u\n", m_FreeCamEnabled);
 		if (m_FreeCamEnabled) {
 			m_DevMode = true;
-			gPreyFuncs->CSystemF->setDevMode((CSystem *)gEnv->pSystem, m_DevMode);
+			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
 			gEnv->pConsole->ExecuteString("FreeCamEnable", false, true);
 		}
 		else {
-			gPreyFuncs->CSystemF->setDevMode((CSystem*)gEnv->pSystem, m_DevMode);
+			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
 			gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
 		}
 	}

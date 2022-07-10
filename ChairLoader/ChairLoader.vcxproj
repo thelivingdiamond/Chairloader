@@ -413,6 +413,7 @@
     <ClInclude Include="..\Common\Prey\CrySystem\ITimer.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\IValidator.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\Profiling.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\System.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\TimeValue.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\TimeValue_info.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\XML\IReadWriteXMLSink.h" />

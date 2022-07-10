@@ -705,6 +705,9 @@
     <ClInclude Include="..\Common\ChairLoader\FunctionHook.h">
       <Filter>Common\ChairLoader</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\System.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">

@@ -111,11 +111,6 @@ PreyFunctions::CXConsolePrivate::CXConsolePrivate(uintptr_t moduleBase) {
 	addLine = getFunctionAddr<_AddLine>(moduleBase, 0x0defa00);
 }
 
-PreyFunctions::CSystemPrivate::CSystemPrivate(uintptr_t moduleBase) {
-	setDevMode = getFunctionAddr<_SetDevMode>(moduleBase, 0x0dc7720);
-	GetTextModeConsole = getFunctionAddr<_GetTextModeConsole>(moduleBase, 0x0dc4cb0);
-}
-
 PreyFunctions::ArkFactionManagerPrivate::ArkFactionManagerPrivate(uintptr_t moduleBase) {
 	setEntityFaction = getFunctionAddr<_SetEntityFaction>(moduleBase, 0x14336a0);
 }
@@ -695,7 +690,6 @@ PreyFunctions::PreyFunctions(uintptr_t moduleBase) {
 	ArkNightmareSpawnManagerF = new ArkNightmareSpawnManagerPrivate(moduleBase);
 	CArkNpcSpawnerF = new CArkNpcSpawnerPrivate(moduleBase);
 	CXConsoleF = new CXConsolePrivate(moduleBase);
-	CSystemF = new CSystemPrivate(moduleBase);
 	ArkFactionManagerF = new ArkFactionManagerPrivate(moduleBase);
 	ArkNpcF = new ArkNpcPrivate(moduleBase);
 	CArkNpcSpawnCystoidF = new CArkNpcSpawnCystoidPrivate(moduleBase);

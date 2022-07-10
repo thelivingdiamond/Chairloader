@@ -98,12 +98,6 @@ public:
 		typedef void(__thiscall* _AddLine)(CXConsole*, char*); _AddLine addLine;//0defa00
 	};
 
-	class CSystemPrivate : PreyFunctionBaseOld {
-	public:
-		CSystemPrivate(uintptr_t moduleBase);
-		typedef void(__thiscall* _SetDevMode)(CSystem*, bool); _SetDevMode setDevMode;//0dc7720
-		typedef CWindowsConsole* (__thiscall* _GetTextModeConsole)(CSystem*); _GetTextModeConsole GetTextModeConsole;//0dc4cb0
-	};
 	class ArkHealthExtensionPrivate : PreyFunctionBaseOld{
 	public:
 		typedef void(__thiscall* _FullSerialize)(ArkHealthExtension*, CSerializeWrapper<ISerialize>); _FullSerialize fullSerialize;
@@ -718,7 +712,6 @@ public:
 	ArkNightmareSpawnManagerPrivate *ArkNightmareSpawnManagerF;
 	CArkNpcSpawnerPrivate *CArkNpcSpawnerF;
 	CXConsolePrivate *CXConsoleF;
-	CSystemPrivate *CSystemF;
 	ArkFactionManagerPrivate* ArkFactionManagerF;
 	ArkNpcPrivate* ArkNpcF;
 	ArkLocationManagerPrivate* ArkLocationManagerF;
