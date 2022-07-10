@@ -146,6 +146,10 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	CryLog("ChairLoader::InitSystem");
 	CryLog("ChairLoader: gEnv = 0x%p\n", gEnv);
 
+	// Increase log verbosity: messages, warnings, errors.
+	// Max level is 4 (eComment) but it floods the console.
+	gEnv->pConsole->ExecuteString("log_Verbosity 3");
+
 	LoadPreyPointers();
 	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
