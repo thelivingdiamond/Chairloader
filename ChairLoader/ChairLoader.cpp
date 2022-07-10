@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/System.h>
+#include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/CryGame/Game.h>
 #include <ChairLoader/PreyFunction.h>
 #include "ChairLoader.h"
@@ -151,6 +152,19 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
+
+	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
+	{
+		bool devMode = false;
+#ifdef DEBUG_BUILD
+		// Activate dev mode in debug build
+		devMode = true;
+#else
+		// Activate dev mode if user requested it
+		devMode = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "devmode") != nullptr;
+#endif
+		pSystem->SetDevMode(devMode);
+	}
 
 	LoadPreyPointers();
 	LoadConfigFile();
