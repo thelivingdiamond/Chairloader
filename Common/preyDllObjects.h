@@ -4633,7 +4633,6 @@ namespace ArkNpc {
 			bool m_param;
 		};
 		class ArkNpcAbilityInstance {};
-		class ICmdLine{};
 		class IAISignalExtraData{};
 		class CPNoise3{};
 		class SModuleInitInfo{};

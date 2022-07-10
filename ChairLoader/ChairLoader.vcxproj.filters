@@ -714,6 +714,9 @@
     <ClInclude Include="LibD3D11.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ICmdLine.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">

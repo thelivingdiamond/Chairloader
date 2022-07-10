@@ -405,6 +405,7 @@
     <ClInclude Include="..\Common\Prey\CrySystem\CryUtils.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\CryVersion.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\HardwareMouse.h" />
+    <ClInclude Include="..\Common\Prey\CrySystem\ICmdLine.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\IConsole.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ILocalizationManager.h" />
     <ClInclude Include="..\Common\Prey\CrySystem\ILog.h" />
