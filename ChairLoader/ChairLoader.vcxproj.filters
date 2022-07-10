@@ -61,6 +61,9 @@
     <Filter Include="Common\Prey\CryEntitySystem">
       <UniqueIdentifier>{aac44d27-6404-482c-b393-16d909c2bdb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\CryGame">
+      <UniqueIdentifier>{02ac69c4-d944-4d66-b8b0-75d7cc3ecef9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Common\Prey\CryInput">
       <UniqueIdentifier>{ebe54b63-1efe-4634-bdc3-d4786fb4497b}</UniqueIdentifier>
     </Filter>
@@ -97,11 +100,11 @@
     <Filter Include="Common\Prey\CryThreading">
       <UniqueIdentifier>{5d516fbd-7b3a-4499-8596-a08083fb7468}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\ChairLoader">
+      <UniqueIdentifier>{cb29669f-0ce1-460f-a1df-e4a067034d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EntityUtils.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
@@ -696,6 +699,24 @@
     <ClInclude Include="..\Common\Prey\CryCore\BitFiddling.h">
       <Filter>Common\Prey\CryCore</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\PreyFunction.h">
+      <Filter>Common\ChairLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\FunctionHook.h">
+      <Filter>Common\ChairLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\System.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\Game.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="LibD3D11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CrySystem\ICmdLine.h">
+      <Filter>Common\Prey\CrySystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -760,6 +781,11 @@
     </ClCompile>
     <ClCompile Include="ChairloaderGUIEntityManager.cpp">
       <Filter>Chairloader</Filter>
+    <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp">
+      <Filter>Common\ChairLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp">
+      <Filter>Common\ChairLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

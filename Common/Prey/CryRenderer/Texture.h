@@ -2,6 +2,7 @@
 #include "CryDX.h"
 #include <Prey/CryRenderer/CommonResource.h>
 #include <Prey/CryRenderer/ITexture.h>
+#include <ChairLoader/PreyFunction.h>
 #include <mem.h>
 
 class CDeviceTexture;
@@ -122,20 +123,21 @@ struct SResourceView
 	ResourceViewDesc m_Desc;
 	void *m_pDeviceResourceView;
 
-	static inline SResourceView(*FShaderResourceView)(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMostDetailedMip, int nMipCount, bool bSrgbRead, bool bMultisample, int nFlags);
-	static inline SResourceView(*FRenderTargetView)(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample);
-	//static inline SResourceView(*FDepthStencilView)(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample, int nFlags);
-	//static inline SResourceView(*FUnorderedAccessView)(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, int nFlags);
+	static inline auto FShaderResourceView = PreyFunction<SResourceView(
+		ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMostDetailedMip,
+		int nMipCount, bool bSrgbRead, bool bMultisample, int nFlags)>(0xFE6A40);
+	static inline auto FRenderTargetView = PreyFunction<SResourceView(
+		ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample)>(0xFE6550);
 };
 
 class __declspec(align(8)) CTexture : public ITexture, public CBaseResource {
 public:
 	static constexpr size_t OFFSET_m_pDevTexture = 0x30;
 	static constexpr size_t OFFSET_SHADER_RESOURCE = 0xB0;
-	static inline void (*FSetDevTexture)(CTexture *_this, CDeviceTexture *pDeviceTex);
-	static inline ETEX_Format(*FClosestFormatSupported)(CTexture *_this, ETEX_Format eTFDst);
-	static inline void *(*FGetResourceView)(CTexture *_this, const SResourceView &rvDesc);
-	static inline void (*FSetShaderResourceView)(CTexture *_this, D3DShaderResource *pDeviceShaderResource, bool bMultisampled);
+	static inline auto FSetDevTexture = PreyFunction<void(CTexture* _this, CDeviceTexture* pDeviceTex)>(0xFE6620);
+	static inline auto FClosestFormatSupported = PreyFunction<ETEX_Format(CTexture* _this, ETEX_Format eTFDst)>(0xF29150);
+	static inline auto FGetResourceView = PreyFunction<void* (CTexture* _this, const SResourceView& rvDesc)>(0xFE0760);
+	static inline auto FSetShaderResourceView = PreyFunction<void(CTexture* _this, D3DShaderResource* pDeviceShaderResource, bool bMultisampled)>(0xFE6860);
 
 	CDeviceTexture *GetDevTexture() const { return mem::OffsetInStruct<CDeviceTexture *>(this, OFFSET_m_pDevTexture); }
 	void SetDevTexture(CDeviceTexture *pDeviceTex) { FSetDevTexture(this, pDeviceTex); }

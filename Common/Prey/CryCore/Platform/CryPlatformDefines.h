@@ -14,7 +14,7 @@
 #if defined(__x86_64__) || defined(_M_X64)
 	#define CRY_PLATFORM_X64       1
 	#define CRY_PLATFORM_64BIT     1
-	#define CRY_PLATFORM_SSE2      1
+	#define CRY_PLATFORM_SSE2      0 // SIMD math not used in Prey
 #elif defined(__i386) || defined(_M_IX86)
 	#define CRY_PLATFORM_X86       1
 	#define CRY_PLATFORM_32BIT     1
