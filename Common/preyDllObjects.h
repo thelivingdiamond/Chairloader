@@ -18,6 +18,8 @@
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEnums.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
+
+#include "ArkItemSystem.h"
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
@@ -1730,54 +1732,7 @@ namespace ArkNpc {
 	
 
 
-	class StorageCell {
-	public:
-		uint32_t m_entityId;
-		int32_t m_x;
-		int32_t m_y;
-		int32_t m_width;
-		int32_t m_height;
-	};
-	class IArkItem : IGameObjectExtension
-	{
-	public:
-		virtual bool GiveOwner(const unsigned int) = 0;
-		virtual bool PickUp(const unsigned int, bool) = 0;
-		virtual void Drop(int, const Vec3_tpl<float>* const) = 0;
-		virtual bool CanPlayerCollect() = 0;
-		virtual int GetCount() = 0;
-		virtual void ResetCount(int) = 0;
-		virtual bool IsStackFull() = 0;
-		virtual bool Combine(IArkItem*, bool) = 0;
-		virtual const char* GetType() = 0;
-		virtual const char* GetName() = 0;
-		virtual unsigned __int64 GetArchetype() = 0;
-		virtual CryStringT<wchar_t>* GetDescription(CryStringT<wchar_t>* result) = 0;
-		virtual const char* GetIcon() = 0;
-		virtual std::pair<int, int>* GetInventoryDimensions(std::pair<int, int>* result) = 0;
-		virtual bool IsStackable() = 0;
-		virtual int GetMaxStackSize() = 0;
-		virtual bool IsGrenade() = 0;
-		virtual bool IsEquippable() = 0;
-		virtual bool IsTrash() = 0;
-		virtual void SetLootRequirement(unsigned __int64) = 0;
-		virtual bool CanLoot() = 0;
-		virtual bool CanUse() = 0;
-		virtual void Use() = 0;
-		virtual void UseFromWorld() = 0;
-		virtual void UseFromInventory() = 0;
-		virtual void Consume(int) = 0;
-		virtual bool CanConsume() = 0;
-		virtual bool CanConsumeFromWorld() = 0;
-		virtual bool IsWeapon() = 0;
-		virtual bool IsEqual(const IArkItem*) = 0;
-		virtual bool IsArchetype(const unsigned __int64) = 0;
-		virtual bool IsArchetype(const IEntityArchetype*) = 0;
-		virtual bool HasMetaTags(const std::vector<unsigned __int64>*) = 0;
-		virtual unsigned int GetOwnerId() = 0;
-
-
-	};
+	
 	enum class Category : uint32_t {
 		none = 0,
 		weapons = 1,
@@ -1786,6 +1741,7 @@ namespace ArkNpc {
 		special = 4
 	};
 	class CArkItem {
+	public:
 		//TODO: add vtable here
 		undefined pad[72];
 		int32_t m_maxRandomCount, m_minRandomCount;
@@ -1850,8 +1806,7 @@ namespace ArkNpc {
 		bool m_bPlotCritical;
 		undefined pad11[7];
 	};
-	class ArkInventory
-	{
+	class IArkInventory {
 	public:
 		virtual int  GetWidth() {}
 		virtual int  GetMaxWidth() {}
@@ -1876,18 +1831,77 @@ namespace ArkNpc {
 		virtual bool  IsEmpty() {}
 		virtual void  NotifyAdded(uint32_t param_1, uint32_t param_2) {}
 		virtual void  NotifyOfItemCountChange(uint32_t param_1) {}
-		virtual void  DoMetricsSnapshot( XmlNodeRef* param_1) {}
-		char pad_0000[80]; //0x0000
-		bool m_bSortDirty; //0x0058
-		bool m_bSerializeOpen; //0x0059
-		bool m_bPreventStorage; //0x005A
-		bool m_bTakesTrash; //0x005B
-		EArkGridSizes m_size; //0x005C
-		std::vector<StorageCell> m_storedItems; //0x0060
-		class ArkSimpleTimer m_lookAtTimer; //0x0078
-		InventorySort m_currentSort; //0x0080
-		char pad_0084[4]; //0x0084
-	}; //Size: 0x0088
+		virtual void  DoMetricsSnapshot(XmlNodeRef* param_1) {}
+	};
+	class ArkInteractionTestResult {
+	public:
+		bool m_bPassedTest;
+		bool m_bHideLine;
+		CryStringT<char> m_actionVerb;
+		CryStringT<wchar_t> m_localizedActionVerb;
+		CryStringT<char> m_requirementText;
+		CryStringT<wchar_t> m_localizedRequirementText;
+	};
+	class IArkPlayerInteractionListener {
+	public:
+		virtual bool OnInteraction( EArkInteractionType,  EArkInteractionMode, const  IEntity*) = 0;// Offset=0x0 Size=0x3
+		virtual bool OnHoldToUseStopped(const  IEntity*) = 0;// Offset=0x0 Size=0x3
+		virtual bool OnSpecialUseStopped(const  IEntity*) = 0;// Offset=0x0 Size=0x3
+		virtual bool TestInteraction(const  IEntity*,  ArkInteractionInfo&,  EArkInteractionMode,  ArkInteractionTestResult&) = 0;// Offset=0x0 Size=0x3
+		virtual bool PopulateInteractionInfo(const  IEntity*,  std::array<ArkInteractionInfo, 4>&) = 0;// Offset=0x0 Size=0x3
+		virtual bool PopulateRemoteManipulationInteraction(const  IEntity*,  ArkInteractionInfo&) = 0;// Offset=0x0 Size=0x3
+		virtual Vec3_tpl<float> GetInteractionPosition(const  IEntity*) = 0;// Offset=0x0 Size=0xc
+		virtual void OnStartLookingAt(unsigned int) = 0;// Offset=0x0 Size=0x3
+		virtual void OnStopLookingAt(unsigned int) = 0;// Offset=0x0 Size=0x3
+		virtual void OnInteractionInfoChanged(unsigned int) = 0;// Offset=0x0 Size=0x3
+		virtual bool HideDisplayName(const  IEntity*) = 0;// Offset=0x0 Size=0x3
+	};
+	class ArkInventory : public CGameObjectExtensionHelper<ArkInventory, IGameObjectExtension, 64>, public IArkPlayerInteractionListener, public IEntityEventListener, public IArkInventory// Size=0x88 (Id=125206)
+	{
+	public:
+		static const int k_defaultExternalInventoryWidth = 6;// Offset=0x0 Size=0x4
+		static const int k_tinyExternalInventoryWidth = 1;// Offset=0x0 Size=0x4
+		static const int k_tinyExternalInventoryHeight = 1;// Offset=0x0 Size=0x4
+		static const int k_smallExternalInventoryHeight = 2;// Offset=0x0 Size=0x4
+		static const int k_mediumExternalInventoryHeight = 4;// Offset=0x0 Size=0x4
+		static const int k_largeExternalInventoryHeight = 8;// Offset=0x0 Size=0x4
+		static const int k_chipSetHeight = 100;// Offset=0x0 Size=0x4
+		enum EArkGridSizes
+		{
+			tinyExternal = 0,
+			smallExternal = 1,
+			mediumExternal = 2,
+			largeExternal = 3,
+			chipSet = 4,
+			player = 5,
+			overflow = 6
+		};
+		struct StorageCell// Size=0x14 (Id=490101)
+		{
+			unsigned int m_entityId;// Offset=0x0 Size=0x4
+			int m_x;// Offset=0x4 Size=0x4
+			int m_y;// Offset=0x8 Size=0x4
+			int m_width;// Offset=0xc Size=0x4
+			int m_height;// Offset=0x10 Size=0x4
+		};
+		bool m_bSortDirty;// Offset=0x58 Size=0x1
+		bool m_bSerializeOpen;// Offset=0x59 Size=0x1
+		bool m_bPreventStorage;// Offset=0x5a Size=0x1
+		bool m_bTakesTrash;// Offset=0x5b Size=0x1
+		EArkGridSizes m_size;// Offset=0x5c Size=0x4
+		class std::vector<ArkInventory::StorageCell> m_storedItems;// Offset=0x60 Size=0x18
+		class ArkSimpleTimer m_lookAtTimer;// Offset=0x78 Size=0x8
+		enum InventorySort
+		{
+			none = 0,
+			name = 1,
+			category = 2,
+			size = 3,
+			last = 4
+		};
+		InventorySort m_currentSort;// Offset=0x80 Size=0x4
+	};
+
 
 	class ArkRandomizedTimer {
 	public:
@@ -2002,7 +2016,6 @@ namespace ArkNpc {
 
 	class ArkMaterialAnimationType{};
 	class Package{};
-	class ArkInteractionTestResult{};
 	class ArkSpatiallySortedKey {
 	public:
 		uint64_t m_index;
@@ -6026,7 +6039,6 @@ namespace ArkNpc {
 		class ArkGameStateConditionManager{};
 		class ArkHackingUI{};
 		class ArkIndicatorIconManager{};
-		class ArkItemSystem{};
 		class ArkLevelMapComponent{};
 		class ArkLightManager{};
 		class ArkLocationManager{};
@@ -6112,6 +6124,7 @@ namespace ArkNpc {
 			undefined field67_0x1d5;
 			undefined field68_0x1d6;
 			undefined field69_0x1d7;
+			static inline auto GetArkGame = PreyFunction<ArkGame*()>(0x116d820);
 		};
 		class ArkActiveUserManagerBase{};
 		class CLevelSystem{};

@@ -184,7 +184,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir);../Common;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Visual Studio\2022\Community\DIA SDK\include;$(ProjectDir);../Common</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -429,6 +429,7 @@
     <ClInclude Include="..\Common\Prey\CryThreading\IThreadTask.h" />
     <ClInclude Include="..\Common\proc.h" />
     <ClInclude Include="..\Common\VTableHook.h" />
+    <ClInclude Include="ArkItemSystem.h" />
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="ChairloaderGUIEntityManager.h" />

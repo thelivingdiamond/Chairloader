@@ -12,13 +12,12 @@
 #include "Profiler.h"
 #include "DevConsoleDialog.h"
 // #include <stack>
-//TODO: INCLUDE LISTENER/HANDLER FUNCTIONS
 
 class ChairloaderGui {
 
 private:
     const std::string modName = "ChairloaderGUI";
-    //TODO: rethink this one
+    //TODO: rethink the control variable
     struct chairloaderGuiControl {
         bool showPlayerManager = false,
             showEntityManager = false,
@@ -163,7 +162,6 @@ public:
             drawHandleMutex.lock();
             entityManager.update(&log);
             playerManager.update(&log);
-            //TODO: run other GUI handlers in here 
             drawHandleMutex.unlock();
         }
         perfOverlay.Update();

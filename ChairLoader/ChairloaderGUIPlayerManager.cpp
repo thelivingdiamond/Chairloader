@@ -66,7 +66,6 @@ void ChairloaderGUIPlayerManager::drawPositionTab() {
 			ImGui::EndCombo();
 		}
 		if (ImGui::Button("Save Position")) {
-			// TODO: get player position and save it to the position list
 			if (gEntUtils->ArkPlayerPtr() != nullptr) {
 				savedPositions[index] = gEntUtils->ArkPlayerPtr()->GetEntity()->GetPos();
 				GUILog->logItem(positionStrings[index] + " set to " + std::to_string(savedPositions[index].x) + "," + std::to_string(savedPositions[index].y) + "," + std::to_string(savedPositions[index].z), modName);
@@ -145,84 +144,136 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 	if (gEntUtils->ArkPlayerPtr() != nullptr) {
 		inventoryItems.clear();
 		for (auto& cell : gEntUtils->ArkPlayerPtr()->m_pInventory->m_storedItems) {
-			std::pair <int, StorageCell> newItem = { cell.m_entityId, cell };
+			std::pair <int, ArkInventory::StorageCell> newItem = { cell.m_entityId, cell };
 			inventoryItems.insert(newItem);
 		}
 	}
-	if (ImGui::BeginTabItem("Inventories")) {
-		if (ImGui::BeginChild("InventoryTable", ImVec2(0, 0), true)) {
-			if (ImGui::BeginTable("InventoryTable", 5, ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuterV | ImGuiTableFlags_BordersOuterH)) {
-				ImGui::TableSetupColumn("Item");
-				ImGui::TableSetupColumn("x", ImGuiTableColumnFlags_WidthFixed);
-				ImGui::TableSetupColumn("y", ImGuiTableColumnFlags_WidthFixed);
-				ImGui::TableSetupColumn("width", ImGuiTableColumnFlags_WidthFixed);
-				ImGui::TableSetupColumn("height", ImGuiTableColumnFlags_WidthFixed);
-				ImGui::TableHeadersRow();
-				for (auto& item : inventoryItems) {
-					ImGui::TableNextRow();
-					ImGui::TableSetColumnIndex(0);
-					// ImGui::Text("%d", item.first);
-					IEntity* itemEntity = gEnv->pEntitySystem->GetEntity(item.first);
-					if (itemEntity != nullptr) {
-						if(itemEntity->GetArchetype() != nullptr) {
-							ImGui::Text("%s", itemEntity->GetArchetype()->GetName());
-						}
-						
-					}
-					ImGui::TableSetColumnIndex(1);
-					ImGui::Text("%d", item.second.m_x);
-					ImGui::TableSetColumnIndex(2);
-					ImGui::Text("%d", item.second.m_y);
-					ImGui::TableSetColumnIndex(3);
-					ImGui::Text("%d", item.second.m_width);
-					ImGui::TableSetColumnIndex(4);
-					ImGui::Text("%d", item.second.m_height);
+	if(ImGui::BeginTabItem("Inventory Test")) {
+		float size = 75.0f;
+		int inventoryWidth = 0, inventoryHeight = 0;
+		if (gEntUtils->ArkPlayerPtr() != nullptr) {
+			inventoryHeight = gEntUtils->ArkPlayerPtr()->m_pInventory->GetHeight();
+			inventoryWidth = gEntUtils->ArkPlayerPtr()->m_pInventory->GetWidth();
+		}
+		else {
+			inventoryWidth = 12;
+			inventoryHeight = 8;
+		}
+		ImGui::SetWindowSize(ImVec2(inventoryWidth * size + 40, inventoryHeight * size + 30 + 300));
+		static unsigned int selected = 0;
+		ArkGame* game = game->GetArkGame();
+		ArkItemSystem* itemSystem = game->m_pArkItemSystem.get();
+		if (ImGui::BeginChild("Inventory Grid", ImVec2(inventoryWidth * size + 20, inventoryHeight * size + 30), false)) {
+			ImGui::Text("Inventory: ");
+				// ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 20, ImGui::GetCursorPos().y + 20));
+				ImVec2 windowPos = ImGui::GetCursorPos();
+				ImVec2 screenCursorPos = ImGui::GetCursorScreenPos();
+				
+				// loop 12 times
+				ImDrawList* draw_list = ImGui::GetWindowDrawList();
+				for (int i = 0; i <= inventoryWidth; i++) {
+					draw_list->AddLine(ImVec2(screenCursorPos.x + i * size, screenCursorPos.y), ImVec2(screenCursorPos.x + i * size, screenCursorPos.y + inventoryHeight * size), ImColor(255, 255, 255, 80));
 				}
-				ImGui::EndTable();
+			// draw the horizontal lines
+			for (int i = 0; i <= inventoryHeight; i++) {
+				draw_list->AddLine(ImVec2(screenCursorPos.x, screenCursorPos.y + i * size), ImVec2(screenCursorPos.x + inventoryWidth * size, screenCursorPos.y + i * size), ImColor(255, 255, 255, 80));
+			}
+			for (auto& item : inventoryItems) {
+				std::wstring name;
+				wstring localizedName;
+				std::string stringname = "";
+				IArkItem* itemObj = itemSystem->getItem(itemSystem, item.first);
+				if (itemObj != nullptr) {
+					gEnv->pSystem->GetLocalizationManager()->LocalizeString(itemObj->GetName(), localizedName);
+				}
+				name = localizedName.c_str();
+				std::string name_string = std::string(name.begin(), name.end());
+				ImGui::SetCursorPos(ImVec2(windowPos.x + (item.second.m_x - 1) * size, windowPos.y + (item.second.m_y - 1) * size));
+				ImGuiUtils::textRectangle(name_string, item.second.m_width * size, item.second.m_height * size, ImColor(255, 255, 255, 255), ImColor(20, 20, 20, 255));
+
+				ImGui::SetCursorPos(ImVec2(windowPos.x + (item.second.m_x - 1) * size, windowPos.y + (item.second.m_y - 1) * size));
+				ImGui::PushID(std::to_string(item.first).c_str());
+				ImGui::PushStyleColor(ImGuiCol_Button, ImColor(255, 255, 255, 0).Value);
+				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImColor(255, 255, 255, 60).Value);
+				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImColor(255, 255, 255, 120).Value);
+				if (ImGui::Button("", ImVec2(item.second.m_width * size, item.second.m_height * size))) {
+					// GUILog->logItem(name_string + " Pressed!", modName);
+					selected = item.first;
+				}
+				ImGui::PopID();
+				ImGui::PopStyleColor(3);
+				
+			}
+			// ImGuiUtils::textRectangle("Fuck", 128, 128, ImColor(255, 180, 255, 255));
+			ImGui::EndChild();
+			
+		}
+		// ImGui::SameLine();
+		if(ImGui::BeginChild("Item Editor", ImVec2(0, 300))) {
+			if (selected != 0) {
+				IArkItem* selectedItem = itemSystem->getItem(itemSystem, selected);
+				CArkItem* selectedItemObj = (CArkItem*)selectedItem;
+				if (selectedItem != nullptr) {
+					ImGui::Separator();
+					std::wstring name;
+					wstring localizedName;
+					gEnv->pSystem->GetLocalizationManager()->LocalizeString(selectedItem->GetName(), localizedName);
+					name = localizedName.c_str();
+
+					ImGui::Text("%ls", name.c_str());
+					ImGui::Text("ID:%u", selected);
+					ImGui::Columns(2);
+					ImGui::Text("Archetype: %s", gEnv->pEntitySystem->GetEntity(selected)->GetArchetype()->GetName());
+					ImGui::NextColumn();
+					ImGui::Text("Count: %i", selectedItem->GetCount());
+					ImGui::NextColumn();
+					ImGui::Text("Unlocalized: %s", selectedItem->GetName());
+					ImGui::NextColumn();
+					ImGui::Text("Equippable: %i", selectedItem->IsEquippable());
+					ImGui::NextColumn();
+					ImGui::Text("Icon: %s", selectedItem->GetIcon());
+					ImGui::NextColumn();
+					ImGui::Text("Is Grenade: %u", selectedItem->IsGrenade());
+					ImGui::NextColumn();
+					ImGui::Text("Is Trash: %u", selectedItem->IsTrash());
+					ImGui::NextColumn();
+					ImGui::Text("Is Weapon: %u", selectedItem->IsWeapon());
+					ImGui::Columns(1);
+					ImGui::Separator();
+					if (selectedItem->CanUse()) {
+						if (ImGui::Button("Use"))
+							selectedItem->Use();
+						ImGui::SameLine();
+					}
+					if (ImGui::Button("Use From Inventory"))
+						selectedItem->UseFromInventory();
+					ImGui::SameLine();
+					if (ImGui::Button("Use From World"))
+						selectedItem->UseFromWorld();
+					Vec3_tpl<float> playerpos;
+					gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(gEntUtils->ArkPlayerPtr(), &playerpos);
+					if (ImGui::Button("Drop"))
+						selectedItem->Drop(1, &playerpos);
+					if (selectedItem->CanConsume()) {
+						ImGui::SameLine();
+						if (ImGui::Button("Consume"))
+							selectedItem->Consume(1);
+					}
+					ImGui::InputInt("Item Count", &selectedItemObj->m_count);
+					ImGui::Checkbox("Stackable", &selectedItemObj->m_bStackable);
+					ImGui::SameLine();
+					ImGui::BeginDisabled();
+					ImGui::Checkbox("Favorite", &selectedItemObj->m_bFavorite);
+					ImGui::EndDisabled();
+					ImGui::SameLine();
+					ImGui::Checkbox("Junk", &selectedItemObj->m_bJunk);
+					ImGui::SameLine();
+					ImGui::Checkbox("Important", &selectedItemObj->m_bIsImportant);
+				}
 			}
 			ImGui::EndChild();
 		}
-
-
-		ImGui::EndTabItem();
-	}
-	if(ImGui::BeginTabItem("Inventory Test")) {
-		float size = 100.0f;
-		ImGui::Text("Inventory: "); 
-		// ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 20, ImGui::GetCursorPos().y + 20));
-		ImVec2 windowPos = ImGui::GetCursorPos();
-		for (auto& item : inventoryItems) {
-			std::wstring name;
-			wstring localizedName;
-			std::string stringname = "";
-			IEntity* itemEntity = gEnv->pEntitySystem->GetEntity(item.first);
-			if (itemEntity != nullptr) {
-				if (itemEntity->GetArchetype() != nullptr) {
-					// auto proxy = (IGameObject*)itemEntity->GetProxy(EEntityProxy::ENTITY_PROXY_USER);
-					// // printf("%p", proxy);
-					// for (auto& extension : ((CGameObject*)proxy)->m_extensions) {
-					// 	printf("%p\n", &extension);
-					// }
-					std::string tempstring = itemEntity->GetArchetype()->GetName();
-					tempstring = tempstring.substr(tempstring.find_first_of(".") + 1, tempstring.size() - tempstring.find_first_of(".") - 1);
-					stringname = stringname + tempstring;
-					// boost::algorithm::to_lower(stringname);
-					if (gEnv->pSystem->GetLocalizationManager()->LocalizeString(stringname.c_str(), localizedName)) {
-						name = localizedName.c_str();
-					}
-					else {
-						name = L"fuck";
-					}
-				}
-				// name = itemEntity->GetDisplayName();
-			}
-			std::string name_string = std::string(name.begin(), name.end());
-			ImGui::SetCursorPos(ImVec2(windowPos.x + item.second.m_x * size, windowPos.y + item.second.m_y * size));
-			ImGuiUtils::selectableRectangle(name_string, item.second.m_width * size, item.second.m_height * size, ImColor(255, 180, 255, 255));
-		}
-		// ImGuiUtils::selectableRectangle("Fuck", 128, 128, ImColor(255, 180, 255, 255));
-
-
+		//TODO: add items
 		ImGui::EndTabItem();
 	}
 }

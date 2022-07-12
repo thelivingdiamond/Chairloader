@@ -679,6 +679,9 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 	// if(!io.WantCaptureKeyboard){
 	if ((event.deviceType == eIDT_Keyboard) && io.WantTextInput)
 		return;
+	// TODO: figure out exclusive mouse inputs for imgui
+	// if ((event.deviceType == eIDT_Mouse) && io.WantCaptureMouse)
+	// 	return;
 	m_pInstance->m_hookCBaseInputPostInputEvent(_this, event, bForce);
 	// }
 }

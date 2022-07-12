@@ -60,6 +60,8 @@ private:
     std::vector<CEntityArchetype*> archetypeFilteredList;
     std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &((CEntitySystem *)gEnv->pEntitySystem)->m_pEntityArchetypeManager->m_idToArchetypeMap;
     std::queue<entityModifyRequest> modifyQueue;
+    // bool entitySpawningMethod = false;
+
 
     inline CEntitySystem *GetEntitySystem() { return static_cast<CEntitySystem*>(gEnv->pEntitySystem); }
 

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ChairloaderGUIEntityManager.h"
 
+#include "Prey/Cry3DEngine/I3DEngine.h"
+
 ChairloaderGUIEntityManager::ChairloaderGUIEntityManager() {
     archetypeToSpawn = nullptr;
     // chairloaderGlobal = chairloaderIn;
@@ -53,7 +55,6 @@ void ChairloaderGUIEntityManager::drawEntitySpawner() {
             ImGui::InputFloat("Y", &spawnY);
             ImGui::InputFloat("Z", &spawnZ);
         }
-
         if (ImGui::Button("Spawn Entity")) {
             try {
                 if (archetypeToSpawn != nullptr) {
@@ -313,7 +314,6 @@ void ChairloaderGUIEntityManager::drawEntityList() {
                         }
 
                         ImGui::SameLine();
-                        //TODO: get scale working
                         ImGui::Button("Set Scale");
                         if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) {
                             newScale[1] = newScale[0];
@@ -777,7 +777,7 @@ void ChairloaderGUIEntityManager::archetypeSpawnRequestHandler(ChairloaderGUILog
                         params->vPosition.x += 0.05f;
                         // CryLog("Spawning\n");
                         entity = GetEntitySystem()->SpawnEntityFromArchetype((IEntityArchetype*)request.archetype, *params, true);
-
+                        GUILog->logItem(std::to_string(((uintptr_t)entity->GetAI())), modName);
                     }
                     else {
                         throw("Error, no archetype found\n");

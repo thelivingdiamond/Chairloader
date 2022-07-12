@@ -36,8 +36,7 @@ private:
 	std::vector<abilityEntry> abilityDisplayList;
 	std::queue<uint64_t> abilityRequestQueue;
 	std::queue<Vec3_tpl<float>> positionRequestQueue;
-	// TODO: inventory items
-	std::map<uint32_t, StorageCell> inventoryItems;
+	std::map<uint32_t, ArkInventory::StorageCell> inventoryItems;
 
 	// Handlers
 	void checkAbilities(ChairloaderGUILog* log);

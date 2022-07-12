@@ -714,6 +714,9 @@
     <ClInclude Include="LibD3D11.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
+    <ClInclude Include="ArkItemSystem.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
