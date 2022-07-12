@@ -205,9 +205,8 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 				
 			}
 			// ImGuiUtils::textRectangle("Fuck", 128, 128, ImColor(255, 180, 255, 255));
-			ImGui::EndChild();
-			
 		}
+		ImGui::EndChild();
 		// ImGui::SameLine();
 		if(ImGui::BeginChild("Item Editor", ImVec2(0, 300))) {
 			if (selected != 0) {
@@ -271,8 +270,8 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 					ImGui::Checkbox("Important", &selectedItemObj->m_bIsImportant);
 				}
 			}
-			ImGui::EndChild();
 		}
+		ImGui::EndChild();
 		//TODO: add items
 		ImGui::EndTabItem();
 	}

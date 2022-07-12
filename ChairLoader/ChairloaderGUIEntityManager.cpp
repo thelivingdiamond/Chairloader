@@ -2,7 +2,6 @@
 #include "ChairloaderGUIEntityManager.h"
 
 #include "Prey/Cry3DEngine/I3DEngine.h"
-
 ChairloaderGUIEntityManager::ChairloaderGUIEntityManager() {
     archetypeToSpawn = nullptr;
     // chairloaderGlobal = chairloaderIn;
@@ -13,20 +12,17 @@ ChairloaderGUIEntityManager::~ChairloaderGUIEntityManager() {
 
 }
 
-void ChairloaderGUIEntityManager::draw(bool* bShow) {
-    if (!ImGui::Begin("Entity Manager", bShow, ImGuiWindowFlags_NoNavInputs)) {
-        ImGui::End();
-        return;
-    }
-    if (ImGui::BeginTabBar("Entity Bar")) {
-        drawEntitySpawner();
-        drawEntityList();
-    }
-    ImGui::End();
-}
-
-void ChairloaderGUIEntityManager::drawEntitySpawner() {
-    if (ImGui::BeginTabItem("Entity Spawner")) {
+// void ChairloaderGUIEntityManager::draw(bool* bShow) {
+//     // if (!ImGui::Begin("Entity System", bShow, ImGuiWindowFlags_NoNavInputs)) {
+//     //     ImGui::End();
+//     //     return;
+//     // }
+//     // ImGui::End();
+//     drawEntitySpawner(bShow);
+//     drawEntityList(bShow);
+// }
+void ChairloaderGUIEntityManager::drawEntitySpawner(bool* bShow) {
+    if (ImGui::Begin("Entity Spawner", bShow)) {
         static bool usePlayerPos, offsetFromPlayer;
         static std::string inputId, inputName;
         static std::string statusMessage;
@@ -92,12 +88,11 @@ void ChairloaderGUIEntityManager::drawEntitySpawner() {
             }
         }
         ImGui::Text("Filter:");
-        ImGui::InputText("", &archetypeFilterText);
+        ImGui::InputText("##filter text", &archetypeFilterText);
         if (archetypeFilterText != oldArchetypeFilterText) {
             oldArchetypeFilterText = archetypeFilterText;
             archetypeFilterRequestQueue.push(archetypeFilterRequest{ archetypeFilterText });
         }
-        ImGui::SameLine();
         ImGuiUtils::HelpMarker("Filter usage:\n"
             "  \"\"         display all lines\n"
             "  \"xxx\"      display lines containing \"xxx\"\n"
@@ -141,16 +136,15 @@ void ChairloaderGUIEntityManager::drawEntitySpawner() {
                 statusMessage = "";
             ImGui::EndTable();
         }
-        ImGui::EndTabItem();
     }
+    ImGui::End();
 }
 
-void ChairloaderGUIEntityManager::drawEntityList() {
-    if (ImGui::BeginTabItem("Entity List")) {
+void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
+    if (ImGui::Begin("Entity List", bShow)) {
         {
-
             ImGui::BeginChild("left pane", ImVec2(250, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
-            ImGui::InputText("", &filterText);
+            ImGui::InputText("##input", &filterText);
             if (oldFilterText != filterText) {
                 oldFilterText = filterText;
                 refreshDisplayList = true;
@@ -392,7 +386,7 @@ void ChairloaderGUIEntityManager::drawEntityList() {
                                 ImGui::Text("%s", itrget->c_str());
                                 ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - 10.0f);
                                 std::string text = "0";
-                                ImGui::InputText("", &text, ImGuiInputTextFlags_ReadOnly);
+                                ImGui::InputText("##NPC", &text, ImGuiInputTextFlags_ReadOnly);
                                 ImGui::PopItemWidth();
                             }
                             else {
@@ -453,12 +447,11 @@ void ChairloaderGUIEntityManager::drawEntityList() {
             // if (ImGui::Button("Save")) {}
             ImGui::EndGroup();
         }
-        ImGui::EndTabItem();
     }
-    ImGui::EndTabBar();
+    ImGui::End();
 }
 
-void ChairloaderGUIEntityManager::drawMenuBar(bool* control) {
+void ChairloaderGUIEntityManager::drawMenuBar(bool* entityListShow, bool* entitySpawnerShow) {
     if (ImGui::BeginMenu("Entity")) {
         if (ImGui::BeginMenu("Spawn Entity")) {
             ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != nullptr);
@@ -550,7 +543,18 @@ void ChairloaderGUIEntityManager::drawMenuBar(bool* control) {
             // }
             ImGui::EndMenu();
         }
-        ImGui::MenuItem("Show Entity Manager", nullptr, control);
+        if(ImGui::MenuItem("Toggle All")) {
+            if(*entityListShow && *entitySpawnerShow) {
+                *entityListShow = false;
+                *entitySpawnerShow = false;
+            }
+            else {
+                *entityListShow = true;
+                *entitySpawnerShow = true;
+            }
+        }
+        ImGui::MenuItem("Show Entity List", nullptr, entityListShow);
+        ImGui::MenuItem("Show Entity Spawner", nullptr, entitySpawnerShow);
         ImGui::EndMenu();
     }
 }
