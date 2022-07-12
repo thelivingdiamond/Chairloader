@@ -88,12 +88,10 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(209, 37, 43, 255));
 			ImGui::ProgressBar(currentHealth / maxHealth);
 			ImGui::PopStyleColor();
-			ImGui::InputFloat("Set Health", &setHealth, 0, 0, "%.2f");
-			if (ImGui::Button("Set")) {
+			if (ImGui::InputFloat("Set Health", &setHealth, 0, 0, "%.2f")) {
 				gEntUtils->ArkPlayerPtr()->SetHealth(setHealth * 10);
+				setHealth = gEntUtils->ArkPlayerPtr()->GetHealth() / 10;
 			}
-			ImGui::SameLine();
-
 			ImGui::Checkbox("God Mode", &godMode);
 			ImGui::Text("Armor: %.2f / %.2f", currentArmor / 10, maxArmor / 10);
 			ImGui::ProgressBar(maxArmor / currentArmor);
@@ -148,7 +146,7 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 			inventoryItems.insert(newItem);
 		}
 	}
-	if(ImGui::BeginTabItem("Inventory Test")) {
+	if(ImGui::BeginTabItem("Inventory")) {
 		float size = 75.0f;
 		int inventoryWidth = 0, inventoryHeight = 0;
 		if (gEntUtils->ArkPlayerPtr() != nullptr) {
@@ -159,7 +157,8 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 			inventoryWidth = 12;
 			inventoryHeight = 8;
 		}
-		ImGui::SetWindowSize(ImVec2(inventoryWidth * size + 40, inventoryHeight * size + 30 + 300));
+		if(!ImGui::IsWindowDocked())
+			ImGui::SetWindowSize(ImVec2(inventoryWidth * size + 40, inventoryHeight * size + 30 + 300));
 		static unsigned int selected = 0;
 		ArkGame* game = game->GetArkGame();
 		ArkItemSystem* itemSystem = game->m_pArkItemSystem.get();
