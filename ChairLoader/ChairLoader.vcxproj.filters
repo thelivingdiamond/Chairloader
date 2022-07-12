@@ -100,6 +100,9 @@
     <Filter Include="Common\Prey\CryGame">
       <UniqueIdentifier>{6961507f-cddc-48e8-bb1a-a2893c8bec20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="imgui-docking">
+      <UniqueIdentifier>{40c27b7c-5ed3-4784-a20a-923249a4ce86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityUtils.h">
@@ -717,6 +720,27 @@
     <ClInclude Include="ArkItemSystem.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
+    <ClInclude Include="..\imgui\imconfig.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_dx11.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_win32.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui_internal.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\misc\single_file\imgui_single_file.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\misc\cpp\imgui_stdlib.h">
+      <Filter>imgui-docking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -788,6 +812,30 @@
     <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp">
       <Filter>Common\Chairloader</Filter>
     </ClCompile>
+    <ClCompile Include="..\imgui\imgui.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_demo.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_draw.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\misc\cpp\imgui_stdlib.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_tables.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_widgets.cpp">
+      <Filter>imgui-docking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />
@@ -812,5 +860,7 @@
     <None Include="..\Common\Prey\CryMath\GeomQuery.inl">
       <Filter>Common\Prey\CryMath</Filter>
     </None>
+    <None Include="..\imgui\examples\example_emscripten_opengl3\shell_minimal.html" />
+    <None Include="..\imgui\examples\example_emscripten_wgpu\web\index.html" />
   </ItemGroup>
 </Project>

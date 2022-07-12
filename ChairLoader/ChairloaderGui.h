@@ -155,7 +155,9 @@ public:
             drawHandleMutex.unlock();
             
         }
+        ImGui::PopStyleVar();
     }
+    
     void update() {
         auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
         if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
