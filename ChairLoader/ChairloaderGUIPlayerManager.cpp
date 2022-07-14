@@ -75,10 +75,11 @@ void ChairloaderGUIPlayerManager::drawPositionTab() {
 	}
 }
 void ChairloaderGUIPlayerManager::drawHealthTab() {
-	if (ImGui::BeginTabItem("Health/Armor")) {
+	if (ImGui::BeginTabItem("Health/Statuses")) {
 		if (gEntUtils->ArkPlayerPtr() != nullptr) {
 			float currentHealth = gEntUtils->ArkPlayerPtr()->GetHealth();
 			float maxHealth = gEntUtils->ArkPlayerPtr()->GetMaxHealth();
+			ArkPlayer* player = player->GetInstancePtr();
 			float currentArmor = gEntUtils->ArkPlayerPtr()->GetArmor();
 			float maxArmor = gEntUtils->ArkPlayerPtr()->GetMaxArmor();
 			static float setHealth = 0;
@@ -95,6 +96,32 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			ImGui::Checkbox("God Mode", &godMode);
 			ImGui::Text("Armor: %.2f / %.2f", currentArmor / 10, maxArmor / 10);
 			ImGui::ProgressBar(maxArmor / currentArmor);
+			ImGui::Separator();
+			ImGui::Text("Statuses: ");
+			ImGui::Columns(2);
+			for(auto & status : gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_statuses) {
+				if(ImGui::Selectable(status.get()->m_desc.m_Name.m_str)) {
+					status->m_desc.m_Duration = 1000.0f;
+					status->Activate(0);
+					// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->ForceStatus
+					// status->UpdateHudIcon(status.get());
+					// status->UpdateVisuals(true, true);
+					// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->SetStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), status.get()->m_status, true, false);
+					// status.get()->UpdateVisuals(true, false);
+				}
+				ImGui::NextColumn();
+				ImGui::Text("%u", status.get()->IsEnabled());
+				ImGui::Text("%f", status.get()->m_desc.m_Duration);
+				// printf("Offset: %llX", (uintptr_t)&status->m_desc.m_Phases - (uintptr_t)&status->m_desc); //Offset: 136
+				// for(auto & phase : status->m_desc.m_Phases) {
+				// 	ImGui::Text("%s", phase.m_HudIcon.c_str());
+				// }
+				ImGui::NextColumn();
+			}
+			ImGui::Columns(1);
+			if(ImGui::Button("Add Status")) {
+				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(EArkPlayerStatus::Radiation);
+			}
 			// TODO: figure out armor and psi
 
 		}
@@ -134,6 +161,30 @@ void ChairloaderGUIPlayerManager::drawAbilitiesTab() {
 		//             
 		//         }
 		//     }
+		// }
+		ImGui::EndTabItem();
+	}
+	if(ImGui::BeginTabItem("Abilities Test")) {
+		auto abilityComponent = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get();
+		// static auto acquiredAbilities = abilityComponent->GetAcquiredAbilities(abilityComponent);
+		for(auto &power : gEntUtils->ArkPlayerPtr()->GetPsiPowerComponent(gEntUtils->ArkPlayerPtr())->m_powers) {
+			wstring localizedName;
+			gEnv->pSystem->GetLocalizationManager()->LocalizeString(power->GetDescription(), localizedName);
+			ImGui::Text("%ls",localizedName.c_str());
+		}
+		auto PsiPowerComponent = gEntUtils->ArkPlayerPtr()->GetPsiPowerComponent(gEntUtils->ArkPlayerPtr());
+		if(ImGui::Button("Smoke Form"))
+			PsiPowerComponent->UnlockPower(PsiPowerComponent, EArkPsiPowers::smokeForm, 1);
+		if (ImGui::Button("Fly Mode Fix"))
+			gEntUtils->ArkPlayerPtr()->SetFlyMode(0, 0.0f);
+		// for (auto &ability : acquiredAbilities) {
+		// 	ImGui::Text("1");
+		// 	// std::string acquired = std::to_string(ability->m_id);
+		// 	// if(ImGui::Selectable(acquired.c_str())) {
+		// 	// 	// ability->m_bAcquired = !ability->m_bAcquired;
+		// 	// }
+		// 	// ImGui::SameLine();
+		// 	// ImGui::Text("  %u", ability->m_bAcquired);
 		// }
 		ImGui::EndTabItem();
 	}

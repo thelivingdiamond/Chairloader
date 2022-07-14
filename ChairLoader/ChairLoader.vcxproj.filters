@@ -741,6 +741,21 @@
     <ClInclude Include="..\imgui\misc\cpp\imgui_stdlib.h">
       <Filter>imgui-docking</Filter>
     </ClInclude>
+    <ClInclude Include="ArkPsiPowerComponent.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkPlayerLight.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkPlayerMovementStates.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkProjectile.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkSignalSystem.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">

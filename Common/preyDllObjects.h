@@ -20,9 +20,12 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 
 #include "ArkItemSystem.h"
+#include "Prey/CryCore/functor.h"
+#include "Prey/CryPhysics/physinterface.h"
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
+class ArkPsiPowerTargetingComponent;
 class ArkStatModifier;
 class ArkResearchTopicData;
 class CEntity;
@@ -58,6 +61,7 @@ struct CActor;
 struct IActor;
 struct IArkPlayer;
 struct ArkPlayer;
+class ArkSimpleTimer;
 //ArkGame * getArkGame(
 	// CGame* (18)0x2c09010
 	// GEnv		  0x22418c0
@@ -75,6 +79,8 @@ struct IPhysicalWorld;
 struct IPhysRenderer;
 struct IThreadTask;
 struct EventPhysCollision;
+class ArkAudioTrigger;
+class ArkProperty;
 
 enum class EWinVersion {
 	WinUndetected = 0,
@@ -148,11 +154,6 @@ namespace ArkNpc {
 	};
 	
 
-	enum class enumEPlayerSex : int32_t
-	{
-		none = 0
-	};
-	
 
 
 	
@@ -330,6 +331,7 @@ namespace ArkNpc {
 		std::vector<ArkAbilityData*> m_prereqs;
 		std::vector<ArkAbilityData*> m_children;
 		std::vector<ArkResearchTopicData*> m_researchTopicData;
+		std::vector<unsigned int> m_modifiers;
 		uint64_t m_id;
 		bool m_bSeen, m_bAcquired;
 		char pad[6];
@@ -342,15 +344,23 @@ namespace ArkNpc {
 		void* ptr;
 		std::vector<ArkAbility> m_Abilities;
 	};
-	class ArkAbilityComponent {
+
+	class IArkPDAListener
+	{
 	public:
-		void* ptr;
+		virtual void OnPDAOpen() = 0;
+		virtual void OnPDAOpenComplete() = 0;
+		virtual void OnPDAClose() = 0;
+	};
+
+	class ArkAbilityComponent : IArkPDAListener{
+	public:
 		std::vector<ArkAbilityData> m_abilities;
 		std::vector<ArkResearchTopicData> m_researchTopics;
 		uint64_t m_lastResearchedAbility;
 		int32_t m_partialTyphonThreshold,
 				m_fullTyphonThreshold;
-			
+		static inline auto GetAcquiredAbilities = PreyFunction < std::vector<ArkAbilityData const*>(ArkAbilityComponent* _this)>(0x153A5D0);
 	};
 	class ArkAudioLogComponent{ };
 	class ArkNoteComponent{ };
@@ -374,7 +384,277 @@ namespace ArkNpc {
 	class ArkPlayerFXComponent{ };
 	class ArkPlayerUIComponent{ };
 	class ArkFabricationPlanComponent{ };
-	class ArkPlayerStatusComponent{ };
+
+	class ArkReflectedObject{};
+	class ArkProperty {
+	public:
+		void* ptr;
+		CryStringT<char> m_name;
+		char* m_typeStr;
+		EArkType m_arkType;
+		char pad[4];
+	};
+	class ArkSignalModifer : ArkReflectedObject {
+		bool m_IsInbound;
+		unsigned __int64 m_ModifierId;
+	};
+	class ArkStatModifier {
+	public:
+		CCryName m_StatName;
+		float m_Modifier;
+	};
+	class ArkTimeRemaining
+	{
+	public:
+		static inline auto HasElapsed = PreyFunction<bool (ArkTimeRemaining*)>(0x12585F0);
+		static inline auto Invalidate = PreyFunction<void (ArkTimeRemaining*)>(0x1258600);
+		static inline auto IsValid = PreyFunction<bool (ArkTimeRemaining*)>(0x1258620);
+		static inline auto Update = PreyFunction<bool (ArkTimeRemaining*, float)>(0x12589B0);
+		static inline auto SetElapsed = PreyFunction<void (ArkTimeRemaining*)>(0x1B216D0);
+		float m_timeRemaining;
+	};
+	class ArkSimpleTimer : ArkTimeRemaining
+	{
+	public:
+		static inline auto SetDuration = PreyFunction<void (float duration, bool bResetTimer)>(0x1258850);
+		float m_duration;
+	};
+
+	class ArkAudioTrigger
+	{
+	public:
+		char pad_0000[4]; //0x0000
+	}; //Size: 0x0004
+	class ArkConditionalSignalModifier : ArkSignalModifer {
+	public:
+		bool m_IsActiveInAlternateForm;
+	};
+	class ArkConditionalStatModifier : ArkStatModifier {
+	public:
+		bool m_IsActiveInAlternateForm;
+	};
+	class ArkTraumaPhase : ArkReflectedObject
+	{
+	public:
+		float m_DamageThreshold;
+		CryStringT<char> m_Description;
+		CryStringT<char> m_AltOxygenDescription;
+		CryStringT<char> m_HudIcon;
+		std::vector<ArkConditionalSignalModifier> m_SignalModifiers;
+		std::vector<ArkConditionalStatModifier> m_StatModifiers;
+	};
+	class ArkTrauma : public ArkReflectedObject// Size=0xb0 (Id=120859)
+	{
+	public:
+		class ArkIDProperty : public ArkProperty// Size=0x20 (Id=761699)
+		{};
+		// static ArkIDProperty s_ArkIDProperty;// Offset=0x0 Size=0x20
+		uint64_t m_ID;// Offset=0x0 Size=0x8
+
+		class ArkNameProperty : public ArkProperty// Size=0x20 (Id=761738)
+		{};
+		// static ArkNameProperty s_ArkNameProperty;// Offset=0x0 Size=0x20
+		CCryName m_Name;// Offset=0x8 Size=0x8
+
+		class ArkLabelProperty : public ArkProperty// Size=0x20 (Id=761795)
+		{};
+		// static ArkLabelProperty s_ArkLabelProperty;// Offset=0x0 Size=0x20
+		CCryName m_Label;// Offset=0x10 Size=0x8
+
+		class ArkSurvivalModeProperty : public ArkProperty// Size=0x20 (Id=761850)
+		{};
+		// static ArkSurvivalModeProperty s_ArkSurvivalModeProperty;// Offset=0x0 Size=0x20
+		bool m_SurvivalMode;// Offset=0x18 Size=0x1
+
+		class ArkHowToRemoveProperty : public ArkProperty// Size=0x20 (Id=761890)
+		{};
+		// static ArkHowToRemoveProperty s_ArkHowToRemoveProperty;// Offset=0x0 Size=0x20
+		CryStringT<char> m_HowToRemove;// Offset=0x20 Size=0x8
+
+		class ArkDoesStackProperty : public ArkProperty// Size=0x20 (Id=761939)
+		{};
+		// static ArkDoesStackProperty s_ArkDoesStackProperty;// Offset=0x0 Size=0x20
+		bool m_DoesStack;// Offset=0x28 Size=0x1
+		class ArkMaxAccumulationProperty : public ArkProperty// Size=0x20 (Id=761977)
+		{
+		};
+		// static ArkMaxAccumulationProperty s_ArkMaxAccumulationProperty;// Offset=0x0 Size=0x20
+		float m_MaxAccumulation;// Offset=0x2c Size=0x4
+
+		class ArkDrainRateProperty : public ArkProperty// Size=0x20 (Id=762017)
+		{
+		};
+		// static ArkDrainRateProperty s_ArkDrainRateProperty;// Offset=0x0 Size=0x20
+		float m_DrainRate;// Offset=0x30 Size=0x4
+
+		class ArkRemoveOnDrainProperty : public ArkProperty// Size=0x20 (Id=762055)
+		{
+		};
+		// static ArkRemoveOnDrainProperty s_ArkRemoveOnDrainProperty;// Offset=0x0 Size=0x20
+		bool m_RemoveOnDrain;// Offset=0x34 Size=0x1
+
+		class ArkFillHudIconProperty : public ArkProperty// Size=0x20 (Id=762093)
+		{
+		};
+		// static ArkFillHudIconProperty s_ArkFillHudIconProperty;// Offset=0x0 Size=0x20
+		bool m_FillHudIcon;// Offset=0x35 Size=0x1
+
+		class ArkSuitVOProperty : public ArkProperty// Size=0x20 (Id=762131)
+		{
+		};
+		// static ArkSuitVOProperty s_ArkSuitVOProperty;// Offset=0x0 Size=0x20
+		uint64_t m_SuitVO;// Offset=0x38 Size=0x8
+
+		class ArkPlayerMaterialProperty : public ArkProperty// Size=0x20 (Id=762169)
+		{
+		};
+		// static ArkPlayerMaterialProperty s_ArkPlayerMaterialProperty;// Offset=0x0 Size=0x20
+		CryStringT<char> m_PlayerMaterial;// Offset=0x40 Size=0x8
+		
+		class ArkPlayerMaterialPriorityProperty : public ArkProperty// Size=0x20 (Id=762216)
+		{
+		};
+		// static ArkPlayerMaterialPriorityProperty s_ArkPlayerMaterialPriorityProperty;// Offset=0x0 Size=0x20
+		int m_PlayerMaterialPriority;// Offset=0x48 Size=0x4
+		
+		class ArkTraumaSFXProperty : public ArkProperty// Size=0x20 (Id=762256)
+		{
+		};
+		// static ArkTraumaSFXProperty s_ArkTraumaSFXProperty;// Offset=0x0 Size=0x20
+		CryStringT<char> m_TraumaSFX;// Offset=0x50 Size=0x8
+
+		class ArkTraumaStopSFXProperty : public ArkProperty// Size=0x20 (Id=762303)
+		{};
+		// static ArkTraumaStopSFXProperty s_ArkTraumaStopSFXProperty;// Offset=0x0 Size=0x20
+		CryStringT<char> m_TraumaStopSFX;// Offset=0x58 Size=0x8
+		
+		class ArkDurationProperty : public ArkProperty// Size=0x20 (Id=762350)
+		{};
+		// static ArkDurationProperty s_ArkDurationProperty;// Offset=0x0 Size=0x20
+		float m_Duration;// Offset=0x60 Size=0x4
+
+		class ArkPostEffectProperty : public ArkProperty// Size=0x20 (Id=762388)
+		{};
+		// static ArkPostEffectProperty s_ArkPostEffectProperty;// Offset=0x0 Size=0x20
+		uint64_t m_PostEffect;// Offset=0x68 Size=0x8
+		
+		class ArkPostEffectParamProperty : public ArkProperty// Size=0x20 (Id=762426)
+		{
+		};
+		// static ArkPostEffectParamProperty s_ArkPostEffectParamProperty;// Offset=0x0 Size=0x20
+		uint64_t m_PostEffectParam;// Offset=0x70 Size=0x8
+
+		class ArkRepeatMinProperty : public ArkProperty// Size=0x20 (Id=762464)
+		{
+		};
+		// static ArkRepeatMinProperty s_ArkRepeatMinProperty;// Offset=0x0 Size=0x20
+		float m_RepeatMin;// Offset=0x78 Size=0x4
+		
+		class ArkRepeatMaxProperty : public ArkProperty// Size=0x20 (Id=762502)
+		{
+		};
+		// static ArkRepeatMaxProperty s_ArkRepeatMaxProperty;// Offset=0x0 Size=0x20
+		float m_RepeatMax;// Offset=0x7c Size=0x4
+
+		class ArkTagStateProperty : public ArkProperty// Size=0x20 (Id=762540)
+		{
+		};
+		// static ArkTagStateProperty s_ArkTagStateProperty;// Offset=0x0 Size=0x20
+		class CryStringT<char> m_TagState;// Offset=0x80 Size=0x8
+
+		class ArkRemoveSignalProperty : public ArkProperty// Size=0x20 (Id=762587)
+		{
+		};
+		// static ArkRemoveSignalProperty s_ArkRemoveSignalProperty;// Offset=0x0 Size=0x20
+		uint64_t m_RemoveSignal;// Offset=0x88 Size=0x8
+
+		class ArkAccumulateSignalProperty : public ArkProperty// Size=0x20 (Id=762625)
+		{
+		};
+		// static ArkAccumulateSignalProperty s_ArkAccumulateSignalProperty;// Offset=0x0 Size=0x20
+		uint64_t m_AccumulateSignal;// Offset=0x90 Size=0x8
+
+		class ArkPhasesProperty : public ArkProperty// Size=0x20 (Id=762663)
+		{
+		};
+		// static ArkPhasesProperty s_ArkPhasesProperty;// Offset=0x0 Size=0x20
+		class std::vector<ArkTraumaPhase> m_Phases;// Offset=0x98 Size=0x18
+
+		static inline auto getPhase = PreyFunction<ArkTraumaPhase* (ArkTrauma* _this, int _level)>(0x10857E0);
+		
+	};
+	class ArkRandomizedTimer : ArkSimpleTimer
+	{
+		float m_variation;
+	};
+	class ArkRandomizedAutoResetTimer : ArkRandomizedTimer
+	{
+	};
+
+	class ArkTraumaBase
+	{
+	public:
+		virtual ~ArkTraumaBase() = 0;
+		virtual void Serialize(CSerializeWrapper<ISerialize>) = 0;
+		virtual void PostSerialize() = 0;
+		virtual void Update(float) = 0;
+		virtual void Accumulate(float) = 0;
+		virtual void Activate(int level) = 0;
+		virtual void ForceRemove(bool) = 0;
+		virtual void ReduceAccumulation(float, bool) = 0;
+		virtual void Suspend() = 0;
+		virtual void Resume() = 0;
+		virtual void Reset() = 0;
+		virtual bool IsHarmful() = 0;
+		virtual bool IsMedical() = 0;
+		virtual bool ShowDamageIndicator() = 0;
+		virtual float GetMinPostEffectParamValue() = 0;
+		virtual bool IsEnabled() = 0;
+		virtual bool CanStack(float) = 0;
+		virtual void ReevaluatePhase(bool) = 0;
+		virtual void UpdateVisuals(bool bImmediate, bool bFromSerialize) = 0;
+		virtual void ApplyStatModifiers() = 0;
+		virtual void ResumeStatModifiers() = 0;
+		virtual void Stack() = 0;
+		virtual void RepeatEffect() = 0;
+		const unsigned __int64 m_id;
+		EArkPlayerStatus m_status;
+		bool m_bIsSuspended;
+		float m_currentAmount;
+		float m_prevActivationAmount;
+		int m_currentLevel;
+		ArkSimpleTimer m_hudIconTimer;
+		ArkTrauma m_desc;
+		float m_maxAccumulation;
+		ArkAudioTrigger m_traumaSFX;
+		ArkAudioTrigger m_traumaStopSFX;
+		ArkRandomizedAutoResetTimer m_repeatTimer;
+		ArkSimpleTimer m_traumaTimer;
+		IMaterial* m_pBlendMaterial;
+		std::vector<std::pair<unsigned int, bool>> m_activeStatModifiers;
+		const CCryName m_activationChanceStat;
+
+		static inline auto UpdateHudIcon = PreyFunction<void(ArkTraumaBase* _this)>(0x15B0C00);
+	};
+
+	class ArkPlayerStatusComponent
+	{
+	public:
+		static inline auto SetStatus = PreyFunction<void(ArkPlayerStatusComponent*,EArkPlayerStatus status, bool bActivate, bool bSilent)>(0x1463610);
+		static inline auto ForceStatus = PreyFunction<void(ArkPlayerStatusComponent*, EArkPlayerStatus, bool)>(0x1462210);
+		static inline auto AddHudIcon = PreyFunction<void(ArkPlayerStatusComponent*, CryStringT<char>&)>(0x1461f00);
+		struct TArmMaterial// Size=0x10 (Id=676087)
+		{
+			int m_priority;// Offset=0x0 Size=0x4
+			struct IMaterial* m_pMaterial;// Offset=0x8 Size=0x8
+		};
+		std::vector<std::unique_ptr<ArkTraumaBase>> m_statuses;
+		std::vector<EArkPlayerStatus> m_activeStatuses;
+		std::vector<TArmMaterial> m_armMaterials;
+		ArkSimpleTimer m_blendTimer;
+		ArkSimpleTimer m_blendOutTimer;
+		float m_hudIconBlinkRate;
+	};
 	class ArkPlayerPropulsionComponent{ };
 	class ArkPlayerSignalReceiver{ };
 	class ArkAimAssistComponent{ };
@@ -389,11 +669,7 @@ namespace ArkNpc {
 	class ArkDialogPlayer{};
 	class ArkDialogPlayerTranscribe{};
 
-		class ArkStatModifier {
-		public:
-			CCryName m_StatName;
-			float m_Modifier;
-		};
+		
 
 		class ArkStatModifierPackage {
 		public:
@@ -498,18 +774,7 @@ namespace ArkNpc {
 		char pad_0025[3]; //0x0025
 	}; //Size: 0x0028
 
-	class ArkSimpleTimer
-	{
-	public:
-		char pad_0000[4]; //0x0000
-		float N0000235D; //0x0004
-	}; //Size: 0x0008
-
-	class ArkAudioTrigger
-	{
-	public:
-		char pad_0000[4]; //0x0000
-	}; //Size: 0x0004
+	
 
 
 	class ArkPlayerCarry
@@ -689,10 +954,6 @@ namespace ArkNpc {
 	}; //Size: 0x0004
 
 
-	class ArkTimeRemaining {
-	public:
-		float m_timeRemaining;
-	};
 
 	class ArkRegularOutcome {
 	public:
@@ -1903,11 +2164,6 @@ namespace ArkNpc {
 	};
 
 
-	class ArkRandomizedTimer {
-	public:
-		char pad[8];
-		float m_variation;
-	};
 
 	//todo:check enum sizes
 	enum class ECryAiSystemActiveState {
@@ -5825,14 +6081,7 @@ namespace ArkNpc {
 			bool m_bDisableListeners;
 			char pad2[7];
 		};
-		class ArkProperty {
-		public:
-			void* ptr;
-			CryStringT<char> m_name;
-			char* m_typeStr;
-			EArkType m_arkType;
-			char pad[4];
-		};
+		
 		class ArkClass {
 		public:
 			std::unordered_map<CryStringT<char>, ArkProperty*> m_properties;
@@ -6916,5 +7165,211 @@ namespace ArkNpc {
 			char pad4[4];
 			CryStringT<char> m_ManagedByEncounter;
 		};
+		class IArkStatsListener
+		{
+		public:
+			virtual void OnStatChange(const unsigned int, const CCryName*, const float, const float) = 0;
+			virtual void OnStatSerialize(const unsigned int, const CCryName*, const float) = 0;
+
+		};
 
 		
+		class ArkEffectBase
+		{
+			_smart_ptr<IParticleEffect> m_pEffect;
+			SpawnParams m_spawnParams;
+		};
+		class ArkLooseEffect : ArkEffectBase
+		{
+			_smart_ptr<IParticleEmitter> m_pEmitter;
+			QuatTS_tpl<float> m_location;
+			bool m_bStarted;
+		};
+		class SMFXAudioEffectRtpc
+		{
+			const char* rtpcName;
+			float rtpcValue;
+		};
+		class SMFXRunTimeEffectParams
+		{
+			unsigned __int16 playSoundFP;
+			unsigned __int16 playflags;
+			float fLastTime;
+			float fDecalPlacementTestMaxSize;
+			unsigned int src;
+			unsigned int trg;
+			int srcSurfaceId;
+			int trgSurfaceId;
+			IRenderNode* srcRenderNode;
+			IRenderNode* trgRenderNode;
+			int partID;
+			Vec3_tpl<float> pos;
+			Vec3_tpl<float> decalPos;
+			Vec3_tpl<float> dir[2];
+			Vec3_tpl<float> normal;
+			float angle;
+			float scale;
+			unsigned int audioProxyEntityId;
+			Vec3_tpl<float> audioProxyOffset;
+			SMFXAudioEffectRtpc audioRtpcs[4];
+			unsigned int numAudioRtpcs;
+		};
+		class STagMask
+		{
+			unsigned __int8 byte;
+			unsigned __int8 mask;
+		};
+		class SCRCRefHash_CRC32Lowercase
+		{
+		};
+		template<int i, typename T> class SCRCRef// Size=0x10 (Id=16962)
+		{
+				const unsigned int INVALID = 0;// Offset=0x0 Size=0x4
+				unsigned int crc;// Offset=0x0 Size=0x4
+				char* stringValue;// Offset=0x8 Size=0x8
+		};
+		class CTagDefinition
+		{
+			struct SPriorityCount// Size=0x8 (Id=2087732)
+			{
+				int priority;// Offset=0x0 Size=0x4
+				int count;// Offset=0x4 Size=0x4
+			};
+			struct STagGroup// Size=0x10 (Id=2087841)
+			{
+				struct SCRCRef<1, SCRCRefHash_CRC32Lowercase> m_name;// Offset=0x0 Size=0x10
+			};
+			struct STag// Size=0x20 (Id=2087842)
+			{
+				unsigned int m_priority;// Offset=0x0 Size=0x4
+				int m_groupID;// Offset=0x4 Size=0x4
+				class CTagDefinition* m_pTagDefinition;// Offset=0x8 Size=0x8
+				struct SCRCRef<1, SCRCRefHash_CRC32Lowercase> m_name;// Offset=0x10 Size=0x10
+			};
+			
+			struct STagDefData// Size=0x18 (Id=2087790)
+			{
+				struct DynArray<STagMask, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > tagMasks;// Offset=0x0 Size=0x8
+				struct DynArray<STagMask, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > groupMasks;// Offset=0x8 Size=0x8
+				unsigned int numBits;// Offset=0x10 Size=0x4
+			};
+			CryStringT<char> m_filename;
+			DynArray<CTagDefinition::STag, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_tags;
+			DynArray<CTagDefinition::STagGroup, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_tagGroups;
+			CTagDefinition::STagDefData m_defData;
+			DynArray<CTagDefinition::SPriorityCount, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_priorityTallies;
+			bool m_hasMasks;
+		};
+		template <typename T> class TAction : public IAction {
+			
+		};
+		class RayCastResult
+		{
+			ray_hit hits[4];
+			int hitCount;
+		};
+		class RayCastRequest
+		{
+			Vec3_tpl<float> pos;
+			Vec3_tpl<float> dir;
+			int objTypes;
+			int flags;
+			unsigned __int8 skipListCount;
+			IPhysicalEntity* skipList[64];
+			unsigned __int8 maxHitCount;
+			SCollisionClass collclass;
+		};
+		class ArkLatentRaycast
+		{
+			enum RaycastStatus : __int32
+			{
+				ePending = 0x0,
+				eSuccessful = 0x1,
+				eFailure = 0x2,
+				eNotStarted = 0x3,
+			};
+			unsigned int m_rayID;
+			ArkLatentRaycast::RaycastStatus m_status;
+			Functor1wRet<RayCastResult const&, bool> m_resultCallback;
+			Functor1wRet<RayCastRequest&, bool> m_submitCallback;
+		};
+		class ArkEntityEffectBase : ArkEffectBase
+		{
+		public:
+			void* vtable;
+			Matrix34_tpl<float> m_localTM;
+			int m_nSlot;
+			bool m_bStarted;
+			bool m_bSerialize;
+		};
+		class ArkFireAndForgetEffect : ArkEffectBase
+		{
+		};
+		class ArkEntityEffect : ArkEntityEffectBase
+		{
+		public:
+			void* vtable;
+
+
+			IGameObjectExtension* m_owner;
+		};
+		
+		
+		class ArkAutoResetTimer : ArkSimpleTimer
+		{
+		};
+		class ExplosionInfo
+		{
+			unsigned int shooterId;
+			unsigned int weaponId;
+			unsigned int projectileId;
+			unsigned __int16 projectileClassId;
+			float damage;
+			Vec3_tpl<float> pos;
+			Vec3_tpl<float> dir;
+			float minRadius;
+			float radius;
+			float soundRadius;
+			float minPhysRadius;
+			float physRadius;
+			float angle;
+			float pressure;
+			float hole_size;
+			IParticleEffect* pParticleEffect;
+			CryStringT<char> effect_name;
+			CryStringT<char> effect_class;
+			float effect_scale;
+			int type;
+			bool impact;
+			bool propogate;
+			bool explosionViaProxy;
+			Vec3_tpl<float> impact_normal;
+			Vec3_tpl<float> impact_velocity;
+			unsigned int impact_targetId;
+			float maxblurdistance;
+			int friendlyfire;
+			float blindAmount;
+			float flashbangScale;
+			int firstPassPhysicsEntities;
+		};
+		enum class EDeferredMfxExplosionState : __int32
+		{
+			eDeferredMfxExplosionState_None = 0x0,
+			eDeferredMfxExplosionState_Dispatched = 0x1,
+			eDeferredMfxExplosionState_ProcessingComplete = 0x2,
+			eDeferredMfxExplosionState_ResultImpact = 0x3,
+			eDeferredMfxExplosionState_ResultNoImpact = 0x4,
+		};
+		class SDeferredMfxExplosion
+		{
+			unsigned int m_rayId;
+			int m_mfxTargetSurfaceId;
+			_smart_ptr<IPhysicalEntity> m_pMfxTargetPhysEnt;
+			EDeferredMfxExplosionState m_state;
+		};
+		class SExplosionContainer
+		{
+			ExplosionInfo m_explosionInfo;
+			SDeferredMfxExplosion m_mfxInfo;
+		};
+

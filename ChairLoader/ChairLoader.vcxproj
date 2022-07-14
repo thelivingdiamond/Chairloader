@@ -437,6 +437,11 @@
     <ClInclude Include="..\imgui\misc\cpp\imgui_stdlib.h" />
     <ClInclude Include="..\imgui\misc\single_file\imgui_single_file.h" />
     <ClInclude Include="ArkItemSystem.h" />
+    <ClInclude Include="ArkPlayerLight.h" />
+    <ClInclude Include="ArkPlayerMovementStates.h" />
+    <ClInclude Include="ArkProjectile.h" />
+    <ClInclude Include="ArkPsiPowerComponent.h" />
+    <ClInclude Include="ArkSignalSystem.h" />
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="ChairloaderGUIEntityManager.h" />
