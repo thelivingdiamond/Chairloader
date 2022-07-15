@@ -12,7 +12,7 @@
 #include "ArkItemSystem.h"
 #include "ArkPlayerComponent.h"
 #include "ArkPlayerMovementStates.h"
-#include "ArkPsiPowerComponent.h"
+#include "ArkPsiComponent.h"
 #include "ArkSpeaker.h"
 #include "EStance.h"
 #include "IArkPlayer.h"
@@ -353,7 +353,20 @@ struct ArkEquipmentModComponent
 };
 
 struct ArkPlayerInput : public IActionListener, public IActionMapEventListener {
-	typedef IInventory::EArkInventorySizes Mode;
+	enum Mode
+	{
+		player = 0,
+		world_ui_examination = 1,
+		examination = 2,
+		menu = 3,
+		flycam = 4,
+		focusmode = 5,
+		ether_duplicate = 6,
+		hacking = 7,
+		psi_scanning_fanfare = 8,
+		mimic_grab = 9,
+		_count = 10
+	};
 
 	enum class CinematicMode
 	{

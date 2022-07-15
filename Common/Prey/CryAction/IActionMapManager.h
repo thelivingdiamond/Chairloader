@@ -353,7 +353,7 @@ struct IActionMapEventListener
 
 //------------------------------------------------------------------------
 
-#if 0
+// #if 0
 struct IActionMapManager
 {
 	virtual ~IActionMapManager(){}
@@ -419,7 +419,7 @@ struct IActionMapManager
 	virtual void                          RegisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
 	virtual void                          UnregisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
 };
-#endif
+// #endif
 
 template<class T>
 class TActionHandler

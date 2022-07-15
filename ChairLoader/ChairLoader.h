@@ -41,6 +41,9 @@ public:
 	//! @returns whether it was handled and shouldn't be passed over to the game.
 	bool HandleKeyPress(const SInputEvent &event);
 
+	//! Process smoke form exit
+	void SmokeFormExit();
+
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
 	inline uintptr_t GetModuleBase() { return m_ModuleBase; }

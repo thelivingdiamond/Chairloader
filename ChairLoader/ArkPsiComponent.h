@@ -1,7 +1,16 @@
 #pragma once
 
+#include "ArkHud.h"
 #include "ArkPlayerLight.h"
+#include "ArkMetaTag.h"
+#include "ArkStats.h"
 
+class ArkPsiPowerSmokeForm {
+public:
+	static inline auto Exit = PreyFunction<void(ArkPsiPowerSmokeForm* _this)> (0x15A49E0);
+	static inline auto TryMorphOut = PreyFunction<char(ArkPsiPowerSmokeForm* _this)>(0x15A5940);
+	static inline auto Stop = PreyFunction<char(ArkPsiPowerSmokeForm* _this)>(0x15A5940);
+};
 
 class IArkPsiPower
 {
@@ -190,5 +199,93 @@ public:
 	static inline auto UpdateEquippedPowerUI = PreyFunction<void(ArkPsiPowerComponent* _this, bool param_1)>(0x158fca0);
 	static inline auto UpdateHUDMarkerElements = PreyFunction<void(ArkPsiPowerComponent* _this)>(0x158ff90);
 	static inline auto UpdateInputLegend = PreyFunction<void(ArkPsiPowerComponent* _this, EArkPsiPowers param_1)>(0x15904a0);
+};
+class IArkPsiScanningComponentListener
+{
+public:
+	virtual ~IArkPsiScanningComponentListener() = 0;
+	virtual void OnLockTargetReticle(const unsigned int) = 0;
+	virtual void OnUnlockTargetReticle(const unsigned int) = 0;
+	virtual void OnUpdateTargetReticle(const unsigned int, const bool, const float) = 0;
+
 
 };
+class ArkScanState
+{
+	unsigned int m_entityId;
+	unsigned __int64 m_locationId;
+};
+class ArkPsiScanningComponent : IArkStatsListener, IArkHUDListener, IEntitySystemSink, IArkMetaTagListener
+{
+public:
+	virtual void OnStatChange(IArkStatsListener* _this, const unsigned int, const CCryName*, const float, const float) {};
+	bool OnBeforeSpawn(SEntitySpawnParams& params) override;
+	void OnSpawn(IEntity* pEntity, SEntitySpawnParams& params) override;
+	bool OnRemove(IEntity* pEntity) override;
+	void OnReused(IEntity* pEntity, SEntitySpawnParams& params) override;
+	void OnEvent(IEntity* pEntity, SEntityEvent& event) override;
+	void OnEntityUnderReticleChanged(const unsigned, const unsigned) override;
+	void OnMetaTagAdded(unsigned, const unsigned long long) override;
+	void OnMetaTagRemoved(unsigned, const unsigned long long) override;
+	void OnMetaTagsAdded(unsigned) override;
+	void OnAllDynamicMetaTagsRemoved(unsigned) override;
+
+
+	std::vector<unsigned int> m_validResearchSubjects;
+	std::vector<unsigned int> m_fullyScannedResearchSubjects;
+	std::unordered_set<ArkScanState> m_scanState;
+	ArkPlayerLightEntity m_playerLight;
+	unsigned int m_lockedTarget;
+	unsigned int m_targetedTarget;
+	CryStringT<wchar_t> m_targetDisplayName;
+	Vec2_tpl<float> m_targetingReticleDir;
+	Vec2_tpl<float> m_targetingReticlePos;
+	float m_lockonDurationSec;
+	float m_lockonElapsedSec;
+	float m_lockonTimeoutSec;
+	float m_autoUnequipElapsedSec;
+	int m_zoomHandle;
+	int m_timeScaleHandle;
+	unsigned __int64 m_postProcessEffectId;
+	bool m_bPaused;
+	bool m_bEnabled;
+	bool m_bAvailable;
+	bool m_bStatusBarVisible;
+	bool m_bTargetNotScannable;
+	bool m_bAutoUnequipEnabled;
+	bool m_bTargetDetailsVisible;
+	bool m_bResearchedFanfareMode;
+	bool m_bDiscoveredLore;
+	bool m_bLockTargetingReticle;
+	bool m_bLerpingTargetingReticle;
+	bool m_bLockTargetScanning;
+	bool m_bDisrupted;
+	bool m_bShowingReminder;
+	bool m_bTargetReticleWasVisible;
+	int m_targetReticleCurrentPips;
+	int m_targetReticleMaxPips;
+	int m_fanfareInputHandle;
+	ArkAudioRtpc m_researchRtpc;
+	ArkAudioTrigger m_pauseResearchTrigger;
+	ArkAudioTrigger m_resumeResearchTrigger;
+	ArkSimpleTimer m_errorFeedbackTimer;
+	ArkSimpleTimer m_reminderUITimer;
+	ArkSimpleTimer m_psychoscopeHideTimer;
+	std::vector<IArkPsiScanningComponentListener*> m_listeners;
+	const IEntityClass* m_pPoltergeistClass;
+	ArkInputLegendHandler m_inputLegendHandler;
+};
+
+class CArkPsiComponent : IArkStatsListener
+{
+public:
+	virtual void OnStatChange(IArkStatsListener* _this, const unsigned int, const CCryName*, const float, const float) = 0;
+	virtual  ~CArkPsiComponent() = 0;
+	static inline auto UpdateHUDMarkerElements = PreyFunction<void(CArkPsiComponent* _this)>(0x15806F0);
+	ArkPsiPowerComponent m_powerComponent;
+	ArkPsiScanningComponent m_scanningComponent;
+	float m_points;
+	float m_unreducedMaxPoints;
+	float m_maxPoints;
+	float m_errorMessageDuration;
+};;

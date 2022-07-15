@@ -1,11 +1,17 @@
 #pragma once
+#include "ArkPsiComponent.h"
 #include "ArkSpeaker.h"
+#include "ArkPlayerStatus.h"
 #include "Prey/CryCore/StdAfx.h"
 
 class ArkPDAComponent;
-class ArkPlayerStatusComponent;
 class ArkPOIComponent;
-class ArkStationAccessComponent;
+class ArkStationAccessComponent
+{
+	std::vector<unsigned __int64> m_lockedPaths;
+	std::vector<unsigned __int64> m_lockedAirlocks;
+	std::vector<unsigned __int64> m_hiddenAirlocks;
+};
 class ArkLiveTranscribeComponent;
 class ArkFocusModeComponent;
 class ArkGameMetricsComponent;
@@ -22,7 +28,6 @@ class ArkPlayerFXComponent;
 class ArkPlayerLightManager;
 class ArkPlayerRadiationComponent;
 class ArkPlayerHealthComponent;
-class ArkPlayerFatigueComponent;
 class ArkPlayerEntitlementComponent;
 class ArkPlayerAwarenessComponent;
 class ArkPlayerAchievementComponent;
@@ -36,7 +41,6 @@ class ArkLoreComponent;
 class ArkLocationComponent;
 class ArkKeyCodeComponent;
 class ArkNoteComponent;
-class CArkPsiComponent;
 class ArkAudioLogComponent;
 class ArkAbilityComponent;
 

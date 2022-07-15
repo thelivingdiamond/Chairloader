@@ -133,6 +133,9 @@ namespace ArkPlayerMovementStates {
 	static_assert(sizeof(ArkPlayerMovementStates::Fly) == 0x1);
 	class Smoke : ArkPlayerMovementStates::Base
 	{
+	public:
+		static inline auto Enter = PreyFunction<void(Smoke* _this)>(0x123ACA0);
+		static inline auto Exit = PreyFunction<void(void)>(0x123B790);
 		float m_speed;
 		float m_inertia;
 		float m_maxHeight;

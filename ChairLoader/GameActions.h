@@ -3,7 +3,7 @@
 #include <Prey/CryString/CryFixedString.h>
 #include <Prey/ArkBasicTypes.h>
 
-class CGameActions : IActionMapEventListener {
+class CGameActions : public IActionMapEventListener { // Size=0xfa8
 public:
 	CCryName moveleft;
 	CCryName moveright;
@@ -436,3 +436,4 @@ public:
 	ArkExclusiveActionFilter m_filterKeypadInteraction;
 	ArkExclusiveActionFilter m_filterPsiScanningLock;
 };
+static_assert(sizeof(CGameActions) == 0xfa8);

@@ -29,6 +29,11 @@ private:
 	void drawHealthTab();
 	void drawAbilitiesTab();
 	void drawInventoryTab();
+	void loadPosition(int saveSlot);
+	void savePosition(int saveSlot, Vec3_tpl<float> pos);
+	bool enablePosHotKeys = false;
+	std::vector<Vec3_tpl<float>> positions = { {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0} };
+
 
 	bool godMode;
 	const std::string modName = "ChairloaderGUI.PlayerManager";
