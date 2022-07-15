@@ -2,7 +2,9 @@
 #include <Prey/CryCore/smartptr.h>
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryRenderer/ITexture.h>
-#include "preyDllObjects.h"
+
+#include "Prey/CryMath/Cry_Camera.h"
+#include "Prey/CrySystem/IConsole.h"
 
 // Object states
 #define OS_ALPHA_BLEND         0x1
@@ -720,7 +722,8 @@ public:
 	virtual void SetColorOp(unsigned __int8, unsigned __int8, unsigned __int8, unsigned __int8) = 0;
 	virtual void RequestFlushAllPendingTextureStreamingJobs(int) = 0;
 	virtual void SetTexturesStreamingGlobalMipFactor(float) = 0;
-	virtual IRenderAuxGeom *GetIRenderAuxGeom(void *) = 0;
+	virtual void* GetIRenderAuxGeom(void*) = 0;
+	// virtual IRenderAuxGeom *GetIRenderAuxGeom(void *) = 0;
 	virtual IArkRenderPersistentAuxGeom *GetIArkRenderPersistentAuxGeom() = 0;
 	virtual IColorGradingController *GetIColorGradingController() = 0;
 	virtual void TextToScreen(float, float, const char *, ...) = 0;

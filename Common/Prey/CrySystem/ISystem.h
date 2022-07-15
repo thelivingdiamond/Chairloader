@@ -19,6 +19,9 @@
 #include <Prey/CryString/StringUtils.h>
 #include "CryVersion.h"
 #include <Prey/CryCore/smartptr.h>
+
+#include "IGame.h"
+
 //#include <Prey/CryMemory/IMemory.h>          // <> required for Interfuscator
 //#include <Prey/CrySystem/ISystemScheduler.h> // <> required for Interfuscator
 
@@ -42,7 +45,6 @@ struct ITelemetrySystem;
 struct IProcess;
 struct I3DEngine;
 struct ITimer;
-struct IGame;
 struct IGameStartup;
 struct IScriptSystem;
 struct IAISystem;

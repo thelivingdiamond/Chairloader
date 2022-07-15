@@ -26,7 +26,11 @@
 #include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryCore/smartptr.h>
 
-class CCryName;
+class CCryName
+{
+public:
+	const char* m_str;
+};
 typedef CCryName ActionId;
 struct SInputEvent;
 

@@ -173,10 +173,20 @@ void ChairloaderGUIPlayerManager::drawAbilitiesTab() {
 			ImGui::Text("%ls",localizedName.c_str());
 		}
 		auto PsiPowerComponent = gEntUtils->ArkPlayerPtr()->GetPsiPowerComponent(gEntUtils->ArkPlayerPtr());
+		ArkPlayerMovementFSM* fsm = &gEntUtils->ArkPlayerPtr()->m_movementFSM;
 		if(ImGui::Button("Smoke Form"))
 			PsiPowerComponent->UnlockPower(PsiPowerComponent, EArkPsiPowers::smokeForm, 1);
-		if (ImGui::Button("Fly Mode Fix"))
-			gEntUtils->ArkPlayerPtr()->SetFlyMode(0, 0.0f);
+		if (ImGui::Button("Fly Mode Test"))
+			fsm->m_flyMode = ArkPlayerMovementFSM::EArkFlyMode::on;
+		ImGui::Text("Fly Mode: %u", fsm->m_flyMode);
+		ImGui::Text("Current State: %u", fsm->m_currentStateId);
+		ImGui::Text("Stance: %u", gEntUtils->ArkPlayerPtr()->GetStance());
+		ImGui::Text("Spectator Mode: %u", gEntUtils->ArkPlayerPtr()->GetSpectatorMode());
+		ArkPlayerCamera* camera = &gEntUtils->ArkPlayerPtr()->m_camera;
+		ImGui::Text("Camera Mode: %llu", (uintptr_t)camera->m_customViewFunction.target<void __cdecl(SViewParams&)>());
+		if (ImGui::Button("Fly Mode Fix")) {
+			//fix something later I guess
+		}
 		// for (auto &ability : acquiredAbilities) {
 		// 	ImGui::Text("1");
 		// 	// std::string acquired = std::to_string(ability->m_id);

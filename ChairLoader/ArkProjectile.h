@@ -1,5 +1,8 @@
 #pragma once
-#include "pch.h"
+
+#include "ArkSignalSystem.h"
+
+class CArkProjectileGoo;
 
 class CArkProjectile : CGameObjectExtensionHelper<CArkProjectile, IGameObjectExtension, 64>
 {
@@ -52,6 +55,12 @@ public:
 	Vec3_tpl<float> m_spawnPosition;
 	ArkEntityEffect m_projectileEffect;
 	ArkEntityEffect m_trailEffect;
+};
+class ArkGooSignalReceiver : ArkSignalSystem::Receiver
+{
+public:
+	CArkProjectileGoo* m_pOwnerGoo;
+	unsigned __int64 m_damageSignalGroup;
 };
 class CArkProjectileGoo : CArkProjectile
 {

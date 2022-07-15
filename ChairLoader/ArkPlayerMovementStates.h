@@ -1,12 +1,20 @@
 #pragma once
+#include "ArkAudio.h"
+#include "ArkInput.h"
 #include "ArkProjectile.h"
+#include "ArkTimer.h"
+#include "IAction.h"
+#include "RayCast.h"
+#include "Prey/ArkBasicTypes.h"
 
 namespace ArkPlayerMovementStates {
 	class Base
 	{
+		// a bunch of static functions
 	};
 	class Ground : Base
 	{
+	public:
 		class ArkGroundColliderParameters
 		{
 			float m_minSlideAngle;
@@ -55,6 +63,7 @@ namespace ArkPlayerMovementStates {
 		bool m_bCanLean;
 		bool m_bSprinting;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Ground) == 0x1e8);
 	class Death : ArkPlayerMovementStates::Base
 	{
 		ArkSimpleTimer m_deathCamDelay;
@@ -67,6 +76,7 @@ namespace ArkPlayerMovementStates {
 		float m_timeScaleAmount;
 		int m_timeScaleHandle;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Death) == 0x30);
 	class DeathByRecyclerGrenade : ArkPlayerMovementStates::Base
 	{
 		ArkSimpleTimer m_deathTimer;
@@ -82,6 +92,7 @@ namespace ArkPlayerMovementStates {
 		CryStringT<char> m_scaleName;
 		ArkInterval<float> m_scaleValues;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::DeathByRecyclerGrenade) == 0x60);
 	class Jump : ArkPlayerMovementStates::Base
 	{
 		ArkAudioTrigger m_audioTrigger;
@@ -93,6 +104,7 @@ namespace ArkPlayerMovementStates {
 		float m_startHeight;
 		ArkSimpleTimer m_maxJumpTimer;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Jump) == 0x2c);
 	class Fall : ArkPlayerMovementStates::Base
 	{
 		unsigned __int64 m_package;
@@ -105,6 +117,7 @@ namespace ArkPlayerMovementStates {
 		bool m_bSneakOnExit;
 		bool m_bAirControlEnabled;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Fall) == 0x28);
 	class Climb : ArkPlayerMovementStates::Base
 	{
 		_smart_ptr<TAction<SAnimationContext> > m_pClimbAction;
@@ -113,15 +126,18 @@ namespace ArkPlayerMovementStates {
 		float m_mediumToHighThreshold;
 		bool m_bHighClimb;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Climb) == 0x28);
 	class Fly : ArkPlayerMovementStates::Base
 	{
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Fly) == 0x1);
 	class Smoke : ArkPlayerMovementStates::Base
 	{
 		float m_speed;
 		float m_inertia;
 		float m_maxHeight;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Smoke) == 0xC);
 	class ZeroG : ArkPlayerMovementStates::Base
 	{
 		class ZeroGParams
@@ -188,31 +204,39 @@ namespace ArkPlayerMovementStates {
 		ArkInputLegend m_ongoingInputLegend;
 		ArkInputLegendHandler m_ongoingInputLegendHandler;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::ZeroG) == 0x188);
 	class Cinematic : ArkPlayerMovementStates::Base
 	{
 		Ang3_tpl<float> m_cameraAdditive;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Cinematic) == 0xC);
 	class Slide : ArkPlayerMovementStates::Base
 	{
 		_smart_ptr<TAction<SAnimationContext> > m_pAction;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Slide) == 0x8);
 	class Mimic : ArkPlayerMovementStates::Base
 	{
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Mimic) == 0x1);
 	class GravShaft : ArkPlayerMovementStates::Base
 	{
 		Quat_tpl<float> m_desiredViewRotation;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::GravShaft) == 0x10);
 	class GravShaftG : ArkPlayerMovementStates::GravShaft
 	{
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::GravShaftG) == 0x10);
 	class GravShaftToG : ArkPlayerMovementStates::GravShaft
 	{
 		Quat_tpl<float> m_desiredEntityRotation;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::GravShaftToG) == 0x20);
 	class GravShaftZeroG : ArkPlayerMovementStates::GravShaft
 	{
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::GravShaftZeroG) == 0x10);
 	class Lift : ArkPlayerMovementStates::Base
 	{
 		ArkLooseEffect m_particleEffect;
@@ -222,6 +246,7 @@ namespace ArkPlayerMovementStates {
 		float m_upwardDamageSpeed;
 		unsigned __int64 m_upwardDamagePackageId;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::Lift) == 0x90);
 	class Shift : ArkPlayerMovementStates::Base
 	{
 		ArkSimpleTimer m_shiftTimer;
@@ -233,4 +258,5 @@ namespace ArkPlayerMovementStates {
 		int m_zoomHandle;
 		bool m_bZeroG;
 	};
+	static_assert(sizeof(ArkPlayerMovementStates::GravShaftG) == 0x10);
 };

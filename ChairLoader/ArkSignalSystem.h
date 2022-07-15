@@ -1,8 +1,12 @@
 #pragma once
-#include "pch.h"
 
+#include <boost/variant/variant.hpp>
+
+#include "ArkNpc.h"
 #include "ArkProjectile.h"
+#include "Explosion.h"
 #include "Prey/ArkPlayer.h"
+#include "Prey/CrySystem/TimeValue.h"
 
 namespace ArkSignalSystem {
 	class PackageSignalRamp
@@ -40,24 +44,18 @@ namespace ArkSignalSystem {
 	class Receiver
 	{
 	public:
-		virtual ~Receiver() = 0;
-		virtual void Init(const unsigned int*) = 0;
-		virtual void OnReceiveSignal(const ArkSignalSystem::Package*) = 0;
-		virtual ArkSignalSystem::PackageSignalRampContainer* GetPackageSignalRampContainer() = 0;
-		virtual void OnKilled(unsigned int) = 0;
+		void* vtable;
+		// virtual ~Receiver() = 0;
+		// virtual void Init(const unsigned int*) = 0;
+		// virtual void OnReceiveSignal(const ArkSignalSystem::Package*) = 0;
+		// virtual ArkSignalSystem::PackageSignalRampContainer* GetPackageSignalRampContainer() = 0;
+		// virtual void OnKilled(unsigned int) = 0;
 
 
-		unsigned int m_entityId;
+		unsigned __int64 m_entityId;
 	};
 	
 }
 
 
-class ArkGooSignalReceiver : ArkSignalSystem::Receiver
-{
-public:
 
-
-	CArkProjectileGoo* m_pOwnerGoo;
-	unsigned __int64 m_damageSignalGroup;
-};

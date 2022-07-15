@@ -756,6 +756,75 @@
     <ClInclude Include="ArkSignalSystem.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
+    <ClInclude Include="GameActions.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="IGame.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="IAntiCheatManager.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CScriptBind_Ark.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="CScriptableBase.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkTimer.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkNpc.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkAudio.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="IAction.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="Mannequin.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkInput.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkEffect.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkSpeaker.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkPlayerComponent.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkSpatial.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="IAttachment.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="IProxy.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="RayCast.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="EStance.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="IArkPlayer.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkMaterialAnimation.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">

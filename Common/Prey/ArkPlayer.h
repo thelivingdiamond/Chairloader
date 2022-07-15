@@ -2,21 +2,32 @@
 #include <array>
 #include <utility>
 #include <functional>
+#include <boost/optional/optional.hpp>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryAction/IMovementController.h>
 
+#include "ArkItemSystem.h"
+#include "ArkPlayerComponent.h"
 #include "ArkPlayerMovementStates.h"
 #include "ArkPsiPowerComponent.h"
+#include "ArkSpeaker.h"
+#include "EStance.h"
+#include "IArkPlayer.h"
 
+struct IActor;
 struct ArkPlayer;
 struct IAnimationGraphState;
 struct IItem;
 struct HitInfo;
 class CFragmentCache;
-
+class IAnimatedCharacter
+{
+public:
+	char pad_0000[64]; //0x0000
+}; //Size: 0x0040
 struct IInventoryListener
 {
 public:
@@ -112,13 +123,7 @@ struct IInventory : public IGameObjectExtension {
 	virtual void RemoveListener(IInventoryListener*) = 0;
 };
 
-struct IArkPlayer
-{
-public:
-	virtual std::pair<Vec3, Vec3> GetReticleViewPositionAndDir() = 0;
-	virtual void EnableIdleBreak(const bool) = 0;
-	virtual void InhibitRotation(const bool) = 0;
-};
+
 
 class IArkPlayerCombatListener
 {
@@ -238,6 +243,7 @@ struct CActor : public IActor
 };
 template <typename T> class ArkPlayerMovementFsmBase_template_
 {
+public:
 	EArkPlayerMovementStateId m_currentStateId;
 	ArkPlayerMovementStates::Ground m_groundState;
 	ArkPlayerMovementStates::Death m_deathState;
@@ -257,8 +263,17 @@ template <typename T> class ArkPlayerMovementFsmBase_template_
 	ArkPlayerMovementStates::Lift m_liftState;
 	ArkPlayerMovementStates::Shift m_shiftState;
 };
-class ArkPlayerMovementFSM : ArkPlayerMovementFsmBase_template_<void>
+static_assert(sizeof(ArkPlayerMovementFsmBase_template_<void>) == 0x5c0);
+
+class ClimbPosInfo
 {
+public:
+	Vec3 m_point; //0x0000
+	EStance m_stance; //0x000C
+}; //Size: 0x0010
+class ArkPlayerMovementFSM : public ArkPlayerMovementFsmBase_template_<void>
+{
+public:
 	class StagingInfo
 	{
 		Ang3_tpl<float> m_rotation;
@@ -293,7 +308,7 @@ class ArkPlayerMovementFSM : ArkPlayerMovementFsmBase_template_<void>
 	static inline auto CheckZeroG = PreyFunction<bool(ArkPlayerMovementFSM* _this)>(0x156f3a0);
 	static inline auto GetCameraRotationInfluence = PreyFunction<Ang3_tpl<float>* (ArkPlayerMovementFSM* _this, Ang3_tpl<float>* __return_storage_ptr__, float param_1)>(0x156f5e0);
 	static inline auto GetCarrySpeedScale = PreyFunction<float(ArkPlayerMovementFSM* _this)>(0x156f870);
-	static inline auto GetClimbPosInfo_Internal = PreyFunction<boost:: optional<ClimbPosInfo>(ArkPlayerMovementFSM* _this)>(0x156f880);
+	static inline auto GetClimbPosInfo_Internal = PreyFunction<boost::optional<ClimbPosInfo>(ArkPlayerMovementFSM* _this)>(0x156f880);
 	static inline auto GetLeanInput = PreyFunction<float(ArkPlayerMovementFSM* _this)>(0x156fb20);
 	static inline auto GetMaxMovementSpeed = PreyFunction<float(ArkPlayerMovementFSM* _this, EStance param_1)>(0x156fba0);
 	static inline auto GetMovementInput = PreyFunction<Vec2_tpl<float>(ArkPlayerMovementFSM* _this)>(0x156fc40);
@@ -319,64 +334,16 @@ class ArkPlayerMovementFSM : ArkPlayerMovementFsmBase_template_<void>
 	static inline auto SetInputJumpPressed = PreyFunction<void(ArkPlayerMovementFSM* _this, bool param_1)>(0x1571700);
 	static inline auto SetInputSneak = PreyFunction<void(ArkPlayerMovementFSM* _this, bool param_1)>(0x1571710);
 	static inline auto SetJumpRequested = PreyFunction<void(ArkPlayerMovementFSM* _this, bool param_1)>(0x15717a0);
-	static inline auto SetMovementParameters = PreyFunction<void(ArkPlayerMovementFSM* _this, ArkGroundColliderParameters* param_1, ArkGroundColliderParameters* param_2)>(0x1571880);
+	static inline auto SetMovementParameters = PreyFunction<void(ArkPlayerMovementFSM* _this, ArkPlayerMovementStates::Ground::ArkGroundColliderParameters* param_1, ArkPlayerMovementStates::Ground::ArkGroundColliderParameters* param_2)>(0x1571880);
 	static inline auto SetRequestedStance = PreyFunction<void(ArkPlayerMovementFSM* _this, EStance param_1)>(0x15718b0);
 	static inline auto SetStagingInfo = PreyFunction<void(ArkPlayerMovementFSM* _this, Ang3_tpl<float>* param_1, float param_2, float param_3, bool param_4, int param_5)>(0x15718d0);
 	static inline auto TrySetStance = PreyFunction<bool(EStance param_1)>(0x1571980);
 	static inline auto Update = PreyFunction<void(ArkPlayerMovementFSM* _this, float param_1)>(0x1571af0);
 
 };
+static_assert(sizeof(ArkPlayerMovementFSM) == 0x620);
 
-class ArkPlayerComponent
-{
-public:
-	std::unique_ptr<CArkPsiComponent> m_pPsiComponent;
-	std::unique_ptr<ArkAbilityComponent> m_pAbilityComponent;
-	std::unique_ptr<ArkAudioLogComponent> m_pAudioLogComponent;
-	std::unique_ptr<ArkNoteComponent> m_pNoteComponent;
-	std::unique_ptr<ArkKeyCodeComponent> m_pKeyCodeComponent;
-	std::unique_ptr<ArkLocationComponent> m_pLocationComponent;
-	std::unique_ptr<ArkLoreComponent> m_pLoreComponent;
-	std::unique_ptr<ArkKeyCardComponent> m_pKeyCardComponent;
-	std::unique_ptr<ArkEmailComponent> m_pEmailComponent;
-	std::unique_ptr<ArkQuickSelectComponent> m_pQuickSelectComponent;
-	std::unique_ptr<ArkRosterComponent> m_pRosterComponent;
-	std::unique_ptr<ArkUtilityComponent> m_pUtilityComponent;
-	std::unique_ptr<ArkPharmaComponent> m_pPharmaComponent;
-	std::unique_ptr<ArkPDAComponent> m_pPDAComponent;
-	std::unique_ptr<ArkPlayerAchievementComponent> m_pAchievementComponent;
-	std::unique_ptr<ArkPlayerAwarenessComponent> m_pAwarenessComponent;
-	std::unique_ptr<ArkPlayerEntitlementComponent> m_pEntitlementComponent;
-	std::unique_ptr<ArkPlayerFatigueComponent> m_pFatigueComponent;
-	std::unique_ptr<ArkPlayerHealthComponent> m_pHealthComponent;
-	std::unique_ptr<ArkPlayerRadiationComponent> m_pRadiationComponent;
-	std::unique_ptr<ArkPlayerLightManager> m_pLightManager;
-	std::unique_ptr<ArkPlayerFXComponent> m_pFXComponent;
-	std::unique_ptr<ArkPlayerUIComponent> m_pUIComponent;
-	std::unique_ptr<ArkFabricationPlanComponent> m_pFabricationPlanComponent;
-	std::unique_ptr<ArkPlayerStatusComponent> m_pStatusComponent;
-	std::unique_ptr<ArkPlayerPropulsionComponent> m_pPropulsionComponent;
-	std::unique_ptr<ArkPlayerSignalReceiver> m_pSignalReceiver;
-	std::unique_ptr<ArkAimAssistComponent> m_pAimAssistComponent;
-	std::unique_ptr<ArkMarkedEnemyComponent> m_pMarkedEnemyComponent;
-	std::unique_ptr<ArkPlayerScopeComponent> m_pScopeComponent;
-	std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pPlayerSpeaker;
-	std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pSuitSpeaker;
-	std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pDiscRifleSpeaker;
-	std::unique_ptr<ArkSpeaker<ArkDialogPlayerTranscribe>> m_pTranscribeSpeaker;
-	std::unique_ptr<ArkGameMetricsComponent> m_pGameMetricsComponent;
-	std::unique_ptr<ArkFocusModeComponent> m_pFocusModeComponent;
-	std::unique_ptr<ArkLiveTranscribeComponent> m_pLiveTranscribeComponent;
-	std::unique_ptr<ArkStationAccessComponent> m_pStationAccessComponent;
-	std::unique_ptr<ArkPOIComponent> m_pPOIComponent;
-	float m_fShadowDissolveBlend;
-	float m_fShadowDissolveTarget;
-	float m_fShadowDissolveTimeScale;
-	bool m_bItemsRestricted;
-	bool m_bMarkerTextDisplayed;
-};
 
-static_assert(sizeof(ArkPlayerComponent) == 0x148);
 
 struct ArkEquipmentModComponent
 {
@@ -479,6 +446,7 @@ struct ArkPlayerAudio {
 };
 
 struct ArkPlayerCamera : public IGameObjectView {
+public:
 	enum class Mode {
 		playerControl,
 		animation,

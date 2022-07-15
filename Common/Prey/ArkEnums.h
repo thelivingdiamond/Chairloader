@@ -1223,18 +1223,8 @@ enum class EArkFabricatorState {
     ItemReady=5
 };
 
-enum class EArkFirstPartyEnvironment {
-    Invalid=0,
-    Integration=1,
-    Cert=2,
-    Production=3
-};
 
-enum class EArkFirstPartyEnvironmentQueryResponse {
-    Success=0,
-    NotReady=1,
-    Failure=2
-};
+
 
 enum class EArkFleeCorneredBehavior {
     none=0,
