@@ -42,8 +42,10 @@ public:
     ChairloaderGUIEntityManager();
     ~ChairloaderGUIEntityManager();
 
-    void draw(bool* bShow);
-    void drawMenuBar(bool* control);
+    // void draw(bool* bShow);
+    void drawEntitySpawner(bool* bShow);
+    void drawEntityList(bool* bShow);
+    void drawMenuBar(bool* entityListShow, bool* entitySpawnerShow);
 
     void update(ChairloaderGUILog* log);
 private:
@@ -69,8 +71,7 @@ private:
     void filterEntityList(ChairloaderGUILog* log);
     void archetypeSpawnRequestHandler(ChairloaderGUILog* log);
     void archetypeFilterRequestHandler(ChairloaderGUILog* log);
-    void drawEntitySpawner();
-    void drawEntityList();
+   
 
 
     // Currently Mostly Unused

@@ -14,6 +14,7 @@
 #include <detours/detours.h>
 
 ChairLoader *gCL = nullptr;
+static bool smokeFormExited = false;
 namespace {
 
 class ConsoleStdoutSink : public IOutputPrintSink {
@@ -48,6 +49,9 @@ auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
 auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
 auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
 auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
+auto g_SmokeForm_Exit_hook = ArkPsiPowerSmokeForm::Exit.MakeHook();
+auto g_SmokeForm_TryMorphOut_hook = ArkPsiPowerSmokeForm::TryMorphOut.MakeHook();
+auto g_SmokeForm_Stop_hook = ArkPsiPowerSmokeForm::Stop.MakeHook();
 
 bool CSystem_InitializeEngineModule_Hook(
 	CSystem* _this,
@@ -100,6 +104,23 @@ void CGame_Shutdown_Hook(CGame* _this)
 	g_CGame_Shutdown_Hook.InvokeOrig(_this);
 }
 
+void SmokeForm_Exit_Hook(ArkPsiPowerSmokeForm* _this) {
+	smokeFormExited = true;
+	g_SmokeForm_Exit_hook.InvokeOrig(_this);
+}
+
+char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
+	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
+	ArkPlayerMovementStates::Smoke::Exit();
+	gEntUtils->ArkPlayerPtr()->Physicalize(gEntUtils->ArkPlayerPtr());
+	return retValue;
+}
+
+char SmokeForm_Stop_Hook(ArkPsiPowerSmokeForm* _this) {
+	auto retValue = g_SmokeForm_Stop_hook.InvokeOrig(_this);
+	gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+	return retValue;
+}
 }
 
 ChairLoader::ChairLoader() {
@@ -136,6 +157,9 @@ ChairLoader::ChairLoader() {
 	g_CGame_Init_Hook.SetHookFunc(&CGame_Init_Hook);
 	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
+	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
+	// g_SmokeForm_TryMorphOut_hook.SetHookFunc(&SmokeForm_TryMorphOut_Hook);
+	// g_SmokeForm_Stop_hook.SetHookFunc(&SmokeForm_Stop_Hook);
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
@@ -214,6 +238,7 @@ ChairLoader::~ChairLoader()
 void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PreUpdate(haveFocus);
 	UpdateFreeCam();
+	SmokeFormExit();
 	// ImGui::ShowDemoWindow();
 	gui->update();
 	bool todo = true;
@@ -231,6 +256,13 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 	}
 
 	return false;
+}
+
+void ChairLoader::SmokeFormExit() {
+	if(smokeFormExited) {
+		gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+		smokeFormExited = false;
+	}
 }
 
 void ChairLoader::CreateConsole() {

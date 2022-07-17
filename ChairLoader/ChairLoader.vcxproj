@@ -184,7 +184,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir);../Common;../imgui</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);../Common;../Common/imgui</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -241,16 +241,44 @@
   <ItemGroup>
     <ClInclude Include="..\Common\ChairLoader\FunctionHook.h" />
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
+    <ClInclude Include="..\Common\imgui\imconfig.h" />
+    <ClInclude Include="..\Common\imgui\imgui.h" />
+    <ClInclude Include="..\Common\imgui\imgui_internal.h" />
+    <ClInclude Include="..\Common\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\Common\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\Common\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\Common\imgui\misc\cpp\imgui_stdlib.h" />
+    <ClInclude Include="..\Common\imgui\misc\single_file\imgui_single_file.h" />
     <ClInclude Include="..\Common\Logging.h" />
     <ClInclude Include="..\Common\mem.h" />
     <ClInclude Include="..\Common\preyDllObjects.h" />
     <ClInclude Include="..\Common\PreyFunctions.h" />
     <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h" />
+    <ClInclude Include="..\Common\Prey\ArkAudio.h" />
     <ClInclude Include="..\Common\Prey\ArkBasicTypes.h" />
+    <ClInclude Include="..\Common\Prey\ArkEffect.h" />
     <ClInclude Include="..\Common\Prey\ArkEntityArchetypeLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkEntityClassLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkEnums.h" />
+    <ClInclude Include="..\Common\Prey\ArkHud.h" />
+    <ClInclude Include="..\Common\Prey\ArkInput.h" />
+    <ClInclude Include="..\Common\Prey\ArkItemSystem.h" />
+    <ClInclude Include="..\Common\Prey\ArkMaterialAnimation.h" />
+    <ClInclude Include="..\Common\Prey\ArkMetaTag.h" />
+    <ClInclude Include="..\Common\Prey\ArkNpc.h" />
     <ClInclude Include="..\Common\Prey\ArkPlayer.h" />
+    <ClInclude Include="..\Common\Prey\ArkPlayerComponent.h" />
+    <ClInclude Include="..\Common\Prey\ArkPlayerFatigueComponent.h" />
+    <ClInclude Include="..\Common\Prey\ArkPlayerLight.h" />
+    <ClInclude Include="..\Common\Prey\ArkPlayerStatus.h" />
+    <ClInclude Include="..\Common\Prey\ArkProjectile.h" />
+    <ClInclude Include="..\Common\Prey\ArkPsiComponent.h" />
+    <ClInclude Include="..\Common\Prey\ArkReflectedObject.h" />
+    <ClInclude Include="..\Common\Prey\ArkSignalSystem.h" />
+    <ClInclude Include="..\Common\Prey\ArkSpatial.h" />
+    <ClInclude Include="..\Common\Prey\ArkSpeaker.h" />
+    <ClInclude Include="..\Common\Prey\ArkStats.h" />
+    <ClInclude Include="..\Common\Prey\ArkTimer.h" />
     <ClInclude Include="..\Common\Prey\Cry3DEngine\CGF\CryHeaders.h" />
     <ClInclude Include="..\Common\Prey\Cry3DEngine\CryPodArray.h" />
     <ClInclude Include="..\Common\Prey\Cry3DEngine\I3DEngine.h" />
@@ -258,6 +286,7 @@
     <ClInclude Include="..\Common\Prey\Cry3DEngine\IMeshObj.h" />
     <ClInclude Include="..\Common\Prey\Cry3DEngine\IStatObj.h" />
     <ClInclude Include="..\Common\Prey\CryAction\GameObject.h" />
+    <ClInclude Include="..\Common\Prey\CryAction\IAction.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IActionMapManager.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObject.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObjectSystem.h" />
@@ -309,6 +338,7 @@
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntityRenderState.h" />
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntitySystem.h" />
     <ClInclude Include="..\Common\Prey\CryGame\Game.h" />
+    <ClInclude Include="..\Common\Prey\CryGame\IGame.h" />
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IHardwareMouse.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IInput.h" />
@@ -427,9 +457,18 @@
     <ClInclude Include="..\Common\Prey\CryThreading\CryThread_win32.h" />
     <ClInclude Include="..\Common\Prey\CryThreading\IJobManager.h" />
     <ClInclude Include="..\Common\Prey\CryThreading\IThreadTask.h" />
+    <ClInclude Include="..\Common\Prey\Graphics.h" />
+    <ClInclude Include="..\Common\Prey\IAntiCheatManager.h" />
+    <ClInclude Include="..\Common\Prey\IArkPlayer.h" />
+    <ClInclude Include="..\Common\Prey\IAttachment.h" />
+    <ClInclude Include="..\Common\Prey\IProxy.h" />
+    <ClInclude Include="..\Common\Prey\Mannequin.h" />
+    <ClInclude Include="..\Common\Prey\RayCast.h" />
     <ClInclude Include="..\Common\proc.h" />
     <ClInclude Include="..\Common\VTableHook.h" />
-    <ClInclude Include="ArkItemSystem.h" />
+    <ClInclude Include="ChairloaderConfigManager.h" />
+    <ClInclude Include="CScriptableBase.h" />
+    <ClInclude Include="CScriptBind_Ark.h" />
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="ChairloaderGUIEntityManager.h" />
@@ -448,6 +487,13 @@
   <ItemGroup>
     <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp" />
     <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp" />
+    <ClCompile Include="..\Common\imgui\imgui.cpp" />
+    <ClCompile Include="..\Common\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\Common\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\Common\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\Common\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\Common\imgui\misc\cpp\imgui_stdlib.cpp" />
+    <ClCompile Include="..\Common\imgui\misc\fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="..\Common\Logging.cpp" />
     <ClCompile Include="..\Common\mem.cpp" />
     <ClCompile Include="..\Common\PreyDllObjects.cpp" />
@@ -457,6 +503,7 @@
     <ClCompile Include="..\Common\VTableHook.cpp" />
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
+    <ClCompile Include="ChairloaderConfigManager.cpp" />
     <ClCompile Include="ChairloaderGUIEntityManager.cpp" />
     <ClCompile Include="ChairloaderGUILog.cpp" />
     <ClCompile Include="ChairloaderGUIPlayerManager.cpp" />
@@ -482,14 +529,16 @@
     <Text Include="EntityArchetypesList.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\x64\Release\chairloaderconfig.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Common\Prey\CryCore\CryTypeInfo.inl" />
     <None Include="..\Common\Prey\CryCore\Platform\platform_impl.inl" />
     <None Include="..\Common\Prey\CryMath\CryHalf.inl" />
     <None Include="..\Common\Prey\CryMath\GeomQuery.inl" />
+    <None Include="..\imgui\examples\example_emscripten_opengl3\shell_minimal.html" />
+    <None Include="..\imgui\examples\example_emscripten_wgpu\web\index.html" />
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="testconfig.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

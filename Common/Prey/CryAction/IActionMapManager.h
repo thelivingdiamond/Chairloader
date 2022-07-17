@@ -26,7 +26,11 @@
 #include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryCore/smartptr.h>
 
-class CCryName;
+class CCryName
+{
+public:
+	const char* m_str;
+};
 typedef CCryName ActionId;
 struct SInputEvent;
 
@@ -349,7 +353,7 @@ struct IActionMapEventListener
 
 //------------------------------------------------------------------------
 
-#if 0
+// #if 0
 struct IActionMapManager
 {
 	virtual ~IActionMapManager(){}
@@ -415,7 +419,7 @@ struct IActionMapManager
 	virtual void                          RegisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
 	virtual void                          UnregisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
 };
-#endif
+// #endif
 
 template<class T>
 class TActionHandler

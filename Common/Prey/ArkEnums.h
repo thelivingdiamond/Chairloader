@@ -293,11 +293,6 @@ enum class EArkBoneList {
 
 /* WARNING! conflicting data type names: /PreyDll.pdb/ArkPlayerMovementAction/EArkPlayerMovementState - /PreyDll.pdb/ArkPlayer/EArkPlayerMovementState */
 
-enum class EArkFlyMode {
-    off=0,
-    on=1,
-    onNoCollision=2
-};
 
 enum class EArkRadiationLevel {
     None=0,
@@ -1228,18 +1223,8 @@ enum class EArkFabricatorState {
     ItemReady=5
 };
 
-enum class EArkFirstPartyEnvironment {
-    Invalid=0,
-    Integration=1,
-    Cert=2,
-    Production=3
-};
 
-enum class EArkFirstPartyEnvironmentQueryResponse {
-    Success=0,
-    NotReady=1,
-    Failure=2
-};
+
 
 enum class EArkFleeCorneredBehavior {
     none=0,

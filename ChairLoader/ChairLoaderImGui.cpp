@@ -66,6 +66,7 @@ void ChairLoaderImGui::InitBackend() {
 	io.BackendPlatformUserData = this;
 	io.BackendPlatformName = "Prey (CryEngine)";
 	io.BackendRendererName = "D3D11";
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	//io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;       // We can honor GetMouseCursor() values (optional)
 	io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 	CreateFontsTexture();

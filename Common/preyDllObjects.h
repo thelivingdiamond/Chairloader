@@ -3,6 +3,7 @@
 
 #include <set>
 #include <unordered_set>
+#include <boost/variant/variant.hpp>
 
 #include <Prey/CryCore/CryEndian.h>
 #include <Prey/CryMath/Cry_Math.h>
@@ -19,10 +20,27 @@
 #include <Prey/ArkEnums.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
 
-#include "ArkItemSystem.h"
+#include "Prey/ArkAudio.h"
+#include "Prey/ArkInput.h"
+#include "Prey/ArkItemSystem.h"
+#include "Prey/ArkMaterialAnimation.h"
+#include "Prey/ArkTimer.h"
+#include "Prey/CryAction/IAction.h"
+#include "Prey/CryCore/functor.h"
+#include "Prey/CryPhysics/physinterface.h"
+#include "Prey/ArkNpc.h"
+#include "Prey/EStance.h"
+#include "Prey/IAttachment.h"
+#include "Prey/RayCast.h"
+#include "Prey/ArkPlayerStatus.h"
+#include "Prey/ArkPlayerFatigueComponent.h"
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
+class ArkAudioLogComponent;
+class CActionMap;
+class CActionMapManager;
+class ArkPsiPowerTargetingComponent;
 class ArkStatModifier;
 class ArkResearchTopicData;
 class CEntity;
@@ -58,10 +76,10 @@ struct CActor;
 struct IActor;
 struct IArkPlayer;
 struct ArkPlayer;
+class ArkSimpleTimer;
 //ArkGame * getArkGame(
 	// CGame* (18)0x2c09010
 	// GEnv		  0x22418c0
-class CGame;
 class ITexture;
 struct ILog;
 struct SRenderingPassInfo;
@@ -75,6 +93,8 @@ struct IPhysicalWorld;
 struct IPhysRenderer;
 struct IThreadTask;
 struct EventPhysCollision;
+class ArkAudioTrigger;
+class ArkProperty;
 
 enum class EWinVersion {
 	WinUndetected = 0,
@@ -89,10 +109,6 @@ enum class EWinVersion {
 };
 class CEntitySystem;
 
-namespace ArkNpc {
-	class ArkRobotLight;
-	class ArkNpc;
-}
 
 	enum class  CinematicMode : int32_t {
 		 off = 0,
@@ -124,64 +140,16 @@ namespace ArkNpc {
 	
 
 	
-	enum class ArkMaterialAnimationChannel : int8_t
-	{
-		none = 0,
-	};
-	enum class EMaterialParamFloat : int32_t
-	{
-		none = 0,
-		other = 3,
-		telescope = 2,
-		worldUI = 1
-	};
-	enum class EMaterialParamVec3 : int32_t
-	{
-		none = 0,
-		other = 3,
-		telescope = 2,
-		worldUI = 1
-	};
-	enum class enumArkMaterialAnimationType : int32_t
-	{
-		none = 0,
-	};
+	
 	
 
-	enum class enumEPlayerSex : int32_t
-	{
-		none = 0
-	};
-	
 
 
 	
 
 	
 
-	enum class EStance : int32_t{
-		STANCE_UNLOCKED = -2,
-		STANCE_NULL = -1,
-		STANCE_STAND = 0,
-		STANCE_SNEAK = 1,
-		STANCE_CRAWL = 2,
-		STANCE_SMOKE = 3,
-		STANCE_PRONE = 4,
-		STANCE_RELAXED = 5,
-		STANCE_STEALTH = 6,
-		STANCE_ALERTED = 7,
-		STANCE_SWIM = 8,
-		STANCE_ZEROG = 9,
-		STANCE_HOVER = 10,
-		STANCE_CORRUPTED = 11,
-		STANCE_INVESTIGATE_ANOMALY = 12,
-		STANCE_INVESTIGATE_DANGER = 13,
-		STANCE_INVESTIGATE_VISION = 14,
-		STANCE_HUNT = 15,
-		STANCE_GUNUP = 16,
-		STANCE_CHARGE = 17,
-		STANCE_LAST = 18
-	} ;
+	
 
 	enum class ScrollDir {
 		sdDOWN = 0,
@@ -189,18 +157,7 @@ namespace ArkNpc {
 		sdNONE = 2
 	};
 
-	enum class ESaveGameMethod {
-		eSGM_NoSave = 0,
-		eSGM_QuickSave = 1,
-		eSGM_Save = 2
-	};
-
-	enum class ESaveGameReason {
-		eSGR_LevelStart = 0,
-		eSGR_FlowGraph = 1,
-		eSGR_Command = 2,
-		eSGR_QuickSave = 3
-	};
+	
 
 	enum class EType {
 		Button = 0,
@@ -290,18 +247,8 @@ namespace ArkNpc {
 		float m_yaw; //0x000C
 		float m_pitch; //0x0010
 	}; //Size: 0x0014
-	class ClimbPosInfo
-	{
-	public:
-		Vec3 m_point; //0x0000
-		EStance m_stance; //0x000C
-	}; //Size: 0x0010
-	class IAnimatedCharacter
-	{
-	public:
-		char pad_0000[64]; //0x0000
-	}; //Size: 0x0040
-	class CArkPsiComponent{ };
+	
+
 	class ArkSignalModifier{};
 	class ArkAbilityUpgradeState {
 		
@@ -330,6 +277,7 @@ namespace ArkNpc {
 		std::vector<ArkAbilityData*> m_prereqs;
 		std::vector<ArkAbilityData*> m_children;
 		std::vector<ArkResearchTopicData*> m_researchTopicData;
+		std::vector<unsigned int> m_modifiers;
 		uint64_t m_id;
 		bool m_bSeen, m_bAcquired;
 		char pad[6];
@@ -342,58 +290,31 @@ namespace ArkNpc {
 		void* ptr;
 		std::vector<ArkAbility> m_Abilities;
 	};
-	class ArkAbilityComponent {
+
+	class IArkPDAListener
+	{
 	public:
-		void* ptr;
+		virtual void OnPDAOpen() = 0;
+		virtual void OnPDAOpenComplete() = 0;
+		virtual void OnPDAClose() = 0;
+	};
+
+	class ArkAbilityComponent : IArkPDAListener{
+	public:
 		std::vector<ArkAbilityData> m_abilities;
 		std::vector<ArkResearchTopicData> m_researchTopics;
 		uint64_t m_lastResearchedAbility;
 		int32_t m_partialTyphonThreshold,
 				m_fullTyphonThreshold;
-			
+		static inline auto GetAcquiredAbilities = PreyFunction < std::vector<ArkAbilityData const*>(ArkAbilityComponent* _this)>(0x153A5D0);
 	};
-	class ArkAudioLogComponent{ };
-	class ArkNoteComponent{ };
-	class ArkKeyCodeComponent{ };
-	class ArkLocationComponent{ };
-	class ArkLoreComponent{ };
-	class ArkKeyCardComponent{ };
-	class ArkEmailComponent{ };
-	class ArkQuickSelectComponent{ };
-	class ArkRosterComponent{ };
-	class ArkUtilityComponent{ };
-	class ArkPharmaComponent{ };
-	class ArkPDAComponent{ };
-	class ArkPlayerAchievementComponent{ };
-	class ArkPlayerAwarenessComponent{ };
-	class ArkPlayerEntitlementComponent{ };
-	class ArkPlayerFatigueComponent{ };
-	class ArkPlayerHealthComponent{ };
-	class ArkPlayerRadiationComponent{ };
-	class ArkPlayerLightManager{ };
-	class ArkPlayerFXComponent{ };
-	class ArkPlayerUIComponent{ };
-	class ArkFabricationPlanComponent{ };
-	class ArkPlayerStatusComponent{ };
-	class ArkPlayerPropulsionComponent{ };
-	class ArkPlayerSignalReceiver{ };
-	class ArkAimAssistComponent{ };
-	class ArkMarkedEnemyComponent{ };
-	class ArkPlayerScopeComponent{ };
-	template<typename t> class  ArkSpeaker{ };
-	class ArkGameMetricsComponent{ };
-	class ArkFocusModeComponent{ };
-	class ArkLiveTranscribeComponent{ };
-	class ArkStationAccessComponent{ };
-	class ArkPOIComponent{};
+
+	
+	
 	class ArkDialogPlayer{};
 	class ArkDialogPlayerTranscribe{};
 
-		class ArkStatModifier {
-		public:
-			CCryName m_StatName;
-			float m_Modifier;
-		};
+		
 
 		class ArkStatModifierPackage {
 		public:
@@ -448,38 +369,7 @@ namespace ArkNpc {
 		uint32_t m_handle;
 	};
 
-	class ArkInputAction {
-	public:
-		CCryName m_Action;
-		CryStringT<char> m_ActionMap;
-	};
-	class ArkInputLegendItem {
-	public:
-		CCryName m_Action;
-		CryStringT<char> m_ActionMap;
-		CryStringT<char> m_Label;
-		bool m_Hold;
-		CryStringT<char> m_ComboString;
-		std::vector<ArkInputAction> m_ActionList;
-		EArkLegendControlScheme m_ControlScheme;
-		bool m_enabled;
-		CryStringT<wchar_t> m_localizedLabel;
-		
-	};
 	
-
-	class ArkInputLegend
-	{
-	public:
-		CryStringT<char> m_actionMap;
-		std::vector<ArkInputLegendItem> m_Items; //0x0008
-	}; //Size: 0x0020
-
-	class ArkInputLegendHandler
-	{
-	public:
-		uint32_t m_handle; //0x0000
-	}; //Size: 0x0004
 
 
 	class ArkEntityGrabber
@@ -498,18 +388,7 @@ namespace ArkNpc {
 		char pad_0025[3]; //0x0025
 	}; //Size: 0x0028
 
-	class ArkSimpleTimer
-	{
-	public:
-		char pad_0000[4]; //0x0000
-		float N0000235D; //0x0004
-	}; //Size: 0x0008
-
-	class ArkAudioTrigger
-	{
-	public:
-		char pad_0000[4]; //0x0000
-	}; //Size: 0x0004
+	
 
 
 	class ArkPlayerCarry
@@ -662,47 +541,16 @@ namespace ArkNpc {
 	
 
 
-	
-	template<typename T> class TArkAudioSwitch
-	{
-	public:
-		char pad_0000[4]; //0x0000
-		class ArkAudioSwitchState m_states[2]; //0x0004
-	}; //Size: 0x000C
-
-	class ArkAudioRtpc
-	{
-	public:
-		char pad_0000[4]; //0x0000
-	}; //Size: 0x0004
-
-	class ArkAudioSwitch
-	{
-	public:
-		char pad_0000[4]; //0x0000
-	}; //Size: 0x0004
-
-	class ArkAudioSwitchState
-	{
-	public:
-		uint32_t m_id; //0x0000
-	}; //Size: 0x0004
 
 
-	class ArkTimeRemaining {
-	public:
-		float m_timeRemaining;
-	};
+
 
 	class ArkRegularOutcome {
 	public:
 		uint32_t m_data;
 	};
 	
-	class IAttachment {
-	public:
-		void* ptr;
-	};
+	
 
 	// template<int,typename T> class SCRCRef {
 	// 	uint32_t crc;
@@ -721,105 +569,34 @@ namespace ArkNpc {
 		// CMTRand_int32 randGenerator;
 	};
 
-	class IScope {
-	public:
-		void* ptr;
-	};
-	namespace IActions {
-		enum class EStatus {
-			None = 0,
-			Pending = 1,
-			Installed = 2,
-			Exiting = 3,
-			Finished = 4
-		};
-	}
-	template<int32_t s> class STagState {
-		unsigned char state[s];
-	};
-	class CMannequinParams {
-		//TODO: CMannequinParams
-		char pad[24];
-	};
-	class IAction {
-		void* undefined;
-		SAnimationContext* m_context;
-		float m_activeTime;
-		float m_queueTime;
-		uint32_t m_forcedScopeMask;
-		uint32_t m_installedScopeMask;
-		int32_t m_subContext;
-		int32_t priority;
-		IActions::EStatus m_eStatus;
-		uint32_t m_flags;
-		IScope* m_rootScope;
-		int32_t m_fragmentID;
-		STagState<12> m_fragTags;
-		uint32_t m_optionIdx;
-		uint32_t m_userToken;
-		int32_t m_refCount;
-		float m_speedBias;
-		float m_animWeight;
-		char pad1[4];
-		CMannequinParams m_mannequinParams;
-		char pad2[8];
-		//DynArray<_smart_ptr<IAction>, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc>>> m_slaveActions;
+	
+	
+	// class CMannequinParams {
+	// 	//TODO: CMannequinParams
+	// 	char pad[24];
+	// };
+	
 
-	};
-
-	namespace EntityEffects {
-		class SEffectInfo {
-		public:
-			uint32_t id;
-			int32_t entityEffectSlot;
-			int32_t characterEffectSlot;
-			CSharedString helperName;
-		};
-	}
+	
 
 
 	class ArkWeaponMods {
 	public:
 		std::unordered_map<unsigned __int64, int32_t, std::hash<unsigned __int64>, std::equal_to<unsigned __int64>> m_weaponModIds;
 	};
-	class CEffectsController {
-	public:
-		IEntity* m_pOwnerEntity;
-		std::vector<EntityEffects::SEffectInfo> m_attachedEffects;
-		uint32_t m_effectGeneratorId;
-	};
 
-	class ArkEntityAttachmentEffect {
-	public:
-		char pad[64];
-		CEffectsController* m_controller;
-		CryStringT<char> m_attachmentName;
-		uint32_t m_attachemtnSlot;
-		uint32_t m_effectId;
-	};
+	
 
 	class ArkMaterialParamOverride {
 	public:
 		CryStringT<char> m_paramName;
 		float m_paramValue;
 	};
-	struct IParticleEffect {
-	public:
-		void* ptr1;
-		void* ptr2;
-	};
 	class IArkWeaponEventListener {
 	public:
 		void* ptr;
 	};
-	template<typename T, T val> class TMannequinAutoInit {
-	public:
-		T val;
-	};
-	class FragmentIDs {
-	public:
-		TMannequinAutoInit<int32_t, -1> LookBlink;
-	};
+	
 	class IUIElement {
 	public:
 		void* ptr;
@@ -1480,7 +1257,7 @@ namespace ArkNpc {
 		char pad2[4];
 		ArkStatsComponent m_statsComponent;
 		ArkWeaponMods m_weaponMods;
-		CEffectsController m_effectController;
+		EntityEffects::CEffectsController m_effectController;
 		IAttachment* m_pAttachment;
 		ArkSimpleTimer m_attackTimer;
 		ArkSimpleTimer m_hudDamageIconTimer;
@@ -1619,104 +1396,12 @@ namespace ArkNpc {
 		float m_fDefaultMappingScale;
 	};
 
-	class SAttachmentMaterials {
-	public:
-		int32_t meshSlot;
-		CryStringT<char> attachmentName;
-		IMaterial* pMaterial;
-		IMaterial* pOriginalMaterial;
-	};
-	class EnumClassHash {
-	public:
-		char a;
-	};
-
-	class ArkMaterialAnimationRgbKey {
-		float m_Time;
-		float m_Red;
-		float m_Green;
-		float m_Blue;
-	};
 	
-	class ArkMaterialAnimationRgbKeysArray {
-	public:
-		std::vector<ArkMaterialAnimationRgbKey> m_RgbKeys;
+	
+	
 
-	};
-	class ArkMaterialAnimationKey {
-	public:
-		float m_Time;
-		float m_Value;
-	};
-	class ArkMaterialAnimationKeysArray {
-	public:
-		std::vector<ArkMaterialAnimationKey> m_Keys;
-	};
-	class ArkMaterialAnimationSubMaterialData {
-	public:
-		uint32_t m_SubMaterialSlot;
-		char pad1[4];
-		ArkMaterialAnimationRgbKeysArray m_Diffuse;
-		ArkMaterialAnimationRgbKeysArray m_Specular;
-		ArkMaterialAnimationRgbKeysArray m_Emissive;
-		ArkMaterialAnimationKeysArray m_Opacity;
-		ArkMaterialAnimationKeysArray m_Smoothness;
-		ArkMaterialAnimationKeysArray m_AlphaTest;
-		ArkMaterialAnimationKeysArray m_Ambient;
-		ArkMaterialAnimationKeysArray m_EmissiveIntensity;
-	};
-	class ArkMaterialAnimationKeyframe {
-	public:
-		uint32_t m_subMaterialSlot;
-		ArkMaterialAnimationChannel m_channel;
-		float m_keyTime;
-		float m_timeToNextKey;
-		float m_floatValue;
-		Vec3 m_vectorValue;
-		bool m_bIsFloat;
-		char pad1[3];
-	};
-	class ArkMaterialAnimation {
-	public:
-		unsigned __int64 m_Id;
-		CryStringT<char> m_Name;
-		CryStringT<char> m_AttachmentName;
-		uint32_t m_MeshSlot;
-		CryStringT<char> m_MaterialReference;
-		std::vector<ArkMaterialAnimationSubMaterialData> m_SubMaterials;
-		std::vector<ArkMaterialAnimationKeyframe> m_keyframeQueue;
-	};
-
-	class MaterialParameterRamp {
-	public:
-		IMaterial* m_PMaterial;
-		EMaterialParamFloat m_paramFloat;
-		EMaterialParamVec3 m_paramVec3;
-		char* m_paramName;
-		float m_initialFloatValue;
-		float m_finalFloatValue;
-		Vec3 m_initialvectorValue;
-		Vec3 m_finalvectorValue;
-		float m_currentTime;
-		float m_finalTime;
-		bool m_bIsFloat;
-	};
-
-	class ActiveAnimationData {
-	public:
-		std::vector<ArkMaterialAnimationKeyframe> m_keyframeQueue;
-	}; 
-	class ArkMaterialAnimationManager
-	{
-	public:
-		void* m_pEntity; //0x0000
-		std::vector<SAttachmentMaterials> m_attachmentMaterials; //0x0008
-		void* m_pOneOffMaterialAnimation; //0x0020
-		ActiveAnimationData m_oneOffAnimationData; //0x0028
-		std::unordered_map<enumArkMaterialAnimationType, const ArkMaterialAnimation*, EnumClassHash, std::equal_to<enumArkMaterialAnimationType>> m_animationsByType; //0x0040
-		ActiveAnimationData m_activeAnimationsByType[18]; //0x0080
-		std::vector<MaterialParameterRamp> m_materialParameterRamps; //0x0230
-	}; //Size: 0x0248
+	
+	
 	class IPlayerEventListener
 	{
 	public:
@@ -1728,7 +1413,7 @@ namespace ArkNpc {
 	class SIPv4Addr{};
 	class SNullAddr{};
 	class LobbyIdAddr{};
-	class IArkSpeaker{};
+	
 	
 
 
@@ -1903,81 +1588,24 @@ namespace ArkNpc {
 	};
 
 
-	class ArkRandomizedTimer {
-	public:
-		char pad[8];
-		float m_variation;
-	};
 
 	//todo:check enum sizes
-	enum class ECryAiSystemActiveState {
-		unknown = -1,
-		inactive = 0,
-		active = 1
-	};
-	enum class EReactionThrowAtType {
-		rail = 0,
-		glass = 1,
-		ledge = 2,
-		breakable = 3
-	};
-	enum class ELookStyle : int32_t{
-		LOOKSTYLE_DEFAULT = 0,
-		LOOKSTYLE_HARD = 1,
-		LOOKSTYLE_HARD_NOLOWER = 2,
-		LOOKSTYLE_SOFT = 3,
-		LOOKSTYLE_SOFT_NOLOWER = 4,
-		LOOKSTYLE_COUNT = 5
-	};
-	enum class EBodyOrientationMode : int32_t{
-		FullyTowardsMovementDirection = 0,
-		FullyTowardsAimOrLook = 1,
-		HalfwayTowardsAimOrLook = 2
-	};
+	// enum class ECryAiSystemActiveState {
+	// 	unknown = -1,
+	// 	inactive = 0,
+	// 	active = 1
+	// };
+	
+	
 
 
 
 	
 
-	enum class TurnState : int32_t {
-		None = 0,
-		TurnLeft = 1,
-		TurnRight = 2
-	};
+	
 
 
-	enum class ShiftAnimation : int32_t {
-		None = 0,
-		ShiftInAndOut = 1,
-		ShiftInOnly = 2,
-		ShiftOutOnly = 3,
-		Attack = 4
-	};
-
-	enum class ShiftType : int32_t {
-		Normal = 0,
-		Lurk = 1
-	};
-
-	enum class JumpStyle : int32_t {
-		None = 0,
-		ForwardJump = 1,
-		WallJump = 2,
-		AnyJump = 3
-	};
-
-	enum class JumpGoal : int32_t {
-		FromStart = 0,
-		FromStartImmediate = 1,
-		ToEnd = 2,
-		ToEndImmediate = 3
-	};
-
-	enum class HoverStyle : int32_t {
-		MaintainFloorHeight = 0,
-		MaintainCurrentHeight = 1,
-		IgnoreHeight = 2
-	};
+	
 	enum class EStatus : int32_t {
 		None = 0,
 		Pending = 1,
@@ -1985,1066 +1613,19 @@ namespace ArkNpc {
 		Exiting = 3,
 		Finished = 4
 	};
-	enum class FailureReason : int32_t {
-		NoReason = 0,
-		CouldNotFindValidStart = 1,
-		CouldNotFindValidDestination = 2,
-		CouldNotFindPathToRequestedDestination = 3,
-		CouldNotMoveAlongDesignerDesignedPath = 4,
-		FailedToProduceSuccessfulPlanAfterMaximumNumberOfAttempts = 5,
-		CouldNotFindPathAroundObstacles = 6,
-		FailedShift = 7,
-		PathingModeForced = 8,
-		FacingRestricted = 9,
-		StuckOnObstacle = 10,
-		StuckOnNpc = 11,
-		StuckOnGloo = 12
-	};
+	
 
-	enum class LightMode : int32_t {
-		friendly = 0,
-		hostile = 1,
-		hacked = 2
-	};
+	
 
-	enum class EFallingState : int32_t {
-		notFalling = 0,
-		maybeFalling = 1,
-		falling = 2,
-		fallingOutOfGravShaft = 3
-	};
+	
 
 	class ArkMaterialAnimationType{};
 	class Package{};
-	class ArkSpatiallySortedKey {
-	public:
-		uint64_t m_index;
-	};
 	
-	template<typename t> class ArkSpatialManagerKey {
-	public:
-		ArkSpatiallySortedKey m_key;
-	};
 
-	class ArkSpatialManagerEntryImpl_Npc {
-	public:
-		unsigned char a;
-	};
-
-	template<typename t> class ArkSpatialManagerEntry {
-	public:
-		t m_impl;
-		ArkSpatialManagerKey<t> m_key;
-	};
-
-	class LookPoseParam {
-	public:
-		float m_torso,
-			m_head,
-			m_eyes,
-			m_aim;
-	};
 	
-	namespace ArkNpc {
-
-		class ArkCharacterEffectsManager {
-		public:
-			IEntity* m_pEntity;
-			std::vector < CryStringT<char>> m_attachmentsByType[64];
-		};
-		class ArkNpcAttentiveSubject {
-		public:
-			char pad[32];
-			ArkNpc* m_pNpc;
-			float m_complexHearingGain,
-				m_complexVisionGain;
-			EArkNpcVisionDirection m_visionDirection;
-			char pad2[4];
-		};
-		class ArkNpcAttentionObject {
-		public:
-			char pad[24];
-			ArkNpc* m_pNpc;
-		};
-		class CArkNpcLookAroundControl {
-		public:
-			bool m_bSuspended,
-				m_bStateChange,
-				m_bEnabled[2];
-			float m_idleTime;
-			IAction* m_pLookAroundAction;
-		};
-		class ArkNpcCollisionObserver {
-		public:
-			char pad[32];
-		};
-
-		class Fatality {
-			float m_vulnerabilityHealthThreshold;
-		};
-
-
-		class Corruption {
-		public:
-			bool m_bDeletedOnLevelLoadAndUncorrupted;
-			bool m_bShouldGoUnconsciousOnUncorruption;
-			bool m_bStartCorrupted;
-			char* m_pMovementGlitchAttachmentName1;
-			char* m_pMovementGlitchAttachmentName2;
-			class ArkAudioTrigger m_becomeCorruptedAudioTrigger;
-			uint64_t m_corruptedGameEffectId;
-			uint64_t m_uncorruptedMetaTagId;
-			IParticleEffect* m_pCorruptedMovementGlitchParticleEffect;
-		};
-
-		class Dodge {
-		public:
-			bool m_bEnabled;
-			float m_chance;
-			float m_cooldown;
-			uint64_t m_damagePackageId;
-		};
-
-		class PoltergeistEffects {
-		public:
-			uint64_t m_invisibilityGameEffectId;
-		};
-
-		class RaiseFromCorpse {
-		public:
-			uint64_t m_raiseFromCorpseGameEffectId;
-		};
-
-		class Stunned {
-		public:
-			uint64_t m_stunnedGameEffectId;
-		};
-
-		class Dormant {
-		public:
-			float m_hearingGainModifier;
-			uint64_t m_signalModifierId;
-		};
-
-		class Glooed {
-		public:
-			uint64_t m_glooGameEffectId;
-			uint64_t m_onGlooedAbilityContextId;
-		};
-
-		class UnreachableTargeting {
-		public:
-			float m_defaultCombatReachabilityCheckUp;
-			float m_defaultCombatReachabilityCheckDown;
-			float m_defaultCombatReachabilityCheckHorizontal;
-			float m_startingTraceRadius;
-			float m_startingMinSearchRadius;
-			float m_chanceToSearchInReverseOrder;
-			float m_horizontalOffsetStanding;
-			float m_standardCombatHeight;
-		};
-
-		class OperatorEffects {
-		public:
-			float m_airJetToggleOffTime;
-			float m_maxAirJetToggleOnTime;
-			float m_minAirJetToggleOnTime;
-			uint64_t m_operatorArmRetractedGameEffectId;
-			IParticleEffect* m_pAirJetParticleEffect;
-		};
-
-		class CorruptNpc {
-		public:
-			bool m_bReleaseCorruptionOnDeath;
-		};
-
-		class Mimicry {
-		public:
-			int m_morphInSlot;
-			int m_morphOutSlot;
-			float m_defaultMass;
-			float m_impulseMultiplier;
-			float m_impulsePointHorizontalRatio;
-			float m_impulsePointVerticalRatio;
-			float m_startCharacterMorphOutTime;
-			float m_startGeometryMorphInTime;
-			float m_stopCharacterMorphInTime;
-			float m_stopGeometryMorphOutTime;
-			CryStringT<char> m_MorphOutBamfBoneName;
-			uint64_t m_signalModifierId;
-			IParticleEffect* m_pMorphInParticlefEffect;
-			IParticleEffect* m_pMorphOutBamParticlefEffect;
-			IParticleEffect* m_pMorphOutParticlefEffect;
-			class ArkAudioTrigger m_startTickingAudioTrigger;
-			class ArkAudioTrigger m_stopTickingAudioTrigger;
-			class ArkAudioTrigger m_unmorphAudioTrigger;
-		};
-
-		class TurretWeapon {
-		public:
-			IEntityArchetype* m_pLootAmmoLaserArchetype;
-			IEntityArchetype* m_pLootAmmoStunArchetype;
-		};
-
-
-		class RaisePhantom {
-		public:
-			bool m_bCanBeRaisedPhantom;
-			int m_maxAllowedRaisedPhantoms;
-		};
-
-		class IParticleEffect {
-		public:
-			void* ptr1;
-			void* ptr2;
-		};
-
-		class ControlTurrets {
-		public:
-			uint64_t m_controlTurretsGameEffectId;
-		};
-
-		class OnDeath {
-		public:
-			float m_aoeDeathRadius;
-			float m_aoeDeathSignalScale;
-			uint64_t m_aoeDeathSignal;
-			IParticleEffect* m_pFearAoeParticleEffect;
-		};
-
-		class NoiseStates {
-		public:
-			ArkAudioTrigger m_combatStateAudioTrigger;
-			ArkAudioTrigger m_idleStateAudioTrigger;
-			ArkAudioTrigger m_noticeStateAudioTrigger;
-			ArkAudioTrigger m_searchStateAudioTrigger;
-			ArkAudioTrigger m_stareStateAudioTrigger;
-		};
-
-		class DamageStates {
-		public:
-			bool m_bHasDamageStates;
-			float m_healthThresholdDamage;
-			float m_healthThresholdDisabled;
-			float m_destroyedExplosionRadius;
-			float m_destroyedExplosionImpulse;
-			float m_destroyedExplosionDelay;
-			float m_destroyedHeightOffset;
-			float m_disabledRepeatDialogCD;
-			float m_disabledFlickerDuration;
-			char* m_pUndamagedAttachmentName;
-			char* m_pDamagedAttachmentName;
-			char* m_pDisabledAttachmentName;
-			char* m_pChassisModelName;
-			char* m_pChassisUndamagedAttachmentName;
-			char* m_pChassisDestroyedAttachmentName;
-			ArkAudioTrigger m_becomeUndamagedAudioTrigger;
-			ArkAudioTrigger m_becomeDamagedAudioTrigger;
-			ArkAudioTrigger m_becomeDisabledAudioTrigger;
-			uint64_t m_destroyedExplosionPackageId;
-			uint64_t m_destroyedExplosionCameraShakeId;
-		};
-
-		class CallForHelp {
-		public:
-			uint64_t m_onAttackNoiseLoudness;
-			uint64_t m_onAttackNoiseType;
-			uint64_t m_onNewCombatAttentionNoiseLoudness;
-			uint64_t m_onNewCombatAttentionNoiseType;
-		};
-
-		class Ability {
-		public:
-			uint64_t m_abilityContextProfileId;
-		};
-
-		class Shift {
-		public:
-			uint64_t m_shiftingSignalModifierId;
-		};
-
-		class Hack {
-		public:
-			bool m_bStartHacked;
-			uint64_t m_hackedGameEffectId;
-		};
-
-		class Character {
-		public:
-			uint64_t m_characterId;
-		};
-
-		class HitReaction {
-		public:
-			uint64_t m_hitReactionMaterialAnimationGameEffectId;
-		};
-
-		class HumanArmed {
-		public:
-			bool m_bIsArmed;
-			int m_magSize;
-			char* m_pGunAttachmentName;
-			IEntityArchetype* m_pLootWeaponEntityArchetype;
-		};
-
-		class AttentionFacing {
-		public:
-			bool m_bUsesAttentionFacing;
-			bool m_bUsesAttentionLook;
-		};
-
-		class Nullwave {
-		public:
-			uint64_t m_nullwavedSignalModifierId;
-		};
-
-		class Sound {
-		public:
-			NoiseStates m_noiseStates;
-			ArkAudioTrigger m_deathAudioTrigger;
-			ArkAudioTrigger m_startAmbientLivingAudioTrigger;
-			ArkAudioTrigger m_stopAmbientLivingAudioTrigger;
-		};
-
-		class CombatRoleInfo {
-		public:
-			bool m_bCanGetStaleInMeleeRole;
-			bool m_bUsesCombatRoles;
-			float m_meleeRoleCost;
-			float m_meleeRolePreference;
-			float m_meleeRoleScoreBias;
-			float m_minDistanceToAllowRangeRoleSwitchSq;
-		};
-
-		class OnFire {
-		public:
-			uint64_t m_onFireGameEffectId;
-		};
-
-		class Surprise {
-		public:
-			uint64_t m_noiseLoudnessId;
-			uint64_t m_noiseTypeId;
-		};
-
-		class MimicJumpAttack {
-		public:
-			uint64_t m_mimicJumpAttackPackageId;
-			IParticleEffect* m_pMimicAttackEffect;
-		};
-
-		class Hypnotize {
-			float m_timeBetweenHypnotize;
-		};
-
-		class Energized {
-		public:
-			uint64_t m_energizedGameEffectId;
-		};
-
-		class MimicReorient {
-		public:
-			bool m_bSupportsReorientation;
-			float m_mimicGlitchRandTimeMax;
-			float m_mimicGlitchRandTimeMin;
-		};
-
-		class Fear {
-		public:
-			uint64_t m_fearedGameEffectId;
-			uint64_t m_fearedSignalModifierId;
-		};
-
-		class EntityFactionModifier {
-		public:
-			uint64_t m_hositleToFactionId;
-		};
-
-		class Mannequin {
-		public:
-			char* m_pLifetimeTag;
-		};
-
-		class PlayerControlled {
-		public:
-			uint64_t m_playerControlledGameEffectId;
-		};
-
-		class Laser {
-		public:
-			int m_laserHitTypeId;
-			float m_beamEndJumpDistanceSq;
-			float m_materialEffectCooldown;
-			float m_maxLaserLength;
-			float m_maxThickness;
-			float m_minThickness;
-			uint64_t m_laserPackageId;
-			int m_customSurfaceTypeId;
-			char* m_pBeamEndEffectName;
-			char* m_pLaserGeometryName;
-			char* m_pLaserMaterialEffectName;
-			char* m_pReflectionGeometryName;
-			IEntityArchetype* m_pLootAmmoLaserArchetype;
-			IEntityArchetype* m_pLootAmmoStunArchetype;
-		};
-
-		class MindControl {
-		public:
-			uint64_t m_mindControlGameEffectId;
-		};
-
-		class Audio {
-		public:
-			char* m_pDistanceToPlayerParam;
-		};
-
-		class ArkNpcProperties {
-		public:
-			Ability m_ability;
-			AttentionFacing m_attentionFacing;
-			Audio m_audio;
-			CallForHelp m_callForHelp;
-			Character m_character;
-			CombatRoleInfo m_combatRoleInfo;
-			ControlTurrets m_controlTurrets;
-			CorruptNpc m_corruptNpc;
-			Corruption m_corruption;
-			DamageStates m_damageStates;
-			Dodge m_dodge;
-			Dormant m_dormant;
-			Energized m_energized;
-			EntityFactionModifier m_entityFactionModifier;
-			Fatality m_fatality;
-			Fear m_fear;
-			Glooed m_glooed;
-			Hack m_hack;
-			HitReaction m_hitReaction;
-			HumanArmed m_humanArmed;
-			Hypnotize m_hypnotize;
-			Laser m_laser;
-			Mannequin m_mannequin;
-			MimicJumpAttack m_mimicJumpAttack;
-			MimicReorient m_mimicReorient;
-			Mimicry m_mimicry;
-			MindControl m_mindControl;
-			Nullwave m_nullwave;
-			OnDeath m_onDeath;
-			OnFire m_onFire;
-			OperatorEffects m_operatorEffects;
-			PlayerControlled m_playerControlled;
-			PoltergeistEffects m_poltergeistEffects;
-			RaiseFromCorpse m_raiseFromCorpse;
-			RaisePhantom m_raisePhantom;
-			Shift m_shift;
-			Sound m_sound;
-			Stunned m_stunned;
-			Surprise m_surprise;
-			TurretWeapon m_turretWeapon;
-			UnreachableTargeting m_unreachableTargeting;
-			bool m_bCanFall;
-			bool m_bCanRagdoll;
-			bool m_bSupportsLookAt;
-			int m_playerPowerTierTriggerThreshold;
-			int m_npcManagerCombatPoints;
-			float m_combatIntensityContribution;
-			float m_combatIntensityRange;
-			float m_fallDamagePerMeter;
-			float m_fallDistanceForDamage;
-			float m_fallDistanceForDialog;
-			float m_fallDistanceForFallAnim;
-			float m_fallDistanceForGlooBreak;
-			float m_fallDistanceForLandAnim;
-			float m_forceResistScrunchDistance;
-			char* m_pAiTreeFilePath;
-			char* m_pFaction;
-			uint64_t m_fallDamagePackage;
-			uint64_t m_ragdollSignalModifierId;
-			EArkAttentionLevel m_abortTrackviewOnHostileAttention;
-			EArkNpcVisionDirection m_visionDirection;
-		};
-		typedef unsigned char ArkNpcSpawnedState_Alert;
-		typedef unsigned char ArkNpcSpawnedState_Broken;
-		typedef unsigned char ArkNpcSpawnedState_Dead;
-		typedef unsigned char ArkNpcSpawnedState_Dormant;
-		// template<typename a, typename b, typename c, typename d> class variant {
-		// public:
-		// 	int32_t which_;
-		// 	a A;
-		// 	b B;
-		// 	c C;
-		// 	d D;
-		// 	std::aligned_storage<32, 8> storage_;
-		// };
-		class AkrNpcLifecycleFsm {
-		public:
-			char pad[712];
-		};
-		class ArkNpcLifecycle {
-		public:
-			ArkNpc* m_pNpc;
-			AkrNpcLifecycleFsm m_fsm;
-		};
-		class ArkNpcBodyFsm {
-		public:
-			char pad[6072];
-		};
-		class ArkNpcBody {
-		public:
-			char pad[24];
-			ArkNpc* m_pNpc;
-			ArkNpcBodyFsm m_fsm;
-			float m_jumpStartZ;
-			bool m_bCanFallFromJump;
-			char pad2[3];
-			EFallingState m_FallingState;
-			float m_fallingStartZ;
-			uint64_t m_liftCount;
-		};
-		class ArkNpcDamageFsm {
-		public:
-			char pad[56];
-			bool m_bCanBeDisabled;
-			bool m_bShouldInstantlyDie;
-			char pad2[2];
-		};
-
-		class ArkNpcDesireTarget {
-		public:
-			char pad[36];
-			//
-			//variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<10>,ArkNpcNoDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<9>,ArkNpcPositionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<8>,ArkNpcEntityDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<7>,ArkNpcEntityBoneDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<6>,ArkNpcEntityOffsetTargetImpl,boost::mpl::l_item<boost::mpl::long_<5>,ArkNpcEntityBoundsCenterTargetImpl,boost::mpl::l_item<boost::mpl::long_<4>,ArkNpcAttentionProxyDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<3>,ArkNpcCameraDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<2>,ArkNpcDirectionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<1>,ArkNpcAttackPositionDesireTargetImpl,boost::mpl::l_end>>>>>>>>>>>>
-		};
-		template<typename T> class ArkDelegate {
-		public:
-			T* m_pObject;
-			void* m_pCaller;
-		};
-		class ArkNpcLookDesire {
-		public:
-			char pad[64];
-			ArkNpcDesireTarget m_target;
-			bool m_bUseAim,
-				m_bAllowLowerBodyTurn;
-			char pad2[2];
-			ELookStyle m_style;
-			EBodyOrientationMode m_orientMode;
-			EArkNpcSpeedType m_minSpeed;
-			LookPoseParam m_blendInTime,
-				m_smoothTime,
-				m_blendOutTime,
-				m_maxAngleRadiansPitch,
-				m_maxAngleRadiansYaw;
-			float m_polarOffsetX,
-				m_polarOffsetY;
-			char pad3[4];
-			ArkDelegate<void __cdecl(EArkNpcLookDesireCallbackEvent)> m_callback;
-		};
-		class ArkNpcNoiseStateDesire {
-		public:
-			char pad[64];
-			EArkNpcNoiseState m_noiseState;
-			char pad2[4];
-		};
-		class ArkNpcFacingDesire {
-		public:
-			char pad[64];
-			TurnState m_turnState;
-			ArkNpcDesireTarget m_target,
-				m_turnAlignTarget;
-			float m_resumeAngle;
-			EArkNpcSpeedType m_minSpeed;
-			char pad2[4];
-			ArkDelegate<void __cdecl(EArkNpcFacingDesireCallbackEvent)> m_callback;
-		};
-		class ArkNpcMovementDesire {
-		public:
-			char pad[64];
-			ArkNpcDesireTarget m_destination;
-			bool m_bQueryNavSystem;
-			char pad2[3];
-			float m_navQueryHorizontalRadius,
-				m_navQueryBelowThreshold,
-				m_navQueryAboveThreshold;
-			bool m_bForcePath,
-				m_bForceGoToNavMesh;
-			char pad3[2];
-			int32_t m_stance;
-			float m_speedLiteral,
-				m_accelLiteral,
-				m_decelLiteral,
-				m_stopDistance,
-				m_resumeDistance;
-			bool m_bUseExactPosition;
-			char pad4[3];
-			float m_exacRotationStartDist;
-			Vec3 m_exactDirection;
-			bool m_bShift;
-			char pad5[3];
-			float m_shiftDistBefore,
-				m_shiftDistAfter,
-				m_shiftTelegraphTime;
-			ShiftAnimation m_shiftAnims;
-			ShiftType m_shiftType;
-			JumpStyle m_jumpStyle;
-			JumpGoal m_jumpGoal;
-			float m_jumpDist,
-				m_jumpGoalPathDist;
-			HoverStyle m_hoverStyle;
-			EArkObstacleAvoidanceUrgency m_obstacleAvoidUrgency;
-			bool m_bContinueMoving,
-				m_bScriptMove,
-				m_bAllowTeleportToNavMesh;
-			char pad6;
-			FailureReason m_lastFailure;
-			char pad7[4];
-			ArkDelegate<void __cdecl(EArkNpcMovementDesireCallbackEvent)> m_callback;
-		};
-
-		class ArkNpcFacingDesireManager {
-		public:
-			char pad[48];
-		};
-		class ArkNpcLookDesireManager {
-		public:
-			char pad[48];
-			EArkNpcSpeedType m_speed;
-			LookPoseParam m_defaultBlendInTime,
-				m_defaultSmoothTime,
-				m_defaultBlendOutTime,
-				m_defaultMaxYaw,
-				m_defaultMaxPitch;
-			float m_speedMultiplierFastHead,
-				m_speedMultiplierFastestHead,
-				m_speedMultiplierFastTorso,
-				m_speedMultiplierFastestTorso,
-				m_speedScale;
-		};
-		typedef uint32_t MovementRequestID;
-		class ArkNpcMovementDesireManager {
-		public:
-			char pad[48];
-			MovementRequestID m_movementRequestID,
-				m_stopRequestId;
-			ArkNpcFacingDesire m_facingDesire;
-			bool m_bNeedsStop;
-			bool m_bNeedsNavMeshReturn;
-			char pad2[6];
-		};
-		class ArkNpcNoiseStateDesireManager {
-		public:
-			char pad[48];
-			ArkAudioTrigger m_audioTriggers[5];
-			OPTIONAL EArkNpcNoiseState m_currentNoiseState;
-			char pad2[4];
-		};
-
-		class ArkNpcSpeedDesireManager {
-		public:
-			char pad[48];
-			float m_deltaAngleRateNormal,
-				m_deltaAngleRateFast,
-				m_deltaAngleRateFastest;
-			bool m_bSmoothedZTurning;
-			char pad2[3];
-		};
-
-		class ArkAiKnowledge {
-		public:
-			ArkNpc* m_npc;
-		};
-		class ArkAiTree {
-		public:
-			char pad[8];
-			ArkContiguousMemory m_nodes;
-		};
-		class ArkAiTreeNodeParent {
-		public:
-			char pad[8];
-		};
-		class ArkAiTreeNode {
-		public:
-			char pad[8];
-			uint64_t m_traversalIndex;
-			ArkAiTreeNodeParent* m_pParent;
-			ArkAiTreeNode** m_ppChildrenBegin;
-			ArkAiTreeNode** m_ppChildrenEnd;
-		};
-		class ArkAiTreeInstanceNodeParent {
-		public:
-			unsigned char a;
-		};
-		class ArkAiTreeStatus {
-		public:
-			EArkAiTreeStatusFlags m_statusFlags;
-		};
-		class ArkAiTreeInstanceNode {
-		public:
-			char pad[8];
-			ArkAiTreeInstanceNodeParent* m_pParent;
-			ArkAiTreeInstanceNode** m_ppChildrenBegin;
-			ArkAiTreeInstanceNode** m_ppChildrenEnd;
-			ArkAiTreeStatus m_status;
-		};
-		class ArkAiTreeStimulusDelegate {
-		public:
-			ArkAiTreeNode* m_pNode;
-			ArkAiTreeInstanceNode* m_pInstanceNode;
-			void* m_pCaller;
-		};
-		class ArkAiTreeInstance {
-		public:
-			ArkContiguousMemory m_nodes;
-			std::unordered_map<const ArkAiTreeNode*, std::unordered_map<const char*, ArkAiTreeStimulusDelegate, std::hash<const char*>, std::equal_to<const char*>, std::allocator<std::pair<const char* const, ArkAiTreeStimulusDelegate>>>, std::hash<const ArkAiTreeNode*>, std::equal_to<const ArkAiTreeNode*>, std::allocator<std::pair<const ArkAiTreeNode* const, std::unordered_map<const char*, ArkAiTreeStimulusDelegate, std::hash<const char*>, std::equal_to<const char*>, std::allocator<std::pair<const char* const, ArkAiTreeStimulusDelegate>>>>>> m_nodeStimulusDelegates;
-		};
-		class HitInfo {
-		public:
-			uint32_t shooterId;
-			uint32_t targetId;
-			uint32_t weaponId;
-			uint32_t projectileId;
-			uint32_t uniqueId;
-			uint32_t groupId;
-			float damage;
-			float impulseScale;
-			float radius;
-			float angle;
-			int material;
-			int type;
-			int bulletType;
-			float damageMin;
-			int partId;
-			Vec3_tpl<float> pos;
-			Vec3_tpl<float> dir;
-			Vec3_tpl<float> normal;
-			unsigned short projectileClassId;
-			unsigned short weaponClassId;
-			bool remote;
-			bool aimed;
-			bool knocksDown;
-			bool knocksDownLeg;
-			bool hitViaProxy;
-			bool explosion;
-			bool forceLocalKill;
-			bool critical;
-			int penetrationCount;
-		};
-		class IAnimSequence {
-		public:
-			char pad[16];
-		};
-		class ArkPsiLift {
-		public:
-			Vec3 m_axis;
-			Vec3 m_position;
-			CryStringT<char> m_particleEffectName;
-			uint32_t m_entityId,
-				m_ownerid;
-			int32_t m_particleEmitterSlot;
-			float m_radius,
-				m_height;
-		};
-		class ArkPlayerLiftEntity {
-		public:
-			ArkSimpleTimer m_destroyGooTimer;
-			float m_inwardLiftForce,
-				m_upwardLiftForce;
-		};
-		class ArkPsiPowerLiftUniqueProperties {
-		public:
-			float m_MinHeight,
-				m_MaxRange,
-				m_MaxRangeZeroG,
-				m_Radius,
-				m_Gravity,
-				m_InwardLiftForce,
-				m_UpwardLiftForce,
-				m_LiftForceZeroG,
-				m_HoverVelocityDamping,
-				m_HoverVelocityFalloff,
-				m_HoverFalloffDistance;
-			CryStringT<char> m_ParticleEffect,
-				m_TargetingParticleEffect,
-				m_TargetingParticleEffectLight;
-			uint64_t m_PlayerPostEffectId;
-			CryStringT<char> m_PlayerEnterAudioTrigger,
-				m_PlayerExitAudioTrigger;
-			uint64_t m_EnterLiftSignalPackageId;
-		};
-		class LiftEntitySpawner {
-			ArkPsiPowerLiftUniqueProperties* m_properties;
-		};
-		template<typename T> class ArkPsiLiftVolumeEntity {
-		public:
-			T m_derived;
-			uint32_t m_entityId;
-		};
-		template<typename T> class ArkPsiLiftVolume {
-		public:
-			ArkPsiLift m_psLift;
-			ArkSimpleTimer m_aliveTimer,
-				m_queryTimer;
-			T m_entitySpawner;
-			std::vector<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>> m_containedEntities;
-			float m_gravity;
-		};
-		template<typename T> class ArkPsiLiftVolumeManager {
-		public:
-			char pad[8];
-			std::vector<ArkPsiLiftVolume<T>> m_liftVolumes;
-
-		};
-		class ArkAirJet {
-		public:
-			IAttachment* m_pAttachment;
-			float m_toggleTimer;
-		};
-		class ArkAirJetManager {
-		public:
-			std::vector<ArkAirJet> m_airJets;
-			Vec3 m_prevForward;
-			ArkInterval<float> m_airJetActiveToggleTime;
-			float m_airJetOffTime;
-		};
-		class ArkDialogPlayerRobotLightExtension {
-		public:
-			char pad[8];
-			ArkRandomizedTimer m_brightnessTimer;
-			char pad2[4];
-			uint64_t m_lastDialogId;
-			float m_minBrightness,
-				m_maxBrightness;
-			ArkRobotLight* m_light;
-		};
-		class ArkRobotLight {
-		public:
-			IEntity* m_pEntity;
-			uint32_t m_arkLightEntityId;
-			LightMode m_lightMode;
-			ArkDialogPlayerRobotLightExtension m_dialogExtension;
-			ArkSimpleTimer m_lightFlickerDurationTimer,
-				m_lightFlickerToggleTimer;
-			float m_flickerToggleMaxTime,
-				m_onBrightness;
-			bool m_bActive,
-				m_bGlowHidden,
-				m_bEntityHidden,
-				m_bIsOn,
-				m_bScriptEnabled,
-				m_bIsFlickering,
-				m_bFlickeringForceOff,
-				m_bRemoved;
-		};
-		class ArkFireAndForgetEffect {
-		public:
-			char pad[64];
-		};
-		class ArkNpcSpeedDesire {
-
-		};
-		class ArkNpcAnimAction {};
-		class ArkNpcBodyStateObserver_Animated{};
-		class ArkNpcBodyStateObserver_Dissipate{};
-		class ArkNpcBodyStateObserver_Busy{};
-		class ArkCharacterEffectType{};
-		class ArkGlooEffectAccumulated{};
-		class ArkNpc {
-		public:
-			virtual void  InitializeTrackviewTempNpc() {}
-			virtual void  OnAnimatedMovement_Start() {}
-			virtual void  OnAnimatedMovement_Stop() {}
-			virtual bool  IsMovementAnimated() {}
-			virtual void  OnJumpAnimActionSequence_Start() {}
-			virtual void  OnJumpAnimActionSequence_Stop() {}
-			virtual void  OnJumpAnimAction_Fall() {}
-			virtual void  OnMantleAnimAction_Start() {}
-			virtual void  OnMantleAnimAction_Stop() {}
-			virtual bool  PerformMimicReorientation( Vec2_tpl<float>*param_1) {}
-			virtual void  PerformMimicGlitch() {}
-			virtual void  StopMimicGlitch() {}
-			virtual uint32_t  GetTopAttentionTargetEntityId() {}
-			virtual void  OnTargetDead(uint32_t param_1) {}
-			virtual void  ShiftTelegraph( ShiftType* param_1) {}
-			virtual void  ShiftBegin( ShiftType* param_1) {}
-			virtual void  ShiftEnd( ShiftType* param_1) {}
-			virtual bool  SupportsLookAt() {}
-			virtual bool  IsGlooSlow() {}
-			virtual bool  IsFalling() {}
-			virtual void  SetBreakGlooEntity(uint32_t param_1) {}
-			virtual void  BreakGlooEntity() {}
-			virtual void  ForceMovementReplan() {}
-			virtual void  ForceReevaluateMovementAnimAction() {}
-			virtual void  CancelMovement() {}
-			virtual void  PushDisableHitReactions() {}
-			virtual void  PopDisableHitReactions() {}
-			virtual void  PushAIAlwaysUpdate() {}
-			virtual void  PopAIAlwaysUpdate() {}
-			virtual void  ResetAIAlwaysUpdate() {}
-			virtual void  OnNewAttentionTarget(uint32_t param_1, bool param_2) {}
-
-			char pad[80];
-			std::vector<Vec3> m_cachedDoppelgangerCandidatePositions;
-			std::vector<uint32_t> m_cachedNearbyNpcsForAbility;
-			Vec3 m_cachedThermogenesisLocation;
-			Vec3 m_cachedEMPBlastLocation;
-			Vec3 m_cachedHitReactShiftLocation;
-			char pad2[4];
-			ArkSpatialManagerEntry<ArkSpatialManagerEntryImpl_Npc> m_spatialManagerEntry;
-			uint64_t m_characterId;
-			CEffectsController m_effectController;
-			ArkNpcFacingDesireManager m_facingDesireManager;
-			ArkNpcLookDesireManager m_lookDesireManager; 
-			ArkNpcMovementDesireManager m_movementDesireManager;
-			ArkNpcNoiseStateDesireManager m_noiseStateDesireManager;
-			ArkNpcSpeedDesireManager m_speedDesireManager;
-			ArkCharacterEffectsManager m_characterEffectsManager;
-			ArkMaterialAnimationManager m_materialAnimationManager;
-			ArkNpcAttentiveSubject m_attentiveSubject;
-			ArkNpcAttentionObject m_attentionObject;
-			CArkNpcLookAroundControl m_lookAround;
-			ArkIntrusiveList<ArkNpcCollisionObserver> m_collisionObservers;
-			ArkNpcProperties m_properties;
-			boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> m_spawnedState;
-			std::unique_ptr<ArkNpcLifecycle, std::default_delete<ArkNpcLifecycle>> m_pLifecycle;
-			std::unique_ptr<ArkNpcBody, std::default_delete<ArkNpcBody>> m_pBody;
-			std::unique_ptr<ArkNpcDamageFsm, std::default_delete<ArkNpcDamageFsm>> m_pDamageFsm;
-			ArkNpcLookDesire m_attentionLookDesire;
-			ArkNpcNoiseStateDesire m_attentionNoiseStateDesire;
-			ArkNpcFacingDesire m_blendRagdollFacingDesire;
-			ArkNpcLookDesire m_blendRagdollLookDesire;
-			ArkNpcMovementDesire m_blendRagdollMovementDesire;
-			ArkNpcFacingDesire m_conversationFaceDesire;
-			ArkNpcLookDesire m_conversationLookDesire;
-			ArkNpcMovementDesire m_conversationMovementDesire;
-			ArkNpcFacingDesire m_trackViewFacingDesire;
-			ArkNpcLookDesire m_trackViewLookingDesire;
-			ECryAiSystemActiveState m_cryAISystemState;
-			char pad3[4];
-			ArkAiKnowledge m_aiKnowledge;
-			CryStringT<char> m_aiTreeFilePath;
-			std::shared_ptr<ArkAiTree> m_pAiTree;
-			std::unique_ptr<ArkAiTreeInstance, std::default_delete<ArkAiTreeInstance>> m_pAiTreeInstance;
-			bool m_bUpdatingForStimuli;
-			bool m_bSerializedUpdatingForStimuli;
-			char pad4[6];
-			ArkUnanimous m_abilitiesEnabled;
-			ArkUnanimous m_aiTreeEnabled;
-			ArkUnanimous m_ambientSoundEnabled[2];
-			ArkUnanimous m_attentionObjectEnabled;
-			ArkUnanimous m_attentiveSubjectEnabled;
-			ArkUnanimous m_audibleEnabled;
-			ArkUnanimous m_combatIntensityEnabled;
-			ArkUnanimous m_hearingEnabled;
-			ArkUnanimous m_lifetimeEffectEnabled;
-			ArkUnanimous m_operatorLevitatorsEffectEnabled;
-			ArkUnanimous m_roomPerceiverEnabled;
-			ArkUnanimous m_visibleEnabled;
-			ArkUnanimous m_visionEnabled;
-			uint64_t m_aiAlwaysUpdatePushCount;
-			uint64_t m_aiTreeSuspendedCount;
-			uint64_t m_disableDeathReactionsCount;
-			uint64_t m_disableHitReactionsCount;
-			uint64_t m_disableNpcHealthUiCount;
-			uint64_t m_dumbedCount;
-			uint64_t m_glassBreakingEnabledCount;
-			uint64_t m_rigidOnGlooFrozenCount;
-			bool m_bFlowGraphAiDisabled;
-			bool m_bFlowGraphCanCorruptNpcs;
-			bool m_bFlowGraphCombatIntensityDisabled;
-			bool m_bFlowGraphDumbed;
-			bool m_bFlowGraphIgnoreDistractions;
-			bool m_bHasTimeToDeath;
-			char pad5[2];
-			float m_timeToDeath;
-			Vec3_tpl<float> m_headPosition;
-			Vec3_tpl<float> m_headDirection;
-			ArkAudioRtpc m_distanceToPlayerRtpc;
-			uint32_t m_wanderAreaContainerEntityId;
-			bool m_bWanderDisabled;
-			bool m_bCurrentlyWandering;
-			bool m_bPushedAIAlwaysUpdateForPatrol;
-			bool m_bCanBeDistracted;
-			bool m_bIsDistracted;
-			char pad6[3];
-			float m_usedDistractionCooldown;
-			ArkUnanimous m_breakable;
-			float m_transitionStateTagTimer;
-			bool m_bShouldSkipNextCombatReaction;
-			bool m_bAnimatedMovement;
-			bool m_bAnimatedJump;
-			bool m_bIsFrozenInGloo;
-			bool m_bDeflectsGloo;
-			char pad7[3];
-			ArkSimpleTimer m_playerBumpTimer;
-			ArkSimpleTimer m_xRayVisionTimeOnPlayer;
-			uint32_t m_topAttentionTargetEntityId;
-			char pad8[4];
-			 ArkDelegate<void __cdecl(void)> m_fleeStartFlowNodeCallback;
-			 ArkDelegate<void __cdecl(void)> m_fleeEndFlowNodeCallback;
-			 ArkDelegate<void __cdecl(void)> m_guardInPositionFlowNodeCallback;
-			 ArkDelegate<void __cdecl(uint32_t, uint32_t, bool)> m_createPhantomFlowNodeCallback;
-			bool m_bHasPerformedNotice;
-			char padx[7];
-			CTimeValue m_lastSearchAnimTime;
-			bool m_bIsInCombat;
-			bool m_bCombatIntensityIncreased;
-			char pad9[2];
-			enum EArkCombatRole m_currentCombatRole;
-			float m_combatReactionCooldownTimer;
-			HitInfo m_lastDamagingHitInfo;
-			char pad10[4];
-			uint64_t m_lastDamagingPackageId;
-			int32_t m_lastOnHitFrameId;
-			char pad11[4];
-			CTimeValue m_damageAccumulationStartTime;
-			float m_damageAccumulationFromPlayer;
-			bool m_bIsIgnoringRangedAbilities;
-			char pad12[3];
-			uint64_t m_lastAbilityContextIdPerformed;
-			CTimeValue m_dodgeTimeStamp;
-			CTimeValue m_knockDownTimeStamp;
-			CTimeValue m_staggerTimeStamp;
-			CTimeValue m_hypnotizeStartTimeStamp;
-			bool m_bPsiSuppressed;
-			bool m_bIsPrereqHitReacting;
-			bool m_bIsTakingPrereqDamage;
-			bool m_bPrereqIsRegainingLoS;
-			bool m_bCanMimicSideStepLeft;
-			bool m_bCanMimicSideStepRight;
-			char pad13[2];
-			uint64_t m_animAttackPackageId;
-			IAnimSequence* m_pTrackviewSequence;
-			float m_mimicGlitchTimeNext;
-			char pad15[4];
-			ArkEntityAttachmentEffect m_mimicMorphInEffect;
-			ArkEntityAttachmentEffect m_mimicMorphOutEffect;
-			std::vector<uint32_t> m_raisedPhantomIds;
-			uint32_t m_ethericDoppelgangerId;
-			uint32_t m_ethericDoppelgangerOwnerId;
-			bool m_bIsEthericDoppelganger;
-			char pad16[7];
-			std::unique_ptr<ArkPsiLiftVolumeManager<ArkPsiLiftVolume<LiftEntitySpawner>>, std::default_delete<ArkPsiLiftVolumeManager<ArkPsiLiftVolume<LiftEntitySpawner>>>> m_pLiftVolumeManager;
-			uint32_t m_npcThatCorruptedMe;
-			char pad17[4];
-			std::vector<uint32_t> m_npcsCorrupted;
-			bool m_bCorruptedMovementDisabled;
-			bool m_bWasUncorrupted;
-			char pad18[6];
-			ArkEntityAttachmentEffect m_CorruptedMovementGlitchEffect1;
-			ArkEntityAttachmentEffect m_CorruptedMovementGlitchEffect2;
-			ArkAirJetManager m_operatorAirJetManager;
-			ArkRobotLight m_robotLight;
-			ArkFireAndForgetEffect m_aoeDeathEffect;
-			Vec3_tpl<float> m_cachedThrowAtLocation;
-			EReactionThrowAtType m_cachedThrowAtType; //enum
-			uint32_t m_leaderEntityId;
-			uint32_t m_attachedPistolEntityId;
-			int32_t m_numAmmo;
-			bool m_bInitiallyUpdateAi;
-			bool m_bIsSerializingRead;
-			bool m_bHasFullSerializeReadBeenCalled;
-			bool m_bShuttingDown_Hack;
-		};
-		};
+	
+	
 
 
 		class SBindings		   {};
@@ -3072,11 +1653,9 @@ namespace ArkNpc {
 			float m_health;
 			float m_maxHealth;
 		};
-		class ArkNpcAbility{};
-		struct AIObjectParams{};
-		struct ICharacterInstance{};
+		
 		struct IParticleEmitter{};
-		struct SpawnParams{};
+		
 		class CScriptBind_ArkPlayer{};
 		class CDLight{};
 		class SComponentInitializer{};
@@ -3563,12 +2142,8 @@ namespace ArkNpc {
 		class CScriptBind_ProtectedBinds	 {};
 		class CPlayerVisTable				 {};
 		class CDataPatchDownloader			 {};
-		class IAntiCheatManager				 {};
 		class CGameLocalizationManager		 {};
 		class ITelemetryCollector			 {};
-		class CGameActions {
-			
-		};
 		class IPlayerProfileManager			 {};
 
 		 class SPlayerMovement {
@@ -4714,7 +3289,6 @@ namespace ArkNpc {
 		//class ArkAudioLogComponent{};
 		class IAudioSystemImplementation{};
 		class AKRESULT{};
-		enum class EPriorityComparison{};
 		class CXConsole {
 		public:
 			virtual void*   _ECXConsole(uint32_t param_1) {}
@@ -5825,14 +4399,7 @@ namespace ArkNpc {
 			bool m_bDisableListeners;
 			char pad2[7];
 		};
-		class ArkProperty {
-		public:
-			void* ptr;
-			CryStringT<char> m_name;
-			char* m_typeStr;
-			EArkType m_arkType;
-			char pad[4];
-		};
+		
 		class ArkClass {
 		public:
 			std::unordered_map<CryStringT<char>, ArkProperty*> m_properties;
@@ -6018,7 +4585,7 @@ namespace ArkNpc {
 		class ArkResponseManager{};
 		class ArkRetreatManager{};
 		class ArkRoomPerceptionManager{};
-		class ArkSpatialManager{};
+		
 		class ArkTimeScaleManager{};
 		class ArkVisualPerceptionManager{};
 		class ArkWorldUIManager{};
@@ -6130,10 +4697,116 @@ namespace ArkNpc {
 		class CLevelSystem{};
 		class CItemSystem{};
 		class CSharedParamsManager{};
-		class CActionMapManager {
-			
+		class CActionMapAction : IActionMapAction
+		{
+		public:
+
+
+			CryFixedStringT<32> m_triggeredInput;
+			CCryName m_actionId;
+			std::vector<SActionInput*> m_actionInputs;
+			CActionMap* m_pParentActionMap;
+			int m_iNumRebindedInputs;
+		};
+		template <typename T> class CListenerSet// Size=0x28 (Id=16460)
+		{
+		public:
+			struct ListenerRecord// Size=0x8 (Id=1707282)
+			{
+				T m_pListener;// Offset=0x0 Size=0x8
+			};
+			std::vector<CListenerSet<T>::ListenerRecord> m_listeners;// Offset=0x0 Size=0x18
+			unsigned __int64 m_activeNotifications;// Offset=0x18 Size=0x8
+			bool m_cleanupRequired;// Offset=0x20 Size=0x1
+			bool m_freeMemOnCleanup;// Offset=0x21 Size=0x1
+		};
+		class CActionMap : IActionMap
+		{
+		public:
+			bool m_enabled;
+			CActionMapManager* m_pActionMapManager;
+			std::map<CCryName, CActionMapAction> m_actions;
+			unsigned int m_listenerId;
+			CListenerSet<IActionListener*> m_actionMapListeners;
+			CryStringT<char> m_name;
+			int m_iNumRebindedInputs;
+		};
+		class CActionFilter : IActionFilter
+		{
+		public:
+
+
+			bool m_enabled;
+			CActionMapManager* m_pActionMapManager;
+			IInput* m_pInput;
+			std::set<CCryName> m_filterActions;
+			EActionFilterType m_type;
+			CryStringT<char> m_name;
+		};
+		class IActionFilterStack
+		{
+		public:
+			virtual void PushFrame() = 0;
+			virtual void PopFrame() = 0;
+
 
 		};
+		class ArkActionFilterStack 
+		{
+		public:
+			void* vtable;
+			std::vector<std::vector<IActionFilter*>> m_FilterStack;
+		};
+		static_assert(sizeof(ArkActionFilterStack) == 0x20);
+		class CActionMapManager : IActionMapManager, IInputEventListener
+		{
+		public:
+			struct SBindData// Size=0x18 (Id=1027099)
+			{
+				struct SActionInput* m_pActionInput;// Offset=0x0 Size=0x8
+				class CActionMapAction* m_pAction;// Offset=0x8 Size=0x8
+				class CActionMap* m_pActionMap;// Offset=0x10 Size=0x8
+			};
+			struct SRefireBindData// Size=0x20 (Id=1027104)
+			{
+				struct CActionMapManager::SBindData m_bindData;// Offset=0x0 Size=0x18
+				bool m_bIgnoreNextUpdate;// Offset=0x18 Size=0x1
+				bool m_bDelayedPressNeedsRelease;// Offset=0x19 Size=0x1
+			};
+			struct SRefireData// Size=0x58 (Id=1027110)
+			{
+				unsigned int m_inputCRC;// Offset=0x0 Size=0x4
+				struct SInputEvent m_inputEvent;// Offset=0x8 Size=0x38
+				class std::vector<CActionMapManager::SRefireBindData, std::allocator<CActionMapManager::SRefireBindData> > m_refireBindData;// Offset=0x40 Size=0x18
+			};
+			struct SRefireReleaseListData// Size=0x48 (Id=1027135)
+			{
+				struct SInputEvent m_inputEvent;// Offset=0x0 Size=0x38
+				class std::list<CActionMapManager::SBindData const*, std::allocator<CActionMapManager::SBindData const*> > m_inputsList;// Offset=0x38 Size=0x10
+			};
+
+			std::vector<IActionListener*> m_ExtraActionListeners;
+			CryStringT<char> m_loadedXMLPath;
+			IInput* m_pInput;
+			std::map<CryStringT<char>, CActionMap*, std::less<CryStringT<char> >, std::allocator<std::pair<CryStringT<char> const, CActionMap*> > > m_actionMaps;
+			std::map<CryStringT<char>, CActionFilter*, std::less<CryStringT<char> >, std::allocator<std::pair<CryStringT<char> const, CActionFilter*> > > m_actionFilters;
+			std::multimap<unsigned int, CActionMapManager::SBindData> m_inputCRCToBind;
+			std::map<unsigned int, CActionMapManager::SRefireData*> m_inputCRCToRefireData;
+			std::list<std::shared_ptr<IBlockingActionListener>> m_alwaysActionListeners;
+			std::map<CryStringT<char>, XmlNodeRef, std::less<CryStringT<char> >, std::allocator<std::pair<CryStringT<char> const, XmlNodeRef> > > m_preloadedControllerLayouts;
+			std::vector<SActionInputDeviceData> m_inputDeviceData;
+			EKeyId m_currentInputKeyID;
+			ArkActionFilterStack m_actionFilterStack;
+			int m_version;
+			bool m_enabled;
+			bool m_bRefiringInputs;
+			bool m_bDelayedRemoveAllRefiringData;
+			bool m_bIncomingInputRepeated;
+			bool m_bRepeatedInputHoldTriggerFired;
+			std::list<IActionMapEventListener*> m_actionMapEventListeners;
+			unsigned int m_defaultEntityId;
+		};
+		static_assert(sizeof(CActionMapManager) == 0x100);
 		class CViewSystem{};
 		class CGameplayRecorder{};
 		class CGameRulesSystem{};
@@ -6198,10 +4871,7 @@ namespace ArkNpc {
 		public:
 			char pad[48];
 		};
-		class ArkAudioSwitchManager {
-		public:
-			char pad[24];
-		};
+		
 		class SAudioRequest {
 			char pad[40];
 		};
@@ -6385,65 +5055,65 @@ namespace ArkNpc {
 		class ILevelSystem {};
 		class IActorSystem {};
 		class IItemSystem {};
-		class IActionMapManager {
-		public:
-			virtual void* _ECActionMapManager(uint32_t param_1) {}
-			virtual void  Update() {}
-			virtual void  Reset() {}
-			virtual void  ResetBindings() {}
-			virtual void  Clear() {}
-			virtual bool  InitActionMaps(char* param_1) {}
-			virtual void  SetLoadFromXMLPath(char* param_1) {}
-			virtual  ArkNpcAbility* GetAbility() {}
-			virtual bool  LoadFromXML(XmlNodeRef* param_1) {}
-			virtual bool  LoadRebindDataFromXML(XmlNodeRef* param_1) {}
-			virtual bool  SaveRebindDataToXML(XmlNodeRef* param_1) {}
-			virtual bool  AddExtraActionListener(IActionListener* param_1, char* param_2) {}
-			virtual bool  RemoveExtraActionListener(IActionListener* param_1, char* param_2) {}
-			virtual float* $GetConstReferenceFromMemberVariable() {}
-			virtual void  AddAlwaysActionListener(std::shared_ptr<IBlockingActionListener>* param_1) {}
-			virtual void  RemoveAlwaysActionListener(std::shared_ptr<IBlockingActionListener>* param_1) {}
-			virtual void  RemoveAllAlwaysActionListeners() {}
-			virtual  IActionMap* CreateActionMap(char* param_1) {}
-			virtual bool  RemoveActionMap(char* param_1) {}
-			virtual void  RemoveAllActionMaps() {}
-			virtual  IActionMap* GetActionMap(char* param_1) {}
-			virtual  IActionFilter* CreateActionFilter(char* param_1, EActionFilterType* param_2) {}
-			virtual  IActionFilter* GetActionFilter(char* param_1) {}
-			virtual  IActionMapIterator* CreateActionMapIterator() {}
-			virtual  IActionFilterIterator* CreateActionFilterIterator() {}
-			virtual  SActionInput* GetActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4) {}
-			virtual void  Enable(bool enable, bool resetStateOnDisable = false) {}
-			virtual void  EnableActionMap(char* param_1, bool param_2) {}
-			virtual void  EnableFilter(char* param_1, bool param_2) {}
-			virtual bool  IsFilterEnabled(char* param_1) {}
-			virtual void  ReleaseFilteredActions() {}
-			virtual void  ClearStoredCurrentInputData() {}
-			virtual bool  ReBindActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4, char* param_5) {}
-			virtual bool  ReBindActionInput(char* param_1, CCryName* param_2, char* param_3, char* param_4) {}
-			virtual int  GetLockIdx() {}
-			virtual void  SetVersion(int param_1) {}
-			virtual void  EnumerateActions(IActionMapPopulateCallBack* param_1) {}
-			virtual int  GetActionsCount() {}
-			virtual int  GetActionMapsCount() {}
-			virtual bool  AddInputDeviceMapping(EActionInputDevice* param_1, char* param_2) {}
-			virtual bool  RemoveInputDeviceMapping(EActionInputDevice* param_1) {}
-			virtual void  ClearInputDevicesMappings() {}
-			virtual int  GetNumInputDeviceData() {}
-			virtual  SActionInputDeviceData* GetInputDeviceDataByIndex(int param_1) {}
-			virtual  SActionInputDeviceData* GetInputDeviceDataByType(char* param_1) {}
-			virtual  SActionInputDeviceData* GetInputDeviceDataByType(EActionInputDevice* param_1) {}
-			virtual void  RemoveAllRefireData() {}
-			virtual bool  LoadControllerLayoutFile(char* param_1) {}
-			virtual uint32_t  GetDefaultActionEntity() {}
-			virtual void  SetDefaultActionEntity(uint32_t param_1, bool param_2) {}
-			virtual void  RegisterActionMapEventListener(IActionMapEventListener* param_1) {}
-			virtual void  UnregisterActionMapEventListener(IActionMapEventListener* param_1) {}
-			virtual void   garbage() {}
-			virtual bool  ActionFiltered(CCryName* param_1) {}
-			virtual  void  garbage0() {}
-			virtual void  RemoveAllFilters() {}
-		};
+		// class IActionMapManager {
+		// public:
+		// 	virtual void* _ECActionMapManager(uint32_t param_1) {}
+		// 	virtual void  Update() {}
+		// 	virtual void  Reset() {}
+		// 	virtual void  ResetBindings() {}
+		// 	virtual void  Clear() {}
+		// 	virtual bool  InitActionMaps(char* param_1) {}
+		// 	virtual void  SetLoadFromXMLPath(char* param_1) {}
+		// 	virtual  ArkNpcAbility* GetAbility() {}
+		// 	virtual bool  LoadFromXML(XmlNodeRef* param_1) {}
+		// 	virtual bool  LoadRebindDataFromXML(XmlNodeRef* param_1) {}
+		// 	virtual bool  SaveRebindDataToXML(XmlNodeRef* param_1) {}
+		// 	virtual bool  AddExtraActionListener(IActionListener* param_1, char* param_2) {}
+		// 	virtual bool  RemoveExtraActionListener(IActionListener* param_1, char* param_2) {}
+		// 	virtual float* $GetConstReferenceFromMemberVariable() {}
+		// 	virtual void  AddAlwaysActionListener(std::shared_ptr<IBlockingActionListener>* param_1) {}
+		// 	virtual void  RemoveAlwaysActionListener(std::shared_ptr<IBlockingActionListener>* param_1) {}
+		// 	virtual void  RemoveAllAlwaysActionListeners() {}
+		// 	virtual  IActionMap* CreateActionMap(char* param_1) {}
+		// 	virtual bool  RemoveActionMap(char* param_1) {}
+		// 	virtual void  RemoveAllActionMaps() {}
+		// 	virtual  IActionMap* GetActionMap(char* param_1) {}
+		// 	virtual  IActionFilter* CreateActionFilter(char* param_1, EActionFilterType* param_2) {}
+		// 	virtual  IActionFilter* GetActionFilter(char* param_1) {}
+		// 	virtual  IActionMapIterator* CreateActionMapIterator() {}
+		// 	virtual  IActionFilterIterator* CreateActionFilterIterator() {}
+		// 	virtual  SActionInput* GetActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4) {}
+		// 	virtual void  Enable(bool enable, bool resetStateOnDisable = false) {}
+		// 	virtual void  EnableActionMap(char* param_1, bool param_2) {}
+		// 	virtual void  EnableFilter(char* param_1, bool param_2) {}
+		// 	virtual bool  IsFilterEnabled(char* param_1) {}
+		// 	virtual void  ReleaseFilteredActions() {}
+		// 	virtual void  ClearStoredCurrentInputData() {}
+		// 	virtual bool  ReBindActionInput(char* param_1, CCryName* param_2, EActionInputDevice* param_3, int param_4, char* param_5) {}
+		// 	virtual bool  ReBindActionInput(char* param_1, CCryName* param_2, char* param_3, char* param_4) {}
+		// 	virtual int  GetLockIdx() {}
+		// 	virtual void  SetVersion(int param_1) {}
+		// 	virtual void  EnumerateActions(IActionMapPopulateCallBack* param_1) {}
+		// 	virtual int  GetActionsCount() {}
+		// 	virtual int  GetActionMapsCount() {}
+		// 	virtual bool  AddInputDeviceMapping(EActionInputDevice* param_1, char* param_2) {}
+		// 	virtual bool  RemoveInputDeviceMapping(EActionInputDevice* param_1) {}
+		// 	virtual void  ClearInputDevicesMappings() {}
+		// 	virtual int  GetNumInputDeviceData() {}
+		// 	virtual  SActionInputDeviceData* GetInputDeviceDataByIndex(int param_1) {}
+		// 	virtual  SActionInputDeviceData* GetInputDeviceDataByType(char* param_1) {}
+		// 	virtual  SActionInputDeviceData* GetInputDeviceDataByType(EActionInputDevice* param_1) {}
+		// 	virtual void  RemoveAllRefireData() {}
+		// 	virtual bool  LoadControllerLayoutFile(char* param_1) {}
+		// 	virtual uint32_t  GetDefaultActionEntity() {}
+		// 	virtual void  SetDefaultActionEntity(uint32_t param_1, bool param_2) {}
+		// 	virtual void  RegisterActionMapEventListener(IActionMapEventListener* param_1) {}
+		// 	virtual void  UnregisterActionMapEventListener(IActionMapEventListener* param_1) {}
+		// 	virtual void   garbage() {}
+		// 	virtual bool  ActionFiltered(CCryName* param_1) {}
+		// 	virtual  void  garbage0() {}
+		// 	virtual void  RemoveAllFilters() {}
+		// };
 		
 		class IGameRulesSystem {};
 		class ISubtitleManager {};
@@ -6456,7 +5126,6 @@ namespace ArkNpc {
 		class SGameStartParams {};
 		class SGameContextParams {};
 		class ArkGameNoiseLoudness {};
-		class IGameToEditorInterface {};
 		class ISerializeHelper {};
 		class SEntityTagParams{};
 		class IPersistantDebug {
@@ -6480,7 +5149,6 @@ namespace ArkNpc {
 			virtual void  ClearTagContext(char* param_1) {}
 			virtual void  Reset() {}
 		};
-		class IGameFrameworkListener {};
 		class INetNub {};
 		class INetContext {};
 		class IDebugHistoryManager {};
@@ -6798,15 +5466,7 @@ namespace ArkNpc {
 			bool m_bOptional;
 			char pad[7];
 		};
-		class IArkDoor {};
-		class IArkEncounterManager {};
-		class IArkFactionManager {};
-		class IArkGlintConfigManager {};
-		class IArkGravShaft {};
-		class IArkMetaTagManager {};
-		class IArkPADialogManager {};
-		class IArkPatrolManager {};
-		class IArkPostEffectManager {};
+		
 		class CGoalPipe {};
 		class CClearRegionPass {};
 		class IArkNpc {};
@@ -6916,5 +5576,90 @@ namespace ArkNpc {
 			char pad4[4];
 			CryStringT<char> m_ManagedByEncounter;
 		};
+		
 
 		
+		
+		class SMFXAudioEffectRtpc
+		{
+			const char* rtpcName;
+			float rtpcValue;
+		};
+		class SMFXRunTimeEffectParams
+		{
+			unsigned __int16 playSoundFP;
+			unsigned __int16 playflags;
+			float fLastTime;
+			float fDecalPlacementTestMaxSize;
+			unsigned int src;
+			unsigned int trg;
+			int srcSurfaceId;
+			int trgSurfaceId;
+			IRenderNode* srcRenderNode;
+			IRenderNode* trgRenderNode;
+			int partID;
+			Vec3_tpl<float> pos;
+			Vec3_tpl<float> decalPos;
+			Vec3_tpl<float> dir[2];
+			Vec3_tpl<float> normal;
+			float angle;
+			float scale;
+			unsigned int audioProxyEntityId;
+			Vec3_tpl<float> audioProxyOffset;
+			SMFXAudioEffectRtpc audioRtpcs[4];
+			unsigned int numAudioRtpcs;
+		};
+		class STagMask
+		{
+			unsigned __int8 byte;
+			unsigned __int8 mask;
+		};
+		class SCRCRefHash_CRC32Lowercase
+		{
+		};
+		template<int i, typename T> class SCRCRef// Size=0x10 (Id=16962)
+		{
+				const unsigned int INVALID = 0;// Offset=0x0 Size=0x4
+				unsigned int crc;// Offset=0x0 Size=0x4
+				char* stringValue;// Offset=0x8 Size=0x8
+		};
+		class CTagDefinition
+		{
+			struct SPriorityCount// Size=0x8 (Id=2087732)
+			{
+				int priority;// Offset=0x0 Size=0x4
+				int count;// Offset=0x4 Size=0x4
+			};
+			struct STagGroup// Size=0x10 (Id=2087841)
+			{
+				struct SCRCRef<1, SCRCRefHash_CRC32Lowercase> m_name;// Offset=0x0 Size=0x10
+			};
+			struct STag// Size=0x20 (Id=2087842)
+			{
+				unsigned int m_priority;// Offset=0x0 Size=0x4
+				int m_groupID;// Offset=0x4 Size=0x4
+				class CTagDefinition* m_pTagDefinition;// Offset=0x8 Size=0x8
+				struct SCRCRef<1, SCRCRefHash_CRC32Lowercase> m_name;// Offset=0x10 Size=0x10
+			};
+			
+			struct STagDefData// Size=0x18 (Id=2087790)
+			{
+				struct DynArray<STagMask, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > tagMasks;// Offset=0x0 Size=0x8
+				struct DynArray<STagMask, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > groupMasks;// Offset=0x8 Size=0x8
+				unsigned int numBits;// Offset=0x10 Size=0x4
+			};
+			CryStringT<char> m_filename;
+			DynArray<CTagDefinition::STag, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_tags;
+			DynArray<CTagDefinition::STagGroup, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_tagGroups;
+			CTagDefinition::STagDefData m_defData;
+			DynArray<CTagDefinition::SPriorityCount, int, NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_priorityTallies;
+			bool m_hasMasks;
+		};
+		
+		
+		
+		
+		
+		
+		
+

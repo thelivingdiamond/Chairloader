@@ -14,9 +14,10 @@
 #include <iostream>
 #include <fstream>
 #include <boost/variant.hpp>
+#include <boost/optional.hpp>
 #include <pugixml.hpp>
 #include <imgui.h>
-#include <imgui_stdlib.h>
+#include <misc/cpp/imgui_stdlib.h>
 
 // TODO: This needs to be gone. And it includes windows.h, too
 // moving to all separate classes on short term list, fixing inheritance and vtables and static functions on long term

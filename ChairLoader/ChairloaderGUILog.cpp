@@ -16,7 +16,7 @@ void ChairloaderGUILog::drawDisplay() {
     if (!displayLogQueue.empty()) {
         ImGui::SetNextWindowPos(ImVec2(5.0f, 20.0f));
         ImGui::SetNextWindowSize(ImVec2(700, 150));
-        if (ImGui::Begin("Log", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNavInputs)) {
+        if (ImGui::Begin("Log", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNavInputs | ImGuiWindowFlags_NoDocking)) {
             float nextCursorPos = ImGui::GetContentRegionAvail().y;
             // std::vector::reverse_iterator
             for (auto itr = displayLogQueue.rbegin(); itr != displayLogQueue.rend(); ++itr) {

@@ -3,11 +3,6 @@
 
 typedef char undefined;
 
-class CCryName
-{
-public:
-	char* m_str; //0x0000
-}; //Size: 0x0008
 
 class CSharedString {
 public:
