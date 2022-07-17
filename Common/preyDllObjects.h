@@ -20,20 +20,20 @@
 #include <Prey/ArkEnums.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
 
-#include "ArkAudio.h"
-#include "ArkInput.h"
-#include "ArkItemSystem.h"
-#include "ArkMaterialAnimation.h"
-#include "ArkTimer.h"
-#include "IAction.h"
+#include "Prey/ArkAudio.h"
+#include "Prey/ArkInput.h"
+#include "Prey/ArkItemSystem.h"
+#include "Prey/ArkMaterialAnimation.h"
+#include "Prey/ArkTimer.h"
+#include "Prey/CryAction/IAction.h"
 #include "Prey/CryCore/functor.h"
 #include "Prey/CryPhysics/physinterface.h"
-#include "ArkNpc.h"
-#include "EStance.h"
-#include "IAttachment.h"
-#include "RayCast.h"
-#include "ArkPlayerStatus.h"
-#include "ArkPlayerFatigueComponent.h"
+#include "Prey/ArkNpc.h"
+#include "Prey/EStance.h"
+#include "Prey/IAttachment.h"
+#include "Prey/RayCast.h"
+#include "Prey/ArkPlayerStatus.h"
+#include "Prey/ArkPlayerFatigueComponent.h"
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 

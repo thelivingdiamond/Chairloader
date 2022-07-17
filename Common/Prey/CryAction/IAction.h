@@ -1,5 +1,5 @@
 #pragma once
-#include "Mannequin.h"
+#include "Prey/Mannequin.h"
 
 enum class EActionFailure : __int32
 {

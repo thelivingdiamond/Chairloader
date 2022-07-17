@@ -2,8 +2,8 @@
 #include <ChairLoader/PreyFunction.h>
 
 #include "CScriptBind_Ark.h"
-#include "GameActions.h"
-#include "Graphics.h"
+#include "Prey/GameActions.h"
+#include "Prey/Graphics.h"
 #include "IGame.h"
 #include "Prey/CryCore/Platform/IPlatformOS.h"
 

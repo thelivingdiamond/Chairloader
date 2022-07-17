@@ -20,7 +20,7 @@
 #include "CryVersion.h"
 #include <Prey/CryCore/smartptr.h>
 
-#include "IGame.h"
+#include "Prey/CryGame/IGame.h"
 
 //#include <Prey/CryMemory/IMemory.h>          // <> required for Interfuscator
 //#include <Prey/CrySystem/ISystemScheduler.h> // <> required for Interfuscator

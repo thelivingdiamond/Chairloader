@@ -103,6 +103,9 @@
     <Filter Include="imgui-docking">
       <UniqueIdentifier>{40c27b7c-5ed3-4784-a20a-923249a4ce86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\imgui">
+      <UniqueIdentifier>{92077461-948a-4e69-aed8-c80b2d8dae30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityUtils.h">
@@ -717,134 +720,125 @@
     <ClInclude Include="LibD3D11.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="ArkItemSystem.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\imconfig.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\imgui.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\backends\imgui_impl_dx11.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\backends\imgui_impl_win32.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\imgui_internal.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\misc\single_file\imgui_single_file.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\imgui\misc\cpp\imgui_stdlib.h">
-      <Filter>imgui-docking</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkPsiComponent.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkPlayerLight.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkPlayerMovementStates.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkProjectile.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkSignalSystem.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="GameActions.h">
-      <Filter>Common\Prey\CryGame</Filter>
-    </ClInclude>
-    <ClInclude Include="IGame.h">
-      <Filter>Common\Prey\CryGame</Filter>
-    </ClInclude>
-    <ClInclude Include="IAntiCheatManager.h">
-      <Filter>Common\Prey\CryGame</Filter>
-    </ClInclude>
     <ClInclude Include="CScriptBind_Ark.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
     <ClInclude Include="CScriptableBase.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkTimer.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkNpc.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkAudio.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="IAction.h">
-      <Filter>Common\Prey\CryAction</Filter>
-    </ClInclude>
-    <ClInclude Include="Mannequin.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkInput.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkEffect.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkSpeaker.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkPlayerComponent.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkSpatial.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="IAttachment.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="IProxy.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="Explosion.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="RayCast.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="EStance.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="IArkPlayer.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkMaterialAnimation.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkHud.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkMetaTag.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkPlayerStatus.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkReflectedObject.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkPlayerFatigueComponent.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="ArkStats.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
     <ClInclude Include="ChairloaderConfigManager.h">
       <Filter>Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkPlayerFatigueComponent.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkStats.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkPlayerComponent.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkReflectedObject.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkPlayerStatus.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkPsiComponent.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkMetaTag.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkHud.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkProjectile.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Graphics.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkItemSystem.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkNpc.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkMaterialAnimation.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkSignalSystem.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEffect.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Mannequin.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkSpatial.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkTimer.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkSpeaker.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkInput.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkAudio.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkPlayerLight.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\IAttachment.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\IAntiCheatManager.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\IArkPlayer.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\IProxy.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\imconfig.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\imgui.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\imgui_internal.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\misc\single_file\imgui_single_file.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\misc\cpp\imgui_stdlib.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\imstb_rectpack.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\imstb_textedit.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\imgui\imstb_truetype.h">
+      <Filter>Common\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\IGame.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IAction.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\RayCast.h">
+      <Filter>Common\Prey</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -917,32 +911,29 @@
     <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp">
       <Filter>Common\Chairloader</Filter>
     </ClCompile>
-    <ClCompile Include="..\imgui\imgui.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\imgui_demo.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\imgui_draw.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\backends\imgui_impl_dx11.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\backends\imgui_impl_win32.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\misc\cpp\imgui_stdlib.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\imgui_tables.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
-    <ClCompile Include="..\imgui\imgui_widgets.cpp">
-      <Filter>imgui-docking</Filter>
-    </ClCompile>
     <ClCompile Include="ChairloaderConfigManager.cpp">
       <Filter>Chairloader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\misc\fonts\binary_to_compressed_c.cpp">
+      <Filter>Common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\imgui.cpp">
+      <Filter>Common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\imgui_demo.cpp">
+      <Filter>Common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\imgui_draw.cpp">
+      <Filter>Common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\misc\cpp\imgui_stdlib.cpp">
+      <Filter>Common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\imgui_tables.cpp">
+      <Filter>Common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\imgui\imgui_widgets.cpp">
+      <Filter>Common\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

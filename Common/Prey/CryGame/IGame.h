@@ -1,6 +1,6 @@
 #pragma once
-#include "IAntiCheatManager.h"
-#include "IArkPlayer.h"
+#include "Prey/IAntiCheatManager.h"
+#include "Prey/IArkPlayer.h"
 #include "Prey/ArkEnums.h"
 #include "Prey/CryEntitySystem/IEntity.h"
 #include "Prey/CryNetwork/ISerialize.h"

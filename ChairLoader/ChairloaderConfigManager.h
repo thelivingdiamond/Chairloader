@@ -29,7 +29,7 @@ public:
 	};
 	using ConfigParameterPair = boost::bimap<parameterType, std::string>::value_type ;
 	boost::bimap<parameterType, std::string> parameterNameMap;
-	using ConfigParameter = boost::variant<std::string, bool, int, unsigned int, int64, uint64, float>;
+	using ConfigParameter = boost::variant<std::string, bool, int, unsigned int, int64, uint64, float, pugi::xml_node>;
 	ChairloaderConfigManager();
 	~ChairloaderConfigManager();
 	void Draw(bool* bShow);

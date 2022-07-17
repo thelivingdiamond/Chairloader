@@ -100,7 +100,9 @@ void ChairloaderConfigManager::writeConfig(std::string modName, pugi::xml_node* 
 	}
 }
 
-ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::ParseXmlTextToParameter(pugi::xml_text) {}
+ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::ParseXmlTextToParameter(pugi::xml_text) {
+	return 0;
+}
 
 ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getConfigValue(std::string modName, std::string parameterName) {
 	return ParseXmlTextToParameter(configFile.child(rootNode).child(modName.c_str()).child(parameterName.c_str()).text());
