@@ -7,6 +7,7 @@
 #include "ChairloaderGUILog.h"
 #include "ChairloaderGUIEntityManager.h"
 #include "ChairloaderGUIPlayerManager.h"
+#include "ChairloaderConfigManager.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"
 #include "Profiler.h"
@@ -39,6 +40,7 @@ private:
             showStyleManager = false,
             showProfilerDialog = false,
             showDevConsole = false,
+			showConfigMenu = false,
             freeCam = false,
             devMode = false,
             hideAll = false;
@@ -58,6 +60,8 @@ private:
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;
+    ChairloaderConfigManager configMenu;
+
     // std::vector<std::string> modsWithDrawFuncs;
     std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;
     std::mutex drawHandleMutex;

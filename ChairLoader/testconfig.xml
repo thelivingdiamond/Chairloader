@@ -1,0 +1,10 @@
+<config>
+  <modname>
+    <someParameter>parameter value</someParameter>
+    <someOtherThing>The chair is coming</someOtherThing>
+  </modname>
+  <mod2>
+    <crucialValue>Critical information</crucialValue>
+    <modSize>128</modSize>
+  </mod2>
+</config>

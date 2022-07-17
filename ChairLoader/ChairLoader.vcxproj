@@ -456,6 +456,7 @@
     <ClInclude Include="ArkSpeaker.h" />
     <ClInclude Include="ArkStats.h" />
     <ClInclude Include="ArkTimer.h" />
+    <ClInclude Include="ChairloaderConfigManager.h" />
     <ClInclude Include="CScriptableBase.h" />
     <ClInclude Include="CScriptBind_Ark.h" />
     <ClInclude Include="EStance.h" />
@@ -506,6 +507,7 @@
     <ClCompile Include="..\imgui\misc\cpp\imgui_stdlib.cpp" />
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
+    <ClCompile Include="ChairloaderConfigManager.cpp" />
     <ClCompile Include="ChairloaderGUIEntityManager.cpp" />
     <ClCompile Include="ChairloaderGUILog.cpp" />
     <ClCompile Include="ChairloaderGUIPlayerManager.cpp" />
@@ -531,9 +533,6 @@
     <Text Include="EntityArchetypesList.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\x64\Release\chairloaderconfig.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Common\Prey\CryCore\CryTypeInfo.inl" />
     <None Include="..\Common\Prey\CryCore\Platform\platform_impl.inl" />
     <None Include="..\Common\Prey\CryMath\CryHalf.inl" />
@@ -541,6 +540,9 @@
     <None Include="..\imgui\examples\example_emscripten_opengl3\shell_minimal.html" />
     <None Include="..\imgui\examples\example_emscripten_wgpu\web\index.html" />
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="testconfig.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

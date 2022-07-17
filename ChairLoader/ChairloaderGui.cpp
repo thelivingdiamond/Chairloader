@@ -5,7 +5,7 @@ ChairloaderGui *gui = nullptr;
 
 ChairloaderGui::ChairloaderGui() :
     playerManager(),
-    entityManager() {
+    entityManager(), configMenu() {
     // gui = this;
     GUILog = &log;
 }
@@ -42,17 +42,20 @@ void ChairloaderGui::draw(bool* bShow) {
                     perfOverlay.ShowMenu();
                     ImGui::EndMenu();
                 }
-
-                ImGui::MenuItem("Show ImGui Demo", NULL, &control.showDemoWindow);
-                ImGui::MenuItem("Show Style Editor", NULL, &control.showStyleManager);
-                // ImGui::ShowStyleEditor();
-                if (ImGui::MenuItem("Test Log Message")) {
-                    // std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG";
-                    std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too! ";
-                    log.logItem(testMsg, modName);
-                }
-                if (ImGui::MenuItem("Test Error Message")) {
-                    log.logItem("Welcome to funland sonic", modName, ChairloaderGUILog::logLevel::error);
+                ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
+                if (ImGui::BeginMenu("ImGui Test/Config")) {
+                    ImGui::MenuItem("Show ImGui Demo", NULL, &control.showDemoWindow);
+                    ImGui::MenuItem("Show Style Editor", NULL, &control.showStyleManager);
+                    // ImGui::ShowStyleEditor();
+                    if (ImGui::MenuItem("Test Log Message")) {
+                        // std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG";
+                        std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too! ";
+                        log.logItem(testMsg, modName);
+                    }
+                    if (ImGui::MenuItem("Test Error Message")) {
+                        log.logItem("Welcome to funland sonic", modName, ChairloaderGUILog::logLevel::error);
+                    }
+                    ImGui::EndMenu();
                 }
                 ImGui::EndMenu();
             }
@@ -120,6 +123,8 @@ void ChairloaderGui::draw(bool* bShow) {
             if (control.showDevConsole) {
                 devConsoleDialog.Show(&control.showDevConsole);
             }
+            if (control.showConfigMenu)
+                configMenu.Draw(&control.showConfigMenu);
         }
         log.drawDisplay();
         drawHandleMutex.unlock();
@@ -137,6 +142,7 @@ void ChairloaderGui::update() {
         drawHandleMutex.unlock();
     }
     perfOverlay.Update();
+    configMenu.Update();
 }
 bool ChairloaderGui::addDrawFunction(std::string modName, std::function<void()> drawFunction) {
     if (std::find_if(drawFuncs.begin(), drawFuncs.end(), [modName](std::tuple < std::function<void()>, std::string>& e) {return std::get<1>(e) == modName; }) == drawFuncs.end()) {

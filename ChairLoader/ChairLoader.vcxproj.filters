@@ -843,6 +843,9 @@
     <ClInclude Include="ArkStats.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
+    <ClInclude Include="ChairloaderConfigManager.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">
@@ -938,15 +941,13 @@
     <ClCompile Include="..\imgui\imgui_widgets.cpp">
       <Filter>imgui-docking</Filter>
     </ClCompile>
+    <ClCompile Include="ChairloaderConfigManager.cpp">
+      <Filter>Chairloader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />
     <Text Include="codeArchive.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\x64\Release\chairloaderconfig.xml">
-      <Filter>Chairloader</Filter>
-    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -964,5 +965,10 @@
     </None>
     <None Include="..\imgui\examples\example_emscripten_opengl3\shell_minimal.html" />
     <None Include="..\imgui\examples\example_emscripten_wgpu\web\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="testconfig.xml">
+      <Filter>Chairloader</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
