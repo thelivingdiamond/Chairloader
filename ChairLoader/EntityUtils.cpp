@@ -318,6 +318,7 @@ ArkPlayer* EntityUtils::ArkPlayerPtr() {
 }
 
 
+
 // CEntity* EntityUtils::CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions) {
 // 	SEntitySpawnParams params;
 // 	if (CreateEntitySpawnParameters(name, pos, rot, &params) == nullptr)
