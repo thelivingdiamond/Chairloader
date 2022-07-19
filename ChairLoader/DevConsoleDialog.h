@@ -9,6 +9,7 @@ public:
 	void Show(bool *p_open);
 
 private:
+	const std::string modName = "DevConsole";
 	IConsole *m_pConsole = nullptr;
 	bool m_bAutoScroll = true;
 	bool m_bScrollToBottom = false;

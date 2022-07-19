@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 #include <Prey/CrySystem/ISystem.h>
+
+#include "ChairloaderConfigManager.h"
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
 #include "Logging.h"
@@ -69,3 +71,4 @@ private:
 
 extern ChairLoader *gCL;
 extern SSystemGlobalEnvironment *gEnv;
+extern ChairloaderConfigManager* gConf;

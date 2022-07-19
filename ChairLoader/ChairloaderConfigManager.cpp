@@ -2,7 +2,6 @@
 #include "pch.h"
 #include "ChairloaderConfigManager.h"
 
-
 #include "Logging.h"
 
 
@@ -16,23 +15,67 @@ ChairloaderConfigManager::ChairloaderConfigManager() {
 	parameterNameMap.insert(ConfigParameterPair(parameterType::Float, "float"));
 	parameterNameMap.insert(ConfigParameterPair(parameterType::XMLNode, "xmlnode"));
 	parameterNameMap.insert(ConfigParameterPair(parameterType::Other, "other"));
-	loadChairloaderConfigFile();
+	//TODO: load mod configs (needs mod registration system
+	// something akin to for(list of mod names) {load mod config}
+	//TODO: handle chairloader configs separately?
 }
 ChairloaderConfigManager::~ChairloaderConfigManager() {
-	saveChairloaderConfigFile();
+	// save the files
+	for (auto& modConfig : modConfigs) {
+		saveModConfigFile(modConfig.first);
+	}
 }
 
+int filterInt(ImGuiInputTextCallbackData * data) {
+	if(data->EventFlag == ImGuiInputTextFlags_CallbackCharFilter) {
+		if (data->EventChar < 512 && strchr("0123456789", (char)data->EventChar))
+			return 0;
+		return 1;
+	}
+	return 0;
+}
+int filterBool(ImGuiInputTextCallbackData* data) {
+	if (data->EventFlag == ImGuiInputTextFlags_CallbackCharFilter) {
+		if (data->EventChar < 512 && strchr("01", (char)data->EventChar))
+			return 0;
+		return 1;
+	}
+	return 0;
+}
+
+int filterFloat(ImGuiInputTextCallbackData* data) {
+	if (data->EventFlag == ImGuiInputTextFlags_CallbackCharFilter) {
+		if (data->EventChar < 512 && strchr("0123456789.", (char)data->EventChar))
+			return 0;
+		return 1;
+	}
+	return 0;
+}
+
+int filterString(ImGuiInputTextCallbackData* data) {
+	if (data->EventFlag == ImGuiInputTextFlags_CallbackCharFilter) {
+		if (data->EventChar < 512 && strchr("<>", (char)data->EventChar))
+			return 1;
+		return 0;
+	}
+	return 0;
+}
+
+
 void ChairloaderConfigManager::Draw(bool* bShow) {
+	//TODO: figure out how to write to configs from menu (imgui limitation)
 	if(ImGui::Begin("Config Menu", bShow)) {
 		if (ImGui::BeginTabBar("configs")){
+			static pugi::xml_node selected;
 			for(auto & entry: modConfigs) {
 				if(ImGui::BeginTabItem(entry.first.c_str())) {
 					ImGui::Text("Config: %s", entry.first.c_str());
-					if (ImGui::BeginTable(("ConfigTable" + entry.first).c_str(), 3, ImGuiTableFlags_Resizable | ImGuiTableFlags_SizingStretchProp)) {
+					if (ImGui::BeginTable(("ConfigTable" + entry.first).c_str(), 4, ImGuiTableFlags_SizingStretchProp | ImGuiTableFlags_Resizable | ImGuiTableFlags_Borders)) {
 						// auto columnFlags = ImGuiTableColumnFlags;
 						ImGui::TableSetupColumn("Parameter");
-						ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, ImGui::CalcTextSize("xmlnode ").x);
+						ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, ImGui::CalcTextSize("xmlnodesss ").x);
 						ImGui::TableSetupColumn("Value");
+						ImGui::TableSetupColumn("RO", ImGuiTableColumnFlags_WidthFixed, ImGui::CalcTextSize(" RO ").x);
 						ImGui::TableHeadersRow();
 						for(auto& parameter: entry.second->child(entry.first.c_str())) {
 							ImGui::TableNextRow();
@@ -44,38 +87,103 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 							auto type = parameterNameMap.right.find((std::string) parameter.attribute("type").value())->second;
 							auto value = ParseXmlTextToParameter(parameter);
 							// put text on imgui according to the type and value of the parameter
+							std::string valueText;
 							switch (type) {
 							case parameterType::String:
-								ImGui::Text("%s", boost::get<std::string>(value).c_str());
+								valueText = boost::get<std::string>(value);
 								break;
 							case parameterType::Bool:
-								ImGui::Text("%u", boost::get<bool>(value));
+								valueText = std::to_string(boost::get<bool>(value));
 								break;
 							case parameterType::Int:
-								ImGui::Text("%d", boost::get<int>(value));
+								valueText = std::to_string(boost::get<int>(value));
 								break;
 							case parameterType::Uint:
-								ImGui::Text("%u", boost::get<unsigned int>(value));
+								valueText = std::to_string(boost::get<unsigned int>(value));
 								break;
 							case parameterType::Int64:
-								ImGui::Text("%lld", boost::get<long long>(value));
+								valueText = std::to_string(boost::get<long long>(value));
 								break;
 							case parameterType::Uint64:
-								ImGui::Text("%llu", boost::get<unsigned long long>(value));
+								valueText = std::to_string(boost::get<unsigned long long>(value));
 								break;
 							case parameterType::Float:
-								ImGui::Text("%f", boost::get<float>(value));
+								valueText = std::to_string(boost::get<float>(value));
 								break;
 							case parameterType::XMLNode:
-								ImGui::Text("%s", boost::get<pugi::xml_node>(value).name());
+								valueText = boost::get<pugi::xml_node>(value).name();
 								break;
 							case parameterType::Other:
-								ImGui::Text("%s", boost::get<std::string>(value).c_str());
+								valueText = boost::get<std::string>(value);
 								break;
 							default:
 								break;
 							}
-							ImGui::NextColumn();
+							ImGui::PushID((entry.first + parameter.name()).c_str());
+							static parameterType selectedType = parameterType::String;
+							static std::string popUpText;
+							static bool selectedReadOnly;
+							if(ImGui::Selectable(valueText.c_str(), selected == parameter, ImGuiSelectableFlags_SpanAllColumns)) {
+								selected = parameter;
+								selectedType = type;
+								if(parameter.attribute("readonly")) {
+									selectedReadOnly = ((std::string)parameter.attribute("readonly").value() == std::string("1"));
+								} else {
+									selectedReadOnly = false;
+								}
+								ImGui::OpenPopup((valueText + modName + parameter.name() + "popup").c_str());
+								popUpText = valueText;
+							}
+							if(ImGui::BeginPopup((valueText + modName + selected.name() + "popup").c_str())) {
+								// oh boy here we go
+								switch (type) {
+								case parameterType::String:
+									ImGui::InputText("String Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterString);
+									break;
+								case parameterType::Bool:
+									ImGui::InputText("Boolean Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterBool);
+									break;
+								case parameterType::Int:
+									ImGui::InputText("Int Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
+									break;
+								case parameterType::Uint:
+									ImGui::InputText("UInt Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
+									break;
+								case parameterType::Int64:
+									ImGui::InputText("Int64 Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
+									break;
+								case parameterType::Uint64:
+									ImGui::InputText("UInt64 Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
+									break;
+								case parameterType::Float:
+									ImGui::InputText("Float Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterFloat);
+									break;
+								case parameterType::XMLNode:
+									ImGui::BeginDisabled();
+									ImGui::InputText("XMLNode Value", &popUpText);
+									ImGui::EndDisabled();
+									break;
+								case parameterType::Other:
+									ImGui::InputText("Other Value", &popUpText);
+									break;
+								default:
+									break;
+								}
+								if (selectedReadOnly)
+									ImGui::BeginDisabled();
+								ImGui::PushID((valueText + modName + selected.name() + "popup save button").c_str());
+								if (ImGui::Button("Save To Config")) {
+									setConfigValue(selected.parent().name(), selected.name(), popUpText, selectedType);
+								}
+								ImGui::PopID();
+								if (selectedReadOnly)
+									ImGui::EndDisabled();
+								ImGui::EndPopup();
+							}
+							ImGui::PopID();
+							ImGui::TableSetColumnIndex(3);
+							if ((std::string)parameter.attribute("readonly").value() == std::string("1"))
+								ImGui::Text("1");
 						}
 						ImGui::EndTable();
 					}
@@ -84,29 +192,29 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 			}
 			ImGui::EndTabBar();
 		}
-		ImGui::Separator();
-		ConfigParameter daBoi;
-		daBoi = "yes";
-		daBoi = 2;
-		auto var = boost::get<int>(daBoi);
-		static std::string input = "In your mom";
-		if (ImGui::Button("Load Config File")) {
+		// ImGui::Separator();
+		// ConfigParameter daBoi;
+		// daBoi = "yes";
+		// daBoi = 2;
+		// auto var = boost::get<int>(daBoi);
+		// static std::string input = "In your mom";
+		if (ImGui::Button("Load Test Config File")) {
 			// loadConfigFile();
 			loadModConfigFile("ExampleMod");
 		}
-		if(ImGui::Button("Save Parameter 1")) {
-			setConfigValue("ExampleMod", "parameterName", "1", parameterType::Int);
-		}
-		ImGui::InputText("Config Save Location", &input);
-		if (ImGui::Button("Save Parameter 2")) {
-			setConfigValue("ExampleMod", "configSaveLocation", input.c_str(), parameterType::String);
-		}
-		if(ImGui::Button("Check filesystem shit")) {
-			if (fs::exists(getConfigPath("ExampleMod")))
-				CryLog("File exists yep");
-			else
-				CryLog("FUCK");
-		}
+		// if(ImGui::Button("Save Parameter 1")) {
+		// 	setConfigValue("ExampleMod", "parameterName", "1", parameterType::Int);
+		// }
+		// ImGui::InputText("Config Save Location", &input);
+		// if (ImGui::Button("Save Parameter 2")) {
+		// 	setConfigValue("ExampleMod", "configSaveLocation", input.c_str(), parameterType::String);
+		// }
+		// if(ImGui::Button("Check filesystem shit")) {
+		// 	if (fs::exists(getConfigPath("ExampleMod")))
+		// 		CryLog("File exists yep");
+		// 	else
+		// 		CryLog("FUCK");
+		// }
 	}
 	ImGui::End();
 }
@@ -152,7 +260,7 @@ ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::ParseXmlText
 }
 
 
-// Returns a boost::variant of the parameter. Returns "" if the parameter does not exist;
+
 ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getConfigValue(std::string modName, std::string parameterName) {
 	if (modConfigs.find(modName) != modConfigs.end()) {
 		auto configFile = modConfigs.find(modName)->second;
@@ -187,25 +295,18 @@ bool ChairloaderConfigManager::setConfigValue(std::string modName, std::string p
 	CryError("%s: config not found", modName.c_str());
 	return false;
 }
-// // check if the actual node exists
-// if (chairloaderConfigFile.child(rootNode).child(modName.c_str()).child(parameterName.c_str())) {
-// 	chairloaderConfigFile.child(rootNode).child(modName.c_str()).child(parameterName.c_str()).text().set(value.c_str());
-// 	chairloaderConfigFile.child(rootNode).child(modName.c_str()).child(parameterName.c_str()).attribute("type").set_value(parameterNameMap.left.find(type)->get_right().c_str());
-// 	configDirty = true;
-// }
-// else {
-// 	// check if the mod config exists
-// 	if (chairloaderConfigFile.child(rootNode).child(modName.c_str())) {
-// 		chairloaderConfigFile.child(rootNode).child(modName.c_str()).append_child(parameterName.c_str()).text().set(value.c_str());
-// 		configDirty = true;
-// 	}
-// 	else {
-// 		// if mod config node doesn't exist then add it 
-// 		chairloaderConfigFile.child(rootNode).append_child(modName.c_str()).append_child(parameterName.c_str()).text().set(value.c_str());
-// 		configDirty = true;
-// 	}
-// 	chairloaderConfigFile.child(rootNode).child(modName.c_str()).child(parameterName.c_str()).append_attribute("type").set_value(parameterNameMap.left.find(type)->get_right().c_str());
-// }
+
+pugi::xml_node* ChairloaderConfigManager::getConfigNode(std::string modName) {
+	if (modConfigs.find(modName) != modConfigs.end()) {
+		auto configFile = modConfigs.find(modName)->second;
+		auto node = configFile->child(modName.c_str());
+		return &node;
+	}
+	CryError("%s: config not found", modName.c_str());
+	return nullptr;
+}
+
+
 
 bool ChairloaderConfigManager::loadModConfigFile(std::string modName) { 
 	fs::path configFilePath = getConfigPath(modName);
@@ -270,7 +371,7 @@ bool ChairloaderConfigManager::copyDefaultModConfigFile(std::string modName) {
 }
 
 bool ChairloaderConfigManager::createDefaultModConfig(std::string modName) {
-	CryLog("%s: default not found, creating mod config", modName.c_str());
+	CryWarning("%s: default not found, creating mod config", modName.c_str());
 	pugi::xml_document newDocument;
 	newDocument.append_child(modName.c_str());
 	return newDocument.save_file(getConfigPath(modName).string().c_str());
@@ -285,19 +386,3 @@ fs::path ChairloaderConfigManager::getDefaultConfigPath(std::string modName) {
 	return fs::path{ ("./Mods/" + modName + "/" + modName + "_default.xml").c_str() };
 }
 
-
-bool ChairloaderConfigManager::loadChairloaderConfigFile() {
-	// find preexisting config file
-	if(chairloaderConfigFile.load_file((chairloaderConfigFilePath).c_str()).status == pugi::xml_parse_status::status_ok) {
-		return true;
-	} else {
-		// create new one
-		chairloaderConfigFile.append_child(rootNode).append_attribute("version");
-		chairloaderConfigFile.save_file(chairloaderConfigFilePath.c_str());
-		return false;
-	}
-}
-
-bool ChairloaderConfigManager::saveChairloaderConfigFile() {
-	return chairloaderConfigFile.save_file(chairloaderConfigFilePath.c_str());
-}

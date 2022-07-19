@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "ChairloaderGUIEntityManager.h"
+#include "EntityManager.h"
 
 #include "Prey/Cry3DEngine/I3DEngine.h"
 ChairloaderGUIEntityManager::ChairloaderGUIEntityManager() {

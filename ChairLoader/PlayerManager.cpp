@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "ChairloaderGUIPlayerManager.h"
+#include "PlayerManager.h"
 
 #include "Logging.h"
 #include "Prey/CrySystem/ILocalizationManager.h"

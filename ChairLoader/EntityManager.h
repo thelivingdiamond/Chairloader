@@ -7,7 +7,7 @@
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"
 #include "ChairLoader.h"
-#include "ChairloaderGUILog.h"
+#include "OverlayLog.h"
 
 class ChairloaderGUIEntityManager
 {
@@ -49,7 +49,7 @@ public:
 
     void update(ChairloaderGUILog* log);
 private:
-    const std::string modName = "ChairloaderGUI.EntityManager";
+    const std::string modName = "EntityManager";
     std::vector<CEntity*> entityDisplayList;
     bool refreshDisplayList = true;
     std::string filterText, oldFilterText;

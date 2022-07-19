@@ -46,6 +46,7 @@ public:
 	void Show(bool *pIsOpen);
 
 private:
+	const std::string modName = "Profiler";
 	Profiler::ProcessedProfileData m_MainThreadData;
 	Profiler::ProcessedProfileData m_RenderThreadData;
 	bool m_bFreeze = false;

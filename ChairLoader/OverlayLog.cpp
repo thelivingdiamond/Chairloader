@@ -1,5 +1,6 @@
 #include "pch.h"
-#include "ChairloaderGUILog.h"
+#include "OverlayLog.h"
+#include "ChairLoader.h"
 
 ChairloaderGUILog *GUILog = nullptr;
 

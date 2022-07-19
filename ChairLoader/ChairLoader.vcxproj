@@ -471,9 +471,9 @@
     <ClInclude Include="CScriptBind_Ark.h" />
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
-    <ClInclude Include="ChairloaderGUIEntityManager.h" />
-    <ClInclude Include="ChairloaderGUILog.h" />
-    <ClInclude Include="ChairloaderGUIPlayerManager.h" />
+    <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="OverlayLog.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="DevConsoleDialog.h" />
     <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="ChairLoaderImGui.h" />
@@ -504,9 +504,9 @@
     <ClCompile Include="ChairLoader.cpp" />
     <ClCompile Include="ChairloaderGui.cpp" />
     <ClCompile Include="ChairloaderConfigManager.cpp" />
-    <ClCompile Include="ChairloaderGUIEntityManager.cpp" />
-    <ClCompile Include="ChairloaderGUILog.cpp" />
-    <ClCompile Include="ChairloaderGUIPlayerManager.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="OverlayLog.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="DevConsoleDialog.cpp" />
     <ClCompile Include="EntityUtils.cpp" />
     <ClCompile Include="ChairLoaderImGui.cpp" />

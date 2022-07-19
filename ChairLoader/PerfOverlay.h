@@ -10,6 +10,7 @@ public:
 	void SetFrameTimeVisible(bool state);
 
 private:
+	const std::string modName = "PerfOverlay";
 	static constexpr float FILTER_K = 0.2f;
 	bool m_bEnabled = false;
 	bool m_bFrameTime = false;

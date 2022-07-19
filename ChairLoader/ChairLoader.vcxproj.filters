@@ -123,13 +123,13 @@
     <ClInclude Include="ChairLoaderImGui.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="ChairloaderGUIEntityManager.h">
+    <ClInclude Include="EntityManager.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="ChairloaderGUILog.h">
+    <ClInclude Include="OverlayLog.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="ChairloaderGUIPlayerManager.h">
+    <ClInclude Include="PlayerManager.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
     <ClInclude Include="GUIUtils.h">
@@ -896,13 +896,13 @@
     <ClCompile Include="HeaderTestFile.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
-    <ClCompile Include="ChairloaderGUILog.cpp">
+    <ClCompile Include="OverlayLog.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
-    <ClCompile Include="ChairloaderGUIEntityManager.cpp">
+    <ClCompile Include="EntityManager.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
-    <ClCompile Include="ChairloaderGUIPlayerManager.cpp">
+    <ClCompile Include="PlayerManager.cpp">
       <Filter>Chairloader</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp">

@@ -3,6 +3,7 @@
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "preyDllObjects.h"
+#include "ChairLoader.h"
 class ChairloaderGUILog {
 public:
     // Basic Logging Structs
@@ -21,6 +22,7 @@ public:
             return message.empty();
         }
     };
+    
     ChairloaderGUILog();
     ~ChairloaderGUILog();
     // show persistent transparent log overlay
@@ -32,7 +34,7 @@ public:
     // Log Item with a premade logMessage
     void logItem(logMessage message, bool displayToScreen = true);
 private:
-    const std::string modName = "ChairloaderGUI.Log";
+    const std::string modName = "OverlayLog";
     std::vector<logMessage> archiveLogQueue;
     std::vector<logMessage> displayLogQueue;
     time_t MessageTimeoutTime = 10;

@@ -4,9 +4,9 @@
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "preyDllObjects.h"
-#include "ChairloaderGUILog.h"
-#include "ChairloaderGUIEntityManager.h"
-#include "ChairloaderGUIPlayerManager.h"
+#include "OverlayLog.h"
+#include "EntityManager.h"
+#include "PlayerManager.h"
 #include "ChairloaderConfigManager.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"

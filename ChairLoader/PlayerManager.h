@@ -6,7 +6,7 @@
 #include "preyDllObjects.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"
-#include "ChairloaderGUILog.h"
+#include "OverlayLog.h"
 class ChairloaderGUIPlayerManager
 {
 public:
@@ -36,7 +36,7 @@ private:
 
 
 	bool godMode;
-	const std::string modName = "ChairloaderGUI.PlayerManager";
+	const std::string modName = "PlayerManager";
 	bool AbilityListInitialized, refreshAbilityList;
 	std::vector<abilityEntry> abilityDisplayList;
 	std::queue<uint64_t> abilityRequestQueue;
