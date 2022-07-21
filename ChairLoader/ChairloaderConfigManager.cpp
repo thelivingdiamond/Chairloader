@@ -1,11 +1,11 @@
 #pragma once
 #include "pch.h"
 #include "ChairloaderConfigManager.h"
-
 #include "Logging.h"
 
-
+ChairloaderConfigManager* gConf = nullptr;
 ChairloaderConfigManager::ChairloaderConfigManager() {
+
 	parameterNameMap.insert(ConfigParameterPair(parameterType::String, "string"));
 	parameterNameMap.insert(ConfigParameterPair(parameterType::Bool, "bool"));
 	parameterNameMap.insert(ConfigParameterPair(parameterType::Int, "int"));
@@ -15,9 +15,8 @@ ChairloaderConfigManager::ChairloaderConfigManager() {
 	parameterNameMap.insert(ConfigParameterPair(parameterType::Float, "float"));
 	parameterNameMap.insert(ConfigParameterPair(parameterType::XMLNode, "xmlnode"));
 	parameterNameMap.insert(ConfigParameterPair(parameterType::Other, "other"));
-	//TODO: load mod configs (needs mod registration system
+	//TODO: load mod configs (needs mod registration system)
 	// something akin to for(list of mod names) {load mod config}
-	//TODO: handle chairloader configs separately?
 }
 ChairloaderConfigManager::~ChairloaderConfigManager() {
 	// save the files
@@ -277,20 +276,7 @@ bool ChairloaderConfigManager::setConfigValue(std::string modName, std::string p
 	if(modConfigs.find(modName) != modConfigs.end()) {
 		auto configFile = modConfigs.find(modName)->second;
 		auto modNode = configFile->child(modName.c_str());
-		if (modNode) {
-			auto parameterNode = modNode.child(parameterName.c_str());
-			if (parameterNode) {
-				parameterNode.text().set(value.c_str());
-				parameterNode.attribute("type").set_value(parameterNameMap.left.find(type)->get_right().c_str());
-				modConfigsDirty.find(modName)->second = true;
-			}
-			else {
-				modNode.append_child(parameterName.c_str()).text().set(value.c_str());
-				modNode.child(parameterName.c_str()).append_attribute("type").set_value(parameterNameMap.left.find(type)->second.c_str());
-				modConfigsDirty.find(modName)->second = true;
-			}
-			return true;
-		}
+		return setNodeConfigValue(modNode, parameterName, value, type);
 	}
 	CryError("%s: config not found", modName.c_str());
 	return false;
@@ -306,6 +292,38 @@ pugi::xml_node* ChairloaderConfigManager::getConfigNode(std::string modName) {
 	return nullptr;
 }
 
+ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getNodeConfigValue(pugi::xml_node node, std::string parameterName) {
+	if (node) {
+		return ParseXmlTextToParameter(node.child(parameterName.c_str()));
+	}
+	else {
+		return "";
+	}
+}
+
+void ChairloaderConfigManager::setConfigDirty(std::string modName, bool bDirty) {
+	if(modConfigsDirty.find(modName) != modConfigsDirty.end()) {
+		modConfigsDirty[modName] = bDirty;
+	}
+}
+
+bool ChairloaderConfigManager::setNodeConfigValue(pugi::xml_node node, std::string parameterName, std::string value, parameterType type) {
+	if (node) {
+		auto parameterNode = node.child(parameterName.c_str());
+		if (parameterNode) {
+			parameterNode.text().set(value.c_str());
+			parameterNode.attribute("type").set_value(parameterNameMap.left.find(type)->get_right().c_str());
+			modConfigsDirty.find(modName)->second = true;
+		}
+		else {
+			node.append_child(parameterName.c_str()).text().set(value.c_str());
+			node.child(parameterName.c_str()).append_attribute("type").set_value(parameterNameMap.left.find(type)->second.c_str());
+			modConfigsDirty.find(modName)->second = true;
+		}
+		return true;
+	}
+	return false;
+}
 
 
 bool ChairloaderConfigManager::loadModConfigFile(std::string modName) { 

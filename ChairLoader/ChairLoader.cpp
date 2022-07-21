@@ -195,6 +195,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	m_MainThreadId = std::this_thread::get_id();
 }
 
+
 void ChairLoader::InitGame(IGameFramework* pFramework)
 {
 	CryLog("ChairLoader::InitGame");
@@ -242,6 +243,7 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	SmokeFormExit();
 	// ImGui::ShowDemoWindow();
 	gui->update();
+	gConf->Update();
 	bool todo = true;
 	gui->draw(&todo);
 }

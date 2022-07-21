@@ -71,4 +71,3 @@ private:
 
 extern ChairLoader *gCL;
 extern SSystemGlobalEnvironment *gEnv;
-extern ChairloaderConfigManager* gConf;

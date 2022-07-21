@@ -1,10 +1,8 @@
 #pragma once
-#include "OverlayLog.h"
 #include <pugixml.hpp>
 #include <filesystem>
 #include <boost/bimap.hpp>
 #include <boost/variant.hpp>
-#include "ChairLoader.h"
 
 class ChairloaderConfigManager {
 public:
@@ -56,7 +54,9 @@ public:
 	// Draw the GUI menu
 	void Draw(bool* bShow);
 
-	// if any config files are dirty save them to disk
+	/**
+	 \brief if any config files are dirty save them to disk
+	*/
 	void Update();
 
 	// retrieve the typed value of a parameter
@@ -71,6 +71,29 @@ public:
 
 	// Returns the xml node <modName>. Use for custom parsing on the entire config file if needed. 
 	pugi::xml_node* getConfigNode(std::string modName);
+
+	/**
+	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file. 
+	 * \param node 
+	 * \param parameterName 
+	 * \return boost::Variant of the value, or an empty string "" if parameter does not exist
+	 */
+	ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName);
+
+	void setConfigDirty(std::string modName, bool bDirty);
+
+
+	/**
+	 * \brief Sets a chairloader-formatted parameter to an xml node. Use this function for writing to xmlnode parameters in your config file. 
+	 * \param node: xmlnode to be written to
+	 * \param parameterName: name of parameter
+	 * \param value: string text of the parameter to be set
+	 * \param type: type of node
+	 * \return true if parameter was set succesfully
+	 */
+	bool setNodeConfigValue(pugi::xml_node node, std::string parameterName, std::string value, parameterType type);
+
+
 
 	// Returns the XML config file for a modName and stores it internally in the map
 	// if the config is defined in Mods/config/ then it will return that file
@@ -97,13 +120,8 @@ private:
 	std::map<std::string, pugi::xml_document*> modConfigs;
 	std::map<std::string, bool> modConfigsDirty;
 
-	// TODO: redo the chairloaderConfigFile
-	pugi::xml_document chairloaderConfigFile;
-	const fs::path chairloaderConfigFilePath = fs::path("./Mods/config/chairloader.xml");
-	
-	
-	const char* rootNode = "config";
-	const std::string modName = "Chairloader.ConfigManager";
+	const std::string modName = "ConfigManager";
 
 };
 
+extern ChairloaderConfigManager* gConf;

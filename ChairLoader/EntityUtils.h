@@ -8,51 +8,32 @@
 #include "PreyFunctions.h"
 #include <Prey/ArkPlayer.h>
 
+
+// spawn non-npc entities through IEntitySystem.spawnNpcfromArchetype()
+   //- create spawn parameters from Vec3 pos, Rot, name, archetype ID or class ID
+// spawn npc entities
+   //- create/manage a chairloader ArkNpcSpawner 
+   //- set the archetype of the spawner
+   //- spawn the npcs by requesting a spawn
+   //- 
+
 class EntityUtils {
 public:
-	enum class EntityType {
-		human = 0,
-		mimic = 1,
-		phantom = 2,
-		operators = 3
-	};
-
-	// entities (WIP)
-	CEntity* CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
-	CEntity* CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
-	SEntitySpawnParams* CreateEntitySpawnParameters(char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, SEntitySpawnParams* params);
-
-	// Dumping Utilities
 	void DumpEntity(CEntity* entity, bool dumpProxies);
 	void DumpGameObject(CGameObject* obj);
 
-	class NpcSpawnHelper {
-	public:
-		NpcSpawnHelper();
-		std::unordered_map<uint64_t, CArkNpcSpawner*> managedSpawners; // maybe?
-		const char* SetEntityArchetype(uint64_t archetypeId, IEntity* npcSpawner);
-		const char* SetEntityArchetype(const char* archetypeName, IEntity* npcSpawner);
-		IEntityArchetype* GetEntityArchetype(CArkNpcSpawner* npcSpawner);
-		// CArkNpcSpawner* CreateNewNpcSpawner(uint64_t archetypeId, char* name);
-		const char* GetNextUniqueName();
-		const char* GetLastUniqueName();
-		IEntity* GetVictimSpawnerEntity(EntityType type);
-		IEntity* SpawnNpc(CArkNpcSpawner* spawner, const char* name);
-		// std::vector<IEntity*> SpawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount);
-		IEntity* SpawnNpcFromArchetype(uint64_t archetypeId, const char* name, EntityType type);
-		std::vector<IEntity*> SpawnNpcFromArchetype(uint64_t archetypeId, const char* name, EntityType type, Vec3_tpl<float>* pos, uint32_t spawnCount);
-		IEntity* SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type);
-		std::vector < IEntity*> SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type, uint32_t spawnCount);
+	IEntity* spawnNpcFromArchetype(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned int spawnCount = 1);
+	IEntity* spawnEntityFromArchetype(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned int spawnCount = 1);
 
-	private:
-		std::string lastUniqueName;
-		std::string nextUniqueName;
-		int generatedCount;
-	};
+	// entities (WIP)
+	// CEntity* CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
+	// CEntity* CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
+	SEntitySpawnParams* CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnParams* params, IEntityArchetype* entityArchetype = nullptr, IEntityClass* entityClass = nullptr);
+	// Dumping Utilities
+
 public:
-	EntityUtils();
-	NpcSpawnHelper spawnerHelper;
 	
+	EntityUtils();
 	ArkPlayer* ArkPlayerPtr();
 
 	// ArchetypeLibrary entityArchetypeLibrary;

@@ -42,7 +42,7 @@ public:
 		//typedef CEntity* (__fastcall *_CreateNpc)(CEntityArchetype*, Vec3_tpl<float>, Quat_tpl<float>, uint64_t, uint32_t*); _CreateNpc createNpc;
 		typedef CEntityArchetype* (__thiscall* _GetArchetype)(CEntitySystem*, uint64_t); _GetArchetype getArchetype;// 0922de0
 		typedef void(__thiscall* _Update)(CEntitySystem*); _Update update;//0927920
-		typedef uint32_t(__thiscall* _GenerateEntityId)(CEntitySystem*, bool); _GenerateEntityId generateEntityId;
+		typedef uint32_t(__thiscall* _GenerateEntityId)(CEntitySystem*, bool bStaticID); _GenerateEntityId generateEntityId;
 	};
 
 	class ArkNpcSpawnManagerPrivate : PreyFunctionBaseOld {
@@ -52,7 +52,7 @@ public:
 		typedef uint64_t(__thiscall* _RequestNpcSpawn)(ArkNpcSpawnManager*, ArkNpcSpawnRequester*, CArkNpcSpawner*); _RequestNpcSpawn requestNpcSpawn; //151dac0
 		typedef uintptr_t(__fastcall* _InternalCreateNpc)(IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3); _InternalCreateNpc internalCreateNpc;//151d450
 		// typedef IEntity* (__fastcall* _CreateNpc)(IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3, boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant >); _CreateNpc createNpc; // 151d6d0
-		typedef IEntity* (__fastcall* _CreateNpc)(IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3, uint16_t); _CreateNpc createNpc; // 151d6d0
+		// typedef IEntity* (__fastcall* _CreateNpc)(IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3, unsigned int fromStartGameEntityId, const boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant>* spawnedState); _CreateNpc createNpc; // 151d6d0
 	};
 	
 	class CEntityPrivate : PreyFunctionBaseOld {

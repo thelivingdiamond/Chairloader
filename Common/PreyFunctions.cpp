@@ -70,7 +70,7 @@ PreyFunctions::CEntitySystemPrivate::CEntitySystemPrivate(uintptr_t moduleBase) 
 	getArchetypeNames = getFunctionAddr<_GetArchetypeNames>(moduleBase, 0x0922d00);
 	update = getFunctionAddr<_Update>(moduleBase, 0x0927920);
 	createNpc = getFunctionAddr<_CreateNpc>(moduleBase, 0x151d6d0);
-
+	
 	generateEntityId = getFunctionAddr<_GenerateEntityId>(moduleBase, 0x0922bb0);//0922bb0
 	
 }
@@ -78,7 +78,7 @@ PreyFunctions::CEntitySystemPrivate::CEntitySystemPrivate(uintptr_t moduleBase) 
 PreyFunctions::ArkNpcSpawnManagerPrivate::ArkNpcSpawnManagerPrivate(uintptr_t moduleBase) {
 	ArkNpcSpawnManagerUpdate = getFunctionAddr<_ArkNpcSpawnManagerUpdate>(moduleBase, 0x151db30);
 	requestNpcSpawn = getFunctionAddr<_RequestNpcSpawn>(moduleBase, 0x151dac0);
-	createNpc = getFunctionAddr<_CreateNpc>(moduleBase, 0x151d6d0);
+	// createNpc = getFunctionAddr<_CreateNpc>(moduleBase, 0x151d6d0);
 }
 PreyFunctions::CEntityPrivate::CEntityPrivate(uintptr_t moduleBase) {
 	hasAi = getFunctionAddr<_HasAi>(moduleBase, 0x0905b70);//0905b70

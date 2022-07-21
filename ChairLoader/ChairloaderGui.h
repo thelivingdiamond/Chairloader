@@ -60,7 +60,6 @@ private:
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;
-    ChairloaderConfigManager configMenu;
 
     // std::vector<std::string> modsWithDrawFuncs;
     std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;

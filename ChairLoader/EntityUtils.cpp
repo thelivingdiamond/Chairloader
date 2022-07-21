@@ -5,36 +5,61 @@
 
 EntityUtils *gEntUtils = nullptr;
 
+
+IEntity* EntityUtils::spawnNpcFromArchetype(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount) {
+	IEntity* latestEntity = nullptr;
+	static ArkNpcSpawnedState_Alert alert;
+	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
+	for (int i = 1; i <= spawnCount; i++) {
+		latestEntity = ArkNpcSpawnManager::createNpc(gEnv->pEntitySystem->GetEntityArchetype(archetypeId), &pos, &rot, 0, &state);
+	}
+	return latestEntity;
+}
+
+IEntity* EntityUtils::spawnEntityFromArchetype(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned spawnCount) {
+	IEntity* latestEntity = nullptr;
+	for (int i = 1; i <= spawnCount; i++) {
+		SEntitySpawnParams params;
+		CreateEntitySpawnParameters(name, pos, rot, &params);
+		latestEntity = gEnv->pEntitySystem->SpawnEntityFromArchetype(gEnv->pEntitySystem->GetEntityArchetype(archetypeId), params);
+	}
+	return latestEntity;
+}
+
 SEntitySpawnParams* EntityUtils::
-CreateEntitySpawnParameters(char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, SEntitySpawnParams* params) {
+CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnParams* params,  IEntityArchetype* entityArchetype, IEntityClass* entityClass) {
 	params->vScale.x = 1;
 	params->vScale.y = 1;
 	params->vScale.z = 1;
-	params->vPosition.x = pos->x;
-	params->vPosition.y = pos->y;
-	params->vPosition.z = pos->z;
-	params->qRotation.v.x = rot->v.x;
-	params->qRotation.v.y = rot->v.y;
-	params->qRotation.v.z = rot->v.z;
-	params->qRotation.w = rot->w;
-	params->sLayerName = (char*)"";
+	uint32_t id = gPreyFuncs->CEntitySystemF->generateEntityId((CEntitySystem*)gEnv->pEntitySystem, true);
+	params->id = id;
+	params->vPosition.x = pos.x;
+	params->vPosition.y = pos.y;
+	params->vPosition.z = pos.z;
+	params->qRotation.v.x = rot.v.x;
+	params->qRotation.v.y = rot.v.y;
+	params->qRotation.v.z = rot.v.y;
+	params->qRotation.w = rot.w;
+	params->sLayerName = "";
+	params->pClass = entityClass;
+	if(entityArchetype != nullptr) {
+		params->entityNode = entityArchetype->GetObjectVars();
+	} else {
+		params->entityNode = nullptr;
+	}
+	params->pArchetype = nullptr;
 	params->guid = 0;
 	params->prevGuid = 0;
-	params->pClass = nullptr;
-	params->pArchetype = nullptr;
-	params->entityNode = nullptr;
-	params->id = 0;
 	params->prevId = 0;
-	params->nFlags = 0;
-	params->nFlagsExtended = 0;
+	params->bCreatedThroughPool = 0;
 	params->bIgnoreLock = 0;
 	params->bStaticEntityId = 0;
-	params->bCreatedThroughPool = 0;
-	params->sceneMask = 0x1;
-	params->shadowCasterType = '\0';
-	params->pPropertiesTable = nullptr;
-	params->pPropertiesInstanceTable = nullptr;
+	params->nFlags = 0;
+	params->nFlagsExtended = 0;
 	params->sName = name;
+	params->shadowCasterType = '\0';
+	params->pUserData = (void*)0x0;
+	params->sceneMask = '\0';
 	return params;
 }
 
@@ -107,207 +132,6 @@ void EntityUtils::DumpGameObject(CGameObject* obj) {
 }
 
 
-const char* EntityUtils::NpcSpawnHelper::GetNextUniqueName() {
-	lastUniqueName = nextUniqueName;
-	generatedCount++;
-	nextUniqueName = "newEntity";
-	nextUniqueName += std::to_string(generatedCount);
-	return lastUniqueName.c_str();
-}
-const char* EntityUtils::NpcSpawnHelper::GetLastUniqueName() {
-	return lastUniqueName.c_str();
-}
-
-IEntity* EntityUtils::NpcSpawnHelper::GetVictimSpawnerEntity(EntityType type) {
-	IEntity* spawnerEntity = nullptr;
-	if (type == EntityType::human) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("Igwe");
-	}
-	else if (type == EntityType::mimic) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("ArkNpcSpawner_Mimic1");
-	}
-	else if (type == EntityType::phantom) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("ArkNpcSpawner_BasePhantom1");
-	}
-	else if (type == EntityType::operators) {
-		spawnerEntity = gEnv->pEntitySystem->FindEntityByName("ArkNpcSpawner_MedicalOperator1");
-	}
-	return spawnerEntity;
-}
-
-EntityUtils::NpcSpawnHelper::NpcSpawnHelper() {
-	generatedCount = 0;
-	lastUniqueName = "";
-	nextUniqueName = "newEntity0";
-}
-const char* EntityUtils::NpcSpawnHelper::SetEntityArchetype(uint64_t archetypeId, IEntity* spawnerEntity) {
-	ArkSafeScriptTable EntityScriptTable;
-	EntityScriptTable.ptr = nullptr;
-	ArkSafeScriptTable PropertiesTable;
-	PropertiesTable.ptr = nullptr;
-
-	gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
-	if (EntityScriptTable.ptr != nullptr) {
-		ScriptAnyValue TableValue;
-		ScriptAnyValue ArchetypeValue;
-		ScriptAnyValue NewArchetypeValue;
-		TableValue.type = ScriptAnyType::ANY_TTABLE;
-		TableValue.value.table = nullptr;
-		ArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
-		ArchetypeValue.value.str = nullptr;
-		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
-
-		auto archetype = static_cast<CEntityArchetype*>(gEnv->pEntitySystem->GetEntityArchetype(archetypeId));
-		NewArchetypeValue.value.str = archetype->m_name.c_str();
-
-		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
-			if (TableValue.value.table != nullptr) {
-				gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
-				if (PropertiesTable.ptr->GetValueAny("sNpcArchetype", &ArchetypeValue, false)) {
-					PropertiesTable.ptr->SetValueAny("sNpcArchetype", &NewArchetypeValue, false);
-					return ArchetypeValue.value.str;
-				}
-			}
-		}
-	}
-	return nullptr;
-}
-const char* EntityUtils::NpcSpawnHelper::SetEntityArchetype(const char* archetypeName, IEntity* spawnerEntity) {
-	ArkSafeScriptTable EntityScriptTable;
-	EntityScriptTable.ptr = nullptr;
-	ArkSafeScriptTable PropertiesTable;
-	PropertiesTable.ptr = nullptr;
-
-	gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromEntity(&EntityScriptTable, (IEntity*)spawnerEntity);
-	if (EntityScriptTable.ptr != nullptr) {
-		ScriptAnyValue TableValue;
-		ScriptAnyValue ArchetypeValue;
-		ScriptAnyValue NewArchetypeValue;
-		TableValue.type = ScriptAnyType::ANY_TTABLE;
-		TableValue.value.table = nullptr;
-		ArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
-		ArchetypeValue.value.str = nullptr;
-		NewArchetypeValue.type = ScriptAnyType::ANY_TSTRING;
-		NewArchetypeValue.value.str = archetypeName;
-
-		if (EntityScriptTable.ptr->GetValueAny("Properties", &TableValue, false)) {
-			if (TableValue.value.table != nullptr) {
-				gPreyFuncs->ArkSafeScriptTablef->getArkSafeScriptFromScriptTable(&PropertiesTable, TableValue.value.table);
-				if (PropertiesTable.ptr->GetValueAny("sNpcArchetype", &ArchetypeValue, false)) {
-					PropertiesTable.ptr->SetValueAny("sNpcArchetype", &NewArchetypeValue, false);
-					return ArchetypeValue.value.str;
-				}
-			}
-		}
-	}
-	return nullptr;
-}
-
-
-IEntityArchetype* EntityUtils::NpcSpawnHelper::GetEntityArchetype(CArkNpcSpawner* npcSpawner) {
-	return gPreyFuncs->CArkNpcSpawnCystoidF->getEntityArchetype((CArkNpcSpawnCystoid*)npcSpawner);
-}
-// CArkNpcSpawner* EntityUtils::NpcSpawnHelper::CreateNewNpcSpawner(uint64_t archetypeId, char* name) {
-// 	if (privateFuncs == nullptr || staticObjects == nullptr) {
-// 		std::cout << "Error, private functions or static objects uninitialized";
-// 		return nullptr;
-// 	}
-//
-// }
-IEntity* EntityUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, const char* name) {
-	if (spawner != nullptr) {
-		const char* oldName = spawner->m_Entity->m_szName.c_str();
-		spawner->m_Entity->m_szName = name;
-		uint32_t oldId = spawner->m_lastSpawnedEntityId;
-		gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
-		while(spawner->m_lastSpawnedEntityId == oldId) {
-			Sleep(1);
-		}
-		spawner->m_Entity->m_szName = oldName;
-		// Sleep(50);
-		IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
-		// Sleep(5);
-		return newEntity;
-	}
-	return nullptr;
-}
-// std::vector<IEntity*> EntityUtils::NpcSpawnHelper::SpawnNpc(CArkNpcSpawner* spawner, char* name, uint32_t spawnCount) {
-// 	std::vector<IEntity*> entities;
-// 	if (spawner != nullptr) {
-// 		char* oldName = spawner->m_Entity->m_szName.c_str();
-// 		std::string strname = name;
-// 		for(unsigned int i = 0; i<=spawnCount; i++) {
-// 			strname += std::to_string(i);
-// 			spawner->m_Entity->m_szName.c_str() = (char*)strname.m_str;
-// 			uint32_t oldId = spawner->m_lastSpawnedEntityId;
-//
-// 			gPreyFuncs->CArkNpcSpawnerF->requestSpawn(spawner);
-//
-// 			while(spawner->m_lastSpawnedEntityId == oldId) {
-// 			// wait for shit to happen
-// 			}
-// 			IEntity* newEntity = newEntity = gEnv->pEntitySystem->GetEntity(spawner->m_lastSpawnedEntityId);
-// 			entities.emplace_back(newEntity);
-// 		}
-// 		spawner->m_Entity->m_szName.c_str() = oldName;
-// 		return entities;
-// 	}
-// 	return {};
-// }
-IEntity* EntityUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, const char* name, EntityType type) {
-	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
-
-	if (spawnerEntity != nullptr) {
-		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		if (oldArchetypeName != nullptr) {
-			CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-			IEntity* newEntity = SpawnNpc(spawner, name);
-			SetEntityArchetype(oldArchetypeName, spawnerEntity);
-			return newEntity;
-		}
-	}
-	return nullptr;
-}
-
-std::vector<IEntity*> EntityUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, const char* name, EntityType type, Vec3_tpl<float> * pos, uint32_t spawnCount) {
-	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
-	std::vector<IEntity*> newEntities;
-	if (spawnerEntity != nullptr) {
-		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-		Vec3_tpl<float> oldpos = spawner->m_Entity->m_vPos;
-		spawner->m_Entity->m_vPos.x = pos->x;
-		spawner->m_Entity->m_vPos.y = pos->y;
-		spawner->m_Entity->m_vPos.z = pos->z;
-		for (auto i = 0; i <= spawnCount; i++) {
-			IEntity* newEntity = SpawnNpc(spawner, name);
-			newEntity->SetPos(*pos, 0, false, false);
-			newEntities.emplace_back(newEntity);
-		}
-		spawner->m_Entity->m_vPos = oldpos;
-		SetEntityArchetype(oldArchetypeName, spawnerEntity);
-		return newEntities;
-	}
-	return {};
-}
-
-IEntity* EntityUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type) {
-	IEntity* spawnerEntity = GetVictimSpawnerEntity(type);
-
-	if (spawnerEntity != nullptr) {
-		const char* oldArchetypeName = SetEntityArchetype(archetypeId, spawnerEntity);
-		CArkNpcSpawner* spawner = gPreyFuncs->CEntity->getArkNpcSpawner((CEntity*)spawnerEntity);
-		IEntity* newEntity = SpawnNpc(spawner, GetNextUniqueName());
-		SetEntityArchetype(oldArchetypeName, spawnerEntity);
-		return newEntity;
-	}
-	return nullptr;
-}
-
-std::vector<IEntity*> EntityUtils::NpcSpawnHelper::SpawnNpcFromArchetype(uint64_t archetypeId, EntityType type,
-	uint32_t spawnCount) {
-	return {};
-}
 
 EntityUtils::EntityUtils() {
 	
@@ -317,57 +141,5 @@ ArkPlayer* EntityUtils::ArkPlayerPtr() {
 	 return gPreyFuncs->ArkPlayerF->getInstance();
 }
 
-
-
-// CEntity* EntityUtils::CreateEntity(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions) {
-// 	SEntitySpawnParams params;
-// 	if (CreateEntitySpawnParameters(name, pos, rot, &params) == nullptr)
-// 		return nullptr;
-// 	CEntityArchetype* archetype = system->GetEntityArchetype(archetypeId);
-// 	if (archetype == nullptr)
-// 		return nullptr;
-// 	CEntityClass* entityClass = (CEntityClass*)archetype->GetClass();
-// 	if (entityClass == nullptr)
-// 		return nullptr;
-// 	params.pArchetype = archetype;
-// 	params.pClass = entityClass;
-// 	// XmlNodeRef* xmlnode = archetype->GetObjectVars();
-// 	params.entityNode = archetype->m_ObjectVars;
-// 	// std::cout << params->id << std::endl;
-// 	// params.id = 69420;
-// 	params.id = functions->CEntitySystemF->generateEntityId(system, true);
-// 	CEntity newEntity;
-// 	return (CEntity*)functions->CEntity->CEntityConstructor(&newEntity, &params);
-// 	return nullptr;
-// }
-// CEntity* EntityUtils::CreateEntityBasic(CEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions) {
-// 	SEntitySpawnParams params;
-// 	if (CreateEntitySpawnParameters(name, pos, rot, &params) == nullptr)
-// 		return nullptr;
-// 	CEntityArchetype* archetype = system->GetEntityArchetype(archetypeId);
-// 	if (archetype == nullptr)
-// 		return nullptr;
-// 	CEntityClass* entityClass = (CEntityClass*)archetype->GetClass();
-// 	if (entityClass == nullptr)
-// 		return nullptr;
-// 	std::cout << archetype << std::endl;
-// 	XmlNodeRef node = archetype->m_ObjectVars;
-// 	// if (node == nullptr)
-// 	// 	return nullptr;
-// 	params.pArchetype = archetype;
-// 	params.pClass = entityClass;
-// 	// XmlNodeRef* xmlnode = archetype->GetObjectVars();
-// 	params.entityNode = node;
-// 	// std::cout << params->id << std::endl;
-// 	// params.id = 69420;
-// 	params.pPropertiesTable = archetype->m_pProperties.ptr;
-// 	params.pPropertiesInstanceTable = archetype->m_pProperties.ptr;
-// 	params.id = functions->CEntitySystemF->generateEntityId(system, true);
-// 	CEntity* newEntity = new CEntity;
-// 	return (CEntity*)functions->CEntity->CEntityConstructor(newEntity, &params);
-// 	// ((IEntity*)newEntity)->Init((IEntity*)newEntity, &params);
-// 	// ((IEntity*)newEntity)->SetProxy(EEntityProxy::ENTITY_PROXY_USER, 0x88);
-// 	return newEntity;
-// }
 
 

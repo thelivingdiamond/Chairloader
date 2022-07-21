@@ -598,7 +598,7 @@ struct ArkPlayer : public CGameObjectExtensionHelper<ArkPlayer, CActor>, public 
 	static inline auto SetFaction = PreyFunction<void(ArkPlayer* _this)>(0x15573b0);
 	static inline auto SetModel = PreyFunction<void(ArkPlayer* _this, const char* param_1)>(0x15575f0);
 	static inline auto SetRoomEntityId = PreyFunction<void(ArkPlayer* _this, unsigned int param_1)>(0x15577e0);
-	static inline auto SetShowArmor = PreyFunction<void(ArkPlayer* _this, bool param_1, bool param_2)>(0x15577f0);
+	static inline auto SetShowArmor = PreyFunction<void(ArkPlayer* _this, bool _bShowArmor, bool _bForce)>(0x15577f0);
 	static inline auto SetShowHealth = PreyFunction<void(ArkPlayer* _this, bool param_1, bool param_2)>(0x1557950);
 	static inline auto SetStance = PreyFunction<void(ArkPlayer* _this, EStance param_1)>(0x1557aa0);
 	static inline auto ShouldGenerateGameNoises = PreyFunction<bool(ArkPlayer* _this)>(0x1557df0);

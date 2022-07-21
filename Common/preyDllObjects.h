@@ -4573,7 +4573,10 @@ class CEntitySystem;
 		class ArkNpcBlackboardManager{};
 		class ArkNpcGameEffectManager{};
 		class ArkNpcManager{};
-		class ArkNpcSpawnManager{}; // 0x358
+		class ArkNpcSpawnManager {
+		public:
+			static inline auto createNpc = PreyFunction<IEntity* (IEntityArchetype* param_1, Vec3_tpl<float>* param_2, Quat_tpl<float>* param_3, unsigned int fromStartGameEntityId, const boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant>* spawnedState)>(0x151d6d0);
+		}; // 0x358
 		class ArkNpcThrowPropManager{};
 		class ArkNpcUnreachableTargetingManager{};
 		class CArkPADialogManager{};

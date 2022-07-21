@@ -5,7 +5,7 @@ ChairloaderGui *gui = nullptr;
 
 ChairloaderGui::ChairloaderGui() :
     playerManager(),
-    entityManager(), configMenu() {
+    entityManager(){
     // gui = this;
     GUILog = &log;
 }
@@ -109,8 +109,9 @@ void ChairloaderGui::draw(bool* bShow) {
             if (control.showLogHistory)
                 log.drawHistory(&control.showLogHistory);
             log.drawDisplay();
-            if (control.showEntitySpawner)
+            if (control.showEntitySpawner) {
                 entityManager.drawEntitySpawner(&control.showEntitySpawner);
+            }
             if (control.showEntityList)
                 entityManager.drawEntityList(&control.showEntityList);
             if (control.showPlayerManager)
@@ -124,7 +125,7 @@ void ChairloaderGui::draw(bool* bShow) {
                 devConsoleDialog.Show(&control.showDevConsole);
             }
             if (control.showConfigMenu)
-                configMenu.Draw(&control.showConfigMenu);
+                gConf->Draw(&control.showConfigMenu);
         }
         log.drawDisplay();
         drawHandleMutex.unlock();
@@ -142,7 +143,7 @@ void ChairloaderGui::update() {
         drawHandleMutex.unlock();
     }
     perfOverlay.Update();
-    configMenu.Update();
+    
 }
 bool ChairloaderGui::addDrawFunction(std::string modName, std::function<void()> drawFunction) {
     if (std::find_if(drawFuncs.begin(), drawFuncs.end(), [modName](std::tuple < std::function<void()>, std::string>& e) {return std::get<1>(e) == modName; }) == drawFuncs.end()) {

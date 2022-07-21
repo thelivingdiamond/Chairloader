@@ -12,6 +12,7 @@
 class ChairloaderGUIEntityManager
 {
 public:
+
     enum class entityModifyType {
         none = -1,
         pos = 0,
@@ -45,6 +46,7 @@ public:
     // void draw(bool* bShow);
     void drawEntitySpawner(bool* bShow);
     void drawEntityList(bool* bShow);
+    void drawEntitySpawnerTest(bool* bShow);
     void drawMenuBar(bool* entityListShow, bool* entitySpawnerShow);
 
     void update(ChairloaderGUILog* log);
@@ -69,7 +71,6 @@ private:
 
 	void entityModifyHandler(ChairloaderGUILog* log);
     void filterEntityList(ChairloaderGUILog* log);
-    void archetypeSpawnRequestHandler(ChairloaderGUILog* log);
     void archetypeFilterRequestHandler(ChairloaderGUILog* log);
    
 

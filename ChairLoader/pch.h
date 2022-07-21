@@ -15,6 +15,7 @@
 #include <fstream>
 #include <boost/variant.hpp>
 #include <boost/optional.hpp>
+#include <boost/bimap.hpp>
 #include <pugixml.hpp>
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>

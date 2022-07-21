@@ -483,10 +483,25 @@ public:
 	EArkAttentionLevel m_abortTrackviewOnHostileAttention;
 	EArkNpcVisionDirection m_visionDirection;
 };
-typedef unsigned char ArkNpcSpawnedState_Alert;
-typedef unsigned char ArkNpcSpawnedState_Broken;
-typedef unsigned char ArkNpcSpawnedState_Dead;
-typedef unsigned char ArkNpcSpawnedState_Dormant;
+class ArkNpcSpawnedState_Alive
+{
+	bool m_bAlwaysUpdate = true;
+};
+class ArkNpcSpawnedState_Alert : ArkNpcSpawnedState_Alive {
+	
+};
+class ArkNpcSpawnedState_Broken : ArkNpcSpawnedState_Alive
+{
+	const char* m_pPoseAnimName;
+};
+class ArkNpcSpawnedState_Dead
+{
+};
+class ArkNpcSpawnedState_Dormant : ArkNpcSpawnedState_Alive
+{
+	Vec3_tpl<float> m_position;
+	Quat_tpl<float> m_rotation;
+};
 // template<typename a, typename b, typename c, typename d> class variant {
 // public:
 // 	int32_t which_;

@@ -326,7 +326,7 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 		if (!ImGui::IsWindowDocked())
 			ImGui::SetWindowSize(ImVec2(inventoryWidth * size + 40, inventoryHeight * size + 30 + 300));
 		static unsigned int selected = 0;
-		ArkGame* game = game->GetArkGame();
+		ArkGame* game = ArkGame::GetArkGame();
 		ArkItemSystem* itemSystem = game->m_pArkItemSystem.get();
 		if (ImGui::BeginChild("Inventory Grid", ImVec2(inventoryWidth * size + 20, inventoryHeight * size + 30),
 		                      false)) {
@@ -443,6 +443,9 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 					ImGui::Checkbox("Important", &selectedItemObj->m_bIsImportant);
 				}
 			}
+		}
+		if (ImGui::Button("Make the game unplayable")) {
+			gEntUtils->ArkPlayerPtr()->m_pInventory->m_size = ArkInventory::EArkGridSizes::smallExternal;
 		}
 		ImGui::EndChild();
 		//TODO: add items
