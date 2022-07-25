@@ -158,8 +158,6 @@ ChairLoader::ChairLoader() {
 	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
-	// g_SmokeForm_TryMorphOut_hook.SetHookFunc(&SmokeForm_TryMorphOut_Hook);
-	// g_SmokeForm_Stop_hook.SetHookFunc(&SmokeForm_Stop_Hook);
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
@@ -191,8 +189,21 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	}
 
 	LoadPreyPointers();
-	LoadConfigFile();
 	m_MainThreadId = std::this_thread::get_id();
+	gConf = new ChairloaderConfigManager();
+	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
+
+	// get list of installed mods and their load order
+	ReadModList();
+	// load the DLLs and register the mods
+	initializeMods();
+	// load the config files into the config manager
+	loadAllConfigs();
+	// run each mod InitSystem()
+	for(auto mod: modList) {
+		mod.modInterface->InitSystem(pSystem);
+	}
+
 }
 
 
@@ -204,12 +215,20 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
 	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
-	gConf = new ChairloaderConfigManager();
+	// run each mod InitGame();
+	for (auto& mod : modList) {
+		mod.modInterface->InitGame(pFramework);
+	}
 }
 
 void ChairLoader::ShutdownGame()
 {
 	CryLog("ChairLoader::ShutdownGame");
+	// shutdown all mods
+	for (auto& mod : modList) {
+		mod.modInterface->ShutdownGame();
+	}
+
 	m_ImGui = nullptr;
 	m_pFramework = nullptr;
 }
@@ -217,6 +236,10 @@ void ChairLoader::ShutdownGame()
 void ChairLoader::ShutdownSystem()
 {
 	CryLog("ChairLoader::ShutdownSystem");
+	for (auto& mod : modList) {
+		mod.modInterface->ShutdownSystem();
+	}
+
 	gEnv = nullptr;
 }
 
@@ -244,12 +267,24 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	// ImGui::ShowDemoWindow();
 	gui->update();
 	gConf->Update();
+	// pre update all mods
+	for (auto& mod : modList) {
+		mod.modInterface->PreUpdate();
+	}
 	bool todo = true;
 	gui->draw(&todo);
+	// draw all mods
+	for (auto& mod : modList) {
+		mod.modInterface->Draw(ImGui::GetCurrentContext());
+	}
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
+	// post update all mods
+	for (auto& mod : modList) {
+		mod.modInterface->PostUpdate();
+	}
 }
 
 bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
@@ -266,6 +301,62 @@ void ChairLoader::SmokeFormExit() {
 		gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
+}
+
+typedef IChairloaderMod*(__stdcall* instanceMod)();
+
+void ChairLoader::initializeMods() {
+	for(auto &mod: modLoadOrder) {
+
+		auto modName = mod.first;
+		auto ModModule = LoadLibraryA((".\\Mods\\" + modName + "\\" + modName + ".dll").c_str());
+
+		if (ModModule) {
+			instanceMod function = (instanceMod)GetProcAddress(ModModule, "ClMod_Instantiate");
+			if (function) {
+				auto modInterface = function();
+				RegisterMod(modName, modInterface, ModModule);
+			}
+			else {
+				CryError("%s: Mod interface not found", modName.c_str());
+			}
+		} else {
+			CryError("%s: DLL Failed to load", modName.c_str());
+		}
+	}
+}
+
+void ChairLoader::loadAllConfigs() {
+	for(auto &mod : modList) {
+		gConf->loadModConfigFile(mod.modName);
+	}
+}
+
+//TODO: as mods are registered they must be sorted by load order as specified by the configuration file
+
+
+bool ChairLoader::RegisterMod(std::string modName, IChairloaderMod* modInterface, HMODULE moduleBase) {
+	if (modLoadOrder.find(modName) != modLoadOrder.end()) {
+		modList.emplace_back(ModEntry(modName, modInterface, moduleBase, modLoadOrder.find(modName)->second));
+		CryLog("Mod Registered: %s", modName.c_str());
+		sortLoadOrder();
+		return true;
+	} 
+	return false;
+}
+
+void ChairLoader::ReadModList() {
+	auto node = boost::get<pugi::xml_node>(gConf->getConfigValue(chairloaderModName, "ModList"));
+	for(auto &mod : node) {
+		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
+		auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
+		modLoadOrder.insert(std::pair(modName, loadOrder));
+		CryLog("Load order found: %s %i", modName.c_str(), loadOrder);
+	}
+}
+
+void ChairLoader::sortLoadOrder() {
+	std::sort(modList.begin(), modList.end());
 }
 
 void ChairLoader::CreateConsole() {
@@ -286,20 +377,7 @@ void ChairLoader::InstallHooks()
 	DetourTransactionCommit();
 }
 
-void ChairLoader::LoadConfigFile() {
-	auto path = std::filesystem::current_path() / L"Binaries/Danielle/x64/Release/chairloaderconfig.xml";
-	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file(path.c_str());
-	std::cout << doc.child("config").child("filepaths").child("PreyDirectory").attribute("path").value() << std::endl;
-	for (auto itr = doc.child("config").child("keybinds").children().begin(); itr != doc.child("config").child("keybinds").children().end(); ++itr) {
-		std::cout << itr->attribute("name").name() << "=" << itr->attribute("name").value() << std::endl;
-		std::cout << itr->attribute("key").name() << "=" << itr->attribute("key").value() << std::endl;
-	}
-	std::cout << std::endl << doc.child("config").child("keybinds").find_child_by_attribute("action", "name", "GUIToggle").attribute("key").value() << std::endl;
-
-	m_GuiToggleKey = std::stoi(doc.child("config").child("keybinds").find_child_by_attribute("action", "name", "GUIToggle").attribute("key").value(), nullptr, 0);
-	m_FreeCamKey = std::stoi(doc.child("config").child("keybinds").find_child_by_attribute("action", "name", "FreeCam").attribute("key").value(), nullptr, 0);
-}
+//TODO: deprecated config system keys
 
 void ChairLoader::UpdateFreeCam() {
 	if (GetAsyncKeyState(m_FreeCamKey) & 1) {

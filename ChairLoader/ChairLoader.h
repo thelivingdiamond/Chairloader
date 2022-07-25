@@ -5,7 +5,9 @@
 #include "ChairloaderConfigManager.h"
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
+#include "IChairloader.h"
 #include "Logging.h"
+#include "ChairLoader/IChairloaderMod.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 
@@ -13,8 +15,38 @@ struct SInputEvent;
 struct IGameFramework;
 class CSystem;
 
-class ChairLoader {
+class ChairLoader : public virtual IChairloader {
 public:
+	class ModEntry {
+	public:
+		ModEntry(const std::string& mod_name, IChairloaderMod* mod_interface, HMODULE module_handle, int load_order)
+			: modName(mod_name),
+			  modInterface(mod_interface),
+			  moduleHandle(module_handle),
+			  loadOrder(load_order) {}
+
+		int getLoadOrder() const { return loadOrder; }
+		~ModEntry() {
+		}
+		bool operator<(const ModEntry& rhs) const noexcept { return this->getLoadOrder() < rhs.getLoadOrder(); }
+		bool operator==(const ModEntry& rhs) const noexcept { return this->modName == rhs.modName; }
+		ModEntry& operator=(const ModEntry& rhs) noexcept { this->modName = rhs.modName;
+			this->modInterface = rhs.modInterface;
+			this->moduleHandle = rhs.moduleHandle;
+			this->loadOrder = rhs.loadOrder;
+			return *this; }
+		// unique modName
+		std::string modName = "";
+		// interface for calling guaranteed functions
+		IChairloaderMod* modInterface = nullptr;
+		// handle for the mod 
+		HMODULE moduleHandle = nullptr;
+		// configuration file
+		// pugi::xml_document configFile;
+	private:
+		int loadOrder = -1;
+	};
+	
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
 	ChairLoader();
 
@@ -43,8 +75,11 @@ public:
 	//! @returns whether it was handled and shouldn't be passed over to the game.
 	bool HandleKeyPress(const SInputEvent &event);
 
-	//! Process smoke form exit
+	//! Process smoke form exit TODO: move this to separate mod
 	void SmokeFormExit();
+
+	//! Register a mod 
+	bool RegisterMod(std::string modName, IChairloaderMod* modInterface, HMODULE moduleBase);
 
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
@@ -52,12 +87,31 @@ public:
 	inline IGameFramework* GetFramework() { return m_pFramework; }
 
 private:
+	//! The mod list
+	std::vector<ModEntry> modList;
+
+	//! intermediate structure to keep track of mod load order before the mods are registered
+	std::map<std::string, int> modLoadOrder;
+
+	//! reads the config file to obtain the mod load order
+	void ReadModList();
+
+	//! sorts the modList by load order
+	void sortLoadOrder();
+
+	//! load all mod DLL's from the mod names obtained from the config Mod List
+	void initializeMods();
+
+	//! load all registered mod configs
+	void loadAllConfigs();
+
+	const std::string chairloaderModName = "Chairloader";
 	uintptr_t m_ModuleBase = 0;
 	IGameFramework* m_pFramework = nullptr;
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	FILE *m_pConsoleFile = nullptr;
 	std::thread::id m_MainThreadId;
-	int m_GuiToggleKey = 0;
+
 	int m_FreeCamKey = 0;
 	bool m_DevMode;
 	bool m_FreeCamEnabled = false;
@@ -65,8 +119,8 @@ private:
 	void CreateConsole();
 	void LoadPreyPointers();
 	void InstallHooks();
-	void LoadConfigFile();
 	void UpdateFreeCam();
+	
 };
 
 extern ChairLoader *gCL;
