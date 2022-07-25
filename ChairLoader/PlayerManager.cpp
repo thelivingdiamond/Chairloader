@@ -7,6 +7,7 @@
 #include "Prey/CryAction/GameObject.h"
 #include "Prey/CryGame/Game.h"
 #include "Chairloader.h"
+#include "Prey/CrySystem/Profiling.h"
 
 // PUBLIC:
 void ChairloaderGUIPlayerManager::draw(bool* bShow) {
@@ -87,9 +88,11 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 		if (gEntUtils->ArkPlayerPtr() != nullptr) {
 			float currentHealth = gEntUtils->ArkPlayerPtr()->GetHealth();
 			float maxHealth = gEntUtils->ArkPlayerPtr()->GetMaxHealth();
-			ArkPlayer* player = player->GetInstancePtr();
-			float currentArmor = gEntUtils->ArkPlayerPtr()->GetArmor();
-			float maxArmor = gEntUtils->ArkPlayerPtr()->GetMaxArmor();
+			ArkPlayer* player = ArkPlayer::GetInstancePtr();
+			float currentArmor = 100.0f - gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->m_currentAmount;
+			float maxArmor = 100.0f;
+			float currentRad = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->m_currentAmount;
+			float maxRad = 100.0f;
 			float currentPsi = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
 			float maxPsi = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
 			float currentFatigue = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
@@ -99,6 +102,7 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			static float setHealth = 0;
 			static float setPsi = 0;
 			static float setMaxPsi = 0;
+			
 			ImGui::Text("Player Entity Name: %s", gEntUtils->ArkPlayerPtr()->GetEntity()->GetName());
 			ImGui::Text("Player Entity ID: %u", gEntUtils->ArkPlayerPtr()->GetEntity()->GetId());
 			ImGui::Text("Health: %.2f / %.2f", currentHealth / 10, maxHealth / 10);
@@ -109,9 +113,15 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 				gEntUtils->ArkPlayerPtr()->SetHealth(setHealth * 10);
 				setHealth = gEntUtils->ArkPlayerPtr()->GetHealth() / 10;
 			}
+			//TODO: update armor and radiation (apply statuses/
+			//Armor
 			ImGui::Checkbox("God Mode", &godMode);
-			ImGui::Text("Armor: %.2f / %.2f", currentArmor / 10, maxArmor / 10);
-			ImGui::ProgressBar(maxArmor / currentArmor);
+			ImGui::Text("Armor: %.2f / %.2f", currentArmor, maxArmor);
+			ImGui::ProgressBar(currentArmor / maxArmor);
+			if (ImGui::InputFloat("Set Armor", &currentArmor)) {
+				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->m_currentAmount = 100.0f - currentArmor;
+				// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->Update(0.1f);
+			}
 			//Psi
 			ImGui::Text("Psi: %.2f / %.2f", currentPsi, maxPsi);
 			ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(130, 8, 216, 255));
@@ -134,15 +144,35 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			ImGui::ProgressBar((maxFatigue - currentFatigue) / maxFatigue);
 			ImGui::PopStyleColor();
 			ImGui::Checkbox("Infinite Stamina", (bool*)&gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_bInfiniteStamina);
-
-			
+			if (currentRad > 0.1f) {
+				ImGui::Text("Radiation: %.2f / %.2f", currentRad, maxRad);
+				ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(16, 147, 18, 255));
+				ImGui::ProgressBar(currentRad / maxRad);
+				ImGui::PopStyleColor();
+			} else {
+				ImGui::Text("Radiation: 0.00 / %.2f", maxRad);
+				ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(16, 147, 18, 255));
+				ImGui::ProgressBar(0 / maxRad);
+				ImGui::PopStyleColor();
+			}
+			if (ImGui::InputFloat("Set Radiation", &currentRad)) {
+				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->m_currentAmount = currentRad;
+				// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->Update(0.1f);
+			}
+			static bool showArmor = true;
+			if(ImGui::Checkbox("Show Armor", &showArmor)) {
+				gEntUtils->ArkPlayerPtr()->SetShowArmor(gEntUtils->ArkPlayerPtr(), showArmor, true);
+			}
 			ImGui::Separator();
 			ImGui::Text("Statuses: ");
 			ImGui::Columns(2);
 			for (auto& status : gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_statuses) {
 				if (ImGui::Selectable(status.get()->m_desc.m_Name.m_str)) {
-					status->m_desc.m_Duration = 1000.0f;
-					status->Activate(0);
+					// status->m_desc.m_Duration = 1000.0f;
+					if (status != nullptr) {
+						// int level = status->m_currentLevel;
+						status->Activate(0);
+					}
 					// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->ForceStatus
 					// status->UpdateHudIcon(status.get());
 					// status->UpdateVisuals(true, true);
@@ -150,8 +180,8 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 					// status.get()->UpdateVisuals(true, false);
 				}
 				ImGui::NextColumn();
-				ImGui::Text("%u", status.get()->IsEnabled());
-				ImGui::Text("%f", status.get()->m_desc.m_Duration);
+				ImGui::Text("Level: %i", status->m_currentLevel);
+				ImGui::Text("Current amount: %f", status->m_currentAmount);
 				// printf("Offset: %llX", (uintptr_t)&status->m_desc.m_Phases - (uintptr_t)&status->m_desc); //Offset: 136
 				// for(auto & phase : status->m_desc.m_Phases) {
 				// 	ImGui::Text("%s", phase.m_HudIcon.c_str());
@@ -159,11 +189,11 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 				ImGui::NextColumn();
 			}
 			ImGui::Columns(1);
-			if (ImGui::Button("Add Status")) {
-				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(
-					EArkPlayerStatus::Radiation);
-			}
-			// TODO: figure out armor and psi
+			// if (ImGui::Button("Add Status")) {
+			// 	gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(
+			// 		EArkPlayerStatus::Radiation);
+			// }
+			// TODO: figure out armor
 
 		}
 		ImGui::EndTabItem();

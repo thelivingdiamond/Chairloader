@@ -224,6 +224,7 @@ public:
 class ArkPlayerStatusComponent
 {
 public:
+	static inline auto GetTraumaForStatus = PreyFunction<ArkTraumaBase * (ArkPlayerStatusComponent * _this, EArkPlayerStatus status)>(0x14624F0);
 	static inline auto SetStatus = PreyFunction<void(ArkPlayerStatusComponent*, EArkPlayerStatus status, bool bActivate, bool bSilent)>(0x1463610);
 	static inline auto ForceStatus = PreyFunction<void(ArkPlayerStatusComponent*, EArkPlayerStatus, bool)>(0x1462210);
 	static inline auto AddHudIcon = PreyFunction<void(ArkPlayerStatusComponent*, CryStringT<char>&)>(0x1461f00);

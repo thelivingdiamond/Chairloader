@@ -840,6 +840,12 @@
     <ClInclude Include="..\Common\Prey\RayCast.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h">
+      <Filter>Common\Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="IChairloader.h">
+      <Filter>Chairloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityUtils.cpp">

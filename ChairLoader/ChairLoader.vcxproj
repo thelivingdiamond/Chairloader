@@ -192,6 +192,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -240,6 +242,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\ChairLoader\FunctionHook.h" />
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h" />
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
     <ClInclude Include="..\Common\imgui\imconfig.h" />
     <ClInclude Include="..\Common\imgui\imgui.h" />
@@ -472,6 +475,7 @@
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="IChairloader.h" />
     <ClInclude Include="OverlayLog.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="DevConsoleDialog.h" />
