@@ -26,8 +26,7 @@ public:
 			  loadOrder(load_order) {}
 
 		int getLoadOrder() const { return loadOrder; }
-		~ModEntry() {
-		}
+		~ModEntry() {}
 		bool operator<(const ModEntry& rhs) const noexcept { return this->getLoadOrder() < rhs.getLoadOrder(); }
 		bool operator==(const ModEntry& rhs) const noexcept { return this->modName == rhs.modName; }
 		ModEntry& operator=(const ModEntry& rhs) noexcept { this->modName = rhs.modName;

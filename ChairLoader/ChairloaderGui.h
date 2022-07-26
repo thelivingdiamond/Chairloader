@@ -25,9 +25,6 @@ public:
     void logItem(ChairloaderGUILog::logMessage message, bool displayToScreen = true);
     void draw(bool* bShow);
     void update();
-    bool addDrawFunction(std::string modName, std::function<void()> drawFunction);
-    bool isDrawFunctionLoaded(const std::string modName);
-    bool unloadDrawFunction(const std::string modName);
 
     void dockingTest();
 private:
@@ -51,8 +48,9 @@ private:
     bool g_PresentHooked;
     bool g_ShowMenu;
     BOOL g_bInitialised;
-    // static ChairloaderGui* gui;
 
+
+    //TODO: switch to module internal draw booleans
     chairloaderGuiControl control;
     ChairloaderGUILog log;
     ChairloaderGUIPlayerManager playerManager; 
@@ -61,38 +59,8 @@ private:
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;
 
-    // std::vector<std::string> modsWithDrawFuncs;
-    std::vector<std::tuple<std::function<void()>, std::string>> drawFuncs;
+    //TODO: remove mutex bc single thread
     std::mutex drawHandleMutex;
-
-    // void hook() {
-    //     // begin gui hooking
-    //     GetPresent();
-    //     if (!g_PresentHooked) {
-    //         retrieveValues();
-    //     }
-    //     // detour time
-    //     detourDirectXPresent();
-    //     while (!g_bInitialised) {
-    //         Sleep(100);
-    //     }
-    //     printValues();
-    // }
-
-private:
-    // LRESULT CALLBACK hWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-    //
-    // HRESULT GetDeviceAndCtxFromSwapchain(IDXGISwapChain* pSwapChain, ID3D11Device** ppDevice, ID3D11DeviceContext** ppContext);
-    //
-    // HRESULT __fastcall Present(IDXGISwapChain* pChain, UINT SyncInterval, UINT Flags);
-    //
-    // void detourDirectXPresent();
-    //
-    // void retrieveValues();
-    //
-    // void printValues();
-    //
-    // void GetPresent();
 
 };
 

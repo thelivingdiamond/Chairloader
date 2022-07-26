@@ -215,6 +215,7 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
 	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
+
 	// run each mod InitGame();
 	for (auto& mod : modList) {
 		mod.modInterface->InitGame(pFramework);

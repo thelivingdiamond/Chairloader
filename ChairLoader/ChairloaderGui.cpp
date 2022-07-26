@@ -22,10 +22,6 @@ void ChairloaderGui::draw(bool* bShow) {
         drawHandleMutex.lock();
         ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.8f);
         if (ImGui::BeginMainMenuBar()) {
-            // if(ImGui::IsItemHovered()) {
-            //     ImGui::PopStyleVar();
-            //     alphaVar = false;
-            // }
             if (ImGui::BeginMenu("Chairloader")) {
                 ImGui::MenuItem("Hide All", NULL, &control.hideAll);
                 ImGui::MenuItem("Show Console", NULL, &control.showDevConsole);
@@ -95,11 +91,6 @@ void ChairloaderGui::draw(bool* bShow) {
         ImGui::SetNextWindowSize(ImGui::GetWindowViewport()->Size);
         ImGui::Begin("Main Dockspace Window", 0, ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
         ImGui::DockSpace(ImGui::GetID("Main Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoDockingInCentralNode);
-        if (!drawFuncs.empty()) {
-            for (auto itr = drawFuncs.begin(); itr != drawFuncs.end(); ++itr) {
-                std::get<0>(*itr)();
-            }
-        }
         ImGui::End();
         if (!control.hideAll) {
             if (control.showDemoWindow)
@@ -144,24 +135,6 @@ void ChairloaderGui::update() {
     }
     perfOverlay.Update();
     
-}
-bool ChairloaderGui::addDrawFunction(std::string modName, std::function<void()> drawFunction) {
-    if (std::find_if(drawFuncs.begin(), drawFuncs.end(), [modName](std::tuple < std::function<void()>, std::string>& e) {return std::get<1>(e) == modName; }) == drawFuncs.end()) {
-        drawFuncs.emplace_back(std::make_tuple(drawFunction, modName));
-        return true;
-    }
-    return false;
-}
-bool ChairloaderGui::isDrawFunctionLoaded(const std::string modName) {
-    return std::find_if(drawFuncs.begin(), drawFuncs.end(), [modName](std::tuple < std::function<void()>, std::string>& e) {return std::get<1>(e) == modName; }) != drawFuncs.end();
-}
-bool ChairloaderGui::unloadDrawFunction(const std::string modName) {
-    auto pos = std::find_if(drawFuncs.begin(), drawFuncs.end(), [modName](std::tuple < std::function<void()>, std::string>& e) {return std::get<1>(e) == modName; });
-    if (pos != drawFuncs.end()) {
-        drawFuncs.erase(pos);
-        return true;
-    }
-    return false;
 }
 
 void ChairloaderGui::dockingTest() {
