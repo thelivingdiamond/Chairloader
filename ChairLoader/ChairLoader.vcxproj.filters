@@ -106,6 +106,21 @@
     <Filter Include="Common\imgui">
       <UniqueIdentifier>{92077461-948a-4e69-aed8-c80b2d8dae30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\GameDll">
+      <UniqueIdentifier>{f719e230-6301-4a60-9606-94e4a52c3b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark">
+      <UniqueIdentifier>{e5ae86c2-9746-4daa-bbc5-ae52828c4987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\ArkCommon">
+      <UniqueIdentifier>{f82692e9-757d-4e9e-b94d-9ecef63cafa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\ArkCommon\reflect">
+      <UniqueIdentifier>{1e991fc6-0c27-404d-b8ed-f127382d1baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\ArkCommon\reflection">
+      <UniqueIdentifier>{9bf34808-3ec1-4cf0-9403-7e4cbf7428b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChairloaderGui.h">
@@ -857,6 +872,27 @@
     </ClInclude>
     <ClInclude Include="IChairloaderEnv.h">
       <Filter>Common\Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\arkblackboardautoentry.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\arkintrusivelist.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\arklibrary.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\arktimesample.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflect\arkreflectionaccessors.h">
+      <Filter>Common\Prey\ArkCommon\reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\ArkClass.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\IArkValueBase.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

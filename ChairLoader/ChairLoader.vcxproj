@@ -264,6 +264,13 @@
     <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkAudio.h" />
     <ClInclude Include="..\Common\Prey\ArkBasicTypes.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\arkblackboardautoentry.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\arkintrusivelist.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\arklibrary.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\arktimesample.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\ArkClass.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\IArkValueBase.h" />
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflect\arkreflectionaccessors.h" />
     <ClInclude Include="..\Common\Prey\ArkEffect.h" />
     <ClInclude Include="..\Common\Prey\ArkEntityArchetypeLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkEntityClassLibrary.h" />
