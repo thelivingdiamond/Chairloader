@@ -12,9 +12,15 @@
 #include "Profiler.h"
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
+#include "ChairLoader/ChairloaderEnv.h"
 
 ChairLoader *gCL = nullptr;
 static bool smokeFormExited = false;
+static ChairloaderGlobalEnvironment s_CLEnv;
+ChairloaderGlobalEnvironment* gCLEnv = &s_CLEnv;
+
+
+
 namespace {
 
 class ConsoleStdoutSink : public IOutputPrintSink {
@@ -191,6 +197,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	LoadPreyPointers();
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
+	gCLEnv->conf = (IChairloaderConfigManager*)gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
 
 	// get list of installed mods and their load order
@@ -201,7 +208,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	loadAllConfigs();
 	// run each mod InitSystem()
 	for(auto mod: modList) {
-		mod.modInterface->InitSystem(pSystem);
+		mod.modInterface->InitSystem(pSystem, GetModuleBase());
 	}
 
 }
@@ -216,9 +223,14 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
 
+	gCLEnv->cl = gCL;
+	gCLEnv->gui = (IChairloaderGui*)gui;
+	gCLEnv->funcs = gPreyFuncs;
+	gCLEnv->entUtils = gEntUtils;
+
 	// run each mod InitGame();
 	for (auto& mod : modList) {
-		mod.modInterface->InitGame(pFramework);
+		mod.modInterface->InitGame(pFramework, this);
 	}
 }
 
@@ -395,3 +407,9 @@ void ChairLoader::UpdateFreeCam() {
 		}
 	}
 }
+
+IChairloaderGlobalEnvironment* ChairLoader::getChairloaderEnvironment() {
+	return (IChairloaderGlobalEnvironment*)gCLEnv;
+}
+
+

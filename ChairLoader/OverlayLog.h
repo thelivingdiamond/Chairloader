@@ -3,25 +3,12 @@
 #include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "preyDllObjects.h"
+#include "ChairLoader/IChairloaderGui.h"
+
 class ChairloaderGUILog {
 public:
     // Basic Logging Structs
-    enum class logLevel {
-        normal = 0,
-        warning = 1,
-        error = 2,
-    };
-    struct logMessage {
-        std::string message;
-        std::string modName;
-        time_t time;
-        logLevel level;
 
-        bool empty() {
-            return message.empty();
-        }
-    };
-    
     ChairloaderGUILog();
     ~ChairloaderGUILog();
     // show persistent transparent log overlay

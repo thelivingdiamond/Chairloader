@@ -1,7 +1,6 @@
 #include "pch.h"
 #include <Prey/CryAction/GameObject.h>
 #include "EntityUtils.h"
-#include "ChairLoader.h"
 
 EntityUtils *gEntUtils = nullptr;
 
@@ -31,8 +30,7 @@ CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnPa
 	params->vScale.x = 1;
 	params->vScale.y = 1;
 	params->vScale.z = 1;
-	uint32_t id = gPreyFuncs->CEntitySystemF->generateEntityId((CEntitySystem*)gEnv->pEntitySystem, true);
-	params->id = id;
+	params->id = 0;
 	params->vPosition.x = pos.x;
 	params->vPosition.y = pos.y;
 	params->vPosition.z = pos.z;
@@ -138,7 +136,7 @@ EntityUtils::EntityUtils() {
 }
 
 ArkPlayer* EntityUtils::ArkPlayerPtr() {
-	 return gPreyFuncs->ArkPlayerF->getInstance();
+	 return ArkPlayer::GetInstancePtr();
 }
 
 

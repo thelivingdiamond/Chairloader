@@ -628,6 +628,6 @@ void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) 
 		}
 	}
 	catch (std::string c) {
-		log->logItem(c, modName, ChairloaderGUILog::logLevel::error);
+		log->logItem(c, modName, logLevel::error);
 	}
 }

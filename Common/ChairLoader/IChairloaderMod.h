@@ -1,13 +1,15 @@
 #pragma once
 #include "pch.h"
 
-class IChairloaderMod {
-public:
-	//! Called during CSystem::Init, before any engine modules.
-	virtual void InitSystem(CSystem * pSystem) = 0;
+#include "IChairloader.h"
 
+struct IChairloaderMod {
+
+	//! Called during CSystem::Init, before any engine modules.
+	virtual void InitSystem(CSystem * pSystem, uintptr_t moduleBase) = 0;
+	
 	//! Called after CGame::Init
-	virtual void InitGame(IGameFramework* pFramework) = 0;
+	virtual void InitGame(IGameFramework* pFramework, IChairloader* chairloader) = 0;
 
 	//! Called before CGame::Update to handle any GUI elements
 	virtual void Draw(ImGuiContext*) = 0;

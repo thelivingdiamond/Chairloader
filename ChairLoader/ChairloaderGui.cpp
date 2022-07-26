@@ -8,15 +8,18 @@ ChairloaderGui::ChairloaderGui() :
     entityManager(){
     // gui = this;
     GUILog = &log;
+    // gEnv.
 }
 
 
-void ChairloaderGui::logItem(std::string msg, const std::string modName, ChairloaderGUILog::logLevel level, bool displayToScreen) {
+void ChairloaderGui::logItem(std::string msg, const std::string modName, logLevel level, bool displayToScreen) {
     log.logItem(msg, modName, level, displayToScreen);
 }
-void ChairloaderGui::logItem(ChairloaderGUILog::logMessage message, bool displayToScreen) {
+
+void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
     log.logItem(message, displayToScreen);
 }
+
 void ChairloaderGui::draw(bool* bShow) {
     if (*bShow) {
         drawHandleMutex.lock();
@@ -49,7 +52,7 @@ void ChairloaderGui::draw(bool* bShow) {
                         log.logItem(testMsg, modName);
                     }
                     if (ImGui::MenuItem("Test Error Message")) {
-                        log.logItem("Welcome to funland sonic", modName, ChairloaderGUILog::logLevel::error);
+                        log.logItem("Welcome to funland sonic", modName, logLevel::error);
                     }
                     ImGui::EndMenu();
                 }

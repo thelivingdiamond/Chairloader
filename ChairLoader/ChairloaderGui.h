@@ -12,17 +12,19 @@
 #include "PerfOverlay.h"
 #include "Profiler.h"
 #include "DevConsoleDialog.h"
+#include "ChairLoader/IChairloaderGui.h"
 // #include <stack>
 
-class ChairloaderGui {
+class ChairloaderGui : IChairloaderGui {
 public:
     ChairloaderGui();
 
     bool IsDevConsoleVisible() { return control.showDevConsole; }
     void SetDevConsoleVisible(bool state) { control.showDevConsole = state; }
 
-    void logItem(std::string msg, const std::string modName, ChairloaderGUILog::logLevel level = ChairloaderGUILog::logLevel::normal, bool displayToScreen = true);
-    void logItem(ChairloaderGUILog::logMessage message, bool displayToScreen = true);
+    void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
+    void logItem(logMessage message, bool displayToScreen = true) override;
+
     void draw(bool* bShow);
     void update();
 

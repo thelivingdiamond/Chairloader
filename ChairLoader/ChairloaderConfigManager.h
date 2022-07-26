@@ -1,10 +1,11 @@
 #pragma once
 #include <pugixml.hpp>
 #include <filesystem>
-#include <boost/bimap.hpp>
-#include <boost/variant.hpp>
 
-class ChairloaderConfigManager {
+
+#include "ChairLoader/IChairloaderConfigManager.h"
+
+class ChairloaderConfigManager : IChairloaderConfigManager{
 public:
 	/* Example configuration file
 	 *
@@ -25,20 +26,8 @@ public:
 	 */
 
 	// Enum for determining type of the parameter in a config parameter. Other will return the raw string.
-	enum class parameterType {
-		String,
-		Bool,
-		Int,
-		Uint,
-		Int64,
-		Uint64,
-		Float,
-		XMLNode,
-		Other
-	};
 	// Bimap for storing the parameter type and the corresponding string.
-	using ConfigParameterPair = boost::bimap<parameterType, std::string>::value_type;
-	using ConfigParameter = boost::variant<std::string, bool, int, unsigned int, int64, uint64, float, pugi::xml_node>;
+	
 
 	// store config files
 	
@@ -64,13 +53,13 @@ public:
 
 	// Returns a boost::variant of the parameter. Returns "" if the parameter does not exist;
 	// use boost::get<type>(parameter) to get the value. assumes you know the type of the parameter you are getting. 
-	ConfigParameter getConfigValue(std::string modName, std::string parameterName);
+	ConfigParameter getConfigValue(std::string modName, std::string parameterName) override;
 
 	// Sets the value of a parameter. Returns true if the parameter was written, false otherwise.
-	bool setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type);
+	bool setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type) override;
 
 	// Returns the xml node <modName>. Use for custom parsing on the entire config file if needed. 
-	pugi::xml_node* getConfigNode(std::string modName);
+	pugi::xml_node* getConfigNode(std::string modName) override;
 
 	/**
 	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file. 
@@ -78,9 +67,9 @@ public:
 	 * \param parameterName 
 	 * \return boost::Variant of the value, or an empty string "" if parameter does not exist
 	 */
-	ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName);
+	ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName) override;
 
-	void setConfigDirty(std::string modName, bool bDirty);
+	void setConfigDirty(std::string modName, bool bDirty) override;
 
 
 	/**
@@ -91,7 +80,7 @@ public:
 	 * \param type: type of node
 	 * \return true if parameter was set succesfully
 	 */
-	bool setNodeConfigValue(pugi::xml_node node, std::string parameterName, std::string value, parameterType type);
+	bool setNodeConfigValue(pugi::xml_node node, std::string parameterName, std::string value, parameterType type) override;
 
 
 
@@ -102,10 +91,10 @@ public:
 	//    "Mods/modName/modName_default.xml"
 	// Else, it will create a default file for you with only the root modName node. Good luck!
 	//    "Mods/config/modName.xml"
-	bool loadModConfigFile(std::string modName);
+	bool loadModConfigFile(std::string modName) override;
 
 	// saves the config file to disk for a modName
-	bool saveModConfigFile(std::string modName);
+	bool saveModConfigFile(std::string modName) override;
 
 	// intialize mod configs 
 	bool copyDefaultModConfigFile(std::string modName);

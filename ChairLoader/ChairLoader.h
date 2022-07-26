@@ -5,7 +5,7 @@
 #include "ChairloaderConfigManager.h"
 #include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
-#include "IChairloader.h"
+#include "ChairLoader/IChairloader.h"
 #include "Logging.h"
 #include "ChairLoader/IChairloaderMod.h"
 
@@ -119,7 +119,9 @@ private:
 	void LoadPreyPointers();
 	void InstallHooks();
 	void UpdateFreeCam();
-	
+public:
+	IChairloaderGlobalEnvironment* getChairloaderEnvironment() override;
+
 };
 
 extern ChairLoader *gCL;

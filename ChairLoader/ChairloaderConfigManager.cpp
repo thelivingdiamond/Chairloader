@@ -303,7 +303,7 @@ ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getNodeConfi
 
 void ChairloaderConfigManager::setConfigDirty(std::string modName, bool bDirty) {
 	if(modConfigsDirty.find(modName) != modConfigsDirty.end()) {
-		modConfigsDirty[modName] = bDirty;
+		modConfigsDirty.find(modName)->second = bDirty;
 	}
 }
 
@@ -313,13 +313,12 @@ bool ChairloaderConfigManager::setNodeConfigValue(pugi::xml_node node, std::stri
 		if (parameterNode) {
 			parameterNode.text().set(value.c_str());
 			parameterNode.attribute("type").set_value(parameterNameMap.left.find(type)->get_right().c_str());
-			modConfigsDirty.find(modName)->second = true;
 		}
 		else {
 			node.append_child(parameterName.c_str()).text().set(value.c_str());
 			node.child(parameterName.c_str()).append_attribute("type").set_value(parameterNameMap.left.find(type)->second.c_str());
-			modConfigsDirty.find(modName)->second = true;
 		}
+		setConfigDirty(node.name(), true);
 		return true;
 	}
 	return false;

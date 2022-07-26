@@ -241,9 +241,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\ChairLoader\ChairloaderEnv.h" />
     <ClInclude Include="..\Common\ChairLoader\FunctionHook.h" />
+    <ClInclude Include="..\Common\ChairLoader\IChairloader.h" />
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderConfigManager.h" />
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderGui.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h" />
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
+    <ClInclude Include="..\Common\EntityUtils.h" />
     <ClInclude Include="..\Common\imgui\imconfig.h" />
     <ClInclude Include="..\Common\imgui\imgui.h" />
     <ClInclude Include="..\Common\imgui\imgui_internal.h" />
@@ -475,11 +480,10 @@
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="IChairloader.h" />
+    <ClInclude Include="IChairloaderEnv.h" />
     <ClInclude Include="OverlayLog.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="DevConsoleDialog.h" />
-    <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="ChairLoaderImGui.h" />
     <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="ImGui\imgui_widget_flamegraph.h" />
@@ -491,6 +495,7 @@
   <ItemGroup>
     <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp" />
     <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp" />
+    <ClCompile Include="..\Common\EntityUtils.cpp" />
     <ClCompile Include="..\Common\imgui\imgui.cpp" />
     <ClCompile Include="..\Common\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\Common\imgui\imgui_draw.cpp" />
@@ -512,7 +517,6 @@
     <ClCompile Include="OverlayLog.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="DevConsoleDialog.cpp" />
-    <ClCompile Include="EntityUtils.cpp" />
     <ClCompile Include="ChairLoaderImGui.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="HeaderTestFile.cpp" />

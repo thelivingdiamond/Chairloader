@@ -613,7 +613,7 @@ void ChairloaderGUIEntityManager::entityModifyHandler(ChairloaderGUILog* log) {
     }
     catch (std::string c) {
         std::string msg = "Error handling entity modification request: ";
-        log->logItem(msg + c, modName, ChairloaderGUILog::logLevel::error);
+        log->logItem(msg + c, modName, logLevel::error);
     }
 }
 void ChairloaderGUIEntityManager::filterEntityList(ChairloaderGUILog* log) {
