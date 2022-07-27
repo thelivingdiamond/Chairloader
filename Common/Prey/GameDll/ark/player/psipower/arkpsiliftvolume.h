@@ -2,11 +2,10 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/npc/ArkNpc.h>
+//#include <Prey/GameDll/ark/npc/ArkNpc.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiLift.h>
 #include <Prey/GameDll/ark/player/psipower/arkplayerliftentity.h>
 #include <Prey/GameDll/ark/player/psipower/arkplayerliftentityzerog.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolume.h>
 
 struct IEntity;

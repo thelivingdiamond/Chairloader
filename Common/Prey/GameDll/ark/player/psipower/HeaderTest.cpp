@@ -1,10 +1,12 @@
 // Header test file for path Prey/GameDll/ark/player/psipower/ArkEtherDuplicate.h
+#if 0
 #include "ArkEtherDuplicate.h"
 static_assert(sizeof(ArkEtherDuplicate) == 48);
 
 #include "ArkEtherDuplicateAction.h"
 static_assert(sizeof(ArkEtherDuplicateMaterialAnimation) == 24);
 static_assert(sizeof(ArkEtherDuplicateAction) == 168);
+#endif
 
 #include "ArkPlayerLiftEntity.h"
 static_assert(sizeof(ArkPlayerLiftEntity) == 16);
@@ -14,6 +16,7 @@ static_assert(sizeof(ArkPlayerLiftEntitySpawner) == 8);
 static_assert(sizeof(ArkPlayerLiftEntityZeroG) == 12);
 static_assert(sizeof(ArkPlayerLiftEntityZeroGSpawner) == 4);
 
+#if 0
 #include "ArkPlayerMimicAction.h"
 static_assert(sizeof(ArkPlayerMimicAction) == 168);
 
@@ -80,6 +83,7 @@ static_assert(sizeof(ArkPlayerMimicTurretEntity) == 4);
 
 #include "ArkPlayerSmokeFormAction.h"
 static_assert(sizeof(ArkPlayerSmokeFormAction) == 128);
+#endif
 
 #include "ArkPsiCorpsePhantom.h"
 static_assert(sizeof(ArkPsiCorpsePhantom) == 72);
@@ -87,11 +91,13 @@ static_assert(sizeof(ArkPsiCorpsePhantom) == 72);
 #include "ArkPsiLift.h"
 static_assert(sizeof(ArkPsiLift) == 56);
 
+#if 0
 #include "arkpsipower3dtargetingcomponent.h"
 static_assert(sizeof(CArkPsiPower3DTargetingComponent) == 464);
 
 #include "arkpsipoweralientargetingcomponent.h"
 static_assert(sizeof(CArkPsiPowerAlienTargetingComponent) == 464);
+#endif
 
 #include "arkpsipowercombatfocus.h"
 static_assert(sizeof(ArkPsiPowerCombatFocusProperties) == 72);
@@ -168,8 +174,6 @@ static_assert(sizeof(ElectrostaticBurstPowerProperties::ArkLevelsProperty) == 32
 #include "arkpsipowerfaction.h"
 static_assert(sizeof(ArkPsiPowerFactionProperties) == 8);
 static_assert(sizeof(ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty) == 32);
-static_assert(sizeof(CAkFeedbackNode) == 200);
-static_assert(sizeof(CAkFeedbackNode::SrcInfo) == 40);
 
 #include "arkpsipowerfear.h"
 static_assert(sizeof(FearPowerProperties) == 248);
@@ -183,8 +187,10 @@ static_assert(sizeof(HypnosisPowerProperties::ArkCommonProperty) == 32);
 static_assert(sizeof(HypnosisPowerProperties::ArkFactionProperty) == 32);
 static_assert(sizeof(HypnosisPowerProperties::ArkLevelsProperty) == 32);
 
+#if 0
 #include "ArkPsiPowerIndividualTargetingComponent.h"
 static_assert(sizeof(ArkPsiPowerIndividualTargetingComponent) == 616);
+#endif
 
 #include "arkpsipowerkineticblast.h"
 static_assert(sizeof(ArkPsiPowerElectrostaticBurstProperties) == 248);

@@ -12,6 +12,7 @@
 class ArkClass;
 struct IEntity;
 struct IParticleEffect;
+class ArkEtherDuplicate;
 
 // Header: Exact
 // Prey/GameDll/ark/player/psipower/arkpsipowershift.h

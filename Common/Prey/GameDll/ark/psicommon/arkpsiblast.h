@@ -45,9 +45,9 @@ class CArkPsiBlast // Id=801C116 Size=80
 public:
 	enum class ArkState
 	{
-		Delay = 0
-		Execute = 1
-		Finishing = 2
+		Delay = 0,
+		Execute = 1,
+		Finishing = 2,
 	};
 
 	Vec3 m_lastUpdatePosition;

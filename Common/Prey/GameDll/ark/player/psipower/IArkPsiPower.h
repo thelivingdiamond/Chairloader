@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/CryMath/Cry_Color.h>
 #include <Prey/CryNetwork/ISerialize.h>
 

@@ -11,12 +11,12 @@
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerthermalblast.h>
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 #include <Prey/GameDll/ark/psicommon/arkpsiblastmanager.h>
-#include <_perforce/danielle/preybnet/code/arkane/arkcommon/reflect/arkreflectionaccessors.h>
-#include <Prey/GameDll/ark/IArkBreakableListener.h>
+#include <Prey/GameDll/ark/iface/IArkBreakableListener.h>
 
 class ArkInputLegend;
 class ArkPsiPowerTargetingComponent;
 class CCryName;
+class IArkPlayerMimic;
 struct IEntity;
 struct SViewParams;
 
@@ -42,7 +42,7 @@ public:
 	bool m_bPendingMorphIn;
 	bool m_bDelayMorphInFrame;
 	
-	void CArkPsiPowerMimic();
+	CArkPsiPowerMimic();
 	virtual void Cancel();
 	virtual void OnReset();
 	virtual void Update(const float _frameTime);
@@ -124,108 +124,16 @@ public:
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/psipower/arkpsipowermimic.h
-class CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiThermalBlast,ThermalBlastPowerProperties,1> : public CArkPsiPower<ThermalBlastPowerProperties> // Id=801C187 Size=696
+template <typename TTargetComp, typename TPower, typename TProp, size_t UNK>
+class CArkPsiPowerBlast : public CArkPsiPower<TProp> // Id=801C187 Size=696
 {
 public:
-	using Properties = ThermalBlastPowerProperties;
-	using BaseType = CArkPsiPower<ThermalBlastPowerProperties>;
+	using Properties = TProp;
+	using BaseType = CArkPsiPower<TProp>;
 	
 	_smart_ptr<IParticleEffect> m_pTargetingEffect;
-	CArkPsiPower3DTargetingComponent m_targetingComponent;
-	CArkPsiBlastManager<CArkPsiThermalBlast> m_blastManager;
-	
-#if 0
-	virtual void Cancel();
-	virtual void Update(const float _fFrameTime);
-	virtual bool StartTargeting();
-	virtual void UpdateTargeting(const float _fFrameTime);
-	virtual std::vector<IEntity *> GetSelectedTargets() const;
-	virtual std::vector<IEntity *> GetUnselectedTargets() const;
-	virtual Vec3 GetTargetPosition() const;
-	virtual ArkPsiPowerTargetingComponent const *GetTargetingComponent() const;
-	virtual void ProcessInputForTargeting(CCryName const &_actionId, int _activationMode, float _value);
-	virtual void Serialize(TSerialize _ser);
-	virtual void PostSerialize();
-	virtual EArkPsiPowers GetEnum() const;
-	virtual bool Stop();
-	virtual bool Start_Derived();
-	virtual void SetLevel_Derived(const int _level);
-#endif
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/player/psipower/arkpsipowermimic.h
-class CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiKineticBlast,KineticBlastPowerProperties,3> : public CArkPsiPower<KineticBlastPowerProperties> // Id=801C8C9 Size=696
-{
-public:
-	using Properties = KineticBlastPowerProperties;
-	using BaseType = CArkPsiPower<KineticBlastPowerProperties>;
-	
-	_smart_ptr<IParticleEffect> m_pTargetingEffect;
-	CArkPsiPower3DTargetingComponent m_targetingComponent;
-	CArkPsiBlastManager<CArkPsiKineticBlast> m_blastManager;
-	
-#if 0
-	virtual void Cancel();
-	virtual void Update(const float _fFrameTime);
-	virtual bool StartTargeting();
-	virtual void UpdateTargeting(const float _fFrameTime);
-	virtual std::vector<IEntity *> GetSelectedTargets() const;
-	virtual std::vector<IEntity *> GetUnselectedTargets() const;
-	virtual Vec3 GetTargetPosition() const;
-	virtual ArkPsiPowerTargetingComponent const *GetTargetingComponent() const;
-	virtual void ProcessInputForTargeting(CCryName const &_actionId, int _activationMode, float _value);
-	virtual void Serialize(TSerialize _ser);
-	virtual void PostSerialize();
-	virtual EArkPsiPowers GetEnum() const;
-	virtual bool Stop();
-	virtual bool Start_Derived();
-	virtual void SetLevel_Derived(const int _level);
-#endif
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/player/psipower/arkpsipowermimic.h
-class CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiElectrostaticBurst,ElectrostaticBurstPowerProperties,0> : public CArkPsiPower<ElectrostaticBurstPowerProperties> // Id=801C8E6 Size=696
-{
-public:
-	using Properties = ElectrostaticBurstPowerProperties;
-	using BaseType = CArkPsiPower<ElectrostaticBurstPowerProperties>;
-	
-	_smart_ptr<IParticleEffect> m_pTargetingEffect;
-	CArkPsiPower3DTargetingComponent m_targetingComponent;
-	CArkPsiBlastManager<CArkPsiElectrostaticBurst> m_blastManager;
-	
-#if 0
-	virtual void Cancel();
-	virtual void Update(const float _fFrameTime);
-	virtual bool StartTargeting();
-	virtual void UpdateTargeting(const float _fFrameTime);
-	virtual std::vector<IEntity *> GetSelectedTargets() const;
-	virtual std::vector<IEntity *> GetUnselectedTargets() const;
-	virtual Vec3 GetTargetPosition() const;
-	virtual ArkPsiPowerTargetingComponent const *GetTargetingComponent() const;
-	virtual void ProcessInputForTargeting(CCryName const &_actionId, int _activationMode, float _value);
-	virtual void Serialize(TSerialize _ser);
-	virtual void PostSerialize();
-	virtual EArkPsiPowers GetEnum() const;
-	virtual bool Stop();
-	virtual bool Start_Derived();
-	virtual void SetLevel_Derived(const int _level);
-#endif
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/player/psipower/arkpsipowermimic.h
-class CArkPsiPowerBlast<CArkPsiPowerAlienTargetingComponent,CArkPsiFearBlast,FearPowerProperties,8> : public CArkPsiPower<FearPowerProperties> // Id=801C907 Size=696
-{
-public:
-	using Properties = FearPowerProperties;
-	using BaseType = CArkPsiPower<FearPowerProperties>;
-	
-	_smart_ptr<IParticleEffect> m_pTargetingEffect;
-	CArkPsiPowerAlienTargetingComponent m_targetingComponent;
-	CArkPsiBlastManager<CArkPsiFearBlast> m_blastManager;
+	TTargetComp m_targetingComponent;
+	CArkPsiBlastManager<TPower> m_blastManager;
 	
 #if 0
 	virtual void Cancel();

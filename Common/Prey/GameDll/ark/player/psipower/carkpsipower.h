@@ -4,7 +4,6 @@
 #include <Prey/Ark/arktutorial.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
-#include <_perforce/danielle/preybnet/code/arkane/arkcommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryMath/Cry_Color.h>
 
 class ArkInputLegend;
@@ -18,8 +17,8 @@ class CArkPsiPower : public IArkPsiPower // Id=80192FB Size=64
 public:
 	using Properties = T;
 	using BaseType = CArkPsiPower<T>;
-	using LevelProperties = T::LevelProperties;
-	using UniqueProperties = T::LevelProperties;
+	using LevelProperties = typename T::LevelProperties;
+	using UniqueProperties = typename T::LevelProperties;
 	
 	ArkSimpleTimer m_cooldownTimer;
 	std::vector<enum EArkPsiPowers> m_blacklist;

@@ -285,6 +285,7 @@
     <ClInclude Include="..\Common\Prey\ArkCommon\reflection\IArkValueBase.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\reflection\XMLObjectReader.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\reflect\arkreflectionaccessors.h" />
+    <ClInclude Include="..\Common\Prey\ArkEnums.h" />
     <ClInclude Include="..\Common\Prey\ArkStubs.h" />
     <ClInclude Include="..\Common\Prey\Ark\ArkAbility.h" />
     <ClInclude Include="..\Common\Prey\Ark\arkaudiolog.h" />
@@ -782,6 +783,7 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiCorpsePhantom.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiLift.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsiliftvolume.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiLiftVolumeEntity.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsiliftvolumemanager.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipower3dtargetingcomponent.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipoweralientargetingcomponent.h" />

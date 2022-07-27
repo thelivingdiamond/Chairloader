@@ -2,6 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/player/psipower/ArkEtherDuplicateAction.h>
 
 struct IEntity;
 

@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryParticleSystem/IParticles.h>
+//#include <Prey/CryParticleSystem/IParticles.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiPowerTargetingComponent.h>
 

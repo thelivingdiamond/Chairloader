@@ -2297,3 +2297,9 @@ enum eGeometrySlot
 	eIGS_LastLayerSlot = 2,
 };
 
+enum class ArkTutorialType
+{
+	Contextual = 0x0,
+	Card = 0x1,
+	Nag = 0x2,
+};

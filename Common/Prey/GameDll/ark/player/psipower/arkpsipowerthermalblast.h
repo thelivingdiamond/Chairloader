@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/GameDll/ark/psicommon/arkpsithermalblast.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsipowermimic.h>
 

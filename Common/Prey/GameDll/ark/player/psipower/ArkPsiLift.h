@@ -31,7 +31,7 @@ public:
 	void SetHeight(const float _height) { FSetHeight(this,_height); }
 	void SetPosition(Vec3 const &_position) { FSetPosition(this,_position); }
 	void SpawnParticleEmitter(const char *_pParticleEffectName, const bool _bUseUiTime) { FSpawnParticleEmitter(this,_pParticleEffectName,_bUseUiTime); }
-	OOB GetBounds() const { return FGetBounds(this); }
+	OBB GetBounds() const { return FGetBounds(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void PostSerialize() { FPostSerialize(this); }
 	void UpdateParticleEmitter() const { FUpdateParticleEmitter(this); }
@@ -55,7 +55,7 @@ public:
 	static inline auto FSetHeight = PreyFunction<void(ArkPsiLift *const _this, const float _height)>(0x1317190);
 	static inline auto FSetPosition = PreyFunction<void(ArkPsiLift *const _this, Vec3 const &_position)>(0x13171B0);
 	static inline auto FSpawnParticleEmitter = PreyFunction<void(ArkPsiLift *const _this, const char *_pParticleEffectName, const bool _bUseUiTime)>(0x1317210);
-	static inline auto FGetBounds = PreyFunction<OOB(ArkPsiLift const *const _this)>(0x1316800);
+	static inline auto FGetBounds = PreyFunction<OBB(ArkPsiLift const *const _this)>(0x1316800);
 	static inline auto FSerialize = PreyFunction<void(ArkPsiLift *const _this, TSerialize _ser)>(0x1316C90);
 	static inline auto FPostSerialize = PreyFunction<void(ArkPsiLift *const _this)>(0x1316B10);
 	static inline auto FUpdateParticleEmitter = PreyFunction<void(ArkPsiLift const *const _this)>(0x1317320);

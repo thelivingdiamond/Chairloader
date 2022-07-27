@@ -9,6 +9,77 @@
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolume.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolumemanager.h>
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
+#include <Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h>
+
+// Header: Exact
+// Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h
+class LiftPowerProperties : public ArkReflectedLibrary // Id=8017561 Size=344
+{
+public:
+	using LevelProperties = ArkPsiPowerLiftLevelProperties;
+	using UniqueProperties = ArkPsiPowerLiftUniqueProperties;
+
+	class ArkCommonProperty : public ArkProperty // Id=8017562 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(LiftPowerProperties::ArkCommonProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1591940);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (LiftPowerProperties::ArkCommonProperty const* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+	};
+
+	static LiftPowerProperties::ArkCommonProperty s_ArkCommonProperty;
+	ArkPsiPowerCommonProperties m_Common;
+
+	class ArkUniqueProperty : public ArkProperty // Id=8017563 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(LiftPowerProperties::ArkUniqueProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x12F5C90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (LiftPowerProperties::ArkUniqueProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+	};
+
+	static LiftPowerProperties::ArkUniqueProperty s_ArkUniqueProperty;
+	ArkPsiPowerLiftUniqueProperties m_Unique;
+
+	class ArkLevelsProperty : public ArkProperty // Id=8017564 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(LiftPowerProperties::ArkLevelsProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x12F5EA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (LiftPowerProperties::ArkLevelsProperty const* const _this, ArkReflectedObject* const _pObject)>(0x12F5F50);
+		static inline auto FIsArray = PreyFunction<bool(LiftPowerProperties::ArkLevelsProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(LiftPowerProperties::ArkLevelsProperty const* const _this, ArkReflectedObject* _pObject)>(0x12F5FA0);
+	};
+
+	static LiftPowerProperties::ArkLevelsProperty s_ArkLevelsProperty;
+	std::vector<ArkPsiPowerLiftLevelProperties> m_Levels;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+	virtual ~LiftPowerProperties();
+
+#if 0
+	void SetCommon(ArkPsiPowerCommonProperties arg0);
+	ArkPsiPowerCommonProperties const& GetCommon() const;
+	void SetUnique(ArkPsiPowerLiftUniqueProperties arg0);
+	ArkPsiPowerLiftUniqueProperties const& GetUnique() const;
+	std::vector<ArkPsiPowerLiftLevelProperties>& GetLevels();
+	std::vector<ArkPsiPowerLiftLevelProperties> const& GetLevels() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12F64F0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12F67C0);
+	static inline auto FInit = PreyFunction<bool(LiftPowerProperties* const _this)>(0x12F68B0);
+};
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/psipower/arkpsipowerlift.h

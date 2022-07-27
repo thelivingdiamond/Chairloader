@@ -24,8 +24,7 @@ public:
 	CArkPsiBlastProperties<ArkPsiThermalBlastProperties> m_properties;
 	std::vector<T> m_blasts;
 	
-#if 0
-	virtual void ~CArkPsiBlastManager();
+	virtual ~CArkPsiBlastManager();
 	void SpawnBlast(Vec3 const &arg0);
 	void Update(const float arg0);
 	void Initialize(ArkPsiThermalBlastProperties const &arg0, ArkPsiPowerTargetingComponent const &arg1);
@@ -35,6 +34,5 @@ public:
 	void Serialize(TSerialize _ser);
 	void PostSerialize();
 	virtual void OnEntityEvent(IEntity *_pEntity, SEntityEvent &_event);
-#endif
 };
 

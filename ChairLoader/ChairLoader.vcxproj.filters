@@ -2409,6 +2409,12 @@
     <ClInclude Include="..\Common\Prey\CryGame\IGameTokens.h">
       <Filter>Common\Prey\CryGame</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiLiftVolumeEntity.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEnums.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

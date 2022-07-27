@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolumeEntity.h>
-#include <Prey/GameDll/ark/player/psipower/arkplayerliftentity.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntity.h>
 
 class ArkPsiLift;
 class ArkPsiPowerLiftUniqueProperties;

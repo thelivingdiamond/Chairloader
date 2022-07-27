@@ -16,7 +16,6 @@ class ArkPsiLiftVolumeManager : public IEntityEventListener // Id=80141C4 Size=3
 public:
 	std::vector<T> m_liftVolumes;
 	
-#if 0
 	void Reset();
 	bool Update(const float arg0);
 	unsigned SpawnLiftVolume(T *arg0);
@@ -25,6 +24,5 @@ public:
 	void PostSerialize();
 	virtual void OnEntityEvent(IEntity *_pEntity, SEntityEvent &_event);
 	bool HasLiftVolumes() const;
-#endif
 };
 
