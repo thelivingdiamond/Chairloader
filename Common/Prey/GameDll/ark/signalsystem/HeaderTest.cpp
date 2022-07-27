@@ -16,8 +16,8 @@ static_assert(sizeof(ArkSignalSystem::Manager) == 384);
 static_assert(sizeof(ArkSignalSystem::Manager::EntityInfo) == 32);
 static_assert(sizeof(ArkSignalSystem::Manager::ModifierInfo) == 32);
 static_assert(sizeof(ArkSignalSystem::Manager::RepeatInfo) == 72);
-static_assert(sizeof(ArkSignalSystem::Manager::AreaTargetLOSCheckImpl) == 28);
-static_assert(sizeof(ArkSignalSystem::Manager::AreaTarget) == 400);
+//static_assert(sizeof(ArkSignalSystem::Manager::AreaTargetLOSCheckImpl) == 28);
+//static_assert(sizeof(ArkSignalSystem::Manager::AreaTarget) == 400);
 static_assert(sizeof(ArkSignalSystem::Manager::AreaEffect) == 72);
 static_assert(sizeof(ArkSignalSystem::Manager::RegisteredSignals) == 56);
 
