@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/XML/IXml.h>
+#include <Prey/GameDll/ark/player/ability/ArkAbilityData.h>
 #include <Prey/GameDll/ark/player/IArkPDAListener.h>
 
 class ArkAbilityData;
