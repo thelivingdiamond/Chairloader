@@ -125,6 +125,7 @@ public:
 	virtual _smart_ptr<IFlowNode> Clone(IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetConfiguration(SFlowNodeConfig &_config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
+	virtual ~ArkFlowNodeAbsoluteTimeEvent();
 	
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>(ArkFlowNodeAbsoluteTimeEvent *const _this, IFlowNode::SActivationInfo *_pActInfo)>(0x13B82C0);
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeAbsoluteTimeEvent *const _this, SFlowNodeConfig &_config)>(0x13B8360);
@@ -140,6 +141,7 @@ public:
 	virtual _smart_ptr<IFlowNode> Clone(IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetConfiguration(SFlowNodeConfig &_config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
+	virtual ~ArkFlowNodeRelativeTimeEvent();
 	
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>(ArkFlowNodeRelativeTimeEvent *const _this, IFlowNode::SActivationInfo *_pActInfo)>(0x13B8C10);
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeRelativeTimeEvent *const _this, SFlowNodeConfig &_config)>(0x13B8CB0);
@@ -163,6 +165,7 @@ public:
 	virtual void GetConfiguration(SFlowNodeConfig &_config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
+	virtual ~ArkFlowNodeGetGameTime();
 	
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeGetGameTime *const _this, SFlowNodeConfig &_config)>(0x13B9460);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeGetGameTime *const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo)>(0x13B9730);
@@ -187,6 +190,7 @@ public:
 	virtual void GetConfiguration(SFlowNodeConfig &_config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
+	virtual ~ArkFlowNodeSetGameTime();
 	
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeSetGameTime *const _this, SFlowNodeConfig &_config)>(0x13B9910);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeSetGameTime *const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo)>(0x13B9F80);

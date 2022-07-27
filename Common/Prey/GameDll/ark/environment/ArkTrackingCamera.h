@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
@@ -40,6 +40,7 @@ public:
 	bool m_bStartsEnabled;
 	
 	ArkTrackingCamera();
+	virtual ~ArkTrackingCamera();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

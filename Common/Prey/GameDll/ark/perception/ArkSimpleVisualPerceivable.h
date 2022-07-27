@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/GameDll/ark/perception/ArkVisualPerceivable.h>
 
+// Header: Override
 // Prey/GameDll/ark/perception/ArkSimpleVisualPerceivable.h
 class ArkSimpleVisualPerceivable : public ArkVisualPerceivable // Id=8014319 Size=8
 {

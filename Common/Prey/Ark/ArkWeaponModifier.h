@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkweaponmodifier.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -291,6 +290,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	ArkWeaponModifier const *GetWeaponModByID(uint64_t _modID) const { return FGetWeaponModByIDOv1(this,_modID); }
 	virtual bool Init();
+	virtual ~ArkWeaponModifiers();
 	
 #if 0
 	std::vector<ArkWeaponModifier> &GetWeaponModifiers();

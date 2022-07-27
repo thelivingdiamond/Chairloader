@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkdialogvoice.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -178,6 +177,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkDialogVoice const *Find(const uint64_t _id) const { return FFindOv1(this,_id); }
+	virtual ~ArkDialogVoices();
 	
 #if 0
 	std::vector<ArkDialogVoice> &GetVoices();

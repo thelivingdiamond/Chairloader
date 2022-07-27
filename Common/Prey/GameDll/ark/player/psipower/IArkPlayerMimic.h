@@ -7,10 +7,12 @@ class ArkInputLegend;
 class CCryName;
 struct IEntityClass;
 
+// Header: Override
 // Prey/GameDll/ark/player/psipower/IArkPlayerMimic.h
 class IArkPlayerMimic // Id=801944D Size=8
 {
 public:
+	virtual ~IArkPlayerMimic();
 	virtual void Show(Vec3 const &arg0) = 0;
 	virtual bool Update(const float arg0) = 0;
 	virtual void ProcessInput(CCryName const &arg0, const bool arg1) = 0;

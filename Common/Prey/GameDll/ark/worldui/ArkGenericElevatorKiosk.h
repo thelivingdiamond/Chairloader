@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/worldui/ArkKioskBase.h>
 
@@ -49,6 +48,7 @@ public:
 	virtual void RefreshUI(bool _bReinit);
 	virtual void HandleInteraction(IUIElement *_pUIInstance);
 	virtual bool IsProcessing() const;
+	virtual ~ArkGenericElevatorKiosk();
 	
 	static inline auto FFullSerialize = PreyFunction<void(ArkGenericElevatorKiosk *const _this, TSerialize _ser)>(0x1397110);
 	static inline auto FPostSerialize = PreyFunction<void(ArkGenericElevatorKiosk *const _this)>(0x13974B0);

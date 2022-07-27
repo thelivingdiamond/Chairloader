@@ -16,6 +16,7 @@ class CScriptBind_Inventory : public CScriptableBase // Id=8016544 Size=96
 {
 public:
 	CScriptBind_Inventory(ISystem *_pSystem);
+	virtual ~CScriptBind_Inventory();
 	void AttachTo(ArkInventory *_pInventory) { FAttachTo(this,_pInventory); }
 	void DetachFrom(ArkInventory const *_pInventory) { FDetachFrom(this,_pInventory); }
 	virtual void GetMemoryUsage(ICrySizer *pSizer) const;

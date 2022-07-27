@@ -13,6 +13,7 @@ public:
 	virtual void OnEnter(float blendTime, float duration, CArkPlayerDisableMovementEventParams const &params);
 	virtual void OnExit(float blendTime);
 	virtual void Update(float timePassed);
+	virtual ~CArkPlayerDisableMovementClipEvent();
 	
 	static inline auto FOnEnter = PreyFunction<void(CArkPlayerDisableMovementClipEvent *const _this, float blendTime, float duration, CArkPlayerDisableMovementEventParams const &params)>(0x12500F0);
 	static inline auto FOnExit = PreyFunction<void(CArkPlayerDisableMovementClipEvent *const _this, float blendTime)>(0x1250160);

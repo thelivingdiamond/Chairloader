@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/arkplayerfxcomponent.h>
 
@@ -338,6 +337,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkSignalFXLibrary();
 	
 #if 0
 	std::vector<ArkSignalFX> &GetFX();

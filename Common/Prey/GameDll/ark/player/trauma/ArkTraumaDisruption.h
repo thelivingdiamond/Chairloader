@@ -17,6 +17,7 @@ public:
 	virtual bool IsMedical() const;
 	virtual void UpdateVisuals(bool _bImmediate, bool _bFromSerialize);
 	void SetUIStatic(bool _bStatic) const { FSetUIStatic(this,_bStatic); }
+	virtual ~ArkTraumaDisruption();
 	
 	static inline auto FActivate = PreyFunction<void(ArkTraumaDisruption *const _this, int _level)>(0x13334E0);
 	static inline auto FReevaluatePhase = PreyFunction<void(ArkTraumaDisruption *const _this, bool _bImmediate)>(0x13335C0);

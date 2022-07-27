@@ -2,9 +2,8 @@
 
 #pragma once
 #include <CryEngine/crycommon/crystring.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/weapons/ArkWrenchComponent.h>
 #include <Prey/GameDll/ark/weapons/arkweapon.h>
 
@@ -76,6 +75,7 @@ public:
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	void EndIntro() { FEndIntro(this); }
 	void CloseCancelPrompt() { FCloseCancelPrompt(this); }
+	virtual ~ArkWeaponWrench();
 	
 #if 0
 	void OnChainEvent();

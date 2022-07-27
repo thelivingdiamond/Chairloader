@@ -1,8 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/weapons/arkprojectile.h>
 
@@ -32,6 +32,7 @@ public:
 	ArkSimpleTimer m_giveUpTimer;
 	
 	CArkProjectileHomingPsiBlast();
+	virtual ~CArkProjectileHomingPsiBlast();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

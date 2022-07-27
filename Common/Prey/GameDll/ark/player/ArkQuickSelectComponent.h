@@ -1,11 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/iface/IArkInventoryListener.h>
 #include <Prey/GameDll/ark/player/IArkPsiPowerListener.h>
@@ -62,6 +61,7 @@ public:
 	ArkAudioTrigger m_errorTrigger;
 	
 	ArkQuickSelectComponent();
+	virtual ~ArkQuickSelectComponent();
 	void Release() { FRelease(this); }
 	virtual bool OnControlSchemeChanged(EControlScheme _controlScheme);
 	virtual void OnItemAdded(unsigned _entityId, unsigned _originalId);

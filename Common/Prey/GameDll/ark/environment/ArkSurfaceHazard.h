@@ -1,11 +1,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryEntitySystem/IEntityRenderState.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalHazard.h>
@@ -67,6 +67,7 @@ public:
 	SDecalProperties m_depletedDecalProperties;
 	
 	ArkSurfaceHazard();
+	virtual ~ArkSurfaceHazard();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

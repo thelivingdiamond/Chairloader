@@ -4,6 +4,7 @@
 
 struct IPhysicalEntity;
 
+// Header: Override
 // Prey/GameDll/ark/perception/ArkVisualPerceivable.h
 class ArkVisualPerceivable // Id=801431A Size=8
 {

@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryAction/IGameObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
@@ -160,6 +159,7 @@ public:
 	virtual void Release();
 	virtual void HandleEvent(SGameObjectEvent const &_event);
 	void EnableCollisions() { FEnableCollisions(this); }
+	virtual ~ArkWorldUI();
 	
 	static inline auto FInit = PreyFunction<bool(ArkWorldUI *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FRelease = PreyFunction<void(ArkWorldUI *const _this)>(0xA97D40);

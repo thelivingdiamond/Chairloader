@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/ScriptHandle.h
 union ScriptHandle // Id=8000455 Size=8
 {

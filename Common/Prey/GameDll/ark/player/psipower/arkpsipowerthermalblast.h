@@ -63,6 +63,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ThermalBlastPowerProperties();
 	
 #if 0
 	void SetCommon(ArkPsiPowerCommonProperties arg0);
@@ -84,6 +85,7 @@ class CArkPsiPowerThermalBlast : public CArkPsiPowerBlast<CArkPsiPower3DTargetin
 {
 public:
 	CArkPsiPowerThermalBlast();
+	virtual ~CArkPsiPowerThermalBlast();
 	virtual std::vector<IEntity *> GetSelectedTargets() const;
 	
 	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity *>(CArkPsiPowerThermalBlast const *const _this)>(0x146DA30);

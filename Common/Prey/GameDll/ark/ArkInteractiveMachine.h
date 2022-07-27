@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/arkinteractiveobject.h>

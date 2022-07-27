@@ -18,6 +18,7 @@ public:
 	QuatT m_cameraStablePosition;
 	float m_cameraStableFOV;
 	
+	virtual ~ArkTelescope();
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity *const _pEntity);
 	virtual bool TestInteraction(IEntity const *const _pEntity, ArkInteractionInfo const &_interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult &_result) const;

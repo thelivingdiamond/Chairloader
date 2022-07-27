@@ -25,6 +25,7 @@ public:
 		out = 0,
 	};
 
+	virtual ~ArkFlowNode_ArkTurret_EnableFlowgraphControl();
 	virtual void GetConfiguration(SFlowNodeConfig &config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo *pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *s) const;
@@ -59,6 +60,7 @@ public:
 		out = 0,
 	};
 
+	virtual ~ArkFlowNode_ArkTurret_ManualTarget();
 	virtual void GetConfiguration(SFlowNodeConfig &config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo *pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *s) const;
@@ -93,6 +95,7 @@ public:
 		out = 0,
 	};
 
+	virtual ~ArkFlowNode_ArkTurret_WeaponProperties();
 	virtual void GetConfiguration(SFlowNodeConfig &config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo *pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *s) const;

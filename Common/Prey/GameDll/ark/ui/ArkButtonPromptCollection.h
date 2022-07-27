@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/ark/ArkExclusiveActionFilter.h>
 #include <Prey/GameDll/ark/ui/IArkPauseMenuListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>

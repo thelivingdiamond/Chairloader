@@ -4,6 +4,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
 
+// Header: Override
 // Prey/GameDll/ark/ArkSimpleTimer.h
 class ArkTimeRemaining // Id=80134C3 Size=4
 {
@@ -33,6 +34,7 @@ public:
 	static inline auto FoperatorMultEq = PreyFunction<ArkTimeRemaining &(ArkTimeRemaining *const _this, float _scalar)>(0x1258590);
 };
 
+// Header: Override
 // Prey/GameDll/ark/ArkSimpleTimer.h
 class ArkSimpleTimer : public ArkTimeRemaining // Id=80134C2 Size=8
 {

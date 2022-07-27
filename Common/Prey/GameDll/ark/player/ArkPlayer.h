@@ -3,14 +3,13 @@
 #pragma once
 #include <CryEngine/cryanimation/facialanimation/faceeffector.h>
 #include <CryEngine/renderdll/common/rendelements/imagespaceshafts.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryCore/functor.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/GameDll/ark/ArkGroundColliderComponent.h>
 #include <Prey/GameDll/ark/ArkMaterialAnimationManager.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/ArkStatsComponent.h>
 #include <Prey/GameDll/ark/player/ArkExaminationMode.h>
 #include <Prey/GameDll/ark/player/ArkPlayerAudio.h>

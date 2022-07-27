@@ -19,6 +19,7 @@ public:
 	TArkAudioSwitch<enum ArkTraumaHobbled::EAudioHobbled> m_stepSwitch;
 	
 	ArkTraumaHobbled();
+	virtual ~ArkTraumaHobbled();
 	virtual void Activate(int _level);
 	virtual void UpdateVisuals(bool _bImmediate, bool _bFromSerialize);
 	

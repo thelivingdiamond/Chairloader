@@ -2,10 +2,12 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkPsiScanningComponentListener.h
 class IArkPsiScanningComponentListener // Id=8016E67 Size=8
 {
 public:
+	virtual ~IArkPsiScanningComponentListener();
 	virtual void OnLockTargetReticle(const unsigned _id);
 	virtual void OnUnlockTargetReticle(const unsigned _id);
 	virtual void OnUpdateTargetReticle(const unsigned _targetEntityId, const bool _bIsInHud, const float _frameTime);

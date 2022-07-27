@@ -29,6 +29,7 @@ public:
 	IMaterial *m_pDisruptMaterial;
 	
 	CArkWeaponGooGun();
+	virtual ~CArkWeaponGooGun();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

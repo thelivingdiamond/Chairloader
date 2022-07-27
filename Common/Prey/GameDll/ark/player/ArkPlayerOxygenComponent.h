@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
 
@@ -47,6 +47,7 @@ public:
 	int m_currentAlarm;
 	
 	ArkPlayerOxygenComponent();
+	virtual ~ArkPlayerOxygenComponent();
 	void Reset() { FReset(this); }
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }

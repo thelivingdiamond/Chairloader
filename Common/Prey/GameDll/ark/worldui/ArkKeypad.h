@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/worldui/ArkKeyWorldUI.h>
@@ -40,6 +39,7 @@ public:
 	uint64_t m_keycode;
 	
 	ArkKeypad();
+	virtual ~ArkKeypad();
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual void FullSerialize(TSerialize _ser);

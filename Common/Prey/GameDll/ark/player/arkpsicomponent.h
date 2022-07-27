@@ -21,6 +21,7 @@ public:
 	float m_errorMessageDuration;
 	
 	CArkPsiComponent();
+	virtual ~CArkPsiComponent();
 	ArkPsiPowerComponent &GetPowerComponent() { return FGetPowerComponentOv1(this); }
 	ArkPsiPowerComponent const &GetPowerComponent() const { return FGetPowerComponentOv0(this); }
 	ArkPsiScanningComponent &GetScanningComponent() { return FGetScanningComponentOv1(this); }

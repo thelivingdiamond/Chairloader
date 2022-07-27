@@ -40,6 +40,7 @@ public:
 	bool m_bShowingCQCPostProcess;
 	
 	ArkAimAssistComponent();
+	virtual ~ArkAimAssistComponent();
 	void Update() { FUpdate(this); }
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }
 	void Apply(Ang3 &_gamepadRotation) const { FApply(this,_gamepadRotation); }

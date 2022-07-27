@@ -1,11 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryAction/ICryMannequin.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
@@ -512,6 +511,7 @@ public:
 namespace ArkPlayerMovementStates
 {
 
+// Header: Override
 // Prey/GameDll/ark/player/ArkPlayerMovementStates.h
 class GravShaft : public ArkPlayerMovementStates::Base // Id=801740C Size=16
 {
@@ -681,6 +681,7 @@ class PlayerCrawlRagdollAction : public TAction<SAnimationContext> // Id=801A82E
 {
 public:
 	virtual void OnActionEvent(const unsigned _eventCRC);
+	virtual ~PlayerCrawlRagdollAction();
 	
 	static inline auto FOnActionEvent = PreyFunction<void(PlayerCrawlRagdollAction *const _this, const unsigned _eventCRC)>(0x123D080);
 };

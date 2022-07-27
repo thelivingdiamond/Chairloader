@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryCore/functor.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>

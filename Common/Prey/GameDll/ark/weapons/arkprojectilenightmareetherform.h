@@ -18,6 +18,7 @@ public:
 	Vec3 m_destination;
 	
 	CArkProjectileNightmareEtherForm();
+	virtual ~CArkProjectileNightmareEtherForm();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

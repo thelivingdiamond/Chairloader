@@ -4,6 +4,7 @@
 
 struct IEntity;
 
+// Header: Override
 // Prey/GameDll/ark/ArkAudioEnvironment.h
 class ArkAudioEnvironment // Id=8005A06 Size=4
 {

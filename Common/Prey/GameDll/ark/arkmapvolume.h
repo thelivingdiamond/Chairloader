@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
 class ICrySizer;
@@ -89,6 +88,7 @@ public:
 	void ResizeVisitedArea(const unsigned _size) { FResizeVisitedArea(this,_size); }
 	void LoadVolumeData() { FLoadVolumeData(this); }
 	void ResetVisitedArea() { FResetVisitedArea(this); }
+	virtual ~CArkMapVolume();
 	
 #if 0
 	AABB const &GetBounds() const;

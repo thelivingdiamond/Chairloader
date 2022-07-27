@@ -4,6 +4,7 @@
 
 class CArkGravShaftEntity;
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkGravShaftListener.h
 class IArkGravShaftListener // Id=801550A Size=8
 {

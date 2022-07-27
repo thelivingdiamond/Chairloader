@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h>
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -100,6 +100,7 @@ public:
 	virtual void GetConfiguration(SFlowNodeConfig &_config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
+	virtual ~ArkFlowNodeFlashlight();
 	
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeFlashlight *const _this, SFlowNodeConfig &_config)>(0x155C3E0);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeFlashlight *const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo)>(0x155C6E0);

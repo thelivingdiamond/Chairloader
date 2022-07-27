@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkability.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 
 class ArkClass;
@@ -408,6 +407,7 @@ public:
 	virtual bool Init();
 	virtual bool Shutdown();
 	void RemoveLoops_r(ArkAbility &_currentAbility, std::vector<unsigned __int64> &_abilityIDs) { FRemoveLoops_r(this,_currentAbility,_abilityIDs); }
+	virtual ~ArkAbilities();
 	
 #if 0
 	std::vector<ArkAbility> &GetAbilities();

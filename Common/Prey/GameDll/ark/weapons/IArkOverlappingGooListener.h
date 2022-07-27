@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/weapons/IArkOverlappingGooListener.h
 class IArkOverlappingGooListener // Id=8018FB7 Size=8
 {

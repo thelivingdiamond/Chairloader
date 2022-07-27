@@ -4,6 +4,7 @@
 
 class CCryName;
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkStatsListener.h
 class IArkStatsListener // Id=80134D3 Size=8
 {

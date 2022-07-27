@@ -12,6 +12,7 @@ public:
 	Ang3 m_storedRotation;
 	
 	ArkTraumaFear();
+	virtual ~ArkTraumaFear();
 	virtual void PostSerialize();
 	virtual void Activate(int _level);
 	virtual void ReevaluatePhase(bool _bImmediate);

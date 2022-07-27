@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkLightListener.h
 struct IArkLightListener // Id=80141DF Size=8
 {

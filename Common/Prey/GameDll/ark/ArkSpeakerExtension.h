@@ -48,6 +48,7 @@ public:
 	virtual void SetAuthority(bool auth);
 	virtual void GetMemoryUsage(ICrySizer *__formal) const;
 	virtual IArkSpeaker *GetSpeaker();
+	virtual ~ArkSpeakerExtension();
 	
 	static inline auto FRelease = PreyFunction<void(ArkSpeakerExtension *const _this)>(0xA97D40);
 	static inline auto FInit = PreyFunction<bool(ArkSpeakerExtension *const _this, IGameObject *const _pGameObject)>(0x13D5830);

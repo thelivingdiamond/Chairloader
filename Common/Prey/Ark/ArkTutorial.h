@@ -4,7 +4,6 @@
 #include <Prey/Ark/arktutorial.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 
 class ArkClass;
@@ -611,6 +610,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	ArkTutorial const *FindTutorial(const uint64_t _id) const { return FFindTutorial(this,_id); }
 	virtual bool Init();
+	virtual ~ArkTutorialLibrary();
 	
 #if 0
 	std::vector<std::shared_ptr<ArkTutorial>> &GetTutorials();

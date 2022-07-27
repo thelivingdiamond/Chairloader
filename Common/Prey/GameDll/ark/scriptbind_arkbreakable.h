@@ -15,6 +15,7 @@ public:
 	void AttachTo(IEntity const &_entity) { FAttachTo(this,_entity); }
 	int LoadParameters(IFunctionHandler *_pH) { return FLoadParameters(this,_pH); }
 	int SetHealth(IFunctionHandler *_pH, const float _value) { return FSetHealth(this,_pH,_value); }
+	virtual ~CScriptBind_ArkBreakable();
 	
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkBreakable *const _this, IEntity const &_entity)>(0x15C36B0);
 	static inline auto FLoadParameters = PreyFunction<int(CScriptBind_ArkBreakable *const _this, IFunctionHandler *_pH)>(0x15C3A00);

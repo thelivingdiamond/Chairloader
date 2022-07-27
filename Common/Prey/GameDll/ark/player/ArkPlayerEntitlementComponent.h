@@ -36,6 +36,7 @@ public:
 	bool m_bRestoreMargrave;
 	
 	ArkPlayerEntitlementComponent();
+	virtual ~ArkPlayerEntitlementComponent();
 	void Init() { FInit(this); }
 	void Reset() { FReset(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }

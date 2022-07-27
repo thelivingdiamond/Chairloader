@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/worldui/ArkKioskBase.h>
@@ -47,6 +46,7 @@ public:
 	virtual void HandleInteraction(IUIElement *_pUIInstance);
 	virtual void LoadProperties();
 	virtual void OnReset(bool _bEnteringGameMode);
+	virtual ~ArkMultipleChoiceKiosk();
 	
 #if 0
 	void SetState(ArkMultipleChoiceKiosk::EArkMultipleChoiceKioskState arg0, bool arg1);

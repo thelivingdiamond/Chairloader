@@ -20,6 +20,7 @@ public:
 	virtual void PostSerialize();
 	void UpdateGlobalFact() const { FUpdateGlobalFact(this); }
 	void UpdateUI() const { FUpdateUI(this); }
+	virtual ~ArkTraumaSuitIntegrity();
 	
 #if 0
 	float GetDamage() const;

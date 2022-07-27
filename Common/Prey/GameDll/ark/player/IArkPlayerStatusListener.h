@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkPlayerStatusListener.h
 class IArkPlayerStatusListener // Id=8013978 Size=8
 {

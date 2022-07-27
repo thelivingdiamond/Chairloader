@@ -1,12 +1,14 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkCharacterEffectsManager.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
+#include <Prey/GameDll/ark/ArkRobotLight.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkglooeffectutils.h>
 #include <Prey/GameDll/ark/attention/ArkTurretAttentiveSubject.h>
 #include <Prey/GameDll/ark/attention/arkgenericattentionobject.h>

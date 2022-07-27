@@ -4,7 +4,6 @@
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerfaction.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsipowertargetingcomponent.h>
 
@@ -154,6 +153,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~CyberkinesisPowerProperties();
 	
 #if 0
 	void SetCommon(ArkPsiPowerCommonProperties arg0);

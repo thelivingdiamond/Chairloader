@@ -1,8 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
+// Header: Override
 // Prey/GameDll/ark/ArkInteractionInfo.h
 struct ArkInteractionInfo // Id=8014062 Size=24
 {

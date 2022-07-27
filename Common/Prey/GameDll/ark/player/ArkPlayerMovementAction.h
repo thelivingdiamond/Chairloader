@@ -16,6 +16,7 @@ public:
 	
 	ArkPlayerMovementAction(std::array<int,3> const &_fragmentIds);
 	virtual IAction::EStatus Update(float _timePassed);
+	virtual ~ArkPlayerMovementAction();
 	
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkPlayerMovementAction *const _this, float _timePassed)>(0x156DEC0);
 };

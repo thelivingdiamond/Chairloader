@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/worldui/ArkStationWorldUI.h>
@@ -48,6 +47,7 @@ public:
 	virtual bool CanEnterState(EArkStationWorldUIState _state) const;
 	std::pair<int,int> CountDownloads(std::vector<ArkDownload> const &_downloads) const { return FCountDownloads(this,_downloads); }
 	virtual bool CanClosePopup() const;
+	virtual ~ArkWorkstationScreen();
 	
 #if 0
 	void OnStartDownload(const uint64_t arg0);

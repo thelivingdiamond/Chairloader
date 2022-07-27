@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkcharacter.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -92,6 +91,7 @@ public:
 	
 	static ArkReflectedObject *Create() { return FCreate(); }
 	virtual bool Init();
+	virtual ~ArkCharacterGroups();
 	
 #if 0
 	static ArkClass *GetClass();
@@ -341,6 +341,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkCharacters();
 	
 #if 0
 	std::vector<ArkCharacter> &GetCharacters();

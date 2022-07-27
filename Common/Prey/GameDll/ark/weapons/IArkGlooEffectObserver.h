@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/weapons/IArkGlooEffectObserver.h
 struct IArkGlooEffectObserver // Id=8014232 Size=8
 {

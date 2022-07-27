@@ -38,6 +38,7 @@ public:
 	virtual const void *GetRMIBase() const;
 	virtual void PostUpdate(float _frameTime);
 	virtual void PostRemoteSpawn();
+	virtual ~ArkBreakableGlass();
 	
 #if 0
 	void SetPortalsOcclusion(const float arg0) const;

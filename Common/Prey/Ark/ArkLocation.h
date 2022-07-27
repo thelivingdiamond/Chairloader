@@ -4,7 +4,6 @@
 #include <Prey/Ark/arklocation.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -267,6 +266,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkLocations();
 	
 #if 0
 	std::vector<ArkLocation> &GetLocations();

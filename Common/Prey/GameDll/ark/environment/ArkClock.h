@@ -21,6 +21,7 @@ public:
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
 	virtual void OnReset(bool _bEnteringGameMode);
 	void LoadAnim() { FLoadAnim(this); }
+	virtual ~ArkClock();
 	
 	static inline auto FPostInit = PreyFunction<void(ArkClock *const _this, IGameObject *_pGameObject)>(0x11B9790);
 	static inline auto FUpdate = PreyFunction<void(ArkClock *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0x11B9860);

@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/attention/ArkPlayerMimicRigidEntityAttentionObject.h>
 #include <Prey/GameDll/ark/iface/IArkBreakableListener.h>

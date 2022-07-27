@@ -38,6 +38,7 @@ public:
 	virtual bool GetNpcAvoidanceInfo(Vec3 &_pos, float &_radius) const;
 	void RemoveNpcAvoidanceField() { FRemoveNpcAvoidanceField(this); }
 	void UpdateNpcAvoidanceField() { FUpdateNpcAvoidanceField(this); }
+	virtual ~ArkEnvironmentalHazard();
 	
 #if 0
 	void SetActivator(unsigned arg0);
@@ -58,5 +59,6 @@ public:
 	static inline auto FGetNpcAvoidanceInfo = PreyFunction<bool(ArkEnvironmentalHazard const *const _this, Vec3 &_pos, float &_radius)>(0xDD23F0);
 	static inline auto FRemoveNpcAvoidanceField = PreyFunction<void(ArkEnvironmentalHazard *const _this)>(0x11BA4B0);
 	static inline auto FUpdateNpcAvoidanceField = PreyFunction<void(ArkEnvironmentalHazard *const _this)>(0x11BA5A0);
+	static inline auto FBitNotArkEnvironmentalHazard = PreyFunction<void(ArkEnvironmentalHazard *const _this)>(0x127A3B0);
 };
 

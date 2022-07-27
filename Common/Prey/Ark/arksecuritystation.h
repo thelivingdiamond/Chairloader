@@ -39,6 +39,7 @@ public:
 	ArkUtility const *FindUtility(const uint64_t _id) const { return FFindUtility(this,_id); }
 	ArkUtilityButton const *FindUtilityButton(const uint64_t _id) const { return FFindUtilityButton(this,_id); }
 	uint64_t GetUtilityButtonOwner(const uint64_t _id) const { return FGetUtilityButtonOwner(this,_id); }
+	virtual ~ArkSecurityStations();
 	
 #if 0
 	std::vector<ArkSecurityStation> &GetSecurityStations();

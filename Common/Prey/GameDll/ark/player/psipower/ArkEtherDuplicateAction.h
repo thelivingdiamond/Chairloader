@@ -40,6 +40,7 @@ public:
 	const char *m_pDirectionTag;
 	
 	ArkEtherDuplicateAction(const char *_pGravityTag, const char *_pDirectionTag, IMaterial *_pMaterial, ArkMaterialAnimation const *_pMaterialAnimation);
+	virtual ~ArkEtherDuplicateAction();
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	virtual void OnInitialise();
 	virtual IAction::EStatus Update(const float _frameTime);

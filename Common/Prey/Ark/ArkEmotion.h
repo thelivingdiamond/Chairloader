@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkemotion.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -125,6 +124,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkEmotion const *Find(const uint64_t _id) const { return FFind(this,_id); }
+	virtual ~ArkEmotions();
 	
 #if 0
 	std::vector<ArkEmotion> &GetEmotions();

@@ -3,10 +3,10 @@
 #pragma once
 #include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkInteractiveMachine.h>
 #include <Prey/GameDll/ark/ArkMaterialAnimationManager.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkdoor.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/dialog/IArkConversationListener.h>

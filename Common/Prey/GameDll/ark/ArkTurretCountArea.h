@@ -53,6 +53,7 @@ public:
 	void TestAndAddTarget(unsigned _target, bool _bSendOutputs) { FTestAndAddTarget(this,_target,_bSendOutputs); }
 	void LoadProperties() { FLoadProperties(this); }
 	ArkTurretCountArea::EArkTurretState GetTurretState(unsigned _turret) const { return FGetTurretState(this,_turret); }
+	virtual ~ArkTurretCountArea();
 	
 #if 0
 	void RemoveTarget(unsigned arg0);

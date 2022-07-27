@@ -4,6 +4,7 @@
 
 struct IEntityArchetype;
 
+// Header: Override
 // Prey/GameDll/ark/iface/IEntityArchetypeListener.h
 class IEntityArchetypeListener // Id=8002125 Size=8
 {

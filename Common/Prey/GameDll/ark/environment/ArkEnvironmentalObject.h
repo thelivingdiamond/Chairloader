@@ -19,6 +19,7 @@ public:
 	ArkEnvironmentalObjectSignalReceiver m_signalReceiver;
 	
 	ArkEnvironmentalObject();
+	virtual ~ArkEnvironmentalObject();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void Release();

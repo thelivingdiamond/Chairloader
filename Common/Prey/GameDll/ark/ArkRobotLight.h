@@ -11,6 +11,7 @@ struct IAttachment;
 struct IEntity;
 struct IEntityArchetype;
 
+// Header: Override
 // Prey/GameDll/ark/ArkRobotLight.h
 struct ArkRobotLight // Id=80141D6 Size=96
 {

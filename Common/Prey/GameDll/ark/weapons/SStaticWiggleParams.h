@@ -7,6 +7,7 @@ namespace Serialization
 class IArchive;
 } // namespace Serialization
 
+// Header: Override
 // Prey/GameDll/ark/weapons/SStaticWiggleParams.h
 struct SStaticWiggleParams // Id=801D53E Size=8
 {

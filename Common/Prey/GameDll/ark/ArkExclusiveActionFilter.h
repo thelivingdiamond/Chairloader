@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 
 class CCryName;

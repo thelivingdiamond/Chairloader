@@ -42,6 +42,7 @@ public:
 	Vec3 m_lineCheckEndpoint;
 	
 	ArkLaserTripline();
+	virtual ~ArkLaserTripline();
 	void OnReceiveSignal(ArkSignalSystem::Package const &_package) { FOnReceiveSignal(this,_package); }
 	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this,_bRegister); }
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);

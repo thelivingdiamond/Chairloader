@@ -1,14 +1,15 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class CCryName;
 struct IArkWeaponEventListener;
 
+// Header: Override
 // Prey/GameDll/ark/weapons/IArkWeapon.h
 struct IArkWeapon // Id=8015F10 Size=8
 {
+	virtual ~IArkWeapon();
 	virtual void OnEquip() = 0;
 	virtual void OnUnequip(const bool arg0) = 0;
 	virtual void SetWeaponAmmoCount(const int arg0) = 0;

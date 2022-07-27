@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
@@ -32,6 +31,7 @@ public:
 	bool m_bHazardStartsActive;
 	
 	ArkAreaHazard();
+	virtual ~ArkAreaHazard();
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);
 	virtual void PostSerialize();

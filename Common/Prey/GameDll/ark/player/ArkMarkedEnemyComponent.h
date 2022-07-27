@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
 
@@ -82,6 +82,7 @@ public:
 	IEntityClass const *m_pPoltergeistClass;
 	
 	ArkMarkedEnemyComponent();
+	virtual ~ArkMarkedEnemyComponent();
 	bool IsMarked(unsigned _entity) const { return FIsMarked(this,_entity); }
 	void GetMarkedEnemies(std::vector<unsigned int> &_markedEnemies) const { FGetMarkedEnemies(this,_markedEnemies); }
 	void Init() { FInit(this); }

@@ -17,6 +17,7 @@ public:
 	ArkGameNoise::Params m_noiseParams;
 	
 	CArkProjectileLureGrenade();
+	virtual ~CArkProjectileLureGrenade();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

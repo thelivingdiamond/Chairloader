@@ -20,6 +20,7 @@ public:
 	int SetCharacterIsAlive(IFunctionHandler *_pH, const char *_pCharacterId, const bool _bIsAlive) { return FSetCharacterIsAlive(this,_pH,_pCharacterId,_bIsAlive); }
 	int SetCharacterVitalSigns(IFunctionHandler *_pH, const char *_pCharacterId, const int _vitalSigns) { return FSetCharacterVitalSigns(this,_pH,_pCharacterId,_vitalSigns); }
 	int UpdateTrackingChipLocation(IFunctionHandler *_pH, const char *_pCharacterId) { return FUpdateTrackingChipLocation(this,_pH,_pCharacterId); }
+	virtual ~CScriptBind_ArkRoster();
 	
 	static inline auto FDiscoverCharacter = PreyFunction<int(CScriptBind_ArkRoster *const _this, IFunctionHandler *_pH, const char *_pCharacterId)>(0x15CE550);
 	static inline auto FGetCharacterName = PreyFunction<int(CScriptBind_ArkRoster *const _this, IFunctionHandler *_pH, const char *_pCharacterId)>(0x15CE790);

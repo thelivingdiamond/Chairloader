@@ -4,6 +4,7 @@
 
 struct IEntity;
 
+// Header: Override
 // Prey/Ark/ArkAudioUtil.h
 class ArkAudioControl // Id=80020DC Size=4
 {
@@ -18,6 +19,7 @@ public:
 #endif
 };
 
+// Header: Override
 // Prey/Ark/ArkAudioUtil.h
 class ArkAudioTrigger : public ArkAudioControl // Id=80020DB Size=4
 {
@@ -31,6 +33,7 @@ public:
 	static inline auto FStop = PreyFunction<void(ArkAudioTrigger const *const _this, IEntity *_pEntity)>(0x1236480);
 };
 
+// Header: Override
 // Prey/Ark/ArkAudioUtil.h
 class ArkAudioRtpc : public ArkAudioControl // Id=8005A03 Size=4
 {

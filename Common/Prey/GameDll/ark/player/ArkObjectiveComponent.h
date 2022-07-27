@@ -2,10 +2,9 @@
 
 #pragma once
 #include <Prey/Ark/arkobjectiveutils.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/VectorMap.h>
 #include <Prey/GameDll/ark/player/IArkCharacterStatusListener.h>
 #include <Prey/GameDll/ark/player/arkobjectivecomponent.h>

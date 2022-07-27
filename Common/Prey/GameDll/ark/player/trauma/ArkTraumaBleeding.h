@@ -1,9 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/player/TArkAudioSwitch.h>
@@ -33,6 +34,7 @@ public:
 	ArkAudioTrigger m_gruntSFX;
 	
 	ArkTraumaBleeding();
+	virtual ~ArkTraumaBleeding();
 	virtual void Serialize(TSerialize _ser);
 	virtual void PostSerialize();
 	virtual void Update(float _frameTime);

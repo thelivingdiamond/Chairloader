@@ -12,6 +12,7 @@ class ArkTraumaDrunk : public ArkTraumaBase, public IArkStatsListener // Id=801B
 {
 public:
 	ArkTraumaDrunk();
+	virtual ~ArkTraumaDrunk();
 	virtual void Activate(int _level);
 	virtual void OnStatChange(const unsigned _ownerId, CCryName const &_stat64i32, const float _previousValue, const float _newValue);
 	

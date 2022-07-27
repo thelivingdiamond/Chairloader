@@ -15,6 +15,7 @@ struct CArkPostEffectClipEventParams : public IProceduralParams // Id=8019443 Si
 	uint64_t m_postEffectId;
 	
 	virtual void Serialize(Serialization::IArchive &_ar);
+	virtual ~CArkPostEffectClipEventParams();
 	
 	static inline auto FSerialize = PreyFunction<void(CArkPostEffectClipEventParams *const _this, Serialization::IArchive &_ar)>(0x11AB7F0);
 };
@@ -27,6 +28,7 @@ public:
 	virtual void OnEnter(float _blendTime, float _duration, CArkPostEffectClipEventParams const &_params);
 	virtual void OnExit(float _blendTime);
 	virtual void Update(float _timePassed);
+	virtual ~CArkEnablePostEffectClipEvent();
 	
 	static inline auto FOnEnter = PreyFunction<void(CArkEnablePostEffectClipEvent *const _this, float _blendTime, float _duration, CArkPostEffectClipEventParams const &_params)>(0x11AB730);
 	static inline auto FOnExit = PreyFunction<void(CArkEnablePostEffectClipEvent *const _this, float _blendTime)>(0xA13080);
@@ -41,6 +43,7 @@ public:
 	virtual void OnEnter(float _blendTime, float _duration, CArkPostEffectClipEventParams const &_params);
 	virtual void OnExit(float _blendTime);
 	virtual void Update(float _timePassed);
+	virtual ~CArkDisablePostEffectClipEvent();
 	
 	static inline auto FOnEnter = PreyFunction<void(CArkDisablePostEffectClipEvent *const _this, float _blendTime, float _duration, CArkPostEffectClipEventParams const &_params)>(0x11AB750);
 	static inline auto FOnExit = PreyFunction<void(CArkDisablePostEffectClipEvent *const _this, float _blendTime)>(0xA13080);

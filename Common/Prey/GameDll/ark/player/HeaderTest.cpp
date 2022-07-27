@@ -20,9 +20,6 @@ static_assert(sizeof(ArkAimAssistEntity) == 40);
 static_assert(sizeof(ArkAimAssistEntity::ArkNameProperty) == 32);
 static_assert(sizeof(ArkAimAssistEntity::ArkShapeProperty) == 32);
 
-#include "ArkAudioControl.h"
-static_assert(sizeof(ArkAudioControl) == 4);
-
 #include "ArkAudioSwitch.h"
 static_assert(sizeof(ArkAudioSwitch) == 4);
 

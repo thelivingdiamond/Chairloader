@@ -4,6 +4,7 @@
 
 class ArkAudioSwitch;
 
+// Header: Override
 // Prey/GameDll/ark/player/ArkAudioSwitchState.h
 class ArkAudioSwitchState // Id=8005A04 Size=4
 {

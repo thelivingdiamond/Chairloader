@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/arkitem.h>
 
@@ -42,6 +42,7 @@ public:
 	void RemoveModifiers(const char *const _inbound, const char *const _outbound) const { FRemoveModifiers(this,_inbound,_outbound); }
 	void ClearActiveStatMods() { FClearActiveStatMods(this); }
 	void SetupActiveStatMods() { FSetupActiveStatMods(this); }
+	virtual ~ArkEquipmentMod();
 	
 #if 0
 	std::vector<unsigned __int64> const &GetExclusives() const;

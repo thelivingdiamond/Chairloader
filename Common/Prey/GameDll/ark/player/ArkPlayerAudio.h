@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryGame/IGameTokens.h>
 #include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
 #include <Prey/GameDll/ark/player/ArkAudioSwitchState.h>

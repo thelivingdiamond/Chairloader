@@ -30,6 +30,7 @@ public:
 namespace ArkUtils
 {
 
+// Header: Override
 // Prey/Ark/ArkUtils.h
 class CollisionCache // Id=80031C8 Size=24
 {

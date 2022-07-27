@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkfabricationplan.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -384,6 +383,7 @@ public:
 	ArkFabricationPlan const *Find(const uint64_t _id) const { return FFind(this,_id); }
 	string const &GetRawMaterialModel(EArkRawMaterialClass _class) const { return FGetRawMaterialModel(this,_class); }
 	uint64_t GetRawMaterialAnim(EArkRawMaterialClass _class, bool _bLong) const { return FGetRawMaterialAnim(this,_class,_bLong); }
+	virtual ~ArkFabricationPlans();
 	
 #if 0
 	void SetSmallRawMaterialModel(string arg0);

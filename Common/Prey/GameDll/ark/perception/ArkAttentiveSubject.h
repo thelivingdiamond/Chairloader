@@ -4,6 +4,7 @@
 
 struct ArkAttentionLevelChange;
 
+// Header: Override
 // Prey/GameDll/ark/perception/ArkAttentiveSubject.h
 class ArkAttentiveSubject // Id=801430C Size=8
 {

@@ -29,6 +29,7 @@ public:
 		out = 3,
 	};
 
+	virtual ~ArkFlowNodeNpcTrackView_SetDynamicNode();
 	virtual void GetConfiguration(SFlowNodeConfig &config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *s) const;

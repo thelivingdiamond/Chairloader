@@ -16,6 +16,7 @@ class ArkDisruptableSignalReceiver : public ArkSignalSystem::Receiver // Id=8016
 public:
 	ArkDisruptable &m_disruptable;
 	
+	virtual ~ArkDisruptableSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkDisruptableSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x11546D0);

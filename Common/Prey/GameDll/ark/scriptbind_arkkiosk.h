@@ -34,6 +34,7 @@ public:
 	int SetElevatorStateDefault(IFunctionHandler *_pH, ScriptHandle _entityId) { return FSetElevatorStateDefault(this,_pH,_entityId); }
 	int SetElevatorStateProcessing(IFunctionHandler *_pH, ScriptHandle _entityId) { return FSetElevatorStateProcessing(this,_pH,_entityId); }
 	int SetElevatorStateFail(IFunctionHandler *_pH, ScriptHandle _entityId) { return FSetElevatorStateFail(this,_pH,_entityId); }
+	virtual ~CScriptBind_ArkKiosk();
 	
 	static inline auto FSetKioskPowered = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId, bool _bPowered)>(0x1335CF0);
 	static inline auto FSetKioskButtonHeader = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId, int _button, const char *_header)>(0x1335A80);

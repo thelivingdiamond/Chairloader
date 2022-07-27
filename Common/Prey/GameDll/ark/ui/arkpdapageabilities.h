@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/player/IArkPlayerStatusListener.h>
 #include <Prey/GameDll/ark/ui/IArkPDAPage.h>

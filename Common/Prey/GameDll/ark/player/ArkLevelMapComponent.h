@@ -17,6 +17,7 @@ public:
 	float m_scale;
 	
 	ArkLevelMapComponent();
+	virtual ~ArkLevelMapComponent();
 	void OnLevelLoadEnd() { FOnLevelLoadEnd(this); }
 	void OnMapVolumeReset(CArkMapVolume &_volume) { FOnMapVolumeReset(this,_volume); }
 	void Update() { FUpdate(this); }

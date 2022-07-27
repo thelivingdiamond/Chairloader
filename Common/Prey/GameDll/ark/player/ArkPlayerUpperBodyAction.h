@@ -24,6 +24,7 @@ public:
 	virtual IAction::EStatus Update(float _timePassed);
 	virtual void OnSequenceFinished(int _layer, unsigned _scopeID);
 	virtual void Exit();
+	virtual ~ArkPlayerUpperBodyAction();
 	
 #if 0
 	void ResetIdleBreak();

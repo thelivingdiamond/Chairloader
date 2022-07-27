@@ -1,10 +1,9 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryString/CryName.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/weapons/arkweapon.h>
 
@@ -50,6 +49,7 @@ public:
 	std::vector<unsigned __int64> m_sneakAttackMetaTags;
 	
 	CArkWeaponStunGun();
+	virtual ~CArkWeaponStunGun();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void Release();

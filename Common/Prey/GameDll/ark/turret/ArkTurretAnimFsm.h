@@ -12,6 +12,7 @@ class IAction;
 namespace ArkTurretAnimFsm::States
 {
 
+// Header: Override
 // Prey/GameDll/ark/turret/ArkTurretAnimFsm.h
 class Base // Id=80152B8 Size=8
 {

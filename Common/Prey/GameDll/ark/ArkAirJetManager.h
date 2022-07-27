@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/ArkInterval.h>
+#include <Prey/ArkCommon/ArkInterval.h>
 
 class ArkNpc;
 struct IEntity;

@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkEntitlementListener.h
 struct IArkEntitlementListener // Id=8000F4E Size=8
 {

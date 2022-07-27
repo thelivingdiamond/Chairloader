@@ -131,6 +131,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~SmokeFormPowerProperties();
 	
 #if 0
 	void SetCommon(ArkPsiPowerCommonProperties arg0);
@@ -173,6 +174,7 @@ public:
 	bool TryMorphOut() { return FTryMorphOut(this); }
 	bool CanExit() const { return FCanExit(this); }
 	void RestoreOpacities() { FRestoreOpacities(this); }
+	virtual ~ArkPsiPowerSmokeForm();
 	
 	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerSmokeForm *const _this)>(0x15A5790);
 	static inline auto FCanEnterFocusMode = PreyFunction<bool(ArkPsiPowerSmokeForm const *const _this, EArkPsiPowers const &_equippedPower)>(0x15A47E0);

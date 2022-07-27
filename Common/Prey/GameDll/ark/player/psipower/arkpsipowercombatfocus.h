@@ -1,14 +1,13 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 
 class ArkClass;
@@ -236,6 +235,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~CombatFocusPowerProperties();
 	
 #if 0
 	void SetCommon(ArkPsiPowerCommonProperties arg0);
@@ -265,6 +265,7 @@ public:
 	uint64_t m_appliedSignalModifier;
 	
 	CArkPsiPowerCombatFocus();
+	virtual ~CArkPsiPowerCombatFocus();
 	virtual bool Stop();
 	virtual bool Start_Derived();
 	virtual void Update(const float _fFrameTime);

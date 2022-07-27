@@ -5,7 +5,6 @@
 #include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CrySystem/Scaleform/IFlashUI.h>

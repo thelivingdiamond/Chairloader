@@ -21,6 +21,7 @@ public:
 	
 	static EArkPsiPowers GetEnumFromString(const char *const _string) { return FGetEnumFromString(_string); }
 	static const char *GetStringFromEnum(EArkPsiPowers _type) { return FGetStringFromEnum(_type); }
+	virtual ~IArkPsiPower();
 	virtual const char *GetDescription() const;
 	virtual int SetLevel(const int _level);
 	virtual int GetLevel() const;

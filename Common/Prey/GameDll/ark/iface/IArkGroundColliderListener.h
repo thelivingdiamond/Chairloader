@@ -4,6 +4,7 @@
 
 struct IEntity;
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkGroundColliderListener.h
 class IArkGroundColliderListener // Id=801560D Size=8
 {

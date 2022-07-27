@@ -4,6 +4,7 @@
 
 class CCryName;
 
+// Header: Override
 // Prey/GameDll/ark/ui/IArkPDAPage.h
 class IArkPDAPage // Id=8016FED Size=16
 {

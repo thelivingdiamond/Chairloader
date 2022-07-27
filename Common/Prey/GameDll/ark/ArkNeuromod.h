@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/arkitem.h>
 
 // Header: FromCpp
@@ -17,6 +16,7 @@ public:
 	virtual void LoadCachedProperties();
 	virtual const char *GetPickupModel() const;
 	virtual void SetupModel(bool _bFirstPerson);
+	virtual ~ArkNeuromod();
 	
 #if 0
 	bool IsMultiModel() const;

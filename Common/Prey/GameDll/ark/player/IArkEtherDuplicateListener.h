@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkEtherDuplicateListener.h
 class IArkEtherDuplicateListener // Id=80152A8 Size=8
 {

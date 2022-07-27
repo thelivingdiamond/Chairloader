@@ -34,6 +34,7 @@ public:
 	ArkDisruptableSignalReceiver m_disruptableSignalReceiver;
 	
 	CArkAngleRotationComponent();
+	virtual ~CArkAngleRotationComponent();
 	void SetActive(bool _isActive) { FSetActive(this,_isActive); }
 	void SetRotation(Vec3 const &_degreesPerSecond, bool _useWorld) { FSetRotation(this,_degreesPerSecond,_useWorld); }
 	virtual void Update(SEntityUpdateContext &_ctx, int __formal);

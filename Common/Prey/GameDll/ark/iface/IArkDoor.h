@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkDoor.h
 class IArkDoor // Id=8002088 Size=8
 {

@@ -33,6 +33,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkNotes();
 	
 #if 0
 	std::vector<ArkNote> &GetNotes();

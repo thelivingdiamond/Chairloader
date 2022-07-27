@@ -44,6 +44,7 @@ public:
 	virtual void SetChannelId(uint16_t id);
 	virtual void SetAuthority(bool auth);
 	virtual void GetMemoryUsage(ICrySizer *__formal) const;
+	virtual ~ArkEmotionExtension();
 	
 	static inline auto FSetEmotion = PreyFunction<void(ArkEmotionExtension *const _this, uint64_t _emotionId, float _blend)>(0x115A200);
 	static inline auto FClearEmotion = PreyFunction<void(ArkEmotionExtension *const _this, float _blend)>(0x1159E90);

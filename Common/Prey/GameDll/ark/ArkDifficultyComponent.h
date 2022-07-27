@@ -150,6 +150,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkDifficultyLevels();
 	
 #if 0
 	std::vector<ArkDifficultyLevel> &GetLevels();

@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/Ark/ArkUtils.h>
 #include <Prey/Ark/arkutils.h>
 
 struct IGameRules;

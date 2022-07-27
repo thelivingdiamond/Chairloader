@@ -1,11 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
-#include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/CryMath/Cry_Geo.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/weapons/ArkGooSignalReceiver.h>
 #include <Prey/GameDll/ark/weapons/arkprojectile.h>
@@ -143,6 +142,7 @@ public:
 	CArkProjectile::ArkProjectileFFEffect m_collisionNotLockedEffect;
 	
 	CArkProjectileGoo();
+	virtual ~CArkProjectileGoo();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

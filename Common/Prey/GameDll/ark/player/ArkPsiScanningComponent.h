@@ -1,13 +1,12 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
 #include <CryEngine/crycommon/crystring.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/IArkHUDListener.h>
 #include <Prey/GameDll/ark/player/IArkMetaTagListener.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
@@ -552,6 +551,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkScanning();
 	
 #if 0
 	void SetEventBonusSec(float arg0);
@@ -611,5 +611,6 @@ public:
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x15A8A00);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x15A9610);
 	static inline auto FInit = PreyFunction<bool(ArkScanning *const _this)>(0x15A9F60);
+	static inline auto FBitNotArkScanning = PreyFunction<void(ArkScanning *const _this)>(0x15A7AE0);
 };
 

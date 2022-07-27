@@ -1,11 +1,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/signalsystem/ArkBreakableSignalReceiver.h>
 
@@ -32,6 +32,7 @@ public:
 	bool m_bHasRegeneratedNavMesh;
 	bool m_bHideToggled;
 	
+	virtual ~CArkBreakable();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void ProcessEvent(SEntityEvent &_event);

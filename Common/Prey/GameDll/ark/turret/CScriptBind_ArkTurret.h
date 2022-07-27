@@ -17,6 +17,7 @@ public:
 	IGameFramework *m_pGameFW;
 	
 	CScriptBind_ArkTurret(ISystem *const _pSystem);
+	virtual ~CScriptBind_ArkTurret();
 	void AttachTo(ArkTurret *const _pArkTurret) { FAttachTo(this,_pArkTurret); }
 	int StartBeingCarried(IFunctionHandler *_pH) { return FStartBeingCarried(this,_pH); }
 	int StopBeingCarried(IFunctionHandler *_pH) { return FStopBeingCarried(this,_pH); }

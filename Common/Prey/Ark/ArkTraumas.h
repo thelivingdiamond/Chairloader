@@ -5,7 +5,6 @@
 #include <Prey/Ark/arktraumas.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 
 class ArkClass;
@@ -597,6 +596,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkTrauma const *Find(uint64_t _id) const { return FFind(this,_id); }
+	virtual ~ArkTraumas();
 	
 #if 0
 	std::vector<ArkTrauma> &GetTraumas();

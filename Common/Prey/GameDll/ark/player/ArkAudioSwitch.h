@@ -1,11 +1,12 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/player/ArkAudioControl.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 
 class ArkAudioSwitchState;
 struct IEntity;
 
+// Header: Override
 // Prey/GameDll/ark/player/ArkAudioSwitch.h
 class ArkAudioSwitch : public ArkAudioControl // Id=8005A05 Size=4
 {

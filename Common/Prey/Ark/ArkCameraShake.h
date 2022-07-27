@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkcamerashake.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkCameraShakeChannel;
 class ArkClass;
@@ -336,6 +335,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	ArkCameraShake const *FindCameraShake(const uint64_t _id) const { return FFindCameraShake(this,_id); }
 	virtual bool Init();
+	virtual ~ArkCameraShakeLibrary();
 	
 #if 0
 	std::vector<std::shared_ptr<ArkCameraShake>> &GetCameraShakes();

@@ -2,8 +2,8 @@
 
 #pragma once
 #include <CryEngine/crycommon/crystring.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
+// Header: Override
 // Prey/GameDll/ark/ArkInteractionTestResult.h
 struct ArkInteractionTestResult // Id=8014067 Size=40
 {

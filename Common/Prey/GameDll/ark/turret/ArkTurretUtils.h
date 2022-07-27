@@ -6,6 +6,7 @@
 namespace ArkTurretUtils
 {
 
+// Header: Override
 // Prey/GameDll/ark/turret/ArkTurretUtils.h
 struct TurretAngle // Id=80152A9 Size=8
 {

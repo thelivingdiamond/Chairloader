@@ -1,10 +1,9 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryString/CryName.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/weapons/arkweapon.h>
 
 class ICrySizer;
@@ -39,6 +38,7 @@ public:
 	_smart_ptr<IAction> m_pWeaponThrowIdleAction;
 	
 	CArkWeaponGrenade();
+	virtual ~CArkWeaponGrenade();
 	virtual void Update(SEntityUpdateContext &_ctx, int _slot);
 	virtual void FullSerialize(TSerialize _ser);
 	virtual void GetMemoryUsage(ICrySizer *_s) const;

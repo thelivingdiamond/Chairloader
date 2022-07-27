@@ -5,6 +5,7 @@
 namespace ArkTurretDamageFsm
 {
 
+// Header: Override
 // Prey/GameDll/ark/turret/ArkTurretDamageFsm.h
 struct Config // Id=80152E7 Size=32
 {

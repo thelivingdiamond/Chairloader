@@ -15,6 +15,7 @@ public:
 	
 	ArkWeaponAction(const unsigned _weaponId, const int _fragmentId, IArkPlayer::EArkPlayerAnimationPriority _priority);
 	virtual EPriorityComparison ComparePriority(IAction const &_actionCurrent) const;
+	virtual ~ArkWeaponAction();
 	
 #if 0
 	unsigned GetWeaponId() const;
@@ -32,6 +33,7 @@ public:
 	virtual EPriorityComparison ComparePriority(IAction const &_actionCurrent) const;
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponThrowIdleAction();
 	
 	static inline auto FComparePriority = PreyFunction<EPriorityComparison(ArkWeaponThrowIdleAction const *const _this, IAction const &_actionCurrent)>(0x158AEF0);
 	static inline auto FEnter = PreyFunction<void(ArkWeaponThrowIdleAction *const _this)>(0x2BDD60);
@@ -47,6 +49,7 @@ public:
 	virtual EPriorityComparison ComparePriority(IAction const &_actionCurrent) const;
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponReloadAction();
 	
 	static inline auto FComparePriority = PreyFunction<EPriorityComparison(ArkWeaponReloadAction const *const _this, IAction const &_actionCurrent)>(0x158AEF0);
 	static inline auto FEnter = PreyFunction<void(ArkWeaponReloadAction *const _this)>(0x2BDD60);
@@ -63,6 +66,7 @@ public:
 	virtual void Enter();
 	virtual void Exit();
 	virtual void OnActionEvent(const unsigned _eventCRC);
+	virtual ~ArkWeaponReloadActionOnEvent();
 	
 	static inline auto FComparePriority = PreyFunction<EPriorityComparison(ArkWeaponReloadActionOnEvent const *const _this, IAction const &_actionCurrent)>(0x158AEF0);
 	static inline auto FEnter = PreyFunction<void(ArkWeaponReloadActionOnEvent *const _this)>(0x2BDD60);
@@ -79,6 +83,7 @@ public:
 	virtual void Enter();
 	virtual void Exit();
 	virtual void OnActionEvent(const unsigned _eventCRC);
+	virtual ~ArkWeaponAttackAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponAttackAction *const _this)>(0x166FD90);
 	static inline auto FExit = PreyFunction<void(ArkWeaponAttackAction *const _this)>(0x166FEA0);
@@ -93,6 +98,7 @@ public:
 	ArkWeaponDeployAction(const unsigned _weaponId, const int _fragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponDeployAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponDeployAction *const _this)>(0x166FD90);
 	static inline auto FExit = PreyFunction<void(ArkWeaponDeployAction *const _this)>(0x1670030);
@@ -106,6 +112,7 @@ public:
 	ArkWeaponAttackOutAction(const unsigned _weaponId, const int _fragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponAttackOutAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponAttackOutAction *const _this)>(0x2BDD60);
 	static inline auto FExit = PreyFunction<void(ArkWeaponAttackOutAction *const _this)>(0x166FEA0);
@@ -121,6 +128,7 @@ public:
 	ArkWeaponAttackOutAndUnselectAction(const unsigned _weaponId, const int _attackOutFragmentId, const int _unselectFragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponAttackOutAndUnselectAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponAttackOutAndUnselectAction *const _this)>(0x2BDD60);
 	static inline auto FExit = PreyFunction<void(ArkWeaponAttackOutAndUnselectAction *const _this)>(0x166FF70);
@@ -134,6 +142,7 @@ public:
 	ArkWeaponAttackInAction(const unsigned _weaponId, const int _fragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponAttackInAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponAttackInAction *const _this)>(0x166FDF0);
 	static inline auto FExit = PreyFunction<void(ArkWeaponAttackInAction *const _this)>(0x166FF30);
@@ -149,6 +158,7 @@ public:
 	ArkWeaponSelectAction(const unsigned _weaponId, const int _fragmentId, const bool _bBlockAttack);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponSelectAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponSelectAction *const _this)>(0x166FE50);
 	static inline auto FExit = PreyFunction<void(ArkWeaponSelectAction *const _this)>(0x1670150);
@@ -162,6 +172,7 @@ public:
 	ArkWeaponUnselectAction(const unsigned _weaponId, const int _fragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponUnselectAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponUnselectAction *const _this)>(0x2BDD60);
 	static inline auto FExit = PreyFunction<void(ArkWeaponUnselectAction *const _this)>(0x1670220);
@@ -175,6 +186,7 @@ public:
 	ArkWeaponReloadInAction(const unsigned _weaponId, const int _fragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponReloadInAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponReloadInAction *const _this)>(0x166FE20);
 	static inline auto FExit = PreyFunction<void(ArkWeaponReloadInAction *const _this)>(0x16700D0);
@@ -188,6 +200,7 @@ public:
 	ArkWeaponReloadOutAction(const unsigned _weaponId, const int _fragmentId);
 	virtual void Enter();
 	virtual void Exit();
+	virtual ~ArkWeaponReloadOutAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponReloadOutAction *const _this)>(0x2BDD60);
 	static inline auto FExit = PreyFunction<void(ArkWeaponReloadOutAction *const _this)>(0x1670110);
@@ -202,6 +215,7 @@ public:
 	virtual void Enter();
 	virtual void Exit();
 	virtual void OnActionEvent(const unsigned _eventCRC);
+	virtual ~ArkWeaponThrowInAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponThrowInAction *const _this)>(0x2BDD60);
 	static inline auto FExit = PreyFunction<void(ArkWeaponThrowInAction *const _this)>(0x16701E0);
@@ -217,6 +231,7 @@ public:
 	virtual void Enter();
 	virtual void Exit();
 	virtual void OnActionEvent(const unsigned _eventCRC);
+	virtual ~ArkWeaponAttackContinueMalfunctionAction();
 	
 	static inline auto FEnter = PreyFunction<void(ArkWeaponAttackContinueMalfunctionAction *const _this)>(0x2BDD60);
 	static inline auto FExit = PreyFunction<void(ArkWeaponAttackContinueMalfunctionAction *const _this)>(0x166FEE0);

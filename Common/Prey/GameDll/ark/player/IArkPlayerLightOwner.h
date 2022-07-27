@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkPlayerLightOwner.h
 class IArkPlayerLightOwner // Id=80134CF Size=8
 {

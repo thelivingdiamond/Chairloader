@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/worldui/ArkKioskBase.h>
 
@@ -58,6 +57,7 @@ public:
 	virtual void OnEnabledChanged(bool _bForce);
 	virtual void LoadProperties();
 	virtual bool HasClock() const;
+	virtual ~ArkKiosk();
 	
 	static inline auto FFullSerialize = PreyFunction<void(ArkKiosk *const _this, TSerialize _ser)>(0x139E410);
 	static inline auto FSetButtonHeader = PreyFunction<void(ArkKiosk *const _this, int _button, string const &_header)>(0x139F190);

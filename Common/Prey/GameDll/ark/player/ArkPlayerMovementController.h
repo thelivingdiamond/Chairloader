@@ -16,6 +16,7 @@ public:
 	virtual bool RequestMovement(CMovementRequest &_request);
 	virtual void GetMovementState(SMovementState &_state);
 	virtual bool GetStanceState(SStanceStateQuery const &_query, SStanceState &_state);
+	virtual ~ArkPlayerMovementController();
 	
 	static inline auto FRequestMovement = PreyFunction<bool(ArkPlayerMovementController *const _this, CMovementRequest &_request)>(0xDD23F0);
 	static inline auto FGetMovementState = PreyFunction<void(ArkPlayerMovementController *const _this, SMovementState &_state)>(0x156E050);

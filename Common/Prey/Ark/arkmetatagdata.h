@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -80,6 +79,7 @@ public:
 	virtual bool Init();
 	uint64_t GetTagId(const char *const _pTagName) const { return FGetTagId(this,_pTagName); }
 	virtual bool IsAlwaysLoaded() const;
+	virtual ~ArkMetaTags();
 	
 #if 0
 	std::vector<ArkMetaTag> &GetMetaTags();

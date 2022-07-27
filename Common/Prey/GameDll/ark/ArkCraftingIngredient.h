@@ -2,7 +2,6 @@
 
 #pragma once
 #include <CryEngine/crycommon/crystring.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/arkitem.h>
 
@@ -38,6 +37,7 @@ public:
 	virtual void LoadCachedProperties();
 	virtual const char *GetPickupModel() const;
 	virtual const char *GetPickupMaterial() const;
+	virtual ~ArkCraftingIngredient();
 	
 #if 0
 	bool IsScraps() const;

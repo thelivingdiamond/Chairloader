@@ -2,11 +2,10 @@
 
 #pragma once
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsipowershift.h>
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 
@@ -248,6 +247,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ShiftPowerProperties();
 	
 #if 0
 	void SetCommon(ArkPsiPowerCommonProperties arg0);
@@ -278,6 +278,7 @@ public:
 	bool m_bPendingShift;
 	
 	ArkPsiPowerShift();
+	virtual ~ArkPsiPowerShift();
 	virtual void OnReset();
 	virtual bool StartTargeting();
 	virtual void Update(const float _frameTime);

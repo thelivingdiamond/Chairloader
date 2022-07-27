@@ -26,6 +26,7 @@ public:
 	primitives::cylinder m_targetingCylinder;
 	
 	CArkPsiPowerLift();
+	virtual ~CArkPsiPowerLift();
 	virtual bool Start_Derived();
 	virtual bool StartTargeting();
 	virtual void Cancel();

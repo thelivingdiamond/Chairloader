@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkloottable.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 
 class ArkClass;
@@ -226,6 +225,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkLootTable const *Find(string const &_tableName) const { return FFind(this,_tableName); }
+	virtual ~ArkLootTables();
 	
 #if 0
 	std::vector<ArkLootTable> &GetTables();

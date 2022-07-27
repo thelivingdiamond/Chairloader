@@ -20,6 +20,7 @@ public:
 	IGameFramework *m_pGameFW;
 	
 	CScriptBind_ArkNpc(ISystem *pSystem);
+	virtual ~CScriptBind_ArkNpc();
 	void AttachTo(ArkNpc *const _pArkNpc) { FAttachTo(this,_pArkNpc); }
 	int IsAlive(IFunctionHandler *_pH) { return FIsAlive(this,_pH); }
 	int IsDead(IFunctionHandler *_pH) { return FIsDead(this,_pH); }

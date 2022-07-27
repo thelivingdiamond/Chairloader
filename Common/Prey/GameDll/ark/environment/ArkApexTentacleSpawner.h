@@ -96,6 +96,7 @@ public:
 	void ReevaluatePlayerAsTarget() { FReevaluatePlayerAsTarget(this); }
 	void AddTentacleToPlace(uint64_t _archetypeId, const int _count, std::vector<ArkApexTentacleSpawner::TentaclesToPlace> &_tentaclesToPlace) const { FAddTentacleToPlace(this,_archetypeId,_count,_tentaclesToPlace); }
 	bool SpawnTentaclesToPlace(std::vector<ArkApexTentacleSpawner::TentaclesToPlace> &_tentaclesToPlace) { return FSpawnTentaclesToPlace(this,_tentaclesToPlace); }
+	virtual ~ArkApexTentacleSpawner();
 	
 #if 0
 	bool PopulateTentaclesToPlace(std::vector<ArkApexTentacleSpawner::TentaclesToPlace> &arg0) const;

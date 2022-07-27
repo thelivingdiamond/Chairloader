@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 
+// Header: Override
 // Prey/GameDll/ark/ArkLightManagerDisruptableData.h
 struct ArkLightManagerDisruptableData // Id=80141E1 Size=16
 {

@@ -15,6 +15,7 @@ class CScriptBind_ItemSystem : public CScriptableBase // Id=8016545 Size=96
 {
 public:
 	CScriptBind_ItemSystem(ISystem *_pSystem);
+	virtual ~CScriptBind_ItemSystem();
 	virtual void GetMemoryUsage(ICrySizer *pSizer) const;
 	int GiveItem(IFunctionHandler *_pH, const char *_archetypeName) { return FGiveItem(this,_pH,_archetypeName); }
 	int GiveItemPack(IFunctionHandler *_pH, const char *_packName) { return FGiveItemPack(this,_pH,_packName); }

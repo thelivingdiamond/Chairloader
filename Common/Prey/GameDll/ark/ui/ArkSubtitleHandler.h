@@ -3,7 +3,6 @@
 #pragma once
 #include <CryEngine/crycommon/crystring.h>
 #include <Prey/CryAction/ISubtitleManager.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>

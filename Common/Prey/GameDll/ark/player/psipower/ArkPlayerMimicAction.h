@@ -17,6 +17,7 @@ public:
 	float m_elapsedSec;
 	
 	ArkPlayerMimicAction();
+	virtual ~ArkPlayerMimicAction();
 	virtual void Enter();
 	virtual void Exit();
 	void SetMimic(IArkPlayerMimic &_mimic) { FSetMimic(this,_mimic); }

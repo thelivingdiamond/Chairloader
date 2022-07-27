@@ -21,6 +21,7 @@ public:
 	uint64_t m_securityStationId;
 	
 	ArkSecurityStationScreen();
+	virtual ~ArkSecurityStationScreen();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual void OnSelectPersonnel(IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args);
 	virtual EArkInteractiveScreenType GetInteractiveScreenType() const;

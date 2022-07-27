@@ -21,6 +21,7 @@ public:
 	ArkApexTentacleHead const &m_tentacleHead;
 	
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
+	virtual ~ArkApexTentacleHeadSignalReceiver();
 	
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkApexTentacleHeadSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x11B65A0);
 };
@@ -39,6 +40,7 @@ public:
 	virtual void Release();
 	virtual void HandleEvent(SGameObjectEvent const &_event);
 	void Physicalize(const float _radius) { FPhysicalize(this,_radius); }
+	virtual ~ArkApexTentacleHead();
 	
 #if 0
 	void SetTentacleId(const unsigned arg0);

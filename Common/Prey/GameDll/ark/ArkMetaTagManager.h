@@ -27,6 +27,7 @@ public:
 	std::vector<unsigned __int64> m_tags;
 	
 	ArkMetaTagManager();
+	virtual ~ArkMetaTagManager();
 	virtual bool DoesEntityHaveTag(IEntity const &_entity, const uint64_t &_tag) const;
 	std::vector<unsigned __int64> GetArchetypeTags(IEntityArchetype const &_entityArchetype) const { return FGetArchetypeTags(this,_entityArchetype); }
 	std::vector<unsigned __int64> GetEntityTags(IEntity const &_entity) const { return FGetEntityTags(this,_entity); }

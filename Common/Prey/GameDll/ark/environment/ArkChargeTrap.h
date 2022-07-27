@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
@@ -32,6 +31,7 @@ public:
 	ArkSignalSystem::Data::SignalGroupData const *m_pDamagingSignalGroup;
 	
 	ArkChargeTrap();
+	virtual ~ArkChargeTrap();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

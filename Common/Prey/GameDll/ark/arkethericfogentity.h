@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
@@ -34,6 +34,7 @@ public:
 	uint64_t m_fogHitPackageId;
 	
 	CArkEthericFogEntity();
+	virtual ~CArkEthericFogEntity();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	virtual void ProcessEvent(SEntityEvent &_event);

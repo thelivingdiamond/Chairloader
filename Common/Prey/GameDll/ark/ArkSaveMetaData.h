@@ -1,8 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
+// Header: Override
 // Prey/GameDll/ark/ArkSaveMetaData.h
 class ArkSaveMetaData // Id=801666C Size=24
 {

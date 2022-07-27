@@ -1,10 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/ArkCommon/ArkInterval.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkFabricationPlanIngredients.h>
-#include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/weapons/arkprojectile.h>
 #include <Prey/GameDll/ark/weapons/arkprojectilegrenade.h>
 
@@ -84,6 +84,7 @@ public:
 	static bool m_bOverrideRecycleClassesLoaded;
 	
 	CArkProjectileRecyclerGrenade();
+	virtual ~CArkProjectileRecyclerGrenade();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

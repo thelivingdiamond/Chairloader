@@ -16,6 +16,7 @@ public:
 	unsigned m_systemStartMimickingEventId;
 	unsigned m_systemStopMimickingEventId;
 	
+	virtual ~CArkPsiPowerMimicUI();
 	virtual const char *GetTypeName() const;
 	virtual void InitEventSystem();
 	virtual void UnloadEventSystem();

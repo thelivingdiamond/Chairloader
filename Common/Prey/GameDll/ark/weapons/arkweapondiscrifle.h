@@ -1,9 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/player/IArkPsiScanningComponentListener.h>
 #include <Prey/GameDll/ark/weapons/arkweapon.h>
@@ -31,6 +30,7 @@ public:
 	bool m_bAcquiringTarget;
 	
 	CArkWeaponDiscRifle();
+	virtual ~CArkWeaponDiscRifle();
 	virtual void Release();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void FullSerialize(TSerialize _ser);

@@ -1,9 +1,9 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
 #include <Prey/GameDll/ark/dialog/arkflownodedialogtrigger.h>
 
@@ -29,6 +29,7 @@ public:
 	float m_maxTimeBetweenConversations;
 	
 	ArkLiveTranscribeComponent();
+	virtual ~ArkLiveTranscribeComponent();
 	void PlayConversation(ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger> &_transcribeNode, uint64_t _hookId, bool _bQueue, float _minTimeSinceLastCall) { FPlayConversation(this,_transcribeNode,_hookId,_bQueue,_minTimeSinceLastCall); }
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }
 	void Reset() { FReset(this); }

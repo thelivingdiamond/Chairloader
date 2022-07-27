@@ -21,6 +21,7 @@ public:
 	std::vector<unsigned int> m_areaShapes;
 	
 	CArkAreaContainer();
+	virtual ~CArkAreaContainer();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void InitClient(int channelId);
 	virtual void PostInit(IGameObject *pGameObject);

@@ -26,6 +26,7 @@ public:
 		out = 2,
 	};
 
+	virtual ~ArkFlowNodeDissipateNightmare();
 	virtual void GetConfiguration(SFlowNodeConfig &config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo *_pActInfo);
 	virtual void GetMemoryUsage(ICrySizer *s) const;

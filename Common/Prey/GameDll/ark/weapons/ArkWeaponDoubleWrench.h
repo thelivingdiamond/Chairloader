@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/weapons/ArkWrenchComponent.h>
 #include <Prey/GameDll/ark/weapons/arkweapon.h>
@@ -61,6 +60,7 @@ public:
 	virtual void OnUnequip(const bool _bUnselect);
 	virtual bool OnActionAttackPrimary(unsigned _entityId, CCryName const &_actionId, int _activationMode, float _value);
 	virtual CCryName GetPlayerWeaponSpecificCritChanceStatName() const;
+	virtual ~ArkWeaponDoubleWrench();
 	
 #if 0
 	void OnChainEvent();

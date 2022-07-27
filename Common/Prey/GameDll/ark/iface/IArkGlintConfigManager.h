@@ -4,6 +4,7 @@
 
 struct ArkGlintConfig;
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkGlintConfigManager.h
 struct IArkGlintConfigManager // Id=80020BA Size=8
 {

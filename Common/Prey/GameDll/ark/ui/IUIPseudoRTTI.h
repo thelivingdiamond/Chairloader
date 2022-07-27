@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/ui/IUIPseudoRTTI.h
 struct IUIPseudoRTTI // Id=8014CCA Size=8
 {

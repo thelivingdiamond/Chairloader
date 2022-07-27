@@ -22,6 +22,7 @@ public:
 	ArkLooseEffect m_individualTargetingEffect;
 	
 	ArkPsiPowerIndividualTargetingComponent(IArkPsiPower const *_pPower);
+	virtual ~ArkPsiPowerIndividualTargetingComponent();
 	void SetCallback(Functor0 _callback) { FSetCallback(this,_callback); }
 	virtual void Stop();
 	void Reset() { FReset(this); }

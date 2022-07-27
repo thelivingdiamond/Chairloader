@@ -4,6 +4,7 @@
 
 struct IEntity;
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkBreakableListener.h
 class IArkBreakableListener // Id=80155FF Size=8
 {

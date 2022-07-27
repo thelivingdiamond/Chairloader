@@ -1,9 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/iarkposteffectmanager.h>
 #include <CryEngine/crycommon/particleparams_typeinfo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
+#include <Prey/Ark/iarkposteffectmanager.h>
 #include <Prey/CrySystem/ITimer.h>
 #include <Prey/CrySystem/XML/IXml.h>
 #include <Prey/GameDll/ark/arkposteffectmanager.h>
@@ -97,6 +96,7 @@ public:
 	static inline auto FPushActiveEffectToEngine = PreyFunction<void(ArkPostEffectManager *const _this)>(0x13D2F80);
 };
 
+// Header: Override
 // Prey/GameDll/ark/ArkPostEffectManager.h
 struct SPostEffectCurve // Id=8015E0B Size=16
 {
@@ -104,6 +104,7 @@ struct SPostEffectCurve // Id=8015E0B Size=16
 	float duration;
 };
 
+// Header: Override
 // Prey/GameDll/ark/ArkPostEffectManager.h
 struct SPostEffectCurveParam // Id=8015E0C Size=72
 {

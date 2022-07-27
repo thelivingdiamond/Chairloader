@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkeventdrivenachievement.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/ark/ui/arkoptionlayout.h>
 
 class ArkClass;
@@ -705,6 +704,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkDistractions();
 	
 #if 0
 	std::vector<Distraction> &GetDistractions();

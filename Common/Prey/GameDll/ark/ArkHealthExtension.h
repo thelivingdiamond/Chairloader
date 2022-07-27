@@ -47,6 +47,7 @@ public:
 	virtual void SetChannelId(uint16_t id);
 	virtual void SetAuthority(bool auth);
 	virtual void GetMemoryUsage(ICrySizer *__formal) const;
+	virtual ~ArkHealthExtension();
 	
 #if 0
 	bool IsDead() const;

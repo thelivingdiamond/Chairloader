@@ -13,6 +13,7 @@ class ArkStatusGoodDrunk : public ArkTraumaBase, public IArkStatsListener // Id=
 {
 public:
 	ArkStatusGoodDrunk();
+	virtual ~ArkStatusGoodDrunk();
 	virtual void Serialize(TSerialize _ser);
 	virtual void Activate(int _level);
 	virtual void OnStatChange(const unsigned _ownerId, CCryName const &_stat64i32, const float _previousValue, const float _newValue);

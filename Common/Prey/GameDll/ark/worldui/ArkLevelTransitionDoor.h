@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/worldui/ArkKeycardReader.h>
 
@@ -28,6 +27,7 @@ public:
 	bool m_bIsTrialGated;
 	
 	ArkLevelTransitionDoor();
+	virtual ~ArkLevelTransitionDoor();
 	virtual void FullSerialize(TSerialize _ser);
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	virtual void OnButtonPress(IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args);

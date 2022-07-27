@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkgamestatecondition.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 class ArkConditionEvaluationData;
@@ -1322,6 +1321,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkGameStateConditionLibrary();
 	
 #if 0
 	std::vector<ArkGameStateCondition> &GetGameStateConditions();

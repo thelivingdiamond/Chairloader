@@ -1,10 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/XML/IXml.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
 
 class ArkAudioLog;
@@ -40,6 +40,7 @@ public:
 	ArkAudioTrigger m_loadedTrigger;
 	
 	ArkAudioLogComponent();
+	virtual ~ArkAudioLogComponent();
 	void LoadConfig(XmlNodeRef _config) { FLoadConfig(this,_config); }
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }
 	void Collect(const uint64_t _collectionId, bool _bAutoplay) { FCollect(this,_collectionId,_bAutoplay); }

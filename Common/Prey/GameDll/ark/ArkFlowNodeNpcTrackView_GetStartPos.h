@@ -29,6 +29,7 @@ public:
 		out = 3,
 	};
 
+	virtual ~ArkFlowNodeNpcTrackView_GetStartPos();
 	virtual void GetConfiguration(SFlowNodeConfig &config);
 	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo);
 	void ProcessGet(IFlowNode::SActivationInfo *_pActInfo) { FProcessGet(this,_pActInfo); }

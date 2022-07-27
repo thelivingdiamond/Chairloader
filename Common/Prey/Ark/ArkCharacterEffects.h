@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkcharactereffects.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -174,6 +173,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkCharacterEffect const *GetCharacterEffectById(const uint64_t _characterEffectId) const { return FGetCharacterEffectByIdOv1(this,_characterEffectId); }
+	virtual ~ArkCharacterEffects();
 	
 #if 0
 	std::vector<ArkCharacterEffect> &GetEffects();

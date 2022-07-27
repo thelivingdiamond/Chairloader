@@ -56,6 +56,7 @@ public:
 	int IsEntityFriendlyToEntity(IFunctionHandler *pH) { return FIsEntityFriendlyToEntity(this,pH); }
 	int IsEntityNeutralToEntity(IFunctionHandler *pH) { return FIsEntityNeutralToEntity(this,pH); }
 	int IsEntityHostileToEntity(IFunctionHandler *pH) { return FIsEntityHostileToEntity(this,pH); }
+	virtual ~CScriptBind_ArkFaction();
 	
 #if 0
 	void RegisterGlobals() const;

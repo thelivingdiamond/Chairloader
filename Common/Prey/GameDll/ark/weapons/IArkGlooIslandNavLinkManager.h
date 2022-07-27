@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/weapons/IArkGlooIslandNavLinkManager.h
 class IArkGlooIslandNavLinkManager // Id=80020DE Size=8
 {

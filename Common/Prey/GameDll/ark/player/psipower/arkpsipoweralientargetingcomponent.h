@@ -11,6 +11,7 @@ class CArkPsiPowerAlienTargetingComponent : public CArkPsiPower3DTargetingCompon
 {
 public:
 	std::vector<IEntity *> GetEntitiesInSphere(const float _radius) const { return FGetEntitiesInSphere(this,_radius); }
+	virtual ~CArkPsiPowerAlienTargetingComponent();
 	
 	static inline auto FGetEntitiesInSphere = PreyFunction<std::vector<IEntity *>(CArkPsiPowerAlienTargetingComponent const *const _this, const float _radius)>(0x1584FC0);
 };

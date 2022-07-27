@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkresearchtopic.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -202,6 +201,7 @@ public:
 	ArkResearchTopic const *Find(const uint64_t _id) const { return FFindOv1(this,_id); }
 	std::vector<ArkResearchTopic const *> GetResearchTopicsForTags(std::vector<unsigned __int64> _tags) const { return FGetResearchTopicsForTags(this,_tags); }
 	ArkResearchTopic const *GetResearchTopicByLore(const uint64_t _id) const { return FGetResearchTopicByLore(this,_id); }
+	virtual ~ArkResearchTopics();
 	
 #if 0
 	std::vector<ArkResearchTopic> &GetTopics();

@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkstationaccess.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 class ArkStationAirlock;
@@ -204,6 +203,7 @@ public:
 	uint64_t GetPathIdForConnection(uint64_t _locationA, uint64_t _locationB) const { return FGetPathIdForConnection(this,_locationA,_locationB); }
 	ArkStationAirlock const *FindAirlockByLocation(uint64_t _locationId) const { return FFindAirlockByLocation(this,_locationId); }
 	ArkStationAirlock const *FindAirlock(uint64_t _airlockId) const { return FFindAirlock(this,_airlockId); }
+	virtual ~ArkStationAccess();
 	
 #if 0
 	std::vector<ArkStationPath> &GetPaths();

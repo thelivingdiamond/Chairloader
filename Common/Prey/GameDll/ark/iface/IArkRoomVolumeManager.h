@@ -5,6 +5,7 @@
 class IArkRoomPortal;
 class IArkRoomVolume;
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkRoomVolumeManager.h
 class IArkRoomVolumeManager // Id=80021B3 Size=8
 {
@@ -18,6 +19,7 @@ public:
 	using InvalidPathLinksVector = std::vector<std::pair<unsigned int,unsigned int>>;
 	using InvalidPortalVolumeOverlaps = std::vector<std::pair<unsigned int,unsigned int>>;
 	
+	virtual ~IArkRoomVolumeManager();
 	virtual void AcquireWriteAccess(unsigned long arg0) = 0;
 	virtual void ReleaseWriteAccess(unsigned long arg0) = 0;
 	virtual void SetServiceThreadId(unsigned long arg0) = 0;

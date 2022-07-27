@@ -20,6 +20,7 @@ public:
 	unsigned m_ownerId;
 	
 	CArkGlassBreaker();
+	virtual ~CArkGlassBreaker();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

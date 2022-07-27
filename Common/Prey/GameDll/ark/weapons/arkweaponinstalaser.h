@@ -55,6 +55,7 @@ public:
 	ArkEntityEffect m_additionalEndEffect;
 	
 	CArkWeaponInstalaser();
+	virtual ~CArkWeaponInstalaser();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void Release();

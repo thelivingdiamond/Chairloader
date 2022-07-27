@@ -1,9 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
 struct IEntity;
@@ -73,6 +72,7 @@ public:
 	bool m_bEnemyHealthEnabled;
 	
 	ArkPlayerUIComponent();
+	virtual ~ArkPlayerUIComponent();
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }
 	void Reset() { FReset(this); }
 	void Update(const float _dt) { FUpdate(this,_dt); }

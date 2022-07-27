@@ -1,10 +1,9 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/environment/ArkLeakable.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
@@ -49,6 +48,7 @@ public:
 	string m_consumedDisplayName;
 	
 	ArkExplosiveTank();
+	virtual ~ArkExplosiveTank();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void Update(SEntityUpdateContext &ctx, int updateSlot);

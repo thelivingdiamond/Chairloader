@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkSignalManagerListener.h
 class IArkSignalManagerListener // Id=80156E7 Size=8
 {

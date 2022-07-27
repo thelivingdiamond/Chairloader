@@ -1,8 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicOperatorCamera.h>
 
 class ArkPlayerMimicScienceOperatorController;

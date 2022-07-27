@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
@@ -60,6 +60,7 @@ public:
 	virtual void PostRemoteSpawn();
 	void StartExplosion() { FStartExplosion(this); }
 	void LoadScriptVariables() { FLoadScriptVariables(this); }
+	virtual ~CArkEMPBlast();
 	
 #if 0
 	void SetDelayTime(float arg0);

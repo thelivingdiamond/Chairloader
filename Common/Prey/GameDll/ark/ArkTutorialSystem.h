@@ -2,10 +2,9 @@
 
 #pragma once
 #include <CryEngine/crycommon/crystring.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryCore/functor.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/IArkPDAListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 
@@ -85,6 +84,7 @@ public:
 	std::array<wstring,2> m_hudTutorialHints;
 	
 	ArkTutorialSystem();
+	virtual ~ArkTutorialSystem();
 	void Init() { FInit(this); }
 	void Reset() { FReset(this); }
 	void OnPlayerDestroy() { FOnPlayerDestroy(this); }

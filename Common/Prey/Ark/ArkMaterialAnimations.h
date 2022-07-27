@@ -4,7 +4,6 @@
 #include <Prey/Ark/arkmaterialanimations.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 
@@ -444,6 +443,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkMaterialAnimation const *GetMaterialAnimationById(const uint64_t _materialAnimationID) const { return FGetMaterialAnimationById(this,_materialAnimationID); }
+	virtual ~ArkMaterialAnimations();
 	
 #if 0
 	std::vector<ArkMaterialAnimation> &GetAnimations();

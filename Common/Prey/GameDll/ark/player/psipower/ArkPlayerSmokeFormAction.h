@@ -11,6 +11,7 @@ class ArkPlayerSmokeFormAction : public TAction<SAnimationContext> // Id=801C169
 {
 public:
 	ArkPlayerSmokeFormAction();
+	virtual ~ArkPlayerSmokeFormAction();
 	virtual void OnInitialise();
 	virtual EPriorityComparison ComparePriority(IAction const &_action) const;
 	

@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/playerIArkCombatFocusListener.h
 class IArkCombatFocusListener // Id=80154E1 Size=8
 {

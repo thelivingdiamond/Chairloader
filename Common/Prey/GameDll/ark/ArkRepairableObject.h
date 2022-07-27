@@ -1,8 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkGameObjectExtension.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
@@ -34,6 +33,7 @@ public:
 	Vec3 m_VFXOffset;
 	
 	ArkRepairableObject();
+	virtual ~ArkRepairableObject();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void Release();

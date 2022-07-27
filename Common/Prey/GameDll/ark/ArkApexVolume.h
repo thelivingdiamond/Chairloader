@@ -39,6 +39,7 @@ public:
 	virtual void PostUpdate(float _frameTime);
 	virtual void PostRemoteSpawn();
 	void CreateArea() const { FCreateArea(this); }
+	virtual ~ArkApexVolume();
 	
 	static inline auto FRelease = PreyFunction<void(ArkApexVolume *const _this)>(0xA97D40);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkApexVolume const *const _this, ICrySizer *_pSizer)>(0xA13080);

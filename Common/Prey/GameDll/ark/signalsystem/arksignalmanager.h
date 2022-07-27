@@ -203,6 +203,7 @@ public:
 	unsigned m_uniqueHitIdGenerator;
 	
 	Manager();
+	virtual ~Manager();
 	void Scan() { FScan(this); }
 	void Reset() { FReset(this); }
 	void RegisterEntityReceiver(const unsigned _entityId, ArkSignalSystem::Receiver &_receiver) { FRegisterEntityReceiver(this,_entityId,_receiver); }

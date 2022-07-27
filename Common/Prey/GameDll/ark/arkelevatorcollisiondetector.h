@@ -22,6 +22,7 @@ public:
 	std::vector<unsigned int> m_floorAreaEntities;
 	
 	CArkElevatorCollisionDetector();
+	virtual ~CArkElevatorCollisionDetector();
 	virtual void GetMemoryUsage(ICrySizer *_pSizer) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

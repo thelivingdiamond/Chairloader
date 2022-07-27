@@ -23,6 +23,7 @@ public:
 	virtual void OnExit(float blendTime);
 	virtual void Update(float timePassed);
 	IScope *GetTargetScope() const { return FGetTargetScope(this); }
+	virtual ~CArkAttachmentClipEvent();
 	
 	static inline auto FOnEnter = PreyFunction<void(CArkAttachmentClipEvent *const _this, float blendTime, float duration, CArkAttachmentEventParams const &params)>(0x114B910);
 	static inline auto FOnExit = PreyFunction<void(CArkAttachmentClipEvent *const _this, float blendTime)>(0x114B940);
@@ -39,6 +40,7 @@ struct CArkAttachmentEventParams : public IProceduralParams // Id=8018FC4 Size=2
 	
 	virtual void Serialize(Serialization::IArchive &ar);
 	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char> &extraInfoOut) const;
+	virtual ~CArkAttachmentEventParams();
 	
 	static inline auto FSerialize = PreyFunction<void(CArkAttachmentEventParams *const _this, Serialization::IArchive &ar)>(0x114C130);
 	static inline auto FGetExtraDebugInfo = PreyFunction<void(CArkAttachmentEventParams const *const _this, IProceduralParams::StringWrapperImpl<char> &extraInfoOut)>(0xA13080);

@@ -87,6 +87,7 @@ public:
 	virtual void UpdateView(SViewParams &_params);
 	virtual void PostUpdateView(SViewParams &_params);
 	static boost::optional<Quat> UpdateIronsightsView(const float _frameTime, Vec3 const &_initialRotation) { return FUpdateIronsightsView(_frameTime,_initialRotation); }
+	virtual ~ArkPlayerCamera();
 	
 #if 0
 	ArkPlayerCamera::Mode GetMode() const;
@@ -124,5 +125,6 @@ public:
 	static inline auto FUpdateView = PreyFunction<void(ArkPlayerCamera *const _this, SViewParams &_params)>(0x145ED50);
 	static inline auto FPostUpdateView = PreyFunction<void(ArkPlayerCamera *const _this, SViewParams &_params)>(0xA13080);
 	static inline auto FUpdateIronsightsView = PreyFunction<boost::optional<Quat>(const float _frameTime, Vec3 const &_initialRotation)>(0x145E8E0);
+	static inline auto FBitNotArkPlayerCamera = PreyFunction<void(ArkPlayerCamera *const _this)>(0x154E270);
 };
 

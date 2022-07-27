@@ -5,7 +5,6 @@
 #include <Prey/Ark/arkworkstation.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
 class ArkClass;
 class ArkUtilityButton;
@@ -586,6 +585,7 @@ public:
 	ArkUtility const *FindUtility(const uint64_t _id) const { return FFindUtility(this,_id); }
 	ArkUtilityButton const *FindUtilityButton(const uint64_t _id) const { return FFindUtilityButton(this,_id); }
 	uint64_t GetUtilityButtonOwner(const uint64_t _id) const { return FGetUtilityButtonOwner(this,_id); }
+	virtual ~ArkWorkstations();
 	
 #if 0
 	std::vector<ArkWorkstation> &GetWorkstations();
@@ -628,6 +628,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	ArkEmail const *Find(const uint64_t &_id) const { return FFind(this,_id); }
+	virtual ~ArkEmails();
 	
 #if 0
 	std::vector<ArkEmail> &GetEmails();

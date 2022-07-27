@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
 #include <Prey/GameDll/ark/ScriptHandle.h>
 
@@ -88,6 +87,7 @@ public:
 	int HandleGooOverlappingEntity(IFunctionHandler *_pH, ScriptHandle _entityId, const bool _bDeleteGoo) { return FHandleGooOverlappingEntity(this,_pH,_entityId,_bDeleteGoo); }
 	int AddInstigationEvent(IFunctionHandler *_pH, ScriptHandle _instigatedId, ScriptHandle _instigatorId, float _decayTime) { return FAddInstigationEvent(this,_pH,_instigatedId,_instigatorId,_decayTime); }
 	int SetCollisionClassIgnore(IFunctionHandler *_pH, ScriptHandle _entityId, unsigned _flags) { return FSetCollisionClassIgnore(this,_pH,_entityId,_flags); }
+	virtual ~CScriptBind_Ark();
 	
 	static inline auto FDrawNote = PreyFunction<int(CScriptBind_Ark *const _this, IFunctionHandler *pH)>(0x15BFE00);
 	static inline auto FSpawnAttachedParticleEffect = PreyFunction<int(CScriptBind_Ark *const _this, IFunctionHandler *pH, const char *effectName, ScriptHandle parentId)>(0x15C3000);

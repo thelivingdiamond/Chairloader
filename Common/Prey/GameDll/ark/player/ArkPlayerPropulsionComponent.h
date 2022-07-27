@@ -1,10 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleCharge.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
 
 class CCryName;
@@ -32,6 +32,7 @@ public:
 	ArkAudioTrigger m_triggerGlideStop;
 	
 	ArkPlayerPropulsionComponent();
+	virtual ~ArkPlayerPropulsionComponent();
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	void Reset() { FReset(this); }

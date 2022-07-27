@@ -31,6 +31,7 @@ public:
 	std::vector<IEntityClass const *> m_overrideTargetClasses;
 	
 	CArkWeaponShotgun();
+	virtual ~CArkWeaponShotgun();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	virtual void FullSerialize(TSerialize _ser);

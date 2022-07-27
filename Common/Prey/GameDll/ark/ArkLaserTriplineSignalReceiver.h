@@ -16,6 +16,7 @@ class ArkLaserTriplineSignalReceiver : public ArkSignalSystem::Receiver // Id=80
 public:
 	ArkLaserTripline &m_owner;
 	
+	virtual ~ArkLaserTriplineSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLaserTriplineSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x1188FA0);

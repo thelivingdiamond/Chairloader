@@ -4,6 +4,7 @@
 
 struct IEntity;
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkPlayerCombatListener.h
 class IArkPlayerCombatListener // Id=8015417 Size=8
 {

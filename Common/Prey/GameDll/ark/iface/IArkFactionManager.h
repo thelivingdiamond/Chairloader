@@ -1,8 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkFactionManager.h
 class IArkFactionManager // Id=800208A Size=8
 {

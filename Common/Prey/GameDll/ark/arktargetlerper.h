@@ -25,6 +25,7 @@ public:
 	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
 	void Update(const float _dt) { FUpdateOv1(this,_dt); }
 	static void Update(void *_pUserData, unsigned _timerId) { FUpdateOv0(_pUserData,_timerId); }
+	virtual ~CArkTargetLerper();
 	static void Clear(const unsigned &_sourceEntityId) { FClearOv1(_sourceEntityId); }
 	static bool IsEntityInTransit(const unsigned &_entityId) { return FIsEntityInTransit(_entityId); }
 	static void LerpToTarget(const float _durationSec, const bool _bDisableCollision, const bool _bScale, const unsigned &_sourceEntityId, const unsigned &_targetEntityId, Vec3 const &_targetEntityOffset, std::function<void __cdecl(void)> _expiredCallback) { FLerpToTarget(_durationSec,_bDisableCollision,_bScale,_sourceEntityId,_targetEntityId,_targetEntityOffset,_expiredCallback); }

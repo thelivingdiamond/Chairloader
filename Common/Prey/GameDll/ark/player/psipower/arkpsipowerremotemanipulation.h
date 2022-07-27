@@ -5,7 +5,6 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/ark/ArkInteractionInfo.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiPowerIndividualTargetingComponent.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsipowercyberkinesis.h>
@@ -181,6 +180,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~RemoteManipulationPowerProperties();
 	
 #if 0
 	void SetCommon(ArkPsiPowerCommonProperties arg0);
@@ -205,6 +205,7 @@ public:
 	std::unordered_map<unsigned int,ArkInteractionInfo> m_scriptInteractions;
 	
 	CArkPsiPowerRemoteManipulation();
+	virtual ~CArkPsiPowerRemoteManipulation();
 	virtual void Cancel();
 	virtual void OnReset();
 	virtual void UpdateTargeting(const float _frameTime);

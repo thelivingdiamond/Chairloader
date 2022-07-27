@@ -171,6 +171,7 @@ public:
 	void AddVolumeToOctree(CArkRoomVolumeManager::VolumeData const *_volume) { FAddVolumeToOctree(this,_volume); }
 	static void ExploreAudioPropagation_r(CArkRoomVolumeManager const &_roomVolumeManager, std::unordered_map<ArkRoomPathNodePair,ArkRoomPath> &_pathMap, ArkRoomPath &_currentPath, float _fMaxAudibleDistance, GeneratePropagationStats &_stats) { FExploreAudioPropagation_r(_roomVolumeManager,_pathMap,_currentPath,_fMaxAudibleDistance,_stats); }
 	static void ComputeAudioCmd(IConsoleCmdArgs *__formal) { FComputeAudioCmd(__formal); }
+	virtual ~CArkRoomVolumeManager();
 	
 #if 0
 	bool CanSoundBeHeard(Vec3 const &arg0, Vec3 const &arg1, float arg2) const;

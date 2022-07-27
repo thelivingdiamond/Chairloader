@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkEmissiveComponent.h>
 #include <Prey/GameDll/ark/ArkGameObjectExtension.h>
@@ -37,6 +37,7 @@ public:
 	CArkLight *m_pLight;
 	uint64_t m_signalGroupId;
 	
+	virtual ~ArkLightSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this,_bRegister); }
 	void SetSignalGroupId(const uint64_t _id) { FSetSignalGroupId(this,_id); }
@@ -160,6 +161,7 @@ public:
 	ArkFireAndForgetEffect m_movementResponseEffect;
 	
 	CArkLight();
+	virtual ~CArkLight();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void Release();

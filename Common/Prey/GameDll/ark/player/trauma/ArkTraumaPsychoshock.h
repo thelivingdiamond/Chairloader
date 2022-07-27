@@ -12,6 +12,7 @@ public:
 	virtual void Update(float _frametime);
 	virtual void Activate(int _level);
 	virtual void UpdateVisuals(bool _bImmediate, bool _bFromSerialize);
+	virtual ~ArkTraumaPsychoshock();
 	
 	static inline auto FUpdate = PreyFunction<void(ArkTraumaPsychoshock *const _this, float _frametime)>(0x1327F60);
 	static inline auto FActivate = PreyFunction<void(ArkTraumaPsychoshock *const _this, int _level)>(0x132C380);

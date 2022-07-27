@@ -42,6 +42,7 @@ public:
 	unsigned m_numExpiringPharmas;
 	
 	ArkPharmaComponent();
+	virtual ~ArkPharmaComponent();
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }

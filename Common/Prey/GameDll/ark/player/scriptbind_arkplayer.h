@@ -50,6 +50,7 @@ public:
 	int PlayFragment(IFunctionHandler *_pH, const char *_fragmentName) { return FPlayFragment(this,_pH,_fragmentName); }
 	int IsExternalInventoryOpen(IFunctionHandler *_pH) { return FIsExternalInventoryOpen(this,_pH); }
 	int Spawn(IFunctionHandler *_pH, Vec3 _pos, Ang3 _angles) { return FSpawn(this,_pH,_pos,_angles); }
+	virtual ~CScriptBind_ArkPlayer();
 	
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkPlayer *const _this, IEntity const &_entity)>(0x15BA6A0);
 	static inline auto FIsMaxHealth = PreyFunction<int(CScriptBind_ArkPlayer *const _this, IFunctionHandler *_pH)>(0x15BB840);

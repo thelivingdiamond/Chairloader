@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/Ark/arkpsipowercommonproperties.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>
 

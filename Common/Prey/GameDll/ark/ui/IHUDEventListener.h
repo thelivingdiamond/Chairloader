@@ -4,6 +4,7 @@
 
 struct SHUDEvent;
 
+// Header: Override
 // Prey/GameDll/ark/ui/IHUDEventListener.h
 struct IHUDEventListener // Id=8016E2A Size=8
 {

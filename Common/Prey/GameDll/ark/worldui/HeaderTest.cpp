@@ -42,8 +42,5 @@ static_assert(sizeof(ArkStationWorldUI::FlowNodeSaveData) == 8);
 #include "ArkWorkstationScreen.h"
 static_assert(sizeof(ArkWorkstationScreen) == 680);
 
-#include "ArkWorldUIManager.h"
-static_assert(sizeof(ArkWorldUIManager) == 256);
-
 #include "ArkWorldUIOwner.h"
 static_assert(sizeof(ArkWorldUIOwner) == 144);

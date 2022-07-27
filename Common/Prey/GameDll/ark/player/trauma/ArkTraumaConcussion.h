@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
 
 // Header: FromCpp
@@ -13,6 +13,7 @@ public:
 	
 	ArkTraumaConcussion();
 	virtual void RepeatEffect();
+	virtual ~ArkTraumaConcussion();
 	
 	static inline auto FRepeatEffect = PreyFunction<void(ArkTraumaConcussion *const _this)>(0x132C2B0);
 };

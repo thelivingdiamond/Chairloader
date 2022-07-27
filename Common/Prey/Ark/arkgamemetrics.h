@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 
 class ArkClass;
@@ -140,6 +139,7 @@ public:
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
 	boost::optional<ArkGameMetricProperties const &> Find(const uint64_t _id) const { return FFind(this,_id); }
+	virtual ~ArkGameMetricLibrary();
 	
 #if 0
 	std::vector<ArkGameMetricProperties> &GetMetrics();

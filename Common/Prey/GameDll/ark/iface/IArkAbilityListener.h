@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkAbilityListener.h
 class IArkAbilityListener // Id=8013975 Size=8
 {

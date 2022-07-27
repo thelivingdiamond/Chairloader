@@ -1,12 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryMemory/StlDbgAlloc.h>
-#include <_unknown/ArkSignalSystem__Data___$SortableData@VFactorData@RuleData@ModifierData@Data@ArkSignalSystem@@.h>
-#include <_unknown/ArkSignalSystem__Data___$SortableData@VModifierData@Data@ArkSignalSystem@@.h>
-#include <_unknown/ArkSignalSystem__Data___$SortableData@VPackageData@Data@ArkSignalSystem@@.h>
-#include <_unknown/ArkSignalSystem__Data___$SortableData@VSignalData@Data@ArkSignalSystem@@.h>
-#include <_unknown/ArkSignalSystem__Data___$SortableData@VSignalGroupData@Data@ArkSignalSystem@@.h>
 
 namespace ArkSignalSystem
 {
@@ -16,6 +10,20 @@ namespace ArkSignalSystem
 class Data // Id=801377A Size=96
 {
 public:
+	template <typename T>
+	class SortableData // Id=801377C Size=8
+	{
+	public:
+		uint64_t m_id;
+
+#if 0
+		void SortableData();
+		bool operator<(T const& arg0) const;
+		uint64_t operator unsigned __int64() const;
+		uint64_t GetId() const;
+#endif
+	};
+
 	class SignalGroupData : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::SignalGroupData> // Id=801377B Size=40
 	{
 	public:
@@ -32,19 +40,6 @@ public:
 		
 		static inline auto FHasSignal = PreyFunction<bool(ArkSignalSystem::Data::SignalGroupData const *const _this, const uint64_t _id)>(0x13FA450);
 		static inline auto FLoadParamters = PreyFunction<void(ArkSignalSystem::Data::SignalGroupData *const _this, XmlNodeRef _node)>(0x15DA250);
-	};
-
-	class ?$SortableData@VSignalGroupData@Data@ArkSignalSystem@@ // Id=801377C Size=8
-	{
-	public:
-		uint64_t m_id;
-		
-#if 0
-		void SortableData<ArkSignalSystem::Data::SignalGroupData>();
-		bool operator<(ArkSignalSystem::Data::SignalGroupData const &arg0) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-#endif
 	};
 
 	class PackageData : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::PackageData> // Id=801377D Size=40
@@ -71,19 +66,6 @@ public:
 #endif
 	};
 
-	class ?$SortableData@VPackageData@Data@ArkSignalSystem@@ // Id=801377E Size=8
-	{
-	public:
-		uint64_t m_id;
-		
-#if 0
-		void SortableData<ArkSignalSystem::Data::PackageData>();
-		bool operator<(ArkSignalSystem::Data::PackageData const &arg0) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-#endif
-	};
-
 	class SignalData : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::SignalData> // Id=801377F Size=16
 	{
 	public:
@@ -91,19 +73,6 @@ public:
 		
 #if 0
 		string const &GetName() const;
-#endif
-	};
-
-	class ?$SortableData@VSignalData@Data@ArkSignalSystem@@ // Id=8013780 Size=8
-	{
-	public:
-		uint64_t m_id;
-		
-#if 0
-		void SortableData<ArkSignalSystem::Data::SignalData>();
-		bool operator<(ArkSignalSystem::Data::SignalData const &arg0) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
 #endif
 	};
 
@@ -143,32 +112,6 @@ public:
 #if 0
 		std::vector<ArkSignalSystem::Data::ModifierData::RuleData> const &GetRules() const;
 		string const &GetName() const;
-#endif
-	};
-
-	class ?$SortableData@VModifierData@Data@ArkSignalSystem@@ // Id=8013784 Size=8
-	{
-	public:
-		uint64_t m_id;
-		
-#if 0
-		void SortableData<ArkSignalSystem::Data::ModifierData>();
-		bool operator<(ArkSignalSystem::Data::ModifierData const &arg0) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-#endif
-	};
-
-	class ?$SortableData@VFactorData@RuleData@ModifierData@Data@ArkSignalSystem@@ // Id=8013785 Size=8
-	{
-	public:
-		uint64_t m_id;
-		
-#if 0
-		void SortableData<ArkSignalSystem::Data::ModifierData::RuleData::FactorData>();
-		bool operator<(ArkSignalSystem::Data::ModifierData::RuleData::FactorData const &arg0) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
 #endif
 	};
 

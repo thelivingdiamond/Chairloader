@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -28,6 +28,7 @@ public:
 	float m_height;
 	
 	CArkRoomVolume();
+	virtual ~CArkRoomVolume();
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);
 	virtual void InitClient(int _channelId);

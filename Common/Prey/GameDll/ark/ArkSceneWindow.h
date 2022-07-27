@@ -38,6 +38,7 @@ public:
 	virtual void PostUpdate(float frameTime);
 	virtual void PostRemoteSpawn();
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
+	virtual ~ArkSceneWindow();
 	
 	static inline auto FInit = PreyFunction<bool(ArkSceneWindow *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FPostInit = PreyFunction<void(ArkSceneWindow *const _this, IGameObject *_pGameObject)>(0xA13080);

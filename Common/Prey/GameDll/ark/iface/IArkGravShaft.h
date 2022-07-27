@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryAISystem/INavigationSystem.h>
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkGravShaft.h
 class IArkGravShaft // Id=80020BC Size=8
 {

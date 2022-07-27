@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
 // Header: FromCpp

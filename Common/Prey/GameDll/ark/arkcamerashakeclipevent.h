@@ -14,6 +14,7 @@ struct CArkCameraShakeClipEventParams : public IProceduralParams // Id=8018FD6 S
 {
 	uint64_t m_cameraShakeId;
 	
+	virtual ~CArkCameraShakeClipEventParams();
 	virtual void Serialize(Serialization::IArchive &_ar);
 	
 	static inline auto FSerialize = PreyFunction<void(CArkCameraShakeClipEventParams *const _this, Serialization::IArchive &_ar)>(0x114C6F0);
@@ -27,6 +28,7 @@ public:
 	virtual void OnEnter(float _blendTime, float _duration, CArkCameraShakeClipEventParams const &_params);
 	virtual void OnExit(float _blendTime);
 	virtual void Update(float _frameTime);
+	virtual ~CArkCameraShakeClipEvent();
 	
 	static inline auto FOnEnter = PreyFunction<void(CArkCameraShakeClipEvent *const _this, float _blendTime, float _duration, CArkCameraShakeClipEventParams const &_params)>(0x114C900);
 	static inline auto FOnExit = PreyFunction<void(CArkCameraShakeClipEvent *const _this, float _blendTime)>(0xA13080);

@@ -68,6 +68,7 @@ public:
 	int CheckLinkRow(TNavigationID<1> _navAgentID, Vec3 const &_start, Vec3 const &_fwdDir, float _fwdDist, Vec3 const &_linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FCheckLinkRow(this,_navAgentID,_start,_fwdDir,_fwdDist,_linkDir,_linkDist,_islandId,_links,_error); }
 	int CheckLink(TNavigationID<1> _navAgentID, Vec3 const &_start, Vec3 const &_dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FCheckLink(this,_navAgentID,_start,_dir,_dist,_islandId,_links,_error); }
 	int ValidateLink(TNavigationID<1> _navAgentID, Vec3 const &_startPos, Vec3 const &_dir, unsigned _islandStart, Vec3 const &_endPos, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FValidateLink(this,_navAgentID,_startPos,_dir,_islandStart,_endPos,_links,_error); }
+	virtual ~CArkNavIslandJumpLink();
 	
 #if 0
 	Vec3 GetTriggerSize() const;

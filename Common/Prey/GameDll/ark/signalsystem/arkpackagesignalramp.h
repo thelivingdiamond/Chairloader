@@ -11,6 +11,7 @@ class Package;
 namespace ArkSignalSystem
 {
 
+// Header: Override
 // Prey/GameDll/ark/signalsystem/ArkPackageSignalRamp.h
 struct PackageSignalRamp // Id=8013724 Size=48
 {
@@ -35,6 +36,7 @@ struct PackageSignalRamp // Id=8013724 Size=48
 namespace ArkSignalSystem
 {
 
+// Header: Override
 // Prey/GameDll/ark/signalsystem/ArkPackageSignalRamp.h
 class PackageSignalRampContainer // Id=8013723 Size=64
 {

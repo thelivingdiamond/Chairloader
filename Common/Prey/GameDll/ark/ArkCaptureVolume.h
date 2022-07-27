@@ -40,6 +40,7 @@ public:
 	virtual const void *GetRMIBase() const;
 	virtual void PostUpdate(float _frameTime);
 	virtual void PostRemoteSpawn();
+	virtual ~ArkCaptureVolume();
 	
 	static inline auto FRelease = PreyFunction<void(ArkCaptureVolume *const _this)>(0xA97D40);
 	static inline auto FGetInfos = PreyFunction<std::vector<IGame::CaptureVolumeInfo>()>(0x14215F0);

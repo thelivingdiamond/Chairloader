@@ -12,6 +12,7 @@ class ArkPsiPowerMimicTargetingComponent : public ArkPsiPowerIndividualTargeting
 {
 public:
 	ArkPsiPowerMimicTargetingComponent(IArkPsiPower const *_pPower);
+	virtual ~ArkPsiPowerMimicTargetingComponent();
 	virtual bool ValidateTarget(IEntity const &_entity) const;
 	
 	static inline auto FValidateTarget = PreyFunction<bool(ArkPsiPowerMimicTargetingComponent const *const _this, IEntity const &_entity)>(0x12F6B30);

@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkPsiPowerTargetingListener.h
 class IArkPsiPowerTargetingListener // Id=8014068 Size=8
 {

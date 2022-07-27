@@ -20,6 +20,7 @@ public:
 	virtual void Stack();
 	virtual void ApplyStatModifiers();
 	virtual bool ShowDamageIndicator() const;
+	virtual ~ArkTraumaBurns();
 	
 #if 0
 	float ModifyDamage(float arg0) const;

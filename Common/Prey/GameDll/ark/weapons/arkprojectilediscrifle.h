@@ -32,6 +32,7 @@ public:
 	unsigned m_hitEntity;
 	
 	CArkProjectileDiscRifle();
+	virtual ~CArkProjectileDiscRifle();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

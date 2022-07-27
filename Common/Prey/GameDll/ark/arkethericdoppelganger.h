@@ -25,6 +25,7 @@ public:
 	ArkEffectParameters m_spawnParticleParams;
 	
 	CArkEthericDoppelganger();
+	virtual ~CArkEthericDoppelganger();
 	virtual void GetMemoryUsage(ICrySizer *_s) const;
 	virtual bool Init(IGameObject *_pGameObject);
 	virtual void PostInit(IGameObject *_pGameObject);

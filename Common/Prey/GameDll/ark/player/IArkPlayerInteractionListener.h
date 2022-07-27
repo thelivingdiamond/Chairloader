@@ -6,6 +6,7 @@ struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
 struct IEntity;
 
+// Header: Override
 // Prey/GameDll/ark/player/IArkPlayerInteractionListener.h
 class IArkPlayerInteractionListener // Id=8014060 Size=8
 {

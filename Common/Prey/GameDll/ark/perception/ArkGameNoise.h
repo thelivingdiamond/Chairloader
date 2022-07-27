@@ -5,6 +5,7 @@
 namespace ArkGameNoise
 {
 
+// Header: Override
 // Prey/GameDll/ark/perception/ArkGameNoise.h
 struct Params // Id=800200B Size=16
 {

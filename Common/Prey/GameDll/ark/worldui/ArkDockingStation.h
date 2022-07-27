@@ -1,8 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
@@ -44,6 +43,7 @@ public:
 	_smart_ptr<IMaterial> m_pPowerOffMaterial;
 	
 	ArkDockingStation();
+	virtual ~ArkDockingStation();
 	virtual void FullSerialize(TSerialize _ser);
 	virtual void PostSerialize();
 	virtual void ProcessEvent(SEntityEvent &_event);

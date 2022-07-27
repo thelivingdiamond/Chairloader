@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryInput/IInput.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/ui/ArkOptionLayout.h>

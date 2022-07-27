@@ -2,6 +2,7 @@
 
 #pragma once
 
+// Header: Override
 // Prey/GameDll/ark/iface/IArkEmailListener.h
 class IArkEmailListener // Id=80154EF Size=8
 {

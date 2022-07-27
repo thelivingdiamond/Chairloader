@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>
 
 class ArkClass;
@@ -254,6 +253,7 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	virtual bool Init();
+	virtual ~ArkFocusModeComponentProperties();
 	
 #if 0
 	void SetMouseSensitivity(float arg0);
@@ -297,5 +297,6 @@ public:
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1222DF0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1222EB0);
 	static inline auto FInit = PreyFunction<bool(ArkFocusModeComponentProperties *const _this)>(0x1223000);
+	static inline auto FBitNotArkFocusModeComponentProperties = PreyFunction<void(ArkFocusModeComponentProperties *const _this)>(0x1222BC0);
 };
 

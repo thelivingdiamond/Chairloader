@@ -28,6 +28,7 @@ public:
 	float m_hitReactDamageThreshold;
 	
 	ArkPlayerSignalReceiver();
+	virtual ~ArkPlayerSignalReceiver();
 	virtual void Init(const unsigned &_entityId);
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	virtual ArkSignalSystem::PackageSignalRampContainer *GetPackageSignalRampContainer();
