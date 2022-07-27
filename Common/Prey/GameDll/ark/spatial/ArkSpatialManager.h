@@ -4,6 +4,14 @@
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/GameDll/ark/spatial/ArkSpatialManagerKey.h>
 #include <Prey/GameDll/ark/spatial/arkspatiallysorted.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_apextentacle.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_cystoidnest.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_energizable.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_interferable.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_interferableandenergizable.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_npc.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_turret.h>
 
 class ArkApexTentacle;
 class ArkCystoidNest;

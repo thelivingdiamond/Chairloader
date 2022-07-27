@@ -1,17 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedApexTentacle.h>
-#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedEntity.h>
-#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedKey.h>
-#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedNpc.h>
-#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedTurret.h>
-#include <Prey/GameDll/ark/spatial/arkspatiallysortedturret.h>
-#include <_unknown/ArkSpatiallySorted_ArkSpatiallySortedApexTentacle___ObjectCoordinate.h>
-#include <_unknown/ArkSpatiallySorted_ArkSpatiallySortedCystoidNest___ObjectCoordinate.h>
-#include <_unknown/ArkSpatiallySorted_ArkSpatiallySortedEntity___ObjectCoordinate.h>
-#include <_unknown/ArkSpatiallySorted_ArkSpatiallySortedNpc___ObjectCoordinate.h>
-#include <_unknown/ArkSpatiallySorted_ArkSpatiallySortedTurret___ObjectCoordinate.h>
 
 // Header: Exact
 // Prey/GameDll/ark/spatial/arkspatiallysorted.h
