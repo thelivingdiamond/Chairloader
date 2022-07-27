@@ -1,13 +1,46 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDataComponentBase.h>
 #include <Prey/GameDll/ark/player/pda/arkrostercomponent.h>
 
 class CArkFlowNodeCharacterPasswordAcquired;
 struct IEntity;
+
+// Header: FromCpp
+// Prey/GameDll/ark/player/pda/arkrostercomponent.h
+class CArkCharacterStatus // Id=8016FB2 Size=24
+{
+public:
+	uint64_t m_id;
+	uint64_t m_location;
+	EArkVitalSign m_vitalSign;
+	bool m_bIsAlive;
+	bool m_bWasDiscovered;
+	bool m_bHasTrackingChip;
+
+	void NotifyListeners() { FNotifyListeners(this); }
+
+#if 0
+	void Serialize(TSerialize arg0);
+	uint64_t GetID() const;
+	uint64_t GetLocation() const;
+	bool GetIsAlive() const;
+	bool GetWasDiscovered() const;
+	bool GetHasTrackingChip() const;
+	EArkVitalSign GetVitalSign() const;
+	void SetLocation(const uint64_t arg0);
+	void SetIsAlive(const bool arg0);
+	void SetVitalSign(EArkVitalSign arg0);
+	void SetWasDiscovered(const bool arg0);
+	void SetHasTrackingChip(const bool arg0);
+	bool operator==(const uint64_t arg0) const;
+#endif
+
+	static inline auto FNotifyListeners = PreyFunction<void(CArkCharacterStatus* const _this)>(0x15B8E40);
+};
+
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/pda/ArkRosterComponent.h
@@ -55,37 +88,3 @@ public:
 	static inline auto FGetCharacterStatusOv0 = PreyFunction<CArkCharacterStatus const *(ArkRosterComponent const *const _this, const uint64_t _id)>(0x15B8840);
 	static inline auto FIsPlayerCharacter = PreyFunction<bool(ArkRosterComponent const *const _this, const uint64_t _characterId)>(0x15B8DC0);
 };
-
-// Header: FromCpp
-// Prey/GameDll/ark/player/pda/arkrostercomponent.h
-class CArkCharacterStatus // Id=8016FB2 Size=24
-{
-public:
-	uint64_t m_id;
-	uint64_t m_location;
-	EArkVitalSign m_vitalSign;
-	bool m_bIsAlive;
-	bool m_bWasDiscovered;
-	bool m_bHasTrackingChip;
-	
-	void NotifyListeners() { FNotifyListeners(this); }
-	
-#if 0
-	void Serialize(TSerialize arg0);
-	uint64_t GetID() const;
-	uint64_t GetLocation() const;
-	bool GetIsAlive() const;
-	bool GetWasDiscovered() const;
-	bool GetHasTrackingChip() const;
-	EArkVitalSign GetVitalSign() const;
-	void SetLocation(const uint64_t arg0);
-	void SetIsAlive(const bool arg0);
-	void SetVitalSign(EArkVitalSign arg0);
-	void SetWasDiscovered(const bool arg0);
-	void SetHasTrackingChip(const bool arg0);
-	bool operator==(const uint64_t arg0) const;
-#endif
-	
-	static inline auto FNotifyListeners = PreyFunction<void(CArkCharacterStatus *const _this)>(0x15B8E40);
-};
-

@@ -5,10 +5,11 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
-#include <Prey/GameDll/ark/dialog/arkflownodedialogtrigger.h>
+//#include <Prey/GameDll/ark/dialog/arkflownodedialogtrigger.h>
 
 class ArkConversation;
 class XmlNodeRef;
+class ArkTranscribeDialogTrigger;
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/pda/ArkLiveTranscribeComponent.h

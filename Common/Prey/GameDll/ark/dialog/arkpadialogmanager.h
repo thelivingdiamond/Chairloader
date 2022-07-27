@@ -12,9 +12,6 @@ struct IEntity;
 struct SAudioRequestInfo;
 struct SDialogParams;
 
-template <typename T>
-class ArkFlowNodeDialogTrigger;
-
 class ArkPADialogTrigger;
 
 // Prey/GameDll/ark/dialog/arkpadialogmanager.h
