@@ -1,10 +1,9 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h>
+//#include <Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h>
 #include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CryFlowGraph/IFlowSystem.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+//#include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
 #include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
@@ -21,6 +20,7 @@ struct SInputEvent;
 struct SUIArguments;
 struct SUIEventDesc;
 
+#if 0
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkgenderselectmenu.h
 class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<0> // Id=801BA41 Size=16
@@ -45,6 +45,7 @@ public:
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeGenderSelectMenu *const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo)>(0x13481A0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkFlowNodeGenderSelectMenu const *const _this, ICrySizer *_pS)>(0x44D760);
 };
+#endif
 
 // Header: Exact
 // Prey/GameDll/ark/ui/ArkGenderSelectMenu.h

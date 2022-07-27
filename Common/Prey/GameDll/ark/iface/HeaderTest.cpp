@@ -86,3 +86,8 @@ static_assert(sizeof(IEntityArchetypeListener) == 8);
 
 #include "IGameRulesKillListener.h"
 static_assert(sizeof(IGameRulesKillListener) == 8);
+
+#include "ISaveGameEnumerator.h"
+static_assert(sizeof(ISaveGameEnumerator) == 8);
+static_assert(sizeof(ISaveGameEnumerator::SGameMetaData) == 56);
+static_assert(sizeof(ISaveGameEnumerator::SGameDescription) == 80);

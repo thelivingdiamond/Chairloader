@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryInput/IInput.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/iface/IArkGameLoadSaveListener.h>
 #include <Prey/GameDll/ark/player/IArkEntitlementListener.h>
 #include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
@@ -13,6 +12,7 @@
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/GameDll/ark/iface/ISaveGameEnumerator.h>
 
 class ArkActiveUserManagerBase;
 class CCryName;

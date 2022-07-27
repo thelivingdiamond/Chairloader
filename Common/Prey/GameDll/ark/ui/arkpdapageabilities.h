@@ -15,6 +15,39 @@ struct SUIArguments;
 struct SUIEventDesc;
 
 // Header: Exact
+// Prey/Ark/arkmaterialanimations.h
+class ArkAbilityRow : public ArkReflectedObject // Id=80193B4 Size=24
+{
+public:
+	class ArkAbilitiesProperty : public ArkProperty // Id=80193B5 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAbilityRow::ArkAbilitiesProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x15A4050);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAbilityRow::ArkAbilitiesProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1610DD0);
+		static inline auto FIsArray = PreyFunction<bool(ArkAbilityRow::ArkAbilitiesProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkAbilityRow::ArkAbilitiesProperty const* const _this, ArkReflectedObject* _pObject)>(0x1073510);
+	};
+
+	static ArkAbilityRow::ArkAbilitiesProperty s_ArkAbilitiesProperty;
+	std::vector<unsigned __int64> m_Abilities;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	std::vector<unsigned __int64>& GetAbilities();
+	std::vector<unsigned __int64> const& GetAbilities() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16140D0);
+};
+
+// Header: Exact
 // Prey/GameDll/ark/ui/arkpdapageabilities.h
 class ArkAbilityCategory : public ArkReflectedObject // Id=80193B6 Size=64
 {

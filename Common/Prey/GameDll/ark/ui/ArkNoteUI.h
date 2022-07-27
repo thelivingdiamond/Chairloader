@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ui/ArkButtonPromptCollection.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>

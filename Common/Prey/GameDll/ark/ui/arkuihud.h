@@ -1,13 +1,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CryGame/IGameFramework.h>
+//#include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/CrySystem/ISystem.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/ui/ArkHitDamageUI.h>
 #include <Prey/GameDll/ark/ui/IHUDEventListener.h>
@@ -33,6 +31,24 @@ struct SActionMapEvent;
 struct SHUDEvent;
 struct SUIArguments;
 struct SUIEventDesc;
+
+// Header: Override
+// Prey/GameDll/ark/ui/ArkUIHUD.h
+class ArkLogEntry // Id=8017671 Size=48
+{
+public:
+	uint64_t m_uniqueId;
+	wstring m_text;
+	wstring m_countString;
+	string m_icon;
+	bool m_bImportant;
+	int m_count;
+	EArkLogType m_logType;
+
+#if 0
+	bool operator==(ArkLogEntry const& arg0) const;
+#endif
+};
 
 // Header: Exact
 // Prey/GameDll/ark/ui/arkuihud.h

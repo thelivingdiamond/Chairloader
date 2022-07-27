@@ -5,7 +5,6 @@
 #include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ui/IArkOptionMenuListener.h>
 #include <Prey/GameDll/ark/ui/IArkSaveLoadMenuListener.h>
 #include <Prey/GameDll/ark/ui/IArkTutorialMenuListener.h>

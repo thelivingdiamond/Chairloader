@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>

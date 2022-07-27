@@ -346,6 +346,7 @@
     <ClInclude Include="..\Common\Prey\CryAction\IGameObject.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObjectSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IMovementController.h" />
+    <ClInclude Include="..\Common\Prey\CryAction\ISubtitleManager.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IViewSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAssert\CryAssert_Windows.h" />
     <ClInclude Include="..\Common\Prey\CryCore\Assert\CompileTimeAssert.h" />
@@ -928,7 +929,7 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkTutorialCardUI.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkTutorialMenu.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuihud.h" />
-    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuimenubase.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIMenuBase.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenu.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenuBase.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuiutil.h" />

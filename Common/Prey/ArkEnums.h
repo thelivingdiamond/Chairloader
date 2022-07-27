@@ -2303,3 +2303,15 @@ enum class ArkTutorialType
 	Card = 0x1,
 	Nag = 0x2,
 };
+
+enum class EArkLogType
+{
+	Unspecified = 0x0,
+	ItemPickup = 0x1,
+	SneakAttack = 0x2,
+	CriticalAttack = 0x3,
+	MimicHit = 0x4,
+	Chipset = 0x5,
+	EntitlementUnlock = 0x6,
+	Airlock = 0x7,
+};

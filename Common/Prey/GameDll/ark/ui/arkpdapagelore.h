@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/GameDll/ark/ui/IArkPDAPage.h>
-#include <_unknown/ArkUIMenuBase_CArkPDAPageLore_.h>
 
 struct IUIElement;
 struct SUIArguments;

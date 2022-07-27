@@ -7,7 +7,6 @@
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/ArkExaminationMode.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
-#include <_unknown/ArkUIMenuBase_ArkHackingUI_.h>
 
 struct IConsoleCmdArgs;
 struct IEntity;

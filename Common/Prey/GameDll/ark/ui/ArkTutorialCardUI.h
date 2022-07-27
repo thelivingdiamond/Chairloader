@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/Ark/ArkDialogAudioTrigger.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/GameDll/ark/dialog/IArkDialogAudioTriggerOwner.h>

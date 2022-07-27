@@ -2,10 +2,10 @@
 
 #pragma once
 #include <Prey/CrySystem/ISystem.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ui/IArkSaveLoadMenuListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>
+#include <Prey/GameDll/ark/ui/IUIEventListener.h>
 
 struct IUIElement;
 struct IUIEventSystem;

@@ -40,7 +40,7 @@ enum class ESaveGameReason {
 	eSGR_Command = 2,
 	eSGR_QuickSave = 3
 };
-class ISaveGame
+struct ISaveGame
 {
 public:
 	virtual ~ISaveGame() = 0;
@@ -60,7 +60,7 @@ public:
 
 
 };
-class ILoadGame
+struct ILoadGame
 {
 public:
 	virtual ~ILoadGame() = 0;
@@ -74,17 +74,6 @@ public:
 	virtual bool HaveSection(const char*) = 0;
 	virtual void Complete() = 0;
 	virtual const char* GetFileName() = 0;
-
-
-};
-class IArkActiveUserManagerListener
-{
-public:
-	virtual void OnActiveUserIdChanged(unsigned int) = 0;
-	virtual void OnActiveUserDisconnected(bool) = 0;
-	virtual bool OnActiveUserReengaged() = 0;
-	virtual void OnActiveUserPostReengaged() = 0;
-	virtual void OnActiveUserSignedOut() = 0;
 
 
 };

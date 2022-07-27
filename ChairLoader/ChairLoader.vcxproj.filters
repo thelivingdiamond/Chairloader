@@ -1569,9 +1569,6 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuihud.h">
       <Filter>Common\Prey\GameDll\ark\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuimenubase.h">
-      <Filter>Common\Prey\GameDll\ark\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenu.h">
       <Filter>Common\Prey\GameDll\ark\ui</Filter>
     </ClInclude>
@@ -2422,6 +2419,12 @@
       <Filter>Common\Prey\GameDll\ark\player</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Prey\CryAction\IActorSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIMenuBase.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\ISubtitleManager.h">
       <Filter>Common\Prey\CryAction</Filter>
     </ClInclude>
   </ItemGroup>

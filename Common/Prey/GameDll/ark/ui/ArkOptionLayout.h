@@ -4,6 +4,7 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/GameDll/ark/ui/ArkOptionDropDownBase.h>
 #include <Prey/GameDll/ark/ui/arkoptionlayout.h>
+#include <Prey/GameDll/ark/ui/ArkOptionDropDownBase.h>
 
 class ArkClass;
 class ArkOptionMenu;
@@ -35,6 +36,564 @@ public:
 #endif
 	
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13644E0);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/ui/arkoptionlayout.h
+class ArkOptionSubAction : public ArkReflectedObject // Id=801B967 Size=8
+{
+public:
+	class ArkActionProperty : public ArkProperty // Id=801B968 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionSubAction::ArkActionProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionSubAction::ArkActionProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkOptionSubAction::ArkActionProperty s_ArkActionProperty;
+	string m_Action;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	void SetAction(string arg0);
+	string const& GetAction() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13644E0);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/ui/arkoptionlayout.h
+class ArkOption : public ArkReflectedObject // Id=801B9A1 Size=56
+{
+public:
+	class ArkLabelProperty : public ArkProperty // Id=801B9A2 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkLabelProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360300);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOption::ArkLabelProperty const* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+	};
+
+	static ArkOption::ArkLabelProperty s_ArkLabelProperty;
+	string m_Label;
+
+	class ArkValueProperty : public ArkProperty // Id=801B9A3 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkValueProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360380);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOption::ArkValueProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1068E60);
+	};
+
+	static ArkOption::ArkValueProperty s_ArkValueProperty;
+	string m_Value;
+
+	class ArkHiddenProperty : public ArkProperty // Id=801B9A4 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkHiddenProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360430);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOption::ArkHiddenProperty const* const _this, ArkReflectedObject* const _pObject)>(0x15A6360);
+	};
+
+	static ArkOption::ArkHiddenProperty s_ArkHiddenProperty;
+	bool m_Hidden;
+
+	class ArkSubactionsProperty : public ArkProperty // Id=801B9A5 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkSubactionsProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13604E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOption::ArkSubactionsProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1360540);
+		static inline auto FIsArray = PreyFunction<bool(ArkOption::ArkSubactionsProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkOption::ArkSubactionsProperty const* const _this, ArkReflectedObject* _pObject)>(0x1360580);
+	};
+
+	static ArkOption::ArkSubactionsProperty s_ArkSubactionsProperty;
+	std::vector<ArkOptionSubAction> m_Subactions;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool IsHidden() const;
+
+#if 0
+	void SetLabel(string arg0);
+	string const& GetLabel() const;
+	void SetValue(string arg0);
+	string const& GetValue() const;
+	void SetHidden(bool arg0);
+	const bool& GetHidden() const;
+	std::vector<ArkOptionSubAction>& GetSubactions();
+	std::vector<ArkOptionSubAction> const& GetSubactions() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1364060);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1364930);
+	static inline auto FIsHidden = PreyFunction<bool(ArkOption const* const _this)>(0x1141F10);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/ui/arkoptionlayout.h
+class ArkOptionWidgetBase : public ArkReflectedObject // Id=801B976 Size=8
+{
+public:
+	enum class EArkOptionWidgetType
+	{
+		none = 0,
+		list = 1,
+		slider = 2,
+		datalist = 3,
+		command = 4,
+		toggle = 5,
+		dropdown = 6,
+		controlMap = 7,
+	};
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual ArkOptionWidgetBase::EArkOptionWidgetType GetType() const;
+	virtual bool IsAvailable();
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1364630);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13650B0);
+	static inline auto FGetType = PreyFunction<ArkOptionWidgetBase::EArkOptionWidgetType(ArkOptionWidgetBase const* const _this)>(0x158AEF0);
+	static inline auto FIsAvailable = PreyFunction<bool(ArkOptionWidgetBase* const _this)>(0x1B933B0);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/ui/arkoptionlayout.h
+class ArkOptionAttribute : public ArkReflectedObject // Id=801B958 Size=88
+{
+public:
+	class ArkActionProperty : public ArkProperty // Id=801B959 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkActionProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkActionProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkOptionAttribute::ArkActionProperty s_ArkActionProperty;
+	string m_Action;
+
+	class ArkLabelProperty : public ArkProperty // Id=801B95A Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkLabelProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x10637A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkLabelProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	static ArkOptionAttribute::ArkLabelProperty s_ArkLabelProperty;
+	string m_Label;
+
+	class ArkSetOnChangeProperty : public ArkProperty // Id=801B95B Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkSetOnChangeProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360190);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkSetOnChangeProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	static ArkOptionAttribute::ArkSetOnChangeProperty s_ArkSetOnChangeProperty;
+	bool m_SetOnChange;
+
+	class ArkHideOnFrontendProperty : public ArkProperty // Id=801B95C Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideOnFrontendProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1061620);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHideOnFrontendProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1061630);
+	};
+
+	static ArkOptionAttribute::ArkHideOnFrontendProperty s_ArkHideOnFrontendProperty;
+	bool m_HideOnFrontend;
+
+	class ArkHideInGameProperty : public ArkProperty // Id=801B95D Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideInGameProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13602B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHideInGameProperty const* const _this, ArkReflectedObject* const _pObject)>(0x13602C0);
+	};
+
+	static ArkOptionAttribute::ArkHideInGameProperty s_ArkHideInGameProperty;
+	bool m_HideInGame;
+
+	class ArkCloseMenuProperty : public ArkProperty // Id=801B95E Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkCloseMenuProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13602D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkCloseMenuProperty const* const _this, ArkReflectedObject* const _pObject)>(0x13602E0);
+	};
+
+	static ArkOptionAttribute::ArkCloseMenuProperty s_ArkCloseMenuProperty;
+	bool m_CloseMenu;
+
+	class ArkDefaultProperty : public ArkProperty // Id=801B95F Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkDefaultProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13D4F20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkDefaultProperty const* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	static ArkOptionAttribute::ArkDefaultProperty s_ArkDefaultProperty;
+	string m_Default;
+
+	class ArkHideFromProfileProperty : public ArkProperty // Id=801B960 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideFromProfileProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13602F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHideFromProfileProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+	};
+
+	static ArkOptionAttribute::ArkHideFromProfileProperty s_ArkHideFromProfileProperty;
+	bool m_HideFromProfile;
+
+	class ArkHiddenProperty : public ArkProperty // Id=801B961 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHiddenProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360360);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHiddenProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1360370);
+	};
+
+	static ArkOptionAttribute::ArkHiddenProperty s_ArkHiddenProperty;
+	bool m_Hidden;
+
+	class ArkPlatformProperty : public ArkProperty // Id=801B962 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkPlatformProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13603E0);
+	};
+
+	static ArkOptionAttribute::ArkPlatformProperty s_ArkPlatformProperty;
+	EArkOptionPlatform m_Platform;
+
+	class ArkSubactionsProperty : public ArkProperty // Id=801B963 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkSubactionsProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkSubactionsProperty const* const _this, ArkReflectedObject* const _pObject)>(0x13604B0);
+		static inline auto FIsArray = PreyFunction<bool(ArkOptionAttribute::ArkSubactionsProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkOptionAttribute::ArkSubactionsProperty const* const _this, ArkReflectedObject* _pObject)>(0x13604D0);
+	};
+
+	static ArkOptionAttribute::ArkSubactionsProperty s_ArkSubactionsProperty;
+	std::vector<ArkOptionSubAction> m_Subactions;
+
+	class ArkWidgetProperty : public ArkProperty // Id=801B973 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkWidgetProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360700);
+	};
+
+	static ArkOptionAttribute::ArkWidgetProperty s_ArkWidgetProperty;
+	std::shared_ptr<ArkOptionWidgetBase> m_pWidget;
+
+	class ArkWaitForTextureReloadProperty : public ArkProperty // Id=801B978 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkWaitForTextureReloadProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13D4CB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkWaitForTextureReloadProperty const* const _this, ArkReflectedObject* const _pObject)>(0x12FBDE0);
+	};
+
+	static ArkOptionAttribute::ArkWaitForTextureReloadProperty s_ArkWaitForTextureReloadProperty;
+	bool m_WaitForTextureReload;
+
+	class ArkWriteConfigFileProperty : public ArkProperty // Id=801B979 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkWriteConfigFileProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FAA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkWriteConfigFileProperty const* const _this, ArkReflectedObject* const _pObject)>(0x135FAB0);
+	};
+
+	static ArkOptionAttribute::ArkWriteConfigFileProperty s_ArkWriteConfigFileProperty;
+	bool m_WriteConfigFile;
+
+	class ArkHideForSteamControllerProperty : public ArkProperty // Id=801B97A Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideForSteamControllerProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FAC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHideForSteamControllerProperty const* const _this, ArkReflectedObject* const _pObject)>(0x135FAD0);
+	};
+
+	static ArkOptionAttribute::ArkHideForSteamControllerProperty s_ArkHideForSteamControllerProperty;
+	bool m_HideForSteamController;
+
+	class ArkHideOnQuasimodoProperty : public ArkProperty // Id=801B97B Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideOnQuasimodoProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FAE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHideOnQuasimodoProperty const* const _this, ArkReflectedObject* const _pObject)>(0x135FAF0);
+	};
+
+	static ArkOptionAttribute::ArkHideOnQuasimodoProperty s_ArkHideOnQuasimodoProperty;
+	bool m_HideOnQuasimodo;
+
+	class ArkHideOnPCProperty : public ArkProperty // Id=801B97C Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideOnPCProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1056FC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionAttribute::ArkHideOnPCProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1056FD0);
+	};
+
+	static ArkOptionAttribute::ArkHideOnPCProperty s_ArkHideOnPCProperty;
+	bool m_HideOnPC;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	static EArkOptionPlatform GetEnumFromString(const char* _string) { return FGetEnumFromString(_string); }
+	bool IsAvailable(EArkOptionPlatform _platform, const bool _bLevelLoaded) const { return FIsAvailable(this, _platform, _bLevelLoaded); }
+	std::pair<string, CCryName> GetActionAsKeyBind() const { return FGetActionAsKeyBindOv1(this); }
+	static std::pair<string, CCryName> GetActionAsKeyBind(string const& _action) { return FGetActionAsKeyBindOv0(_action); }
+
+#if 0
+	void SetAction(string arg0);
+	string const& GetAction() const;
+	void SetLabel(string arg0);
+	string const& GetLabel() const;
+	void SetSetOnChange(bool arg0);
+	const bool& GetSetOnChange() const;
+	void SetHideOnFrontend(bool arg0);
+	const bool& GetHideOnFrontend() const;
+	void SetHideInGame(bool arg0);
+	const bool& GetHideInGame() const;
+	void SetCloseMenu(bool arg0);
+	const bool& GetCloseMenu() const;
+	void SetDefault(string arg0);
+	string const& GetDefault() const;
+	void SetHideFromProfile(bool arg0);
+	const bool& GetHideFromProfile() const;
+	void SetHidden(bool arg0);
+	const bool& GetHidden() const;
+	void SetPlatform(string arg0);
+	EArkOptionPlatform const& GetPlatform() const;
+	std::vector<ArkOptionSubAction>& GetSubactions();
+	std::vector<ArkOptionSubAction> const& GetSubactions() const;
+	void SetWidget(ArkReflectedObject* arg0);
+	ArkOptionWidgetBase* GetWidget();
+	ArkOptionWidgetBase const* GetWidget() const;
+	void SetWaitForTextureReload(bool arg0);
+	const bool& GetWaitForTextureReload() const;
+	void SetWriteConfigFile(bool arg0);
+	const bool& GetWriteConfigFile() const;
+	void SetHideForSteamController(bool arg0);
+	const bool& GetHideForSteamController() const;
+	void SetHideOnQuasimodo(bool arg0);
+	const bool& GetHideOnQuasimodo() const;
+	void SetHideOnPC(bool arg0);
+	const bool& GetHideOnPC() const;
+	static const char* GetStringFromEnum(EArkOptionPlatform arg0);
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13640D0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13649D0);
+	static inline auto FGetEnumFromString = PreyFunction<EArkOptionPlatform(const char* _string)>(0x1365150);
+	static inline auto FIsAvailable = PreyFunction<bool(ArkOptionAttribute const* const _this, EArkOptionPlatform _platform, const bool _bLevelLoaded)>(0x1365600);
+	static inline auto FGetActionAsKeyBindOv1 = PreyFunction<std::pair<string, CCryName>(ArkOptionAttribute const* const _this)>(0x1364680);
+	static inline auto FGetActionAsKeyBindOv0 = PreyFunction<std::pair<string, CCryName>(string const& _action)>(0x13646A0);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/ui/arkoptionlayout.h
+class ArkOptionLayoutSubPage : public ArkReflectedObject // Id=801B951 Size=64
+{
+public:
+	class ArkLabelProperty : public ArkProperty // Id=801B952 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkLabelProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkLabelProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkOptionLayoutSubPage::ArkLabelProperty s_ArkLabelProperty;
+	string m_Label;
+
+	class ArkLabelPS4Property : public ArkProperty // Id=801B953 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkLabelPS4Property const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x10637A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkLabelPS4Property const* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	static ArkOptionLayoutSubPage::ArkLabelPS4Property s_ArkLabelPS4Property;
+	string m_LabelPS4;
+
+	class ArkAttributesProperty : public ArkProperty // Id=801B954 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkAttributesProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FCE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkAttributesProperty const* const _this, ArkReflectedObject* const _pObject)>(0x135FD20);
+		static inline auto FIsArray = PreyFunction<bool(ArkOptionLayoutSubPage::ArkAttributesProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkOptionLayoutSubPage::ArkAttributesProperty const* const _this, ArkReflectedObject* _pObject)>(0x135FD40);
+	};
+
+	static ArkOptionLayoutSubPage::ArkAttributesProperty s_ArkAttributesProperty;
+	std::vector<ArkOptionAttribute> m_Attributes;
+
+	class ArkKeybindsProperty : public ArkProperty // Id=801B988 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkKeybindsProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13600A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkKeybindsProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1088F70);
+	};
+
+	static ArkOptionLayoutSubPage::ArkKeybindsProperty s_ArkKeybindsProperty;
+	bool m_Keybinds;
+
+	class ArkPlatformProperty : public ArkProperty // Id=801B989 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkPlatformProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13600B0);
+	};
+
+	static ArkOptionLayoutSubPage::ArkPlatformProperty s_ArkPlatformProperty;
+	EArkOptionPlatform m_Platform;
+
+	class ArkWriteConfigFileProperty : public ArkProperty // Id=801B98A Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkWriteConfigFileProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360100);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkWriteConfigFileProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
+	};
+
+	static ArkOptionLayoutSubPage::ArkWriteConfigFileProperty s_ArkWriteConfigFileProperty;
+	bool m_WriteConfigFile;
+
+	class ArkRequiresApplyProperty : public ArkProperty // Id=801B98B Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkRequiresApplyProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1056F50);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkRequiresApplyProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1056F60);
+	};
+
+	static ArkOptionLayoutSubPage::ArkRequiresApplyProperty s_ArkRequiresApplyProperty;
+	bool m_RequiresApply;
+
+	class ArkWarningProperty : public ArkProperty // Id=801B98C Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkWarningProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1085FB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkOptionLayoutSubPage::ArkWarningProperty const* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+	};
+
+	static ArkOptionLayoutSubPage::ArkWarningProperty s_ArkWarningProperty;
+	string m_Warning;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	const char* GetPlatformLabel() const { return FGetPlatformLabel(this); }
+
+#if 0
+	void SetLabel(string arg0);
+	string const& GetLabel() const;
+	void SetLabelPS4(string arg0);
+	string const& GetLabelPS4() const;
+	std::vector<ArkOptionAttribute>& GetAttributes();
+	std::vector<ArkOptionAttribute> const& GetAttributes() const;
+	void SetKeybinds(bool arg0);
+	const bool& GetKeybinds() const;
+	void SetPlatform(string arg0);
+	EArkOptionPlatform const& GetPlatform() const;
+	void SetWriteConfigFile(bool arg0);
+	const bool& GetWriteConfigFile() const;
+	void SetRequiresApply(bool arg0);
+	const bool& GetRequiresApply() const;
+	void SetWarning(string arg0);
+	string const& GetWarning() const;
+	bool IsAvailable(EArkOptionPlatform arg0) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1364320);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1364CF0);
+	static inline auto FGetPlatformLabel = PreyFunction<const char* (ArkOptionLayoutSubPage const* const _this)>(0x12E5E70);
 };
 
 // Header: Exact
@@ -84,483 +643,6 @@ public:
 	
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x10714D0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1364C50);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/ui/arkoptionlayout.h
-class ArkOptionLayoutSubPage : public ArkReflectedObject // Id=801B951 Size=64
-{
-public:
-	class ArkLabelProperty : public ArkProperty // Id=801B952 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkOptionLayoutSubPage::ArkLabelProperty s_ArkLabelProperty;
-	string m_Label;
-	
-	class ArkLabelPS4Property : public ArkProperty // Id=801B953 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkLabelPS4Property const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkLabelPS4Property const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkOptionLayoutSubPage::ArkLabelPS4Property s_ArkLabelPS4Property;
-	string m_LabelPS4;
-	
-	class ArkAttributesProperty : public ArkProperty // Id=801B954 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkAttributesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FCE0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkAttributesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x135FD20);
-		static inline auto FIsArray = PreyFunction<bool(ArkOptionLayoutSubPage::ArkAttributesProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkOptionLayoutSubPage::ArkAttributesProperty const *const _this, ArkReflectedObject *_pObject)>(0x135FD40);
-	};
-
-	static ArkOptionLayoutSubPage::ArkAttributesProperty s_ArkAttributesProperty;
-	std::vector<ArkOptionAttribute> m_Attributes;
-	
-	class ArkKeybindsProperty : public ArkProperty // Id=801B988 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkKeybindsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13600A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkKeybindsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088F70);
-	};
-
-	static ArkOptionLayoutSubPage::ArkKeybindsProperty s_ArkKeybindsProperty;
-	bool m_Keybinds;
-	
-	class ArkPlatformProperty : public ArkProperty // Id=801B989 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkPlatformProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13600B0);
-	};
-
-	static ArkOptionLayoutSubPage::ArkPlatformProperty s_ArkPlatformProperty;
-	EArkOptionPlatform m_Platform;
-	
-	class ArkWriteConfigFileProperty : public ArkProperty // Id=801B98A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkWriteConfigFileProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360100);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkWriteConfigFileProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1056F40);
-	};
-
-	static ArkOptionLayoutSubPage::ArkWriteConfigFileProperty s_ArkWriteConfigFileProperty;
-	bool m_WriteConfigFile;
-	
-	class ArkRequiresApplyProperty : public ArkProperty // Id=801B98B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkRequiresApplyProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1056F50);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkRequiresApplyProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1056F60);
-	};
-
-	static ArkOptionLayoutSubPage::ArkRequiresApplyProperty s_ArkRequiresApplyProperty;
-	bool m_RequiresApply;
-	
-	class ArkWarningProperty : public ArkProperty // Id=801B98C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionLayoutSubPage::ArkWarningProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1085FB0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionLayoutSubPage::ArkWarningProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12F3810);
-	};
-
-	static ArkOptionLayoutSubPage::ArkWarningProperty s_ArkWarningProperty;
-	string m_Warning;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	const char *GetPlatformLabel() const { return FGetPlatformLabel(this); }
-	
-#if 0
-	void SetLabel(string arg0);
-	string const &GetLabel() const;
-	void SetLabelPS4(string arg0);
-	string const &GetLabelPS4() const;
-	std::vector<ArkOptionAttribute> &GetAttributes();
-	std::vector<ArkOptionAttribute> const &GetAttributes() const;
-	void SetKeybinds(bool arg0);
-	const bool &GetKeybinds() const;
-	void SetPlatform(string arg0);
-	EArkOptionPlatform const &GetPlatform() const;
-	void SetWriteConfigFile(bool arg0);
-	const bool &GetWriteConfigFile() const;
-	void SetRequiresApply(bool arg0);
-	const bool &GetRequiresApply() const;
-	void SetWarning(string arg0);
-	string const &GetWarning() const;
-	bool IsAvailable(EArkOptionPlatform arg0) const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1364320);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1364CF0);
-	static inline auto FGetPlatformLabel = PreyFunction<const char *(ArkOptionLayoutSubPage const *const _this)>(0x12E5E70);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/ui/arkoptionlayout.h
-class ArkOptionAttribute : public ArkReflectedObject // Id=801B958 Size=88
-{
-public:
-	class ArkActionProperty : public ArkProperty // Id=801B959 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkActionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkActionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkOptionAttribute::ArkActionProperty s_ArkActionProperty;
-	string m_Action;
-	
-	class ArkLabelProperty : public ArkProperty // Id=801B95A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkOptionAttribute::ArkLabelProperty s_ArkLabelProperty;
-	string m_Label;
-	
-	class ArkSetOnChangeProperty : public ArkProperty // Id=801B95B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkSetOnChangeProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360190);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkSetOnChangeProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkOptionAttribute::ArkSetOnChangeProperty s_ArkSetOnChangeProperty;
-	bool m_SetOnChange;
-	
-	class ArkHideOnFrontendProperty : public ArkProperty // Id=801B95C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideOnFrontendProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1061620);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHideOnFrontendProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1061630);
-	};
-
-	static ArkOptionAttribute::ArkHideOnFrontendProperty s_ArkHideOnFrontendProperty;
-	bool m_HideOnFrontend;
-	
-	class ArkHideInGameProperty : public ArkProperty // Id=801B95D Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideInGameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13602B0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHideInGameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13602C0);
-	};
-
-	static ArkOptionAttribute::ArkHideInGameProperty s_ArkHideInGameProperty;
-	bool m_HideInGame;
-	
-	class ArkCloseMenuProperty : public ArkProperty // Id=801B95E Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkCloseMenuProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13602D0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkCloseMenuProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13602E0);
-	};
-
-	static ArkOptionAttribute::ArkCloseMenuProperty s_ArkCloseMenuProperty;
-	bool m_CloseMenu;
-	
-	class ArkDefaultProperty : public ArkProperty // Id=801B95F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkDefaultProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4F20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkDefaultProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkOptionAttribute::ArkDefaultProperty s_ArkDefaultProperty;
-	string m_Default;
-	
-	class ArkHideFromProfileProperty : public ArkProperty // Id=801B960 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideFromProfileProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13602F0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHideFromProfileProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088980);
-	};
-
-	static ArkOptionAttribute::ArkHideFromProfileProperty s_ArkHideFromProfileProperty;
-	bool m_HideFromProfile;
-	
-	class ArkHiddenProperty : public ArkProperty // Id=801B961 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHiddenProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360360);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHiddenProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1360370);
-	};
-
-	static ArkOptionAttribute::ArkHiddenProperty s_ArkHiddenProperty;
-	bool m_Hidden;
-	
-	class ArkPlatformProperty : public ArkProperty // Id=801B962 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkPlatformProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13603E0);
-	};
-
-	static ArkOptionAttribute::ArkPlatformProperty s_ArkPlatformProperty;
-	EArkOptionPlatform m_Platform;
-	
-	class ArkSubactionsProperty : public ArkProperty // Id=801B963 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkSubactionsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360450);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkSubactionsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13604B0);
-		static inline auto FIsArray = PreyFunction<bool(ArkOptionAttribute::ArkSubactionsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkOptionAttribute::ArkSubactionsProperty const *const _this, ArkReflectedObject *_pObject)>(0x13604D0);
-	};
-
-	static ArkOptionAttribute::ArkSubactionsProperty s_ArkSubactionsProperty;
-	std::vector<ArkOptionSubAction> m_Subactions;
-	
-	class ArkWidgetProperty : public ArkProperty // Id=801B973 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkWidgetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360700);
-	};
-
-	static ArkOptionAttribute::ArkWidgetProperty s_ArkWidgetProperty;
-	std::shared_ptr<ArkOptionWidgetBase> m_pWidget;
-	
-	class ArkWaitForTextureReloadProperty : public ArkProperty // Id=801B978 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkWaitForTextureReloadProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4CB0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkWaitForTextureReloadProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12FBDE0);
-	};
-
-	static ArkOptionAttribute::ArkWaitForTextureReloadProperty s_ArkWaitForTextureReloadProperty;
-	bool m_WaitForTextureReload;
-	
-	class ArkWriteConfigFileProperty : public ArkProperty // Id=801B979 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkWriteConfigFileProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FAA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkWriteConfigFileProperty const *const _this, ArkReflectedObject *const _pObject)>(0x135FAB0);
-	};
-
-	static ArkOptionAttribute::ArkWriteConfigFileProperty s_ArkWriteConfigFileProperty;
-	bool m_WriteConfigFile;
-	
-	class ArkHideForSteamControllerProperty : public ArkProperty // Id=801B97A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideForSteamControllerProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FAC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHideForSteamControllerProperty const *const _this, ArkReflectedObject *const _pObject)>(0x135FAD0);
-	};
-
-	static ArkOptionAttribute::ArkHideForSteamControllerProperty s_ArkHideForSteamControllerProperty;
-	bool m_HideForSteamController;
-	
-	class ArkHideOnQuasimodoProperty : public ArkProperty // Id=801B97B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideOnQuasimodoProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FAE0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHideOnQuasimodoProperty const *const _this, ArkReflectedObject *const _pObject)>(0x135FAF0);
-	};
-
-	static ArkOptionAttribute::ArkHideOnQuasimodoProperty s_ArkHideOnQuasimodoProperty;
-	bool m_HideOnQuasimodo;
-	
-	class ArkHideOnPCProperty : public ArkProperty // Id=801B97C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionAttribute::ArkHideOnPCProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1056FC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionAttribute::ArkHideOnPCProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1056FD0);
-	};
-
-	static ArkOptionAttribute::ArkHideOnPCProperty s_ArkHideOnPCProperty;
-	bool m_HideOnPC;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	static EArkOptionPlatform GetEnumFromString(const char *_string) { return FGetEnumFromString(_string); }
-	bool IsAvailable(EArkOptionPlatform _platform, const bool _bLevelLoaded) const { return FIsAvailable(this,_platform,_bLevelLoaded); }
-	std::pair<string,CCryName> GetActionAsKeyBind() const { return FGetActionAsKeyBindOv1(this); }
-	static std::pair<string,CCryName> GetActionAsKeyBind(string const &_action) { return FGetActionAsKeyBindOv0(_action); }
-	
-#if 0
-	void SetAction(string arg0);
-	string const &GetAction() const;
-	void SetLabel(string arg0);
-	string const &GetLabel() const;
-	void SetSetOnChange(bool arg0);
-	const bool &GetSetOnChange() const;
-	void SetHideOnFrontend(bool arg0);
-	const bool &GetHideOnFrontend() const;
-	void SetHideInGame(bool arg0);
-	const bool &GetHideInGame() const;
-	void SetCloseMenu(bool arg0);
-	const bool &GetCloseMenu() const;
-	void SetDefault(string arg0);
-	string const &GetDefault() const;
-	void SetHideFromProfile(bool arg0);
-	const bool &GetHideFromProfile() const;
-	void SetHidden(bool arg0);
-	const bool &GetHidden() const;
-	void SetPlatform(string arg0);
-	EArkOptionPlatform const &GetPlatform() const;
-	std::vector<ArkOptionSubAction> &GetSubactions();
-	std::vector<ArkOptionSubAction> const &GetSubactions() const;
-	void SetWidget(ArkReflectedObject *arg0);
-	ArkOptionWidgetBase *GetWidget();
-	ArkOptionWidgetBase const *GetWidget() const;
-	void SetWaitForTextureReload(bool arg0);
-	const bool &GetWaitForTextureReload() const;
-	void SetWriteConfigFile(bool arg0);
-	const bool &GetWriteConfigFile() const;
-	void SetHideForSteamController(bool arg0);
-	const bool &GetHideForSteamController() const;
-	void SetHideOnQuasimodo(bool arg0);
-	const bool &GetHideOnQuasimodo() const;
-	void SetHideOnPC(bool arg0);
-	const bool &GetHideOnPC() const;
-	static const char *GetStringFromEnum(EArkOptionPlatform arg0);
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13640D0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x13649D0);
-	static inline auto FGetEnumFromString = PreyFunction<EArkOptionPlatform(const char *_string)>(0x1365150);
-	static inline auto FIsAvailable = PreyFunction<bool(ArkOptionAttribute const *const _this, EArkOptionPlatform _platform, const bool _bLevelLoaded)>(0x1365600);
-	static inline auto FGetActionAsKeyBindOv1 = PreyFunction<std::pair<string,CCryName>(ArkOptionAttribute const *const _this)>(0x1364680);
-	static inline auto FGetActionAsKeyBindOv0 = PreyFunction<std::pair<string,CCryName>(string const &_action)>(0x13646A0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/ui/arkoptionlayout.h
-class ArkOptionSubAction : public ArkReflectedObject // Id=801B967 Size=8
-{
-public:
-	class ArkActionProperty : public ArkProperty // Id=801B968 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOptionSubAction::ArkActionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOptionSubAction::ArkActionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkOptionSubAction::ArkActionProperty s_ArkActionProperty;
-	string m_Action;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
-#if 0
-	static ArkClass *GetClass();
-	void SetAction(string arg0);
-	string const &GetAction() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13644E0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/ui/arkoptionlayout.h
-class ArkOptionWidgetBase : public ArkReflectedObject // Id=801B976 Size=8
-{
-public:
-	enum class EArkOptionWidgetType
-	{
-		none = 0,
-		list = 1,
-		slider = 2,
-		datalist = 3,
-		command = 4,
-		toggle = 5,
-		dropdown = 6,
-		controlMap = 7,
-	};
-
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	virtual ArkOptionWidgetBase::EArkOptionWidgetType GetType() const;
-	virtual bool IsAvailable();
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1364630);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x13650B0);
-	static inline auto FGetType = PreyFunction<ArkOptionWidgetBase::EArkOptionWidgetType(ArkOptionWidgetBase const *const _this)>(0x158AEF0);
-	static inline auto FIsAvailable = PreyFunction<bool(ArkOptionWidgetBase *const _this)>(0x1B933B0);
 };
 
 // Header: Exact
@@ -813,87 +895,6 @@ public:
 
 // Header: Exact
 // Prey/GameDll/ark/ui/arkoptionlayout.h
-class ArkOption : public ArkReflectedObject // Id=801B9A1 Size=56
-{
-public:
-	class ArkLabelProperty : public ArkProperty // Id=801B9A2 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360300);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOption::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10660A0);
-	};
-
-	static ArkOption::ArkLabelProperty s_ArkLabelProperty;
-	string m_Label;
-	
-	class ArkValueProperty : public ArkProperty // Id=801B9A3 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkValueProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360380);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOption::ArkValueProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1068E60);
-	};
-
-	static ArkOption::ArkValueProperty s_ArkValueProperty;
-	string m_Value;
-	
-	class ArkHiddenProperty : public ArkProperty // Id=801B9A4 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkHiddenProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360430);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOption::ArkHiddenProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A6360);
-	};
-
-	static ArkOption::ArkHiddenProperty s_ArkHiddenProperty;
-	bool m_Hidden;
-	
-	class ArkSubactionsProperty : public ArkProperty // Id=801B9A5 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkOption::ArkSubactionsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13604E0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkOption::ArkSubactionsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1360540);
-		static inline auto FIsArray = PreyFunction<bool(ArkOption::ArkSubactionsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkOption::ArkSubactionsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1360580);
-	};
-
-	static ArkOption::ArkSubactionsProperty s_ArkSubactionsProperty;
-	std::vector<ArkOptionSubAction> m_Subactions;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	virtual bool IsHidden() const;
-	
-#if 0
-	void SetLabel(string arg0);
-	string const &GetLabel() const;
-	void SetValue(string arg0);
-	string const &GetValue() const;
-	void SetHidden(bool arg0);
-	const bool &GetHidden() const;
-	std::vector<ArkOptionSubAction> &GetSubactions();
-	std::vector<ArkOptionSubAction> const &GetSubactions() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1364060);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1364930);
-	static inline auto FIsHidden = PreyFunction<bool(ArkOption const *const _this)>(0x1141F10);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/ui/arkoptionlayout.h
 class ArkDifficultyOption : public ArkOption // Id=801B9C7 Size=56
 {
 public:
@@ -984,6 +985,25 @@ public:
 #endif
 	
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x16140D0);
+};
+
+// Header: Override
+// Prey/GameDll/ark/ui/ArkOptionDropDownBase.h
+class ArkOptionDropDownBase : public ArkOptionWidgetBase // Id=801B99D Size=8
+{
+public:
+	virtual std::vector<ArkOption>& GetDropDownOptions() = 0;
+	virtual std::vector<ArkOption> const& GetDropDownOptions() const = 0;
+	virtual int GetSelectedIndex(const char* const arg0) const = 0;
+	virtual ArkOptionWidgetBase::EArkOptionWidgetType GetType() const;
+	virtual bool RequiresConfirmation() const;
+	virtual void RefreshOptions(ArkOptionMenu const& _optionMenu);
+	virtual bool MustRefreshResolutions() const;
+
+	static inline auto FGetType = PreyFunction<ArkOptionWidgetBase::EArkOptionWidgetType(ArkOptionDropDownBase const* const _this)>(0x1C4890);
+	static inline auto FRequiresConfirmation = PreyFunction<bool(ArkOptionDropDownBase const* const _this)>(0x1B933B0);
+	static inline auto FRefreshOptions = PreyFunction<void(ArkOptionDropDownBase* const _this, ArkOptionMenu const& _optionMenu)>(0xA13080);
+	static inline auto FMustRefreshResolutions = PreyFunction<bool(ArkOptionDropDownBase const* const _this)>(0xDD23F0);
 };
 
 // Header: Exact
@@ -1112,4 +1132,3 @@ public:
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1364510);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1364F70);
 };
-

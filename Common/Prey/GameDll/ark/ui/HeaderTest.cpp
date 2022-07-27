@@ -19,7 +19,7 @@ static_assert(sizeof(CArkExternalInventoryUI::TransferNotification) == 40);
 static_assert(sizeof(ArkFocusModeUIComponent) == 168);
 
 #include "ArkGenderSelectMenu.h"
-static_assert(sizeof(ArkFlowNodeGenderSelectMenu) == 16);
+//static_assert(sizeof(ArkFlowNodeGenderSelectMenu) == 16);
 static_assert(sizeof(ArkGenderSelectMenu) == 104);
 
 #include "ArkHackingUI.h"
@@ -92,8 +92,8 @@ static_assert(sizeof(ArkOptionDropDownBase) == 8);
 #include "ArkOptionLayout.h"
 static_assert(sizeof(DistractionEvent) == 8);
 static_assert(sizeof(DistractionEvent::ArkEventProperty) == 32);
-static_assert(sizeof(ArkAimAssistPoint) == 8);
-static_assert(sizeof(ArkAimAssistPoint::ArkAttachmentNameProperty) == 32);
+//static_assert(sizeof(ArkAimAssistPoint) == 8);
+//static_assert(sizeof(ArkAimAssistPoint::ArkAttachmentNameProperty) == 32);
 static_assert(sizeof(ArkOptionLayoutPage) == 32);
 static_assert(sizeof(ArkOptionLayoutPage::ArkLabelProperty) == 32);
 static_assert(sizeof(ArkOptionLayoutPage::ArkSubPagesProperty) == 32);

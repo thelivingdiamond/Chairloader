@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/GameDll/ark/ui/IArkPDAPage.h>
-#include <_unknown/ArkUIMenuBase_CArkPDAPageMetadata_.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkpdapagemetadata.h
