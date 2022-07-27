@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <_unknown/ArkTurretFsmBase_template__void_.h>
+#include <Prey/GameDll/ark/turret/ArkTurretFsmBase_template_.h>
 
 class ArkTurret;
 class IAction;

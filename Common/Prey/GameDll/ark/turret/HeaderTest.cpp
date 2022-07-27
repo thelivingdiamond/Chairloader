@@ -1,11 +1,14 @@
 // Header test file for path Prey/GameDll/ark/turret/ArkDialogTurret.h
+#if 0
 #include "ArkDialogTurret.h"
 static_assert(sizeof(ArkDialogTurret) == 256);
 
+#if 0
 #include "arkflownodesturret.h"
 static_assert(sizeof(ArkFlowNode_ArkTurret_EnableFlowgraphControl) == 16);
 static_assert(sizeof(ArkFlowNode_ArkTurret_ManualTarget) == 16);
 static_assert(sizeof(ArkFlowNode_ArkTurret_WeaponProperties) == 16);
+#endif
 
 #include "ArkTurret.h"
 static_assert(sizeof(ArkTurret) == 3720);
@@ -49,3 +52,4 @@ static_assert(sizeof(ATStates::BaseState) == 1);
 
 #include "CScriptBind_ArkTurret.h"
 static_assert(sizeof(CScriptBind_ArkTurret) == 112);
+#endif

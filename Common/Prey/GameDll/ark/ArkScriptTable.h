@@ -1,12 +1,17 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryScriptSystem/ScriptHelpers.h>
+//#include <Prey/CryScriptSystem/ScriptHelpers.h>
 #include <Prey/GameDll/ark/arkscripttable.h>
 
 struct IEntity;
 struct IEntityClass;
 struct IScriptTable;
+
+class SmartScriptTable {
+public:
+	IScriptTable* ptr;
+};
 
 // Header: Exact
 // Prey/GameDll/ark/arkscripttable.h
@@ -40,10 +45,10 @@ public:
 class ArkSafeScriptTable : public ArkScriptTableBase<ArkSafeScriptTable> // Id=801346F Size=8
 {
 public:
-	void ArkSafeScriptTable(SmartScriptTable const &_pScriptTable);
-	void ArkSafeScriptTable(IScriptTable *_pScriptTable);
-	void ArkSafeScriptTable(IEntity const &_entity);
-	void ArkSafeScriptTable(IEntity const *_pEntity);
+	ArkSafeScriptTable(SmartScriptTable const &_pScriptTable);
+	ArkSafeScriptTable(IScriptTable *_pScriptTable);
+	ArkSafeScriptTable(IEntity const &_entity);
+	ArkSafeScriptTable(IEntity const *_pEntity);
 };
 
 // Header: FromCpp
@@ -51,8 +56,8 @@ public:
 class ArkScriptTable : public ArkScriptTableBase<ArkScriptTable> // Id=8013470 Size=8
 {
 public:
-	void ArkScriptTable(SmartScriptTable const &_pScriptTable);
-	void ArkScriptTable(IScriptTable *_pScriptTable);
-	void ArkScriptTable(IEntity const *_pEntity);
+	ArkScriptTable(SmartScriptTable const &_pScriptTable);
+	ArkScriptTable(IScriptTable *_pScriptTable);
+	ArkScriptTable(IEntity const *_pEntity);
 };
 
