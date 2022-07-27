@@ -10,6 +10,51 @@ class ArkClass;
 
 // Header: Exact
 // Prey/Ark/arkability.h
+class ArkStatModifier : public ArkReflectedObject // Id=80134F7 Size=16
+{
+public:
+	class ArkStatNameProperty : public ArkProperty // Id=80134F8 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkStatModifier::ArkStatNameProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x106EF60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkStatModifier::ArkStatNameProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkStatModifier::ArkStatNameProperty s_ArkStatNameProperty;
+	CCryName m_StatName;
+
+	class ArkModifierProperty : public ArkProperty // Id=80134F9 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkStatModifier::ArkModifierProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkStatModifier::ArkModifierProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	static ArkStatModifier::ArkModifierProperty s_ArkModifierProperty;
+	float m_Modifier;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetStatName(CCryName arg0);
+	CCryName const& GetStatName() const;
+	void SetModifier(float arg0);
+	const float& GetModifier() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1058720);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10589B0);
+};
+
+// Header: Exact
+// Prey/Ark/arkability.h
 class ArkSignalModifer : public ArkReflectedObject // Id=80134E6 Size=16
 {
 public:
@@ -331,51 +376,6 @@ public:
 	
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1058620);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1058870);
-};
-
-// Header: Exact
-// Prey/Ark/arkability.h
-class ArkStatModifier : public ArkReflectedObject // Id=80134F7 Size=16
-{
-public:
-	class ArkStatNameProperty : public ArkProperty // Id=80134F8 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkStatModifier::ArkStatNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x106EF60);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkStatModifier::ArkStatNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkStatModifier::ArkStatNameProperty s_ArkStatNameProperty;
-	CCryName m_StatName;
-	
-	class ArkModifierProperty : public ArkProperty // Id=80134F9 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkStatModifier::ArkModifierProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkStatModifier::ArkModifierProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkStatModifier::ArkModifierProperty s_ArkModifierProperty;
-	float m_Modifier;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetStatName(CCryName arg0);
-	CCryName const &GetStatName() const;
-	void SetModifier(float arg0);
-	const float &GetModifier() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1058720);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x10589B0);
 };
 
 // Header: Exact

@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 
 struct IFlashPlayer;
 struct IUIElement;

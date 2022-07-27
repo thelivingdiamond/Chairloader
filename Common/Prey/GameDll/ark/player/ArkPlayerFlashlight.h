@@ -2,8 +2,8 @@
 
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h>
-#include <Prey/CryFlowGraph/IFlowSystem.h>
+//#include <Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h>
+//#include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/IArkPlayerLightOwner.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
@@ -80,6 +80,7 @@ public:
 	static inline auto FGetTargetDimRangeDiffuse = PreyFunction<float(ArkPlayerFlashlight const *const _this)>(0x155D550);
 };
 
+#if 0
 // Header: FromCpp
 // Prey/GameDll/ark/player/arkplayerflashlight.h
 class ArkFlowNodeFlashlight : public CFlowBaseNode<0> // Id=801C7AA Size=16
@@ -106,4 +107,5 @@ public:
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeFlashlight *const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo)>(0x155C6E0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkFlowNodeFlashlight const *const _this, ICrySizer *_pS)>(0x44D760);
 };
+#endif
 

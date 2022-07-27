@@ -4,7 +4,7 @@
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkLatentRaycast.h>
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
 
 class ArkPlayer;

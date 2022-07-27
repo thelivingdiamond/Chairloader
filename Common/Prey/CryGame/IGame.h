@@ -1,6 +1,5 @@
 #pragma once
 #include "Prey/IAntiCheatManager.h"
-#include "Prey/IArkPlayer.h"
 #include "Prey/ArkEnums.h"
 #include "Prey/CryEntitySystem/IEntity.h"
 #include "Prey/CryNetwork/ISerialize.h"
@@ -10,6 +9,7 @@ class IGameFramework {
 
 };
 class IArkDoor ;
+class IArkPlayer;
 class IArkEncounterManager ;
 class IArkFactionManager ;
 class IArkGlintConfigManager ;

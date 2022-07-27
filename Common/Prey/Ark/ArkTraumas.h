@@ -11,6 +11,177 @@ class ArkClass;
 
 // Header: Exact
 // Prey/Ark/arktraumas.h
+class ArkConditionalStatModifier : public ArkStatModifier // Id=801391E Size=24
+{
+public:
+	class ArkIsActiveInAlternateFormProperty : public ArkProperty // Id=801391F Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360190);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	static ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty s_ArkIsActiveInAlternateFormProperty;
+	bool m_IsActiveInAlternateForm;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	void SetIsActiveInAlternateForm(bool arg0);
+	const bool& GetIsActiveInAlternateForm() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10852E0);
+};
+
+// Header: Exact
+// Prey/Ark/arktraumas.h
+class ArkConditionalSignalModifier : public ArkSignalModifer // Id=801390E Size=24
+{
+public:
+	class ArkIsActiveInAlternateFormProperty : public ArkProperty // Id=801390F Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1360190);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	static ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty s_ArkIsActiveInAlternateFormProperty;
+	bool m_IsActiveInAlternateForm;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	void SetIsActiveInAlternateForm(bool arg0);
+	const bool& GetIsActiveInAlternateForm() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10852B0);
+};
+
+// Header: Exact
+// Prey/Ark/arktraumas.h
+class ArkTraumaPhase : public ArkReflectedObject // Id=8013905 Size=80
+{
+public:
+	class ArkDamageThresholdProperty : public ArkProperty // Id=8013906 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkDamageThresholdProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkTraumaPhase::ArkDamageThresholdProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkTraumaPhase::ArkDamageThresholdProperty s_ArkDamageThresholdProperty;
+	float m_DamageThreshold;
+
+	class ArkDescriptionProperty : public ArkProperty // Id=8013907 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkDescriptionProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x10637A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkTraumaPhase::ArkDescriptionProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	static ArkTraumaPhase::ArkDescriptionProperty s_ArkDescriptionProperty;
+	string m_Description;
+
+	class ArkAltOxygenDescriptionProperty : public ArkProperty // Id=8013908 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkAltOxygenDescriptionProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x10732F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkTraumaPhase::ArkAltOxygenDescriptionProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	static ArkTraumaPhase::ArkAltOxygenDescriptionProperty s_ArkAltOxygenDescriptionProperty;
+	string m_AltOxygenDescription;
+
+	class ArkHudIconProperty : public ArkProperty // Id=8013909 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkHudIconProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x13D4F20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkTraumaPhase::ArkHudIconProperty const* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	static ArkTraumaPhase::ArkHudIconProperty s_ArkHudIconProperty;
+	string m_HudIcon;
+
+	class ArkSignalModifiersProperty : public ArkProperty // Id=801390A Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkSignalModifiersProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1082200);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkTraumaPhase::ArkSignalModifiersProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1082230);
+		static inline auto FIsArray = PreyFunction<bool(ArkTraumaPhase::ArkSignalModifiersProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkTraumaPhase::ArkSignalModifiersProperty const* const _this, ArkReflectedObject* _pObject)>(0x10592F0);
+	};
+
+	static ArkTraumaPhase::ArkSignalModifiersProperty s_ArkSignalModifiersProperty;
+	std::vector<ArkConditionalSignalModifier> m_SignalModifiers;
+
+	class ArkStatModifiersProperty : public ArkProperty // Id=801391A Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkStatModifiersProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1081F10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkTraumaPhase::ArkStatModifiersProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1081F80);
+		static inline auto FIsArray = PreyFunction<bool(ArkTraumaPhase::ArkStatModifiersProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkTraumaPhase::ArkStatModifiersProperty const* const _this, ArkReflectedObject* _pObject)>(0x1081FA0);
+	};
+
+	static ArkTraumaPhase::ArkStatModifiersProperty s_ArkStatModifiersProperty;
+	std::vector<ArkConditionalStatModifier> m_StatModifiers;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetDamageThreshold(float arg0);
+	const float& GetDamageThreshold() const;
+	void SetDescription(string arg0);
+	string const& GetDescription() const;
+	void SetAltOxygenDescription(string arg0);
+	string const& GetAltOxygenDescription() const;
+	void SetHudIcon(string arg0);
+	string const& GetHudIcon() const;
+	std::vector<ArkConditionalSignalModifier>& GetSignalModifiers();
+	std::vector<ArkConditionalSignalModifier> const& GetSignalModifiers() const;
+	std::vector<ArkConditionalStatModifier>& GetStatModifiers();
+	std::vector<ArkConditionalStatModifier> const& GetStatModifiers() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10853B0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1085530);
+};
+
+// Header: Exact
+// Prey/Ark/arktraumas.h
 class ArkTrauma : public ArkReflectedObject // Id=80138E9 Size=176
 {
 public:
@@ -396,177 +567,6 @@ public:
 	static inline auto FGetMaxPhase = PreyFunction<ArkTraumaPhase const *(ArkTrauma const *const _this)>(0x1085780);
 	static inline auto FGetLevelFromDamage = PreyFunction<int(ArkTrauma const *const _this, float _damage)>(0x10856C0);
 	static inline auto FGetMaxDamageThreshold = PreyFunction<float(ArkTrauma const *const _this)>(0x1085720);
-};
-
-// Header: Exact
-// Prey/Ark/arktraumas.h
-class ArkTraumaPhase : public ArkReflectedObject // Id=8013905 Size=80
-{
-public:
-	class ArkDamageThresholdProperty : public ArkProperty // Id=8013906 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkDamageThresholdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkTraumaPhase::ArkDamageThresholdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkTraumaPhase::ArkDamageThresholdProperty s_ArkDamageThresholdProperty;
-	float m_DamageThreshold;
-	
-	class ArkDescriptionProperty : public ArkProperty // Id=8013907 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkTraumaPhase::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkTraumaPhase::ArkDescriptionProperty s_ArkDescriptionProperty;
-	string m_Description;
-	
-	class ArkAltOxygenDescriptionProperty : public ArkProperty // Id=8013908 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkAltOxygenDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10732F0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkTraumaPhase::ArkAltOxygenDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkTraumaPhase::ArkAltOxygenDescriptionProperty s_ArkAltOxygenDescriptionProperty;
-	string m_AltOxygenDescription;
-	
-	class ArkHudIconProperty : public ArkProperty // Id=8013909 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkHudIconProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4F20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkTraumaPhase::ArkHudIconProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkTraumaPhase::ArkHudIconProperty s_ArkHudIconProperty;
-	string m_HudIcon;
-	
-	class ArkSignalModifiersProperty : public ArkProperty // Id=801390A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkSignalModifiersProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1082200);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkTraumaPhase::ArkSignalModifiersProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1082230);
-		static inline auto FIsArray = PreyFunction<bool(ArkTraumaPhase::ArkSignalModifiersProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkTraumaPhase::ArkSignalModifiersProperty const *const _this, ArkReflectedObject *_pObject)>(0x10592F0);
-	};
-
-	static ArkTraumaPhase::ArkSignalModifiersProperty s_ArkSignalModifiersProperty;
-	std::vector<ArkConditionalSignalModifier> m_SignalModifiers;
-	
-	class ArkStatModifiersProperty : public ArkProperty // Id=801391A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkTraumaPhase::ArkStatModifiersProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1081F10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkTraumaPhase::ArkStatModifiersProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1081F80);
-		static inline auto FIsArray = PreyFunction<bool(ArkTraumaPhase::ArkStatModifiersProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkTraumaPhase::ArkStatModifiersProperty const *const _this, ArkReflectedObject *_pObject)>(0x1081FA0);
-	};
-
-	static ArkTraumaPhase::ArkStatModifiersProperty s_ArkStatModifiersProperty;
-	std::vector<ArkConditionalStatModifier> m_StatModifiers;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetDamageThreshold(float arg0);
-	const float &GetDamageThreshold() const;
-	void SetDescription(string arg0);
-	string const &GetDescription() const;
-	void SetAltOxygenDescription(string arg0);
-	string const &GetAltOxygenDescription() const;
-	void SetHudIcon(string arg0);
-	string const &GetHudIcon() const;
-	std::vector<ArkConditionalSignalModifier> &GetSignalModifiers();
-	std::vector<ArkConditionalSignalModifier> const &GetSignalModifiers() const;
-	std::vector<ArkConditionalStatModifier> &GetStatModifiers();
-	std::vector<ArkConditionalStatModifier> const &GetStatModifiers() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x10853B0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1085530);
-};
-
-// Header: Exact
-// Prey/Ark/arktraumas.h
-class ArkConditionalSignalModifier : public ArkSignalModifer // Id=801390E Size=24
-{
-public:
-	class ArkIsActiveInAlternateFormProperty : public ArkProperty // Id=801390F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360190);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty s_ArkIsActiveInAlternateFormProperty;
-	bool m_IsActiveInAlternateForm;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
-#if 0
-	static ArkClass *GetClass();
-	void SetIsActiveInAlternateForm(bool arg0);
-	const bool &GetIsActiveInAlternateForm() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x10852B0);
-};
-
-// Header: Exact
-// Prey/Ark/arktraumas.h
-class ArkConditionalStatModifier : public ArkStatModifier // Id=801391E Size=24
-{
-public:
-	class ArkIsActiveInAlternateFormProperty : public ArkProperty // Id=801391F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360190);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty s_ArkIsActiveInAlternateFormProperty;
-	bool m_IsActiveInAlternateForm;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
-#if 0
-	static ArkClass *GetClass();
-	void SetIsActiveInAlternateForm(bool arg0);
-	const bool &GetIsActiveInAlternateForm() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x10852E0);
 };
 
 // Header: Exact

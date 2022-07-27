@@ -2,6 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/Ark/arkgamemetrics.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkGameMetricsComponent.h

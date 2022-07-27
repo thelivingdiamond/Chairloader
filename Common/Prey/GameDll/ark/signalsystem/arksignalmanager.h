@@ -1,11 +1,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arklineofsightcheck.h>
+//#include <Prey/Ark/arklineofsightcheck.h>
 #include <Prey/Ark/arksignalsystemdata.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkDelegate.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
 #include <Prey/GameDll/ark/signalsystem/arksignalcontext.h>
 
 class ArkFlowSignalPackageReceiver;
@@ -141,6 +141,7 @@ public:
 #endif
 	};
 
+#if 0
 	class AreaTargetLOSCheckImpl // Id=80137FA Size=28
 	{
 	public:
@@ -162,7 +163,7 @@ public:
 	
 	struct AreaTarget // Id=80137FB Size=400
 	{
-		ArkLineOfSightCheck<ArkSignalSystem::Manager::AreaTargetLOSCheckImpl,1> m_los;
+		AreaTargetLOSCheck m_los;
 		bool m_bSent;
 	};
 
@@ -176,6 +177,12 @@ public:
 		float m_scale;
 		float m_radius;
 		ArkDelegate<void __cdecl(unsigned int)> m_callback;
+	};
+#endif
+
+	struct AreaEffect
+	{
+		void* pad[9];
 	};
 
 	class RegisteredSignals // Id=80137FD Size=56

@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
 
 class ArkTraumaBase;
 struct IConsoleCmdArgs;

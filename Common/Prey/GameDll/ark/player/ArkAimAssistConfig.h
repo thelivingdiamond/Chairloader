@@ -7,6 +7,145 @@
 class ArkClass;
 
 // Header: Exact
+// Prey/GameDll/ark/ui/arkoptionlayout.h
+class ArkAimAssistPoint : public ArkReflectedObject // Id=80171A1 Size=8
+{
+public:
+	class ArkAttachmentNameProperty : public ArkProperty // Id=80171A2 Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAimAssistPoint::ArkAttachmentNameProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAimAssistPoint::ArkAttachmentNameProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkAimAssistPoint::ArkAttachmentNameProperty s_ArkAttachmentNameProperty;
+	string m_AttachmentName;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	void SetAttachmentName(string arg0);
+	string const& GetAttachmentName() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13644E0);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/player/arkaimassistconfig.h
+class ArkAimAssistShape : public ArkReflectedObject // Id=801719C Size=32
+{
+public:
+	class ArkPointsProperty : public ArkProperty // Id=801719D Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAimAssistShape::ArkPointsProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x12EC8C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAimAssistShape::ArkPointsProperty const* const _this, ArkReflectedObject* const _pObject)>(0x12EC920);
+		static inline auto FIsArray = PreyFunction<bool(ArkAimAssistShape::ArkPointsProperty const* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(ArkAimAssistShape::ArkPointsProperty const* const _this, ArkReflectedObject* _pObject)>(0x13EF480);
+	};
+
+	static ArkAimAssistShape::ArkPointsProperty s_ArkPointsProperty;
+	std::vector<ArkAimAssistPoint> m_Points;
+
+	class ArkInnerRadiusProperty : public ArkProperty // Id=80171AD Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAimAssistShape::ArkInnerRadiusProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x10629C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAimAssistShape::ArkInnerRadiusProperty const* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	static ArkAimAssistShape::ArkInnerRadiusProperty s_ArkInnerRadiusProperty;
+	float m_InnerRadius;
+
+	class ArkOuterRadiusProperty : public ArkProperty // Id=80171AE Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAimAssistShape::ArkOuterRadiusProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x106D560);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAimAssistShape::ArkOuterRadiusProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D570);
+	};
+
+	static ArkAimAssistShape::ArkOuterRadiusProperty s_ArkOuterRadiusProperty;
+	float m_OuterRadius;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	std::vector<ArkAimAssistPoint>& GetPoints();
+	std::vector<ArkAimAssistPoint> const& GetPoints() const;
+	void SetInnerRadius(float arg0);
+	const float& GetInnerRadius() const;
+	void SetOuterRadius(float arg0);
+	const float& GetOuterRadius() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12ED3E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12ED560);
+};
+
+// Header: Exact
+// Prey/GameDll/ark/player/arkaimassistconfig.h
+class ArkAimAssistEntity : public ArkReflectedObject // Id=8017199 Size=40
+{
+public:
+	class ArkNameProperty : public ArkProperty // Id=801719A Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAimAssistEntity::ArkNameProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAimAssistEntity::ArkNameProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkAimAssistEntity::ArkNameProperty s_ArkNameProperty;
+	string m_Name;
+
+	class ArkShapeProperty : public ArkProperty // Id=801719B Size=32
+	{
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkAimAssistEntity::ArkShapeProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x12EC6F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkAimAssistEntity::ArkShapeProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	static ArkAimAssistEntity::ArkShapeProperty s_ArkShapeProperty;
+	ArkAimAssistShape m_Shape;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetName(string arg0);
+	string const& GetName() const;
+	void SetShape(ArkAimAssistShape arg0);
+	ArkAimAssistShape const& GetShape() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12ED390);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12ED4C0);
+};
+
+
+// Header: Exact
 // Prey/GameDll/ark/player/ArkAimAssistConfig.h
 class ArkAimAssistConfig : public ArkReflectedObject // Id=801718F Size=48
 {
@@ -117,113 +256,3 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x12ED420);
 	static inline auto FInit = PreyFunction<void(ArkAimAssistConfig *const _this)>(0x12ED600);
 };
-
-// Header: Exact
-// Prey/GameDll/ark/player/arkaimassistconfig.h
-class ArkAimAssistShape : public ArkReflectedObject // Id=801719C Size=32
-{
-public:
-	class ArkPointsProperty : public ArkProperty // Id=801719D Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkAimAssistShape::ArkPointsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x12EC8C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkAimAssistShape::ArkPointsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12EC920);
-		static inline auto FIsArray = PreyFunction<bool(ArkAimAssistShape::ArkPointsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkAimAssistShape::ArkPointsProperty const *const _this, ArkReflectedObject *_pObject)>(0x13EF480);
-	};
-
-	static ArkAimAssistShape::ArkPointsProperty s_ArkPointsProperty;
-	std::vector<ArkAimAssistPoint> m_Points;
-	
-	class ArkInnerRadiusProperty : public ArkProperty // Id=80171AD Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkAimAssistShape::ArkInnerRadiusProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10629C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkAimAssistShape::ArkInnerRadiusProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkAimAssistShape::ArkInnerRadiusProperty s_ArkInnerRadiusProperty;
-	float m_InnerRadius;
-	
-	class ArkOuterRadiusProperty : public ArkProperty // Id=80171AE Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkAimAssistShape::ArkOuterRadiusProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x106D560);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkAimAssistShape::ArkOuterRadiusProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D570);
-	};
-
-	static ArkAimAssistShape::ArkOuterRadiusProperty s_ArkOuterRadiusProperty;
-	float m_OuterRadius;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	std::vector<ArkAimAssistPoint> &GetPoints();
-	std::vector<ArkAimAssistPoint> const &GetPoints() const;
-	void SetInnerRadius(float arg0);
-	const float &GetInnerRadius() const;
-	void SetOuterRadius(float arg0);
-	const float &GetOuterRadius() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x12ED3E0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x12ED560);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/arkaimassistconfig.h
-class ArkAimAssistEntity : public ArkReflectedObject // Id=8017199 Size=40
-{
-public:
-	class ArkNameProperty : public ArkProperty // Id=801719A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkAimAssistEntity::ArkNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkAimAssistEntity::ArkNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkAimAssistEntity::ArkNameProperty s_ArkNameProperty;
-	string m_Name;
-	
-	class ArkShapeProperty : public ArkProperty // Id=801719B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkAimAssistEntity::ArkShapeProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x12EC6F0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkAimAssistEntity::ArkShapeProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkAimAssistEntity::ArkShapeProperty s_ArkShapeProperty;
-	ArkAimAssistShape m_Shape;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetName(string arg0);
-	string const &GetName() const;
-	void SetShape(ArkAimAssistShape arg0);
-	ArkAimAssistShape const &GetShape() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x12ED390);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x12ED4C0);
-};
-

@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAction/ICryMannequin.h>
 
 // Header: Exact
 // Prey/GameDll/ark/player/ArkPlayerUpperBodyAction.h

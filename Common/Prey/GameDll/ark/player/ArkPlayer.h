@@ -1,12 +1,13 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/cryanimation/facialanimation/faceeffector.h>
-#include <CryEngine/renderdll/common/rendelements/imagespaceshafts.h>
+//#include <CryEngine/cryanimation/facialanimation/faceeffector.h>
+//#include <CryEngine/renderdll/common/rendelements/imagespaceshafts.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/ISystem.h>
+#include <Prey/CryAction/IActorSystem.h>
 #include <Prey/GameDll/ark/ArkGroundColliderComponent.h>
 #include <Prey/GameDll/ark/ArkMaterialAnimationManager.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
@@ -19,11 +20,13 @@
 #include <Prey/GameDll/ark/player/ArkPlayerInput.h>
 #include <Prey/GameDll/ark/player/ArkPlayerInteraction.h>
 #include <Prey/GameDll/ark/player/ArkPlayerMovementFSM.h>
+#include <Prey/GameDll/ark/player/ArkPlayerMovementController.h>
 #include <Prey/GameDll/ark/player/ArkPlayerWeaponComponent.h>
 #include <Prey/GameDll/ark/player/ArkPlayerZoomManager.h>
 #include <Prey/GameDll/ark/player/IArkPlayer.h>
 #include <Prey/GameDll/ark/player/IArkPlayerCombatListener.h>
 #include <Prey/GameDll/ark/player/pda/ArkEquipmentModComponent.h>
+#include <Prey/GameDll/ark/player/StanceInfo.h>
 
 class ArkInventory;
 class ArkPsiPowerComponent;

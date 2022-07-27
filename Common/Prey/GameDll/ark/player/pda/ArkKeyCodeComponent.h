@@ -5,6 +5,28 @@
 
 class ArkKeyCodeEntry;
 
+// Header: Override
+// Prey/GameDll/ark/player/pda/ArkKeyCodeComponent.h
+class ArkKeyCodeEntry // Id=8016F11 Size=24
+{
+public:
+	uint64_t m_id;
+	bool m_bCollected;
+	bool m_bViewed;
+	string m_code;
+
+#if 0
+	uint64_t GetID() const;
+	bool GetCollected() const;
+	void SetCollected(bool arg0);
+	bool GetViewed() const;
+	void SetViewed(bool arg0);
+	string const& GetCode() const;
+	void SetCode(string const& arg0);
+	void Serialize(TSerialize arg0);
+#endif
+};
+
 // Header: FromCpp
 // Prey/GameDll/ark/player/pda/ArkKeyCodeComponent.h
 class ArkKeyCodeComponent // Id=8016F0D Size=24

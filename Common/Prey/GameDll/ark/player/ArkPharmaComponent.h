@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
+#include <Prey/GameDll/ark/player/ArkPlayerStatusUIInfo.h>
 
 class CCryName;
 struct IEntity;

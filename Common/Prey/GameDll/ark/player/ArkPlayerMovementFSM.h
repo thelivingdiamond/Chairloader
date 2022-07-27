@@ -5,6 +5,7 @@
 #include <Prey/GameDll/ark/player/arkplayergroundstate.h>
 #include <Prey/GameDll/ark/player/arkplayermovementfsm.h>
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
+#include <Prey/GameDll/ark/player/arkplayercomponent.h>
 
 class XmlNodeRef;
 
@@ -113,7 +114,7 @@ public:
 	float m_verticalSpeed;
 	float m_jumpRequestedTime;
 	
-	void ArkPlayerMovementFSM();
+	ArkPlayerMovementFSM();
 	void LoadConfig(XmlNodeRef const &_root) { FLoadConfig(this,_root); }
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	Vec2 GetMovementInput() const { return FGetMovementInput(this); }

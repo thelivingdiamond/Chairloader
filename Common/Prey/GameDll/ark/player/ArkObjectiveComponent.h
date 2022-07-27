@@ -24,6 +24,91 @@ struct SEntitySpawnParams;
 struct SLabelMarker;
 class XmlNodeRef;
 
+// Header: MadeUp
+// _unknown/ArkPathMapNode.h
+class ArkPathMapNode // Id=80168C1 Size=16
+{
+public:
+	uint64_t m_source;
+	uint64_t m_target;
+
+#if 0
+	bool operator==(ArkPathMapNode const& arg0) const; // :-1 Refs: 0
+	bool IsValid() const; // :-1 Refs: 0
+	uint64_t GetOtherLocation(const uint64_t arg0) const; // :-1 Refs: 0
+#endif
+};
+
+// Header: FromCpp
+// Prey/GameDll/ark/player/arkobjectivecomponent.h
+class ArkObjective // Id=8016811 Size=136
+{
+public:
+	std::vector<ArkFlowNodeObjectiveState*> m_stateFlowNodes;
+	std::vector<ArkObjectiveTask> m_tasks;
+	std::vector<CArkObjectiveClue> m_clues;
+	std::list<ArkObjectiveUtils::CArkObjectiveTaskData, std::allocator<ArkObjectiveUtils::CArkObjectiveTaskData> > m_dynamicTasks;
+	ArkObjectiveUtils::CArkObjectiveData const* m_pData;
+	int64_t m_currentDescriptionId;
+	EArkObjectiveState m_state;
+	int64_t m_lastActiveTimerTask;
+	int64_t m_dynamicTaskCounter;
+	bool m_bTracked;
+
+	ArkObjectiveUtils::CArkObjectiveData const& GetData() const { return FGetData(this); }
+	void SetHidden() { FSetHidden(this); }
+	void SetActive() { FSetActive(this); }
+	ArkObjectiveTask const* FindTask(const int64_t _taskId) const { return FFindTaskOv1(this, _taskId); }
+	ArkObjectiveTask* FindTask(const int64_t _taskId) { return FFindTaskOv0(this, _taskId); }
+	EArkObjectiveState GetState() const { return FGetState(this); }
+	bool IsLocationActiveDestination(const uint64_t _locationId) const { return FIsLocationActiveDestination(this, _locationId); }
+	void ShowTaskNotifications() const { FShowTaskNotifications(this); }
+	void HideMarkers() const { FHideMarkers(this); }
+	ArkObjectiveUtils::CArkObjectiveDescriptionData const& GetDescription() const { return FGetDescription(this); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+	void RemoveTask(ArkObjectiveTask& _task) { FRemoveTask(this, _task); }
+	void ShowLastActiveTimer() const { FShowLastActiveTimer(this); }
+	void SetTracked(bool _bTracked) { FSetTracked(this, _bTracked); }
+
+#if 0
+	void SetDescription(ArkObjectiveUtils::CArkObjectiveDescriptionData const& arg0);
+	void SetCompleted();
+	void SetFailed();
+	void RegisterStateNode(ArkFlowNodeObjectiveState& arg0);
+	void UnregisterStateNode(ArkFlowNodeObjectiveState& arg0);
+	CArkObjectiveClue const* FindClue(const int64_t arg0) const;
+	CArkObjectiveClue* FindClue(const int64_t arg0);
+	void Update(float arg0);
+	void UpdateMarkers(SLabelMarker& arg0);
+	void ShowMarkers(EArkTaskMarkerStyle arg0) const;
+	void UpdateTransitionDoors(EArkTaskMarkerStyle arg0);
+	std::vector<ArkObjectiveTask>& GetTasks();
+	std::vector<ArkObjectiveTask> const& GetTasks() const;
+	std::vector<CArkObjectiveClue> const& GetClues() const;
+	void OnLevelLoadEnd(EArkTaskMarkerStyle arg0);
+	void DeactivateTasks();
+	ArkObjectiveTask const* AddTask(XmlNodeRef arg0);
+	void SetLastActiveTimerTask(int64_t arg0);
+	int64_t GetLastActiveTimerTask() const;
+	bool IsTracked() const;
+#endif
+
+	static inline auto FGetData = PreyFunction<ArkObjectiveUtils::CArkObjectiveData const& (ArkObjective const* const _this)>(0x1545000);
+	static inline auto FSetHidden = PreyFunction<void(ArkObjective* const _this)>(0x1548310);
+	static inline auto FSetActive = PreyFunction<void(ArkObjective* const _this)>(0x1547EB0);
+	static inline auto FFindTaskOv1 = PreyFunction<ArkObjectiveTask const* (ArkObjective const* const _this, const int64_t _taskId)>(0x1544ED0);
+	static inline auto FFindTaskOv0 = PreyFunction<ArkObjectiveTask* (ArkObjective* const _this, const int64_t _taskId)>(0x1544EA0);
+	static inline auto FGetState = PreyFunction<EArkObjectiveState(ArkObjective const* const _this)>(0x3EBAF0);
+	static inline auto FIsLocationActiveDestination = PreyFunction<bool(ArkObjective const* const _this, const uint64_t _locationId)>(0x1545FA0);
+	static inline auto FShowTaskNotifications = PreyFunction<void(ArkObjective const* const _this)>(0x1548CA0);
+	static inline auto FHideMarkers = PreyFunction<void(ArkObjective const* const _this)>(0x1545B20);
+	static inline auto FGetDescription = PreyFunction<ArkObjectiveUtils::CArkObjectiveDescriptionData const& (ArkObjective const* const _this)>(0x1545010);
+	static inline auto FSerialize = PreyFunction<void(ArkObjective* const _this, TSerialize _ser)>(0x1547860);
+	static inline auto FRemoveTask = PreyFunction<void(ArkObjective* const _this, ArkObjectiveTask& _task)>(0x1546ED0);
+	static inline auto FShowLastActiveTimer = PreyFunction<void(ArkObjective const* const _this)>(0x1548A00);
+	static inline auto FSetTracked = PreyFunction<void(ArkObjective* const _this, bool _bTracked)>(0x1548800);
+};
+
 // Header: Exact
 // Prey/GameDll/ark/player/ArkObjectiveComponent.h
 class ArkObjectiveComponent : public IArkCharacterStatusListener, public IEntitySystemSink // Id=801680B Size=352
@@ -195,75 +280,5 @@ public:
 	static inline auto FOnCharacterDiscovered = PreyFunction<void(ArkObjectiveComponent *const _this, const uint64_t _characterId, bool _bDiscovered)>(0x1546040);
 	static inline auto FUpdateTransitionDoorMarkers = PreyFunction<void(ArkObjectiveComponent *const _this, VectorMap<unsigned int,std::vector<std::pair<ArkObjectiveTask const *,enum EArkTaskMarkerStyle>>,std::less<unsigned int>,std::allocator<std::pair<unsigned int,std::vector<std::pair<ArkObjectiveTask const *,enum EArkTaskMarkerStyle>>>>> &_markedDoors, SLabelMarker &_labelMarker)>(0x154A930);
 	static inline auto FClearMarkedTransitionDoors = PreyFunction<void(ArkObjectiveComponent *const _this)>(0x1543390);
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/player/arkobjectivecomponent.h
-class ArkObjective // Id=8016811 Size=136
-{
-public:
-	std::vector<ArkFlowNodeObjectiveState *> m_stateFlowNodes;
-	std::vector<ArkObjectiveTask> m_tasks;
-	std::vector<CArkObjectiveClue> m_clues;
-	std::list<ArkObjectiveUtils::CArkObjectiveTaskData,std::allocator<ArkObjectiveUtils::CArkObjectiveTaskData> > m_dynamicTasks;
-	ArkObjectiveUtils::CArkObjectiveData const *m_pData;
-	int64_t m_currentDescriptionId;
-	EArkObjectiveState m_state;
-	int64_t m_lastActiveTimerTask;
-	int64_t m_dynamicTaskCounter;
-	bool m_bTracked;
-	
-	ArkObjectiveUtils::CArkObjectiveData const &GetData() const { return FGetData(this); }
-	void SetHidden() { FSetHidden(this); }
-	void SetActive() { FSetActive(this); }
-	ArkObjectiveTask const *FindTask(const int64_t _taskId) const { return FFindTaskOv1(this,_taskId); }
-	ArkObjectiveTask *FindTask(const int64_t _taskId) { return FFindTaskOv0(this,_taskId); }
-	EArkObjectiveState GetState() const { return FGetState(this); }
-	bool IsLocationActiveDestination(const uint64_t _locationId) const { return FIsLocationActiveDestination(this,_locationId); }
-	void ShowTaskNotifications() const { FShowTaskNotifications(this); }
-	void HideMarkers() const { FHideMarkers(this); }
-	ArkObjectiveUtils::CArkObjectiveDescriptionData const &GetDescription() const { return FGetDescription(this); }
-	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
-	void RemoveTask(ArkObjectiveTask &_task) { FRemoveTask(this,_task); }
-	void ShowLastActiveTimer() const { FShowLastActiveTimer(this); }
-	void SetTracked(bool _bTracked) { FSetTracked(this,_bTracked); }
-	
-#if 0
-	void SetDescription(ArkObjectiveUtils::CArkObjectiveDescriptionData const &arg0);
-	void SetCompleted();
-	void SetFailed();
-	void RegisterStateNode(ArkFlowNodeObjectiveState &arg0);
-	void UnregisterStateNode(ArkFlowNodeObjectiveState &arg0);
-	CArkObjectiveClue const *FindClue(const int64_t arg0) const;
-	CArkObjectiveClue *FindClue(const int64_t arg0);
-	void Update(float arg0);
-	void UpdateMarkers(SLabelMarker &arg0);
-	void ShowMarkers(EArkTaskMarkerStyle arg0) const;
-	void UpdateTransitionDoors(EArkTaskMarkerStyle arg0);
-	std::vector<ArkObjectiveTask> &GetTasks();
-	std::vector<ArkObjectiveTask> const &GetTasks() const;
-	std::vector<CArkObjectiveClue> const &GetClues() const;
-	void OnLevelLoadEnd(EArkTaskMarkerStyle arg0);
-	void DeactivateTasks();
-	ArkObjectiveTask const *AddTask(XmlNodeRef arg0);
-	void SetLastActiveTimerTask(int64_t arg0);
-	int64_t GetLastActiveTimerTask() const;
-	bool IsTracked() const;
-#endif
-	
-	static inline auto FGetData = PreyFunction<ArkObjectiveUtils::CArkObjectiveData const &(ArkObjective const *const _this)>(0x1545000);
-	static inline auto FSetHidden = PreyFunction<void(ArkObjective *const _this)>(0x1548310);
-	static inline auto FSetActive = PreyFunction<void(ArkObjective *const _this)>(0x1547EB0);
-	static inline auto FFindTaskOv1 = PreyFunction<ArkObjectiveTask const *(ArkObjective const *const _this, const int64_t _taskId)>(0x1544ED0);
-	static inline auto FFindTaskOv0 = PreyFunction<ArkObjectiveTask *(ArkObjective *const _this, const int64_t _taskId)>(0x1544EA0);
-	static inline auto FGetState = PreyFunction<EArkObjectiveState(ArkObjective const *const _this)>(0x3EBAF0);
-	static inline auto FIsLocationActiveDestination = PreyFunction<bool(ArkObjective const *const _this, const uint64_t _locationId)>(0x1545FA0);
-	static inline auto FShowTaskNotifications = PreyFunction<void(ArkObjective const *const _this)>(0x1548CA0);
-	static inline auto FHideMarkers = PreyFunction<void(ArkObjective const *const _this)>(0x1545B20);
-	static inline auto FGetDescription = PreyFunction<ArkObjectiveUtils::CArkObjectiveDescriptionData const &(ArkObjective const *const _this)>(0x1545010);
-	static inline auto FSerialize = PreyFunction<void(ArkObjective *const _this, TSerialize _ser)>(0x1547860);
-	static inline auto FRemoveTask = PreyFunction<void(ArkObjective *const _this, ArkObjectiveTask &_task)>(0x1546ED0);
-	static inline auto FShowLastActiveTimer = PreyFunction<void(ArkObjective const *const _this)>(0x1548A00);
-	static inline auto FSetTracked = PreyFunction<void(ArkObjective *const _this, bool _bTracked)>(0x1548800);
 };
 

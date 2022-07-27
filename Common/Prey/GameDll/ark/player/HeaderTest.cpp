@@ -68,6 +68,7 @@ static_assert(sizeof(ArkMarkedEnemyComponent::PotentialTarget) == 16);
 #include "ArkObjectiveComponent.h"
 static_assert(sizeof(ArkObjectiveComponent) == 352);
 static_assert(sizeof(ArkObjective) == 136);
+static_assert(sizeof(ArkPathMapNode) == 16);
 
 #include "ArkPharmaComponent.h"
 static_assert(sizeof(ArkPharmaComponent) == 40);
@@ -96,7 +97,8 @@ static_assert(sizeof(ArkPlayerCamera) == 456);
 #include "ArkPlayerCarry.h"
 static_assert(sizeof(ArkPlayerCarry) == 256);
 
-#include "arkplayercomponent.h"
+#include "ArkPlayerComponent.h"
+static_assert(sizeof(ArkPlayerComponent) == 328);
 static_assert(sizeof(ClimbPosInfo) == 16);
 
 #include "ArkPlayerEntitlementComponent.h"
@@ -109,7 +111,7 @@ static_assert(sizeof(ArkPlayerFatigueComponent) == 56);
 #include "ArkPlayerFlashlight.h"
 static_assert(sizeof(ArkPlayerFlashlight) == 144);
 static_assert(sizeof(ArkPlayerFlashlight::DimRange) == 8);
-static_assert(sizeof(ArkFlowNodeFlashlight) == 16);
+//static_assert(sizeof(ArkFlowNodeFlashlight) == 16);
 
 #include "ArkPlayerFXComponent.h"
 static_assert(sizeof(ArkPlayerFXComponent) == 160);
@@ -224,6 +226,9 @@ static_assert(sizeof(CArkPlayerStateHover) == 160);
 #include "ArkPlayerStatusComponent.h"
 static_assert(sizeof(ArkPlayerStatusComponent) == 96);
 static_assert(sizeof(ArkPlayerStatusComponent::TArmMaterial) == 16);
+
+#include "ArkPlayerStatusUIInfo.h"
+static_assert(sizeof(ArkPlayerStatusUIInfo) == 48);
 
 #include "ArkPlayerTargetSelector.h"
 static_assert(sizeof(ArkPlayerTargetSelector) == 72);
@@ -344,5 +349,8 @@ static_assert(sizeof(IArkPsiScanningComponentListener) == 8);
 #include "IArkStatsListener.h"
 static_assert(sizeof(IArkStatsListener) == 8);
 
-#include "scriptbind_arkplayer.h"
-static_assert(sizeof(CScriptBind_ArkPlayer) == 96);
+//#include "scriptbind_arkplayer.h"
+//static_assert(sizeof(CScriptBind_ArkPlayer) == 96);
+
+#include "StanceInfo.h"
+static_assert(sizeof(StanceInfo) == 24);

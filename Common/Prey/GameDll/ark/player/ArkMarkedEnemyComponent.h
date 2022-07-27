@@ -4,6 +4,7 @@
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 
 class CCryName;
 struct IEntity;

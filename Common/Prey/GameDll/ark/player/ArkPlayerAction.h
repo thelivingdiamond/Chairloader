@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAction/ICryMannequin.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/ArkPlayerAction.h

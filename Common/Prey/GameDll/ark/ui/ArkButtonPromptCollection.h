@@ -4,6 +4,7 @@
 #include <Prey/GameDll/ark/ArkExclusiveActionFilter.h>
 #include <Prey/GameDll/ark/ui/IArkPauseMenuListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
+#include <Prey/GameDll/ark/ui/ArkButtonPrompt.h>
 
 class ArkButtonPrompt;
 class CCryName;

@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkInterval.h>
-#include <Prey/CryAction/ICryMannequin.h>
+//#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
@@ -16,6 +16,7 @@ class ArkPlayerMovementFSM;
 struct EventPhysCollision;
 struct IEntity;
 struct IParticleEffect;
+struct SAnimationContext;
 class XmlNodeRef;
 
 namespace ArkPlayerMovementStates

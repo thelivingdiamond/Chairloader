@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
 
 class ArkSafeScriptTable;
 struct IConsoleCmdArgs;

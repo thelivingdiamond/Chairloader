@@ -1,13 +1,14 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/ui/ArkButtonPromptCollection.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/GameDll/ark/ui/IArkPDAPage.h>
+#include <Prey/GameDll/ark/ui/arkexternalinventoryui.h>
+#include <Prey/GameDll/ark/ui/IUIModule.h>
 
 class ArkAuxiliaryInventory;
 class ArkInventory;

@@ -1,10 +1,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAISystem/Navigation/MNM/MeshGrid.h>
 #include <Prey/CryCore/functor.h>
+#include <Prey/CryPhysics/RayCastQueue.h>
 
 struct RayCastResult;
+struct RayCastRequest;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkLatentRaycast.h

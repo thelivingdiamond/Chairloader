@@ -7,7 +7,7 @@
 class IArkPlayer // Id=80020C5 Size=8
 {
 public:
-	enum class EArkPlayerAnimationPriority
+	enum EArkPlayerAnimationPriority
 	{
 		APAP_Lowest = 0,
 		APAP_Movement = 1,

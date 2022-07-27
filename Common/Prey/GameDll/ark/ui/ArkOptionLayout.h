@@ -39,35 +39,6 @@ public:
 
 // Header: Exact
 // Prey/GameDll/ark/ui/arkoptionlayout.h
-class ArkAimAssistPoint : public ArkReflectedObject // Id=80171A1 Size=8
-{
-public:
-	class ArkAttachmentNameProperty : public ArkProperty // Id=80171A2 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkAimAssistPoint::ArkAttachmentNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkAimAssistPoint::ArkAttachmentNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkAimAssistPoint::ArkAttachmentNameProperty s_ArkAttachmentNameProperty;
-	string m_AttachmentName;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
-#if 0
-	static ArkClass *GetClass();
-	void SetAttachmentName(string arg0);
-	string const &GetAttachmentName() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13644E0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/ui/arkoptionlayout.h
 class ArkOptionLayoutPage : public ArkReflectedObject // Id=801B94B Size=32
 {
 public:

@@ -342,6 +342,7 @@
     <ClInclude Include="..\Common\Prey\CryAction\GameObject.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IAction.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IActionMapManager.h" />
+    <ClInclude Include="..\Common\Prey\CryAction\IActorSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObject.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObjectSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IMovementController.h" />
@@ -814,6 +815,7 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\carkpsipower.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\IArkPsiPower.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\scriptbind_arkplayer.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\TArkAudioSwitch.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkStatusGoodDrunk.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkStatusWellFed.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaBase.h" />
@@ -930,6 +932,7 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenu.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenuBase.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuiutil.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\VectorMap.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkempblast.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkfatalityaction.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkGooSignalReceiver.h" />

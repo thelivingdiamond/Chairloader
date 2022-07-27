@@ -2415,6 +2415,15 @@
     <ClInclude Include="..\Common\Prey\ArkEnums.h">
       <Filter>Common\Prey</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\VectorMap.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\TArkAudioSwitch.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IActorSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

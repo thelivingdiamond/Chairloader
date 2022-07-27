@@ -3,6 +3,7 @@
 #pragma once
 //#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ui/IUIElementEventListener.h>
+#include <Prey/GameDll/ark/dialog/ArkConversation.h>
 
 struct IEntity;
 struct IUIElement;

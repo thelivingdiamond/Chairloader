@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
@@ -23,6 +22,22 @@ struct IEntity;
 struct IEntityClass;
 struct SEntityEvent;
 struct SEntitySpawnParams;
+
+// Header: Override
+// Prey/GameDll/ark/player/ArkPsiScanningComponent.h
+class ArkScanState // Id=8016E6A Size=16
+{
+public:
+	unsigned m_entityId;
+	uint64_t m_locationId;
+
+#if 0
+	unsigned GetEntityId() const;
+	uint64_t GetLocationId() const;
+	bool operator==(ArkScanState const& arg0) const;
+	void Serialize(TSerialize arg0);
+#endif
+};
 
 // Header: Exact
 // Prey/GameDll/ark/player/ArkPsiScanningComponent.h
