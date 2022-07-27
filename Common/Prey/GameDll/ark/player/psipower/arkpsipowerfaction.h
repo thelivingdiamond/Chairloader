@@ -1,13 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/ark/arkaudioutil.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryMemory/StlDbgAlloc.h>
-#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerIndividualTargetingComponent.h>
-#include <Prey/GameDll/ark/player/psipower/arkpsipowercyberkinesis.h>
-#include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
-#include <_perforce/danielle/preybnet/code/arkane/arkcommon/reflection/ArkReflectedObject.h>
-#include <_unknown/ArkPsiPowerFactionTraits_11_.h>
 #include <_unknown/CAkKeyArray_unsigned long,CAkFeedbackNode__SrcInfo _,AkArrayAllocatorNoAlign__ArrayPoolDefault_,1,AkAssignmentMovePolicy_MapStruct_unsigned long,CAkFeedbackNode__SrcInfo __ _ _.h>
 
 struct ActionParams;
@@ -16,11 +11,7 @@ struct AkPBIModValues;
 class AkRTPCKey;
 struct AkSoundParamsEx;
 class ArkClass;
-class ArkPsiPowerCyberkinesisProperties;
-class ArkPsiPowerTargetingComponent;
-class CCryName;
 struct CounterParameters;
-struct IEntity;
 
 // Header: Exact
 // Prey/GameDll/ark/player/psipower/arkpsipowerfaction.h
@@ -30,7 +21,7 @@ public:
 	class ArkExecuteAudioTriggerProperty : public ArkProperty // Id=801C0F6 Size=32
 	{
 	public:
-		void ArkExecuteAudioTriggerProperty();
+		ArkExecuteAudioTriggerProperty();
 		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
 		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
 		
@@ -50,38 +41,6 @@ public:
 #endif
 	
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13644E0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerfaction.h
-class CArkPsiPowerFaction<11> : public CArkPsiPower<CyberkinesisPowerProperties> // Id=801C8A6 Size=696
-{
-public:
-	using PowerTraits = ArkPsiPowerFactionTraits<11>;
-	using PowerProperties = CyberkinesisPowerProperties;
-	using BaseType = CArkPsiPower<CyberkinesisPowerProperties>;
-	
-	ArkPsiPowerCyberkinesisProperties const *m_pProperties;
-	ArkAudioTrigger m_onExecuteSoundTrigger;
-	ArkPsiPowerIndividualTargetingComponent m_targetingComponent;
-	
-#if 0
-	virtual void Cancel();
-	virtual void UpdateTargeting(const float _frameTime);
-	virtual bool StartTargeting();
-	virtual void RefreshTargets();
-	virtual std::vector<IEntity *> GetSelectedTargets() const;
-	virtual std::vector<IEntity *> GetUnselectedTargets() const;
-	virtual Vec3 GetTargetPosition() const;
-	virtual ArkPsiPowerTargetingComponent const *GetTargetingComponent() const;
-	virtual void ProcessInputForTargeting(CCryName const &_actionId, int _activationMode, float _value);
-	virtual EArkPsiPowers GetEnum() const;
-	virtual bool Stop();
-	virtual bool Start_Derived();
-	virtual void SetLevel_Derived(const int _level);
-	virtual EArkPsiPowerError GetExecutionError() const;
-	bool FilterTarget(IEntity const &_entity) const;
-#endif
 };
 
 // Header: Exact
@@ -115,7 +74,7 @@ public:
 	virtual AKRESULT PrepareData();
 	virtual void UnPrepareData();
 	AKRESULT SetInitialValues(uint8_t *in_pData, unsigned long in_ulDataSize, CAkUsageSlot *in_pUsageSlot, bool in_bIsPartialLoadOnly) { return FSetInitialValues(this,in_pData,in_ulDataSize,in_pUsageSlot,in_bIsPartialLoadOnly); }
-	virtual void ~CAkFeedbackNode();
+	virtual ~CAkFeedbackNode();
 	virtual AKRESULT GetFeedbackParameters(AkFeedbackParams &io_Params, CAkSource *in_pSource, CAkRegisteredObj *in_GameObjPtr, bool in_bDoBusCheck);
 	virtual AKRESULT GetAudioParameters(AkSoundParamsEx &io_Parameters, unsigned long in_ulParamSelect, AkMutedMap &io_rMutedMap, AkRTPCKey const &in_rtpcKey, bool in_bIncludeRange, AkPBIModValues &io_Ranges, bool in_bDoBusCheck);
 	

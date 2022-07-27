@@ -15,9 +15,9 @@
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicTurretCamera.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicTurretController.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicTurretEntity.h>
-#include <_unknown/ArkPlayerMimicMedicalOperatorController.h>
-#include <_unknown/IArkGravShaftListener.h>
-#include <_unknown/IArkPlayerMimic.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicMedicalOperatorController.h>
+#include <Prey/GameDll/ark/IArkGravShaftListener.h>
+#include <Prey/GameDll/ark/player/psipower/IArkPlayerMimic.h>
 
 class ArkInputLegend;
 class CArkGravShaftEntity;

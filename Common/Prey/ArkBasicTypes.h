@@ -11,34 +11,6 @@ public:
 // template<typename T> class vector {
 // 	char pad[24];
 // };
-template<typename T> class ArkIntrusiveList;
-	template<typename T> class ArkIntrusiveListElement {
-	public:
-		ArkIntrusiveList<T>* m_pList;
-		ArkIntrusiveListElement<T>* m_pPrev;
-		ArkIntrusiveListElement<T>* m_pNext;
-
-	};
-	template<typename T> class ArkIntrusiveList {
-	public:
-		uint64_t m_size;
-		ArkIntrusiveListElement<T> m_head;
-	};
-	class ArkContiguousMemory {
-	public:
-		std::vector<unsigned char> m_memory;
-	};
-	class ArkUnanimous {
-	public:
-		uint64_t m_trueCount,
-			m_falseCount;
-
-	};
-	template<typename T> class ArkInterval {
-	public:
-		T minimum;
-		T maximum;
-	};
 
 template<typename T, uint32_t i> class CryFixedArray {
 public:

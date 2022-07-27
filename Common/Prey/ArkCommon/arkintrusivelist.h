@@ -2,6 +2,29 @@
 
 #pragma once
 
+template <typename T>
+class ArkIntrusiveList;
+
+template <typename T>
+class ArkIntrusiveListElement // Id=801416A Size=24
+{
+public:
+	ArkIntrusiveList<T>* m_pList;
+	ArkIntrusiveListElement<T>* m_pPrev;
+	ArkIntrusiveListElement<T>* m_pNext;
+
+#if 0
+	bool IsLinked() const;
+	void Unlink();
+	ArkIntrusiveListElement<T>& Prev() const;
+	ArkIntrusiveListElement<T>& Next() const;
+	bool IsInList(ArkIntrusiveList<T> const& arg0) const;
+	ArkIntrusiveList<T>& GetList() const;
+	void Insert(ArkIntrusiveList<T>& arg0, ArkIntrusiveListElement<T>& arg1);
+	void Remove();
+#endif
+};
+
 // Header: Exact
 // Prey/ArkCommon/arkintrusivelist.h
 template <typename T>

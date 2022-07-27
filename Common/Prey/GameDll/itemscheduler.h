@@ -2,8 +2,8 @@
 
 #pragma once
 #include <Prey/GameDll/item.h>
-#include <_unknown/CSchedulerActionPoolBase.h>
-#include <_unknown/ISchedulerAction.h>
+#include <Prey/GameDll/ark/CSchedulerActionPoolBase.h>
+#include <Prey/GameDll/ark/ISchedulerAction.h>
 
 class ICrySizer;
 struct ITimer;

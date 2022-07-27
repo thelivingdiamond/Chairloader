@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <_unknown/IUIEventSystemFactory.h>
+#include <Prey/GameDll/ark/ui/IUIEventSystemFactory.h>
 
 // Header: Exact
 // Prey/GameDll/ui/iuigameeventsystem.h

@@ -2,8 +2,8 @@
 
 #pragma once
 #include <Prey/GameDll/ark/attention/arkcomplexattentionobject.h>
-#include <_unknown/ArkAuralPerceivable.h>
-#include <_unknown/ArkSimpleVisualPerceivable.h>
+#include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
+#include <Prey/GameDll/ark/perception/ArkSimpleVisualPerceivable.h>
 
 class ArkCystoid;
 class ArkCystoidNest;

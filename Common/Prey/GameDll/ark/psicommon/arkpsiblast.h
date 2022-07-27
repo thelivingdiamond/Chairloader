@@ -1,12 +1,12 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/ark/arkaudioutil.h>
+#include <Prey/Ark/arkaudioutil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h>
 #include <Prey/GameDll/ark/psicommon/arkpsifearblast.h>
-#include <_unknown/ArkGameNoise__Params.h>
+#include <Prey/GameDll/ark/perception/ArkGameNoise.h>
 
 class ArkPsiPowerTargetingComponent;
 struct IEntity;

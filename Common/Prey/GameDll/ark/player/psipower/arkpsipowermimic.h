@@ -12,7 +12,7 @@
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 #include <Prey/GameDll/ark/psicommon/arkpsiblastmanager.h>
 #include <_perforce/danielle/preybnet/code/arkane/arkcommon/reflect/arkreflectionaccessors.h>
-#include <_unknown/IArkBreakableListener.h>
+#include <Prey/GameDll/ark/IArkBreakableListener.h>
 
 class ArkInputLegend;
 class ArkPsiPowerTargetingComponent;

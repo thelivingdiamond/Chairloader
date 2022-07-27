@@ -7,9 +7,9 @@
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/GameDll/weaponlookoffset.h>
 #include <Prey/GameDll/weaponrecoiloffset.h>
-#include <_unknown/SStaticBumpParams.h>
-#include <_unknown/SStaticWeaponPoseParams.h>
-#include <_unknown/SStaticWiggleParams.h>
+#include <Prey/GameDll/ark/weapons/SStaticBumpParams.h>
+#include <Prey/GameDll/ark/weapons/SStaticWeaponPoseParams.h>
+#include <Prey/GameDll/ark/weapons/SStaticWiggleParams.h>
 #include <_unknown/TProceduralContextualClip_CProceduralWeaponAnimationContext,SWeaponProceduralClipParams_SStaticBumpParams_ _.h>
 #include <_unknown/TProceduralContextualClip_CProceduralWeaponAnimationContext,SWeaponProceduralClipParams_SStaticWiggleParams_ _.h>
 

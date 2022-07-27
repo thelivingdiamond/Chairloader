@@ -1,13 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
-#include <Prey/GameDll/ark/dialog/ArkDialogPlayer.h>
-#include <Prey/GameDll/ark/dialog/ArkDialogPlayerNPC.h>
-#include <Prey/GameDll/ark/dialog/ArkDialogPlayerPA.h>
-#include <Prey/GameDll/ark/dialog/ArkDialogPlayerTranscribe.h>
-#include <Prey/GameDll/ark/dialog/arkconversation.h>
-#include <Prey/GameDll/ark/turret/ArkDialogTurret.h>
+//#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/ui/IUIElementEventListener.h>
 
 struct IEntity;
 struct IUIElement;
@@ -22,8 +17,7 @@ public:
 	T m_dialogPlayer;
 	bool m_bResumePlayback;
 	
-#if 0
-	virtual void ~ArkSpeaker();
+	virtual ~ArkSpeaker();
 	virtual void OnSetVisible(IUIElement *const _pSender, const bool _bVisible);
 	void Pause(const bool arg0);
 	virtual void Stop(const bool _bLoading, const bool _bConversationComplete);
@@ -43,6 +37,5 @@ public:
 	virtual void SetVoiceEffect(unsigned _environmentId);
 	virtual EArkConversationDominance GetDefaultDominance() const;
 	virtual void SetDuckAudio(const bool _bEnable);
-#endif
 };
 

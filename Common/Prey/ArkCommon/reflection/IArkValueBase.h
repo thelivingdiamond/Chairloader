@@ -2,8 +2,7 @@
 
 #pragma once
 
-// Header: MadeUp
-// _unknown/IArkValueBase.h
+// Prey/ArkCommon/reflection/IArkValueBase.h
 class IArkValueBase // Id=800201E Size=8
 {
 public:

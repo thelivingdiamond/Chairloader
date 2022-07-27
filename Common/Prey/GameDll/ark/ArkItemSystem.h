@@ -5,7 +5,6 @@
 #include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkitemsystem.h>
-#include <_unknown/ArkItemSystem__IArkItemCreator.h>
 
 class CEquipmentManager;
 struct IArkItem;
@@ -48,8 +47,8 @@ public:
 	std::unordered_map<string,string> m_projectileToPickup;
 	std::unordered_map<uint64_t, std::vector<uint64_t>> m_notValidForRandom;
 	
-	void ArkItemSystem();
-	virtual void ~ArkItemSystem();
+	ArkItemSystem();
+	virtual ~ArkItemSystem();
 	void Init() { FInit(this); }
 	void ScanXML(string const &_filename, bool _bReloading) { FScanXML(this,_filename,_bReloading); }
 	void LoadEquipmentPacks() { FLoadEquipmentPacks(this); }

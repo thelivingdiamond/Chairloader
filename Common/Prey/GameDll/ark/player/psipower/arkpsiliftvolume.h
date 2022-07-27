@@ -6,9 +6,8 @@
 #include <Prey/GameDll/ark/player/psipower/ArkPsiLift.h>
 #include <Prey/GameDll/ark/player/psipower/arkplayerliftentity.h>
 #include <Prey/GameDll/ark/player/psipower/arkplayerliftentityzerog.h>
-#include <_perforce/danielle/preybnet/code/arkane/arkcommon/reflect/arkreflectionaccessors.h>
-#include <_unknown/ArkPsiLiftVolumeEntity_ArkPlayerLiftEntityZeroG_.h>
-#include <_unknown/ArkPsiLiftVolumeEntity_ArkPlayerLiftEntity_.h>
+#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
+#include <Prey/GameDll/ark/player/psipower/arkpsiliftvolume.h>
 
 struct IEntity;
 

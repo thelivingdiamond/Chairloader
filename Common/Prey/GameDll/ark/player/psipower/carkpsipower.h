@@ -1,11 +1,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/ark/arktutorial.h>
+#include <Prey/Ark/arktutorial.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
 #include <_perforce/danielle/preybnet/code/arkane/arkcommon/reflect/arkreflectionaccessors.h>
-#include <_unknown/Color_tpl_float_.h>
+#include <Prey/CryMath/Cry_Color.h>
 
 class ArkInputLegend;
 struct IParticleEffect;

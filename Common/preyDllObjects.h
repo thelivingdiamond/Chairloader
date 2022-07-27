@@ -34,6 +34,7 @@
 #include "Prey/RayCast.h"
 #include "Prey/ArkPlayerStatus.h"
 #include "Prey/ArkPlayerFatigueComponent.h"
+#include "Prey/ArkCommon/ArkRegularOutcome.h"
 // #include "Header.h"
 	// Created with ReClass.NET 1.2 by KN4CK3R
 
@@ -540,15 +541,6 @@ class CEntitySystem;
 	class XmlNodeRef;
 	
 
-
-
-
-
-
-	class ArkRegularOutcome {
-	public:
-		uint32_t m_data;
-	};
 	
 	
 
@@ -4356,7 +4348,6 @@ class CEntitySystem;
 			bool m_failedToAcceptInviteAsNotSignedIn;
 		};
 		class ArkAiManager{};
-		class ArkAttentionManager{};
 		class ArkAttractionManager{};
 		class ArkAuralPerceptionManager{};
 		class ArkCharacterManager{};

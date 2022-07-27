@@ -3,6 +3,10 @@
 #include "ArkSpatial.h"
 #include "IAttachment.h"
 #include "Prey/CryCore/StdAfx.h"
+#include <Prey/ArkCommon/ArkContiguousMemory.h>
+#include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/ArkCommon/ArkIntrusiveList.h>
+#include <Prey/ArkCommon/ArkUnanimous.h>
 
 class ArkNpc;
 class ArkRobotLight;
