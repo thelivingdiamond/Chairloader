@@ -1,4 +1,5 @@
 // Header test file for path Prey/GameDll/ark/environment/ArkApexTentacle.h
+#if 0
 #include "ArkApexTentacle.h"
 static_assert(sizeof(ArkApexTentacle) == 1264);
 static_assert(sizeof(ArkApexTentacle::SegmentInfo) == 40);
@@ -55,3 +56,4 @@ static_assert(sizeof(ArkTelescope) == 160);
 
 #include "ArkTrackingCamera.h"
 static_assert(sizeof(ArkTrackingCamera) == 360);
+#endif

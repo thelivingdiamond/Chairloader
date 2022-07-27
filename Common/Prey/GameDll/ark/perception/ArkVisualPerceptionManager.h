@@ -2,10 +2,6 @@
 
 #pragma once
 #include <Prey/Ark/arklineofsightcheck.h>
-#include <_unknown/ArkVisualPerceptionManager___$LineOfSightCheckImpl@VComplexAcuteLineOfSightCheckImpl@ArkVisualPerceptionManager@@.h>
-#include <_unknown/ArkVisualPerceptionManager___$LineOfSightCheckImpl@VComplexAllLineOfSightCheckImpl@ArkVisualPerceptionManager@@.h>
-#include <_unknown/ArkVisualPerceptionManager___$LineOfSightCheckImpl@VComplexAnyLineOfSightCheckImpl@ArkVisualPerceptionManager@@.h>
-#include <_unknown/ArkVisualPerceptionManager___$LineOfSightCheckImpl@VSimpleLineOfSightCheckImpl@ArkVisualPerceptionManager@@.h>
 
 struct AABB;
 class ArkComplexVisualPerceivable;

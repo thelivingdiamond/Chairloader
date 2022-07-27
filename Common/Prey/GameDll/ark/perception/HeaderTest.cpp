@@ -51,6 +51,7 @@ static_assert(sizeof(ArkVisualPerceivable) == 8);
 #include "arkvisualperceiver.h"
 static_assert(sizeof(ArkVisualPerceiverVisionParams) == 60);
 
+#if 0
 #include "ArkVisualPerceptionManager.h"
 static_assert(sizeof(ArkVisualPerceptionManager) == 1800);
 static_assert(sizeof(ArkVisualPerceptionManager::VisionConeDefinition) == 44);
@@ -72,3 +73,4 @@ static_assert(sizeof(ArkVisualPerceptionManager::?$LineOfSightCheckImpl@VComplex
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl) == 1);
 static_assert(sizeof(ArkVisualPerceptionManager::?$LineOfSightCheckImpl@VComplexAllLineOfSightCheckImpl@ArkVisualPerceptionManager@@) == 16);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexLineOfSightChecks) == 1832);
+#endif

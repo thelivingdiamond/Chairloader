@@ -1,6 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/perception/ArkGameNoiseInfo.h>
+#include <Prey/GameDll/ark/perception/ArkSimpleAuralPerceptionInfo.h>
+#include <Prey/GameDll/ark/perception/ArkComplexAuralPerceptionInfo.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 
 class ArkAuralPerceivable;
 class ArkAuralPerceiver;
