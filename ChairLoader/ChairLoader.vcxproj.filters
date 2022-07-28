@@ -184,6 +184,9 @@
     <Filter Include="Common\Prey\Ark">
       <UniqueIdentifier>{56901934-8db6-4c50-bfe9-0a44d21f32b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\GameDll\EntityUtility">
+      <UniqueIdentifier>{7e4afc3d-dc8b-4042-9365-2184e3460908}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChairloaderGui.h">
@@ -2427,6 +2430,39 @@
     <ClInclude Include="..\Common\Prey\CryAction\ISubtitleManager.h">
       <Filter>Common\Prey\CryAction</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\arkitem.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ArkInventory.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\EntityUtility\EntityEffects.h">
+      <Filter>Common\Prey\GameDll\EntityUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\itemstring.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponlookoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponoffsetinput.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponrecoiloffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponstrafeoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponzoomoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponbumpoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -2590,6 +2626,9 @@
     </ClCompile>
     <ClCompile Include="..\Common\Prey\Ark\HeaderTest.cpp">
       <Filter>Common\Prey\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\EntityUtility\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\EntityUtility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

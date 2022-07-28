@@ -7,6 +7,7 @@ namespace detail
 struct StubSmartPtrIface
 {
 	void Release();
+	void AddRef();
 };
 
 }
@@ -21,8 +22,9 @@ struct IParticleEffect : detail::StubSmartPtrIface {};
 struct IMaterial : detail::StubSmartPtrIface {};
 struct ISaveGameThumbnail : detail::StubSmartPtrIface {};
 
-struct IAction : detail::StubSmartPtrIface
+class IAction : public detail::StubSmartPtrIface
 {
+public:
 	enum class EStatus
 	{
 		None = 0,
@@ -125,4 +127,13 @@ struct SUIEventSenderDispatcher // Id=801BBBE Size=24
 #if 0
 	void Init(IUIEventSystem* arg0);
 #endif
+};
+
+struct SMannequinItemParams
+{
+	struct FragmentIDs;
+	struct TagIDs;
+	struct TagGroupIDs;
+	struct ContextIDs;
+	struct Fragments;
 };

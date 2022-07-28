@@ -41,8 +41,14 @@ static_assert(sizeof(IArkGravShaftListener) == 8);
 #include "IArkGroundColliderListener.h"
 static_assert(sizeof(IArkGroundColliderListener) == 8);
 
+#include "IArkInventory.h"
+static_assert(sizeof(IArkInventory) == 8);
+
 #include "IArkInventoryListener.h"
 static_assert(sizeof(IArkInventoryListener) == 8);
+
+#include "IArkItem.h"
+static_assert(sizeof(IArkItem) == 64);
 
 #include "IArkLightListener.h"
 static_assert(sizeof(IArkLightListener) == 8);

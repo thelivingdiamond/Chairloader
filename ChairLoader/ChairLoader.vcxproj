@@ -514,6 +514,8 @@
     <ClInclude Include="..\Common\Prey\CryThreading\CryThread_win32.h" />
     <ClInclude Include="..\Common\Prey\CryThreading\IJobManager.h" />
     <ClInclude Include="..\Common\Prey\CryThreading\IThreadTask.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ArkInventory.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\arkitem.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkAirJetManager.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\arkanglerotationcomponent.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkApexVolume.h" />
@@ -975,10 +977,19 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorkstationScreen.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorldUIManager.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorldUIOwner.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\EntityUtility\EntityEffects.h" />
     <ClInclude Include="..\Common\Prey\GameDll\itemscheduler.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\itemstring.h" />
     <ClInclude Include="..\Common\Prey\GameDll\proceduralweaponclip.h" />
     <ClInclude Include="..\Common\Prey\GameDll\state.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ui\iuigameeventsystem.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponbumpoffset.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponlookoffset.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponoffset.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponoffsetinput.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponrecoiloffset.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponstrafeoffset.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\weaponzoomoffset.h" />
     <ClInclude Include="..\Common\proc.h" />
     <ClInclude Include="..\Common\VTableHook.h" />
     <ClInclude Include="ChairloaderConfigManager.h" />
@@ -1037,6 +1048,7 @@
     <ClCompile Include="..\Common\Prey\GameDll\ark\ui\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\weapons\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\worldui\HeaderTest.cpp" />
+    <ClCompile Include="..\Common\Prey\GameDll\EntityUtility\HeaderTest.cpp" />
     <ClCompile Include="..\Common\proc.cpp" />
     <ClCompile Include="..\Common\VTableHook.cpp" />
     <ClCompile Include="ChairLoader.cpp" />

@@ -3,11 +3,6 @@
 #pragma once
 #include <Prey/GameDll/weaponoffset.h>
 
-namespace Serialization
-{
-class IArchive;
-} // namespace Serialization
-
 // Header: Override
 // Prey/GameDll/ark/weapons/SStaticWeaponPoseParams.h
 struct SStaticWeaponPoseParams // Id=801D52C Size=32

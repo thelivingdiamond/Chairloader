@@ -85,7 +85,7 @@ public:
 	virtual void OnSaveGame(ISaveGame*) = 0;
 	virtual void OnLoadGame(ILoadGame*) = 0;
 	virtual void OnLevelEnd(const char*) = 0;
-	virtual void OnActionEvent(const SActionEvent*) = 0;
+	virtual void OnActionEvent(const SActionEvent&) = 0;
 	virtual void OnPreRender() = 0;
 	virtual void OnSavegameFileLoadedInMemory(const char*) = 0;
 	virtual void OnForceLoadingWithFlash() = 0;

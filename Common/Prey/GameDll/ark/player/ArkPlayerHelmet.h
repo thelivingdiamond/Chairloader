@@ -37,7 +37,7 @@ public:
 	bool m_bConsideredCaughtUp;
 	
 	ArkPlayerHelmet();
-	~ArkPlayerHelmet() { FBitNotArkPlayerHelmet(this); }
+	~ArkPlayerHelmet();
 	void Reset() { FReset(this); }
 	void SetViewRotation(Quat const &_rotation) { FSetViewRotation(this,_rotation); }
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }

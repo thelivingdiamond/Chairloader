@@ -8,6 +8,7 @@
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/weapons/ArkGooSignalReceiver.h>
 #include <Prey/GameDll/ark/weapons/arkprojectile.h>
+#include <Prey/GameDll/ark/weapons/ArkWeaponUtils.h>
 
 class ArkSafeScriptTable;
 class ArkWeaponUtils;

@@ -2,11 +2,6 @@
 
 #pragma once
 
-namespace Serialization
-{
-class IArchive;
-} // namespace Serialization
-
 // Header: Override
 // Prey/GameDll/ark/weapons/SStaticBumpParams.h
 struct SStaticBumpParams // Id=801D539 Size=12

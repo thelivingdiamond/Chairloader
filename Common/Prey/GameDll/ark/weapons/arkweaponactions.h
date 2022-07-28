@@ -1,7 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAction/ICryMannequin.h>
+//#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/GameDll/ark/player/ArkPlayer.h>
 
 class IAction;
 class IArkPlayer;

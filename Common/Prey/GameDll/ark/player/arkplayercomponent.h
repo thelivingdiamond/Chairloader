@@ -111,7 +111,7 @@ public:
 	bool m_bMarkerTextDisplayed;
 	
 	ArkPlayerComponent();
-	~ArkPlayerComponent() { FBitNotArkPlayerComponent(this); }
+	~ArkPlayerComponent();
 	void Init() { FInit(this); }
 	void Release() { FRelease(this); }
 	void Update(const float _deltaTime) { FUpdate(this,_deltaTime); }

@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryPhysics/physinterface.h>
 
 class CArkProjectileGoo;
 class CArkWeapon;

@@ -1,12 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkRegularOutcome.h>
-#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryGame/IGameFramework.h>
+//#include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
@@ -19,6 +17,8 @@
 #include <Prey/GameDll/ark/playerIArkCombatFocusListener.h>
 #include <Prey/GameDll/ark/weapons/IArkWeapon.h>
 #include <Prey/GameDll/arkitem.h>
+#include <Prey/GameDll/EntityUtility/EntityEffects.h>
+#include <Prey/GameDll/ark/ui/arkinventoryui.h>
 
 struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
