@@ -2636,6 +2636,9 @@
     <ClCompile Include="..\Common\Prey\GameDll\EntityUtility\HeaderTest.cpp">
       <Filter>Common\Prey\GameDll\EntityUtility</Filter>
     </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntityArchetypesList.txt" />

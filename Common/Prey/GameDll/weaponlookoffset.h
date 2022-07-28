@@ -1,12 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <_unknown/SGameWeaponSwayParams.h>
-
-namespace Serialization
-{
-class IArchive;
-} // namespace Serialization
+#include <Prey/GameDll/SGameWeaponSwayParams.h>
 
 // Header: FromCpp
 // Prey/GameDll/weaponlookoffset.h

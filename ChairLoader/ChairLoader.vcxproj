@@ -1051,6 +1051,7 @@
     <ClCompile Include="..\Common\Prey\GameDll\ark\weapons\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\worldui\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\EntityUtility\HeaderTest.cpp" />
+    <ClCompile Include="..\Common\Prey\GameDll\HeaderTest.cpp" />
     <ClCompile Include="..\Common\proc.cpp" />
     <ClCompile Include="..\Common\VTableHook.cpp" />
     <ClCompile Include="ChairLoader.cpp" />

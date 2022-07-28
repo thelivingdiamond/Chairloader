@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/GameDll/weaponlookoffset.h>
-#include <_unknown/SGameWeaponSwayParams.h>
+#include <Prey/GameDll/SGameWeaponSwayParams.h>
 
 // Header: FromCpp
 // Prey/GameDll/weaponstrafeoffset.h

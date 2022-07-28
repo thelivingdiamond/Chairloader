@@ -2,11 +2,6 @@
 
 #pragma once
 
-namespace Serialization
-{
-class IArchive;
-} // namespace Serialization
-
 // Header: FromCpp
 // Prey/GameDll/weaponrecoiloffset.h
 struct SStaticWeaponRecoilParams // Id=8016D29 Size=24
