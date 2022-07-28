@@ -222,9 +222,6 @@
     <ClInclude Include="..\Common\mem.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\preyDllObjects.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\PreyFunctions.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -2793,6 +2790,9 @@
     <ClInclude Include="..\Common\Prey\GameDll\GameActions.h">
       <Filter>Common\Prey\GameDll</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMemory\STLGlobalAllocator.h">
+      <Filter>Common\Prey\CryMemory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -2820,9 +2820,6 @@
       <Filter>ImGui</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\mem.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\PreyDllObjects.cpp">
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\PreyFunctions.cpp">

@@ -267,7 +267,6 @@
     <ClInclude Include="..\Common\imgui\misc\single_file\imgui_single_file.h" />
     <ClInclude Include="..\Common\Logging.h" />
     <ClInclude Include="..\Common\mem.h" />
-    <ClInclude Include="..\Common\preyDllObjects.h" />
     <ClInclude Include="..\Common\PreyFunctions.h" />
     <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemory.h" />
@@ -457,6 +456,7 @@
     <ClInclude Include="..\Common\Prey\CryMemory\CryMemoryManager.h" />
     <ClInclude Include="..\Common\Prey\CryMemory\IGeneralMemoryHeap.h" />
     <ClInclude Include="..\Common\Prey\CryMemory\STLAlignedAlloc.h" />
+    <ClInclude Include="..\Common\Prey\CryMemory\STLGlobalAllocator.h" />
     <ClInclude Include="..\Common\Prey\CryNetwork\INetwork.h" />
     <ClInclude Include="..\Common\Prey\CryNetwork\ISerialize.h" />
     <ClInclude Include="..\Common\Prey\CryNetwork\SerializeFwd.h" />
@@ -1132,7 +1132,6 @@
     <ClCompile Include="..\Common\imgui\misc\fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="..\Common\Logging.cpp" />
     <ClCompile Include="..\Common\mem.cpp" />
-    <ClCompile Include="..\Common\PreyDllObjects.cpp" />
     <ClCompile Include="..\Common\PreyFunctions.cpp" />
     <ClCompile Include="..\Common\Prey\ArkCommon\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\ArkCommon\reflection\HeaderTest.cpp" />
