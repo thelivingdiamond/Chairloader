@@ -2,13 +2,13 @@
 #include <mutex>
 #include <imgui.h>
 #include <Prey/CryInput/BaseInput.h>
-#include "PreyFunctions.h"
 #include "LibD3D11.h"
 
 class ITexture;
 
 class ChairLoaderImGui {
 public:
+	static void InitHooks();
 	ChairLoaderImGui();
 	~ChairLoaderImGui();
 	void PreUpdate(bool haveFocus);
@@ -95,7 +95,6 @@ private:
 	void RT_SetupRenderState(RenderLists *list, ID3D11DeviceContext *ctx);
 
 	// Hooks
-	PreyFunctions::CBaseInputPrivate::_PostInputEvent m_hookCBaseInputPostInputEvent = nullptr;
 	static void CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce);
 
 	using IDXGISwapChain_Present = HRESULT (*)(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags);

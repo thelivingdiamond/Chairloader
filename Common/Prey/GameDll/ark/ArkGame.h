@@ -319,5 +319,7 @@ public:
 	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkGame *const _this, unsigned __formal)>(0xA13080);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkGame *const _this, bool _bControllerDisconnect)>(0xA13080);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkGame *const _this)>(0x116EFE0);
+
+	static inline auto GetArkGame = PreyFunction<ArkGame* ()>(0x116D820);
 };
 

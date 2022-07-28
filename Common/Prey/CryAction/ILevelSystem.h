@@ -23,6 +23,7 @@
 
 struct ILevelRotationFile;
 struct IConsoleCmdArgs;
+struct ILevel;
 
 struct ILevelRotation
 {
@@ -154,10 +155,10 @@ struct ILevelSystemListener
 	virtual void OnLevelNotFound(const char* levelName) = 0;
 	virtual void OnLoadingStart(ILevelInfo* pLevel) = 0;
 	virtual void OnLoadingLevelEntitiesStart(ILevelInfo* pLevel) = 0;
-	virtual void OnLoadingComplete(ILevelInfo* pLevel) = 0;
+	virtual void OnLoadingComplete(ILevel* pLevel) = 0;
 	virtual void OnLoadingError(ILevelInfo* pLevel, const char* error) = 0;
 	virtual void OnLoadingProgress(ILevelInfo* pLevel, int progressAmount) = 0;
-	virtual void OnUnloadComplete(ILevelInfo* pLevel) = 0;
+	virtual void OnUnloadComplete(ILevel* pLevel) = 0;
 
 	void         GetMemoryUsage(ICrySizer* pSizer) const { /*nothing*/ }
 };

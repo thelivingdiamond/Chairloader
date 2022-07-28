@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "EntityManager.h"
+#include <Prey/GameDll/ark/player/ArkPlayer.h>
 
 #include "Prey/Cry3DEngine/I3DEngine.h"
 ChairloaderGUIEntityManager::ChairloaderGUIEntityManager() {
     archetypeToSpawn = nullptr;
     // chairloaderGlobal = chairloaderIn;
-    archetypeList = &GetEntitySystem()->m_pEntityArchetypeManager->m_idToArchetypeMap;
     archetypeFilterRequestQueue.push(archetypeFilterRequest{ "" });
 }
 ChairloaderGUIEntityManager::~ChairloaderGUIEntityManager() {
@@ -37,8 +37,8 @@ void ChairloaderGUIEntityManager::drawEntitySpawner(bool* bShow) {
             ImGui::Text("Entity ID: ");
         }
         else {
-            ImGui::Text("Entity Archetype Name: %s", archetypeToSpawn->m_name.c_str());
-            ImGui::Text("Entity ID: %d", archetypeToSpawn->m_id);
+            ImGui::Text("Entity Archetype Name: %s", archetypeToSpawn->GetName());
+            ImGui::Text("Entity ID: %d", archetypeToSpawn->GetId());
         }
         ImGui::InputText("Entity Name", &inputName, ImGuiInputTextFlags_None);
         ImGui::InputInt("Spawn Count", &spawnCount);
@@ -116,11 +116,11 @@ void ChairloaderGUIEntityManager::drawEntitySpawner(bool* bShow) {
             auto itr = archetypeFilteredList.begin();
             for (int clip = 0; clip < 200 && itr != archetypeFilteredList.end(); clip++, ++itr) {
                 static bool nameClicked, idClicked;
-                CEntityArchetype* archetype = *itr;
+                IEntityArchetype* archetype = *itr;
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
 
-                nameClicked = ImGui::Selectable(archetype->m_name.c_str());
+                nameClicked = ImGui::Selectable(archetype->GetName());
                 if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
                 {
                     ImGui::Text("Display information about the archetype here");
@@ -132,7 +132,7 @@ void ChairloaderGUIEntityManager::drawEntitySpawner(bool* bShow) {
                 }
 
                 ImGui::TableSetColumnIndex(1);
-                if (ImGui::Selectable(std::to_string(archetype->m_id).c_str())) {
+                if (ImGui::Selectable(std::to_string(archetype->GetId()).c_str())) {
                     archetypeToSpawn = archetype;
                 }
             }
@@ -162,8 +162,8 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
             for (int i = 0; itr != entityDisplayList.end() && i < 500; i++, ++itr) {
                 // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
                 std::string label;
-                if ((*itr)->m_szName.c_str() != nullptr) {
-                    label = (*itr)->m_szName.c_str();
+                if ((*itr)->GetName() != nullptr) {
+                    label = (*itr)->GetName();
                 }
                 else {
                     label = "invalid name";
@@ -181,7 +181,7 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
             ImGui::BeginGroup();
             ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
             if (selected != nullptr) {
-                ImGui::Text("Entity: %llu", selected->m_nID);
+                ImGui::Text("Entity: %llu", selected->GetId());
             }
             else {
                 ImGui::Text("Entity: %s", "Null");
@@ -205,8 +205,8 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Name:");
                             ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                             ImGui::TableNextColumn();
-                            if (selected->m_szName.c_str() != nullptr)
-                                ImGui::Text("%s", selected->m_szName.c_str());
+                            if (selected->GetName() != nullptr)
+                                ImGui::Text("%s", selected->GetName());
                             else
                                 ImGui::Text("%s", "--Null Name--");
                             // ID
@@ -217,7 +217,7 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
                             ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                             ImGui::TableNextColumn();
                             // CryLog("at id\n");
-                            ImGui::Text("%llu", selected->m_nID);
+                            ImGui::Text("%llu", selected->GetId());
                             // GUID
                             ImGui::TableNextRow();
                             ImGui::TableNextColumn();
@@ -226,7 +226,7 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("GUID:");
                             ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                             ImGui::TableNextColumn();
-                            ImGui::Text("%llu", selected->m_guid);
+                            ImGui::Text("%llu", selected->GetGuid());
                             // Class
                             ImGui::TableNextRow();
                             ImGui::TableNextColumn();
@@ -235,9 +235,9 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Class:");
                             ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                             ImGui::TableNextColumn();
-                            if (selected->m_pClass != nullptr) {
-                                if (((CEntityClass*)selected->m_pClass)->m_sName.c_str() != nullptr)
-                                    ImGui::Text("%s", ((CEntityClass*)selected->m_pClass)->m_sName.c_str());
+                            if (selected->GetClass() != nullptr) {
+                                if (selected->GetClass()->GetName() != nullptr)
+                                    ImGui::Text("%s", selected->GetClass()->GetName());
                                 else
                                     ImGui::Text("%s", "--Null Class--");
                             }
@@ -250,9 +250,9 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Archetype:");
                             ImGui::SetCursorPosX(ImGui::GetColumnWidth());
                             ImGui::TableNextColumn();
-                            if (selected->m_pArchetype != nullptr) {
-                                if (selected->m_pArchetype->m_name.c_str() != nullptr)
-                                    ImGui::Text("%s", selected->m_pArchetype->m_name.c_str());
+                            if (selected->GetArchetype() != nullptr) {
+                                if (selected->GetArchetype()->GetName() != nullptr)
+                                    ImGui::Text("%s", selected->GetArchetype()->GetName());
                                 else
                                     ImGui::Text("%s", "--Null Archetype--");
                             }
@@ -263,20 +263,20 @@ void ChairloaderGUIEntityManager::drawEntityList(bool* bShow) {
                             ImGui::EndTable();
                         }
                         static float pos[3];
-                        pos[0] = selected->m_vPos.x;
-                        pos[1] = selected->m_vPos.y;
-                        pos[2] = selected->m_vPos.z;
+                        pos[0] = selected->GetPos().x;
+                        pos[1] = selected->GetPos().y;
+                        pos[2] = selected->GetPos().z;
                         static float newPos[3];
                         static float rot[4];
-                        rot[0] = selected->m_qRotation.v.x;
-                        rot[1] = selected->m_qRotation.v.y;
-                        rot[2] = selected->m_qRotation.v.z;
-                        rot[2] = selected->m_qRotation.w;
+                        rot[0] = selected->GetRotation().v.x;
+                        rot[1] = selected->GetRotation().v.y;
+                        rot[2] = selected->GetRotation().v.z;
+                        rot[2] = selected->GetRotation().w;
                         static float newRot[3];
                         static float scale[3]{ 1,1,1 };
-                        scale[0] = selected->m_vScale.x;
-                        scale[1] = selected->m_vScale.y;
-                        scale[2] = selected->m_vScale.z;
+                        scale[0] = selected->GetScale().x;
+                        scale[1] = selected->GetScale().y;
+                        scale[2] = selected->GetScale().z;
                         static float newScale[3];
                         // static float x, y, z, rx, rz, ry, rw = 1;
                         ImGui::Text("Position: ");
@@ -465,46 +465,46 @@ void ChairloaderGUIEntityManager::drawMenuBar(bool* entityListShow, bool* entity
             if (ImGui::BeginMenu("Spawn Typhon")) {
                 if (ImGui::BeginMenu("Mimics")) {
                     if (ImGui::MenuItem("Mimic"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Mimics.Mimic)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Mimics.Mimic) });
                     if (ImGui::MenuItem("Greater Mimic"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Mimics.EliteMimic)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Mimics.EliteMimic) });
                     ImGui::EndMenu();
                 }
                 if (ImGui::BeginMenu("Phantoms")) {
                     if (ImGui::MenuItem("Normal"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Phantoms.BasePhantom)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Phantoms.BasePhantom) });
                     if (ImGui::MenuItem("Thermal"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Phantoms.ThermalPhantom)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Phantoms.ThermalPhantom) });
                     if (ImGui::MenuItem("Etheric"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Phantoms.EthericPhantom)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Phantoms.EthericPhantom) });
                     if (ImGui::MenuItem("Voltaic"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Phantoms.VoltaicPhantom)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Phantoms.VoltaicPhantom) });
                     ImGui::EndMenu();
                 }
                 if (ImGui::MenuItem("Nightmare"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.ArkNightmare)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.ArkNightmare) });
                 if (ImGui::MenuItem("Poltergeist"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.ArkPoltergeist)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.ArkPoltergeist) });
                 if (ImGui::MenuItem("Telepath"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Overseers.Telepath)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Overseers.Telepath) });
                 if (ImGui::MenuItem("Technopath"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkNpcs.Overseers.Technopath)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.Overseers.Technopath) });
                 ImGui::EndMenu();
             }
             if (ImGui::BeginMenu("Spawn Operator")) {
                 if (ImGui::MenuItem("Medical"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.MedicalOperator)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkRobots.Operators.Generic.MedicalOperator) });
                 if (ImGui::MenuItem("Engineering"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.EngineeringOperator)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkRobots.Operators.Generic.EngineeringOperator) });
                 if (ImGui::MenuItem("Science"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.ScienceOperator)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkRobots.Operators.Generic.ScienceOperator) });
                 if (ImGui::MenuItem("Military"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Operators.Generic.MilitaryOperator)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkRobots.Operators.Generic.MilitaryOperator) });
                 ImGui::EndMenu();
             }
             if (ImGui::BeginMenu("Spawn Turrets")) {
                 if (ImGui::MenuItem("Turret"))
-                    archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkRobots.Turrets.Turret_Default)->second });
+                    archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkRobots.Turrets.Turret_Default) });
                 ImGui::EndMenu();
             }
             ImGui::Separator();
@@ -514,27 +514,27 @@ void ChairloaderGUIEntityManager::drawMenuBar(bool* entityListShow, bool* entity
             if (ImGui::BeginMenu("Spawn Items")) {
                 if (ImGui::BeginMenu("Weapons")) {
                     if (ImGui::MenuItem("Wrench"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.Wrench)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Weapons.Wrench) });
                     if (ImGui::MenuItem("Shotgun"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.Shotgun)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Weapons.Shotgun) });
                     if (ImGui::MenuItem("Shotgun Ammo"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Ammo.ShotgunShells)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Ammo.ShotgunShells) });
                     if (ImGui::MenuItem("Pistol"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.Pistol)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Weapons.Pistol) });
                     if (ImGui::MenuItem("Pistol Ammo"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Ammo.PistolBullets)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Ammo.PistolBullets) });
                     if (ImGui::MenuItem("Gloo Gun"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.GooGun)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Weapons.GooGun) });
                     if (ImGui::MenuItem("Gloo Gun Ammo"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Ammo.GooGun)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Ammo.GooGun) });
                     if (ImGui::MenuItem("Q Beam"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.Instalaser)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Weapons.Instalaser) });
                     if (ImGui::MenuItem("Q Beam Ammo"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Ammo.InstaLaser)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Ammo.InstaLaser) });
                     if (ImGui::MenuItem("Stun Gun"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Weapons.StunGun)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Weapons.StunGun) });
                     if (ImGui::MenuItem("Stun Gun Ammo"))
-                        archetypeSpawnRequestQueue.push(spawnRequest{ archetypeList->find(entityArchetypeLibrary.ArkPickups.Ammo.StunGunAmmo)->second });
+                        archetypeSpawnRequestQueue.push(spawnRequest{ gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkPickups.Ammo.StunGunAmmo) });
                     ImGui::EndMenu();
                 }
                 ImGui::EndMenu();
@@ -604,7 +604,7 @@ void ChairloaderGUIEntityManager::entityModifyHandler(ChairloaderGUILog* log) {
             } if (request.type == entityModifyType::playerPos) {
                 if (gEntUtils->ArkPlayerPtr() != nullptr) {
                     Vec3_tpl<float> pos;
-                    gPreyFuncs->ArkPlayerF->getPlayerWorldEyePos(gEntUtils->ArkPlayerPtr(), &pos);
+                    pos = ArkPlayer::GetInstance().GetPlayerWorldEyePos();
                     ((IEntity*)request.entity)->SetPos(pos, 0, false, false);
                     log->logItem("set entity pos to player pos", modName);
                 }
@@ -622,19 +622,20 @@ void ChairloaderGUIEntityManager::filterEntityList(ChairloaderGUILog* log) {
         entityDisplayList.clear();
         int i = 0;
 
-        for (auto itr = GetEntitySystem()->m_EntityArray.begin(); itr != GetEntitySystem()->m_EntityArray.end(); ++itr) {
-            if (*itr != nullptr) {
-                if ((*itr)->m_szName.c_str() != nullptr) {
-                    std::string name = (*itr)->m_szName.c_str();
-                    std::string newFilterText = filterText;
-                    std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
-                    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                    if (name.find(newFilterText) != name.npos || filterText.empty()) {
-                        entityDisplayList.emplace_back(*itr);
-                    }
-                }
+        IEntityItPtr pIt = gEnv->pEntitySystem->GetEntityIterator();
+        pIt->MoveFirst();
+        while (!pIt->IsEnd())
+        {
+            IEntity* pEntity = pIt->Next();
+            std::string name = pEntity->GetName();
+            std::string newFilterText = filterText;
+            std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
+            std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+            if (name.find(newFilterText) != name.npos || filterText.empty()) {
+                entityDisplayList.emplace_back(pEntity);
             }
         }
+
         refreshDisplayList = false;
     }
 }
@@ -805,6 +806,8 @@ void ChairloaderGUIEntityManager::filterEntityList(ChairloaderGUILog* log) {
 //     }
 // }
 void ChairloaderGUIEntityManager::archetypeFilterRequestHandler(ChairloaderGUILog* log) {
+    // FIXME: Find a proper way to get archetype list
+    /*
     if (!archetypeFilterRequestQueue.empty()) {
         archetypeFilterRequest request = archetypeFilterRequestQueue.front();
         std::string filterText = request.text;
@@ -830,6 +833,7 @@ void ChairloaderGUIEntityManager::archetypeFilterRequestHandler(ChairloaderGUILo
         archetypeFilterRequestQueue.pop();
         // CryLog("processed: %s\n", filterText.c_str());
     }
+    */
 }
 
 

@@ -10,6 +10,7 @@
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegendHandler.h>
+#include <Prey/GameDll/ark/player/ArkAudioSwitchState.h>
 
 class ArkPlayer;
 class ArkPlayerMovementFSM;

@@ -5,6 +5,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
 #include <Prey/CryMath/Cry_Color.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 
 class ArkInputLegend;
 struct IParticleEffect;

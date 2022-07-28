@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/Ark/arkdistractiondata.h>
 
 class ArkAudioLog;
 class ArkClass;

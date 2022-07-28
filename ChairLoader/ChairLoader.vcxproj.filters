@@ -184,6 +184,9 @@
     <Filter Include="Common\Prey\GameDll\ui">
       <UniqueIdentifier>{73fb68bc-8173-4015-927e-887261f6999b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\npc">
+      <UniqueIdentifier>{837e60f1-b692-4a8d-9535-4c207e322a49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChairloaderGui.h">
@@ -220,9 +223,6 @@
       <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\mem.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\PreyFunctions.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\VTableHook.h">
@@ -2793,6 +2793,12 @@
     <ClInclude Include="..\Common\Prey\CryMemory\STLGlobalAllocator.h">
       <Filter>Common\Prey\CryMemory</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnedState.h">
+      <Filter>Common\Prey\GameDll\ark\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnManager.h">
+      <Filter>Common\Prey\GameDll\ark\npc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -2820,9 +2826,6 @@
       <Filter>ImGui</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\mem.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\PreyFunctions.cpp">
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\VTableHook.cpp">
@@ -2962,6 +2965,9 @@
     </ClCompile>
     <ClCompile Include="..\Common\Prey\GameDll\HeaderTest.cpp">
       <Filter>Common\Prey\GameDll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\npc\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\npc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

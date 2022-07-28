@@ -583,3 +583,45 @@ CRY_ALIGN(64) uint32 BoxSides[0x40 * 8] = {
 #if !defined(_LIB) || defined(_LAUNCHER)
 	//#include <Cry3DEngine/GeomRef.inl>
 #endif
+
+namespace {
+constexpr int kCryMMIAT_None = 0x0;
+
+PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryModuleMalloc(0xA8C70);
+PreyFunction<void* (void* ptr, size_t size, int _module, int _type)> g_pfnCryModuleRealloc(0xA8D40);
+PreyFunction<void* (void* ptr)> g_pfnCryModuleFree(0xA8C60);
+PreyFunction<void* (size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleMemalign(0xA8CC0);
+PreyFunction<void* (void* ptr, size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleReallocAlign(0xA8DB0);
+PreyFunction<void* (void* ptr)> g_pfnCryModuleMemalignFree(0xA8D20);
+
+}
+
+extern "C" void* CryModuleMalloc(size_t size) throw()
+{
+	return g_pfnCryModuleMalloc(size, eCryM_Launcher, kCryMMIAT_None);
+}
+
+extern "C" void* CryModuleRealloc(void* memblock, size_t size) throw()
+{
+	return g_pfnCryModuleRealloc(memblock, size, eCryM_Launcher, kCryMMIAT_None);
+}
+
+extern "C" void  CryModuleFree(void* ptr) throw()
+{
+	g_pfnCryModuleFree(ptr);
+}
+
+extern "C" void* CryModuleMemalign(size_t size, size_t alignment)
+{
+	return g_pfnCryModuleMemalign(size, alignment, eCryM_Launcher, kCryMMIAT_None);
+}
+
+extern "C" void* CryModuleReallocAlign(void* memblock, size_t size, size_t alignment)
+{
+	return g_pfnCryModuleReallocAlign(memblock, size, alignment, eCryM_Launcher, kCryMMIAT_None);
+}
+
+extern "C" void  CryModuleMemalignFree(void* memblock)
+{
+	g_pfnCryModuleMemalignFree(memblock);
+}

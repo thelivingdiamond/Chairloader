@@ -3,6 +3,8 @@
 
 #include "IChairloader.h"
 
+class CSystem;
+
 struct IChairloaderMod {
 
 	//! Called during CSystem::Init, before any engine modules.

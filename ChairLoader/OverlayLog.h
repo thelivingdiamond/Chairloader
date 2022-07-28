@@ -1,10 +1,6 @@
 #pragma once
 #include "pch.h"
-#include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
-#include "preyDllObjects.h"
-#include "ChairLoader/IChairloaderGui.h"
-
 class ChairloaderGUILog {
 public:
     // Basic Logging Structs

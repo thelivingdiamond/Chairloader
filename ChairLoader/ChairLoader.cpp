@@ -5,6 +5,9 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/CryGame/Game.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerSmokeForm.h>
+#include <Prey/GameDll/ark/player/arkplayermovementstates.h>
+#include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <ChairLoader/PreyFunction.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
@@ -55,9 +58,9 @@ auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
 auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
 auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
 auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
-auto g_SmokeForm_Exit_hook = ArkPsiPowerSmokeForm::Exit.MakeHook();
-auto g_SmokeForm_TryMorphOut_hook = ArkPsiPowerSmokeForm::TryMorphOut.MakeHook();
-auto g_SmokeForm_Stop_hook = ArkPsiPowerSmokeForm::Stop.MakeHook();
+auto g_SmokeForm_Exit_hook = ArkPsiPowerSmokeForm::FExit.MakeHook();
+auto g_SmokeForm_TryMorphOut_hook = ArkPsiPowerSmokeForm::FTryMorphOut.MakeHook();
+auto g_SmokeForm_Stop_hook = ArkPsiPowerSmokeForm::FStop.MakeHook();
 
 bool CSystem_InitializeEngineModule_Hook(
 	CSystem* _this,
@@ -118,7 +121,7 @@ void SmokeForm_Exit_Hook(ArkPsiPowerSmokeForm* _this) {
 char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
 	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
 	ArkPlayerMovementStates::Smoke::Exit();
-	gEntUtils->ArkPlayerPtr()->Physicalize(gEntUtils->ArkPlayerPtr());
+	gEntUtils->ArkPlayerPtr()->Physicalize();
 	return retValue;
 }
 
@@ -164,6 +167,7 @@ ChairLoader::ChairLoader() {
 	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
+	ChairLoaderImGui::InitHooks();
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
@@ -194,7 +198,6 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
-	LoadPreyPointers();
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
 	gCLEnv->conf = (IChairloaderConfigManager*)gConf;
@@ -376,10 +379,6 @@ void ChairLoader::CreateConsole() {
 	AllocConsole();
 	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
 	printf("Welcome to funland sonic\n");
-}
-
-void ChairLoader::LoadPreyPointers() {
-	gPreyFuncs = new PreyFunctions(m_ModuleBase);
 }
 
 void ChairLoader::InstallHooks()

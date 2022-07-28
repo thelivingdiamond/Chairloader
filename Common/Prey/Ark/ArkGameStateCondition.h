@@ -36,8 +36,11 @@ public:
 		unsigned m_entityId;
 	};
 
-	uint64_t m_changeId;
-	ArkConditionEvaluationData::EntityIdentifiers m_identifiers;
+	union
+	{
+		uint64_t m_changeId;
+		ArkConditionEvaluationData::EntityIdentifiers m_identifiers;
+	};
 	
 #if 0
 	bool operator==(ArkConditionEvaluationData const &arg0) const;

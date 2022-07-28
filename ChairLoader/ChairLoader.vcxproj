@@ -267,7 +267,6 @@
     <ClInclude Include="..\Common\imgui\misc\single_file\imgui_single_file.h" />
     <ClInclude Include="..\Common\Logging.h" />
     <ClInclude Include="..\Common\mem.h" />
-    <ClInclude Include="..\Common\PreyFunctions.h" />
     <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemory.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemorySizer.h" />
@@ -739,6 +738,8 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IGameRulesKillListener.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\iface\ISaveGameEnumerator.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ISchedulerAction.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnedState.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnManager.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkAttentiveSubject.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkAuralPerceivable.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkAuralPerceptionManager.h" />
@@ -1132,7 +1133,6 @@
     <ClCompile Include="..\Common\imgui\misc\fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="..\Common\Logging.cpp" />
     <ClCompile Include="..\Common\mem.cpp" />
-    <ClCompile Include="..\Common\PreyFunctions.cpp" />
     <ClCompile Include="..\Common\Prey\ArkCommon\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\ArkCommon\reflection\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\Ark\HeaderTest.cpp" />
@@ -1143,6 +1143,7 @@
     <ClCompile Include="..\Common\Prey\GameDll\ark\environment\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\iface\HeaderTest.cpp" />
+    <ClCompile Include="..\Common\Prey\GameDll\ark\npc\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\perception\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\player\ability\HeaderTest.cpp" />
     <ClCompile Include="..\Common\Prey\GameDll\ark\player\HeaderTest.cpp" />

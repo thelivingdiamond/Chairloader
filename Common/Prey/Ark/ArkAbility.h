@@ -5,6 +5,7 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryString/CryName.h>
+#include <Prey/GameDll/ark/ArkSignalModifer.h>
 
 class ArkClass;
 

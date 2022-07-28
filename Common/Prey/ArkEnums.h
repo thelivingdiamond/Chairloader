@@ -1777,37 +1777,6 @@ enum EDisconnectionCause
 	eDC_Unknown = 29,
 };
 
-enum EERType
-{
-	eERType_NotRenderNode = 0,
-	eERType_Brush = 1,
-	eERType_Vegetation = 2,
-	eERType_Light = 3,
-	eERType_ArkRemoved_01 = 4,
-	eERType_Dummy_1 = 5,
-	eERType_FogVolume = 6,
-	eERType_Decal = 7,
-	eERType_ParticleEmitter = 8,
-	eERType_WaterVolume = 9,
-	eERType_ArkRemoved_02 = 10,
-	eERType_Road = 11,
-	eERType_DistanceCloud = 12,
-	eERType_VolumeObject = 13,
-	eERType_Dummy_0 = 14,
-	eERType_Rope = 15,
-	eERType_PrismObject = 16,
-	eERType_TerrainSector = 17,
-	eERType_ArkRemoved_03 = 18,
-	eERType_RenderProxy = 19,
-	eERType_GameEffect = 20,
-	eERType_ArkRemoved_04 = 21,
-	eERType_Dummy_3 = 22,
-	eERType_MergedMesh = 23,
-	eERType_GeomCache = 24,
-	eERType_ArkBreakableGlass = 25,
-	eERType_TypesNum = 26,
-};
-
 enum EFlowDataTypes
 {
 	eFDT_Any = -1,
@@ -2335,5 +2304,26 @@ enum class ENavigationIDTag
 	ArkSpaceGridIDTag = 0x3,
 };
 
-// Optimizer?
-using EArkComparisonType = EArkVitalSign;
+enum class EArkCameraShakeType {
+	Invalid = 0,
+	Procedural = 1,
+	Animated = 2
+};
+
+enum class EArkComparisonType {
+	EqualTo = 0,
+	NotEqual = 1,
+	GreaterThan = 2,
+	LessThan = 3,
+	GreaterThanOrEqualTo = 4,
+	LessThanOrEqualTo = 5,
+	Last = 6
+};
+
+enum class EArkRawMaterialClass {
+	Invalid = 0,
+	Small = 1,
+	Medium = 2,
+	Large = 3,
+	XLarge = 4
+};

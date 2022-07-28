@@ -4,6 +4,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
+#include <Prey/GameDll/ark/player/ArkPlayerStatusUIInfo.h>
 
 class ArkTraumaBase;
 struct IConsoleCmdArgs;

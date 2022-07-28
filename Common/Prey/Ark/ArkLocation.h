@@ -4,6 +4,7 @@
 #include <Prey/Ark/arklocation.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/Ark/arkstationaccess.h>
 
 class ArkClass;
 
