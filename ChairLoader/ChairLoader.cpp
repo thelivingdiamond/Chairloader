@@ -228,7 +228,6 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 
 	gCLEnv->cl = gCL;
 	gCLEnv->gui = (IChairloaderGui*)gui;
-	gCLEnv->funcs = gPreyFuncs;
 	gCLEnv->entUtils = gEntUtils;
 
 	// run each mod InitGame();
