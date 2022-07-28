@@ -2772,6 +2772,27 @@
     <ClInclude Include="..\Common\Prey\GameDll\weaponzoomoffset.h">
       <Filter>Common\Prey\GameDll</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkResponseKeyLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Explosion.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEntityArchetypeLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEntityClassLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEnums_old.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\GameActions.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

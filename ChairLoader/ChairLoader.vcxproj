@@ -269,6 +269,7 @@
     <ClInclude Include="..\Common\mem.h" />
     <ClInclude Include="..\Common\preyDllObjects.h" />
     <ClInclude Include="..\Common\PreyFunctions.h" />
+    <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemory.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemorySizer.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkDelegate.h" />
@@ -285,7 +286,11 @@
     <ClInclude Include="..\Common\Prey\ArkCommon\reflection\IArkValueBase.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\reflection\XMLObjectReader.h" />
     <ClInclude Include="..\Common\Prey\ArkCommon\reflect\arkreflectionaccessors.h" />
+    <ClInclude Include="..\Common\Prey\ArkEntityArchetypeLibrary.h" />
+    <ClInclude Include="..\Common\Prey\ArkEntityClassLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkEnums.h" />
+    <ClInclude Include="..\Common\Prey\ArkEnums_old.h" />
+    <ClInclude Include="..\Common\Prey\ArkResponseKeyLibrary.h" />
     <ClInclude Include="..\Common\Prey\ArkStubs.h" />
     <ClInclude Include="..\Common\Prey\Ark\ArkAbility.h" />
     <ClInclude Include="..\Common\Prey\Ark\arkaudiolog.h" />
@@ -517,6 +522,7 @@
     <ClInclude Include="..\Common\Prey\CryThreading\CryThread_win32.h" />
     <ClInclude Include="..\Common\Prey\CryThreading\IJobManager.h" />
     <ClInclude Include="..\Common\Prey\CryThreading\IThreadTask.h" />
+    <ClInclude Include="..\Common\Prey\Explosion.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ArkInventory.h" />
     <ClInclude Include="..\Common\Prey\GameDll\arkitem.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkAirJetManager.h" />
@@ -1080,6 +1086,7 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorldUIManager.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorldUIOwner.h" />
     <ClInclude Include="..\Common\Prey\GameDll\EntityUtility\EntityEffects.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\GameActions.h" />
     <ClInclude Include="..\Common\Prey\GameDll\IGameRules.h" />
     <ClInclude Include="..\Common\Prey\GameDll\itemscheduler.h" />
     <ClInclude Include="..\Common\Prey\GameDll\itemstring.h" />
