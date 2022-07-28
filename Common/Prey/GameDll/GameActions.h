@@ -1,6 +1,7 @@
 #pragma once
 #include "Prey/CryAction/IActionMapManager.h"
 #include <Prey/CryString/CryFixedString.h>
+#include <Prey/GameDll/ark/ArkExclusiveActionFilter.h>
 
 class CGameActions : public IActionMapEventListener { // Size=0xfa8
 public:

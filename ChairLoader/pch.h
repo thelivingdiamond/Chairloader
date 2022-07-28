@@ -24,8 +24,4 @@
 #include <Prey/ArkStubs.h>
 #include <ChairLoader/PreyFunction.h>
 
-// TODO: This needs to be gone. And it includes windows.h, too
-// moving to all separate classes on short term list, fixing inheritance and vtables and static functions on long term
-//#include <preyDllObjects.h>
-
 #endif //PCH_H

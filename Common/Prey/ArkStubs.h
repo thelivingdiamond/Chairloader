@@ -21,6 +21,7 @@ struct IParticleEmitter : detail::StubSmartPtrIface {};
 struct IParticleEffect : detail::StubSmartPtrIface {};
 struct IMaterial : detail::StubSmartPtrIface {};
 struct ISaveGameThumbnail : detail::StubSmartPtrIface {};
+struct SCrySessionID : detail::StubSmartPtrIface {};
 
 class IAction : public detail::StubSmartPtrIface
 {

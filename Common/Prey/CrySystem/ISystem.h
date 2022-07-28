@@ -111,7 +111,7 @@ struct IArkRewardSystem;
 struct IArkEntitlementSystem;
 struct IArkDlcSystem;
 class IArkRoomVolumeManager;
-struct ArkBuildInfo;
+class ArkBuildInfo;
 struct ILevelEncrypter;
 struct IEvaluationManager;
 struct IArkBethesdaNetManager;

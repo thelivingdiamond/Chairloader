@@ -1,13 +1,10 @@
 #pragma once
-#include "Prey/IAntiCheatManager.h"
 #include "Prey/ArkEnums.h"
 #include "Prey/CryEntitySystem/IEntity.h"
 #include "Prey/CryNetwork/ISerialize.h"
 #include "Prey/CryThreading/IJobManager.h"
 
-class IGameFramework {
-
-};
+struct IGameFramework;
 class IArkDoor ;
 class IArkPlayer;
 class IArkEncounterManager ;
@@ -28,6 +25,8 @@ class IArkResponseManager;
 class IArkNpc;
 struct SActionEvent;
 struct SRenderingPassInfo;
+struct IAntiCheatManager;
+
 enum class ESaveGameMethod {
 	eSGM_NoSave = 0,
 	eSGM_QuickSave = 1,
