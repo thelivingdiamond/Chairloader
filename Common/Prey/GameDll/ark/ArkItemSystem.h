@@ -2,9 +2,8 @@
 
 #pragma once
 #include <Prey/CryAction/ILevelSystem.h>
-#include <Prey/CryMemory/StlDbgAlloc.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arkitemsystem.h>
+#include <Prey/CryGame/IGameFramework.h>
 
 class CEquipmentManager;
 struct IArkItem;

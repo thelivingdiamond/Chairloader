@@ -345,6 +345,7 @@
     <ClInclude Include="..\Common\Prey\CryAction\IActorSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObject.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IGameObjectSystem.h" />
+    <ClInclude Include="..\Common\Prey\CryAction\ILevelSystem.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IMovementController.h" />
     <ClInclude Include="..\Common\Prey\CryAction\ISubtitleManager.h" />
     <ClInclude Include="..\Common\Prey\CryAction\IViewSystem.h" />
@@ -395,6 +396,7 @@
     <ClInclude Include="..\Common\Prey\CryEntitySystem\IEntitySystem.h" />
     <ClInclude Include="..\Common\Prey\CryGame\Game.h" />
     <ClInclude Include="..\Common\Prey\CryGame\IGame.h" />
+    <ClInclude Include="..\Common\Prey\CryGame\IGameFramework.h" />
     <ClInclude Include="..\Common\Prey\CryGame\IGameTokens.h" />
     <ClInclude Include="..\Common\Prey\CryGame\IGameVolumes.h" />
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h" />

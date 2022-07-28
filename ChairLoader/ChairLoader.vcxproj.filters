@@ -2469,6 +2469,12 @@
     <ClInclude Include="..\Common\Prey\CryGame\IGameVolumes.h">
       <Filter>Common\Prey\CryGame</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\ILevelSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\IGameFramework.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
