@@ -13,7 +13,7 @@ public:
 	std::unordered_map<unsigned __int64,std::unique_ptr<ArkGlintConfig>> m_configs;
 	
 	ArkGlintConfigManager();
-	~ArkGlintConfigManager() { FBitNotArkGlintConfigManager(this); }
+	~ArkGlintConfigManager();
 	virtual ArkGlintConfig const *ConfigFromId(uint64_t _id) const;
 	void Initialize() { FInitialize(this); }
 	void LoadFromDisk() { FLoadFromDisk(this); }

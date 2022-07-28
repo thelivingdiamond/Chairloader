@@ -35,7 +35,7 @@ public:
 	float m_hudIconBlinkRate;
 	
 	ArkPlayerStatusComponent();
-	~ArkPlayerStatusComponent() { FBitNotArkPlayerStatusComponent(this); }
+	~ArkPlayerStatusComponent();
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void PostSerialize() { FPostSerialize(this); }
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }

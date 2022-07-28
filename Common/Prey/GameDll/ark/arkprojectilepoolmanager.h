@@ -29,7 +29,7 @@ public:
 	VectorMap<unsigned __int64,CArkProjectilePoolManager::SProjectilePoolDesc,std::less<unsigned __int64>,std::allocator<std::pair<unsigned __int64,CArkProjectilePoolManager::SProjectilePoolDesc> > > m_archetypePools;
 	
 	CArkProjectilePoolManager();
-	~CArkProjectilePoolManager() { FBitNotCArkProjectilePoolManager(this); }
+	~CArkProjectilePoolManager();
 	void Shutdown() { FShutdown(this); }
 	void OnLevelLoadEnd() { FOnLevelLoadEnd(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }

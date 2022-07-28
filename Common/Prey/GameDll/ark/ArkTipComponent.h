@@ -15,7 +15,7 @@ public:
 	std::unordered_map<unsigned __int64,unsigned int> m_sequenceIndexes;
 	
 	ArkTipComponent();
-	~ArkTipComponent() { FBitNotArkTipComponent(this); }
+	~ArkTipComponent();
 	void Reset() { FReset(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void SetLocked(const uint64_t _lockId, const bool _bLocked) { FSetLocked(this,_lockId,_bLocked); }

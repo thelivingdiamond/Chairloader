@@ -95,7 +95,7 @@ public:
 	float m_glooEffectAccumulationAmountPerSecond;
 	
 	ArkGlooEffectAccumulated();
-	~ArkGlooEffectAccumulated() { FBitNotArkGlooEffectAccumulated(this); }
+	~ArkGlooEffectAccumulated();
 	void Serialize(IEntity &_entity, TSerialize _ser) { FSerialize(this,_entity,_ser); }
 	void Start(IEntity &_entity) { FStart(this,_entity); }
 	void Update(IEntity &_entity, float _elapsedTime) { FUpdate(this,_entity,_elapsedTime); }
@@ -131,7 +131,7 @@ public:
 	ArkSimpleTimer m_glooSlowDuration;
 	
 	ArkGlooEffectTimed();
-	~ArkGlooEffectTimed() { FBitNotArkGlooEffectTimed(this); }
+	~ArkGlooEffectTimed();
 	void Reset(IEntity &_entity) { FReset(this,_entity); }
 	void Serialize(IEntity &_entity, TSerialize _ser) { FSerialize(this,_entity,_ser); }
 	void Start(IEntity &_entity) { FStart(this,_entity); }

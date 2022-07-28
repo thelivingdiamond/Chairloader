@@ -36,7 +36,7 @@ public:
 	
 	CArkVolume();
 	void SetVolume(Matrix34 const &_worldTM, IGameVolumes::VolumeInfo const &_volumeInfo) { FSetVolume(this,_worldTM,_volumeInfo); }
-	~CArkVolume() { FBitNotCArkVolume(this); }
+	~CArkVolume();
 	
 #if 0
 	bool IsPointInside(Vec3 const &arg0) const;

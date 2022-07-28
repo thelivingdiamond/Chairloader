@@ -28,7 +28,7 @@ public:
 	
 	ArkEtherDuplicate(const unsigned _entityId);
 	ArkEtherDuplicate(const char *_pArchetypeName, Vec3 const &_position, Quat const &_rotation, Quat const &_viewRotation, ArkEtherDuplicate::ArkShiftDirection _shiftDirection);
-	~ArkEtherDuplicate() { FBitNotArkEtherDuplicate(this); }
+	~ArkEtherDuplicate();
 	Vec3 GetHeadPosition() const { return FGetHeadPosition(this); }
 	Vec3 GetChestPosition() const { return FGetChestPosition(this); }
 	QuatT GetEyePositionRotation() const { return FGetEyePositionRotation(this); }

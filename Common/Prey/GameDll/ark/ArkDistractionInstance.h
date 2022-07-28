@@ -29,7 +29,7 @@ public:
 	std::map<TNavigationID<1>,ArkDistractionInstance::ObstacleCheckState,std::less<TNavigationID<1> >,std::allocator<std::pair<TNavigationID<1> const ,ArkDistractionInstance::ObstacleCheckState> > > m_navAgentObstacleChecks;
 	
 	ArkDistractionInstance();
-	~ArkDistractionInstance() { FBitNotArkDistractionInstance(this); }
+	~ArkDistractionInstance();
 	void Initialize(unsigned _entityId, int _distractionDataIndex) { FInitialize(this,_entityId,_distractionDataIndex); }
 	void Destroy() { FDestroy(this); }
 	void Enable() { FEnable(this); }

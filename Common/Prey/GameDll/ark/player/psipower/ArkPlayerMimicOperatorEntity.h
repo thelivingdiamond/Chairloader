@@ -17,7 +17,7 @@ public:
 	
 	ArkPlayerMimicOperatorEntity(IEntityArchetype const &_archetype, QuatT const &_worldTransform);
 	ArkPlayerMimicOperatorEntity(const unsigned _entityId);
-	~ArkPlayerMimicOperatorEntity() { FBitNotArkPlayerMimicOperatorEntity(this); }
+	~ArkPlayerMimicOperatorEntity();
 	void Show(Vec3 const &_velocity) { FShow(this,_velocity); }
 	bool IsVisible() const { return FIsVisible(this); }
 	Vec3 GetSize() const { return FGetSize(this); }

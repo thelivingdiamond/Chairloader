@@ -12,7 +12,7 @@ public:
 	unsigned m_handle;
 	
 	ArkInputLegendHandler();
-	~ArkInputLegendHandler() { FBitNotArkInputLegendHandler(this); }
+	~ArkInputLegendHandler();
 	bool IsVisible() const { return FIsVisible(this); }
 	void ShowLegend(ArkInputLegend const &_legend) { FShowLegend(this,_legend); }
 	void HideLegend() { FHideLegend(this); }

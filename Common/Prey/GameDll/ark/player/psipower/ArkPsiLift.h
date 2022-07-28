@@ -21,7 +21,7 @@ public:
 	ArkPsiLift();
 	ArkPsiLift(ArkPsiLift *_lift);
 	ArkPsiLift(const float _radius, const float _height, const unsigned _ownerId);
-	~ArkPsiLift() { FBitNotArkPsiLift(this); }
+	~ArkPsiLift();
 	ArkPsiLift &operator=(ArkPsiLift *_lift) { return FoperatorEqOv1(this,_lift); }
 	bool operator==(ArkPsiLift const &_lift) const { return FoperatorEqEq(this,_lift); }
 	void Reset() { FReset(this); }

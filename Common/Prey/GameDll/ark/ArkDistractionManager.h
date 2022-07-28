@@ -29,7 +29,7 @@ public:
 	int m_iMaxSearchPerFrame;
 	
 	ArkDistractionManager();
-	~ArkDistractionManager() { FBitNotArkDistractionManager(this); }
+	~ArkDistractionManager();
 	void RegisterForDistraction(unsigned _entityId, const uint64_t &_distractionId) { FRegisterForDistraction(this,_entityId,_distractionId); }
 	void UnregisterForDistraction(unsigned _entityId, const uint64_t &_distractionId) { FUnregisterForDistraction(this,_entityId,_distractionId); }
 	void UnregisterForAllDistractions(unsigned _entityId) { FUnregisterForAllDistractions(this,_entityId); }

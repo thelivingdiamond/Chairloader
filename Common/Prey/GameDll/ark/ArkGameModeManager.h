@@ -16,7 +16,7 @@ public:
 	std::vector<string> m_gameModePrecachePakPaths;
 	
 	ArkGameModeManager();
-	~ArkGameModeManager() { FBitNotArkGameModeManager(this); }
+	~ArkGameModeManager();
 	void Init() { FInit(this); }
 	void SetGameMode(unsigned _gameMode) { FSetGameMode(this,_gameMode); }
 	CCryName GetCurrentModeName() const { return FGetCurrentModeName(this); }

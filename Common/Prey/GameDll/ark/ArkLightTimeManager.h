@@ -17,7 +17,7 @@ public:
 	std::unordered_map<CArkLight *,ArkLightTimeSettings> m_registeredLights;
 	
 	ArkLightTimeManager();
-	~ArkLightTimeManager() { FBitNotArkLightTimeManager(this); }
+	~ArkLightTimeManager();
 	void OnTimeOfDayChange() { FOnTimeOfDayChange(this); }
 	void OnLevelUnload() { FOnLevelUnload(this); }
 	void RegisterArkLight(CArkLight *_pArkLight, ArkLightTimeSettings const &_timeSettings) { FRegisterArkLight(this,_pArkLight,_timeSettings); }

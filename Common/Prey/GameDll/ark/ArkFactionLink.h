@@ -12,7 +12,7 @@ struct ArkFactionLink : public IArkFactionListener // Id=8014306 Size=24
 	unsigned m_linkedFaction;
 	
 	ArkFactionLink();
-	~ArkFactionLink() { FBitNotArkFactionLink(this); }
+	~ArkFactionLink();
 	void Initialize(unsigned _parentEntityId, unsigned _parentFaction, unsigned _linkedFaction) { FInitialize(this,_parentEntityId,_parentFaction,_linkedFaction); }
 	virtual void OnAssignedFactionToFactionDispositionChange(unsigned _fromFaction, unsigned _toFaction, EArkDisposition _old, EArkDisposition _new);
 	virtual void OnAssignedFactionToEntityDispositionChange(unsigned _fromFaction, unsigned _toEntity, EArkDisposition _old, EArkDisposition _new);

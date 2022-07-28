@@ -48,7 +48,7 @@ public:
 	bool m_bStarted;
 	
 	ArkLooseEffect();
-	~ArkLooseEffect() { FBitNotArkLooseEffect(this); }
+	~ArkLooseEffect();
 	void Start() { FStart(this); }
 	void Stop() { FStop(this); }
 	void Kill() { FKill(this); }
@@ -88,7 +88,7 @@ class ArkFireAndForgetEffect : public ArkEffectBase // Id=80141EF Size=64
 public:
 	ArkFireAndForgetEffect();
 	ArkFireAndForgetEffect(IParticleEffect *_pEffect);
-	~ArkFireAndForgetEffect() { FBitNotArkFireAndForgetEffect(this); }
+	~ArkFireAndForgetEffect();
 	void Start(QuatTS const &_location) const { FStart(this,_location); }
 	
 	static inline auto FBitNotArkFireAndForgetEffect = PreyFunction<void(ArkFireAndForgetEffect *const _this)>(0x11577E0);
@@ -105,7 +105,7 @@ public:
 	bool m_bStarted;
 	bool m_bSerialize;
 	
-	~ArkEntityEffectBase() { FBitNotArkEntityEffectBase(this); }
+	~ArkEntityEffectBase();
 	void Start() { FStart(this); }
 	void Stop() { FStop(this); }
 	void Kill() { FKill(this); }
@@ -176,7 +176,7 @@ public:
 	unsigned m_effectId;
 	
 	ArkEntityAttachmentEffect(EntityEffects::CEffectsController &_controller, int _attachmentSlot);
-	~ArkEntityAttachmentEffect() { FBitNotArkEntityAttachmentEffect(this); }
+	~ArkEntityAttachmentEffect();
 	void SetAttachmentName(const char *_szAttachmentName) { FSetAttachmentName(this,_szAttachmentName); }
 	void SetAttachmentSlot(int _attachmentSlot) { FSetAttachmentSlot(this,_attachmentSlot); }
 	void Start() { FStart(this); }

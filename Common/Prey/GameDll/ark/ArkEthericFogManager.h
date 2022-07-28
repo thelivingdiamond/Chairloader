@@ -25,7 +25,7 @@ public:
 	std::vector<ArkEthericFogManager::EthericFogInfo> m_activeFogFragments;
 	
 	ArkEthericFogManager();
-	~ArkEthericFogManager() { FBitNotArkEthericFogManager(this); }
+	~ArkEthericFogManager();
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	bool TrySpawnEthericFogFragment(Vec3 _fogSpawnLocation, bool _bIsFragmentSmall) { return FTrySpawnEthericFogFragment(this,_fogSpawnLocation,_bIsFragmentSmall); }
 	void OnFragmentExpired(unsigned _expiredFragment) { FOnFragmentExpired(this,_expiredFragment); }

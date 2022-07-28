@@ -43,7 +43,7 @@ public:
 	bool m_bBurstModeActive;
 	
 	ArkTurretWeapon(ArkTurret &_turret);
-	~ArkTurretWeapon() { FBitNotArkTurretWeapon(this); }
+	~ArkTurretWeapon();
 	void Reset() { FReset(this); }
 	void Release() { FRelease(this); }
 	void UpdateTM(QuatT _worldTM) { FUpdateTM(this,_worldTM); }

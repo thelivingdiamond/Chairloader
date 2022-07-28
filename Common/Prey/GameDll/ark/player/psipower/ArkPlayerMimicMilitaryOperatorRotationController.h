@@ -24,7 +24,7 @@ public:
 	float m_turnSpeed;
 	
 	ArkPlayerMimicMilitaryOperatorRotationController(ArkPlayerMimicMilitaryOperatorController const &_controller);
-	~ArkPlayerMimicMilitaryOperatorRotationController() { FBitNotArkPlayerMimicMilitaryOperatorRotationController(this); }
+	~ArkPlayerMimicMilitaryOperatorRotationController();
 	void Initialize(IEntity &_mimicEntity) { FInitialize(this,_mimicEntity); }
 	void Update(const float _frameTime, IEntity &_mimicEntity) { FUpdate(this,_frameTime,_mimicEntity); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }

@@ -38,7 +38,7 @@ public:
 	std::vector<MaterialParameterRamp> m_materialParameterRamps;
 	
 	ArkMaterialAnimationManager();
-	~ArkMaterialAnimationManager() { FBitNotArkMaterialAnimationManager(this); }
+	~ArkMaterialAnimationManager();
 	void StartAnimation(ArkMaterialAnimationType _animationType, float _blendInTime) { FStartAnimationOv1(this,_animationType,_blendInTime); }
 	bool UpdateAnimation(ArkMaterialAnimationType _animationType, float _currentTime, float _elapsedTime) { return FUpdateAnimationOv1(this,_animationType,_currentTime,_elapsedTime); }
 	bool UpdateAnimation(ArkMaterialAnimationManager::ActiveAnimationData &_animation, ArkMaterialAnimation const *_pMaterialAnim, float _currentTime, float _elapsedTime) { return FUpdateAnimationOv0(this,_animation,_pMaterialAnim,_currentTime,_elapsedTime); }

@@ -20,7 +20,7 @@ public:
 	bool m_bEnabled;
 	
 	ArkTurretDialogSpeaker(ArkTurret &_turret);
-	~ArkTurretDialogSpeaker() { FBitNotArkTurretDialogSpeaker(this); }
+	~ArkTurretDialogSpeaker();
 	void PostInit() { FPostInit(this); }
 	void Release() { FRelease(this); }
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }

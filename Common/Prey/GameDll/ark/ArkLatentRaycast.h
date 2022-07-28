@@ -29,7 +29,7 @@ public:
 	Functor1wRet<RayCastRequest &,bool> m_submitCallback;
 	
 	ArkLatentRaycast();
-	~ArkLatentRaycast() { FBitNotArkLatentRaycast(this); }
+	~ArkLatentRaycast();
 	void Start(RayCastRequest const &_request, RayCastRequest::Priority _priority, Functor1wRet<RayCastResult const &,bool> const &_resultCallback, Functor1wRet<RayCastRequest &,bool> const &_submitCallback) { FStart(this,_request,_priority,_resultCallback,_submitCallback); }
 	void Cancel() { FCancel(this); }
 	bool RaycastSubmitCallback(const unsigned &rayID, RayCastRequest &_result) { return FRaycastSubmitCallback(this,rayID,_result); }

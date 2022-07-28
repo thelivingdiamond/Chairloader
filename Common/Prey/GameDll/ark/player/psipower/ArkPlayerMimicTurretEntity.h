@@ -16,7 +16,7 @@ public:
 	
 	ArkPlayerMimicTurretEntity(IEntity const &_targetEntity, QuatT const &_worldTransform);
 	ArkPlayerMimicTurretEntity(const unsigned _entityId);
-	~ArkPlayerMimicTurretEntity() { FBitNotArkPlayerMimicTurretEntity(this); }
+	~ArkPlayerMimicTurretEntity();
 	void Show(Vec3 const &_velocity) { FShow(this,_velocity); }
 	bool IsVisible() const { return FIsVisible(this); }
 	Vec3 GetSize() const { return FGetSize(this); }

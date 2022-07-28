@@ -29,7 +29,7 @@ public:
 	bool m_bDisableListeners;
 	
 	ArkFactionManager();
-	~ArkFactionManager() { FBitNotArkFactionManager(this); }
+	~ArkFactionManager();
 	virtual unsigned GetFactionIndex(const char *const _pFactionName) const;
 	virtual unsigned GetFactionIndex(const uint64_t &_factionGuid) const;
 	virtual string const &GetFactionName(unsigned _factionIndex) const;

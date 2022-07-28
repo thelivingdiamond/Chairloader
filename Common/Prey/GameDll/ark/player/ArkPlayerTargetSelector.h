@@ -57,7 +57,7 @@ public:
 	static const char *const s_pLoadConfigCommandName;
 	
 	ArkPlayerTargetSelector();
-	~ArkPlayerTargetSelector() { FBitNotArkPlayerTargetSelector(this); }
+	~ArkPlayerTargetSelector();
 	void StartHoovering() { FStartHoovering(this); }
 	void LoadConfigFile() { FLoadConfigFile(this); }
 	unsigned GetInteractionTarget() const { return FGetInteractionTarget(this); }

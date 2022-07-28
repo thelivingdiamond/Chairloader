@@ -16,7 +16,7 @@ public:
 	ICVar *m_pEnableCvar;
 	
 	ArkHitDamageUI();
-	~ArkHitDamageUI() { FBitNotArkHitDamageUI(this); }
+	~ArkHitDamageUI();
 	void Init() const { FInit(this); }
 	void Add(HitInfo const &_hitInfo) { FAdd(this,_hitInfo); }
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }

@@ -35,7 +35,7 @@ public:
 	std::vector<ArkPostEffectManager::SBlendOutInfo> m_blendingOutEffects;
 	
 	ArkPostEffectManager();
-	~ArkPostEffectManager() { FBitNotArkPostEffectManager(this); }
+	~ArkPostEffectManager();
 	void Reset(bool _bEnteringGameMode) { FReset(this,_bEnteringGameMode); }
 	void EnableEffect(uint64_t _effectId) { FEnableEffect(this,_effectId); }
 	void DisableEffect(uint64_t _effectId, bool _bAllowBlendOut) { FDisableEffect(this,_effectId,_bAllowBlendOut); }

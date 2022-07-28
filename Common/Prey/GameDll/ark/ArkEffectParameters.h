@@ -16,7 +16,7 @@ struct ArkEffectParameters // Id=801935C Size=40
 	ArkAudioTrigger m_startSoundTrigger;
 	ArkAudioTrigger m_stopSoundTrigger;
 	
-	~ArkEffectParameters() { FBitNotArkEffectParameters(this); }
+	~ArkEffectParameters();
 	
 	static inline auto FBitNotArkEffectParameters = PreyFunction<void(ArkEffectParameters *const _this)>(0x13B7430);
 };

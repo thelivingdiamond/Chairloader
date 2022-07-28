@@ -93,7 +93,7 @@ public:
 	CExponentialKeyExchange::KEY_TYPE m_k;
 	
 	CExponentialKeyExchange();
-	~CExponentialKeyExchange() { FBitNotCExponentialKeyExchange(this); }
+	~CExponentialKeyExchange();
 	void Generate(CExponentialKeyExchange::KEY_TYPE &gg, CExponentialKeyExchange::KEY_TYPE &pp, CExponentialKeyExchange::KEY_TYPE &AA) { FGenerateOv1(this,gg,pp,AA); }
 	void Generate(CExponentialKeyExchange::KEY_TYPE &BB, CExponentialKeyExchange::KEY_TYPE const &gg, CExponentialKeyExchange::KEY_TYPE const &pp, CExponentialKeyExchange::KEY_TYPE const &AA) { FGenerateOv0(this,BB,gg,pp,AA); }
 	void Calculate(CExponentialKeyExchange::KEY_TYPE const &BB) { FCalculate(this,BB); }
@@ -854,7 +854,7 @@ public:
 	ArkOperatorLaserHelper::Stage m_stage;
 	
 	ArkOperatorLaserHelper();
-	~ArkOperatorLaserHelper() { FBitNotArkOperatorLaserHelper(this); }
+	~ArkOperatorLaserHelper();
 	void InitializeLaserHelper(ArkNpc &_npc, float _laserDamagePerSecond) { FInitializeLaserHelper(this,_npc,_laserDamagePerSecond); }
 	void StartChargingLaser(ArkNpc &_npc, float _chargeDuration) { FStartChargingLaser(this,_npc,_chargeDuration); }
 	void TurnOffLaser(ArkNpc &_npc) { FTurnOffLaser(this,_npc); }

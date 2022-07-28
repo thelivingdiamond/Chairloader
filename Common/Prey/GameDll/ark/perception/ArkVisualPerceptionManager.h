@@ -425,7 +425,7 @@ public:
 	std::vector<unsigned int> m_complexStopNotificationBuffer;
 	
 	ArkVisualPerceptionManager();
-	~ArkVisualPerceptionManager() { FBitNotArkVisualPerceptionManager(this); }
+	~ArkVisualPerceptionManager();
 	void Initialize() { FInitialize(this); }
 	void OnLevelLoadStart() { FOnLevelLoadStart(this); }
 	void Reset(bool _bEnteringGameMode) { FReset(this,_bEnteringGameMode); }

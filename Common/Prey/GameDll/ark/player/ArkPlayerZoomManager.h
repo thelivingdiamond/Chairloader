@@ -38,7 +38,7 @@ public:
 	float GetDesiredHFOV(const int _handle) const { return FGetDesiredHFOVOv0(this,_handle); }
 	float GetHFOVDependentMultiplier(float _currentMultiplier, float _zoomedMultiplier) const { return FGetHFOVDependentMultiplier(this,_currentMultiplier,_zoomedMultiplier); }
 	void SetNearFOVUnlocked(bool _bUnlocked) { FSetNearFOVUnlocked(this,_bUnlocked); }
-	~ArkPlayerZoomManager() { FBitNotArkPlayerZoomManager(this); }
+	~ArkPlayerZoomManager();
 	
 #if 0
 	float GetDesiredHFOV() const;

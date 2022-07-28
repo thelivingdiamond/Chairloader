@@ -28,7 +28,7 @@ public:
 	int m_inputHandle;
 	
 	ArkFocusModeComponent();
-	~ArkFocusModeComponent() { FBitNotArkFocusModeComponent(this); }
+	~ArkFocusModeComponent();
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	void Stop(const bool _bFromTargeting) { FStop(this,_bFromTargeting); }
 	bool Start(const bool _bOpenMenu) { return FStart(this,_bOpenMenu); }

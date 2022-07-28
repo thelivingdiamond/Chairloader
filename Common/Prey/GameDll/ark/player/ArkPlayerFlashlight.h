@@ -48,7 +48,7 @@ public:
 	bool m_bFlashlightOn;
 	
 	ArkPlayerFlashlight();
-	~ArkPlayerFlashlight() { FBitNotArkPlayerFlashlight(this); }
+	~ArkPlayerFlashlight();
 	void Reset() { FReset(this); }
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }

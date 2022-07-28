@@ -21,7 +21,7 @@ public:
 	std::array<bool,4> m_difficultyOptions;
 	
 	ArkDifficultyComponent();
-	~ArkDifficultyComponent() { FBitNotArkDifficultyComponent(this); }
+	~ArkDifficultyComponent();
 	void Init() { FInit(this); }
 	void Reset() { FReset(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }

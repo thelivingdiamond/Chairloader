@@ -195,7 +195,7 @@ public:
 	std::vector<unsigned __int64> m_stunSignals;
 	
 	ArkCystoidProperties();
-	~ArkCystoidProperties() { FBitNotArkCystoidProperties(this); }
+	~ArkCystoidProperties();
 	void LoadProperties(IEntityArchetype *_pArchetype) { FLoadProperties(this,_pArchetype); }
 	float GetAttackRange(const unsigned &_target, const bool _bZeroG) const { return FGetAttackRange(this,_target,_bZeroG); }
 	float GetRandomImpulseDelay(const bool _bZeroG) const { return FGetRandomImpulseDelay(this,_bZeroG); }

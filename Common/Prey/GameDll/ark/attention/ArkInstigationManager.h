@@ -35,7 +35,7 @@ public:
 		unsigned m_eventId;
 		
 		EventRef();
-		~EventRef() { FBitNotEventRef(this); }
+		~EventRef();
 		
 #if 0
 		bool operator!=(unsigned arg0);

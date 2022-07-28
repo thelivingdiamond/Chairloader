@@ -16,7 +16,7 @@ public:
 	ArkEtherDuplicate const *m_pEtherDuplicate;
 	
 	ArkEtherDuplicateAttentionObject(ArkEtherDuplicate const &_etherDuplicate);
-	~ArkEtherDuplicateAttentionObject() { FBitNotArkEtherDuplicateAttentionObject(this); }
+	~ArkEtherDuplicateAttentionObject();
 	void Enable() { FEnable(this); }
 	void Disable() { FDisable(this); }
 	virtual unsigned DoGetEntityId() const;

@@ -18,7 +18,7 @@ public:
 	ArkTimeScaleManager::EArkTimerFlag m_timer;
 	
 	ArkTimeScaler(ArkTimeScaleManager::EArkTimerFlag _timer);
-	~ArkTimeScaler() { FBitNotArkTimeScaler(this); }
+	~ArkTimeScaler();
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	void SetTargetTimeScale(const float _targetTimeScale, const float _durationSec) { FSetTargetTimeScale(this,_targetTimeScale,_durationSec); }
 	

@@ -59,7 +59,7 @@ public:
 	SWeaponOffset Blend(float deltaTime) { return FBlend(this,deltaTime); }
 	int PushOffset(SWeaponOffset const &offset, unsigned layer, float blendTime) { return FPushOffset(this,offset,layer,blendTime); }
 	void PopOffset(int offsetId, float blendTime) { FPopOffset(this,offsetId,blendTime); }
-	~CWeaponOffsetStack() { FBitNotCWeaponOffsetStack(this); }
+	~CWeaponOffsetStack();
 	
 #if 0
 	void SetOffset(SWeaponOffset const &arg0, float arg1);
