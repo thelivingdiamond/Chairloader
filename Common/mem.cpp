@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "mem.h"
+#include <Prey/CryCore/Platform/CryWindows.h>
+
 // Apply a patch to a region of memory
 void mem::PatchEx(BYTE* dst, BYTE* src, unsigned int size, HANDLE hProcess) {
 	// the old page permissions

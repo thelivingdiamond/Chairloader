@@ -1,15 +1,14 @@
 #pragma once
-#include "proc.h"
 #include "pch.h"
 namespace mem {
-	void PatchEx(BYTE* dst, BYTE* src, unsigned int size, HANDLE hProcess);
-	void NopEx(BYTE* dst, unsigned int size, HANDLE hProcess);
-	uintptr_t FindDMAAddy(HANDLE hProc, uintptr_t ptr, std::vector<unsigned int>);
+	void PatchEx(uint8_t* dst, uint8_t* src, unsigned int size, void* hProcess);
+	void NopEx(uint8_t* dst, unsigned int size, void* hProcess);
+	uintptr_t FindDMAAddy(void* hProc, uintptr_t ptr, std::vector<unsigned int>);
 
 
 
-	void Patch(BYTE* dst, BYTE* src, unsigned int size);
-	void Nop(BYTE* dst, unsigned int size);
+	void Patch(uint8_t* dst, uint8_t* src, unsigned int size);
+	void Nop(uint8_t* dst, unsigned int size);
 	uintptr_t FindDMAAddy(uintptr_t ptr, std::vector<unsigned int>);
 
 	template <typename T, typename S>

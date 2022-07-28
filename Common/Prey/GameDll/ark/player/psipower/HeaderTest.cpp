@@ -255,9 +255,6 @@ static_assert(sizeof(CArkPsiPowerKineticShield) == 712);
 static_assert(sizeof(CArkPsiPowerLift) == 368);
 
 #include "arkpsipowerliftproperties.h"
-static_assert(sizeof(ArkMaterialAnimationKey) == 8);
-static_assert(sizeof(ArkMaterialAnimationKey::ArkTimeProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimationKey::ArkValueProperty) == 32);
 static_assert(sizeof(ArkPsiLiftProperties) == 8);
 static_assert(sizeof(ArkPsiLiftProperties::ArkMaxHeightProperty) == 32);
 static_assert(sizeof(ArkPsiLiftProperties::ArkDurationSecProperty) == 32);

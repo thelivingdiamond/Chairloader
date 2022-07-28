@@ -1,4 +1,5 @@
 // Header test file for path Prey/GameDll/ark/turret/turretdamagefsm/states/arkturretdamagefsm_states_base.h
+#if 0
 #include "arkturretdamagefsm_states_base.h"
 static_assert(sizeof(ArkTurretDamageFsm::States::Base) == 1);
 
@@ -10,3 +11,4 @@ static_assert(sizeof(ArkTurretDamageFsm::States::Disabled) == 12);
 
 #include "arkturretdamagefsm_states_undamaged.h"
 static_assert(sizeof(ArkTurretDamageFsm::States::Undamaged) == 1);
+#endif

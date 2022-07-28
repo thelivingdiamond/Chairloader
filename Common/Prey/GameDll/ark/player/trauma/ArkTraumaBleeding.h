@@ -8,6 +8,7 @@
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/player/TArkAudioSwitch.h>
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
+#include <Prey/GameDll/EntityUtility/EntityEffects.h>
 
 // Header: Exact
 // Prey/GameDll/ark/player/trauma/ArkTraumaBleeding.h

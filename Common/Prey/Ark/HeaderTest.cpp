@@ -656,17 +656,12 @@ static_assert(sizeof(ArkSecurityStations::ArkSecurityStationsProperty) == 32);
 #include "arksignalsystemdata.h"
 static_assert(sizeof(ArkSignalSystem::Data) == 96);
 static_assert(sizeof(ArkSignalSystem::Data::SignalGroupData) == 40);
-static_assert(sizeof(ArkSignalSystem::Data::?$SortableData@VSignalGroupData@Data@ArkSignalSystem@@) == 8);
 static_assert(sizeof(ArkSignalSystem::Data::PackageData) == 40);
 static_assert(sizeof(ArkSignalSystem::Data::PackageData::SignalValueData) == 16);
-static_assert(sizeof(ArkSignalSystem::Data::?$SortableData@VPackageData@Data@ArkSignalSystem@@) == 8);
 static_assert(sizeof(ArkSignalSystem::Data::SignalData) == 16);
-static_assert(sizeof(ArkSignalSystem::Data::?$SortableData@VSignalData@Data@ArkSignalSystem@@) == 8);
 static_assert(sizeof(ArkSignalSystem::Data::ModifierData) == 40);
 static_assert(sizeof(ArkSignalSystem::Data::ModifierData::RuleData) == 72);
 static_assert(sizeof(ArkSignalSystem::Data::ModifierData::RuleData::FactorData) == 16);
-static_assert(sizeof(ArkSignalSystem::Data::?$SortableData@VModifierData@Data@ArkSignalSystem@@) == 8);
-static_assert(sizeof(ArkSignalSystem::Data::?$SortableData@VFactorData@RuleData@ModifierData@Data@ArkSignalSystem@@) == 8);
 
 #include "ArkStationAccess.h"
 static_assert(sizeof(ArkTransition) == 24);

@@ -10,51 +10,6 @@ class ArkClass;
 
 // Header: Exact
 // Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h
-class ArkMaterialAnimationKey : public ArkReflectedObject // Id=801426D Size=8
-{
-public:
-	class ArkTimeProperty : public ArkProperty // Id=801426E Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkMaterialAnimationKey::ArkTimeProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkMaterialAnimationKey::ArkTimeProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkMaterialAnimationKey::ArkTimeProperty s_ArkTimeProperty;
-	float m_Time;
-	
-	class ArkValueProperty : public ArkProperty // Id=801426F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkMaterialAnimationKey::ArkValueProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkMaterialAnimationKey::ArkValueProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328410);
-	};
-
-	static ArkMaterialAnimationKey::ArkValueProperty s_ArkValueProperty;
-	float m_Value;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetTime(float arg0);
-	const float &GetTime() const;
-	void SetValue(float arg0);
-	const float &GetValue() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x12F6430);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x10773C0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h
 class ArkPsiLiftProperties : public ArkReflectedObject // Id=8017558 Size=8
 {
 public:
