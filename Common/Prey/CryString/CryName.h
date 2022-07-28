@@ -15,10 +15,9 @@
 #define __CryName_h__
 #pragma once
 
-#if 0
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CryCore/StlUtils.h>
-#include <Prey/CryMemory/CrySizer.h>
+//#include <Prey/CryMemory/CrySizer.h>
 #include <Prey/CryCore/CryCrc32.h>
 #include <Prey/CryMemory/STLGlobalAllocator.h>
 
@@ -141,8 +140,8 @@ public:
 	}
 	virtual void GetMemoryUsage(ICrySizer* pSizer) const
 	{
-		pSizer->AddObject(this, sizeof(*this));
-		pSizer->AddObject(m_nameMap);
+		//pSizer->AddObject(this, sizeof(*this));
+		//pSizer->AddObject(m_nameMap);
 	}
 	virtual int GetNumberOfEntries()
 	{
@@ -197,7 +196,7 @@ public:
 	void        GetMemoryUsage(ICrySizer* pSizer) const
 	{
 		//pSizer->AddObject(m_str);
-		pSizer->AddObject(GetNameTable());   // cause for slowness?
+		//pSizer->AddObject(GetNameTable());   // cause for slowness?
 	}
 	static int GetMemoryUsage()
 	{
@@ -527,6 +526,5 @@ inline bool operator!=(const char* s, const CCryNameCRC& n)
 {
 	return n != s;
 }
-#endif
 
 #endif //__CryName_h__
