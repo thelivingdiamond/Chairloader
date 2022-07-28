@@ -191,7 +191,12 @@ public:
 	void UpdateCachedReticleViewPosAndDir() { FUpdateCachedReticleViewPosAndDir(this); }
 	virtual std::pair<Vec3,Vec3> GetReticleViewPositionAndDir() const;
 	void OnNewGame() { FOnNewGame(this); }
-	Vec3 GetPlayerWorldEyePos() const { return FGetPlayerWorldEyePos(this); }
+	Vec3 GetPlayerWorldEyePos() const
+	{
+		Vec3 ret;
+		FGetPlayerWorldEyePos(this, &ret);
+		return ret;
+	}
 	CTagDefinition const *GetFragmentIds() const { return FGetFragmentIds(this); }
 	void Knockdown() { FKnockdown(this); }
 	void EnterMimicGrabSequence(IEntity const &_mimicEntity) { FEnterMimicGrabSequence(this,_mimicEntity); }
@@ -435,7 +440,7 @@ public:
 	static inline auto FUpdateCachedReticleViewPosAndDir = PreyFunction<void(ArkPlayer *const _this)>(0x15583F0);
 	static inline auto FGetReticleViewPositionAndDir = PreyFunction<std::pair<Vec3,Vec3>(ArkPlayer const *const _this)>(0x154FC80);
 	static inline auto FOnNewGame = PreyFunction<void(ArkPlayer *const _this)>(0x1551BE0);
-	static inline auto FGetPlayerWorldEyePos = PreyFunction<Vec3(ArkPlayer const *const _this)>(0x131F920);
+	static inline auto FGetPlayerWorldEyePos = PreyFunction<Vec3* (const ArkPlayer* _this, Vec3* result)>(0x131F920);
 	static inline auto FGetFragmentIds = PreyFunction<CTagDefinition const *(ArkPlayer const *const _this)>(0x154F9E0);
 	static inline auto FKnockdown = PreyFunction<void(ArkPlayer *const _this)>(0x1551850);
 	static inline auto FEnterMimicGrabSequence = PreyFunction<void(ArkPlayer *const _this, IEntity const &_mimicEntity)>(0x154EC00);
