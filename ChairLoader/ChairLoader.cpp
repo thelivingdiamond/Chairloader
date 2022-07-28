@@ -362,7 +362,13 @@ bool ChairLoader::RegisterMod(std::string modName, IChairloaderMod* modInterface
 }
 
 void ChairLoader::ReadModList() {
-	auto node = boost::get<pugi::xml_node>(gConf->getConfigValue(chairloaderModName, "ModList"));
+	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
+
+	// FIXME: Magic numbers
+	if (cfgValue.which() != 7)
+		return;
+
+	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for(auto &mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
 		auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
