@@ -2315,3 +2315,17 @@ enum class EArkLogType
 	EntitlementUnlock = 0x6,
 	Airlock = 0x7,
 };
+
+// Same as SInputSymbol::EType
+// Optimizer?
+enum class ArkUtilityType
+{
+	Button = 0x0,
+	Toggle = 0x1,
+	RawAxis = 0x2,
+	Axis = 0x3,
+	Trigger = 0x4,
+};
+
+// Optimizer?
+using EArkComparisonType = EArkVitalSign;

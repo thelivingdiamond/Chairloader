@@ -8,6 +8,7 @@
 #include <Prey/GameDll/ark/iface/IArkUtilityListener.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
 #include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>
+#include <Prey/GameDll/ark/ArkPasswordProtected.h>
 
 struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
@@ -59,14 +60,14 @@ public:
 		unsigned m_entityId;
 		uint16_t m_flowNodeId;
 		
-		void Populate(IFlowNode::SActivationInfo const &_actInfo) { FPopulate(this,_actInfo); }
+		//void Populate(IFlowNode::SActivationInfo const &_actInfo) { FPopulate(this,_actInfo); }
 		
 #if 0
 		void Serialize(TSerialize arg0);
 		void Invalidate();
 #endif
 		
-		static inline auto FPopulate = PreyFunction<void(ArkStationWorldUI::FlowNodeSaveData *const _this, IFlowNode::SActivationInfo const &_actInfo)>(0x13A9560);
+		//static inline auto FPopulate = PreyFunction<void(ArkStationWorldUI::FlowNodeSaveData *const _this, IFlowNode::SActivationInfo const &_actInfo)>(0x13A9560);
 	};
 
 	ArkStationWorldUI::FlowNodeSaveData m_popupFlowNodeSaveData;

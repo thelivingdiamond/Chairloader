@@ -308,6 +308,9 @@ static_assert(sizeof(ArkOperatorDispenser::SpawnedOperator) == 8);
 #include "ArkOverlappingGooHandler.h"
 static_assert(sizeof(ArkOverlappingGooHandler) == 32);
 
+#include "ArkPasswordProtected.h"
+static_assert(sizeof(ArkPasswordProtected) == 16);
+
 #include "arkplayercameralockclipevent.h"
 static_assert(sizeof(CArkPlayerCameraLockClipEvent) == 48);
 

@@ -2463,6 +2463,9 @@
     <ClInclude Include="..\Common\Prey\GameDll\weaponbumpoffset.h">
       <Filter>Common\Prey\GameDll</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkPasswordProtected.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

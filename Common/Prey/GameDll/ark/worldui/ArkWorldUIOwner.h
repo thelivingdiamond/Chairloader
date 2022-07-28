@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 

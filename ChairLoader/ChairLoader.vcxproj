@@ -598,6 +598,7 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkNewGamePlus.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkOperatorDispenser.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkOverlappingGooHandler.h" />
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkPasswordProtected.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\arkplayercameralockclipevent.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\arkplayerdisablemovementclipevent.h" />
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkPostEffectManager.h" />
