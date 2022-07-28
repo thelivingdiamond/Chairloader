@@ -1,23 +1,23 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryPhysics/primitives.h>
 #include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryAISystem/INavigationSystem.h>
-#include <Prey/CryAISystem/MovementRequest.h>
-#include <Prey/CryAISystem/MovementStyle.h>
+//#include <Prey/CryAISystem/INavigationSystem.h>
+//#include <Prey/CryAISystem/MovementRequest.h>
+//#include <Prey/CryAISystem/MovementStyle.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkDelegate.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+//#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
 #include <Prey/GameDll/ark/arkdoor.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/iface/IArkDoor.h>
-#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h>
-#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
-#include <_unknown/ArkNpcDesireBase_ArkNpcMovementDesireManager,ArkNpcMovementDesire,enum EArkNpcMovementDesirePriority_.h>
+//#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h>
+//#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 
 struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
@@ -31,6 +31,7 @@ struct SEntityUpdateContext;
 struct SGameObjectEvent;
 class SmartScriptTable;
 
+#if 0
 // Header: Exact
 // Prey/GameDll/ark/arkdoor.h
 class ArkNpcMovementDesire : public ArkNpcDesireBase<ArkNpcMovementDesireManager,ArkNpcMovementDesire,enum EArkNpcMovementDesirePriority> // Id=8014110 Size=240
@@ -300,6 +301,7 @@ public:
 	static inline auto FSetResumeDistance = PreyFunction<void(ArkNpcMovementDesire *const _this, float _resumeDistance)>(0x15271B0);
 	static inline auto FGetCanShift = PreyFunction<bool(ArkNpcMovementDesire const *const _this)>(0x1426BA0);
 };
+#endif
 
 // Header: Exact
 // Prey/GameDll/ark/ArkDoor.h
@@ -414,8 +416,8 @@ public:
 	void OnNavMeshChange() { FOnNavMeshChange(this); }
 	bool IsPlayingAnimation() const { return FIsPlayingAnimation(this); }
 	void OnObstructed(IEntity const &_entity) { FOnObstructed(this,_entity); }
-	bool CalculateLinkPositions(TNavigationID<1> _navAgentID, Vec3 &_start, Vec3 &_end) const { return FCalculateLinkPositions(this,_navAgentID,_start,_end); }
-	bool TestValidLinkPositions(TNavigationID<1> _navAgentID, Vec3 &_start, Vec3 &_end, float _radius, bool _bGloo) const { return FTestValidLinkPositions(this,_navAgentID,_start,_end,_radius,_bGloo); }
+	bool CalculateLinkPositions(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 &_start, Vec3 &_end) const { return FCalculateLinkPositions(this,_navAgentID,_start,_end); }
+	bool TestValidLinkPositions(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 &_start, Vec3 &_end, float _radius, bool _bGloo) const { return FTestValidLinkPositions(this,_navAgentID,_start,_end,_radius,_bGloo); }
 	void UpdateNavigation() { FUpdateNavigation(this); }
 	void MarkForUpdate() { FMarkForUpdate(this); }
 	virtual void OnDisruptedChanged(bool _bDisrupted, bool _bWasForced);
@@ -493,8 +495,8 @@ public:
 	static inline auto FOnNavMeshChange = PreyFunction<void(ArkDoor *const _this)>(0x1428300);
 	static inline auto FIsPlayingAnimation = PreyFunction<bool(ArkDoor const *const _this)>(0x1426C20);
 	static inline auto FOnObstructed = PreyFunction<void(ArkDoor *const _this, IEntity const &_entity)>(0x1428340);
-	static inline auto FCalculateLinkPositions = PreyFunction<bool(ArkDoor const *const _this, TNavigationID<1> _navAgentID, Vec3 &_start, Vec3 &_end)>(0x14242C0);
-	static inline auto FTestValidLinkPositions = PreyFunction<bool(ArkDoor const *const _this, TNavigationID<1> _navAgentID, Vec3 &_start, Vec3 &_end, float _radius, bool _bGloo)>(0x1429FB0);
+	static inline auto FCalculateLinkPositions = PreyFunction<bool(ArkDoor const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 &_start, Vec3 &_end)>(0x14242C0);
+	static inline auto FTestValidLinkPositions = PreyFunction<bool(ArkDoor const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 &_start, Vec3 &_end, float _radius, bool _bGloo)>(0x1429FB0);
 	static inline auto FUpdateNavigation = PreyFunction<void(ArkDoor *const _this)>(0x142B9D0);
 	static inline auto FMarkForUpdate = PreyFunction<void(ArkDoor *const _this)>(0x1427F40);
 	static inline auto FOnDisruptedChanged = PreyFunction<void(ArkDoor *const _this, bool _bDisrupted, bool _bWasForced)>(0x1428080);

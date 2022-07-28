@@ -115,7 +115,7 @@ struct SRenderNodeCloneLookup;
 struct EventPhysRemoveEntityParts;
 struct IBreakableManager;
 struct IEntityPoolManager;
-struct IEntityArchetypeListener;
+class IEntityArchetypeListener;
 struct SComponentRegisteredEvents;
 class CEntity;
 class CEntityLayer;

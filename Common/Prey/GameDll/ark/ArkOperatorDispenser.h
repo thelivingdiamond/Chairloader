@@ -10,7 +10,9 @@
 #include <Prey/GameDll/ark/arksimpletimer.h>
 #include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
 #include <Prey/GameDll/ark/dialog/arkspeaker.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayer.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/GameDll/ark/ArkPasswordProtected.h>
 
 struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
@@ -63,7 +65,7 @@ public:
 	bool m_bOverridden;
 	QuatT m_spawnLoc;
 	AABB m_obstructionTestCoarse;
-	OOB m_obstructionTestFine;
+	OBB m_obstructionTestFine;
 	int m_animOpenId;
 	int m_animCloseId;
 	int m_operatorTypeId;

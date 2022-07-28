@@ -8,6 +8,7 @@
 #include <Prey/GameDll/ark/ArkSaveMetaData.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
+#include <Prey/GameDll/ark/iface/ISaveGameEnumerator.h>
 
 class ArkApexVolumeManager;
 class ArkCameraShakeManager;

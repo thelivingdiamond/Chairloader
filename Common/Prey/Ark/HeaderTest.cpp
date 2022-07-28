@@ -18,9 +18,6 @@ static_assert(sizeof(ArkAbility::ArkStatModifiersProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkTutorialProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkTutorialPCProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkTutorialImageProperty) == 32);
-static_assert(sizeof(ArkSignalModifer) == 16);
-static_assert(sizeof(ArkSignalModifer::ArkIsInboundProperty) == 32);
-static_assert(sizeof(ArkSignalModifer::ArkModifierIdProperty) == 32);
 static_assert(sizeof(ArkStatModifier) == 16);
 static_assert(sizeof(ArkStatModifier::ArkStatNameProperty) == 32);
 static_assert(sizeof(ArkStatModifier::ArkModifierProperty) == 32);
@@ -328,6 +325,8 @@ static_assert(sizeof(ArkInputAction::ArkActionProperty) == 32);
 static_assert(sizeof(ArkInputAction::ArkActionMapProperty) == 32);
 
 #include "ArkGameStateCondition.h"
+static_assert(sizeof(ArkConditionEvaluationData) == 24);
+static_assert(sizeof(ArkConditionEvaluationData::EntityIdentifiers) == 16);
 static_assert(sizeof(ArkCondition) == 8);
 static_assert(sizeof(ArkConditionGroup) == 40);
 static_assert(sizeof(ArkConditionGroup::ArkAndProperty) == 32);
@@ -517,8 +516,6 @@ static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkAmbientProperty) ==
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkEmissiveIntensityProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimations) == 32);
 static_assert(sizeof(ArkMaterialAnimations::ArkAnimationsProperty) == 32);
-static_assert(sizeof(ArkAbilityRow) == 24);
-static_assert(sizeof(ArkAbilityRow::ArkAbilitiesProperty) == 32);
 
 #include "arkmetatagdata.h"
 static_assert(sizeof(ArkMetaTag) == 16);

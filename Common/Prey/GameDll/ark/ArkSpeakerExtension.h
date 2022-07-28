@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/iface/IArkSpeakerExtension.h>
 
 class IArkSpeaker;
 class ICrySizer;

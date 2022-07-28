@@ -4,6 +4,7 @@
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CryGame/IGameVolumes.h>
 
 class ICrySizer;
 struct IGameObject;

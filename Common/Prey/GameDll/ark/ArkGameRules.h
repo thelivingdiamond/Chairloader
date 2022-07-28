@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/Ark/ArkUtils.h>
-#include <Prey/Ark/arkutils.h>
+#include <Prey/GameDll/IGameRules.h>
 
 struct IGameRules;
 

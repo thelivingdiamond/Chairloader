@@ -10,6 +10,32 @@ class IArkRoomVolume;
 struct ICVar;
 struct IConsoleCmdArgs;
 
+// Header: Override
+// Prey/GameDll/ark/arkroomvolumemanager.h
+class ArkRoomPathNode // Id=80195F0 Size=8
+{
+public:
+	const unsigned m_volumeId;
+	const unsigned m_portalId;
+
+#if 0
+	bool operator==(ArkRoomPathNode const& arg0) const;
+#endif
+};
+
+// Header: Override
+// Prey/GameDll/ark/arkroomvolumemanager.h
+class ArkRoomPathNodePair // Id=801964C Size=16
+{
+public:
+	ArkRoomPathNode m_pathEnd0;
+	ArkRoomPathNode m_pathEnd1;
+
+#if 0
+	bool operator==(ArkRoomPathNodePair const& arg0) const;
+#endif
+};
+
 // Header: Exact
 // Prey/GameDll/ark/arkroomvolumemanager.h
 class CArkRoomVolumeManager : public IArkRoomVolumeManager // Id=80195F1 Size=328

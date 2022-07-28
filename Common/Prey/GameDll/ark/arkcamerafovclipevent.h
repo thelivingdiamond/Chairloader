@@ -3,11 +3,6 @@
 #pragma once
 #include <Prey/CryAction/ICryMannequin.h>
 
-namespace Serialization
-{
-class IArchive;
-} // namespace Serialization
-
 // Header: FromCpp
 // Prey/GameDll/ark/arkcamerafovclipevent.h
 struct CArkCameraFOVClipEventParams : public IProceduralParams // Id=8018FD0 Size=16

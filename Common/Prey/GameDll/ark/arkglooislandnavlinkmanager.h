@@ -39,7 +39,7 @@ public:
 		void BuildLinks() { FBuildLinks(this); }
 		void ClearLinks() { FClearLinks(this); }
 		void SetLinkDirections(bool _bStatic) { FSetLinkDirections(this,_bStatic); }
-		bool IsLinkValid(TNavigationID<1> _agentTypeId, Vec3 const &_start, Vec3 const &_end, bool _bStatic, std::vector<IPhysicalEntity *> &_ignores) const { return FIsLinkValid(this,_agentTypeId,_start,_end,_bStatic,_ignores); }
+		bool IsLinkValid(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _agentTypeId, Vec3 const &_start, Vec3 const &_end, bool _bStatic, std::vector<IPhysicalEntity *> &_ignores) const { return FIsLinkValid(this,_agentTypeId,_start,_end,_bStatic,_ignores); }
 		
 #if 0
 		void Serialize(TSerialize arg0);
@@ -49,7 +49,7 @@ public:
 		bool IsRemovingLinks() const;
 		bool Contains(const unsigned arg0) const;
 		void RebuildLinks();
-		bool IsAgentTypeSupported(TNavigationID<1> arg0, AABB const &arg1) const;
+		bool IsAgentTypeSupported(TNavigationID<ENavigationIDTag::AgentTypeIDTag> arg0, AABB const &arg1) const;
 #endif
 		
 		static inline auto FAdd = PreyFunction<void(CArkGlooIslandNavLinkManager::GlooIsland *const _this, const unsigned _glooId, bool _bStatic)>(0x117F140);
@@ -58,7 +58,7 @@ public:
 		static inline auto FBuildLinks = PreyFunction<void(CArkGlooIslandNavLinkManager::GlooIsland *const _this)>(0x117F410);
 		static inline auto FClearLinks = PreyFunction<void(CArkGlooIslandNavLinkManager::GlooIsland *const _this)>(0x1180E80);
 		static inline auto FSetLinkDirections = PreyFunction<void(CArkGlooIslandNavLinkManager::GlooIsland *const _this, bool _bStatic)>(0x1181970);
-		static inline auto FIsLinkValid = PreyFunction<bool(CArkGlooIslandNavLinkManager::GlooIsland const *const _this, TNavigationID<1> _agentTypeId, Vec3 const &_start, Vec3 const &_end, bool _bStatic, std::vector<IPhysicalEntity *> &_ignores)>(0x11811C0);
+		static inline auto FIsLinkValid = PreyFunction<bool(CArkGlooIslandNavLinkManager::GlooIsland const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _agentTypeId, Vec3 const &_start, Vec3 const &_end, bool _bStatic, std::vector<IPhysicalEntity *> &_ignores)>(0x11811C0);
 	};
 
 	static constexpr const int k_invalidIslandId = 0;

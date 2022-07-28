@@ -17,6 +17,9 @@ static_assert(sizeof(IArkDoor) == 8);
 #include "IArkEmailListener.h"
 static_assert(sizeof(IArkEmailListener) == 8);
 
+#include "IArkEmotionExtension.h"
+static_assert(sizeof(IArkEmotionExtension) == 64);
+
 #include "IArkFabricationPlanListener.h"
 static_assert(sizeof(IArkFabricationPlanListener) == 8);
 
@@ -83,6 +86,9 @@ static_assert(sizeof(IArkRoomVolumeManager::SoundPositionVisitor) == 8);
 
 #include "IArkSignalManagerListener.h"
 static_assert(sizeof(IArkSignalManagerListener) == 8);
+
+#include "IArkSpeakerExtension.h"
+static_assert(sizeof(IArkSpeakerExtension) == 64);
 
 #include "IArkUtilityListener.h"
 static_assert(sizeof(IArkUtilityListener) == 8);

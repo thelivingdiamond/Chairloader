@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkDelegate.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
 
 class ArkDistractionInstance;
 class ArkNpc;

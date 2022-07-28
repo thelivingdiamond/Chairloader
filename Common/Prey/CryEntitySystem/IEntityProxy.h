@@ -432,7 +432,7 @@ struct SEntitySlotInfo
 struct IShaderParamCallback;
 DECLARE_SHARED_POINTERS(IShaderParamCallback);
 
-class ArkGlintConfig;
+struct ArkGlintConfig;
 
 //! Interface to the entity Render proxy.
 struct IEntityRenderProxy : public IEntityProxy

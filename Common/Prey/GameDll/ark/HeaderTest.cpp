@@ -14,9 +14,9 @@ static_assert(sizeof(ArkApexVolumeManager) == 96);
 #include "arkareacontainer.h"
 static_assert(sizeof(CArkAreaContainer) == 88);
 
-#include "arkattachmentclipevent.h"
-static_assert(sizeof(CArkAttachmentClipEvent) == 72);
-static_assert(sizeof(CArkAttachmentEventParams) == 24);
+//#include "arkattachmentclipevent.h"
+//static_assert(sizeof(CArkAttachmentClipEvent) == 72);
+//tatic_assert(sizeof(CArkAttachmentEventParams) == 24);
 
 #include "ArkAudioEnvironment.h"
 static_assert(sizeof(ArkAudioEnvironment) == 4);
@@ -33,18 +33,18 @@ static_assert(sizeof(CArkBreakable) == 376);
 #include "ArkBreakableGlass.h"
 static_assert(sizeof(ArkBreakableGlass) == 64);
 
-#include "arkcamerafovclipevent.h"
-static_assert(sizeof(CArkCameraFOVClipEventParams) == 16);
-static_assert(sizeof(CArkCameraFOVClipEvent) == 80);
+//#include "arkcamerafovclipevent.h"
+//static_assert(sizeof(CArkCameraFOVClipEventParams) == 16);
+//static_assert(sizeof(CArkCameraFOVClipEvent) == 80);
 
-#include "arkcamerashakeclipevent.h"
-static_assert(sizeof(CArkCameraShakeClipEventParams) == 16);
-static_assert(sizeof(CArkCameraShakeClipEvent) == 56);
+//#include "arkcamerashakeclipevent.h"
+//static_assert(sizeof(CArkCameraShakeClipEventParams) == 16);
+//static_assert(sizeof(CArkCameraShakeClipEvent) == 56);
 
-#include "ArkCameraShakeManager.h"
-static_assert(sizeof(ArkCameraShakeManager) == 56);
-static_assert(sizeof(ArkCameraShakeManager::CameraShakeEntry) == 64);
-static_assert(sizeof(ArkCameraShakeManager::ChannelEntry) == 16);
+//#include "ArkCameraShakeManager.h"
+//static_assert(sizeof(ArkCameraShakeManager) == 56);
+//static_assert(sizeof(ArkCameraShakeManager::CameraShakeEntry) == 64);
+//static_assert(sizeof(ArkCameraShakeManager::ChannelEntry) == 16);
 
 #include "ArkCaptureVolume.h"
 static_assert(sizeof(ArkCaptureVolume) == 64);
@@ -82,14 +82,15 @@ static_assert(sizeof(ArkDisruptable) == 152);
 #include "ArkDisruptableSignalReceiver.h"
 static_assert(sizeof(ArkDisruptableSignalReceiver) == 24);
 
-#include "ArkDistractionInstance.h"
-static_assert(sizeof(ArkDistractionInstance) == 40);
-static_assert(sizeof(ArkDistractionInstance::ObstacleCheckState) == 16);
+//#include "ArkDistractionInstance.h"
+//static_assert(sizeof(ArkDistractionInstance) == 40);
+//static_assert(sizeof(ArkDistractionInstance::ObstacleCheckState) == 16);
 
 #include "ArkDistractionManager.h"
 static_assert(sizeof(ArkDistractionManager) == 200);
 
 #include "ArkDoor.h"
+#if 0
 static_assert(sizeof(ArkNpcMovementDesire) == 240);
 static_assert(sizeof(ArkNpcMovementDesire::DestinationParam) == 8);
 static_assert(sizeof(ArkNpcMovementDesire::EnableNavMeshQueryParam) == 12);
@@ -109,6 +110,7 @@ static_assert(sizeof(ArkNpcMovementDesire::ContinueMovingParam) == 1);
 static_assert(sizeof(ArkNpcMovementDesire::ScriptMoveParam) == 1);
 static_assert(sizeof(ArkNpcMovementDesire::ObstacleAvoidanceParam) == 4);
 static_assert(sizeof(ArkNpcMovementDesire::ErrorParam) == 1);
+#endif
 static_assert(sizeof(ArkDoor) == 688);
 
 #include "ArkEffectParameters.h"
@@ -128,6 +130,7 @@ static_assert(sizeof(CArkElevatorCollisionDetector) == 104);
 
 #include "ArkEmissiveComponent.h"
 static_assert(sizeof(ArkEmissiveComponent) == 64);
+static_assert(sizeof(ArkParamOverride) == 8);
 
 #include "ArkEmotionExtension.h"
 static_assert(sizeof(ArkEmotionExtension) == 80);
@@ -148,6 +151,7 @@ static_assert(sizeof(CArkEthericFogEntity) == 384);
 static_assert(sizeof(ArkEthericFogManager) == 40);
 static_assert(sizeof(ArkEthericFogManager::EthericFogInfo) == 8);
 
+#if 0
 #include "ArkEventScheduler.h"
 static_assert(sizeof(ArkEventScheduler) == 40);
 static_assert(sizeof(ArkEventScheduler::TimeEventInfo) == 32);
@@ -156,6 +160,7 @@ static_assert(sizeof(ArkFlowNodeAbsoluteTimeEvent) == 64);
 static_assert(sizeof(ArkFlowNodeRelativeTimeEvent) == 64);
 static_assert(sizeof(ArkFlowNodeGetGameTime) == 16);
 static_assert(sizeof(ArkFlowNodeSetGameTime) == 16);
+#endif
 
 #include "ArkExclusiveActionFilter.h"
 static_assert(sizeof(ArkExclusiveActionFilter) == 88);
@@ -172,6 +177,7 @@ static_assert(sizeof(ArkFactionLink) == 24);
 #include "ArkFactionManager.h"
 static_assert(sizeof(ArkFactionManager) == 472);
 
+#if 0
 #include "ArkFlowNodeDissipateNightmare.h"
 static_assert(sizeof(ArkFlowNodeDissipateNightmare) == 16);
 
@@ -183,6 +189,7 @@ static_assert(sizeof(ArkFlowNodeNpcTrackView_GetStartPos) == 16);
 
 #include "arkflownodenpctrackview_setdynamicentity.h"
 static_assert(sizeof(ArkFlowNodeNpcTrackView_SetDynamicNode) == 16);
+#endif
 
 #include "ArkGame.h"
 static_assert(sizeof(ArkGame) == 472);
@@ -311,24 +318,24 @@ static_assert(sizeof(ArkOverlappingGooHandler) == 32);
 #include "ArkPasswordProtected.h"
 static_assert(sizeof(ArkPasswordProtected) == 16);
 
-#include "arkplayercameralockclipevent.h"
-static_assert(sizeof(CArkPlayerCameraLockClipEvent) == 48);
+//#include "arkplayercameralockclipevent.h"
+//static_assert(sizeof(CArkPlayerCameraLockClipEvent) == 48);
 
-#include "arkplayerdisablemovementclipevent.h"
-static_assert(sizeof(CArkPlayerDisableMovementClipEvent) == 48);
+//#include "arkplayerdisablemovementclipevent.h"
+//static_assert(sizeof(CArkPlayerDisableMovementClipEvent) == 48);
 
 #include "ArkPostEffectManager.h"
 static_assert(sizeof(ArkPostEffectManager) == 256);
 static_assert(sizeof(ArkPostEffectManager::SBlendOutInfo) == 16);
-static_assert(sizeof(SPostEffectCurve) == 16);
-static_assert(sizeof(SPostEffectCurveParam) == 72);
-static_assert(sizeof(ArkPostEffectOverrideParam) == 160);
+//static_assert(sizeof(SPostEffectCurve) == 16);
+//static_assert(sizeof(SPostEffectCurveParam) == 72);
+//static_assert(sizeof(ArkPostEffectOverrideParam) == 160);
 static_assert(sizeof(ArkPostEffect) == 96);
 
-#include "arkposteffectprocclip.h"
-static_assert(sizeof(CArkPostEffectClipEventParams) == 16);
-static_assert(sizeof(CArkEnablePostEffectClipEvent) == 56);
-static_assert(sizeof(CArkDisablePostEffectClipEvent) == 56);
+//#include "arkposteffectprocclip.h"
+//static_assert(sizeof(CArkPostEffectClipEventParams) == 16);
+//static_assert(sizeof(CArkEnablePostEffectClipEvent) == 56);
+//static_assert(sizeof(CArkDisablePostEffectClipEvent) == 56);
 
 #include "arkprojectilegoonetworkmanager.h"
 static_assert(sizeof(CArkProjectileGooNetworkManager) == 88);
@@ -342,15 +349,15 @@ static_assert(sizeof(CArkProjectileGooPhysicsManager::DynamicEntity_GooInfo) == 
 static_assert(sizeof(CArkProjectilePoolManager) == 24);
 static_assert(sizeof(CArkProjectilePoolManager::SProjectilePoolDesc) == 72);
 
-#include "arkpsipowermimicclipevent.h"
-static_assert(sizeof(CArkPsiPowerMimicMorphInObjectClipEvent) == 48);
+//#include "arkpsipowermimicclipevent.h"
+//static_assert(sizeof(CArkPsiPowerMimicMorphInObjectClipEvent) == 48);
 
-#include "arkpsipowersmokeformclipevent.h"
-static_assert(sizeof(CArkPsiPowerSmokeFormEnterClipEvent) == 48);
-static_assert(sizeof(CArkPsiPowerSmokeFormExitClipEvent) == 48);
-static_assert(sizeof(CArkPsiPowerSmokeStartActiveParticleEffectClipEventParams) == 16);
-static_assert(sizeof(CArkPsiPowerSmokeStartActiveParticleEffectClipEvent) == 56);
-static_assert(sizeof(CArkPsiPowerSmokeStopActiveParticleEffectClipEvent) == 48);
+//#include "arkpsipowersmokeformclipevent.h"
+//static_assert(sizeof(CArkPsiPowerSmokeFormEnterClipEvent) == 48);
+//static_assert(sizeof(CArkPsiPowerSmokeFormExitClipEvent) == 48);
+//static_assert(sizeof(CArkPsiPowerSmokeStartActiveParticleEffectClipEventParams) == 16);
+//static_assert(sizeof(CArkPsiPowerSmokeStartActiveParticleEffectClipEvent) == 56);
+//static_assert(sizeof(CArkPsiPowerSmokeStopActiveParticleEffectClipEvent) == 48);
 
 #include "ArkRecycler.h"
 static_assert(sizeof(ArkRecycler) == 1248);
@@ -359,8 +366,8 @@ static_assert(sizeof(ArkRecycler::RecycleData) == 24);
 #include "ArkRecycleUtils.h"
 static_assert(sizeof(ArkRecycleUtils) == 1);
 
-#include "arkreleaseslaveclipevent.h"
-static_assert(sizeof(CArkReleaseSlaveProceduralClipEvent) == 48);
+//#include "arkreleaseslaveclipevent.h"
+//static_assert(sizeof(CArkReleaseSlaveProceduralClipEvent) == 48);
 
 #include "ArkRepairable.h"
 static_assert(sizeof(ArkRepairableLite) == 48);
@@ -391,6 +398,11 @@ static_assert(sizeof(ArkSceneWindow) == 64);
 
 #include "ArkSignalDispositionModifier.h"
 static_assert(sizeof(ArkSignalDispositionModifier) == 320);
+
+#include "ArkSignalModifer.h"
+static_assert(sizeof(ArkSignalModifer) == 16);
+static_assert(sizeof(ArkSignalModifer::ArkIsInboundProperty) == 32);
+static_assert(sizeof(ArkSignalModifer::ArkModifierIdProperty) == 32);
 
 #include "ArkSimpleCharge.h"
 static_assert(sizeof(ArkChargeAmount) == 8);
@@ -450,6 +462,7 @@ static_assert(sizeof(ISchedulerAction) == 8);
 #include "playerIArkCombatFocusListener.h"
 static_assert(sizeof(IArkCombatFocusListener) == 8);
 
+#if 0
 #include "scriptbind_ark.h"
 static_assert(sizeof(CScriptBind_Ark) == 112);
 
@@ -473,6 +486,7 @@ static_assert(sizeof(CScriptBind_Inventory) == 96);
 
 #include "scriptbind_itemsystem.h"
 static_assert(sizeof(CScriptBind_ItemSystem) == 96);
+#endif
 
 #include "ScriptHandle.h"
 static_assert(sizeof(ScriptHandle) == 8);

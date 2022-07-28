@@ -2466,6 +2466,9 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\ArkPasswordProtected.h">
       <Filter>Common\Prey\GameDll\ark</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\IGameVolumes.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

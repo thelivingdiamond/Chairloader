@@ -4,7 +4,24 @@
 #include <Prey/ArkCommon/ArkInterval.h>
 
 class ArkNpc;
+struct CEffectAttachment;
+struct IAttachment;
 struct IEntity;
+struct IParticleEmitter;
+
+// Header: Override
+// Prey/GameDll/ark/ArkAirJetManager.h
+struct ArkAirJet // Id=801442C Size=16
+{
+	IAttachment* m_pAttachment;
+	float m_toggleTimer;
+
+#if 0
+	CEffectAttachment* GetEffectAttachment() const;
+	IParticleEmitter* GetEmitter() const;
+	void Activate(const bool arg0) const;
+#endif
+};
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkAirJetManager.h

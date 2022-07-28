@@ -29,22 +29,24 @@ struct SEntityEvent;
 struct SEntityUpdateContext;
 struct SGameObjectEvent;
 
+class CArkLight;
+
 // Header: FromCpp
 // Prey/GameDll/ark/arklight.h
 class ArkLightSignalReceiver : public ArkSignalSystem::Receiver // Id=80141F8 Size=32
 {
 public:
-	CArkLight *m_pLight;
+	CArkLight* m_pLight;
 	uint64_t m_signalGroupId;
-	
+
 	virtual ~ArkLightSignalReceiver();
-	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
-	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this,_bRegister); }
-	void SetSignalGroupId(const uint64_t _id) { FSetSignalGroupId(this,_id); }
-	
-	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x1445C40);
-	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver *const _this, bool _bRegister)>(0x1446A20);
-	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver *const _this, const uint64_t _id)>(0x1447A90);
+	virtual void OnReceiveSignal(ArkSignalSystem::Package const& _package);
+	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this, _bRegister); }
+	void SetSignalGroupId(const uint64_t _id) { FSetSignalGroupId(this, _id); }
+
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver* const _this, ArkSignalSystem::Package const& _package)>(0x1445C40);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver* const _this, bool _bRegister)>(0x1446A20);
+	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver* const _this, const uint64_t _id)>(0x1447A90);
 };
 
 // Header: FromCpp
@@ -303,4 +305,3 @@ public:
 	static inline auto FSetMoved = PreyFunction<void(CArkLight *const _this, CArkLight::EMovementResponse _response, bool _bFromLink)>(0x1447380);
 	static inline auto FPopulateInteractionForCarry = PreyFunction<void(CArkLight const *const _this, ArkInteractionInfo &_interactionInfo)>(0x1446080);
 };
-

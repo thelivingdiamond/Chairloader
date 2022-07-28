@@ -6,6 +6,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkdifficultycomponent.h>
 #include <Prey/GameDll/ark/ui/IArkPauseMenuListener.h>
+#include <Prey/GameDll/ark/ArkSignalModifer.h>
 
 class ArkClass;
 struct ICVar;

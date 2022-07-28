@@ -3,6 +3,7 @@
 #pragma once
 
 class XmlNodeRef;
+struct IArkItem;
 
 // Header: Override
 // Prey/GameDll/ark/iface/IArkInventory.h

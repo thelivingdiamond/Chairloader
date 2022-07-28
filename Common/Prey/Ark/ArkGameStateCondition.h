@@ -6,7 +6,47 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
 class ArkClass;
-class ArkConditionEvaluationData;
+
+// Header: Exact
+// Prey/Ark/arkgamestatecondition.h
+class ArkConditionResult : public ArkReflectedObject // Id=8013C27 Size=8
+{
+public:
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual void Execute(uint64_t _parentCondition) const;
+	virtual bool IsDelayedResult() const;
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x106AAC0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x106B640);
+	static inline auto FExecute = PreyFunction<void(ArkConditionResult const* const _this, uint64_t _parentCondition)>(0xA13080);
+	static inline auto FIsDelayedResult = PreyFunction<bool(ArkConditionResult const* const _this)>(0xDD23F0);
+};
+
+// Header: Override
+// Prey/Ark/arkgamestatecondition.h
+class ArkConditionEvaluationData // Id=8013BDB Size=24
+{
+public:
+	EArkConditionTriggerType m_type;
+	
+	struct EntityIdentifiers // Id=8013BDC Size=16
+	{
+		uint64_t m_archetypeId;
+		unsigned m_entityId;
+	};
+
+	uint64_t m_changeId;
+	ArkConditionEvaluationData::EntityIdentifiers m_identifiers;
+	
+#if 0
+	bool operator==(ArkConditionEvaluationData const &arg0) const;
+	EArkConditionTriggerType GetType() const;
+	uint64_t GetChangeId() const;
+	uint64_t GetArchetypeId() const;
+	unsigned GetEntityId() const;
+#endif
+};
 
 // Header: Exact
 // Prey/Ark/arkgamestatecondition.h
@@ -1005,22 +1045,6 @@ public:
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x106AB70);
 	static inline auto FEvaluate = PreyFunction<bool(ArkDifficultyOptionCondition const *const _this, ArkConditionEvaluationData const &_change)>(0x13C06E0);
 	static inline auto FRequiresReevaluation = PreyFunction<bool(ArkDifficultyOptionCondition const *const _this, ArkConditionEvaluationData const &_change)>(0x106C660);
-};
-
-// Header: Exact
-// Prey/Ark/arkgamestatecondition.h
-class ArkConditionResult : public ArkReflectedObject // Id=8013C27 Size=8
-{
-public:
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	virtual void Execute(uint64_t _parentCondition) const;
-	virtual bool IsDelayedResult() const;
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x106AAC0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x106B640);
-	static inline auto FExecute = PreyFunction<void(ArkConditionResult const *const _this, uint64_t _parentCondition)>(0xA13080);
-	static inline auto FIsDelayedResult = PreyFunction<bool(ArkConditionResult const *const _this)>(0xDD23F0);
 };
 
 // Header: Exact

@@ -20,9 +20,9 @@ public:
 	std::unordered_map<unsigned int,unsigned int> m_entityFactionMap;
 	std::vector<std::vector<unsigned int>> m_factionFollowers;
 	std::vector<enum EArkDisposition> m_factionDispositions;
-	std::unordered_map<std::pair<unsigned int,unsigned int>,enum EArkDisposition,ArkPairHash<std::hash>,std::equal_to<std::pair<unsigned int,unsigned int> >,std::allocator<std::pair<std::pair<unsigned int,unsigned int> const ,enum EArkDisposition> > > m_factionToEntityDisposition;
-	std::unordered_map<std::pair<unsigned int,unsigned int>,enum EArkDisposition,ArkPairHash<std::hash>,std::equal_to<std::pair<unsigned int,unsigned int> >,std::allocator<std::pair<std::pair<unsigned int,unsigned int> const ,enum EArkDisposition> > > m_entityToFactionDisposition;
-	std::unordered_map<std::pair<unsigned int,unsigned int>,enum EArkDisposition,ArkPairHash<std::hash>,std::equal_to<std::pair<unsigned int,unsigned int> >,std::allocator<std::pair<std::pair<unsigned int,unsigned int> const ,enum EArkDisposition> > > m_entityToEntityDisposition;
+	std::unordered_map<FactionToEntityPair, EArkDisposition> m_factionToEntityDisposition;
+	std::unordered_map<EntityToFactionPair, EArkDisposition> m_entityToFactionDisposition;
+	std::unordered_map<EntityToEntityPair, EArkDisposition> m_entityToEntityDisposition;
 	std::set<IArkFactionListener *,std::less<IArkFactionListener *>> m_factionListeners;
 	std::unordered_map<string,unsigned int,std::hash<string>,std::equal_to<string>,std::allocator<std::pair<CryStringT<char> const,unsigned int>>> m_nameToIndexMap;
 	std::unordered_map<unsigned __int64,unsigned int> m_idToIndexMap;

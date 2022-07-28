@@ -396,6 +396,7 @@
     <ClInclude Include="..\Common\Prey\CryGame\Game.h" />
     <ClInclude Include="..\Common\Prey\CryGame\IGame.h" />
     <ClInclude Include="..\Common\Prey\CryGame\IGameTokens.h" />
+    <ClInclude Include="..\Common\Prey\CryGame\IGameVolumes.h" />
     <ClInclude Include="..\Common\Prey\CryInput\BaseInput.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IHardwareMouse.h" />
     <ClInclude Include="..\Common\Prey\CryInput\IInput.h" />

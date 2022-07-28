@@ -110,7 +110,7 @@ struct IArkDlcSystem;
 struct IArkRewardSystem;
 struct IArkEntitlementSystem;
 struct IArkDlcSystem;
-struct IArkRoomVolumeManager;
+class IArkRoomVolumeManager;
 struct ArkBuildInfo;
 struct ILevelEncrypter;
 struct IEvaluationManager;

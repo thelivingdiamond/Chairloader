@@ -6,6 +6,14 @@
 struct IEntityRenderProxy;
 struct IMaterial;
 
+// Header: Override
+// Prey/GameDll/ark/ArkEmissiveComponent.h
+struct ArkParamOverride // Id=80141FD Size=8
+{
+	unsigned index;
+	float value;
+};
+
 // Header: FromCpp
 // Prey/GameDll/ark/ArkEmissiveComponent.h
 class ArkEmissiveComponent // Id=80141F9 Size=64

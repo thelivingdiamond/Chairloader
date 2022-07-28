@@ -2,6 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/Ark/ArkGameStateCondition.h>
 #include <Prey/GameDll/ark/iface/IArkAbilityListener.h>
 #include <Prey/GameDll/ark/iface/IArkInventoryListener.h>
 #include <Prey/GameDll/ark/iface/IArkObjectiveStateListener.h>

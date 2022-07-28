@@ -5,6 +5,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
+#include <Prey/GameDll/ark/ui/IUIElementEventListener.h>
 
 class ArkInteractiveScreen;
 struct EventPhysCollision;

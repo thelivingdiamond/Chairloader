@@ -1,10 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAISystem/INavigationSystem.h>
+//#include <Prey/CryAISystem/INavigationSystem.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+//#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
 
 class ICrySizer;
 struct IGameObject;
@@ -64,10 +64,10 @@ public:
 	void OnNavMeshChange() { FOnNavMeshChange(this); }
 	void ClearLinks() { FClearLinks(this); }
 	void RebuildLinks() { FRebuildLinks(this); }
-	CArkNavIslandJumpLink::LinkError CalculateLinkPositions(TNavigationID<1> _navAgentID, std::vector<std::tuple<Vec3,Vec3>> &_links) const { return FCalculateLinkPositions(this,_navAgentID,_links); }
-	int CheckLinkRow(TNavigationID<1> _navAgentID, Vec3 const &_start, Vec3 const &_fwdDir, float _fwdDist, Vec3 const &_linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FCheckLinkRow(this,_navAgentID,_start,_fwdDir,_fwdDist,_linkDir,_linkDist,_islandId,_links,_error); }
-	int CheckLink(TNavigationID<1> _navAgentID, Vec3 const &_start, Vec3 const &_dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FCheckLink(this,_navAgentID,_start,_dir,_dist,_islandId,_links,_error); }
-	int ValidateLink(TNavigationID<1> _navAgentID, Vec3 const &_startPos, Vec3 const &_dir, unsigned _islandStart, Vec3 const &_endPos, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FValidateLink(this,_navAgentID,_startPos,_dir,_islandStart,_endPos,_links,_error); }
+	CArkNavIslandJumpLink::LinkError CalculateLinkPositions(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, std::vector<std::tuple<Vec3,Vec3>> &_links) const { return FCalculateLinkPositions(this,_navAgentID,_links); }
+	int CheckLinkRow(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_start, Vec3 const &_fwdDir, float _fwdDist, Vec3 const &_linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FCheckLinkRow(this,_navAgentID,_start,_fwdDir,_fwdDist,_linkDir,_linkDist,_islandId,_links,_error); }
+	int CheckLink(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_start, Vec3 const &_dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FCheckLink(this,_navAgentID,_start,_dir,_dist,_islandId,_links,_error); }
+	int ValidateLink(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_startPos, Vec3 const &_dir, unsigned _islandStart, Vec3 const &_endPos, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error) const { return FValidateLink(this,_navAgentID,_startPos,_dir,_islandStart,_endPos,_links,_error); }
 	virtual ~CArkNavIslandJumpLink();
 	
 #if 0
@@ -100,9 +100,9 @@ public:
 	static inline auto FOnNavMeshChange = PreyFunction<void(CArkNavIslandJumpLink *const _this)>(0x1417F80);
 	static inline auto FClearLinks = PreyFunction<void(CArkNavIslandJumpLink *const _this)>(0x1417E00);
 	static inline auto FRebuildLinks = PreyFunction<void(CArkNavIslandJumpLink *const _this)>(0x1418120);
-	static inline auto FCalculateLinkPositions = PreyFunction<CArkNavIslandJumpLink::LinkError(CArkNavIslandJumpLink const *const _this, TNavigationID<1> _navAgentID, std::vector<std::tuple<Vec3,Vec3>> &_links)>(0x1416B30);
-	static inline auto FCheckLinkRow = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<1> _navAgentID, Vec3 const &_start, Vec3 const &_fwdDir, float _fwdDist, Vec3 const &_linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1417B90);
-	static inline auto FCheckLink = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<1> _navAgentID, Vec3 const &_start, Vec3 const &_dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1417990);
-	static inline auto FValidateLink = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<1> _navAgentID, Vec3 const &_startPos, Vec3 const &_dir, unsigned _islandStart, Vec3 const &_endPos, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1418930);
+	static inline auto FCalculateLinkPositions = PreyFunction<CArkNavIslandJumpLink::LinkError(CArkNavIslandJumpLink const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, std::vector<std::tuple<Vec3,Vec3>> &_links)>(0x1416B30);
+	static inline auto FCheckLinkRow = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_start, Vec3 const &_fwdDir, float _fwdDist, Vec3 const &_linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1417B90);
+	static inline auto FCheckLink = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_start, Vec3 const &_dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1417990);
+	static inline auto FValidateLink = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_startPos, Vec3 const &_dir, unsigned _islandStart, Vec3 const &_endPos, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1418930);
 };
 

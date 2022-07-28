@@ -137,3 +137,24 @@ struct SMannequinItemParams
 	struct ContextIDs;
 	struct Fragments;
 };
+
+class ArkOffMeshLinkHelper
+{
+	void* pad[6];
+};
+
+template<ENavigationIDTag T>
+struct TNavigationID
+{
+	uint32 id;
+};
+
+class CDLight
+{
+	void* pad[77];
+};
+
+class ArkNpcMovementDesire
+{
+	void* pad[30];
+};

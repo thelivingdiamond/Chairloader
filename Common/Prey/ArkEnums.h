@@ -2327,5 +2327,13 @@ enum class ArkUtilityType
 	Trigger = 0x4,
 };
 
+enum class ENavigationIDTag
+{
+	MeshIDTag = 0x0,
+	AgentTypeIDTag = 0x1,
+	VolumeIDTag = 0x2,
+	ArkSpaceGridIDTag = 0x3,
+};
+
 // Optimizer?
 using EArkComparisonType = EArkVitalSign;

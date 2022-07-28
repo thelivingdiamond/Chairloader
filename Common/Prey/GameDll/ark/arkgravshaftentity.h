@@ -2,13 +2,13 @@
 
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryAISystem/INavigationSystem.h>
+//#include <Prey/CryAISystem/INavigationSystem.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/CryParticleSystem/IParticles.h>
+//#include <Prey/CryParticleSystem/IParticles.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+//#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
 #include <Prey/GameDll/ark/arkrepairable.h>
 #include <Prey/GameDll/ark/iface/IArkGravShaft.h>
 #include <Prey/GameDll/ark/iface/IArkLightListener.h>
@@ -47,7 +47,7 @@ public:
 	};
 
 	ArkSimpleTimer m_clearGlooTimer;
-	OOB m_boundsOBB;
+	OBB m_boundsOBB;
 	std::vector<CArkGravShaftEntity::ArkContainedEntity> m_containedEntities;
 	std::vector<unsigned int> m_waitingNpcEntityIds;
 	Vec3 m_shaftDim;
@@ -125,8 +125,8 @@ public:
 	virtual IArkGravShaft::EntityState GetEntityState(unsigned _id) const;
 	virtual bool WaitToEnter(unsigned _id) const;
 	virtual void SetWaiting(unsigned _id, bool _bWaiting);
-	virtual bool GetLinkPositionEnter(TNavigationID<1> _navAgentTypeId, Vec3 &_enterPos) const;
-	virtual bool GetLinkPositionExit(TNavigationID<1> _navAgentTypeId, Vec3 &_exitPos) const;
+	virtual bool GetLinkPositionEnter(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3 &_enterPos) const;
+	virtual bool GetLinkPositionExit(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3 &_exitPos) const;
 	virtual Vec3 GetEnterDirection() const;
 	virtual Vec3 GetExitDirection() const;
 	virtual float GetTravelDirection() const;
@@ -150,14 +150,14 @@ public:
 	void InitializePlayerMovementState() const { FInitializePlayerMovementState(this); }
 	void ClearLinks() { FClearLinks(this); }
 	void RebuildLinks() { FRebuildLinks(this); }
-	std::tuple<Vec3,Vec3> CalculateLinkPositions(TNavigationID<1> _navAgentID) const { return FCalculateLinkPositions(this,_navAgentID); }
+	std::tuple<Vec3,Vec3> CalculateLinkPositions(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID) const { return FCalculateLinkPositions(this,_navAgentID); }
 	void OnNavMeshChange() { FOnNavMeshChange(this); }
 	void EnablePlayerNightmareAvoidanceField(bool _bEnable) { FEnablePlayerNightmareAvoidanceField(this,_bEnable); }
 	void ExecuteLuaEvent(const char *_pEventName, IEntity const *const _pContainedEntity) const { FExecuteLuaEvent(this,_pEventName,_pContainedEntity); }
 	virtual void OnBrokenChanged(bool _bBroken, bool _bWasForced);
 	Vec3 GetHeightTestPos(IEntity *pEntity, Vec3 const &_position) const { return FGetHeightTestPos(this,pEntity,_position); }
 	void SetDisrupted(const bool _bDisrupted) { FSetDisrupted(this,_bDisrupted); }
-	void UpdateFloorPos(TNavigationID<1> _navAgentId, Vec3 &_pos) const { FUpdateFloorPos(this,_navAgentId,_pos); }
+	void UpdateFloorPos(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, Vec3 &_pos) const { FUpdateFloorPos(this,_navAgentId,_pos); }
 	bool StartUsing(CArkGravShaftEntity::ArkContainedEntity &_containedEntity) { return FStartUsing(this,_containedEntity); }
 	void StopUsing(CArkGravShaftEntity::ArkContainedEntity &_containedEntity) { FStopUsing(this,_containedEntity); }
 	void EnableLinkedLights(const bool _bEnable) const { FEnableLinkedLights(this,_bEnable); }
@@ -212,8 +212,8 @@ public:
 	static inline auto FGetEntityState = PreyFunction<IArkGravShaft::EntityState(CArkGravShaftEntity const *const _this, unsigned _id)>(0x1439AE0);
 	static inline auto FWaitToEnter = PreyFunction<bool(CArkGravShaftEntity const *const _this, unsigned _id)>(0x143F580);
 	static inline auto FSetWaiting = PreyFunction<void(CArkGravShaftEntity *const _this, unsigned _id, bool _bWaiting)>(0x143E460);
-	static inline auto FGetLinkPositionEnter = PreyFunction<bool(CArkGravShaftEntity const *const _this, TNavigationID<1> _navAgentTypeId, Vec3 &_enterPos)>(0x1439DD0);
-	static inline auto FGetLinkPositionExit = PreyFunction<bool(CArkGravShaftEntity const *const _this, TNavigationID<1> _navAgentTypeId, Vec3 &_exitPos)>(0x1439F20);
+	static inline auto FGetLinkPositionEnter = PreyFunction<bool(CArkGravShaftEntity const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3 &_enterPos)>(0x1439DD0);
+	static inline auto FGetLinkPositionExit = PreyFunction<bool(CArkGravShaftEntity const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3 &_exitPos)>(0x1439F20);
 	static inline auto FGetEnterDirection = PreyFunction<Vec3(CArkGravShaftEntity const *const _this)>(0x1439AC0);
 	static inline auto FGetExitDirection = PreyFunction<Vec3(CArkGravShaftEntity const *const _this)>(0x1439D00);
 	static inline auto FGetTravelDirection = PreyFunction<float(CArkGravShaftEntity const *const _this)>(0x143A080);
@@ -237,14 +237,14 @@ public:
 	static inline auto FInitializePlayerMovementState = PreyFunction<void(CArkGravShaftEntity const *const _this)>(0x143C0D0);
 	static inline auto FClearLinks = PreyFunction<void(CArkGravShaftEntity *const _this)>(0x1439500);
 	static inline auto FRebuildLinks = PreyFunction<void(CArkGravShaftEntity *const _this)>(0x143D800);
-	static inline auto FCalculateLinkPositions = PreyFunction<std::tuple<Vec3,Vec3>(CArkGravShaftEntity const *const _this, TNavigationID<1> _navAgentID)>(0x1438C00);
+	static inline auto FCalculateLinkPositions = PreyFunction<std::tuple<Vec3,Vec3>(CArkGravShaftEntity const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID)>(0x1438C00);
 	static inline auto FOnNavMeshChange = PreyFunction<void(CArkGravShaftEntity *const _this)>(0x143C390);
 	static inline auto FEnablePlayerNightmareAvoidanceField = PreyFunction<void(CArkGravShaftEntity *const _this, bool _bEnable)>(0x14396A0);
 	static inline auto FExecuteLuaEvent = PreyFunction<void(CArkGravShaftEntity const *const _this, const char *_pEventName, IEntity const *const _pContainedEntity)>(0x14397D0);
 	static inline auto FOnBrokenChanged = PreyFunction<void(CArkGravShaftEntity *const _this, bool _bBroken, bool _bWasForced)>(0x143C360);
 	static inline auto FGetHeightTestPos = PreyFunction<Vec3(CArkGravShaftEntity const *const _this, IEntity *pEntity, Vec3 const &_position)>(0x1439D20);
 	static inline auto FSetDisrupted = PreyFunction<void(CArkGravShaftEntity *const _this, const bool _bDisrupted)>(0x143E2F0);
-	static inline auto FUpdateFloorPos = PreyFunction<void(CArkGravShaftEntity const *const _this, TNavigationID<1> _navAgentId, Vec3 &_pos)>(0x143F310);
+	static inline auto FUpdateFloorPos = PreyFunction<void(CArkGravShaftEntity const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, Vec3 &_pos)>(0x143F310);
 	static inline auto FStartUsing = PreyFunction<bool(CArkGravShaftEntity *const _this, CArkGravShaftEntity::ArkContainedEntity &_containedEntity)>(0x143E810);
 	static inline auto FStopUsing = PreyFunction<void(CArkGravShaftEntity *const _this, CArkGravShaftEntity::ArkContainedEntity &_containedEntity)>(0x143E900);
 	static inline auto FEnableLinkedLights = PreyFunction<void(CArkGravShaftEntity const *const _this, const bool _bEnable)>(0x1439580);

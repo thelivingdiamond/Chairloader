@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAISystem/INavigationSystem.h>
+//#include <Prey/CryAISystem/INavigationSystem.h>
 
 // Header: Override
 // Prey/GameDll/ark/iface/IArkGravShaft.h
@@ -23,7 +23,7 @@ public:
 	virtual IArkGravShaft::EntityState GetEntityState(unsigned arg0) const = 0;
 	virtual bool WaitToEnter(unsigned arg0) const = 0;
 	virtual void SetWaiting(unsigned arg0, bool arg1) = 0;
-	virtual bool GetLinkPositionEnter(TNavigationID<1> arg0, Vec3 &arg1) const = 0;
-	virtual bool GetLinkPositionExit(TNavigationID<1> arg0, Vec3 &arg1) const = 0;
+	virtual bool GetLinkPositionEnter(TNavigationID<ENavigationIDTag::AgentTypeIDTag> arg0, Vec3 &arg1) const = 0;
+	virtual bool GetLinkPositionExit(TNavigationID<ENavigationIDTag::AgentTypeIDTag> arg0, Vec3 &arg1) const = 0;
 };
 

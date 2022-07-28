@@ -1,12 +1,12 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/IArkPDAListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
+#include <Prey/Ark/ArkTutorial.h>
 
 class ArkContextualTutorial;
 class ArkNagTutorial;

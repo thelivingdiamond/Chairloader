@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/crycommon/particleparams_typeinfo.h>
+//#include <CryEngine/crycommon/particleparams_typeinfo.h>
 #include <Prey/Ark/iarkposteffectmanager.h>
 #include <Prey/CrySystem/ITimer.h>
 #include <Prey/CrySystem/XML/IXml.h>
@@ -12,6 +12,95 @@
 
 class ArkPostEffectDefaultParam;
 struct IArkPostEffectDefaultParam;
+
+#if 0
+// Header: Override
+// Prey/GameDll/ark/ArkPostEffectManager.h
+struct SPostEffectCurve // Id=8015E0B Size=16
+{
+	TCurve<TRangedType<float, 0, 2147483647, 0> > curve;
+	float duration;
+};
+
+// Header: Override
+// Prey/GameDll/ark/ArkPostEffectManager.h
+struct SPostEffectCurveParam // Id=8015E0C Size=72
+{
+	SPostEffectCurve curves[4];
+	float min;
+	float max;
+};
+
+// Header: FromCpp
+// Prey/GameDll/ark/arkposteffectmanager.h
+class ArkPostEffectOverrideParam : public IArkPostEffectOverrideParam // Id=8015E0A Size=160
+{
+public:
+	uint64_t m_id;
+	uint64_t m_effectId;
+	uint64_t m_paramId;
+	uint64_t m_paramHandle;
+	TArkPostEffectValue m_value;
+	TArkPostEffectValue m_defaultValue;
+	SPostEffectCurveParam m_curveParam;
+	bool m_bForceSet;
+
+	void Load(XmlNodeRef _node) { FLoad(this, _node); }
+	void PushCurveValueToEngine(SPostEffectCurve const& _curve, float _time, ITimer::ETimer _timer) const { FPushCurveValueToEngine(this, _curve, _time, _timer); }
+
+#if 0
+	uint64_t GetEffectId() const;
+	uint64_t GetParamId() const;
+	uint64_t GetId() const;
+	uint64_t GetParamHandle() const;
+	TArkPostEffectValue const& GetValue() const;
+	EArkPostEffectDataType GetType() const;
+	bool IsOverridden() const;
+	void PushToEngine(ITimer::ETimer arg0) const;
+	void SetValue(TArkPostEffectValue const& arg0);
+	void ResetToDefault();
+	SPostEffectCurve const& GetCurve(EPostEffectCurve arg0) const;
+#endif
+
+	static inline auto FLoad = PreyFunction<void(ArkPostEffectOverrideParam* const _this, XmlNodeRef _node)>(0x13D25F0);
+	static inline auto FPushCurveValueToEngine = PreyFunction<void(ArkPostEffectOverrideParam const* const _this, SPostEffectCurve const& _curve, float _time, ITimer::ETimer _timer)>(0x13D3390);
+};
+#endif
+
+class ArkPostEffectOverrideParam;
+
+// Header: FromCpp
+// Prey/GameDll/ark/arkposteffectmanager.h
+class ArkPostEffect : public IArkPostEffect // Id=8015E0D Size=96
+{
+public:
+	uint64_t m_id;
+	unsigned m_priority;
+	ITimer::ETimer m_timer;
+	float m_duration;
+	float m_startTime;
+	std::unordered_map<unsigned __int64, IArkPostEffectOverrideParam*> m_overrideParams;
+	string m_displayName;
+
+	void Load(XmlNodeRef _node) { FLoad(this, _node); }
+	ArkPostEffectOverrideParam* GetOrCreateOverrideParam(uint64_t _overrideId, ArkPostEffectDefaultParam* _pDefaultParam) { return FGetOrCreateOverrideParam(this, _overrideId, _pDefaultParam); }
+
+#if 0
+	string const& GetDisplayName() const;
+	std::unordered_map<unsigned __int64, IArkPostEffectOverrideParam*> const& GetOverrideParams() const;
+	uint64_t GetId() const;
+	unsigned GetPriority() const;
+	ITimer::ETimer GetTimer() const;
+	float GetDuration() const;
+	ArkPostEffectOverrideParam* GetOverrideParamById(uint64_t arg0) const;
+	void OnEnabled();
+	bool HasExpired() const;
+	void Update() const;
+#endif
+
+	static inline auto FLoad = PreyFunction<void(ArkPostEffect* const _this, XmlNodeRef _node)>(0x13D23F0);
+	static inline auto FGetOrCreateOverrideParam = PreyFunction<ArkPostEffectOverrideParam* (ArkPostEffect* const _this, uint64_t _overrideId, ArkPostEffectDefaultParam* _pDefaultParam)>(0x13D2050);
+};
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkPostEffectManager.h
@@ -94,90 +183,5 @@ public:
 	static inline auto FGetOrCreateEffect = PreyFunction<ArkPostEffect *(ArkPostEffectManager *const _this, uint64_t _effectId)>(0x13D1E10);
 	static inline auto FOnEnabledEffectsUpdated = PreyFunction<void(ArkPostEffectManager *const _this)>(0x13D2DF0);
 	static inline auto FPushActiveEffectToEngine = PreyFunction<void(ArkPostEffectManager *const _this)>(0x13D2F80);
-};
-
-// Header: Override
-// Prey/GameDll/ark/ArkPostEffectManager.h
-struct SPostEffectCurve // Id=8015E0B Size=16
-{
-	TCurve<TRangedType<float,0,2147483647,0> > curve;
-	float duration;
-};
-
-// Header: Override
-// Prey/GameDll/ark/ArkPostEffectManager.h
-struct SPostEffectCurveParam // Id=8015E0C Size=72
-{
-	SPostEffectCurve curves[4];
-	float min;
-	float max;
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/arkposteffectmanager.h
-class ArkPostEffectOverrideParam : public IArkPostEffectOverrideParam // Id=8015E0A Size=160
-{
-public:
-	uint64_t m_id;
-	uint64_t m_effectId;
-	uint64_t m_paramId;
-	uint64_t m_paramHandle;
-	TArkPostEffectValue m_value;
-	TArkPostEffectValue m_defaultValue;
-	SPostEffectCurveParam m_curveParam;
-	bool m_bForceSet;
-	
-	void Load(XmlNodeRef _node) { FLoad(this,_node); }
-	void PushCurveValueToEngine(SPostEffectCurve const &_curve, float _time, ITimer::ETimer _timer) const { FPushCurveValueToEngine(this,_curve,_time,_timer); }
-	
-#if 0
-	uint64_t GetEffectId() const;
-	uint64_t GetParamId() const;
-	uint64_t GetId() const;
-	uint64_t GetParamHandle() const;
-	TArkPostEffectValue const &GetValue() const;
-	EArkPostEffectDataType GetType() const;
-	bool IsOverridden() const;
-	void PushToEngine(ITimer::ETimer arg0) const;
-	void SetValue(TArkPostEffectValue const &arg0);
-	void ResetToDefault();
-	SPostEffectCurve const &GetCurve(EPostEffectCurve arg0) const;
-#endif
-	
-	static inline auto FLoad = PreyFunction<void(ArkPostEffectOverrideParam *const _this, XmlNodeRef _node)>(0x13D25F0);
-	static inline auto FPushCurveValueToEngine = PreyFunction<void(ArkPostEffectOverrideParam const *const _this, SPostEffectCurve const &_curve, float _time, ITimer::ETimer _timer)>(0x13D3390);
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/arkposteffectmanager.h
-class ArkPostEffect : public IArkPostEffect // Id=8015E0D Size=96
-{
-public:
-	uint64_t m_id;
-	unsigned m_priority;
-	ITimer::ETimer m_timer;
-	float m_duration;
-	float m_startTime;
-	std::unordered_map<unsigned __int64,IArkPostEffectOverrideParam *> m_overrideParams;
-	string m_displayName;
-	
-	void Load(XmlNodeRef _node) { FLoad(this,_node); }
-	ArkPostEffectOverrideParam *GetOrCreateOverrideParam(uint64_t _overrideId, ArkPostEffectDefaultParam *_pDefaultParam) { return FGetOrCreateOverrideParam(this,_overrideId,_pDefaultParam); }
-	
-#if 0
-	string const &GetDisplayName() const;
-	std::unordered_map<unsigned __int64,IArkPostEffectOverrideParam *> const &GetOverrideParams() const;
-	uint64_t GetId() const;
-	unsigned GetPriority() const;
-	ITimer::ETimer GetTimer() const;
-	float GetDuration() const;
-	ArkPostEffectOverrideParam *GetOverrideParamById(uint64_t arg0) const;
-	void OnEnabled();
-	bool HasExpired() const;
-	void Update() const;
-#endif
-	
-	static inline auto FLoad = PreyFunction<void(ArkPostEffect *const _this, XmlNodeRef _node)>(0x13D23F0);
-	static inline auto FGetOrCreateOverrideParam = PreyFunction<ArkPostEffectOverrideParam *(ArkPostEffect *const _this, uint64_t _overrideId, ArkPostEffectDefaultParam *_pDefaultParam)>(0x13D2050);
 };
 
