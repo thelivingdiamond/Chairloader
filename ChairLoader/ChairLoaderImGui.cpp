@@ -24,7 +24,7 @@ static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int i
 {
 	// Exclusive ImGui mouse input
 	// Don't pass mouse events to the game and FlashUI
-	if (GImGui && ImGui::GetIO().WantCaptureMouse)
+	if (ChairLoaderImGui::HasExclusiveMouseInput())
 		return;
 
 	s_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
@@ -33,7 +33,7 @@ static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int i
 static int CBasicEventListener_OnSetCursor_Hook(CBasicEventListener* const _this, HWND__* hWnd)
 {
 	// Allow ImGui to set the crusor
-	if (GImGui && ImGui::GetIO().WantCaptureMouse)
+	if (ChairLoaderImGui::HasExclusiveMouseInput())
 		return 1;
 
 	return s_CBasicEventListener_OnSetCursor_Hook.InvokeOrig(_this, hWnd);
@@ -67,6 +67,7 @@ ChairLoaderImGui::ChairLoaderImGui() {
 ChairLoaderImGui::~ChairLoaderImGui() {
 	m_pFontAtlas->Release();
 	m_pFontAtlas = nullptr;
+	m_pInstance = nullptr;
 }
 
 void ChairLoaderImGui::PreUpdate(bool haveFocus) {
@@ -85,20 +86,20 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	if (haveFocus && io.WantSetMousePos)
 		gEnv->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
 
-	if (!m_ImGuiUsesMouse && io.WantCaptureMouse)
+	bool hasMouseInput = HasExclusiveMouseInput();
+
+	if (!m_ImGuiUsesMouse && hasMouseInput)
 	{
-		// Show cursor
-		gEnv->pHardwareMouse->IncrementCounter();
+		// Enable cursor
 		m_LastMouseCursor = ImGuiMouseCursor_None;
 	}
-	else if (m_ImGuiUsesMouse && !io.WantCaptureMouse)
+	else if (m_ImGuiUsesMouse && !hasMouseInput)
 	{
-		// Hide cursor
-		gEnv->pHardwareMouse->DecrementCounter();
-		UpdateMouseCursor();
+		// Disable cursor
+		::SetCursor(m_hGameCursor);
 	}
 
-	if (io.WantCaptureMouse)
+	if (hasMouseInput)
 	{
 		ImGuiMouseCursor mouseCursor = io.MouseDrawCursor ? ImGuiMouseCursor_None : ImGui::GetMouseCursor();
 		if (m_LastMouseCursor != mouseCursor)
@@ -108,7 +109,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 		}
 	}
 
-	m_ImGuiUsesMouse = io.WantCaptureMouse;
+	m_ImGuiUsesMouse = hasMouseInput;
 
 	ImGui::NewFrame();
 }
@@ -117,6 +118,20 @@ void ChairLoaderImGui::PostUpdate() {
 	CRY_PROFILE_MARKER("ImGui::Render");
 	ImGui::Render();
 	SubmitRenderData();
+}
+
+bool ChairLoaderImGui::HasExclusiveMouseInput()
+{
+	if (!m_pInstance)
+		return false;
+
+	// Camera mouse input takes priority
+	// Use IncrementCounter/DecrementCounter in IHardwareMouse to control it
+	auto* pMouse = static_cast<CHardwareMouse*>(gEnv->pHardwareMouse);
+	if (pMouse->m_iReferenceCounter == 0)
+		return false;
+
+	return ImGui::GetIO().WantCaptureMouse;
 }
 
 void ChairLoaderImGui::InitBackend() {
@@ -164,13 +179,6 @@ void ChairLoaderImGui::HookPresent() {
 void ChairLoaderImGui::UpdateMouseCursor()
 {
 	ImGuiIO& io = ImGui::GetIO();
-
-	if (!io.WantCaptureMouse)
-	{
-		// Set cursor to the game's
-		::SetCursor(m_hGameCursor);
-		return;
-	}
 
 	if (io.ConfigFlags & ImGuiConfigFlags_NoMouseCursorChange)
 		return;
@@ -728,6 +736,12 @@ void ChairLoaderImGui::RT_SetupRenderState(RenderLists *list, ID3D11DeviceContex
 }
 
 void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce) {
+	if (!m_pInstance)
+	{
+		s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
+		return;
+	}
+
 	ImGuiIO &io = ImGui::GetIO();
 
 	if (event.deviceType == eIDT_Keyboard) {
@@ -781,7 +795,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 	if (event.deviceType == eIDT_Keyboard && io.WantTextInput)
 		return;
 
-	if (event.deviceType == eIDT_Mouse && io.WantCaptureMouse)
+	if (event.deviceType == eIDT_Mouse && m_pInstance->m_ImGuiUsesMouse)
 	 	return;
 
 	s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);

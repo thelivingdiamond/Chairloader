@@ -5,7 +5,11 @@
 
 class ITexture;
 
-class CHardwareMouse : IRendererEventListener, IInputEventListener, IHardwareMouse, ISystemEventListener
+class CHardwareMouse :
+	public IRendererEventListener,
+	public IInputEventListener,
+	public IHardwareMouse,
+	public ISystemEventListener
 {
 public:
 	std::list<IHardwareMouseEventListener *> m_listHardwareMouseEventListeners;
