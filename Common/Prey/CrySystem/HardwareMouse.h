@@ -7,6 +7,7 @@ class ITexture;
 
 class CHardwareMouse : IRendererEventListener, IInputEventListener, IHardwareMouse, ISystemEventListener
 {
+public:
 	std::list<IHardwareMouseEventListener *> m_listHardwareMouseEventListeners;
 	ITexture *m_pCursorTexture;
 	int m_iReferenceCounter;
@@ -24,4 +25,6 @@ class CHardwareMouse : IRendererEventListener, IInputEventListener, IHardwareMou
 	bool m_hide;
 	bool m_calledShowHWMouse;
 	int m_debugHardwareMouse;
+
+	static inline auto FEvent = PreyFunction<void(CHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)>(0xDA37B0);
 };

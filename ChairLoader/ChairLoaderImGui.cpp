@@ -3,6 +3,7 @@
 #include "ChairLoader.h"
 #include "mem.h"
 #include <Prey/CryInput/IHardwareMouse.h>
+#include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/CryRenderer/Renderer.h>
 #include <Prey/CryRenderer/Texture.h>
@@ -11,12 +12,23 @@
 #include <detours/detours.h>
 
 ChairLoaderImGui *ChairLoaderImGui::m_pInstance = nullptr;
-
 static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHook();
+static auto s_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
+
+static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
+{
+	// Exclusive ImGui mouse input
+	// Don't pass mouse events to the game and FlashUI
+	if (ImGui::GetIO().WantCaptureMouse)
+		return;
+
+	s_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
+}
 
 void ChairLoaderImGui::InitHooks()
 {
 	s_hookCBaseInputPostInputEvent.SetHookFunc(&CBaseInput_PostInputEvent);
+	s_CHardwareMouse_Event_Hook.SetHookFunc(&CHardwareMouse_Event_Hook);
 }
 
 ChairLoaderImGui::ChairLoaderImGui() {
@@ -660,7 +672,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 		case eKI_Mouse1:
 		case eKI_Mouse2:
 		case eKI_Mouse3: {
-			io.AddMouseButtonEvent(event.keyId - eKI_Mouse1, event.state == eIS_Down);
+			io.AddMouseButtonEvent(event.keyId - eKI_Mouse1, event.state == eIS_Pressed);
 			break;
 		}
 		case eKI_MouseWheelUp:
@@ -680,16 +692,13 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 		}
 	}
 
-	//if (event.deviceType == eIDT_Mouse)
-	//    CryLog("%d, %d - %s, %d, %f\n", event.deviceType, event.keyId, event.keyName.key, event.state, event.value);
-	// if(!io.WantCaptureKeyboard){
-	if ((event.deviceType == eIDT_Keyboard) && io.WantTextInput)
+	if (event.deviceType == eIDT_Keyboard && io.WantTextInput)
 		return;
-	// TODO: figure out exclusive mouse inputs for imgui
-	// if ((event.deviceType == eIDT_Mouse) && io.WantCaptureMouse)
-	// 	return;
+
+	if (event.deviceType == eIDT_Mouse && io.WantCaptureMouse)
+	 	return;
+
 	s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
-	// }
 }
 
 HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags) {
