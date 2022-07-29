@@ -2,6 +2,7 @@
 #include "ChairLoaderImGui.h"
 #include "ChairLoader.h"
 #include "mem.h"
+#include <ImGui/imgui_internal.h>
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
@@ -11,24 +12,38 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 
+class CBasicEventListener;
+
 ChairLoaderImGui *ChairLoaderImGui::m_pInstance = nullptr;
 static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHook();
 static auto s_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
+static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventListener* const _this, HWND__* hWnd)>(0x1685F90);
+static auto s_CBasicEventListener_OnSetCursor_Hook = s_CBasicEventListener_OnSetCursor.MakeHook();
 
 static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
 {
 	// Exclusive ImGui mouse input
 	// Don't pass mouse events to the game and FlashUI
-	if (ImGui::GetIO().WantCaptureMouse)
+	if (GImGui && ImGui::GetIO().WantCaptureMouse)
 		return;
 
 	s_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
+}
+
+static int CBasicEventListener_OnSetCursor_Hook(CBasicEventListener* const _this, HWND__* hWnd)
+{
+	// Allow ImGui to set the crusor
+	if (GImGui && ImGui::GetIO().WantCaptureMouse)
+		return 1;
+
+	return s_CBasicEventListener_OnSetCursor_Hook.InvokeOrig(_this, hWnd);
 }
 
 void ChairLoaderImGui::InitHooks()
 {
 	s_hookCBaseInputPostInputEvent.SetHookFunc(&CBaseInput_PostInputEvent);
 	s_CHardwareMouse_Event_Hook.SetHookFunc(&CHardwareMouse_Event_Hook);
+	s_CBasicEventListener_OnSetCursor_Hook.SetHookFunc(&CBasicEventListener_OnSetCursor_Hook);
 }
 
 ChairLoaderImGui::ChairLoaderImGui() {
@@ -38,6 +53,7 @@ ChairLoaderImGui::ChairLoaderImGui() {
 	ImGuiIO &io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	// io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	ImGui::StyleColorsDark();
 	InitBackend();
 
@@ -73,11 +89,23 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	{
 		// Show cursor
 		gEnv->pHardwareMouse->IncrementCounter();
+		m_LastMouseCursor = ImGuiMouseCursor_None;
 	}
 	else if (m_ImGuiUsesMouse && !io.WantCaptureMouse)
 	{
 		// Hide cursor
 		gEnv->pHardwareMouse->DecrementCounter();
+		UpdateMouseCursor();
+	}
+
+	if (io.WantCaptureMouse)
+	{
+		ImGuiMouseCursor mouseCursor = io.MouseDrawCursor ? ImGuiMouseCursor_None : ImGui::GetMouseCursor();
+		if (m_LastMouseCursor != mouseCursor)
+		{
+			m_LastMouseCursor = mouseCursor;
+			UpdateMouseCursor();
+		}
 	}
 
 	m_ImGuiUsesMouse = io.WantCaptureMouse;
@@ -96,9 +124,13 @@ void ChairLoaderImGui::InitBackend() {
 	io.BackendPlatformUserData = this;
 	io.BackendPlatformName = "Prey (CryEngine)";
 	io.BackendRendererName = "D3D11";
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-	//io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;       // We can honor GetMouseCursor() values (optional)
+	io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 	io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
+
+	// Load game cursor
+	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
+	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
+
 	CreateFontsTexture();
 }
 
@@ -127,6 +159,47 @@ void ChairLoaderImGui::HookPresent() {
 	pSwapChainVtable = (DWORD_PTR *)pSwapChainVtable[0];
 	m_hookPresent = (IDXGISwapChain_Present)(DWORD_PTR)pSwapChainVtable[8];
 	DetourAttach(&(LPVOID &)m_hookPresent, (PBYTE)Present);
+}
+
+void ChairLoaderImGui::UpdateMouseCursor()
+{
+	ImGuiIO& io = ImGui::GetIO();
+
+	if (!io.WantCaptureMouse)
+	{
+		// Set cursor to the game's
+		::SetCursor(m_hGameCursor);
+		return;
+	}
+
+	if (io.ConfigFlags & ImGuiConfigFlags_NoMouseCursorChange)
+		return;
+
+	ImGuiMouseCursor imguiCursor = ImGui::GetMouseCursor();
+	if (imguiCursor == ImGuiMouseCursor_None || io.MouseDrawCursor)
+	{
+		// Hide OS mouse cursor if imgui is drawing it or if it wants no cursor
+		::SetCursor(NULL);
+	}
+	else
+	{
+		// Show OS mouse cursor
+		LPTSTR win32Cursor = IDC_ARROW;
+		switch (imguiCursor)
+		{
+		case ImGuiMouseCursor_Arrow:        win32Cursor = IDC_ARROW; break;
+		case ImGuiMouseCursor_TextInput:    win32Cursor = IDC_IBEAM; break;
+		case ImGuiMouseCursor_ResizeAll:    win32Cursor = IDC_SIZEALL; break;
+		case ImGuiMouseCursor_ResizeEW:     win32Cursor = IDC_SIZEWE; break;
+		case ImGuiMouseCursor_ResizeNS:     win32Cursor = IDC_SIZENS; break;
+		case ImGuiMouseCursor_ResizeNESW:   win32Cursor = IDC_SIZENESW; break;
+		case ImGuiMouseCursor_ResizeNWSE:   win32Cursor = IDC_SIZENWSE; break;
+		case ImGuiMouseCursor_Hand:         win32Cursor = IDC_HAND; break;
+		case ImGuiMouseCursor_NotAllowed:   win32Cursor = IDC_NO; break;
+		}
+
+		::SetCursor(::LoadCursor(NULL, win32Cursor));
+	}
 }
 
 void ChairLoaderImGui::SubmitRenderData() {

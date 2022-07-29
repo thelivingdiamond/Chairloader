@@ -20,12 +20,15 @@ private:
 	static constexpr float MOUSE_WHEEL_DELTA = 120.0f;
 
 	ITexture *m_pFontAtlas = nullptr;
+	HCURSOR m_hGameCursor = nullptr;
 	std::thread::id m_RenderThreadId;
 	bool m_ImGuiUsesMouse = false;
+	ImGuiMouseCursor m_LastMouseCursor = ImGuiMouseCursor_None;
 
 	void InitBackend();
 	void CreateFontsTexture();
 	void HookPresent();
+	void UpdateMouseCursor();
 	void SubmitRenderData();
 
 	static ImGuiKey KeyIdToImGui(EKeyId keyId);
