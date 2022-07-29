@@ -6,7 +6,6 @@ struct ChairloaderGlobalEnvironment : IChairloaderGlobalEnvironment {
 	IChairloader* cl;
 	IChairloaderGui* gui;
 	IChairloaderConfigManager* conf;
-	PreyFunctions* funcs;
 	EntityUtils* entUtils;
 };
 

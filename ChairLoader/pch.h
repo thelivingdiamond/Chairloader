@@ -20,8 +20,8 @@
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
-// TODO: This needs to be gone. And it includes windows.h, too
-// moving to all separate classes on short term list, fixing inheritance and vtables and static functions on long term
-#include <preyDllObjects.h>
+#include <Prey/ArkEnums.h>
+#include <Prey/ArkStubs.h>
+#include <ChairLoader/PreyFunction.h>
 
 #endif //PCH_H

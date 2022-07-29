@@ -129,13 +129,14 @@ void ChairloaderGui::draw(bool* bShow) {
 }
 
 void ChairloaderGui::update() {
-    auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
-    if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
+    // FIXME: Add IGameFramework
+    //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
+    //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
         drawHandleMutex.lock();
         entityManager.update(&log);
         playerManager.update(&log);
         drawHandleMutex.unlock();
-    }
+    //}
     perfOverlay.Update();
     
 }

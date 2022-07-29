@@ -4,9 +4,8 @@
 #define __RayCastQueue_h__
 
 #pragma once
-
-#if 0
-#include "DeferredActionQueue.h"
+#include "physinterface.h"
+//#include "DeferredActionQueue.h"
 
 struct RayCastResult
 {
@@ -211,6 +210,7 @@ private:
 
 typedef uint32 QueuedRayID;
 
+#if 0
 template<int RayCasterID>
 class RayCastQueue :
 	public DeferredActionQueue<DefaultRayCaster<RayCasterID>, RayCastRequest, RayCastResult>

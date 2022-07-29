@@ -1,7 +1,6 @@
 #include "pch.h"
 #include <Prey/CrySystem/ILog.h>
 #include <Logging.h>
-#include <preyDllObjects.h>
 
 extern SSystemGlobalEnvironment *gEnv;
 

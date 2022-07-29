@@ -143,6 +143,6 @@ template<typename ReturnType, typename ... ArgumentTypes>
 inline auto PreyFunction<ReturnType(ArgumentTypes ...)>::MakeHook()
 {
 	// This method is called for a global from other global.
-	// Do not derefence `this` - it may not be initialized yet.
+	// Do not dereference `this` - it may not be initialized yet.
 	return PreyFunctionHook<Type>(this);
 }

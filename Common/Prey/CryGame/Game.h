@@ -2,12 +2,111 @@
 #include <ChairLoader/PreyFunction.h>
 
 #include "CScriptBind_Ark.h"
-#include "Prey/GameActions.h"
-#include "Prey/Graphics.h"
+#include "Prey/GameDll/GameActions.h"
 #include "IGame.h"
 #include "Prey/CryCore/Platform/IPlatformOS.h"
+#include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
 
 struct IGameFramework;
+class CGameCache;
+class CGamePhysicsSettings;
+class CScriptBind_Actor;
+class CScriptBind_Item;
+class CScriptBind_GameRules;
+class CScriptBind_Game;
+class CScriptBind_GameAI;
+class CScriptBind_HitDeathReactions;
+class CScriptBind_ProtectedBinds;
+class CPlayerVisTable;
+class CDataPatchDownloader;
+class CGameLocalizationManager;
+struct ITelemetryCollector;
+struct IPlayerProfileManager;
+struct SCVars;
+struct SItemStrings;
+class CGameSharedParametersStorage;
+class CScreenEffects;
+class CDownloadMgr;
+class CDLCManager;
+class CLightningGameEffect;
+class CParameterGameEffect;
+class CWorldBuilder;
+
+namespace Graphics
+{
+class CColorGradientManager;
+}
+
+class CGameAISystem;
+template <size_t S>
+class RayCastQueue;
+template <size_t S>
+class IntersectionTestQueue;
+class CUIManager;
+class CHitDeathReactionsSystem;
+class CBodyDamageManager;
+class CMovementTransitionsSystem;
+class CGameMechanismManager;
+class CModInfoManager;
+class CGameMechanismManager;
+class ArkAiManager;
+class ArkAttentionManager;
+class ArkAttractionManager;
+class ArkAuralPerceptionManager;
+class ArkCharacterManager;
+class ArkCombatManager;
+class ArkCystoidManager;
+class ArkDistractionEntitySink;
+class ArkDistractionManager;
+class ArkDynamicCorpseManager;
+class ArkEncounterManager;
+class CArkFlowGraphManager;
+class ArkEthericFogManager;
+class ArkFactionManager;
+class ArkGameDataManager;
+class ArkGlintConfigManager;
+class CArkGlooIslandNavLinkManager;
+class ArkInstigationManager;
+class ArkLightTimeManager;
+class ArkListenerManager;
+class ArkLurkManager;
+class ArkAiManager;
+class ArkMetaTagManager;
+class ArkNightmareEtherformManager;
+class ArkNightmareSpawnManager;
+class ArkNpcAbilityManager;
+class ArkNpcAreaManager;
+class ArkNpcBlackboardManager;
+class ArkNpcGameEffectManager;
+class ArkNpcManager;
+class ArkNpcSpawnManager;
+class ArkNpcThrowPropManager;
+class ArkNpcUnreachableTargetingManager;
+class CArkPADialogManager;
+class ArkPatrolManager;
+class ArkPostEffectManager;
+class CArkProjectileGooNetworkManager;
+class CArkProjectileGooPhysicsManager;
+class CArkProjectilePoolManager;
+class ArkResponseManager;
+class ArkRetreatManager;
+class ArkRoomPerceptionManager;
+class ArkSpatialManager;
+class ArkTimeScaleManager;
+class ArkVisualPerceptionManager;
+class ArkWorldUIManager;
+class CScriptBind_ArkBreakable;
+class CScriptBind_ArkItem;
+class CScriptBind_ArkFaction;
+class CScriptBind_ArkKiosk;
+class CScriptBind_ArkNpc;
+class CScriptBind_ArkRoster;
+class CScriptBind_ArkTurret;
+class CScriptBind_Inventory;
+class CScriptBind_ItemSystem;
+class CScriptBind_LightningArc;
+class ArkGame;
+class ArkActiveUserManagerBase;
 
 // class CGame
 // {

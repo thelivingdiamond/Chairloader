@@ -1,6 +1,7 @@
 #pragma once
 #include "Prey/CryCore/StdAfx.h"
 
+// TODO: Move to correct CryEngine file
 class ExplosionInfo
 {
 	unsigned int shooterId;

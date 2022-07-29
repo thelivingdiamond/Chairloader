@@ -1,23 +1,20 @@
 #pragma once
-#include "Prey/IAntiCheatManager.h"
-#include "Prey/IArkPlayer.h"
 #include "Prey/ArkEnums.h"
 #include "Prey/CryEntitySystem/IEntity.h"
 #include "Prey/CryNetwork/ISerialize.h"
 #include "Prey/CryThreading/IJobManager.h"
 
-class IGameFramework {
-
-};
+struct IGameFramework;
 class IArkDoor ;
+class IArkPlayer;
 class IArkEncounterManager ;
 class IArkFactionManager ;
-class IArkGlintConfigManager ;
+struct IArkGlintConfigManager ;
 class IArkGravShaft ;
 class IArkMetaTagManager ;
 class IArkPADialogManager ;
 class IArkPatrolManager;
-class IArkPostEffectManager;
+struct IArkPostEffectManager;
 class IGameToEditorInterface ;
 class IGameWarningsListener ;
 class IGameStateRecorder;
@@ -28,6 +25,8 @@ class IArkResponseManager;
 class IArkNpc;
 struct SActionEvent;
 struct SRenderingPassInfo;
+struct IAntiCheatManager;
+
 enum class ESaveGameMethod {
 	eSGM_NoSave = 0,
 	eSGM_QuickSave = 1,
@@ -40,7 +39,7 @@ enum class ESaveGameReason {
 	eSGR_Command = 2,
 	eSGR_QuickSave = 3
 };
-class ISaveGame
+struct ISaveGame
 {
 public:
 	virtual ~ISaveGame() = 0;
@@ -60,7 +59,7 @@ public:
 
 
 };
-class ILoadGame
+struct ILoadGame
 {
 public:
 	virtual ~ILoadGame() = 0;
@@ -77,17 +76,6 @@ public:
 
 
 };
-class IArkActiveUserManagerListener
-{
-public:
-	virtual void OnActiveUserIdChanged(unsigned int) = 0;
-	virtual void OnActiveUserDisconnected(bool) = 0;
-	virtual bool OnActiveUserReengaged() = 0;
-	virtual void OnActiveUserPostReengaged() = 0;
-	virtual void OnActiveUserSignedOut() = 0;
-
-
-};
 class IGameFrameworkListener
 {
 public:
@@ -96,7 +84,7 @@ public:
 	virtual void OnSaveGame(ISaveGame*) = 0;
 	virtual void OnLoadGame(ILoadGame*) = 0;
 	virtual void OnLevelEnd(const char*) = 0;
-	virtual void OnActionEvent(const SActionEvent*) = 0;
+	virtual void OnActionEvent(const SActionEvent&) = 0;
 	virtual void OnPreRender() = 0;
 	virtual void OnSavegameFileLoadedInMemory(const char*) = 0;
 	virtual void OnForceLoadingWithFlash() = 0;

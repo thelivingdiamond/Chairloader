@@ -1,5 +1,7 @@
 #include "pch.h"
 #include <Prey/CryAction/GameObject.h>
+#include <Prey/GameDll/ark/player/ArkPlayer.h>
+#include <Prey/GameDll/ark/npc/ArkNpcSpawnManager.h>
 #include "EntityUtils.h"
 
 EntityUtils *gEntUtils = nullptr;
@@ -10,7 +12,7 @@ IEntity* EntityUtils::spawnNpcFromArchetype(const char* name, Vec3& pos, Quat& r
 	static ArkNpcSpawnedState_Alert alert;
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
 	for (int i = 1; i <= spawnCount; i++) {
-		latestEntity = ArkNpcSpawnManager::createNpc(gEnv->pEntitySystem->GetEntityArchetype(archetypeId), &pos, &rot, 0, &state);
+		latestEntity = ArkNpcSpawnManager::CreateNpc(*gEnv->pEntitySystem->GetEntityArchetype(archetypeId), pos, rot, 0, state);
 	}
 	return latestEntity;
 }
@@ -30,7 +32,6 @@ CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnPa
 	params->vScale.x = 1;
 	params->vScale.y = 1;
 	params->vScale.z = 1;
-	params->id = 0;
 	params->vPosition.x = pos.x;
 	params->vPosition.y = pos.y;
 	params->vPosition.z = pos.z;
@@ -61,42 +62,42 @@ CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnPa
 	return params;
 }
 
-void EntityUtils::DumpEntity(CEntity* entity, bool dumpProxies) {
+void EntityUtils::DumpEntity(IEntity* entity, bool dumpProxies) {
 	if (entity != nullptr) {
 		std::cout << "entity: " << entity << std::endl;
-		std::cout << "id:" << entity->m_nID << std::endl;
-		std::cout << "guid:" << entity->m_guid << std::endl;
-		std::cout << "flags:" << entity->m_flags << std::endl;
-		std::cout << "flags ext:" << entity->m_flagsExtended << std::endl;
-		std::cout << "class:" << entity->m_pClass << std::endl;
-		std::cout << "archetype:" << entity->m_pArchetype << std::endl;
-		std::cout << "SBindings:" << entity->m_pBinds << std::endl;
-		std::cout << "m_aiObjectID:" << entity->m_aiObjectID << std::endl;
-		std::cout << "IMaterial:" << entity->m_pMaterial << std::endl;
+		std::cout << "id:" << entity->GetId() << std::endl;
+		std::cout << "guid:" << entity->GetGuid() << std::endl;
+		std::cout << "flags:" << entity->GetFlags() << std::endl;
+		std::cout << "flags ext:" << entity->GetFlagsExtended() << std::endl;
+		std::cout << "class:" << entity->GetClass() << std::endl;
+		std::cout << "archetype:" << entity->GetArchetype() << std::endl;
+		//std::cout << "SBindings:" << entity->m_pBinds << std::endl;
+		std::cout << "m_aiObjectID:" << entity->GetAIObjectID() << std::endl;
+		std::cout << "IMaterial:" << entity->GetMaterial() << std::endl;
 		if (dumpProxies) {
 			std::cout << "all proxies:\n";
 			for (uint32_t i = 0; i <= 0x11; i++) {
-				IEntityProxy* proxy = ((IEntity*)entity)->GetProxy((EEntityProxy)i);
+				IEntityProxy* proxy = entity->GetProxy((EEntityProxy)i);
 				std::cout << proxy << std::endl;
 			}
-			std::cout << "included proxies:\n";
-			for (auto it = entity->m_proxy.begin(); it != entity->m_proxy.end(); ++it) {
-				// if(it != NULL)
-				std::cout << it->first << ": " << it->second.get() << std::endl;
-			}
+			//std::cout << "included proxies:\n";
+			//for (auto it = entity->m_proxy.begin(); it != entity->m_proxy.end(); ++it) {
+			//	// if(it != NULL)
+			//	std::cout << it->first << ": " << it->second.get() << std::endl;
+			//}
 		}
 		else {
-			std::cout << "proxy:" << &entity->m_proxy << std::endl;
+			//std::cout << "proxy:" << &entity->m_proxy << std::endl;
 		}
-		std::cout << "component:" << &entity->m_components << std::endl;
-		std::cout << "IEntityLink:" << entity->m_pEntityLinks << std::endl;
-		std::cout << "SGridLocation:" << entity->m_pGridLocation << std::endl;
-		std::cout << "ProximityEntity:" << entity->m_pProximityEntity << std::endl;
-		std::cout << "keepAliveCounter:" << entity->m_nKeepAliveCounter << std::endl;
-		std::cout << "Name:" << entity->m_szName.c_str() << std::endl;
-		std::cout << "cloneLayerId:" << entity->m_cloneLayerId << std::endl;
-		std::cout << "initial scene Mask:" << entity->m_guid << std::endl;
-		std::cout << "displayName:" << entity->m_displayName.c_str() << std::endl << std::endl;
+		//std::cout << "component:" << &entity->m_components << std::endl;
+		//std::cout << "IEntityLink:" << entity->m_pEntityLinks << std::endl;
+		//std::cout << "SGridLocation:" << entity->m_pGridLocation << std::endl;
+		//std::cout << "ProximityEntity:" << entity->m_pProximityEntity << std::endl;
+		//std::cout << "keepAliveCounter:" << entity->m_nKeepAliveCounter << std::endl;
+		std::cout << "Name:" << entity->GetName() << std::endl;
+		//std::cout << "cloneLayerId:" << entity->m_cloneLayerId << std::endl;
+		//std::cout << "initial scene Mask:" << entity->m_guid << std::endl;
+		//std::cout << "displayName:" << entity->m_displayName.c_str() << std::endl << std::endl;
 	} else {
 		std::cout << "Null Entity" << std::endl << std::endl;
 	}
@@ -136,7 +137,7 @@ EntityUtils::EntityUtils() {
 }
 
 ArkPlayer* EntityUtils::ArkPlayerPtr() {
-	 return ArkPlayer::GetInstancePtr();
+	return ArkPlayer::GetInstancePtr();
 }
 
 

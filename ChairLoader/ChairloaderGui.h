@@ -1,9 +1,7 @@
 #pragma once
 #include "pch.h"
 #include <Prey/CrySystem/System.h>
-#include <Prey/ArkBasicTypes.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
-#include "preyDllObjects.h"
 #include "OverlayLog.h"
 #include "EntityManager.h"
 #include "PlayerManager.h"

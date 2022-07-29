@@ -2,7 +2,9 @@
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CrySystem/ITimer.h>
 #include <Prey/CryMath/Cry_Camera.h>
+#include <Prey/CryString/CryName.h>
 #include <ChairLoader/PreyFunction.h>
+#include <Prey/Ark/ArkBuildInfo.h>
 
 namespace minigui
 {
@@ -14,6 +16,28 @@ namespace Telemetry
 struct CFileStream;
 struct CUDPStream;
 }
+
+struct IEngineModule;
+struct SDefaultValidator;
+class CCpuFeatures;
+class CStreamEngine;
+class CPhysRenderer;
+struct IFFont;
+class CXmlUtils;
+class CrySizerStats;
+class CrySizerImpl;
+class CLocalizedStringsManager;
+struct IThreadTask;
+class CServerThrottle;
+class CDownloadManager;
+class CCmdLine;
+class CThreadTaskManager;
+class CResourceManager;
+
+class CFrameProfileSystem { void* pad; };
+class CThreadProfiler {};
+class CProfilingSystem { void* pad; };
+class CMemoryFragmentationProfiler { unsigned pad; };
 
 class CTimer : public ITimer
 {
@@ -78,6 +102,13 @@ public:
 };
 
 static_assert(sizeof(CTimer) == 0x758);
+
+struct SModuleInitInfo // Id=800248B Size=24
+{
+	const char* szDllName;
+	const char* szClassName;
+	std::shared_ptr<IEngineModule>(*pInitFunc)();
+};
 
 class CSystem : public ISystem, public ILoadConfigurationEntrySink, public ISystemEventListener
 {

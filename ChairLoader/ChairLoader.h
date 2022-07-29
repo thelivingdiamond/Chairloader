@@ -3,7 +3,6 @@
 #include <Prey/CrySystem/ISystem.h>
 
 #include "ChairloaderConfigManager.h"
-#include "PreyFunctions.h"
 #include "ChairLoaderImGui.h"
 #include "ChairLoader/IChairloader.h"
 #include "Logging.h"
@@ -116,7 +115,6 @@ private:
 	bool m_FreeCamEnabled = false;
 
 	void CreateConsole();
-	void LoadPreyPointers();
 	void InstallHooks();
 	void UpdateFreeCam();
 public:

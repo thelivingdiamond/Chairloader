@@ -289,8 +289,8 @@ class IInputEventListener
 {
 public:
 	virtual ~IInputEventListener() = 0;
-	virtual bool OnInputEvent(const SInputEvent *) = 0;
-	virtual bool OnInputEventUI(const SInputEvent *) = 0;
+	virtual bool OnInputEvent(const SInputEvent &) = 0;
+	virtual bool OnInputEventUI(const SInputEvent &) = 0;
 	virtual int GetPriority() = 0;
 };
 

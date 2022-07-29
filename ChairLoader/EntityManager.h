@@ -1,9 +1,7 @@
 #pragma once
 #include "pch.h"
 
-#include <Prey/ArkBasicTypes.h>
 #include "EntityUtils.h"
-#include "preyDllObjects.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"
 #include "ChairLoader.h"
@@ -21,14 +19,14 @@ public:
         playerPos = 3,
     };
     struct entityModifyRequest {
-        CEntity* entity;
+        IEntity* entity;
         entityModifyType type;
         Vec3_tpl<float> pos{ 0,0,0 };
         Vec4_tpl<float> rot{ 0,0,0,0 };
         Vec3_tpl<float> scale = { 0,0,0 };
     };
     struct spawnRequest {
-        CEntityArchetype* archetype;
+        IEntityArchetype* archetype;
         std::string name;
         Vec3_tpl<float> pos = { 0,0,0 };
         Vec4_tpl<float> rot = { 0,0,0,1 };
@@ -52,22 +50,18 @@ public:
     void update(ChairloaderGUILog* log);
 private:
     const std::string modName = "EntityManager";
-    std::vector<CEntity*> entityDisplayList;
+    std::vector<IEntity*> entityDisplayList;
     bool refreshDisplayList = true;
     std::string filterText, oldFilterText;
-    CEntity* selected = nullptr;
+    IEntity* selected = nullptr;
     std::queue<spawnRequest> archetypeSpawnRequestQueue;
-    CEntityArchetype* archetypeToSpawn;
+    IEntityArchetype* archetypeToSpawn;
     // archetype filter
     std::string archetypeFilterText, oldArchetypeFilterText;
     std::queue<archetypeFilterRequest> archetypeFilterRequestQueue;
-    std::vector<CEntityArchetype*> archetypeFilteredList;
-    std::unordered_map< uint64_t, CEntityArchetype*>* archetypeList = &((CEntitySystem *)gEnv->pEntitySystem)->m_pEntityArchetypeManager->m_idToArchetypeMap;
+    std::vector<IEntityArchetype*> archetypeFilteredList;
     std::queue<entityModifyRequest> modifyQueue;
     // bool entitySpawningMethod = false;
-
-
-    inline CEntitySystem *GetEntitySystem() { return static_cast<CEntitySystem*>(gEnv->pEntitySystem); }
 
 	void entityModifyHandler(ChairloaderGUILog* log);
     void filterEntityList(ChairloaderGUILog* log);
@@ -148,7 +142,7 @@ private:
         "MakePoltergeistDisapear",
         "MimicAndReplaceEntity",
         "MimicCollisionRebound",
-        "MimicEntity",
+        "MimiIEntity",
         "NoticeTargetPosition",
         "NotifyCorruptedOwnerOfUncorruption",
         "OverrideCharacterId",

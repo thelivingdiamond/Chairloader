@@ -12,6 +12,13 @@
 
 ChairLoaderImGui *ChairLoaderImGui::m_pInstance = nullptr;
 
+static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHook();
+
+void ChairLoaderImGui::InitHooks()
+{
+	s_hookCBaseInputPostInputEvent.SetHookFunc(&CBaseInput_PostInputEvent);
+}
+
 ChairLoaderImGui::ChairLoaderImGui() {
 	m_pInstance = this;
 	IMGUI_CHECKVERSION();
@@ -25,8 +32,6 @@ ChairLoaderImGui::ChairLoaderImGui() {
 	// Hook functions
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
-	m_hookCBaseInputPostInputEvent = gPreyFuncs->CBaseInputF->PostInputEvent;
-	DetourAttach(&(LPVOID &)m_hookCBaseInputPostInputEvent, (PBYTE)CBaseInput_PostInputEvent);
 	HookPresent();
 	DetourTransactionCommit();
 }
@@ -683,7 +688,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 	// TODO: figure out exclusive mouse inputs for imgui
 	// if ((event.deviceType == eIDT_Mouse) && io.WantCaptureMouse)
 	// 	return;
-	m_pInstance->m_hookCBaseInputPostInputEvent(_this, event, bForce);
+	s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
 	// }
 }
 

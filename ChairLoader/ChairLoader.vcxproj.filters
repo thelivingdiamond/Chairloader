@@ -106,6 +106,87 @@
     <Filter Include="Common\imgui">
       <UniqueIdentifier>{92077461-948a-4e69-aed8-c80b2d8dae30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Prey\ArkCommon">
+      <UniqueIdentifier>{f82692e9-757d-4e9e-b94d-9ecef63cafa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\ArkCommon\reflect">
+      <UniqueIdentifier>{1e991fc6-0c27-404d-b8ed-f127382d1baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\ArkCommon\reflection">
+      <UniqueIdentifier>{9bf34808-3ec1-4cf0-9403-7e4cbf7428b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\Ark">
+      <UniqueIdentifier>{56901934-8db6-4c50-bfe9-0a44d21f32b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll">
+      <UniqueIdentifier>{5ac2ec62-265d-43a0-94d2-1357c882c7ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark">
+      <UniqueIdentifier>{2dd12db2-b891-4f75-a726-efc43dfe571b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\attention">
+      <UniqueIdentifier>{2a120d8c-bdfe-4f7a-a729-318190cb9ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\cystoid">
+      <UniqueIdentifier>{3c1a4bac-b341-451e-bb1d-dd5a0e675cf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\dialog">
+      <UniqueIdentifier>{01da1282-adb4-4a1a-8487-201e471c0219}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\environment">
+      <UniqueIdentifier>{5ff185cb-7441-4295-ac46-e36078156536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\iface">
+      <UniqueIdentifier>{5488a7ad-ed7b-4917-93cd-ac44b490c277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\perception">
+      <UniqueIdentifier>{701a7011-d677-4cad-b621-570000e854be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\player">
+      <UniqueIdentifier>{f4e82850-e6d1-415b-937b-dd42aec859e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\player\ability">
+      <UniqueIdentifier>{cd32e069-df55-43d3-b7c2-cf526537c6fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\player\pda">
+      <UniqueIdentifier>{5fed9b2e-bb43-46cf-959f-c334e3c8232a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\player\psipower">
+      <UniqueIdentifier>{b6f12b5e-f66d-4194-bddf-d5610c600481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\player\trauma">
+      <UniqueIdentifier>{e44fedd5-db69-497c-a240-731508234cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\psicommon">
+      <UniqueIdentifier>{bab93cc9-5ee3-4213-8bab-9153ca291489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\signalsystem">
+      <UniqueIdentifier>{e4113b71-09e8-4ecd-aac3-ad7f71b3c48c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\spatial">
+      <UniqueIdentifier>{60450b56-a403-4059-a4db-2984437e4a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\turret">
+      <UniqueIdentifier>{a8f25f7e-7b26-4a47-865e-38d8b016a6bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\ui">
+      <UniqueIdentifier>{9c40dc3d-59de-4f4e-9f73-6e269b5812a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\weapons">
+      <UniqueIdentifier>{13780a61-9361-4574-9065-386e944aeff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\worldui">
+      <UniqueIdentifier>{309c20d4-4b8a-455f-89e4-ea595c180369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\EntityUtility">
+      <UniqueIdentifier>{33c6dc43-d1e6-4bce-bd52-9e8fbb9bf70a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ui">
+      <UniqueIdentifier>{73fb68bc-8173-4015-927e-887261f6999b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Prey\GameDll\ark\npc">
+      <UniqueIdentifier>{837e60f1-b692-4a8d-9535-4c207e322a49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChairloaderGui.h">
@@ -144,12 +225,6 @@
     <ClInclude Include="..\Common\mem.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\preyDllObjects.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\PreyFunctions.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\VTableHook.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -161,24 +236,6 @@
     </ClInclude>
     <ClInclude Include="..\Common\Logging.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkBasicTypes.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkEntityArchetypeLibrary.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkEntityClassLibrary.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkEnums.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkPlayer.h">
-      <Filter>Common\Prey</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Prey\Cry3DEngine\CGF\CryHeaders.h">
       <Filter>Common\Prey\Cry3DEngine\CGF</Filter>
@@ -717,92 +774,8 @@
     <ClInclude Include="LibD3D11.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="CScriptBind_Ark.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="CScriptableBase.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
     <ClInclude Include="ChairloaderConfigManager.h">
       <Filter>Chairloader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkPlayerFatigueComponent.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkStats.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkPlayerComponent.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkReflectedObject.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkPlayerStatus.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkPsiComponent.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkMetaTag.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkHud.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkProjectile.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\Graphics.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkItemSystem.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkNpc.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkMaterialAnimation.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkSignalSystem.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkEffect.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\Mannequin.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkSpatial.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkTimer.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkSpeaker.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkInput.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkAudio.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\ArkPlayerLight.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\IAttachment.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\IAntiCheatManager.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\IArkPlayer.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Prey\IProxy.h">
-      <Filter>Common\Prey</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\imgui\imconfig.h">
       <Filter>Common\imgui</Filter>
@@ -834,9 +807,6 @@
     <ClInclude Include="..\Common\Prey\CryAction\IAction.h">
       <Filter>Common\Prey\CryAction</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Prey\RayCast.h">
-      <Filter>Common\Prey</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h">
       <Filter>Common\Chairloader</Filter>
     </ClInclude>
@@ -857,6 +827,1977 @@
     </ClInclude>
     <ClInclude Include="IChairloaderEnv.h">
       <Filter>Common\Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemory.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemorySizer.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkDelegate.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkIntrusiveList.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkLibrary.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkRegularOutcome.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflect\arkreflectionaccessors.h">
+      <Filter>Common\Prey\ArkCommon\reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\ArkReflectedLibrary.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\ArkReflectedObject.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\IArkValueBase.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\XMLObjectReader.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\ArkClass.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkTimeSample.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkInterval.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\ArkUnanimous.h">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkCommon\reflection\ArkProperty.h">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkAudioUtil.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkBuildInfo.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkCameraShake.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkCharacter.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkCharacterEffects.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkDialogAudioTrigger.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkDialogVoice.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkdistractiondata.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkEmotion.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkEntitlement.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkEntitlementUnlock.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkenumstringimpl.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkEventDrivenAchievement.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkFabricationPlan.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkFacingData.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkgamemetrics.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkGameMode.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkgamenoise.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkGameStateCondition.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkKeyCard.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkKeyCode.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkLocation.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkLootTable.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkLoreEntry.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkMaterialAnimations.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkmetatagdata.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arknote.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkobjectiveutils.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkPointOfInterest.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkpropertyprofile.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkPsiBlastProperties.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkPsiPowerCommonProperties.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkResearchTopic.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arksecuritystation.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arksignalsystemdata.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkStationAccess.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkTip.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkTraumas.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkTutorial.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkUtils.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkWeaponModifier.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkWorkstation.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\iarkposteffectmanager.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\iarkspacemanager.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\ArkAbility.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Ark\arkaudiolog.h">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkStubs.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\IGameTokens.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEnums.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\IActorSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\ISubtitleManager.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\IGameVolumes.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryAction\ILevelSystem.h">
+      <Filter>Common\Prey\CryAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryGame\IGameFramework.h">
+      <Filter>Common\Prey\CryGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkAttentionTag.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkComplexAttentionObject.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkComplexHearingInput.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkComplexRoomInput.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkEtherDuplicateAttentionObject.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\arkgenericattentionobject.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkInstigationManager.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkNoiseAttentionParams.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkNpcAttentionObject.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkPlayerMimicRigidEntityAttentionObject.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkSimpleHearingInput.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkSimpleVisionInput.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkTurretAttentiveSubject.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkAttentionLevelChange.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\attention\ArkAttentionManager.h">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\cystoid\ArkCystoidManager.h">
+      <Filter>Common\Prey\GameDll\ark\cystoid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\cystoid\ArkCystoidNest.h">
+      <Filter>Common\Prey\GameDll\ark\cystoid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\cystoid\ArkCystoidPotentialTarget.h">
+      <Filter>Common\Prey\GameDll\ark\cystoid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\cystoid\ArkCystoidSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\cystoid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\cystoid\ArkCystoid.h">
+      <Filter>Common\Prey\GameDll\ark\cystoid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkResponseRule.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\arkresponsetypes.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\arkspeaker.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkConversation.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkConversationListener.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkDialogAudioManager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkDialogAudioTriggerOwner.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkDialogPlayerExtension.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkPADialogManager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkResponseManager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\IArkSpeaker.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\SArkRuleQuery.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\SSubtitleAudioData.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkConversation.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogAudioManager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogPlayer.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogPlayerNPC.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogPlayerPA.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogPlayerRobotLightExtension.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogPlayerTranscribe.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkDialogSubtitleManager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkGlobalFacts.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\arkpadialogmanager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkResponse.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkResponseManager.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\dialog\ArkResponseQuery.h">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkExplosiveTank.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkLeakable.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkSurfaceHazard.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkTelescope.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkTrackingCamera.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkApexTentacle.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkApexTentacleHead.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkApexTentacleSpawner.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkAreaHazard.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkCargoContainer.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkChargeTrap.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkClock.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkElectricalBox.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkEnvironmentalHazard.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkEnvironmentalObject.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\environment\ArkEnvironmentalObjectSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkEmailListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkEmotionExtension.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkFabricationPlanListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkFactionListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkFactionManager.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkGameLoadSaveListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkGlintConfigManager.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkGravShaft.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkGravShaftListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkGroundColliderListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkInventory.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkInventoryListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkItem.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkLightListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkMetaTagManager.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkObjectiveStateListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkPostEffect.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkPostEffectManager.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkPostEffectOverrideParam.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkPsiPowerTargetingListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkRepairableListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkRoomVolume.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkRoomVolumeManager.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkSignalManagerListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkSpeakerExtension.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkUtilityListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IEntityArchetypeListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IGameRulesKillListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\ISaveGameEnumerator.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkAbilityListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkActiveUserManagerListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkBreakableListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkDisruptableListener.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\iface\IArkDoor.h">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkComplexVisualPerceivable.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkComplexVisualPerceptionInfo.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkGameNoise.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkGameNoiseInfo.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkRoomPerceptionManager.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkSimpleAuralPerceptionInfo.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkSimpleVisualPerceivable.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkVisualPerceivable.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\arkvisualperceiver.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkVisualPerceptionManager.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkAttentiveSubject.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkAuralPerceivable.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkAuralPerceptionManager.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkComplexAuralPerceptionInfo.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkComplexRoomPerceivable.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\perception\ArkComplexRoomPerceptionInfo.h">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ability\ArkAbilityScanData.h">
+      <Filter>Common\Prey\GameDll\ark\player\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ability\ArkAbilityComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ability\ArkAbilityData.h">
+      <Filter>Common\Prey\GameDll\ark\player\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkLocationComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkLoreComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkNoteComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkRosterComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkAudioLogComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkEmailComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkEquipmentModComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkFabricationPlanComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkKeyCardComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkKeyCodeComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\pda\ArkLiveTranscribeComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicOperatorCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkplayermimicoperatorcontroller.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicOperatorEntity.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkplayermimicoperatormovementcontroller.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicRigidCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicRigidController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicRigidEntity.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicScienceOperatorCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicScienceOperatorController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicScienceOperatorRotationController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicSpawner.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicTurretCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicTurretController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicTurretEntity.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerSmokeFormAction.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiCorpsePhantom.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiLift.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsiliftvolume.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiLiftVolumeEntity.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsiliftvolumemanager.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipower3dtargetingcomponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipoweralientargetingcomponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowercombatfocus.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiPowerComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowercreatephantom.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowercyberkinesis.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerelectrostaticburst.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerfaction.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerfear.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerhypnosis.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiPowerIndividualTargetingComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerkineticblast.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerkineticshield.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerlift.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerliftproperties.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowermimic.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowermimicproperties.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiPowerMimicTargetingComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowermimicui.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowermindblast.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerremotemanipulation.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiPowerShift.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiPowerSmokeForm.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPsiPowerTargetingComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsipowerthermalblast.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkpsitethermanager.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\carkpsipower.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\IArkPlayerMimic.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\IArkPsiPower.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkEtherDuplicate.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkEtherDuplicateAction.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerLiftEntity.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerLiftEntityZeroG.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\arkplayermimic.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicAction.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicEngineeringOperatorCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicEngineeringOperatorController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicEngineeringOperatorRotationController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicMedicalOperatorController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicMilitaryOperatorCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicMilitaryOperatorController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\psipower\ArkPlayerMimicMilitaryOperatorRotationController.h">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaHobbled.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaPsychoshock.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaRadiation.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaSuitIntegrity.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkStatusGoodDrunk.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkStatusWellFed.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaBase.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaBleeding.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaBurns.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaConcussion.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaDisruption.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaDrunk.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\trauma\ArkTraumaFear.h">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkFocusModeComponentProperties.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkFocusModeEffectsManager.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkLevelMapComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkMarkedEnemyComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkObjectiveComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPharmaComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayer.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerAchievementComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerAction.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerAudio.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerAwarenessComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerCamera.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerCarry.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\arkplayercomponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerEntitlementComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerFatigueComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerFlashlight.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerFXComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\arkplayergroundstate.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\arkplayerhealthcomponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerHelmet.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerInput.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerInteraction.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerLight.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerLightManager.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerMovementAction.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerMovementController.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerMovementFSM.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\arkplayermovementstates.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerOxygenComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerPropulsionComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerRadiationComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerScopeComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\arkplayerstatehover.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerStatusComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerStatusUIInfo.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerTargetSelector.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerUIComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerUpperBodyAction.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerWeaponComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPlayerZoomManager.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPOIComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\arkpsicomponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkPsiScanningComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkQuickSelectComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkStationAccessComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkUtilityComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkCharacterStatusListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkEntitlementListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkEtherDuplicateListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkHUDListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkMetaTagListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPDAListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayer.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerCarryListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerCombatListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerHealthListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerInteractionListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerLightOwner.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerPsiListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPlayerStatusListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPsiPowerListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkPsiScanningComponentListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\IArkStatsListener.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\scriptbind_arkplayer.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\StanceInfo.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\TArkAudioSwitch.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkAimAssistComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkAimAssistConfig.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkAudioControl.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkAudioSwitch.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkAudioSwitchState.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkExaminationMode.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\player\ArkFocusModeComponent.h">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\psicommon\arkpsifearblast.h">
+      <Filter>Common\Prey\GameDll\ark\psicommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\psicommon\arkpsithermalblast.h">
+      <Filter>Common\Prey\GameDll\ark\psicommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\psicommon\arkpsiblast.h">
+      <Filter>Common\Prey\GameDll\ark\psicommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\psicommon\arkpsiblastmanager.h">
+      <Filter>Common\Prey\GameDll\ark\psicommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\psicommon\arkpsielectrostaticburst.h">
+      <Filter>Common\Prey\GameDll\ark\psicommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\signalsystem\arksignalreceiver.h">
+      <Filter>Common\Prey\GameDll\ark\signalsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\signalsystem\ArkBreakableSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\signalsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\signalsystem\arkpackagesignalramp.h">
+      <Filter>Common\Prey\GameDll\ark\signalsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\signalsystem\arksignalcontext.h">
+      <Filter>Common\Prey\GameDll\ark\signalsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\signalsystem\arksignalmanager.h">
+      <Filter>Common\Prey\GameDll\ark\signalsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_apextentacle.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_cystoidnest.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_energizable.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_interferable.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_interferableandenergizable.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_npc.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatialmanagerentry_turret.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatialManagerKey.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\arkspatiallysorted.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatiallySortedApexTentacle.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatiallySortedEntity.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatiallySortedKey.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatiallySortedNpc.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatiallySortedTurret.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\spatial\ArkSpatialManager.h">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretFsm.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretFsmBase_template_.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\arkturretfsmstates.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretUtils.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretWeapon.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ATStates.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\CScriptBind_ArkTurret.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretanimfsm\arkturretanimfsm_fsm.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretanimfsm\arkturretanimfsm_states.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\arkturretdamagefsm_fsm.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\states\arkturretdamagefsm_states_base.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\states\arkturretdamagefsm_states_damaged.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\states\arkturretdamagefsm_states_disabled.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\states\arkturretdamagefsm_states_undamaged.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkDialogTurret.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\arkflownodesturret.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurret.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretAnimFsm.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretController.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretDamageFsm.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\turret\ArkTurretDialogSpeaker.h">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkHitDamageInfo.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkHitDamageUI.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkIndicatorIconManager.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkInputLegend.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkInputLegendHandler.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkInventoryPreview.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkinventoryui.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkLauncherMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkModalDialogBase.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkModalDialogInGame.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkModalDialogMetaGame.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkModalDialogRepair.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkNoteUI.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkOptionDropDownBase.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkOptionLayout.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkOptionMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkOptionMenuBase.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkPauseMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkPDAComponent.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapageabilities.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapageaudiologs.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapageemails.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapageequipmentmods.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagefabricationplans.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapageinventory.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagekeycodes.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagelevelmap.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagelore.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagemainmenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagemetadata.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagenotes.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapageobjectives.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagescopechipsets.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagestationmap.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagestatus.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkpdapagesuitchipsets.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkplayerhitdeathui.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkSubtitleHandler.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkTutorialCardUI.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkTutorialMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuihud.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIMenuBase.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkUIOptionMenuBase.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkuiutil.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IArkDebugMenuListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IArkOptionMenuListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IArkPauseMenuListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IArkPDAPage.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IArkSaveLoadMenuListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IArkTutorialMenuListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IHUDEventListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIControlSchemeListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIElementEventListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIEventListener.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIEventSystemFactory.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIGameEventSystem.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIModule.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\IUIPseudoRTTI.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkBinkPlayerHandle.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkBrightnessMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkButtonPrompt.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkButtonPromptCollection.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\arkexternalinventoryui.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkFocusModeUIComponent.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkGenderSelectMenu.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ui\ArkHackingUI.h">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilehomingpsiblast.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectileluregrenade.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilenightmareetherform.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilerecyclergrenade.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweapon.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweaponactions.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweapondiscrifle.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkWeaponDoubleWrench.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweapongoogun.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweapongrenade.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweaponinstalaser.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweaponshotgun.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkweaponstungun.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkWeaponUtils.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkWeaponWrench.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkWrenchComponent.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\IArkGlooEffectObserver.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\IArkGlooIslandNavLinkManager.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\IArkOverlappingGooListener.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\IArkWeapon.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\SStaticBumpParams.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\SStaticWeaponPoseParams.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\SStaticWiggleParams.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkempblast.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkfatalityaction.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkGooSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\ArkGrenadeSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arklaser.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectile.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilediscrifle.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilegoo.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilegooball.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\weapons\arkprojectilegrenade.h">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkMultipleChoiceKiosk.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkSecurityStationScreen.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkStationWorldUI.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorkstationScreen.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorldUIManager.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkWorldUIOwner.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkDockingStation.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkGenericElevatorKiosk.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkInteractiveScreen.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkKeycardReader.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkKeypad.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkKeyWorldUI.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkKiosk.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkKioskBase.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\worldui\ArkLevelTransitionDoor.h">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ScriptHandle.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\VectorMap.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkAirJetManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkanglerotationcomponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkApexVolume.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkApexVolumeManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkareacontainer.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkattachmentclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkAudioEnvironment.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkAuxiliaryInventory.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkBlackListItem.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkbreakable.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkBreakableGlass.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkcamerafovclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkcamerashakeclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkCameraShakeManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkCaptureVolume.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkCharacterEffectsManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkCharacterManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkcornersmoother3d.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkCraftingIngredient.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDataComponentBase.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDifficultyComponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDisruptable.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDisruptableSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDistractionInstance.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDistractionManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkDoor.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEffectParameters.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkeffectutils.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkelevatorcollisiondetector.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEmissiveComponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEmotionExtension.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEntityGrabber.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEquipmentMod.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkethericdoppelganger.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkethericfogentity.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEthericFogManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkEventScheduler.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkExclusiveActionFilter.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFabricationPlanIngredients.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFabricator.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFactionLink.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFactionManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFlowNodeDissipateNightmare.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFlowNodeNpcMakeConscious.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkFlowNodeNpcTrackView_GetStartPos.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkflownodenpctrackview_setdynamicentity.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGame.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGameDataManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGameMetricsComponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGameModeManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkgameobjectextension.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGameRules.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGameStateConditionManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkglassbreaker.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGlintConfigManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkglooeffectutils.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkglooislandnavlinkmanager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkgravshaftentity.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkGroundColliderComponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkHealthExtension.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkInteractionInfo.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkInteractionTestResult.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkInteractiveMachine.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkinteractiveobject.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkItemSystem.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLaserTripline.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLaserTriplineSignalReceiver.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLatentRaycast.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arklight.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLightManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLightManagerDisruptableData.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLightTimeManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkListenerManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkLocationManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkmapvolume.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkMaterialAnimationManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkMetaTagManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arknavislandjumplink.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkNeuromod.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkNewGamePlus.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkOperatorDispenser.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkOverlappingGooHandler.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkPasswordProtected.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkplayercameralockclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkplayerdisablemovementclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkPostEffectManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkposteffectprocclip.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkprojectilegoonetworkmanager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkprojectilegoophysicsmanager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkprojectilepoolmanager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkpsipowermimicclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkpsipowersmokeformclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkRecycler.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkRecycleUtils.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkreleaseslaveclipevent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkRepairable.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkRepairableObject.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkRobotLight.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkRoomPath.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkroomvolume.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arkroomvolumemanager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSaveMetaData.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSceneWindow.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkScriptTable.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSignalDispositionModifier.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSignalModifer.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSimpleCharge.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSimpleTimer.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkSpeakerExtension.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkStatsComponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\arktargetlerper.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkTimeScaleManager.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkTimeScaler.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkTipComponent.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkTurretCountArea.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ArkTutorialSystem.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\CSchedulerActionPoolBase.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\ISchedulerAction.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\playerIArkCombatFocusListener.h">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\EntityUtility\EntityEffects.h">
+      <Filter>Common\Prey\GameDll\EntityUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ui\iuigameeventsystem.h">
+      <Filter>Common\Prey\GameDll\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ArkInventory.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\arkitem.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\IGameRules.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\itemscheduler.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\itemstring.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\proceduralweaponclip.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\SGameWeaponSwayParams.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\state.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponbumpoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponlookoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponoffsetinput.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponrecoiloffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponstrafeoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\weaponzoomoffset.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkResponseKeyLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\Explosion.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkAbilityLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEntityArchetypeLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEntityClassLibrary.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\ArkEnums_old.h">
+      <Filter>Common\Prey</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\GameActions.h">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\CryMemory\STLGlobalAllocator.h">
+      <Filter>Common\Prey\CryMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnedState.h">
+      <Filter>Common\Prey\GameDll\ark\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnManager.h">
+      <Filter>Common\Prey\GameDll\ark\npc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -885,12 +2826,6 @@
       <Filter>ImGui</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\mem.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\PreyDllObjects.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\PreyFunctions.cpp">
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\VTableHook.cpp">
@@ -950,8 +2885,89 @@
     <ClCompile Include="..\Common\imgui\imgui_widgets.cpp">
       <Filter>Common\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\EntityUtils.cpp">
-      <Filter>Common</Filter>
+    <ClCompile Include="..\Common\Prey\ArkCommon\HeaderTest.cpp">
+      <Filter>Common\Prey\ArkCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\ArkCommon\reflection\HeaderTest.cpp">
+      <Filter>Common\Prey\ArkCommon\reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\Ark\HeaderTest.cpp">
+      <Filter>Common\Prey\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\attention\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\attention</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\cystoid\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\cystoid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\dialog\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\environment\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\iface\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\iface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\perception\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\perception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\player\ability\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\player\ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\player\pda\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\player\pda</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\player\psipower\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\player\psipower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\player\trauma\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\player\trauma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\player\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\psicommon\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\psicommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\signalsystem\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\signalsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\spatial\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\spatial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\turret\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\turret\turretanimfsm\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\turret\turretdamagefsm\states\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\turret</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\ui\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\weapons\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\worldui\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\worldui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\EntityUtility\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\EntityUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Prey\GameDll\ark\npc\HeaderTest.cpp">
+      <Filter>Common\Prey\GameDll\ark\npc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
