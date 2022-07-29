@@ -69,6 +69,19 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	if (haveFocus && io.WantSetMousePos)
 		gEnv->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
 
+	if (!m_ImGuiUsesMouse && io.WantCaptureMouse)
+	{
+		// Show cursor
+		gEnv->pHardwareMouse->IncrementCounter();
+	}
+	else if (m_ImGuiUsesMouse && !io.WantCaptureMouse)
+	{
+		// Hide cursor
+		gEnv->pHardwareMouse->DecrementCounter();
+	}
+
+	m_ImGuiUsesMouse = io.WantCaptureMouse;
+
 	ImGui::NewFrame();
 }
 

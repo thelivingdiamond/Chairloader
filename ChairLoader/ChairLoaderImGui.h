@@ -21,6 +21,7 @@ private:
 
 	ITexture *m_pFontAtlas = nullptr;
 	std::thread::id m_RenderThreadId;
+	bool m_ImGuiUsesMouse = false;
 
 	void InitBackend();
 	void CreateFontsTexture();
