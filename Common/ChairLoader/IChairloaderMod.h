@@ -1,12 +1,17 @@
 #pragma once
 #include "IChairloader.h"
 
-class CSystem;
+struct ISystem;
+struct IGameFramework;
+struct ImGuiContext;
 
 struct IChairloaderMod {
+	static constexpr char PROC_INITIALIZE[] = "ClMod_Instantiate";
+
+	~IChairloaderMod() {}
 
 	//! Called during CSystem::Init, before any engine modules.
-	virtual void InitSystem(CSystem * pSystem, uintptr_t moduleBase) = 0;
+	virtual void InitSystem(ISystem* pSystem, uintptr_t moduleBase) = 0;
 	
 	//! Called after CGame::Init
 	virtual void InitGame(IGameFramework* pFramework, IChairloader* chairloader) = 0;

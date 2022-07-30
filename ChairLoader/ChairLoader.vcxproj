@@ -255,6 +255,7 @@
     <ClInclude Include="..\Common\ChairLoader\IChairloaderConfigManager.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderGui.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h" />
+    <ClInclude Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.h" />
     <ClInclude Include="..\Common\ChairLoader\pch.h" />
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
     <ClInclude Include="..\Common\ChairLoader\ValidateCompiler.h" />
@@ -1123,6 +1124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Common\ChairLoader\FunctionHook.cpp" />
+    <ClCompile Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.cpp" />
     <ClCompile Include="..\Common\ChairLoader\PreyFunction.cpp" />
     <ClCompile Include="..\Common\EntityUtils.cpp" />
     <ClCompile Include="..\Common\imgui\imgui.cpp" />

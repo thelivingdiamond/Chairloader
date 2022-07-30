@@ -187,6 +187,9 @@
     <Filter Include="Common\Prey\GameDll\ark\npc">
       <UniqueIdentifier>{837e60f1-b692-4a8d-9535-4c207e322a49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Chairloader\ModSDK">
+      <UniqueIdentifier>{d7b8c4c2-0d2f-412f-92bd-ac631d3a97c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChairloaderGui.h">
@@ -2802,6 +2805,9 @@
     <ClInclude Include="..\Common\ChairLoader\pch.h">
       <Filter>Common\Chairloader</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.h">
+      <Filter>Common\Chairloader\ModSDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -2974,6 +2980,9 @@
     </ClCompile>
     <ClCompile Include="..\Common\EntityUtils.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.cpp">
+      <Filter>Common\Chairloader\ModSDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
