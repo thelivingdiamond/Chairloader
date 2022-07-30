@@ -56,9 +56,20 @@ void ModMain::ShutdownSystem()
 	BaseClass::ShutdownSystem();
 }
 
-extern "C" DLL_EXPORT IChairloaderMod* ClMod_Instantiate()
+extern "C" DLL_EXPORT IChairloaderMod* ClMod_Initialize()
 {
 	CRY_ASSERT(!gMod);
 	gMod = new ModMain();
 	return gMod;
 }
+
+extern "C" DLL_EXPORT void ClMod_Shutdown()
+{
+	CRY_ASSERT(gMod);
+	delete gMod;
+	gMod = nullptr;
+}
+
+// Validate that declarations haven't changed
+static_assert(std::is_same_v<decltype(ClMod_Initialize), IChairloaderMod::ProcInitialize>);
+static_assert(std::is_same_v<decltype(ClMod_Shutdown), IChairloaderMod::ProcShutdown>);

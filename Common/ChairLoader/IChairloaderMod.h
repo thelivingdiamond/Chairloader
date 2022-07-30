@@ -6,7 +6,10 @@ struct IGameFramework;
 struct ImGuiContext;
 
 struct IChairloaderMod {
-	static constexpr char PROC_INITIALIZE[] = "ClMod_Instantiate";
+	static constexpr char PROC_INITIALIZE[] = "ClMod_Initialize";
+	static constexpr char PROC_SHUTDOWN[] = "ClMod_Shutdown";
+	using ProcInitialize = IChairloaderMod* ();
+	using ProcShutdown = void ();
 
 	~IChairloaderMod() {}
 
