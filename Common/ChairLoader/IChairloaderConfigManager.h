@@ -17,7 +17,7 @@ struct IChairloaderConfigManager {
 	};
 
 	using ConfigParameterPair = boost::bimap<parameterType, std::string>::value_type;
-	using ConfigParameter = boost::variant<std::string, bool, int, unsigned int, int64, uint64, float, pugi::xml_node>;
+	using ConfigParameter = boost::variant<std::string, bool, int, unsigned int, int64, uint64, float, pugi::xml_node, boost::blank>;
 
 	// Returns a boost::variant of the parameter. Returns "" if the parameter does not exist;
 	// use boost::get<type>(parameter) to get the value. assumes you know the type of the parameter you are getting. 

@@ -51,7 +51,7 @@ public:
 	// retrieve the typed value of a parameter
 	ConfigParameter ParseXmlTextToParameter(pugi::xml_node parameterNode);
 
-	// Returns a boost::variant of the parameter. Returns "" if the parameter does not exist;
+	// Returns a boost::variant of the parameter. Returns boost::blank if the parameter does not exist;
 	// use boost::get<type>(parameter) to get the value. assumes you know the type of the parameter you are getting. 
 	ConfigParameter getConfigValue(std::string modName, std::string parameterName) override;
 
@@ -65,7 +65,7 @@ public:
 	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file. 
 	 * \param node 
 	 * \param parameterName 
-	 * \return boost::Variant of the value, or an empty string "" if parameter does not exist
+	 * \return boost::Variant of the value, will be type boost::blank if parameter does not exist
 	 */
 	ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName) override;
 

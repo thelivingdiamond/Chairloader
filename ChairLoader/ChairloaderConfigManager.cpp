@@ -231,31 +231,40 @@ void ChairloaderConfigManager::Update() {
 ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::ParseXmlTextToParameter(pugi::xml_node parameterNode) {
 	std::string typeStr = parameterNode.attribute("type").value();
 	// CryLog(typeStr.c_str());
-	auto type = parameterNameMap.right.find(typeStr)->second;
-	if(type == parameterType::String) {
-		std::string val = parameterNode.text().as_string();
-		return val;
-	} else if(type == parameterType::Bool) {
-		return parameterNode.text().as_bool();
-	} else if(type == parameterType::Int) {
-		return parameterNode.text().as_int();
-	} else if(type == parameterType::Uint) {
-		return parameterNode.text().as_uint();
-	} else if(type == parameterType::Int64) {
-		return parameterNode.text().as_llong();
-	} else if(type == parameterType::Uint64) {
-		return parameterNode.text().as_ullong();
-	} else if(type == parameterType::Float) {
-		return parameterNode.text().as_float();
-	} else if(type == parameterType::XMLNode) {
-		return parameterNode;
-	} else if(type == parameterType::Other) {
-		std::string val = parameterNode.text().as_string();
-		return val;
-	} else {
-		std::string val = "";
-		return val;
+	
+	if (parameterNameMap.right.find(typeStr) != parameterNameMap.right.end()) {
+		auto type = parameterNameMap.right.find(typeStr)->second;
+		if (type == parameterType::String) {
+			std::string val = parameterNode.text().as_string();
+			return val;
+		}
+		else if (type == parameterType::Bool) {
+			return parameterNode.text().as_bool();
+		}
+		else if (type == parameterType::Int) {
+			return parameterNode.text().as_int();
+		}
+		else if (type == parameterType::Uint) {
+			return parameterNode.text().as_uint();
+		}
+		else if (type == parameterType::Int64) {
+			return parameterNode.text().as_llong();
+		}
+		else if (type == parameterType::Uint64) {
+			return parameterNode.text().as_ullong();
+		}
+		else if (type == parameterType::Float) {
+			return parameterNode.text().as_float();
+		}
+		else if (type == parameterType::XMLNode) {
+			return parameterNode;
+		}
+		else if (type == parameterType::Other) {
+			std::string val = parameterNode.text().as_string();
+			return val;
+		}
 	}
+	return boost::blank();
 }
 
 
@@ -266,10 +275,8 @@ ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getConfigVal
 		if (configFile->child(modName.c_str()).child(parameterName.c_str())) {
 			return ParseXmlTextToParameter(configFile->child(modName.c_str()).child(parameterName.c_str()));
 		}
-		else {
-			return "";
-		}
 	}
+	return boost::blank();
 }
 
 bool ChairloaderConfigManager::setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type) {
@@ -296,9 +303,7 @@ ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getNodeConfi
 	if (node) {
 		return ParseXmlTextToParameter(node.child(parameterName.c_str()));
 	}
-	else {
-		return "";
-	}
+	return boost::blank();
 }
 
 void ChairloaderConfigManager::setConfigDirty(std::string modName, bool bDirty) {
