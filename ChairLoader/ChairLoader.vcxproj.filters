@@ -187,13 +187,13 @@
     <Filter Include="Common\Prey\GameDll\ark\npc">
       <UniqueIdentifier>{837e60f1-b692-4a8d-9535-4c207e322a49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Chairloader\ModSDK">
+      <UniqueIdentifier>{d7b8c4c2-0d2f-412f-92bd-ac631d3a97c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChairloaderGui.h">
       <Filter>Chairloader</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ChairLoader.h">
       <Filter>Chairloader</Filter>
@@ -823,9 +823,6 @@
       <Filter>Common\Chairloader</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\ChairLoader\ChairloaderEnv.h">
-      <Filter>Common\Chairloader</Filter>
-    </ClInclude>
-    <ClInclude Include="IChairloaderEnv.h">
       <Filter>Common\Chairloader</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemory.h">
@@ -2799,6 +2796,18 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnManager.h">
       <Filter>Common\Prey\GameDll\ark\npc</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\ValidateCompiler.h">
+      <Filter>Common\Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\pch.h">
+      <Filter>Common\Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.h">
+      <Filter>Common\Chairloader\ModSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderImGui.h">
+      <Filter>Common\Chairloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -2968,6 +2977,12 @@
     </ClCompile>
     <ClCompile Include="..\Common\Prey\GameDll\ark\npc\HeaderTest.cpp">
       <Filter>Common\Prey\GameDll\ark\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\EntityUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.cpp">
+      <Filter>Common\Chairloader\ModSDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

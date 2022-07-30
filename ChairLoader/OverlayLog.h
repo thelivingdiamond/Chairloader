@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include <ChairLoader/IChairloaderGui.h>
 

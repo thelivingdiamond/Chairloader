@@ -817,7 +817,6 @@ CODE
     - If you have issues or if you need to hack into the library, even if you don't expect any support it is useful that you share your issues (on GitHub or privately).
 
 */
-#include "pch.h"
 //-------------------------------------------------------------------------
 // [SECTION] INCLUDES
 //-------------------------------------------------------------------------

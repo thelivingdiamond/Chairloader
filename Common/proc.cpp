@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "proc.h"
 #include <iostream>
 
@@ -11,11 +10,11 @@ DWORD GetProcId(const wchar_t* procName) {
 	// check to see if the handle is valid
 	if (hSnap != INVALID_HANDLE_VALUE) {
 		// a process structure
-		PROCESSENTRY32 procEntry;
+		PROCESSENTRY32W procEntry;
 		// set the double word size
 		procEntry.dwSize = sizeof(procEntry);
 		// grabs the first process from the snapshot
-		if(Process32First(hSnap,&procEntry)) {
+		if(Process32FirstW(hSnap,&procEntry)) {
 			// loop through all processes in the snapshot
 			do {
 				// std::cout << procEntry.szExeFile << "\n";
@@ -26,7 +25,7 @@ DWORD GetProcId(const wchar_t* procName) {
 					break;
 				}
 				// if we're at the end of the process list then like fuck bro I guess it's not running
-			} while (Process32Next(hSnap, &procEntry));
+			} while (Process32NextW(hSnap, &procEntry));
 		}
 	}
 	// destruct our snapshot variable
@@ -40,9 +39,9 @@ uintptr_t GetModuleBaseAddress(DWORD procID, const wchar_t* modName) {
 	uintptr_t modBaseAddress = 0;
 	HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE| TH32CS_SNAPMODULE32, procID);
 	if (hSnap != INVALID_HANDLE_VALUE) {
-		MODULEENTRY32 modEntry;
+		MODULEENTRY32W modEntry;
 		modEntry.dwSize = sizeof(modEntry);
-		if(Module32First(hSnap, &modEntry)) {
+		if(Module32FirstW(hSnap, &modEntry)) {
 			// loop through all modules in the snapshot
 			do {
 				std::cout << modEntry.szModule << "\n";
@@ -54,7 +53,7 @@ uintptr_t GetModuleBaseAddress(DWORD procID, const wchar_t* modName) {
 					
 				}
 				// no more modules, try again next time
-			} while (Module32Next(hSnap, &modEntry));
+			} while (Module32NextW(hSnap, &modEntry));
 		}
 	}
 	CloseHandle(hSnap);

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>
@@ -20,7 +19,6 @@
 ChairLoader *gCL = nullptr;
 static bool smokeFormExited = false;
 static ChairloaderGlobalEnvironment s_CLEnv;
-ChairloaderGlobalEnvironment* gCLEnv = &s_CLEnv;
 
 
 
@@ -200,7 +198,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
-	gCLEnv->conf = (IChairloaderConfigManager*)gConf;
+	s_CLEnv.conf = gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
 
 	// get list of installed mods and their load order
@@ -211,9 +209,8 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	loadAllConfigs();
 	// run each mod InitSystem()
 	for(auto mod: modList) {
-		mod.modInterface->InitSystem(pSystem, GetModuleBase());
+		mod.pMod->InitSystem(pSystem, GetModuleBase());
 	}
-
 }
 
 
@@ -226,22 +223,25 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
 
-	gCLEnv->cl = gCL;
-	gCLEnv->gui = (IChairloaderGui*)gui;
-	gCLEnv->entUtils = gEntUtils;
+	s_CLEnv.cl = this;
+	s_CLEnv.pImGui = m_ImGui.get();
+	s_CLEnv.gui = gui;
+	s_CLEnv.entUtils = gEntUtils;
 
 	// run each mod InitGame();
 	for (auto& mod : modList) {
-		mod.modInterface->InitGame(pFramework, this);
+		mod.pMod->InitGame(pFramework, this);
 	}
 }
 
 void ChairLoader::ShutdownGame()
 {
 	CryLog("ChairLoader::ShutdownGame");
-	// shutdown all mods
-	for (auto& mod : modList) {
-		mod.modInterface->ShutdownGame();
+
+	// Shutdown all mods in reverse order
+	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
+	{
+		it->pMod->ShutdownGame();
 	}
 
 	m_ImGui = nullptr;
@@ -251,8 +251,22 @@ void ChairLoader::ShutdownGame()
 void ChairLoader::ShutdownSystem()
 {
 	CryLog("ChairLoader::ShutdownSystem");
-	for (auto& mod : modList) {
-		mod.modInterface->ShutdownSystem();
+	
+	// Shutdown all mods in reverse order
+	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
+	{
+		it->pMod->ShutdownSystem();
+	}
+
+	// Unload mods
+	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
+	{
+		it->pMod = nullptr;
+		it->pfnShutdown();
+		it->pfnShutdown = nullptr;
+		it->pfnInit = nullptr;
+		FreeLibrary(it->hModule);
+		it->hModule = nullptr;
 	}
 
 	gEnv = nullptr;
@@ -279,26 +293,29 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PreUpdate(haveFocus);
 	UpdateFreeCam();
 	SmokeFormExit();
-	// ImGui::ShowDemoWindow();
 	gui->update();
 	gConf->Update();
+
 	// pre update all mods
 	for (auto& mod : modList) {
-		mod.modInterface->PreUpdate();
+		mod.pMod->PreUpdate();
 	}
+
 	bool todo = true;
 	gui->draw(&todo);
+
 	// draw all mods
 	for (auto& mod : modList) {
-		mod.modInterface->Draw(ImGui::GetCurrentContext());
+		mod.pMod->Draw();
 	}
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
+
 	// post update all mods
 	for (auto& mod : modList) {
-		mod.modInterface->PostUpdate();
+		mod.pMod->PostUpdate();
 	}
 }
 
@@ -318,26 +335,30 @@ void ChairLoader::SmokeFormExit() {
 	}
 }
 
-typedef IChairloaderMod*(__stdcall* instanceMod)();
-
 void ChairLoader::initializeMods() {
 	for(auto &mod: modLoadOrder) {
+		ModEntry entry;
+		std::string modName = mod.first;
+		entry.modName = modName;
+		entry.hModule = LoadLibraryA((".\\Mods\\" + modName + "\\" + modName + ".dll").c_str());
 
-		auto modName = mod.first;
-		auto ModModule = LoadLibraryA((".\\Mods\\" + modName + "\\" + modName + ".dll").c_str());
+		if (!entry.hModule)
+			CryFatalError("%s: DLL Failed to load", modName.c_str());
 
-		if (ModModule) {
-			instanceMod function = (instanceMod)GetProcAddress(ModModule, "ClMod_Instantiate");
-			if (function) {
-				auto modInterface = function();
-				RegisterMod(modName, modInterface, ModModule);
-			}
-			else {
-				CryError("%s: Mod interface not found", modName.c_str());
-			}
-		} else {
-			CryError("%s: DLL Failed to load", modName.c_str());
-		}
+		entry.pfnInit = (IChairloaderMod::ProcInitialize*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_INITIALIZE);
+		entry.pfnShutdown = (IChairloaderMod::ProcShutdown*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_SHUTDOWN);
+
+		if (!entry.pfnInit || !entry.pfnShutdown)
+			CryFatalError("%s: Missing function exports", modName.c_str());
+
+		entry.pMod = entry.pfnInit();
+
+		if (!entry.pMod)
+			CryFatalError("%s: Initialize returned nullptr", modName.c_str());
+
+		bool isRegistered = RegisterMod(std::move(entry));
+		if (!isRegistered)
+			CryFatalError("%s: RegisterMod returned false", modName.c_str());
 	}
 }
 
@@ -350,10 +371,10 @@ void ChairLoader::loadAllConfigs() {
 //TODO: as mods are registered they must be sorted by load order as specified by the configuration file
 
 
-bool ChairLoader::RegisterMod(std::string modName, IChairloaderMod* modInterface, HMODULE moduleBase) {
-	if (modLoadOrder.find(modName) != modLoadOrder.end()) {
-		modList.emplace_back(ModEntry(modName, modInterface, moduleBase, modLoadOrder.find(modName)->second));
-		CryLog("Mod Registered: %s", modName.c_str());
+bool ChairLoader::RegisterMod(ModEntry&& mod) {
+	if (modLoadOrder.find(mod.modName) != modLoadOrder.end()) {
+		CryLog("Mod Registered: %s", mod.modName.c_str());
+		modList.emplace_back(std::move(mod));
 		sortLoadOrder();
 		return true;
 	} 
@@ -412,8 +433,6 @@ void ChairLoader::UpdateFreeCam() {
 	}
 }
 
-IChairloaderGlobalEnvironment* ChairLoader::getChairloaderEnvironment() {
-	return (IChairloaderGlobalEnvironment*)gCLEnv;
+ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
+	return &s_CLEnv;
 }
-
-

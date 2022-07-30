@@ -1,20 +1,26 @@
 #pragma once
-#include "pch.h"
-
 #include "IChairloader.h"
 
-class CSystem;
+struct ISystem;
+struct IGameFramework;
+struct ImGuiContext;
 
 struct IChairloaderMod {
+	static constexpr char PROC_INITIALIZE[] = "ClMod_Initialize";
+	static constexpr char PROC_SHUTDOWN[] = "ClMod_Shutdown";
+	using ProcInitialize = IChairloaderMod* ();
+	using ProcShutdown = void ();
+
+	~IChairloaderMod() {}
 
 	//! Called during CSystem::Init, before any engine modules.
-	virtual void InitSystem(CSystem * pSystem, uintptr_t moduleBase) = 0;
+	virtual void InitSystem(ISystem* pSystem, uintptr_t moduleBase) = 0;
 	
 	//! Called after CGame::Init
 	virtual void InitGame(IGameFramework* pFramework, IChairloader* chairloader) = 0;
 
 	//! Called before CGame::Update to handle any GUI elements
-	virtual void Draw(ImGuiContext*) = 0;
+	virtual void Draw() = 0;
 
 	//! Before CGame::Update
 	virtual void PreUpdate() = 0;

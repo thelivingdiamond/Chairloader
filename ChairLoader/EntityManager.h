@@ -1,6 +1,4 @@
 #pragma once
-#include "pch.h"
-
 #include "EntityUtils.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "GUIUtils.h"

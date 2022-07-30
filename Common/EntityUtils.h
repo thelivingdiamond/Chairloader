@@ -2,7 +2,6 @@
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include <Prey/ArkEntityClassLibrary.h>
 #include <Prey/ArkAbilityLibrary.h>
-#include "pch.h"
 
 class ArkPlayer;
 class CGameObject;

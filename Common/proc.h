@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include <stdio.h>
 #include <tchar.h>
 #include <vector>

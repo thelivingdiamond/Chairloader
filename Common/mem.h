@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 namespace mem {
 	void PatchEx(uint8_t* dst, uint8_t* src, unsigned int size, void* hProcess);
 	void NopEx(uint8_t* dst, unsigned int size, void* hProcess);

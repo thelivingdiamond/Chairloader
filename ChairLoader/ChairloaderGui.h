@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include <Prey/CrySystem/System.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "OverlayLog.h"
@@ -13,7 +12,7 @@
 #include "ChairLoader/IChairloaderGui.h"
 // #include <stack>
 
-class ChairloaderGui : IChairloaderGui {
+class ChairloaderGui : public IChairloaderGui {
 public:
     ChairloaderGui();
 

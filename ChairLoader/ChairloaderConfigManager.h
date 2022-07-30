@@ -5,7 +5,7 @@
 
 #include "ChairLoader/IChairloaderConfigManager.h"
 
-class ChairloaderConfigManager : IChairloaderConfigManager{
+class ChairloaderConfigManager : public IChairloaderConfigManager{
 public:
 	/* Example configuration file
 	 *

@@ -1,5 +1,5 @@
 #pragma once
-#include "pch.h"
+
 namespace ImGuiUtils {
     inline void RightAlignText(const char* text) {
         auto posX = (ImGui::GetCursorPosX() + ImGui::GetColumnWidth() - ImGui::CalcTextSize(text).x

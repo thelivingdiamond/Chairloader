@@ -1,0 +1,3 @@
+# Ignore CMake build directory
+/build
+/_build

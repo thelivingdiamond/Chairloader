@@ -14,37 +14,36 @@ struct SInputEvent;
 struct IGameFramework;
 class CSystem;
 
-class ChairLoader : public virtual IChairloader {
+class ChairLoader : public IChairloader {
 public:
 	class ModEntry {
 	public:
-		ModEntry(const std::string& mod_name, IChairloaderMod* mod_interface, HMODULE module_handle, int load_order)
-			: modName(mod_name),
-			  modInterface(mod_interface),
-			  moduleHandle(module_handle),
-			  loadOrder(load_order) {}
+		int GetLoadOrder() const { return loadOrder; }
 
-		int getLoadOrder() const { return loadOrder; }
-		~ModEntry() {}
-		bool operator<(const ModEntry& rhs) const noexcept { return this->getLoadOrder() < rhs.getLoadOrder(); }
-		bool operator==(const ModEntry& rhs) const noexcept { return this->modName == rhs.modName; }
-		ModEntry& operator=(const ModEntry& rhs) noexcept { this->modName = rhs.modName;
-			this->modInterface = rhs.modInterface;
-			this->moduleHandle = rhs.moduleHandle;
-			this->loadOrder = rhs.loadOrder;
-			return *this; }
-		// unique modName
+		//! unique modName
 		std::string modName = "";
-		// interface for calling guaranteed functions
-		IChairloaderMod* modInterface = nullptr;
-		// handle for the mod 
-		HMODULE moduleHandle = nullptr;
-		// configuration file
+
+		//! interface for calling guaranteed functions
+		IChairloaderMod* pMod = nullptr;
+
+		//! DLL handle for the mod 
+		HMODULE hModule = nullptr;
+
+		//! Functions exported by the mod
+		//! @{
+		IChairloaderMod::ProcInitialize* pfnInit = nullptr;
+		IChairloaderMod::ProcShutdown* pfnShutdown = nullptr;
+		//! @}
+
+		//! configuration file
 		// pugi::xml_document configFile;
-	private:
+
 		int loadOrder = -1;
+
+		bool operator<(const ModEntry& rhs) const noexcept { return loadOrder < rhs.loadOrder; }
+		bool operator==(const ModEntry& rhs) const noexcept { return modName == rhs.modName; }
 	};
-	
+
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
 	ChairLoader();
 
@@ -77,7 +76,7 @@ public:
 	void SmokeFormExit();
 
 	//! Register a mod 
-	bool RegisterMod(std::string modName, IChairloaderMod* modInterface, HMODULE moduleBase);
+	bool RegisterMod(ModEntry&& mod);
 
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
@@ -117,9 +116,10 @@ private:
 	void CreateConsole();
 	void InstallHooks();
 	void UpdateFreeCam();
-public:
-	IChairloaderGlobalEnvironment* getChairloaderEnvironment() override;
 
+public:
+	// IChairloader
+	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
 };
 
 extern ChairLoader *gCL;

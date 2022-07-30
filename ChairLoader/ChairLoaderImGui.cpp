@@ -1,8 +1,6 @@
-#include "pch.h"
 #include "ChairLoaderImGui.h"
 #include "ChairLoader.h"
 #include "mem.h"
-#include <ImGui/imgui_internal.h>
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
@@ -49,7 +47,7 @@ void ChairLoaderImGui::InitHooks()
 ChairLoaderImGui::ChairLoaderImGui() {
 	m_pInstance = this;
 	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
+	m_pMainContext = ImGui::CreateContext();
 	ImGuiIO &io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	// io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
@@ -818,4 +816,19 @@ HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UIN
 		m_pInstance->RT_Render();
 
 	return m_pInstance->m_hookPresent(pChain, SyncInterval, Flags);
+}
+
+bool ChairLoaderImGui::CheckVersionAndDataLayout(const char* version_str, size_t sz_io, size_t sz_style, size_t sz_vec2, size_t sz_vec4, size_t sz_drawvert, size_t sz_drawidx)
+{
+	return ImGui::DebugCheckVersionAndDataLayout(version_str, sz_io, sz_style, sz_vec2, sz_vec4, sz_drawvert, sz_drawidx);
+}
+
+ImGuiContext* ChairLoaderImGui::GetContext()
+{
+	return m_pMainContext;
+}
+
+void ChairLoaderImGui::GetAllocatorFuncs(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data)
+{
+	ImGui::GetAllocatorFunctions(p_alloc_func, p_free_func, p_user_data);
 }

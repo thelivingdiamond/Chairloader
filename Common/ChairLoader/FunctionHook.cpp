@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 #include <ChairLoader/FunctionHook.h>
