@@ -192,9 +192,6 @@
     <ClInclude Include="ChairloaderGui.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChairLoader.h">
       <Filter>Chairloader</Filter>
     </ClInclude>
@@ -2799,6 +2796,12 @@
     <ClInclude Include="..\Common\Prey\GameDll\ark\npc\ArkNpcSpawnManager.h">
       <Filter>Common\Prey\GameDll\ark\npc</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\ValidateCompiler.h">
+      <Filter>Common\Chairloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\pch.h">
+      <Filter>Common\Chairloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -2968,6 +2971,9 @@
     </ClCompile>
     <ClCompile Include="..\Common\Prey\GameDll\ark\npc\HeaderTest.cpp">
       <Filter>Common\Prey\GameDll\ark\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\EntityUtils.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

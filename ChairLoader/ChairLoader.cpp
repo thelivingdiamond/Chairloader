@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <filesystem>
 #include <Prey/CryInput/IInput.h>

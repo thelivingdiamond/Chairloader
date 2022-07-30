@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <boost/algorithm/string/find.hpp>
 #include <Prey/CrySystem/System.h>
 #include "DevConsoleDialog.h"

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <Prey/CryAction/GameObject.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/GameDll/ark/npc/ArkNpcSpawnManager.h>

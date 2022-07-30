@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <Prey/CryThreading/IJobManager.h>
 #include <Prey/CrySystem/Profiling.h>
 #include "Profiler.h"

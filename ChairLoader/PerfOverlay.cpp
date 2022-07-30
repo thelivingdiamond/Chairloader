@@ -1,4 +1,3 @@
-#include "pch.h"
 #include <Prey/CrySystem/ITimer.h>
 #include "PerfOverlay.h"
 #include "ChairLoader.h"

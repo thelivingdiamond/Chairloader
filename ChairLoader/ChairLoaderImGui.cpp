@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "ChairLoaderImGui.h"
 #include "ChairLoader.h"
 #include "mem.h"

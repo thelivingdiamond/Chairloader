@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include <Prey/CrySystem/System.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "OverlayLog.h"

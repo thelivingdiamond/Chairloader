@@ -129,8 +129,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;PREYTESTTRAINER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <PrecompiledHeaderFile>../Common/ChairLoader/pch.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>../Common/ChairLoader/pch.h</ForcedIncludeFiles>
       <ObjectFileName>$(IntDir)\Kostyl\Kostyl\Kostyl\Kostyl\%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
@@ -186,11 +186,11 @@
       <PreprocessorDefinitions>PREYTESTTRAINER_EXPORTS;_WINDOWS;_USRDLL;_HAS_ITERATOR_DEBUGGING=0;DEBUG_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>../Common/ChairLoader/pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir);../Common;../Common/imgui</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>../Common/ChairLoader/pch.h</ForcedIncludeFiles>
       <ObjectFileName>$(IntDir)\Kostyl\Kostyl\Kostyl\Kostyl\%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
@@ -255,7 +255,9 @@
     <ClInclude Include="..\Common\ChairLoader\IChairloaderConfigManager.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderGui.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h" />
+    <ClInclude Include="..\Common\ChairLoader\pch.h" />
     <ClInclude Include="..\Common\ChairLoader\PreyFunction.h" />
+    <ClInclude Include="..\Common\ChairLoader\ValidateCompiler.h" />
     <ClInclude Include="..\Common\EntityUtils.h" />
     <ClInclude Include="..\Common\imgui\imconfig.h" />
     <ClInclude Include="..\Common\imgui\imgui.h" />
@@ -1116,7 +1118,6 @@
     <ClInclude Include="GUIUtils.h" />
     <ClInclude Include="ImGui\imgui_widget_flamegraph.h" />
     <ClInclude Include="LibD3D11.h" />
-    <ClInclude Include="pch.h" />
     <ClInclude Include="PerfOverlay.h" />
     <ClInclude Include="Profiler.h" />
   </ItemGroup>

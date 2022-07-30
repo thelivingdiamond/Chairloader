@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include "ChairloaderConfigManager.h"
 #include "Logging.h"
 

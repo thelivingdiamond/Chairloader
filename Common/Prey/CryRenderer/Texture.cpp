@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Texture.h"
 
 ETEX_Format CTexture::TexFormatFromDeviceFormat(DXGI_FORMAT nFormat) {
