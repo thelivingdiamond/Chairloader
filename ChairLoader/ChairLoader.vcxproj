@@ -254,6 +254,7 @@
     <ClInclude Include="..\Common\ChairLoader\IChairloader.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderConfigManager.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderGui.h" />
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderImGui.h" />
     <ClInclude Include="..\Common\ChairLoader\IChairloaderMod.h" />
     <ClInclude Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.h" />
     <ClInclude Include="..\Common\ChairLoader\pch.h" />
@@ -1111,7 +1112,6 @@
     <ClInclude Include="ChairLoader.h" />
     <ClInclude Include="ChairloaderGui.h" />
     <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="IChairloaderEnv.h" />
     <ClInclude Include="OverlayLog.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="DevConsoleDialog.h" />

@@ -12,7 +12,7 @@
 #include "ChairLoader/IChairloaderGui.h"
 // #include <stack>
 
-class ChairloaderGui : IChairloaderGui {
+class ChairloaderGui : public IChairloaderGui {
 public:
     ChairloaderGui();
 

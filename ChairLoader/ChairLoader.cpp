@@ -19,7 +19,6 @@
 ChairLoader *gCL = nullptr;
 static bool smokeFormExited = false;
 static ChairloaderGlobalEnvironment s_CLEnv;
-ChairloaderGlobalEnvironment* gCLEnv = &s_CLEnv;
 
 
 
@@ -199,7 +198,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
-	gCLEnv->conf = (IChairloaderConfigManager*)gConf;
+	s_CLEnv.conf = gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
 
 	// get list of installed mods and their load order
@@ -224,9 +223,10 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
 
-	gCLEnv->cl = gCL;
-	gCLEnv->gui = (IChairloaderGui*)gui;
-	gCLEnv->entUtils = gEntUtils;
+	s_CLEnv.cl = this;
+	s_CLEnv.pImGui = m_ImGui.get();
+	s_CLEnv.gui = gui;
+	s_CLEnv.entUtils = gEntUtils;
 
 	// run each mod InitGame();
 	for (auto& mod : modList) {
@@ -306,7 +306,7 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 
 	// draw all mods
 	for (auto& mod : modList) {
-		mod.pMod->Draw(ImGui::GetCurrentContext());
+		mod.pMod->Draw();
 	}
 }
 
@@ -433,8 +433,6 @@ void ChairLoader::UpdateFreeCam() {
 	}
 }
 
-IChairloaderGlobalEnvironment* ChairLoader::getChairloaderEnvironment() {
-	return (IChairloaderGlobalEnvironment*)gCLEnv;
+ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
+	return &s_CLEnv;
 }
-
-

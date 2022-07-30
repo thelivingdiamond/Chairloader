@@ -1,12 +1,11 @@
 #pragma once
 #include <EntityUtils.h>
 
-#include "IChairloaderEnv.h"
+#include "ChairloaderEnv.h"
 #include "IChairloaderConfigManager.h"
 #include "IChairloaderGui.h"
 
 struct IChairloader {
-	// TODO: figure out what goes here!!!
-	virtual IChairloaderGlobalEnvironment* getChairloaderEnvironment() = 0;
+	//! @returns Pointers to interfaces provided by Chairloader to be used by mods.
+	virtual ChairloaderGlobalEnvironment* GetChairloaderEnvironment() = 0;
 };
-

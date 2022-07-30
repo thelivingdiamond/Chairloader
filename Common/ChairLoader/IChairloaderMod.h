@@ -20,7 +20,7 @@ struct IChairloaderMod {
 	virtual void InitGame(IGameFramework* pFramework, IChairloader* chairloader) = 0;
 
 	//! Called before CGame::Update to handle any GUI elements
-	virtual void Draw(ImGuiContext*) = 0;
+	virtual void Draw() = 0;
 
 	//! Before CGame::Update
 	virtual void PreUpdate() = 0;

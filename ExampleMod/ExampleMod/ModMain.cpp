@@ -1,5 +1,4 @@
 #include "ModMain.h"
-#include <imgui/imgui_internal.h>
 
 ModMain* gMod = nullptr;
 
@@ -24,11 +23,8 @@ void ModMain::InitGame(IGameFramework* pFramework, IChairloader* chairloader)
 	// Your code goes here
 }
 
-void ModMain::Draw(ImGuiContext*ctx)
+void ModMain::Draw()
 {
-	// TODO:
-	GImGui = ctx;
-
 	ImGui::Begin("Example Mod");
 	ImGui::Text("It works!");
 	ImGui::End();

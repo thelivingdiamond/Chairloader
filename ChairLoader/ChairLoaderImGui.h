@@ -2,11 +2,12 @@
 #include <mutex>
 #include <imgui.h>
 #include <Prey/CryInput/BaseInput.h>
+#include <ChairLoader/IChairloaderImGui.h>
 #include "LibD3D11.h"
 
 class ITexture;
 
-class ChairLoaderImGui {
+class ChairLoaderImGui : public IChairloaderImGui {
 public:
 	static void InitHooks();
 	ChairLoaderImGui();
@@ -21,6 +22,7 @@ private:
 	static constexpr int BUFFER_SIZE_INCREMENT = 5000;
 	static constexpr float MOUSE_WHEEL_DELTA = 120.0f;
 
+	ImGuiContext* m_pMainContext = nullptr;
 	ITexture *m_pFontAtlas = nullptr;
 	HCURSOR m_hGameCursor = nullptr;
 	std::thread::id m_RenderThreadId;
@@ -108,4 +110,11 @@ private:
 	static HRESULT Present(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags);
 
 	static ChairLoaderImGui *m_pInstance;
+
+public:
+	// IChairloaderImGui
+	virtual bool CheckVersionAndDataLayout(const char* version_str, size_t sz_io, size_t sz_style,
+		size_t sz_vec2, size_t sz_vec4, size_t sz_drawvert, size_t sz_drawidx) override;
+	virtual ImGuiContext* GetContext() override;
+	virtual void GetAllocatorFuncs(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data) override;
 };

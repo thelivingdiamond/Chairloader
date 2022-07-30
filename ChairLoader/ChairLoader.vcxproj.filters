@@ -825,9 +825,6 @@
     <ClInclude Include="..\Common\ChairLoader\ChairloaderEnv.h">
       <Filter>Common\Chairloader</Filter>
     </ClInclude>
-    <ClInclude Include="IChairloaderEnv.h">
-      <Filter>Common\Chairloader</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\Prey\ArkCommon\ArkContiguousMemory.h">
       <Filter>Common\Prey\ArkCommon</Filter>
     </ClInclude>
@@ -2807,6 +2804,9 @@
     </ClInclude>
     <ClInclude Include="..\Common\ChairLoader\ModSDK\ChairloaderModBase.h">
       <Filter>Common\Chairloader\ModSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\ChairLoader\IChairloaderImGui.h">
+      <Filter>Common\Chairloader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

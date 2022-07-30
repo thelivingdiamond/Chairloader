@@ -43,7 +43,7 @@ public:
 		bool operator<(const ModEntry& rhs) const noexcept { return loadOrder < rhs.loadOrder; }
 		bool operator==(const ModEntry& rhs) const noexcept { return modName == rhs.modName; }
 	};
-	
+
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
 	ChairLoader();
 
@@ -116,9 +116,10 @@ private:
 	void CreateConsole();
 	void InstallHooks();
 	void UpdateFreeCam();
-public:
-	IChairloaderGlobalEnvironment* getChairloaderEnvironment() override;
 
+public:
+	// IChairloader
+	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
 };
 
 extern ChairLoader *gCL;

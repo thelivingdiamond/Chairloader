@@ -21,6 +21,9 @@ public:
 
 private:
 	uintptr_t m_ModuleBase = 0;
+
+	void InitImGui();
+	void ShutdownImGui();
 };
 
 extern ChairloaderGlobalEnvironment* gCL;
