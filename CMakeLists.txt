@@ -44,7 +44,22 @@ function(cl_output_dir targetName gamePath)
 endfunction()
 
 # Third-party libraries
+find_package(Boost REQUIRED COMPONENTS filesystem)
+find_package(pugixml REQUIRED)
+find_package(libzip REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)
+
+# Detours
+set(DETOURS_INCLUDE_DIR "" CACHE PATH "Path to Detours include dir (where detours/detours.h is)")
+set(DETOURS_LIB_PATH "" CACHE PATH "Path to Detours detours.lib")
+add_library(detours INTERFACE)
+if ((NOT DETOURS_INCLUDE_DIR) OR (NOT DETOURS_LIB_PATH))
+	message("DETOURS_INCLUDE_DIR = ${DETOURS_INCLUDE_DIR}")
+	message("DETOURS_LIB_PATH = ${DETOURS_LIB_PATH}")
+	message(FATAL_ERROR "Detours paths are not set")
+endif()
+target_include_directories(detours INTERFACE ${DETOURS_INCLUDE_DIR})
+target_link_libraries(detours INTERFACE ${DETOURS_LIB_PATH})
 
 # Project libraries
 add_subdirectory(Common)

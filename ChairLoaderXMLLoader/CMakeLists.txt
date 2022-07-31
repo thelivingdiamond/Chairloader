@@ -32,6 +32,9 @@ add_executable(ChairloaderXMLLoader WIN32 ${SOURCE_FILES})
 
 target_link_libraries(ChairloaderXMLLoader
 	D3D11.lib
+	pugixml::pugixml
+	libzip::zip
+	${Boost_LIBRARIES}
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

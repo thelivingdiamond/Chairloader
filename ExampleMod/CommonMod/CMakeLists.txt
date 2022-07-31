@@ -46,6 +46,12 @@ add_library(CommonMod STATIC
 target_include_directories(CommonMod PUBLIC
 	.
 	${COMMON_PATH}
+	${Boost_INCLUDE_DIRS}
+)
+
+target_link_libraries(CommonMod PUBLIC
+	pugixml::pugixml
+	detours
 )
 
 target_precompile_headers(CommonMod PUBLIC CommonModPch.h)
