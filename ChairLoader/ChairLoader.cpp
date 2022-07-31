@@ -181,7 +181,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
-	gEnv->pConsole->ExecuteString("log_Verbosity 3");
+	gEnv->pConsole->ExecuteString("log_Verbosity 4");
 
 	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
 	{
@@ -220,7 +220,7 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
-	gui = new ChairloaderGui();
+	gui = new ChairloaderGui(&s_CLEnv);
 	g_pProfiler = new Profiler();
 
 	s_CLEnv.cl = this;

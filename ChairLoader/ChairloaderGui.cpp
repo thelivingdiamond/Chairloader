@@ -2,12 +2,10 @@
 
 ChairloaderGui *gui = nullptr;
 
-ChairloaderGui::ChairloaderGui() :
+ChairloaderGui::ChairloaderGui(ChairloaderGlobalEnvironment* env) :
     playerManager(),
-    entityManager(){
-    // gui = this;
+    entityManager(env){
     GUILog = &log;
-    // gEnv.
 }
 
 
@@ -57,8 +55,7 @@ void ChairloaderGui::draw(bool* bShow) {
                 }
                 ImGui::EndMenu();
             }
-            playerManager.drawMenuBar(&control.showPlayerManager);
-            entityManager.drawMenuBar(&control.showEntityList, &control.showEntitySpawner);
+            playerManager.drawMenuBar();
             ImGui::EndMainMenuBar();
         }
 
@@ -102,13 +99,8 @@ void ChairloaderGui::draw(bool* bShow) {
             if (control.showLogHistory)
                 log.drawHistory(&control.showLogHistory);
             log.drawDisplay();
-            if (control.showEntitySpawner) {
-                entityManager.drawEntitySpawner(&control.showEntitySpawner);
-            }
-            if (control.showEntityList)
-                entityManager.drawEntityList(&control.showEntityList);
-            if (control.showPlayerManager)
-                playerManager.draw(&control.showPlayerManager);
+            entityManager.Draw();
+            playerManager.draw();
 
             if (control.showProfilerDialog) {
                 profilerDialog.Show(&control.showProfilerDialog);
@@ -132,8 +124,8 @@ void ChairloaderGui::update() {
     //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
         drawHandleMutex.lock();
-        entityManager.update(&log);
-        playerManager.update(&log);
+        entityManager.Update();
+        playerManager.update();
         drawHandleMutex.unlock();
     //}
     perfOverlay.Update();

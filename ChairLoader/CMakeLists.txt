@@ -17,8 +17,6 @@ set(SOURCE_FILES
 	DevConsoleDialog.cpp
 	DevConsoleDialog.h
 	dllmain.cpp
-	EntityManager.cpp
-	EntityManager.h
 	GUIUtils.h
 	Header.h
 	HeaderTestFile.cpp
@@ -28,8 +26,6 @@ set(SOURCE_FILES
 	pch.cpp
 	PerfOverlay.cpp
 	PerfOverlay.h
-	PlayerManager.cpp
-	PlayerManager.h
 	Profiler.cpp
 	Profiler.h
 	pugiconfig.hpp
@@ -40,6 +36,7 @@ set(SOURCE_FILES
 add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader
 	Common
+	ChairloaderModules
 )
 
 cl_output_dir(Chairloader "Binaries/Danielle/x64/Release")

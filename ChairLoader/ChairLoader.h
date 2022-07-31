@@ -7,6 +7,7 @@
 #include "ChairLoader/IChairloader.h"
 #include "Logging.h"
 #include "ChairLoader/IChairloaderMod.h"
+#include "EntityManager.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 

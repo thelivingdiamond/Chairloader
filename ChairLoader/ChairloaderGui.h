@@ -14,7 +14,7 @@
 
 class ChairloaderGui : public IChairloaderGui {
 public:
-    ChairloaderGui();
+    ChairloaderGui(ChairloaderGlobalEnvironment* env);
 
     bool IsDevConsoleVisible() { return control.showDevConsole; }
     void SetDevConsoleVisible(bool state) { control.showDevConsole = state; }
@@ -46,14 +46,14 @@ private:
     
     bool g_PresentHooked;
     bool g_ShowMenu;
-    BOOL g_bInitialised;
+    bool g_bInitialised;
 
 
     //TODO: switch to module internal draw booleans
     chairloaderGuiControl control;
     ChairloaderGUILog log;
-    ChairloaderGUIPlayerManager playerManager; 
-    ChairloaderGUIEntityManager entityManager;
+    PlayerManager playerManager;
+    EntityManager entityManager;
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;

@@ -73,6 +73,9 @@ add_subdirectory(Common)
 add_subdirectory(ChairLoader)
 add_subdirectory(ChairLoaderLoader)
 
+#static libraries
+add_subdirectory(ChairLoaderModules)
+
 # Example Mod
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)
