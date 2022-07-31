@@ -338,16 +338,16 @@ namespace chairloader {
         HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
         if (hSnap != INVALID_HANDLE_VALUE) {
-            PROCESSENTRY32 procEntry;
+            PROCESSENTRY32W procEntry;
             procEntry.dwSize = sizeof(procEntry);
 
-            if (Process32First(hSnap, &procEntry)) {
+            if (Process32FirstW(hSnap, &procEntry)) {
                 do {
                     if (!_wcsicmp(procEntry.szExeFile, procName)) {
                         procId = procEntry.th32ProcessID; 
                         break;
                     }
-                } while (Process32Next(hSnap, &procEntry));
+                } while (Process32NextW(hSnap, &procEntry));
             }
         }
         CloseHandle(hSnap);

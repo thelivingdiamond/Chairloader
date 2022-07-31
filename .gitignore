@@ -402,3 +402,7 @@ PreyTestTrainer/PreyDll.dll.gzf
 ChairLoaderXMLMerger/Mods/
 ChairLoaderXMLMerger/Debug
 ChairLoader/PreyDll.dll.gzf
+
+# Ignore CMake build directory
+/build
+/_build
