@@ -6,9 +6,6 @@ set(SOURCE_FILES
 	
 	ChairLoader.cpp
 	ChairLoader.h
-	ChairLoader.vcxproj
-	ChairLoader.vcxproj.filters
-	ChairLoader.vcxproj.user
 	ChairloaderConfigManager.cpp
 	ChairloaderConfigManager.h
 	ChairloaderGui.cpp

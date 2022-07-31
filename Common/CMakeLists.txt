@@ -13,6 +13,12 @@ add_library(Common STATIC
 target_include_directories(Common PUBLIC
 	.
 	ImGui # FIXME: Remove from include path
+	${Boost_INCLUDE_DIRS}
+)
+
+target_link_libraries(Common PUBLIC
+	pugixml::pugixml
+	detours
 )
 
 target_precompile_headers(Common PUBLIC Chairloader/pch.h)
