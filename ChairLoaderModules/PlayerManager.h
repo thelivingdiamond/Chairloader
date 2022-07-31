@@ -1,3 +1,11 @@
+class PlayerManager{
+public:
+    void draw() {};
+    void drawMenuBar() {};
+    void update() {};
+};
+
+#if 0
 #pragma once
 #include <Prey/GameDll/ArkInventory.h>
 #include "EntityUtils.h"
@@ -44,3 +52,4 @@ private:
 	void checkAbilities(ChairloaderGUILog* log);
 	void abilityRequestHandler(ChairloaderGUILog* log);
 };
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "PlayerManager.h"
 
 #include "Logging.h"
@@ -630,3 +631,4 @@ void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) 
 		log->logItem(c, modName, logLevel::error);
 	}
 }
+#endif
