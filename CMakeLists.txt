@@ -33,13 +33,18 @@ set(PREY_PATH "" CACHE PATH "(optional) Path to the game root directory (where E
 function(cl_output_dir targetName gamePath)
 	if(PREY_PATH)
 		set(out_path "${PREY_PATH}/${gamePath}")
-		set_target_properties(${MOD_TARGET} PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_DEBUG ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
-		)
+		set_target_properties(${targetName} PROPERTIES
+				RUNTIME_OUTPUT_DIRECTORY ${out_path}
+				RUNTIME_OUTPUT_DIRECTORY_DEBUG ${out_path}
+				RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
+				RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
+				RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
+				LIBRARY_OUTPUT_DIRECTORY ${out_path}
+				LIBRARY_OUTPUT_DIRECTORY_DEBUG ${out_path}
+				LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
+				LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
+				LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
+				)
 	endif()
 endfunction()
 
