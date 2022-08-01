@@ -56,7 +56,7 @@ find_package(libzip REQUIRED)
 
 # Detours
 set(DETOURS_INCLUDE_DIR "" CACHE PATH "Path to Detours include dir (where detours/detours.h is)")
-set(DETOURS_LIB_PATH "" CACHE PATH "Path to Detours detours.lib")
+set(DETOURS_LIB_PATH "" CACHE FILEPATH "Path to Detours detours.lib")
 add_library(detours INTERFACE)
 if ((NOT DETOURS_INCLUDE_DIR) OR (NOT DETOURS_LIB_PATH))
 	message("DETOURS_INCLUDE_DIR = ${DETOURS_INCLUDE_DIR}")
