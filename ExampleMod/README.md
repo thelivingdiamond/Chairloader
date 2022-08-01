@@ -1,7 +1,7 @@
 Example Mod
 ============
 
-This directory contains the example mod that you can use a template for your mods.
+This directory contains the example mod that you can use as a template for your mods.
 
 
 Requirements
