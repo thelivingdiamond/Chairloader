@@ -1,4 +1,5 @@
-class PlayerManager{
+#include "../Common/ChairLoader/pch.h"
+class PlayerManager {
 public:
     void draw() {};
     void drawMenuBar() {};

@@ -12,7 +12,6 @@
 class EntityManager
 {
 public:
-    //TODO: completely redo entity modify
     EntityManager(ChairloaderGlobalEnvironment* env);
     ~EntityManager();
 
@@ -32,15 +31,15 @@ private:
     bool refreshDisplayList = true;
     std::string filterText, oldFilterText;
 
-    CEntity* selected = nullptr;
+    uint64_t selectedEntity = 0;
 
-    IEntityArchetype* archetypeToSpawn = nullptr;
+    uint64_t archetypeToSpawn = 0;
 
     // archetype filter
     std::string archetypeFilterText, oldArchetypeFilterText;
 
     std::vector<IEntityArchetype*> archetypeFilteredList;
-    std::vector<CEntity*> entityDisplayList;
+    std::vector<unsigned int> entityDisplayList;
 
     // std::unordered_map< uint64_t, IEntityArchetype*>* archetypeList = &((IEntityArchetype*)gEnv->pEntitySystem)->m_pEntityArchetypeManager->m_idToArchetypeMap;
     // std::queue<entityModifyRequest> modifyQueue;
@@ -60,8 +59,8 @@ private:
     void spawnEntity();
     void quickSpawnEntity(uint64_t archetypeId);
 public:
-    void Draw();
-    void Update();
+    void Draw() ;
+    void Update() ;
     std::string GetModuleName() { return moduleName; };
 private:
     // Currently Mostly Unused
