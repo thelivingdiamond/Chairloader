@@ -14,13 +14,13 @@ class EntityManager
 public:
     EntityManager(ChairloaderGlobalEnvironment* env);
     ~EntityManager();
-
+    void Draw() ;
+    void Update() ;
+    std::string GetModuleName() { return moduleName; };
+private:
     void drawEntitySpawner(bool* bShow);
     void drawEntityList(bool* bShow);
     void drawMenuBar();
-
-
-private:
     bool showEntitySpawner = false, showEntityList = false;
 
     // environment *
@@ -58,10 +58,6 @@ private:
 
     void spawnEntity();
     void quickSpawnEntity(uint64_t archetypeId);
-public:
-    void Draw() ;
-    void Update() ;
-    std::string GetModuleName() { return moduleName; };
 private:
     // Currently Mostly Unused
     std::vector <std::string> actions{

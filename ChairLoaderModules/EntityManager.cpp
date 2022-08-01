@@ -23,409 +23,417 @@ EntityManager::~EntityManager() {
 }
 
 void EntityManager::drawEntitySpawner(bool* bShow) {
-    if (ImGui::Begin("Entity Spawner", bShow)) {
-        ImGui::TextColored(color, statusMessage.c_str());
+    if(showEntitySpawner){
+        if (ImGui::Begin("Entity Spawner", bShow, ImGuiWindowFlags_NoNavInputs)) {
+            ImGui::TextColored(color, statusMessage.c_str());
 
-        if (archetypeToSpawn == nullptr) {
-            ImGui::Text("Entity Archetype Name: ");
-            ImGui::Text("Entity ID: ");
-        }
-        else {
-            ImGui::Text("Entity Archetype Name: %s", archetypeToSpawn->GetName());
-            ImGui::Text("Entity ID: %d", archetypeToSpawn->GetId());
-        }
-        ImGui::InputText("Entity Name", &inputName, ImGuiInputTextFlags_None);
-        ImGui::InputInt("Spawn Count", &spawnCount);
-        ImGui::Checkbox("Use Player Pos", &usePlayerPos);
-        if (usePlayerPos) {
-            ImGui::Checkbox("Offset In front of Player", &offsetFromPlayer);
-        }
-        else {
-            ImGui::InputFloat("X", &spawnX);
-            ImGui::InputFloat("Y", &spawnY);
-            ImGui::InputFloat("Z", &spawnZ);
-        }
-        if (ImGui::Button("Spawn Entity")) {
-            spawnEntity();
-        }
-        ImGui::Text("Filter:");
-        static bool initializedList = false;
-        static std::string archetypeLoadString;
-        ImGui::InputText("Archetype Library to Load", &archetypeLoadString, ImGuiInputTextFlags_None);
-        if(ImGui::Button("Load Archetype Library")) {
-            auto archetypeLibrary = string(archetypeLoadString.c_str());
-            gEnv->pEntitySystem->LoadArchetypeLibrary(&archetypeLibrary);
-            ArkGame::GetArkGame()->GetArkLevelMapComponent().
-//            GetEntitySystem()->m_pEntityArchetypeManager->LoadLibrary(archetypeLoadString.c_str());
-        }
-        if(ImGui::InputText("##filter text", &archetypeFilterText) || !initializedList){
-            oldArchetypeFilterText = archetypeFilterText;
-            initializedList = true;
-            auto archetypeNameList = GetEntitySystem()->m_pEntityArchetypeManager->m_nameToArchetypeMap;
-            auto itr = archetypeNameList.begin();
-            archetypeFilteredList.clear();
-            for (int i = 0; i < 400 && itr != archetypeNameList.end(); ++itr) {
-                std::string archetypeName = (*itr).second->GetName();
-                // size_t last_period = archetypeName.find_last_of('.');
-                // archetypeName = archetypeName.substr(last_period, archetypeName.size());
-                std::transform(archetypeName.begin(), archetypeName.end(), archetypeName.begin(), ::tolower);
-                std::transform(archetypeFilterText.begin(), archetypeFilterText.end(), archetypeFilterText.begin(), ::tolower);
-                if (archetypeName.find(archetypeFilterText) != std::string::npos || archetypeFilterText.empty()) {
-                    archetypeFilteredList.emplace_back(itr->second.get());
-                    i++;
+            if (archetypeToSpawn == 0) {
+                ImGui::Text("Entity Archetype Name: ");
+                ImGui::Text("Archetype ID: ");
+            } else {
+                ImGui::Text("Entity Archetype Name: %s", gEnv->pEntitySystem->GetEntityArchetype(archetypeToSpawn)->GetName());
+                ImGui::Text("Archetype ID: %llu", archetypeToSpawn);
+            }
+            ImGui::InputText("Entity Name", &inputName, ImGuiInputTextFlags_None);
+            ImGui::InputInt("Spawn Count", &spawnCount);
+            ImGui::Checkbox("Use Player Pos", &usePlayerPos);
+            if (usePlayerPos) {
+                ImGui::Checkbox("Offset In front of Player", &offsetFromPlayer);
+            } else {
+                ImGui::InputFloat("X", &spawnX);
+                ImGui::InputFloat("Y", &spawnY);
+                ImGui::InputFloat("Z", &spawnZ);
+            }
+            if (ImGui::Button("Spawn Entity")) {
+                spawnEntity();
+            }
+            ImGui::Text("Filter:");
+            static bool initializedList = false;
+            static std::string archetypeLoadString;
+            ImGui::InputText("Archetype Library to Load", &archetypeLoadString, ImGuiInputTextFlags_None);
+            if (ImGui::Button("Load Archetype Library")) {
+                auto archetypeLibrary = string(archetypeLoadString.c_str());
+                gEnv->pEntitySystem->LoadArchetypeLibrary(&archetypeLibrary);
+    //            GetEntitySystem()->m_pEntityArchetypeManager->LoadLibrary(archetypeLoadString.c_str());
+            }
+            if (ImGui::InputText("##filter text", &archetypeFilterText) || !initializedList) {
+                oldArchetypeFilterText = archetypeFilterText;
+                initializedList = true;
+                auto archetypeNameList = GetEntitySystem()->m_pEntityArchetypeManager->m_nameToArchetypeMap;
+                auto itr = archetypeNameList.begin();
+                archetypeFilteredList.clear();
+                for (int i = 0; i < 400 && itr != archetypeNameList.end(); ++itr) {
+                    std::string archetypeName = (*itr).second->GetName();
+                    // size_t last_period = archetypeName.find_last_of('.');
+                    // archetypeName = archetypeName.substr(last_period, archetypeName.size());
+                    std::transform(archetypeName.begin(), archetypeName.end(), archetypeName.begin(), ::tolower);
+                    std::transform(archetypeFilterText.begin(), archetypeFilterText.end(), archetypeFilterText.begin(),
+                                   ::tolower);
+                    if (archetypeName.find(archetypeFilterText) != std::string::npos || archetypeFilterText.empty()) {
+                        archetypeFilteredList.emplace_back(itr->second.get());
+                        i++;
 
+                    }
                 }
             }
-        }
-        ImGuiUtils::HelpMarker("Filter usage:\n"
-                               "  \"\"         display all lines\n"
-                               "  \"xxx\"      display lines containing \"xxx\"\n"
-                               "  \"xxx,yyy\"  display lines containing \"xxx\" or \"yyy\"\n"
-                               "  \"-xxx\"     hide lines containing \"xxx\"");
+            ImGuiUtils::HelpMarker("Filter usage:\n"
+                                   "  \"\"         display all lines\n"
+                                   "  \"xxx\"      display lines containing \"xxx\"\n"
+                                   "  \"xxx,yyy\"  display lines containing \"xxx\" or \"yyy\"\n"
+                                   "  \"-xxx\"     hide lines containing \"xxx\"");
 
-        static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Hideable;
-        ImVec2 outer_size = ImVec2(0.0f, 0.0f);
+            static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter |
+                                           ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Hideable;
+            ImVec2 outer_size = ImVec2(0.0f, 0.0f);
 
-        if (ImGui::BeginTable("EntityArchetypeList", 2, flags, outer_size)) {
-            ImGui::TableSetupScrollFreeze(0, 1);
-            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("ID", ImGuiTableColumnFlags_None);
-            ImGui::TableHeadersRow();
-            auto itr = archetypeFilteredList.begin();
-            for (int clip = 0; clip < 500 && itr != archetypeFilteredList.end(); clip++, ++itr) {
-                IEntityArchetype* archetype = *itr;
-                ImGui::TableNextRow();
-                //Yeah boi
-                ImGui::TableSetColumnIndex(0);
+            if (ImGui::BeginTable("EntityArchetypeList", 2, flags, outer_size)) {
+                ImGui::TableSetupScrollFreeze(0, 1);
+                ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_None);
+                ImGui::TableSetupColumn("ID", ImGuiTableColumnFlags_None);
+                ImGui::TableHeadersRow();
+                auto itr = archetypeFilteredList.begin();
+                for (int clip = 0; clip < 500 && itr != archetypeFilteredList.end(); clip++, ++itr) {
+                    IEntityArchetype *archetype = *itr;
+                    ImGui::TableNextRow();
+                    //Yeah boi
+                    ImGui::TableSetColumnIndex(0);
 
-                if(ImGui::Selectable(archetype->GetName(), archetypeToSpawn == *itr, ImGuiSelectableFlags_SpanAllColumns)) {
-                    archetypeToSpawn = archetype;
+                    if (ImGui::Selectable(archetype->GetName(), archetypeToSpawn == archetype->GetId(),
+                                          ImGuiSelectableFlags_SpanAllColumns)) {
+                        archetypeToSpawn = archetype->GetId();
+                    }
+
+                    // if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
+                    // {
+                    //     ImGui::Text("Display information about the archetype here");
+                    //     if (ImGui::Button("Choose"))
+                    //         archetypeToSpawn = archetype;
+                    //     if (ImGui::Button("Close"))
+                    //         ImGui::CloseCurrentPopup();
+                    //     ImGui::EndPopup();
+                    // }
+
+                    ImGui::TableSetColumnIndex(1);
+                    ImGui::Text("%llu", archetype->GetId());
                 }
 
-                // if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
-                // {
-                //     ImGui::Text("Display information about the archetype here");
-                //     if (ImGui::Button("Choose"))
-                //         archetypeToSpawn = archetype;
-                //     if (ImGui::Button("Close"))
-                //         ImGui::CloseCurrentPopup();
-                //     ImGui::EndPopup();
-                // }
-
-                ImGui::TableSetColumnIndex(1);
-                ImGui::Text("%llu", archetype->GetId());
+                if (time(NULL) > statusTimer + 3)
+                    statusMessage = "";
+                ImGui::EndTable();
             }
-
-            if (time(NULL) > statusTimer + 3)
-                statusMessage = "";
-            ImGui::EndTable();
+            CRY_ASSERT(gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.ArkNightmare) != nullptr);
+    //        ImGui::Text("%s", gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkGameplayObjects.GravShaft.GravShaft_Coil)->GetName());
         }
-        CRY_ASSERT(gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.ArkNightmare) != nullptr);
-//        ImGui::Text("%s", gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkGameplayObjects.GravShaft.GravShaft_Coil)->GetName());
+        ImGui::End();
     }
-    ImGui::End();
 }
 
 void EntityManager::drawEntityList(bool* bShow) {
-    if (ImGui::Begin("Entity List", bShow)) {
-        {
-            ImGui::BeginChild("left pane", ImVec2(250, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
-            ImGui::InputText("##input", &filterText);
-            if (oldFilterText != filterText) {
-                oldFilterText = filterText;
-                refreshDisplayList = true;
-            }
-            ImGui::SameLine();
-            if(ImGui::Button("Refresh")) {
-                refreshDisplayList = true;
-            }
-            if(refreshDisplayList) {
-                refreshDisplayList = false;
-                entityDisplayList.clear();
-                selected = nullptr;
-                for (auto itr = GetEntitySystem()->m_EntityArray.begin(); itr != GetEntitySystem()->m_EntityArray.end(); ++itr) {
-                    if (*itr != nullptr) {
-                        if (!(*itr)->m_szName.empty()) {
-                            std::string name = (*itr)->m_szName.c_str();
-                            std::string newFilterText = filterText;
-                            std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
-                            std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                            if (name.find(newFilterText) != name.npos || filterText.empty()) {
-                                entityDisplayList.emplace_back(*itr);
+    if(showEntityList) {
+        if (ImGui::Begin("Entity List", bShow, ImGuiWindowFlags_NoNavInputs)) {
+            {
+                ImGui::BeginChild("left pane", ImVec2(250, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
+                ImGui::InputText("##input", &filterText);
+                if (oldFilterText != filterText) {
+                    oldFilterText = filterText;
+                    refreshDisplayList = true;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Refresh")) {
+                    refreshDisplayList = true;
+                }
+                if (refreshDisplayList) {
+                    refreshDisplayList = false;
+                    entityDisplayList.clear();
+                    selectedEntity = 0;
+                    for (auto itr = GetEntitySystem()->m_EntityArray.begin();
+                         itr != GetEntitySystem()->m_EntityArray.end(); ++itr) {
+                        if (*itr != nullptr) {
+                            if (!(*itr)->m_szName.empty()) {
+                                std::string name = (*itr)->m_szName.c_str();
+                                std::string newFilterText = filterText;
+                                std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(),
+                                               ::tolower);
+                                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                                if (name.find(newFilterText) != name.npos || filterText.empty()) {
+                                    entityDisplayList.emplace_back((*itr)->GetId());
+                                }
                             }
                         }
                     }
                 }
-            }
-            auto itr = entityDisplayList.begin();
-            for (int i = 0; itr != entityDisplayList.end() && i < 500; i++, ++itr) {
-                std::string label;
-                if ((*itr)->m_szName.c_str() != nullptr) {
-                    label = (*itr)->m_szName.c_str();
+                auto itr = entityDisplayList.begin();
+                for (int i = 0; itr != entityDisplayList.end() && i < 500; i++, ++itr) {
+                    std::string label;
+                    if(gEnv->pEntitySystem->GetEntity(*itr) != nullptr) {
+                        if (!string(gEnv->pEntitySystem->GetEntity(*itr)->GetName()).empty()) {
+                            label = gEnv->pEntitySystem->GetEntity(*itr)->GetName();
+                        } else {
+                            label = "invalid name";
+                        }
+                        // sprintf_s(label, "Entity: %d", i);
+                        if (ImGui::Selectable(label.c_str(), selectedEntity == *itr))
+                            selectedEntity = *itr;
+                    }
                 }
-                else {
-                    label = "invalid name";
-                }
-                // sprintf_s(label, "Entity: %d", i);
-                if (ImGui::Selectable(label.c_str(), selected == (*itr)))
-                    selected = (*itr);
+                ImGui::EndChild();
             }
-            ImGui::EndChild();
-        }
-        ImGui::SameLine();
+            ImGui::SameLine();
 
-        // Right
-        {
-            ImGui::BeginGroup();
-            ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
-            if (selected != nullptr) {
-                ImGui::Text("Entity: %llu", selected->m_nID);
-            }
-            else {
-                ImGui::Text("Entity: %s", "Null");
-            }
-            ImGui::Separator();
-            if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_TabListPopupButton))
+            // Right
             {
-                if (ImGui::BeginTabItem("Entity Details"))
-                {
-                    // CryLog("at the entity check\n");
+                ImGui::BeginGroup();
+                ImGui::BeginChild("item view",
+                                  ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
+                if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
+                    ImGui::Text("Entity: %llu", gEnv->pEntitySystem->GetEntity(selectedEntity)->GetId());
+                } else {
+                    ImGui::Text("Entity: %s", "Null");
+                }
+                ImGui::Separator();
+                if (ImGui::BeginTabBar("##Tabs",
+                                       ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_TabListPopupButton)) {
+                    if (ImGui::BeginTabItem("Entity Details")) {
+                        // CryLog("at the entity check\n");
 
-                    if (selected != nullptr) {
-                        if (ImGui::BeginTable("Details", 2, ImGuiTableFlags_NoClip | ImGuiTableFlags_BordersH)) {
-                            // Setup Columns
-                            ImGui::TableSetupColumn(" Item:", ImGuiTableColumnFlags_WidthFixed, 75.0f);
-                            ImGui::TableSetupColumn(" Value:");
-                            // Name
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            ImGuiUtils::RightAlignText("Name:");
-                            ImGui::Text("Name:");
-                            ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                            ImGui::TableNextColumn();
-                            if (selected->m_szName.c_str() != nullptr)
-                                ImGui::Text("%s", selected->m_szName.c_str());
-                            else
-                                ImGui::Text("%s", "--Null Name--");
-                            // ID
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            ImGuiUtils::RightAlignText("ID:");
-                            ImGui::Text("ID:");
-                            ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                            ImGui::TableNextColumn();
-                            // CryLog("at id\n");
-                            ImGui::Text("%llu", selected->m_nID);
-                            // GUID
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            // CryLog("at guid\n");
-                            ImGuiUtils::RightAlignText("GUID:");
-                            ImGui::Text("GUID:");
-                            ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                            ImGui::TableNextColumn();
-                            ImGui::Text("%llu", selected->m_guid);
-                            // Class
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            // CryLog("at class\n");
-                            ImGuiUtils::RightAlignText("Class:");
-                            ImGui::Text("Class:");
-                            ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                            ImGui::TableNextColumn();
-                            if (selected->m_pClass != nullptr) {
-                                if (selected->m_pClass->GetName() != nullptr)
-                                    ImGui::Text("%s", selected->m_pClass->GetName());
+                        if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
+                            auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
+                            if (ImGui::BeginTable("Details", 2, ImGuiTableFlags_NoClip | ImGuiTableFlags_BordersH)) {
+                                // Setup Columns
+                                ImGui::TableSetupColumn(" Item:", ImGuiTableColumnFlags_WidthFixed, 75.0f);
+                                ImGui::TableSetupColumn(" Value:");
+                                // Name
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                ImGuiUtils::RightAlignText("Name:");
+                                ImGui::Text("Name:");
+                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
+                                ImGui::TableNextColumn();
+                                if (!string(entity->GetName()).empty())
+                                    ImGui::Text("%s", entity->GetName());
                                 else
-                                    ImGui::Text("%s", "--Unknown Class--");
-                            }
-                            else {
-                                ImGui::Text("%s", "--Null Class--");
-                            }
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            ImGuiUtils::RightAlignText("Archetype:");
-                            ImGui::Text("Archetype:");
-                            ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                            ImGui::TableNextColumn();
-                            if (selected->m_pArchetype != nullptr) {
-                                if (selected->m_pArchetype->GetName() != nullptr)
-                                    ImGui::Text("%s", selected->m_pArchetype->GetName());
-                                else
-                                    ImGui::Text("%s", "--Unknown Archetype--");
-                            }
-                            else {
-                                ImGui::Text("%s", "--Null Archetype--");
+                                    ImGui::Text("%s", "--Null Name--");
+                                // ID
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                ImGuiUtils::RightAlignText("ID:");
+                                ImGui::Text("ID:");
+                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
+                                ImGui::TableNextColumn();
+                                // CryLog("at id\n");
+                                ImGui::Text("%u", entity->GetId());
+                                // GUID
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                // CryLog("at guid\n");
+                                ImGuiUtils::RightAlignText("GUID:");
+                                ImGui::Text("GUID:");
+                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
+                                ImGui::TableNextColumn();
+                                ImGui::Text("%llu", entity->GetGuid());
+                                // Class
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                // CryLog("at class\n");
+                                ImGuiUtils::RightAlignText("Class:");
+                                ImGui::Text("Class:");
+                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
+                                ImGui::TableNextColumn();
+                                if (entity->GetClass() != nullptr) {
+                                    if (!string(entity->GetClass()->GetName()).empty())
+                                        ImGui::Text("%s", entity->GetName());
+                                    else
+                                        ImGui::Text("%s", "--Unknown Class--");
+                                } else {
+                                    ImGui::Text("%s", "--Null Class--");
+                                }
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                ImGuiUtils::RightAlignText("Archetype:");
+                                ImGui::Text("Archetype:");
+                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
+                                ImGui::TableNextColumn();
+                                if (entity->GetArchetype() != nullptr) {
+                                    if (!string(entity->GetArchetype()->GetName()).empty())
+                                        ImGui::Text("%s", entity->GetName());
+                                    else
+                                        ImGui::Text("%s", "--Unknown Archetype--");
+                                } else {
+                                    ImGui::Text("%s", "--Null Archetype--");
+                                }
+
+                                ImGui::EndTable();
                             }
 
-                            ImGui::EndTable();
-                        }
-
-                        ImGui::Text("Position: ");
-                        static float position[3];
-                        position[0] = selected->m_vPos.x;
-                        position[1] = selected->m_vPos.y;
-                        position[2] = selected->m_vPos.z;
-                        if(ImGui::InputFloat3("Pos", position, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue)) {
-                            Vec3 newPos = Vec3(position[0], position[1], position[2]);
-                            selected->SetPos(newPos, 0, true, true);
-                        }
+                            ImGui::Text("Position: ");
+                            static float position[3];
+                            position[0] = entity->GetPos().x;
+                            position[1] = entity->GetPos().y;
+                            position[2] = entity->GetPos().z;
+                            if (ImGui::InputFloat3("Pos", position, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                Vec3 newPos = Vec3(position[0], position[1], position[2]);
+                                entity->SetPos(newPos, 0, true, true);
+                            }
 //                        ImGui::InputFloat("x", &selected->m_vPos.x, 0, 0, "% .1f");
 //                        ImGui::SameLine();
 //                        ImGui::InputFloat("y", &selected->m_vPos.y, 0, 0, "% .1f");
 //                        ImGui::SameLine();
 //                        ImGui::InputFloat("z", &selected->m_vPos.z, 0, 0, "% .1f");
-                        if(ImGui::Button("Set to player pos")) {
-                            ((IEntity*)selected)->SetPos(gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
-                        }
-
-                        ImGui::Text("Rotation: ");
-                        static float rotation[4];
-                        rotation[0] = selected->GetRotation().v.x;
-                        rotation[1] = selected->GetRotation().v.y;
-                        rotation[2] = selected->GetRotation().v.z;
-                        rotation[3] = selected->GetRotation().w;
-                        if(ImGui::InputFloat4("Rot", rotation, "%.3f", ImGuiInputTextFlags_EnterReturnsTrue)){
-                            Quat newRot = Quat(rotation[0], rotation[1], rotation[2], rotation[3]);
-                            selected->SetRotation(newRot, 0);
-                        }
-
-                        static float scale;
-                        scale = selected->m_vScale.x;
-                        ImGui::Text("Scale: ");
-                        if(ImGui::InputFloat("scale", &scale, 0, 0, "% .1f", ImGuiInputTextFlags_EnterReturnsTrue)) {
-                            Vec3 newScale{ scale, scale, scale };
-                            selected->SetScale(newScale, 0);
-                        }
-                    }
-                    else {
-                        ImGui::Text("No Entity Selected");
-                    }
-                    ImGui::EndTabItem();
-                }
-
-                if (ImGui::BeginTabItem("Status Effects"))
-                {
-                    static std::string selectedStatus;
-                    // if(ImGui::BeginChild("status list", ImVec2(0, ImGui::GetContentRegionAvail().y * 0.6f))){
-                    if (ImGui::BeginTable("statusList", 1, ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersOuter, ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                        ImGui::TableSetupColumn("Status");
-                        ImGui::TableHeadersRow();
-                        for (auto itr = statusPush.begin(); itr != statusPush.end(); ++itr) {
-                            ImGui::TableNextRow();
-                            // if(ImGui::TreeNode((itr)->c_str())) {
-                            // ImGui::Text("%s", itr->c_str());
-                            ImGui::TableSetColumnIndex(0);
-                            if (ImGui::Selectable(itr->c_str(), *itr == selectedStatus)) {
-                                selectedStatus = *itr;
+                            if (ImGui::Button("Set to player pos")) {
+                                entity->SetPos(gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
                             }
-                        }
-                        ImGui::EndTable();
-                    }
-                    ImGui::Text("%s", selectedStatus.c_str());
-                    if (std::find(statusPush.begin(), statusPush.end(), selectedStatus) != statusPush.end()) {
-                        ImGui::Button("Push");
-                    }
-                    if (std::find(statusPop.begin(), statusPop.end(), selectedStatus) != statusPop.end()) {
-                        ImGui::SameLine();
-                        ImGui::Button("Pop");
-                    }
-                    ImGui::EndTabItem();
-                }
-                // TODO: ALL OF THIS
-                if (ImGui::BeginTabItem("Npc Details")) {
-                    if (ImGui::BeginTable("SettableGettables", 2, ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersH | ImGuiTableFlags_BordersInnerV)) {
-                        ImGui::TableSetupColumn("Readable", ImGuiTableColumnFlags_WidthFixed, ImGui::GetContentRegionAvail().x * 0.5f);
-                        ImGui::TableSetupColumn("Writable", ImGuiTableColumnFlags_WidthFixed,
-                                                ImGui::GetContentRegionAvail().x * 0.5f);
-                        ImGui::TableSetupScrollFreeze(0, 1);
-                        ImGui::TableHeadersRow();
-                        auto itrget = get.begin();
-                        auto itrset = set.begin();
-                        bool setend = false, getend = false;
-                        while (itrset != set.end() || itrget != get.end()) {
-                            ImGui::TableNextRow();
-                            if (!getend) {
-                                ++itrget;
-                                if (itrget == get.end()) {
-                                    getend = true;
-                                }
+
+                            ImGui::Text("Rotation: ");
+                            static float rotation[4];
+                            rotation[0] = entity->GetRotation().v.x;
+                            rotation[1] = entity->GetRotation().v.y;
+                            rotation[2] = entity->GetRotation().v.z;
+                            rotation[3] = entity->GetRotation().w;
+                            if (ImGui::InputFloat4("Rot", rotation, "%.3f", ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                Quat newRot = Quat(rotation[0], rotation[1], rotation[2], rotation[3]);
+                                entity->SetRotation(newRot, 0);
                             }
-                            if (!getend) {
+
+                            static float scale;
+                            scale = entity->GetScale().x;
+                            ImGui::Text("Scale: ");
+                            if (ImGui::InputFloat("scale", &scale, 0, 0, "% .1f",
+                                                  ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                Vec3 newScale{scale, scale, scale};
+                                entity->SetScale(newScale, 0);
+                            }
+                        } else {
+                            ImGui::Text("No Entity Selected");
+                        }
+                        ImGui::EndTabItem();
+                    }
+
+                    if (ImGui::BeginTabItem("Status Effects")) {
+                        static std::string selectedStatus;
+                        // if(ImGui::BeginChild("status list", ImVec2(0, ImGui::GetContentRegionAvail().y * 0.6f))){
+                        if (ImGui::BeginTable("statusList", 1, ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersOuter,
+                                              ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
+                            ImGui::TableSetupColumn("Status");
+                            ImGui::TableHeadersRow();
+                            for (auto itr = statusPush.begin(); itr != statusPush.end(); ++itr) {
+                                ImGui::TableNextRow();
+                                // if(ImGui::TreeNode((itr)->c_str())) {
+                                // ImGui::Text("%s", itr->c_str());
                                 ImGui::TableSetColumnIndex(0);
-                                ImGui::Text("%s", itrget->c_str());
-                                ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - 10.0f);
-                                std::string text = "0";
-                                ImGui::InputText("##NPC", &text, ImGuiInputTextFlags_ReadOnly);
-                                ImGui::PopItemWidth();
-                            }
-                            else {
-
-                            }
-                            if (!setend) {
-                                ++itrset;
-                                if (itrset == set.end()) {
-                                    setend = true;
+                                if (ImGui::Selectable(itr->c_str(), *itr == selectedStatus)) {
+                                    selectedStatus = *itr;
                                 }
                             }
-                            if (!setend) {
+                            ImGui::EndTable();
+                        }
+                        ImGui::Text("%s", selectedStatus.c_str());
+                        if (std::find(statusPush.begin(), statusPush.end(), selectedStatus) != statusPush.end()) {
+                            ImGui::Button("Push");
+                        }
+                        if (std::find(statusPop.begin(), statusPop.end(), selectedStatus) != statusPop.end()) {
+                            ImGui::SameLine();
+                            ImGui::Button("Pop");
+                        }
+                        ImGui::EndTabItem();
+                    }
+                    // TODO: ALL OF THIS
+                    if (ImGui::BeginTabItem("Npc Details")) {
+                        if (ImGui::BeginTable("SettableGettables", 2,
+                                              ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersH |
+                                              ImGuiTableFlags_BordersInnerV)) {
+                            ImGui::TableSetupColumn("Readable", ImGuiTableColumnFlags_WidthFixed,
+                                                    ImGui::GetContentRegionAvail().x * 0.5f);
+                            ImGui::TableSetupColumn("Writable", ImGuiTableColumnFlags_WidthFixed,
+                                                    ImGui::GetContentRegionAvail().x * 0.5f);
+                            ImGui::TableSetupScrollFreeze(0, 1);
+                            ImGui::TableHeadersRow();
+                            auto itrget = get.begin();
+                            auto itrset = set.begin();
+                            bool setend = false, getend = false;
+                            while (itrset != set.end() || itrget != get.end()) {
+                                ImGui::TableNextRow();
+                                if (!getend) {
+                                    ++itrget;
+                                    if (itrget == get.end()) {
+                                        getend = true;
+                                    }
+                                }
+                                if (!getend) {
+                                    ImGui::TableSetColumnIndex(0);
+                                    ImGui::Text("%s", itrget->c_str());
+                                    ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - 10.0f);
+                                    std::string text = "0";
+                                    ImGui::InputText("##NPC", &text, ImGuiInputTextFlags_ReadOnly);
+                                    ImGui::PopItemWidth();
+                                } else {
+
+                                }
+                                if (!setend) {
+                                    ++itrset;
+                                    if (itrset == set.end()) {
+                                        setend = true;
+                                    }
+                                }
+                                if (!setend) {
+                                    ImGui::TableSetColumnIndex(1);
+                                    ImGui::Text("%s", itrset->c_str());
+                                    ImGui::PushItemWidth(
+                                            ImGui::GetContentRegionAvail().x - ImGui::CalcTextSize(" Set   ").x);
+                                    std::string text = "0";
+                                    ImGui::InputText("", &text, ImGuiInputTextFlags_ReadOnly);
+                                    ImGui::SameLine();
+                                    ImGui::Button("Set");
+                                    ImGui::PopItemWidth();
+                                } else {
+
+                                }
+                            }
+                            ImGui::EndTable();
+                        }
+                        ImGui::EndTabItem();
+                    }
+                    if (ImGui::BeginTabItem("Npc Info")) {
+                        if (ImGui::BeginTable("IsTable", 2, ImGuiTableFlags_SizingFixedFit | ImGuiTableFlags_BordersH |
+                                                            ImGuiTableFlags_ScrollY, ImGui::GetContentRegionAvail())) {
+                            ImGui::TableSetupColumn("Param");
+                            ImGui::TableSetupColumn("Value");
+                            for (auto itr = is.begin(); itr != is.end(); ++itr) {
+                                ImGui::TableNextRow();
+                                ImGui::TableSetColumnIndex(0);
+                                // RightAlignText(itr->c_str());
+                                ImGui::Text("%s", itr->c_str());
+                                // ImGui::SetCursorPosX(ImGui::GetColumnWidth(1));
                                 ImGui::TableSetColumnIndex(1);
-                                ImGui::Text("%s", itrset->c_str());
-                                ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - ImGui::CalcTextSize(" Set   ").x);
-                                std::string text = "0";
-                                ImGui::InputText("", &text, ImGuiInputTextFlags_ReadOnly);
-                                ImGui::SameLine();
-                                ImGui::Button("Set");
-                                ImGui::PopItemWidth();
+                                ImGui::Text("True");
                             }
-                            else {
-
-                            }
+                            ImGui::EndTable();
                         }
-                        ImGui::EndTable();
+                        // ImGui::ListBox("")
+                        ImGui::EndTabItem();
                     }
-                    ImGui::EndTabItem();
-                }
-                if (ImGui::BeginTabItem("Npc Info")) {
-                    if (ImGui::BeginTable("IsTable", 2, ImGuiTableFlags_SizingFixedFit | ImGuiTableFlags_BordersH | ImGuiTableFlags_ScrollY, ImGui::GetContentRegionAvail())) {
-                        ImGui::TableSetupColumn("Param");
-                        ImGui::TableSetupColumn("Value");
-                        for (auto itr = is.begin(); itr != is.end(); ++itr) {
-                            ImGui::TableNextRow();
-                            ImGui::TableSetColumnIndex(0);
-                            // RightAlignText(itr->c_str());
-                            ImGui::Text("%s", itr->c_str());
-                            // ImGui::SetCursorPosX(ImGui::GetColumnWidth(1));
-                            ImGui::TableSetColumnIndex(1);
-                            ImGui::Text("True");
-                        }
-                        ImGui::EndTable();
-                    }
-                    // ImGui::ListBox("")
-                    ImGui::EndTabItem();
-                }
-                if (ImGui::BeginTabItem("Actions:")) {
+                    if (ImGui::BeginTabItem("Actions:")) {
 
-                    ImGui::EndTabItem();
+                        ImGui::EndTabItem();
+                    }
+                    // ENDTODO
+                    ImGui::EndTabBar();
                 }
-                // ENDTODO
-                ImGui::EndTabBar();
+                ImGui::EndChild();
+                // if (ImGui::Button("Revert")) {}
+                // ImGui::SameLine();
+                // if (ImGui::Button("Save")) {}
+                ImGui::EndGroup();
             }
-            ImGui::EndChild();
-            // if (ImGui::Button("Revert")) {}
-            // ImGui::SameLine();
-            // if (ImGui::Button("Save")) {}
-            ImGui::EndGroup();
         }
+        ImGui::End();
     }
-    ImGui::End();
 }
 
 void EntityManager::drawMenuBar() {
     if (ImGui::BeginMainMenuBar()) {
         if (ImGui::BeginMenu("Entity")) {
             if (ImGui::BeginMenu("Spawn Entity")) {
-                ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != nullptr);
+                ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != 0);
                 ImGui::Separator();
                 ImGui::TextDisabled("Quick Spawns");
                 if (ImGui::BeginMenu("Spawn Typhon")) {
@@ -534,7 +542,7 @@ void EntityManager::drawMenuBar() {
 
 void EntityManager::spawnEntity() {
     try {
-        if (archetypeToSpawn != nullptr) {
+        if (archetypeToSpawn != 0) {
             static Vec3 pos;
             static Quat rot = Quat{ 0,0,0,1 };
             archetypeToSpawn;
@@ -550,9 +558,10 @@ void EntityManager::spawnEntity() {
             else {
                 pos = Vec3{ spawnX, spawnY, spawnZ };
             }
-            std::string archetypeName = archetypeToSpawn->GetName();
+            auto archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeToSpawn);
+            std::string archetypeName = archetype->GetName();
             // if an npc use npc spawning
-            auto entityClass = archetypeToSpawn->GetClass();
+            auto entityClass = archetype->GetClass();
             if(entityClass != nullptr) {
 
                 if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
@@ -583,9 +592,9 @@ void EntityManager::spawnEntity() {
                 // TODO: ADD ability for mods to define what their archetypes are
                 // TODO: add cystoid support
                 {
-                    gEntUtils->spawnNpc(inputName.c_str(), pos, rot, archetypeToSpawn->GetId(), spawnCount);
+                    gEntUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
                 } else {
-                    gEntUtils->spawnEntity(inputName.c_str(), pos, rot, archetypeToSpawn->GetId(), spawnCount);
+                    gEntUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
                 }
             }
             // done
@@ -614,7 +623,8 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
             pos.y += ArkPlayer::GetInstancePtr()->m_cachedReticleDir.y * 5;
             std::string archetypeName = gEnv->pEntitySystem->GetEntityArchetype(archetypeId)->GetName();
 
-            auto entityClass = archetypeToSpawn->GetClass();
+            auto archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeId);
+            auto entityClass = archetype->GetClass();
             if(entityClass != nullptr) {
                 if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
                     entityClass->GetName() == std::string(gClassLibrary.ArkHuman) ||
@@ -648,6 +658,8 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
                 } else {
                     gEntUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
                 }
+            } else {
+                throw("Error, no class found");
             }
             gCLEnv->gui->logItem("spawned an entity: " + inputName, moduleName);
         }
