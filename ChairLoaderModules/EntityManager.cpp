@@ -7,7 +7,11 @@
 #include "Prey/CryEntitySystem/EntitySystem.h"
 #include "Prey/CryEntitySystem/Entity.h"
 #include "Prey/GameDll/ark/player/ArkPlayer.h"
+#include "Prey/CryEntitySystem/EntityClassRegistry.h"
+#include "Prey/GameDll/ark/ArkGame.h"
+#include "Prey/GameDll/ark/ArkLocationManager.h"
 
+static ClassLibrary gClassLibrary;
 
 EntityManager::EntityManager(ChairloaderGlobalEnvironment* env) {
     gCLEnv = env;
@@ -46,6 +50,14 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
         }
         ImGui::Text("Filter:");
         static bool initializedList = false;
+        static std::string archetypeLoadString;
+        ImGui::InputText("Archetype Library to Load", &archetypeLoadString, ImGuiInputTextFlags_None);
+        if(ImGui::Button("Load Archetype Library")) {
+            auto archetypeLibrary = string(archetypeLoadString.c_str());
+            gEnv->pEntitySystem->LoadArchetypeLibrary(&archetypeLibrary);
+            ArkGame::GetArkGame()->GetArkLevelMapComponent().
+//            GetEntitySystem()->m_pEntityArchetypeManager->LoadLibrary(archetypeLoadString.c_str());
+        }
         if(ImGui::InputText("##filter text", &archetypeFilterText) || !initializedList){
             oldArchetypeFilterText = archetypeFilterText;
             initializedList = true;
@@ -492,6 +504,14 @@ void EntityManager::drawMenuBar() {
                 }
                 ImGui::EndMenu();
             }
+            if(ImGui::MenuItem("List Classes")){
+               CEntityClassRegistry* registry = ((CEntityClassRegistry*)gEnv->pEntitySystem->GetClassRegistry());
+               for(auto &entityClass : registry->m_mapClassName){
+                    CryLog("%s", entityClass.second->GetName());
+
+               }
+//                for(auto &class = gEnv.pEntitySystem.)
+            }
             ImGui::Separator();
             if (ImGui::MenuItem("Toggle All")) {
                 if (showEntityList && showEntitySpawner) {
@@ -532,15 +552,43 @@ void EntityManager::spawnEntity() {
             }
             std::string archetypeName = archetypeToSpawn->GetName();
             // if an npc use npc spawning
-            if ((archetypeName.find("ArkRobots") != std::string::npos || archetypeName.find("ArkHumans") != std::string::npos || archetypeName.find("ArkNpcs") != std::string::npos) && archetypeName != "Turrets.Turret_Default") {
-                gEntUtils->spawnNpcFromArchetype(inputName.c_str(), pos, rot, archetypeToSpawn->GetId(), spawnCount);
-            }
-            else {
-                pos.z += 0.2f;
-                gEntUtils->spawnEntityFromArchetype(inputName.c_str(), pos, rot, archetypeToSpawn->GetId(), spawnCount);
+            auto entityClass = archetypeToSpawn->GetClass();
+            if(entityClass != nullptr) {
+
+                if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkHuman) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkHumanTest) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacle) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacleHead) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkBeta) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherDuplicate) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherForm) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkEthericDoppelganger) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkMimic) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkMimicElite) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkNpcPlayer) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperator) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorEngineer) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMedic) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorScience) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMilitary) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkPlayer) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkPoltergeist) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkPhantomVoltaic) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkTelepath) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkTentacle) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkWeaver) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkTechnopath) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkCystoidNest))
+                // TODO: ADD ability for mods to define what their archetypes are
+                // TODO: add cystoid support
+                {
+                    gEntUtils->spawnNpc(inputName.c_str(), pos, rot, archetypeToSpawn->GetId(), spawnCount);
+                } else {
+                    gEntUtils->spawnEntity(inputName.c_str(), pos, rot, archetypeToSpawn->GetId(), spawnCount);
+                }
             }
             // done
-
             color = { 1,1,1,1 };
             statusMessage = "spawned an entity: " + inputName;
             time(&statusTimer);
@@ -566,11 +614,40 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
             pos.y += ArkPlayer::GetInstancePtr()->m_cachedReticleDir.y * 5;
             std::string archetypeName = gEnv->pEntitySystem->GetEntityArchetype(archetypeId)->GetName();
 
-            if ((archetypeName.find("ArkRobots") != std::string::npos || archetypeName.find("ArkHumans") != std::string::npos || archetypeName.find("ArkNpcs") != std::string::npos) && archetypeName != "Turrets.Turret_Default") {
-                gCLEnv->entUtils->spawnNpcFromArchetype("", pos, rot, archetypeId, 1);
-            }
-            else {
-                gCLEnv->entUtils->spawnEntityFromArchetype("", pos, rot, archetypeId, 1);
+            auto entityClass = archetypeToSpawn->GetClass();
+            if(entityClass != nullptr) {
+                if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkHuman) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkHumanTest) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacle) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacleHead) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkBeta) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherDuplicate) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherForm) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkEthericDoppelganger) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkMimic) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkMimicElite) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkNpcPlayer) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperator) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorEngineer) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMedic) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorScience) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMilitary) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkPlayer) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkPoltergeist) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkPhantomVoltaic) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkTelepath) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkTentacle) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkWeaver) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkTechnopath) ||
+                    entityClass->GetName() == std::string(gClassLibrary.ArkCystoidNest))
+                    // TODO: ADD ability for mods to define what their archetypes are
+                    // TODO: add cystoid support
+                {
+                    gEntUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
+                } else {
+                    gEntUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
+                }
             }
             gCLEnv->gui->logItem("spawned an entity: " + inputName, moduleName);
         }

@@ -802,7 +802,7 @@ if (GetAsyncKeyState(VK_NUMPAD2) & 1) {
             // pos.y += player->m_cachedReticleDir.y * 5;
             // //12889009725056221348
             // IEntity* entity = nullptr;
-            // entity = spawnerManager->spawnNpcFromArchetype(760, (char*)"miky", ChairloaderUtils::EntityType::mimic);
+            // entity = spawnerManager->spawnNpc(760, (char*)"miky", ChairloaderUtils::EntityType::mimic);
             // if (entity != nullptr) {
             //     std::cout << entity << std::endl;
             //     entity->SetPos(&pos, 0, false, false);

@@ -2,11 +2,12 @@
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/GameDll/ark/npc/ArkNpcSpawnManager.h>
 #include "EntityUtils.h"
+#include <Prey/ArkEntityClassLibrary.h>
 
 EntityUtils *gEntUtils = nullptr;
 
 
-IEntity* EntityUtils::spawnNpcFromArchetype(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount) {
+IEntity* EntityUtils::spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount) {
 	IEntity* latestEntity = nullptr;
 	static ArkNpcSpawnedState_Alert alert;
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
@@ -16,7 +17,7 @@ IEntity* EntityUtils::spawnNpcFromArchetype(const char* name, Vec3& pos, Quat& r
 	return latestEntity;
 }
 
-IEntity* EntityUtils::spawnEntityFromArchetype(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned spawnCount) {
+IEntity* EntityUtils::spawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned spawnCount) {
 	IEntity* latestEntity = nullptr;
 	for (int i = 1; i <= spawnCount; i++) {
 		SEntitySpawnParams params;
@@ -138,6 +139,8 @@ EntityUtils::EntityUtils() {
 ArkPlayer* EntityUtils::ArkPlayerPtr() {
 	return ArkPlayer::GetInstancePtr();
 }
+
+
 
 
 
