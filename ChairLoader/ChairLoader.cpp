@@ -60,6 +60,8 @@ auto g_SmokeForm_Exit_hook = ArkPsiPowerSmokeForm::FExit.MakeHook();
 auto g_SmokeForm_TryMorphOut_hook = ArkPsiPowerSmokeForm::FTryMorphOut.MakeHook();
 auto g_SmokeForm_Stop_hook = ArkPsiPowerSmokeForm::FStop.MakeHook();
 
+
+
 bool CSystem_InitializeEngineModule_Hook(
 	CSystem* _this,
 	const SModuleInitInfo* _initInfo,
@@ -181,7 +183,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
-	gEnv->pConsole->ExecuteString("log_Verbosity 4");
+	gEnv->pConsole->ExecuteString("log_Verbosity 3");
 
 	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
 	{
