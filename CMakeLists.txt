@@ -20,6 +20,9 @@ add_compile_definitions(
 	$<IF:$<CONFIG:Debug>,DEBUG_BUILD,RELEASE_BUILD>
 )
 
+# Compiler and linker flags
+string(REPLACE "/Zi" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}") # Remove /Zi
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI") # /ZI Edit and Continue
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
 # Game path
