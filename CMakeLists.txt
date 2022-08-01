@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(Chairloader)
+set(CHAIRLOADER TRUE)
 
 if((NOT MSVC) OR (MSVC_TOOLSET_VERSION LESS 141))
 	message(FATAL_ERROR "Chairloader must be built using Visual Studio 2017 or newer")
@@ -8,6 +9,10 @@ endif()
 if (NOT (CMAKE_SIZEOF_VOID_P EQUAL 8))
 	message(FATAL_ERROR "Chairloader must be built for x64")
 endif()
+
+list(APPEND CMAKE_MODULE_PATH
+	"${CMAKE_CURRENT_LIST_DIR}/ExampleMod/CMake"
+)
 
 # Set C++ version
 set(CMAKE_CXX_STANDARD 17)
@@ -20,6 +25,9 @@ add_compile_definitions(
 	$<IF:$<CONFIG:Debug>,DEBUG_BUILD,RELEASE_BUILD>
 )
 
+# Compiler and linker flags
+string(REPLACE "/Zi" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}") # Remove /Zi
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI") # /ZI Edit and Continue
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
 # Game path
@@ -34,37 +42,26 @@ function(cl_output_dir targetName gamePath)
 	if(PREY_PATH)
 		set(out_path "${PREY_PATH}/${gamePath}")
 		set_target_properties(${targetName} PROPERTIES
-				RUNTIME_OUTPUT_DIRECTORY ${out_path}
-				RUNTIME_OUTPUT_DIRECTORY_DEBUG ${out_path}
-				RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
-				RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
-				RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
-				LIBRARY_OUTPUT_DIRECTORY ${out_path}
-				LIBRARY_OUTPUT_DIRECTORY_DEBUG ${out_path}
-				LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
-				LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
-				LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
-				)
+			RUNTIME_OUTPUT_DIRECTORY ${out_path}
+			RUNTIME_OUTPUT_DIRECTORY_DEBUG ${out_path}
+			RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
+			RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
+			RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
+			LIBRARY_OUTPUT_DIRECTORY ${out_path}
+			LIBRARY_OUTPUT_DIRECTORY_DEBUG ${out_path}
+			LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
+			LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
+			LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
+		)
 	endif()
 endfunction()
 
 # Third-party libraries
 find_package(Boost REQUIRED COMPONENTS filesystem)
-find_package(pugixml REQUIRED)
+find_package(Detours MODULE REQUIRED)
 find_package(libzip REQUIRED)
+find_package(pugixml REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)
-
-# Detours
-set(DETOURS_INCLUDE_DIR "" CACHE PATH "Path to Detours include dir (where detours/detours.h is)")
-set(DETOURS_LIB_PATH "" CACHE PATH "Path to Detours detours.lib")
-add_library(detours INTERFACE)
-if ((NOT DETOURS_INCLUDE_DIR) OR (NOT DETOURS_LIB_PATH))
-	message("DETOURS_INCLUDE_DIR = ${DETOURS_INCLUDE_DIR}")
-	message("DETOURS_LIB_PATH = ${DETOURS_LIB_PATH}")
-	message(FATAL_ERROR "Detours paths are not set")
-endif()
-target_include_directories(detours INTERFACE ${DETOURS_INCLUDE_DIR})
-target_link_libraries(detours INTERFACE ${DETOURS_LIB_PATH})
 
 # Project libraries
 add_subdirectory(Common)

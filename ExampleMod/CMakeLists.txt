@@ -5,6 +5,10 @@ if((NOT MSVC) OR (MSVC_TOOLSET_VERSION LESS 141))
 	message(FATAL_ERROR "Mods must be built using Visual Studio 2017 or newer")
 endif()
 
+list(APPEND CMAKE_MODULE_PATH
+	"${CMAKE_CURRENT_LIST_DIR}/CMake"
+)
+
 # Set C++ version
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,6 +20,18 @@ add_compile_definitions(
 	CHAIRLOADER_MOD_SDK
 	$<IF:$<CONFIG:Debug>,DEBUG_BUILD,RELEASE_BUILD>
 )
+
+if(NOT CHAIRLOADER)
+	# Compiler and linker flags
+	string(REPLACE "/Zi" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}") # Remove /Zi
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI") # /ZI Edit and Continue
+	set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
+	
+	# vcpkg libraries
+	find_package(Boost REQUIRED)
+	find_package(Detours MODULE REQUIRED)
+	find_package(pugixml REQUIRED)
+endif()
 
 # Common path
 set(CHAIRLOADER_COMMON_PATH "" CACHE PATH "Path to Chairloader/Common. See Common/README_ModSDK.txt.")
