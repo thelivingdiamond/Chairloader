@@ -18,7 +18,7 @@ target_include_directories(Common PUBLIC
 
 target_link_libraries(Common PUBLIC
 	pugixml::pugixml
-	detours
+	Detours::Detours
 )
 
 target_precompile_headers(Common PUBLIC Chairloader/pch.h)
