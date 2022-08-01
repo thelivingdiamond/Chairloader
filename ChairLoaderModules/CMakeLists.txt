@@ -4,6 +4,8 @@ set(SOURCE_FILES
         EntityManager.h
         PlayerManager.cpp
         PlayerManager.h
+        WorldManager.cpp
+        WorldManager.h
         )
 
 # ChairloaderModules static library

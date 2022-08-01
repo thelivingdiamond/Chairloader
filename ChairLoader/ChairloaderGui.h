@@ -4,6 +4,7 @@
 #include "OverlayLog.h"
 #include "EntityManager.h"
 #include "PlayerManager.h"
+#include "WorldManager.h"
 #include "ChairloaderConfigManager.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"
@@ -27,6 +28,7 @@ public:
 
     void dockingTest();
 private:
+    ChairloaderGlobalEnvironment* gCLEnv;
     struct chairloaderGuiControl {
         bool showPlayerManager = false,
             showEntityList = false,
@@ -54,6 +56,7 @@ private:
     ChairloaderGUILog log;
     PlayerManager playerManager;
     EntityManager entityManager;
+    WorldManager worldManager;
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;

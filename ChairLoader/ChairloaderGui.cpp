@@ -1,10 +1,14 @@
 #include "ChairloaderGUI.h"
-
+#include "Prey/CryGame/IGameFramework.h"
+#include "Prey/GameDll/ark/ArkGame.h"
+#include "Prey/GameDll/ark/ArkLocationManager.h"
 ChairloaderGui *gui = nullptr;
 
 ChairloaderGui::ChairloaderGui(ChairloaderGlobalEnvironment* env) :
     playerManager(),
-    entityManager(env){
+    entityManager(env),
+    worldManager(env){
+    gCLEnv = env;
     GUILog = &log;
 }
 
@@ -101,7 +105,7 @@ void ChairloaderGui::draw(bool* bShow) {
             log.drawDisplay();
             entityManager.Draw();
             playerManager.draw();
-
+            worldManager.Draw();
             if (control.showProfilerDialog) {
                 profilerDialog.Show(&control.showProfilerDialog);
             }
@@ -126,6 +130,7 @@ void ChairloaderGui::update() {
         drawHandleMutex.lock();
         entityManager.Update();
         playerManager.update();
+        worldManager.Update();
         drawHandleMutex.unlock();
     //}
     perfOverlay.Update();
