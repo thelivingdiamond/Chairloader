@@ -1,0 +1,41 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="48" Class="Ark:Objectives:ObjectiveState" pos="1017,27,0">
+   <Inputs objective_Objective="-3778744661166124077" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="49" Class="Ark:Objectives:TaskState" pos="1480,10,0">
+   <Inputs task_Task="-3778744661166123566" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="53" Class="Ark:Dialog:ConversationEvent" pos="-304,80,0">
+   <Inputs conversation_Conversation="13680621263378051770"/>
+  </Node>
+  <Node Id="55" Class="Mission:GameTokenCheck" pos="446,90,0">
+   <Inputs gametokenid_Token="1149279026" CheckValue="true"/>
+  </Node>
+  <Node Id="56" Class="Ark:Objectives:ObjectiveState" pos="1026,240,0">
+   <Inputs objective_Objective="-3778744661166124077" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="59" Class="Logic:Once" pos="266,110,0" InHideMask="127" OutHideMask="1">
+   <Inputs/>
+  </Node>
+  <Node Id="60" Class="Ark:Objectives:TaskState" pos="1060,540,0">
+   <Inputs task_Task="-3778744661166123469" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="61" Class="Ark:Roster:CharacterLocatedEvent" pos="348.18658,319.4899,0">
+   <Inputs character_Character="6732635291189008580"/>
+  </Node>
+  <Node Id="62" Class="Ark:Roster:CheckIsLocated" pos="610,620,0">
+   <Inputs character_Character="6732635291189008580"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="49" nodeOut="48" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="59" nodeOut="53" portIn="Input1" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="59" nodeOut="53" portIn="Input1" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="48" nodeOut="55" portIn="Add" portOut="False" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="55" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="55" nodeOut="59" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

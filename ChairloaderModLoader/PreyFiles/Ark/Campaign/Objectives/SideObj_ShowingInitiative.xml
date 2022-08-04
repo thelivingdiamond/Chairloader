@@ -1,0 +1,18 @@
+
+<Objectives>
+ <Objective id="13680621263383421981" title="@loc_15373294129891632652" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="13680621263383421982" displayName="Start" text="@loc_15373294129891632653"/>
+   <Desc id="844024417316847984" displayName="Completed" text="@loc_844024417316847985"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="13680621263383422050" displayName="Eliminate Survivors" optional="false" text="@loc_15373294129891632655" markerLabel="@loc_15373294129891632654" Location="4349723564895209499"/>
+   <Task id="13680621263383440458" displayName="Meet Dahl" optional="false" text="@loc_15373294129891632656" Location="1713490239386284988"/>
+   <Task id="13856881013223141816" displayName="KillHuman1" optional="false" text="@loc_13856881013223141817" Location="4349723564895209499"/>
+   <Task id="13856881013223141956" displayName="KillHuman2" optional="false" text="@loc_13856881013223141959" Location="4349723564895209499" targetCharacterId="13856881013223141957" markerLabel="@loc_13856881013223141958"/>
+   <Task id="13856881013223141960" displayName="KillHuman3" optional="false" text="@loc_13856881013223141963" Location="4349723564895209499" targetCharacterId="13856881013223141961" markerLabel="@loc_13856881013223141962"/>
+   <Task id="13856881013223141964" displayName="KillHuman4" optional="false" text="@loc_13856881013223141967" Location="4349723564895209499" targetCharacterId="13856881013223141965" markerLabel="@loc_13856881013223141966"/>
+  </Tasks>
+ </Objective>
+</Objectives>

@@ -1,0 +1,18 @@
+
+<Objectives>
+ <Objective id="844024417275569904" title="@loc_15373294129891632274" optional="true">
+  <Clues>
+   <Clue id="13680621263417811695" displayName="Cook_ID" text="@loc_13680621263417811696"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="844024417275569905" displayName="SignalDanielle" text="@loc_15373294129891632275"/>
+   <Desc id="844024417285413169" displayName="KillTheCook" text="@loc_15373294129891632276"/>
+   <Desc id="12889009725037540083" displayName="Complete" text="@loc_15373294129891632277"/>
+   <Desc id="13680621263405809877" displayName="FromDeepStorage" text="@loc_13680621263405809878"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417285413028" displayName="Signal Danielle" optional="false" text="@loc_15373294129891632279" markerLabel="@loc_15373294129891632278" Location="844024417252490146" description="844024417275569905"/>
+   <Task id="844024417287728484" displayName="Kill the cook" optional="false" text="@loc_15373294129891632281" markerLabel="@loc_15373294129891632280" description="844024417285413169"/>
+  </Tasks>
+ </Objective>
+</Objectives>

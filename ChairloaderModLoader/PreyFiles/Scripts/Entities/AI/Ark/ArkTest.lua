@@ -1,0 +1,8 @@
+Script.ReloadScript("SCRIPTS/Entities/AI/Ark/ArkTest_x.lua")
+Script.ReloadScript("SCRIPTS/Entities/actor/BasicActor.lua")
+Script.ReloadScript("SCRIPTS/Entities/AI/Shared/BasicAI.lua")
+Script.ReloadScript("SCRIPTS/Entities/actor/ArkNpc.lua")
+CreateActor(ArkTest_x)
+ArkMimic = CreateAI(ArkTest_x)
+CreateArkNpc(ArkTest)
+ArkTest:Expose()

@@ -1,0 +1,167 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="144" Class="Ark:Objectives:TaskState" pos="2740,570,0">
+   <Inputs task_Task="-6622188701089568766" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="512" Class="Ark:Objectives:ObjectiveState" pos="2370,600,0">
+   <Inputs objective_Objective="844024417256800439" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="517" Name="set_repo_men/shuttle_objective\n" Class="_commentbox" pos="2230,481,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2640" Height="610"/>
+  </Node>
+  <Node Id="536" Class="Mission:GameTokenSet" pos="2250,360,0">
+   <Inputs gametokenid_Token="1990946021" Value="true"/>
+  </Node>
+  <Node Id="538" Name="January_-_Remove_your_tracking_chip" Class="_commentbox" pos="2690,1341,0">
+   <Inputs TextSize="1" Color="0.496933,0.564712,0.806952" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2600" Height="420"/>
+  </Node>
+  <Node Id="539" Class="Time:Delay" pos="2760,1420,0">
+   <Inputs delay="30" resetOnInput="0"/>
+  </Node>
+  <Node Id="541" Class="Ark:Objectives:ObjectiveState" pos="4550,1530,0">
+   <Inputs objective_Objective="1713490239417659272" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="542" Class="Ark:Objectives:TaskState" pos="4880,1530,0">
+   <Inputs task_Task="1713490239417659290" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="547" Class="Ark:Objectives:TaskState" pos="3930,800,0">
+   <Inputs task_Task="844024417286532599" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="548" Class="Ark:Objectives:TaskState" pos="4470,720,0">
+   <Inputs task_Task="844024417275827455" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2043" Class="Ark:Dialog:PlayTranscribeMessage" pos="4030,1500,0">
+   <Inputs dialogRule_Conversation="13680621263382886400" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2067" Class="Ark:Dialog:PlayPAMessage" pos="-480,-100,0">
+   <Inputs announcement_Conversation="13680621263367712859" bChime="1" Channel="0" ChimeType="2"/>
+  </Node>
+  <Node Id="2165" Class="Ark:Dialog:PlayTranscribeMessage" pos="-1940,-180,0">
+   <Inputs dialogRule_Conversation="844024417286450692" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2184" Class="Ark:Dialog:PlayPAMessage" pos="-1360,10,0">
+   <Inputs announcement_Conversation="13680621263367712633" bChime="1" Channel="0" ChimeType="2"/>
+  </Node>
+  <Node Id="2191" Class="Ark:Objectives:SetObjectiveDescription" pos="3340,500,0">
+   <Inputs objectiveDescription_Description="-6622188701089568681"/>
+  </Node>
+  <Node Id="2193" Class="Ark:Dialog:PlayTranscribeMessage" pos="1720,680,0">
+   <Inputs dialogRule_Conversation="844024417286450873" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2301" Class="Ark:Objectives:SetObjectiveDescription" pos="4900,1400,0">
+   <Inputs objectiveDescription_Description="1713490239417659273"/>
+  </Node>
+  <Node Id="2309" Class="Ark:RemoteEvent" pos="-2430,-180,0">
+   <Inputs remoteEvent_Event="14667999412556730814"/>
+  </Node>
+  <Node Id="2310" Class="Mission:GameTokenCheck" pos="5000,750,0">
+   <Inputs gametokenid_Token="80397968" CheckValue="true"/>
+  </Node>
+  <Node Id="2311" Class="Mission:GameTokenCheck" pos="3570,1500,0">
+   <Inputs gametokenid_Token="1240200463" CheckValue="true"/>
+  </Node>
+  <Node Id="2312" Class="Time:Delay" pos="-730,-50,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2376" Class="Ark:SendRemoteEvent" pos="-50,-150,0">
+   <Inputs remoteEvent_Event="14667999412563648118"/>
+  </Node>
+  <Node Id="2378" Class="ArkPlayer:GetPlayerCombatState" pos="700,90,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2380" Class="ArkPlayer:PlayerCombatStateChanged" pos="990,150,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2381" Class="Time:Delay" pos="-20,-70,0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="2382" Class="Logic:Gate" pos="1030,680,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="2383" Class="Game:Start" pos="-80,580,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="2385" Class="Logic:Gate" pos="730,670,0">
+   <Inputs SetClosed="1" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="2387" Class="Ark:Debug:ConsoleEvent" pos="-1662.0876,186.93407,0">
+   <Inputs Command="taunt"/>
+  </Node>
+  <Node Id="2388" Class="Mission:GameTokenCheck" pos="3010,1460,0">
+   <Inputs gametokenid_Token="1512213883" CheckValue="true"/>
+  </Node>
+  <Node Id="2389" Class="Ark:Debug:ConsoleEvent" pos="4250,1690,0">
+   <Inputs Command="ghostdahl"/>
+  </Node>
+  <Node Id="2390" Class="Mission:GameTokenCheck" pos="190,-50,0">
+   <Inputs gametokenid_Token="331365694" CheckValue="true"/>
+  </Node>
+  <Node Id="2391" Class="Mission:GameTokenUpdated" pos="120,-310,0">
+   <Inputs gametokenid_Token="331365694" compare_Value="true"/>
+  </Node>
+  <Node Id="2392" Class="Logic:Gate" pos="688.71704,-148.04198,0">
+   <Inputs SetClosed="1" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="2393" Class="Ark:Objectives:GetTaskState" pos="3290,710,0">
+   <Inputs task_Task="844024417286532599"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2191" nodeOut="144" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2393" nodeOut="144" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="144" nodeOut="512" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2388" nodeOut="539" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="542" nodeOut="541" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2301" nodeOut="541" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2310" nodeOut="548" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="541" nodeOut="2043" portIn="Add" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="541" nodeOut="2043" portIn="Add" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="541" nodeOut="2043" portIn="Add" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2376" nodeOut="2067" portIn="Send" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2376" nodeOut="2067" portIn="Send" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2381" nodeOut="2067" portIn="in" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2381" nodeOut="2067" portIn="in" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2385" nodeOut="2067" portIn="Open" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2385" nodeOut="2067" portIn="Open" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2184" nodeOut="2165" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2184" nodeOut="2165" portIn="Trigger" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2184" nodeOut="2165" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2312" nodeOut="2184" portIn="in" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2312" nodeOut="2184" portIn="in" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2312" nodeOut="2184" portIn="in" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="512" nodeOut="2193" portIn="Add" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="512" nodeOut="2193" portIn="Add" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="512" nodeOut="2193" portIn="Add" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="536" nodeOut="2193" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="536" nodeOut="2193" portIn="Trigger" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="536" nodeOut="2193" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="539" nodeOut="2193" portIn="in" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="539" nodeOut="2193" portIn="in" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="539" nodeOut="2193" portIn="in" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2165" nodeOut="2309" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2043" nodeOut="2311" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="2067" nodeOut="2312" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2378" portIn="Enable" portOut="Is in combat" enabled="1"/>
+  <Edge nodeIn="2382" nodeOut="2378" portIn="In" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="2385" nodeOut="2380" portIn="In" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="2390" nodeOut="2381" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2193" nodeOut="2382" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2383" portIn="Disable" portOut="output" enabled="1"/>
+  <Edge nodeIn="2385" nodeOut="2383" portIn="In" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2385" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2382" nodeOut="2385" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2184" nodeOut="2387" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="2311" nodeOut="2388" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="541" nodeOut="2389" portIn="Add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="2378" nodeOut="2390" portIn="Get" portOut="False" enabled="1"/>
+  <Edge nodeIn="2392" nodeOut="2390" portIn="Open" portOut="True" enabled="1"/>
+  <Edge nodeIn="2392" nodeOut="2391" portIn="In" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="2378" nodeOut="2392" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="547" nodeOut="2393" portIn="Deactivate" portOut="Active" enabled="1"/>
+  <Edge nodeIn="548" nodeOut="2393" portIn="Activate" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

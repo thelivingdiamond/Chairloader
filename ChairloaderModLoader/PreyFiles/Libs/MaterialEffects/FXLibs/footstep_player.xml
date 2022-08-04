@@ -1,0 +1,137 @@
+
+<FXLib>
+ <Effect name="default">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="default"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="concrete">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="carpet">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="carpet"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="plastic">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="plastic"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="glass_healing">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="glass_healing"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="glass_unbreakable">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="glass_unbreakable"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="glass">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="glass"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="vegetation">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="vegetation"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="dirt">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="dirt"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="amber_hard">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="gloo_hard"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="amber_soft">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="gloo_soft"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="oil">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="gloo_soft"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="wood">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="wood"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="metal_thick">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="metal_thick"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="metal_thin">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="metal_thin"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="water_shallow">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="water"/>
+  </Audio>
+  <Particle>
+   <Name minscale="0.2" maxscale="0.2" maxscaledist="1" particleName="MaterialEffects.CollisionEffects.Default.Default_CollisionEffect"/>
+  </Particle>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="rubber">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="carpet"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="leather">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="leather"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="cardboard">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="cardboard"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="electric">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="electrical"/>
+  </Audio>
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="typhon_flesh">
+  <GameNoise type="5345056487431534087" loudness="9469288860501649202"/>
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="flesh_phantom"/>
+  </Audio>
+ </Effect>
+ <Effect name="mech_flesh">
+  <Audio trigger="footstep_player">
+   <Switch name="SurfaceType" state="mechanical"/>
+  </Audio>
+ </Effect>
+</FXLib>

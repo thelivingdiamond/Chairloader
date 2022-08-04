@@ -1,0 +1,64 @@
+
+<SignalReceivers>
+ <Imports/>
+ <SignalData>
+  <signal id="9469288860524730735" does_damage="false" is_bump_signal="true"/>
+  <signal id="10850392949542894854" does_damage="false" is_collision="true"/>
+  <signal id="3149325216930480877" does_damage="false" is_critical="true"/>
+  <signal id="3149325216911145914" does_damage="true"/>
+  <signal id="3149325216913727228" does_damage="true"/>
+  <signal id="3149325216914689627" does_damage="false" is_emp="true"/>
+  <signal id="3149325216938445621" does_damage="true" block_hit_react="false" is_emp="false" is_fear="false" is_fire="false" is_flare="false" is_grenadeattached="false" is_laser="false" is_mindcontrol="false" is_nullwave="false" is_playerpower="false" is_recycle_begin="false" is_stun="false" is_stungun="false" is_collision="false"/>
+  <signal id="3149325216913726733" does_damage="true"/>
+  <signal id="3149325216914689729" does_damage="false" is_fear="true"/>
+  <signal id="3149325216914689666" does_damage="false" is_flare="true"/>
+  <signal id="7745561656291547931" does_damage="true" is_fire="true"/>
+  <signal id="3149325216915549017" does_damage="false" callback_luaCallbackFunc="OnGooSignal"/>
+  <signal id="10641886185832736815" does_damage="false" is_grenadeattached="true"/>
+  <signal id="3149325216915554009" does_damage="true"/>
+  <signal id="3149325216973146201" does_damage="true" block_hit_react="false" is_bump_signal="false" is_emp="false" is_fear="false" is_fire="false" is_flare="false" is_grenadeattached="false" is_laser="false" is_mindcontrol="false" is_nullwave="false" is_playerpower="false" is_recycle_begin="false" is_remote_manipulation="false" is_stun="false" is_stungun="false" is_collision="false" is_critical="false"/>
+  <signal id="3149325216915549119" does_damage="true"/>
+  <signal id="10641886185830929654" does_damage="false" callback_luaCallbackFunc="OnLureSignal"/>
+  <signal id="3149325216915549079" does_damage="false" is_mindcontrol="true"/>
+  <signal id="3149325216915549045" does_damage="false" is_nullwave="true"/>
+  <signal id="3149325216955628299" does_damage="false" is_playerpower="true"/>
+  <signal id="3149325216914689633" does_damage="true" is_psychic="true"/>
+  <signal id="3149325216914689683" does_damage="false" is_laser="true"/>
+  <signal id="3149325216914689641" does_damage="false"/>
+  <signal id="3149325216914689612" does_damage="false"/>
+  <signal id="10641886185820022055" does_damage="false" block_hit_react="true" callback_luaCallbackFunc="OnRecycleSignal" is_recycle_begin="true"/>
+  <signal id="9469288860526959409" does_damage="false" is_remote_manipulation="true"/>
+  <signal id="9469288860524043070" does_damage="true" block_hit_react="true" is_emp="false" is_fear="false" is_fire="false" is_flare="false" is_grenadeattached="false" is_laser="false" is_mindcontrol="false" is_nullwave="false" is_playerpower="false" is_recycle_begin="false" is_stun="false" is_stungun="false" is_collision="false"/>
+  <signal id="3149325216915549026" does_damage="false" is_stun="true"/>
+  <signal id="3149325216945625551" does_damage="false" is_stun="false" is_stungun="true"/>
+  <signal id="9469288860541043048" does_damage="false" is_break_mimicry="true"/>
+ </SignalData>
+ <PlayerDispositionFactors>
+  <Friendly>
+   <signal id="3149325216958565328" factor="0"/>
+   <signal id="9469288860522565404" factor="0.25"/>
+   <signal id="3149325216929612871" factor="0.5"/>
+  </Friendly>
+  <Neutral>
+   <signal id="3149325216958565328" factor="0"/>
+  </Neutral>
+ </PlayerDispositionFactors>
+ <DispositionFactors>
+  <Friendly>
+   <signal id="3149325216914689654" factor="0.0"/>
+   <signal id="9469288860522565404" factor="0"/>
+   <signal id="3149325216929612871" factor="0.5"/>
+  </Friendly>
+  <Neutral/>
+  <Hostile/>
+  <Enslaved>
+   <signal id="3149325216914689633" factor="0"/>
+   <signal id="3149325216913726733" factor="0"/>
+   <signal id="3149325216915549045" factor="0"/>
+   <signal id="3149325216913727228" factor="0"/>
+   <signal id="3149325216914689627" factor="0"/>
+   <signal id="3149325216954857386" factor="0"/>
+  </Enslaved>
+ </DispositionFactors>
+ <ShotgunSignalAccumulator signalId="3149325216939210401" time="0.1" threshold="5"/>
+</SignalReceivers>

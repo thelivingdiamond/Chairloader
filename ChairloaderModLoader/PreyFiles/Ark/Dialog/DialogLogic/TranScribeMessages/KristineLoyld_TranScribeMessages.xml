@@ -1,0 +1,84 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263399403798" name="Million Dollar Caulk Gun" cooldown="" description="A TS conversation between Kristin Loyd and Jose Costa describing the situation with the breach in psychotronics. " response="13680621263399403879" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTranscribeTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911778357"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403879">
+  <Response dialog="13680621263399403878" id="13680621263399403880" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399403902" name="" cooldown="" response="13680621263399403903">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403880" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911796920"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403903">
+  <Response dialog="13680621263399403901" id="13680621263399403904" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.25" cutoff="0" targetType="2" targetId="4349723564911778357" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399403948" name="" cooldown="" response="13680621263399403949">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403904" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911778357" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403949">
+  <Response dialog="13680621263399403947" id="13680621263399403950" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.5" cutoff="0" targetType="2" targetId="4349723564911796920" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399403957" name="" cooldown="" response="13680621263399403958">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403950" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911796920" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403958">
+  <Response dialog="13680621263399403956" id="13680621263399403959" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.25" cutoff="0" targetType="2" targetId="4349723564911778357" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399403966" name="" cooldown="" response="13680621263399403967">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403959" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911778357" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403967">
+  <Response dialog="13680621263399403965" id="13680621263399403968" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0.5" cutoff="0" targetType="2" targetId="4349723564911796920" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399403977" name="" cooldown="" response="13680621263399403978">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403968" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911796920" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403978">
+  <Response dialog="13680621263399403976" id="13680621263399403979" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="1" cutoff="0" targetType="2" targetId="4349723564911778357" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399403987" name="" cooldown="" response="13680621263399403988">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403979" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911778357" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399403988">
+  <Response dialog="13680621263399403986" id="13680621263399403989" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" targetType="2" targetId="4349723564911796920" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263399404043">
+  <Response dialog="13680621263399404041" id="13680621263399404044" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0.25" cutoff="0" targetType="2" targetId="4349723564911778357" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399404070" name="" cooldown="" response="13680621263399404043">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399403989" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911796920" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+</ResponseRules>

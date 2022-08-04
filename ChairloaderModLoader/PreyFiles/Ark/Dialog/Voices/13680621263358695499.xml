@@ -1,0 +1,62 @@
+
+<Dialog>
+ <Dialog id="13680621263359123288" facefx="2" sync="0" notes="TranScribe message. Irritable." text="Miyu? This is uhm... this is Dr. Calvino. " modified="02/11/2016 08:23:54 PM"/>
+ <Dialog id="13680621263359123377" facefx="0" sync="0" notes="A little dazed sounding. " text="Miyu. This is Dr. Calvino" modified="04/14/2015 02:10:18 PM"/>
+ <Dialog id="13680621263359123389" facefx="0" sync="0" notes="A little dazed sounding. " text="I&apos;m feeling ill. Not myself today. I think I won&apos;t be in for my shift at all. " modified="11/16/2016 05:03:25 PM"/>
+ <Dialog id="13680621263359123390" facefx="0" sync="0" notes="A little dazed sounding. " text="Array? I... don&apos;t recall-" modified="07/08/2016 05:41:34 PM"/>
+ <Dialog id="13680621263359123391" facefx="0" sync="0" notes="A little dazed sounding. Turns irritable." text="You... must have misunderstood. Eh... are you- honestly I&apos;d prefer it if you left my experiments alone in my absence." modified="07/08/2016 05:43:44 PM"/>
+ <Dialog id="13680621263359123447" facefx="0" sync="0" notes="Pretending to remember." text="No, no, of course. I remember now. Let&apos;s just... for the time being... it doesn&apos;t matter."/>
+ <Dialog id="13680621263359123456" facefx="0" sync="0" notes="Trying to get off the phone." text="Let&apos;s talk about it tomorrow." modified="04/14/2015 02:11:44 PM"/>
+ <Dialog id="13680621263360018428" text="You&apos;re leaving?" modified="04/24/2015 10:47:24 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263360018746" text="Just turn it off then." modified="04/24/2015 10:52:42 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263360018831" text="No. I suppose it&apos;s late after all. Go. Sleep." modified="04/24/2015 10:54:07 PM" notes="exasperated sigh" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019023" text="What about me? Don&apos;t concern yourself. I&apos;ll finish." modified="04/24/2015 10:57:19 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019356" text="You guess." modified="04/24/2015 11:02:52 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019393" text="You&apos;re always saying, &quot;I guess.&quot; &quot;That worked, I guess. I&apos;ll see you later, I guess.&quot; You&apos;re a scientist. Stop guessing. Know. Or be quiet. That is all." modified="07/08/2016 05:46:22 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019702" text="(Frustrated Grunt)" modified="07/08/2016 05:45:43 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263360020006" text="Che rompi scatole..." modified="04/24/2015 11:13:42 PM" notes="Grumbling in italian under his breath" sync="true" facefx="3"/>
+ <Dialog id="13680621263360252174" text="It&apos;s running?" modified="04/27/2015 03:43:10 PM" sync="true"/>
+ <Dialog id="13680621263360252991" text="Where&apos;s the photometer? The handheld. Did you take it?" modified="04/27/2015 03:56:47 PM" sync="true"/>
+ <Dialog id="13680621263360257507" text="Yesterday we had two. Now I can&apos;t find one." modified="11/16/2016 05:03:55 PM" sync="true"/>
+ <Dialog id="13680621263360258162" text="Nonsense. " modified="04/27/2015 05:22:58 PM" sync="true"/>
+ <Dialog id="13680621263368795997" text="Eh... Yes. I was just about to call you." modified="08/04/2015 01:00:13 PM" notes="Busted." facefx="2"/>
+ <Dialog id="13680621263368796127" text="Yes. That&apos;s right. It&apos;s the calibration system for the new touchscreen. You only have to run it one time." modified="07/12/2016 06:00:44 PM" notes="Starts to get cranky." facefx="2"/>
+ <Dialog id="13680621263375541543" text="The dream. Yes." modified="02/19/2016 03:17:05 PM" notes="Almost to himself, absent minded."/>
+ <Dialog id="13680621263376754558" text="Miyu? Miyu - I... I can&apos;t move!" modified="07/08/2016 05:42:17 PM" facefx="2"/>
+ <Dialog id="13680621263376754759" text="I&apos;m in the microgravity lab. Franklin&apos;s gone. I don&apos;t know what&apos;s happening." modified="11/04/2015 03:48:49 PM" facefx="2"/>
+ <Dialog id="13680621263376754974" text="Yes! I can&apos;t get out. Can you come?" modified="02/09/2016 02:23:00 AM"/>
+ <Dialog id="13680621263376754997" text="Miyu?" modified="11/04/2015 03:50:13 PM" facefx="2"/>
+ <Dialog id="13680621263385087458" text="(Sigh) Miyu- ah, no. Wait. I see an Operator. I think it&apos;s trying to help me. Ng-" modified="07/08/2016 05:42:37 PM" facefx="2"/>
+ <Dialog id="13680621263385166093" text="Just follow the dot! When it turns green touch it. It should-" modified="07/08/2016 05:42:47 PM" facefx="2"/>
+ <Dialog id="13680621263385325029" text="Ahh - well, I suppose you&apos;ve turned in. Or you&apos;re ignoring me." modified="07/08/2016 05:43:27 PM"/>
+ <Dialog id="13680621263385325049" text="I just want to... I&apos;ll be a little late for my shift tomorrow. But, uh, first thing in the morning I want you to put together a new micro lens array. " modified="02/11/2016 08:24:25 PM"/>
+ <Dialog id="13680621263385325068" text="You see, the old one is garbage. Get what you need from the machine shop. " modified="02/11/2016 08:24:44 PM"/>
+ <Dialog id="13680621263385325073" text="And if Clive is being an ass just take it from the supply closet when he&apos;s not looking. " modified="02/11/2016 08:25:22 PM"/>
+ <Dialog id="13680621263385325077" text="We&apos;re not supposed to know the code, but I&apos;m sending it to you anyway.  " modified="02/11/2016 08:24:51 PM"/>
+ <Dialog id="13680621263385997843" text="It&apos;s uh... it&apos;s always in my lab. And... I&apos;m standing in front of the glass." modified="02/19/2016 03:21:03 PM"/>
+ <Dialog id="13680621263385997877" text="Yes." modified="02/19/2016 03:18:13 PM"/>
+ <Dialog id="13680621263385997898" text="Nothing. At first. I don&apos;t want to turn it on. " modified="02/19/2016 03:18:34 PM"/>
+ <Dialog id="13680621263385997909" text="But... I can&apos;t help it. I have to turn it on. When I do - it&apos;s like the heart of a black hole." modified="07/08/2016 05:43:39 PM"/>
+ <Dialog id="13680621263385997918" text="An immense... darkness. There&apos;s... something... swimming in the black. I catch glimpses. Edges of the shape." modified="07/08/2016 05:44:16 PM"/>
+ <Dialog id="13680621263385997928" text="I feel as though it wants to come through... onto my side. " modified="02/19/2016 03:21:38 PM"/>
+ <Dialog id="13680621263385997932" text="I have to turn off the glass before it sees me but I always wake before I can." modified="02/19/2016 03:21:50 PM"/>
+ <Dialog id="13680621263385997950" text="I, uh- nothing." modified="07/08/2016 05:44:37 PM" notes="Starts to describe it, but then clams up."/>
+ <Dialog id="13680621263385997986" text="No. No, no. That&apos;s... I don&apos;t..." modified="07/08/2016 05:45:13 PM" notes="It&apos;s obvious he&apos;s lying. He&apos;s shaken by the image Khol showed him."/>
+ <Dialog id="13680621263385998006" text="Where did you get that drawing? Have you been spying on me?" modified="02/19/2016 03:20:22 PM" notes="Now he&apos;s irritated. "/>
+ <Dialog id="13680621263385998015" text="I don&apos;t want to talk to you anymore." modified="02/19/2016 03:20:31 PM" notes="Irritated. Getting up to leave."/>
+ <Dialog id="13680621263399143432" text="What about the mirrors?" modified="07/20/2016 06:50:48 PM"/>
+ <Dialog id="13680621263400945897" text="Never. I have never removed a Neuromod... and yet, today I could not find my way to the Hardware Labs." modified="08/10/2016 03:32:27 PM" notes="Irritated."/>
+ <Dialog id="13680621263400945928" text="I wandered the Arboretum for an hour. I made some excuse. But... I know Miyu suspects." modified="08/10/2016 03:32:29 PM" notes="Softens when he mentions Miyu."/>
+ <Dialog id="13680621263400946646" text="I cannot keep making toys for TranStar when... (deep breath) I told Alex what I want to try." modified="08/10/2016 03:47:15 PM" notes="Back to irritation"/>
+ <Dialog id="13680621263400946650" text="He gave me a device to help. Parapsychological contraption. " modified="08/10/2016 03:45:19 PM" notes="Last two words - almost disdain for it. Doesn&apos;t quite know what it is."/>
+ <Dialog id="13680621263400946709" text="Morgan made it. Some of the components are... beyond me." modified="08/10/2016 03:47:09 PM"/>
+ <Dialog id="13680621263400946848" text="The same dream again. There is... something wrong with this station. Something here with us... but-" modified="08/10/2016 03:48:46 PM" notes="Just woke up. Groggy. A little short of breath."/>
+ <Dialog id="13680621263400946870" text="I am hallucinating now. There is no question." modified="08/10/2016 03:48:06 PM" notes="Almost mumbling to himself."/>
+ <Dialog id="13680621263400946963" text="I... tried to open the locker, but I could not remember our anniversary." modified="08/10/2016 03:49:39 PM" notes="Can&apos;t believe it."/>
+ <Dialog id="13680621263400946976" text="And for a moment, even her name escaped me. Her name!" modified="08/10/2016 03:49:52 PM" notes="Angry. Harsh."/>
+ <Dialog id="13680621263400947024" text="If one day I wake up and cannot even remember the work I am doing - I must give it all to Morgan." modified="08/10/2016 03:50:40 PM" notes="A little panic."/>
+ <Dialog id="13680621263400947037" text="He will know what to do with it." modified="08/10/2016 03:50:53 PM"/>
+ <Dialog id="13680621263400947054" text="She will know what to do with it." modified="08/10/2016 03:51:10 PM"/>
+ <Dialog id="13680621263400947278" text="First test. Anterior electrodes overheated after six seconds." modified="08/10/2016 04:38:18 PM" notes="Shaking from adrenaline."/>
+ <Dialog id="13680621263400947284" text="But... I swear - there was a moment... I saw her again. The day we met on the Costa Amalfi. Her lemon sundress. My Clorinda." modified="08/10/2016 04:45:29 PM" notes="Shaking from adrenaline. Emphasis on &quot;I saw her&quot;. Awe. "/>
+</Dialog>

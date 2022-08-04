@@ -1,0 +1,145 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="4" Class="Ark:Dialog:PlayTranscribeMessage" pos="2930,950,0">
+   <Inputs dialogRule_Conversation="13680621263384028117" Queue="0" MinTimeSinceLastCall="60"/>
+  </Node>
+  <Node Id="6" Class="ArkPlayer:GetPlayerCombatState" pos="70,870,0">
+   <Inputs/>
+  </Node>
+  <Node Id="7" Class="Logic:Gate" pos="3800,990,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="8" Name="Gustav_Leitner" Class="_commentbox" pos="-890,314,0">
+   <Inputs TextSize="1" Color="1,1,1" DisplayFilled="1" DisplayBox="1" SortPriority="1"/>
+   <CommentBox Width="6690" Height="1020"/>
+  </Node>
+  <Node Id="9" Class="Ark:Objectives:ObjectiveState" pos="4120,970,0">
+   <Inputs objective_Objective="-4766122810325607399" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="11" Class="Ark:Objectives:TaskState" pos="4440,950,0">
+   <Inputs task_Task="-4766122810325607304" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="14187" Class="Ark:Debug:ConsoleEvent" pos="2090,1620,0">
+   <Inputs Command="AdvanceGustavLeitner"/>
+  </Node>
+  <Node Id="14191" Class="Ark:Objectives:TaskState" pos="4120,2180,0">
+   <Inputs task_Task="-4766122810325606802" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="14205" Name="Start_Quest" Class="_commentbox" pos="-730,703,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="6460" Height="500"/>
+  </Node>
+  <Node Id="14208" Name="Gustav_Leitner" Class="_commentbox" pos="3550,2120,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1050" Height="260"/>
+  </Node>
+  <Node Id="14209" Class="Mission:GameTokenCheck" pos="400,910,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14211" Class="Mission:GameTokenCheck" pos="830,910,0">
+   <Inputs gametokenid_Token="1928122795" CheckValue="true"/>
+  </Node>
+  <Node Id="14212" Class="Mission:GameTokenCheck" pos="1290,910,0">
+   <Inputs gametokenid_Token="1838001917" CheckValue="true"/>
+  </Node>
+  <Node Id="14221" Class="Mission:GameTokenSet" pos="2430,1620,0">
+   <Inputs gametokenid_Token="1838001917" Value="true"/>
+  </Node>
+  <Node Id="14222" Name="DEBUG" Class="_commentbox" pos="2070,1601,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="820" Height="130"/>
+  </Node>
+  <Node Id="14455" Class="Ark:RemoteEvent" pos="-650,870,0">
+   <Inputs remoteEvent_Event="12889009725030874827"/>
+  </Node>
+  <Node Id="14459" Class="Ark:SendRemoteEvent" pos="5350,950,0">
+   <Inputs remoteEvent_Event="12889009725030874967"/>
+  </Node>
+  <Node Id="14464" Class="Time:Delay" pos="1850,930,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="14470" Class="Time:RandomDelay" pos="100,1000,0">
+   <Inputs MinDelay="45" MaxDelay="60"/>
+  </Node>
+  <Node Id="14472" Class="Time:RandomDelay" pos="2820,750,0">
+   <Inputs MinDelay="45" MaxDelay="60"/>
+  </Node>
+  <Node Id="14473" Class="Ark:Dialog:ConversationEvent" pos="3570,2170,0">
+   <Inputs conversation_Conversation="13680621263384038995"/>
+  </Node>
+  <Node Id="14474" Class="Inventory:ItemCheck" pos="3790,2640,0">
+   <Inputs entityId="0" Active="1" archetype="ArkPickups.MissionItems.AM_LeitnerConnectome" itemClass=""/>
+  </Node>
+  <Node Id="14477" Class="Actor:LocalPlayer" pos="3580,2640,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14479" Class="Mission:GameTokenSet" pos="4330,2720,0">
+   <Inputs gametokenid_Token="1553393856" Value="true"/>
+  </Node>
+  <Node Id="14480" Class="Mission:GameTokenSet" pos="4320,2640,0">
+   <Inputs gametokenid_Token="1553393856" Value="false"/>
+  </Node>
+  <Node Id="14481" Name="Track_Connectome" Class="_commentbox" pos="3560,2600,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1210" Height="200"/>
+  </Node>
+  <Node Id="14482" Class="Ark:Locations:CheckLocation" pos="2370,920,0">
+   <Inputs location_Location=""/>
+  </Node>
+  <Node Id="14483" Class="Ark:Roster:CheckLocation" pos="2080,930,0">
+   <Inputs character_Character="4349723564897457173"/>
+  </Node>
+  <Node Id="14486" Class="Ark:Debug:ConsoleEvent" pos="2230,740,0">
+   <Inputs Command="StartGustavLeitner"/>
+  </Node>
+  <Node Id="14489" Class="Time:RandomDelay" pos="2390,830,0">
+   <Inputs MinDelay="45" MaxDelay="60"/>
+  </Node>
+  <Node Id="14491" Class="Logic:Gate" pos="2650,950,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14493" Class="Ark:Objectives:GetObjectiveState" pos="-280,860,0">
+   <Inputs objective_Objective="-4766122810325607399"/>
+  </Node>
+  <Node Id="14694" Class="Ark:Player:CollectAudioLog" pos="4980,950,0">
+   <Inputs audioLogCollection_Collection="12889009725030800327" bAutoplay="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="7" nodeOut="4" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="4" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="14472" nodeOut="4" portIn="In" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="14491" nodeOut="4" portIn="Close" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="14491" nodeOut="4" portIn="Close" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="14209" nodeOut="6" portIn="Trigger" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="14470" nodeOut="6" portIn="In" portOut="Is in combat" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="7" portIn="Add" portOut="Out" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="9" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14694" nodeOut="11" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14221" nodeOut="14187" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="14211" nodeOut="14209" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14212" nodeOut="14211" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14464" nodeOut="14212" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="14221" portIn="Add" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="14493" nodeOut="14455" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14483" nodeOut="14464" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="14470" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="14472" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14191" nodeOut="14473" portIn="Activate" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="14191" nodeOut="14473" portIn="Activate" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="14479" nodeOut="14474" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="14480" nodeOut="14474" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14474" nodeOut="14477" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="14489" nodeOut="14482" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="14491" nodeOut="14482" portIn="In" portOut="False" enabled="1"/>
+  <Edge nodeIn="14482" nodeOut="14483" portIn="Trigger" portOut="ID" enabled="1"/>
+  <Edge nodeIn="14482" nodeOut="14483" portIn="location_Location" portOut="ID" enabled="1"/>
+  <Edge nodeIn="14491" nodeOut="14486" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="14489" portIn="Get" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="14491" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="14493" portIn="Get" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="14459" nodeOut="14694" portIn="Send" portOut="Output" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

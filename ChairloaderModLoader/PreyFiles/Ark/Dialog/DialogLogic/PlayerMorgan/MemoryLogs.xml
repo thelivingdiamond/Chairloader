@@ -1,0 +1,191 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="13680621263400809209" name="Memory Log: Sarah Elazar" cooldown="" response="13680621263400809415" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400809415">
+  <Response dialog="13680621263400809413" id="13680621263400809416" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400809436" name="" cooldown="" response="13680621263400809437">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400809416" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400809437">
+  <Response dialog="13680621263400809435" id="13680621263400809438" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400809508" name="" cooldown="" response="13680621263400809509">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400809438" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400809509">
+  <Response dialog="13680621263400809507" id="13680621263400809510" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400809549" name="Memory Log: Calvino" cooldown="" response="13680621263400809734" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400809734">
+  <Response dialog="13680621263400809733" id="13680621263400809735" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400809781" name="" cooldown="" response="13680621263400809782">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400809735" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400809782">
+  <Response dialog="13680621263400809780" id="13680621263400809783" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400809987" name="Memory Log: Calvino 2" cooldown="" response="13680621263400815294" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263400810528" name="Memory Log: Mikhaila" cooldown="" response="13680621263400810551" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400810551">
+  <Response dialog="13680621263400810550" id="13680621263400810552" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400810623" name="" cooldown="" response="13680621263400810624">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400810552" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400810624">
+  <Response dialog="13680621263400810622" id="13680621263400810625" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400810640" name="" cooldown="" response="13680621263400817280">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400810625" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263400810888" name="Memory Log: Igwe" cooldown="" response="13680621263400810913" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400810913">
+  <Response dialog="13680621263400810912" id="13680621263400810914" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400810938" name="" cooldown="" response="13680621263400810939">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400810914" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400810939">
+  <Response dialog="13680621263400810937" id="13680621263400810940" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400811094" name="Memory Log: Danielle" cooldown="" response="13680621263400811134" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400811134">
+  <Response dialog="13680621263400811133" id="13680621263400811135" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400811257" name="" cooldown="" response="13680621263400811258">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400811135" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400811258">
+  <Response dialog="13680621263400811256" id="13680621263400811259" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263400815294">
+  <Response dialog="13680621263400815293" id="13680621263400815295" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400815316" name="" cooldown="" response="13680621263400815317">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400815295" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400815317">
+  <Response dialog="13680621263400815315" id="13680621263400815318" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400815651" name="" cooldown="" response="13680621263400815652">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400815318" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400815652">
+  <Response dialog="13680621263400815650" id="13680621263400815653" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263400817280">
+  <Response dialog="13680621263400817278" id="13680621263400817281" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400873990" name="Memory Log: Paraplexis" cooldown="" response="13680621263400874021" description="Made with Morgan&apos;s first attempt as using an Operator to remember thing for him. Robo-voice isn&apos;t perfect yet." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="1713490239389131093"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400874021">
+  <Response dialog="13680621263400810639" id="13680621263400874022" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400874071" name="" cooldown="" response="13680621263400874072">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263358634945" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400874022" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="1713490239389131093" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="844024417252490146"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400874072">
+  <Response dialog="13680621263400810783" id="13680621263400874073" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

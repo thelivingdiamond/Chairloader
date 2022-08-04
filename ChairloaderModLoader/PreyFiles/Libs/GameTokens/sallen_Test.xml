@@ -1,0 +1,11 @@
+
+<GameTokensLibrary Name="sallen_Test">
+ <GameToken Id="1313652917" Name="TpathMonstarPrototype.MaxHomingRange" Type="Float" Value="34.000000"/>
+ <GameToken Id="627892387" Name="TpathMonstarPrototype.AttackProximity" Type="Float" Value="10.000000"/>
+ <GameToken Id="305954682" Name="TpathMonstarPrototype.HomingSpeedScale" Type="Float" Value="2.000000"/>
+ <GameToken Id="685451867" Name="TpathMonstarPrototype.UpdateRate" Type="Float" Value="0.100000"/>
+ <GameToken Id="1553845532" Name="TpathMonstarPrototype.BlockLogs" Type="Bool" Value="true"/>
+ <GameToken Id="2003459012" Name="TpathMonstarPrototype.MinHomingRange" Type="Float" Value="3.000000"/>
+ <GameToken Id="1764104604" Name="TpathMonstarPrototype.MinUpdateRate" Type="Float" Value="0.200000"/>
+ <GameToken Id="841359752" Name="TpathMonstarPrototype.AttackDelay" Type="Float" Value="3.000000"/>
+</GameTokensLibrary>

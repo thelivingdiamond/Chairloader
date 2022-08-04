@@ -1,0 +1,10 @@
+
+<Definition root="FabricationPlansDataFile">
+ <Array name="FabricationPlans" elementName="FabricationPlan">
+  <Property name="itemName" type="string"/>
+  <Property name="organic" type="int"/>
+  <Property name="mineral" type="int"/>
+  <Property name="synthetic" type="int"/>
+  <Property name="exotic" type="int"/>
+ </Array>
+</Definition>

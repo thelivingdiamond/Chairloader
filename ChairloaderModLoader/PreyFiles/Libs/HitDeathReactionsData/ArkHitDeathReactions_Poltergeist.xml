@@ -1,0 +1,29 @@
+
+<DeathHitReactionsParams>
+ <HitDeathReactionsConfig collisionBone="spine1_jnt"/>
+ <HitReactionParams>
+  <HitReactionParam validationFunc="IsStandingUp" reactionFunc="RagdollAndImpulse" MinTimeInRagdoll="2.5" MaxTimeInRagdoll="7.5" EHitReactionType="0"/>
+  <HitReactionParam CustomOnlyWhenValid="1" EHitReactionType="1" validationFunc="ThrowPoltergeist" reactionFunc="ThrowPoltergeist" ThrowHitImpulseScale="4.0" ThrowHitRailVertOffset="1.5" ThrowHitCheckDistance="3.0" ThrowHitLedgeCheckDist="0.75" ThrowHitWallGlassCheckHeight="0.6"/>
+  <HitReactionParam CustomOnlyWhenValid="1" EHitReactionType="0" validationFunc="ThrowPoltergeist" reactionFunc="ThrowPoltergeist" ThrowHitImpulseScale="4.0" ThrowHitRailVertOffset="1.5" ThrowHitCheckDistance="3.0" ThrowHitLedgeCheckDist="0.75" ThrowHitWallGlassCheckHeight="0.6"/>
+  <HitReactionParam shotOrigin="forward" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="back" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="left" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="right" validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="forward" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="back" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="left" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="right" validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="1"/>
+  <HitReactionParam shotOrigin="ahead" EHitReactionType="0"/>
+  <HitReactionParam shotOrigin="behind" EHitReactionType="0"/>
+  <HitReactionParam shotOrigin="all90" EHitReactionType="1"/>
+ </HitReactionParams>
+ <DeathReactionParams>
+  <DeathReactionParam reactionFunc="LaserDeath" validationFunc="LaserDeath" EHitReactionType="4"/>
+  <DeathReactionParam reactionFunc="DeathImpulse_Reaction" ragdollOnCollision="1" manqReaction="3">
+   <AllowedSignals>
+    <Signal id="3149325216911145914" minValue="0"/>
+   </AllowedSignals>
+  </DeathReactionParam>
+  <DeathReactionParam shotOrigin="all90" EHitReactionType="4"/>
+ </DeathReactionParams>
+</DeathHitReactionsParams>

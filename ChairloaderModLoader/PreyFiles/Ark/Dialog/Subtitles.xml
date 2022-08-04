@@ -1,0 +1,2 @@
+
+<SubtitleConfig SpeakerNameTimeout="10" MinSubtitleDuration="1" MaxCharacters="96" LookbackCharacters="20" SubtitleTimeout="1.5"/>

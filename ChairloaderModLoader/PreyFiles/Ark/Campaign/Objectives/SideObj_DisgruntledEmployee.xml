@@ -1,0 +1,21 @@
+
+<Objectives>
+ <Objective id="14667999412543427539" title="@loc_15373294129891632207" optional="true">
+  <Clues>
+   <Clue id="844024417316190377" displayName="tracking number" text="@loc_844024417316190378"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="14667999412548027879" displayName="[DEPRECATED]Find Grant" text="@loc_15373294129891632208"/>
+   <Desc id="14667999412548027883" displayName="[DEPRECATED]Use Employee ID Kiosk" text="@loc_15373294129891632209"/>
+   <Desc id="1713490239418284460" displayName="Go to Deep Storage" text="@loc_15373294129891632210"/>
+   <Desc id="1713490239433367438" displayName="Good Luck" text="@loc_15373294129891632211"/>
+   <Desc id="844024417316189839" displayName="Complete" text="@loc_844024417316189840"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="14667999412543428050" displayName="Go to Deep Storage" optional="false" text="@loc_15373294129891632213" markerLabel="@loc_15373294129891632212" Location="1713490239377738413" description="1713490239418284460"/>
+   <Task id="14667999412543428105" displayName="Use Employee ID Kiosk" optional="false" text="@loc_15373294129891632215" markerLabel="@loc_15373294129891632214" Location="1713490239377738413" description="1713490239418284460"/>
+   <Task id="14667999412543428147" displayName="Find Grant" optional="false" text="@loc_15373294129891632217" Location="1713490239386284337" description="1713490239418284460" markerLabel="@loc_15373294129891632216"/>
+   <Task id="1713490239433367101" displayName="Oops" optional="false" text="@loc_15373294129891632218" description="1713490239433367438"/>
+  </Tasks>
+ </Objective>
+</Objectives>

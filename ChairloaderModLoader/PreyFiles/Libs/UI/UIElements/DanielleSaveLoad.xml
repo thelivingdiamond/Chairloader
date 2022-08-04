@@ -1,0 +1,161 @@
+
+<UIElements name="DanielleSaveLoad">
+ <UIElement name="DanielleSaveLoad" render_lockless="1" mouseevents="1" keyevents="0" cursor="0" controller_input="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_savegame.gfx" layer="15">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="saveOpenPage" funcname="save.openPage"/>
+   <function name="saveExitPage" funcname="save.exitPage"/>
+   <function name="clearSaves" funcname="save.clearSaves"/>
+   <function name="addEmptySave" funcname="save.addEmptySave"/>
+   <function name="addSave" funcname="save.addSave">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Type" desc="0=Auto, 1=Quick, 2=Manual" type="int"/>
+    <param name="Date" desc="" type="string"/>
+    <param name="Timestamp" desc="" type="String"/>
+   </function>
+   <function name="updateSave" funcname="save.updateSave">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Duration" desc="" type="String"/>
+    <param name="Location" desc="" type="String"/>
+    <param name="Screenshot" desc="" type="String"/>
+   </function>
+   <function name="updateList" funcname="save.updateList"/>
+   <function name="updateDisplayPane" funcname="save.updateBackgroundImage">
+    <param name="Screenshot" desc="" type="String"/>
+   </function>
+   <function name="setTitle" funcname="save.setTitle">
+    <param name="title" type="string"/>
+   </function>
+   <function name="setTimePlayed" funcname="save.setTimePlayed">
+    <param name="timePlayed" desc="time played as string" type="string"/>
+   </function>
+   <function name="autosaveOpen" funcname="auto.autosaveOpen"/>
+   <function name="autosaveClose" funcname="auto.autosaveClose"/>
+   <function name="tabsOpenPage" funcname="tabs.openPage"/>
+   <function name="tabsExitPage" funcname="tabs.exitPage"/>
+   <function name="clearTabs" funcname="tabs.clearSlots"/>
+   <function name="addTabSlot" funcname="tabs.addSlot">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="tabsUpdateList" funcname="tabs.updateList"/>
+   <function name="tabHighlight" funcname="tabs.highlightID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="slotsOpenPage" funcname="slots.openPage"/>
+   <function name="slotsExitPage" funcname="slots.exitPage"/>
+   <function name="clearSlots" funcname="slots.clearSlots"/>
+   <function name="addEmptySlot" funcname="slots.addEmptySlot">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="addSlot" funcname="slots.addSlot">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Type" desc="0=Auto, 1=Quick, 2=Manual" type="int"/>
+    <param name="Date" desc="" type="string"/>
+    <param name="Timestamp" desc="" type="String"/>
+   </function>
+   <function name="updateSlot" funcname="slots.updateSlot">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Duration" desc="" type="String"/>
+    <param name="Location" desc="" type="String"/>
+    <param name="Screenshot" desc="" type="String"/>
+   </function>
+   <function name="slotsUpdateList" funcname="slots.updateList"/>
+   <function name="difficultyOpenPage" funcname="difficulty.openPage"/>
+   <function name="difficultyExitPage" funcname="difficulty.exitPage"/>
+   <function name="difficultyClearButtons" funcname="difficulty.clearButtons"/>
+   <function name="difficultyAddButton" funcname="difficulty.addButton">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="difficultyUpdateList" funcname="difficulty.updateList"/>
+   <function name="difficultySetDescription" funcname="difficulty.setDescription">
+    <param name="Text" desc="" type="string"/>
+   </function>
+   <function name="loadTransition" funcname="loadTransition"/>
+   <function name="highlightID" funcname="highlightID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="HLUp" funcname="HLUp"/>
+   <function name="HLDown" funcname="HLDown"/>
+   <function name="HLLeft" funcname="HLLeft"/>
+   <function name="HLRight" funcname="HLRight"/>
+   <function name="btnSelect" funcname="btnSelect"/>
+   <function name="btnBack" funcname="btnBack"/>
+   <function name="openPage" funcname="openPage"/>
+   <function name="exitPage" funcname="exitPage"/>
+   <function name="scrollX" funcname="scrollX">
+    <param name="value" type="float"/>
+   </function>
+   <function name="scrollY" funcname="scrollY">
+    <param name="value" type="float"/>
+   </function>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="setNavigationPrompts" desc="strings of keybinds" funcname="tabs.setNavigationPrompts">
+    <param name="L1" desc="" type="string"/>
+    <param name="L2" desc="" type="string"/>
+    <param name="R1" desc="" type="string"/>
+    <param name="R2" desc="" type="string"/>
+   </function>
+   <function name="setPrompt" funcname="global.setPrompt">
+    <param name="Place" desc="1-8" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="global.formatPrompts"/>
+   <function name="screenRotate" funcname="camera.rotateOffset">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="CampaignSelect" fscommand="CampaignSelect" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="CampaignHighlight" fscommand="CampaignHighlight" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="CampaignDelete" fscommand="CampaignDelete" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="showDisplayPane" fscommand="showDisplayPane" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="SaveLoadSelect" fscommand="SaveLoadSelect" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="DifficultySelect" fscommand="DifficultySelect" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="DifficultyHighlight" fscommand="DifficultyHighlight" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="menuTransition" fscommand="menuTransition" desc="">
+    <param name="Page" desc="" type="string"/>
+   </event>
+   <event name="loadTransition" fscommand="loadTransition" desc="">
+    <param name="Page" desc="" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+   <event name="backPressed" fscommand="backPressed"/>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

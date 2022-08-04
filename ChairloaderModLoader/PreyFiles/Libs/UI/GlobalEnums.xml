@@ -1,0 +1,134 @@
+
+<GlobalEnums>
+ <ContainerSize>
+  <entry enum="TINY=TINY"/>
+  <entry enum="SMALL=SMALL"/>
+  <entry enum="MEDIUM=MEDIUM"/>
+  <entry enum="LARGE=LARGE"/>
+ </ContainerSize>
+ <RestoredPoints>
+  <entry enum="HEALTH=HEALTH"/>
+  <entry enum="PSI=PSI"/>
+  <entry enum="OXYGEN=OXYGEN"/>
+ </RestoredPoints>
+ <ItemCategory>
+  <entry enum="NONE=0"/>
+  <entry enum="WEAPONS=1"/>
+  <entry enum="CONSUMABLE=2"/>
+  <entry enum="JUNK=3"/>
+  <entry enum="SPECIAL=4"/>
+ </ItemCategory>
+ <ObjectMapIcon>
+  <entry enum="None=-1"/>
+  <entry enum="Player=0"/>
+  <entry enum="Door=1"/>
+  <entry enum="Fabricator=2"/>
+  <entry enum="Recycler=3"/>
+  <entry enum="GravityShaft=4"/>
+  <entry enum="MedicalOperator=5"/>
+  <entry enum="LevelTransitionDoor=6"/>
+  <entry enum="OxygenRefillStation=7"/>
+  <entry enum="TaskMarker=8"/>
+  <entry enum="Enemy=9"/>
+  <entry enum="Text=10"/>
+  <entry enum="Power=11"/>
+  <entry enum="SecurityStation=12"/>
+ </ObjectMapIcon>
+ <ElitePhantomType>
+  <entry enum="BASE"/>
+  <entry enum="Psychothermal"/>
+  <entry enum="Psychovoltaic"/>
+  <entry enum="Psychosolar"/>
+  <entry enum="Psychoetheric"/>
+  <entry enum="Psychovampiric"/>
+  <entry enum="Psychokinetic"/>
+  <entry enum="Psychogravitic"/>
+ </ElitePhantomType>
+ <TransparencyMode>
+  <entry enum="Auto=0"/>
+  <entry enum="Semi-Transparent=1"/>
+  <entry enum="Opaque=2"/>
+ </TransparencyMode>
+ <ColliderMode>
+  <entry enum="Undefined=0"/>
+  <entry enum="Disabled=1"/>
+  <entry enum="Pushable=3"/>
+  <entry enum="NonPushable=4"/>
+  <entry enum="PushesPlayersOnly=5"/>
+ </ColliderMode>
+ <ReinforcementType>
+  <entry enum="Wave=0"/>
+  <entry enum="Radio=1"/>
+  <entry enum="Flare=2"/>
+  <entry enum="SmokeGrenade=3"/>
+ </ReinforcementType>
+ <Species>
+  <entry enum="Neutral=-1"/>
+  <entry enum="Friendly=0"/>
+  <entry enum="Human(Hostile)=1"/>
+  <entry enum="Alien(Hostile)=2"/>
+ </Species>
+ <OnlySpecies>
+  <entry enum="Any=-1"/>
+  <entry enum="Friendly=0"/>
+  <entry enum="Human(Hostile)=1"/>
+  <entry enum="Alien(Hostile)=2"/>
+ </OnlySpecies>
+ <InterestCategory>
+  <entry enum="Aim=2"/>
+  <entry enum="Movement=3"/>
+  <entry enum="EyeCatching=4"/>
+  <entry enum="View=5"/>
+ </InterestCategory>
+ <InterestFOV>
+  <entry enum="Primary=1"/>
+  <entry enum="Secondary=2"/>
+  <entry enum="Full(360)=3"/>
+ </InterestFOV>
+ <AttachForm>
+  <entry enum="Vertices"/>
+  <entry enum="Edges"/>
+  <entry enum="Surface"/>
+  <entry enum="Volume"/>
+ </AttachForm>
+ <AttachType>
+  <entry enum="None"/>
+  <entry enum="BoundingBox"/>
+  <entry enum="Physics"/>
+  <entry enum="Render"/>
+ </AttachType>
+ <HazardType>
+  <entry enum="None=0"/>
+  <entry enum="Fire=1"/>
+  <entry enum="Frost=2"/>
+  <entry enum="Electricity=3"/>
+ </HazardType>
+ <Tutorials>
+  <entry enum="STEALTH"/>
+  <entry enum="ARMOR"/>
+  <entry enum="VISOR"/>
+  <entry enum="NanoCustom"/>
+ </Tutorials>
+ <HackEncryption>
+  <entry enum="None=0"/>
+  <entry enum="Light=100"/>
+  <entry enum="Medium=200"/>
+  <entry enum="Strong=300"/>
+  <entry enum="Insane=400"/>
+  <entry enum="Ludicrous=500"/>
+ </HackEncryption>
+ <PhysicsType>
+  <entry enum="Rigid=0"/>
+  <entry enum="Static=1"/>
+  <entry enum="None=2"/>
+ </PhysicsType>
+ <SoundObstructionType>
+  <entry enum="Ignore=0"/>
+  <entry enum="SingleRay=1"/>
+  <entry enum="MultipleRays=2"/>
+ </SoundObstructionType>
+ <VolumeType>
+  <entry enum="Ellipsoid=0"/>
+  <entry enum="Cube=1"/>
+ </VolumeType>
+</GlobalEnums>

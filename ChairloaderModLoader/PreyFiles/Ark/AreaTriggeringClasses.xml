@@ -1,0 +1,8 @@
+
+<AreaTriggeringClasses>
+ <Class name="GeomEntity"/>
+ <Class name="RigidBodyEx"/>
+ <Class name="ArkAlienJelly"/>
+ <Class name="ArkAreaHazard"/>
+ <Class name="ArkProjectileToyGun"/>
+</AreaTriggeringClasses>

@@ -1,0 +1,384 @@
+
+<DeathHitReactionsParams>
+ <HitDeathReactionsConfig manqTargetTag="slaveHuman" animDatabaseSlave="Animations/Mannequin/ADB/humanSlaveAnims3P.adb"/>
+ <HitReactionParams/>
+ <DeathReactionParams>
+  <DeathReactionParam>
+   <AllowedHitTypes>
+    <HitType value="environmentalThrow"/>
+    <HitType value="environmentalMelee"/>
+   </AllowedHitTypes>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" ragdollOnCollision="1">
+   <AllowedHitTypes>
+    <HitType value="melee"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="fall"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="vehicleDestruction"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="meleeLeft"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="meleeRight"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="meleeKick"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="meleeUppercut"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="collision"/>
+   </AllowedHitTypes>
+   <AllowedHitTypes>
+    <HitType value="punish"/>
+   </AllowedHitTypes>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" ragdollOnCollision="1" collisionCheckIntersectionWithGround="1">
+   <AllowedParts/>
+   <AllowedStances/>
+   <AllowedHitTypes>
+    <HitType value="punishFall"/>
+   </AllowedHitTypes>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="0" shotOrigin="ahead" minimumDamage="100" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="ExplosionTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="180" shotOrigin="behind" minimumDamage="100" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="ExplosionTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="0" shotOrigin="ahead" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="ExplosionTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="180" shotOrigin="behind" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="ExplosionTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam airState="inAir"/>
+  <DeathReactionParam airState="onObject"/>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" minimumSpeed="2.0" snapToMovementDir="0" ragdollOnCollision="1" movementDirection="forward">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts>
+    <Part value="Head"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" minimumSpeed="2.0" snapToMovementDir="0" shotOrigin="back" ragdollOnCollision="1" movementDirection="forward">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedHitTypes/>
+   <AllowedParts>
+    <Part value="Legs"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" minimumSpeed="2.0" snapToMovementDir="0" ragdollOnCollision="1" movementDirection="forward">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedHitTypes/>
+   <AllowedParts>
+    <Part value="Legs"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="-90" minimumSpeed="2.0" shotOrigin="left" ragdollOnCollision="1" movementDirection="forward">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="90" minimumSpeed="2.0" shotOrigin="right" ragdollOnCollision="1" movementDirection="forward">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" minimumSpeed="2.0" snapOrientationAngle="180" ragdollOnCollision="1" shotOrigin="back" movementDirection="forward">
+   <AllowedParts/>
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" minimumSpeed="2.0" ragdollOnCollision="1" shotOrigin="behind" movementDirection="forward">
+   <AllowedParts/>
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" minimumSpeed="2.0" snapToMovementDir="0" ragdollOnCollision="1" movementDirection="forward">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="180" shotOrigin="behind" ragdollOnCollision="1">
+   <AllowedParts/>
+   <AllowedStances>
+    <Stance value="STANCE_CROUCH"/>
+   </AllowedStances>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="0" ragdollOnCollision="1">
+   <AllowedParts/>
+   <AllowedStances>
+    <Stance value="STANCE_CROUCH"/>
+   </AllowedStances>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="0" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="HighVelocityHitTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts>
+    <Part value="Head"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" shotOrigin="behind" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="HighVelocityHitTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts>
+    <Part value="Head"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="180" shotOrigin="behind" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="HighVelocityHitTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts>
+    <Part value="Legs"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="0" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedStances>
+    <Stance value="STANCE_CROUCH"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="HighVelocityHitTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts>
+    <Part value="Legs"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="180" shotOrigin="behind" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="HighVelocityHitTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" snapOrientationAngle="0" ragdollOnCollision="1">
+   <AllowedStances>
+    <Stance value="StandingStancesAndCrouch"/>
+   </AllowedStances>
+   <AllowedHitTypes>
+    <HitType value="HighVelocityHitTypes"/>
+   </AllowedHitTypes>
+   <AllowedParts/>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts>
+    <Part value="LeftLeg"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts>
+    <Part value="RightLeg"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts>
+    <Part value="Head"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" shotOrigin="behind">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts>
+    <Part value="Groin"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0">
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+   <AllowedParts>
+    <Part value="Groin"/>
+   </AllowedParts>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0" shotOrigin="behind">
+   <AllowedParts/>
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+  </DeathReactionParam>
+  <DeathReactionParam manqReaction="0" probabilityPercent="1.0">
+   <AllowedParts/>
+   <AllowedStances>
+    <Stance value="StandingStances"/>
+   </AllowedStances>
+  </DeathReactionParam>
+ </DeathReactionParams>
+ <TagMap>
+  <Tag value="Legs">
+   <AllowedParts>
+    <Part value="Bip01 R Thigh"/>
+    <Part value="Bip01 R Calf"/>
+    <Part value="Bip01 R Foot"/>
+    <Part value="Bip01 L Thigh"/>
+    <Part value="Bip01 L Calf"/>
+    <Part value="Bip01 L Foot"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="RightLeg">
+   <AllowedParts>
+    <Part value="Bip01 R Thigh"/>
+    <Part value="Bip01 R Calf"/>
+    <Part value="Bip01 R Foot"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="LeftLeg">
+   <AllowedParts>
+    <Part value="Bip01 L Thigh"/>
+    <Part value="Bip01 L Calf"/>
+    <Part value="Bip01 L Foot"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="Legs">
+   <AllowedParts>
+    <Part value="Bip01 R Thigh"/>
+    <Part value="Bip01 R Calf"/>
+    <Part value="Bip01 R Foot"/>
+    <Part value="Bip01 L Thigh"/>
+    <Part value="Bip01 L Calf"/>
+    <Part value="Bip01 L Foot"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="LeftArm">
+   <AllowedParts>
+    <Part value="Bip01 L UpperArm"/>
+    <Part value="Bip01 L ForeArm"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="RightArm">
+   <AllowedParts>
+    <Part value="Bip01 R UpperArm"/>
+    <Part value="Bip01 R ForeArm"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="UpperTorso">
+   <AllowedParts>
+    <Part value="Bip01 Spine1"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="LowerTorso">
+   <AllowedParts>
+    <Part value="Bip01 Spine"/>
+    <Part value="Bip01 Pelvis"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="Torso">
+   <AllowedParts>
+    <Part value="Bip01 Spine1"/>
+    <Part value="Bip01 Spine"/>
+    <Part value="Bip01 Pelvis"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="Head">
+   <AllowedParts>
+    <Part value="Bip01 Head"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="Groin">
+   <AllowedParts>
+    <Part value="Bip01 Pelvis"/>
+   </AllowedParts>
+  </Tag>
+  <Tag value="StandingStances">
+   <AllowedStances>
+    <Stance value="STANCE_STAND"/>
+    <Stance value="STANCE_RELAXED"/>
+    <Stance value="STANCE_STEALTH"/>
+   </AllowedStances>
+  </Tag>
+  <Tag value="StandingStancesAndCrouch">
+   <AllowedStances>
+    <Stance value="STANCE_STAND"/>
+    <Stance value="STANCE_RELAXED"/>
+    <Stance value="STANCE_STEALTH"/>
+    <Stance value="STANCE_CROUCH"/>
+   </AllowedStances>
+  </Tag>
+  <Tag value="SmallCaliberProjectiles">
+   <AllowedProjectiles>
+    <Projectile value="PistolBullet"/>
+   </AllowedProjectiles>
+  </Tag>
+  <Tag value="MediumCaliberWeapons">
+   <AllowedWeapons>
+    <Weapon value="Rifle"/>
+   </AllowedWeapons>
+  </Tag>
+  <Tag value="HighVelocityHitTypes">
+   <AllowedHitTypes>
+    <HitType value="heavyBullet"/>
+   </AllowedHitTypes>
+  </Tag>
+  <Tag value="ExplosionTypes">
+   <AllowedHitTypes>
+    <HitType value="frag"/>
+    <HitType value="explosion"/>
+   </AllowedHitTypes>
+  </Tag>
+ </TagMap>
+</DeathHitReactionsParams>

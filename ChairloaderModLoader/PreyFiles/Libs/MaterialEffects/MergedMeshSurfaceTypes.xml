@@ -1,0 +1,9 @@
+
+<MergedMeshSurfaceTypes>
+ <SurfaceType name="mat_default">
+  <Audio atl_trigger="Play_default_vegetation_rustle" atl_rtpc="default_vegetation_density"/>
+ </SurfaceType>
+ <SurfaceType name="mat_grass">
+  <Audio atl_trigger="Play_default_vegetation_rustle" atl_rtpc="default_vegetation_density"/>
+ </SurfaceType>
+</MergedMeshSurfaceTypes>

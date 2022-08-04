@@ -1,0 +1,26 @@
+
+<Objectives>
+ <Objective id="844024417267871256" title="@loc_15373294129891630262" optional="false">
+  <Clues>
+   <Clue id="761057047958216294" displayName="Dr Calvino Location" text="@loc_15373294129891630263"/>
+   <Clue id="761057047958216398" displayName="Dr Calvino Zero G" text="@loc_15373294129891630264"/>
+   <Clue id="761057047958216537" displayName="Calvino&apos;s Workshop" text="@loc_15373294129891630265"/>
+   <Clue id="761057047960211665" displayName="Roster" text="@loc_15373294129891630266"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="1713490239391637883" displayName="AccessLab" text="@loc_15373294129891630267"/>
+   <Desc id="844024417290844427" displayName="ReturnToLobby" text="@loc_15373294129891630268"/>
+   <Desc id="844024417267871816" displayName="LabComplete" text="@loc_15373294129891630269"/>
+   <Desc id="844024417269416755" displayName="LabCompleteALT" text="@loc_15373294129891630270"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417267949280" displayName="GetKeyCardFromJanuary" optional="false" text="@loc_15373294129891630272" markerLabel="@loc_15373294129891630271" Location="1713490239377285936" description="1713490239391637883"/>
+   <Task id="761057047966870356" displayName="Roster" optional="true" text="@loc_15373294129891630274" markerLabel="@loc_15373294129891630273" Location="844024417263019221" description="1713490239391637883"/>
+   <Task id="761057047966942503" displayName="Calvino&apos;s key" optional="false" text="@loc_15373294129891630276" markerLabel="@loc_15373294129891630275" description="1713490239391637883"/>
+   <Task id="1713490239391637812" displayName="Access Calvino&apos;s Workshop" optional="false" text="@loc_15373294129891630278" markerLabel="@loc_15373294129891630277" Location="844024417263019221" description="1713490239391637883"/>
+   <Task id="844024417267953160" displayName="Access Workshop" optional="false" text="@loc_15373294129891630280" markerLabel="@loc_15373294129891630279" Location="844024417263019221" description="1713490239391637883"/>
+   <Task id="761057047959685349" displayName="RestoreLGConnection" optional="false" text="@loc_15373294129891630282" markerLabel="@loc_15373294129891630281" Location="844024417263019221" description="1713490239391637883"/>
+   <Task id="844024417290844336" displayName="Watch2ndHalfOfVideo" optional="false" text="@loc_15373294129891630284" markerLabel="@loc_15373294129891630283" Location="1713490239377285936" description="844024417290844427"/>
+  </Tasks>
+ </Objective>
+</Objectives>

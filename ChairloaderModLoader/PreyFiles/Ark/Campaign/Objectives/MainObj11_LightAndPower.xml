@@ -1,0 +1,25 @@
+
+<Objectives>
+ <Objective id="844024417256800234" title="@loc_15373294129891630456" optional="false">
+  <Descriptions>
+   <Desc id="986986" displayName="Reboot reactor" text="@loc_15373294129891630457"/>
+   <Desc id="11824555372643756437" displayName="Reactor malfunction" text="@loc_15373294129891630458"/>
+   <Desc id="11824555372645052040" displayName="Complete Reactor Reboot" text="@loc_15373294129891630459"/>
+   <Desc id="844024417283684251" displayName="Completed" text="@loc_15373294129891630460"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="11824555372642445133" displayName="Access Power Plant" optional="false" text="@loc_15373294129891630462" markerLabel="@loc_15373294129891630461"/>
+   <Task id="13856881013223469412" displayName="Deal with Technopath" optional="false" text="@loc_13856881013223469413" Location="4349723564895209499"/>
+   <Task id="1107" displayName="Access the Reactor Control Room" text="@loc_15373294129891630464" markerLabel="@loc_15373294129891630463" optional="false" Location="6732635291182790112"/>
+   <Task id="11824555372643755942" displayName="Investigate Reactor" optional="false" text="@loc_15373294129891630466" markerLabel="@loc_15373294129891630465" Location="6732635291182790112"/>
+   <Task id="11824555372643744446" displayName="Replace divertor" optional="false" text="@loc_15373294129891630468" markerLabel="@loc_15373294129891630467" Location="6732635291182790112"/>
+   <Task id="11824555372645051382" displayName="Complete Reactor Reboot " optional="false" text="@loc_15373294129891630470" markerLabel="@loc_15373294129891630469" Location="6732635291182790112"/>
+   <Task id="6732635291219658328" displayName="Reboot Talos Power Plant" optional="false" text="@loc_15373294129891630472" markerLabel="@loc_15373294129891630471" Location="6732635291182790112"/>
+  </Tasks>
+  <Clues>
+   <Clue id="11824555372652296615" displayName="Replace grounding resistor" text="@loc_15373294129891630473"/>
+   <Clue id="11824555372652298392" displayName="Replacement reactor divertors" text="@loc_15373294129891630474"/>
+   <Clue id="11824555372654371299" displayName="Keycard to Reactor Room and Offices" text="@loc_15373294129891630475"/>
+  </Clues>
+ </Objective>
+</Objectives>

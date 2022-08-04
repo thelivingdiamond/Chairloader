@@ -1,0 +1,39 @@
+
+<ATLConfig atl_name="Creature_Telepath">
+ <AudioSwitches>
+  <ATLSwitch atl_name="Overseer">
+   <ATLSwitchState atl_name="Techno">
+    <WwiseSwitch wwise_name="Overseer">
+     <WwiseValue wwise_name="Techno"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Tele">
+    <WwiseSwitch wwise_name="Overseer">
+     <WwiseValue wwise_name="Tele"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+  </ATLSwitch>
+ </AudioSwitches>
+ <AudioTriggers>
+  <ATLTrigger atl_name="Set_Switch_Telepath">
+   <WwiseEvent wwise_name="Set_Switch_Telepath"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Corrupt_Projectile">
+   <WwiseEvent wwise_name="Play_Telepath_Corrupt_Projectile"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Telepath.bnk" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Telepath.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

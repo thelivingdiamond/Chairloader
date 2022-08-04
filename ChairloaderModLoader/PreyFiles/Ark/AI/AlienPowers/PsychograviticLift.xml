@@ -1,0 +1,6 @@
+
+<Config psiCost="25" displayName="Lift" queryTimerSec="0.1" updateTimerSec="0.033" queryBoxScale="1.1" stopHeightScale="1.05" innerRadiusScale="0.8" alignToSurface="true" avgSurfaceNormalCoeff="0.8" avgCylinderPositionCoeff="0.5" maxHeightAboveGround="50.0" targetingCylinderRadiusScale="0.5" height="10.0" radius="0.5" gravity="5.0" durationSec="10.0" maxDistance="10.0" maxAimAngleDeg="80.0" liftImpulseScale="7.5" centeringImpulseScale="1.0" ZVelocityDamping="0.2" XYVelocityDamping="0.1" ZVelocityLerpCoeff="20.0" XYVelocityLerpCoeff="0.3">
+ <Levels>
+  <Level description="Column of inverted gravity"/>
+ </Levels>
+</Config>

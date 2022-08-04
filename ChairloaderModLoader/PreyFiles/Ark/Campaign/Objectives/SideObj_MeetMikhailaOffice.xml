@@ -1,0 +1,13 @@
+
+<Objectives>
+ <Objective id="13680621263374759171" title="@loc_15373294129891632425" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="13680621263374759172" displayName="Start" text="@loc_15373294129891632426"/>
+   <Desc id="13680621263405642669" displayName="Completed" text="@loc_13680621263405642670"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="13680621263374759421" displayName="Meet Mikhaila" optional="false" text="@loc_15373294129891632428" Location="1713490239377285936" markerLabel="@loc_15373294129891632427"/>
+  </Tasks>
+ </Objective>
+</Objectives>

@@ -1,0 +1,551 @@
+
+<ATLConfig atl_name="Incubation">
+ <AudioRTPCs>
+  <ATLRtpc atl_name="area_fade_distance" path="2D_Amb">
+   <WwiseRtpc wwise_name="area_fade_distance"/>
+  </ATLRtpc>
+ </AudioRTPCs>
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Amb_OpenRoom_Tone_01" path="NPC">
+   <WwiseEvent wwise_name="Play_Amb_OpenRoom_Tone_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_1_1" path="NPC">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Generic_Ship_RumbleAndRattle" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Generic_Ship_RumbleAndRattle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Generic_MetalRattles_Distant" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Generic_MetalRattles_Distant"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_BetaReveal" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_BetaReveal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Incubation_BetaReveal" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Incubation_BetaReveal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Alarm_LP" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Alarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Incubation_Alarm_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Incubation_Alarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_InWorldVox_MetalDetected" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_InWorldVox_MetalDetected"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_DarkStaticWhispers" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_DarkStaticWhispers"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_05" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_05"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_06" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_06"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Purge_Countdown" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Purge_Countdown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_PurgeCountdown_Begin" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_PurgeCountdown_Begin"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Purge_Flame_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Purge_Flame_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Purge_WindGust" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Purge_WindGust"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Player_Purge" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Player_Purge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_BreakerBox_Burst" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_BreakerBox_Burst"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Phantom_LightsOut" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Phantom_LightsOut"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Phantom_Sparks" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Phantom_Sparks"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Phantom_Shift" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Phantom_Shift"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Evnt_Incubation_ExperimentPod_AttractLight" path="Events">
+   <WwiseEvent wwise_name="Stop_Evnt_Incubation_ExperimentPod_AttractLight"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_ExperimentPod_AttractLight" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_ExperimentPod_AttractLight"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_OpeningChair" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_OpeningChair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Debris_Fall" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Debris_Fall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_InWorldVox_Psychoscope_Check" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_InWorldVox_Psychoscope_Check"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Generic_Snap_Light" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Generic_Snap_Light"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Impact_Mimic_Wall_Hits" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Impact_Mimic_Wall_Hits"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_Opening_Movement_03" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_Opening_Movement_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_Opening_Movement_04" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_Opening_Movement_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_Opening_Movement_01" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_Opening_Movement_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_Opening_Movement_05" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_Opening_Movement_05"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_Opening_Movement_02" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_Opening_Movement_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Mimic_Opening_Movement_06" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Mimic_Opening_Movement_06"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Beep_EnterMetalDetector" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Beep_EnterMetalDetector"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_WaterDrips_Steady" path="Particles">
+   <WwiseEvent wwise_name="Play_Env_WaterDrips_Steady"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Incubation_Purge_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Purge_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Phantomr_Room_PowerOn" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Phantomr_Room_PowerOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Phantom_Room_PowerOff" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Phantom_Room_PowerOff"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Decontamination" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Decontamination"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Sparks" path="Particles">
+   <WwiseEvent wwise_name="Play_Env_Sparks"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Shower" path="Particles">
+   <WwiseEvent wwise_name="Play_Env_Shower"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_ComputerTone_Future" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_ComputerTone_Future"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_Incubation_Machine_Incenerator" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_Incubation_Machine_Incenerator"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_IncubationMachine_1" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_IncubationMachine_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_eerieGritTone_01" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_eerieGritTone_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_ComputerTone_Normal" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_ComputerTone_Normal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_ComputerTone_Normal_02" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_ComputerTone_Normal_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_ComputerTone_Normal_03" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_ComputerTone_Normal_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_IncubationMachine_2" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_IncubationMachine_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_IncubationMachine_3" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_IncubationMachine_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_IncubationMachine_4" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_IncubationMachine_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_NeonBuzz" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_NeonBuzz"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_TubeTone" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_TubeTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_TVStatic" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_TVStatic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_StaticLoop_2" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_StaticLoop_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Drain" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Drain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_StaticLoop_3" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_StaticLoop_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_Incubation_Machine_4" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_Incubation_Machine_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_eerieAlarm" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_eerieAlarm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Grnded_Incubation_Machine_5" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Env_Grnded_Incubation_Machine_5"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_NeonBuzz" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_NeonBuzz"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Phys_Impact_Glass_Smash" path="Events">
+   <WwiseEvent wwise_name="Play_Phys_Impact_Glass_Smash"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_DialogLine_1" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_DialogLine_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_DialogLine_2" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_DialogLine_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_FlyTowardsGoal" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_FlyTowardsGoal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Load_Sample" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Load_Sample"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Mechanics_01" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Mechanics_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_TurnOn" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_TurnOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_DialogLine_3" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_DialogLine_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Mechanics_02" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Mechanics_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Mechanics_03" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Mechanics_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Move_1ShotA" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Move_1ShotA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Clasp" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Clasp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Talk_Telemetry" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Talk_Telemetry"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorBot_Move_1ShotB" path="Operator">
+   <WwiseEvent wwise_name="Play_OperatorBot_Move_1ShotB"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Base_Mechanics_04" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_Base_Mechanics_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Base_Mechanics_01" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_Base_Mechanics_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Base_Mechanics_02" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_Base_Mechanics_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Base_Mechanics_03" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_Base_Mechanics_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Base_Mechanics_05" path="Operator">
+   <WwiseEvent wwise_name="Play_Operator_Base_Mechanics_05"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_FlyAway_Telem" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_FlyAway_Telem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveForward_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveForward_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Push_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Push_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Release_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Release_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Release_Telem" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Release_Telem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveBack_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveBack_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_SlowDown_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_SlowDown_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_FlyUp_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_FlyUp_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Land_Telem" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Land_Telem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveBack_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveBack_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_FlyAway_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_FlyAway_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_FlyAway_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_FlyAway_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Move_Medium_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Move_Medium_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Move_Short_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Move_Short_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveBack_Telem" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveBack_Telem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveDown_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveDown_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveDown_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveDown_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveDown_Telem" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveDown_Telem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_MoveForward_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_MoveForward_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_TakeOff_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_TakeOff_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_TakeOff_Droid" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_TakeOff_Droid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_TakeOff_Telem" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_TakeOff_Telem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Shower_LP" path="Particles">
+   <WwiseEvent wwise_name="Stop_Env_Shower_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Incenerator_JetLP" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Stop_Obj_Incenerator_JetLP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Incenerator_JetLP" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_Obj_Incenerator_JetLP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Sparks_PhantomRoom" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_Sparks_PhantomRoom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Fabricator_PowerOn_1" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_Fabricator_PowerOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Ball_Open" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_Mimic_Ball_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Ball_Close" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_Mimic_Ball_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ExperimentPod_LightOn_03" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_ExperimentPod_LightOn_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ExtractionDevice_DoorClose" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_ExtractionDevice_DoorClose"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ExtractionDevice_DoorOpen" path="ExtractionDevice">
+   <WwiseEvent wwise_name="Play_ExtractionDevice_DoorOpen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lever_02" path="Doors">
+   <WwiseEvent wwise_name="Play_Obj_Lever_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lever_01" path="Doors">
+   <WwiseEvent wwise_name="Play_Obj_Lever_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb2D_Test_Loaded" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb2D_Test_Loaded"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Ship_Innerworkings" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Ship_Innerworkings"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_04" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Apartment_GameOpening" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Apartment_GameOpening"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_03" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_ContainmentUnit_EerieRinging" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_ContainmentUnit_EerieRinging"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_02" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_07_Loaded" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_07_Loaded"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_DeepSpace" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_DeepSpace"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_LowSynthMoan" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_LowSynthMoan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Grnded_SimpleTone_Light" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Grnded_SimpleTone_Light"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Grnded_LargeChamber" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Grnded_LargeChamber"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_DarkSynth_Tonal" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_DarkSynth_Tonal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Incubation_CloseRoomToneWithGears" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Incubation_CloseRoomToneWithGears"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_ContainmentUnit_Concept_1" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_ContainmentUnit_Concept_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_ContainmentUnit_Motor_LP" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_ContainmentUnit_Motor_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_ContainmentUnit_Concept_2" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_ContainmentUnit_Concept_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Bathroom" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Bathroom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_01" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_RoomTone_Simple_07" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_RoomTone_Simple_07"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Drain" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Drain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_eerieAlarm" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_eerieAlarm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_TubeTone" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_TubeTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_eerieGritTone_01" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_eerieGritTone_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_ComputerTone_Future" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_ComputerTone_Future"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_ComputerTone_Normal_02" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_ComputerTone_Normal_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_Incubation_Machine_Incenerator" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_Incubation_Machine_Incenerator"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_Incubation_Machine_5" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_Incubation_Machine_5"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_IncubationMachine_1" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_IncubationMachine_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_IncubationMachine_3" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_IncubationMachine_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_ComputerTone_Normal" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_ComputerTone_Normal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_IncubationMachine_4" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_IncubationMachine_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_IncubationMachine_2" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_IncubationMachine_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_TVStatic" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_TVStatic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_StaticLoop_2" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_StaticLoop_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_Incubation_Machine_4" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_Incubation_Machine_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_NeonBuzz_01" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_NeonBuzz_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Grnded_ComputerTone_Normal_03" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_Grnded_ComputerTone_Normal_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_StaticLoop_3" path="3D_Amb">
+   <WwiseEvent wwise_name="Stop_Env_StaticLoop_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_SlidingDouble_Default" path="Doors">
+   <WwiseEvent wwise_name="Play_Obj_Door_SlidingDouble_Default"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_SlidingDouble_Large" path="Doors">
+   <WwiseEvent wwise_name="Play_Obj_Door_SlidingDouble_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_LevelTrans_Default" path="Doors">
+   <WwiseEvent wwise_name="Play_Obj_Door_LevelTrans_Default"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Mimic_Room" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Mimic_Room"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_RussianPrisoner_BodyFall" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_RussianPrisoner_BodyFall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_RussianPrisoner_BangOnGlass" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_RussianPrisoner_BangOnGlass"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_RussianPrisoner_HandsOnGlass" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_RussianPrisoner_HandsOnGlass"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_RussianPrisoner_Steps" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_RussianPrisoner_Steps"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_RussianPrisoner_BangOnGlass_Heavy" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_RussianPrisoner_BangOnGlass_Heavy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_RussianPrisoner_FloorScrape" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_RussianPrisoner_FloorScrape"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NPC_BoneSnap" path="NPC">
+   <WwiseEvent wwise_name="Play_NPC_BoneSnap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PRNT_BetaPod_FullMix" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_PRNT_BetaPod_FullMix"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BetaPod_EnergyFlow_LP" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_BetaPod_EnergyFlow_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BetaPod_Generator_LP" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_BetaPod_Generator_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BetaPod_EngineLow_LP" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_BetaPod_EngineLow_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BetaPod_Mechanics_LP" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_BetaPod_Mechanics_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Alarm_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Alarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Fly_LP" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Fly_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PodBot_Move_Short_Energy" path="Operator">
+   <WwiseEvent wwise_name="Play_PodBot_Move_Short_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_PodBot_Fly_LP" path="Operator">
+   <WwiseEvent wwise_name="Stop_PodBot_Fly_LP"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioEnvironments>
+  <ATLEnvironment atl_name="environment">
+   <WwiseRtpc wwise_name="SS_Air_Presence"/>
+  </ATLEnvironment>
+ </AudioEnvironments>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Incubation" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Incubation.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

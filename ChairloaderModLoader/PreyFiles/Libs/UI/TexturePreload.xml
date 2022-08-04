@@ -1,0 +1,59 @@
+
+<Preload>
+ <Global>
+  <Preload file="Libs/UI/GFX/../Textures/input/*"/>
+  <Preload file="Libs/UI/GFX/../Textures/input/ps4/*"/>
+  <Preload file="Libs/UI/GFX/../Textures/input/xbox/*"/>
+  <Preload file="Libs/UI/GFX/../Textures/input/pc/*"/>
+  <Preload file="Libs/UI/GFX/../Textures/danielle_shared_textures/*"/>
+  <Preload file="Libs/UI/GFX/../Textures/danielle_loading/*"/>
+  <Preload file="Libs/UI/GFX/../Textures/danielle_brightness/*"/>
+ </Global>
+ <NoLevel>
+  <Preload file="Libs/UI/GFX/../Textures/danielle_loading/*"/>
+ </NoLevel>
+ <Levels>
+  <Common>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_hud/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_hacking_2/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_markers/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_PDA/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_level_trans_door/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_workstation_simlabs/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_kiosk_controls/*"/>
+   <Preload file="Libs/UI/GFX/../Textures/danielle_operator/*"/>
+   <Preload file="Libs/UI/Textures/icons_abilities/*"/>
+   <Preload file="Libs/UI/Textures/icons_abilities_lrg/*"/>
+   <Preload file="Libs/UI/Textures/icons_inventory/*"/>
+   <Preload file="Libs/UI/Textures/icons_portaits/*"/>
+   <Preload file="Libs/UI/Textures/danielle_tutorial_images_small/*"/>
+   <Preload texture="Objects/Environment/Props/Space/Moon_A/Moon_A_Bottom_ddna.dds"/>
+   <Preload texture="Objects/Environment/Props/Space/Moon_A/Moon_A_Bottom_diff.dds"/>
+   <Preload texture="Objects/Environment/Props/Space/Moon_A/Moon_Top_ddna.dds"/>
+   <Preload texture="Objects/Environment/Props/Space/Moon_A/Moon_A_Bottom_Lights_emi.dds"/>
+   <Preload texture="Objects/Environment/Props/Space/Moon_A/Moon_Top_diff.dds"/>
+   <Preload texture="Objects/Environment/Props/Space/Moon_A/Moon_A_det.dds"/>
+   <Preload texture="Objects/sky/earth_diff.dds"/>
+   <Preload texture="Objects/sky/earth_ddna.dds"/>
+   <Preload texture="objects/sky/earth_spec.dds"/>
+   <Preload texture="objects/sky/earth_clouds_diff.dds"/>
+   <Preload texture="objects/sky/earth_dark_diff.dds"/>
+   <Preload texture="objects/sky/milky_way_a_diff.dds"/>
+  </Common>
+  <VS_Incubation_VS_Incubation>
+   <Preload texture="Textures/User/epetit/signs_direction_02.dds"/>
+   <Preload texture="objects/user/ebeyhl/glass_shatter_mimic/glass_shatter_mimic_diff.dds"/>
+   <Preload texture="objects/user/ebeyhl/glass_shatter_mimic/glass_shatter_mimic_tint.dds"/>
+   <Preload texture="objects/user/ebeyhl/glass_shatter_mimic/glass_shatter_mimic_ddn.dds"/>
+   <Preload texture="objects/environment/props/coldwar/statue_psychotronics_a/statue_psychotronics_a_plate_diff.dds"/>
+   <Preload texture="objects/environment/props/coldwar/statue_psychotronics_a/statue_psychotronics_a_plate_spec.dds"/>
+   <Preload texture="objects/environment/props/coldwar/statue_psychotronics_a/statue_psychotronics_a_plate_ddna.dds"/>
+   <Preload texture="objects/environment/props/coldwar/statue_psychotronics_a/statue_psychotronics_a_diff.dds"/>
+   <Preload texture="objects/environment/props/coldwar/statue_psychotronics_a/statue_psychotronics_a_spec.dds"/>
+   <Preload texture="objects/environment/props/coldwar/statue_psychotronics_a/statue_psychotronics_a_ddna.dds"/>
+   <Preload texture="Textures/characters/human/NPC/Scientist/Scientist_MaleBody_01_diff.dds"/>
+   <Preload texture="textures/characters/human/npc/scientist/scientist_malebody_01_spec.dds"/>
+   <Preload texture="textures/characters/human/npc/scientist/scientist_malebody_01_ddna.dds"/>
+  </VS_Incubation_VS_Incubation>
+ </Levels>
+</Preload>

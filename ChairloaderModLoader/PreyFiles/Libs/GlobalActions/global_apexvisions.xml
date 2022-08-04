@@ -1,0 +1,606 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="Ark:RemoteEvent" pos="-4360,2890,0">
+   <Inputs remoteEvent_Event="844024417304769325"/>
+  </Node>
+  <Node Id="12" Class="Ark:RemoteEvent" pos="-1610,2830,0">
+   <Inputs remoteEvent_Event="844024417304837680"/>
+  </Node>
+  <Node Id="15" Class="Mission:GameTokenSet" pos="720,2800,0">
+   <Inputs gametokenid_Token="1437407988" Value="false"/>
+  </Node>
+  <Node Id="17" Name="Play_apex_vision" Class="_commentbox" pos="-4420,2414,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="9780" Height="1740"/>
+  </Node>
+  <Node Id="27" Class="UI:Display:Display" pos="-180,3340,0">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1"/>
+  </Node>
+  <Node Id="33" Class="Actor:ActionFilter" pos="2070,2780,0">
+   <Inputs entityId="0" Filter="NeuromodIntro"/>
+  </Node>
+  <Node Id="35" Class="Math:Equal" pos="2030,2650,0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="36" Name="Play_Bink" Class="_commentbox" pos="1650,3484,0">
+   <Inputs TextSize="1" Color="0.144129,0.982251,0.205079" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="560" Height="260"/>
+  </Node>
+  <Node Id="642" Class="Ark:BinkMovie" pos="2940,-660,0">
+   <Inputs file_Movie="videos/tempapexvisionphase1.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="644" Class="Time:FrameDelay" pos="2750,-510,0">
+   <Inputs/>
+  </Node>
+  <Node Id="677" Class="Math:Add" pos="350,770,0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="679" Class="Mission:GameTokenGet" pos="-80,760,0">
+   <Inputs gametokenid_Token="1251960788"/>
+  </Node>
+  <Node Id="683" Class="Logic:DeMultiplexer" pos="930,760,0">
+   <Inputs Index="0" Mode="0" WrapAround="0"/>
+  </Node>
+  <Node Id="685" Class="Ark:Debug:ConsoleEvent" pos="-2870,2840,0">
+   <Inputs Command="triggerApexVision"/>
+  </Node>
+  <Node Id="687" Class="Mission:GameTokenSet" pos="510,760,0">
+   <Inputs gametokenid_Token="1251960788" Value=""/>
+  </Node>
+  <Node Id="693" Class="Logic:Gate" pos="1650,-270,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="695" Class="Mission:GameTokenCheck" pos="-3190,2920,0">
+   <Inputs gametokenid_Token="828536512" CheckValue="true"/>
+  </Node>
+  <Node Id="697" Class="Ark:Locations:CheckLocation" pos="-2770,2940,0">
+   <Inputs location_Location="844024417311241288"/>
+  </Node>
+  <Node Id="2448" Class="ArkPlayer:UnequipWeapon" pos="-540,3230,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2454" Class="Actor:PlayMannequinFragment" pos="2350,2990,0">
+   <Inputs entityId="0" Fragment="PassOut_Idle" Tags="" Priority="10"/>
+  </Node>
+  <Node Id="2459" Class="Time:Delay" pos="900,3540,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2461" Class="Image:ScreenFader" pos="1170,3580,0">
+   <Inputs FadeGroup="0" UseCurColor="1" FadeInTime="0" FadeOutTime="0.95" color_FadeColor="1,1,1" tex_TextureName="" UpdateAlways="1"/>
+  </Node>
+  <Node Id="2463" Class="Image:ScreenFader" pos="2470,3620,0">
+   <Inputs FadeGroup="0" UseCurColor="1" FadeInTime="1" FadeOutTime="0.5" color_FadeColor="1,1,1" tex_TextureName="" UpdateAlways="1"/>
+  </Node>
+  <Node Id="2476" Class="Logic:Any" pos="110,3060,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2495" Class="UI:Display:Display" pos="3320,3210,0">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1"/>
+  </Node>
+  <Node Id="2498" Class="ArkPlayer:GetCurrentWeapon" pos="-750,3330,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2499" Class="ArkPlayer:SetCurrentWeapon" pos="3700,3130,0">
+   <Inputs itemId="0"/>
+  </Node>
+  <Node Id="2515" Class="Ark:QueueTutorials" pos="-620,3090,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2516" Class="Ark:QueueTutorials" pos="3300,2970,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2677" Class="Time:Delay" pos="2250,3580,0">
+   <Inputs delay="0.2" resetOnInput="0"/>
+  </Node>
+  <Node Id="14691" Name="Timer_to_prevent_visions_from_happening_back_to_back.\nFires_Vision_Finished_event_regardless,_so_scripting_that_relies\non_the_visions_will_proceed_unabated." Class="_comment" pos="-2240,2620,0"/>
+  <Node Id="14705" Class="Ark:Debug:ConsoleEvent" pos="-2830,3120,0">
+   <Inputs Command="NoVisions"/>
+  </Node>
+  <Node Id="14707" Class="Logic:Gate" pos="-2490,3020,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14708" Class="Ark:SendRemoteEvent" pos="-2270,2760,0">
+   <Inputs remoteEvent_Event="844024417304837680"/>
+  </Node>
+  <Node Id="14709" Class="Game:Start" pos="-1950,-2460,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="14711" Class="Mission:GameTokenCheck" pos="-1590,-2450,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14713" Class="Ark:SunDisabler" pos="-1020,-2410,0">
+   <Inputs DisableSun="0"/>
+  </Node>
+  <Node Id="14715" Class="Math:BooleanTo" pos="-1170,-2420,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14719" Class="Ark:Debug:ConsoleEvent" pos="-1490,-2250,0">
+   <Inputs Command="killTheSun"/>
+  </Node>
+  <Node Id="14721" Class="Mission:GameTokenCheck" pos="2310,-550,0">
+   <Inputs gametokenid_Token="211598630" CheckValue="true"/>
+  </Node>
+  <Node Id="14724" Class="Ark:BinkMovie" pos="2930,-910,0">
+   <Inputs file_Movie="videos/tempapexvisionphase1_f.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14725" Class="Time:FrameDelay" pos="2740,-760,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14726" Class="Ark:BinkMovie" pos="2860,-20,0">
+   <Inputs file_Movie="videos/tempapexvisionphase2.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14727" Class="Time:FrameDelay" pos="2670,130,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14728" Class="Logic:Gate" pos="1630,60,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14730" Class="Mission:GameTokenCheck" pos="2230,90,0">
+   <Inputs gametokenid_Token="211598630" CheckValue="true"/>
+  </Node>
+  <Node Id="14731" Class="Ark:BinkMovie" pos="2850,-270,0">
+   <Inputs file_Movie="videos/tempapexvisionphase2_f.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14732" Class="Time:FrameDelay" pos="2660,-120,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14733" Class="Ark:BinkMovie" pos="2890,570,0">
+   <Inputs file_Movie="videos/tempapexvisionphase3.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14734" Class="Time:FrameDelay" pos="2700,720,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14735" Class="Logic:Gate" pos="1740,640,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14737" Class="Mission:GameTokenCheck" pos="2260,680,0">
+   <Inputs gametokenid_Token="211598630" CheckValue="true"/>
+  </Node>
+  <Node Id="14738" Class="Ark:BinkMovie" pos="2880,320,0">
+   <Inputs file_Movie="videos/tempapexvisionphase3_f.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14739" Class="Time:FrameDelay" pos="2690,470,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14740" Class="Ark:BinkMovie" pos="2900,1110,0">
+   <Inputs file_Movie="videos/tempapexvisionphase4.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14741" Class="Time:FrameDelay" pos="2710,1260,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14742" Class="Logic:Gate" pos="1750,1180,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14744" Class="Mission:GameTokenCheck" pos="2270,1220,0">
+   <Inputs gametokenid_Token="211598630" CheckValue="true"/>
+  </Node>
+  <Node Id="14745" Class="Ark:BinkMovie" pos="2890,860,0">
+   <Inputs file_Movie="videos/tempapexvisionphase4_f.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14746" Class="Time:FrameDelay" pos="2700,1010,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14747" Class="Ark:BinkMovie" pos="2900,1770,0">
+   <Inputs file_Movie="videos/tempapexvisionphase5.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14748" Class="Time:FrameDelay" pos="2710,1920,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14749" Class="Logic:Gate" pos="1750,1840,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14751" Class="Mission:GameTokenCheck" pos="2270,1880,0">
+   <Inputs gametokenid_Token="211598630" CheckValue="true"/>
+  </Node>
+  <Node Id="14752" Class="Ark:BinkMovie" pos="2890,1520,0">
+   <Inputs file_Movie="videos/tempapexvisionphase5_f.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="14753" Class="Time:FrameDelay" pos="2700,1670,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14839" Class="Game:SaveGame" pos="-680,3420,0">
+   <Inputs Name="quicksave" Desc="" DelaySaveIfPlayerInAir="0"/>
+  </Node>
+  <Node Id="14840" Class="Game:SaveGame" pos="3700,3220,0">
+   <Inputs Name="quicksave" Desc="" DelaySaveIfPlayerInAir="0"/>
+  </Node>
+  <Node Id="14933" Class="Math:EqualCheck" pos="-1850,3360,0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="14934" Class="Actor:PlayMannequinFragment" pos="390,2990,0">
+   <Inputs entityId="0" Fragment="PassOut" Tags="" Priority="10"/>
+  </Node>
+  <Node Id="14944" Class="Ark:Debug:ConsoleEvent" pos="-740,3960,0">
+   <Inputs Command="testNMBink"/>
+  </Node>
+  <Node Id="14945" Class="Math:EqualCheck" pos="-1850,3450,0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="14955" Class="Ark:GravShaftPlayerEvent" pos="-1840,3580,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14958" Class="Actor:Sensor" pos="-2220,3340,0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="14962" Class="Actor:LocalPlayer" pos="-2510,3290,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14964" Class="Game:Start" pos="-2620,3440,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="14969" Class="Math:SetNumber" pos="-1510,3540,0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="14970" Class="Math:SetNumber" pos="-1510,3630,0">
+   <Inputs in="1"/>
+  </Node>
+  <Node Id="14975" Class="Logic:DeMultiplexer" pos="-1260,3350,0">
+   <Inputs Index="0" Mode="1" WrapAround="1"/>
+  </Node>
+  <Node Id="14978" Class="ArkPlayer:GetPlayerCombatState" pos="-1010,3360,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14980" Class="Logic:Gate" pos="-590,3740,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14982" Class="Image:ScreenFader" pos="-230,3840,0">
+   <Inputs FadeGroup="0" UseCurColor="1" FadeInTime="0.5" FadeOutTime="0.01" color_FadeColor="0,0,0" tex_TextureName="" UpdateAlways="1"/>
+  </Node>
+  <Node Id="14983" Class="Image:ScreenFader" pos="810,3820,0">
+   <Inputs FadeGroup="0" UseCurColor="1" FadeInTime="0.5" FadeOutTime="0.5" color_FadeColor="1,1,1" tex_TextureName="" UpdateAlways="1"/>
+  </Node>
+  <Node Id="14984" Class="Time:Delay" pos="600,3870,0">
+   <Inputs delay="0.2" resetOnInput="0"/>
+  </Node>
+  <Node Id="14988" Class="Time:Delay" pos="-460,3960,0">
+   <Inputs delay="0.25" resetOnInput="0"/>
+  </Node>
+  <Node Id="14990" Class="Ark:RemoteEvent" pos="-1060,710,0">
+   <Inputs remoteEvent_Event="844024417326960771"/>
+  </Node>
+  <Node Id="14992" Class="Ark:SendRemoteEvent" pos="5130,810,0">
+   <Inputs remoteEvent_Event="844024417326960794"/>
+  </Node>
+  <Node Id="14993" Class="Ark:SendRemoteEvent" pos="1670,3510,0">
+   <Inputs remoteEvent_Event="844024417326960771"/>
+  </Node>
+  <Node Id="14995" Class="Ark:RemoteEvent" pos="1660,3670,0">
+   <Inputs remoteEvent_Event="844024417326960794"/>
+  </Node>
+  <Node Id="14997" Class="Logic:Gate" pos="1980,3580,0">
+   <Inputs SetClosed="1" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14998" Class="Ark:SendRemoteEvent" pos="3330,3510,0">
+   <Inputs remoteEvent_Event="844024417304837680"/>
+  </Node>
+  <Node Id="15001" Name="Player_is_in_a_state_where_we_just_want_to_play_the_bink_and_not_the_animation" Class="_commentbox" pos="-750,3711,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1850" Height="350"/>
+  </Node>
+  <Node Id="15002" Class="Ark:SendRemoteEvent" pos="40,3830,0">
+   <Inputs remoteEvent_Event="844024417326960771"/>
+  </Node>
+  <Node Id="15003" Class="Ark:RemoteEvent" pos="30,3950,0">
+   <Inputs remoteEvent_Event="844024417326960794"/>
+  </Node>
+  <Node Id="15004" Class="Logic:Gate" pos="360,3880,0">
+   <Inputs SetClosed="1" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="15005" Name="Play_the_bink" Class="_commentbox" pos="-1950,-925,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="7390" Height="3020"/>
+  </Node>
+  <Node Id="15006" Name="Disable_the_sun_if_the_Apex_has_arrived" Class="_commentbox" pos="-1960,-2501,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1141" Height="312"/>
+  </Node>
+  <Node Id="15007" Class="Actor:Sensor" pos="1750,2430,0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="15009" Class="Logic:Gate" pos="2910,3030,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15011" Class="Debug:DisplayMessage" pos="830,2940,0">
+   <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="15012" Class="Debug:DisplayMessage" pos="820,3200,0">
+   <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="15014" Class="Actor:LocalPlayer" pos="140,2920,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15017" Class="Ark:PostEffect" pos="1140,3420,0">
+   <Inputs posteffect_PostEffect="2428940965289903677"/>
+  </Node>
+  <Node Id="15020" Name="&quot;Fade_out&quot;_post_effect" Class="_commentbox" pos="1130,3396,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="330" Height="120"/>
+  </Node>
+  <Node Id="15021" Class="Ark:PostEffect" pos="2470,3490,0">
+   <Inputs posteffect_PostEffect="2428940965289903671"/>
+  </Node>
+  <Node Id="15023" Name="&quot;Fade_in&quot;_post_effect" Class="_commentbox" pos="2450,3466,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="340" Height="130"/>
+  </Node>
+  <Node Id="15024" Class="Ark:BinkMovie" pos="-500,720,0">
+   <Inputs file_Movie="videos/apexvision_bumper_in.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="15025" Class="Ark:BinkMovie" pos="4720,760,0">
+   <Inputs file_Movie="videos/apexvision_bumper_out.bk2" InstanceId="0" AutoPlay="0" Loop="0" Fullscreen="1" PauseGame="1" Skippable="0"/>
+  </Node>
+  <Node Id="15027" Class="Time:FrameDelay" pos="-710,750,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15028" Name="Intro_bumper" Class="_commentbox" pos="-540,704,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="430" Height="240"/>
+  </Node>
+  <Node Id="15030" Class="Logic:Gate" pos="4250,730,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15032" Class="Time:FrameDelay" pos="4510,820,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15033" Name="Outro_bumper" Class="_commentbox" pos="4690,728,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="430" Height="240"/>
+  </Node>
+  <Node Id="15035" Class="Time:FrameDelay" pos="-2510,3350,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15037" Class="Logic:Gate" pos="-1850,3290,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15041" Class="Logic:All" pos="-1130,3730,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15043" Class="Time:Delay" pos="900,3440,0">
+   <Inputs delay="0.25" resetOnInput="0"/>
+  </Node>
+  <Node Id="15047" Class="Mission:GameTokenSet" pos="-1600,2710,0">
+   <Inputs gametokenid_Token="2067707504" Value="false"/>
+  </Node>
+  <Node Id="15057" Class="Actor:PlayerStaging" pos="400,2810,0">
+   <Inputs ViewLimitDir="0,0,0" InLocalSpace="1" ViewLimitYaw="0" ViewLimitPitch="0" LockPlayer="1" TryStance="-1"/>
+  </Node>
+  <Node Id="15058" Class="Actor:PlayerStaging" pos="2920,2840,0">
+   <Inputs ViewLimitDir="0,0,0" InLocalSpace="1" ViewLimitYaw="0" ViewLimitPitch="0" LockPlayer="0" TryStance="-1"/>
+  </Node>
+  <Node Id="15059" Class="Mission:GameTokenGet" pos="-764.73615,474.16833,0">
+   <Inputs gametokenid_Token="1251960788"/>
+  </Node>
+  <Node Id="15060" Class="Mission:GameTokenGet" pos="-4060,2880,0">
+   <Inputs gametokenid_Token="1251960788"/>
+  </Node>
+  <Node Id="15062" Class="Math:SetNumber" pos="290,940,0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="15064" Class="Logic:ArkCompare" pos="-3450,2900,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15065" Class="Math:SetNumber" pos="-3640,2970,0">
+   <Inputs in="5"/>
+  </Node>
+  <Node Id="15066" Class="Ark:SendRemoteEvent" pos="-3240,2790,0">
+   <Inputs remoteEvent_Event="844024417304837680"/>
+  </Node>
+  <Node Id="15068" Class="Mission:GameTokenSet" pos="-3980,3150,0">
+   <Inputs gametokenid_Token="1251960788" Value="6"/>
+  </Node>
+  <Node Id="15071" Class="Logic:Gate" pos="1650,-180,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15093" Class="Time:Delay" pos="1460,3560,0">
+   <Inputs delay="3" resetOnInput="0"/>
+  </Node>
+  <Node Id="15096" Class="Ark:Objectives:TaskState" pos="-4215.3984,4657.8569,0">
+   <Inputs task_Task="844024417275816432" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15097" Class="Ark:Objectives:TaskState" pos="-4400,4860,0">
+   <Inputs task_Task="-6622188701092573652" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15099" Class="Logic:Gate" pos="-3780,4810,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="15101" Class="Ark:SendRemoteEvent" pos="-3490,4840,0">
+   <Inputs remoteEvent_Event="844024417304769325"/>
+  </Node>
+  <Node Id="15102" Name="Trigger_apex_vision_if_the_player_triggers_one_of_the_end_game_setups" Class="_commentbox" pos="-4440,4601,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1340" Height="500"/>
+  </Node>
+  <Node Id="15103" Class="Ark:RemoteEvent" pos="-1480,3840,0">
+   <Inputs remoteEvent_Event="844024417304837680"/>
+  </Node>
+  <Node Id="15105" Class="Audio:Trigger" pos="-437.5957,1145.27,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Apex_Bumper_In" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="15106" Class="Audio:Trigger" pos="4710,1070,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Apex_Bumper_Out" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="15107" Name="Save_gating" Class="_commentbox" pos="-1630,2675,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="800" Height="250"/>
+  </Node>
+  <Node Id="15108" Class="Mission:GameTokenSet" pos="-1280,2820,0">
+   <Inputs gametokenid_Token="2067707504" Value="true"/>
+  </Node>
+  <Node Id="15110" Class="Ark:Player:KillLatentPowers" pos="410,3390,0">
+   <Inputs/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="15060" nodeOut="2" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15108" nodeOut="12" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="35" portIn="Disable" portOut="true" enabled="1"/>
+  <Edge nodeIn="2495" nodeOut="35" portIn="show" portOut="true" enabled="1"/>
+  <Edge nodeIn="15058" nodeOut="35" portIn="Trigger" portOut="true" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="642" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="642" nodeOut="644" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="687" nodeOut="677" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="687" nodeOut="677" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="677" nodeOut="679" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="693" nodeOut="683" portIn="In" portOut="Port0" enabled="1"/>
+  <Edge nodeIn="14728" nodeOut="683" portIn="In" portOut="Port2" enabled="1"/>
+  <Edge nodeIn="14735" nodeOut="683" portIn="In" portOut="Port3" enabled="1"/>
+  <Edge nodeIn="14742" nodeOut="683" portIn="In" portOut="Port4" enabled="1"/>
+  <Edge nodeIn="14749" nodeOut="683" portIn="In" portOut="Port5" enabled="1"/>
+  <Edge nodeIn="15071" nodeOut="683" portIn="In" portOut="Port1" enabled="1"/>
+  <Edge nodeIn="14707" nodeOut="685" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="683" nodeOut="687" portIn="Index" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="14721" nodeOut="693" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="697" nodeOut="695" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="14708" nodeOut="695" portIn="Send" portOut="False" enabled="1"/>
+  <Edge nodeIn="14707" nodeOut="697" portIn="In" portOut="False" enabled="1"/>
+  <Edge nodeIn="14708" nodeOut="697" portIn="Send" portOut="True" enabled="1"/>
+  <Edge nodeIn="27" nodeOut="2448" portIn="hide" portOut="out" enabled="1"/>
+  <Edge nodeIn="2476" nodeOut="2448" portIn="in1" portOut="out" enabled="1"/>
+  <Edge nodeIn="2461" nodeOut="2459" portIn="FadeOut" portOut="out" enabled="1"/>
+  <Edge nodeIn="14934" nodeOut="2461" portIn="ForceFinishLastQueued" portOut="FadedOut" enabled="1"/>
+  <Edge nodeIn="15093" nodeOut="2461" portIn="in" portOut="FadedOut" enabled="1"/>
+  <Edge nodeIn="15021" nodeOut="2463" portIn="Disable" portOut="FadedIn" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="2476" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2459" nodeOut="2476" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="14934" nodeOut="2476" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15043" nodeOut="2476" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="15057" nodeOut="2476" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="15110" nodeOut="2476" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2499" nodeOut="2498" portIn="itemId" portOut="itemId" enabled="1"/>
+  <Edge nodeIn="2463" nodeOut="2677" portIn="FadeIn" portOut="out" enabled="1"/>
+  <Edge nodeIn="15021" nodeOut="2677" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="14707" nodeOut="14705" portIn="Close" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="14958" nodeOut="14707" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15035" nodeOut="14707" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15047" nodeOut="14707" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14711" nodeOut="14709" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="14711" nodeOut="14709" portIn="Trigger" portOut="output" enabled="1"/>
+  <Edge nodeIn="14715" nodeOut="14711" portIn="true" portOut="True" enabled="1"/>
+  <Edge nodeIn="14713" nodeOut="14715" portIn="DisableSun" portOut="out" enabled="1"/>
+  <Edge nodeIn="14715" nodeOut="14719" portIn="true" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="642" nodeOut="14721" portIn="Prepare" portOut="False" enabled="1"/>
+  <Edge nodeIn="644" nodeOut="14721" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="14724" nodeOut="14721" portIn="Prepare" portOut="True" enabled="1"/>
+  <Edge nodeIn="14725" nodeOut="14721" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14724" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14724" nodeOut="14725" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14726" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14726" nodeOut="14727" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="14730" nodeOut="14728" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14726" nodeOut="14730" portIn="Prepare" portOut="False" enabled="1"/>
+  <Edge nodeIn="14727" nodeOut="14730" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="14731" nodeOut="14730" portIn="Prepare" portOut="True" enabled="1"/>
+  <Edge nodeIn="14732" nodeOut="14730" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14731" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14731" nodeOut="14732" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14733" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14733" nodeOut="14734" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="14737" nodeOut="14735" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14733" nodeOut="14737" portIn="Prepare" portOut="False" enabled="1"/>
+  <Edge nodeIn="14734" nodeOut="14737" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="14738" nodeOut="14737" portIn="Prepare" portOut="True" enabled="1"/>
+  <Edge nodeIn="14739" nodeOut="14737" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14738" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14738" nodeOut="14739" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14740" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14740" nodeOut="14741" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="14744" nodeOut="14742" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14740" nodeOut="14744" portIn="Prepare" portOut="False" enabled="1"/>
+  <Edge nodeIn="14741" nodeOut="14744" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="14745" nodeOut="14744" portIn="Prepare" portOut="True" enabled="1"/>
+  <Edge nodeIn="14746" nodeOut="14744" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14745" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14745" nodeOut="14746" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14747" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14747" nodeOut="14748" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="14751" nodeOut="14749" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14747" nodeOut="14751" portIn="Prepare" portOut="False" enabled="1"/>
+  <Edge nodeIn="14748" nodeOut="14751" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="14752" nodeOut="14751" portIn="Prepare" portOut="True" enabled="1"/>
+  <Edge nodeIn="14753" nodeOut="14751" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="15030" nodeOut="14752" portIn="In" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14752" nodeOut="14753" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="14975" nodeOut="14933" portIn="Input" portOut="true" enabled="1"/>
+  <Edge nodeIn="15041" nodeOut="14933" portIn="in1" portOut="false" enabled="1"/>
+  <Edge nodeIn="15011" nodeOut="14934" portIn="Show" portOut="Success" enabled="1"/>
+  <Edge nodeIn="15012" nodeOut="14934" portIn="Show" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="14988" nodeOut="14944" portIn="in" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="14975" nodeOut="14945" portIn="Input" portOut="true" enabled="1"/>
+  <Edge nodeIn="15041" nodeOut="14945" portIn="in2" portOut="false" enabled="1"/>
+  <Edge nodeIn="14969" nodeOut="14955" portIn="set" portOut="Leave" enabled="1"/>
+  <Edge nodeIn="14970" nodeOut="14955" portIn="set" portOut="Enter" enabled="1"/>
+  <Edge nodeIn="14933" nodeOut="14958" portIn="A" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="14933" nodeOut="14958" portIn="Check" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="14945" nodeOut="14958" portIn="A" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="14945" nodeOut="14958" portIn="Check" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="15037" nodeOut="14958" portIn="In" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="14958" nodeOut="14962" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="14955" nodeOut="14964" portIn="Enable" portOut="output" enabled="1"/>
+  <Edge nodeIn="14969" nodeOut="14964" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="14975" nodeOut="14969" portIn="Index" portOut="out" enabled="1"/>
+  <Edge nodeIn="14975" nodeOut="14970" portIn="Index" portOut="out" enabled="1"/>
+  <Edge nodeIn="14978" nodeOut="14975" portIn="Get" portOut="Port0" enabled="1"/>
+  <Edge nodeIn="14980" nodeOut="14975" portIn="In" portOut="Port1" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="14978" portIn="Enable" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="2448" nodeOut="14978" portIn="trigger" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="2498" nodeOut="14978" portIn="trigger" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="2515" nodeOut="14978" portIn="Queue" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="14839" nodeOut="14978" portIn="DisableSave" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="14980" nodeOut="14978" portIn="In" portOut="Is in combat" enabled="1"/>
+  <Edge nodeIn="15007" nodeOut="14978" portIn="Enable" portOut="Is not in combat" enabled="1"/>
+  <Edge nodeIn="14982" nodeOut="14980" portIn="FadeOut" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14980" nodeOut="14982" portIn="Open" portOut="FadedOut" enabled="1"/>
+  <Edge nodeIn="15002" nodeOut="14982" portIn="Send" portOut="FadedOut" enabled="1"/>
+  <Edge nodeIn="14998" nodeOut="14983" portIn="Send" portOut="FadedIn" enabled="1"/>
+  <Edge nodeIn="14983" nodeOut="14984" portIn="FadeIn" portOut="out" enabled="1"/>
+  <Edge nodeIn="14982" nodeOut="14988" portIn="FadeOut" portOut="out" enabled="1"/>
+  <Edge nodeIn="15024" nodeOut="14990" portIn="Prepare" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15027" nodeOut="14990" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2454" nodeOut="14993" portIn="Play" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14997" nodeOut="14993" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14997" nodeOut="14995" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2454" nodeOut="14997" portIn="ForceFinishLastQueued" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2677" nodeOut="14997" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15009" nodeOut="14997" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15017" nodeOut="14997" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15004" nodeOut="15002" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15004" nodeOut="15003" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14984" nodeOut="15004" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="35" nodeOut="15007" portIn="A" portOut="OnHealthChange" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="15009" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2495" nodeOut="15009" portIn="show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2499" nodeOut="15009" portIn="trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2516" nodeOut="15009" portIn="Resume" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14840" nodeOut="15009" portIn="EnableSave" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14998" nodeOut="15009" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15007" nodeOut="15009" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15058" nodeOut="15009" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14934" nodeOut="15014" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="679" nodeOut="15024" portIn="Trigger" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="14992" nodeOut="15025" portIn="Send" portOut="Finished" enabled="1"/>
+  <Edge nodeIn="15024" nodeOut="15027" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15105" nodeOut="15027" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15025" nodeOut="15030" portIn="Prepare" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15032" nodeOut="15030" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15025" nodeOut="15032" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="15106" nodeOut="15032" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="14958" nodeOut="15035" portIn="Get" portOut="out" enabled="1"/>
+  <Edge nodeIn="14958" nodeOut="15037" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14980" nodeOut="15041" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15017" nodeOut="15043" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="15064" nodeOut="15060" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="15064" nodeOut="15060" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="15065" nodeOut="15060" portIn="set" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="695" nodeOut="15064" portIn="Trigger" portOut="Less" enabled="1"/>
+  <Edge nodeIn="15066" nodeOut="15064" portIn="Send" portOut="GreaterEqual" enabled="1"/>
+  <Edge nodeIn="15064" nodeOut="15065" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="14721" nodeOut="15071" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14993" nodeOut="15093" portIn="Send" portOut="out" enabled="1"/>
+  <Edge nodeIn="15099" nodeOut="15096" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="15099" nodeOut="15097" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="15101" nodeOut="15099" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15041" nodeOut="15103" portIn="Reset" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

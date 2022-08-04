@@ -1,0 +1,31 @@
+
+<Objectives>
+ <Objective id="844024417256731812" title="@loc_15373294129891630394" optional="false">
+  <Descriptions>
+   <Desc id="844024417256731813" displayName="Enter Deep Storage" text="@loc_15373294129891630395"/>
+   <Desc id="844024417325847586" displayName="Find Central Repository - Locked In" text="@loc_844024417325847587"/>
+   <Desc id="844024417272452063" displayName="Download the fabrication plan" text="@loc_15373294129891630396"/>
+   <Desc id="1713490239395969604" displayName="Unseal the Doors" text="@loc_15373294129891630397"/>
+   <Desc id="1713490239395969630" displayName="Enter Central Repository" text="@loc_15373294129891630398"/>
+   <Desc id="1713490239395969646" displayName="Plug in the Drive" text="@loc_15373294129891630399"/>
+   <Desc id="844024417283668627" displayName="Complete" text="@loc_15373294129891630400"/>
+   <Desc id="1713490239407372835" displayName="Find the Drive" text="@loc_15373294129891630401"/>
+   <Desc id="1713490239432753299" displayName="Open Vaults" text="@loc_15373294129891630402"/>
+   <Desc id="1713490239431031111" displayName="Escape DS" text="@loc_15373294129891630403"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417325847659" displayName="0 Use the voice on the voice lock" optional="false" text="@loc_844024417325847660" markerLabel="@loc_844024417325847678" Location="1713490239386284818" description="844024417256731813"/>
+   <Task id="844024417257341827" displayName="1 Find Central Repository" optional="false" text="@loc_15373294129891630405" markerLabel="@loc_15373294129891630404" Location="1713490239377738413" description="844024417325847586"/>
+   <Task id="1001" displayName="2 Unseal the Doors" text="@loc_15373294129891630407" markerLabel="@loc_15373294129891630406" optional="false" Location="1713490239377738413" description="844024417325847586"/>
+   <Task id="1713490239413407212" displayName="3 Enter Central Repository" optional="false" text="@loc_15373294129891630409" markerLabel="@loc_15373294129891630408" Location="1713490239377738413" description="844024417325847586"/>
+   <Task id="1002" displayName="4 Find the Drive" text="@loc_15373294129891630411" markerLabel="@loc_15373294129891630410" optional="false" Location="1713490239377738413" description="844024417325847586"/>
+   <Task id="1003" displayName="5 Plug in the Drive" text="@loc_15373294129891630413" markerLabel="@loc_15373294129891630412" optional="false" Location="1713490239377738413" description="844024417325847586"/>
+   <Task id="9931391" displayName="6 Download the plan" text="@loc_15373294129891630415" markerLabel="@loc_15373294129891630414" optional="false" Location="1713490239377738413" description="844024417325847586"/>
+   <Task id="1713490239432753144" displayName="7 Open Vaults" optional="false" text="@loc_15373294129891630417" markerLabel="@loc_15373294129891630416" Location="1713490239377738413" description="1713490239432753299"/>
+   <Task id="844024417296737384" displayName="7 Escape Deep Storage" optional="false" text="@loc_15373294129891630419" markerLabel="@loc_15373294129891630418" Location="1713490239377738413" description="1713490239432753299"/>
+  </Tasks>
+  <Clues>
+   <Clue id="1713490239409603041" displayName="Doors Are Sealed" text="@loc_15373294129891630420"/>
+  </Clues>
+ </Objective>
+</Objectives>

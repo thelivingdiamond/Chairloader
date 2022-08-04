@@ -1,0 +1,1745 @@
+
+<ArkLootTables>
+ <Tables>
+  <ArkLootTable Name="Theme_Breakroom_Fridge">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.DuckBeer" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.DimSum" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.BliniCakes" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.FishSticks" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.LemonPieSlice" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Tomato" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.BananaPudding" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.DuckBeer" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.DimSum" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.BliniCakes" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.FishSticks" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.LemonPieSlice" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Tomato" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.BananaPudding" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.DuckBeer" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.DimSum" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.BliniCakes" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.FishSticks" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.LemonPieSlice" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Tomato" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.BananaPudding" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Breakroom_Pantry">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.BigBangCandy" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.Glucassist" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.SunDriedTomatoJerky" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.VeggieBlend" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.UdonNoodles" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.CrispyFrites" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Tin.JelliedEels" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Apple" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Banana" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.BluePomegranate" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Lemon" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Apple" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Banana" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.BluePomegranate" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Lemon" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.BigBangCandy" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.Glucassist" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.SunDriedTomatoJerky" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.VeggieBlend" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.UdonNoodles" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.CrispyFrites" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Tin.JelliedEels" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Breakroom_Upscale">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Bourbon" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.DuckBeer" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Champagne" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Gin" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Moonshine" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Vodka" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SkeksisUnagiRollz" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Tin.Caviar" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Tin.Caviar" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SkeksisUnagiRollz" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Bourbon" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.DuckBeer" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Champagne" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Gin" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Moonshine" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Vodka" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_EngineeringParts_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_EngineeringParts_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="5"/>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_EngineeringParts_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="5"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="7"/>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_ITParts_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="4"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="5"/>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_ITParts_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" CountMin="2" CountMax="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_ITParts_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="4"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="5"/>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Lab_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Lab_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.LureGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.LureGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Lab_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Locker_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CrumpledPaper" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Vodka" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Bourbon" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.Glucassist" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.VeggieBlend" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Apple" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Banana" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.StunGunAmmo" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ToyGunDarts" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Medical_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Medical_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Medical_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Office_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.StunGunAmmo" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ToyGunDarts" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="5">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Bourbon" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Vodka" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Office_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Vodka" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Bourbon" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Apple" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Banana" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.StunGunAmmo" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ToyGunDarts" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_Residential_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Vodka" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Bourbon" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bag.BigBangCandy" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.UdonNoodles" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Bowl.BananaPudding" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.CrispyFrites" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Apple" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Banana" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CrumpledPaper" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.StunGunAmmo" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ToyGunDarts" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_RecyclerJunk_Engineering">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_RecyclerJunk_IT">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_RecyclerJunk_Kitchen">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostEelScraps" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.EmptyCan" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostEelScraps" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.EmptyCan" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_RecyclerJunk_Medical">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Theme_RecyclerJunk_Office">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CrumpledPaper" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.UsedCigar" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CrumpledPaper" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="ERROR_REPLACE_ME">
+   <Slots>
+    <ArkLootSlot Percent="0.001">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Tin.Caviar" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="AmmoChargesEarlyGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="AmmoChargesLateGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.LureGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="AmmoEarlyGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="AmmoMidGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="AmmoLateGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.StunGunAmmo" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ToyGunDarts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="AmmoRandomAll">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.StunGunAmmo" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ToyGunDarts" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="ApartmentCabinet">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="CraftingIngredientsRandomAll">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="FoodRandomAll">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Alcohol.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Engineering_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Engineering_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="4"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Exterior_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.AntiCripple" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.AntiConcussion" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.AntiRad" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Exterior_Large_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.Neuromod" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.AntiCripple" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.AntiConcussion" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.AntiRad" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Engineering_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Industrial_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Mineral" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Synthetic" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Industrial_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Synthetic" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Mineral" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Lab_Small">
+   <Slots>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Mineral" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Synthetic" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Lab_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.AsteroidFragment" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Mineral" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.Ingredients.Synthetic" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Lab_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.LureGrenades" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Medical_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Medical_HighValue">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Medical_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkEngineering">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkExotic">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.RandomExotic" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.RandomExotic" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkKitchen">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostEelScraps" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostEelScraps" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkIndustrial">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkLab">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkMedical">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkOffice">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="RecyclerJunkRandomAll">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Residential_Large">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Residential_Small">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Weapons_EarlyGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Weapons.GooGun" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Pistol" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Weapons_MidGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Weapons.GooGun" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Pistol" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Shotgun" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="Weapons_LateGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Weapons.GooGun" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Pistol" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Shotgun" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.StunGun" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Instalaser" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.LureGrenades" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Scientist">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Scientist_LateGame">
+   <Slots>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="85">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Security_Armed">
+   <Slots>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Pistol" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Security_Unarmed">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="3" CountMax="6"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1" CountMin="1" CountMax="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="3" CountMax="6"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1" CountMin="1" CountMax="3"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Engineer">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="6"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="4"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Engineer_LateGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="3"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.WireSpool" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="5"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="4"/>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="3"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Admin">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Admin_LateGame">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostLemonPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BaseballGlove" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CompostBananaPeel" Weight="2"/>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Operator_Engineering">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" LootRequirement="3149325216929347172"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1" CountMin="10" CountMax="25"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Operator_Medical">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" LootRequirement="3149325216929347172"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Operator_Science">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" LootRequirement="3149325216929347172"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="85">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Operator_Military">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" LootRequirement="3149325216929347172"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1" CountMin="25" CountMax="50"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Turret">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" LootRequirement="3149325216929347172"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="2" CountMax="5"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1" CountMin="10" CountMax="20"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="2" CountMax="5"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.InstaLaser" Weight="1" CountMin="10" CountMax="20"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Volunteer">
+   <Slots>
+    <ArkLootSlot Percent="75">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Mimic_Base">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.MimicTumor" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="15">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="2" CountMax="3"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1" CountMin="1" CountMax="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Mimic_Elite">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="2" CountMax="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="15">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="2" CountMax="5"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1" CountMin="1" CountMax="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.MimicTumor" Weight="1" LootRequirement="3149325216929346740" CountMin="2" CountMax="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Phantom_Scientist">
+   <Slots>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.MedKit" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Medical.TraumaPharmas.Random" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.NullwaveTransmitter" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.LureGrenades" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BiohazardWaste" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.ExpiredPlasmaBag" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PetriDishSample" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.TestTubeSample" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Medical.PsiHypo" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Phantom_Security">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Random" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="25">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Mods.Weapon.WeaponUpgradeKit" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.GooGun" Weight="1" LootRequirement="" CountMin="12" CountMax="24"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" LootRequirement="" CountMin="3" CountMax="8"/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.ShotgunShells" Weight="1" LootRequirement="" CountMin="1" CountMax="3"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Phantom_Engineer">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="50">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.SuitPatchKit" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.RecyclerGrenades" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Ammo.EMPGrenades" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BrokenCoolerFan" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.BurntCircuitBoard" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.FriedHardDrive" Weight="1" LootRequirement=""/>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.CorrodedCoil" Weight="1" LootRequirement=""/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Phantom_Base">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="3" CountMax="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Phantom_Elite">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="3" CountMax="3"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Poltergeist">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" LootRequirement="3149325216929346740" CountMax="2" CountMin="2"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="6" CountMax="6"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Telepath">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="15" CountMax="15"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.TyphonGanglion" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Technopath">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="15" CountMax="15"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.TyphonGanglion" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Weaver">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="15" CountMax="15"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.TyphonPlasma" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Nightmare">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.AlienOrganSmall" Weight="1" CountMin="30" CountMax="30"/>
+     </Items>
+    </ArkLootSlot>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.Exotic.TyphonCortex" Weight="1" LootRequirement="3149325216929346740"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Igwe">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Player.Neuromod" Weight="2"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Mikhaila">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Wrench" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_Dahl">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Ammo.PistolBullets" Weight="1" CountMin="15" CountMax="15"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_ApartmentPatricia">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Crafting.RecyclerJunk.PlasticTubing" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Misc.SpareParts" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_ApartmentJovan">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Food.Box.SpiraliteCookies" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+  <ArkLootTable Name="NPC_Human_ApartmentGrette">
+   <Slots>
+    <ArkLootSlot Percent="100">
+     <Items>
+      <ArkLootItem Archetype="ArkPickups.Weapons.Wrench" Weight="1"/>
+      <ArkLootItem Archetype="ArkPickups.Food.Produce.Apple" Weight="1"/>
+     </Items>
+    </ArkLootSlot>
+   </Slots>
+  </ArkLootTable>
+ </Tables>
+</ArkLootTables>

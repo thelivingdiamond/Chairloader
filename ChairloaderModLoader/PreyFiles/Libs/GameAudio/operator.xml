@@ -1,0 +1,294 @@
+
+<ATLConfig atl_name="Operator">
+ <AudioRTPCs>
+  <ATLRtpc atl_name="operator_speed">
+   <WwiseRtpc wwise_name="operator_speed"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="hoverMotorTravelSpeedPercentEffect">
+   <WwiseRtpc wwise_name="hoverMotorTravelSpeedPercentEffect"/>
+  </ATLRtpc>
+ </AudioRTPCs>
+ <AudioSwitches>
+  <ATLSwitch atl_name="Operator_States">
+   <ATLSwitchState atl_name="Damaged">
+    <WwiseSwitch wwise_name="Operator_States">
+     <WwiseValue wwise_name="Damaged"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Healthy">
+    <WwiseSwitch wwise_name="Operator_States">
+     <WwiseValue wwise_name="Healthy"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="In_Combat">
+    <WwiseSwitch wwise_name="Operator_States">
+     <WwiseValue wwise_name="In_Combat"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Disabled">
+    <WwiseSwitch wwise_name="Operator_States">
+     <WwiseValue wwise_name="Disabled"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Ram">
+    <WwiseSwitch wwise_name="Operator_States">
+     <WwiseValue wwise_name="Ram"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+  </ATLSwitch>
+ </AudioSwitches>
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Operator_Loco_PropelJet_LP">
+   <WwiseEvent wwise_name="Play_PodBot_Fly_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Loco_PropelJet_Stop">
+   <WwiseEvent wwise_name="Stop_PodBot_Fly_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_Death">
+   <WwiseEvent wwise_name="Play_Operator_Military_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_LaserFire_Start">
+   <WwiseEvent wwise_name="Play_Operator_Military_LaserFire_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_LaserFire_Stop">
+   <WwiseEvent wwise_name="Play_Operator_Military_LaserFire_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_LaserFire_Telegraph">
+   <WwiseEvent wwise_name="Play_Operator_Military_LaserFire_Telegraph"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_Loco_Move">
+   <WwiseEvent wwise_name="Play_Operator_Military_Loco_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_Loco_Turn">
+   <WwiseEvent wwise_name="Play_Operator_Military_Loco_Turn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OperatorMilitary_Laser_Sizzle_LP_01">
+   <WwiseEvent wwise_name="Play_Operator_Military_Laser_Sizzle_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Military_Loco_Move">
+   <WwiseEvent wwise_name="Stop_Operator_Military_Loco_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OperatorMilitary_Laser_Sizzle_LP_01">
+   <WwiseEvent wwise_name="Stop_Operator_Military_Laser_Sizzle_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Electrical_LP">
+   <WwiseEvent wwise_name="Play_Operator_Electrical_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_LP" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Particle_Damage">
+   <WwiseEvent wwise_name="Play_Operator_Particle_Damage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Corrupted_LP" path="Corrupted">
+   <WwiseEvent wwise_name="Stop_Operator_Corrupted_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Electrical_LP">
+   <WwiseEvent wwise_name="Stop_Operator_Electrical_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Attack_State">
+   <WwiseEvent wwise_name="Play_Operator_Attack_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Military_Notice_Player">
+   <WwiseEvent wwise_name="Play_Operator_Military_Notice_Player"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Drop_Mine">
+   <WwiseEvent wwise_name="Play_Operator_Drop_Mine"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Disabled" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Disabled"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Orient" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Orient"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_RAM" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_RAM"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Damaged" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Damaged"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_InCombat" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_InCombat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Healthy" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Healthy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Military_Notice" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Military_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Engineering_Notice" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Engineering_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Medical_Notice" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Medical_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Science_Notice" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Science_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Military_Death" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Military_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Medical_Death" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Medical_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Engineering_Death" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Engineering_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Corrupted_Science_Death" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Corrupted_Science_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Loco_Hover_LP" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Loco_Hover_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Medical_Loco_Hover_LP" path="Operator_Medical">
+   <WwiseEvent wwise_name="Stop_Operator_Medical_Loco_Hover_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_Death" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Science_Death" path="Operator_Science">
+   <WwiseEvent wwise_name="Play_Operator_Science_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Death" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Scan_LP">
+   <WwiseEvent wwise_name="Stop_Operator_Scan_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Scan_LP">
+   <WwiseEvent wwise_name="Play_Operator_Scan_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_Exist" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_Exist"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Engineering_Exist" path="Operator_Engineering/Non_Corrupt">
+   <WwiseEvent wwise_name="Stop_Operator_Engineering_Exist"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Engineering_Combat" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Engineering_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_State_Damage" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Play_Operator_State_Damage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_State_Undamaged" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Play_Operator_State_Undamaged"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_BlowTorch_Start" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Play_Operator_BlowTorch_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_BlowTorch_LP" path="Operator_Engineering">
+   <WwiseEvent wwise_name="Stop_Operator_BlowTorch_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Engineering_Exist_Crpt" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Engineering_Exist_Crpt"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Engineering_Exist_Crpt" path="Corrupted">
+   <WwiseEvent wwise_name="Stop_Operator_Engineering_Exist_Crpt"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_DeathExplosion" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_DeathExplosion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Eng_Corrupted_ForceResist" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Eng_Corrupted_ForceResist"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Eng_Corrupted_GetUp" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Eng_Corrupted_GetUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Eng_Corrupted_HitReact" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Eng_Corrupted_HitReact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Operator_Death_Spindown">
+   <WwiseEvent wwise_name="Operator_Death_Spindown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Loco_Mechanics_Long">
+   <WwiseEvent wwise_name="Play_Operator_Loco_Mechanics_Long"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Loco_Mechanics_Med">
+   <WwiseEvent wwise_name="Play_Operator_Loco_Mechanics_Med"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Loco_Mechanics_Short">
+   <WwiseEvent wwise_name="Play_Operator_Loco_Mechanics_Short"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Death_Spindown">
+   <WwiseEvent wwise_name="Play_Operator_Death_Spindown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Repair_Start_LP">
+   <WwiseEvent wwise_name="Play_Operator_Repair_Start_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Repair_LP">
+   <WwiseEvent wwise_name="Stop_Operator_Repair_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_NoticePlayer" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_NoticePlayer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Disabled_Zap">
+   <WwiseEvent wwise_name="Play_Operator_Disabled_Zap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Sci_Exist_LP" path="Operator_Science">
+   <WwiseEvent wwise_name="Play_Operator_Sci_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Sci_Exist_LP" path="Operator_Science">
+   <WwiseEvent wwise_name="Stop_Operator_Sci_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Sci_Combat" path="Operator_Science">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Sci_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Sci_Idle" path="Operator_Science">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Sci_Idle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Sci_Notice" path="Operator_Science">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Sci_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Sci_Search" path="Operator_Science">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Sci_Search"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Military_Combat" path="Military">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Military_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Military_Idle" path="Military">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Military_Idle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Military_Notice" path="Military">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Military_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Operator_Military_Search" path="Military">
+   <WwiseEvent wwise_name="Set_Switch_Operator_Military_Search"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Combat_Melee_Probe_Attack_A" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Combat_Melee_Probe_Attack_A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Combat_Melee_Sharp" path="Corrupted">
+   <WwiseEvent wwise_name="Play_Operator_Combat_Melee_Sharp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Med_Exist_LP" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Med_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Operator_Med_Exist_LP" path="Operator_Medical">
+   <WwiseEvent wwise_name="Stop_Operator_Med_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Turn">
+   <WwiseEvent wwise_name="Play_Operator_Turn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Scan" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Scan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Damage_Beep" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Damage_Beep"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Recovery_Beep" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Recovery_Beep"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_BootUp">
+   <WwiseEvent wwise_name="Play_Operator_BootUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Damage_MetalParts">
+   <WwiseEvent wwise_name="Play_Operator_Damage_MetalParts"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Operator_Medical_Explosion" path="Operator_Medical">
+   <WwiseEvent wwise_name="Play_Operator_Medical_Explosion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Jan_Give_Item">
+   <WwiseEvent wwise_name="Play_Jan_Give_Item"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

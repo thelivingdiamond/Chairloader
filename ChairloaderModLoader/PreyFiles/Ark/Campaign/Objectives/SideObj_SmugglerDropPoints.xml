@@ -1,0 +1,22 @@
+
+<Objectives>
+ <Objective id="4349723564925952931" title="@loc_15373294129891632674" optional="true">
+  <Clues>
+   <Clue id="4349723564948935134" displayName="SmugglerDropPoints_LillyClue" text="@loc_4349723564948935135"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="4349723564925952932" displayName="Smugglers Identified" text="@loc_15373294129891632675"/>
+   <Desc id="4349723564925953209" displayName="Drop Points" text="@loc_15373294129891632676"/>
+   <Desc id="4349723564925953450" displayName="Stolen Goods Recovered" text="@loc_15373294129891632677"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564925953333" displayName="Find all six Drop Points" optional="true" text="@loc_15373294129891632679" markerLabel="@loc_15373294129891632678" Location="844024417314265553"/>
+   <Task id="4349723564958010640" displayName="Find five more Drop Points" optional="false" text="@loc_4349723564958010641" Location="844024417314265553"/>
+   <Task id="4349723564958010643" displayName="Find four more Drop Points" optional="false" text="@loc_4349723564958010644" Location="844024417314265553"/>
+   <Task id="4349723564958010657" displayName="Find three more Drop Points" optional="false" text="@loc_4349723564958010658" Location="844024417314265553"/>
+   <Task id="4349723564958010660" displayName="Find two more Drop Points" optional="false" text="@loc_4349723564958010661" Location="844024417314265553"/>
+   <Task id="4349723564958010637" displayName="Find final Drop Point" optional="false" text="@loc_4349723564958010638" Location="844024417314265553"/>
+   <Task id="4349723564925953768" displayName="Investigate Lilly Morris" optional="true" text="@loc_15373294129891632681" markerLabel="@loc_15373294129891632680" Location="844024417263019221"/>
+  </Tasks>
+ </Objective>
+</Objectives>

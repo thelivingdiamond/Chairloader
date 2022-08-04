@@ -1,0 +1,19 @@
+local L0_3099, L1_3100, L2_3101
+L0_3099 = {}
+L1_3100 = {}
+L2_3101 = {}
+L2_3101.bShouldManuallyLivingEntities = 0
+L2_3101.fInitialGravityPull = -30
+L2_3101.fMaxGravityPull = -100
+L2_3101.fGravityDamping = 5
+L2_3101.fGravityPullFalloff = 50
+L2_3101.fGravityRadius = 15
+L2_3101.fGravityIncreasePerSecond = 0.5
+L2_3101.fManualPullDamping = 1
+L2_3101.fExplosionRadius = 3.5
+L2_3101.fEndingEffectDisplayTime = 3
+L2_3101.signalpackage_explosionPackage = "10641886185795227403"
+L2_3101.fExplosionImpulse = 350
+L1_3100.WarpParams = L2_3101
+L0_3099.Properties = L1_3100
+ArkPhantomGravityWarp = L0_3099

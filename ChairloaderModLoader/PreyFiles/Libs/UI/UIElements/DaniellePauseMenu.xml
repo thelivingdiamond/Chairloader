@@ -1,0 +1,68 @@
+
+<UIElements name="DaniellePauseMenu">
+ <UIElement name="DaniellePauseMenu" render_lockless="1" mouseevents="1" keyevents="0" cursor="1" controller_input="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_pausemenu.gfx" layer="20">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="pauseclearButtons" funcname="pause.clearButtons"/>
+   <function name="pauseAddButton" funcname="pause.addButton">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Text" desc="" type="String"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="pauseUpdateList" funcname="pause.updateList"/>
+   <function name="enableButton" funcname="pause.enableButton">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="enabled" type="bool"/>
+   </function>
+   <function name="openPage" funcname="pause.openPage"/>
+   <function name="exitPage" funcname="pause.exitPage"/>
+   <function name="HLUp" funcname="pause.HLUp"/>
+   <function name="HLDown" funcname="pause.HLDown"/>
+   <function name="HLLeft" funcname="pause.HLLeft"/>
+   <function name="HLRight" funcname="pause.HLRight"/>
+   <function name="highlightID" funcname="pause.highlightID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="btnSelect" funcname="pause.btnSelect"/>
+   <function name="btnBack" funcname="pause.btnBack"/>
+   <function name="continueOpen" funcname="lstart.openPage"/>
+   <function name="continueShowPrompt" funcname="lstart.showPrompt"/>
+   <function name="continueClose" funcname="lstart.exitPage"/>
+   <function name="continueUpdatePrompt" funcname="lstart.updatePrompt"/>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="setPrompt" funcname="global.setPrompt">
+    <param name="Place" desc="1-8" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="global.formatPrompts"/>
+   <function name="screenRotate" funcname="camera.rotateOffset">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="PauseSelect" fscommand="PauseSelect" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

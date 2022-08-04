@@ -1,0 +1,242 @@
+
+<ATLConfig atl_name="Creature_Mimic">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_attack_distort" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_attack_distort"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_Electric_Swipe" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_Electric_Swipe"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_MorphIn" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_MorphIn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_swish_aggressive" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_swish_aggressive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Step_Walk" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Step_Walk"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Step_Run" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Step_Run"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_swish" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_swish"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_quick_bite" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_quick_bite"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_step" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_step"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_Jump" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_Jump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_SlowApproachToLight" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_SlowApproachToLight"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_melee_telegraph" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_melee_telegraph"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Appear" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Appear"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_mimic_electric_step" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_mimic_electric_step"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Death_Hit" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Death_Hit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Death" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_Strangle" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_Strangle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_MorphSplit" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_MorphSplit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_Stretch" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_Stretch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_Exp_Jump" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_Exp_Jump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_Unfold" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_Unfold"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_WrapAround" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_WrapAround"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_Exp_Chatter" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_Exp_Chatter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Stinger_ApprachPod" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_Stinger_ApprachPod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_ApproachPod_01" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_ApproachPod_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_ApproachPod_02" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_ApproachPod_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_CS_ApproachPod_03" path="Mimic_CS">
+   <WwiseEvent wwise_name="Play_Mimic_CS_ApproachPod_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Transform_Growl" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Transform_Growl"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_mvmt_wierd_concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_mvmt_wierd_concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Walk" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Walk"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_HissAndStatic" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_HissAndStatic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Idle" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Idle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_subtle_hiss" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_subtle_hiss"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_JumpAttack" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_JumpAttack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Creep_Idle" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Creep_Idle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Attack_Concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Attack_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_ReachApex" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_ReachApex"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_synth_electric_movement" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_synth_electric_movement"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Bump" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Bump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Flip_Concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Flip_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Run_Concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Run_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Close2Face_Concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Close2Face_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Stretch_Leg_Concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Stretch_Leg_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Idle_Creep_Concept2" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Idle_Creep_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Mimic_mvmt_telegraph_attack" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Stop_Mimic_mvmt_telegraph_attack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_AttackSwish_2" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_AttackSwish_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Mvmt_Idle_Raise" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Mvmt_Idle_Raise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_flipBack" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_flipBack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_electric_land" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_electric_land"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Burn_Explosion" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Burn_Explosion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Burn_LP" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Burn_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Mvmt_Real_HitReact_Roll" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Mvmt_Real_HitReact_Roll"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Mvmt_Real_HitReact_Bodyfall" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Mvmt_Real_HitReact_Bodyfall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Notice" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Grab_In" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Grab_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Grab_Out" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Grab_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Elite_GrabFace_Jump" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Elite_GrabFace_Jump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Elite_Grab_Rise" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Elite_Grab_Rise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Grab_Out_Retreat" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Grab_Out_Retreat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_Pain" path="Mimic_Vox">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_Pain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Glitch" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Glitch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Living_LP" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Living_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Mimic_Living_LP" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Stop_Mimic_Living_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Swish_Real_C" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Swish_Real_C"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Swish_Real_D" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Swish_Real_D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Dodge" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Dodge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_darkRise" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_darkRise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_HardStep" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_HardStep"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_mvmt_Skitter" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_mvmt_Skitter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Step" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Step"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Movement_Flesh_Attack" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Movement_Flesh_Attack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Movement_Flesh_Creep" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Movement_Flesh_Creep"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Movement_Flesh_Fall" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Movement_Flesh_Fall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Movement_Flesh_Grapple" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Movement_Flesh_Grapple"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Movement_Flesh_Jump" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Movement_Flesh_Jump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Movement_Flesh_Land" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Movement_Flesh_Land"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Swish_DistortA" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Swish_DistortA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Swish_DistortB" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Swish_DistortB"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Mimic_Vox_JumpScream" path="Mimic_Mvmt">
+   <WwiseEvent wwise_name="Play_Mimic_Vox_JumpScream"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

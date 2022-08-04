@@ -1,0 +1,15 @@
+
+<Graph Description="" Group="HUD" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="UI:Display:Display" pos="20,-570,0">
+   <Inputs uiElements_Element="DanielleInventoryExternal" instanceID="-1"/>
+  </Node>
+  <Node Id="612" Class="UI:Events:DanielleInventoryExternal:InventoryClosed" pos="-420,-570,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="612" portIn="unload" portOut="onEvent" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

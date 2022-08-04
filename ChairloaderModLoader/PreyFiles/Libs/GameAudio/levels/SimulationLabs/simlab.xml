@@ -1,0 +1,778 @@
+
+<ATLConfig atl_name="simlab">
+ <AudioSwitches>
+  <ATLSwitch atl_name="GroundhogDay">
+   <ATLSwitchState atl_name="Day1"/>
+   <ATLSwitchState atl_name="Day2"/>
+  </ATLSwitch>
+ </AudioSwitches>
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Amb_Bathroom" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_Bathroom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Static" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Static"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Static" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Static"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Disable_Bypass_TestingRoom" path="Mix">
+   <WwiseEvent wwise_name="Disable_Bypass_TestingRoom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Enable_Bypass_TestingRoom" path="Mix">
+   <WwiseEvent wwise_name="Enable_Bypass_TestingRoom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_1" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_2" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_3" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_4" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_5" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_5"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_PlayerWakeUp_7" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_PlayerWakeUp_7"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_BeginningMoment" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_BeginningMoment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Idle" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Idle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Helicopter_WithSwitch" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_SimLab_Helicopter_WithSwitch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLab_Helicopter_Idle" path="2D_Amb">
+   <WwiseEvent wwise_name="Stop_Amb_SimLab_Helicopter_Idle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_LowBass_ComputerTone" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_LowBass_ComputerTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_NearWindow" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_NearWindow"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Refridgerator" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_Refridgerator"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_ComputerTone_1" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_ComputerTone_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_ComputerTone_2" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_ComputerTone_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_ElevatorMusic" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_ElevatorMusic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_MachineHum_1" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_MachineHum_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_LowBass_ComputerTone" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_LowBass_ComputerTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Refridgerator" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_Refridgerator"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_ComputerTone_1" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_ComputerTone_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_ComputerTone_2" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_ComputerTone_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_ElevatorMusic" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_ElevatorMusic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_env_SimLab_MachineHum_2" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_env_SimLab_MachineHum_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_Radio" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_Radio"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_Radio" path="Apartment_Events">
+   <WwiseEvent wwise_name="Play_Env_SimLab_Radio"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_GrabUniform" path="Apartment_Events">
+   <WwiseEvent wwise_name="Play_Player_GrabUniform"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WakeUp" path="Apartment_Events">
+   <WwiseEvent wwise_name="Play_Player_WakeUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Apartment_CoffeeMaker" path="Apartment_Events">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_CoffeeMaker_MakeCoffee"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Apartment_Sink" path="Apartment_Events">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_KitchenSink_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_MimicAttackSequence_BodyFall" path="Events">
+   <WwiseEvent wwise_name="Play_Event_MimicAttackSequence_BodyFall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_MimicAttackSequence_Confusion_Comp" path="Events">
+   <WwiseEvent wwise_name="Play_Event_MimicAttackSequence_Confusion_Comp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_MimicAttackSequence_Eerie_LP" path="Events">
+   <WwiseEvent wwise_name="Play_Event_MimicAttackSequence_Eerie_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_MimicAttackSequence_Mimic_Presence" path="Events">
+   <WwiseEvent wwise_name="Play_Event_MimicAttackSequence_Mimic_Presence"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_MimicAttackSequence_MimicAttack" path="Events">
+   <WwiseEvent wwise_name="Play_Event_MimicAttackSequence_MimicAttack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_MimicAttackSequence_OffRails" path="Events">
+   <WwiseEvent wwise_name="Play_Event_MimicAttackSequence_OffRails"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_SimLab_AlarmClock_Announcment" path="Events">
+   <WwiseEvent wwise_name="Play_Event_SimLab_AlarmClock_Announcment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_SimLab_LoseVision_FirstDay" path="Events">
+   <WwiseEvent wwise_name="Play_Event_SimLab_LoseVision_FirstDay"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_SimLab_Player_Experiment_Sit" path="Events">
+   <WwiseEvent wwise_name="Play_Event_SimLab_Player_Experiment_Sit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Mimic_FirstAttack" path="Events">
+   <WwiseEvent wwise_name="Play_SimLab_Mimic_FirstAttack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Player_WakUp" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Player_WakUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_TransitionToWakeUp" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_TransitionToWakeUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_EnterHelicopter" path="Events">
+   <WwiseEvent wwise_name="Play_Player_EnterHelicopter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_ExitHelicopter" path="Events">
+   <WwiseEvent wwise_name="Play_Player_ExitHelicopter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Sex_Selection" path="Events">
+   <WwiseEvent wwise_name="Play_Sex_Selection"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Event_MimicAttackSequence_Eerie_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Event_MimicAttackSequence_Eerie_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_LPF_Outdoor_Heli_Inside" path="Mix">
+   <WwiseEvent wwise_name="Set_LPF_Outdoor_Heli_Inside"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_LPF_Outdoor_Heli_Outside" path="Mix">
+   <WwiseEvent wwise_name="Set_LPF_Outdoor_Heli_Outside"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Voice_Pitch_Helicopter_Descend" path="Mix">
+   <WwiseEvent wwise_name="Set_Voice_Pitch_Helicopter_Descend"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_MX_Simulation_Lab" path="Obj/Music">
+   <WwiseEvent wwise_name="Play_MX_Simulation_Lab"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_Close_Apartment" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_Close_Apartment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_Open_Apartment" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_Open_Apartment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_CoffeeMaker_On" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_CoffeeMaker_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_ExperiemntColumn_Move" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_ExperiemntColumn_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_ExperiemntColumn_Stop" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_ExperiemntColumn_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_ExperiemntColumn_Use" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_ExperiemntColumn_Use"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Experiment_Decontamination" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Experiment_Decontamination"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Experiment_Start_Click" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Experiment_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_GlassCase_Raise" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_GlassCase_Raise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_HallwayAlarm" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_HallwayAlarm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_SubtleAlarmTone_Concept_01" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_SubtleAlarmTone_Concept_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Elevator_NewFloor" path="Obj">
+   <WwiseEvent wwise_name="Play_SimLab_Elevator_NewFloor"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Elevator_Start" path="Obj">
+   <WwiseEvent wwise_name="Play_SimLab_Elevator_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Elevator_Stop" path="Obj">
+   <WwiseEvent wwise_name="Play_SimLab_Elevator_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Elevator_Stuck" path="Obj">
+   <WwiseEvent wwise_name="Play_SimLab_Elevator_Stuck"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Obj_Experiment_Door" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Sim_Lab_ExperimentDoor"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_CoffeeMaker_MakeCoffee" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_CoffeeMaker_MakeCoffee"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_Experiment_Decontamination" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_Experiment_Decontamination"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_GlassCase_Raise" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_GlassCase_Raise"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_HallwayAlarm" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_HallwayAlarm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Heli_Day1">
+   <WwiseEvent wwise_name="Set_Switch_Heli_Day1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Heli_Day2">
+   <WwiseEvent wwise_name="Set_Switch_Heli_Day2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Transcribe_Ring" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Transcribe_Ring"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_OfficeDoor_Open" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_OfficeDoor_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_Heli_PlayerSit" path="Events">
+   <WwiseEvent wwise_name="Play_Event_Heli_PlayerSit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_Door_Close_Rev1" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_Door_Close_Rev1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_Door_Open_Rev1" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_Door_Open_Rev1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_PlayerEnter_Foley" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_PlayerEnter_Foley"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_PlayerStepDown_InHeliCopter" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_PlayerStepDown_InHeliCopter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Event_Heli_SimLab_Heli_Ineterior_LP" path="Events">
+   <WwiseEvent wwise_name="Stop_Event_Heli_SimLab_Heli_Ineterior_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Event_Heli_SimLab_Heli_Ineterior_LP" path="Events">
+   <WwiseEvent wwise_name="Play_Event_Heli_SimLab_Heli_Ineterior_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_TakeOff" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_TakeOff"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_Land" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_Land"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Heli_Descend" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Heli_Descend"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_LightSwitch" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_LightSwitch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_TestRoom_Button" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_TestRoom_Button"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_ApartmentCloset_Close" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_ApartmentCloset_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_ApartmentCloset_Open" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_ApartmentCloset_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_Rooftop_AC_1" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_Rooftop_AC_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_Rooftop_AC_2" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_Rooftop_AC_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_TestRoom_Button_Ready" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_TestRoom_Button_Ready"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Test_Time" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_TestRoom_Time"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_Abstract_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_Abstract_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_GrabCoffeeCup" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_GrabCoffeeCup"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_JumpAway" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_JumpAway"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_MimicAppear_StrangleBellamy" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_MimicAppear_StrangleBellamy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_MimicJumpAttacks" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_MimicJumpAttacks"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_NPC_BodyFall" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_NPC_BodyFall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_NPC_GunShot" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_NPC_GunShot"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_GrabUniform" path="Apartment_Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_GrabUniform"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Mimic_Scare_Simulation" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Mimic_Scare_Simulation"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_Apt_TV_LP" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_Apt_TV_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Apt_TV_LP" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Apt_TV_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_Apt_Mirror" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_Apt_Mirror"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Apt_Mirror" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Apt_Mirror"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Elevator_Malfunction" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Elevator_Malfunction"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_FakeWall_Turn" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_FakeWall_Turn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_FakeWall_Turn" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_FakeWall_Turn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_Hallway_Open" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_Hallway_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_Hallway_Close" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_Hallway_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_Mechanical_Hallway" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_Mechanical_Hallway"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Door_Mechanical_Hallway" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_Door_Mechanical_Hallway"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Door_Decontamination_Open" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Door_Decontamination_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Decontamination" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Decontamination"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_GuardEnters" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_GuardEnters"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_ScientistEnters" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_ScientistEnters"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Elevator_Roof" path="Obj">
+   <WwiseEvent wwise_name="Play_SimLab_Elevator_Roof"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_PutOnUniform_03" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_PutOnUniform_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_PutOnUniform_02" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_PutOnUniform_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_PutOnUniform_01" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_PutOnUniform_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Worker_Work" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Worker_Work"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_BetaPod_Mechanics_LP_01" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_BetaPod_Mechanics_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_BetaPod_Mechanics_LP_01" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_BetaPod_Mechanics_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_DarkComputer" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_DarkComputer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_DarkComputer" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_DarkComputer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_GlitchComputer" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_GlitchComputer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_GlitchComputer" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_GlitchComputer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_EngineLow_LP_01" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_EngineLow_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_EngineLow_LP_01" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_EngineLow_LP_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_NeonBuzz" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_NeonBuzz"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_NeonBuzz" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_NeonBuzz"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_PlayerWakeUp_8" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_TranscribeClick"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_Grnded_TVStatic_01" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_Grnded_TVStatic_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_Grnded_TVStatic_01" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_Grnded_TVStatic_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLabs" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Play_Amb_SimLabs"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLabs" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Stop_Amb_SimLabs"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Apartment" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Apartment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Hallway_Long" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Hallway_Long"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Hallway_Medium" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Hallway_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Hallway_Short" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Hallway_Short"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_HeliPad" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_HeliPad"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Large_OpenSpace_1" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Large_OpenSpace_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Large_OpenSpace_2" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Large_OpenSpace_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Large_OpenAir_1" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Large_OpenAir_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Large_OpenAir_2" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Large_OpenAir_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Large_OpenAir_3" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Large_OpenAir_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Large_OpenAir_4" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Large_OpenAir_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Room_Large" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Room_Large"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Room_Machine_1" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Room_Machine_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Room_Machine_2" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Room_Machine_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Room_Machine_3" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Room_Machine_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Room_Medium" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Room_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Room_Small" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Room_Small"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Stairwell" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Stairwell"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Transtar_Atrium" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Transtar_Atrium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_SimLab_Transtar_Testing" path="2D_Amb_StateBased">
+   <WwiseEvent wwise_name="Set_State_Amb_SimLab_Transtar_Testing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_Rooftop_AC_1" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_Rooftop_AC_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_Rooftop_AC_2" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_Rooftop_AC_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_SimLab_Metal_Rattles" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_SimLab_Metal_Rattles"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Metal_Rattles" path="3D_Env">
+   <WwiseEvent wwise_name="Play_SimLab_Metal_Rattles"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_Traffic" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_Traffic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_Traffic" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_Traffic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLab_Helicopter_Day1_Hallway" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Amb_SimLab_Helicopter_Day1_Hallway"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1_Hallway" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1_Hallway"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_SimLab_EerieCopter_LP" path="Obj">
+   <WwiseEvent wwise_name="Stop_SimLab_EerieCopter_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_EerieCopter_LP" path="Obj">
+   <WwiseEvent wwise_name="Play_SimLab_EerieCopter_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Test4_GrabChair" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Test4_GrabChair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Test4_PullChair" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Test4_PullChair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_PlayerFall" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_PlayerFall"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimAttack_HitFloor_01" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimAttack_HitFloor_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_SubtleAlarmTone_Concept_01" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_SubtleAlarmTone_Concept_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Apartment_Blinds_Start" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Apartment_Blinds_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_Apartment_Blinds_Stop" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_Apartment_Blinds_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_MimicAttack_PlayerFly_Back" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_MimicAttack_PlayerFly_Back"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_HelicopterFlyBy" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_HelicopterFlyBy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_SimLab_Small_Pipes" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_SimLab_Small_Pipes"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_SimLab_Small_Pipes" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_SimLab_Small_Pipes"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Day2_WakeUp_Bass" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Day2_WakeUp_Bass"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_WakUp" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_WakUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLab_Helicopter_Day1" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Amb_SimLab_Helicopter_Day1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLab_BrokenDirectory" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLab_BrokenDirectory"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLab_BrokenDirectory" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLab_BrokenDirectory"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Sim_Lab_ExperimentDoor_Close" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Sim_Lab_ExperimentDoor_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_ContainMimic_Mimic_MVMT" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_ContainMimic_Mimic_MVMT"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_ContainMimic_Music" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_ContainMimic_Music"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_ContainMimic_WallHit" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Impact_Mimic_Wall_Hits"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Game_Opening" path="Mix">
+   <WwiseEvent wwise_name="Set_State_Game_Opening"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Game_Opening_Amb" path="Events">
+   <WwiseEvent wwise_name="Play_Game_Opening_Amb"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Game_Opening_Amb" path="Events">
+   <WwiseEvent wwise_name="Stop_Game_Opening_Amb"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_HelicopterPilot_Day2" path="Obj">
+   <WwiseEvent wwise_name="Stop_HelicopterPilot_Day2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_HelicopterPilot_Day2" path="Obj">
+   <WwiseEvent wwise_name="Play_HelicopterPilot_Day2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Simlabs_Day2_PowerOn" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Simlabs_Day2_PowerOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_eerieAlarm_simlabs" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Env_eerieAlarm_simlabs"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_eerieAlarm_simlabs" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Env_eerieAlarm_simlabs"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLab_Mimic_Rorshact_Spell" path="Events">
+   <WwiseEvent wwise_name="Play_SimLab_Mimic_Rorshact_Spell"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ExitTone_EvilTone" path="Obj">
+   <WwiseEvent wwise_name="Play_ExitTone_EvilTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_ExitTone_EvilTone" path="Obj">
+   <WwiseEvent wwise_name="Stop_ExitTone_EvilTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Heli_SeatbeltOn" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Heli_SeatbeltOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Transtar_Foyer_Statue_Mlfnctn" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Transtar_Foyer_Statue_Mlfnctn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Transtar_Foyer_Statue_Mlfnctn" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_Transtar_Foyer_Statue_Mlfnctn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_HeliPadSim_Lights" path="Obj">
+   <WwiseEvent wwise_name="Play_OBJ_HeliPadSim_Lights"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_HeliPadSim_Roof" path="Obj">
+   <WwiseEvent wwise_name="Play_OBJ_HeliPadSim_Roof"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_2ndDay_Malfunction_Logo_LP" path="Obj">
+   <WwiseEvent wwise_name="Play_OBJ_2ndDay_Malfunction_Logo_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_2ndDay_RoomTransform" path="Obj">
+   <WwiseEvent wwise_name="Play_OBJ_2ndDay_RoomTransform"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_2ndDay_Wall_Move" path="Obj">
+   <WwiseEvent wwise_name="Play_OBJ_2ndDay_Wall_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_2ndDay_Malfunction_Logo_LP" path="Obj">
+   <WwiseEvent wwise_name="Stop_OBJ_2ndDay_Malfunction_Logo_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_2ndDay_Wall_Move" path="Obj">
+   <WwiseEvent wwise_name="Stop_OBJ_2ndDay_Wall_Move"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1_FadeIn" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1_FadeIn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1_FadeOut" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1_FadeOut"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DramaticWrench_Glass" path="Events">
+   <WwiseEvent wwise_name="Play_DramaticWrench_Glass"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DramaticWrench_Swing" path="Events">
+   <WwiseEvent wwise_name="Play_DramaticWrench_Swing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Transtar_Kiosk_Stop" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Transtar_Kiosk_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Transtar_Kiosk_Up" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Transtar_Kiosk_Up"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1_01" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLab_Helicopter_Day1_01" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Amb_SimLab_Helicopter_Day1_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1_Hallway_01" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1_Hallway_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLab_Helicopter_Day1_Hallway_01" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Amb_SimLab_Helicopter_Day1_Hallway_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_SimLab_Helicopter_Day1_02" path="3D_Env">
+   <WwiseEvent wwise_name="Play_Amb_SimLab_Helicopter_Day1_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_SimLab_Helicopter_Day1_02" path="3D_Env">
+   <WwiseEvent wwise_name="Stop_Amb_SimLab_Helicopter_Day1_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DANI_ScareHit_011" path="Events">
+   <WwiseEvent wwise_name="Play_DANI_ScareHit_011"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Player_Heli_Suicide" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Player_Heli_Suicide"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Phantom_DeepBreath" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Phantom_DeepBreath"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_Email" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_Email"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_Error" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_Error"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_LP" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_Logged_In" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_Logged_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_RootMenu" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_RootMenu"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_Used" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_Used"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_Utility" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_Utility"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Apt_Terminal_Utility_Used" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_Apt_Terminal_Utility_Used"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Apt_Terminal_LP" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_Apt_Terminal_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_MetalRattles" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_MetalRattles"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_MetalRattles" path="2D_Amb">
+   <WwiseEvent wwise_name="Stop_Amb_MetalRattles"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_TestD_PoisonGas" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_TestD_PoisonGas"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_SimLab_Pigeon_FlyBy" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_SimLab_Pigeon_FlyBy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_MimicScare" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_MimicScare"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLabs_Dahl_Brain_Clasp_In" path="Events/Dahl_Brain">
+   <WwiseEvent wwise_name="Play_SimLabs_Dahl_Brain_Clasp_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLabs_Dahl_Brain_Clasp_Out" path="Events/Dahl_Brain">
+   <WwiseEvent wwise_name="Play_SimLabs_Dahl_Brain_Clasp_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLabs_Dahl_Brain_Cleaning_Energy" path="Events/Dahl_Brain">
+   <WwiseEvent wwise_name="Play_SimLabs_Dahl_Brain_Cleaning_Energy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLabs_Dahl_Brain_Door_Close" path="Events/Dahl_Brain">
+   <WwiseEvent wwise_name="Play_SimLabs_Dahl_Brain_Door_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_SimLabs_Dahl_Brain_NeuralScan_Begin" path="Events/Dahl_Brain">
+   <WwiseEvent wwise_name="Play_SimLabs_Dahl_Brain_NeuralScan_Begin"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_CrewFacilities_Treadmill_LP" path="Obj">
+   <WwiseEvent wwise_name="Play_OBJ_CrewFacilities_Treadmill_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_CrewFacilities_Treadmill_LP" path="Obj">
+   <WwiseEvent wwise_name="Stop_OBJ_CrewFacilities_Treadmill_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_SimLabs_Fountain_Small_01" path="Obj">
+   <WwiseEvent wwise_name="Play_Obj_SimLabs_Fountain_Small_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_SimLabs_Fountain_Small_01" path="Obj">
+   <WwiseEvent wwise_name="Stop_Obj_SimLabs_Fountain_Small_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_GloveOn" path="Events">
+   <WwiseEvent wwise_name="Play_Player_GloveOn"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="SimulationLabs" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="SimLab.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

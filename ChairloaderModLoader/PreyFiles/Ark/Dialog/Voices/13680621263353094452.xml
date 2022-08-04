@@ -1,0 +1,85 @@
+
+<Dialog>
+ <Dialog id="13680621263372015319" text="Run!" modified="07/08/2016 05:12:39 PM" notes="Mind-Controlled. Almost a roar before exploding."/>
+ <Dialog id="13680621263372015340" text="Get away... get away getaway getaway!" modified="11/16/2016 02:52:04 PM" notes="Mind-Controlled. Warning the player away."/>
+ <Dialog id="13680621263372015352" text="Keep away from me!" modified="09/10/2015 07:18:57 PM" notes="Mind-Controlled. Warning the player away."/>
+ <Dialog id="13680621263372015546" text="Noooo!" modified="09/10/2015 07:19:22 PM" notes="Mind-Controlled. Almost a roar before exploding."/>
+ <Dialog id="13680621263372015685" text="Can&apos;t think. I wish... I can&apos;t..." modified="09/10/2015 07:21:41 PM" notes="Mind-Controlled. Pained muttering. Can&apos;t clear their head."/>
+ <Dialog id="13680621263372015702" text="What do you want from me?" modified="02/21/2016 11:04:03 PM" notes="Mind-Controlled. Talking to someon in their head. "/>
+ <Dialog id="13680621263372015719" text="Get out of my head. Get. Out." modified="09/10/2015 07:22:15 PM" notes="Mind-Controlled. Angry. Pained. Self-talk. "/>
+ <Dialog id="13680621263372015733" text="Please no. I don&apos;t want to do that. I won&apos;t." modified="09/10/2015 07:32:26 PM" notes="Mind-Controlled. Despairing. Futile resistance."/>
+ <Dialog id="13680621263372015924" text="Will you let me go then? Promise me you&apos;ll let me go." modified="09/10/2015 07:26:18 PM" notes="Mind-Controlled. A little above a whisper. Pleading."/>
+ <Dialog id="13680621263372016029" text="Ah God, what&apos;s wrong with me." modified="07/11/2016 11:41:24 PM" notes="Mind-Controlled.  Anguished, self talk."/>
+ <Dialog id="13680621263372016114" text="Shut up. Shuttup shuttup shuttup! " modified="02/21/2016 11:16:06 PM" notes="Mind-Controlled. Self-berating. Smacking their own head."/>
+ <Dialog id="13680621263372016509" text="Juss... leave me alone. " modified="02/21/2016 11:06:34 PM" notes="Mind-Controlled. Angry."/>
+ <Dialog id="13680621263386010016" text="(Yelp)" modified="02/19/2016 07:13:32 PM" notes="Short cry of pain. Aah!" sync="true"/>
+ <Dialog id="13680621263386010022" text="(Cry of Pain)" modified="07/08/2016 03:38:05 PM" notes="Short exhalation of pain, like a gut punch."/>
+ <Dialog id="13680621263386010027" text="(Grunt)" modified="02/19/2016 07:16:52 PM" notes="Grunt of pain, thru the teeth"/>
+ <Dialog id="13680621263386010119" text="(Shocked Grunt)" modified="07/07/2016 03:57:06 PM" notes="Shocked grunt..gritted teeth, followed by final exhalation. 3-4 seconds"/>
+ <Dialog id="13680621263386010202" text="(Muffled Cry)" modified="07/07/2016 03:49:59 PM" notes="Gloo&apos;d Variant 1. Surprise followed by struggle for 1-2 seconds."/>
+ <Dialog id="13680621263386010224" text="(Muffled Cry)" modified="11/16/2016 02:30:26 PM" notes="Gloo&apos;d Variant 2. Surprise followed by struggle for 1-2 seconds."/>
+ <Dialog id="13680621263386010264" text="(Hiss of Pain)" modified="07/07/2016 03:58:49 PM" notes="Sucked in hiss thru the teeth. Ssss ah!"/>
+ <Dialog id="13680621263386010310" text="(Scream)" modified="02/19/2016 07:20:46 PM" notes="Screaming, caught on fire. 2-3 seconds." sync="true"/>
+ <Dialog id="13680621263386010350" text="(Groan)" modified="02/19/2016 07:21:55 PM" notes="Groan and final exhalation. Death."/>
+ <Dialog id="13680621263386010361" text="(Scream)" modified="02/19/2016 07:21:38 PM" notes="Scream trailing into a gurgle. Death"/>
+ <Dialog id="13680621263386010441" text="(Gasp) Wha-! No... no!" modified="05/05/2016 11:40:18 PM" notes="Panic. "/>
+ <Dialog id="13680621263386010450" text="(Shout) Get it off!" modified="02/19/2016 07:23:08 PM" notes="Like a bee is crawling on your neck."/>
+ <Dialog id="13680621263386010598" text="(Enthralled Gasp)" modified="02/19/2016 07:26:44 PM" notes="Variant 1. Long inhalation, like &quot;wow, beautiful!&quot;"/>
+ <Dialog id="13680621263386010603" text="(Enthralled Gasp)" modified="02/19/2016 07:27:08 PM" notes="Variant 2. Long inhalation, like &quot;wow, beautiful!&quot;"/>
+ <Dialog id="13680621263386012513" text="(Wet Cough)" modified="02/19/2016 07:22:09 PM" notes="Wet cough ending in a chock. Death."/>
+ <Dialog id="13680621263386012641" text="(Grunt) ...my head." modified="07/07/2016 03:57:23 PM" notes="Grunt follow by a sigh like you have a really bad headache."/>
+ <Dialog id="13680621263386012663" text="(Grunt)" modified="02/19/2016 07:24:39 PM" notes="Grunt follow by a sigh like you have a really bad headache."/>
+ <Dialog id="13680621263386012724" text="Whoa." modified="02/19/2016 07:25:40 PM" notes="Understated. "/>
+ <Dialog id="13680621263386012748" text="Shit... my TranScribe." modified="07/08/2016 03:37:40 PM" notes="Under breath."/>
+ <Dialog id="13680621263386012896" text="(Sharp Gasp)" modified="02/19/2016 07:28:32 PM" notes="Shocked. Abruptly lifted into the air."/>
+ <Dialog id="13680621263386012902" text="(Startled Cry)" modified="02/19/2016 07:28:38 PM" notes="Shocked. Abruptly lifted into the air."/>
+ <Dialog id="13680621263386013008" text="(Long Cry)" modified="02/19/2016 07:30:24 PM" notes="Fall from a significan&apos;t height. 2 seconds"/>
+ <Dialog id="13680621263386013058" text="(Worried Cry)" modified="02/19/2016 07:31:14 PM" notes="Floating up in the air, like at the top of a geyser. "/>
+ <Dialog id="13680621263386013082" text="Let me down!" modified="02/19/2016 07:31:46 PM" notes="Floating up in the air, like at the top of a geyser. "/>
+ <Dialog id="13680621263386013118" text="(Gasp)" modified="02/19/2016 07:32:14 PM" notes="Hit with a bucket of cold water."/>
+ <Dialog id="13680621263386013146" text="(Gasp) What is..." modified="02/19/2016 07:32:42 PM" notes="Startled, then confused. Shaking head."/>
+ <Dialog id="13680621263386013171" text="Hey!" modified="02/19/2016 07:33:07 PM" notes="Someone just goosed them."/>
+ <Dialog id="13680621263386013187" text="What was that?" modified="02/19/2016 07:33:23 PM" notes="Someone just goosed them. More confused than angry."/>
+ <Dialog id="13680621263386013203" text="What the hell?" modified="02/19/2016 07:33:39 PM" notes="Someone just goosed them. More confused than angry."/>
+ <Dialog id="13680621263386013223" text="(Scream)" modified="02/19/2016 07:33:59 PM" notes="Mimic jumped on them, squeezing. Scream followed by a final choking exhalation. 3 Seconds." sync="true"/>
+ <Dialog id="13680621263386013236" text="Ah! Get it off! (Choking)" modified="07/07/2016 04:19:29 PM" notes="Mimic jumped on them, squeezing. Scream followed by a final choking exhalation. 3 Seconds." sync="true"/>
+ <Dialog id="13680621263386013416" text="(Gasp) Oh God." modified="02/19/2016 07:37:12 PM" notes="Terrified realization."/>
+ <Dialog id="13680621263386013437" text="(Speechless Gasp)" modified="02/19/2016 07:37:33 PM" notes="Mouth open, sputtering..."/>
+ <Dialog id="13680621263386013462" text="(Gasp) No. Please no." modified="11/16/2016 02:52:25 PM" notes="Terrified realization."/>
+ <Dialog id="13680621263386023649" text="(Startled Cry)" modified="02/19/2016 10:27:45 PM" notes="Sudden terror. Running away."/>
+ <Dialog id="13680621263386023669" text="(Startled Gasp)" modified="07/07/2016 03:57:56 PM" notes="Sudden terror. Running away."/>
+ <Dialog id="13680621263386198443" text="(Scream)" modified="02/21/2016 11:00:59 PM" notes="Mind-Controlled. Inarticulate roar before exploding." facefx="0"/>
+ <Dialog id="13680621263386198788" text="I don&apos;t believe in the devil. " modified="02/21/2016 11:06:44 PM" notes="Mind-Controlled. Trying to convince themselves the evil voice in their head isn&apos;t real." facefx="0"/>
+ <Dialog id="13680621263386198896" text="You can&apos;t make me do it." modified="02/21/2016 11:08:32 PM" notes="Mind-Controlled. Whispering to self." facefx="0"/>
+ <Dialog id="13680621263386199021" text="I&apos;m in control. I&apos;m in control. I&apos;m ngh- (Pained Sigh)" modified="07/07/2016 03:50:04 PM" notes="Mind-Controlled. Ends with a pained sigh through teeth. "/>
+ <Dialog id="13680621263386199271" text="Your voice is so familiar. Who are you?" modified="02/21/2016 11:14:59 PM" notes="Mind-Controlled.  Afriad."/>
+ <Dialog id="13680621263386199294" text="(Gasp)" modified="02/21/2016 11:15:10 PM" notes="Mind-Controlled.  Terrifed realization."/>
+ <Dialog id="13680621263386199690" text="No. Stop talking. No. You&apos;re not real. You&apos;re not real." modified="02/21/2016 11:21:46 PM" notes="Mind-Controlled. Fevered whisper to self."/>
+ <Dialog id="13680621263386199734" text="You have to leave." modified="02/21/2016 11:22:30 PM" notes="Mind-Controlled. Warning player."/>
+ <Dialog id="13680621263386199745" text="I can&apos;t- I can&apos;t control myself." modified="07/08/2016 04:32:06 PM" notes="Mind-Controlled. Warning the player"/>
+ <Dialog id="13680621263386199779" text="I can&apos;t stop myself, you understand?! Go!" modified="07/08/2016 04:33:03 PM" notes="Controlled.  Warning player"/>
+ <Dialog id="13680621263386199804" text="If I find you, we&apos;re both dead." modified="07/08/2016 05:08:06 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386199841" text="It wants you dead. It won&apos;t shut up. Please. Just go." modified="07/05/2016 10:57:01 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386199853" text="Can you help me? Can you make it stop?" modified="02/21/2016 11:24:29 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386199877" text="It&apos;s in my head. It won&apos;t stop talking about you." modified="02/21/2016 11:24:53 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386199953" text="They... they&apos;re worried. You&apos;re not like the rest of us. (Pained Cry)" modified="07/07/2016 03:50:08 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386200003" text="I don&apos;t want to find you." modified="02/21/2016 11:26:59 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386200043" text="They won&apos;t stop hunting you." modified="02/21/2016 11:27:39 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386200062" text="Not until they&apos;re finished. Something&apos;s co- (Pained Cry)" modified="07/07/2016 03:50:11 PM" notes="Mind-Controlled. "/>
+ <Dialog id="13680621263386200095" text="No..." modified="02/21/2016 11:28:31 PM" notes="Mind-Controlled. Shaking head. Heard the player, but doesn&apos;t want to have. &quot;Please no&quot;"/>
+ <Dialog id="13680621263386200133" text="Was that...?" modified="11/16/2016 02:52:38 PM" notes="Mind-Controlled. Anxious."/>
+ <Dialog id="13680621263386200151" text="(Gasp)" modified="02/21/2016 11:29:27 PM" notes="Mind-Controlled. Frightened, anticipatory gasp."/>
+ <Dialog id="13680621263386200183" text="No!" modified="02/21/2016 11:29:59 PM" notes="Mind-Controlled. Doesn&apos;t want ths to happen."/>
+ <Dialog id="13680621263386200255" text="I can&apos;t... Stop! Stop!" modified="11/16/2016 02:31:49 PM" notes="Mind-Controlled. Fighting someone that is controlling them."/>
+ <Dialog id="13680621263386200292" text="Get back!" modified="02/21/2016 11:31:48 PM" notes="Mind-Controlled. Warning the player away."/>
+ <Dialog id="13680621263386200357" text="I have to listen. I have to- (Labored Breathing)" modified="07/08/2016 04:26:49 PM" notes="Mind-Controlled. Warning the player away. Fighting for control."/>
+ <Dialog id="13680621263386200447" text="What are you doing? Run! Run!" modified="11/16/2016 02:32:06 PM" notes="Mind-Controlled. Panicked."/>
+ <Dialog id="13680621263386200551" text="I can&apos;t control myself." modified="02/21/2016 11:36:07 PM" notes="Mind-Controlled. In Anguish."/>
+ <Dialog id="13680621263386200590" text="Don&apos;t get close to me!" modified="02/21/2016 11:36:46 PM" notes="Mind-Controlled. Warning the player away."/>
+ <Dialog id="13680621263386200608" text="You have to go. Hurry." modified="11/16/2016 02:53:04 PM" notes="Mind-Controlled. Warning the player away."/>
+ <Dialog id="13680621263386200679" text="Please - don&apos;t let me die like this." modified="07/05/2016 10:39:28 PM" notes="Mind-Controlled. Warning the player away."/>
+ <Dialog id="13680621263386200702" text="(Sigh)" modified="02/21/2016 11:38:38 PM" notes="Mind-Controlled. Relief."/>
+ <Dialog id="13680621263386200732" text="Nothing. See? It was nothing." modified="02/21/2016 11:39:08 PM" notes="Mind-Controlled. Convincing the voice in their head."/>
+ <Dialog id="13680621263386200796" text="I told you." modified="02/21/2016 11:40:12 PM" notes="Mind-Controlled. Convincing the voice in their head."/>
+ <Dialog id="13680621263386200825" text="There&apos;s nothing." modified="02/21/2016 11:40:41 PM" notes="Mind-Controlled. Convincing the voice in their head."/>
+</Dialog>

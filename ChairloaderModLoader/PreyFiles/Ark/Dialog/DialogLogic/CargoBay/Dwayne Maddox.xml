@@ -1,0 +1,403 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="4349723564930121496" name="Darcy Maddox: Approach, Aliens Defeated" cooldown="" response="4349723564930121546" oneshot="1" description="Security guards have been trapped by a swarm of aliens and holding out for a miracle, and Morgan has delivered it to them. Morgan made turrets that, combined with the security small-arms fire, wiped out the attacking aliens in this section. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930121546">
+  <Response dialog="4349723564930121545" id="4349723564930121547" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318087"/>
+  <Response dialog="4349723564930121557" id="4349723564930121558" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318010" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930121482" id="4349723564930121591" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930122204" name="Darcy Maddox: Approach, Ready For Combat" cooldown="" response="4349723564930122413" oneshot="0" description="Security is bracing for an imminent battle with alien forces. They have been holed up in a safe place, but the time has come to fight the aliens">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930123815" name="Darcy Maddox: Approach, Has Turrets" cooldown="" response="4349723564930123836" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930125076" name="Darcy Maddox: Approach, Igwe Rescued" cooldown="" response="4349723564930125136" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564883707540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930125158" name="Darcy Maddox: Approach, Chaudhary Rescued" cooldown="" response="4349723564930125238" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="14667999412548025540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1018317790" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930123538" name="Darcy Maddox: Approach, Lift Operational" cooldown="" response="4349723564930123588" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="1105212212" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930123707" name="Darcy Maddox: Approach, Wants Turrets" cooldown="" response="4349723564930123763" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915765037" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122208" name="Darcy Maddox: Mourns Sarah" cooldown="" response="4349723564930122350" oneshot="0" description="The Chief of Security, Sarah Elazar, died in combat with the aliens. Even though the security forces won they mourn her death. She enabled them to survive this far." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="1230984417" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122211" name="Darcy Maddox: Mourns Austin" cooldown="" response="4349723564930122333" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122213" name="Darcy Maddox: Mourns Tamiko" cooldown="" response="4349723564930122320" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122215" name="Darcy Maddox: Mourns Sam" cooldown="" response="4349723564930122308" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122217" name="Darcy Maddox: Mourns Kevin" cooldown="" response="4349723564930122296" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122219" name="Darcy Maddox: Mourns Alfred" cooldown="" response="4349723564930122283" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930122283">
+  <Response dialog="4349723564930122282" id="4349723564930122284" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318046"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122296">
+  <Response dialog="4349723564930122295" id="4349723564930122297" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="4349723564907034829" targetType="2" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122308">
+  <Response dialog="4349723564930122307" id="4349723564930122309" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122320">
+  <Response dialog="4349723564930122319" id="4349723564930122321" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318046" targetId="4349723564907034870" targetType="2" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122333">
+  <Response dialog="4349723564930122332" id="4349723564930122334" cooldown="0" weight="1" oneshot="false" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318046"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122350">
+  <Response dialog="4349723564930122349" id="4349723564930122351" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318046"/>
+  <Response dialog="4349723564930122373" id="4349723564930122374" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122413">
+  <Response dialog="4349723564930122412" id="4349723564930122414" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564941759536" id="4349723564941759537" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318053"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930122458" name="Darcy Maddox: OnUse, Guard Duty Barks" cooldown="" response="4349723564930122522" oneshot="0" description="She is standing guard in the Cargo Bay. Just beyond the doors and windows there are unimaginable horrors stalking about, so tension is very high. The guards here have witnessed a great deal of death and chaos in the last few hours.   ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="2" passIfMissing="false" id="1730830942" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263410737847" name="Darcy Maddox: OnUse, Guard Duty Barks - To Elazar USED?" cooldown="" response="13680621263410737872" oneshot="0" description="She is standing guard in the Cargo Bay. Just beyond the doors and windows there are unimaginable horrors stalking about, so tension is very high. The guards here have witnessed a great deal of death and chaos in the last few hours.   ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930122522">
+  <Response dialog="4349723564930122546" id="4349723564930122547" cooldown="600" weight="1" oneshot="false" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930122567" id="4349723564930122568" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930122579" id="4349723564930122580" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564942894338" id="13680621263410737978" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930122642">
+  <Response dialog="4349723564930122641" id="4349723564930122643" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930122652" id="4349723564930122653" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930123282" name="Darcy Maddox: OnUse, Aliens Defeated" cooldown="" response="4349723564930123314" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930123314">
+  <Response dialog="4349723564930123313" id="4349723564930123315" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930123324" id="4349723564930123325" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930123389" name="Darcy Maddox: OnUse, Sarah Waiting" cooldown="" response="4349723564930123399" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564878623606" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930123399">
+  <Response dialog="4349723564930123398" id="4349723564930123400" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564942894338" id="4349723564942894339" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930123492">
+  <Response dialog="4349723564930123491" id="4349723564930123493" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930123503" id="4349723564930123504" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930123512" id="4349723564930123513" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930123588">
+  <Response dialog="4349723564930123587" id="4349723564930123589" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423989"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930123631">
+  <Response dialog="4349723564930123630" id="4349723564930123632" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930123639" id="4349723564930123640" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930123648" id="4349723564930123649" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930123763">
+  <Response dialog="4349723564930123762" id="4349723564930123764" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318010"/>
+  <Response dialog="4349723564930123774" id="4349723564930123775" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930123836">
+  <Response dialog="4349723564930123835" id="4349723564930123837" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930123851" id="4349723564930123852" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930123928" name="Darcy Maddox: OnUse, Dahl Arrives" cooldown="" response="4349723564930124038" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="1990946021" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930124038">
+  <Response dialog="4349723564930124037" id="4349723564930124039" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930124062" id="4349723564930124063" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930124074" id="4349723564930124075" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930124091" name="Darcy Maddox: OnUse, Dahl Trap On" cooldown="" response="4349723564930124164" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="844024417287653148" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930124164">
+  <Response dialog="4349723564930124163" id="4349723564930124165" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930124174" id="4349723564930124175" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930124223" name="Darcy Maddox: OnUse, Dahl Dead" cooldown="" response="4349723564930124252" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930124252">
+  <Response dialog="4349723564930124251" id="4349723564930124253" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318066"/>
+  <Response dialog="4349723564930124269" id="4349723564930124270" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930124279" id="4349723564930124280" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930124774">
+  <Response dialog="4349723564930124773" id="4349723564930124775" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930124784" name="" cooldown="" response="4349723564930124903">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930124775" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930124903">
+  <Response dialog="4349723564930124902" id="4349723564930124904" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930124923" id="4349723564930124924" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930124958" name="" cooldown="" response="4349723564930125007">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930124775" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930125007">
+  <Response dialog="4349723564930125006" id="4349723564930125008" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930125023" id="4349723564930125024" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930125136">
+  <Response dialog="4349723564930125135" id="4349723564930125137" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748317984"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930125238">
+  <Response dialog="4349723564930125237" id="4349723564930125239" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930125258" name="Darcy Maddox: OnUse, Waiting to Die" cooldown="" response="4349723564930125367" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="659909599" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930124317" name="Darcy Maddox: Loiter, Opened Door Early" cooldown="" response="4349723564930124774" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930122608" name="Darcy Maddox: Player futz with door" cooldown="" response="4349723564930122642" oneshot="0" description="The door seals off Cargo Bay from the alien swarm outside, and Morgan has just started tampering with the lock that keeps it closed." conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930123464" name="Darcy Maddox: Player Attacks Security" cooldown="" response="4349723564930123492" oneshot="1" description="" conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNewTarget" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451416" type="default" keyType="default" value="ArkPlayer"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930123602" name="Darcy Maddox: Player Uses Alien Power" cooldown="" response="4349723564930123631" oneshot="0" description="" conversation="1" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786218" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerUsePower" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034797"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="3" passIfMissing="false" id="5310807215636213148" type="default" keyType="default" value="2"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930125367">
+  <Response dialog="4349723564930125366" id="4349723564930125368" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+  <Response dialog="4349723564930125377" id="4349723564930125378" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263410737872">
+  <Response dialog="4349723564930122521" id="13680621263410737873" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+  <Response dialog="4349723564930122532" id="13680621263410737880" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

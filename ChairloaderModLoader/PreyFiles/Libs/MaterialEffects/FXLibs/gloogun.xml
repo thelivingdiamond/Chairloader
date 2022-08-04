@@ -1,0 +1,67 @@
+
+<FXLib>
+ <Effect name="mat_null">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+ </Effect>
+ <Effect name="mat_default">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.SurfaceMaterials.Default_00"/>
+  </Particle>
+  <Decal minscale="0.15" maxscale="0.15" lifetime="4.0">
+   <Material materialPath="Materials/ArkEffects/Utilities/SurfaceMaterials/MatDefault_00"/>
+  </Decal>
+  <Audio trigger="null">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="gloogun_null">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+ </Effect>
+ <Effect name="mat_gloo_decal_test">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="30" particleName="PlayerWeapons.GooGun.Goo.SurfaceDecal_00"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="mat_gloo_rend_mats">
+  <Decal minscale="1.15" maxscale="1.15" lifetime="5.0" projDepth="0.035" growTime="0.35" manual="true">
+   <Material materialPath="Materials/ArkEffects/Weapons/Gloogun/Gloogun_Decal_Blend"/>
+  </Decal>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="mat_gloo_gloo_soft">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="mat_gloo_gloo_hard">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="mat_gloo_flesh" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="mat_gloo_glass" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+ <Effect name="mat_gloo_vegetation" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649175"/>
+ </Effect>
+</FXLib>

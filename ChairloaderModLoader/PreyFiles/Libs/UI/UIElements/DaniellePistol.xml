@@ -1,0 +1,37 @@
+
+<UIElements name="DaniellePistol">
+ <UIElement name="DaniellePistol" render_lockless="1">
+  <WorldUI enable="1" distance="3" cursorEvents="false"/>
+  <GFx file="GFX/danielle_pistol.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="0" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="updateAmmoCounter" funcname="gun.updateAmmoCounter">
+    <param name="Clip" desc="ammo loaded in weapon" type="int"/>
+    <param name="ClipSize" desc="size of clip" type="int"/>
+    <param name="InventoryCount" desc="number of bullets in inventory" type="int"/>
+   </function>
+   <function name="reloadStart" funcname="gun.reloadStart"/>
+   <function name="reloadEnd" funcname="gun.reloadEnd"/>
+   <function name="dryFire" funcname="gun.dryFire"/>
+   <function name="powerOn" funcname="gun.powerOn"/>
+   <function name="powerOff" funcname="gun.powerOff"/>
+   <function name="setCondition" funcname="gun.setCondition">
+    <param name="Condition" desc="0=good, 1=damaged, 2=broken" type="int"/>
+   </function>
+   <function name="openDurability" funcname="gun.openDurability"/>
+   <function name="setDurability" funcname="gun.setDurability">
+    <param name="Value" desc="0-100" type="float"/>
+   </function>
+   <function name="closeDurability" funcname="gun.closeDurability"/>
+   <function name="pauseUI" funcname="util.pauseUI">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+  </functions>
+  <Events/>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

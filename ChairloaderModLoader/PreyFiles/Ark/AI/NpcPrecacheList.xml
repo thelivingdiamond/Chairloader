@@ -1,0 +1,67 @@
+
+<NpcPrecacheList>
+ <SignalReceivers>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/AlienSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/ElitePhantomSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/HumanSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/NightmareSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/NpcBaseSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/OperatorSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/PoltergeistSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/SmokeformSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/TelepathSignalReceiverConfig.xml"/>
+  <SignalReceiver file="Ark/AI/AiSignalReceiverConfigs/VoltaicPhantomSignalReceiverConfig.xml"/>
+ </SignalReceivers>
+ <SignalAccumulators>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/AlienAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/DahlAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/ElitePhantomAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/HumanAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/MimicAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/MimicEliteAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/NightmareAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/NPCBaseAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/OperatorFlavorAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/OperatorMilitaryFlavorAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/PhantomAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/PoltergeistAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/TechnopathAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/TelepathAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/VoltaicPhantomAccumulatorConfig.xml"/>
+  <SignalAccumulator file="Ark/AI/AiSignalAccumulatorConfigs/WeaverAccumulatorConfig.xml"/>
+ </SignalAccumulators>
+ <AiTrees>
+  <AiTree file="Ark/AI/AiTrees/ArmedHumanAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/CorruptedEngineeringOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/CorruptedHumanAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/CorruptedMedicalOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/CorruptedMilitaryOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/CorruptedScienceOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/EliteMimicAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/EngineeringOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/EthericDoppelgangerAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/EthericDoppelgangerAiTree2.xml"/>
+  <AiTree file="Ark/AI/AiTrees/EthericPhantomAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/EthericPhantomAiTree2.xml"/>
+  <AiTree file="Ark/AI/AiTrees/FeebleTechnopathAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/FeebleUnarmedHumanAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/HumanAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/MedicalOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/MilitaryOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/MimicAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/NightmareAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/OperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/PhantomAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/PhantomAiTree2.xml"/>
+  <AiTree file="Ark/AI/AiTrees/PoltergeistAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/ScienceOperatorAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/TechnopathAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/TelepathAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/ThermalPhantomAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/ThermalPhantomAiTree2.xml"/>
+  <AiTree file="Ark/AI/AiTrees/UnarmedHumanAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/VoltaicAiTree.xml"/>
+  <AiTree file="Ark/AI/AiTrees/VoltaicAiTree2.xml"/>
+  <AiTree file="Ark/AI/AiTrees/WeaverAiTree.xml"/>
+ </AiTrees>
+</NpcPrecacheList>

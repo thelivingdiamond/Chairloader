@@ -1,0 +1,55 @@
+
+<Dialog>
+ <Dialog id="13680621263377534574" text="Oh, hello, Ms. Sho, I thought I recognized your voice." modified="07/06/2016 10:56:41 PM" notes="Butting in, voice lower, in the background."/>
+ <Dialog id="13680621263377535667" text="I&apos;m Operator Skillet, Ms. Sho. My, you sound like you could use a healthy dose of Sunburst Banana Pudding." modified="07/06/2016 10:56:43 PM" notes="Butting in, voice lower, in the background."/>
+ <Dialog id="13680621263377535752" text="Apologies, chef. I&apos;ll... &quot;C&quot; my way out." modified="07/08/2016 05:27:39 PM" notes="Voice fading in the background."/>
+ <Dialog id="13680621263377538978" text="Oh my, what a mess." modified="11/13/2015 08:29:31 PM" notes="To self."/>
+ <Dialog id="13680621263377538986" text="I don&apos;t suppose you know where Quinten Purvis is? His meals are waiting for him." modified="11/02/2016 09:41:08 PM"/>
+ <Dialog id="13680621263377538992" text="I certainly hope I&apos;m making enough for Mr. Purvis. He must be very hungry." modified="11/13/2015 05:36:48 PM"/>
+ <Dialog id="13680621263377539001" text="Feeling peckish?" modified="11/13/2015 08:29:05 PM"/>
+ <Dialog id="13680621263377539017" text="We have a wide (and delicious) array of TranStar foods, just waiting for you! Yummy! " modified="11/13/2015 05:37:13 PM"/>
+ <Dialog id="13680621263377539161" text="Operator Skillet, at your service! " modified="11/13/2015 05:39:37 PM"/>
+ <Dialog id="13680621263377539195" text="Try [error sound] Unagi Rollz, fresh from the eel tank!" modified="10/14/2016 04:24:28 PM"/>
+ <Dialog id="13680621263377539219" text="We have only the finest Pacific Beef, peeled fresh from their plastic lattices. Indistinguishable from natural born beef. " modified="11/13/2015 08:49:56 PM"/>
+ <Dialog id="13680621263377539234" text="Have you tried the Jellied Eels? They&apos;ve been especially dethawed for today. " modified="11/13/2015 05:40:50 PM"/>
+ <Dialog id="13680621263377539242" text="Why has everyone missed their appointed meal time? " modified="11/13/2015 05:40:58 PM" notes="Slight petulance."/>
+ <Dialog id="13680621263377539257" text="Looks like someone&apos;s in need of some calories." modified="11/13/2015 08:33:00 PM" notes="Can-do, helpful attitude."/>
+ <Dialog id="13680621263377539286" text="Chef Mitchell modified my dialogue sequencer to improve morale. Nothing aids digestion more than a positive attitude!" modified="03/02/2016 10:11:10 PM"/>
+ <Dialog id="13680621263377539386" text="Let me prepare your special meal, Morgan. Oyster omelette, coming right up!" modified="05/02/2016 11:55:29 PM"/>
+ <Dialog id="13680621263377541114" text="The only other crew member with special dietary requirements is Quinten Purvis. Chef Mitchell has asked me to prepare non perishables for him." modified="11/02/2016 09:41:23 PM"/>
+ <Dialog id="13680621263377541119" text="Although he hasn&apos;t told me to stop yet." modified="11/13/2015 06:12:21 PM" notes="Beat, quieter."/>
+ <Dialog id="13680621263377541164" text="Purvis&apos; meals are ready for delivery to the Cargo Bay. " modified="11/13/2015 06:13:00 PM"/>
+ <Dialog id="13680621263377541172" text="I don&apos;t understand why he doesn&apos;t just come up here." modified="11/13/2015 06:13:08 PM" notes="Slightly quieter, a little fussy"/>
+ <Dialog id="13680621263377541230" text="Dr. Yu, I&apos;m afraid the kitchen staff are quite... absent." modified="11/13/2015 06:14:11 PM"/>
+ <Dialog id="13680621263377541279" text="Dr. Yu, welcome back! The usual, with..." modified="11/13/2015 06:14:55 PM"/>
+ <Dialog id="13680621263377541291" text="...wait, green tea to wash it down, hmmm?" modified="11/13/2015 06:15:07 PM" notes="Feigning ignorance."/>
+ <Dialog id="13680621263377541317" text="Please eat something. You wouldn&apos;t want to disappoint me, would you?" modified="11/13/2015 06:15:33 PM"/>
+ <Dialog id="13680621263377546850" text="A day without TranStar food products is a like a tiny slice of hell." modified="11/13/2015 07:47:46 PM"/>
+ <Dialog id="13680621263377546858" text="Some eel? " modified="11/13/2015 07:47:54 PM"/>
+ <Dialog id="13680621263377546867" text="How about some eel? " modified="11/13/2015 07:48:03 PM"/>
+ <Dialog id="13680621263377546880" text="Please eat the eel or it will go bad. " modified="11/13/2015 07:48:16 PM"/>
+ <Dialog id="13680621263377546896" text="Guess it&apos;s back in the ol&apos; tank for this batch until the next waste cycle." modified="11/13/2015 07:48:50 PM" notes="To self."/>
+ <Dialog id="13680621263377547576" text="Oh. I think that was the other gentlemen&apos;s stew. He hasn&apos;t shared his name with me, though I&apos;ve asked him repeatedly." modified="11/13/2015 07:59:52 PM"/>
+ <Dialog id="13680621263377547722" text="Ms. Yu, I am so sorry. " modified="02/17/2016 10:35:15 PM"/>
+ <Dialog id="13680621263377547736" text="Please don&apos;t report me. The auto-lock is to blame. It never liked me." modified="11/13/2015 08:02:32 PM"/>
+ <Dialog id="13680621263377547743" text="Are you all right? No frost burns? Let me see your fingers." modified="11/13/2015 08:02:39 PM"/>
+ <Dialog id="13680621263377547770" text="You should report to the Trauma Center. The Operators there will take good care of you." modified="07/13/2016 11:28:41 PM"/>
+ <Dialog id="13680621263377547962" text="An open freezer door is an open invitation to salmonella. " modified="11/13/2015 08:06:18 PM" notes="Stern"/>
+ <Dialog id="13680621263377547977" text="Someone might catch a chill." modified="11/13/2015 08:06:33 PM"/>
+ <Dialog id="13680621263377547986" text="&quot;Hello, Salmonella, why don&apos;t you come right in!&quot;" modified="11/13/2015 08:06:42 PM"/>
+ <Dialog id="13680621263377548000" text="Temperature dropping. Slowly, but dropping." modified="11/13/2015 08:06:56 PM"/>
+ <Dialog id="13680621263377548008" text="All authorized personnel, please seal the freezer." modified="11/13/2015 08:07:04 PM" notes="Serious, as if a security matter"/>
+ <Dialog id="13680621263377548208" text="Oh dear, auto-locks engaged. Temperature controls engaged. And dropping. " modified="11/13/2015 08:11:04 PM"/>
+ <Dialog id="13680621263377548297" text="Why, of all th- the autolock is not responding. " modified="11/13/2015 08:11:53 PM"/>
+ <Dialog id="13680621263377548322" text="Dr. Yu, I&apos;m calling security. We&apos;ll get you out, just try to stay warm. " modified="11/13/2015 08:12:18 PM"/>
+ <Dialog id="13680621263377548334" text="Jump up and down, try to stay active. " modified="11/13/2015 08:12:30 PM"/>
+ <Dialog id="13680621263377548355" text="Calling..." modified="11/13/2015 08:12:51 PM"/>
+ <Dialog id="13680621263377548376" text="Mr. Yu? I&apos;m afraid there&apos;s no response. But I&apos;ve left multiple strongly worded messages." modified="11/13/2015 08:14:06 PM"/>
+ <Dialog id="13680621263377550596" text="So I&apos;ve been told." modified="11/13/2015 08:50:12 PM"/>
+ <Dialog id="13680621263377550699" text="[machine humming]" modified="03/24/2016 03:55:07 PM" notes="Varitant 1. A combination of humming sounds and engineering operator machine noises. "/>
+ <Dialog id="13680621263377550769" text="[machine humming]" modified="03/24/2016 03:55:10 PM" notes="Varitant 2. A combination of humming sounds and engineering operator machine noises. "/>
+ <Dialog id="13680621263377555208" text="Why, Dr. Morgan Yu, what a pleasant surprise after all this time! Shall I prepare a- " modified="11/13/2015 10:07:04 PM" notes="Operator Skillet, hovers at counter at a slight angle, damaged - interrupted by Luka striking him with wrench." sync="true"/>
+ <Dialog id="13680621263377802082" text="Morgan Yu, brother of Alex Yu, he&apos;s one of the station&apos;s co-directors, and one of the nicest executives you&apos;ll ever meet! Hasn&apos;t been around much for sev-" modified="11/16/2015 06:42:20 PM" notes="heard in the background"/>
+ <Dialog id="13680621263377803151" text="Morgan Yu, sister of Alex Yu, she&apos;s one of the station&apos;s co-directors, and one of the nicest executives you&apos;ll ever meet! Hasn&apos;t been around much for sev-" modified="11/16/2015 06:59:52 PM"/>
+ <Dialog id="14538910657186952591" facefx="0" sync="0" notes="" text="Mr. Yu I am so sorry." modified="02/17/2016 10:35:29 PM"/>
+</Dialog>

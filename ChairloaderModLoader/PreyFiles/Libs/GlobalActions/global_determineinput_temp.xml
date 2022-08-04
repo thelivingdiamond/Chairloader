@@ -1,0 +1,37 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1821" Class="Input:ActionListener" pos="112,390.36426,0">
+   <Inputs entityId="0" Action="use" ActionMap="player" NonDevMode="0"/>
+  </Node>
+  <Node Id="1823" Class="Actor:LocalPlayer" pos="-68,370.36426,0">
+   <Inputs/>
+  </Node>
+  <Node Id="1824" Class="Game:Start" pos="-278,460.36426,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="1826" Class="String:Compare" pos="432,400.36426,0">
+   <Inputs A="" B="f" IgnoreCase="0"/>
+  </Node>
+  <Node Id="1828" Class="Mission:GameTokenSet" pos="692,460.36426,0">
+   <Inputs gametokenid_Token="881287025" Value="true"/>
+  </Node>
+  <Node Id="1842" Class="Mission:GameTokenSet" pos="692,380.36426,0">
+   <Inputs gametokenid_Token="881287025" Value="false"/>
+  </Node>
+  <Node Id="1844" Name="Determine_Keyboard_and_Mouse_v._Controller\n" Class="_commentbox" pos="-360,231,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1580" Height="420"/>
+  </Node>
+  <Node Id="1845" Name="This_is_currently_used_to_determine_what_type_of_tutorial_to_display" Class="_comment" pos="700,340,0"/>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="1826" nodeOut="1821" portIn="A" portOut="Pressed" enabled="1"/>
+  <Edge nodeIn="1826" nodeOut="1821" portIn="Compare" portOut="Pressed" enabled="1"/>
+  <Edge nodeIn="1821" nodeOut="1823" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="1821" nodeOut="1824" portIn="Enable" portOut="output" enabled="1"/>
+  <Edge nodeIn="1828" nodeOut="1826" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="1842" nodeOut="1826" portIn="Trigger" portOut="False" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

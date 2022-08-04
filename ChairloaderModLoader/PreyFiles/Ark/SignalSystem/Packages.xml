@@ -1,0 +1,1374 @@
+
+<packages>
+ <package name="12GaugeBlast" id="10641886185795235685">
+  <signal signalID="3149325216915554009" value="200"/>
+  <signal signalID="3149325216939210401" value="6"/>
+  <signal signalID="3149325216954857386" value="1.0"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="3149325216958565328"/>
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216929612871"/>
+ </package>
+ <package name="12GaugeBlastCritical" id="3149325216930480894">
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216958565328"/>
+  <signal signalID="3149325216915554009" value="300"/>
+  <signal signalID="3149325216939210401" value="6"/>
+  <signal signalID="3149325216930480877"/>
+  <signal signalID="3149325216954857386" value="2"/>
+  <signal signalID="3149325216954857347" value="1.0"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216929612871"/>
+ </package>
+ <package name="12GaugeShot" id="10641886185795235646">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216915554009" value="22.225"/>
+  <signal signalID="3149325216939210401" value="1"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216954857386" value=".12"/>
+  <signal signalID="3149325216915549018" value=".125"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+ <package name="12GaugeShotCritical" id="3149325216930480903">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857347" value=".2"/>
+  <signal signalID="3149325216954857386" value=".24"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216915554009" value="33.334"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939210401" value="2"/>
+  <signal signalID="3149325216930480877"/>
+  <signal signalID="3149325216915549018" value=".185"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+ <package name="9mmBullet" id="10641886185795235488">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".34"/>
+  <signal signalID="3149325216915554009" value="80"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939211670"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+ <package name="9mmBulletCritical" id="3149325216942593069">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".34"/>
+  <signal signalID="3149325216915554009" value="120"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939211670"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216930480877"/>
+ </package>
+ <package name="9mmBulletGolden" id="3149325216965834707">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".34"/>
+  <signal signalID="3149325216915554009" value="100"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939211670"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+ <package name="9mmBulletCriticalGolden" id="3149325216965834719">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".34"/>
+  <signal signalID="3149325216915554009" value="150"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939211670"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216930480877"/>
+ </package>
+ <package name="9mmBulletNPC" id="9469288860519288553">
+  <signal signalID="3149325216987513644"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216915554009" value="100"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939211670"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216954857386" value=".34"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216913727213" value="1.5"/>
+ </package>
+ <package name="9mmBulletNPC_Dahl" id="3149325216984504655">
+  <signal signalID="3149325216987513644"/>
+  <signal signalID="3149325216913727213" value="3"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216915554009" value="300"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="3149325216939211670"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216954857386" value=".34"/>
+  <signal signalID="9469288860534058129"/>
+ </package>
+ <package name="9mmBulletTurret" id="10641886185795225404">
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216915554009" value="50"/>
+  <signal signalID="3149325216914689581" value="1"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216939211715"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="3149325216954857386" value=".1"/>
+  <signal signalID="3149325216913727213" value="1.5"/>
+ </package>
+ <package name="AbsorbDrainedHealth" id="7293080054605612816">
+  <signal signalID="3149325216929787165" value="15"/>
+ </package>
+ <package name="AbsorbDrainedPsi" id="7293080054605622973">
+  <signal signalID="3149325216929787188" value="5"/>
+ </package>
+ <package name="AlcoholicBeverage" id="3149325216943890334">
+  <signal signalID="3149325216943890277" value="10"/>
+  <signal signalID="3149325216929787165" value="10"/>
+  <signal signalID="3149325216964453143" value="1000"/>
+ </package>
+ <package name="ApexTentacle" id="10641886185795233761">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216938445621" value="5"/>
+  <signal signalID="3149325216954240791" value="1"/>
+  <signal signalID="3149325216913727213" value=".5"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216976385394" value=".075"/>
+ </package>
+ <package name="ApexWall" id="3149325216979390582">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216938445621" value="200"/>
+  <signal signalID="3149325216954240791" value="1"/>
+  <signal signalID="3149325216913727213" value=".5"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216976385394" value=".075"/>
+  <signal signalID="3149325216988040674" value="1"/>
+ </package>
+ <package name="ApexWall_Death" id="3149325216979390934">
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216938445621" value="100000"/>
+  <signal signalID="3149325216954240791" value="1"/>
+  <signal signalID="3149325216913727213" value=".5"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216976385394" value=".075"/>
+  <signal signalID="3149325216988040674" value="1"/>
+ </package>
+ <package name="ChemicalSpillExplosion" id="13856881013222532554">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="3"/>
+  <signal signalID="3149325216954857386" value="3"/>
+  <signal signalID="7745561656291547931" value="150"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="ChipsetFearBomb" id="12348086275179630488">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216914689729" value="10"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="9469288860541043048" value="1"/>
+ </package>
+ <package name="ChipsetBacklashBuff_Level1" id="10641886185863484072">
+  <signal signalID="3149325216914689633" value="200"/>
+  <signal signalID="3149325216954694561"/>
+ </package>
+ <package name="ChipsetBacklashBuff_Level2" id="10641886185863484166">
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216914689633" value="300"/>
+ </package>
+ <package name="ChipsetBacklashBuff_Level3" id="10641886185863484168">
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216914689633" value="400"/>
+ </package>
+ <package name="ChipsetFallDamagesNPCs" id="10641886185863411528">
+  <signal signalID="3149325216911145914" value="800"/>
+  <signal signalID="3149325216954857347" value="5"/>
+  <signal signalID="3149325216954694561"/>
+ </package>
+ <package name="Coral" id="3149325216952332008">
+  <signal signalID="3149325216975843628" value="1"/>
+  <signal signalID="3149325216929787188" value="1"/>
+ </package>
+ <package name="CorrosiveGas" id="10641886185795235090">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216913727213" value=".2"/>
+  <signal signalID="3149325216976385394" value=".075"/>
+  <signal signalID="3149325216914689676" value="1"/>
+ </package>
+ <package name="CorruptHuman_Explode" id="17591291352643785042">
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216913726733" value="500"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216915549045" value="6"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216914689633" value="300"/>
+ </package>
+ <package name="CystoidExplosion" id="3149325216913727345">
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216913726733" value="100"/>
+  <signal signalID="3149325216937655757"/>
+  <signal signalID="3149325216947006941" value="25"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="3149325216976385394" value="0.5"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857386" value=".75"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216954857347" value=".25"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689641" value="10"/>
+ </package>
+ <package name="CystoidExplosionEnergized" id="3149325216937655688">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="3149325216976385394" value="0.5"/>
+  <signal signalID="3149325216937655757"/>
+  <signal signalID="3149325216913726733" value="100"/>
+  <signal signalID="3149325216947006941" value="25"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857386" value="0.75"/>
+  <signal signalID="3149325216954857347" value="0.25"/>
+  <signal signalID="3149325216914689641" value="1"/>
+  <signal signalID="9469288860522565432"/>
+ </package>
+ <package name="CystoidNestRadiationAura" id="3149325216974027724">
+  <signal signalID="3149325216914689641" value=".25"/>
+ </package>
+ <package name="DartExplosion" id="3149325216979393871">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="3"/>
+  <signal signalID="3149325216954857347" value="1"/>
+  <signal signalID="3149325216954857386" value="2"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216913726733" value="200"/>
+  <signal signalID="7745561656291547931" value="300"/>
+ </package>
+ <package name="ElectricalBoxArc" id="10641886185795235236">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="3149325216954857347" value=".10"/>
+  <signal signalID="3149325216954857386" value=".15"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216913727228" value="580"/>
+  <signal signalID="3149325216914689627" value="4"/>
+  <signal signalID="3149325216954346631" value=".2"/>
+ </package>
+ <package name="ElectricalBoxExplosion" id="3149325216918395318">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857347" value=".3"/>
+  <signal signalID="3149325216954857386" value=".5"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216913726733" value="100"/>
+  <signal signalID="3149325216913727228" value="150"/>
+ </package>
+ <package name="ElectricFloorPanel" id="10641886185795235335">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="3149325216915549018" value="0"/>
+  <signal signalID="3149325216913727228" value="50"/>
+  <signal signalID="3149325216914689627" value="1"/>
+ </package>
+ <package name="EMPCharge" id="10641886185795235992">
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216914689627" value="10"/>
+  <signal signalID="3149325216963998992"/>
+ </package>
+ <package name="EMPChargeCritical" id="10641886185835675738">
+  <signal signalID="3149325216963998992"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216914689627" value="15"/>
+  <signal signalID="3149325216930480877"/>
+ </package>
+ <package name="ExplosiveTank" id="3149325216915625421">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216954857347" value="2"/>
+  <signal signalID="3149325216954857386" value="3"/>
+  <signal signalID="3149325216947006941" value="150"/>
+  <signal signalID="3149325216913726733" value="800"/>
+  <signal signalID="9469288860544424650"/>
+ </package>
+ <package name="FlamingGasLeak" id="3149325216925558857">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="7745561656291547931" value="10"/>
+  <signal signalID="3149325216915549018" value=".2"/>
+  <signal signalID="3149325216913727213" value=".2"/>
+ </package>
+ <package name="FlamingGasLeakMega" id="13856881013208093415">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="3149325216913727213" value=".5"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="7745561656291547931" value="90"/>
+ </package>
+ <package name="Food" id="10641886185795236374">
+  <signal signalID="3149325216915549059" value="15"/>
+  <signal signalID="3149325216929787165" value="50"/>
+ </package>
+ <package name="Food_PlusPsi" id="10641886185857972955">
+  <signal signalID="3149325216929787165" value="50"/>
+  <signal signalID="3149325216929787188" value="5"/>
+  <signal signalID="3149325216915549059" value="15"/>
+ </package>
+ <package name="Food_Superfruit" id="10641886185833515810">
+  <signal signalID="3149325216929787165" value="10000"/>
+  <signal signalID="3149325216915549059" value="150"/>
+  <signal signalID="10641886185827731695"/>
+  <signal signalID="12348086275117776764" value="1000"/>
+ </package>
+ <package name="GlooBalls" id="10641886185795235813">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="3149325216915549017" value="1"/>
+  <signal signalID="3149325216915549066" value="1"/>
+ </package>
+ <package name="GlooBallsCritical" id="3149325216965838666">
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="3149325216915549017" value="2"/>
+  <signal signalID="3149325216915549066" value="2"/>
+ </package>
+ <package name="GlooBall_AOE" id="13680621263394303456">
+  <signal signalID="3149325216915549017" value=".33"/>
+  <signal signalID="3149325216915549066" value="1"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="GrenadePlacedAsProximity" id="2524450536727669218">
+  <signal signalID="10641886185832736815" value="1"/>
+  <signal signalID="3149325216954857386" value="5"/>
+ </package>
+ <package name="HackingFail" id="3149325216917865472">
+  <signal signalID="3149325216913727228" value="100"/>
+  <signal signalID="3149325216954346631" value=".2"/>
+  <signal signalID="10739735956146929246"/>
+  <signal signalID="10641886185862287736"/>
+ </package>
+ <package name="HackingMiss" id="10641886185800245671">
+  <signal signalID="3149325216913727228" value="50"/>
+  <signal signalID="3149325216914689627" value="3"/>
+  <signal signalID="3149325216954346631" value=".4"/>
+  <signal signalID="10739735956146929246"/>
+ </package>
+ <package name="HPWater" id="10641886185842501116">
+  <signal signalID="3149325216929787165" value="10"/>
+ </package>
+ <package name="LureCharge" id="10641886185830927780">
+  <signal signalID="3149325216963998992"/>
+  <signal signalID="10641886185830929654" value="1"/>
+ </package>
+ <package name="MedKit" id="7745561655334079461">
+  <signal signalID="7745561656291547932" value="300"/>
+ </package>
+ <package name="MedkitFieldSurgeon" id="10641886185836882035">
+  <signal signalID="10641886185827731695"/>
+ </package>
+ <package name="MimicGrab" id="3149325216948718001">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="5310807215636213132"/>
+  <signal signalID="3149325216911145914" value="50"/>
+ </package>
+ <package name="MimicMelee" id="3149325216914175803">
+  <signal signalID="3149325216913727213" value="2"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915554009" value="100"/>
+  <signal signalID="3149325216914689654" value=""/>
+  <signal signalID="3149325216954857386" value=".34"/>
+  <signal signalID="3149325216915549018" value=".125"/>
+ </package>
+ <package name="MimicMeleeElite" id="9469288860519133836">
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value=".125"/>
+  <signal signalID="3149325216915554009" value="240"/>
+  <signal signalID="3149325216914689654"/>
+  <signal signalID="3149325216954857386" value=".5"/>
+ </package>
+ <package name="MimicFlamingMimicAura" id="9469288860495533935">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="7745561656291547931" value="10"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="MimicFlamingMimicExplosion" id="9469288860495533646">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value=".33"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value=".5"/>
+  <signal signalID="7745561656291547931" value="20"/>
+  <signal signalID="3149325216913726733" value="75"/>
+  <signal signalID="3149325216954857386" value=".75"/>
+  <signal signalID="3149325216954857347" value=".34"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216947006941" value="25"/>
+ </package>
+ <package name="MimicVoltaicEnergizeAura" id="3149325216955820299">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689627" value="1"/>
+  <signal signalID="3149325216913727228" value="5"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="NightmareEtherForm" id="10641886185795233513">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549119" value="5"/>
+  <signal signalID="3149325216938445621" value="5"/>
+  <signal signalID="3149325216913727213" value=".5"/>
+  <signal signalID="3149325216976385394" value=".25"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="NightmareFear" id="10641886185795233515">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689729" value="8"/>
+ </package>
+ <package name="NightmareMelee" id="10641886185795233495">
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216914689654" value=""/>
+  <signal signalID="3149325216915554009" value="750"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216954857347" value=".25"/>
+ </package>
+ <package name="NightmareProjectile" id="3149325216973929839">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="3149325216914689729" value="2"/>
+  <signal signalID="7745561652447168043" value="2"/>
+  <signal signalID="3149325216954857386" value=".6"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216913726733" value="400"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="3149325216976385394" value=".5"/>
+ </package>
+ <package name="NoAtmosphereArea" id="10641886185795235315">
+  <signal signalID="3149325216914689676" value="1"/>
+ </package>
+ <package name="NullwaveCharge" id="10641886185795235359">
+  <signal signalID="3149325216963998992"/>
+  <signal signalID="3149325216915549045" value="20"/>
+  <signal signalID="3149325216954857386" value="5"/>
+  <signal signalID="9469288860541043048" value="1"/>
+  <signal signalID="3149325216986048958"/>
+ </package>
+ <package name="OnCollision_Default" id="3149325216931792051">
+  <signal signalID="3149325216915554009" value="150"/>
+  <signal signalID="3149325216954857386" value=".25"/>
+  <signal signalID="3149325216954857347" value=".1"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollision_ZeroG_Head" id="13856881013219766544">
+  <signal signalID="3149325216911145914" value="150"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216966700921" value="100"/>
+  <signal signalID="3149325216947006941" value="100"/>
+  <signal signalID="3149325216913727213" value="30"/>
+  <signal signalID="10641886185854080993"/>
+ </package>
+ <package name="OnCollision_ZeroG_Body" id="13856881013219766758">
+  <signal signalID="10641886185854080993"/>
+  <signal signalID="3149325216911145914" value="150"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216966700921" value="100"/>
+  <signal signalID="3149325216947007897" value="1000"/>
+  <signal signalID="3149325216913727213" value="30"/>
+ </package>
+ <package name="OnCollisionLeverage1_Default" id="3149325216965667335">
+  <signal signalID="3149325216915554009" value="100"/>
+  <signal signalID="3149325216954857386" value=".5"/>
+  <signal signalID="3149325216954857347" value=".25"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage2_Default" id="3149325216965667338">
+  <signal signalID="3149325216915554009" value="200"/>
+  <signal signalID="3149325216954857386" value="0.75"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage3_Default" id="3149325216965667345">
+  <signal signalID="3149325216915554009" value="300"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216954857347" value="0.75"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage0_Player" id="3149325216962190073">
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915554009" value="88"/>
+  <signal signalID="10850392949542894854" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value=".25"/>
+  <signal signalID="3149325216954857347" value=".1"/>
+  <signal signalID="3149325216962190937"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage1_Player" id="3149325216962190798">
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915554009" value="200"/>
+  <signal signalID="10850392949542894854" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value=".5"/>
+  <signal signalID="3149325216954857347" value=".25"/>
+  <signal signalID="3149325216962190937"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage2_Player" id="3149325216962190800">
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915554009" value="400"/>
+  <signal signalID="10850392949542894854" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value="1.0"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="3149325216962190937"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage3_Player" id="3149325216962190801">
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915554009" value="600"/>
+  <signal signalID="10850392949542894854" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value="2.0"/>
+  <signal signalID="3149325216954857347" value="1.0"/>
+  <signal signalID="3149325216962190937"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage0_Poltergeist" id="3149325216962551627">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915554009" value="300"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value=".25"/>
+  <signal signalID="3149325216954857347" value=".1"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage1_Poltergeist" id="3149325216962551599">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915554009" value="400"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value=".5"/>
+  <signal signalID="3149325216954857347" value=".25"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage2_Poltergeist" id="3149325216962551572">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915554009" value="500"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value="1.0"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnCollisionLeverage3_Poltergeist" id="3149325216962551505">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="3149325216913727213" value="15"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915554009" value="600"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857386" value="2"/>
+  <signal signalID="3149325216954857347" value="1.0"/>
+  <signal signalID="3149325216966700921" value="100"/>
+ </package>
+ <package name="OnLifted_NpcHeadBump" id="5310807215636213141">
+  <signal signalID="3149325216911145914" value="200"/>
+  <signal signalID="3149325216954857386" value=".25"/>
+  <signal signalID="3149325216954857347" value=".1"/>
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+ </package>
+ <package name="OnCollisionNoDamage" id="3149325216948552760">
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+ </package>
+ <package name="OnCollisionPlayer" id="5345056487456352301">
+  <signal signalID="9469288860524730735" value="1"/>
+  <signal signalID="10850392949542894854" value="1"/>
+ </package>
+ <package name="OnCollisionProjectile" id="2524450536730697953">
+  <signal signalID="10850392949542894854"/>
+  <signal signalID="3149325216966700921" value="100"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="3149325216929612871"/>
+ </package>
+ <package name="OnElevatorObstruction" id="3149325216975313942">
+  <signal signalID="3149325216911145914" value="10000"/>
+  <signal signalID="3149325216966700921" value="100"/>
+  <signal signalID="3149325216915549018" value="10"/>
+ </package>
+ <package name="OnDoorObstruction" id="3149325216911145949">
+  <signal signalID="3149325216966700921" value="100"/>
+  <signal signalID="3149325216915549018" value=".2"/>
+ </package>
+ <package name="OnFall" id="3149325216943200410">
+  <signal signalID="3149325216911145914" value="2"/>
+  <signal signalID="3149325216947007897" value="1"/>
+ </package>
+ <package name="OnFire" id="9469288860524043211">
+  <signal signalID="9469288860524043070" value="25"/>
+  <signal signalID="3149325216915549018" value=".05"/>
+ </package>
+ <package name="OnFire_AoE" id="9469288860544424503">
+  <signal signalID="7745561656291547931" value="20"/>
+  <signal signalID="3149325216915549018" value=".05"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860544424650"/>
+ </package>
+ <package name="OnLaserExplosionKill" id="8109010857459426814">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913726733" value="250"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216914689666" value="100"/>
+  <signal signalID="3149325216914689683" value="1000"/>
+ </package>
+ <package name="OnNpcFall" id="10850392949533909004">
+  <signal signalID="3149325216915549018" value=".002"/>
+  <signal signalID="3149325216911145914" value="1"/>
+ </package>
+ <package name="OnRemoteManipulatedNPC" id="3149325216962723867">
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="9469288860526959409" value="1"/>
+ </package>
+ <package name="OperatorCorruptedEngineeringMelee" id="9469288860517477357">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216913727213" value="2"/>
+  <signal signalID="3149325216976385394" value=".25"/>
+  <signal signalID="7745561656291547931" value="10"/>
+  <signal signalID="3149325216914689654"/>
+ </package>
+ <package name="OperatorCorruptedMedicalMelee" id="9469288860517477303">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216915554009" value="50"/>
+  <signal signalID="3149325216914689654"/>
+  <signal signalID="7745561652447168043" value="5"/>
+ </package>
+ <package name="OperatorCorruptedScience" id="9469288860517477196">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216913727228" value="100"/>
+  <signal signalID="3149325216915549133" value="2"/>
+  <signal signalID="3149325216915549026" value="2"/>
+  <signal signalID="3149325216914689627" value="1"/>
+  <signal signalID="3149325216954346631" value=".2"/>
+ </package>
+ <package name="OperatorPostDahlHurt" id="10850392949541355458">
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="3149325216913726733" value="120"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216954857347" value=".75"/>
+ </package>
+ <package name="OperatorDeathExplosion" id="9469288860551345417">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216913726733" value="150"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857347" value=".75"/>
+ </package>
+ <package name="OperatorMilitaryLaser" id="10641886185795233780">
+  <signal signalID="3149325216913727213" value=".1"/>
+  <signal signalID="3149325216915549018" value=".01"/>
+  <signal signalID="3149325216973146201" value="1"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216985458135" value="1"/>
+ </package>
+ <package name="Operator_Engineering" id="3149325216972292127">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216951319156" value="100"/>
+  <signal signalID="3149325216983016860" value="1"/>
+ </package>
+ <package name="Operator_Medical" id="3149325216943890650">
+  <signal signalID="3149325216983016860" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="12348086275137379944"/>
+  <signal signalID="7745561656291547932" value="3000"/>
+  <signal signalID="10641886185827731695"/>
+ </package>
+ <package name="Operator_Science" id="3149325216972292211">
+  <signal signalID="3149325216983016860" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="12348086275117776764" value="300"/>
+ </package>
+ <package name="OperatorRamExplodeSuccess" id="243995946780379822">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913726733" value="500"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="9469288860523156056" value="1"/>
+ </package>
+ <package name="OperatorRamExplodeSelfDestroy" id="243995946784200275">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="3149325216913726733" value="10000"/>
+  <signal signalID="3149325216954857386" value="1"/>
+ </package>
+ <package name="OperatorRamCollisionSelfDamage" id="243995946780379906">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216915554009" value="1000"/>
+ </package>
+ <package name="OperatorRamCollisionDeathExplode" id="243995946780379842">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".1"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="1.5"/>
+  <signal signalID="3149325216954857347" value=".5"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216913726733" value="175"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="OperatorStunnerZap" id="10641886185795233982">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860534058121"/>
+  <signal signalID="3149325216913727228" value="100"/>
+  <signal signalID="3149325216914689627" value="3"/>
+  <signal signalID="3149325216915549026" value="2"/>
+  <signal signalID="3149325216954346631" value=".2"/>
+ </package>
+ <package name="OxygenBottle" id="10641886185849066094">
+  <signal signalID="10739735956147535099" value="500"/>
+ </package>
+ <package name="PhantomAura_Thermal" id="10641886185795228216">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="7745561656291547931" value="20"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216913727213" value=".5"/>
+ </package>
+ <package name="PhantomAura_Voltaic" id="5310807215636213063">
+  <signal signalID="3149325216913727213" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689627" value="4"/>
+  <signal signalID="3149325216954346631" value=".2"/>
+  <signal signalID="3149325216913727228" value="100"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216915549026" value="1"/>
+ </package>
+ <package name="PhantomEMPProjectile" id="10641886185795227267">
+  <signal signalID="3149325216985458135" value="1"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689627" value="4"/>
+  <signal signalID="3149325216913727228" value="300"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954346631" value=".4"/>
+  <signal signalID="3149325216954857386" value=".01"/>
+ </package>
+ <package name="PhantomKineticProjectile" id="3149325216974108474">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="3149325216976385394" value=".5"/>
+  <signal signalID="3149325216913726733" value="250"/>
+  <signal signalID="3149325216954857386" value=".6"/>
+  <signal signalID="3149325216954857347" value=".1"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+ </package>
+ <package name="PhantomMelee" id="3149325216914175777">
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216915554009" value="250"/>
+  <signal signalID="3149325216914689654" value=""/>
+  <signal signalID="3149325216954857386" value=".5"/>
+ </package>
+ <package name="PhantomPassiveInterferenceAura" id="3149325216936549501">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216943882667" value="100"/>
+ </package>
+ <package name="PhantomPsychoethericFog" id="10641886185795229340">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216938445621" value="20.0"/>
+  <signal signalID="3149325216913727213" value="1.5"/>
+  <signal signalID="3149325216976385394" value=".25"/>
+  <signal signalID="9469288860522565404"/>
+ </package>
+ <package name="PhantomThermogenesis" id="10641886185795227403">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="7745561656291547931" value="600"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216985458135" value="1"/>
+ </package>
+ <package name="PlayerPowerBacklash" id="7293080054622393782">
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216914689729" value="5"/>
+  <signal signalID="10850392949541090582"/>
+  <signal signalID="3149325216954857386" value="5"/>
+ </package>
+ <package name="PlayerPowerBreakGloo" id="7293080054653321539">
+  <signal signalID="3149325216915549018" value="100"/>
+ </package>
+ <package name="PlayerPowerElectroStaticBurst1" id="10641886185795236096">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549026" value="2"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216914689627" value="3"/>
+  <signal signalID="3149325216913727228" value="250"/>
+ </package>
+ <package name="PlayerPowerElectroStaticBurst2" id="3149325216945625460">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549026" value="4"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216914689627" value="6"/>
+  <signal signalID="3149325216913727228" value="400"/>
+ </package>
+ <package name="PlayerPowerElectroStaticBurst3" id="3149325216945625462">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216914689627" value="9"/>
+  <signal signalID="3149325216913727228" value="550"/>
+  <signal signalID="3149325216915549026" value="6"/>
+ </package>
+ <package name="PlayerPowerEtherForm" id="10641886185795236358">
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549119" value="10"/>
+  <signal signalID="3149325216938445621" value="10"/>
+  <signal signalID="3149325216913727213" value="1"/>
+  <signal signalID="3149325216976385394" value=".5"/>
+ </package>
+ <package name="PlayerPowerKineticBlast1" id="10641886185795236150">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216915549066" value="1"/>
+  <signal signalID="3149325216913726733" value="500"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216913727213" value="2"/>
+  <signal signalID="3149325216976385394" value="1"/>
+  <signal signalID="3149325216954857347" value="100"/>
+  <signal signalID="3149325216954857386" value="100"/>
+ </package>
+ <package name="PlayerPowerKineticBlast2" id="3149325216945624944">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857386" value="100"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="4"/>
+  <signal signalID="3149325216976385394" value="2"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954857347" value="100"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549066" value="1"/>
+  <signal signalID="3149325216913726733" value="750"/>
+ </package>
+ <package name="PlayerPowerKineticBlast3" id="3149325216945624977">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857386" value="100"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727213" value="6"/>
+  <signal signalID="3149325216976385394" value="3"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549066" value="1"/>
+  <signal signalID="3149325216913726733" value="1000"/>
+  <signal signalID="3149325216954857347" value="100"/>
+ </package>
+ <package name="PlayerPowerLift" id="3149325216985619361">
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216985619399"/>
+ </package>
+ <package name="PlayerPowerMachineMind1" id="10641886185795236299">
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549106" value="30"/>
+  <signal signalID="3149325216915549018" value="2"/>
+ </package>
+ <package name="PlayerPowerMachineMind2" id="3149325216966417317">
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549106" value="60"/>
+  <signal signalID="3149325216915549018" value="2"/>
+ </package>
+ <package name="PlayerPowerMachineMind3" id="3149325216966417318">
+  <signal signalID="3149325216915549018" value="2"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549106" value="90"/>
+ </package>
+ <package name="PlayerPowerMindjack1" id="10641886185795236267">
+  <signal signalID="3149325216915549018" value="2"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549079" value="20"/>
+ </package>
+ <package name="PlayerPowerMindjack2" id="3149325216966419728">
+  <signal signalID="3149325216915549018" value="2"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549079" value="40"/>
+ </package>
+ <package name="PlayerPowerMindjack3" id="3149325216966419730">
+  <signal signalID="3149325216915549018" value="2"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549079" value="60"/>
+ </package>
+ <package name="PlayerPowerPsychoshock1" id="10641886185795236225">
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549045" value="10"/>
+  <signal signalID="3149325216914689633" value="450"/>
+  <signal signalID="3149325216954857386" value="5"/>
+  <signal signalID="3149325216987245288"/>
+ </package>
+ <package name="PlayerPowerPsychoshock2" id="3149325216954182842">
+  <signal signalID="3149325216987245288"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549045" value="15"/>
+  <signal signalID="3149325216914689633" value="650"/>
+  <signal signalID="3149325216954857386" value="5"/>
+ </package>
+ <package name="PlayerPowerPsychoshock3" id="3149325216954182841">
+  <signal signalID="3149325216987245288"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="3149325216915549045" value="20"/>
+  <signal signalID="3149325216914689633" value="900"/>
+  <signal signalID="3149325216954857386" value="5"/>
+ </package>
+ <package name="PlayerPowerThermalBlast1" id="3149325216928226510">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="7745561656291547931" value="750"/>
+ </package>
+ <package name="PlayerPowerThermalBlast2" id="3149325216945624770">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="7745561656291547931" value="1000"/>
+ </package>
+ <package name="PlayerPowerThermalBlast3" id="3149325216945624776">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216955628299"/>
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="7745561656291547931" value="1250"/>
+ </package>
+ <package name="PsiHypo" id="12348086275117776788">
+  <signal signalID="12348086275117776764" value="60"/>
+ </package>
+ <package name="PsiWater" id="3149325216949420112">
+  <signal signalID="3149325216929787188" value="50"/>
+ </package>
+ <package name="QbeamWeapon" id="10641886185795235829">
+  <signal signalID="3149325216915549018" value=".01"/>
+  <signal signalID="3149325216914689683" value="1.0"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216985116127" value="1"/>
+  <signal signalID="9469288860524730735" value="1"/>
+ </package>
+ <package name="RadiationArea" id="10641886185795235206">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="3149325216914689641" value="7.5"/>
+ </package>
+ <package name="RadiationEraser" id="10641886185795236452">
+  <signal signalID="3149325216914689753" value="1"/>
+ </package>
+ <package name="RadioactiveGas" id="3149325216917795170">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216914689641" value="10"/>
+ </package>
+ <package name="RecyclerChargeFinish" id="10641886185795235880">
+  <signal signalID="3149325216954694561"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216963998992"/>
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="2.5"/>
+  <signal signalID="3149325216914689612" value="1"/>
+  <signal signalID="3149325216911145914" value="2000"/>
+  <signal signalID="3149325216954857347" value="2"/>
+  <signal signalID="3149325216954857386" value="3"/>
+ </package>
+ <package name="RecyclerChargeFinish_Trap" id="3149325216989684663">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="2.5"/>
+  <signal signalID="3149325216914689612" value="1"/>
+  <signal signalID="3149325216911145914" value="2000"/>
+  <signal signalID="3149325216954857347" value="2"/>
+  <signal signalID="3149325216954857386" value="3"/>
+ </package>
+ <package name="RecyclerChargeFinishCritical" id="10641886185835675803">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216963998992"/>
+  <signal signalID="3149325216915549018" value="10"/>
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="3149325216976385394" value="2.5"/>
+  <signal signalID="3149325216914689612" value="1"/>
+  <signal signalID="3149325216911145914" value="3000"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216954857347" value="2"/>
+  <signal signalID="3149325216954857386" value="3"/>
+  <signal signalID="3149325216930480877"/>
+ </package>
+ <package name="RecyclerChargeExplosion" id="10641886185818137195">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216963998992"/>
+  <signal signalID="10641886185820022055" value="1"/>
+ </package>
+ <package name="RemoveAllTraumas" id="10641886185827732943">
+  <signal signalID="10641886185827731695"/>
+ </package>
+ <package name="RemoveTraumaHobble" id="10641886185827734637">
+  <signal signalID="10641886185827734563" value="1000"/>
+ </package>
+ <package name="RemoveTraumaBleed" id="10641886185827734629">
+  <signal signalID="10641886185827734578" value="10000"/>
+ </package>
+ <package name="RemoveTraumaBurn" id="10641886185827734621">
+  <signal signalID="10641886185827734586" value="10000"/>
+ </package>
+ <package name="RemoveTraumaConcussion" id="10641886185827734604">
+  <signal signalID="10641886185827734593" value="1000"/>
+ </package>
+ <package name="RemoveTraumaRadiation" id="10641886185827734199">
+  <signal signalID="10641886185827733598" value="1000"/>
+ </package>
+ <package name="RupturedToxicWasteBarrelCloud" id="10641886185795235289">
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216914689641" value="7.5"/>
+ </package>
+ <package name="Scripted_ApexScanEvent" id="3149325216983972048">
+  <signal signalID="3149325216914689633" value="3000"/>
+  <signal signalID="10739735956146929246"/>
+  <signal signalID="3149325216914689729" value="100"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216954346631" value="1.0"/>
+  <signal signalID="3149325216929787188" value="-3000"/>
+  <signal signalID="3149325216954240791"/>
+ </package>
+ <package name="Scripted_CrewFacilities_TriggerCorruptHuman" id="3149325216976693949">
+  <signal signalID="3149325216914689633" value="1000"/>
+ </package>
+ <package name="Scripted_CrewFacilities_CookKnockdown" id="12889009725057921586">
+  <signal signalID="3149325216954857347" value="10"/>
+ </package>
+ <package name="Scripted_JanuaryBridge" id="13856881013232328187">
+  <signal signalID="3149325216915554009" value="50"/>
+ </package>
+ <package name="Scripted_Lobby_KillFriends" id="3149325216987157001">
+  <signal signalID="3149325216915554009" value="100000"/>
+  <signal signalID="3149325216985620954"/>
+ </package>
+ <package name="Scripted_Psychotronics_Shotgun" id="6732635291216812197">
+  <signal signalID="3149325216939210401" value="10"/>
+ </package>
+ <package name="Scripted_Psychotronics_Decontamination" id="6732635291216811158">
+  <signal signalID="3149325216914689729" value="10"/>
+ </package>
+ <package name="Scripted_Psychotronics_PhantomInterference" id="6732635291225369472">
+  <signal signalID="3149325216943882667" value="100"/>
+ </package>
+ <package name="Scripted_Global_GlooBreaking" id="3149325216958466159">
+  <signal signalID="3149325216915549018" value="10000"/>
+ </package>
+ <package name="Scripted_Global_KillPlayer" id="3149325216985714840">
+  <signal signalID="3149325216985714803" value="99999999"/>
+ </package>
+ <package name="Scripted_GUTs_MagExplosion_NPC_Only" id="3149325216985621333">
+  <signal signalID="3149325216985620954"/>
+  <signal signalID="3149325216913727228" value="2000"/>
+ </package>
+ <package name="Scripted_GUTs_MagExplosion" id="761057048009902968">
+  <signal signalID="3149325216913726733" value="2000"/>
+ </package>
+ <package name="Scripted_GUTs_Magnetosphere" id="761057047981992739">
+  <signal signalID="3149325216914689627" value="3"/>
+ </package>
+ <package name="Scripted_RadiationArea_Exterior" id="13856881013207485412">
+  <signal signalID="3149325216914689641" value="1"/>
+  <signal signalID="3149325216983792551"/>
+ </package>
+ <package name="Scripted_LifeSupport_MegaFan" id="13856881013219162577">
+  <signal signalID="3149325216915554009" value="10000"/>
+ </package>
+ <package name="SpinningBladesHazard" id="3149325216974269213">
+  <signal signalID="3149325216989680495"/>
+  <signal signalID="7745561652447168043" value="1"/>
+  <signal signalID="3149325216915554009" value="10000"/>
+  <signal signalID="3149325216954857386" value="2"/>
+ </package>
+ <package name="SuitPatchKit" id="3149325216951319246">
+  <signal signalID="3149325216951319156" value="25"/>
+ </package>
+ <package name="StungunZap" id="10641886185795235581">
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913727228" value="180"/>
+  <signal signalID="3149325216914689627" value="4"/>
+  <signal signalID="3149325216915549026" value="4"/>
+  <signal signalID="3149325216945625551"/>
+  <signal signalID="3149325216954694561"/>
+ </package>
+ <package name="StungunZapCritical" id="3149325216950001958">
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216945625551"/>
+  <signal signalID="3149325216913727228" value="225"/>
+  <signal signalID="3149325216914689627" value="6"/>
+  <signal signalID="3149325216915549026" value="6"/>
+  <signal signalID="3149325216930480877"/>
+  <signal signalID="3149325216954694561"/>
+ </package>
+ <package name="TechnopathElectricalBlast_1g" id="17591291352644797374">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857347" value=".2"/>
+  <signal signalID="3149325216954857386" value=".1"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216914689627" value="8"/>
+  <signal signalID="3149325216954609926"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216913727228" value="150"/>
+  <signal signalID="3149325216954346631" value=".1"/>
+  <signal signalID="3149325216985458135" value="1"/>
+ </package>
+ <package name="TechnopathElectricalBlast_0g" id="9469288860547118288">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216954857347" value=".2"/>
+  <signal signalID="3149325216954857386" value=".1"/>
+  <signal signalID="3149325216915549018" value=".25"/>
+  <signal signalID="3149325216914689627" value="8"/>
+  <signal signalID="3149325216954609926"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216913727228" value="150"/>
+  <signal signalID="3149325216985458135" value="1"/>
+ </package>
+ <package name="TechnopathPassiveInterferenceAura" id="3149325216951319437">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216943882667" value="1000"/>
+ </package>
+ <package name="TechnopathBotControl" id="10641886185795232944">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549106" value="1"/>
+ </package>
+ <package name="TelepathMindControl" id="10641886185795233100">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549079" value="1"/>
+ </package>
+ <package name="TelepathProjectile" id="3149325216973929794">
+  <signal signalID="3149325216913727213" value="5"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549045" value="3"/>
+  <signal signalID="3149325216914689633" value="100"/>
+  <signal signalID="3149325216947006941" value="75"/>
+  <signal signalID="3149325216954857347" value=".25"/>
+  <signal signalID="3149325216974304965"/>
+  <signal signalID="3149325216913726733" value="50"/>
+ </package>
+ <package name="TelepathRepelBlast" id="3149325216973158283">
+  <signal signalID="3149325216913727213" value="10"/>
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216913726733" value="150"/>
+  <signal signalID="3149325216947006941" value="100"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216954857386" value="1"/>
+ </package>
+ <package name="TelepathPsychoshock" id="17591291352642463461">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689633" value="1000"/>
+  <signal signalID="9469288860522565404"/>
+  <signal signalID="3149325216915549045" value="10"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216974304965"/>
+ </package>
+ <package name="ToyGunDart" id="3149325216950003142">
+  <signal signalID="3149325216950002086"/>
+  <signal signalID="3149325216929612871"/>
+  <signal signalID="9469288860524730735" value="1.0"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="9469288860541043048" value="1"/>
+ </package>
+ <package name="WeaverBacklash" id="3149325216972485085">
+  <signal signalID="9469288860534058129"/>
+  <signal signalID="9469288860522565432"/>
+  <signal signalID="3149325216914689729" value="8"/>
+  <signal signalID="3149325216954857386" value="3"/>
+ </package>
+ <package name="WrenchQuickStrike" id="10641886185795227017">
+  <signal signalID="3149325216954857347" value=".1"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".5"/>
+  <signal signalID="3149325216915554009" value="100"/>
+  <signal signalID="3149325216914689654" value="1"/>
+  <signal signalID="3149325216939210391"/>
+  <signal signalID="3149325216954857386" value=".35"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+ <package name="WrenchHeavyStrike" id="3149325216962018848">
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".51"/>
+  <signal signalID="3149325216915554009" value="100"/>
+  <signal signalID="3149325216914689654" value="1"/>
+  <signal signalID="3149325216939210391"/>
+  <signal signalID="3149325216954857386" value=".5"/>
+  <signal signalID="3149325216954857347" value=".4"/>
+  <signal signalID="3149325216954694561" value="1"/>
+  <signal signalID="3149325216971884872" value="1"/>
+ </package>
+ <package name="WrenchStrikeCritical" id="3149325216940338584">
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value=".75"/>
+  <signal signalID="3149325216915554009" value="150"/>
+  <signal signalID="3149325216914689654" value=""/>
+  <signal signalID="3149325216939210391"/>
+  <signal signalID="3149325216954857386" value="1"/>
+  <signal signalID="3149325216930480877"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+ <package name="WrenchHeavyStrikeCritical" id="3149325216962018987">
+  <signal signalID="3149325216971884872" value="2"/>
+  <signal signalID="9469288860523156056" value="1"/>
+  <signal signalID="3149325216915549018" value="1"/>
+  <signal signalID="3149325216915554009" value="150"/>
+  <signal signalID="3149325216914689654" value=""/>
+  <signal signalID="3149325216939210391"/>
+  <signal signalID="3149325216930480877"/>
+  <signal signalID="3149325216954857386" value="1.5"/>
+  <signal signalID="3149325216954857347" value=".75"/>
+  <signal signalID="3149325216954694561" value="1"/>
+ </package>
+</packages>

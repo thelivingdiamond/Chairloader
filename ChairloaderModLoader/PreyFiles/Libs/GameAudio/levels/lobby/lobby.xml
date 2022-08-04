@@ -1,0 +1,342 @@
+
+<ATLConfig atl_name="Lobby">
+ <AudioRTPCs>
+  <ATLRtpc atl_name="January_TravelSpeed" path="Objects">
+   <WwiseRtpc wwise_name="January_TravelSpeed"/>
+  </ATLRtpc>
+ </AudioRTPCs>
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Evnt_Generic_MetalRattles_Distant" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Incubation_Debris_Fall_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Distant_Shotgun" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Distant_Shotgun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Distant_Scream" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Distant_Scream"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_January_Doorbell" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_January_Doorbell"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Mimic_Scare_Lobby" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Mimic_Scare_Lobby"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_ElevatorMachinary" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_ElevatorMachinary"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_Fan_Ceiling" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_Fan_Ceiling"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_Fridge" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_Fridge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_DrinkingFountain" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_DrinkingFountain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_ElevatorMachinary" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_ElevatorMachinary"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_Fan_Ceiling" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_Fan_Ceiling"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_Fridge" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_Fridge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_DrinkingFountain" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_DrinkingFountain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_StaticScreen_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_StaticScreen_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_StaticScreen_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_StaticScreen_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_StaticScreen_02" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_StaticScreen_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_StaticScreen_02" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_StaticScreen_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_Kiosk" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_StaticScreen_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_Kiosk" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_StaticScreen_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Metal_Detector" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Metal_Detector"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Lobby_Fan_Computer" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Obj_Lobby_Fan_Computer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Fan_Computer" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Fan_Computer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Clock_Tick" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Clock_Tick"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Lobby_Clock_Tick" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Obj_Lobby_Clock_Tick"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Machine_Dark" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Machine_Dark"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Lobby_Machine_Dark" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Obj_Lobby_Machine_Dark"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Lobby_DeskFan" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Obj_Lobby_DeskFan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_DeskFan" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_DeskFan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Steam_02" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Steam_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Steam_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Steam_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Steam_02" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Steam_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Steam_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Steam_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_StaticLoop_3" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_StaticLoop_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_StaticLoop_3" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_StaticLoop_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_LowBass_DarkEngine" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_LowBass_DarkEngine"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_LowBass_DarkEngine" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_LowBass_DarkEngine"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_LowBass_Evil" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_LowBass_Evil"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_LowBass_Evil" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_LowBass_Evil"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Amb_Lobby" path="Amb_2D">
+   <WwiseEvent wwise_name="Play_Amb_Lobby"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Amb_Lobby" path="Amb_2D">
+   <WwiseEvent wwise_name="Stop_Amb_Lobby"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Hallway_Long" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Hallway_Long"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Room_Machine_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Room_Machine_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Large_OpenAir" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Large_OpenAir"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Hallway_Short" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Hallway_Short"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Large_OpenAir_02" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Large_OpenAir_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Stairwell_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Stairwell_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Room_Small_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Room_Small_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Transtar_Testing_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Transtar_Testing_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Room_Machine_02" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Room_Machine_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Large_OpenSpace_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Large_OpenSpace_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Apartment" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Apartment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Large_OpenAir_03" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Large_OpenAir_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Room_Large_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Room_Large_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Room_Medium_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Room_Medium_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Transtar_Atrium_01" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Transtar_Atrium_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Large_OpenAir_04" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Large_OpenAir_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Large_OpenSpace_02" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Large_OpenSpace_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Room_Machine_03" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Room_Machine_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_Hallway_Medium" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_Hallway_Medium"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_State_Amb_Lobby_DarkTone" path="Amb_2D">
+   <WwiseEvent wwise_name="Set_State_Amb_Lobby_DarkTone"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Jan_Motor_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Jan_Motor_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Jan_Turn" path="Objects">
+   <WwiseEvent wwise_name="Play_Jan_Turn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Jan_Motor" path="Objects">
+   <WwiseEvent wwise_name="Stop_Jan_Motor"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Evnt_Lobby_LightsOff_Stop" path="Events">
+   <WwiseEvent wwise_name="Evnt_Lobby_LightsOff_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Evnt_Lobby_LightsOff_Start" path="Events">
+   <WwiseEvent wwise_name="Evnt_Lobby_LightsOff_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Nightmare_Intro_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Nightmare_Intro_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Nightmare_Intro_Stop" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Nightmare_Intro_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Video_Glitch" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Video_Glitch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Video_LoadScreen_Stop" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Video_LoadScreen_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Video_LoadScreen_Start" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Video_LoadScreen_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_OperatorDoor_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_OperatorDoor_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_OperatorDoor_Stop" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_OperatorDoor_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_ScreenShutter_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_ScreenShutter_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_ScreenShutter_Stop" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_ScreenShutter_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_OfficeShutter_Start" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_OfficeShutter_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_OfficeShutter_Stop" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_OfficeShutter_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Abstract_MimicTrashcan_DownTheStairs" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Abstract_MimicTrashcan_DownTheStairs"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Museum_Open" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Museum_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Museum_Display_Off" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Museum_Display_Off"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Museum_Display_On" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Museum_Display_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Museum_Spinning_Statue_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Museum_Spinning_Statue_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Lobby_Museum_Spinning_Statue_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_Obj_Lobby_Museum_Spinning_Statue_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_EmergencyScreen" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_EmergencyScreen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_EmergencyScreen" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_EmergencyScreen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_Machine_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_Machine_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Lobby_BigFan_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_Env_Lobby_BigFan_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Lobby_BigFan_01" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_Env_Lobby_BigFan_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Explosion_Blast" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Explosion_Blast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Explosion_Rumble" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Explosion_Rumble"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Satellite_Passby" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Satellite_Passby"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Explosion_MetalStressors" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Explosion_MetalStressors"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Explosion_PreSplode" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Explosion_PreSplode"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Scare" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Scare"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Explosion_SatellitePassBy_Sweetner" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Explosion_SatellitePassBy_Sweetner"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_OBJ_LobbyElevator_Move_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_OBJ_LobbyElevator_Move_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_OBJ_LobbyElevator_Move_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_OBJ_LobbyElevator_Move_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LobbyElevator_PassBy_Multi" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LobbyElevator_PassBy_Multi"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LobbyElevator_PassBy_Single" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LobbyElevator_PassBy_Single"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LobbyElevator_Break_Slow" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LobbyElevator_Break_Slow"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_LobbyElevator_Restore_Power" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_LobbyElevator_Restore_Power"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Lobby_Elevator_Malfunction_LP" path="Amb_3D">
+   <WwiseEvent wwise_name="Play_UI_Lobby_Elevator_Malfunction_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_UI_Lobby_Elevator_Malfunction_LP" path="Amb_3D">
+   <WwiseEvent wwise_name="Stop_UI_Lobby_Elevator_Malfunction_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Elevator_Broken_Stinger" path="Amb_2D">
+   <WwiseEvent wwise_name="Play_Elevator_Broken_Stinger"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Obj_Lobby_Elevator_Ambush" path="Events">
+   <WwiseEvent wwise_name="Play_Obj_Lobby_Elevator_Ambush"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Obj_Lobby_Elevator_Ambush" path="Events">
+   <WwiseEvent wwise_name="Stop_Obj_Lobby_Elevator_Ambush"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Lobby_Elevator_Ambush_ScreenPower" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Lobby_Elevator_Ambush_ScreenPower"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="preload" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Lobby.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

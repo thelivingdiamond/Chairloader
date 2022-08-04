@@ -1,0 +1,50 @@
+
+<ATLConfig atl_name="Creature_Weaver">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Weaver_Exist_LP">
+   <WwiseEvent wwise_name="Play_Weaver_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Alarm_Call">
+   <WwiseEvent wwise_name="Play_Weaver_Alarm_Call"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Weaver_Exist_LP">
+   <WwiseEvent wwise_name="Stop_Weaver_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Vox_Alarm">
+   <WwiseEvent wwise_name="Play_Weaver_Vox_Alarm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Generate_Phantom_OnEntity">
+   <WwiseEvent wwise_name="Play_Weaver_Generate_Phantom_OnEntity"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Excrete_Cystoid">
+   <WwiseEvent wwise_name="Play_Weaver_Excrete_Cystoid"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Vox_Death">
+   <WwiseEvent wwise_name="Play_Weaver_Vox_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Vox_Damage">
+   <WwiseEvent wwise_name="Play_Weaver_Vox_Damage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Vox_Cast">
+   <WwiseEvent wwise_name="Play_Weaver_Vox_Cast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Shield_Stop">
+   <WwiseEvent wwise_name="Play_Weaver_Shield_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Generate_Phantom">
+   <WwiseEvent wwise_name="Play_Weaver_Generate_Phantom"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Shield_Projectile_Impact">
+   <WwiseEvent wwise_name="Play_Weaver_Shield_Projectile_Impact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Shield_Projectile_Start">
+   <WwiseEvent wwise_name="Play_Weaver_Shield_Projectile_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Shield_Start">
+   <WwiseEvent wwise_name="Play_Weaver_Shield_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Weaver_Shield_Impact">
+   <WwiseEvent wwise_name="Play_Weaver_Shield_Impact"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

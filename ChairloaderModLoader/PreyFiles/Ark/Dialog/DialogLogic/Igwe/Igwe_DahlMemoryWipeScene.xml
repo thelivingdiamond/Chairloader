@@ -1,0 +1,452 @@
+
+<ResponseRules>
+ <WritebackKeys>
+  <WritebackKey id="13680621263405734501" name="DahlInitialLoiterPlayed"/>
+ </WritebackKeys>
+ <ResponseRule id="13680621263405734396" name="Initiate Dahl NeuroMod Removal, Loiter Lines" cooldown="20" description="Player arrived in the Sim Labs. Dahl is already strapped into the neuromod removal chair. Igwe is reminding the player to initiate the sequence." conversation="1" response="13680621263405734427" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="14667999412535665902" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263405734501" value="1" time="0"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="13680621263384025958" name="Initiate Dahl NeuroMod Removal, Loiter Lines 2nd" cooldown="20" description="Player arrived in the Sim Labs. Dahl is already strapped into the neuromod removal chair. Igwe is reminding the player to initiate the sequence." conversation="0" response="13680621263384026069">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="14667999412535665902" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263405734396" type="default" keyType="conversation" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263369581580" name="Player Arrives, Dahl Is Ready To Go" cooldown="" description="Player arrived in the Sim Labs. Dahl is already strapped into the neuromod removal chair. " conversation="1" response="13680621263369581740" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263369580433">
+  <Response dialog="13680621263369580432" id="13680621263369580434" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263369580663" name="" cooldown="" response="13680621263369580986" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263369580434" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263369580986">
+  <Response dialog="13680621263369580933" id="13680621263369580987" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263369581110">
+  <Response dialog="13680621263369581109" id="13680621263369581111" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263369581121" name="" cooldown="" response="13680621263369581122" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263369581111" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263369581122">
+  <Response dialog="13680621263369580624" id="13680621263369581123" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="13680621263361472147" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263369581335" name="" cooldown="" response="13680621263369581336" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263369581123" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263369581336">
+  <Response dialog="13680621263369581334" id="13680621263369581337" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263369581740">
+  <Response dialog="13680621263369581739" id="13680621263369581741" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263369581779" name="" cooldown="" response="13680621263369580433" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263369581741" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263383358720" name="" cooldown="" response="13680621263383358721" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263369581337" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383358721">
+  <Response dialog="13680621263383358719" id="13680621263383358722" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383358751" name="" cooldown="" response="13680621263383358752" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383358722" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383358752">
+  <Response dialog="13680621263383358750" id="13680621263383358753" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="1.5"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383358782" name="" cooldown="" response="13680621263383358783" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383358753" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383358783">
+  <Response dialog="13680621263383358781" id="13680621263383358784" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383358806" name="" cooldown="" response="13680621263383358807" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383358784" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383358807">
+  <Response dialog="13680621263383358805" id="13680621263383358808" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="2"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383358848" name="" cooldown="" response="13680621263383358849" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383358808" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383358849">
+  <Response dialog="13680621263369581379" id="13680621263383358850" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="13680621263361472147" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383358941" name="" cooldown="" response="13680621263383358942" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383358850" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383358942">
+  <Response dialog="13680621263383358940" id="13680621263383358943" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="2"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359027" name="" cooldown="" response="13680621263383359028" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383358943" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359028">
+  <Response dialog="13680621263383359026" id="13680621263383359029" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="13680621263361472147" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359440" name="" cooldown="" response="13680621263383359441" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359029" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359441">
+  <Response dialog="13680621263383359439" id="13680621263383359442" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="13680621263361472147" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359582" name="" cooldown="" response="13680621263383359583" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359442" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359583">
+  <Response dialog="13680621263383359581" id="13680621263383359584" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359618" name="" cooldown="" response="13680621263383359619" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359584" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359619">
+  <Response dialog="13680621263383359617" id="13680621263383359620" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359734" name="" cooldown="" response="13680621263383359735" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359620" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359735">
+  <Response dialog="13680621263383359733" id="13680621263383359736" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="13680621263361472147" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359811" name="" cooldown="" response="13680621263383359812" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359736" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359812">
+  <Response dialog="13680621263383359810" id="13680621263383359813" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="13680621263361472147" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359924" name="" cooldown="" response="13680621263383359925" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359813" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359925">
+  <Response dialog="13680621263383359923" id="13680621263383359926" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="2"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383359956" name="" cooldown="" response="13680621263383359957" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359926" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383359957">
+  <Response dialog="13680621263383359955" id="13680621263383359958" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263383360058" name="" cooldown="" response="13680621263383360059" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263383359958" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263383360059">
+  <Response dialog="13680621263383360057" id="13680621263383360060" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384025860" name="" cooldown="" response="13680621263384025879" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263405734391" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384025879">
+  <Response dialog="13680621263384025877" id="13680621263384025880" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384025904" name="" cooldown="" response="13680621263384025905" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384025880" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384025905">
+  <Response dialog="13680621263384025903" id="13680621263384025906" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384025918" name="" cooldown="" response="13680621263384025919" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384025906" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384025919">
+  <Response dialog="13680621263384025917" id="13680621263384025920" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384025928" name="" cooldown="" response="13680621263384025929" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384025920" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384025929">
+  <Response dialog="13680621263384025927" id="13680621263384025930" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263369580458" name="Igwe Removes Dahl&apos;s Neuromods" cooldown="" description="Dr. Igwe begins the process of removing Dahl&apos;s neurmods which should cause him to forget why he came to the station." conversation="1" response="13680621263369581110" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263361472147"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384026069">
+  <Response dialog="13680621263384026068" id="13680621263384026070" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748317984"/>
+  <Response dialog="13680621263384026088" id="13680621263384026089" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263384026097" id="13680621263384026098" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="13680621263384026116" id="13680621263384026117" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384026139" name="" cooldown="" response="13680621263384026140">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384026117" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384026140">
+  <Response dialog="13680621263384026138" id="13680621263384026141" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263391218569" name="Dahl NeuroMod Removal Complete, Loiter Lines" cooldown="20" description="Dahl&apos;s mods have been removed. Igwe tells the player they&apos;ll meet him in the Shuttle Bay." conversation="0" response="13680621263391218703">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="13856881013226174700" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263391218703">
+  <Response dialog="13680621263391218702" id="13680621263391218704" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" entityOneshot="true" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318010"/>
+  <Response dialog="13680621263391218840" id="13680621263391218841" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" entityOneshot="true" emotion="3152439162748318010" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263391218884">
+  <Response dialog="13680621263391218882" id="13680621263391218885" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" targetType="2" targetId="4349723564897457173" speakerTrackMethod="2" targetTrackMethod="3" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263392336639" name="Player Kills Igwe, Dahl Responds" cooldown="" description="Player kills Igwe after Dahl has woken up from procedure." conversation="1" response="13680621263392336688" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263361472147"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263392336688">
+  <Response dialog="13680621263392336687" id="13680621263392336689" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263392336710" name="" cooldown="" response="13680621263392336711">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263392336689" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263392336711">
+  <Response dialog="13680621263392336709" id="13680621263392336712" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263392336737" name="" cooldown="" response="13680621263392336738">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263392336712" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="13680621263361472147" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263392336738">
+  <Response dialog="13680621263392336736" id="13680621263392336739" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1" cutoff="0" emotion="3152439162748318033" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399517916" name="Player Stuns Dahl. Igwe Responds." cooldown="" description="Player kills Igwe after Dahl has woken up from procedure." conversation="1" response="13680621263399518040" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399518040">
+  <Response dialog="13680621263399518039" id="13680621263399518041" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399518148" name="" cooldown="" response="13680621263399518149">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399518041" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399518149">
+  <Response dialog="13680621263399518147" id="13680621263399518150" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399518515" name="Player Kills Dahl. Igwe Responds." cooldown="" description="Player kills Dahl after Dahl has woken up from procedure. Igwe freaks." conversation="1" response="13680621263399518564" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399518564">
+  <Response dialog="13680621263383930901" id="13680621263399518565" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399518593" name="" cooldown="" response="13680621263399518594">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399518565" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399518594">
+  <Response dialog="13680621263383930654" id="13680621263399518595" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399518854" name="Igwe: ClickMe, Player Killed Dahl. Igwe is crushed." cooldown="" description="Player kills Dahl after Dahl has woken up from procedure. Igwe freaks." conversation="1" response="13680621263399518918" oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="5" passIfMissing="false" id="13680621263399518515" keyType="conversation"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399518918">
+  <Response dialog="13680621263383973600" id="13680621263399518919" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" emotion="3152439162748318053" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399518931" name="" cooldown="" response="13680621263399518932">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399518919" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399518932">
+  <Response dialog="13680621263384044452" id="13680621263399518933" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1.5" cutoff="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263405734389" name="" cooldown="" response="13680621263405734390" trackView="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263369580987" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897457173" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263405734390">
+  <Response dialog="13680621263384025859" id="13680621263405734391" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263405734427">
+  <Response dialog="13680621263384025859" id="13680621263405734428" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263406390801" name="Just Need to Check Your Vitals" cooldown="20" description="Dahl&apos;s mods have been removed. Igwe tells the player they&apos;ll meet him in the Shuttle Bay." conversation="1" response="13680621263406391148" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361473654" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897457173"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263406391148">
+  <Response dialog="13680621263391218721" id="13680621263406391149" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" targetId="13680621263361472147" targetType="2" speakerTrackMethod="3" targetTrackMethod="2" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263406391158" name="" cooldown="" response="13680621263391218884">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472262" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263406391149" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="12889009724983807463"/>
+  </Criteria>
+ </ResponseRule>
+</ResponseRules>

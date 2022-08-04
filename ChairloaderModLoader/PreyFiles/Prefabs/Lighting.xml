@@ -1,0 +1,1640 @@
+
+<PrefabsLibrary Name="lighting">
+ <Prefab Name="debug.reference_materials_spheres" Id="{7F6D406D-DECE-4754-B91E-9C1BD90875C6}" Library="lighting">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{984A18DA-4810-416C-9B07-47B4DE4D8791}" Name="reference_sphere0" Pos="-5,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/vegetation" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{AC4224F5-B2B2-4A8C-BD45-0B28FF893F73}" Name="reference_sphere1" Pos="-4.375,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/mud" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{35123E07-8742-4B5E-8A5A-C61C40C36941}" Name="reference_sphere2" Pos="-3.75,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/rust" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{5A6A51E9-6D2B-46F0-B876-F5938F4E48F9}" Name="reference_sphere3" Pos="-3.125,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/metal" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{B2554BC1-0BB4-454E-9561-4BE49736A9B1}" Name="reference_sphere4" Pos="-2.5,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/worn_wall" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{825D240D-9AB0-40AA-B2B9-19263152C55B}" Name="reference_sphere5" Pos="-1.875,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/concrete" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{DC1A253A-19F9-4A79-A541-D9E38A0F7A9F}" Name="reference_sphere6" Pos="-1.25,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/bricks" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{BCF0E9F8-4C43-480F-AE10-64E936220D5C}" Name="reference_sphere7" Pos="-0.625,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/mid_gray_matte" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting_helpers" Id="{2EBCCF2A-7704-4B46-8F2C-87CCCBD9D209}" Name="reference_sphere8" Pos="0,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/black_reflective" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Interest soaction_Action="" bInteresting="0" InterestLevel="1" Pause="15" Radius="20" bShared="0">
+      <vOffset x="0" y="0" z="0"/>
+     </Interest>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.macbeth_chart" Id="{94BB24D7-2D46-47B9-AA04-F68320029CCE}" Library="lighting">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{0F6B921A-758E-496E-B6B3-09D4533C4FFC}" Name="primitive_plane_noproxy3" Pos="0,0,0.5" FloorNumber="-1" Rotate="0.5,0.5,0.50000006,0.5" Scale="0.1,0.1,0.1" ColorRGB="16777215" Material="Materials/references/macbeth" MatLayersMask="0" Geometry="objects/default/primitive_plane_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="8" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="placement.probe_cubemap_ambient_lightbox" Id="{4A2A1EEC-856B-4B8F-868A-E34A8E78C4D3}" Library="lighting">
+  <Objects>
+   <Object Type="LightBox" Layer="Lighting_AB1_Rebel_building" Id="{C756B374-FCDA-4E84-BAD6-72B2B2237C43}" Name="AB1_room_a_lightbox1" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16711680" MatLayersMask="0" OriginAtCorner="1" Width="8" Length="8" Height="5" DisableGI="0" EntityClass="LightBox" BoxMin="0,0,0" BoxMax="8,8,5"/>
+   <Object Type="Entity" Layer="Lighting_AB1_Rebel_building" Id="{0C34F191-F6AB-4327-9D21-1EC088A39E12}" Name="AB1_room_a_ambient_light1" Pos="4,4,2" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="Light">
+    <Properties bActive="0" Radius="10" _nVersion="0">
+     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="0" fSpecularMultiplier="1"/>
+     <Options bAffectsThisAreaOnly="1" bAmbientLight="1" bCastShadow="0" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="1" bFakeLight="0" bIgnoresVisAreas="0" bIrradianceVolumes="0" bNegativeLight="0" nPostEffect="0"/>
+     <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+     <Style nAnimationPhase="0" fAnimationSpeed="1" texture_AttenuationMap="" fCoronaDistIntensityFactor="1" fCoronaDistSizeFactor="1" fCoronaScale="1" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0">
+      <Rotation x="0" y="0" z="0"/>
+     </Style>
+    </Properties>
+    <EntityLinks>
+     <Link TargetId="{C756B374-FCDA-4E84-BAD6-72B2B2237C43}" Name="NewLink" RelRot="1,0,0,0" RelPos="0,0,0"/>
+    </EntityLinks>
+   </Object>
+   <Object Type="Entity" Layer="Lighting_AB1_Rebel_building" Id="{C448169C-BAA7-46FE-9D6B-9BE16A940B2C}" Name="AB1_room_a_cubemap1" Pos="4,4,2.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="Light">
+    <Properties bActive="0" Radius="10" _nVersion="0">
+     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="0" fSpecularMultiplier="1"/>
+     <Options bAffectsThisAreaOnly="1" bAmbientLight="1" bCastShadow="0" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="1" bFakeLight="0" bIgnoresVisAreas="0" bIrradianceVolumes="0" bNegativeLight="0" nPostEffect="0"/>
+     <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+     <Style nAnimationPhase="0" fAnimationSpeed="1" texture_AttenuationMap="" fCoronaDistIntensityFactor="1" fCoronaDistSizeFactor="1" fCoronaScale="1" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0">
+      <Rotation x="0" y="0" z="0"/>
+     </Style>
+    </Properties>
+   </Object>
+   <Object Type="EnvironmentProbe" Layer="Lighting_AB1_Rebel_building" Id="{AB636CC6-59D8-422C-927D-18D960F2ABF6}" Name="AB1_room_a_probe1" Pos="4,4,1.375" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" cubemap_resolution="128" preview_cubemap="0" OutdoorOnly="0" CastShadow="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="EnvironmentLight">
+    <Properties bActive="1" Radius="10" _nVersion="-1">
+     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="5" fSpecularMultiplier="1"/>
+     <Options bAffectsThisAreaOnly="1" file_deferred_clip_geom="" _texture_deferred_cubemap="" bDeferredClipBounds="1" bDeferredLight="1" bIgnoresVisAreas="0"/>
+     <OptionsAdvanced texture_deferred_cubemap="textures/cubemaps/generic/generic_cm.dds"/>
+    </Properties>
+    <EntityLinks>
+     <Link TargetId="{C756B374-FCDA-4E84-BAD6-72B2B2237C43}" Name="NewLink" RelRot="1,0,0,0" RelPos="0,0,0"/>
+     <Link TargetId="{C448169C-BAA7-46FE-9D6B-9BE16A940B2C}" Name="NewLink" RelRot="1,0,0,0" RelPos="0,0,0"/>
+    </EntityLinks>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="placement.probe_lightbox" Id="{9B642EF3-6F99-4D20-A121-13F72B14BF99}" Library="lighting">
+  <Objects>
+   <Object Type="LightBox" Layer="Lighting_AB1_Rebel_building" Id="{315CC93C-A2BD-44FC-8B1E-FCD95CE7F5D9}" Name="AB1_room_a_lightbox0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16711680" MatLayersMask="0" OriginAtCorner="1" Width="8" Length="8" Height="5" DisableGI="0" EntityClass="LightBox" BoxMin="0,0,0" BoxMax="8,8,5"/>
+   <Object Type="EnvironmentProbe" Layer="Lighting_AB1_Rebel_building" Id="{30C781B6-D481-4F9C-8F4C-3D3293FE149D}" Name="AB1_room_a_probe0" Pos="4,4,1.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" cubemap_resolution="128" preview_cubemap="0" OutdoorOnly="0" CastShadow="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="EnvironmentLight">
+    <Properties bActive="1" Radius="10" _nVersion="-1">
+     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="1" fHDRDynamic="5" fSpecularMultiplier="1"/>
+     <Options bAffectsThisAreaOnly="1" file_deferred_clip_geom="" _texture_deferred_cubemap="" bDeferredClipBounds="1" bDeferredLight="1" bIgnoresVisAreas="0"/>
+     <OptionsAdvanced texture_deferred_cubemap="textures/cubemaps/generic/generic_cm.dds"/>
+    </Properties>
+    <EntityLinks>
+     <Link TargetId="{315CC93C-A2BD-44FC-8B1E-FCD95CE7F5D9}" Name="NewLink" RelRot="1,0,0,0" RelPos="0,0,0"/>
+    </EntityLinks>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="placement.ambient_lightbox" Id="{3E113637-51E8-4B95-9A1C-122FA550C797}" Library="lighting">
+  <Objects>
+   <Object Type="Entity" Layer="Lighting" Id="{4A901AE5-BE76-4488-B74F-D9C33D76E4C5}" Name="AB1_room_a_ambient_light2" Pos="4,4,2" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="Light">
+    <Properties bActive="1" Radius="10" _nVersion="0">
+     <Color clrDiffuse="1,1,1" fDiffuseMultiplier="5" fHDRDynamic="0" fSpecularMultiplier="1"/>
+     <Options bAffectsThisAreaOnly="1" bAmbientLight="1" bCastShadow="0" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="1" bFakeLight="0" bIgnoresVisAreas="0" bIrradianceVolumes="0" bNegativeLight="0" nPostEffect="0"/>
+     <Projector bProjectInAllDirs="0" fProjectorFov="90" fProjectorNearPlane="0" texture_Texture=""/>
+     <Style nAnimationPhase="0" fAnimationSpeed="1" texture_AttenuationMap="" fCoronaDistIntensityFactor="1" fCoronaDistSizeFactor="1" fCoronaScale="1" lightanimation_LightAnimation="" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0">
+      <Rotation x="0" y="0" z="0"/>
+     </Style>
+    </Properties>
+    <EntityLinks>
+     <Link TargetId="{03C483C1-4671-4A5D-B286-5D84F05F1DD0}" Name="NewLink" RelRot="1,0,0,0" RelPos="0,0,0"/>
+    </EntityLinks>
+   </Object>
+   <Object Type="LightBox" Layer="Lighting" Id="{03C483C1-4671-4A5D-B286-5D84F05F1DD0}" Name="AB1_room_a_lightbox2" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16711680" MatLayersMask="0" OriginAtCorner="1" Width="8" Length="8" Height="5" DisableGI="0" EntityClass="LightBox" BoxMin="0,0,0" BoxMax="8,8,5"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.reflective_sphere" Id="{FA422D9C-DB9F-4224-AA4F-19B0CC5B788D}" Library="lighting">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{3AD81C50-282E-4C21-B3DE-F63E55256F98}" Name="reference_sphere26" Pos="0,0,0.25" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.25,0.25,0.25" ColorRGB="65535" Material="Materials/references/black_reflective" MatLayersMask="0" Geometry="Objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.color_chart" Id="{F8803799-D364-42F0-9EDE-E9C2479EF513}" Library="lighting">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Main" Id="{A23EFDC1-5750-476C-B3EF-2D7E6720F7FA}" Name="primitive_plane_noproxy23" Pos="0,0,0.5" FloorNumber="-1" Rotate="0.50000006,0.49999994,0.50000006,0.49999997" Scale="0.10395002,0.10395002,0.10395002" ColorRGB="16777215" Material="Materials/references/color" MatLayersMask="0" Geometry="objects/default/primitive_plane_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="8" LodRatio="100" ViewDistRatio="100" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="light_animation.light_animation_sequence" Id="{10E6F18F-17F1-4130-8272-652E0595D49D}" Library="lighting">
+  <Objects>
+   <Object Type="SequenceObject" Layer="Lighting" Id="{EE2AE9D5-6F6E-4018-BDB4-683AD7E3A2A1}" Name="_LightAnimationSet" Pos="1,1,1" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319">
+    <Sequence SequenceVersion="2" Name="_LightAnimationSet" Flags="65536" StartTime="0" EndTime="10" ID="73">
+     <Nodes>
+      <Node Id="2" Type="21" Name="fire_big_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="82" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.5" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="82" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.5" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,-0.5" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,0.5" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,0.5" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="82" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,-0.5" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="82" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,0.5" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="82" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,-0.5" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="82" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.5" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="82" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.5" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="82" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="82" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.5" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="82" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.5" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,0.5" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,-0.5" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,-0.5" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="82" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,0.5" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="82" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,-0.5" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="82" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,-0.5" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="82" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.5" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="82" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.5" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="82" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="82" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.5" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="82" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.5" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,-0.5" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,0.5" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,-0.5" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="82" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,0.5" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="82" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,-0.5" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="82" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,0.5" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="82" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.5" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="82" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.5" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="82" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+       </Track>
+       <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="81" Type="4" HasCustomColor="0" ValueType="20">
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="85" Type="4" Flags="32" defaultValue="0,10" HasCustomColor="0" ValueType="0"/>
+      </Node>
+      <Node Id="5" Type="21" Name="fire_medium_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="18" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.25" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="18" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.25" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,-0.25" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,0.25" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,0.25" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="18" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,-0.25" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="18" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,0.25" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="18" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,-0.25" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="18" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.25" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="18" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.25" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="18" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="18" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.25" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="18" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.25" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,0.25" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,-0.25" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,-0.25" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="18" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,0.25" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="18" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,-0.25" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="18" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,-0.25" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="18" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.25" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="18" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.25" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="18" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="18" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.25" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="18" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.25" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,-0.25" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,0.25" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,-0.25" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="18" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,0.25" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="18" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,-0.25" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="18" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,0.25" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="18" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.25" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="18" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.25" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="18" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+       </Track>
+       <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="81" Type="4" HasCustomColor="0" ValueType="20">
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="85" Type="4" Flags="32" defaultValue="0,10" HasCustomColor="0" ValueType="0"/>
+      </Node>
+      <Node Id="5" Type="21" Name="fire_small_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="18" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.125" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="18" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.125" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,-0.125" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,0.125" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,0.125" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="18" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,-0.125" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="18" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,0.125" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="18" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,-0.125" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="18" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.125" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="18" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.125" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="18" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="18" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.125" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="18" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.125" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,0.125" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,-0.125" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,-0.125" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="18" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,0.125" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="18" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,-0.125" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="18" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,-0.125" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="18" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.125" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="18" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.125" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="18" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="18" ds="0.16666666,0" dd="0.16666666,0"/>
+         <Key time="0.49999994" value="0.49999994,0.125" flags="18" ds="0.16666666,0" dd="0.16666669,0"/>
+         <Key time="1" value="1,0" flags="18" ds="0.16666669,0" dd="0.16840021,0"/>
+         <Key time="1.5052006" value="1.5052006,-0.125" flags="18" ds="0.16840021,0" dd="0.16493313,0"/>
+         <Key time="2" value="2,0" flags="18" ds="0.16493313,0" dd="0.16572341,0"/>
+         <Key time="2.4971702" value="2.4971702,-0.125" flags="18" ds="0.16572341,0" dd="0.1673789,0"/>
+         <Key time="2.9993069" value="2.9993069,0" flags="18" ds="0.1673789,0" dd="0.16682625,0"/>
+         <Key time="3.4997857" value="3.4997857,0.125" flags="18" ds="0.16682625,0" dd="0.16737899,0"/>
+         <Key time="4.0019226" value="4.0019226,0" flags="18" ds="0.16737899,0" dd="0.16682625,0"/>
+         <Key time="4.5024014" value="4.5024014,-0.125" flags="18" ds="0.16682625,0" dd="0.16527748,0"/>
+         <Key time="4.9982338" value="4.9982338,0" flags="18" ds="0.16527748,0" dd="0.16716322,0"/>
+         <Key time="5.4997234" value="5.4997234,0.125" flags="18" ds="0.16716322,0" dd="0.16615979,0"/>
+         <Key time="5.9982028" value="5.9982028,0" flags="18" ds="0.16615979,0" dd="0.16716322,0"/>
+         <Key time="6.4996924" value="6.4996924,-0.125" flags="18" ds="0.16716322,0" dd="0.16704211,0"/>
+         <Key time="7.0008187" value="7.0008187,0" flags="18" ds="0.16704211,0" dd="0.16716322,0"/>
+         <Key time="7.5023084" value="7.5023084,0.125" flags="18" ds="0.16716322,0" dd="0.16584826,0"/>
+         <Key time="7.9998531" value="7.9998531,0" flags="18" ds="0.16584826,0" dd="0.16666667,0"/>
+         <Key time="8.4998531" value="8.4998531,0.125" flags="18" ds="0.16666667,0" dd="0.16666667,0"/>
+         <Key time="8.9998531" value="8.9998531,0" flags="18" ds="0.16666667,0" dd="0.16840014,0"/>
+         <Key time="9.5050535" value="9.5050535,-0.125" flags="18" ds="0.16840014,0" dd="0.16498217,0"/>
+         <Key time="10" value="10,0" flags="18" ds="0.16498217,0" dd="0.16498217,0"/>
+        </NewSubTrack>
+       </Track>
+       <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="81" Type="4" HasCustomColor="0" ValueType="20">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="85" Type="4" Flags="32" defaultValue="0,10" HasCustomColor="0" ValueType="0"/>
+      </Node>
+      <Node Id="6" Type="21" Name="z_rotation_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="100" ds="0,0" dd="0.33333334,30"/>
+         <Key time="1" value="1,90" flags="100" ds="0.33333334,30" dd="0.33333334,30"/>
+         <Key time="2" value="2,180" flags="100" ds="0.33333334,30" dd="0.33333334,30"/>
+         <Key time="3" value="3,270" flags="100" ds="0.33333334,30" dd="0.33155441,30"/>
+         <Key time="3.9946632" value="3.9946632,360" flags="100" ds="0.33155441,30" dd="0,0"/>
+        </NewSubTrack>
+       </Track>
+       <Track ParamId="81" Type="4" HasCustomColor="0" ValueType="20">
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="85" Type="4" Flags="0" defaultValue="0,10" HasCustomColor="0" ValueType="0"/>
+      </Node>
+      <Node Id="7" Type="21" Name="dappled_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+         <Key time="2" value="2,0.5" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+         <Key time="4" value="4,0" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="82" ds="0.66666669,0" dd="0.66666669,0"/>
+         <Key time="2" value="2,0.25" flags="82" ds="0.66666669,0" dd="0.66666669,0"/>
+         <Key time="4" value="4,0" flags="82" ds="0.66666669,0" dd="0.66666669,0"/>
+        </NewSubTrack>
+       </Track>
+       <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+         <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+         <Key time="2" value="2,2" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+         <Key time="4" value="4,0" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+        </NewSubTrack>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+      </Node>
+      <Node Id="8" Type="21" Name="flickering_smooth_slow_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="86" Type="4" Flags="0" defaultValue="0,1" HasCustomColor="0" ValueType="0">
+        <Key time="0" value="0,1" flags="80" ds="0,0" dd="0.041666668,0"/>
+        <Key time="0.125" value="0.125,0.89999998" flags="64" ds="0.041666668,0.024999997" dd="0.041666668,0.024999997"/>
+        <Key time="0.25" value="0.25,1.15" flags="64" ds="0.041666668,0.016666671" dd="0.041666668,0.016666671"/>
+        <Key time="0.375" value="0.375,1" flags="64" ds="0.041666668,-0.049958467" dd="0.041666668,-0.049958467"/>
+        <Key time="0.5" value="0.5,0.85024917" flags="64" ds="0.041666668,0.016666671" dd="0.041666668,0.016666671"/>
+        <Key time="0.625" value="0.625,1.1" flags="64" ds="0.041666668,-0.016708195" dd="0.041666668,-0.016708195"/>
+        <Key time="0.75" value="0.75,0.75" flags="64" ds="0.041666668,-0.016666671" dd="0.041666668,-0.016666671"/>
+        <Key time="0.875" value="0.875,1" flags="64" ds="0.041666668,0.024999997" dd="0.041666668,0.024999997"/>
+        <Key time="1" value="1,0.89999998" flags="64" ds="0.041666668,0.024999997" dd="0.041666668,0.024999997"/>
+        <Key time="1.125" value="1.125,1.15" flags="64" ds="0.041666668,0.0083333356" dd="0.041666668,0.0083333356"/>
+        <Key time="1.25" value="1.25,0.94999999" flags="64" ds="0.041666668,-0.024999997" dd="0.041666668,-0.024999997"/>
+        <Key time="1.375" value="1.375,1" flags="64" ds="0.041666668,-0.0083333356" dd="0.041666668,-0.0083333356"/>
+        <Key time="1.5" value="1.5,0.89999998" flags="64" ds="0.041666668,0" dd="0.041666668,0"/>
+        <Key time="1.625" value="1.625,1" flags="66" ds="0.041666668,0" dd="0,0"/>
+       </Track>
+      </Node>
+      <Node Id="9" Type="21" Name="flickering_hard_fast_lightstyle" Flags="3" ParamIdVersion="6" Pos="0,0,0" Rotate="1,0,0,0" Scale="1,1,1" EntityGUID="0" BoneLinkTransformEnabled="0" Radius="10" DiffuseMultiplier="1" DiffuseColor="255,255,255" HDRDynamic="0" SpecularMultiplier="1" SpecularPercentage="100">
+       <Track ParamId="1" Type="4" HasCustomColor="0" ValueType="1">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="2" Type="4" HasCustomColor="0" ValueType="2">
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="81" Type="4" HasCustomColor="0" ValueType="20">
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+        <NewSubTrack Flags="0" defaultValue="0,255" HasCustomColor="0"/>
+       </Track>
+       <Track ParamId="85" Type="4" Flags="32" defaultValue="0,10" HasCustomColor="0" ValueType="0"/>
+       <Track ParamId="86" Type="4" Flags="64" defaultValue="0,1" HasCustomColor="0" ValueType="0">
+        <Key time="0" value="0,1" flags="16" ds="0,0" dd="0.041666668,0"/>
+        <Key time="0.125" value="0.125,0.75" ds="0.041666668,0.066666663" dd="0.041666668,0.066666663"/>
+        <Key time="0.25" value="0.25,1.4" ds="0.041666668,0.041666668" dd="0.041666668,0.041666668"/>
+        <Key time="0.375" value="0.375,1" ds="0.041666668,-0.10833333" dd="0.041666668,-0.10833333"/>
+        <Key time="0.5" value="0.5,0.75" ds="0.041666668,0.049999993" dd="0.041666668,0.049999993"/>
+        <Key time="0.625" value="0.625,1.3" ds="0.041666668,-0.024999997" dd="0.041666668,-0.024999997"/>
+        <Key time="0.75" value="0.75,0.60000002" ds="0.041666668,-0.049999993" dd="0.041666668,-0.049999993"/>
+        <Key time="0.875" value="0.875,1" ds="0.041666668,0.033333331" dd="0.041666668,0.033333331"/>
+        <Key time="1" value="1,0.80000001" ds="0.041666668,0.066666663" dd="0.041666668,0.066666663"/>
+        <Key time="1.125" value="1.125,1.4" ds="0.041666668,-0.0083333356" dd="0.041666668,-0.0083333356"/>
+        <Key time="1.25" value="1.25,0.75" ds="0.041666668,-0.066666663" dd="0.041666668,-0.066666663"/>
+        <Key time="1.375" value="1.375,1" ds="0.041666668,-0.0083333356" dd="0.041666668,-0.0083333356"/>
+        <Key time="1.5" value="1.5,0.69999999" ds="0.041666668,0" dd="0.041666668,0"/>
+        <Key time="1.625" value="1.625,1" flags="2" ds="0.041666668,0" dd="0,0"/>
+       </Track>
+      </Node>
+     </Nodes>
+     <Events/>
+    </Sequence>
+    <ZoomScrollSettings dopeSheetZoom="40.564896" dopeSheetHScroll="-16" nodesListVScroll="0" curveEditorZoom="80.099998,126.36363" curveEditorScroll="0,-1.1"/>
+    <ID value="73"/>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="placement.lighting_shape_trigger_logic" Id="{18D2A848-DFFD-4AD7-9B5A-227D6A31D6BA}" Library="lighting">
+  <Objects>
+   <Object Type="Shape" Layer="Lighting" Id="{AD12C502-B0DF-4766-860D-48E2F05066E8}" Name="AB3_x_lighting_shape" Pos="704,64,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16763904" Width="0" Height="0" AreaId="0" GroupId="0" Priority="0" Closed="1" DisplayFilled="0" DisplaySoundInfo="0" Agent_height="0" Agent_width="0" Render_voxel_grid="0" voxel_offset_x="0" voxel_offset_y="0" EntityClass="AreaShape">
+    <Points>
+     <Point Pos="0,0,0"/>
+     <Point Pos="0,384,0"/>
+     <Point Pos="384,384,0"/>
+     <Point Pos="384,0,0"/>
+    </Points>
+    <Entities>
+     <Entity Id="{F59BC5AA-2EA4-4DCD-98C1-9D0A6D561E4C}"/>
+    </Entities>
+    <SoundData Side1="0" Side2="0" Side3="0" Side4="0" Roof="0" Floor="0"/>
+   </Object>
+   <Object Type="Shape" Layer="Lighting" Id="{BD51F676-05A1-4CB5-AD1F-4E3E18EA9642}" Name="AB1_x_lighting_shape" Pos="0,64,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16763904" Width="0" Height="0" AreaId="0" GroupId="0" Priority="0" Closed="1" DisplayFilled="0" DisplaySoundInfo="0" Agent_height="0" Agent_width="0" Render_voxel_grid="0" voxel_offset_x="0" voxel_offset_y="0" EntityClass="AreaShape">
+    <Points>
+     <Point Pos="0,0,0"/>
+     <Point Pos="0,384,0"/>
+     <Point Pos="320,384,0"/>
+     <Point Pos="320,0,0"/>
+    </Points>
+    <Entities>
+     <Entity Id="{92B81045-933F-435C-852B-AE691579F164}"/>
+    </Entities>
+    <SoundData Side1="0" Side2="0" Side3="0" Side4="0" Roof="0" Floor="0"/>
+   </Object>
+   <Object Type="Shape" Layer="Lighting" Id="{D1BF29D6-8B41-42C8-B84A-E1F5FF6ED0F0}" Name="AB2_x_lighting_shape" Pos="320,64,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16763904" Width="0" Height="0" AreaId="0" GroupId="0" Priority="0" Closed="1" DisplayFilled="0" DisplaySoundInfo="0" Agent_height="0" Agent_width="0" Render_voxel_grid="0" voxel_offset_x="0" voxel_offset_y="0" EntityClass="AreaShape">
+    <Points>
+     <Point Pos="0,0,0"/>
+     <Point Pos="0,384,0"/>
+     <Point Pos="384,384,0"/>
+     <Point Pos="384,0,0"/>
+    </Points>
+    <Entities>
+     <Entity Id="{0866EFFD-020D-474B-B015-E09EFE605D39}"/>
+    </Entities>
+    <SoundData Side1="0" Side2="0" Side3="0" Side4="0" Roof="0" Floor="0"/>
+   </Object>
+   <Object Type="Entity" Layer="Lighting" Id="{0866EFFD-020D-474B-B015-E09EFE605D39}" Name="AB2_x_lighting_trigger" Pos="3,0,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="AreaTrigger">
+    <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+     <MultiplayerOptions bLocalOnly="0" bPerPlayer="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Lighting" Id="{F59BC5AA-2EA4-4DCD-98C1-9D0A6D561E4C}" Name="AB3_x_lighting_trigger" Pos="4,0,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="AreaTrigger">
+    <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+     <MultiplayerOptions bLocalOnly="0" bPerPlayer="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Lighting" Id="{92B81045-933F-435C-852B-AE691579F164}" Name="AB1_x_lighting_trigger" Pos="2,0,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="AreaTrigger">
+    <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+     <MultiplayerOptions bLocalOnly="0" bPerPlayer="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Lighting" Id="{1C6EC2EE-CE68-4C14-8A3A-8A543BE1292B}" Name="TOD_lighting_trigger" Pos="1,0,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="AreaTrigger">
+    <Properties bEnabled="1" esFactionFilter="" bInVehicleOnly="0" bOnlyLocalPlayer="0" bOnlyPlayers="1" PlaySequence="" ScriptCommand="" bTriggerOnce="0">
+     <MultiplayerOptions bLocalOnly="0" bPerPlayer="0"/>
+    </Properties>
+    <FlowGraph Description="" Group="Lighting" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="10400" Class="entity:AreaTrigger" pos="-23740,-19490,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="10420" Class="Logic:Any" pos="-22090,-19470,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="10428" Class="entity:AreaTrigger" pos="-23740,-19300,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="10434" Class="entity:AreaTrigger" pos="-23740,-19100,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="10437" Class="Logic:Any" pos="-22060,-18820,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="10492" Name="AB0_indoor" Class="_commentbox" pos="-22427.35,-19644.988,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1244.3477" Height="189.44727"/>
+       <NodeSize Width="1244.3477" Height="344.66077"/>
+      </Node>
+      <Node Id="10493" Name="AB0_outdoor" Class="_commentbox" pos="-22428.764,-19327.42,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1241.9805" Height="189.44141"/>
+       <NodeSize Width="1241.9805" Height="344.65491"/>
+      </Node>
+      <Node Id="10494" Name="AB1_cine_start" Class="_commentbox" pos="-22437.215,-19002.994,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13074" Class="Logic:Any" pos="-22100,-19150,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13075" Class="Time:TimeOfDayTransitionTrigger" pos="-21440,-19470,0" flags="0">
+       <Inputs Time="6" Duration="0" SunLatitude="280" SunLongitude="90" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13101" Class="Math:SetNumber" pos="-21790,-19470,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13102" Class="Game:CheckPlatform" pos="-21970,-19470,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13103" Class="Math:SetNumber" pos="-21710,-19420,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13104" Class="Logic:Any" pos="-21790,-19420,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13105" Class="Logic:Any" pos="-21590,-19470,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13112" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-19150,0" flags="0">
+       <Inputs Time="6.25" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13113" Class="Math:SetNumber" pos="-21770,-19150,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13114" Class="Game:CheckPlatform" pos="-21950,-19150,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13115" Class="Math:SetNumber" pos="-21690,-19100,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13116" Class="Logic:Any" pos="-21770,-19100,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13117" Class="Logic:Any" pos="-21570,-19150,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13118" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-18820,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13119" Class="Math:SetNumber" pos="-21770,-18820,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13120" Class="Game:CheckPlatform" pos="-21950,-18820,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13121" Class="Math:SetNumber" pos="-21690,-18770,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13122" Class="Logic:Any" pos="-21770,-18770,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13123" Class="Logic:Any" pos="-21570,-18820,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13150" Class="Mission:GameTokenSet" pos="-23530,-19490,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB0_indoor" Value="true"/>
+      </Node>
+      <Node Id="13152" Class="Mission:GameToken" pos="-22420,-19470,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Canyon.player_in_cine_start" compare_Value="true"/>
+      </Node>
+      <Node Id="13153" Class="Mission:GameTokenSet" pos="-23530,-19300,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB0_outdoor" Value="true"/>
+      </Node>
+      <Node Id="13154" Class="Mission:GameToken" pos="-22420,-19150,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB0_outdoor" compare_Value="true"/>
+      </Node>
+      <Node Id="13157" Class="Mission:GameToken" pos="-22420,-18820,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_cine_start" compare_Value="true"/>
+      </Node>
+      <Node Id="13158" Class="Mission:GameTokenSet" pos="-23530,-19100,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_cine_start" Value="true"/>
+      </Node>
+      <Node Id="13166" Name="AB0_indoor" Class="_commentbox" pos="-23745.434,-19651.717,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="538.33203" Height="148"/>
+       <NodeSize Width="606.09338" Height="303.2135"/>
+      </Node>
+      <Node Id="13167" Name="AB0_outdoor" Class="_commentbox" pos="-23751.594,-19465.176,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="542.02148" Height="148"/>
+       <NodeSize Width="681.85181" Height="303.2135"/>
+      </Node>
+      <Node Id="13168" Name="AB1_cine_start" Class="_commentbox" pos="-23750,-19265.176,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="550.34766" Height="148"/>
+       <NodeSize Width="758.05298" Height="303.2135"/>
+      </Node>
+      <Node Id="13226" Class="entity:AreaTrigger" pos="-23740,-18900,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13227" Class="Mission:GameTokenSet" pos="-23530,-18900,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_train_yard" Value="true"/>
+      </Node>
+      <Node Id="13228" Name="AB1_train_yard" Class="_commentbox" pos="-23752.068,-19064.721,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="550.34766" Height="148"/>
+       <NodeSize Width="777.64282" Height="303.2135"/>
+      </Node>
+      <Node Id="13229" Class="entity:AreaTrigger" pos="-23740,-18690,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13230" Class="Mission:GameTokenSet" pos="-23530,-18690,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_transition_tunnel" Value="true"/>
+      </Node>
+      <Node Id="13231" Name="AB1_transition_tunnel" Class="_commentbox" pos="-23749.906,-18857.885,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="584.91602" Height="148"/>
+       <NodeSize Width="1120.299" Height="303.2135"/>
+      </Node>
+      <Node Id="13232" Class="entity:AreaTrigger" pos="-23740,-18490,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13233" Class="Mission:GameTokenSet" pos="-23530,-18490,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_transition_tracks" Value="true"/>
+      </Node>
+      <Node Id="13234" Name="AB1_transition_tracks" Class="_commentbox" pos="-23745.338,-18653.313,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="584.91602" Height="147.18945"/>
+       <NodeSize Width="1104.3615" Height="302.40295"/>
+      </Node>
+      <Node Id="13235" Class="entity:AreaTrigger" pos="-23740,-18280,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13236" Class="Mission:GameTokenSet" pos="-23530,-18280,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_transition_tall_grass" Value="true"/>
+      </Node>
+      <Node Id="13237" Name="AB1_transition_tall_grass" Class="_commentbox" pos="-23744.998,-18449.643,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="1260.0287" Height="302.40295"/>
+      </Node>
+      <Node Id="13241" Class="entity:AreaTrigger" pos="-23740,-18080,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13242" Class="Mission:GameTokenSet" pos="-23530,-18080,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB2_train_shed_stair_cage" Value="true"/>
+      </Node>
+      <Node Id="13243" Name="AB2_train_shed_stair_cage" Class="_commentbox" pos="-23745.902,-18243.012,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="600.44336" Height="147.18945"/>
+       <NodeSize Width="1329.866" Height="302.40295"/>
+      </Node>
+      <Node Id="13247" Class="entity:AreaTrigger" pos="-23740,-17880,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13248" Class="Mission:GameTokenSet" pos="-23530,-17880,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB2_train_shed_a" Value="true"/>
+      </Node>
+      <Node Id="13249" Name="AB2_train_shed_a" Class="_commentbox" pos="-23743.863,-18043.275,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="892.47028" Height="302.40295"/>
+      </Node>
+      <Node Id="13250" Class="entity:AreaTrigger" pos="-23740,-17680,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13251" Class="Mission:GameTokenSet" pos="-23530,-17680,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB2_train_shed_b" Value="true"/>
+      </Node>
+      <Node Id="13252" Name="AB2_train_shed_b" Class="_commentbox" pos="-23745.424,-17846.494,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="895.73529" Height="302.40295"/>
+      </Node>
+      <Node Id="13253" Class="entity:AreaTrigger" pos="-23740,-17480,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13254" Class="Mission:GameTokenSet" pos="-23530,-17480,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_fields" Value="true"/>
+      </Node>
+      <Node Id="13255" Name="AB3_fields" Class="_commentbox" pos="-23746.186,-17644.992,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="592.02148" Height="302.40295"/>
+      </Node>
+      <Node Id="13258" Class="entity:AreaTrigger" pos="-23740,-17280,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13259" Class="Mission:GameTokenSet" pos="-23530,-17280,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_tunnel_a" Value="true"/>
+      </Node>
+      <Node Id="13260" Name="AB3_tunnel_a" Class="_commentbox" pos="-23745.365,-17445.986,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="701.16498" Height="302.40295"/>
+      </Node>
+      <Node Id="13261" Class="entity:AreaTrigger" pos="-23740,-17080,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13262" Class="Mission:GameTokenSet" pos="-23530,-17080,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_tunnel_b" Value="true"/>
+      </Node>
+      <Node Id="13263" Name="AB3_tunnel_b" Class="_commentbox" pos="-23746.186,-17241.004,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="704.42993" Height="302.40295"/>
+      </Node>
+      <Node Id="13264" Class="entity:AreaTrigger" pos="-23740,-16870,0" flags="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="13265" Class="Mission:GameTokenSet" pos="-23530,-16870,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_cine_end" Value="true"/>
+      </Node>
+      <Node Id="13266" Name="AB3_cine_end" Class="_commentbox" pos="-23746.408,-17031.633,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="592.02148" Height="147.18945"/>
+       <NodeSize Width="715.55298" Height="302.40295"/>
+      </Node>
+      <Node Id="13267" Class="Logic:Any" pos="-22060,-18540,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13268" Name="AB1_train_yard" Class="_commentbox" pos="-22434.555,-18721.391,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13269" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-18540,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13270" Class="Math:SetNumber" pos="-21770,-18540,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13271" Class="Game:CheckPlatform" pos="-21950,-18540,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13272" Class="Math:SetNumber" pos="-21690,-18490,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13273" Class="Logic:Any" pos="-21770,-18490,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13274" Class="Logic:Any" pos="-21570,-18540,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13275" Class="Mission:GameToken" pos="-22420,-18540,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_train_yard" compare_Value="true"/>
+      </Node>
+      <Node Id="13276" Class="Logic:Any" pos="-22060,-18240,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13277" Name="AB1_transition_tunnel" Class="_commentbox" pos="-22436.928,-18420.178,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13278" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-18240,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13279" Class="Math:SetNumber" pos="-21770,-18240,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13280" Class="Game:CheckPlatform" pos="-21950,-18240,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13281" Class="Math:SetNumber" pos="-21690,-18190,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13282" Class="Logic:Any" pos="-21770,-18190,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13283" Class="Logic:Any" pos="-21570,-18240,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13284" Class="Mission:GameToken" pos="-22420,-18240,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_transition_tunnel" compare_Value="true"/>
+      </Node>
+      <Node Id="13285" Class="Logic:Any" pos="-22060,-17950,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13286" Name="AB1_transition_tracks" Class="_commentbox" pos="-22438.154,-18132.063,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13287" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-17950,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13288" Class="Math:SetNumber" pos="-21770,-17950,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13289" Class="Game:CheckPlatform" pos="-21950,-17950,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13290" Class="Math:SetNumber" pos="-21690,-17900,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13291" Class="Logic:Any" pos="-21770,-17900,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13292" Class="Logic:Any" pos="-21570,-17950,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13293" Class="Mission:GameToken" pos="-22420,-17950,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_transition_tracks" compare_Value="true"/>
+      </Node>
+      <Node Id="13294" Class="Logic:Any" pos="-22060,-17690,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13295" Name="AB1_transition_tall_grass" Class="_commentbox" pos="-22434.271,-17873.854,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1260.0287" Height="348.25647"/>
+      </Node>
+      <Node Id="13296" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-17690,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13297" Class="Math:SetNumber" pos="-21770,-17690,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13298" Class="Game:CheckPlatform" pos="-21950,-17690,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13299" Class="Math:SetNumber" pos="-21690,-17640,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13300" Class="Logic:Any" pos="-21770,-17640,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13301" Class="Logic:Any" pos="-21570,-17690,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13302" Class="Mission:GameToken" pos="-22420,-17690,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB1_transition_tall_grass" compare_Value="true"/>
+      </Node>
+      <Node Id="13303" Class="Logic:Any" pos="-22060,-17420,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13304" Name="AB2_train_shed_stair_cage" Class="_commentbox" pos="-22435.133,-17599.799,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1329.866" Height="348.25647"/>
+      </Node>
+      <Node Id="13305" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-17420,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13306" Class="Math:SetNumber" pos="-21770,-17420,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13307" Class="Game:CheckPlatform" pos="-21950,-17420,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13308" Class="Math:SetNumber" pos="-21690,-17370,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13309" Class="Logic:Any" pos="-21770,-17370,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13310" Class="Logic:Any" pos="-21570,-17420,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13311" Class="Mission:GameToken" pos="-22420,-17420,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB2_train_shed_stair_cage" compare_Value="true"/>
+      </Node>
+      <Node Id="13312" Class="Logic:Any" pos="-22060,-17080,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13313" Name="AB2_train_shed_a" Class="_commentbox" pos="-22437.406,-17265.707,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13314" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-17080,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13315" Class="Math:SetNumber" pos="-21770,-17080,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13316" Class="Game:CheckPlatform" pos="-21950,-17080,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13317" Class="Math:SetNumber" pos="-21690,-17030,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13318" Class="Logic:Any" pos="-21770,-17030,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13319" Class="Logic:Any" pos="-21570,-17080,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13320" Class="Mission:GameToken" pos="-22420,-17080,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB2_train_shed_a" compare_Value="true"/>
+      </Node>
+      <Node Id="13321" Class="Logic:Any" pos="-22060,-16780,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13322" Name="AB2_train_shed_b" Class="_commentbox" pos="-22438.225,-16965.379,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13323" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-16780,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13324" Class="Math:SetNumber" pos="-21770,-16780,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13325" Class="Game:CheckPlatform" pos="-21950,-16780,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13326" Class="Math:SetNumber" pos="-21690,-16730,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13327" Class="Logic:Any" pos="-21770,-16730,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13328" Class="Logic:Any" pos="-21570,-16780,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13329" Class="Mission:GameToken" pos="-22420,-16780,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB2_train_shed_b" compare_Value="true"/>
+      </Node>
+      <Node Id="13330" Class="Logic:Any" pos="-22060,-16500,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13331" Name="AB3_fields" Class="_commentbox" pos="-22438.652,-16686.412,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13332" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-16500,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13333" Class="Math:SetNumber" pos="-21770,-16500,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13334" Class="Game:CheckPlatform" pos="-21950,-16500,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13335" Class="Math:SetNumber" pos="-21690,-16450,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13336" Class="Logic:Any" pos="-21770,-16450,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13337" Class="Logic:Any" pos="-21570,-16500,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13338" Class="Mission:GameToken" pos="-22420,-16500,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_fields" compare_Value="true"/>
+      </Node>
+      <Node Id="13339" Class="Logic:Any" pos="-22060,-16200,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13340" Name="AB3_tunnel_a" Class="_commentbox" pos="-22436.953,-16383.081,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13341" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-16200,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13342" Class="Math:SetNumber" pos="-21770,-16200,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13343" Class="Game:CheckPlatform" pos="-21950,-16200,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13344" Class="Math:SetNumber" pos="-21690,-16150,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13345" Class="Logic:Any" pos="-21770,-16150,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13346" Class="Logic:Any" pos="-21570,-16200,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13347" Class="Mission:GameToken" pos="-22420,-16200,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_tunnel_a" compare_Value="true"/>
+      </Node>
+      <Node Id="13348" Class="Logic:Any" pos="-22060,-15900,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13349" Name="AB3_tunnel_b" Class="_commentbox" pos="-22435.877,-16084.721,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13350" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-15900,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13351" Class="Math:SetNumber" pos="-21770,-15900,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13352" Class="Game:CheckPlatform" pos="-21950,-15900,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13353" Class="Math:SetNumber" pos="-21690,-15850,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13354" Class="Logic:Any" pos="-21770,-15850,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13355" Class="Logic:Any" pos="-21570,-15900,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13356" Class="Mission:GameToken" pos="-22420,-15900,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_tunnel_b" compare_Value="true"/>
+      </Node>
+      <Node Id="13357" Class="Logic:Any" pos="-22060,-15600,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13358" Name="AB3_cine_end" Class="_commentbox" pos="-22440.193,-15780.16,0" flags="0">
+       <Inputs TextSize="1" Color="0,0,0" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <ResizeBorder X="0" Y="0" Width="1253.4746" Height="193.04297"/>
+       <NodeSize Width="1253.4746" Height="348.25647"/>
+      </Node>
+      <Node Id="13359" Class="Time:TimeOfDayTransitionTrigger" pos="-21420,-15600,0" flags="0">
+       <Inputs Time="6.5" Duration="5" SunLatitude="320" SunLongitude="60" SunPositionUpdateInterval="0" ForceUpdateInterval="1"/>
+      </Node>
+      <Node Id="13360" Class="Math:SetNumber" pos="-21770,-15600,0" flags="0">
+       <Inputs in="0"/>
+      </Node>
+      <Node Id="13361" Class="Game:CheckPlatform" pos="-21950,-15600,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13362" Class="Math:SetNumber" pos="-21690,-15550,0" flags="0">
+       <Inputs in="0.5"/>
+      </Node>
+      <Node Id="13363" Class="Logic:Any" pos="-21770,-15550,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13364" Class="Logic:Any" pos="-21570,-15600,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="13365" Class="Mission:GameToken" pos="-22420,-15600,0" flags="0">
+       <Inputs gametoken_Token="Lighting.Fields.player_in_AB3_cine_end" compare_Value="true"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="13150" nodeOut="10400" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13102" nodeOut="10420" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13153" nodeOut="10428" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13158" nodeOut="10434" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13120" nodeOut="10437" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13114" nodeOut="13074" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13105" nodeOut="13101" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13101" nodeOut="13102" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13104" nodeOut="13102" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13104" nodeOut="13102" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13105" nodeOut="13103" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13103" nodeOut="13104" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13075" nodeOut="13105" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13075" nodeOut="13105" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13075" nodeOut="13105" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13117" nodeOut="13113" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13113" nodeOut="13114" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13116" nodeOut="13114" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13116" nodeOut="13114" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13117" nodeOut="13115" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13115" nodeOut="13116" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13112" nodeOut="13117" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13112" nodeOut="13117" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13112" nodeOut="13117" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13123" nodeOut="13119" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13119" nodeOut="13120" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13122" nodeOut="13120" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13122" nodeOut="13120" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13123" nodeOut="13121" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13121" nodeOut="13122" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13118" nodeOut="13123" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13118" nodeOut="13123" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13118" nodeOut="13123" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="10420" nodeOut="13152" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13074" nodeOut="13154" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="10437" nodeOut="13157" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13227" nodeOut="13226" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13230" nodeOut="13229" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13233" nodeOut="13232" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13236" nodeOut="13235" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13242" nodeOut="13241" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13248" nodeOut="13247" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13251" nodeOut="13250" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13254" nodeOut="13253" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13259" nodeOut="13258" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13262" nodeOut="13261" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13265" nodeOut="13264" portIn="Trigger" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="13271" nodeOut="13267" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13274" nodeOut="13270" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13270" nodeOut="13271" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13273" nodeOut="13271" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13273" nodeOut="13271" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13274" nodeOut="13272" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13272" nodeOut="13273" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13269" nodeOut="13274" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13269" nodeOut="13274" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13269" nodeOut="13274" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13267" nodeOut="13275" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13280" nodeOut="13276" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13283" nodeOut="13279" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13279" nodeOut="13280" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13282" nodeOut="13280" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13282" nodeOut="13280" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13283" nodeOut="13281" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13281" nodeOut="13282" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13278" nodeOut="13283" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13278" nodeOut="13283" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13278" nodeOut="13283" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13276" nodeOut="13284" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13289" nodeOut="13285" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13292" nodeOut="13288" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13288" nodeOut="13289" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13291" nodeOut="13289" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13291" nodeOut="13289" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13292" nodeOut="13290" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13290" nodeOut="13291" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13287" nodeOut="13292" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13287" nodeOut="13292" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13287" nodeOut="13292" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13285" nodeOut="13293" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13298" nodeOut="13294" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13301" nodeOut="13297" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13297" nodeOut="13298" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13300" nodeOut="13298" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13300" nodeOut="13298" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13301" nodeOut="13299" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13299" nodeOut="13300" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13296" nodeOut="13301" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13296" nodeOut="13301" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13296" nodeOut="13301" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13294" nodeOut="13302" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13307" nodeOut="13303" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13310" nodeOut="13306" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13306" nodeOut="13307" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13309" nodeOut="13307" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13309" nodeOut="13307" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13310" nodeOut="13308" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13308" nodeOut="13309" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13305" nodeOut="13310" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13305" nodeOut="13310" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13305" nodeOut="13310" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13303" nodeOut="13311" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13316" nodeOut="13312" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13319" nodeOut="13315" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13315" nodeOut="13316" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13318" nodeOut="13316" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13318" nodeOut="13316" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13319" nodeOut="13317" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13317" nodeOut="13318" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13314" nodeOut="13319" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13314" nodeOut="13319" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13314" nodeOut="13319" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13312" nodeOut="13320" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13325" nodeOut="13321" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13328" nodeOut="13324" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13324" nodeOut="13325" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13327" nodeOut="13325" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13327" nodeOut="13325" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13328" nodeOut="13326" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13326" nodeOut="13327" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13323" nodeOut="13328" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13323" nodeOut="13328" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13323" nodeOut="13328" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13321" nodeOut="13329" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13334" nodeOut="13330" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13337" nodeOut="13333" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13333" nodeOut="13334" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13336" nodeOut="13334" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13336" nodeOut="13334" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13337" nodeOut="13335" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13335" nodeOut="13336" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13332" nodeOut="13337" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13332" nodeOut="13337" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13332" nodeOut="13337" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13330" nodeOut="13338" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13343" nodeOut="13339" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13346" nodeOut="13342" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13342" nodeOut="13343" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13345" nodeOut="13343" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13345" nodeOut="13343" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13346" nodeOut="13344" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13344" nodeOut="13345" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13341" nodeOut="13346" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13341" nodeOut="13346" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13341" nodeOut="13346" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13339" nodeOut="13347" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13352" nodeOut="13348" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13355" nodeOut="13351" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13351" nodeOut="13352" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13354" nodeOut="13352" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13354" nodeOut="13352" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13355" nodeOut="13353" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13353" nodeOut="13354" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13350" nodeOut="13355" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13350" nodeOut="13355" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13350" nodeOut="13355" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13348" nodeOut="13356" portIn="in1" portOut="Equal True" enabled="1"/>
+      <Edge nodeIn="13361" nodeOut="13357" portIn="Check" portOut="out" enabled="1"/>
+      <Edge nodeIn="13364" nodeOut="13360" portIn="in1" portOut="out" enabled="1"/>
+      <Edge nodeIn="13360" nodeOut="13361" portIn="set" portOut="PC" enabled="1"/>
+      <Edge nodeIn="13363" nodeOut="13361" portIn="in2" portOut="PS3" enabled="1"/>
+      <Edge nodeIn="13363" nodeOut="13361" portIn="in1" portOut="Xbox360" enabled="1"/>
+      <Edge nodeIn="13364" nodeOut="13362" portIn="in2" portOut="out" enabled="1"/>
+      <Edge nodeIn="13362" nodeOut="13363" portIn="set" portOut="out" enabled="1"/>
+      <Edge nodeIn="13359" nodeOut="13364" portIn="ForceUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13359" nodeOut="13364" portIn="Start" portOut="out" enabled="1"/>
+      <Edge nodeIn="13359" nodeOut="13364" portIn="SunPositionUpdateInterval" portOut="out" enabled="1"/>
+      <Edge nodeIn="13357" nodeOut="13365" portIn="in1" portOut="Equal True" enabled="1"/>
+     </Edges>
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.lighting_control" Id="{F521BB81-A832-44BE-91A6-5EF7A57A9A70}" Library="lighting">
+  <Objects/>
+ </Prefab>
+ <Prefab Name="placement.dappled_projector_light" Id="{E971D44D-23D8-4F6F-AD43-6C50DB18B944}" Library="lighting">
+  <Objects>
+   <Object Type="Entity" Layer="VisAreas" Id="{358407FF-5440-4476-B00B-FDE421286D61}" Name="AB1_river_dappled_projector_light5" Pos="1.7866284e-006,1.6468255e-005,7.7183304e-006" FloorNumber="-1" Rotate="1,7.4505762e-009,1.4901152e-008,-1.4901161e-008" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="0" LodRatio="100" ViewDistRatio="5" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="Light">
+    <Properties bActive="1" Radius="24" _nVersion="0">
+     <Color clrDiffuse="0.481952,0.47044,0.409826" fDiffuseMultiplier="8" fHDRDynamic="0" fSpecularMultiplier="0.5"/>
+     <Options bAffectsThisAreaOnly="1" bAmbientLight="1" bCastShadow="0" nCastShadows="0" file_deferred_clip_geom="" texture_deferred_cubemap="" bDeferredClipBounds="0" bDisableX360Opto="0" bFakeLight="0" flare_Flare="" bFlareEnable="1" bIgnoresVisAreas="0" bIrradianceVolumes="0" nPostEffect="0" fShadowBias="1" nShadowMinResPercent="0" fShadowSlopeBias="1" fShadowUpdateMinRadius="10" fShadowUpdateRatio="60"/>
+     <Projector bProjectInAllDirs="0" fProjectorFov="150" fProjectorNearPlane="0" texture_Texture="textures/lights/projectors/generic/canopy_a_projector.dds"/>
+     <Shape bAreaLight="0" fDiffuseSoftness="0.75" fLightFov="180" fPlaneHeight="1" fPlaneWidth="1" texture_Texture="" bTextureReflection="1"/>
+     <Style nAnimationPhase="0" fAnimationSpeed="1" bAttachToSun="0" lightanimation_LightAnimation="dappled_lightstyle" nLightStyle="0" _fTimeScrubbed="0" bTimeScrubbingInTrackView="0">
+      <Rotation x="0" y="0" z="0"/>
+     </Style>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.gloss_basic_range" Id="{AAF8E9A7-8ACE-422A-B942-D30DBB992D89}" Library="lighting">
+  <Objects>
+   <Object Type="Group" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" Name="gloss_basic_range" Pos="0,0,0.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65280" Opened="1">
+    <Objects>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{E595C22D-071B-409B-A793-1C90A39C3B75}" Name="gloss23" Parent="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" Group="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" Pos="0,-1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/gloss0" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{3BDD0E3E-6744-4548-B2F6-5A18E99A4749}" Name="gloss17" Parent="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" Group="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/gloss50" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{4E47DD8C-745A-4823-9A93-406E3CD3F117}" Name="gloss12" Parent="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" Group="{8CD5C5B6-2254-4125-8F6D-8A9A03044AAE}" Pos="0,1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/gloss100" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+    </Objects>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.gloss_full_range" Id="{3193E8C2-F593-46FE-887D-1F04AE609483}" Library="lighting">
+  <Objects>
+   <Object Type="Group" Layer="Main" Id="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Name="gloss_full_range" Pos="0,0,0.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65280" Opened="0">
+    <Objects>
+     <Object Type="GeomEntity" Layer="Main" Id="{6C2CC80F-157F-476B-B42B-22237682C9DF}" Name="gloss80" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss80" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{7F9695D9-0980-4257-9110-851A32E18134}" Name="gloss60" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="0,-2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss60" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{0A0CC6E4-8591-42BE-AC6C-D9269AAC0F66}" Name="gloss90" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="0,1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss90" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{165EDEE6-B0E2-4F66-B562-5E0E6BC273F6}" Name="gloss20" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="-1,0,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss20" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{3CC7FB27-FC3A-402B-8AED-D0FFC4258BC5}" Name="gloss30" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="-1,1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss30" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{F1B28A57-4D0F-4794-8683-D35EA16CC368}" Name="gloss00" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="-1,-2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/gloss0" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{925AD061-FA21-437E-8AC7-A7EDC5061FAA}" Name="gloss70" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="0,-1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss70" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{E1C264AC-9423-4BA0-B41D-DBCF2BC26702}" Name="gloss100" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="0,2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/gloss100" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{A029913C-7BD0-4E75-B25C-481818BE61DB}" Name="gloss10" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="-1,-1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss10" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Main" Id="{64FB8E0E-95B2-4797-BF98-2D721EEB4E87}" Name="gloss40" Parent="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Group="{4FC603B1-4B3C-4AA8-9A05-6577217B6AFC}" Pos="-1,2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="objects/pbs_reference/gloss40" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" EntityClass="GeomEntity">
+      <Properties esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+    </Objects>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.reference_metals" Id="{3EF63983-C8C6-4E1A-8E7D-B6BE9CD25A8C}" Library="lighting">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{75DA124C-4E29-46F2-945A-E10C3D6F4392}" Name="polished_iron2" Pos="-1,2,0.5" FloorNumber="-1" Rotate="0.96592581,0,-0.25881904,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_iron" MatLayersMask="0" Geometry="objects/default/primitive_cube_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{53146007-A650-4F88-ABC8-5453A013C3EE}" Name="polished_iron" Pos="0,2,0.5" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_iron" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{360186A3-AEE8-4E6D-BC5F-30246EDE1C89}" Name="polished_copper" Pos="0,1,0.5" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_copper" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{6502FF6E-1308-4058-B3E5-97B3F89010E1}" Name="polished_copper2" Pos="-1,1,0.5" FloorNumber="-1" Rotate="0.96592581,0,-0.25881904,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_copper" MatLayersMask="0" Geometry="objects/default/primitive_cube_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{3BDD2C57-E6F5-4A90-913C-56C4F748DBDF}" Name="polished_gold" Pos="0,6.1035156e-005,0.5" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_gold" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{32D29A94-5E9D-4F8B-999B-25108377AD75}" Name="polished_gold2" Pos="-1,0,0.5" FloorNumber="-1" Rotate="0.96592581,0,-0.25881904,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_gold" MatLayersMask="0" Geometry="objects/default/primitive_cube_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{032102D9-389D-491F-9356-CAC4ABE12E94}" Name="polished_silver" Pos="0,-1,0.5" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_silver" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{A9D0FE3F-0B01-40C1-B36F-EDBD79278080}" Name="polished_silver2" Pos="-1,-1,0.5" FloorNumber="-1" Rotate="0.96592581,0,-0.25881904,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_silver" MatLayersMask="0" Geometry="objects/default/primitive_cube_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{3E0CAD62-963D-4C76-B0F5-14822190CE71}" Name="polished_nickel" Pos="0,-2,0.5" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_nickel" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Lighting" LayerGUID="{385AEF2E-D7BB-4ABB-9953-1D13F70611D2}" Id="{5A0A666D-3639-45AD-B4AA-A38C3C8E29E0}" Name="polished_nickel2" Pos="-1,-2,0.5" FloorNumber="-1" Rotate="0.96592581,0,-0.25881904,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/polished_nickel" MatLayersMask="0" Geometry="objects/default/primitive_cube_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="0" esFaction="">
+     <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.reference_non_metals" Id="{EFDF1B80-F5DD-4C98-80E1-CBB3AD431212}" Library="lighting">
+  <Objects>
+   <Object Type="Group" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{67120E06-6B21-4908-A20B-097AB462506D}" Name="non_metals" Pos="0,0,0.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65280" Opened="1">
+    <Objects>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{5B382C3E-676B-44EF-958F-BE3223E746D6}" Name="concrete" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="-1,2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/concrete_stucco" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{409D6308-2480-48CF-8264-24AC02D0DBCE}" Name="coal" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="-1,-1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/coal" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{2B51136A-876A-4E3C-8E5E-15C42C8D188E}" Name="light_leather2" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="0,1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/fabric" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{BB8A8ACB-3505-4521-BC5C-40D9A61DDAB7}" Name="porcelain" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="-1,-2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/porcelain" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{9D08E418-C758-4CAC-87C1-29E4468D01BA}" Name="dark_leather" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="0,-1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/dark_leather" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{AF40C94A-1110-4DBE-9360-8E68D1D36B76}" Name="wood_planks" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="0,3,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/wood_planks" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{A6621AA8-5867-4061-9290-C6754D7E81C8}" Name="light_leather" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/light_leather" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{03C8B678-7B9D-4321-95B9-07151D296DB5}" Name="shiney_plastic" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="0,-3,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/shiny_plastic" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{984EDC16-674C-4C52-81C0-D445C6E9A752}" Name="light_leather3" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="0,2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/mixed_stones" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{AD98755D-7150-4545-AEE3-D8598B7C4EB9}" Name="rust" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="0,-2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/rust" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{034BAE2A-0C05-4FC2-A3F3-C18F07EB2CAD}" Name="glazed_clay" Parent="{67120E06-6B21-4908-A20B-097AB462506D}" Group="{67120E06-6B21-4908-A20B-097AB462506D}" Pos="-1,1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/glazed_clay" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+    </Objects>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="debug.reference_metal_grades" Id="{32424121-5758-4847-83D9-95B72E638C1C}" Library="lighting">
+  <Objects>
+   <Object Type="Group" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Name="metal_grades" Pos="0.5,3.5,0.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65280" Opened="1">
+    <Objects>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{D3576A14-B384-4C25-8D1E-2A24DBF477F9}" Name="car_paint" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Pos="0,3,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Flags="4" Material="Objects/pbs_reference/car_paint" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="1" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{F28D6B72-0962-4B3B-8F73-A1C6017E919B}" Name="rusting_metal" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Pos="0,2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/rusted_metal" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{75EDD888-F407-4E22-9B82-056889794BCD}" Name="worn_metal" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Pos="0,1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/worn_metal" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{55A895A0-8657-4262-86C6-211826502079}" Name="brushed_metal" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/brushed_steel" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{EEFA3D9E-7099-41E2-BBBA-026F80D4C35E}" Name="brushed_metal2" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Pos="0,-1,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/brushed_steel2" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{40245E1D-05F9-4683-93D2-A5E562E1CF1A}" Name="galvanized_metal" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Pos="0,-2,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/galvanized_steel" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+     <Object Type="GeomEntity" Layer="Lighting_Debug_Layer" LayerGUID="{BDFBB367-FD58-4F1C-9483-CB9F88BE1844}" Id="{339FCE12-F0A8-4F9B-8928-3B5E38FC108E}" Name="anodized_metal" Parent="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Group="{B14D55BF-942F-4F7D-9B5A-560B44648D1A}" Pos="0,-3,0" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.40000001,0.40000001,0.40000001" ColorRGB="65535" Material="Objects/pbs_reference/anodized_metal" MatLayersMask="0" Geometry="objects/default/primitive_sphere_noproxy.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="50" ViewDistRatio="50" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="1" EntityClass="GeomEntity">
+      <Properties bCollisionEnabled="1" esFaction="">
+       <Health bInvulnerable="1" MaxHealth="500" bOnlyEnemyFire="1"/>
+       <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+      </Properties>
+     </Object>
+    </Objects>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

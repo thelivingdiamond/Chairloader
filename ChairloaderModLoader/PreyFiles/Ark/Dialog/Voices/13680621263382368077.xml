@@ -1,0 +1,7 @@
+
+<Dialog>
+ <Dialog id="13680621263382368408" text="(digital handshake)" modified="09/20/2016 06:05:50 PM" notes="Introductory sound, starting up communications with the stattelit."/>
+ <Dialog id="13680621263382368550" text="(digital beeps and hisses)" modified="09/20/2016 06:06:11 PM" notes="A computer sound, like an old modem, sending a message. 2-4 seconds. This sound sends the Nightmare AWAY from the player."/>
+ <Dialog id="13680621263382369175" text="Satellite not ready." modified="01/08/2016 03:19:51 PM"/>
+ <Dialog id="13680621263404497512" text="(digital beeps and hisses)" modified="02/03/2017 10:28:00 PM" notes="A computer sound, like an old modem, sending a message. 2-4 seconds. Could be a little sinister since it means the Nightmare is COMING."/>
+</Dialog>

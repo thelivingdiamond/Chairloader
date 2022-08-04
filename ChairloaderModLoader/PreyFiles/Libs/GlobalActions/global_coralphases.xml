@@ -1,0 +1,69 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="121" Class="Ark:Objectives:TaskState" pos="-920,-450,0">
+   <Inputs task_Task="844024417325847659" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="398" Class="Ark:Objectives:TaskState" pos="-890,-260,0">
+   <Inputs task_Task="844024417284033794" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1297" Class="Ark:Objectives:TaskState" pos="-810,-70,0">
+   <Inputs task_Task="-6622188701089568766" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="14835" Class="Mission:GameTokenSet" pos="-60,-390,0">
+   <Inputs gametokenid_Token="1570678163" Value="2"/>
+  </Node>
+  <Node Id="14836" Class="Mission:GameTokenSet" pos="-50,-240,0">
+   <Inputs gametokenid_Token="1570678163" Value="3"/>
+  </Node>
+  <Node Id="14837" Class="Mission:GameTokenSet" pos="-50,-90,0">
+   <Inputs gametokenid_Token="1570678163" Value="4"/>
+  </Node>
+  <Node Id="14840" Class="Logic:Gate" pos="-350,-410,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14841" Class="Logic:Gate" pos="-340,-240,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14842" Class="Logic:Gate" pos="-330,-70,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14845" Class="Ark:Debug:ConsoleEvent" pos="-820,620,0">
+   <Inputs Command="getCoralPhase"/>
+  </Node>
+  <Node Id="14847" Class="Debug:DisplayMessage" pos="210,470,0">
+   <Inputs entityId="0" message="" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="14851" Class="Mission:GameTokenGet" pos="-500,610,0">
+   <Inputs gametokenid_Token="1570678163"/>
+  </Node>
+  <Node Id="14853" Class="String:Concat" pos="-50,630,0">
+   <Inputs String1="Coral phase: " String2=""/>
+  </Node>
+  <Node Id="14854" Class="Mission:GameTokenSet" pos="-40.141968,222.76544,0">
+   <Inputs gametokenid_Token="1570678163" Value="5"/>
+  </Node>
+  <Node Id="14855" Class="Logic:Gate" pos="-320.14197,242.76544,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14856" Class="Ark:Objectives:TaskState" pos="-900,220,0">
+   <Inputs task_Task="-6622188701092573652" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="14840" nodeOut="121" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="14841" nodeOut="398" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="14842" nodeOut="1297" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="14835" nodeOut="14840" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14836" nodeOut="14841" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14837" nodeOut="14842" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14851" nodeOut="14845" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="14847" nodeOut="14851" portIn="Show" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="14853" nodeOut="14851" portIn="Set" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="14853" nodeOut="14851" portIn="String2" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="14847" nodeOut="14853" portIn="message" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14854" nodeOut="14855" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14855" nodeOut="14856" portIn="In" portOut="Activated" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

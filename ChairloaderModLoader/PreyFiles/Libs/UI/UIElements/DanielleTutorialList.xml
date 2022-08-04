@@ -1,0 +1,74 @@
+
+<UIElements name="DanielleTutorialList">
+ <UIElement name="DanielleTutorialList" render_lockless="1" mouseevents="1" keyevents="0" cursor="0" controller_input="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_tutoriallist.gfx" layer="15">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="listOpenPage" funcname="list.openPage"/>
+   <function name="listExitPage" funcname="list.exitPage"/>
+   <function name="listClearItems" funcname="list.clearItems"/>
+   <function name="listAddItem" funcname="list.addItem">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Title" desc="" type="String"/>
+    <param name="isNew" desc="" type="bool"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="listUpdateList" funcname="list.updateList"/>
+   <function name="listSetTitle" funcname="list.setTitle">
+    <param name="title" type="string"/>
+   </function>
+   <function name="highlightID" funcname="highlightID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="HLUp" funcname="HLUp"/>
+   <function name="HLDown" funcname="HLDown"/>
+   <function name="HLLeft" funcname="HLLeft"/>
+   <function name="HLRight" funcname="HLRight"/>
+   <function name="btnSelect" funcname="btnSelect"/>
+   <function name="btnBack" funcname="btnBack"/>
+   <function name="openPage" funcname="openPage"/>
+   <function name="exitPage" funcname="exitPage"/>
+   <function name="scrollX" funcname="scrollX">
+    <param name="value" type="float"/>
+   </function>
+   <function name="scrollY" funcname="scrollY">
+    <param name="value" type="float"/>
+   </function>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="setPrompt" funcname="global.setPrompt">
+    <param name="Place" desc="1-8" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="global.formatPrompts"/>
+   <function name="screenRotate" funcname="camera.rotateOffset">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="listHL" fscommand="listHL" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="ListSelect" fscommand="ListSelect" desc="returns unique ID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="backPressed" fscommand="backPressed"/>
+   <event name="menuTransition" fscommand="menuTransition" desc="">
+    <param name="Page" desc="" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

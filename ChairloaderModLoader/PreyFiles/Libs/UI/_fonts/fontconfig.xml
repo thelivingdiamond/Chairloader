@@ -1,0 +1,21 @@
+
+<FontConfig>
+ <default fontlib="fonts_EN.gfx">
+  <Normal>Harmonia Sans W1G</Normal>
+  <NormalLight>Harmonia Sans W1G Light</NormalLight>
+  <NormalBold>Harmonia Sans W1G Bold</NormalBold>
+  <NormalItalic>Harmonia Sans W1G Italic</NormalItalic>
+ </default>
+ <chineset fontlib="fonts_ZH.gfx">
+  <Normal scale="1" y="0">PREY_ETCH_Linotype</Normal>
+  <NormalLight scale="1" y="0">PREY_ETCH_Linotype</NormalLight>
+  <NormalBold scale="1" y="0">PREY_ETCH_Linotype</NormalBold>
+  <NormalItalic scale="1" y="0">PREY_ETCH_Linotype</NormalItalic>
+ </chineset>
+ <japanese fontlib="fonts_JP.gfx">
+  <Normal scale="1" y="0.05">PREY_JP_Linotype</Normal>
+  <NormalLight scale="1" y="0.05">PREY_JP_Linotype</NormalLight>
+  <NormalBold scale="1" y="0.05">PREY_JP_Linotype</NormalBold>
+  <NormalItalic scale="1" y="0.05">PREY_JP_Linotype</NormalItalic>
+ </japanese>
+</FontConfig>

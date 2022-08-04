@@ -1,0 +1,36 @@
+
+<FXLib>
+ <Effect name="mat_null">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+ </Effect>
+ <Effect name="mat_flesh_alien_collision">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Body_Typhon"/>
+  </Audio>
+ </Effect>
+ <Effect name="mat_flesh_alien_gib">
+  <RandEffect>
+   <Particle>
+    <Name particleName="MaterialEffects.AlienBlood.AlienSplash_Decals02" scale="1" maxdist="0" minscale="0" maxscale="0" maxscaledist="0" attach="false"/>
+   </Particle>
+  </RandEffect>
+  <Rolling>
+   <Particle>
+    <Name particleName="MaterialEffects.AlienBlood.AlienSplash_Decals01" scale="1" maxdist="0" minscale="0" maxscale="0" maxscaledist="0" attach="false"/>
+   </Particle>
+  </Rolling>
+  <Sliding>
+   <Particle>
+    <Name particleName="MaterialEffects.AlienBlood.AlienSplash_Decals01" scale="1" maxdist="0" minscale="0" maxscale="0" maxscaledist="0" attach="false"/>
+   </Particle>
+  </Sliding>
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="gib"/>
+  </Audio>
+ </Effect>
+</FXLib>

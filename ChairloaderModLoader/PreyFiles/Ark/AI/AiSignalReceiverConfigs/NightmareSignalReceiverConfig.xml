@@ -1,0 +1,11 @@
+
+<SignalReceivers>
+ <Imports>
+  <File file="Ark/AI/AiSignalReceiverConfigs/AlienSignalReceiverConfig.xml"/>
+ </Imports>
+ <SignalData>
+  <signal id="10641886185820022055" does_damage="false" block_hit_react="true" callback_luaCallbackFunc="OnRecycleBeginCorporeal" is_recycle_begin="true"/>
+  <signal id="3149325216945625551" does_damage="false" is_stun="false" is_stungun="false"/>
+  <signal id="3149325216915549026" does_damage="false" is_stun="false"/>
+ </SignalData>
+</SignalReceivers>

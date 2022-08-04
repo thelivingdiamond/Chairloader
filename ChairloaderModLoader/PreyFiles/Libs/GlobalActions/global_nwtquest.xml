@@ -1,0 +1,244 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="45" Class="Ark:Dialog:PlayTranscribeMessage" pos="2340,120,0">
+   <Inputs dialogRule_Conversation="13680621263370125907" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="64" Class="Mission:GameTokenUpdated" pos="-1220,-60,0">
+   <Inputs gametokenid_Token="697351171" compare_Value="ArkPickups.MissionItems.BigNullwaveTransmitter"/>
+  </Node>
+  <Node Id="68" Class="Ark:Objectives:GetTaskState" pos="-590,0,0">
+   <Inputs task_Task="-6622188701092574021"/>
+  </Node>
+  <Node Id="70" Class="Ark:Objectives:TaskState" pos="1180,-90,0">
+   <Inputs task_Task="-6622188701092574021" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="73" Class="Ark:Objectives:GetTaskState" pos="580,-40,0">
+   <Inputs task_Task="-6622188701092574021"/>
+  </Node>
+  <Node Id="75" Class="Inventory:ItemCheck" pos="70,-150,0">
+   <Inputs entityId="0" Active="0" archetype="ArkPickups.MissionItems.BigNullwaveTransmitter" itemClass=""/>
+  </Node>
+  <Node Id="77" Class="Math:BooleanTo" pos="310,20,0">
+   <Inputs/>
+  </Node>
+  <Node Id="78" Class="Ark:Objectives:TaskState" pos="1730,-80,0">
+   <Inputs task_Task="-6622188701092573906" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="82" Class="Debug:DisplayMessage" pos="-450,-250,0">
+   <Inputs entityId="0" message="nwt fabbed. task?" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="83" Class="Debug:DisplayMessage" pos="-480,200,0">
+   <Inputs entityId="0" message="nwt not fabbed." DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="84" Class="Debug:DisplayMessage" pos="110,210,0">
+   <Inputs entityId="0" message="no" DisplayTime="5" posX="50" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="85" Class="Debug:DisplayMessage" pos="30,-420,0">
+   <Inputs entityId="0" message="yes" DisplayTime="5" posX="50" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="86" Class="Debug:DisplayMessage" pos="960,-290,0">
+   <Inputs entityId="0" message="nwt picked up" DisplayTime="5" posX="50" posY="200" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="87" Class="Debug:DisplayMessage" pos="860,300,0">
+   <Inputs entityId="0" message="nwt not fabbed." DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="88" Class="Debug:DisplayMessage" pos="620,-330,0">
+   <Inputs entityId="0" message="nwt listener" DisplayTime="5" posX="50" posY="150" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="90" Class="Ark:FabricationPlan:FabricationPlanAcquired" pos="-1230,-690,0">
+   <Inputs fabricationPlan_Plan="10641886185823579312"/>
+  </Node>
+  <Node Id="92" Class="Ark:Dialog:ConversationEvent" pos="-1470,-1410,0">
+   <Inputs conversation_Conversation="13680621263367540181"/>
+  </Node>
+  <Node Id="93" Class="Ark:Dialog:ConversationEvent" pos="-1460,-1190,0">
+   <Inputs conversation_Conversation="13680621263369663318"/>
+  </Node>
+  <Node Id="97" Class="Logic:Gate" pos="-790,-1170,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="99" Class="Ark:Objectives:ObjectiveState" pos="-830,-1570,0">
+   <Inputs objective_Objective="844024417256800508" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="101" Class="Ark:Objectives:ObjectiveState" pos="-490,-1240,0">
+   <Inputs objective_Objective="844024417256800508" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="103" Class="Ark:Objectives:TaskState" pos="620,-1400,0">
+   <Inputs task_Task="844024417287055945" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="107" Class="Ark:Objectives:TaskState" pos="570,-1210,0">
+   <Inputs task_Task="-6622188701092574021" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="108" Class="Ark:Objectives:TaskState" pos="-460,-1570,0">
+   <Inputs task_Task="-6622188701092574021" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="109" Name="Triggered_from_living_Alex_conversation" Class="_commentbox" pos="-840,-1584,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="880" Height="200"/>
+  </Node>
+  <Node Id="110" Name="Triggered_from_looting_dead_alex" Class="_commentbox" pos="-850,-1288,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1850" Height="500"/>
+  </Node>
+  <Node Id="114" Class="Ark:Debug:ConsoleEvent" pos="-1420,-1870,0">
+   <Inputs Command="testNWTQuest"/>
+  </Node>
+  <Node Id="116" Class="Inventory:ItemAdd" pos="-844.96686,-1770.3496,0">
+   <Inputs entityId="0" archetype="ArkPickups.Crafting.FabricationPlans.BigNullwaveTransmitterFabPlan" quantity="1" playfanfare="0"/>
+  </Node>
+  <Node Id="117" Class="Debug:DisplayMessage" pos="-970,-490,0">
+   <Inputs entityId="0" message="nwt fabbed. task?" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="119" Class="String:Concat" pos="-1210,-430,0">
+   <Inputs String1="" String2=" fabbed"/>
+  </Node>
+  <Node Id="121" Class="Inventory:ItemAdd" pos="-750,-2240,0">
+   <Inputs entityId="0" archetype="ArkPickups.Crafting.Ingredients.Exotic" quantity="5" playfanfare="0"/>
+  </Node>
+  <Node Id="122" Class="Inventory:ItemAdd" pos="-742.45636,-2110.8062,0">
+   <Inputs entityId="0" archetype="ArkPickups.Crafting.Ingredients.Mineral" quantity="5" playfanfare="0"/>
+  </Node>
+  <Node Id="123" Class="Inventory:ItemAdd" pos="-738.6554,-1977.7721,0">
+   <Inputs entityId="0" archetype="ArkPickups.Crafting.Ingredients.Organic" quantity="5" playfanfare="0"/>
+  </Node>
+  <Node Id="124" Class="Inventory:ItemAdd" pos="-738.6554,-2370.5391,0">
+   <Inputs entityId="0" archetype="ArkPickups.Crafting.Ingredients.Synthetic" quantity="5" playfanfare="0"/>
+  </Node>
+  <Node Id="126" Class="Ark:Debug:ConsoleEvent" pos="1370,320,0">
+   <Inputs Command="finishNWTQuest"/>
+  </Node>
+  <Node Id="127" Class="Ark:Objectives:TaskState" pos="1720,300,0">
+   <Inputs task_Task="-6622188701092573906" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="128" Name="Debug_complete_the_quest" Class="_commentbox" pos="1350,285,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1570" Height="200"/>
+  </Node>
+  <Node Id="129" Class="Ark:Objectives:TaskState" pos="2320,300,0">
+   <Inputs task_Task="-6622188701092573652" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="132" Class="Time:Delay" pos="1740,110,0">
+   <Inputs delay="2" resetOnInput="0"/>
+  </Node>
+  <Node Id="134" Class="Actor:LocalPlayer" pos="307.54028,-301.07935,0">
+   <Inputs/>
+  </Node>
+  <Node Id="136" Class="Mission:GameTokenCheck" pos="1950,130,0">
+   <Inputs gametokenid_Token="404116007" CheckValue="true"/>
+  </Node>
+  <Node Id="15713" Class="Ark:Objectives:TaskState" pos="970,-920,0">
+   <Inputs task_Task="1713490239370915176" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15714" Class="Ark:Objectives:GetTaskState" pos="490,-1030,0">
+   <Inputs task_Task="1713490239370915176"/>
+  </Node>
+  <Node Id="15715" Class="Inventory:ItemCheck" pos="-70,-1050,0">
+   <Inputs entityId="0" Active="0" archetype="ArkPickups.MissionItems.SelfDestructKey_Alex" itemClass=""/>
+  </Node>
+  <Node Id="15716" Class="Actor:LocalPlayer" pos="-280,-1060,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15717" Class="Ark:RemoteEvent" pos="-1260,-1070,0">
+   <Inputs remoteEvent_Event="14667999412583453995"/>
+  </Node>
+  <Node Id="15718" Class="Ark:Objectives:GetTaskState" pos="130,-650,0">
+   <Inputs task_Task="844024417287055945"/>
+  </Node>
+  <Node Id="15719" Class="Ark:Objectives:TaskState" pos="730,-580,0">
+   <Inputs task_Task="844024417287055945" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15720" Class="Ark:Objectives:GetTaskState" pos="1250,-650,0">
+   <Inputs task_Task="-6622188701092574021"/>
+  </Node>
+  <Node Id="15721" Class="Ark:Objectives:GetObjectiveState" pos="-890,-670,0">
+   <Inputs objective_Objective="844024417256800508"/>
+  </Node>
+  <Node Id="15722" Class="Ark:Objectives:TaskState" pos="1940,-590,0">
+   <Inputs task_Task="-6622188701092574021" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15723" Class="Ark:Debug:ConsoleEvent" pos="-3469.4736,-467.88898,0">
+   <Inputs Command="givenwt"/>
+  </Node>
+  <Node Id="15724" Class="Ark:Objectives:ObjectiveState" pos="-3149.4736,-467.88898,0">
+   <Inputs objective_Objective="844024417256800508" SetTracked="0" ShowOnHUD="0"/>
+  </Node>
+  <Node Id="15725" Class="Ark:Objectives:TaskState" pos="-2729.4736,-477.88898,0">
+   <Inputs task_Task="-6622188701092573652" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15726" Class="Mission:GameTokenSet" pos="-3115.6094,-266.02747,0">
+   <Inputs gametokenid_Token="873356940" Value="true"/>
+  </Node>
+  <Node Id="15732" Class="Mission:GameTokenSet" pos="-890.7594,-770.75427,0">
+   <Inputs gametokenid_Token="979824675" Value="true"/>
+  </Node>
+  <Node Id="15734" Class="Mission:GameTokenCheck" pos="-80,-1230,0">
+   <Inputs gametokenid_Token="979824675" CheckValue="true"/>
+  </Node>
+  <Node Id="15735" Class="Ark:Objectives:ObjectiveState" pos="-420,-540,0">
+   <Inputs objective_Objective="844024417256800508" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="68" nodeOut="64" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="64" portIn="Show" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="83" nodeOut="64" portIn="Show" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="119" nodeOut="64" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="119" nodeOut="64" portIn="String1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="68" portIn="Active" portOut="Active" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="68" portIn="Active" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="84" nodeOut="68" portIn="Show" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="84" nodeOut="68" portIn="Show" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="68" portIn="Show" portOut="Active" enabled="1"/>
+  <Edge nodeIn="78" nodeOut="70" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="132" nodeOut="70" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="70" nodeOut="73" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="70" nodeOut="73" portIn="Complete" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="77" nodeOut="73" portIn="false" portOut="Active" enabled="1"/>
+  <Edge nodeIn="73" nodeOut="75" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="75" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="75" portIn="Show" portOut="out" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="77" portIn="Active" portOut="out" enabled="1"/>
+  <Edge nodeIn="15721" nodeOut="90" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15732" nodeOut="90" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="99" nodeOut="92" portIn="Add" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="97" nodeOut="93" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="97" nodeOut="93" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="101" nodeOut="97" portIn="Add" portOut="Out" enabled="1"/>
+  <Edge nodeIn="108" nodeOut="99" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15715" nodeOut="101" portIn="check" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15734" nodeOut="101" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="99" nodeOut="114" portIn="Add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="116" nodeOut="114" portIn="add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="121" nodeOut="114" portIn="add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="122" nodeOut="114" portIn="add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="123" nodeOut="114" portIn="add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="124" nodeOut="114" portIn="add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="117" nodeOut="119" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="117" nodeOut="119" portIn="message" portOut="Out" enabled="1"/>
+  <Edge nodeIn="127" nodeOut="126" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="129" nodeOut="127" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="136" nodeOut="132" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="134" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="136" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="15713" nodeOut="15714" portIn="Activate" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="15713" nodeOut="15715" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="15714" nodeOut="15715" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="15715" nodeOut="15716" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="97" nodeOut="15717" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15719" nodeOut="15718" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="15719" nodeOut="15718" portIn="Complete" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="15720" nodeOut="15718" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15722" nodeOut="15720" portIn="Activate" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="15718" nodeOut="15721" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="15735" nodeOut="15721" portIn="Add" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="15724" nodeOut="15723" portIn="Add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="15726" nodeOut="15723" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="15725" nodeOut="15724" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="103" nodeOut="15734" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="103" nodeOut="15734" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="107" nodeOut="15734" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="15718" nodeOut="15735" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

@@ -1,0 +1,42 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="14070" Class="Actor:LocalPlayer" pos="480,3240,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14087" Class="Ark:PDA:EnablePDAPage" pos="1270,2980,0">
+   <Inputs bEnable="1" Page="SuitMods"/>
+  </Node>
+  <Node Id="14594" Class="Inventory:ItemCheck" pos="690,3240,0">
+   <Inputs entityId="0" Active="1" archetype="" itemClass="ArkPsychoscopeMod"/>
+  </Node>
+  <Node Id="14597" Class="Actor:LocalPlayer" pos="487.42355,2963.4487,0">
+   <Inputs/>
+  </Node>
+  <Node Id="14598" Class="Inventory:ItemCheck" pos="697.42358,2963.4487,0">
+   <Inputs entityId="0" Active="1" archetype="" itemClass="ArkEquipmentMod"/>
+  </Node>
+  <Node Id="14603" Class="Logic:Gate" pos="1010,2980,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14604" Class="Ark:PDA:EnablePDAPage" pos="1320,3240,0">
+   <Inputs bEnable="1" Page="ScopeMods"/>
+  </Node>
+  <Node Id="14605" Class="Logic:Gate" pos="1000,3250,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14606" Name="Enable_Mod_PDA_Pages" Class="_commentbox" pos="440,2904,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1200" Height="530"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="14594" nodeOut="14070" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="14605" nodeOut="14594" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="14598" nodeOut="14597" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="14603" nodeOut="14598" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="14087" nodeOut="14603" portIn="bEnable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14604" nodeOut="14605" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

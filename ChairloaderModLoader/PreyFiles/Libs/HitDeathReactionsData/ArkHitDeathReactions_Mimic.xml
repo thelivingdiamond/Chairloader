@@ -1,0 +1,37 @@
+
+<DeathHitReactionsParams>
+ <HitDeathReactionsConfig collisionBone="cog_jnt"/>
+ <HitReactionParams>
+  <HitReactionParam validationFunc="IsStandingUp" reactionFunc="RagdollAndImpulse" MinTimeInRagdoll="2.5" MaxTimeInRagdoll="7.5" EHitReactionType="0"/>
+  <HitReactionParam reactionFunc="ThrowMimic" validationFunc="ThrowMimic" CustomValidationOnly="1" ThrowHitImpulseScale="10.0" ThrowHitRailVertOffset="1.25" ThrowHitCheckDistance="4.0" ThrowHitCheckSphereR="0.75" ThrowHitSweepHeight="1.0" ThrowHitLedgeCheckDist="2.0"/>
+  <HitReactionParam CustomOnlyWhenValid="1" EHitReactionType="1" validationFunc="ThrowMimicGround" reactionFunc="ThrowMimicGround" ThrowHitImpulseScale="4.0" ThrowHitRailVertOffset="1.5" ThrowHitCheckDistance="3.0" ThrowHitLedgeCheckDist="0.75" ThrowHitWallGlassCheckHeight="0.6"/>
+  <HitReactionParam reactionFunc="OnMimicJump" validationFunc="OnMimicJump" CustomValidationOnly="1" MinTimeInRagdoll="0.5" ThrowHitImpulseScale="3.0"/>
+  <HitReactionParam validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="1"/>
+  <HitReactionParam validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="1"/>
+  <HitReactionParam EHitReactionType="1"/>
+  <HitReactionParam EHitReactionType="2"/>
+ </HitReactionParams>
+ <DeathReactionParams>
+  <DeathReactionParam reactionFunc="LaserDeath" validationFunc="LaserDeath" EHitReactionType="4"/>
+  <DeathReactionParam validationFunc="WrenchHit_LeftRight" reactionFunc="WrenchHit_LeftRight" EHitReactionType="4"/>
+  <DeathReactionParam validationFunc="WrenchHit_RightLeft" reactionFunc="WrenchHit_RightLeft" EHitReactionType="4"/>
+  <DeathReactionParam EHitReactionType="4">
+   <AllowedSignals>
+    <Signal id="3149325216939210391" minValue="0"/>
+    <Signal id="3149325216939211670" minValue="0"/>
+   </AllowedSignals>
+   <SetTags>
+    <Tag value="Impact_Low"/>
+   </SetTags>
+  </DeathReactionParam>
+  <DeathReactionParam EHitReactionType="4">
+   <AllowedSignals>
+    <Signal id="3149325216939210401" minValue="0"/>
+   </AllowedSignals>
+   <SetTags>
+    <Tag value="Impact_High"/>
+   </SetTags>
+  </DeathReactionParam>
+  <DeathReactionParam EHitReactionType="4"/>
+ </DeathReactionParams>
+</DeathHitReactionsParams>

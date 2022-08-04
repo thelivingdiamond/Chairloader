@@ -1,0 +1,636 @@
+
+<PrefabsLibrary Name="User_RWilson">
+ <Prefab Name="EnvironmentInteraction.HeavyObject_Large" Id="{0E31A867-B4F1-408C-92BC-B46A977B918F}" Library="User_RWilson">
+  <Objects/>
+ </Prefab>
+ <Prefab Name="EnvironmentInteraction.EtherealTravelBox_SM" Id="{462428F6-8E8E-4D83-ACE8-5FA50A793D88}" Library="User_RWilson">
+  <Objects>
+   <Object Type="Entity" Layer="CrewFacilities_Scripting" LayerGUID="{FFC5859C-3879-45D6-88FF-714CA6940B3F}" Id="{17D2DF88-83A3-42EE-821A-A875BDF094D0}" Name="EtherealTravelSwitch" Pos="1.5704346,1.9396973,1.5689087" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="Switch">
+    <Properties bDestroyable="0" DestroyedSubObject="" fHealth="100" fileModel="objects/user/rwilson/rw_etherealboxsmall.cgf" fileModelDestroyed="" ModelSubObject="" Switch="" bTurnedOn="0" bUsable="1" UseMessage="Ethereal Travel">
+     <Breakage fExplodeImpulse="0" fLifeTime="20" bSurfaceEffects="1"/>
+     <Destruction Damage="0" Decal="" Effect="" EffectScale="0" bExplode="0" Pressure="0" Radius="0">
+      <Direction x="0" y="0" z="-1"/>
+     </Destruction>
+     <Physics Density="-1" Mass="1" bResting="1" bRigidBody="0" bRigidBodyActive="0" bRigidBodyAfterDeath="1"/>
+     <SmartSwitch Entity="" TurnedOffEvent="" TurnedOnEvent="" bUseSmartSwitch="0"/>
+     <Sound soundTurnOffSound="Sounds/weapons:scar:switch_firemode_fp" soundTurnOnSound="Sounds/weapons:scar:switch_firemode_fp"/>
+     <SwitchPos Off="-35" On="35" bShowSwitch="1"/>
+    </Properties>
+    <FlowGraph Description="" Group="EtherealTravel" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="3" Class="Entity:BeamEntity" pos="690,180,0" flags="0">
+       <Inputs entityId="0" Position="0,0,0" Rotation="0,0,0" UseZeroRot="0" Scale="0,0,0" Memo=""/>
+      </Node>
+      <Node Id="4" Class="Actor:LocalPlayer" pos="401,45,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="5" Class="Entity:EntityPos" pos="400,140,0" flags="0" EntityGUID="{2A6672DE-792A-4943-9471-82668DCF5960}" EntityGUID_64="4943792A2A6672DE">
+       <Inputs entityId="0" pos="0,0,0" rotate="0,0,0" scale="0,0,0" CoordSys="1"/>
+      </Node>
+      <Node Id="7" Class="entity:Switch" pos="163,379,0" flags="0" GraphEntity="0">
+       <Inputs entityId="0" Destroyed="0" Disable="0" Enable="0" Hide="0" Hit="0" Switch="0" TurnedOff="0" TurnedOn="0" Unhide="0"/>
+      </Node>
+      <Node Id="8" Class="Ark:QueryPsiPower" pos="520,440,0" flags="1">
+       <Inputs psiPower_Power=""/>
+      </Node>
+      <Node Id="10" Class="ArkPlayer:HasAbility" pos="400,320,0" flags="0">
+       <Inputs ability_Ability="3149325216929348866"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="3" nodeOut="4" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="Position" portOut="pos" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="Rotation" portOut="rotate" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="7" portIn="Trigger" portOut="Used" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="10" portIn="Beam" portOut="True" enabled="1"/>
+     </Edges>
+     <GraphTokens/>
+    </FlowGraph>
+   </Object>
+   <Object Type="Entity" Layer="CrewFacilities_Scripting" LayerGUID="{FFC5859C-3879-45D6-88FF-714CA6940B3F}" Id="{B5EDA0C2-D197-4FAE-B8FF-0FB682A53CD1}" Name="EtherealTravelSwitch2" Pos="1.3377686,1.9396973,1.5689087" FloorNumber="-1" Rotate="4.3711388e-008,0,0,1" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="Switch">
+    <Properties bDestroyable="0" DestroyedSubObject="" fHealth="100" fileModel="objects/user/rwilson/rw_etherealboxsmall.cgf" fileModelDestroyed="" ModelSubObject="" Switch="" bTurnedOn="0" bUsable="1" UseMessage="Ethereal Travel">
+     <Breakage fExplodeImpulse="0" fLifeTime="20" bSurfaceEffects="1"/>
+     <Destruction Damage="0" Decal="" Effect="" EffectScale="0" bExplode="0" Pressure="0" Radius="0">
+      <Direction x="0" y="0" z="-1"/>
+     </Destruction>
+     <Physics Density="-1" Mass="1" bResting="1" bRigidBody="0" bRigidBodyActive="0" bRigidBodyAfterDeath="1"/>
+     <SmartSwitch Entity="" TurnedOffEvent="" TurnedOnEvent="" bUseSmartSwitch="0"/>
+     <Sound soundTurnOffSound="Sounds/weapons:scar:switch_firemode_fp" soundTurnOnSound="Sounds/weapons:scar:switch_firemode_fp"/>
+     <SwitchPos Off="-35" On="35" bShowSwitch="1"/>
+    </Properties>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="3" Class="Entity:BeamEntity" pos="690,180,0" flags="0">
+       <Inputs entityId="0" Position="0,0,0" Rotation="0,0,0" UseZeroRot="0" Scale="0,0,0" Memo=""/>
+      </Node>
+      <Node Id="4" Class="Actor:LocalPlayer" pos="401,45,0" flags="0">
+       <Inputs/>
+      </Node>
+      <Node Id="5" Class="Entity:EntityPos" pos="400,140,0" flags="0" EntityGUID="{090FDFD9-6E79-424D-9B34-BAD2D12CFF8A}" EntityGUID_64="424D6E79090FDFD9">
+       <Inputs entityId="0" pos="0,0,0" rotate="0,0,0" scale="0,0,0" CoordSys="1"/>
+      </Node>
+      <Node Id="7" Class="entity:Switch" pos="163,379,0" flags="0" GraphEntity="0">
+       <Inputs entityId="0" Destroyed="0" Disable="0" Enable="0" Hide="0" Hit="0" Switch="0" TurnedOff="0" TurnedOn="0" Unhide="0"/>
+      </Node>
+      <Node Id="10" Class="ArkPlayer:HasAbility" pos="400,320,0" flags="0">
+       <Inputs ability_Ability="3149325216929348866"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="3" nodeOut="4" portIn="entityId" portOut="entityId" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="Position" portOut="pos" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="Rotation" portOut="rotate" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="7" portIn="Trigger" portOut="Used" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="10" portIn="Beam" portOut="True" enabled="1"/>
+     </Edges>
+     <GraphTokens/>
+    </FlowGraph>
+   </Object>
+   <Object Type="Entity" Layer="CrewFacilities_Scripting" LayerGUID="{FFC5859C-3879-45D6-88FF-714CA6940B3F}" Id="{090FDFD9-6E79-424D-9B34-BAD2D12CFF8A}" Name="EtherealTravelDestMarker2" Pos="3.6605225,1.8807373,0.10928345" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="ArkMarker"/>
+   <Object Type="Entity" Layer="CrewFacilities_Scripting" LayerGUID="{FFC5859C-3879-45D6-88FF-714CA6940B3F}" Id="{2A6672DE-792A-4943-9471-82668DCF5960}" Name="EtherealTravelDestMarker" Pos="0.00012207031,1.8807373,0.10928345" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="ArkMarker"/>
+   <Object Type="GeomEntity" Layer="CrewFacilities_Scripting" LayerGUID="{FFC5859C-3879-45D6-88FF-714CA6940B3F}" Id="{F18D4088-5763-4ED0-B0D5-4826E358FCCD}" Name="guts_a_grate_4" Pos="1.3643799,3.8304443,0" FloorNumber="-1" Rotate="0.70710671,0,0.70710683,0" Scale="1.9152,1.9152,1.9152" ColorRGB="65535" MatLayersMask="0" Geometry="Objects/User/jmagill/Research/guts_A/guts_a_grate_01.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="LevelTransition.LTKioskTemp" Id="{1DF82E5E-6490-4744-9C9A-67B2B730742B}" Library="User_RWilson">
+  <Objects>
+   <Object Prototype="{530C6ED4-FBC5-4966-824E-75D1F4BC4C40}" Type="EntityArchetype" Layer="Main" LayerGUID="{6351E7C9-7171-4C3A-80EA-CFECC08F6C30}" Id="{E245030D-012F-458E-8440-DF93CAEF52ED}" Name="LTKiosk_CardReader2" Pos="0.26037598,0.31835938,0.041656494" FloorNumber="-1" Rotate="-0.38268346,0,0,0.9238795" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0">
+    <Properties2 bStartsPowered="1" bVerbose="0"/>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="1" Class="Game:Start" pos="-1280,-770,0">
+       <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+      </Node>
+      <Node Id="3" Class="entity:ArkKiosk" pos="790,760,0" GraphEntity="0">
+       <Inputs entityId="0" Button1BodyText="" Button1Default="0" Button1Disabled="0" Button1Error="0" Button1HeaderText="" Button1Hide="0" Button1Processing="0" Button2BodyText="" Button2Default="0" Button2Disabled="0" Button2Error="0" Button2HeaderText="" Button2Hide="0" Button2Processing="0" Button3BodyText="" Button3Default="0" Button3Disabled="0" Button3Error="0" Button3HeaderText="" Button3Hide="0" Button3Processing="0" KioskHeaderText="" KioskPowerOff="0" KioskPowerOn="0"/>
+      </Node>
+      <Node Id="5" Class="String:SetString" pos="-80,1210,0">
+       <Inputs In="Airlock Controls"/>
+      </Node>
+      <Node Id="6" Class="String:SetString" pos="-80,1310,0">
+       <Inputs In="To Hardware Labs"/>
+      </Node>
+      <Node Id="7" Class="String:SetString" pos="-80,1420,0">
+       <Inputs In="Cycle Airlock"/>
+      </Node>
+      <Node Id="9" Class="Math:BooleanTo" pos="-80,1120,0">
+       <Inputs/>
+      </Node>
+      <Node Id="10" Class="UI:Ark:ConfirmDialog" pos="1210,750,0">
+       <Inputs Label="Go to Hardware Labs" Query=""/>
+      </Node>
+      <Node Id="16" Class="Logic:Gate" pos="-400,1210,0">
+       <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+      </Node>
+      <Node Id="19" Class="String:SetString" pos="-80,640,0">
+       <Inputs In="Airlock Controls"/>
+      </Node>
+      <Node Id="22" Class="Math:BooleanTo" pos="-70,530,0">
+       <Inputs/>
+      </Node>
+      <Node Id="23" Class="Logic:Gate" pos="-390,580,0">
+       <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+      </Node>
+      <Node Id="29" Class="Logic:DeMultiplexer" pos="1240,900,0">
+       <Inputs Index="0" Mode="0" WrapAround="1"/>
+      </Node>
+      <Node Id="41" Class="Mission:GameTokenSet" pos="-880,-770,0">
+       <Inputs gametokenid_Token="-271685768" Value="1"/>
+      </Node>
+      <Node Id="44" Name="Unlocked_state" Class="_commentbox" pos="-400,1055,0">
+       <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <CommentBox Width="530" Height="450"/>
+      </Node>
+      <Node Id="45" Name="Locked_state" Class="_commentbox" pos="-430,425,0">
+       <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <CommentBox Width="550" Height="480"/>
+      </Node>
+      <Node Id="47" Name="Initialize" Class="_commentbox" pos="-1300,-809,0">
+       <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <CommentBox Width="640" Height="210"/>
+      </Node>
+      <Node Id="92" Class="entity:ArkKeycardReader" pos="-990,820,0" EntityGUID="{05131619-F4A4-4010-80FE-FD7EED52C2D3}" EntityGUID_64="4010F4A405131619">
+       <Inputs entityId="0" Lock="0" Unlock="0"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="41" nodeOut="1" portIn="Trigger" portOut="output" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="3" portIn="Trigger" portOut="ButtonOnePressed" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="KioskHeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="6" portIn="Button1BodyText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="7" portIn="Button1HeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="9" portIn="Button1Default" portOut="out" enabled="1"/>
+      <Edge nodeIn="5" nodeOut="16" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="16" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="16" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="9" nodeOut="16" portIn="true" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="19" portIn="KioskHeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="22" portIn="Button1Hide" portOut="out" enabled="1"/>
+      <Edge nodeIn="19" nodeOut="23" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="22" nodeOut="23" portIn="true" portOut="Out" enabled="1"/>
+      <Edge nodeIn="16" nodeOut="92" portIn="In" portOut="Unlocked" enabled="1"/>
+      <Edge nodeIn="23" nodeOut="92" portIn="In" portOut="Locked" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Id="-1714290044" Name="KioskState2" Type="1"/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+   <Object Prototype="{6E06728C-2A0A-4E03-A5E8-F2E268B4A493}" Type="EntityArchetype" Layer="Main" LayerGUID="{6351E7C9-7171-4C3A-80EA-CFECC08F6C30}" Id="{05131619-F4A4-4010-80FE-FD7EED52C2D3}" Name="KeycardReader.KeycardReader_Default2" Pos="0.096679688,0.22143555,0.17677307" FloorNumber="-1" Rotate="-0.38268337,0,0,0.92387956" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0">
+    <Properties2 bStartsLocked="1" keycard_UnlockKeycard="1713490239391479434" bUsable="1" bVerbose="0"/>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="LevelTransition.LTKioskShowpieceLocked" Id="{CB84A4E7-980D-401C-8990-F79CD55FF686}" Library="User_RWilson">
+  <Objects>
+   <Object Prototype="{530C6ED4-FBC5-4966-824E-75D1F4BC4C40}" Type="EntityArchetype" Layer="Lobby_TraumaTransition" LayerGUID="{65555A0A-2871-43D6-891B-759A6E5235E2}" Id="{19C9892E-1959-4AD6-BB20-E21EECB5874A}" Name="LTKiosk_CardReader3" Pos="0.81164551,0.8236084,0.041687012" FloorNumber="-1" Rotate="0.9238795,0,0,0.38268346" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0">
+    <Properties2 bStartsPowered="1" bVerbose="0"/>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="3" Class="entity:ArkKiosk" pos="790,760,0" GraphEntity="0">
+       <Inputs entityId="0" Button1BodyText="" Button1Default="0" Button1Disabled="0" Button1Error="0" Button1HeaderText="" Button1Hide="0" Button1Processing="0" Button2BodyText="" Button2Default="0" Button2Disabled="0" Button2Error="0" Button2HeaderText="" Button2Hide="0" Button2Processing="0" Button3BodyText="" Button3Default="0" Button3Disabled="0" Button3Error="0" Button3HeaderText="" Button3Hide="0" Button3Processing="0" KioskHeaderText="" KioskPowerOff="0" KioskPowerOn="0"/>
+      </Node>
+      <Node Id="5" Class="String:SetString" pos="-80,1210,0" GraphEntity="0">
+       <Inputs In="Airlock Controls"/>
+      </Node>
+      <Node Id="6" Class="String:SetString" pos="-80,1310,0" GraphEntity="0">
+       <Inputs In="To Hardware Labs"/>
+      </Node>
+      <Node Id="7" Class="String:SetString" pos="-80,1420,0" GraphEntity="0">
+       <Inputs In="Cycle Airlock"/>
+      </Node>
+      <Node Id="9" Class="Math:BooleanTo" pos="-80,1120,0" GraphEntity="0">
+       <Inputs/>
+      </Node>
+      <Node Id="10" Class="UI:Ark:ConfirmDialog" pos="1210,750,0" GraphEntity="0">
+       <Inputs Label="Go to Trauma Center" Query=""/>
+      </Node>
+      <Node Id="19" Class="String:SetString" pos="-80,580,0" GraphEntity="0">
+       <Inputs In="Airlock Controls"/>
+      </Node>
+      <Node Id="22" Class="Math:BooleanTo" pos="-70,470,0" GraphEntity="0">
+       <Inputs/>
+      </Node>
+      <Node Id="44" Name="Unlocked_state" Class="_commentbox" pos="-430,1082,0">
+       <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <CommentBox Width="570" Height="480"/>
+      </Node>
+      <Node Id="45" Name="Locked_state" Class="_commentbox" pos="-410,419,0">
+       <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+       <CommentBox Width="550" Height="480"/>
+      </Node>
+      <Node Id="92" Class="entity:ArkKeycardReader" pos="-1250,820,0" EntityGUID="{834325DE-2A87-45F1-AFD0-1D129E0D1BFA}" EntityGUID_64="45F12A87834325DE">
+       <Inputs entityId="0" Lock="0" Unlock="0"/>
+      </Node>
+      <Node Id="93" Class="Game:Start" pos="-1018.5123,515.09052,0">
+       <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+      </Node>
+      <Node Id="95" Class="Mission:GameTokenCheck" pos="-880,1050,0">
+       <Inputs gametokenid_Token="629336681" CheckValue="true"/>
+      </Node>
+      <Node Id="96" Class="Logic:Gate" pos="-380,1240,0">
+       <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+      </Node>
+      <Node Id="97" Class="Logic:Gate" pos="-380,550,0">
+       <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+      </Node>
+      <Node Id="98" Class="Mission:GameTokenCheck" pos="-100,730,0">
+       <Inputs gametokenid_Token="629336681" CheckValue="true"/>
+      </Node>
+      <Node Id="99" Class="String:SetString" pos="360.84811,596.73328,0">
+       <Inputs In="Inaccessible In Showpiece"/>
+      </Node>
+      <Node Id="100" Class="Math:BooleanTo" pos="377.69705,724.50439,0">
+       <Inputs/>
+      </Node>
+      <Node Id="102" Class="Mission:GameTokenUpdated" pos="-1090,670,0">
+       <Inputs gametokenid_Token="629336681" compare_Value="true"/>
+      </Node>
+      <Node Id="104" Class="Mission:LoadNextLevel" pos="1530,760,0">
+       <Inputs NextLevel="Trauma"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="10" nodeOut="3" portIn="Trigger" portOut="ButtonOnePressed" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="KioskHeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="6" portIn="Button1BodyText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="7" portIn="Button1HeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="9" portIn="Button1Default" portOut="out" enabled="1"/>
+      <Edge nodeIn="104" nodeOut="10" portIn="Trigger" portOut="OnConfirm" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="19" portIn="KioskHeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="22" portIn="Button1Hide" portOut="out" enabled="1"/>
+      <Edge nodeIn="95" nodeOut="92" portIn="Trigger" portOut="Unlocked" enabled="1"/>
+      <Edge nodeIn="97" nodeOut="92" portIn="In" portOut="Locked" enabled="1"/>
+      <Edge nodeIn="97" nodeOut="93" portIn="In" portOut="output" enabled="1"/>
+      <Edge nodeIn="96" nodeOut="95" portIn="In" portOut="False" enabled="1"/>
+      <Edge nodeIn="5" nodeOut="96" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="96" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="96" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="9" nodeOut="96" portIn="true" portOut="Out" enabled="1"/>
+      <Edge nodeIn="19" nodeOut="97" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="22" nodeOut="97" portIn="true" portOut="Out" enabled="1"/>
+      <Edge nodeIn="98" nodeOut="97" portIn="Trigger" portOut="Out" enabled="1"/>
+      <Edge nodeIn="99" nodeOut="98" portIn="Set" portOut="True" enabled="1"/>
+      <Edge nodeIn="100" nodeOut="98" portIn="true" portOut="True" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="99" portIn="Button1BodyText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="100" portIn="Button1Error" portOut="out" enabled="1"/>
+      <Edge nodeIn="97" nodeOut="102" portIn="In" portOut="Equal True" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Id="-461285703" Name="KioskState2" Type="1"/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+   <Object Prototype="{6E06728C-2A0A-4E03-A5E8-F2E268B4A493}" Type="EntityArchetype" Layer="Lobby_TraumaTransition" LayerGUID="{65555A0A-2871-43D6-891B-759A6E5235E2}" Id="{834325DE-2A87-45F1-AFD0-1D129E0D1BFA}" Name="KeycardReader.KeycardReader_Default3" Pos="0.9753418,0.92053223,0.17678833" FloorNumber="-1" Rotate="0.92387956,0,0,0.38268331" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0">
+    <Properties2 bStartsLocked="1" keycard_UnlockKeycard="1713490239391479434" bUsable="1" bVerbose="0"/>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="EnvironmentInteraction.ActiveClock" Id="{5C26BDF5-DE40-437C-BCB2-624D0085FDEB}" Library="User_RWilson">
+  <Objects>
+   <Object Type="GeomEntity" Layer="Simulation_DESIGN_BLOCKOUT" LayerGUID="{88BDF139-C6AC-4899-B130-789A4554B8E1}" Id="{DA3F79B5-2EE4-4882-8496-5407A83CA8E8}" Name="ActiveClockTest" Pos="0.34500122,0.10925293,0.35140991" FloorNumber="-1" Rotate="4.3711388e-008,0,0,1" ColorRGB="65535" MatLayersMask="0" Geometry="Objects/Environment/Props/Lab/Clock_Wall_A/Clock_Wall_A.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" LodRatio="255" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Physics>
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_psi="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_psi="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="1" Class="Game:Start" pos="-337,-18,0">
+       <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+      </Node>
+      <Node Id="3" Class="Time:Delay" pos="50,-20,0">
+       <Inputs delay="0.2" resetOnInput="0"/>
+      </Node>
+      <Node Id="5" Class="Ark:EventScheduler:GetGameTime" pos="260,-30,0">
+       <Inputs/>
+      </Node>
+      <Node Id="7" Class="Entity:EntityPos" pos="900,-200,0" EntityGUID="{958A0783-F333-4280-9F8A-96CD3390D8BB}" EntityGUID_64="4280F333958A0783">
+       <Inputs entityId="0" pos="0,0,0" rotate="0,0,0" scale="0,0,0" CoordSys="0"/>
+      </Node>
+      <Node Id="8" Class="Entity:EntityPos" pos="980,20,0" EntityGUID="{32BB3666-9E91-4D09-ABD9-8AE32CB5D223}" EntityGUID_64="4D099E9132BB3666">
+       <Inputs entityId="0" pos="0,0,0" rotate="0,0,0" scale="0,0,0" CoordSys="0"/>
+      </Node>
+      <Node Id="10" Class="Vec3:SetVec3" pos="600,240,0">
+       <Inputs In="0,0,0"/>
+      </Node>
+      <Node Id="11" Class="Vec3:ToVec3" pos="700,-170,0">
+       <Inputs x="0" y="0" z="0"/>
+      </Node>
+      <Node Id="13" Class="Math:Mul" pos="310,-270,0">
+       <Inputs A="0" B="-30"/>
+      </Node>
+      <Node Id="14" Class="Vec3:ToVec3" pos="740,60,0">
+       <Inputs x="0" y="0" z="0"/>
+      </Node>
+      <Node Id="15" Class="Math:Mul" pos="600,80,0">
+       <Inputs A="0" B="-6"/>
+      </Node>
+      <Node Id="18" Class="Math:Add" pos="660,-60,0">
+       <Inputs A="0" B="0"/>
+      </Node>
+      <Node Id="19" Class="Math:Mul" pos="530,-40,0">
+       <Inputs A="0" B="-0.5"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="3" nodeOut="1" portIn="in" portOut="output" enabled="1"/>
+      <Edge nodeIn="5" nodeOut="3" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="in" portOut="Out" enabled="1"/>
+      <Edge nodeIn="13" nodeOut="5" portIn="A" portOut="Hour" enabled="1"/>
+      <Edge nodeIn="15" nodeOut="5" portIn="A" portOut="Minute" enabled="1"/>
+      <Edge nodeIn="19" nodeOut="5" portIn="A" portOut="Minute" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="11" portIn="rotate" portOut="vec3" enabled="1"/>
+      <Edge nodeIn="18" nodeOut="13" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="8" nodeOut="14" portIn="rotate" portOut="vec3" enabled="1"/>
+      <Edge nodeIn="14" nodeOut="15" portIn="y" portOut="out" enabled="1"/>
+      <Edge nodeIn="11" nodeOut="18" portIn="y" portOut="out" enabled="1"/>
+      <Edge nodeIn="18" nodeOut="19" portIn="B" portOut="out" enabled="1"/>
+     </Edges>
+     <GraphTokens/>
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Gameplay.CoralScanNode" Id="{71F3A452-D5D4-437F-97BD-2EFC3A9B8989}" Library="User_RWilson">
+  <Objects>
+   <Object Type="ParticleEntity" Layer="Exterior_Scripting" LayerGUID="{4B8E6700-CD2E-4262-8958-819A4FFA0683}" Id="{7B93F75A-6A20-445D-AADB-3C0ABD5D34E1}" Name="Player.Powers.Flare.Main1" Pos="0.50878906,0.50598145,0.51400757" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="ParticleEffect">
+    <Properties bActive="1" esAttachForm="" esAttachType="" Comment="" bCountPerUnit="0" CountScale="1" NetworkSync="0" ParticleEffect="Player.Powers.Flare.Main" bPrime="1" PulsePeriod="0" bRegisterByBBox="0" Scale="1" soclasses_SmartObjectClass="" SpeedScale="1" Strength="-1" TimeScale="1" bUseUITime="0">
+     <Audio bEnableAudio="0" audioRTPCRtpc="particlefx"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Exterior_Scripting" LayerGUID="{4B8E6700-CD2E-4262-8958-819A4FFA0683}" Id="{05BBDF33-53FC-4C8D-B398-D09DA6D911CE}" Name="CoralNodeFGE" Pos="0.51318359,0.50427246,0.5112915" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="FlowgraphEntity">
+    <Properties bDrawThroughWalls="0" bHideInEditor="0" bHideInGame="0" clrMainColor="1,0.5,0" nMainDist="100" MainText="" nMaxNoteHeight="0" nMaxNoteWidth="30" fSize="1.2" clrSummaryColor="1,0.5,0" nSummaryDist="20" SummaryText=""/>
+    <FlowGraph Description="" Group="CoralNode" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="1" Class="Game:Start" pos="-340,-180,0">
+       <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+      </Node>
+      <Node Id="3" Class="Ark:Objectives:GetTaskState" pos="30,-190,0">
+       <Inputs task_Task="844024417286442820"/>
+      </Node>
+      <Node Id="4" Class="Ark:Objectives:GetTaskState" pos="550,-190,0">
+       <Inputs task_Task="844024417286442830"/>
+      </Node>
+      <Node Id="6" Class="Logic:Gate" pos="1230,-140,0">
+       <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+      </Node>
+      <Node Id="15" Class="UI:Events:ArkUIHUD:ScannerEquip" pos="750,-290,0">
+       <Inputs Port="-1" Idx=""/>
+      </Node>
+      <Node Id="17" Class="UI:Events:ArkUIHUD:ScannerUnequip" pos="1190,-240,0">
+       <Inputs Port="-1" Idx=""/>
+      </Node>
+      <Node Id="18" Class="Game:Start" pos="1130,30,0">
+       <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+      </Node>
+      <Node Id="20" Class="Ark:EntityControl" pos="1860,-70,0" EntityGUID="{AA9388A4-8276-4E17-8527-B567AB63C95D}" EntityGUID_64="4E178276AA9388A4">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="23" Class="Debug:DisplayMessage" pos="2490,-360,0">
+       <Inputs entityId="0" message="Scanning..." DisplayTime="5" posX="250" posY="150" fontSize="3" clr_Color="0,0.854993,0.0497066" centered="1" ShowInLauncher="0"/>
+      </Node>
+      <Node Id="25" Class="Mission:GameTokenCheck" pos="1500,-110,0">
+       <Inputs gametokenid_Token="-854289943" CheckValue="true"/>
+      </Node>
+      <Node Id="27" Class="entity:ParticleEffect" pos="1860.874,79.735703,0" EntityGUID="{7B93F75A-6A20-445D-AADB-3C0ABD5D34E1}" EntityGUID_64="445D6A207B93F75A">
+       <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+      </Node>
+      <Node Id="29" Class="entity:CinematicTrigger" pos="1850,-240,0" EntityGUID="{A9E8565A-523E-483D-A230-635CE01CD21B}" EntityGUID_64="483D523EA9E8565A">
+       <Inputs entityId="0" Disable="0" Enable="0" Invisible="0" Trigger="0" Visible="0"/>
+      </Node>
+      <Node Id="31" Class="Ark:Debug:ConsoleEvent" pos="710,0,0">
+       <Inputs Command="testCoralNode"/>
+      </Node>
+      <Node Id="33" Class="Logic:Gate" pos="2170,-250,0">
+       <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+      </Node>
+      <Node Id="34" Class="Debug:DisplayMessage" pos="2770,-220,0">
+       <Inputs entityId="0" message="Scan complete!" DisplayTime="2" posX="250" posY="150" fontSize="3" clr_Color="0,0.854993,0.0497066" centered="1" ShowInLauncher="0"/>
+      </Node>
+      <Node Id="36" Class="Time:Delay" pos="2490,-110,0">
+       <Inputs delay="5" resetOnInput="0"/>
+      </Node>
+      <Node Id="40" Class="Mission:GameTokenSet" pos="2770,20,0">
+       <Inputs gametokenid_Token="-854289943" Value="true"/>
+      </Node>
+      <Node Id="42" Class="Ark:SendRemoteEvent" pos="2772.9626,146.62633,0">
+       <Inputs remoteEvent_Event="844024417286454381"/>
+      </Node>
+      <Node Id="44" Class="Ark:Objectives:SetTaskMarkerEntity" pos="1850,-670,0" GraphEntity="0">
+       <Inputs entityId="0" task_Task="844024417286442820"/>
+      </Node>
+      <Node Id="45" Class="Ark:Objectives:SetTaskMarkerEntity" pos="1850,-550,0" GraphEntity="0">
+       <Inputs entityId="0" task_Task="844024417286443889"/>
+      </Node>
+      <Node Id="47" Class="Mission:GameTokenCheck" pos="1250,-540,0">
+       <Inputs gametokenid_Token="-854289943" CheckValue="true"/>
+      </Node>
+      <Node Id="49" Class="Ark:Locations:CheckLocation" pos="1570,-510,0">
+       <Inputs location_Location="11824555372632688907"/>
+      </Node>
+      <Node Id="50" Class="Ark:Locations:CheckLocation" pos="1580,-660,0">
+       <Inputs location_Location="1713490239386284337"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="3" nodeOut="1" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="1" portIn="Trigger" portOut="output" enabled="1"/>
+      <Edge nodeIn="4" nodeOut="3" portIn="Trigger" portOut="Active" enabled="1"/>
+      <Edge nodeIn="4" nodeOut="3" portIn="Trigger" portOut="Completed" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="3" portIn="Close" portOut="Inactive" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="4" portIn="Close" portOut="Active" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="4" portIn="Close" portOut="Completed" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="4" portIn="Open" portOut="Inactive" enabled="1"/>
+      <Edge nodeIn="47" nodeOut="4" portIn="Trigger" portOut="Out" enabled="1"/>
+      <Edge nodeIn="25" nodeOut="6" portIn="Trigger" portOut="Out" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="15" portIn="In" portOut="onEvent" enabled="1"/>
+      <Edge nodeIn="20" nodeOut="17" portIn="Hide" portOut="onEvent" enabled="1"/>
+      <Edge nodeIn="27" nodeOut="17" portIn="Disable" portOut="onEvent" enabled="1"/>
+      <Edge nodeIn="29" nodeOut="17" portIn="Disable" portOut="onEvent" enabled="1"/>
+      <Edge nodeIn="20" nodeOut="18" portIn="Hide" portOut="LevelStateRestored" enabled="1"/>
+      <Edge nodeIn="20" nodeOut="18" portIn="Hide" portOut="output" enabled="1"/>
+      <Edge nodeIn="27" nodeOut="18" portIn="Disable" portOut="LevelStateRestored" enabled="1"/>
+      <Edge nodeIn="27" nodeOut="18" portIn="Disable" portOut="output" enabled="1"/>
+      <Edge nodeIn="20" nodeOut="25" portIn="Show" portOut="False" enabled="1"/>
+      <Edge nodeIn="27" nodeOut="25" portIn="Enable" portOut="False" enabled="1"/>
+      <Edge nodeIn="29" nodeOut="25" portIn="Enable" portOut="False" enabled="1"/>
+      <Edge nodeIn="33" nodeOut="29" portIn="In" portOut="Trigger" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="31" portIn="Open" portOut="Triggered" enabled="1"/>
+      <Edge nodeIn="23" nodeOut="33" portIn="Show" portOut="Out" enabled="1"/>
+      <Edge nodeIn="36" nodeOut="33" portIn="in" portOut="Out" enabled="1"/>
+      <Edge nodeIn="20" nodeOut="36" portIn="Hide" portOut="out" enabled="1"/>
+      <Edge nodeIn="27" nodeOut="36" portIn="Disable" portOut="out" enabled="1"/>
+      <Edge nodeIn="29" nodeOut="36" portIn="Disable" portOut="out" enabled="1"/>
+      <Edge nodeIn="34" nodeOut="36" portIn="Show" portOut="out" enabled="1"/>
+      <Edge nodeIn="40" nodeOut="36" portIn="Trigger" portOut="out" enabled="1"/>
+      <Edge nodeIn="42" nodeOut="36" portIn="Send" portOut="out" enabled="1"/>
+      <Edge nodeIn="44" nodeOut="36" portIn="Clear" portOut="out" enabled="1"/>
+      <Edge nodeIn="45" nodeOut="36" portIn="Clear" portOut="out" enabled="1"/>
+      <Edge nodeIn="49" nodeOut="47" portIn="Trigger" portOut="False" enabled="1"/>
+      <Edge nodeIn="50" nodeOut="47" portIn="Trigger" portOut="False" enabled="1"/>
+      <Edge nodeIn="45" nodeOut="49" portIn="Set" portOut="True" enabled="1"/>
+      <Edge nodeIn="44" nodeOut="50" portIn="Set" portOut="True" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Id="-854289943" Name="isScanned" Type="6"/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+   <Object Type="Entity" Layer="Exterior_Scripting" LayerGUID="{4B8E6700-CD2E-4262-8958-819A4FFA0683}" Id="{A9E8565A-523E-483D-A230-635CE01CD21B}" Name="CoralNode_CT" Pos="0.51318359,0.50427246,0.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="CinematicTrigger">
+    <Properties fCheckTimer="0.25" fDelay="0" fDimX="1" fDimY="1" fDimZ="1" bEnabled="1" bInVehicleOnly="0" fMaxDistance="10" fMinDistance="0" fMinVisibleTime="0.5" ScriptCommand="" Sequence="" bTriggerOnce="0" fZoomMinimum="1">
+     <MultiplayerOptions MinPlayers="1" bNetworked="0" bPerPlayer="0"/>
+    </Properties>
+   </Object>
+   <Object Type="GeomEntity" Layer="Exterior_Scripting" LayerGUID="{4B8E6700-CD2E-4262-8958-819A4FFA0683}" Id="{AA9388A4-8276-4E17-8527-B567AB63C95D}" Name="gooball_1" Pos="0.52819824,0.40429688,0.52127075" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlow_00" MatLayersMask="0" Geometry="Objects/ArkEffects/Weapons/GooGun/Phantom/gooball_01.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="GeomEntity">
+    <Properties bCollisionEnabled="1" esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <Physics>
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_psi="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_psi="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_vehicle="0" bT_gcc_vtol="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Debug.tokenTestKiosk" Id="{1D5576E3-03FB-4622-9123-A8EB21E622CD}" Library="User_RWilson">
+  <Objects>
+   <Object Prototype="{530C6ED4-FBC5-4966-824E-75D1F4BC4C40}" Type="EntityArchetype" Layer="Main" LayerGUID="{745EF53A-A32D-44CF-BBE7-C988AC2F1BA0}" Id="{9C587D54-AD8A-4460-8AA3-BFC217614032}" Name="InteractiveScreens.GenericScriptedKiosk1" Pos="0.095581055,0.74475098,0.0029602051" FloorNumber="-1" Rotate="0.34202018,0,0,0.93969262" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0">
+    <Properties2 bStartsPowered="1" bVerbose="0"/>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="1" Class="Game:Start" pos="-424,-109,0">
+       <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+      </Node>
+      <Node Id="3" Class="entity:ArkKiosk" pos="260,-310,0" GraphEntity="0">
+       <Inputs entityId="0" Button1BodyText="" Button1Default="0" Button1Disabled="0" Button1Error="0" Button1HeaderText="" Button1Hide="0" Button1Processing="0" Button2BodyText="" Button2Default="0" Button2Disabled="0" Button2Error="0" Button2HeaderText="" Button2Hide="0" Button2Processing="0" Button3BodyText="" Button3Default="0" Button3Disabled="0" Button3Error="0" Button3HeaderText="" Button3Hide="0" Button3Processing="0" KioskHeaderText="" KioskPowerOff="0" KioskPowerOn="0"/>
+      </Node>
+      <Node Id="5" Class="String:SetString" pos="-10,-210,0">
+       <Inputs In="Title"/>
+      </Node>
+      <Node Id="6" Class="String:SetString" pos="-10,-120,0">
+       <Inputs In="Set Title"/>
+      </Node>
+      <Node Id="7" Class="String:SetString" pos="-10,-30,0">
+       <Inputs In="Foo"/>
+      </Node>
+      <Node Id="8" Class="String:SetString" pos="-10,50,0">
+       <Inputs In="Bar"/>
+      </Node>
+      <Node Id="10" Class="Math:BooleanTo" pos="-10,140,0">
+       <Inputs/>
+      </Node>
+      <Node Id="12" Class="Mission:GameTokenUpdated" pos="-100,-340,0">
+       <Inputs gametokenid_Token="-199323602" compare_Value=""/>
+      </Node>
+      <Node Id="14" Class="Mission:GameTokenSet" pos="640,-340,0">
+       <Inputs gametokenid_Token="-199323602" Value="Foo"/>
+      </Node>
+      <Node Id="15" Class="Mission:GameTokenSet" pos="650,-230,0">
+       <Inputs gametokenid_Token="-199323602" Value="Bar"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="5" nodeOut="1" portIn="Set" portOut="output" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="1" portIn="Set" portOut="output" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="1" portIn="Set" portOut="output" enabled="1"/>
+      <Edge nodeIn="8" nodeOut="1" portIn="Set" portOut="output" enabled="1"/>
+      <Edge nodeIn="10" nodeOut="1" portIn="true" portOut="output" enabled="1"/>
+      <Edge nodeIn="14" nodeOut="3" portIn="Trigger" portOut="ButtonOnePressed" enabled="1"/>
+      <Edge nodeIn="15" nodeOut="3" portIn="Trigger" portOut="ButtonTwoPressed" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="5" portIn="KioskHeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="6" portIn="Button1HeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="6" portIn="Button2HeaderText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="7" portIn="Button1BodyText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="8" portIn="Button2BodyText" portOut="Out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="10" portIn="Button1Default" portOut="out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="10" portIn="Button2Default" portOut="out" enabled="1"/>
+      <Edge nodeIn="3" nodeOut="12" portIn="KioskHeaderText" portOut="Out" enabled="1"/>
+     </Edges>
+     <GraphTokens>
+      <Token Id="-199323602" Name="titleString" Type="5"/>
+     </GraphTokens>
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="EnvironmentInteraction.InteractiveTelescope" Id="{3D5804BF-9C79-4D74-8206-6FA74D017679}" Library="User_RWilson">
+  <Objects>
+   <Object Type="Entity" Layer="Prototype_Scripting" LayerGUID="{18F13D6C-5561-4573-A681-C7C9AD36F550}" Id="{168FB463-325D-4A39-8930-640D754B8C8A}" Name="FG_Telescope2" Pos="1.5148926,2.2935486,0" FloorNumber="-1" Rotate="-0.13052621,0,0,0.99144489" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="FlowgraphEntity">
+    <Properties bDrawThroughWalls="0" bHideInEditor="0" bHideInGame="0" clrMainColor="1,0.5,0" nMainDist="100" MainText="" nMaxNoteHeight="0" nMaxNoteWidth="30" fSize="1.2" clrSummaryColor="1,0.5,0" nSummaryDist="20" SummaryText=""/>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="4" Class="entity:ArkMarker" pos="197,145,0" EntityGUID="{45D594BA-BE5D-47AA-965E-8AA0C5597D0A}" EntityGUID_64="47AABE5D45D594BA">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="6" Class="Camera:View" pos="620,230,0" GraphEntity="0">
+       <Inputs entityId="0" Enable="0" Disable="0" FOV="15" Blend="0" BlendFOVSpeed="5" BlendFOVOffset="0" BlendPosSpeed="5" BlendPosOffset="0,0,0" BlendRotSpeed="10" BlendRotOffset="0,0,0"/>
+      </Node>
+      <Node Id="8" Class="Entity:EntityPos" pos="-20,-50,0" EntityGUID="{45D594BA-BE5D-47AA-965E-8AA0C5597D0A}" EntityGUID_64="47AABE5D45D594BA">
+       <Inputs entityId="0" pos="0,0,0" rotate="0,0,0" scale="0,0,0" CoordSys="1"/>
+      </Node>
+      <Node Id="10" Class="Entity:EntityId" pos="230,50,0" EntityGUID="{45D594BA-BE5D-47AA-965E-8AA0C5597D0A}" EntityGUID_64="47AABE5D45D594BA">
+       <Inputs entityId="0"/>
+      </Node>
+      <Node Id="12" Class="entity:ArkInteractiveObject" pos="-101,237,0" EntityGUID="{9E8A5918-AE91-400D-8BCD-699611D27EE6}" EntityGUID_64="400DAE919E8A5918">
+       <Inputs entityId="0" Activate="0" Deactivate="0" Disable="0" Enable="0"/>
+      </Node>
+      <Node Id="16" Class="Actor:PlayerStaging" pos="620,20,0" GraphEntity="0">
+       <Inputs ViewLimitDir="0,0,0" InLocalSpace="1" ViewLimitYaw="0" ViewLimitPitch="0" LockPlayer="0" TryStance="-1"/>
+      </Node>
+      <Node Id="24" Class="Time:Delay" pos="150,360,0" GraphEntity="0">
+       <Inputs delay="3" resetOnInput="0"/>
+      </Node>
+      <Node Id="26" Class="Math:BooleanTo" pos="390,300,0" GraphEntity="0">
+       <Inputs/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="6" nodeOut="10" portIn="entityId" portOut="Id" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="12" portIn="Enable" portOut="Activated" enabled="1"/>
+      <Edge nodeIn="24" nodeOut="12" portIn="in" portOut="Activated" enabled="1"/>
+      <Edge nodeIn="26" nodeOut="12" portIn="true" portOut="Activated" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="24" portIn="Disable" portOut="out" enabled="1"/>
+      <Edge nodeIn="26" nodeOut="24" portIn="false" portOut="out" enabled="1"/>
+      <Edge nodeIn="16" nodeOut="26" portIn="LockPlayer" portOut="out" enabled="1"/>
+     </Edges>
+     <GraphTokens/>
+    </FlowGraph>
+   </Object>
+   <Object Type="Entity" Layer="Prototype_Scripting" LayerGUID="{18F13D6C-5561-4573-A681-C7C9AD36F550}" Id="{9E8A5918-AE91-400D-8BCD-699611D27EE6}" Name="ArkInteractiveObject2" Pos="2.4711914,1.9872742,0.20770264" FloorNumber="-1" Rotate="0.81915212,0,0,-0.57357633" ColorRGB="65535" Material="Telescope_A_mat1" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="ArkInteractiveObject">
+    <Properties ability_CarryRequirement="" bCollisionInteraction="0" material_DisabledMaterial="" bDisableOnUse="0" textDisplayName="" fDuration="1" material_EnabledMaterial="" object_Model="Objects/Environment/Props/NeoDeco/Telescope_A/telescope_a.cgf" textUseMessage="" sVfxBoneName="" vector_vfxDirInDegrees="0,0,0" vector_vfxOffset="0,0,0" fVfxPulsePeriod="1" fVfxScale="1">
+     <Animation anim_Activated="" anim_Deactivated=""/>
+     <CarryHoldDuration LeverageI="0.75" LeverageII="1.25" LeverageIII="1.75"/>
+     <Disrupt disruptionProfile_Profile="10739735956140212131" audioTrigger_SparkSFX="" particleeffect_SparkVFX=""/>
+     <Effects particleeffect_Activated=""/>
+     <Glow color_DisabledColor="1,1,1" fDisabledGlowAmount="0" color_EnabledColor="1,0,0" fEnabledGlowAmount="1" nGlowSubmatIdA="0" sSkinAttachmentName="" bUseGlow="0"/>
+     <MissionReward signalPackage_HealthOnUse="" gametokenid_IsPsiAddedToWater="" bIsWaterSource="0" signalPackage_PsiRewardOnUse=""/>
+     <Physics Density="-1" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+      </CollisionFiltering>
+     </Physics>
+     <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+     <Sound audioTrigger_Start="" audioTrigger_Stop=""/>
+    </Properties>
+    <Properties2 bPreviewVfx="0" bStartsActive="0" bStartsDisabled="0" bVerbose="0"/>
+   </Object>
+   <Object Type="Entity" Layer="Prototype_Scripting" LayerGUID="{18F13D6C-5561-4573-A681-C7C9AD36F550}" Id="{45D594BA-BE5D-47AA-965E-8AA0C5597D0A}" Name="ArkMarker16" Pos="6.4543457,3.5219421,3.1088867" FloorNumber="-1" Rotate="0.80670732,0.12278781,-0.12278783,-0.56486243" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="ArkMarker">
+    <Properties metaTags_ArkMetaTags="" scanningDisplayName=""/>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

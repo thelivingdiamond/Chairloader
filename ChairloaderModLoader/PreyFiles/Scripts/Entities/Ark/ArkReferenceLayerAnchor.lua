@@ -1,0 +1,10 @@
+local L0_4476, L1_4477
+L0_4476 = {}
+L1_4477 = {}
+L1_4477.Name = ""
+L0_4476.Properties = L1_4477
+L1_4477 = {}
+L1_4477.Model = "Editor/Objects/anchor.cgf"
+L1_4477.Icon = "Magnet.bmp"
+L0_4476.Editor = L1_4477
+ArkReferenceLayerAnchor = L0_4476

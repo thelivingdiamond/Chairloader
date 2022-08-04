@@ -1,0 +1,16 @@
+
+<Objectives>
+ <Objective id="14667999412548964611" title="@loc_15373294129891632641" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="14667999412548964612" displayName="Save Alex" text="@loc_15373294129891632642"/>
+   <Desc id="844024417316847598" displayName="Completed - alive" text="@loc_844024417316847599"/>
+   <Desc id="844024417316847608" displayName="Completed - dead" text="@loc_844024417316847609"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="14667999412548964705" displayName="Get Alex" optional="false" text="@loc_15373294129891632644" Location="1713490239386284818" markerLabel="@loc_15373294129891632643" description="14667999412548964612"/>
+   <Task id="14667999412548964899" displayName="Put Alex in his safe room" optional="false" text="@loc_15373294129891632646" markerLabel="@loc_15373294129891632645" Location="1713490239386284818"/>
+   <Task id="14667999412548964987" displayName="Use Keypad" optional="false" text="@loc_15373294129891632648" markerLabel="@loc_15373294129891632647" Location="1713490239386284818"/>
+  </Tasks>
+ </Objective>
+</Objectives>

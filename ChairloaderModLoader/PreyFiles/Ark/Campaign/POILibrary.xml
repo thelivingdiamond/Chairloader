@@ -1,0 +1,52 @@
+
+<ArkPointOfInterestLibrary>
+ <POIs>
+  <ArkPointOfInterest ID="13856881013216730525" Name="OxygenStation" Label="@loc_13856881013216730526"/>
+  <ArkPointOfInterest ID="13856881013216730417" Name="DerelictShuttle" Label="@loc_13856881013216730418"/>
+  <ArkPointOfInterest ID="13856881013216729872" Name="AirlockHardware" Label="@loc_13856881013216729873"/>
+  <ArkPointOfInterest ID="13856881013216730214" Name="AirlockHardwareLocked" Label="@loc_13856881013216730215"/>
+  <ArkPointOfInterest ID="13856881013216729869" Name="AirlockPowerPlant" Label="@loc_13856881013216729870"/>
+  <ArkPointOfInterest ID="13856881013216730232" Name="AirlockPowerPlantLocked" Label="@loc_13856881013216730233"/>
+  <ArkPointOfInterest ID="13856881013216729867" Name="AirlockPsychotronics" Label="@loc_13856881013216729868"/>
+  <ArkPointOfInterest ID="13856881013216730251" Name="AirlockPsychotronicsLocked" Label="@loc_13856881013216730252"/>
+  <ArkPointOfInterest ID="13856881013216729864" Name="AirlockShuttleBay" Label="@loc_13856881013216729865"/>
+  <ArkPointOfInterest ID="13856881013216730270" Name="AirlockShuttleBayLocked" Label="@loc_13856881013216730271"/>
+  <ArkPointOfInterest ID="15659330456357135939" Name="AirlockArboretum" Label="@loc_15659330456357135940"/>
+  <ArkPointOfInterest ID="13856881013216730286" Name="AirlockArboretumLocked" Label="@loc_13856881013216730287"/>
+  <ArkPointOfInterest ID="13856881013216730636" Name="Corpse" Label="@loc_13856881013216730637"/>
+  <ArkPointOfInterest ID="13856881013216735784" Name="CargoBayCave" Label="@loc_13856881013216735785"/>
+  <ArkPointOfInterest ID="13856881013216735950" Name="HardwareCave" Label="@loc_13856881013216735951"/>
+  <ArkPointOfInterest ID="13856881013216735968" Name="PowerPlantCave" Label="@loc_13856881013216735969"/>
+  <ArkPointOfInterest ID="13856881013216735985" Name="CrewQuartersCave1" Label="@loc_13856881013216735986"/>
+  <ArkPointOfInterest ID="13856881013216736015" Name="CrewQuartersCave2" Label="@loc_13856881013216736016"/>
+  <ArkPointOfInterest ID="761057047996836361" Name="ZG_Magnetosphere" Label="@loc_761057047996836362"/>
+  <ArkPointOfInterest ID="761057047997184320" Name="Workstation" Label="@loc_761057047997184321"/>
+  <ArkPointOfInterest ID="761057047997184996" Name="ZG_PowerStation" Label="@loc_761057047997184997"/>
+  <ArkPointOfInterest ID="761057047997186277" Name="ZG_CargoDebris" Label="@loc_761057047997186278"/>
+  <ArkPointOfInterest ID="761057047997186483" Name="ZG_CargoProcessing" Label="@loc_761057047997186484"/>
+  <ArkPointOfInterest ID="761057047997186503" Name="ZG_CargoBay" Label="@loc_761057047997186504"/>
+  <ArkPointOfInterest ID="761057047997186518" Name="ZG_Arboretum" Label="@loc_761057047997186519"/>
+  <ArkPointOfInterest ID="761057047997186591" Name="ZG_ShuttleBay" Label="@loc_761057047997186592"/>
+  <ArkPointOfInterest ID="761057047997187194" Name="Debris" Label="@loc_761057047997187195"/>
+  <ArkPointOfInterest ID="13856881013228830624" Name="Ext_EmmanuelMendez" Label="@loc_15373294129892759617"/>
+  <ArkPointOfInterest ID="13856881013228830874" Name="Ext_GrantLockwood" Label="@loc_15373294129892759637"/>
+  <ArkPointOfInterest ID="13856881013228831592" Name="Ext_FrankJones" Label="@loc_15373294129892759628"/>
+  <ArkPointOfInterest ID="13856881013228831758" Name="Ext_KolyaKorneyev" Label="@loc_15373294129892759697"/>
+  <ArkPointOfInterest ID="13856881013228831866" Name="Ext_HunterHale" Label="@loc_15373294129892759655"/>
+  <ArkPointOfInterest ID="13856881013228831905" Name="Ext_ZhaoSun" Label="@loc_15373294129892759816"/>
+  <ArkPointOfInterest ID="13856881013228831955" Name="Ext_EmmanuellaDeSilva" Label="@loc_15373294129892759618"/>
+  <ArkPointOfInterest ID="13856881013228831994" Name="Ext_KarismaChouhan" Label="@loc_15373294129892759690"/>
+  <ArkPointOfInterest ID="13856881013228832022" Name="Ext_JoseCosta" Label="@loc_15373294129892759681"/>
+  <ArkPointOfInterest ID="13856881013228832053" Name="Ext_VanyaRazin" Label="@loc_15373294129892759806"/>
+  <ArkPointOfInterest ID="13856881013228832088" Name="Ext_MarianaArias" Label="@loc_15373294129892759723"/>
+  <ArkPointOfInterest ID="13856881013228832120" Name="Ext_AdrianHolland" Label="@loc_15373294129892759544"/>
+  <ArkPointOfInterest ID="13856881013228842594" Name="Ext_JessicaWiley" Label="@loc_15373294129892759669"/>
+  <ArkPointOfInterest ID="13856881013228842625" Name="Ext_TanaVale" Label="@loc_15373294129892759794"/>
+  <ArkPointOfInterest ID="13856881013228842885" Name="Ext_RileyButler" Label="@loc_15373294129892759770"/>
+  <ArkPointOfInterest ID="13856881013228843196" Name="Ext_DayoIgwe" Label="@loc_15373294129892759599"/>
+  <ArkPointOfInterest ID="13856881013228846725" Name="Ext_DrCalvino" Label="@loc_15373294129892759710"/>
+  <ArkPointOfInterest ID="14667999412579998479" Name="AR_SprinklerSystem" Label="@loc_arb_sprinklersystem"/>
+  <ArkPointOfInterest ID="13856881013232461191" Name="Ext_MikeDevlin" Label="@loc_15373294129892759732"/>
+  <ArkPointOfInterest ID="13856881013232975058" Name="CorpseFound" Label="@loc_humancorpsefound"/>
+ </POIs>
+</ArkPointOfInterestLibrary>

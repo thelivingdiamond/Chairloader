@@ -1,0 +1,854 @@
+
+<ArkPostEffects>
+ <Effect Id="2" Name="Menu_PsiMode" Priority="900" Duration="0">
+  <Param Id="12635110349622200152" ParamId="118" Value=".75" ForceSet="false"/>
+ </Effect>
+ <Effect Id="12635110349620313246" Name="Menu_FocusMode" Priority="900" Duration="0" Timer="2">
+  <Param Id="14610450286790435117" ParamId="15096353642226278539" ForceSet="false" Value="1,1,1,1"/>
+  <Param Id="14610450286790435126" ParamId="15096353642226280766" ForceSet="false" Value="0,0,0,1"/>
+  <Param Id="14610450286790435134" ParamId="15096353642226280914" ForceSet="false" Value="1"/>
+  <Param Id="3149325216980934791" ParamId="71" Value=".8" ForceSet="false"/>
+  <Param Id="12635110349622114827" ParamId="74" Value="1.8" ForceSet="false"/>
+  <Param Id="12635110349622114753" ParamId="77" Value="1.25" ForceSet="false"/>
+  <Param Id="12635110349622114638" ParamId="76" Value="1.5" ForceSet="false"/>
+  <Param Id="12635110349622114332" ParamId="75" Value="-.25" ForceSet="false"/>
+  <Param Id="12635110349622113912" ParamId="116" Value="1.25" ForceSet="false"/>
+  <Param Id="12635110349622113811" ParamId="120" Value="0.05" ForceSet="false"/>
+  <Param Id="12635110349622113779" ParamId="121" Value="0.05" ForceSet="false"/>
+  <Param Id="12635110349622115360" ParamId="122" Value="0.075" ForceSet="false"/>
+  <Param Id="12635110349622107805" ParamId="119" Value="0.1" ForceSet="false"/>
+  <Param Id="12635110349622107151" ParamId="32" Value=".8" ForceSet="false"/>
+  <Param Id="12635110349620314262" ParamId="117" Value=".5" ForceSet="false"/>
+ </Effect>
+ <Effect Id="9805661808542489887" Name="Menu_UI" Priority="950" Duration="0" Timer="2">
+  <Param Id="16934642289606346027" ParamId="119" Value="0.2" ForceSet="true"/>
+  <Param Id="16934642289606346028" ParamId="121" Value=".15" ForceSet="true"/>
+  <Param Id="16934642289606346029" ParamId="120" Value="0" ForceSet="true"/>
+  <Param Id="16934642289606346030" ParamId="122" Value=".15" ForceSet="true"/>
+  <Param Id="16934642289606346031" ParamId="116" Value=".75" ForceSet="true"/>
+  <Param Id="16934642289606346032" ParamId="117" Value="1" ForceSet="true"/>
+  <Param Id="16934642289606346033" ParamId="118" Value=".5" ForceSet="true"/>
+  <Param Id="16934642289606346034" ParamId="123" Value="0" ForceSet="true"/>
+  <Param Id="16934642289606346035" ParamId="67" Value=".5" ForceSet="true"/>
+  <Param Id="16934642289606346036" ParamId="70" Value="0" ForceSet="true"/>
+  <Param Id="16934642289606346037" ParamId="71" Value="10" ForceSet="true"/>
+ </Effect>
+ <Effect Id="9805661808544907835" Name="Menu_Pause" Priority="975" Duration="0" Timer="2">
+  <Param Id="9805661808565141512" ParamId="119" Value="0.2" ForceSet="true"/>
+  <Param Id="9805661808565141519" ParamId="121" Value=".15" ForceSet="true"/>
+  <Param Id="9805661808565141525" ParamId="120" Value="0" ForceSet="true"/>
+  <Param Id="9805661808565141530" ParamId="122" Value=".15" ForceSet="true"/>
+  <Param Id="9805661808557798860" ParamId="116" Value=".75" ForceSet="true"/>
+  <Param Id="9805661808582333350" ParamId="117" Value="1" ForceSet="true"/>
+  <Param Id="9805661808582333360" ParamId="118" Value=".5" ForceSet="true"/>
+  <Param Id="9805661808565141541" ParamId="67" Value=".5" ForceSet="true"/>
+  <Param Id="9805661808582333417" ParamId="123" Value="0" ForceSet="true"/>
+  <Param Id="9805661808565141561" ParamId="70" Value="0" ForceSet="true"/>
+  <Param Id="9805661808565141566" ParamId="71" Value="10" ForceSet="true"/>
+ </Effect>
+ <Effect Id="2428940965260332848" Name="Ability_Backlash" Priority="500" Duration="0">
+  <Param Id="12635110349639823611" ParamId="75" ForceSet="false" Value="-0.185"/>
+  <Param Id="12635110349639823710" ParamId="77" ForceSet="false" Value="1.5"/>
+  <Param Id="12635110349639823762" ParamId="76" ForceSet="false" Value="1.25"/>
+  <Param Id="12635110349639824357" ParamId="74" ForceSet="false" Value="1"/>
+  <Param Id="12635110349639831670" ParamId="123" ForceSet="false" Value="0.075"/>
+  <Param Id="2428940965260332849" ParamId="116" Value="1.5" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965277890961" Name="Ability_Leverage" Priority="0" Timer="1" Duration="0.6">
+  <Param Id="2428940965279512541" ParamId="118" ForceSet="false" Value="0">
+   <CurveParam Min="0.1" Max="1">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.4" Curve="0,0.004,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965279512670" ParamId="116" ForceSet="false" Value="0">
+   <CurveParam Min="1" Max="10">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.6" Curve="0,1,32;0.184,0.176,0;1,0,4"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965291122379" ParamId="88" ForceSet="false">
+   <CurveParam Min="0" Max="10">
+    <Out Duration="0.6" Curve="0,1,32;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965291123089" ParamId="67" ForceSet="false" Value=".5">
+   <CurveParam Min="0" Max="0.5">
+    <Out Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="17674222214721554833" Name="Ability_MimicMatter" Priority="400" Duration="0" Timer="1">
+  <Param Id="16934642289606346070" ParamId="67" Value="0.2" ForceSet="false"/>
+  <Param Id="2428940965259661758" ParamId="88" Value="1" ForceSet="false"/>
+  <Param Id="2428940965259661825" ParamId="91" Value="2" ForceSet="false"/>
+ </Effect>
+ <Effect Id="3" Name="Ability_NightmareForm" Priority="400" Duration="0">
+  <Param Id="16934642289606346020" ParamId="122" Value="0.05" ForceSet="false"/>
+  <Param Id="16934642289606346021" ParamId="123" Value="0" ForceSet="false"/>
+  <Param Id="16934642289606346022" ParamId="116" Value="1.500000" ForceSet="false"/>
+  <Param Id="16934642289606346023" ParamId="117" Value="1.200000" ForceSet="false"/>
+  <Param Id="16934642289606346024" ParamId="118" Value="-1.250000" ForceSet="false"/>
+  <Param Id="16934642289606346025" ParamId="67" Value="0.075" ForceSet="false"/>
+  <Param Id="2428940965260276723" ParamId="75" Value="0.5" ForceSet="false"/>
+  <Param Id="2428940965260276742" ParamId="77" Value="2" ForceSet="false"/>
+  <Param Id="2428940965260276755" ParamId="76" Value="1" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965260270471" Name="Ability_PhantomShift " Priority="500" Duration="0.3">
+  <Param Id="12635110349634906522" ParamId="88" ForceSet="true" Value="5.0"/>
+  <Param Id="2428940965260270472" ParamId="78" Value="1" ForceSet="true"/>
+  <Param Id="2428940965260270553" ParamId="145" Value="0.95" ForceSet="true"/>
+  <Param Id="2428940965260270608" ParamId="118" Value="-0.025" ForceSet="true"/>
+ </Effect>
+ <Effect Id="2428940965260279729" Name="Ability_RemoteManipulation_Examine" Priority="500" Duration="0">
+  <Param Id="3149325216954348937" ParamId="72" Value=".75" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965280750316" Name="Cast_ElectrostaticBurst" Priority="0" Timer="1" Duration="0">
+  <Param Id="2428940965280750317" ParamId="108" ForceSet="false" Value="1"/>
+ </Effect>
+ <Effect Id="2428940965280750366" Name="Cast_KineticBlast" Priority="0" Timer="1" Duration="0.5">
+  <Param Id="12635110349647501820" ParamId="118" ForceSet="false" Value="1">
+   <CurveParam Min="-0.5" Max="1">
+    <Out Duration="0.25" Curve="0,0,0;0.114,0,32;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="12635110349647501573" ParamId="120" ForceSet="false" Value=".15">
+   <CurveParam Min="0" Max="0.5">
+    <Out Duration="0.15" Curve="0,1,32;0.19,0.18,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965280750367" ParamId="116" ForceSet="false" Value="1">
+   <CurveParam Min="1" Max="5">
+    <In Duration="0.5" Curve="0,1,32;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="2428940965260274608" Name="Cast_LiftField" Priority="100" Duration="0">
+  <Param Id="2428940965260274609" ParamId="119" Value="0.1" ForceSet="false"/>
+  <Param Id="2428940965260274650" ParamId="121" Value="0.1" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965260273602" Name="Cast_MachineMind" Priority="500" Duration="0.1">
+  <Param Id="2428940965260273673" ParamId="116" Value="5" ForceSet="false"/>
+  <Param Id="2428940965260273671" ParamId="119" Value="0.05" ForceSet="false"/>
+  <Param Id="2428940965260273603" ParamId="120" Value="0.05" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965260272302" Name="Cast_Mindjack" Priority="500" Duration="0.1">
+  <Param Id="2428940965260272303" ParamId="116" Value="5" ForceSet="false"/>
+  <Param Id="2428940965260273255" ParamId="119" Value="0.05" ForceSet="false"/>
+  <Param Id="2428940965260273329" ParamId="120" Value="0.05" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965280750402" Name="Cast_PhantomGenesis" Priority="0" Timer="1" Duration="0">
+  <Param Id="2428940965280750403" ParamId="116" ForceSet="false" Value="1"/>
+ </Effect>
+ <Effect Id="2428940965260336861" Name="Cast_Psychoshock" Priority="500" Duration="0.25">
+  <Param Id="2428940965260336862" ParamId="116" Value="2" ForceSet="false"/>
+  <Param Id="2428940965260336905" ParamId="216" Value="1" ForceSet="false"/>
+  <Param Id="2428940965260336917" ParamId="218" Value="1" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965260278183" Name="Cast_RemoteManipulation" Priority="500" Duration="0.1">
+  <Param Id="2428940965260278184" ParamId="116" Value="5" ForceSet="false"/>
+  <Param Id="2428940965260278297" ParamId="119" Value="0.05" ForceSet="false"/>
+  <Param Id="2428940965260278309" ParamId="120" Value="0.05" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965260337727" Name="Cast_Superthermal" Priority="500" Duration="0.25">
+  <Param Id="2428940965260337728" ParamId="116" Value="5" ForceSet="false"/>
+  <Param Id="2428940965260337882" ParamId="119" Value="0.05" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965265867494" Name="Player_CloseCombat" Priority="100" Duration="0">
+  <Param Id="14610450286788046170" ParamId="236" ForceSet="false" Value="1.0">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0.5"/>
+    <Loop Duration="1"/>
+    <BlendOut Duration="4"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046173" ParamId="237" ForceSet="false" Value="0.6">
+   <CurveParam Min="0" Max="0.6">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1"/>
+    <BlendOut Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046175" ParamId="238" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0">
+    <In Duration="0.5"/>
+    <Loop Duration="1"/>
+    <Out Duration="4"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046177" ParamId="239" ForceSet="false" Value="8">
+   <CurveParam Min="2" Max="8">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1"/>
+    <BlendOut Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046582" ParamId="116" ForceSet="false" Value="1.6">
+   <CurveParam Min="1" Max="2.5">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1" Curve="0,1,0;0.043,0.98,0;0.114,0.09,0;0.208,0.9,0;0.345,0.247,0;0.514,0.753,0;0.624,0.043,0;0.7,0.898,32;0.78,0.945,0;0.925,0.19,0;1,1,0"/>
+    <BlendOut Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046585" ParamId="117" ForceSet="false" Value="1.3">
+   <CurveParam Min="1" Max="1.5">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1"/>
+    <BlendOut Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046587" ParamId="118" ForceSet="false" Value="-0.01">
+   <CurveParam Min="1" Max="-0.01">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1"/>
+    <BlendOut Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286788046595" ParamId="118" ForceSet="false" Value="1.7">
+   <CurveParam Min="1" Max="1.7">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1"/>
+    <BlendOut Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="12635110349613902643" Name="Player_CombatFocus" Priority="850" Duration="60">
+  <Param Id="12635110349647437078" ParamId="116" ForceSet="false" Value="1.75">
+   <CurveParam Min="1" Max="3">
+    <In Duration="0.25" Curve="0,0,32;0.1,1,0;0.15,1,32;0.5,0.3,0;1,0.3,0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.5" Curve="0,0.3,0;0.1,1,32;0.75,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="12635110349647436914" ParamId="120" ForceSet="false" Value=".5">
+   <CurveParam Min="0" Max="0.5">
+    <In Duration="0.5" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.5" Curve="0,1,32;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="12635110349647436556" ParamId="117" ForceSet="false" Value="5.0">
+   <CurveParam Min="0" Max="2">
+    <In Duration="0.25" Curve="0,0.25,0;0.1,1,0;0.3,1,32;1,0.35,0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.5" Curve="0,0.35,32;0.11,1,32;0.5,0.5,0;1,0.5,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="12635110349647436433" ParamId="118" ForceSet="false" Value="1">
+   <CurveParam Min="-0.5" Max="1">
+    <In Duration="0.5" Curve="0,1,0;0.5,0,0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.5" Curve="0,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965280388588" ParamId="96" ForceSet="false" Value="1.25"/>
+  <Param Id="2428940965280388745" ParamId="145" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="2">
+    <In Duration="0.5" Curve="0,1,0;0.333,0.165,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.5" Curve="0,0.165,32;0.114,1,0;0.28,0.08,32;0.5,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="12635110349646983316" ParamId="91" ForceSet="false" Value="10"/>
+  <Param Id="2428940965280669256" ParamId="88" ForceSet="false" Value="10">
+   <CurveParam Min="0" Max="20">
+    <In Duration="0.25" Curve="0,0,32;0.153,1,0;0.5,1,0;0.75,0,0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.5" Curve="0,0,0;0.11,1,0;0.192,1,0;0.584,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="12635110349646985966" ParamId="71" ForceSet="false" Value="1.1">
+   <CurveParam Min="0" Max="0.5">
+    <In Duration="0.3" Curve="0.5,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.2" Curve="0,1,32;0.14,0,0;0.337,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="12635110349635921208" Name="Player_Coral" Priority="835" Duration="0">
+  <Param Id="12635110349635921209" ParamId="119" Value=".05" ForceSet="false"/>
+  <Param Id="12635110349635921210" ParamId="121" Value="0.05" ForceSet="false"/>
+  <Param Id="12635110349635921211" ParamId="120" ForceSet="false" Value="-0.05"/>
+  <Param Id="12635110349635921212" ParamId="122" ForceSet="false" Value="-0.025"/>
+  <Param Id="12635110349635921213" ParamId="67" Value=".075" ForceSet="false"/>
+  <Param Id="12635110349635921214" ParamId="116" Value="1.25" ForceSet="false"/>
+  <Param Id="12635110349635921215" ParamId="78" Value="2" ForceSet="true"/>
+  <Param Id="12635110349635921216" ParamId="126" Value="0.0,0.075,0.0,0.0" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965274252567" Name="Player_Crouching" Priority="0" Timer="1" Duration="0">
+  <Param Id="14610450286789252650" ParamId="15096353642226278539" ForceSet="false" Value="0,0,0.6,0.9"/>
+  <Param Id="14610450286789252657" ParamId="15096353642226280766" ForceSet="false" Value="0,0,0,1"/>
+  <Param Id="14610450286789252664" ParamId="15096353642226280914" ForceSet="false" Value="1.0">
+   <CurveParam Min="0" Max="2">
+    <In Duration="0.05" Curve="0,0,32;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="3149325216954240987" Name="Player_ApexDamage" Priority="840" Duration="0">
+  <Param Id="14610450286790647067" ParamId="15096353642226278539" ForceSet="false" Value="0.7,0.7,0.6,0.5"/>
+  <Param Id="14610450286790647075" ParamId="15096353642226280766" ForceSet="false" Value="1.6,0.22,0,0"/>
+  <Param Id="14610450286790647081" ParamId="15096353642226280914" ForceSet="false" Value="1"/>
+  <Param Id="14610450286790647099" ParamId="43" ForceSet="false" Value="0.1,-0.04,-0.01,0"/>
+  <Param Id="14610450286790647110" ParamId="44" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="0.25">
+    <Loop Duration="1" Curve="0,1,0;0.5,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286790647120" ParamId="116" ForceSet="false">
+   <CurveParam Min="1" Max="2">
+    <Loop Duration="1" Curve="0,1,0;0.5,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="3149325216954242924" ParamId="71" Value=".7" ForceSet="false"/>
+  <Param Id="12635110349645956657" ParamId="78" Value="2.5" ForceSet="false"/>
+ </Effect>
+ <Effect Id="3149325216988040488" Name="Player_ApexWall" Priority="1000" Timer="1" Duration="0">
+  <Param Id="3149325216988040489" ParamId="122" ForceSet="false" Value=".9"/>
+ </Effect>
+ <Effect Id="2428940965289903677" Name="Player_ApexVisions_In" Priority="0" Timer="1" Duration="1.5">
+  <Param Id="2428940965289903678" ParamId="116" ForceSet="false" Value="60">
+   <CurveParam Min="1" Max="60">
+    <In Duration="1.5" Curve="0,0,0;0.7,0.13,0;0.976,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965290528722" ParamId="145" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="1">
+    <In Duration="1.5" Curve="0,0,0;1,1,4"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965290613568" ParamId="70" ForceSet="false" Value="1">
+   <CurveParam Min="1" Max="1">
+    <In Duration="1.5"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965290613570" ParamId="71" ForceSet="false" Value="3">
+   <CurveParam Min="0" Max="6">
+    <In Duration="1.5" Curve="0,0,0;0.475,0.41,4;0.74,0.937,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="2428940965289903671" Name="Player_ApexVisions_Out" Priority="0" Timer="1" Duration="1">
+  <Param Id="2428940965289903672" ParamId="116" ForceSet="false" Value="1.20">
+   <CurveParam Min="1" Max="20">
+    <Out Duration="1" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965290615474" ParamId="70" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="1">
+    <Out Duration="1"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965290615476" ParamId="71" ForceSet="false" Value="6">
+   <CurveParam Min="0" Max="2">
+    <Out Duration="1" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="14610450286789593543" Name="Player_EndGameVRTermination" Priority="900" Timer="1" Duration="4">
+  <Param Id="14610450286789603142" ParamId="26" ForceSet="false">
+   <CurveParam Min="1" Max="0">
+    <In Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789602491" ParamId="116" ForceSet="false">
+   <CurveParam Min="1" Max="20">
+    <Out Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789594046" ParamId="117" ForceSet="false">
+   <CurveParam Min="1" Max="2">
+    <Out Duration="4" Curve="0,1,32;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789594067" ParamId="71" ForceSet="false">
+   <CurveParam Min="0" Max="5">
+    <Out Duration="4" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789603372" ParamId="118" ForceSet="false">
+   <CurveParam Min="-1" Max="1">
+    <Out Duration="4" Curve="0,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="12635110349617286617" Name="Player_Fatality" Priority="880" Duration="0">
+  <Param Id="12635110349617288463" ParamId="116" Value="2" ForceSet="false"/>
+  <Param Id="12635110349617288922" ParamId="118" Value=".5" ForceSet="true"/>
+  <Param Id="12635110349617287139" ParamId="88" Value=".5" ForceSet="false"/>
+  <Param Id="12635110349617287203" ParamId="91" Value="15" ForceSet="false"/>
+ </Effect>
+ <Effect Id="3149325216951931780" Name="Player_GenericDamage" Priority="200" Duration="0.115">
+  <Param Id="2428940965266898009" ParamId="121" Value=".185" ForceSet="false"/>
+  <Param Id="2428940965266898197" ParamId="120" Value=".185" ForceSet="false"/>
+  <Param Id="2428940965266898954" ParamId="116" Value="1.1" ForceSet="false"/>
+ </Effect>
+ <Effect Id="14610450286767449972" Name="Player_GravShaft" Priority="405" Timer="1" Duration="0">
+  <Param Id="14610450286767449973" ParamId="126" Value="0,5,0,0" ForceSet="false"/>
+  <Param Id="14610450286767459531" ParamId="72" Value="1" ForceSet="false">
+   <CurveParam Min="0" Max="0.35">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0.2" Curve="0,1,0;0.22,0.843,0;0.427,0.914,0;0.71,0.88,0;1,1,0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286767459534" ParamId="145" Value=".5" ForceSet="false">
+   <CurveParam Min="0" Max="0.5">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286767459535" ParamId="116" Value="3" ForceSet="false">
+   <CurveParam Min="1" Max="1.8">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286767459805" ParamId="117" Value="1" ForceSet="false">
+   <CurveParam Min="1" Max="1.1">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286767459831" ParamId="118" Value="0.5" ForceSet="false">
+   <CurveParam Min="1" Max="0.8">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <BlendOut Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789258835" ParamId="43" ForceSet="false" Value="-0.4,0.4,0.5,0"/>
+  <Param Id="14610450286789258850" ParamId="44" ForceSet="false" Value="1"/>
+ </Effect>
+ <Effect Id="10641886185862474942" Name="Player_HackingFail" Priority="790" Duration="0.5">
+  <Param Id="10641886185862474943" ParamId="116" Value="30" ForceSet="false">
+   <CurveParam Min="1" Max="30">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.25" Curve="0.03,1,0;0.098,0.06,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="10641886185862474944" ParamId="119" ForceSet="false" Value=".2"/>
+  <Param Id="10641886185862474945" ParamId="121" ForceSet="false" Value=".1"/>
+  <Param Id="10641886185862474946" ParamId="118" ForceSet="false" Value="0.1"/>
+  <Param Id="10641886185862474947" ParamId="117" ForceSet="false" Value=".5"/>
+ </Effect>
+ <Effect Id="2428940965280750437" Name="Player_LowHealth" Priority="205" Timer="1" Duration="3">
+  <Param Id="14610450286789244872" ParamId="15096353642226278539" ForceSet="false" Value="0.7,0.7,0.6,0.5"/>
+  <Param Id="14610450286789244883" ParamId="15096353642226280766" ForceSet="false" Value="1.6,0.22,0,0"/>
+  <Param Id="14610450286789244905" ParamId="15096353642226280914" ForceSet="false" Value="1.0">
+   <CurveParam Min="0" Max="0.8">
+    <In Duration="0.75" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1.5" Curve="0,1,0;0.5,0,0;1,1,0"/>
+    <BlendOut Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789250747" ParamId="43" ForceSet="false" Value="0.1,-0.04,-0.01,0"/>
+  <Param Id="14610450286789250763" ParamId="44" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="0.25">
+    <In Duration="0.75" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1.5" Curve="0,1,0;0.5,0,0;1,1,0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789250774" ParamId="116" ForceSet="false">
+   <CurveParam Min="1" Max="1.2">
+    <In Duration="0.75" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="1.5" Curve="0,1,0;0.5,0,0;1,1,0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="2428940965280750461" Name="Player_NearDeath" Priority="205" Timer="1" Duration="0">
+  <Param Id="14610450286789248055" ParamId="15096353642226278539" ForceSet="false" Value="0.9,0.9,0.6,0.5"/>
+  <Param Id="14610450286789248062" ParamId="15096353642226280766" ForceSet="false" Value="1.6,0.22,0,0"/>
+  <Param Id="14610450286789248068" ParamId="15096353642226280914" ForceSet="false" Value="1.0">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0.5" Curve="0,1,0;0.5,0,0;1,1,0"/>
+    <BlendOut Duration="0.5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789249442" ParamId="43" ForceSet="false" Value="0.1,-0.04,-0.01,0"/>
+  <Param Id="14610450286789249288" ParamId="44" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="0.5">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0.5" Curve="0,1,0;0.5,0,0;1,1,0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789250525" ParamId="116" ForceSet="false">
+   <CurveParam Min="1" Max="1.4">
+    <In Duration="0.25" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0.5" Curve="0,1,0;0.5,0,0;1,1,0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="3149325216971351588" Name="Player_OnFire" Priority="770" Timer="1" Duration="0.55">
+  <Param Id="3149325216971351589" ParamId="121" ForceSet="false" Value=".15"/>
+  <Param Id="3149325216971352038" ParamId="120" ForceSet="false" Value=".3"/>
+  <Param Id="3149325216971352232" ParamId="215" ForceSet="false" Value=".1"/>
+  <Param Id="3149325216971352233" ParamId="213" ForceSet="false" Value="7"/>
+  <Param Id="3149325216971352234" ParamId="214" ForceSet="false" Value="10"/>
+  <Param Id="3149325216971352515" ParamId="126" ForceSet="false" Value="0,.2,0,0"/>
+ </Effect>
+ <Effect Id="3149325216983016973" Name="Player_OperatorAid" Priority="800" Duration="1.5">
+  <Param Id="3149325216983016974" ParamId="116" Value="3.5" ForceSet="false">
+   <CurveParam Min="1" Max="2.5">
+    <In Duration="0" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.25" Curve="0,1,32;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965289316577" ParamId="119" ForceSet="false" Value=".1">
+   <CurveParam Min="0" Max="1"/>
+  </Param>
+  <Param Id="2428940965289316966" ParamId="121" ForceSet="false" Value=".05">
+   <CurveParam Min="0" Max="1"/>
+  </Param>
+  <Param Id="2428940965289316969" ParamId="122" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="1"/>
+  </Param>
+ </Effect>
+ <Effect Id="9805661808542490179" Name="Player_PsiScanning" Priority="880" Duration="0" Timer="2">
+  <Param Id="14610450286790433549" ParamId="15096353642226278539" ForceSet="false" Value="1,1,1,1"/>
+  <Param Id="14610450286790433568" ParamId="15096353642226280766" ForceSet="false" Value="0,0,0,1"/>
+  <Param Id="14610450286790433701" ParamId="15096353642226280914" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0.5" Curve="0,0,0;0.482,0,0;0.52,1,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="9805661808580616601" ParamId="116" Value="1.1" ForceSet="false">
+   <CurveParam Min="1" Max="1.1">
+    <In Duration="1" Curve="0,0,0;0.25,0,0;0.44,1,0;0.576,0,0;0.72,1,0;0.804,0,0;0.867,1,0;0.94,0,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="9805661808580615657" ParamId="117" ForceSet="false" Value="2">
+   <CurveParam Min="1" Max="2">
+    <In Duration="1" Curve="0,0,0;0.25,0,0;0.5,1,0;0.576,0,0;0.66,0.99,0;0.804,0,0;0.84,1,0;0.94,0,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="16934642289606346041" ParamId="26" Value="2" ForceSet="false">
+   <CurveParam Min="0" Max="2.1">
+    <In Duration="1" Curve="0,0.23,0;0.024,0.31,0;0.063,0.306,0;0.08,0.357,0;0.125,0.32,0;0.15,0.357,0;0.19,0.267,0;0.23,0.267,0;0.263,0.34,0;0.306,0.298,0;0.325,0.392,0;0.373,0.267,0;0.392,0.427,0;0.427,0.314,0;0.47,0.32,0;0.514,0.63,0;0.616,0.35,0;0.655,0.63,0;0.847,0.38,0;0.894,0.584,0;0.965,0.443,0;1,0.75,0"/>
+    <Loop Duration="0" Curve="0,0.753,0;1,0.753,0"/>
+    <BlendOut Duration="0.5" Curve="0,0,0;0.5,0,0;1,0.5,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789157533" ParamId="32" ForceSet="false" Value="0.5">
+   <CurveParam Min="1" Max="0.5">
+    <In Duration="1" Curve="0,0,0;0.25,0,0;0.333,1,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789157554" ParamId="43" ForceSet="false" Value="-0.848965,-0.111398,0.710806,0.000000"/>
+  <Param Id="14610450286789157565" ParamId="44" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="0.5">
+    <In Duration="0.5" Curve="0,0,0;0.467,0,0;0.5,1,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789157586" ParamId="208" ForceSet="false" Value="0.5">
+   <CurveParam Min="0" Max="0.5">
+    <In Duration="0.5" Curve="0,0,0;0.5,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789167356" ParamId="209" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="1">
+    <In Duration="1" Curve="0,0,0;0.25,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789157591" ParamId="206" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0.75" Curve="0,0,0;0.41,0,0;0.576,1,0;1,0.5,0"/>
+    <Loop Duration="0" Curve="0,0.49,0;0.5,0,0;1,0.51,0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789157598" ParamId="207" ForceSet="false" Value="5">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0.75" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0"/>
+    <BlendOut Duration="0.25" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789159167" ParamId="71" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="1">
+    <In Duration="1" Curve="0,0,0;0.165,0,0;0.498,1,0;0.682,0.25,0;0.85,0.776,0;1,0,4"/>
+    <Loop Duration="0" Curve="0,0,0;1,0,0"/>
+    <BlendOut Duration="0.25" Curve="0,0,0;0.17,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="14610450286789333570" Name="Player_PsiScanning_1stPickup" Priority="120" Duration="1">
+  <Param Id="14610450286790434008" ParamId="15096353642226278539" ForceSet="false" Value="1,1,1,1"/>
+  <Param Id="14610450286790434016" ParamId="15096353642226280766" ForceSet="false" Value="0,0,0,1"/>
+  <Param Id="14610450286790434025" ParamId="15096353642226280914" ForceSet="false" Value="1"/>
+  <Param Id="14610450286789333573" ParamId="116" Value="1.1" ForceSet="false">
+   <CurveParam Min="1" Max="1.1">
+    <In Duration="1" Curve="0,0,0;0.118,1,0;0.25,0,0;0.44,1,0;0.576,0,0;0.72,1,0;0.804,0,0;0.867,1,0;0.94,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789333574" ParamId="117" ForceSet="false" Value="2">
+   <CurveParam Min="1" Max="2">
+    <In Duration="1" Curve="0,0,0;0.16,1,0;0.25,0,0;0.5,1,0;0.576,0,0;0.66,0.99,0;0.804,0,0;0.84,1,0;0.94,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789333576" ParamId="26" Value="2" ForceSet="false">
+   <CurveParam Min="0" Max="2">
+    <In Duration="1" Curve="0,0.23,0;0.024,0.31,0;0.063,0.306,0;0.08,0.357,0;0.125,0.32,0;0.15,0.357,0;0.19,0.267,0;0.23,0.267,0;0.263,0.34,0;0.306,0.298,0;0.325,0.392,0;0.373,0.267,0;0.392,0.427,0;0.427,0.314,0;0.47,0.32,0;0.514,0.63,0;0.616,0.35,0;0.655,0.63,0;0.847,0.38,0;0.894,0.584,0;0.965,0.443,0;1,0.75,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789333577" ParamId="32" ForceSet="false" Value="0.25"/>
+  <Param Id="14610450286789333578" ParamId="43" ForceSet="false" Value="-0.848965,-0.111398,0.710806,0.000000"/>
+  <Param Id="14610450286789333579" ParamId="44" ForceSet="false" Value="0.5"/>
+  <Param Id="14610450286789333580" ParamId="208" ForceSet="false" Value="0.5"/>
+  <Param Id="14610450286789333581" ParamId="209" ForceSet="false" Value="1">
+   <CurveParam Min="0" Max="1">
+    <In Duration="1" Curve="0,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789333582" ParamId="206" ForceSet="false" Value="1"/>
+  <Param Id="14610450286789333583" ParamId="207" ForceSet="false" Value="5">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0.75" Curve="0,0,0;1,1,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286789333584" ParamId="71" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="1">
+    <In Duration="1" Curve="0,0.88,0;0.22,0.353,0;0.498,1,0;0.67,0.247,0;0.843,0.647,0;1,0,4"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="14610450286766267315" Name="Player_RecyclerDeath" Priority="890" Duration="0">
+  <Param Id="14610450286766267316" ParamId="26" Value="0" ForceSet="false"/>
+  <Param Id="14610450286766272648" ParamId="116" Value="4" ForceSet="false"/>
+  <Param Id="14610450286766272782" ParamId="118" Value="-1.4" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965280750492" Name="Player_Regeneration" Priority="0" Timer="1" Duration="0">
+  <Param Id="2428940965280750493" ParamId="116" ForceSet="false" Value="1"/>
+ </Effect>
+ <Effect Id="10739735956136130140" Name="Player_Scope" Priority="910" Duration="0">
+  <Param Id="14610450286795118911" ParamId="231" ForceSet="false" Value="textures\arkeffects\masks\vignetteradialblacksharp_diff.tif"/>
+  <Param Id="14610450286795119082" ParamId="232" ForceSet="false" Value=".25"/>
+  <Param Id="14610450286790434158" ParamId="15096353642226278539" ForceSet="false" Value="1,1,1,1"/>
+  <Param Id="14610450286790434166" ParamId="15096353642226280766" ForceSet="false" Value="0,0,0,1"/>
+  <Param Id="14610450286790434172" ParamId="15096353642226280914" ForceSet="false" Value="1"/>
+  <Param Id="12635110349646919314" ParamId="77" ForceSet="false" Value="1.5"/>
+  <Param Id="12635110349646919290" ParamId="75" ForceSet="false" Value=".3"/>
+  <Param Id="12635110349646919328" ParamId="76" ForceSet="false" Value="4"/>
+  <Param Id="10739735956136130150" ParamId="118" ForceSet="false" Value=".25"/>
+  <Param Id="14610450286790434547" ParamId="116" ForceSet="false" Value="1.3"/>
+ </Effect>
+ <Effect Id="14610450286780500088" Name="Player_ZeroGTransition" Priority="405" Timer="1" Duration="0">
+  <Param Id="14610450286780500090" ParamId="72" Value="0" ForceSet="false">
+   <CurveParam Min="0" Max="1">
+    <In Duration="1" Curve="0,0,0;1,1,0"/>
+    <Loop Duration=".2"/>
+    <BlendOut Duration="1" Curve="0,1,32;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286780500092" ParamId="116" Value="1" ForceSet="false">
+   <CurveParam Min="1" Max="2">
+    <In Duration="1" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0.2" Curve="0,1,0;0.5,0.84,0;1,1,0"/>
+    <BlendOut Duration="2" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286780613232" ParamId="88" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="2">
+    <In Duration="1" Curve="0,0,0;1,1,0"/>
+    <Loop Duration=".2" Curve="0,1,0;0.5,0.5,0;1,1,0"/>
+    <BlendOut Duration="2" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286780616303" ParamId="118" ForceSet="false">
+   <CurveParam Min="1" Max="0">
+    <In Duration="1" Curve="0,0,0;1,1,0"/>
+    <Loop Duration=".2"/>
+    <BlendOut Duration="2" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="2428940965280750537" Name="Pharma_Generic" Priority="0" Timer="1" Duration="1.85">
+  <Param Id="14610450286778866766" ParamId="116" ForceSet="false" Value="0">
+   <CurveParam Min="1" Max="3">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;0.506,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286778866719" ParamId="119" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0.085">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286778866733" ParamId="120" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0.085">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286778866780" ParamId="122" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286778866749" ParamId="118" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,0,32;1,1,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="2428940965278328349" Name="Pharma_Cure" Priority="0" Timer="1" Duration="1.85">
+  <Param Id="2428940965278328350" ParamId="116" ForceSet="false" Value="0">
+   <CurveParam Min="1" Max="3">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;0.506,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965278329560" ParamId="119" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0.085">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965278329574" ParamId="120" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0.085">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965278330266" ParamId="122" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="0">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965278394931" ParamId="118" ForceSet="false" Value="0">
+   <CurveParam Min="0" Max="1">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="1.85" Curve="0,0,32;1,1,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="17152079492909370830" Name="Trauma_Bleeding" Priority="770" Duration="2.0" Timer="1">
+  <Param Id="16934642289606346096" ParamId="185" Value="0" ForceSet="false"/>
+  <Param Id="3149325216962643650" ParamId="186" Value="0.125000,0.125000,1.124999,0.625000" ForceSet="false"/>
+ </Effect>
+ <Effect Id="17152079492909370879" Name="Trauma_Concussion" Priority="750" Duration="2" Timer="1">
+  <Param Id="3149325216951757173" ParamId="71" Value=".8" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965257409408" Name="Trauma_Disruption" Priority="780" Duration="0" Timer="1">
+  <Param Id="14610450286790106395" ParamId="116" ForceSet="false" Value="2"/>
+  <Param Id="14610450286790106552" ParamId="43" ForceSet="false" Value="-1.0,-0.1,1.0,0"/>
+  <Param Id="14610450286790106802" ParamId="44" ForceSet="false" Value="1"/>
+  <Param Id="2428940965257409409" ParamId="78" Value="4" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965259739999" Name="Trauma_Drunk" Priority="105" Duration="0" Timer="1">
+  <Param Id="2428940965259740000" ParamId="215" Value="0.75" ForceSet="false"/>
+  <Param Id="3149325216954241346" ParamId="214" Value="1.25" ForceSet="false"/>
+  <Param Id="3149325216954241347" ParamId="213" Value="1.75" ForceSet="false"/>
+  <Param Id="2428940965265866672" ParamId="88" Value="1" ForceSet="false">
+   <CurveParam Min="0" Max="1">
+    <BlendOut Duration="5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="10739735956141682434" Name="Trauma_Exhausted" Priority="100" Timer="1" Duration="0">
+  <Param Id="10739735956141682435" ParamId="88" Value="0.75" ForceSet="false"/>
+ </Effect>
+ <Effect Id="3149325216939806509" Name="Trauma_Fear" Priority="760" Duration="0" Timer="1">
+  <Param Id="16934642289606345993" ParamId="67" Value=".3" ForceSet="false"/>
+  <Param Id="16934642289606345994" ParamId="119" Value="0.000000" ForceSet="false"/>
+  <Param Id="16934642289606345995" ParamId="120" Value="0.000000" ForceSet="false"/>
+  <Param Id="16934642289606345996" ParamId="121" Value="0.000000" ForceSet="false"/>
+  <Param Id="16934642289606345997" ParamId="122" Value="0" ForceSet="false"/>
+  <Param Id="16934642289606345998" ParamId="123" Value="0" ForceSet="false"/>
+  <Param Id="16934642289606345999" ParamId="124" Value="0" ForceSet="false"/>
+  <Param Id="16934642289606346000" ParamId="125" Value="0.000000" ForceSet="false"/>
+  <Param Id="16934642289606346001" ParamId="126" Value="0.000000,0.000000,0.000000,0.000000" ForceSet="false"/>
+  <Param Id="16934642289606346002" ParamId="216" Value="1.000000" ForceSet="true"/>
+  <Param Id="16934642289606346003" ParamId="219" Value="0.160000,0.190000,0.580000,1.000000" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965257409293" Name="Trauma_Hobbled" Priority="710" Duration="3">
+  <Param Id="16934642289606346105" ParamId="126" Value="0.000000,2.000000,0.000000,0.000000" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965257409455" Name="Trauma_PsiNullify" Priority="740" Duration="0" Timer="1">
+  <Param Id="3149325216974654595" ParamId="145" Value=".95" ForceSet="false"/>
+ </Effect>
+ <Effect Id="2428940965257409701" Name="Trauma_RadSickness" Priority="710" Duration="5" Timer="1">
+  <Param Id="2428940965257409702" ParamId="78" Value="25" ForceSet="false"/>
+ </Effect>
+ <Effect Id="12635110349615733129" Name="Trauma_Stun" Priority="790" Duration="0.25">
+  <Param Id="12635110349615733130" ParamId="116" Value="30" ForceSet="false">
+   <CurveParam Min="1" Max="30">
+    <In Duration="0"/>
+    <Loop Duration="0"/>
+    <Out Duration="0.25" Curve="0.03,1,0;0.098,0.06,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="2428940965279623448" ParamId="119" ForceSet="false" Value=".2"/>
+  <Param Id="2428940965279623463" ParamId="121" ForceSet="false" Value=".1"/>
+  <Param Id="2428940965279623633" ParamId="118" ForceSet="false" Value="0.1"/>
+  <Param Id="2428940965279623832" ParamId="117" ForceSet="false" Value=".5"/>
+ </Effect>
+ <Effect Id="14610450286789228911" Name="Utility_VignetteProxy" Priority="0" Timer="1" Duration="2">
+  <Param Id="14610450286789228912" ParamId="15096353642226278539" ForceSet="false" Value="1,1,1,1"/>
+  <Param Id="14610450286789231072" ParamId="15096353642226280766" ForceSet="false" Value="0,0,0,1"/>
+  <Param Id="14610450286789231070" ParamId="15096353642226280914" ForceSet="false" Value="100">
+   <CurveParam Min="0" Max="5">
+    <In Duration="1" Curve="0,0,0;1,1,0"/>
+    <Loop Duration="0" Curve=""/>
+    <Out Duration="1" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+ <Effect Id="14610450286781271457" Name="Utility_0DurationLoop" Priority="0" Timer="1" Duration="0">
+  <Param Id="14610450286781271458" ParamId="67" ForceSet="false" Value=".8">
+   <CurveParam Min="0" Max=".8">
+    <In Duration=".2" Curve="0,0,0;1,1,0"/>
+    <Loop Duration=".5"/>
+    <BlendOut Duration=".5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+  <Param Id="14610450286781271694" ParamId="116" ForceSet="false" Value="2">
+   <CurveParam Min="1" Max="2">
+    <In Duration=".2" Curve="0,0,0;1,1,0"/>
+    <Loop Duration=".5"/>
+    <BlendOut Duration=".5" Curve="0,1,0;1,0,0"/>
+   </CurveParam>
+  </Param>
+ </Effect>
+</ArkPostEffects>

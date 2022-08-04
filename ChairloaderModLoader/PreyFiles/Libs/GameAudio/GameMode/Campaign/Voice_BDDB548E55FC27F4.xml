@@ -1,0 +1,316 @@
+
+<ATLConfig atl_name="Voice_BDDB548E55FC27F4">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D2D0">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D2D0"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D2C7">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D2C7"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D2BA">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D2BA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D2A9">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D2A9"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D29D">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D29D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D295">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D295"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D288">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D288"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5722D278">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5722D278"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EAADA">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EAADA"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EAACB">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EAACB"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EAAB9">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EAAB9"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA52A">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA52A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA51F">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA51F"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA507">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA507"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA4FC">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA4FC"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA4EC">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA4EC"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA4C9">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA4C9"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571EA396">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571EA396"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E980F">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E980F"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E980B">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E980B"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E9735">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E9735"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E9504">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E9504"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E94BB">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E94BB"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E9475">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E9475"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E91B5">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E91B5"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E571E8FCC">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E571E8FCC"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56CCDA23">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56CCDA23"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56CCD97D">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56CCD97D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56CCD8FF">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56CCD8FF"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56CCD8C4">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56CCD8C4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56CCD8A6">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56CCD8A6"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2344A">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2344A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23449">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23449"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23448">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23448"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23447">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23447"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23446">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23446"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23445">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23445"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23444">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23444"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23443">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23443"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23442">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23442"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23441">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23441"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23440">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23440"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2343F">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2343F"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2343E">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2343E"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2343D">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2343D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2343C">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2343C"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2343A">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2343A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23439">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23439"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23438">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23438"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23437">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23437"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23436">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23436"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23388">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23388"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23387">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23387"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23386">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23386"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23385">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23385"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23384">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23384"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23383">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23383"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23357">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23357"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23356">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23356"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23355">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23355"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23354">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23354"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23353">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23353"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23352">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23352"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C23350">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C23350"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2334F">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2334F"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2334E">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2334E"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4E93FD2D456C2334C">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4E93FD2D456C2334C"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A726">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A726"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A70A">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A70A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A6C1">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A6C1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A6A3">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A6A3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A5D4">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A5D4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A5AC">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A5AC"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A4C9">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A4C9"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A264">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A264"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56A2A242">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56A2A242"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56279F30">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56279F30"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268DDC">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268DDC"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268D51">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268D51"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268CE4">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268CE4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268A39">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268A39"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268A35">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268A35"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268A31">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268A31"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268A2A">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268A2A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268A24">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268A24"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268A11">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268A11"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56268957">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56268957"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5626642A">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5626642A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E5626505B">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E5626505B"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56264FBD">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56264FBD"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56264C34">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56264C34"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56264C08">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56264C08"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56264AE8">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56264AE8"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E56264A91">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E56264A91"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E55FC57F4">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E55FC57F4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E55FC57C2">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E55FC57C2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E55FC5753">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E55FC5753"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E55FC5671">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E55FC5671"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E55FC27F4BDDB548E55FC2BCB">
+   <WwiseEvent wwise_name="Play_BDDB548E55FC27F4BDDB548E55FC2BCB"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Voice_BDDB548E55FC27F4_Load" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Voice_BDDB548E55FC27F4.bnk" wwise_localised="true"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

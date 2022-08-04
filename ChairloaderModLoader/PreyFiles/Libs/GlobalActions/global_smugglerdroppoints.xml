@@ -1,0 +1,369 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="5" Class="Ark:Objectives:SetObjectiveDescription" pos="3770,-680,0">
+   <Inputs objectiveDescription_Description="4349723564925953209"/>
+  </Node>
+  <Node Id="6" Class="Ark:Objectives:ObjectiveState" pos="1380,-720,0">
+   <Inputs objective_Objective="4349723564925952931" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="7" Class="Ark:Objectives:TaskState" pos="3290,-690,0">
+   <Inputs task_Task="4349723564925953333" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="10" Class="Ark:Objectives:GetObjectiveState" pos="1000,-730,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="919" Class="Ark:Objectives:ObjectiveState" pos="1900,480,0">
+   <Inputs objective_Objective="4349723564925952931" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="927" Class="Logic:ArkCompare" pos="290,790,0">
+   <Inputs/>
+  </Node>
+  <Node Id="928" Class="Math:SetNumber" pos="-130,870,0">
+   <Inputs in="6"/>
+  </Node>
+  <Node Id="929" Class="Math:Calculate" pos="60,760,0">
+   <Inputs Op="0" A="0" B="1"/>
+  </Node>
+  <Node Id="930" Class="Math:SetNumber" pos="70,920,0">
+   <Inputs in="3"/>
+  </Node>
+  <Node Id="931" Class="Math:SetNumber" pos="-130,800,0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="932" Class="Logic:Gate" pos="550,-290,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="933" Class="Ark:RemoteEvent" pos="-110,0,0">
+   <Inputs remoteEvent_Event="4349723564925971388"/>
+  </Node>
+  <Node Id="936" Class="Ark:RemoteEvent" pos="-110,50,0">
+   <Inputs remoteEvent_Event="4349723564925971462"/>
+  </Node>
+  <Node Id="937" Class="Ark:RemoteEvent" pos="-110,100,0">
+   <Inputs remoteEvent_Event="4349723564925971471"/>
+  </Node>
+  <Node Id="938" Class="Ark:RemoteEvent" pos="-110,150,0">
+   <Inputs remoteEvent_Event="4349723564925971482"/>
+  </Node>
+  <Node Id="939" Class="Ark:RemoteEvent" pos="-110,200,0">
+   <Inputs remoteEvent_Event="4349723564925971493"/>
+  </Node>
+  <Node Id="940" Class="Ark:RemoteEvent" pos="-110,250,0">
+   <Inputs remoteEvent_Event="4349723564925971822"/>
+  </Node>
+  <Node Id="941" Class="Logic:Gate" pos="550,-170,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="942" Class="Logic:Gate" pos="550,-50,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="943" Class="Logic:Gate" pos="550,70,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="944" Class="Logic:Gate" pos="550,200,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="945" Class="Logic:Gate" pos="550,330,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="956" Class="Game:Start" pos="-580,800,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="957" Class="Ark:Objectives:GetObjectiveState" pos="980,480,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="958" Class="Ark:Objectives:SetObjectiveDescription" pos="1430,650,0">
+   <Inputs objectiveDescription_Description="4349723564925953450"/>
+  </Node>
+  <Node Id="959" Class="Ark:Debug:ConsoleEvent" pos="-880,-440,0">
+   <Inputs Command="startsmuggler1"/>
+  </Node>
+  <Node Id="960" Name="Here_are_the_maps_where_these_drop_points_live_and_the_coordinates_for_each:\n1\nCARGO_BAY\n151.07,_97.36,_694.51\n(Name:_FireAlarm_Fake2)\nAlcohol_Bourbon_x1\nNeuromod_x2\nFabPlan_WeaponKit_x1\n\n2\nPROTOTYPE\n461.37,_472.56,_515.33\n(Name:_FireAlarm_Fake2)\nRepairboost_Pharma_x1\nNeuromod_x1\n\n3\nARBORETUM\n1705.57,_385.26,_47.44\n(Name:_FireAlarm_Fake3)\nPharma_Antibleed_x1\nNeuromod_x1\nGooGun_Ammo_x1\n\n4\nCREW_QUARTERS\n1276.55,_986.63,_221.40_(Fitness_Center)\n(Name:_FireAlarm_Fake2)\nExotic_Ingredients_X2\nNeuromod_x1\nFabPlan_SpaceBlanket_x1\n\n5\nLOBBY01\n(Name:_FireAlarm_Fake2)\n297.57,_736.39,_482.79\nFabPlan_Taser_Pistol_x1\n\n6\nLOBBY02\n(Name:_FireAlarm_Fake3)\n355.43,_716.64,_483.56\nNeuromod_x1\nSuitMod_Spare_O2\n\n" Class="_comment" pos="-650,-300,0"/>
+  <Node Id="961" Class="Ark:Objectives:TaskState" pos="1430,480,0">
+   <Inputs task_Task="4349723564958010637" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="963" Class="Ark:RemoteEvent" pos="-330,-460,0">
+   <Inputs remoteEvent_Event="4349723564948942386"/>
+  </Node>
+  <Node Id="964" Class="Logic:Gate" pos="720,-450,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="965" Class="Logic:Gate" pos="720,-650,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="966" Class="Logic:Gate" pos="710,-840,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="968" Class="Ark:Objectives:ShowClue" pos="1530,-400,0">
+   <Inputs objectiveclue_Clue="4349723564948935134"/>
+  </Node>
+  <Node Id="969" Class="Ark:Objectives:GetObjectiveState" pos="1000,-450,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="970" Name="If_all_are_found_before_listening_to_TS_messages_these_gates_are_closed" Class="_comment" pos="590,-880,0"/>
+  <Node Id="971" Name="Both_TS_messages_launch_objective" Class="_comment" pos="-360,-750,0"/>
+  <Node Id="972" Class="Mission:GameTokenCheck" pos="1740,-580,0">
+   <Inputs gametokenid_Token="1212416074" CheckValue="true"/>
+  </Node>
+  <Node Id="973" Class="Mission:GameTokenSet" pos="130,-530,0">
+   <Inputs gametokenid_Token="1212416074" Value="true"/>
+  </Node>
+  <Node Id="975" Class="Mission:GameTokenSet" pos="980,770,0">
+   <Inputs gametokenid_Token="1909814834" Value="true"/>
+  </Node>
+  <Node Id="977" Class="Mission:GameTokenCheck" pos="60,-840,0">
+   <Inputs gametokenid_Token="1909814834" CheckValue="true"/>
+  </Node>
+  <Node Id="978" Class="Mission:GameTokenCheck" pos="60,-640,0">
+   <Inputs gametokenid_Token="1909814834" CheckValue="true"/>
+  </Node>
+  <Node Id="979" Class="Mission:GameTokenCheck" pos="60,-400,0">
+   <Inputs gametokenid_Token="1909814834" CheckValue="true"/>
+  </Node>
+  <Node Id="980" Class="Game:GiveAchievement" pos="2290,530,0">
+   <Inputs achievement_Achievement="10739735956153263737"/>
+  </Node>
+  <Node Id="981" Class="Game:SaveGame" pos="1840,840,0">
+   <Inputs Name="quicksave" Desc="" DelaySaveIfPlayerInAir="0"/>
+  </Node>
+  <Node Id="982" Class="Time:Delay" pos="1600,840,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="983" Class="Ark:Dialog:ConversationEvent" pos="-440,-860,0">
+   <Inputs conversation_Conversation="4349723564923554623"/>
+  </Node>
+  <Node Id="984" Class="Ark:Dialog:ConversationEvent" pos="-440,-660,0">
+   <Inputs conversation_Conversation="4349723564925882142"/>
+  </Node>
+  <Node Id="986" Name="Hardware_Labs" Class="_comment" pos="-440,-890,0"/>
+  <Node Id="987" Name="VIP_Shuttle_Bay" Class="_comment" pos="-440,-690,0"/>
+  <Node Id="988" Class="Ark:Debug:ConsoleEvent" pos="-880,-310,0">
+   <Inputs Command="got1"/>
+  </Node>
+  <Node Id="989" Class="Ark:Debug:ConsoleEvent" pos="-880,-270,0">
+   <Inputs Command="got2"/>
+  </Node>
+  <Node Id="990" Class="Ark:Debug:ConsoleEvent" pos="-880,-230,0">
+   <Inputs Command="got3"/>
+  </Node>
+  <Node Id="991" Class="Ark:Debug:ConsoleEvent" pos="-880,-190,0">
+   <Inputs Command="got4"/>
+  </Node>
+  <Node Id="992" Class="Ark:Debug:ConsoleEvent" pos="-880,-150,0">
+   <Inputs Command="got5"/>
+  </Node>
+  <Node Id="993" Class="Ark:Debug:ConsoleEvent" pos="-880,-110,0">
+   <Inputs Command="got6"/>
+  </Node>
+  <Node Id="994" Class="Ark:Debug:ConsoleEvent" pos="-880,-360,0">
+   <Inputs Command="smugglerClue"/>
+  </Node>
+  <Node Id="995" Class="Ark:Debug:ConsoleEvent" pos="-880,-400,0">
+   <Inputs Command="startsmuggler2"/>
+  </Node>
+  <Node Id="999" Class="Mission:GameTokenModify" pos="1290,-180,0">
+   <Inputs gametokenid_Token="469128405" Op="1" Type="1" Value=""/>
+  </Node>
+  <Node Id="1001" Class="Math:SetNumber" pos="940,-160,0">
+   <Inputs in="1"/>
+  </Node>
+  <Node Id="1005" Class="Logic:ArkCompare" pos="1880,80,0">
+   <Inputs/>
+  </Node>
+  <Node Id="1006" Class="Math:SetNumber" pos="1570,30,0">
+   <Inputs in="6"/>
+  </Node>
+  <Node Id="1007" Class="Game:Start" pos="1150,10,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="1009" Name="Do_not_use._Need_to_find_out_if_this_serializes_" Class="_commentbox" pos="-600,696,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1130" Height="400"/>
+  </Node>
+  <Node Id="1010" Class="Mission:GameTokenUpdated" pos="3300,-390,0">
+   <Inputs gametokenid_Token="469128405" compare_Value="1"/>
+  </Node>
+  <Node Id="1017" Class="Mission:GameTokenUpdated" pos="3300,-240,0">
+   <Inputs gametokenid_Token="469128405" compare_Value="2"/>
+  </Node>
+  <Node Id="1018" Class="Mission:GameTokenUpdated" pos="3300,-50,0">
+   <Inputs gametokenid_Token="469128405" compare_Value="3"/>
+  </Node>
+  <Node Id="1019" Class="Mission:GameTokenUpdated" pos="3300,90,0">
+   <Inputs gametokenid_Token="469128405" compare_Value="4"/>
+  </Node>
+  <Node Id="1020" Class="Mission:GameTokenUpdated" pos="3300,220,0">
+   <Inputs gametokenid_Token="469128405" compare_Value="5"/>
+  </Node>
+  <Node Id="1021" Class="Ark:Objectives:TaskState" pos="4310,-420,0">
+   <Inputs task_Task="4349723564958010640" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1022" Class="Ark:Objectives:SetObjectiveDescription" pos="4820,-80,0">
+   <Inputs objectiveDescription_Description="4349723564925953209"/>
+  </Node>
+  <Node Id="1023" Class="Ark:Objectives:TaskState" pos="4310,-250,0">
+   <Inputs task_Task="4349723564958010643" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1024" Class="Ark:Objectives:TaskState" pos="4310,-80,0">
+   <Inputs task_Task="4349723564958010657" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1025" Class="Ark:Objectives:TaskState" pos="4310,90,0">
+   <Inputs task_Task="4349723564958010660" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1026" Class="Ark:Objectives:TaskState" pos="4310,260,0">
+   <Inputs task_Task="4349723564958010637" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1028" Class="Ark:Objectives:GetObjectiveState" pos="3900,-410,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="1029" Class="Ark:Objectives:GetObjectiveState" pos="3900,-240,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="1030" Class="Ark:Objectives:GetObjectiveState" pos="3900,-70,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="1031" Class="Ark:Objectives:GetObjectiveState" pos="3900,100,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="1032" Class="Ark:Objectives:GetObjectiveState" pos="3900,270,0">
+   <Inputs objective_Objective="4349723564925952931"/>
+  </Node>
+  <Node Id="1035" Class="Mission:GameTokenCheck" pos="1780,-810,0">
+   <Inputs gametokenid_Token="469128405" CheckValue="0"/>
+  </Node>
+  <Node Id="1036" Class="Mission:GameTokenCheck" pos="2700,-580,0">
+   <Inputs gametokenid_Token="469128405" CheckValue="1"/>
+  </Node>
+  <Node Id="1037" Class="Mission:GameTokenCheck" pos="2700,-460,0">
+   <Inputs gametokenid_Token="469128405" CheckValue="2"/>
+  </Node>
+  <Node Id="1038" Class="Mission:GameTokenCheck" pos="2700,-340,0">
+   <Inputs gametokenid_Token="469128405" CheckValue="3"/>
+  </Node>
+  <Node Id="1039" Class="Mission:GameTokenCheck" pos="2700,-220,0">
+   <Inputs gametokenid_Token="469128405" CheckValue="4"/>
+  </Node>
+  <Node Id="1040" Class="Mission:GameTokenCheck" pos="2700,-100,0">
+   <Inputs gametokenid_Token="469128405" CheckValue="5"/>
+  </Node>
+  <Node Id="1041" Class="Ark:Objectives:TaskState" pos="4320,-620,0">
+   <Inputs task_Task="4349723564925953333" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1042" Class="Mission:GameTokenCheck" pos="1140,-930,0">
+   <Inputs gametokenid_Token="1909814834" CheckValue="true"/>
+  </Node>
+  <Node Id="1043" Class="Logic:Gate" pos="720,-1020,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="1044" Class="Ark:Debug:ConsoleEvent" pos="600,840,0">
+   <Inputs Command="GotEm"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="972" nodeOut="6" portIn="Trigger" portOut="Added" enabled="1"/>
+  <Edge nodeIn="1035" nodeOut="6" portIn="Trigger" portOut="Added" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="7" portIn="Trigger" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="10" portIn="Add" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="980" nodeOut="919" portIn="Trigger" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="957" nodeOut="927" portIn="Trigger" portOut="Equal" enabled="1"/>
+  <Edge nodeIn="927" nodeOut="928" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="927" nodeOut="929" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="927" nodeOut="929" portIn="Check" portOut="out" enabled="1"/>
+  <Edge nodeIn="930" nodeOut="929" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="930" nodeOut="929" portIn="set" portOut="out" enabled="1"/>
+  <Edge nodeIn="929" nodeOut="930" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="929" nodeOut="931" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="1001" nodeOut="932" portIn="set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="932" nodeOut="933" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="941" nodeOut="936" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="942" nodeOut="937" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="943" nodeOut="938" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="944" nodeOut="939" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="945" nodeOut="940" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1001" nodeOut="941" portIn="set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1001" nodeOut="942" portIn="set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1001" nodeOut="943" portIn="set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1001" nodeOut="944" portIn="set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1001" nodeOut="945" portIn="set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="928" nodeOut="956" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="931" nodeOut="956" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="958" nodeOut="957" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="961" nodeOut="957" portIn="Complete" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="964" nodeOut="957" portIn="Close" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="965" nodeOut="957" portIn="Close" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="966" nodeOut="957" portIn="Close" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="977" nodeOut="959" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="919" nodeOut="961" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="973" nodeOut="963" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="979" nodeOut="963" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="969" nodeOut="964" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="965" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="966" nodeOut="965" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="966" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="965" nodeOut="966" portIn="Close" portOut="Closed" enabled="1"/>
+  <Edge nodeIn="968" nodeOut="969" portIn="Show" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="968" nodeOut="972" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="982" nodeOut="975" portIn="in" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="966" nodeOut="977" portIn="In" portOut="False" enabled="1"/>
+  <Edge nodeIn="1043" nodeOut="977" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="965" nodeOut="978" portIn="In" portOut="False" enabled="1"/>
+  <Edge nodeIn="1043" nodeOut="978" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="964" nodeOut="979" portIn="In" portOut="False" enabled="1"/>
+  <Edge nodeIn="981" nodeOut="982" portIn="Save" portOut="out" enabled="1"/>
+  <Edge nodeIn="977" nodeOut="983" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="977" nodeOut="983" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="978" nodeOut="984" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="978" nodeOut="984" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="932" nodeOut="988" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="941" nodeOut="989" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="942" nodeOut="990" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="943" nodeOut="991" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="944" nodeOut="992" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="945" nodeOut="993" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="979" nodeOut="994" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="978" nodeOut="995" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="1005" nodeOut="999" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="1005" nodeOut="999" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="999" nodeOut="1001" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="999" nodeOut="1001" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="957" nodeOut="1005" portIn="Trigger" portOut="Equal" enabled="1"/>
+  <Edge nodeIn="975" nodeOut="1005" portIn="Trigger" portOut="Equal" enabled="1"/>
+  <Edge nodeIn="1005" nodeOut="1006" portIn="B" portOut="out" enabled="1"/>
+  <Edge nodeIn="1006" nodeOut="1007" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="1028" nodeOut="1010" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1029" nodeOut="1017" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1030" nodeOut="1018" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1031" nodeOut="1019" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1032" nodeOut="1020" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="1022" nodeOut="1021" portIn="Trigger" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1041" nodeOut="1021" portIn="Deactivate" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1021" nodeOut="1023" portIn="Deactivate" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1022" nodeOut="1023" portIn="Trigger" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1022" nodeOut="1024" portIn="Trigger" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1023" nodeOut="1024" portIn="Deactivate" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1022" nodeOut="1025" portIn="Trigger" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1024" nodeOut="1025" portIn="Deactivate" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1022" nodeOut="1026" portIn="Trigger" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1025" nodeOut="1026" portIn="Deactivate" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="1021" nodeOut="1028" portIn="Activate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1023" nodeOut="1029" portIn="Activate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1024" nodeOut="1030" portIn="Activate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1025" nodeOut="1031" portIn="Activate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1026" nodeOut="1032" portIn="Activate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="1035" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="1036" nodeOut="1035" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1021" nodeOut="1036" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="1037" nodeOut="1036" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1023" nodeOut="1037" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="1038" nodeOut="1037" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1024" nodeOut="1038" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="1039" nodeOut="1038" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1025" nodeOut="1039" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="1040" nodeOut="1039" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1026" nodeOut="1040" portIn="Activate" portOut="True" enabled="1"/>
+  <Edge nodeIn="919" nodeOut="1043" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="975" nodeOut="1044" portIn="Trigger" portOut="Triggered" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

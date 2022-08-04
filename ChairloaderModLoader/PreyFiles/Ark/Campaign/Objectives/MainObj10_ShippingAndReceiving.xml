@@ -1,0 +1,21 @@
+
+<Objectives>
+ <Objective id="844024417256800186" title="@loc_15373294129891630442" optional="false">
+  <Descriptions>
+   <Desc id="4349723564918711319" displayName="(2) Met Sarah" text="@loc_15373294129891630443"/>
+   <Desc id="4349723564878700142" displayName="(1) Initial description" text="@loc_15373294129891630444"/>
+   <Desc id="4349723564915766508" displayName="(3) Door Open" text="@loc_15373294129891630445"/>
+   <Desc id="4349723564960786029" displayName="(4) Sarah Killed" text="@loc_4349723564960786030"/>
+   <Desc id="4349723564915766589" displayName="Final Turrets" text="@loc_15373294129891630446"/>
+   <Desc id="4349723564915766724" displayName="Final No Turrets" text="@loc_15373294129891630447"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564878623606" displayName="Find Chief Sarah Elazar" optional="false" text="@loc_15373294129891630449" markerLabel="@loc_15373294129891630448" Location="15659330456296333985"/>
+   <Task id="4349723564960784635" displayName="Play Sarah&apos;s Transcribe" optional="false" text="@loc_4349723564960784636" markerLabel="@loc_4349723564960784682" Location="15659330456296333985"/>
+   <Task id="4349723564878622331" displayName="Open Cargo Bay B Door" optional="false" text="@loc_15373294129891630451" markerLabel="@loc_15373294129891630450" Location="15659330456296333985"/>
+   <Task id="4349723564945226064" displayName="Eliminate Typhon Threat" optional="true" text="@loc_15373294129891630455" markerLabel="@loc_15373294129891630454" Location="15659330456296333985"/>
+   <Task id="4349723564878700126" displayName="Enter Power Plant" optional="false" text="@loc_15373294129891630453" markerLabel="@loc_15373294129891630452" Location="6732635291182790112"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+</Objectives>

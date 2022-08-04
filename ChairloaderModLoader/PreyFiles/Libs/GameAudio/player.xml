@@ -1,0 +1,1875 @@
+
+<ATLConfig atl_name="Player">
+ <AudioRTPCs>
+  <ATLRtpc atl_name="character_speed">
+   <WwiseRtpc wwise_name="character_speed"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="Reflection_Speed" path="Powers">
+   <WwiseRtpc wwise_name="Reflection_Speed"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="ZeroG_Angle_Pitch" path="ZeroG">
+   <WwiseRtpc wwise_name="ZeroG_Angle_Pitch"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="ZeroG_Angle_Roll" path="ZeroG">
+   <WwiseRtpc wwise_name="ZeroG_Angle_Roll"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="ZeroG_Angle_Yaw" path="ZeroG">
+   <WwiseRtpc wwise_name="ZeroG_Angle_Yaw"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="ZeroG_Velocity_LR" path="ZeroG">
+   <WwiseRtpc wwise_name="ZeroG_Velocity_LR"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="ZeroG_Velocity_FB" path="ZeroG">
+   <WwiseRtpc wwise_name="ZeroG_Velocity_FB"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="player_health">
+   <WwiseRtpc wwise_name="player_health"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="Geiger_Counter">
+   <WwiseRtpc wwise_name="Geiger_Counter"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="player_fatigue">
+   <WwiseRtpc wwise_name="player_fatigue"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="Player_In_Air">
+   <WwiseRtpc wwise_name="Player_In_Air"/>
+  </ATLRtpc>
+  <ATLRtpc atl_name="Oxygen_Depletion">
+   <WwiseRtpc wwise_name="Oxygen_Depletion"/>
+  </ATLRtpc>
+ </AudioRTPCs>
+ <AudioSwitches>
+  <ATLSwitch atl_name="1stOr3rdP">
+   <ATLSwitchState atl_name="1stP">
+    <WwiseSwitch wwise_name="switch_firstperson_thirdperson">
+     <WwiseValue wwise_name="first_person"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="3rdP">
+    <WwiseSwitch wwise_name="switch_firstperson_thirdperson">
+     <WwiseValue wwise_name="third_person"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Charge_State">
+   <ATLSwitchState atl_name="Charged">
+    <WwiseState wwise_name="Charge_State">
+     <WwiseValue wwise_name="Charged"/>
+    </WwiseState>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Standard">
+    <WwiseState wwise_name="Charge_State">
+     <WwiseValue wwise_name="Standard"/>
+    </WwiseState>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Player_Jump">
+   <ATLSwitchState atl_name="Standard">
+    <WwiseSwitch wwise_name="Player_Jump">
+     <WwiseValue wwise_name="Standard"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Mimic">
+    <WwiseSwitch wwise_name="Player_Jump">
+     <WwiseValue wwise_name="Mimic"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Player_JumpState">
+   <ATLSwitchState atl_name="None">
+    <WwiseState wwise_name="Player_JumpState">
+     <WwiseValue wwise_name="Standard"/>
+    </WwiseState>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Mimic">
+    <WwiseState wwise_name="Player_JumpState">
+     <WwiseValue wwise_name="Mimic"/>
+    </WwiseState>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Standard">
+    <WwiseState wwise_name="Player_JumpState">
+     <WwiseValue wwise_name="Standard"/>
+    </WwiseState>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Player_Jump_Power">
+   <ATLSwitchState atl_name="Base">
+    <WwiseState wwise_name="Player_Jump_Power">
+     <WwiseValue wwise_name="Base"/>
+    </WwiseState>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Mobility_1">
+    <WwiseState wwise_name="Player_Jump_Power">
+     <WwiseValue wwise_name="Mobility_1"/>
+    </WwiseState>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Mobility_2">
+    <WwiseState wwise_name="Player_Jump_Power">
+     <WwiseValue wwise_name="Mobility_2"/>
+    </WwiseState>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Player_Sex">
+   <ATLSwitchState atl_name="Male">
+    <WwiseState wwise_name="Player_Sex">
+     <WwiseValue wwise_name="Male"/>
+    </WwiseState>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Female">
+    <WwiseState wwise_name="Player_Sex">
+     <WwiseValue wwise_name="Female"/>
+    </WwiseState>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Repair_State" path="Repair">
+   <ATLSwitchState atl_name="Broken">
+    <WwiseSwitch wwise_name="Repair_State">
+     <WwiseValue wwise_name="Broken"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Fixed">
+    <WwiseSwitch wwise_name="Repair_State">
+     <WwiseValue wwise_name="Fixed"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Repairing">
+    <WwiseSwitch wwise_name="Repair_State">
+     <WwiseValue wwise_name="Repairing"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+  </ATLSwitch>
+  <ATLSwitch atl_name="Weapon_Stability">
+   <ATLSwitchState atl_name="Stable">
+    <WwiseSwitch wwise_name="Weapon_Stability">
+     <WwiseValue wwise_name="Stable"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+   <ATLSwitchState atl_name="Degraded">
+    <WwiseSwitch wwise_name="Weapon_Stability">
+     <WwiseValue wwise_name="Degraded"/>
+    </WwiseSwitch>
+   </ATLSwitchState>
+  </ATLSwitch>
+ </AudioSwitches>
+ <AudioTriggers>
+  <ATLTrigger atl_name="footstep_player" path="General">
+   <WwiseEvent wwise_name="Play_Player_Steps"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_PumpIn" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_PumpIn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_LoadBullet" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_LoadBullet"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_DryFire" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_DryFire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_PumpOut" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_PumpOut"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_Fire" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_AmberGun_Fire" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_AmberGun_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_AmberGun_Fire" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Stop_WPN_AmberGun_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_AmberGun_Mist" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_AmberGun_Mist"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_AmberGun_Mist" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Stop_WPN_AmberGun_Mist"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Goo_Connect" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Goo_Connect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Goo_Cannot_Connect" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Goo_Cannot_Connect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_Amber_Goo_Cannot_Connect" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Stop_WPN_Amber_Goo_Cannot_Connect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Crystalize" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Crystalize"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Grow" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Grow"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_Amber_Grow" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Stop_WPN_Amber_Grow"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Shatter" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Shatter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_mvmt_foley_run" path="Foley">
+   <WwiseEvent wwise_name="Play_mvmt_foley_run"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_mvmt_foley_slow" path="Foley">
+   <WwiseEvent wwise_name="Play_mvmt_foley_slow"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_mvmt_foley_fast" path="Foley">
+   <WwiseEvent wwise_name="Play_mvmt_foley_fast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_switch_weapon" path="Foley">
+   <WwiseEvent wwise_name="Play_switch_weapon"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_mvmt_foley_walk" path="Foley">
+   <WwiseEvent wwise_name="Play_mvmt_foley_walk"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Neuromod" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Neuromod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Psychoscope" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Psychoscope"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Q2_Bottle" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Q2_Bottle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_PsiHypo" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_PsiHypo"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ammo_Shotgun" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ammo_Shotgun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ammo_GooGun" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ammo_GooGun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Sneak_In" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Sneak_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Sneak_Out" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Sneak_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Jump" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Jump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Mimic_In" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Mimic_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Mimic_FlyToObject" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Mimic_FlyToObject"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Mimic_Out" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Mimic_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Lift" path="Powers/Lift">
+   <WwiseEvent wwise_name="Play_Power_Lift_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Power_Lift" path="Powers/Lift">
+   <WwiseEvent wwise_name="Stop_Power_Lift"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Kinetic_Blast" path="Powers/KineticBlast">
+   <WwiseEvent wwise_name="Play_Powers_Kinetic_Blast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Flare_In" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_Flare_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Ignite" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_Ignite"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Flare_Out" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_Flare_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_PowerOn" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_PowerOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_PowerOff" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_PowerOff"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_Hit_Abosrbed" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_Hit_Abosrbed"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_Hit_Reflected" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_Hit_Reflected"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_Hit_Impact" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_Hit_Impact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_Hit_Kill" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_Hit_Kill"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_PsionicShield_Expiration_Warning" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_PsionicShield_Expiration_Warning"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Instalaser_Fire" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_Instalaser_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Instalaser_Fire" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Stop_Instalaser_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Wrench_Melee" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_Wrench_Melee"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Arm_Instalaser" path="Weapons">
+   <WwiseEvent wwise_name="Play_Player_Arm_Instalaser"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Arm_Wrench" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_Player_Arm_Wrench"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_PreBurst" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_PreBurst"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Regen" path="General">
+   <WwiseEvent wwise_name="Play_Player_Regen"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Place_Ingredients_Fabricator" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Place_Ingredients_Fabricator"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Spawn" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Spawn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LowHealth_LP" path="General">
+   <WwiseEvent wwise_name="Play_LowHealth_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_AmberGun_Reload_LoadAmmo" path="Weapons">
+   <WwiseEvent wwise_name="Play_Player_WPN_AmberGun_Reload_LoadAmmo"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_AmberGun_Reload_Raise1" path="Weapons">
+   <WwiseEvent wwise_name="Play_Player_WPN_AmberGun_Reload_Raise1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_AmberGun_Reload_Raise2" path="Weapons">
+   <WwiseEvent wwise_name="Play_Player_WPN_AmberGun_Reload_Raise2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Bowl" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Bowl"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_BoxedMeal" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_BoxedMeal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_FilterPack_1" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_FilterPack_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Filterpack_2" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Filterpack_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Hypo" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Hypo"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_O2_Tank" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_O2_Tank"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Organics_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Organics_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Organics_02" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Organics_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Pharma" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Pharma"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Shotgun" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Shotgun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_SpaceBlanket" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_SpaceBlanket"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_SpaceSuit" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_SpaceSuit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Wrench" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Wrench"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_GooGun" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_GooGun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Fragment_Organic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Fragment_Organic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Fragment_Synthetic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Fragment_Synthetic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Medkit" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Medkit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_MultiTool" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_MultiTool"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Bag" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Bag"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Bar" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Bar"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Bottle" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Bottle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_KeyCard" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_KeyCard"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Transcribe" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Transcribe"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Note" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Note"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PlayerPowers_KineticBlast_PreLaunch" path="Powers">
+   <WwiseEvent wwise_name="Play_PlayerPowers_KineticBlast_PreLaunch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Powers_KineticBlast_Clarity" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Powers_KineticBlast_Clarity"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Powers_KineticBlast_PostExplosion" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Powers_KineticBlast_PostExplosion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_KineticShield_SecondWarning" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_KineticShield_SecondWarning"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Fear_Use" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Fear_Use"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Fear_Out" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Fear_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Electrostatic_InWorld_End" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Electrostatic_InWorld_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Electrostatic_InWorld_Start" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Electrostatic_InWorld_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Electrostatic_Start" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Electrostatic_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_LargeFlame_End" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_LargeFlame_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_LargeFlame_Start" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_LargeFlame_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_SmallFlameStart" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_SmallFlameStart"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Thermal_Blast_2D" path="Powers">
+   <WwiseEvent wwise_name="Play_Thermal_Blast_2D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_ExplosionEnd_2D" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_ExplosionEnd_2D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Hypnosis" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_Hypnosis"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Instalaser_ChargeUp" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_Instalaser_ChargeUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_InstalaserSparks_InWorld" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_InstalaserSparks_InWorld"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_InstalaserSparks_InWorld" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Stop_WPN_InstalaserSparks_InWorld"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Instalaser_Reload" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_Instalaser_Reload"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Ether_LP_End" path="Powers/DistentegrationCloud">
+   <WwiseEvent wwise_name="Play_Player_Power_Ether_LP_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Ether_LP_Start" path="Powers/DistentegrationCloud">
+   <WwiseEvent wwise_name="Play_Player_Power_Ether_LP_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Ether_Start_2D" path="Powers/DistentegrationCloud">
+   <WwiseEvent wwise_name="Play_Player_Power_Ether_Start_2D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Drain_LP_Entity" path="Powers">
+   <WwiseEvent wwise_name="Play_Drain_LP_Entity"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Env_Drain" path="Powers">
+   <WwiseEvent wwise_name="Play_Env_Drain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Drain" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Drain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Env_Drain" path="Powers">
+   <WwiseEvent wwise_name="Stop_Env_Drain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_Drain" path="Powers">
+   <WwiseEvent wwise_name="Stop_Player_Power_Drain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Drain_LP_Entity" path="Powers">
+   <WwiseEvent wwise_name="Stop_Drain_LP_Entity"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ingredients_Exotic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ingredients_Exotic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ingredients_Mineral" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ingredients_Mineral"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ingredients_Organic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ingredients_Organic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ingredients_Random" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ingredients_Random"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ingredients_Synthetic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ingredients_Synthetic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_FabricationPlan" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_FabricationPlan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Scrap_Exotic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Scrap_Exotic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Scrap_Mineral" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Scrap_Mineral"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Scrap_Organic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Scrap_Organic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Scrap_Random" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Scrap_Random"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Scrap_Synthetic" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Scrap_Synthetic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Flashlight_Off" path="General">
+   <WwiseEvent wwise_name="Play_Flashlight_Off"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Flashlight_On" path="General">
+   <WwiseEvent wwise_name="Play_Flashlight_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Land" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Land"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Carry" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Carry"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Player_Climb" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Climb"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Death" path="General">
+   <WwiseEvent wwise_name="Play_Player_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Hypnosis_Target" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_Hypnosis_Target"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_SmokeForm_Out" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_SmokeForm_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_SmokeForm_In" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_SmokeForm_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_ZeroG_Boost" path="ZeroG">
+   <WwiseEvent wwise_name="Stop_ZeroG_Boost"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_Boost" path="ZeroG">
+   <WwiseEvent wwise_name="Play_ZeroG_Boost"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_Land" path="ZeroG">
+   <WwiseEvent wwise_name="Play_ZeroG_Land"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_Control" path="ZeroG">
+   <WwiseEvent wwise_name="Play_ZeroG_Control"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_Break" path="ZeroG">
+   <WwiseEvent wwise_name="Play_ZeroG_Break"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Recycler_Grenade_Throw" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Recycler_Grenade_Throw"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_RecyclerGrenade_Whirlwind_LP" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_RecyclerGrenade_Whirlwind_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_RecyclerGrenade_Whirlwind_End" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_RecyclerGrenade_Whirlwind_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_RecyclerGrenade_Explosion" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_RecyclerGrenade_Explosion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Recycler_Grenade_Equip" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Recycler_Grenade_Equip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_FearState_LP" path="General">
+   <WwiseEvent wwise_name="Play_Player_FearState_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_FearState_LP" path="General">
+   <WwiseEvent wwise_name="Stop_Player_FearState_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_Ascend" path="ZeroG">
+   <WwiseEvent wwise_name="Play_ZeroG_Ascend"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_Descend" path="ZeroG">
+   <WwiseEvent wwise_name="Play_ZeroG_Descend"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_ZeroG_Ascend" path="ZeroG">
+   <WwiseEvent wwise_name="Stop_ZeroG_Ascend"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_ZeroG_Descend" path="ZeroG">
+   <WwiseEvent wwise_name="Stop_ZeroG_Descend"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Slide_In" path="General">
+   <WwiseEvent wwise_name="Play_Player_Slide_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Slide_Out" path="General">
+   <WwiseEvent wwise_name="Play_Player_Slide_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_LowHealth_LP" path="General">
+   <WwiseEvent wwise_name="Stop_LowHealth_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Glide_Suit_On" path="General">
+   <WwiseEvent wwise_name="Play_Player_Glide_Suit_On"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Glide_Suit_Off" path="General">
+   <WwiseEvent wwise_name="Play_Player_Glide_Suit_Off"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Neuromod_1" path="NeuroMod_Intro">
+   <WwiseEvent wwise_name="Play_Pickup_Neuromod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_NeuroMod_Intro_Abstract_End" path="NeuroMod_Intro">
+   <WwiseEvent wwise_name="Play_Evnt_NeuroMod_Intro_Abstract_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_NeuroMod_Intro_AbstractBegin" path="NeuroMod_Intro">
+   <WwiseEvent wwise_name="Play_Evnt_NeuroMod_Intro_AbstractBegin"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Amber_Shatter_Soft" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Amber_Shatter_Soft"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Slide_In_1" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Slide_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Slide_Out_1" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Slide_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_GooGun_Reload_Pt3" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_GooGun_Reload_Pt3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_GooGun_Reload_Pt2" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_GooGun_Reload_Pt2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_GooGun_Reload_Pt1" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_GooGun_Reload_Pt1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Panel" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Panel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WrenchIdle" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_WrenchIdle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Core_Impact" path="General">
+   <WwiseEvent wwise_name="Play_Player_Core_Impact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PLayer_Powers_KineticBlast_Launch" path="Powers">
+   <WwiseEvent wwise_name="Play_PLayer_Powers_KineticBlast_Launch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Instalaser_ChargeUp" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Stop_Instalaser_ChargeUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_O2_Bottle" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_O2_Bottle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Psi_Hypo" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Psi_Hypo"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Eat" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Eat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_AntiRad_FiltrationPack" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_AntiRad_FiltrationPack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Laser_Reload_Pt2" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_Laser_Reload_Pt2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Laser_Reload_Pt3" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_Laser_Reload_Pt3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Laser_Reload_Pt1" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_Laser_Reload_Pt1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Psi_Hypo_Concept2" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Psi_Hypo_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Hypo_Rad_Concept2" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Hypo_Rad_Concept2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_MedKit_Concept1" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_MedKit_Concept1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Bottle" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Bottle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Mimic_Cloud_LP" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Mimic_Cloud_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Power_Mimic_Cloud_LP" path="Powers">
+   <WwiseEvent wwise_name="Stop_Power_Mimic_Cloud_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_LaserGun" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_LaserGun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_MindBlast_Launch" path="Powers">
+   <WwiseEvent wwise_name="Play_Powers_MindBlast_Launch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Steps_Sneak" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Steps_Sneak"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Steps_Sprint" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Steps_Sprint"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Equip" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Equip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Reload_A" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Reload_A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Reload_B" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Reload_B"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Fire" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Pistol" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Pistol"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_WeaponPack" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_WeaponPack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Reload_C" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Reload_C"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Blood" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Blood"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Concussion" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Concussion"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Burn" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Burn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Blindness" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Blindness"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_GeigerCounter" path="General">
+   <WwiseEvent wwise_name="Play_GeigerCounter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_GeigerCounter" path="General">
+   <WwiseEvent wwise_name="Stop_GeigerCounter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Blood_LP_Out" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Blood_LP_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Radiation" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Radiation"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_BioBag_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_BioBag_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_Coil_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_Coil_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_Compost_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_Compost_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_ComputerPart_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_ComputerPart_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_ComputerPart_02" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_ComputerPart_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_FrayedWire_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_FrayedWire_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_OrganicOrgan_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_OrganicOrgan_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_PU_PlasticTubing_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_PU_PlasticTubing_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_UsePharma" path="General">
+   <WwiseEvent wwise_name="Play_Player_UsePharma"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Use_Pharma_AntiPhysical" path="Pharmas">
+   <WwiseEvent wwise_name="Play_Use_Pharma_AntiPhysical"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Use_Pharma_SpeedBoost" path="Pharmas">
+   <WwiseEvent wwise_name="Play_Use_Pharma_SpeedBoost"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Use_Pharma_StrengthBoost" path="Pharmas">
+   <WwiseEvent wwise_name="Play_Use_Pharma_StrengthBoost"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Use_Pharma_RepairBoost" path="Pharmas">
+   <WwiseEvent wwise_name="Play_Use_Pharma_RepairBoost"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Use_Pharma_AnitHazard" path="Pharmas">
+   <WwiseEvent wwise_name="Play_Use_Pharma_AnitHazard"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Use_Pharma_DispersionControl" path="Pharmas">
+   <WwiseEvent wwise_name="Play_Use_Pharma_DispersionControl"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Recycler_Grenade_Deploy" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Recycler_Grenade_Deploy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Create_Phantom_Cast" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Create_Phantom_Cast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Create_Phantom_Res" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Create_Phantom_Res"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_Fire_Malfunction" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_Fire_Malfunction"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_Malfunction_Impact" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_Malfunction_Impact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_SuitMod" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_SuitMod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Unequip" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Unequip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_Explosive_Blast" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_Explosive_Blast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_EMP_Blast" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_EMP_Blast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Radiation" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Radiation"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_Radiation" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Radiation"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Electrical" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Electrical"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_Electrical" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Electrical"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Crush" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Crush"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Impact" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Impact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Ether" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Ether"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_Ether" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Ether"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Laser" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Laser"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_Laser" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Laser"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_LifeSteal" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_LifeSteal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_LifeSteal" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_LifeSteal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Sharp" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Sharp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_Lure_Blast" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_Lure_Blast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Grenade_Lure" path="Weapons">
+   <WwiseEvent wwise_name="Stop_Grenade_Lure"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_Repair" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_Repair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_GooGun_Repair" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_GooGun_Repair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Instalaser_Repair" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_Instalaser_Repair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Repair" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Repair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Transmitter_AOE_Start" path="Weapons/Nullwave">
+   <WwiseEvent wwise_name="Play_Nullwave_Transmitter_AOE_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Transmitter_AOE_End" path="Weapons/Nullwave">
+   <WwiseEvent wwise_name="Play_Nullwave_Transmitter_AOE_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Transmitter_AOE_LP" path="Weapons/Nullwave">
+   <WwiseEvent wwise_name="Play_Nullwave_Transmitter_AOE_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Nullwave_Transmitter_AOE_LP" path="Weapons">
+   <WwiseEvent wwise_name="Stop_Nullwave_Transmitter_AOE_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Weapon_Health_Stable" path="Weapons">
+   <WwiseEvent wwise_name="Set_Switch_Weapon_Health_Stable"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Set_Switch_Weapon_Health_Degraded" path="Weapons">
+   <WwiseEvent wwise_name="Set_Switch_Weapon_Health_Degraded"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Goo_Shatter" path="Weapons">
+   <WwiseEvent wwise_name="Play_Goo_Shatter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Shotgun_Break" path="Weapons">
+   <WwiseEvent wwise_name="Play_Shotgun_Break"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_GooGun_Break" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_GooGun_Break"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Instalaser_Break" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_Instalaser_Break"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Break" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Break"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Malfunction_Impact" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Malfunction_Impact"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Fire_Broken" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Fire_Broken"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Burn" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Burn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Psychic" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Psychic"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Unbreathable" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Unbreathable"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Device_Alien_Lure_Start" path="Weapons/Alien_Lure">
+   <WwiseEvent wwise_name="Play_Player_Device_Alien_Lure_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Device_Alien_Lure_End" path="Weapons/Alien_Lure">
+   <WwiseEvent wwise_name="Stop_Player_Device_Alien_Lure_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Remove_Trauma" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Remove_Trauma"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Taser_Fire" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_DiscGun_Fire" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_DiscGun_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_Burn" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Burn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Corrossive" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Corrossive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Damage_Corrossive" path="Damages">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Corrossive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Damage_Explosive" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Damage_Explosive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_DiscGun_QuickSelect" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_DiscGun_QuickSelect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Charge_End" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Charge_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Charge_Start" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Charge_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Mvmt_04" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Mvmt_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Mvmt_05" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Mvmt_05"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_TargetAcquired" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_TargetAcquired"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Mvmt_03" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Mvmt_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_LockOn" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_LockOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Mvmt_01" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Mvmt_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDiscGun_Mvmt_02" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDiscGun_Mvmt_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_Throw" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_Throw"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Grenade" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Grenade"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_HomingDisc_Disc_LP" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Play_WPN_HomingDisc_Disc_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_HomingDisc_Disc_LP" path="Weapons/Disc_Rifle">
+   <WwiseEvent wwise_name="Stop_WPN_HomingDisc_Disc_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_NarfGun_Fire" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Psychoshock" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Damage_Corrossive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Trauma_Psychoshock" path="Traumas">
+   <WwiseEvent wwise_name="Stop_Player_Damage_Corrossive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Throw" path="Weapons/Nullwave">
+   <WwiseEvent wwise_name="Play_Nullwave_Throw"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_Explosive_Deploy" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_Explosive_Deploy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_Lure_Deploy" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_Lure_Deploy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_EMP_Deploy" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_EMP_Deploy"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_Detonation_Warning" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_Detonation_Warning"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Repairable_Object_Enter_Broken" path="Repair">
+   <WwiseEvent wwise_name="Play_Repairable_Object_Enter_Broken"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Repairable_Object_Enter_Repair" path="Repair">
+   <WwiseEvent wwise_name="Play_Repairable_Object_Enter_Repair"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Repairable_Object_Enter_Fixed" path="Repair">
+   <WwiseEvent wwise_name="Play_Repairable_Object_Enter_Fixed"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Prime" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Prime"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Cancel_Charge" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Cancel_Charge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Break" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Break"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_Taser_FullCharge_LP" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Stop_WPN_Taser_FullCharge_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_FullCharge_LP" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_FullCharge_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Dry_Prime" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Dry_Prime"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Fear_Bomb" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Power_Fear_Bomb"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Flare_End" path="Powers/Flare">
+   <WwiseEvent wwise_name="Play_Player_Power_Flare_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Flare_Start" path="Powers/Flare">
+   <WwiseEvent wwise_name="Play_Player_Power_Flare_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_FlareInWorld_LP" path="Powers/Flare">
+   <WwiseEvent wwise_name="Stop_Player_Power_FlareInWorld_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_FlareInWorld_LP" path="Powers/Flare">
+   <WwiseEvent wwise_name="Play_Player_Power_FlareInWorld_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Override_End" path="Powers/Override">
+   <WwiseEvent wwise_name="Play_Player_Power_Override_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Override_Start" path="Powers/Override">
+   <WwiseEvent wwise_name="Play_Player_Power_Override_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Powers_Override_LP" path="Powers/Override">
+   <WwiseEvent wwise_name="Stop_Powers_Override_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Override_LP" path="Powers/Override">
+   <WwiseEvent wwise_name="Play_Powers_Override_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Psychoshock" path="Powers/Psychoshock">
+   <WwiseEvent wwise_name="Play_Power_Psychoshock"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_RewindEnd" path="Powers/Duplicate">
+   <WwiseEvent wwise_name="Play_Power_RewindEnd"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Rewind_DuplicateStart" path="Powers/Duplicate">
+   <WwiseEvent wwise_name="Play_Power_Rewind_DuplicateStart"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Rewind_Start" path="Powers/Duplicate">
+   <WwiseEvent wwise_name="Play_Power_Rewind_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Cyberkinesis_Fire" path="Powers/Cyberkinesis">
+   <WwiseEvent wwise_name="Play_Cyberkinesis_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Cyberkinesis" path="Powers/Cyberkinesis">
+   <WwiseEvent wwise_name="Play_Player_Power_Cyberkinesis"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_RemoteManipulation_Start" path="Powers/Remote_Manipulation">
+   <WwiseEvent wwise_name="Play_Power_RemoteManipulation_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_RemoteManipulation_End" path="Powers/Remote_Manipulation">
+   <WwiseEvent wwise_name="Play_Power_RemoteManipulation_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Impact_Final_Blow" path="General">
+   <WwiseEvent wwise_name="Play_Impact_Final_Blow"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Trauma_Drunk" path="Traumas">
+   <WwiseEvent wwise_name="Play_Player_Trauma_Drunk"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_DiscGun" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Pistol"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pistol_DryFire" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_DryFire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Taser_DryFire" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Cancel_Charge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Instalaser_DryFire" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Cancel_Charge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Fatality_Swish" path="Foley">
+   <WwiseEvent wwise_name="Play_Phantom_Melee_Swipe"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Reload_Pt01" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Reload_Pt01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Reload_Pt02" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Reload_Pt02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Reload_Pt03" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Reload_Pt03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Repair_Pt01" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Repair_Pt01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_Repair_Pt02" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_Repair_Pt02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Taser_DryFire" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Taser_DryFire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_WPN_Taser_DryFire" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Stop_WPN_Taser_DryFire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Lobby_Slide_01" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Foley_Lobby_Slide_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Lobby_PushUp_FromGround" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Foley_Lobby_PushUp_FromGround"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Lobby_PlaceHand_01" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Foley_Lobby_PlaceHand_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Lobby_PushThrough_02" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Foley_Lobby_PushThrough_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Lobby_PushThrough_03" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Foley_Lobby_PushThrough_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Place_Hand_Lobby" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Place_Hand_Lobby"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Lobby_Reveal_Start" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Lobby_Reveal_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Thermal_Build" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_Thermal_Build"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Thermal_Flash" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_Thermal_Flash"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_Thermal_Target" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Stop_Player_Power_Thermal_Target"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Thermal_Target" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_Thermal_Target"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level1" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level2" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level3" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Powers_CoolDown_Complete" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Powers_CoolDown_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Powers_CannotCast" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Powers_CannotCast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_2" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_3" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_4" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_1" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Psi_Thermal_Targeting" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Play_Player_Psi_Thermal_Targeting"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Psi_Thermal_Targeting" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Stop_Player_Psi_Thermal_Targeting"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_ElectricAftermath" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_ElectricAftermath"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_ElectricSnap" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_ElectricSnap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_Electric_Clunk" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_Electric_Clunk"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_FinalClench" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_FinalClench"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_LeverIn" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_LeverIn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_Slide" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_Slide"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_SlideRattle" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_SlideRattle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_Reload_Snap" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_Reload_Snap"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_2_Complete" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_2_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_3_Complete" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_3_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Leverage_Cancel" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Leverage_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Leverage_1_Complete" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Player_Leverage_1_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_ThermalBlast_SmallFlameStart" path="Powers/Thermal">
+   <WwiseEvent wwise_name="Stop_Player_Power_ThermalBlast_SmallFlameStart"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Power_Mimic_Target_LP" path="Powers/Mimic">
+   <WwiseEvent wwise_name="Stop_Power_Mimic_Target_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Mimic_Target_LP" path="Powers/Mimic">
+   <WwiseEvent wwise_name="Play_Power_Mimic_Target_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Mimic_Into" path="Powers/Mimic">
+   <WwiseEvent wwise_name="Play_Player_Power_Mimic_Into"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Wrench_Charge_LP" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Stop_Player_Wrench_Charge_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Wrench_Charge_LP" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_Player_Wrench_Charge_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Wrench_Charged_Attack" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_Player_Wrench_Charged_Attack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Throw" path="Powers">
+   <WwiseEvent wwise_name="Play_Throw"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Scope_In" path="General">
+   <WwiseEvent wwise_name="Play_Scope_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Scope_Out" path="General">
+   <WwiseEvent wwise_name="Play_Scope_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Scope_Zoom_In" path="General">
+   <WwiseEvent wwise_name="Play_Scope_Zoom_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Scope_Zoom_Out" path="General">
+   <WwiseEvent wwise_name="Play_Scope_Zoom_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_AmberGun_OutOfAmmo" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_AmberGun_OutOfAmmo"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Revive" path="General">
+   <WwiseEvent wwise_name="Play_Player_Revive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Fire_Silenced" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Fire_Silenced"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Fatigue">
+   <WwiseEvent wwise_name="Play_Player_Fatigue"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Fatigue" path="Foley">
+   <WwiseEvent wwise_name="Stop_Player_Fatigue"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Cancel_Wrench_Charge" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_Player_Cancel_Wrench_Charge"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Neuromod_MIDI" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Neuromod_MIDI"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_grab_recycler_charge_01" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_grab_recycler_charge_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_grab_recycler_charge_02" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_grab_recycler_charge_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_grab_recycler_charge_03" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_grab_recycler_charge_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_JetPack_Equip_Pt1" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_JetPack_Equip_Pt1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_JetPack_Equip_Pt2" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_JetPack_Equip_Pt2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_JetPack_Equip_Pt3" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_JetPack_Equip_Pt3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_JetPack_Equip_Pt4" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_JetPack_Equip_Pt4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Shotgun_Inspect" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_Pickup_Shotgun_Inspect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Instalaser_Pickup_Swish" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_WPN_Instalaser_Pickup_Swish"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_AmberGun_LoadAmmo" path="Weapons">
+   <WwiseEvent wwise_name="Play_WPN_AmberGun_LoadAmmo"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="WPN_Shotgun_Equip_UI" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="WPN_Shotgun_Equip_UI"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="WPN_AmberGun_Reload_Twirl" path="Weapons">
+   <WwiseEvent wwise_name="WPN_AmberGun_Reload_Twirl"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Gloogun_Inspect_Foley_Seq" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_Gloogun_Inspect_Foley_Seq"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Laser_Inspect_Foley_Seq" path="Weapons">
+   <WwiseEvent wwise_name="Play_WPN_Laser_Inspect_Foley_Seq"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Shotgun_Inspect_Foley_Seq" path="Weapons/Shotgun">
+   <WwiseEvent wwise_name="Play_WPN_Shotgun_Inspect_Foley_Seq"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Stungun_Inspect_Foley_Seq" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_WPN_Stungun_Inspect_Foley_Seq"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Vox_Pain" path="Vocalizations">
+   <WwiseEvent wwise_name="Play_Player_Vox_Pain"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Quick_Select" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Quick_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Pickup" path="Weapons">
+   <WwiseEvent wwise_name="Play_Nullwave_Pickup"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Transmitter_Inspect" path="Weapons">
+   <WwiseEvent wwise_name="Play_Nullwave_Transmitter_Inspect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_HelmetOff" path="General">
+   <WwiseEvent wwise_name="Play_Player_HelmetOff"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_HelmetOn" path="General">
+   <WwiseEvent wwise_name="Play_Player_HelmetOn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Kinetic_Blast_Target_Start" path="Powers/KineticBlast">
+   <WwiseEvent wwise_name="Play_Powers_Kinetic_Blast_Target_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Powers_Kinetic_Blast_Target_Stop" path="Powers/KineticBlast">
+   <WwiseEvent wwise_name="Play_Powers_Kinetic_Blast_Target_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Psi_Thermal_Targeting_1" path="Powers">
+   <WwiseEvent wwise_name="Play_Player_Psi_Thermal_Targeting"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Psi_Thermal_Targeting_1" path="Powers">
+   <WwiseEvent wwise_name="Stop_Player_Psi_Thermal_Targeting"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Target_Global_LP" path="Powers">
+   <WwiseEvent wwise_name="Play_Power_Target_Global_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Power_Target_Global_LP" path="Powers">
+   <WwiseEvent wwise_name="Stop_Power_Target_Global_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_DryFire" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_DryFire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Equip" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Equip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Reload_Pt01" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Reload_Pt01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Reload_Pt02" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Reload_Pt02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Repair_Pt01" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Repair_Pt01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Repair_Pt02" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Repair_Pt02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Unequip" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Unequip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Typhon_Lure_End" path="Weapons/Typhon_Lure">
+   <WwiseEvent wwise_name="Play_Typhon_Lure_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Typhon_Lure_Start" path="Weapons/Typhon_Lure">
+   <WwiseEvent wwise_name="Play_Typhon_Lure_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Lift_Target_In" path="Powers/Lift">
+   <WwiseEvent wwise_name="Play_Player_Power_Lift_Target_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_Lift_Target" path="Powers/Lift">
+   <WwiseEvent wwise_name="Stop_Player_Power_Lift_Target"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Lift_In" path="Powers/Lift">
+   <WwiseEvent wwise_name="Play_Player_Power_Lift_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Vox_Pain_Neuromod_In" path="Vocalizations">
+   <WwiseEvent wwise_name="Play_Player_Vox_Pain_Neuromod_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Vox_Pain_Neuromod_Out" path="Vocalizations">
+   <WwiseEvent wwise_name="Play_Player_Vox_Pain_Neuromod_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Eye_Flesh_Neuromod" path="Vocalizations">
+   <WwiseEvent wwise_name="Eye_Flesh_Neuromod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Feedback_TICK">
+   <WwiseEvent wwise_name="Play_Player_Feedback_TICK"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_Remote_Target_In" path="Powers/Remote_Manipulation">
+   <WwiseEvent wwise_name="Play_Player_Power_Remote_Target_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_Remote_Target_LP" path="Powers/Remote_Manipulation">
+   <WwiseEvent wwise_name="Stop_Player_Power_Remote_Target_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Shift_Core" path="Powers/Shift">
+   <WwiseEvent wwise_name="Play_Power_Shift_Core"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Cancel_Lv1" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Cancel_Lv1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Cancel_Lv2" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Cancel_Lv2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Cancel_Lv3" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Cancel_Lv3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Execute_Lv1" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Execute_Lv1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Execute_Lv2" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Execute_Lv2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Execute_Lv3" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Execute_Lv3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Lv1_LP" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Lv1_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Lv2_LP" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Lv2_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Target_Lv3_LP" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Target_Lv3_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Telegraph_Lv1" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Telegraph_Lv1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Telegraph_Lv2" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Telegraph_Lv2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Electrostatic_Telegraph_Lv3" path="Powers/Electrostatic_Shock">
+   <WwiseEvent wwise_name="Play_Power_Electrostatic_Telegraph_Lv3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_CombatFocus_Enter">
+   <WwiseEvent wwise_name="Play_Player_CombatFocus_Enter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_CombatFocus_Exit">
+   <WwiseEvent wwise_name="Play_Player_CombatFocus_Exit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Dry_Fire" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Dry_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Blastdoor_A_Cancel" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Blastdoor_A_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Blastdoor_A_In" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Blastdoor_A_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Blastdoor_A_Out" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Blastdoor_A_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Decontamination_A_Cancel" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Decontamination_A_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Decontamination_A_In" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Decontamination_A_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Decontamination_A_Out" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Decontamination_A_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Greenhouse_A_Cancel" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Greenhouse_A_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_Greenhouse_A_In" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_Greenhouse_A_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_SecurityBooth_A_Front_Cancel" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_SecurityBooth_A_Front_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_SecurityBooth_A_Front_In" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_SecurityBooth_A_Front_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_DoorLeverage_SecurityBooth_A_Front_Out" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_DoorLeverage_SecurityBooth_A_Front_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LeverageDoor_Idle_LP" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_LeverageDoor_Idle_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LeverageDoor_Standard_A_Cancel" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_LeverageDoor_Standard_A_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LeverageDoor_Standard_A_In" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_LeverageDoor_Standard_A_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LeverageDoor_Standard_A_Out" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_LeverageDoor_Standard_A_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Psychoscope_Equip_Pt1" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_Foley_Psychoscope_Equip_Pt1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Psychoscope_Equip_Pt2" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_Foley_Psychoscope_Equip_Pt2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Psychoscope_Equip_Pt3" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_Foley_Psychoscope_Equip_Pt3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Foley_Psychoscope_Equip_Pt4" path="Interactions">
+   <WwiseEvent wwise_name="Play_Player_Foley_Psychoscope_Equip_Pt4"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Gloogun_Inspect_Foley_seq_A" path="Weapons/GooGun/Inspect_Foley">
+   <WwiseEvent wwise_name="Play_WPN_Gloogun_Inspect_Foley_seq_A"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Gloogun_Inspect_Foley_seq_B" path="Weapons/GooGun/Inspect_Foley">
+   <WwiseEvent wwise_name="Play_WPN_Gloogun_Inspect_Foley_seq_B"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Gloogun_Inspect_Foley_seq_C" path="Weapons/GooGun/Inspect_Foley">
+   <WwiseEvent wwise_name="Play_WPN_Gloogun_Inspect_Foley_seq_C"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Gloogun_Inspect_Foley_seq_D" path="Weapons/GooGun/Inspect_Foley">
+   <WwiseEvent wwise_name="Play_WPN_Gloogun_Inspect_Foley_seq_D"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_EMP_Interrupt" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_EMP_Interrupt"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Repair_Pt03" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Repair_Pt03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Repair_Pt04" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Repair_Pt04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Pump" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Pump"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_PickUp_Pt01" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_PickUp_Pt01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_PickUp_Pt02" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_PickUp_Pt02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_PickUp_Pt03" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_PickUp_Pt03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Leverage_Throw_LP" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Stop_Leverage_Throw_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Leverage_Throw_LP" path="Powers/Leverage">
+   <WwiseEvent wwise_name="Play_Leverage_Throw_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Psychoscope_Arm_01" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Psychoscope_Arm_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Psychoscope_Arm_02" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Psychoscope_Arm_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Psychoscope_Arm_03" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Psychoscope_Arm_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Dart_Burn" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Dart_Burn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Psychoscope_Arm_04" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Psychoscope_Arm_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_Lrg_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_Lrg_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_Lrg_Start" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_Lrg_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_Med_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_Med_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_Med_Start" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_Med_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_Sml_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_Sml_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_Sml_Start" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_Sml_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_XL_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_XL_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Power_MindJack_XL_Start" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Play_Player_Power_MindJack_XL_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_MindJack_Lrg_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Stop_Player_Power_MindJack_Lrg_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_MindJack_Med_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Stop_Player_Power_MindJack_Med_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_MindJack_Sml_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Stop_Player_Power_MindJack_Sml_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Power_MindJack_XL_LP" path="Powers/Hypnosis">
+   <WwiseEvent wwise_name="Stop_Player_Power_MindJack_XL_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_WPN_StunGun_PostEMP" path="Weapons/Stun_Gun">
+   <WwiseEvent wwise_name="Play_Player_WPN_StunGun_PostEMP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_SelfDestructKey" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_SelfDestructKey"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Hobbled" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Hobbled"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Melee_Fatality" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_Player_Melee_Fatality"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_FoodBox" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_FoodBox"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_FoodCan" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_FoodCan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Food_Produce" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Food_Produce"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_FoodBowl" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_FoodBowl"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_PillBottle" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_PillBottle"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Vox_Heavy_Effort" path="Vocalizations">
+   <WwiseEvent wwise_name="Play_Player_Vox_Heavy_Effort"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Vox_Asphyxiation" path="Vocalizations">
+   <WwiseEvent wwise_name="Play_Player_Vox_Asphyxiation"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Vox_Asphyxiation" path="Vocalizations">
+   <WwiseEvent wwise_name="Stop_Player_Vox_Asphyxiation"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Player_Wrench_Melee_Fatigue" path="Weapons/Wrench">
+   <WwiseEvent wwise_name="Play_WPN_Player_Wrench_Melee_Fatigue"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_In_Air" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_In_Air"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_In_Air" path="Foley">
+   <WwiseEvent wwise_name="Stop_Player_In_Air"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Land_Stealth" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_Land_Stealth"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Grenade_Lure_Holster" path="Weapons/Alien_Lure">
+   <WwiseEvent wwise_name="Play_WPN_Grenade_Lure_Holster"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Grenade_Lure_Inspect_Pt1" path="Weapons/Alien_Lure">
+   <WwiseEvent wwise_name="Play_WPN_Grenade_Lure_Inspect_Pt1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Grenade_Lure_Inspect_Pt2" path="Weapons/Alien_Lure">
+   <WwiseEvent wwise_name="Play_WPN_Grenade_Lure_Inspect_Pt2"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Grenade_Lure_Unholster" path="Weapons/Alien_Lure">
+   <WwiseEvent wwise_name="Play_WPN_Grenade_Lure_Unholster"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Suit_Oxygen_Leak_Alarm" path="ZeroG">
+   <WwiseEvent wwise_name="Play_Player_Suit_Oxygen_Leak_Alarm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Suit_Oxygen_Leak_Fix" path="ZeroG">
+   <WwiseEvent wwise_name="Play_Player_Suit_Oxygen_Leak_Fix"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Suit_Oxygen_Leak_LP" path="ZeroG">
+   <WwiseEvent wwise_name="Play_Player_Suit_Oxygen_Leak_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Suit_Oxygen_Leak_LP" path="ZeroG">
+   <WwiseEvent wwise_name="Stop_Player_Suit_Oxygen_Leak_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Suit_Oxygen_Leak_Alarm_LP" path="ZeroG">
+   <WwiseEvent wwise_name="Stop_Player_Suit_Oxygen_Leak_Alarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Suit_Oxygen_Leak_Alarm_LP" path="ZeroG">
+   <WwiseEvent wwise_name="Play_Player_Suit_Oxygen_Leak_Alarm_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Hobbled_Walk" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Hobbled_Walk"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Drink_Gulp" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Drink_Gulp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Health_Regenerate" path="General">
+   <WwiseEvent wwise_name="Play_Player_Health_Regenerate"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Player_Health_Regenerate" path="General">
+   <WwiseEvent wwise_name="Stop_Player_Health_Regenerate"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Suit_Damage" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Suit_Damage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_EMP_Select" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_EMP_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Select" path="Weapons/Nullwave">
+   <WwiseEvent wwise_name="Play_Nullwave_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_EMP_Select_Combat" path="Weapons/Grenade">
+   <WwiseEvent wwise_name="Play_Grenade_EMP_Select_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Nullwave_Select_Combat" path="Weapons/Nullwave">
+   <WwiseEvent wwise_name="Play_Nullwave_Select_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_GooGun_Select_Combat" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_WPN_GooGun_Select_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_NarfGun_Equip_Combat" path="Weapons/NarfGun">
+   <WwiseEvent wwise_name="Play_WPN_NarfGun_Equip_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_WPN_Pistol_Equip_Combat" path="Weapons/Pistol">
+   <WwiseEvent wwise_name="Play_WPN_Pistol_Equip_Combat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_Operator_Assistance" path="Damages">
+   <WwiseEvent wwise_name="Play_Player_Operator_Assistance"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Coral_Whisper_LP" path="Damages">
+   <WwiseEvent wwise_name="Play_Coral_Whisper_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Coral_Whisper_LP" path="Damages">
+   <WwiseEvent wwise_name="Stop_Coral_Whisper_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UFI_Suit_Patch_Kit" path="UFI">
+   <WwiseEvent wwise_name="Play_UFI_Suit_Patch_Kit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Alien_Splatter" path="Screen">
+   <WwiseEvent wwise_name="Play_Alien_Splatter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Goo_Splat" path="Weapons/GooGun">
+   <WwiseEvent wwise_name="Play_Goo_Splat"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_TrashCan_End" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_TrashCan_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_TrashCan_Start" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_TrashCan_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Med_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Med_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Med_02" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Med_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Med_03" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Med_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Small_01" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Small_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Small_02" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Small_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Small_03" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Small_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_OBJ_Small_04" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_OBJ_Small_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Grenade_EMP_Inspect" path="Weapons">
+   <WwiseEvent wwise_name="Play_Grenade_EMP_Inspect"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ammo_Narf" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ammo_Narf"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Ammo_Pistol" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Ammo_Pistol"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Baseball_Glove" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Baseball_Glove"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Broken_Cooler_Fan" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Broken_Cooler_Fan"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Burnt_Circuit_Board" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Burnt_Circuit_Board"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Canned_Food" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Canned_Food"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Cigar_Box" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Cigar_Box"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Clipboard" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Clipboard"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Curry_Tofu_Bites" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Curry_Tofu_Bites"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Dim_Sum" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Dim_Sum"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Fried_Hard_Drive" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Fried_Hard_Drive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Kimchi" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Kimchi"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_PlasmaBag" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_PlasmaBag"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Recycler_Grenade" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Recycler_Grenade"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Thumb_Drive" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Thumb_Drive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Tracking_Chip" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Tracking_Chip"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_Tracking_Chip_02" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_Tracking_Chip_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Explosion_QBeam_Burst" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_Explosion_QBeam_Burst"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Explosion_QBeam_Burst_1" path="Weapons/Instalaser">
+   <WwiseEvent wwise_name="Play_Explosion_QBeam_Burst"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Lift_Field_LP" path="Powers/Lift">
+   <WwiseEvent wwise_name="Play_Power_Lift_Field_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Power_Lift_LiftZone_LP" path="Powers/Lift">
+   <WwiseEvent wwise_name="Play_Power_Lift_LiftZone_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Power_Lift_LiftZone_LP" path="Powers/Lift">
+   <WwiseEvent wwise_name="Stop_Power_Lift_LiftZone_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_PassOut_FallDown" path="Foley">
+   <WwiseEvent wwise_name="Play_Player_PassOut_FallDown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_MetalHatch_Cancel" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_MetalHatch_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_MetalHatch_Start" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_MetalHatch_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pickup_MetalHatch_Carry" path="Pickups">
+   <WwiseEvent wwise_name="Play_Pickup_MetalHatch_Carry"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>
