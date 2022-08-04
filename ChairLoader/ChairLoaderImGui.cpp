@@ -4,9 +4,9 @@
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
-#include <Prey/CryRenderer/Renderer.h>
 #include <Prey/CryRenderer/Texture.h>
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 
@@ -165,7 +165,7 @@ void ChairLoaderImGui::CreateFontsTexture() {
 
 void ChairLoaderImGui::HookPresent() {
 	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
-	auto pSwapChain = mem::OffsetInStruct<IDXGISwapChain *>(pRenderer, CD3D9Renderer::OFFSET_SWAP_CHAIN);
+	DXGISwapChain* pSwapChain = pRenderer->m_devInfo.SwapChain();
 
 	DWORD_PTR *pSwapChainVtable = nullptr;
 	pSwapChainVtable = (DWORD_PTR *)pSwapChain;
@@ -363,11 +363,11 @@ bool ChairLoaderImGui::RT_Initialize() {
 	data.bIsInitialized = true;
 
 	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
-	const DeviceInfo &devInfo = mem::OffsetInStruct<DeviceInfo>(pRenderer, CD3D9Renderer::OFFSET_DEV_INFO);
+	const DeviceInfo& devInfo = pRenderer->m_devInfo;
 
-	data.pd3dDevice = devInfo.m_pDevice;
-	data.pd3dDeviceContext = devInfo.m_pContext;
-	data.pFactory = devInfo.m_pFactory;
+	data.pd3dDevice = devInfo.Device();
+	data.pd3dDeviceContext = devInfo.Context();
+	data.pFactory = devInfo.Factory();
 
 	// Create the vertex shader
 	{

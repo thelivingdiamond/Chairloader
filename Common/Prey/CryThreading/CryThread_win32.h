@@ -114,13 +114,13 @@ private:
 	CRY_CRITICAL_SECTION m_cs;
 };
 
-/*
+
 template<> class CryLockT<CRYLOCK_RECURSIVE> : public CryLock_CritSection
 {
 };
 template<> class CryLockT<CRYLOCK_FAST> : public CryLock_CritSection
 {
-};*/
+};
 
 class CryMutex : public CryLock_WinMutex
 {

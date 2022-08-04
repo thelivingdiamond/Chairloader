@@ -125,7 +125,7 @@ struct Vec3f16 : public CryHalf4
 		w = CryConvertFloatToHalf(1.0f);
 		return *this;
 	}
-	inline Vec3f16& operator=(const Vec4A& sl)
+	inline Vec3f16& operator=(const Vec4& sl)
 	{
 		x = CryConvertFloatToHalf(sl.x);
 		y = CryConvertFloatToHalf(sl.y);

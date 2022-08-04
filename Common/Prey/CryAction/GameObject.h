@@ -1,5 +1,5 @@
 #pragma once
-#include <Prey/CryThreading/CryThread_win32.h>
+#include <Prey/CryThreading/CryThread.h>
 #include "IGameObject.h"
 
 struct SEntitySchedulingProfiles;

@@ -1,10 +1,14 @@
 #pragma once
+
 #include <Prey/CryCore/smartptr.h>
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryRenderer/ITexture.h>
+#include <Prey/CryRenderer/IShader.h>
 
 #include "Prey/CryMath/Cry_Camera.h"
 #include "Prey/CrySystem/IConsole.h"
+
+const int MAX_GSM_LODS_NUM = 16;
 
 // Object states
 #define OS_ALPHA_BLEND         0x1
@@ -100,6 +104,86 @@
 #define FRO_GEOMETRY       8
 #define FRO_FORCERELOAD    0x10
 
+//! SLI/CROSSFIRE GPU maximum count.
+#define MAX_GPU_NUM 4
+
+//////////////////////////////////////////////////////////////////////
+#define R_CULL_DISABLE 0
+#define R_CULL_NONE    0
+#define R_CULL_FRONT   1
+#define R_CULL_BACK    2
+
+//////////////////////////////////////////////////////////////////////////
+/// CRenderObject::m_ObjFlags: Flags used by shader pipeline
+//////////////////////////////////////////////////////////////////////////
+enum ERenderObjectFlags : uint64
+{
+	FOB_TRANS_ROTATE                = BIT64(0),
+	FOB_TRANS_SCALE                 = BIT64(1),
+	FOB_TRANS_TRANSLATE             = BIT64(2),
+	//FOB_RENDER_AFTER_POSTPROCESSING = BIT64(3),
+	FOB_OWNER_GEOMETRY              = BIT64(4),
+	FOB_MESH_SUBSET_INDICES         = BIT64(5),
+	//FOB_SELECTED                    = BIT64(6),
+	FOB_RENDERER_IDENDITY_OBJECT    = BIT64(7),
+	FOB_IN_DOORS							      = BIT64(8),
+	FOB_NO_FOG                      = BIT64(9),
+	FOB_DECAL                       = BIT64(10),
+	FOB_OCTAGONAL                   = BIT64(11),
+	FOB_BLEND_WITH_TERRAIN_COLOR    = BIT64(12),
+	FOB_POINT_SPRITE                = BIT64(13),
+	FOB_SOFT_PARTICLE               = BIT64(14),
+	FOB_REQUIRES_RESOLVE            = BIT64(15),
+	FOB_UPDATED_RTMASK              = BIT64(16),
+	FOB_AFTER_WATER                 = BIT64(17),
+	FOB_BENDED                      = BIT64(18),
+	FOB_ZPREPASS                    = BIT64(19),
+	FOB_INSHADOW                    = BIT64(20),
+	FOB_DISSOLVE                    = BIT64(21),
+	FOB_MOTION_BLUR                 = BIT64(22),
+	FOB_NEAREST                     = BIT64(23), // [Rendered in Camera Space]
+	FOB_SKINNED                     = BIT64(24),
+	FOB_DISSOLVE_OUT                = BIT64(25),
+	FOB_DYNAMIC_OBJECT              = BIT64(26),
+	FOB_ALLOW_TESSELLATION          = BIT64(27),
+	FOB_DECAL_TEXGEN_2D             = BIT64(28),
+	FOB_ALPHATEST                   = BIT64(29),  // Careful when moving (used in ObjSort)
+	FOB_HAS_PREVMATRIX              = BIT64(30),  // Careful when moving (used in ObjSort)
+	FOB_LIGHTVOLUME                 = BIT64(31),
+
+	FOB_TERRAIN_LAYER               = BIT64(32),
+
+	FOB_TRANS_MASK                  = (FOB_TRANS_ROTATE | FOB_TRANS_SCALE | FOB_TRANS_TRANSLATE),
+	FOB_DECAL_MASK                  = (FOB_DECAL | FOB_DECAL_TEXGEN_2D),
+	FOB_PARTICLE_MASK               = (FOB_SOFT_PARTICLE | FOB_NO_FOG | FOB_INSHADOW | FOB_NEAREST | FOB_MOTION_BLUR | FOB_LIGHTVOLUME | FOB_ALLOW_TESSELLATION | FOB_IN_DOORS | FOB_AFTER_WATER),
+
+	// WARNING: FOB_MASK_AFFECTS_MERGING must start from 0x10000/bit 16 (important for instancing).
+	FOB_MASK_AFFECTS_MERGING_GEOM = (FOB_ZPREPASS | FOB_SKINNED | FOB_BENDED | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION | FOB_NEAREST),
+	FOB_MASK_AFFECTS_MERGING      = (FOB_ZPREPASS | FOB_MOTION_BLUR | FOB_HAS_PREVMATRIX | FOB_SKINNED | FOB_BENDED | FOB_INSHADOW | FOB_AFTER_WATER | FOB_DISSOLVE | FOB_DISSOLVE_OUT | FOB_NEAREST | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION),
+};
+
+
+//! Flags used in DrawText function.
+enum EDrawTextFlags
+{
+	eDrawText_Center = BIT(0),  //!< Centered alignment, otherwise right or left.
+	eDrawText_Right = BIT(1),  //!< Right alignment, otherwise center or left.
+	eDrawText_CenterV = BIT(2),  //!< Center vertically, oterhwise top.
+	eDrawText_Bottom = BIT(3),  //!< Bottom alignment.
+
+	eDrawText_2D = BIT(4),  //!< 3-component vector is used for xy screen position, otherwise it's 3d world space position.
+
+	eDrawText_FixedSize = BIT(5),  //!< Font size is defined in the actual pixel resolution, otherwise it's in the virtual 800x600.
+	eDrawText_800x600 = BIT(6),  //!< Position are specified in the virtual 800x600 resolution, otherwise coordinates are in pixels.
+
+	eDrawText_Monospace = BIT(7),  //!< Non proportional font rendering (Font width is same for all characters).
+
+	eDrawText_Framed = BIT(8),  //!< Draw a transparent, rectangular frame behind the text to ease readability independent from the background.
+
+	eDrawText_DepthTest = BIT(9),  //!< Text should be occluded by world geometry using the depth buffer.
+	eDrawText_IgnoreOverscan = BIT(10), //!< Ignore the overscan borders, text should be drawn at the location specified.
+};
+
 class IRendererEventListener
 {
 public:
@@ -165,44 +249,6 @@ enum EScreenShotMode : __int32
 {
 	eScreenShotMode_Normal = 0x0,
 	eScreenShotMode_AppCrash = 0x1,
-};
-
-enum EShaderType
-{
-	eST_All = 0xFFFFFFFF,
-	eST_General = 0x0,
-	eST_Metal = 0x1,
-	eST_Glass = 0x2,
-	eST_Vegetation = 0x3,
-	eST_Ice = 0x4,
-	eST_Terrain = 0x5,
-	eST_Shadow = 0x6,
-	eST_Water = 0x7,
-	eST_FX = 0x8,
-	eST_PostProcess = 0x9,
-	eST_HDR = 0xA,
-	eST_Sky = 0xB,
-	eST_Particle = 0xC,
-	eST_Compute = 0xD,
-	eST_Max = 0xE,
-};
-
-enum EShaderQuality
-{
-	eSQ_Low = 0x0,
-	eSQ_Medium = 0x1,
-	eSQ_High = 0x2,
-	eSQ_VeryHigh = 0x3,
-	eSQ_Max = 0x4,
-};
-
-enum ERenderQuality
-{
-	eRQ_Low = 0x0,
-	eRQ_Medium = 0x1,
-	eRQ_High = 0x2,
-	eRQ_VeryHigh = 0x3,
-	eRQ_Max = 0x4,
 };
 
 enum EDataType : __int8
@@ -364,6 +410,28 @@ class ILoadtimeCallback;
 struct ShadowFrustumMGPUCache;
 class IArkBinkManager;
 struct SSkinningData;
+struct IRenderAuxGeom;
+
+//! This structure used in DrawText method of renderer.
+//! It provide all necessary information of how to render text on screen.
+struct SDrawTextInfo
+{
+	//! One of EDrawTextFlags flags.
+	int flags;
+
+	//! Text color, (r,g,b,a) all members must be specified.
+	float color[4];
+	float xscale;
+	float yscale;
+
+	SDrawTextInfo()
+	{
+		flags = 0;
+		color[0] = color[1] = color[2] = color[3] = 1;
+		xscale = 1.0f;
+		yscale = 1.0f;
+	}
+};
 
 class CLodValue
 {
@@ -515,6 +583,12 @@ struct IRenderView : public CMultiThreadRefCount
 	virtual void EnableLookingGlass(bool) = 0;
 };
 
+struct ISyncMainWithRenderListener // Id=8001A45 Size=8
+{
+	virtual void SyncMainWithRender() = 0;
+	virtual ~ISyncMainWithRenderListener() {};
+};
+
 struct IRenderer {
 public:
 	struct SLoadShaderItemArgs;
@@ -582,7 +656,7 @@ public:
 	virtual Vec2_tpl<float> *SetViewportDownscale(Vec2_tpl<float> *result, float, float) = 0;
 	virtual void DrawDynVB(SVF_P3F_C4B_T2F *, unsigned __int16 *, int, int, const PublicRenderPrimitiveType) = 0;
 	virtual void SetCamera(const CCamera &) = 0;
-	virtual const CCamera *GetCamera() = 0;
+	virtual const CCamera &GetCamera() = 0;
 	virtual CRenderView *GetRenderViewForThread(int, bool) = 0;
 	virtual bool SetGammaDelta(const float) = 0;
 	virtual void RestoreGamma() = 0;
@@ -722,8 +796,7 @@ public:
 	virtual void SetColorOp(unsigned __int8, unsigned __int8, unsigned __int8, unsigned __int8) = 0;
 	virtual void RequestFlushAllPendingTextureStreamingJobs(int) = 0;
 	virtual void SetTexturesStreamingGlobalMipFactor(float) = 0;
-	virtual void* GetIRenderAuxGeom(void*) = 0;
-	// virtual IRenderAuxGeom *GetIRenderAuxGeom(void *) = 0;
+	virtual IRenderAuxGeom *GetIRenderAuxGeom(void* jobID) = 0;
 	virtual IArkRenderPersistentAuxGeom *GetIArkRenderPersistentAuxGeom() = 0;
 	virtual IColorGradingController *GetIColorGradingController() = 0;
 	virtual void TextToScreen(float, float, const char *, ...) = 0;

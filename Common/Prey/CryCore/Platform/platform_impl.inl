@@ -35,8 +35,9 @@ struct SRegFactoryNode* g_pHeadToRegFactories = 0;
 //////////////////////////////////////////////////////////////////////////
 // If not in static library.
 
-	//#include <Prey/CryThreading/CryThreadImpl.h>
+	#include <Prey/CryThreading/CryThreadImpl.h>
 	//#include <Prey/CryMath/ISplineSerialization_impl.h>
+	#include <Prey/RenderDll/Common/CommonRender.h>
 
 	#include <Prey/CryCore/TypeInfo_impl.h>
 
@@ -119,6 +120,8 @@ extern "C" DLL_EXPORT void ModuleInitISystem(ISystem* pSystem, const char* modul
 			pTestManager->CreateTests(CryUnitTest::Test::m_pFirst, moduleName);
 	}
 	#endif //CRY_UNIT_TESTING
+
+	CommonRenderer_InitModule();
 }
 
 int g_iTraceAllocations = 0;

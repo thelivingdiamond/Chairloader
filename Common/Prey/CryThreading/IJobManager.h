@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-#include <Prey/CryThreading/CryThread_win32.h>
+#include <Prey/CryThreading/CryThread.h>
 
 class CTimeValue;
 
@@ -105,6 +105,7 @@ class CJobDelegator;
 struct SJobStringHandle;
 struct SJobState;
 struct SJobProfilingData;
+class CJobBase;
 
 //! Special combination of a volatile spinning variable combined with a semaphore.
 //! Used if the running state is not yet set to finish during waiting.
@@ -156,6 +157,43 @@ private:
 	friend class CJobManager;
 
 	JobManager::SJobSyncVariable syncVar;
+};
+
+//! For speed, use 16 byte aligned job state.
+struct CRY_ALIGN(16) SJobState : SJobStateBase
+{
+	//! When profiling, intercept the SetRunning() and SetStopped() functions for profiling informations.
+	ILINE SJobState()
+		: m_pFollowUpJob(NULL)
+#if defined(JOBMANAGER_SUPPORT_PROFILING)
+		, nProfilerIndex(~0)
+#endif
+	{
+	}
+
+	ILINE void SetRunning();
+
+	virtual void AddPostJob() override;
+
+	ILINE void RegisterPostJob(CJobBase * pFollowUpJob) { m_pFollowUpJob = pFollowUpJob; }
+
+	// Non blocking trying to stop state, and run post job.
+	ILINE bool TryStopping()
+	{
+		if (IsRunning())
+		{
+			return SetStopped();
+		}
+		return true;
+	}
+
+	ILINE const bool Wait();
+
+#if defined(JOBMANAGER_SUPPORT_PROFILING)
+	uint16 nProfilerIndex;
+#endif
+
+	CJobBase* m_pFollowUpJob;
 };
 
 struct IJobManager
