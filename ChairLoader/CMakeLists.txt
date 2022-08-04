@@ -35,7 +35,7 @@ set(SOURCE_FILES
 	pugiconfig.hpp
 	pugixml.cpp
 	pugixml.hpp
-)
+        )
 
 add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader
