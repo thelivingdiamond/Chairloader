@@ -166,11 +166,12 @@ void UI::Render()
 
     // if (monitor_height > 1080)
     // {
-        // const float fScale = 1.0f;
-        // ImFontConfig cfg;
-        // cfg.SizePixels = 13 * fScale;
-        // ImGui::GetIO().Fonts->AddFontDefault(&cfg);
-//        ImGui::GetIO().Fonts->AddFontFromFileTTF("./Montserrat-Regular.ttf", 16);
+//         const float fScale = 1.0f;
+//         ImFontConfig cfg;
+//         cfg.SizePixels = 16 * fScale;
+//         ImGui::GetIO().Fonts->AddFontDefault(&cfg);
+        //FONT FIXED
+        ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", 18);
         // io.FontGlobalScale = 1.5f;
     // }
 
