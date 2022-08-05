@@ -74,7 +74,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 
 	// Setup display size (every frame to accommodate for window resizing)
 	int x, y, width, height;
-	gEnv->pRenderer->GetViewport(x, y, width, height);
+	gEnv->pRenderer->GetViewport(&x, &y, &width, &height);
 	io.DisplaySize = ImVec2((float)width, (float)height);
 
 	// Setup time step

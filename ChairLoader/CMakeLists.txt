@@ -7,6 +7,10 @@ set(SOURCE_FILES
 	RenderDll/D3DRenderAuxGeom.cpp
 	RenderDll/D3DRenderAuxGeom.h
 	RenderDll/RenderAuxGeom.cpp
+	RenderDll/RenderAuxGeomPatch.cpp
+	RenderDll/RenderAuxGeomPatch.h
+	RenderDll/RenderCommandHandler.cpp
+	RenderDll/RenderCommandHook.asm
 	RenderDll/TextMessages.cpp
 	
 	ChairLoader.cpp

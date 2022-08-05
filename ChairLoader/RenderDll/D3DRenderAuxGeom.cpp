@@ -68,7 +68,7 @@ void SRenderThread::RC_AuxFlush(IRenderAuxGeomImpl* pAux, SAuxGeomCBRawDataPacka
 		return;
 	}
 
-	byte* p = AddCommand(eRC_AuxFlush, 4 * sizeof(void*) + sizeof(uint32));
+	byte* p = AddCommand(eRCC_AuxFlush, 4 * sizeof(void*) + sizeof(uint32));
 	AddPointer(p, pAux);
 	AddPointer(p, data.m_pData);
 	AddPointer(p, (void*)begin);

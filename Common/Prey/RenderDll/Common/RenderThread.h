@@ -13,6 +13,8 @@
 
 #include <Prey/CryCore/AlignmentTools.h>
 #include <Prey/CryRenderer/Tarray.h>
+#include <Prey/CryRenderer/IRenderer.h>
+#include "CommonRender.h"
 //#include <Prey/CryCore/AlignmentTools.h>
 
 #define RENDER_THREAD_NAME         "RenderThread"
@@ -89,7 +91,7 @@ enum ERenderCommand
 	eRC_FlashRender = 0x2C,
 	eRC_FlashRenderLockless = 0x2D,
 	eRC_BinkRender = 0x2E,
-	eRC_AuxFlush = 0x2F,
+	eRC_AuxFlush_DONOTUSE = 0x2F, // eRCC_AuxFlush
 	eRC_RenderScene = 0x30,
 	eRC_SetCamera = 0x31,
 	eRC_PushProfileMarker = 0x32,
@@ -129,6 +131,15 @@ enum ERenderCommand
 	eRC_ReleaseRemappedBoneIndices = 0x54,
 	eRC_SetRendererCVar = 0x55,
 	eRC_ReleaseGraphicsPipeline = 0x56,
+
+	//! Chairloader: Custom rendering command
+	eRC_Custom = 100,
+};
+
+enum ERenderCommandCustom
+{
+	eRCC_Unknown = 0,
+	eRCC_AuxFlush,
 };
 
 //====================================================================
@@ -165,38 +176,19 @@ struct CRY_ALIGN(128) SRenderThread
 	CRenderThread* m_pThread;
 	CRenderThreadLoading* m_pThreadLoading;
 	ILoadtimeCallback* m_pLoadtimeCallback;
-	CryMutex m_rdldLock;
+	CryCriticalSection m_rdldLock;
 	bool m_bQuit;
 	bool m_bQuitLoading;
 	bool m_bSuccessful;
 	bool m_bBeginFrameCalled;
 	bool m_bEndFrameCalled;
-#ifndef STRIP_RENDER_THREAD
 	int m_nCurThreadProcess;
 	int m_nCurThreadFill;
-#endif
-#ifdef USE_LOCKS_FOR_FLUSH_SYNC
-	int m_nFlush;
-	CryMutex m_LockFlushNotify;
-	CryConditionVariable m_FlushCondition;
-	CryConditionVariable m_FlushFinishedCondition;
-#else
 	volatile int m_nFlush;
-#endif
 	threadID m_nRenderThread;
 	threadID m_nRenderThreadLoading;
 	threadID m_nMainThread;
-#if CRY_PLATFORM_DURANGO
-	volatile uint32 m_suspendWhileLoadingFlag;
-	CryEvent m_suspendWhileLoadingEvent;
-#endif
 	HRESULT m_hResult;
-#if defined(OPENGL) && !DXGL_FULL_EMULATION
-	#if !CRY_OPENGL_SINGLE_CONTEXT
-	SDXGLContextThreadLocalHandle m_kDXGLContextHandle;
-	#endif
-	SDXGLDeviceContextThreadLocalHandle m_kDXGLDeviceContextHandle;
-#endif //defined(OPENGL) && !DXGL_FULL_EMULATION
 	float m_fTimeIdleDuringLoading;
 	float m_fTimeBusyDuringLoading;
 	TArray<byte> m_Commands[RT_COMMAND_BUF_COUNT]; // m_nCurThreadFill shows which commands are filled by main thread
@@ -204,8 +196,6 @@ struct CRY_ALIGN(128) SRenderThread
 	// The below loading queue contains all commands that were submitted and require full device access during loading.
 	// Will be blit into the first render frame's command queue after loading and subsequently resized to 0.
 	TArray<byte> m_CommandsLoading;
-
-	static CryCriticalSection s_rcLock;
 
 	enum EVideoThreadMode
 	{
@@ -216,6 +206,9 @@ struct CRY_ALIGN(128) SRenderThread
 		eVTM_ProcessingStop,
 	};
 	EVideoThreadMode m_eVideoThreadMode;
+
+	static CryCriticalSection s_rcLock;
+	static TArray<byte> m_CustomCommands[RT_COMMAND_BUF_COUNT];
 
 	SRenderThread();
 	~SRenderThread();
@@ -237,7 +230,7 @@ struct CRY_ALIGN(128) SRenderThread
 		return (value + 3) & ~((size_t)3);
 	}
 
-	inline byte* AddCommandTo(ERenderCommand eRC, size_t nParamBytes, TArray<byte>& queue)
+	inline byte* AddCommandTo(ERenderCommandCustom eRC, size_t nParamBytes, TArray<byte>& queue)
 	{
 		uint32 cmdSize = sizeof(uint32) + nParamBytes;
 		byte* ptr = queue.Grow(cmdSize);
@@ -249,19 +242,20 @@ struct CRY_ALIGN(128) SRenderThread
 	{
 	}
 
-	inline byte* AddCommand(ERenderCommand eRC, size_t nParamBytes)
+	inline byte* AddCommand(ERenderCommandCustom eRCC, size_t nParamBytes)
 	{
 #ifdef STRIP_RENDER_THREAD
 		return NULL;
 #else
-		return AddCommandTo(eRC, nParamBytes, m_Commands[m_nCurThreadFill]);
+		AddCommandTo((ERenderCommandCustom)eRC_Custom, 0, m_Commands[m_nCurThreadFill]);
+		return AddCommandTo(eRCC, nParamBytes, m_CustomCommands[m_nCurThreadFill]);
 #endif
 	}
 
 	inline void EndCommand(byte* ptr)
 	{
 #ifndef STRIP_RENDER_THREAD
-		EndCommandTo(ptr, m_Commands[m_nCurThreadFill]);
+		EndCommandTo(ptr, m_CustomCommands[m_nCurThreadFill]);
 #endif
 	}
 
@@ -275,6 +269,19 @@ struct CRY_ALIGN(128) SRenderThread
 	{
 		StoreUnaligned((uint32*)ptr, pVal); // uint32 because command list maintains 4-byte alignment
 		ptr += sizeof(void*);
+	}
+
+	template<class T> T ReadCommand(int& nIndex)
+	{
+		T Res;
+		LoadUnaligned((uint32*)&m_CustomCommands[m_nCurThreadProcess][nIndex], Res);
+		nIndex += (sizeof(T) + 3) & ~((size_t)3);
+		return Res;
+	}
+	template<class T> void ReadCommand(int& nIndex, SUninitialized<T>& value)
+	{
+		LoadUnaligned((uint32*)&m_CustomCommands[m_nCurThreadProcess][nIndex], value);
+		nIndex += (sizeof(T) + 3) & ~((size_t)3);
 	}
 };
 

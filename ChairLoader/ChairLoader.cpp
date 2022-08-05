@@ -15,6 +15,8 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 #include "ChairLoader/ChairloaderEnv.h"
+#include "RenderDll/RenderAuxGeomPatch.h"
+#include <Prey/CryRenderer/IRenderAuxGeom.h>
 
 ChairLoader *gCL = nullptr;
 static bool smokeFormExited = false;
@@ -166,10 +168,17 @@ ChairLoader::ChairLoader() {
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
 	ChairLoaderImGui::InitHooks();
+	InitRenderAuxGeomPatchHooks();
+
+	void SRenderThread_InstallCommandHandler();
+	SRenderThread_InstallCommandHandler();
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
 	InstallHooks();
+
+	void SRenderThread_PostHook();
+	SRenderThread_PostHook();
 }
 
 void ChairLoader::InitSystem(CSystem* pSystem)
@@ -200,6 +209,8 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	gConf = new ChairloaderConfigManager();
 	s_CLEnv.conf = gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
+
+	InitRenderAuxGeomPatch();
 
 	// get list of installed mods and their load order
 	ReadModList();
@@ -307,6 +318,12 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	// draw all mods
 	for (auto& mod : modList) {
 		mod.pMod->Draw();
+	}
+
+	if (ArkPlayer::GetInstancePtr())
+	{
+		Vec3 pos = ArkPlayer::GetInstance().GetEntity()->GetWorldPos();
+		gEnv->pAuxGeomRenderer->DrawSphere(pos + Vec3(0, 2, 1), 0.3f, ColorB(255, 0, 0), false);
 	}
 }
 

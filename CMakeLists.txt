@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Chairloader)
+project(Chairloader C CXX ASM_MASM)
 set(CHAIRLOADER TRUE)
 
 if((NOT MSVC) OR (MSVC_TOOLSET_VERSION LESS 141))

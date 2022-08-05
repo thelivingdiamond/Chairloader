@@ -309,6 +309,4 @@ enum ERenderPrimitiveType
 	eptHWSkinGroups = 0x3f
 };
 
-void CommonRenderer_InitModule();
-
 #endif

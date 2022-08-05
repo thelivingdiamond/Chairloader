@@ -489,8 +489,8 @@ public:
 	uint16_t m_occlusionSourceSizeX;
 	uint16_t m_occlusionSourceSizeY;
 	std::vector<float> m_occlusionZBuffer;
-	Matrix44 m_occlusionViewProjBuffer[4];
-	Matrix44 m_occlusionViewProj;
+	Matrix44A m_occlusionViewProjBuffer[4];
+	Matrix44A m_occlusionViewProj;
 	uint64_t m_occlusionBuffer;
 	bool m_bOcclusionTexturesValid;
 	CStandardGraphicsPipeline* m_pGraphicsPipeline;
@@ -645,7 +645,7 @@ public:
 	virtual bool SetRenderTarget(int nHandle);
 	virtual bool ChangeDisplay(unsigned width, unsigned height, unsigned cbpp);
 	virtual void ChangeViewport(unsigned x, unsigned y, unsigned width, unsigned height, bool bMainViewport);
-	//virtual IArkVideoInfo& GetIArkVideoInfo();
+	virtual IArkVideoInfo& GetIArkVideoInfo();
 	virtual bool ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, EFullscreenMode _fullscreenMode, bool bForceReset);
 	virtual void Reset();
 	virtual void SwitchToNativeResolutionBackbuffer();

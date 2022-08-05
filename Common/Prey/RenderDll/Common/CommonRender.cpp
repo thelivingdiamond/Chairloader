@@ -278,8 +278,3 @@ CDeviceObjectFactory& CCryDeviceWrapper::GetObjectFactory()
 	return ext12;
 }
 */
-
-void CommonRenderer_InitModule()
-{
-	gRenDev = static_cast<CRenderer*>(gEnv->pRenderer);
-}
