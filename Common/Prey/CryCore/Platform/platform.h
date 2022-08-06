@@ -732,6 +732,7 @@ extern "C" {
 #define MEMSTAT_UNBIND_FROM_CONTAINER(key, ptr)
 #define MEMSTAT_SWAP_CONTAINERS(keyA, keyB)
 #define MEMSTAT_REBIND_TO_CONTAINER(key, oldPtr, newPtr)
+#define MEMSTAT_USAGE(ptr, size)
 
 #ifdef _WINDOWS_
 	#error windows.h should not be included through any headers within platform.h

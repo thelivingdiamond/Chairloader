@@ -15,6 +15,8 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 #include "ChairLoader/ChairloaderEnv.h"
+#include "RenderDll/RenderAuxGeomPatch.h"
+#include <Prey/CryRenderer/IRenderAuxGeom.h>
 
 ChairLoader *gCL = nullptr;
 static bool smokeFormExited = false;
@@ -166,6 +168,7 @@ ChairLoader::ChairLoader() {
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
 	ChairLoaderImGui::InitHooks();
+	InitRenderAuxGeomPatchHooks();
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
@@ -196,10 +199,14 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
+	WaitForRenderDoc();
+
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
 	s_CLEnv.conf = gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
+
+	InitRenderAuxGeomPatch();
 
 	// get list of installed mods and their load order
 	ReadModList();
@@ -430,6 +437,34 @@ void ChairLoader::UpdateFreeCam() {
 			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
 			gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
 		}
+	}
+}
+
+void ChairLoader::WaitForRenderDoc()
+{
+	constexpr int WAIT_TIME_SEC = 10;
+
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "renderdoc"))
+	{
+		for (int i = 0; i < WAIT_TIME_SEC; i++)
+		{
+			CryLog("Waiting for RenderDoc - %d seconds...", WAIT_TIME_SEC - i);
+
+			for (int j = 0; j < 10; j++)
+			{
+				HMODULE renderdoc = GetModuleHandleA("renderdoc.dll");
+
+				if (renderdoc)
+				{
+					CryLog("RenderDoc found!");
+					return;
+				}
+
+				Sleep(100);
+			}
+		}
+
+		CryLog("RenderDoc not found, continuing loading");
 	}
 }
 

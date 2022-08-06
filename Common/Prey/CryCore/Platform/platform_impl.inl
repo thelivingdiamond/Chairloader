@@ -35,7 +35,7 @@ struct SRegFactoryNode* g_pHeadToRegFactories = 0;
 //////////////////////////////////////////////////////////////////////////
 // If not in static library.
 
-	//#include <Prey/CryThreading/CryThreadImpl.h>
+	#include <Prey/CryThreading/CryThreadImpl.h>
 	//#include <Prey/CryMath/ISplineSerialization_impl.h>
 
 	#include <Prey/CryCore/TypeInfo_impl.h>

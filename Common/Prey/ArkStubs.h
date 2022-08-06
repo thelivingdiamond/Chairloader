@@ -22,6 +22,7 @@ struct IParticleEffect : detail::StubSmartPtrIface {};
 struct IMaterial : detail::StubSmartPtrIface {};
 struct ISaveGameThumbnail : detail::StubSmartPtrIface {};
 struct SCrySessionID : detail::StubSmartPtrIface {};
+struct IRenderMesh : detail::StubSmartPtrIface {};
 
 class IAction : public detail::StubSmartPtrIface
 {
@@ -148,11 +149,6 @@ template<ENavigationIDTag T>
 struct TNavigationID
 {
 	uint32 id;
-};
-
-class CDLight
-{
-	void* pad[77];
 };
 
 class ArkNpcMovementDesire

@@ -1,6 +1,5 @@
 #pragma once
 #include <Prey/CryThreading/IJobManager.h>
-#include "ChairLoader.h"
 
 namespace CryProfile {
 class CScopedProfileMarker {

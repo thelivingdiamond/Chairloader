@@ -4,6 +4,15 @@ set(SOURCE_FILES
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h
 	
+	RenderDll/D3DRenderAuxGeom.cpp
+	RenderDll/D3DRenderAuxGeom.h
+	RenderDll/RenderAuxGeom.cpp
+	RenderDll/RenderAuxGeomPatch.cpp
+	RenderDll/RenderAuxGeomPatch.h
+	RenderDll/RenderCommandHandler.cpp
+	RenderDll/RenderCommandHook.asm
+	RenderDll/TextMessages.cpp
+	
 	ChairLoader.cpp
 	ChairLoader.h
 	ChairloaderConfigManager.cpp
