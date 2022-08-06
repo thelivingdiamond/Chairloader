@@ -101,6 +101,13 @@ public:
 	//! @returns whether a hook is installed.
 	inline bool IsHooked() { return m_Hook.IsHooked(); }
 
+	//! Installs the hook. Called automatically during init.
+	void InstallHook();
+
+	//! Removes the hook.
+	//! Must be called in a Detours transaction.
+	void RemoveHook();
+
 protected:
 	PreyPointer* m_pOrigFunc = nullptr;
 	void* m_pHookFunc = nullptr;
@@ -113,16 +120,13 @@ protected:
 private:
 	PreyFunctionHookBase* m_pNext = nullptr;
 
-	void InstallHook();
-	void RemoveHook();
-
 	friend class PreyFunctionSystem;
 };
 
 //! Class for PreyDll function hooks.
 //! Instances of this class must exist for as long as current DLL does.
 template <typename ReturnType, typename ... ArgumentTypes>
-class PreyFunctionHook<ReturnType(ArgumentTypes ...)> : PreyFunctionHookBase {
+class PreyFunctionHook<ReturnType(ArgumentTypes ...)> : public PreyFunctionHookBase {
 public:
 	using Type = ReturnType(ArgumentTypes ...);
 

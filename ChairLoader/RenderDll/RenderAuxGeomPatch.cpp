@@ -1,8 +1,14 @@
+#include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <detours/detours.h>
 #include "D3DRenderAuxGeom.h"
 
 static_assert(offsetof(CD3D9Renderer, m_bStopRendererAtFrameEnd) == 96);
 static_assert(offsetof(CD3D9Renderer, m_pRT) == 3472);
+
+void SRenderThread_InstallCommandHandler();
+void SRenderThread_RemoveCommandHandler();
+void SRenderThread_PostHook();
 
 namespace
 {
@@ -125,10 +131,29 @@ void InitRenderAuxGeomPatchHooks()
 	CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
 	CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
 	CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
+	SRenderThread_InstallCommandHandler();
 }
 
 void InitRenderAuxGeomPatch()
 {
-	const int defValAuxGeomEnable = 1;
-	REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, defValAuxGeomEnable, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
+	{
+		SRenderThread_PostHook();
+		REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
+	}
+	else
+	{
+		// Remove all hooks
+		DetourTransactionBegin();
+		CD3D9Renderer_FX_PipelineShutdown_Hook.RemoveHook();
+		CD3D9Renderer_RT_ShutDown_Hook.RemoveHook();
+		CD3D9Renderer_OnD3D11PostCreateDevice_Hook.RemoveHook();
+		CD3D9Renderer_InitRenderer_Hook.RemoveHook();
+		CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.RemoveHook();
+		CD3D9Renderer_Set2DMode_Hook.RemoveHook();
+		CD3D9Renderer_GetIRenderAuxGeom_Hook.RemoveHook();
+		CD3D9Renderer_PostLevelUnload_Hook.RemoveHook();
+		SRenderThread_RemoveCommandHandler();
+		DetourTransactionCommit();
+	}
 }

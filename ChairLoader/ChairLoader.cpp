@@ -170,15 +170,9 @@ ChairLoader::ChairLoader() {
 	ChairLoaderImGui::InitHooks();
 	InitRenderAuxGeomPatchHooks();
 
-	void SRenderThread_InstallCommandHandler();
-	SRenderThread_InstallCommandHandler();
-
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
 	InstallHooks();
-
-	void SRenderThread_PostHook();
-	SRenderThread_PostHook();
 }
 
 void ChairLoader::InitSystem(CSystem* pSystem)

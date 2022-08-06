@@ -95,6 +95,12 @@ void SRenderThread_InstallCommandHandler()
 	s_SRenderThread_ProcessCommands_CmdLoop_Hook.SetHookFunc(&SRenderThread_ProcessCommandsHook);
 }
 
+void SRenderThread_RemoveCommandHandler()
+{
+	s_SRenderThread_ProcessCommands_Hook.RemoveHook();
+	s_SRenderThread_ProcessCommands_CmdLoop_Hook.RemoveHook();
+}
+
 void SRenderThread_PostHook()
 {
 	SRenderThread_ProcessCommands_CmdLoopTrampoline = (uintptr_t)s_SRenderThread_ProcessCommands_CmdLoop_Hook.GetOrig();
