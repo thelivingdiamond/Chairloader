@@ -205,6 +205,8 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
+	WaitForRenderDoc();
+
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
 	s_CLEnv.conf = gConf;
@@ -447,6 +449,34 @@ void ChairLoader::UpdateFreeCam() {
 			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
 			gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
 		}
+	}
+}
+
+void ChairLoader::WaitForRenderDoc()
+{
+	constexpr int WAIT_TIME_SEC = 10;
+
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "renderdoc"))
+	{
+		for (int i = 0; i < WAIT_TIME_SEC; i++)
+		{
+			CryLog("Waiting for RenderDoc - %d seconds...", WAIT_TIME_SEC - i);
+
+			for (int j = 0; j < 10; j++)
+			{
+				HMODULE renderdoc = GetModuleHandleA("renderdoc.dll");
+
+				if (renderdoc)
+				{
+					CryLog("RenderDoc found!");
+					return;
+				}
+
+				Sleep(100);
+			}
+		}
+
+		CryLog("RenderDoc not found, continuing loading");
 	}
 }
 
