@@ -4,7 +4,7 @@
 #include "Renderer.h"
 
 // NameTable internal variable.
-CNameTableR* CCryNameR::ms_table;
+//CNameTableR* CCryNameR::ms_table;
 
 // Resource manager internal variables.
 ResourceClassMap CBaseResource::m_sResources;

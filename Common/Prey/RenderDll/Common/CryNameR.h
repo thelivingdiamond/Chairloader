@@ -203,7 +203,8 @@ public:
 
 private:
 	typedef CNameTableR::SNameEntryR SNameEntry;
-	static CNameTableR* ms_table;
+	//static CNameTableR* ms_table;
+	static inline auto ms_table = PreyGlobal<CNameTableR*>(0x2B24A30);
 
 	static CNameTableR* GetNameTable()
 	{
@@ -211,9 +212,12 @@ private:
 		// implies a static destruction order dependency - the name table is
 		// accessed from static destructor calls.
 
-		if (ms_table == NULL)
-			ms_table = new CNameTableR();
-		return ms_table;
+		//if (ms_table == NULL)
+		//	ms_table = new CNameTableR();
+		//return ms_table;
+
+		// Chairloader: Use the table from the game
+		return *ms_table;
 	}
 
 	SNameEntry* _entry(const char* pBuffer) const
