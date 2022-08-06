@@ -106,7 +106,7 @@ private:
 	static void CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce);
 
 	using IDXGISwapChain_Present = HRESULT (*)(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags);
-	IDXGISwapChain_Present m_hookPresent;
+	static IDXGISwapChain_Present m_hookPresent;
 	static HRESULT Present(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags);
 
 	static ChairLoaderImGui *m_pInstance;
