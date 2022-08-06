@@ -1,16 +1,16 @@
 set(SOURCE_FILES
         CMakeLists.txt
         #IMGUI
-        ImGui/imconfig.h
-        ImGui/imgui.cpp
         ImGui/imgui.h
+        ImGui/imgui.cpp
+        ImGui/imconfig.h
+        ImGUi/imgui_internal.h
         ImGui/imgui_demo.cpp
         ImGui/imgui_draw.cpp
         ImGui/imgui_impl_dx11.cpp
         ImGui/imgui_impl_dx11.h
         ImGui/imgui_impl_win32.cpp
         ImGui/imgui_impl_win32.h
-        ImGui/imgui_internal.h
         ImGui/imgui_stdlib.cpp
         ImGui/imgui_stdlib.h
         ImGui/imgui_tables.cpp
@@ -19,18 +19,23 @@ set(SOURCE_FILES
         ImGui/imstb_textedit.h
         ImGui/imstb_truetype.h
 
+        #ImGuiFileDialog
+        ImGuiFileDialog/ImGuiFileDialog.h
+        ImGuiFileDialog/ImGuiFileDialog.cpp
+
+        #ImGuiStandalone
         Drawing.cpp
         Drawing.h
         UI.cpp
         UI.h
-
+        #ModLoader
         ModLoader.cpp
         ModLoader.h
-        zipconf.h
         main.cpp
+        #Miscellaneous
+        zipconf.h
         Montserrat-Regular.ttf
         )
-add_compile_definitions(_WIN32_WINNT=0x0601)
 
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DRAWING_H
 #define DRAWING_H
 
