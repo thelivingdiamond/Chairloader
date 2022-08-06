@@ -321,12 +321,6 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	for (auto& mod : modList) {
 		mod.pMod->Draw();
 	}
-
-	if (ArkPlayer::GetInstancePtr())
-	{
-		Vec3 pos = ArkPlayer::GetInstance().GetEntity()->GetWorldPos();
-		gEnv->pAuxGeomRenderer->DrawSphere(pos + Vec3(0, 2, 1), 0.3f, ColorB(255, 0, 0), false);
-	}
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
