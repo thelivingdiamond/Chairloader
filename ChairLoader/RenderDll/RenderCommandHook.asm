@@ -5,10 +5,9 @@ extern SRenderThread_ProcessCommands_CmdLoopTrampoline : dq
 public SRenderThread_ProcessCommandsHook
 
 SRenderThread_ProcessCommandsHook:
-	; stack frame
+	; Stack frame
 	push rbp
 	mov rbp, rsp
-
 
 	; Save all registers
 	; TODO: Figure out which ones are actually used
@@ -31,22 +30,13 @@ SRenderThread_ProcessCommandsHook:
 	push rax ; keep 16-byte alignment
 
 	; esi is offset into command buffer
-
-	; allocate stack for n variable
-	;sub rsp, 8
-	;mov [rsp], esi
-
 	sub rsp, 4*8
-	;lea rcx, [rsp + 4*8] ; arg 0 - n ptr
 	mov ecx, esi ; arg 0 - n ptr
 	call SRenderThread_CustomCommandHandler
 	add rsp, 4*8
-	;mov esi, [rsp] ; copy n back into esi
 
 	; Restore registers
 	pop rax
-	;pop rsp
-	;pop rbp
 	pop rbx
 	pop rsi
 	pop rdi

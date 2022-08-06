@@ -13,8 +13,10 @@ auto s_SRenderThread_ProcessCommands_CmdLoop = PreyFunction<void()>(0xFBD530);
 auto s_SRenderThread_ProcessCommands_Hook = s_SRenderThread_ProcessCommands.MakeHook();
 auto s_SRenderThread_ProcessCommands_CmdLoop_Hook = s_SRenderThread_ProcessCommands_CmdLoop.MakeHook();
 
+// Local variables of the SRenderThread_ProcessCommands hook
+// Since it's split into two funcs with some asm code, use globals for them
 SRenderThread* thisPtr = nullptr;
-int handledCmdCount = 0;
+int processedCmdBytes = 0; //!< Number of bytes processed
 
 }
 
@@ -29,13 +31,13 @@ TArray<byte> SRenderThread::m_CustomCommands[RT_COMMAND_BUF_COUNT];
 static void SRenderThread_ProcessCommands_Hook(SRenderThread* _this)
 {
 	thisPtr = _this;
-	handledCmdCount = 0;
+	processedCmdBytes = 0;
 
 	s_SRenderThread_ProcessCommands_Hook.InvokeOrig(_this);
 
 	// Clear custom command list
 	TArray<byte>& cmdBuf = SRenderThread::m_CustomCommands[_this->m_nCurThreadProcess];
-	CRY_ASSERT(handledCmdCount == cmdBuf.Num());
+	CRY_ASSERT(processedCmdBytes == cmdBuf.Num());
 	cmdBuf.SetUse(0);
 
 	thisPtr = nullptr;
@@ -55,7 +57,7 @@ extern "C" void SRenderThread_CustomCommandHandler(int origN)
 	if (nOrigC == eRC_Custom)
 	{
 		TArray<byte>& cmdBuf = SRenderThread::m_CustomCommands[threadId];
-		int n = 0;
+		int n = processedCmdBytes;
 		byte* pP = &cmdBuf[n];
 		n += sizeof(int);
 		byte nC = (byte) * ((int*)pP);
@@ -83,7 +85,7 @@ extern "C" void SRenderThread_CustomCommandHandler(int origN)
 		}
 		}
 
-		handledCmdCount = n;
+		processedCmdBytes = n;
 	}
 }
 
