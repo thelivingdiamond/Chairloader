@@ -1,2 +1,0 @@
-
-<ArkNpcUnreachableTargetingManagerConfig MinSearchRadius="0.0" MaxSearchRadius="50.0" SearchRadiusStep="5.0" SearchHeight="15.0" TraceRadius="0.1" MaxDistanceBeforeUpdateNeeded="1.0" ClaimRadius="2.5" MaxAllowedAngleFromNpcToTarget="45.0" MaxPointsPerSearchArea="75" PreventAnySuccesses="false"/>

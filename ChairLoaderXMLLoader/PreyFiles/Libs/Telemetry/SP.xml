@@ -1,7 +1,0 @@
-
-<TelemetryConfig>
- <Events default="always">
-  <Event name="lookdir" enabled="players"/>
-  <Event name="lookrotation" enabled="never"/>
- </Events>
-</TelemetryConfig>

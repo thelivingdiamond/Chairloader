@@ -1,8 +1,0 @@
-Script.ReloadScript("SCRIPTS/Entities/AI/Ark/ArkTrackviewDumbyPlayer_x.lua")
-Script.ReloadScript("SCRIPTS/Entities/actor/BasicActor.lua")
-Script.ReloadScript("SCRIPTS/Entities/AI/Shared/BasicAI.lua")
-Script.ReloadScript("SCRIPTS/Entities/actor/ArkNpc.lua")
-CreateActor(ArkTrackviewDumbyPlayer_x)
-ArkTrackviewDumbyPlayer = CreateAI(ArkTrackviewDumbyPlayer_x)
-CreateArkNpc(ArkTrackviewDumbyPlayer)
-ArkTrackviewDumbyPlayer:Expose()

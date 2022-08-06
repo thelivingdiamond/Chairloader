@@ -1,7 +1,0 @@
-
-<SignalReceivers>
- <Imports>
-  <File file="Ark/AI/AiSignalReceiverConfigs/NpcBaseSignalReceiverConfig.xml"/>
- </Imports>
- <SignalData/>
-</SignalReceivers>

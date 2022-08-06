@@ -1,4 +1,0 @@
-
-<DialogScript Name="VS_InstMessage_DanielleRobo.IM_DanielleRobo_Pyschoscope_b" Description="">
- <Line actor="0" lookatActor="255" flagLookAtSticky="0" flagSoundStopsAnim="0" flagAGSignal="0" flagAGEP="0" sound="vs/daniellerobo/im_daniellerobo_pyschoscope_b" anim="" facial="" delay="0" facialWeight="0.5" facialFadeTime="0.5" desc=""/>
-</DialogScript>

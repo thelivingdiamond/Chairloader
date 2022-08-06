@@ -1,8 +1,0 @@
-
-<DialogFlownodeBuffers>
- <Buffer name="None=0"/>
- <Buffer name="AIHighPriority=1"/>
- <Buffer name="AILowPriority=2"/>
- <Buffer name="MissionObjective=3"/>
- <Buffer name="NAX=4"/>
-</DialogFlownodeBuffers>
