@@ -1,10 +1,12 @@
 //
 // Created by theli on 8/1/2022.
 //
+#pragma once
 
 #include <zip.h>
-#include "imgui/imgui.h"
-#include "imgui/imgui_stdlib.h"
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_stdlib.h"
+#include "ImGuiFileDialog/ImGuiFileDialog.h"
 #include <pugixml.hpp>
 #include <filesystem>
 #include <fstream>
@@ -27,10 +29,9 @@ public:
     public:
         LogEntry(std::string &messageIn, severityLevel levelIn): message(messageIn), level(levelIn){
             tm newtime;
-            time_t now = time(0);
+            time_t now = time(nullptr);
             localtime_s(&newtime,&now);
             timeStamp = boost::str((boost::format("%i:%i:%i") % newtime.tm_hour % newtime.tm_min % newtime.tm_sec));
-//            timeStamp = timeStamp.substr(0, timeStamp.size()-1);
         }
         std::string message;
         severityLevel level;
@@ -39,11 +40,13 @@ public:
     struct Mod{
         std::string modName;
         std::string version;
-        int loadOrder;
+        int loadOrder = -1;
         pugi::xml_node infoFile;
         pugi::xml_node configFile;
         bool XMLEnable,
-             DLLEnable;
+             DLLEnable,
+             deployed = false,
+             installed = false;
         bool operator<( Mod& b ) const {
             return this->loadOrder < b.loadOrder;
         }
@@ -70,7 +73,8 @@ private:
 
     fs::path selectedFile;
     bool TreeNodeWalkDirectory(fs::path path, std::string modName);
-
+    std::string fileName;
+    fs::path modToLoadPath;
     fs::path PreyPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey)";
     pugi::xml_document ChairloaderConfigFile;
     pugi::xml_node ModListNode;
@@ -78,11 +82,21 @@ private:
     void loadModInfoFiles();
     bool LoadModInfoFile(fs::path directory, Mod *mod);
     void FindMod(Mod* modEntry);
+    bool checkSafeLoadOrder(int LoadOrder);
+    int getNextSafeLoadOrder();
+    void incrementNextSafeLoadOrder(int loadOrder);
+    void serializeLoadOrder();
+
+    int nextSafeLoadOrder = 0;
+
     void SaveMod(Mod* modEntry);
+    void SaveAllMods();
     void LoadModsFromConfig();
+    void DetectNewMods();
     void flushFileQueue();
     std::vector<LogEntry> logRecord;
     std::vector<LogEntry> fileQueue;
+    std::map<int, std::string> loadOrder;
 #ifdef _DEBUG
     severityLevel filterLevel = severityLevel::trace;
 #else

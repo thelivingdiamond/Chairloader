@@ -7,8 +7,10 @@
 #include "ModLoader.h"
 
 
-
+static std::string ErrorMessage;
+static bool showErrorPopup = false;
 static bool showDemo = true;
+
 void ModLoader::Draw() {
     if(ImGui::BeginMenuBar()){
         if(ImGui::BeginMenu("Files", true)){
@@ -24,13 +26,23 @@ void ModLoader::Draw() {
         DrawDeploySettings();
         DrawLog();
         ImGui::EndTabBar();
+        if(showErrorPopup) {
+            ImGui::OpenPopup("Error");
+            showErrorPopup = false;
+        }
+        if (ImGui::BeginPopupModal("Error", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize)) {
+            ImGui::Text("%s", ErrorMessage.c_str());
+            if(ImGui::Button("Close")){
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
+        }
     }
     if(showDemo){
         ImGui::ShowDemoWindow(&showDemo);
     }
     std::sort(ModList.begin(), ModList.end());
 }
-
 void ModLoader::DrawModList() {
     static std::string selectedMod;
     if(ImGui::BeginTabItem("Mod List")) {
@@ -52,42 +64,56 @@ void ModLoader::DrawModList() {
                 for (auto &ModEntry: ModList) {
                     ImGui::TableNextRow();
                     ImGui::TableNextColumn();
-                    if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0,
-                                          ImVec2(0, 28)))
-                        selectedMod = ModEntry.modName;
-//                if (ImGui::IsItemActive() && !ImGui::IsItemHovered())
-//                {
-//                    int n_next = i + (ImGui::GetMouseDragDelta(0, 28.0f).y < 0.f ? -1 : 1);
-//                    if (n_next >= 0 && n_next < ModList.size())
-//                    {
-//                        std::swap(ModList.at(i), ModList.at(n_next));
-//                        ImGui::ResetMouseDragDelta();
-//                    }
-//                }
+                    if(ModEntry.installed) {
+                        if(ModEntry.deployed) {
+                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, ImVec2(0, 28)))
+                                selectedMod = ModEntry.modName;
+                        } else {
+                            ImGui::PushStyleColor(ImGuiCol_Text,ImColor(180,180,180).operator ImU32());
+                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, ImVec2(0, 28)))
+                                selectedMod = ModEntry.modName;
+                            ImGui::PopStyleColor();
+                            if(ImGui::IsItemHovered()){
+                                ImGui::BeginTooltip();
+                                ImGui::Text("Mod is not deployed");
+                                ImGui::EndTooltip();
+                            }
+                        }
+                    } else {
+                        ImGui::PushStyleColor(ImGuiCol_Text,ImColor(245,100,100).operator ImU32());
+                        if (ImGui::Selectable((ModEntry.modName + " *").c_str(), selectedMod == ModEntry.modName, 0, ImVec2(0, 28)))
+                            selectedMod = ModEntry.modName;
+                        ImGui::PopStyleColor();
+                        if(ImGui::IsItemHovered()){
+                            ImGui::BeginTooltip();
+                            ImGui::Text("Mod is not installed. Please install mod first");
+                            ImGui::EndTooltip();
+                        }
 
-
+                    }
                     ImGui::TableNextColumn();
                     ImGui::Text("%s", ModEntry.version.c_str());
                     ImGui::TableNextColumn();
-                    ImGui::Text("%i", i);
+                    ImGui::Text("%i", ModEntry.loadOrder);
 
                     ImGui::TableNextColumn();
                     if (selectedMod == ModEntry.modName) {
                         try {
-                            if (i > 0) {
+                            if (ModEntry.loadOrder > 0) {
                                 if (ImGui::ArrowButton(("##" + ModEntry.modName + "Up").c_str(), ImGuiDir_Up)) {
-                                    //TODO: switch elements in the vector
-                                    std::swap(ModList.at(i - 1), ModList.at(i));
+                                    std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
+                                    std::sort(ModList.begin(), ModList.end());
                                 }
                                 ImGui::SameLine();
                             }
-                            if (i < ModList.size() - 1) {
+                            if (ModEntry.loadOrder < ModList.size() - 1) {
                                 if (ImGui::ArrowButton(("##" + ModEntry.modName + "Down").c_str(), ImGuiDir_Down)) {
-                                    //TODO: switch elements in the vector
-                                    std::swap(ModList.at(i), ModList.at(i + 1));
+                                    std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
+                                    std::sort(ModList.begin(), ModList.end());
                                 }
                             }
                         } catch (const std::exception &exc) {
+                            log(severityLevel::error, "%s", exc.what());
                             std::cerr << exc.what() << std::endl;
                         }
                     }
@@ -106,16 +132,49 @@ void ModLoader::DrawModList() {
             auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
             ImGui::Separator();
             if(ModSelect != ModList.end()){
+                if(!ModSelect->installed)
+                    ImGui::BeginDisabled();
                 ImGui::Text("%s", ModSelect->modName.c_str());
-//                    ImGui::Text("%s", ModSelect->version.c_str());
                 ImGui::Checkbox("Load DLL", &ModSelect->DLLEnable);
                 ImGui::Checkbox("Load XML", &ModSelect->XMLEnable);
                 if(ImGui::Button("Save")){
-                    SaveMod(&*ModSelect);
+                    if(ModSelect->installed) {
+                        SaveMod(&*ModSelect);
+                    } else {
+                        log(severityLevel::warning, "Mod is not installed");
+                        ErrorMessage = "Mod is not installed, please install mod first";
+                        showErrorPopup = true;
+                    }
                 }
+                if(!ModSelect->installed) {
+                    ImGui::EndDisabled();
+                    if(ImGui::Button("Install")) {
+                    }
+                }
+            }
+//            for(auto &order : loadOrder){
+//                ImGui::Text("%s: %i", order.second.c_str(), order.first);
+//            }
+            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -40);
+            ImGui::Separator();
+            if(ImGui::Button("Install Mod")){
+                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", ".zip", modToLoadPath.string(), 1, nullptr);
             }
         }
         ImGui::EndChild();
+        //TODO: get display size (currently broken)
+        ImVec2 maxSize = {1920, 1080};
+        ImVec2 minSize = {maxSize.x * 0.5f, maxSize.y * 0.5f};
+        if(ImGuiFileDialog::Instance()->Display("ChooseModFile", ImGuiWindowFlags_None, minSize, maxSize)){
+            // action if OK
+            if (ImGuiFileDialog::Instance()->IsOk())
+            {
+                modToLoadPath = ImGuiFileDialog::Instance()->GetCurrentPath();
+                fileName = ImGuiFileDialog::Instance()->GetFilePathName();
+                log(severityLevel::trace, "File To Load: %s", modToLoadPath.string() + fileName);
+            }
+            ImGuiFileDialog::Instance()->Close();
+        }
         ImGui::EndTabItem();
     }
 }
@@ -238,12 +297,10 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
     log(severityLevel::debug, "%s/ModInfo.xml", directory.string().c_str());
     if(loadResult){
         std::string modName = result.child("Mod").attribute("modName").as_string();
-        //TODO: add automatic version checking against the stored version
         if(!modName.empty()) {
             mod->modName = modName;
             mod->version =   result.child("Mod").attribute("version").as_string();
             mod->infoFile = result.child("Mod");
-            log(severityLevel::info, "ModInfo.xml Loaded: '%s'", modName.c_str());
             return true;
         }
         else {
@@ -256,30 +313,44 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
     return false;
 }
 
-
-void ModLoader::loadModInfoFiles() {
-    //TODO: check mod list first in order to get previous mod order
-    ModList.clear();
-    // load previously loaded (assumedly) valid config
-    //TODO: validate load order and uniqueness of previous config
+void ModLoader::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
         fs::path modPath = PreyPath.string() + "/Mods/" + PrevMod.child("modName").text().as_string();
-        auto mod = new Mod;
-        if(LoadModInfoFile(modPath, mod)) {
-            FindMod(mod);
-            ModList.emplace_back(*mod);
+        Mod mod;
+        if(LoadModInfoFile(modPath, &mod)) {
+            FindMod(&mod);
+            log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
+            log(severityLevel::info, "ModInfo.xml Loaded: '%s'", mod.modName.c_str());
+            ModList.emplace_back(mod);
         }
     }
+    std::sort(ModList.begin(), ModList.end());
+}
+void ModLoader::DetectNewMods() {
     for(auto &directory : fs::directory_iterator(fs::path(PreyPath.string() + "/Mods/"))){
         if(directory.path().string() != PreyPath.string() + "/Mods/config") {
-            auto mod = new Mod;
-            if(LoadModInfoFile(directory.path(), mod)) {
-                FindMod(mod);
-                if (std::find(ModList.begin(), ModList.end(), mod->modName) == ModList.end())
-                    ModList.emplace_back(*mod);
+            Mod mod;
+            if(LoadModInfoFile(directory.path(), &mod)) {
+                if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
+                    FindMod(&mod);
+                    log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
+                    log(severityLevel::info, "ModInfo.xml Loaded: '%s'", mod.modName.c_str());
+                    ModList.emplace_back(mod);
+                }
             }
         }
     }
+    std::sort(ModList.begin(), ModList.end());
+}
+
+void ModLoader::loadModInfoFiles() {
+    ModList.clear();
+    // load previously loaded (assumedly) valid config
+    LoadModsFromConfig();
+    DetectNewMods();
+
+    //TODO: Handle dependencies
+    serializeLoadOrder();
 }
 
 ModLoader::ModLoader() {
@@ -295,89 +366,98 @@ ModLoader::ModLoader() {
         foundMods += std::string(" ") + foundMod.name() + ",";
     }
     log(severityLevel::info, "%s", foundMods);
-//    fs::remove("ChairloaderModLoader.log");
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
-    //DO something
     loadModInfoFiles();
 }
 
 
 
 void ModLoader::FindMod(Mod* modEntry) {
-//    auto ModListNode = ChairloaderConfigFile.child("Chairloader").child("ModList");
-    if(std::find(ModList.begin(), ModList.end(),modEntry->modName) != ModList.end()) {
+    /* Check if mod is in the config list */
+    if(std::find(ModList.begin(), ModList.end(),modEntry->modName) == ModList.end()) {
+        // -- If in Chairloader.xml --
         if (ModListNode.child(modEntry->modName.c_str())) {
+            /* Load Previous Mod Config */
             auto modNode = ModListNode.child(modEntry->modName.c_str());
             modEntry->XMLEnable = modNode.child("XMLLoadEnable").text().as_bool();
             modEntry->DLLEnable = modNode.child("DLLLoadEnable").text().as_bool();
-            modEntry->loadOrder = modNode.child("loadOrder").text().as_int();
+            modEntry->installed = true;
+            /* Load Order*/
+            int ModloadOrder = modNode.child("loadOrder").text().as_int();
+            if(checkSafeLoadOrder(ModloadOrder)){
+                incrementNextSafeLoadOrder(ModloadOrder);
+                modEntry->loadOrder = ModloadOrder;
+                loadOrder.insert(std::pair(modEntry->loadOrder, modEntry->modName));
+                log(severityLevel::debug, "New Load Order Found = %i", modEntry->loadOrder);
+            } else {
+                modEntry->loadOrder = getNextSafeLoadOrder();
+                loadOrder.insert(std::pair(modEntry->loadOrder, modEntry->modName));
+                log(severityLevel::debug, "Non-unique load order found. Next safe = %i", modEntry->loadOrder);
+            }
+
+            /* Version Check */
             if(modEntry->version != modNode.child("version").text().as_string()){
                 log(severityLevel::warning, "%s: config version mismatch, TODO: fix this automatically", modEntry->modName);
             }
-            // TODO: check version
             // TODO: handle configs
+        // -- If New Mod --
         } else {
+            log(severityLevel::debug, "New Mod Found: %s", modEntry->modName);
             modEntry->XMLEnable = true;
             modEntry->DLLEnable = true;
-            modEntry->loadOrder = 0;
-            // TODO: copy default config
-
+            modEntry->loadOrder = getNextSafeLoadOrder();
+            loadOrder.insert(std::pair(modEntry->loadOrder, modEntry->modName));
         }
+    } else {
+        log(severityLevel::error, "%s already loaded", modEntry->modName);
     }
-    //TODO: find existing load order in the chairloader config file, or return next available order
-    //TODO: keep track of next available position
 
 }
 
+
+
+
+//TODO: save mods in order with ability to delete and reorder the mod list in the file
 void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
     if(modEntry == nullptr)
         return;
     auto modNode = ModListNode.child(modEntry->modName.c_str());
     if(modNode){
-        modNode.child("modName").text().set(modEntry->modName.c_str());
-        modNode.child("loadOrder").text().set(modEntry->loadOrder);
-        modNode.child("version").text().set(modEntry->version.c_str());
-        modNode.child("DLLLoadEnable").text().set(modEntry->DLLEnable);
-        modNode.child("XMLLoadEnable").text().set(modEntry->XMLEnable);
+        modNode.remove_children();
+//        modNode.child("modName").text().set(modEntry->modName.c_str());
+//        modNode.child("loadOrder").text().set(modEntry->loadOrder);
+//        modNode.child("version").text().set(modEntry->version.c_str());
+//        modNode.child("DLLLoadEnable").text().set(modEntry->DLLEnable);
+//        modNode.child("XMLLoadEnable").text().set(modEntry->XMLEnable);
     } else {
-        ModListNode.append_child(modEntry->modName.c_str());
-            modNode = ModListNode.child(modEntry->modName.c_str());
-            modNode.append_attribute("type").set_value("xmlnode");
-            //modName
-            auto node = modNode.append_child("modName");
-            node.append_attribute("type").set_value("string");
-            node.text().set(modEntry->modName.c_str());
-            //loadOrder
-            node = modNode.append_child("loadOrder");
-            node.append_attribute("type").set_value("int");
-            node.text().set(modEntry->loadOrder);
-            //DLLLoad
-            node = modNode.append_child("DLLLoadEnable");
-            node.append_attribute("type").set_value("bool");
-            node.text().set(modEntry->DLLEnable);
-            //XMLLoad
-            node = modNode.append_child("XMLLoadEnable");
-            node.append_attribute("type").set_value("bool");
-            node.text().set(modEntry->XMLEnable);
-            //Version
-            node = modNode.append_child("version");
-            node.append_attribute("type").set_value("string");
-            node.text().set(modEntry->version.c_str());
-        //TODO: append
+        ModListNode.append_child(modEntry->modName.c_str()).append_attribute("type").set_value("xmlnode");;
     }
-    //TODO: save the config file in the right format
+    modNode = ModListNode.child(modEntry->modName.c_str());
+    //modName
+    auto node = modNode.append_child("modName");
+    node.append_attribute("type").set_value("string");
+    node.text().set(modEntry->modName.c_str());
+    //loadOrder
+    node = modNode.append_child("loadOrder");
+    node.append_attribute("type").set_value("int");
+    node.text().set(modEntry->loadOrder);
+    //DLLLoad
+    node = modNode.append_child("DLLLoadEnable");
+    node.append_attribute("type").set_value("bool");
+    node.text().set(modEntry->DLLEnable);
+    //XMLLoad
+    node = modNode.append_child("XMLLoadEnable");
+    node.append_attribute("type").set_value("bool");
+    node.text().set(modEntry->XMLEnable);
+    //Version
+    node = modNode.append_child("version");
+    node.append_attribute("type").set_value("string");
+    node.text().set(modEntry->version.c_str());
+
     ChairloaderConfigFile.save_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str());
 }
 
-void ModLoader::LoadModsFromConfig() {
-    for(auto &modEntry: ModListNode){
-        if(std::find(ModList.begin(), ModList.end(),modEntry.child("modName").text().as_string()) == ModList.end()){
-            Mod newMod;
-            newMod.modName = modEntry.child("modName").text().as_string();
-        }
-    }
-}
 
 void ModLoader::flushFileQueue() {
     std::ofstream fileStream;
@@ -423,6 +503,7 @@ void ModLoader::Update() {
         time(&lastFileTime);
         flushFileQueue();
     }
+    //TODO: automatic saving of the file
 }
 
 ModLoader::~ModLoader() {
@@ -448,5 +529,39 @@ bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
     }
     return false;
 }
+
+int ModLoader::getNextSafeLoadOrder() {
+    nextSafeLoadOrder++;
+    int safe = nextSafeLoadOrder;
+    log(severityLevel::debug, "Next Safe Load Order: %i", nextSafeLoadOrder);
+    return safe;
+}
+
+void ModLoader::incrementNextSafeLoadOrder(int loadOrder) {
+    if(loadOrder <= nextSafeLoadOrder)
+        nextSafeLoadOrder = loadOrder + 1;
+    log(severityLevel::debug, "New Safe Load Order: %i", nextSafeLoadOrder);
+}
+
+bool ModLoader::checkSafeLoadOrder(int i) {
+    return loadOrder.find(i) == loadOrder.end();
+}
+
+void ModLoader::serializeLoadOrder() {
+    int i = 0;
+    for(auto &mod : ModList){
+        mod.loadOrder = i;
+        i++;
+    }
+    nextSafeLoadOrder = i + 1;
+}
+
+void ModLoader::SaveAllMods() {
+    for(auto &mod : ModList){
+        ModListNode.remove_child(mod.modName.c_str());
+        SaveMod(&mod);
+    }
+}
+
 
 
