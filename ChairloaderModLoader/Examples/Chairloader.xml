@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Chairloader version="">
+	<Modules>
+		<TestNode type="int">1</TestNode>
+		<ChairloaderGUI type="xmlnode" />
+		<OverlayLog type="xmlnode" />
+		<EntityManager type="xmlnode" />
+		<PlayerManager type="xmlnode" />
+		<DevConsole type="xmlnode" />
+		<PerfOverlay type="xmlnode" />
+		<Profiler type="xmlnode" />
+	</Modules>
+	<ModList type="xmlnode">
+		<ExampleMod type="xmlnode">
+			<modName type="string">ExampleMod</modName>
+			<loadOrder type="int">1</loadOrder>
+			<DLLLoadEnable type="bool">true</DLLLoadEnable>
+			<XMLLoadEnable type="bool">true</XMLLoadEnable>
+			<version type="string">1.1A</version>
+		</ExampleMod>
+		<ExampleMod2 type="xmlnode">
+			<modName type="string">ExampleMod2</modName>
+			<loadOrder type="int">0</loadOrder>
+			<DLLLoadEnable type="bool">true</DLLLoadEnable>
+			<XMLLoadEnable type="bool">true</XMLLoadEnable>
+			<version type="string">3.0</version>
+		</ExampleMod2>
+	</ModList>
+</Chairloader>
