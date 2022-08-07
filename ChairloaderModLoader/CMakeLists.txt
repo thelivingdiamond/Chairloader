@@ -36,6 +36,7 @@ set(SOURCE_FILES
         zipconf.h
         Montserrat-Regular.ttf
         )
+find_package(7zip CONFIG REQUIRED)
 
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 
@@ -43,6 +44,7 @@ target_link_libraries(ChairloaderModLoader
         D3D11.lib
         pugixml::pugixml
         libzip::zip
+        7zip::7zip
         ${Boost_LIBRARIES}
         )
 
