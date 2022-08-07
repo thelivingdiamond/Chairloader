@@ -35,8 +35,10 @@ set(SOURCE_FILES
         #Miscellaneous
         zipconf.h
         Montserrat-Regular.ttf
+        appicon.rc
         )
-find_package(7zip CONFIG REQUIRED)
+
+set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
 
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 
@@ -44,7 +46,6 @@ target_link_libraries(ChairloaderModLoader
         D3D11.lib
         pugixml::pugixml
         libzip::zip
-        7zip::7zip
         ${Boost_LIBRARIES}
         )
 
