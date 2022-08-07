@@ -88,5 +88,5 @@ unset(EXAMPLE_MOD_DLL_PATH CACHE)
 # Executables
 # Executables don't need to use Prey ABI
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-add_subdirectory(ChairLoaderXMLLoader)
+#add_subdirectory(ChairLoaderXMLLoader)
 add_subdirectory(ChairLoaderModLoader)
