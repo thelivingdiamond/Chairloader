@@ -145,6 +145,9 @@ void ChairLoaderImGui::InitBackend() {
 	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
 	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
 
+	// Get ID3DUserDefinedAnnotation
+	static_cast<CD3D9Renderer*>(gEnv->pRenderer)->m_DeviceContextWrapper.QueryInterface(__uuidof(ID3DUserDefinedAnnotation), (void**)&m_pAnnot);
+
 	CreateFontsTexture();
 }
 
@@ -817,7 +820,11 @@ HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UIN
 		}
 
 		if (data.bIsReady)
+		{
+			m_pInstance->m_pAnnot->BeginEvent(L"Chairloader ImGui");
 			m_pInstance->RT_Render();
+			m_pInstance->m_pAnnot->EndEvent();
+		}
 	}
 
 	return m_hookPresent(pChain, SyncInterval, Flags);
