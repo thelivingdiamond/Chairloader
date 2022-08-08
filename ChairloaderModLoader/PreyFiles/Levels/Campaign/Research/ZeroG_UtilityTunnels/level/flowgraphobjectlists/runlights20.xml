@@ -1,0 +1,12 @@
+<Graph isModule="1" moduleName="RunLights20" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="6" Class="entity:ArkLight" pos="-612,33,0" EntityGUID="{E2F12B60-2773-4A77-8D2D-ACCA3EE824CE}" EntityGUID_64="4A772773E2F12B60">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="8" Class="entity:ArkLight" pos="-430,30,0" EntityGUID="{812D7B25-8040-4AAE-B14E-40D161DA0C89}" EntityGUID_64="4AAE8040812D7B25">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

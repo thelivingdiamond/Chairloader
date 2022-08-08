@@ -1,0 +1,10 @@
+<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/playergenderselect">
+ <GameToken Id="-2095795299" Name="Button_Presses" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-1017457456" Name="Terrain Toggle" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-432528181" Name="Tone Mapper Toggle" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-199014493" Name="Reference Spheres Toggle" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-1172536205" Name="Background Toggle" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-1062105949" Name="Screenshot" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-25518146" Name="Text_Toggle" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-1219435616" Name="Size_Reference_Toggle" Flags="4" Type="Bool" Value="false"/>
+</GameTokensLibrary>

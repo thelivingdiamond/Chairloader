@@ -1,0 +1,12 @@
+<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/engineering/cargobay">
+ <GameToken Id="-1929218210" Name="NPC.AlfredRose" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1156742964" Name="Lifts.Lift_6_Up" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1447547102" Name="Lifts.Lift_5_Up" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1861990329" Name="Lifts.Lift_4_Up" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1932300034" Name="Lifts.Lift_3_Up" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1267787877" Name="Lifts.Lift_2_Up" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1495615371" Name="Lifts.Lift_1_Up" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1600770527" Name="Machines.FabricatedTurret" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-516642667" Name="Machines.FoundThreeTurrets" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-814042836" Name="NPC.Ekaterina_NoTalk" Flags="4" Type="Bool" Value="false"/>
+</GameTokensLibrary>

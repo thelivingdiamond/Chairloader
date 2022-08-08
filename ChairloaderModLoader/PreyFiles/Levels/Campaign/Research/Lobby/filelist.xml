@@ -1,0 +1,7 @@
+
+<download name="lobby" type="Map">
+ <index src="filelist.xml" dest="filelist.xml"/>
+ <files>
+  <file src="level.pak" dest="level.pak" size="4775520" md5="62a3c08a37ff354e2ad5140316ac5534"/>
+ </files>
+</download>

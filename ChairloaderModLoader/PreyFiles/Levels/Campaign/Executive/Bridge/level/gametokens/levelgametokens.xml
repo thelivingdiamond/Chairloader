@@ -1,0 +1,17 @@
+<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/executive/bridge">
+ <GameToken Id="-1960327640" Name="Bridge_Operator.OP_Alerted_2" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1089329799" Name="Bridge_Operator.OP_InTurret_2" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1331684203" Name="Bridge_Operator.Player_NearTurret" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1200597993" Name="Bridge_Operator.Op_patrol1_closed" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1224780812" Name="Bridge_Operator.Op_patrol2_closed" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-95071382" Name="Bridge_Operator.Op_patrol3_closed" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-716593578" Name="Bridge_Operator.OP_Alert_Init" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-938142225" Name="Bridge_Operator.OP_InTurret_3" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1243840539" Name="Bridge_Operator.AlexStunnedByJanuary" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-773107554" Name="Bridge_Operator.TEST_BoomTimer" Flags="4" Type="String" Value="false"/>
+ <GameToken Id="-1346722433" Name="SideObj_SmugglerQuest.GotAllDropPoints" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-754375361" Name="Bridge.AlexKnockedOut" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1364496612" Name="Bridge.JanuaryID" Flags="4" Type="String" Value=""/>
+ <GameToken Id="-1636577629" Name="Bridge.AlexGlooed" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-194628167" Name="Bridge.JanuaryGlooed" Flags="4" Type="Bool" Value="false"/>
+</GameTokensLibrary>

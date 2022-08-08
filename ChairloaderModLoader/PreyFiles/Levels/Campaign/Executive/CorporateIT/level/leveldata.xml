@@ -1,0 +1,78 @@
+<LevelData SandboxVersion="3.7.0.179">
+ <LevelInfo CreationDate="08/01/18" Name="CorporateIT" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
+ <SurfaceTypes>
+  <SurfaceType Name="Materials/material_terrain_default" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/material_terrain_default" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+ </SurfaceTypes>
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+  <CollisionClass type="0" ignore="16384"/>
+  <CollisionClass type="1024" ignore="0"/>
+  <CollisionClass type="0" ignore="65536"/>
+  <CollisionClass type="4194304" ignore="0"/>
+  <CollisionClass type="8192" ignore="0"/>
+  <CollisionClass type="17408" ignore="16384"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="CorporateIT_ShadowShells" Parent="" Id="1" Specs="-1"/>
+  <Layer Name="CorporateIT_Exterior" Parent="" Id="2" Specs="-1"/>
+  <Layer Name="Corporate_IT_Tutorial" Parent="" Id="3" Specs="-1"/>
+  <Layer Name="Main" Parent="" Id="4" Specs="-1"/>
+  <Layer Name="CorporateIT_CoralPhase4" Parent="" Id="5" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="4"/>
+  <Layer Name="CorporateIT_Stairwell" Parent="" Id="6" Specs="-1"/>
+  <Layer Name="CorporateIT_Stairwell_Lights" Parent="CorporateIT_Stairwell" Id="7" Specs="-1"/>
+  <Layer Name="CorporateIT_GEO_MorganLookingGlassTransition" Parent="" Id="8" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_VisAreas" Parent="" Id="9" Specs="-1"/>
+  <Layer Name="CorporateIT_Repository" Parent="" Id="10" Specs="-1"/>
+  <Layer Name="Ark_MetricCameras" Parent="" Id="11" Specs="-1"/>
+  <Layer Name="CorporateIT_CoralPhase3" Parent="" Id="12" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="3"/>
+  <Layer Name="DeepStorage_animation_sq_03_jettison" Parent="" Id="13" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Corporate_IT_SideQuestScripting" Parent="" Id="14" Specs="-1"/>
+  <Layer Name="CorporateIT_GEO_MorganLookingGlassDiagnostic" Parent="" Id="15" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_GEONewStairwell" Parent="" Id="16" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_DataVaults_Lights" Parent="CorporateIT_DataVaults" Id="17" Specs="-1"/>
+  <Layer Name="CorporateIT_Misc" Parent="" Id="18" Specs="-1"/>
+  <Layer Name="CorporateIT_Offices" Parent="" Id="19" Specs="-1"/>
+  <Layer Name="CorporateIT_Scripting" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="CorporateIT_ApexScripting" Parent="" Id="21" Specs="-1" DefaultLoaded="1" LoadTokenId="659909599" LoadTokenValue="1"/>
+  <Layer Name="CorporateIT_GEO_MorganLookingGlassLoadScreen" Parent="" Id="22" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Corporate_IT_DisgruntledEmployee" Parent="" Id="23" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_SensitiveData_Lights" Parent="CorporateIT_SensitiveData" Id="24" Specs="-1"/>
+  <Layer Name="CorporateIT_Sound" Parent="" Id="25" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_MorganLookingGlassScene_Geo" Parent="" Id="26" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_Distractions" Parent="" Id="27" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="DeepStorage_animation_sq_03_fem" Parent="" Id="28" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_AudioVolumes" Parent="" Id="29" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_GrayboxTemp" Parent="" Id="30" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_Repository_Coral" Parent="CorporateIT_Repository" Id="31" Specs="-1"/>
+  <Layer Name="CorporateIT_Offices_Lights" Parent="CorporateIT_Offices" Id="32" Specs="-1"/>
+  <Layer Name="CorporateIT_Repository_Lights" Parent="CorporateIT_Repository" Id="33" Specs="-1"/>
+  <Layer Name="CorporateIT_DataVaults" Parent="" Id="34" Specs="-1"/>
+  <Layer Name="CorporateIT_Lighting_Final" Parent="" Id="35" Specs="-1"/>
+  <Layer Name="CorporateIT_Lighting_Backup" Parent="" Id="36" Specs="-1"/>
+  <Layer Name="CorporateIT_TrackviewMorganLG" Parent="" Id="37" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_FX" Parent="" Id="38" Specs="-1"/>
+  <Layer Name="CorporateIT_Collision" Parent="" Id="39" Specs="-1"/>
+  <Layer Name="CorporateIT_Entrance_Lights" Parent="CorporateIT_Entrance" Id="40" Specs="-1"/>
+  <Layer Name="CorporateIT_Entrance" Parent="" Id="41" Specs="-1"/>
+  <Layer Name="DeepStorage_animation_sq_04_night" Parent="" Id="42" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="CorporateIT_SensitiveData" Parent="" Id="43" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="LevelShared"/>
+  <Library Name="Characters"/>
+  <Library Name="Interactables"/>
+  <Library Name="MaterialEffects"/>
+  <Library Name="PlayerWeapons"/>
+  <Library Name="Screen"/>
+  <Library Name="Player"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences>
+  <Library Name="GT_Global"/>
+  <Library Name="GT_GameTime"/>
+  <Library Name="GT_GlobalStrings"/>
+ </GameTokensLibraryReferences>
+</LevelData>
