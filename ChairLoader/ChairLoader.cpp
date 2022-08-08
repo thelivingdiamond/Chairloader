@@ -340,25 +340,28 @@ void ChairLoader::initializeMods() {
 		ModEntry entry;
 		std::string modName = mod.first;
 		entry.modName = modName;
-		entry.hModule = LoadLibraryA((".\\Mods\\" + modName + "\\" + modName + ".dll").c_str());
+        if(modDLLs.find(modName)->second) {
+            entry.hModule = LoadLibraryA((".\\Mods\\" + modName + "\\" + modName + ".dll").c_str());
 
-		if (!entry.hModule)
-			CryFatalError("%s: DLL Failed to load", modName.c_str());
+            if (!entry.hModule)
+                CryFatalError("%s: DLL Failed to load", modName.c_str());
 
-		entry.pfnInit = (IChairloaderMod::ProcInitialize*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_INITIALIZE);
-		entry.pfnShutdown = (IChairloaderMod::ProcShutdown*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_SHUTDOWN);
+            entry.pfnInit = (IChairloaderMod::ProcInitialize *) GetProcAddress(entry.hModule,
+                                                                               IChairloaderMod::PROC_INITIALIZE);
+            entry.pfnShutdown = (IChairloaderMod::ProcShutdown *) GetProcAddress(entry.hModule,
+                                                                                 IChairloaderMod::PROC_SHUTDOWN);
 
-		if (!entry.pfnInit || !entry.pfnShutdown)
-			CryFatalError("%s: Missing function exports", modName.c_str());
+            if (!entry.pfnInit || !entry.pfnShutdown)
+                CryFatalError("%s: Missing function exports", modName.c_str());
 
-		entry.pMod = entry.pfnInit();
+            entry.pMod = entry.pfnInit();
 
-		if (!entry.pMod)
-			CryFatalError("%s: Initialize returned nullptr", modName.c_str());
-
-		bool isRegistered = RegisterMod(std::move(entry));
-		if (!isRegistered)
-			CryFatalError("%s: RegisterMod returned false", modName.c_str());
+            if (!entry.pMod)
+                CryFatalError("%s: Initialize returned nullptr", modName.c_str());
+            bool isRegistered = RegisterMod(std::move(entry));
+            if (!isRegistered)
+                CryFatalError("%s: Mod Already Registered", modName.c_str());
+        }
 	}
 }
 
@@ -391,11 +394,14 @@ void ChairLoader::ReadModList() {
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for(auto &mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
+        modDLLs.insert(std::pair(modName, mod.child("hasDLL").text().as_bool()));
         if(mod.child("enabled").text().as_bool()) {
             auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
             modLoadOrder.insert(std::pair(modName, loadOrder));
             CryLog("Load order found: %s %i", modName.c_str(), loadOrder);
-        } 
+        } else {
+            CryLog("Mod %s is disabled", modName.c_str());
+        }
 	}
 }
 

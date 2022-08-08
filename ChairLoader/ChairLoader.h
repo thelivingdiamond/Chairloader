@@ -38,6 +38,10 @@ public:
 		//! configuration file
 		// pugi::xml_document configFile;
 
+        //! asset information
+        bool hasDLL = false;
+        bool hasXML = false;
+
 		int loadOrder = -1;
 
 		bool operator<(const ModEntry& rhs) const noexcept { return loadOrder < rhs.loadOrder; }
@@ -89,6 +93,8 @@ private:
 
 	//! intermediate structure to keep track of mod load order before the mods are registered
 	std::map<std::string, int> modLoadOrder;
+
+    std::map<std::string, bool> modDLLs;
 
 	//! reads the config file to obtain the mod load order
 	void ReadModList();
