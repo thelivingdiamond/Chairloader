@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include <Prey/RenderDll/Common/Textures/Texture.h>
 
 ETEX_Format CTexture::TexFormatFromDeviceFormat(DXGI_FORMAT nFormat) {
 	switch (nFormat) {

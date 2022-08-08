@@ -685,7 +685,7 @@ public:
 	virtual void PostLevelUnload();
 	void SetRCamera(CRenderCamera const& cam) { FSetRCamera(this, cam); }
 	virtual void SetCamera(CCamera const& cam);
-	virtual void SetViewport(int x, int y, int width, int height, int id);
+	virtual void SetViewport(int x, int y, int width, int height, int id = 0);
 	virtual void GetViewport(int* x, int* y, int* width, int* height);
 	SViewport GetViewport() const { return FGetViewportOv0(this); }
 	virtual void SetScissor(int x, int y, int width, int height);

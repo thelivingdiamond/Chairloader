@@ -1,5 +1,8 @@
 #pragma once
 #include <Prey/CryRenderer/CryDX.h>
+#include <Prey/CryRenderer/IShader.h>
+#include <Prey/CryRenderer/Texture.h>
+#include <Prey/RenderDll/Common/Shaders/ShaderResources.h>
 
 class CTexture;
 
@@ -136,4 +139,71 @@ struct SDepthTexture
 	~SDepthTexture();
 
 	void Release(bool bReleaseTexture);
+};
+
+class CDeviceTexture;
+
+struct STexStageInfo
+{
+	int                m_nCurState;
+	CDeviceTexture* m_DevTexture;
+
+	STexState          m_State;
+	float              m_fMipBias;
+
+	D3DShaderResource* m_pCurResView;
+	EHWShaderClass     m_eHWSC;
+
+	STexStageInfo()
+	{
+		Flush();
+	}
+	void Flush()
+	{
+		m_nCurState = -1;
+		m_State.m_nMipFilter = -1;
+		m_State.m_nMinFilter = -1;
+		m_State.m_nMagFilter = -1;
+		m_State.m_nAddressU = -1;
+		m_State.m_nAddressV = -1;
+		m_State.m_nAddressW = -1;
+		m_State.m_nAnisotropy = 0;
+
+		m_pCurResView = NULL;
+		m_eHWSC = eHWSC_Pixel;
+
+		m_DevTexture = NULL;
+		m_fMipBias = 0.f;
+	}
+};
+
+class CTexture : public ITexture, public CBaseResource {
+public:
+	static constexpr size_t OFFSET_m_pDevTexture = 0x30;
+	static constexpr size_t OFFSET_SHADER_RESOURCE = 0xB0;
+	static inline auto FSetDevTexture = PreyFunction<void(CTexture* _this, CDeviceTexture* pDeviceTex)>(0xFE6620);
+	static inline auto FClosestFormatSupported = PreyFunction<ETEX_Format(CTexture* _this, ETEX_Format eTFDst)>(0xF29150);
+	static inline auto FGetResourceView = PreyFunction<void* (CTexture* _this, const SResourceView& rvDesc)>(0xFE0760);
+	static inline auto FSetShaderResourceView = PreyFunction<void(CTexture* _this, D3DShaderResource* pDeviceShaderResource, bool bMultisampled)>(0xFE6860);
+	static inline auto FCreateRenderTargetOv1 = PreyFunction<CTexture* (const char* name, unsigned nWidth, unsigned nHeight, ColorF const& cClear, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID)>(0xFDE820);
+	static inline auto FGetDeviceDepthStencilView = PreyFunction<ID3D11DepthStencilView* (CTexture* const _this, int nFirstSlice, int nSliceCount, bool bMultisampled, bool readOnly)>(0xFE0340);
+	static inline auto FGetDeviceDepthReadOnlySRV = PreyFunction<ID3D11ShaderResourceView* (CTexture* const _this, int nFirstSlice, int nSliceCount, bool bMultisampled)>(0xFE02E0);
+	static inline auto FGetDeviceStencilReadOnlySRV = PreyFunction<ID3D11ShaderResourceView* (CTexture* const _this, int nFirstSlice, int nSliceCount, bool bMultisampled)>(0xFE03B0);
+	static inline auto FGetSurfaceOv1 = PreyFunction<ID3D11RenderTargetView* (CTexture* const _this, int nCMSide, int nLevel)>(0xF2B2D0);
+
+	static inline auto s_TexStages = PreyGlobal<STexStageInfo[64]>(0x2B32230);
+
+	CDeviceTexture* GetDevTexture() const { return mem::OffsetInStruct<CDeviceTexture*>(this, OFFSET_m_pDevTexture); }
+	void SetDevTexture(CDeviceTexture* pDeviceTex) { FSetDevTexture(this, pDeviceTex); }
+	ETEX_Format ClosestFormatSupported(ETEX_Format eTFDst) { return FClosestFormatSupported(this, eTFDst); }
+	void* GetResourceView(const SResourceView& rvDesc) { return FGetResourceView(this, rvDesc); }
+	void SetShaderResourceView(D3DShaderResource* pDeviceShaderResource, bool bMultisampled = false) { FSetShaderResourceView(this, pDeviceShaderResource, bMultisampled); }
+	ID3D11DepthStencilView* GetDeviceDepthStencilView(int nFirstSlice, int nSliceCount, bool bMultisampled, bool readOnly) { return FGetDeviceDepthStencilView(this, nFirstSlice, nSliceCount, bMultisampled, readOnly); }
+	ID3D11ShaderResourceView* GetDeviceDepthReadOnlySRV(int nFirstSlice, int nSliceCount, bool bMultisampled) { return FGetDeviceDepthReadOnlySRV(this, nFirstSlice, nSliceCount, bMultisampled); }
+	ID3D11ShaderResourceView* GetDeviceStencilReadOnlySRV(int nFirstSlice, int nSliceCount, bool bMultisampled) { return FGetDeviceStencilReadOnlySRV(this, nFirstSlice, nSliceCount, bMultisampled); }
+	ID3D11RenderTargetView* GetSurface(int nCMSide, int nLevel) { return FGetSurfaceOv1(this, nCMSide, nLevel); }
+
+
+	static ETEX_Format TexFormatFromDeviceFormat(DXGI_FORMAT nFormat);
+	static CTexture* CreateRenderTarget(const char* name, unsigned nWidth, unsigned nHeight, ColorF const& cClear, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID = -1) { return FCreateRenderTargetOv1(name, nWidth, nHeight, cClear, eTT, nFlags, eTF, nCustomID); }
 };

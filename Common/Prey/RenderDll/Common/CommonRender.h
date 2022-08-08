@@ -309,4 +309,6 @@ enum ERenderPrimitiveType
 	eptHWSkinGroups = 0x3f
 };
 
+#define MAX_TMU   64
+
 #endif
