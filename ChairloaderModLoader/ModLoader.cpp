@@ -21,9 +21,9 @@ void ModLoader::Draw() {
     }
     if(ImGui::BeginTabBar("##Mod Tab Bar")) {
         DrawModList();
+        DrawDeploySettings();
         DrawDLLSettings();
         DrawXMLSettings();
-        DrawDeploySettings();
         DrawLog();
         ImGui::EndTabBar();
         if(showErrorPopup) {
@@ -74,15 +74,30 @@ void ModLoader::DrawModList() {
                         ImGui::EndDisabled();
                     }
                     ImGui::TableNextColumn();
+                    ImVec2 SelectableSize = {0, /*ImGui::GetTextLineHeightWithSpacing() + 4.0f*/0};
+//                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 4.0f);
+
+
+//                    ImGui::PushStyleColor(ImGuiCol_TextSelectedBg, ImColor(0,0,0,0).operator ImU32());
+                    auto storedpos = ImGui::GetCursorPosY() + 4;
+                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 3.5);
+                    if(ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(), selectedMod == ModEntry.modName, 0, ImVec2{ImGui::GetColumnWidth(), 27.0f}))
+                        selectedMod = ModEntry.modName;
+                    if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+                        ImGui::OpenPopup((ModEntry.modName + " Mod Actions").c_str());
+                    }
+                    ImGui::SetCursorPosY(storedpos);
                     if(ModEntry.installed) {
                         if(ModEntry.enabled) {
-                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, ImVec2(0, 28)))
-                                selectedMod = ModEntry.modName;
+                            ImGui::TextColored(ImColor(255,255,255), "%s", ModEntry.modName.c_str());
+//                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
+//                                selectedMod = ModEntry.modName;
                         } else {
-                            ImGui::PushStyleColor(ImGuiCol_Text,ImColor(180,180,180).operator ImU32());
-                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, ImVec2(0, 28)))
-                                selectedMod = ModEntry.modName;
-                            ImGui::PopStyleColor();
+//                            ImGui::PushStyleColor(ImGuiCol_Text,ImColor(180,180,180).operator ImU32());
+//                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
+//                                selectedMod = ModEntry.modName;
+//                            ImGui::PopStyleColor();
+                            ImGui::TextColored(ImColor(180,180,180), "%s", ModEntry.modName.c_str());
                             if(ImGui::IsItemHovered()){
                                 ImGui::BeginTooltip();
                                 ImGui::Text("Mod is not enabled");
@@ -90,10 +105,11 @@ void ModLoader::DrawModList() {
                             }
                         }
                     } else {
-                        ImGui::PushStyleColor(ImGuiCol_Text,ImColor(245,100,100).operator ImU32());
-                        if (ImGui::Selectable((ModEntry.modName + " *").c_str(), selectedMod == ModEntry.modName, 0, ImVec2(0, 28)))
-                            selectedMod = ModEntry.modName;
-                        ImGui::PopStyleColor();
+//                        ImGui::PushStyleColor(ImGuiCol_Text,ImColor(245,100,100).operator ImU32());
+//                        if (ImGui::Selectable((ModEntry.modName + " *").c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
+//                            selectedMod = ModEntry.modName;
+//                        ImGui::PopStyleColor();
+                        ImGui::TextColored(ImColor(245,100,100), "%s *", ModEntry.modName.c_str());
                         if(ImGui::IsItemHovered()){
                             ImGui::BeginTooltip();
                             ImGui::Text("Mod is not installed. Please install it before you can enable it");
@@ -101,19 +117,23 @@ void ModLoader::DrawModList() {
                         }
 
                     }
-                    if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
-                        ImGui::OpenPopup((ModEntry.modName + " Mod Actions").c_str());
-                    }
                     if(ImGui::BeginPopup((ModEntry.modName + " Mod Actions").c_str())){
                         ImGui::Text("%s:", ModEntry.modName.c_str());
+                        ImGui::BeginDisabled();
+                        ImGui::Checkbox("Has DLL", &ModEntry.hasDLL);
+                        ImGui::SameLine();
+                        ImGui::Checkbox("Has XML", &ModEntry.hasXML);
+                        ImGui::EndDisabled();
                         if(ModEntry.installed) {
                             if(ImGui::Button(("Uninstall" + std::string("##") + ModEntry.modName).c_str())){
                                 UninstallMod(ModEntry.modName);
                             }
                             if(ModEntry.enabled){
-                                ImGui::Button("Disable");
+                                if(ImGui::Button("Disable"))
+                                    EnableMod(ModEntry.modName, false);
                             } else {
-                                ImGui::Button("Enable");
+                                if(ImGui::Button("Enable"))
+                                    EnableMod(ModEntry.modName, true);
                             }
                         } else {
                             if(ImGui::Button(("Install" + std::string("##") + ModEntry.modName).c_str())) {
@@ -232,11 +252,11 @@ void ModLoader::DrawModList() {
             {
                 try {
                     modToLoadPath = ImGuiFileDialog::Instance()->GetCurrentPath();
-                    fileName = ImGuiFileDialog::Instance()->GetFilePathName();
-                    log(severityLevel::trace, "File To Load: %s", modToLoadPath.string() + fileName);
-                    if (!(modToLoadPath.string() + fileName).empty()) {
+                    fileToLoad = ImGuiFileDialog::Instance()->GetFilePathName();
+                    log(severityLevel::trace, "File To Load: %s", modToLoadPath.string() + fileToLoad);
+                    if (!(modToLoadPath.string() + fileToLoad).empty()) {
                         fs::remove_all("temp");
-                        InstallModFromFile(modToLoadPath, fileName);
+                        InstallModFromFile(modToLoadPath, fileToLoad);
                     }
                 } catch(std::exception &exc) {
                     log(severityLevel::error, "%s", exc.what());
@@ -257,14 +277,15 @@ void ModLoader::DrawDLLSettings() {
 }
 
 void ModLoader::DrawXMLSettings() {
-    if(ImGui::BeginTabItem("Asset Settings")){
+    if(ImGui::BeginTabItem("Asset View")){
         if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), true)) {
             for (auto &mod: ModList)
-                if (ImGui::TreeNode(mod.modName.c_str())) {
-                    ImGui::Text("Version: %s", mod.version.c_str());
-                    TreeNodeWalkDirectory(fs::path(PreyPath.string() + "/Mods/" + mod.modName + "/Data"), mod.modName);
-                    ImGui::TreePop();
-                }
+                TreeNodeWalkDirectory(fs::path(PreyPath.string() + "/Mods/" + mod.modName), mod.modName);
+//                if (ImGui::TreeNode(mod.modName.c_str())) {
+//                    ImGui::Text("Version: %s", mod.version.c_str());
+//                    TreeNodeWalkDirectory(fs::path(PreyPath.string() + "/Mods/" + mod.modName + "/Data"), mod.modName);
+//                    ImGui::TreePop();
+//                }
         }
         ImGui::EndChild();
         ImGui::SameLine();
@@ -369,8 +390,10 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
         std::string modName = result.child("Mod").attribute("modName").as_string();
         if(!modName.empty()) {
             mod->modName = modName;
-            mod->version =   result.child("Mod").attribute("version").as_string();
+            mod->version = result.child("Mod").attribute("version").as_string();
             mod->infoFile = result.child("Mod");
+            mod->hasDLL = result.child("Mod").attribute("hasDLL").as_bool();
+            mod->hasXML = result.child("Mod").attribute("hasXML").as_bool();
             return true;
         }
         else {
@@ -516,11 +539,11 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
         node = modNode.append_child("loadOrder");
         node.append_attribute("type").set_value("int");
         node.text().set(modEntry->loadOrder);
-        //DLLLoad
+        //enabled
         node = modNode.append_child("enabled");
         node.append_attribute("type").set_value("bool");
         node.text().set(modEntry->enabled);
-        //XMLLoad
+        //deployed
         node = modNode.append_child("deployed");
         node.append_attribute("type").set_value("bool");
         node.text().set(modEntry->deployed);
@@ -528,6 +551,16 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
         node = modNode.append_child("version");
         node.append_attribute("type").set_value("string");
         node.text().set(modEntry->version.c_str());
+        saveChairloaderConfigFile();
+        //hasDLL
+        node = modNode.append_child("hasDLL");
+        node.append_attribute("type").set_value("string");
+        node.text().set(modEntry->hasDLL);
+        saveChairloaderConfigFile();
+        //hasXML
+        node = modNode.append_child("hasXML");
+        node.append_attribute("type").set_value("string");
+        node.text().set(modEntry->hasXML);
         saveChairloaderConfigFile();
     } else {
         log(severityLevel::error, "Cannot save mod %s: must be installed first", modEntry->modName);
@@ -661,6 +694,8 @@ void ModLoader::UninstallMod(std::string &modName) {
     auto mod = std::find(ModList.begin(), ModList.end(), modName);
     if(mod != ModList.end()){
         mod->installed = false;
+        mod->enabled = false;
+        mod->deployed = false;
         if(ModListNode.remove_child(modName.c_str())){
             log(severityLevel::info, "%s: uninstalled successfully", modName);
             saveChairloaderConfigFile();
@@ -681,7 +716,6 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
     std::string commandArgs = "7za.exe x ";
     commandArgs +=  shortPath;
     commandArgs += " -otemp";
-    char args[] = "C:\\Users\\theli\\Documents\\Prey Modding\\ChairLoader\\ChairloaderModLoader\\7za.exe";
     log(severityLevel::trace, "%s", commandArgs);
     //TODO: move to CreateProcessA instead of system()
 //    auto si = new STARTUPINFOA;
@@ -712,6 +746,17 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
         log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
     }
     fs::remove_all("./temp/");
+}
+
+void ModLoader::EnableMod(std::string modName, bool enabled) {
+    if(std::find(ModList.begin(), ModList.end(),modName) != ModList.end())
+        std::find(ModList.begin(), ModList.end(),modName)->enabled = enabled;
+}
+
+void ModLoader::DeployMods() {
+    //TODO: merge xml files into one .pak file
+    //TODO: handle legacy mods
+
 }
 
 

@@ -49,7 +49,9 @@ public:
         // deployed = files are ready
         bool installed = false,
              enabled = false,
-             deployed = false;
+             deployed = false,
+             hasXML,
+             hasDLL;
         bool operator<( Mod& b ) const {
             return this->loadOrder < b.loadOrder;
         }
@@ -93,19 +95,23 @@ private:
     void DetectNewMods();
     void loadModInfoFiles();
     void FindMod(Mod* modEntry);
-    std::string fileName;
+    std::string fileToLoad;
     fs::path modToLoadPath;
+
     //Install
     void InstallMod(std::string &modName);
     void UninstallMod(std::string &modName);
     void InstallModFromFile(fs::path path, std::string fileName);
+
     //Enable
-    void EnableMod(std::string modName);
+    void EnableMod(std::string modName, bool enabled = true);
+
     //Deploy
     void DeployMods();
 
     // Load Order
     std::map<int, std::string> loadOrder;
+
     bool checkSafeLoadOrder(int LoadOrder);
     int getNextSafeLoadOrder();
     void incrementNextSafeLoadOrder(int loadOrder);
