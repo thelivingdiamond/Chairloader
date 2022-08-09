@@ -16,6 +16,7 @@
 #include <detours/detours.h>
 #include "ChairLoader/ChairloaderEnv.h"
 #include "RenderDll/RenderAuxGeomPatch.h"
+#include "RenderDll/DebugMarkers.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 
 ChairLoader *gCL = nullptr;
@@ -171,6 +172,7 @@ ChairLoader::ChairLoader() {
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
 	ChairLoaderImGui::InitHooks();
 	InitRenderAuxGeomPatchHooks();
+	RenderDll::DebugMarkers::InitHooks();
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
@@ -226,6 +228,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 void ChairLoader::InitGame(IGameFramework* pFramework)
 {
 	CryLog("ChairLoader::InitGame");
+	RenderDll::DebugMarkers::InitGame();
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
