@@ -759,5 +759,17 @@ void ModLoader::DeployMods() {
 
 }
 
+pugi::xml_document ModLoader::mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document ArkOriginal) {
+    mergeXMLNode(base.root(), override.root(), ArkOriginal.root());
+
+
+    return pugi::xml_document();
+}
+
+pugi::xml_node ModLoader::mergeXMLNode(pugi::xml_node &base, pugi::xml_node &override, pugi::xml_node ArkOriginal) {
+
+    return pugi::xml_node();
+}
+
 
 
