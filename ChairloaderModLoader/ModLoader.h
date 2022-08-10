@@ -110,7 +110,7 @@ private:
     void DeployMods();
 
     /* XML MERGING */
-    pugi::xml_document mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document ArkOriginal = {});
+    pugi::xml_document mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document &ArkOriginal);
     pugi::xml_node mergeXMLNode(pugi::xml_node &base, pugi::xml_node &override, pugi::xml_node ArkOriginal = {});
 
 

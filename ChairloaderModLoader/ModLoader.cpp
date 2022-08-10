@@ -304,6 +304,26 @@ void ModLoader::DrawXMLSettings() {
 
 void ModLoader::DrawDeploySettings() {
     if(ImGui::BeginTabItem("Deploy")){
+        static std::string BasePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest.xml)";
+        static std::string OverridePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest2.xml)";
+        static std::string OriginalPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\ArkOriginal.xml)";
+        static pugi::xml_document BaseDoc;
+        static pugi::xml_document OverrideDoc;
+        static pugi::xml_document OriginalDoc;
+        ImGui::InputText("Base Path", &BasePath);
+        ImGui::InputText("Override Path", &OverridePath);
+        ImGui::InputText("Original Path", &OriginalPath);
+        if(ImGui::Button("Load Docs")) {
+            auto baseResult = BaseDoc.load_file(BasePath.c_str());
+            auto overrideResult = OverrideDoc.load_file(OverridePath.c_str());
+            auto originalResult = OriginalDoc.load_file(OriginalPath.c_str());
+            log(severityLevel::debug, "base: %s", baseResult.description());
+            log(severityLevel::debug, "override: %s", overrideResult.description());
+            log(severityLevel::debug, "original: %s", originalResult.description());
+        }
+        if(ImGui::Button("Test Merge")) {
+            mergeXMLDocument(BaseDoc, OverrideDoc, OriginalDoc);
+        }
         ImGui::EndTabItem();
     }
 }
@@ -759,10 +779,11 @@ void ModLoader::DeployMods() {
 
 }
 
-pugi::xml_document ModLoader::mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document ArkOriginal) {
-    mergeXMLNode(base.root(), override.root(), ArkOriginal.root());
-
-
+pugi::xml_document ModLoader::mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document &ArkOriginal) {
+    auto baseRootNode = base.root();
+    auto overrideRootNode = override.root();
+    auto originalRootNode = ArkOriginal.root();
+    log(severityLevel::debug, "Base Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
     return pugi::xml_document();
 }
 
