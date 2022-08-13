@@ -923,7 +923,7 @@ void ModLoader::DrawOverlayLog(){
 //    localtime_s(&nowTime,&now);
     const uint64_t fadeDuration = 500;
     const uint64_t totalElementTime = 2000;
-]    float y = 0.0f;
+    float y = 0.0f;
 
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
