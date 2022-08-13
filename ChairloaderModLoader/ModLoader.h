@@ -45,6 +45,7 @@ public:
     struct Mod{
         std::string modName;
         std::string version;
+        std::string author;
         int loadOrder = -1;
         pugi::xml_node infoFile;
         pugi::xml_node configFile;
@@ -120,16 +121,17 @@ private:
     void EnableMod(std::string modName, bool enabled = true);
 
     //Deploy
-    void DeployMods();
+    bool DeployMods();
 
     /* XML MERGING */
-    pugi::xml_document mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath);
+    pugi::xml_document
+    mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName);
     bool mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode = {});
     void mergeDirectory(fs::path path, std::string modName);
     void mergeXMLFiles();
 
     bool packChairloaderPatch();
-    void copyChairloaderPatch();
+    bool copyChairloaderPatch();
 
     // Load Order
     std::map<int, std::string> loadOrder;

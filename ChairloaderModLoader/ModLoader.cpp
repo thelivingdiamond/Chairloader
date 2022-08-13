@@ -59,8 +59,9 @@ void ModLoader::Draw() {
     }
     if(ImGui::BeginTabBar("##Mod Tab Bar")) {
         DrawModList();
-        DrawDeploySettings();
-        DrawDLLSettings();
+        //TODO: figure out if these will do anything
+//        DrawDeploySettings();
+//        DrawDLLSettings();
         DrawXMLSettings();
         DrawLog();
         ImGui::EndTabBar();
@@ -88,7 +89,7 @@ void ModLoader::DrawModList() {
     static std::string selectedMod;
     static bool showDeleteConfirmation;
     if(ImGui::BeginTabItem("Mod List")) {
-        if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0))) {
+        if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.7f, 0))) {
 
             if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
                                                  ImGuiTableFlags_NoBordersInBody)) {
@@ -252,6 +253,7 @@ void ModLoader::DrawModList() {
                 if(!ModSelect->installed)
                     ImGui::BeginDisabled();
                 ImGui::Text("%s", ModSelect->modName.c_str());
+                ImGui::Text("By: %s", ModSelect->author.c_str());
                 if(!ModSelect->installed) {
                     ImGui::EndDisabled();
                     if(ImGui::Button("Install")) {
@@ -259,10 +261,14 @@ void ModLoader::DrawModList() {
                     }
                 }
             }
-            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -65);
+            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -100);
             if(ImGui::Button("Save Mod List")){
                 SaveAllMods();
                 overlayLog(severityLevel::info, "Mod list saved");
+            }
+            if(ImGui::Button("Deploy Mods")){
+                if(DeployMods())
+                    overlayLog(severityLevel::info, "Mods deployed");
             }
             ImGui::Separator();
             if(ImGui::Button("Install Mod")){
@@ -349,7 +355,7 @@ void ModLoader::DrawDeploySettings() {
             log(severityLevel::debug, "original: %s", originalResult.description());
         }
         if(ImGui::Button("Test Merge")) {
-            mergeXMLDocument(BasePath, OverridePath, OriginalPath);
+            mergeXMLDocument(BasePath, OverridePath, OriginalPath, std::string());
         }
         if(ImGui::Button("Save Copy")){
             log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
@@ -464,6 +470,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
         if(!modName.empty()) {
             mod->modName = modName;
             mod->version = result.child("Mod").attribute("version").as_string();
+            mod->author = result.child("Mod").attribute("author").as_string();
             mod->infoFile = result.child("Mod");
             mod->hasDLL = result.child("Mod").attribute("hasDLL").as_bool();
             mod->hasXML = result.child("Mod").attribute("hasXML").as_bool();
@@ -590,7 +597,6 @@ void ModLoader::FindMod(Mod* modEntry) {
 
 
 
-//TODO: save mods in order with ability to delete and reorder the mod list in the file
 void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
     if(modEntry == nullptr) {
         log(severityLevel::error, "Cannot save mod, nullptr was passed");
@@ -826,15 +832,22 @@ void ModLoader::EnableMod(std::string modName, bool enabled) {
         std::find(ModList.begin(), ModList.end(),modName)->enabled = enabled;
 }
 
-void ModLoader::DeployMods() {
-    //TODO: merge xml files into one .pak file
+bool ModLoader::DeployMods() {
     //TODO: handle legacy mods
-
+    mergeXMLFiles();
+    saveChairloaderConfigFile();
+    if(packChairloaderPatch()){
+        if(copyChairloaderPatch()){
+            return true;
+        }
+    }
+    return false;
 }
 
 
 
-pugi::xml_document ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath) {
+pugi::xml_document
+ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName) {
     pugi::xml_document modFile;
     pugi::xml_document originalFile;
     pugi::xml_document outputFile;
@@ -844,7 +857,7 @@ pugi::xml_document ModLoader::mergeXMLDocument(fs::path basePath, fs::path overr
     auto baseRootNode = outputFile.first_child();
     auto overrideRootNode = modFile.first_child();
     auto originalRootNode = originalFile.first_child();
-
+    baseRootNode.append_child(pugi::node_comment).set_value(("Mod: " + modName).c_str());
     log(severityLevel::debug, "Base Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
     if(overrideRootNode != nullptr) {
         for (auto &overrideNode: overrideRootNode) {
@@ -894,6 +907,7 @@ void ModLoader::mergeXMLFiles() {
     for(auto &mod : ModList) {
         if (mod.installed && mod.enabled) {
             mergeDirectory("", mod.modName);
+            ModListNode.child(mod.modName.c_str()).child("deployed").text().set(true);
         }
     }
 
@@ -909,9 +923,7 @@ void ModLoader::DrawOverlayLog(){
 //    localtime_s(&nowTime,&now);
     const uint64_t fadeDuration = 500;
     const uint64_t totalElementTime = 2000;
-    //TODO: set up a vector for the log messages
-    //TODO: fade at end of the lifetime of the message
-    float y = 0.0f;
+]    float y = 0.0f;
 
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -1029,7 +1041,7 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName) {
                     fs::copy_file(originalPath, outputPath);
                 }
                 log(severityLevel::trace, "Merging %s", modPath.string().c_str());
-                mergeXMLDocument(outputPath, modPath, originalPath);
+                mergeXMLDocument(outputPath, modPath, originalPath, modName);
             } else {
                 log(severityLevel::trace, "Copying %s", modPath.string().c_str());
                 fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
@@ -1057,12 +1069,14 @@ bool ModLoader::packChairloaderPatch() {
     }
 }
 
-void ModLoader::copyChairloaderPatch() {
+bool ModLoader::copyChairloaderPatch() {
     try {
         fs::copy("patch_chairloader.pak", PreyPath.string() + "/GameSDK/Precache",
                  fs::copy_options::overwrite_existing);
+        return true;
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while copying patch_chairloader.pak: %s", exception.what());
+        return false;
     }
 }
 
