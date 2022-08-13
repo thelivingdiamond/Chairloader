@@ -11,6 +11,7 @@
 #include <pugixml.hpp>
 #include <filesystem>
 #include <fstream>
+#include <chrono>
 
 #include <boost/format.hpp>
 
@@ -29,14 +30,17 @@ public:
     class LogEntry{
     public:
         LogEntry(std::string &messageIn, severityLevel levelIn): message(messageIn), level(levelIn){
-            tm newtime;
-            time_t now = time(nullptr);
-            localtime_s(&newtime,&now);
-            timeStamp = boost::str((boost::format("%i:%i:%i") % newtime.tm_hour % newtime.tm_min % newtime.tm_sec));
+            tm timeStruct;
+            timeNow = time(nullptr);
+            localtime_s(&timeStruct,&timeNow);
+            timeStamp = boost::str((boost::format("%i:%i:%i") % timeStruct.tm_hour % timeStruct.tm_min % timeStruct.tm_sec));
+            fadeTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         }
         std::string message;
         severityLevel level;
         std::string timeStamp;
+        time_t timeNow;
+        uint64_t fadeTime;
     };
     struct Mod{
         std::string modName;
@@ -76,6 +80,15 @@ private:
     void DrawDeploySettings();
     void DrawLog();
 
+    float OverlayWidth = 20.0f;
+    float OverlayHeight = 60.0f;
+    float OverlayElementWidth = 300.0f;
+    float OverlayElementHeight = 60.0f;
+
+    void DrawOverlayLog();
+    void ModLoader::OverlayLogElement(LogEntry entry);
+
+
     /* Config Functions */
     fs::path getConfigPath(std::string &modName);
     fs::path getDefaultConfigPath(std::string &modName);
@@ -110,9 +123,13 @@ private:
     void DeployMods();
 
     /* XML MERGING */
-    pugi::xml_document mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document &ArkOriginal);
-    pugi::xml_node mergeXMLNode(pugi::xml_node &base, pugi::xml_node &override, pugi::xml_node ArkOriginal = {});
+    pugi::xml_document mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath);
+    bool mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode = {});
+    void mergeDirectory(fs::path path, std::string modName);
+    void mergeXMLFiles();
 
+    bool packChairloaderPatch();
+    void copyChairloaderPatch();
 
     // Load Order
     std::map<int, std::string> loadOrder;
@@ -132,6 +149,7 @@ private:
     void flushFileQueue();
     std::vector<LogEntry> logRecord;
     std::vector<LogEntry> fileQueue;
+    std::vector<LogEntry> overlayQueue;
     #ifdef _DEBUG
         severityLevel filterLevel = severityLevel::trace;
     #else
@@ -143,5 +161,12 @@ private:
         auto message = boost::str((boost::format(format) % ... % args));
         logRecord.emplace_back(LogEntry(message, level));
         fileQueue.emplace_back(LogEntry(message, level));
+    }
+    template<typename...Args>
+    inline void overlayLog(severityLevel level, const char* format, const Args&...args){
+        auto message = boost::str((boost::format(format) % ... % args));
+        logRecord.emplace_back(LogEntry(message, level));
+        fileQueue.emplace_back(LogEntry(message, level));
+        overlayQueue.emplace_back(LogEntry(message, level));
     }
 };

@@ -4,20 +4,58 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <sstream>
 #include "ModLoader.h"
 
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
-static bool showDemo = true;
+static bool showDemo = false;
 
 void ModLoader::Draw() {
     if(ImGui::BeginMenuBar()){
         if(ImGui::BeginMenu("Files", true)){
+            if(ImGui::MenuItem("Install Mod")){
+                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.string(), 1, nullptr);
+            }
+#ifdef _DEBUG
+            ImGui::Separator();
             ImGui::MenuItem("Show Demo Window", nullptr, &showDemo);
             ImGui::EndMenu();
+#endif
         }
+        //Create a menu for mod list
+        if(ImGui::BeginMenu("Mods", true)) {
+            //Load Mod List
+            if(ImGui::MenuItem("Load Mod List")){
+                loadModInfoFiles();
+            }
+            // Save Config
+            if(ImGui::MenuItem("Save Config")){
+                overlayLog(severityLevel::info, "Mod list saved");
+                saveChairloaderConfigFile();
+            }
+            ImGui::EndMenu();
+        }
+        // Print test overlay log messages for each severity level
+//        if(ImGui::BeginMenu("Log", true)){
+//            if(ImGui::MenuItem("Info")){
+//                overlayLog(severityLevel::info, "Info");
+//            }
+//            if(ImGui::MenuItem("Warning")){
+//                overlayLog(severityLevel::warning, "Warning");
+//            }
+//            if(ImGui::MenuItem("Error")){
+//                overlayLog(severityLevel::error, "Error");
+//            }
+//            if(ImGui::MenuItem("Trace")){
+//                overlayLog(severityLevel::trace, "Trace");
+//            }
+//            ImGui::EndMenu();
+//        }
+
         ImGui::EndMenuBar();
+
     }
     if(ImGui::BeginTabBar("##Mod Tab Bar")) {
         DrawModList();
@@ -38,11 +76,14 @@ void ModLoader::Draw() {
             ImGui::EndPopup();
         }
     }
+    DrawOverlayLog();
     if(showDemo){
         ImGui::ShowDemoWindow(&showDemo);
     }
     std::sort(ModList.begin(), ModList.end());
 }
+
+
 void ModLoader::DrawModList() {
     static std::string selectedMod;
     static bool showDeleteConfirmation;
@@ -89,7 +130,7 @@ void ModLoader::DrawModList() {
                     ImGui::SetCursorPosY(storedpos);
                     if(ModEntry.installed) {
                         if(ModEntry.enabled) {
-                            ImGui::TextColored(ImColor(255,255,255), "%s", ModEntry.modName.c_str());
+                            ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s", ModEntry.modName.c_str());
 //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                                selectedMod = ModEntry.modName;
                         } else {
@@ -97,7 +138,7 @@ void ModLoader::DrawModList() {
 //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                                selectedMod = ModEntry.modName;
 //                            ImGui::PopStyleColor();
-                            ImGui::TextColored(ImColor(180,180,180), "%s", ModEntry.modName.c_str());
+                            ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s", ModEntry.modName.c_str());
                             if(ImGui::IsItemHovered()){
                                 ImGui::BeginTooltip();
                                 ImGui::Text("Mod is not enabled");
@@ -211,18 +252,6 @@ void ModLoader::DrawModList() {
                 if(!ModSelect->installed)
                     ImGui::BeginDisabled();
                 ImGui::Text("%s", ModSelect->modName.c_str());
-                //TODO: switch to install/enabled/deploy
-//                ImGui::Checkbox("Load DLL", &ModSelect->DLLEnable);
-//                ImGui::Checkbox("Load XML", &ModSelect->XMLEnable);
-//                if(ImGui::Button("Save")){
-//                    if(ModSelect->installed) {
-//                        SaveMod(&*ModSelect);
-//                    } else {
-//                        log(severityLevel::warning, "Mod is not installed");
-//                        ErrorMessage = "Mod is not installed, please install mod first";
-//                        showErrorPopup = true;
-//                    }
-//                }
                 if(!ModSelect->installed) {
                     ImGui::EndDisabled();
                     if(ImGui::Button("Install")) {
@@ -230,12 +259,10 @@ void ModLoader::DrawModList() {
                     }
                 }
             }
-//            for(auto &order : loadOrder){
-//                ImGui::Text("%s: %i", order.second.c_str(), order.first);
-//            }
-            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -75);
+            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -65);
             if(ImGui::Button("Save Mod List")){
                 SaveAllMods();
+                overlayLog(severityLevel::info, "Mod list saved");
             }
             ImGui::Separator();
             if(ImGui::Button("Install Mod")){
@@ -305,7 +332,7 @@ void ModLoader::DrawXMLSettings() {
 void ModLoader::DrawDeploySettings() {
     if(ImGui::BeginTabItem("Deploy")){
         static std::string BasePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest.xml)";
-        static std::string OverridePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest2.xml)";
+        static std::string OverridePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTestOverride.xml)";
         static std::string OriginalPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\ArkOriginal.xml)";
         static pugi::xml_document BaseDoc;
         static pugi::xml_document OverrideDoc;
@@ -322,9 +349,21 @@ void ModLoader::DrawDeploySettings() {
             log(severityLevel::debug, "original: %s", originalResult.description());
         }
         if(ImGui::Button("Test Merge")) {
-            mergeXMLDocument(BaseDoc, OverrideDoc, OriginalDoc);
+            mergeXMLDocument(BasePath, OverridePath, OriginalPath);
+        }
+        if(ImGui::Button("Save Copy")){
+            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
         }
         ImGui::EndTabItem();
+        if(ImGui::Button("Merge XML Files")){
+            mergeXMLFiles();
+        }
+        if(ImGui::Button("Pack Chairloader Patch")){
+            packChairloaderPatch();
+        }
+        if(ImGui::Button("Copy Chairloader Patch")){
+            copyChairloaderPatch();
+        }
     }
 }
 
@@ -345,6 +384,20 @@ void ModLoader::DrawLog() {
         if(ImGui::Button("Clear Log")){
             logRecord.clear();
         }
+//        static int count = 0;
+//        if(ImGui::Button("Test Overlay")){
+//            std::string test;
+//            if(count % 2 == 0) {
+//                test = "Mod list saved";
+//            } else {
+//                 test = "Mod list loaded";
+//            }
+////            overlayQueue.emplace_back(LogEntry(test, severityLevel::info));
+//            overlayLog(severityLevel::info, "%s", test);
+//            count++;
+//        }
+//        ImGui::SameLine();
+//        ImGui::Text("Overlay Queue: %llu", overlayQueue.size());
         if(ImGui::BeginChild("Log List", {0,0}, true))
         {
             if(ImGui::BeginTable("Log Record", 1, ImGuiTableFlags_NoBordersInBody)) {
@@ -467,7 +520,7 @@ void ModLoader::loadModInfoFiles() {
     // load previously loaded (assumedly) valid config
     LoadModsFromConfig();
     DetectNewMods();
-
+    overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
     //TODO: Handle dependencies
 //    serializeLoadOrder();
 }
@@ -779,18 +832,238 @@ void ModLoader::DeployMods() {
 
 }
 
-pugi::xml_document ModLoader::mergeXMLDocument(pugi::xml_document &base, pugi::xml_document &override, pugi::xml_document &ArkOriginal) {
-    auto baseRootNode = base.root();
-    auto overrideRootNode = override.root();
-    auto originalRootNode = ArkOriginal.root();
+
+
+pugi::xml_document ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath) {
+    pugi::xml_document modFile;
+    pugi::xml_document originalFile;
+    pugi::xml_document outputFile;
+    auto modResult = modFile.load_file(overridePath.string().c_str());
+    auto originalResult = originalFile.load_file(originalPath.string().c_str());
+    auto outputResult = outputFile.load_file(basePath.string().c_str());
+    auto baseRootNode = outputFile.first_child();
+    auto overrideRootNode = modFile.first_child();
+    auto originalRootNode = originalFile.first_child();
+
     log(severityLevel::debug, "Base Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
-    return pugi::xml_document();
+    if(overrideRootNode != nullptr) {
+        for (auto &overrideNode: overrideRootNode) {
+            //Case: Overwrite
+            auto baseNode = baseRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
+            auto originalNode = originalRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
+            if (!mergeXMLNode(baseNode, overrideNode, originalNode)) {
+                baseRootNode.append_copy(overrideNode);
+            }
+        }
+    }
+    outputFile.save_file(basePath.string().c_str());
+    return {};
 }
 
-pugi::xml_node ModLoader::mergeXMLNode(pugi::xml_node &base, pugi::xml_node &override, pugi::xml_node ArkOriginal) {
-
-    return pugi::xml_node();
+bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode) {
+    if (baseNode) {
+        //Now compare the content of override against the content of arkOriginal
+        if(originalNode) {
+            std::stringstream originalContent, overrideContent;
+            originalNode.print(originalContent);
+            overrideNode.print(overrideContent);
+            log(severityLevel::debug, "Original Content: %s\nOverride Content: %s", originalContent.str().c_str(), overrideContent.str().c_str());
+            if(std::string(originalContent.str()) == std::string(overrideContent.str())) {
+                log(severityLevel::trace, "Node %s is identical to Ark Original", overrideNode.attribute("Name").value());
+                //DO NOT OVERWRITE
+            } else {
+                log(severityLevel::trace, "Node %s is different from Ark Original", overrideNode.attribute("Name").value());
+                baseNode.text().set(overrideNode.text().get());
+            }
+        // default overwrite
+        } else {
+            log(severityLevel::trace, "Overwriting original node %s", overrideNode.attribute("Name").value());
+            baseNode.text().set(overrideNode.text().get());
+        }
+    } else {
+        //Case: Add
+        log(severityLevel::trace, "Adding node %s", overrideNode.attribute("Name").value());
+        return false;
+    }
+    return true;
 }
 
+void ModLoader::mergeXMLFiles() {
+    fs::remove_all("./Output/");
+    fs::create_directory("./Output/");
+    for(auto &mod : ModList) {
+        if (mod.installed && mod.enabled) {
+            mergeDirectory("", mod.modName);
+        }
+    }
+
+}
+
+float overlayLogPadding = 2.0f;
+static std::string logEntryToDelete;
+static float accumulatedHeight = 0.0f;
+void ModLoader::DrawOverlayLog(){
+    accumulatedHeight = 0.0f;
+//    tm nowTime;
+    time_t now = time(nullptr);
+//    localtime_s(&nowTime,&now);
+    const uint64_t fadeDuration = 500;
+    const uint64_t totalElementTime = 2000;
+    //TODO: set up a vector for the log messages
+    //TODO: fade at end of the lifetime of the message
+    float y = 0.0f;
+
+    ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
+    ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
+    ImGui::PushClipRect(ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x - OverlayElementWidth - 2 * overlayLogPadding, ImGui::GetWindowPos().y + + overlayLogPadding + 60.0f),
+                                 ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x - 2 * overlayLogPadding, ImGui::GetWindowPos().y + 2 * OverlayElementHeight + (2 + 1) * overlayLogPadding + 60.0f),
+                                 false);
+
+    for(auto overlayEntry = overlayQueue.rbegin(); overlayEntry != overlayQueue.rend() && y < 6.0f; ++overlayEntry) {
+        if(overlayEntry->level >= filterLevel) {
+            auto currentMillis = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::system_clock::now().time_since_epoch()).count();
+            if (currentMillis - overlayEntry->fadeTime < totalElementTime) {
+                float alpha = 1.0f;
+                ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x -
+                                               ImGui::CalcTextSize(overlayEntry->message.c_str(), nullptr, false,
+                                                                   OverlayElementWidth).x -
+                                               ImGui::GetStyle().FramePadding.x * 2 - 2 * overlayLogPadding,
+                                               ImGui::GetWindowPos().y + accumulatedHeight +
+                                               (y + 1) * overlayLogPadding + 60.0f));
+                if (currentMillis - overlayEntry->fadeTime > totalElementTime - fadeDuration) {
+                    float currentFade = ((currentMillis - overlayEntry->fadeTime - (totalElementTime - fadeDuration)) /
+                                         (fadeDuration * 1.0f - 20.0f));
+                    alpha = 1.0f - currentFade;
+                } else {
+                    alpha = 1.0f;
+                }
+                ImGui::SetNextWindowBgAlpha(alpha);
+                ImGui::PushStyleVar(ImGuiStyleVar_Alpha, alpha);
+                OverlayLogElement(*overlayEntry);
+                ImGui::PopStyleVar();
+                y += 1.0f;
+            }
+        }
+
+    }
+    for(auto overlayEntry = overlayQueue.begin(); overlayEntry != overlayQueue.end(); ++overlayEntry){
+        auto currentMillis = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        if(currentMillis - overlayEntry->fadeTime > totalElementTime || overlayEntry->message == logEntryToDelete) {
+            if(overlayEntry->message == logEntryToDelete) {
+                logEntryToDelete.clear();
+            }
+            overlayQueue.erase(overlayEntry);
+            break;
+        }
+    }
+    ImGui::PopClipRect();
+    ImGui::PopStyleColor();
+    ImGui::PopStyleVar();
+}
+
+auto logElementFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse;
+
+void ModLoader::OverlayLogElement(LogEntry entry) {
+//    log(level, "%s", message);
+    auto level = entry.level;
+    auto message = entry.message;
+
+        switch (level) {
+            case severityLevel::trace:
+                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(150, 150, 150).operator ImU32());
+                break;
+            case severityLevel::debug:
+                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(200, 200, 200).operator ImU32());
+                break;
+            default:
+            case severityLevel::info:
+                ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyleColorVec4(ImGuiCol_Text));
+                break;
+            case severityLevel::warning:
+                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 255, 0).operator ImU32());
+                break;
+            case severityLevel::error:
+            case severityLevel::fatal:
+                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 0, 0).operator ImU32());
+                break;
+        }
+        auto messageSize = ImGui::CalcTextSize(message.c_str(), nullptr, false, OverlayElementWidth);
+        float height = 0.0f;
+        if(messageSize.y < OverlayElementHeight) {
+            height = messageSize.y + 2 * ImGui::GetStyle().FramePadding.x;
+        } else {
+            height = OverlayElementHeight;
+        }
+        accumulatedHeight += height;
+        if(ImGui::BeginChild((std::string("##OverlayLog") + message + std::to_string(entry.fadeTime)).c_str(), ImVec2(messageSize.x + ImGui::GetStyle().FramePadding.x * 2 ,height), true, logElementFlags)){
+            ImGui::PushTextWrapPos(ImGui::CalcTextSize(message.c_str(), nullptr, false, OverlayElementWidth).x + ImGui::GetStyle().FramePadding.x * 2);
+            ImGui::Text("%s", message.c_str());
+            ImGui::PopTextWrapPos();
+            if(ImGui::IsItemClicked()) {
+                logEntryToDelete = message;
+            }
+            ImGui::SameLine();
+            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().FramePadding.y);
+        }
+        ImGui::PopStyleColor();
+        ImGui::EndChild();
+}
+
+void ModLoader::mergeDirectory(fs::path path, std::string modName) {
+    fs::path modPath = PreyPath.string() + "/Mods/" + modName + "/Data" + path.string();
+    fs::path originalPath = "./PreyFiles" + path.string();
+    fs::path outputPath = "./Output" + path.string();
+    try {
+        if (is_directory(modPath) && modPath != PreyPath.string() + "/Mods/" + modName + "/Data/Levels") {
+            log(severityLevel::trace, "Exploring directory %s", modPath.string().c_str());
+            if(!fs::exists(outputPath)) {
+                fs::create_directories(outputPath);
+            }
+            for (auto directory: fs::directory_iterator(modPath)) {
+                mergeDirectory(path.string() + "/" + directory.path().filename().string(), modName);
+            }
+        } else if (is_regular_file(modPath)) {
+            if(modPath.extension() == ".xml") {
+                if (!fs::exists(outputPath) && fs::exists(originalPath)) {
+                    fs::copy_file(originalPath, outputPath);
+                }
+                log(severityLevel::trace, "Merging %s", modPath.string().c_str());
+                mergeXMLDocument(outputPath, modPath, originalPath);
+            } else {
+                log(severityLevel::trace, "Copying %s", modPath.string().c_str());
+                fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
+            }
+        }
+    } catch (std::exception & exception){
+        log(severityLevel::error, "Exception while merging %s: %s", modPath.string().c_str(), exception.what());
+    }
+}
+
+bool ModLoader::packChairloaderPatch() {
+    try {
+        fs::remove("patch_chairloader.pak");
+    } catch (std::exception & exception) {
+        overlayLog(severityLevel::error, "Could not remove patch_chairloader.pak: %s", exception.what());
+        return false;
+    }
+    system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
+    if(!fs::exists("patch_chairloader.pak")) {
+        overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
+        return false;
+    } else {
+        log(severityLevel::info, "Packed patch_chairloader.pak");
+        return true;
+    }
+}
+
+void ModLoader::copyChairloaderPatch() {
+    try {
+        fs::copy("patch_chairloader.pak", PreyPath.string() + "/GameSDK/Precache",
+                 fs::copy_options::overwrite_existing);
+    } catch (std::exception & exception){
+        overlayLog(severityLevel::error, "Exception while copying patch_chairloader.pak: %s", exception.what());
+    }
+}
 
 
