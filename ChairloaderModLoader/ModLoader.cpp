@@ -64,6 +64,7 @@ void ModLoader::Draw() {
 //        DrawDLLSettings();
         DrawXMLSettings();
         DrawLog();
+        DrawDLLSettings();
         ImGui::EndTabBar();
         if(showErrorPopup) {
             ImGui::OpenPopup("Error");
@@ -303,8 +304,25 @@ void ModLoader::DrawModList() {
 }
 
 void ModLoader::DrawDLLSettings() {
-    if(ImGui::BeginTabItem("DLL Settings")){
-
+    static std::string preyPathString = PreyPath.string();
+    if(ImGui::BeginTabItem("Settings")){
+        if(ImGui::InputText("Prey Path", &preyPathString, ImGuiInputTextFlags_EnterReturnsTrue)){
+            PreyPath = fs::path(preyPathString);
+            if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
+                log(severityLevel::trace, "Prey Path set to %s", PreyPath.string());
+                ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().set(PreyPath.string().c_str());
+                ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+            } else {
+                ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
+                ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+            }
+        }
+        if(ImGui::Button("Reset Path")){
+            PreyPath = DefaultPreyPath;
+            preyPathString = DefaultPreyPath.string();
+            ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().set(PreyPath.string().c_str());
+            ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+        }
         ImGui::EndTabItem();
     }
 }
@@ -530,6 +548,11 @@ void ModLoader::loadModInfoFiles() {
     overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
     //TODO: Handle dependencies
 //    serializeLoadOrder();
+    for(auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")){
+        if(directory.is_directory()){
+            LegacyModList.emplace_back(directory.path().filename().string());
+        }
+    }
 }
 
 ModLoader::ModLoader() {
@@ -547,6 +570,21 @@ ModLoader::ModLoader() {
     log(severityLevel::info, "%s", foundMods);
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
+    if(ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())){
+        if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
+            PreyPath = ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string();
+        } else {
+            log(severityLevel::warning, "Prey Path not found in ChairloaderModLoader config file, appending default");
+            ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
+        }
+    } else {
+        log(severityLevel::error, "ChairloaderModLoader config file not found, creating new");
+        ChairloaderModLoaderConfigFile.reset();
+        ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
+        ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
+        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+    }
+    log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
     loadModInfoFiles();
 }
 
@@ -858,8 +896,8 @@ ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path o
     auto overrideRootNode = modFile.first_child();
     auto originalRootNode = originalFile.first_child();
     baseRootNode.append_child(pugi::node_comment).set_value(("Mod: " + modName).c_str());
-    log(severityLevel::debug, "Base Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
-    if(overrideRootNode != nullptr) {
+    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
+    if(overrideRootNode) {
         for (auto &overrideNode: overrideRootNode) {
             //Case: Overwrite
             auto baseNode = baseRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
@@ -904,6 +942,14 @@ bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideN
 void ModLoader::mergeXMLFiles() {
     fs::remove_all("./Output/");
     fs::create_directory("./Output/");
+    //legacy mods
+    for(auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")) {
+        if(fs::is_directory(directory)) {
+            log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().string().c_str());
+            mergeDirectory("", directory.path().filename().string(), true);
+        }
+    }
+    //registered mods
     for(auto &mod : ModList) {
         if (mod.installed && mod.enabled) {
             mergeDirectory("", mod.modName);
@@ -1022,8 +1068,13 @@ void ModLoader::OverlayLogElement(LogEntry entry) {
         ImGui::EndChild();
 }
 
-void ModLoader::mergeDirectory(fs::path path, std::string modName) {
-    fs::path modPath = PreyPath.string() + "/Mods/" + modName + "/Data" + path.string();
+void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
+    fs::path modPath;
+    if(legacyMod) {
+        modPath = PreyPath.string() + "/Mods/Legacy/" + modName + path.string();
+    } else {
+        modPath = PreyPath.string() + "/Mods/" + modName + "/Data" + path.string();
+    }
     fs::path originalPath = "./PreyFiles" + path.string();
     fs::path outputPath = "./Output" + path.string();
     try {
@@ -1033,7 +1084,7 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName) {
                 fs::create_directories(outputPath);
             }
             for (auto directory: fs::directory_iterator(modPath)) {
-                mergeDirectory(path.string() + "/" + directory.path().filename().string(), modName);
+                mergeDirectory(path.string() + "/" + directory.path().filename().string(), modName, legacyMod);
             }
         } else if (is_regular_file(modPath)) {
             if(modPath.extension() == ".xml") {
@@ -1051,6 +1102,9 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName) {
         log(severityLevel::error, "Exception while merging %s: %s", modPath.string().c_str(), exception.what());
     }
 }
+
+
+
 
 bool ModLoader::packChairloaderPatch() {
     try {

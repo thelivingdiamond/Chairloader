@@ -71,8 +71,11 @@ public:
     void Update();
 private:
     /* Globals */
+    const fs::path DefaultPreyPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey)";
     fs::path PreyPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey)";
+    fs::path ChairloaderModLoaderConfigPath = R"(.\ChairloaderModLoaderConfig.xml)";
     std::vector<Mod> ModList;
+    std::vector<std::string> LegacyModList;
 
     /* Draw Functions */
     void DrawModList();
@@ -93,7 +96,7 @@ private:
     /* Config Functions */
     fs::path getConfigPath(std::string &modName);
     fs::path getDefaultConfigPath(std::string &modName);
-    pugi::xml_document ChairloaderConfigFile;
+    pugi::xml_document ChairloaderConfigFile, ChairloaderModLoaderConfigFile;
     pugi::xml_node ModListNode;
     inline bool saveChairloaderConfigFile() {
         return ChairloaderConfigFile.save_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str());
@@ -127,7 +130,7 @@ private:
     pugi::xml_document
     mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName);
     bool mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode = {});
-    void mergeDirectory(fs::path path, std::string modName);
+    void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
     void mergeXMLFiles();
 
     bool packChairloaderPatch();
