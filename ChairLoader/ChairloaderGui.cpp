@@ -5,7 +5,7 @@
 ChairloaderGui *gui = nullptr;
 
 ChairloaderGui::ChairloaderGui(ChairloaderGlobalEnvironment* env) :
-    playerManager(),
+    playerManager(env),
     entityManager(env),
     worldManager(env){
     gCLEnv = env;
@@ -59,7 +59,7 @@ void ChairloaderGui::draw(bool* bShow) {
                 }
                 ImGui::EndMenu();
             }
-            playerManager.drawMenuBar();
+//            playerManager.drawMenuBar();
             ImGui::EndMainMenuBar();
         }
 
@@ -129,7 +129,7 @@ void ChairloaderGui::update() {
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
         drawHandleMutex.lock();
         entityManager.Update();
-        playerManager.update();
+    playerManager.update();
         worldManager.Update();
         drawHandleMutex.unlock();
     //}

@@ -549,10 +549,10 @@ void EntityManager::spawnEntity() {
             usePlayerPos;
             offsetFromPlayer;
             if (usePlayerPos) {
-                pos = gEntUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+                pos = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
                 if (offsetFromPlayer) {
-                    pos.x += gEntUtils->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
-                    pos.y += gEntUtils->ArkPlayerPtr()->m_cachedReticleDir.y * 5;
+                    pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
+                    pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * 5;
                 }
             }
             else {
@@ -592,9 +592,9 @@ void EntityManager::spawnEntity() {
                 // TODO: ADD ability for mods to define what their archetypes are
                 // TODO: add cystoid support
                 {
-                    gEntUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                    gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
                 } else {
-                    gEntUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                    gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
                 }
             }
             // done
@@ -654,9 +654,9 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
                     // TODO: ADD ability for mods to define what their archetypes are
                     // TODO: add cystoid support
                 {
-                    gEntUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
+                    gCLEnv->entUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
                 } else {
-                    gEntUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
+                    gCLEnv->entUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
                 }
             } else {
                 throw("Error, no class found");

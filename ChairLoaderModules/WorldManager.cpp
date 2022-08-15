@@ -55,18 +55,18 @@ void WorldManager::DrawLevelManagerWindow() {
                     ImGui::TableNextColumn();
                     ImGui::Text("%s", map.first.c_str());
                     ImGui::TableNextColumn();
-                    if(ImGui::Selectable(locationManager.GetLocationLabel(locationManager.GetCurrentLocation()))){
-                        //do nothing I guess
+                    if (ImGui::Selectable(locationManager.GetLocationLabel(map.second))) {
+                        //FIXME: add a way to load maps from the table
+//                        gCLEnv->cl->GetFramework()->ScheduleEndLevelNow(std::string(map.first).substr(std::string("@ui_").size(), std::string(map.first).size() - 1).c_str());
                     }
-//                    ImGui::Text("%llu", map.second);
                 }
                 ImGui::EndTable();
             }
 //            ImGui::Text("Is In Level Load: %u", gCLEnv->cl->GetFramework()->IsInLevelLoad());
             static std::string levelToLoad = "arboretum";
-            static std::string mission = "Mission0";
+//            static std::string mission = "Mission0";
             ImGui::InputText("Level To Load", &levelToLoad);
-            ImGui::InputText("Mission", &mission);
+//            ImGui::InputText("Mission", &mission);
             if(ImGui::Button("Load Level")){
 //                gEnv->pConsole->ExecuteString(("map " + levelToLoad + " nb").c_str());
 //                ArkGame::GetArkGame()->LoadLastSave(ArkGame::GetArkGame()->m_pLoadListener);

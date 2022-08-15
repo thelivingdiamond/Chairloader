@@ -34,7 +34,6 @@ public:
 	ArkPlayer* ArkPlayerPtr();
 
 	// ArchetypeLibrary entityArchetypeLibrary;
-	ArkAbilityLibrary abilityLibrary;
 private:
 
 };

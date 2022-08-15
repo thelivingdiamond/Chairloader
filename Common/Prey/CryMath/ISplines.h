@@ -905,7 +905,7 @@ public:
 			FromKeyType(key, this->key(i));
 		}
 		this->SetModified(true, true);
-		this->update();
+        this->update();
 	}
 	virtual bool FromString(cstr str)
 	{
@@ -921,7 +921,7 @@ public:
 			this->insert_key(key);
 		}
 		this->SetModified(true);
-		this->update();
+        this->update();
 		return true;
 	}
 

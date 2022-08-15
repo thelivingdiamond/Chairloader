@@ -120,18 +120,18 @@ void SmokeForm_Exit_Hook(ArkPsiPowerSmokeForm* _this) {
 	g_SmokeForm_Exit_hook.InvokeOrig(_this);
 }
 
-char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
-	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
-	ArkPlayerMovementStates::Smoke::Exit();
-	gEntUtils->ArkPlayerPtr()->Physicalize();
-	return retValue;
-}
-
-char SmokeForm_Stop_Hook(ArkPsiPowerSmokeForm* _this) {
-	auto retValue = g_SmokeForm_Stop_hook.InvokeOrig(_this);
-	gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
-	return retValue;
-}
+//char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
+//	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
+//	ArkPlayerMovementStates::Smoke::Exit();
+//	gCLEnv->entUtils->ArkPlayerPtr()->Physicalize();
+//	return retValue;
+//}
+//
+//char SmokeForm_Stop_Hook(ArkPsiPowerSmokeForm* _this) {
+//	auto retValue = g_SmokeForm_Stop_hook.InvokeOrig(_this);
+//	gCLEnv->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+//	return retValue;
+//}
 }
 
 ChairLoader::ChairLoader() {
@@ -339,7 +339,7 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 
 void ChairLoader::SmokeFormExit() {
 	if(smokeFormExited) {
-		gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+		s_CLEnv.entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
 }

@@ -1,12 +1,13 @@
 #pragma once
 #include <ChairLoader/PreyFunction.h>
 
-#include "CScriptBind_Ark.h"
+//#include "CScriptBind_Ark.h"
 #include "Prey/GameDll/GameActions.h"
 #include "IGame.h"
 #include "Prey/CryCore/Platform/IPlatformOS.h"
 #include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
 
+class CScriptBind_Ark;
 struct IGameFramework;
 class CGameCache;
 class CGamePhysicsSettings;
