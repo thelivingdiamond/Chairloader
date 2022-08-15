@@ -1,0 +1,7 @@
+
+<download name="shuttlebay" type="Map">
+ <index src="filelist.xml" dest="filelist.xml"/>
+ <files>
+  <file src="level.pak" dest="level.pak" size="5174153" md5="45e44f77ea9fe4961a0ba7d4d57109eb"/>
+ </files>
+</download>

@@ -399,7 +399,6 @@ bool ChairloaderConfigManager::createDefaultModConfig(std::string modName) {
 }
 
 fs::path ChairloaderConfigManager::getConfigPath(std::string modName) {
-	CryLog(("./Mods/config/" + modName + ".xml").c_str());
 	return fs::path{ ("./Mods/config/" + modName + ".xml").c_str() };
 }
 

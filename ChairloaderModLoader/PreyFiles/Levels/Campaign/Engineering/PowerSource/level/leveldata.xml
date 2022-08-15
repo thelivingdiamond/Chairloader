@@ -1,0 +1,85 @@
+<LevelData SandboxVersion="3.7.0.179">
+ <LevelInfo CreationDate="08/01/18" Name="PowerSource" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
+ <SurfaceTypes>
+  <SurfaceType Name="Materials/material_terrain_default" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/material_terrain_default" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+ </SurfaceTypes>
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+  <CollisionClass type="0" ignore="65536"/>
+  <CollisionClass type="0" ignore="16384"/>
+  <CollisionClass type="1024" ignore="0"/>
+  <CollisionClass type="0" ignore="7994335"/>
+  <CollisionClass type="8192" ignore="0"/>
+  <CollisionClass type="8192" ignore="16384"/>
+  <CollisionClass type="4194304" ignore="0"/>
+  <CollisionClass type="0" ignore="384"/>
+  <CollisionClass type="65536" ignore="0"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="PowerSource_Scripting" Parent="" Id="1" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="PowerSource_Mikhaila_Reference" Parent="" Id="2" Specs="-1"/>
+  <Layer Name="Main" Parent="" Id="3" Specs="-1"/>
+  <Layer Name="PowerSource_Nightmare" Parent="" Id="4" Specs="-1"/>
+  <Layer Name="PowerSource_Breadcumbing" Parent="" Id="5" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Backup" Parent="PowerSource_Lighting" Id="6" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_ON_Sun" Parent="PowerSource_Lighting" Id="7" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_ON_Shell" Parent="PowerSource_Lighting" Id="8" Specs="-1"/>
+  <Layer Name="PowerSource_Scripting_SideQuest" Parent="" Id="9" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="PowerSource_Sq_01" Parent="" Id="10" Specs="-1"/>
+  <Layer Name="PowerSource_Core_Maintenance_Reference" Parent="" Id="11" Specs="-1"/>
+  <Layer Name="PowerSource_Core_Reference" Parent="" Id="12" Specs="-1"/>
+  <Layer Name="PowerSource_Distractions" Parent="" Id="13" Specs="-1"/>
+  <Layer Name="PowerSource_Cave" Parent="" Id="14" Specs="-1"/>
+  <Layer Name="PowerSource_Apex" Parent="" Id="15" Specs="-1" LoadTokenId="659909599" LoadTokenValue="1"/>
+  <Layer Name="Ark_MetricCameras" Parent="" Id="16" Specs="-1"/>
+  <Layer Name="PowerSource_Signage" Parent="" Id="17" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_ON_Sun_Shell" Parent="PowerSource_Lighting" Id="18" Specs="-1"/>
+  <Layer Name="PowerSource_AudioVolumes" Parent="" Id="19" Specs="-1"/>
+  <Layer Name="PowerSource_Entrance" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="PowerSource_Shadow_Shells" Parent="" Id="21" Specs="-1"/>
+  <Layer Name="trackview1" Parent="" Id="22" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="PowerSource_FX" Parent="" Id="23" Specs="-1"/>
+  <Layer Name="PowerSource_Entrance_Geo" Parent="PowerSource_Entrance" Id="24" Specs="-1"/>
+  <Layer Name="PowerSource_Entrance_Exterior" Parent="PowerSource_Entrance" Id="25" Specs="-1"/>
+  <Layer Name="PowerSource_Tutorial" Parent="" Id="26" Specs="-1"/>
+  <Layer Name="PowerSource_Collision" Parent="" Id="27" Specs="-1"/>
+  <Layer Name="PowerSource_Reboot_After" Parent="" Id="28" Specs="-1"/>
+  <Layer Name="PowerSource_Reboot_Before" Parent="" Id="29" Specs="-1"/>
+  <Layer Name="PowerSource_CoralPhase5" Parent="" Id="30" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="5"/>
+  <Layer Name="PowerSource_Sq_02" Parent="" Id="31" Specs="-1"/>
+  <Layer Name="PowerSource_ReactorCooling_Reference" Parent="" Id="32" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_ON" Parent="PowerSource_Lighting" Id="33" Specs="-1"/>
+  <Layer Name="PowerSource_CoralPhase4" Parent="" Id="34" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="4"/>
+  <Layer Name="PowerSource_Reactor_Exterior" Parent="" Id="35" Specs="-1"/>
+  <Layer Name="PowerSource_CaveScripting" Parent="" Id="36" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_ON_Probes" Parent="PowerSource_Lighting" Id="37" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting" Parent="" Id="38" Specs="-1"/>
+  <Layer Name="PowerSource_LightingFinal_WIP" Parent="PowerSource_Lighting" Id="39" Specs="-1"/>
+  <Layer Name="PowerSource_EngineeringControl" Parent="" Id="40" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final" Parent="PowerSource_Lighting" Id="41" Specs="-1"/>
+  <Layer Name="VisAreas" Parent="" Id="42" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_OFF" Parent="PowerSource_Lighting" Id="43" Specs="-1"/>
+  <Layer Name="PowerSource_Lighting_Final_OFF_Shell" Parent="PowerSource_Lighting" Id="44" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="PlayerWeapons"/>
+  <Library Name="LevelShared"/>
+  <Library Name="LevelSpecific"/>
+  <Library Name="Interactables"/>
+  <Library Name="Characters"/>
+  <Library Name="MaterialEffects"/>
+  <Library Name="Screen"/>
+  <Library Name="Player"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences>
+  <Library Name="GT_Global"/>
+  <Library Name="GT_GameTime"/>
+  <Library Name="GT_GlobalStrings"/>
+  <Library Name="TestTokens"/>
+  <Library Name="GT_selliott_test1"/>
+ </GameTokensLibraryReferences>
+</LevelData>

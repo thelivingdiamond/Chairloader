@@ -1,0 +1,24 @@
+<Graph isModule="1" moduleName="Mag_RunningLights" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkLight" pos="-9,-70,0" EntityGUID="{5FEF4786-5B82-4F1A-B41B-98EFD2488672}" EntityGUID_64="4F1A5B825FEF4786">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="4" Class="entity:ArkLight" pos="-9,-45,0" EntityGUID="{88549410-49B6-4F80-B720-0E9DA98847F9}" EntityGUID_64="4F8049B688549410">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="6" Class="entity:ArkLight" pos="-9,-20,0" EntityGUID="{F328A1F5-CF7E-4980-A357-537D06866151}" EntityGUID_64="4980CF7EF328A1F5">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="8" Class="entity:ArkLight" pos="-9,5,0" EntityGUID="{FEE10E1C-AF39-4AD5-A618-D0B4D2CDB097}" EntityGUID_64="4AD5AF39FEE10E1C">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="10" Class="entity:ArkLight" pos="-9,30,0" EntityGUID="{9004E9FE-CCE1-4F9C-BF68-966F0497E83C}" EntityGUID_64="4F9CCCE19004E9FE">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="12" Class="entity:ArkLight" pos="-9,55,0" EntityGUID="{996E1D1C-18A2-4B33-B156-781AF5D313C6}" EntityGUID_64="4B3318A2996E1D1C">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

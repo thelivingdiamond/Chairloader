@@ -1,0 +1,1981 @@
+<MovieData>
+ <Mission Name="Mission0">
+  <SequenceData>
+   <Sequence SequenceVersion="3" Name="ExteriorTelepathIntro" Flags="0" StartTime="0" EndTime="15" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="3" Type="DynamicEntity" Name="TrackviewTelepath" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkNpcs.Overseers.Telepath">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,589.12903" HasCustomColor="0">
+        <Key time="0" value="0,589.12903" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="12" value="12,588.612" flags="9" ds="1.6666667,0" dd="1.6666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1158.28" HasCustomColor="0">
+        <Key time="0" value="0,1158.28" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="12" value="12,1163.17" flags="9" ds="1.6666667,0" dd="1.6666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,156.05688" HasCustomColor="0">
+        <Key time="0" value="0,156.05688" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="12" value="12,142.06799" flags="9" ds="1.6666667,0" dd="1.6666667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="15" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="15" HasCustomColor="0" ValueType="-1">
+       <Key time="15" node="_LocalPlayer" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="panel2" Flags="4" StartTime="0" EndTime="6" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="GeomEntity284" Flags="0" paramIdVersion="9" EntityGUID="48DE9DB3264352BD">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,470.125" HasCustomColor="0">
+        <Key time="3.02" value="3.02,470.125" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,778.125" HasCustomColor="0">
+        <Key time="3.02" value="3.02,778" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,58.966328" HasCustomColor="0">
+        <Key time="3.02" value="3.02,58.966328" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-60" HasCustomColor="0">
+        <Key time="-6.0999999" value="-6.0999999,-60" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="0.02" value="0.02,-60" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.02" value="3.02,-65" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="6.00528" value="6.00528,-60" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="-6.0999999" value="-6.0999999,0" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="0.02" value="0.02,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.02" value="3.02,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="6.00528" value="6.00528,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="-6.0999999" value="-6.0999999,0" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="0.02" value="0.02,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.02" value="3.02,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="6.00528" value="6.00528,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="ReactorGlassDoor" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="3" Type="Entity" Name="coreframing3" Flags="0" paramIdVersion="9" EntityGUID="4B39F8E907A85FFE">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,596.86072" HasCustomColor="0">
+        <Key time="0.039999999" value="0.039999999,596.86072" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,598.82874" flags="73" ds="0.65333337,0" dd="0.65333337,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1164.3217" HasCustomColor="0">
+        <Key time="0.039999999" value="0.039999999,1150.8508" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,1150.8508" flags="73" ds="0.65333337,0" dd="0.65333337,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,30" HasCustomColor="0">
+        <Key time="0.039999999" value="0.039999999,30" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,30" flags="73" ds="0.65333337,0" dd="0.65333337,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0.039999999" value="0.039999999,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0.039999999" value="0.039999999,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0.039999999" value="0.039999999,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="4" Type="Entity" Name="coreframing6" Flags="0" paramIdVersion="9" EntityGUID="4DC792EFEE08CE38">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,596.86072" HasCustomColor="0">
+        <Key time="0" value="0,596.86072" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,594.98047" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1164.3217" HasCustomColor="0">
+        <Key time="0" value="0,1150.8508" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,1150.8508" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,30" HasCustomColor="0">
+        <Key time="0" value="0,30" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,30" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Roomba" Flags="0" StartTime="0" EndTime="20" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="FloorBuffer_A2" Flags="0" paramIdVersion="9" EntityGUID="4BF14D2A381F2895">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,555.58185" HasCustomColor="0">
+        <Key time="0" value="0,555.58185" flags="64" ds="0,0" dd="1.2754687,-0.60957849"/>
+        <Key time="3.826406" value="3.826406,553.75311" flags="64" ds="1.2754687,-0.87283719" dd="1.2784896,-0.87490445"/>
+        <Key time="7.6618748" value="7.6618748,550.33862" flags="64" ds="1.2784896,0.22223015" dd="1.5118643,0.26279593"/>
+        <Key time="12.197468" value="12.197468,555.20819" flags="64" ds="1.5118643,1.5106678" dd="1.3405725,1.3395114"/>
+        <Key time="16.219185" value="16.219185,558.88916" flags="64" ds="1.3405724,0.79221976" dd="0.75106043,0.44384393"/>
+        <Key time="18.472366" value="18.472366,558.91638" flags="64" ds="0.75106049,0.0090738935" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1171.2922" HasCustomColor="0">
+        <Key time="0" value="0,1170.891" flags="64" ds="0,0" dd="1.2754687,1.2144775"/>
+        <Key time="3.826406" value="3.826406,1174.5344" flags="64" ds="1.2754687,0.71745276" dd="1.2784896,0.71915203"/>
+        <Key time="7.6618748" value="7.6618748,1175.2008" flags="64" ds="1.2784896,0.16818273" dd="1.5118643,0.19888271"/>
+        <Key time="12.197468" value="12.197468,1175.6356" flags="64" ds="1.5118643,-0.34075537" dd="1.3405725,-0.30214831"/>
+        <Key time="16.219185" value="16.219185,1173.2721" flags="64" ds="1.3405724,-0.95332372" dd="0.75106043,-0.53410304"/>
+        <Key time="18.472366" value="18.472366,1171.1733" flags="64" ds="0.75106049,-0.69958496" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,115.50768" HasCustomColor="0">
+        <Key time="0" value="0,115.50768" flags="64" ds="0,0" dd="1.2754687,0"/>
+        <Key time="3.826406" value="3.826406,115.50768" flags="64" ds="1.2754687,0" dd="1.2784896,0"/>
+        <Key time="7.6618748" value="7.6618748,115.50768" flags="64" ds="1.2784896,0" dd="1.5118643,0"/>
+        <Key time="12.197468" value="12.197468,115.50768" flags="64" ds="1.5118643,0" dd="1.3405725,0"/>
+        <Key time="16.219185" value="16.219185,115.50768" flags="64" ds="1.3405724,1.6299476e-06" dd="0.75106043,9.1318395e-07"/>
+        <Key time="18.472366" value="18.472366,115.50769" flags="64" ds="0.75106049,2.5431316e-06" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="1.2754687,0"/>
+        <Key time="3.826406" value="3.826406,0" flags="64" ds="1.2754686,0" dd="2.7903538,0"/>
+        <Key time="12.197468" value="12.197468,0" flags="64" ds="2.7903538,0" dd="1.3405724,0"/>
+        <Key time="16.219185" value="16.219185,0" flags="64" ds="1.3405724,0" dd="0.77637547,0"/>
+        <Key time="18.548311" value="18.548311,0" flags="64" ds="0.77637547,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="1.2754687,0"/>
+        <Key time="3.826406" value="3.826406,0" flags="64" ds="1.2754686,0" dd="2.7903538,0"/>
+        <Key time="12.197468" value="12.197468,0" flags="64" ds="2.7903538,0" dd="1.3405724,0"/>
+        <Key time="16.219185" value="16.219185,0" flags="64" ds="1.3405724,0" dd="0.77637547,0"/>
+        <Key time="18.548311" value="18.548311,0" flags="64" ds="0.77637547,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-155" HasCustomColor="0">
+        <Key time="0" value="0,-155" flags="64" ds="0,0" dd="1.2754687,19.666676"/>
+        <Key time="3.826406" value="3.826406,-95.999977" flags="64" ds="1.2754686,-10.875101" dd="2.7903538,-23.791553"/>
+        <Key time="12.197468" value="12.197468,-258.99997" flags="64" ds="2.7903538,-47.058372" dd="1.3405724,-22.608299"/>
+        <Key time="16.219185" value="16.219185,-304.99997" flags="64" ds="1.3405724,-18.575544" dd="0.77637547,-10.757791"/>
+        <Key time="18.548311" value="18.548311,-346.99997" flags="64" ds="0.77637547,-14" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="RebootLevers" Flags="0" StartTime="0" EndTime="3" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="Switch.Switch_ColdWar_Generic6" Flags="0" paramIdVersion="9" EntityGUID="4368DEF6208E54B8">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,573.60901" HasCustomColor="0">
+        <Key time="0" value="0,573.60901" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.97" value="2.97,573.60901" flags="73" ds="0.99000001,0" dd="0.99000001,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1183.4535" HasCustomColor="0">
+        <Key time="0" value="0,1183.4535" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.97" value="2.97,1183.4535" flags="73" ds="0.99000001,0" dd="0.99000001,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,38.979664" HasCustomColor="0">
+        <Key time="0" value="0,38.973331" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.97" value="2.97,39.114143" flags="73" ds="0.99000001,0" dd="0.99000001,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,73.999985" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-5.7629718e-06" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,173" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="Tech.Console_ReactorRoom_A_Lid3" Flags="0" paramIdVersion="9" EntityGUID="4CBB706199FCBC30">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,575.23602" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1184.068" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,39.434502" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-13.219999" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,144.6539" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="3" Type="Entity" Name="Tech.Console_ReactorRoom_A_Lid1" Flags="0" paramIdVersion="9" EntityGUID="4B29ADEF824BC3FE">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,575.83588" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1183.441" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,39.433804" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-13.22" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,4.2688683e-07" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,124.65391" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="4" Type="Entity" Name="Tech.Console_ReactorRoom_A_Lid2" Flags="0" paramIdVersion="9" EntityGUID="409DC3C6F632F83A">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,576.22693" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1182.692" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,39.434502" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-13.219999" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,4.2688683e-07" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,108.6539" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="5" Type="Entity" Name="Tech.Console_ReactorRoom_A_Lid4" Flags="0" paramIdVersion="9" EntityGUID="44171CF262A8685D">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,576.20862" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1180.715" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,39.432301" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-13.22" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,70.653908" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="6" Type="Entity" Name="Tech.Console_ReactorRoom_A_Lid5" Flags="0" paramIdVersion="9" EntityGUID="47E0AD04F50DB94F">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,575.81409" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1179.942" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,39.432301" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-13.219999" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,4.2688683e-07" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,52.653904" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="7" Type="Entity" Name="Tech.Console_ReactorRoom_A_Lid6" Flags="0" paramIdVersion="9" EntityGUID="411B907642AD51E4">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,575.19427" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1179.34" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,39.432301" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,-13.220001" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,4.2688683e-07" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,34.653904" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="ElectricFloorDoor" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="sliding_door_glass_left6" Flags="0" paramIdVersion="9" EntityGUID="4F0315506B52E0F1">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,557.04535" HasCustomColor="0">
+        <Key time="0" value="0,557.04535" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.05" value="3.05,557.04535" flags="73" ds="1.0166667,0" dd="1.0166667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,793.7912" HasCustomColor="0">
+        <Key time="0" value="0,793.7912" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.05" value="3.05,794.63696" flags="73" ds="1.0166667,0" dd="1.0166667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,73.013176" HasCustomColor="0">
+        <Key time="0" value="0,73.013176" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.05" value="3.05,73.013176" flags="73" ds="1.0166667,0" dd="1.0166667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="sliding_door_glass_right6" Flags="0" paramIdVersion="9" EntityGUID="4FDA4EAAE369C902">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,557.04523" HasCustomColor="0">
+        <Key time="0" value="0,557.04523" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.0599999" value="3.0599999,557.04523" flags="73" ds="1.02,0" dd="1.02,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,792.19122" HasCustomColor="0">
+        <Key time="0" value="0,792.19122" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.0599999" value="3.0599999,791.354" flags="73" ds="1.02,0" dd="1.02,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,73.013191" HasCustomColor="0">
+        <Key time="0" value="0,73.013191" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.0599999" value="3.0599999,73.013191" flags="73" ds="1.02,0" dd="1.02,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="RebootCoverPanel" Flags="0" StartTime="0" EndTime="2" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="3" Type="Entity" Name="Buttons.Button_ReactorReboot1" Flags="0" paramIdVersion="9" EntityGUID="4C4F772445509FE9">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,575.35577" HasCustomColor="0">
+        <Key time="0" value="0,575.35577" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,575.31635" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1182.6692" HasCustomColor="0">
+        <Key time="0" value="0,1182.6692" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,1182.6482" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.092079" HasCustomColor="0">
+        <Key time="0" value="0,39.092079" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,39.229424" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,72" HasCustomColor="0">
+        <Key time="0" value="0,72" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,8.537736e-06" HasCustomColor="0">
+        <Key time="0" value="0,8.537736e-06" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,117.99999" HasCustomColor="0">
+        <Key time="0" value="0,117.99999" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="2" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="controldoor2" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="sliding_door_glass_right2" Flags="0" paramIdVersion="9" EntityGUID="4303860DC62CC2E5">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,513.55487" HasCustomColor="0">
+        <Key time="0" value="0,513.55487" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.02" value="3.02,514.23694" flags="73" ds="1.0066667,0" dd="1.0066667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,786.30383" HasCustomColor="0">
+        <Key time="0" value="0,786.30383" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.02" value="3.02,786.30383" flags="73" ds="1.0066667,0" dd="1.0066667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,73.082809" HasCustomColor="0">
+        <Key time="0" value="0,73.082809" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.02" value="3.02,73.082809" flags="73" ds="1.0066667,0" dd="1.0066667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="sliding_door_glass_left2" Flags="0" paramIdVersion="9" EntityGUID="4061FE52D075264D">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,511.35031" HasCustomColor="0">
+        <Key time="0" value="0,511.35031" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,510.72205" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,786.30383" HasCustomColor="0">
+        <Key time="0" value="0,786.30383" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,786.36444" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,73.082802" HasCustomColor="0">
+        <Key time="0" value="0,73.082802" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,73.082802" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="ExteriorTelepathLoop" Flags="0" StartTime="0" EndTime="1" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="3" Type="DynamicEntity" Name="TrackviewTelepath" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkNpcs.Overseers.Telepath">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,564.75812" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1174.0684" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,144.01178" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="1" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="secondgasdoor" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="sliding_door_glass_left9" Flags="0" paramIdVersion="9" EntityGUID="4E4E0A59A97AC1B9">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,504.87" HasCustomColor="0">
+        <Key time="0" value="0,504.87" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.02" value="2.02,504.87" flags="73" ds="0.67333335,0" dd="0.67333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,772.92999" HasCustomColor="0">
+        <Key time="0" value="0,772.92999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.02" value="2.02,772.10999" flags="73" ds="0.67333335,0" dd="0.67333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,52.600002" HasCustomColor="0">
+        <Key time="0" value="0,52.600002" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.02" value="2.02,52.600002" flags="73" ds="0.67333335,0" dd="0.67333335,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="sliding_door_glass_right9" Flags="0" paramIdVersion="9" EntityGUID="43A5FCBA983A0D2C">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,504.88" HasCustomColor="0">
+        <Key time="0" value="0,504.88" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,504.88" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,774.82007" HasCustomColor="0">
+        <Key time="0" value="0,774.82007" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,775.77008" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,52.600002" HasCustomColor="0">
+        <Key time="0" value="0,52.600002" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,52.600002" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="GasDoors" Flags="0" StartTime="0" EndTime="6" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="sliding_door_glass_right7" Flags="0" paramIdVersion="9" EntityGUID="41928FC81E54D725">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,500.47687" HasCustomColor="0">
+        <Key time="0" value="0,500.47687" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3" value="3,500.47687" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,797.54541" HasCustomColor="0">
+        <Key time="0" value="0,797.54541" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3" value="3,798.36481" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,38.995499" HasCustomColor="0">
+        <Key time="0" value="0,38.995499" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3" value="3,38.995499" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="sliding_door_glass_left7" Flags="0" paramIdVersion="9" EntityGUID="4B414FEF63E8DD5A">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,500.47131" HasCustomColor="0">
+        <Key time="0" value="0,500.47131" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3" value="3,500.47131" flags="73" ds="1,0" dd="0.99333441,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,795.349" HasCustomColor="0">
+        <Key time="0" value="0,795.349" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3" value="3,794.54181" flags="73" ds="1,0" dd="0.99333441,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,38.995499" HasCustomColor="0">
+        <Key time="0" value="0,38.995499" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3" value="3,38.995499" flags="73" ds="1,0" dd="0.99333441,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.99346203,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.99346203,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="0.99346203,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="RaiseDestructKeyholes" Flags="0" StartTime="0" EndTime="5" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="Entity" Name="transformer_b4" Flags="0" paramIdVersion="9" EntityGUID="4729596AE7196761">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,586.94165" HasCustomColor="0">
+        <Key time="0" value="0,586.94165" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="5" value="5,586.94165" flags="73" ds="1.6666667,0" dd="1.6666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1185.6917" HasCustomColor="0">
+        <Key time="0" value="0,1185.6917" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="5" value="5,1185.6917" flags="73" ds="1.6666667,0" dd="1.6666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,34.180828" HasCustomColor="0">
+        <Key time="0" value="0,34.180828" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="5" value="5,35.486755" flags="73" ds="1.6666667,0" dd="1.6666667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="5" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="PowerSource_Sq_02B" Flags="4" StartTime="0" EndTime="20.966667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="MikhailaIlyushin" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Engineers.Mikhaila Ilyushin (sick)">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20.966667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="20.966667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_PowerSource_Sq02B_GiveMikhailaMed_EIdle_MikhailaIlyushin" duration="20.966667" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="20.966667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.0069900937,0,0,0.99997556" t="560.85699,1180.88,115.491" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="20.966667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="ReactorDoor" Flags="0" StartTime="0" EndTime="6.0999999" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="reactor_door1" Flags="0" paramIdVersion="9" EntityGUID="485C56E66C87D8FB">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,595.67261" HasCustomColor="0">
+        <Key time="0" value="0,597.45007" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="6.0024996" value="6.0024996,597.45007" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1180.7969" HasCustomColor="0">
+        <Key time="0" value="0,1157.2" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="6.0024996" value="6.0024996,1157.2" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,37.843082" HasCustomColor="0">
+        <Key time="0" value="0,32.274998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="6.0024996" value="6.0024996,32.274998" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.0325" value="3.0325,0" flags="73" ds="1.6733334,0" dd="1.6733334,0"/>
+        <Key time="6.0024996" value="6.0024996,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.0325" value="3.0325,0" flags="73" ds="1.6733334,0" dd="1.6733334,0"/>
+        <Key time="6.0024996" value="6.0024996,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.0325" value="3.0325,89.999992" flags="73" ds="1.6733334,0" dd="1.6733334,0"/>
+        <Key time="6.0024996" value="6.0024996,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="6.0999999" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Event" Name="PauseReactorDoor" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="6.0999999" HasCustomColor="0" ValueType="-1">
+       <Key time="3.0325" event="PauseReactorDoor"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="PauseReactorDoor"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="FogDensity" Flags="0" StartTime="0" EndTime="6" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="FogVolume1" Flags="0" paramIdVersion="9" EntityGUID="4B6BCA1E6E7348E9">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,610.87811" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1192.0912" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,124.05134" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+      <Track paramUserValue="ScriptTable:Properties/GlobalDensity" paramType="ByString" Type="4" Flags="0" defaultValue="0,0.015" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,0.02" flags="73" ds="1,0" dd="1,0"/>
+       <Key time="2" value="2,0.015" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+       <Key time="4.0100002" value="4.0100002,0.0099999998" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+       <Key time="6" value="6,0" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="Event" Name="OneThirdReduced" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="FullGas"/>
+       <Key time="2.01" event="OneThirdReduction"/>
+       <Key time="4" event="TwoThirdsReduction"/>
+       <Key time="6" event="99PercentReduction"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="OneThirdReduction"/>
+     <Event Name="TwoThirdsReduction"/>
+     <Event Name="99PercentReduction"/>
+     <Event Name="FullGas"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="slow_fan" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="AnimObject2" Flags="0" paramIdVersion="9" EntityGUID="495E819F602E422B">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,504.4371" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,793.35925" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,76.660065" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-90" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="ReactorPipeFalls" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="pipe_large_20m_straight27" Flags="0" paramIdVersion="9" EntityGUID="4498B1E074B90B81">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,614.90564" HasCustomColor="0">
+        <Key time="0" value="0,614.90564" flags="64" ds="0,0" dd="0.30833337,0"/>
+        <Key time="0.92500007" value="0.92500007,614.90564" flags="64" ds="0.30833337,0" dd="0.27404782,0"/>
+        <Key time="1.7471435" value="1.7471435,614.90564" flags="64" ds="0.27404782,0" dd="0.11473147,0"/>
+        <Key time="2.0913379" value="2.0913379,614.90564" flags="64" ds="0.11473148,0" dd="0.16226237,0"/>
+        <Key time="2.578125" value="2.578125,614.90564" flags="64" ds="0.16226237,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1168.2808" HasCustomColor="0">
+        <Key time="0" value="0,1168.2808" flags="64" ds="0,0" dd="0.30833337,0"/>
+        <Key time="0.92500007" value="0.92500007,1168.2808" flags="64" ds="0.30833337,0" dd="0.27404782,0"/>
+        <Key time="1.7471435" value="1.7471435,1168.2808" flags="64" ds="0.27404782,-0.34341165" dd="0.11473147,-0.14377098"/>
+        <Key time="2.0913379" value="2.0913379,1166.8192" flags="64" ds="0.11473148,-1.3891181" dd="0.16226237,-1.9646012"/>
+        <Key time="2.578125" value="2.578125,1158.2196" flags="64" ds="0.16226237,-2.8665366" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,94.983971" HasCustomColor="0">
+        <Key time="0" value="0,94.190125" flags="64" ds="0,0" dd="0.30833337,-9.0698853"/>
+        <Key time="0.92500007" value="0.92500007,66.980469" flags="64" ds="0.30833337,-9.554225" dd="0.27404782,-8.4918299"/>
+        <Key time="1.7471435" value="1.7471435,40.051964" flags="64" ds="0.27404782,-6.327239" dd="0.11473147,-2.6489298"/>
+        <Key time="2.0913379" value="2.0913379,40.051964" flags="64" ds="0.11473148,-1.1834279" dd="0.16226237,-1.6736978"/>
+        <Key time="2.578125" value="2.578125,31.480587" flags="64" ds="0.16226237,-2.8571258" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,90.000008" HasCustomColor="0">
+        <Key time="0" value="0,90.000008" flags="64" ds="0,0" dd="0.30833337,30.000004"/>
+        <Key time="0.92500007" value="0.92500007,180.00002" flags="64" ds="0.30833337,14.890791" dd="0.38877931,18.775885"/>
+        <Key time="2.0913379" value="2.0913379,191.00003" flags="64" ds="0.38877931,21.636417" dd="0.16226235,9.0302544"/>
+        <Key time="2.578125" value="2.578125,272.00003" flags="64" ds="0.16226237,27" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="0.30833337,0"/>
+        <Key time="0.92500007" value="0.92500007,0" flags="64" ds="0.30833337,0" dd="0.38877931,0"/>
+        <Key time="2.0913379" value="2.0913379,0" flags="64" ds="0.38877931,0" dd="0.16226235,0"/>
+        <Key time="2.578125" value="2.578125,0" flags="64" ds="0.16226237,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="0.30833337,0"/>
+        <Key time="0.92500007" value="0.92500007,0" flags="64" ds="0.30833337,0" dd="0.38877931,0"/>
+        <Key time="2.0913379" value="2.0913379,0" flags="64" ds="0.38877931,0" dd="0.16226235,0"/>
+        <Key time="2.578125" value="2.578125,0" flags="64" ds="0.16226237,0" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Event" Name="impact1" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="1.74" event="Impact1"/>
+       <Key time="2.6099999" event="Impact2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="Impact1"/>
+     <Event Name="Impact2"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="SelfDestructElevator" Flags="0" StartTime="0" EndTime="8.0900002" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="reactor_elevator_lift1" Flags="0" paramIdVersion="9" EntityGUID="4FD913FD55D5D562">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,584.09998" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1181.8" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,35.900002" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-90.000008" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="8.0900002" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="floor_foundation_a_3x8m56" Flags="0" paramIdVersion="9" EntityGUID="457BE6470997D43E">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,584.04999" HasCustomColor="0">
+        <Key time="0" value="0,584.04999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="8.0124998" value="8.0124998,584.04999" flags="73" ds="2.6708333,0" dd="2.6708333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1183.4443" HasCustomColor="0">
+        <Key time="0" value="0,1183.4443" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="8.0124998" value="8.0124998,1185.5106" flags="73" ds="2.6708333,0" dd="2.6708333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,35.369995" HasCustomColor="0">
+        <Key time="0" value="0,35.369995" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="8.0124998" value="8.0124998,35.369995" flags="73" ds="2.6708333,0" dd="2.6708333,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-179.99998" HasCustomColor="0">
+        <Key time="0" value="0,-179.99998" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="8.0900002" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="3" Type="Entity" Name="floor_foundation_a_3x8m49" Flags="0" paramIdVersion="9" EntityGUID="41F5851F2B67FE76">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,584.04999" HasCustomColor="0">
+        <Key time="0" value="0,584.04999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="8.0124998" value="8.0124998,584.04999" flags="73" ds="2.6708333,0" dd="2.6708333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1180.1831" HasCustomColor="0">
+        <Key time="0" value="0,1180.1831" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="8.0124998" value="8.0124998,1177.9552" flags="73" ds="2.6708333,0" dd="2.6708333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,35.369995" HasCustomColor="0">
+        <Key time="0" value="0,35.369995" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="8.0124998" value="8.0124998,35.369995" flags="73" ds="2.6708333,0" dd="2.6708333,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1.0017911e-05" HasCustomColor="0">
+        <Key time="0" value="0,1.0017911e-05" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="8.0900002" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="NewReactorDoor" Flags="0" StartTime="0" EndTime="6" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="Event" Name="PauseNewReactorDoor" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1">
+       <Key time="3" event="PauseNewReactorDoor"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Entity" Name="Door_Reactor_A1" Flags="0" paramIdVersion="9" EntityGUID="460387A6793268AD">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,595.53015" HasCustomColor="0">
+        <Key time="0" value="0,595.53015" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.01" value="3.01,595.53015" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+        <Key time="5.9899244" value="5.9899244,595.53015" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1181.7534" HasCustomColor="0">
+        <Key time="0" value="0,1181.7534" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.01" value="3.01,1181.7534" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+        <Key time="5.9899244" value="5.9899244,1181.7534" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,36.292786" HasCustomColor="0">
+        <Key time="0" value="0,36.292786" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.01" value="3.01,39.275005" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+        <Key time="5.9899244" value="5.9899244,36.292786" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="5.9899244" value="5.9899244,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="5.9899244" value="5.9899244,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999985" HasCustomColor="0">
+        <Key time="0" value="0,-89.999985" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="5.9899244" value="5.9899244,-89.999985" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="6" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="PauseNewReactorDoor"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="pipetwist" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="GeomEntity158" Flags="0" paramIdVersion="9" EntityGUID="459048A5A2536407">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,488.65598" HasCustomColor="0">
+        <Key time="0" value="0,488.65598" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,789.78979" HasCustomColor="0">
+        <Key time="0" value="0,789.78979" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,67.658424" HasCustomColor="0">
+        <Key time="0" value="0,67.658424" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,0" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+        <Key time="4.02" value="4.02,0" flags="73" ds="0.67333335,0" dd="0.67333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.980209" HasCustomColor="0">
+        <Key time="0" value="0,89.980209" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,89.980209" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+        <Key time="4.02" value="4.02,89.972015" flags="73" ds="0.67333335,0" dd="0.67333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,180" HasCustomColor="0">
+        <Key time="0" value="0,180" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,185.00002" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+        <Key time="4.02" value="4.02,175.00002" flags="73" ds="0.67333335,0" dd="0.67333335,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="controldoor1" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="3" Type="Entity" Name="sliding_door_glass_left1" Flags="0" paramIdVersion="9" EntityGUID="427AD00651C32EBE">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,511.35031" HasCustomColor="0">
+        <Key time="0" value="0,511.35031" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,510.70157" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,776.80103" HasCustomColor="0">
+        <Key time="0" value="0,776.80103" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,776.75616" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,73.082802" HasCustomColor="0">
+        <Key time="0" value="0,73.082802" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,73.082802" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="4" Type="Entity" Name="sliding_door_glass_right1" Flags="0" paramIdVersion="9" EntityGUID="4E67ABBF6B7C58C2">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,513.55487" HasCustomColor="0">
+        <Key time="0" value="0,513.55487" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,514.18695" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,776.80103" HasCustomColor="0">
+        <Key time="0" value="0,776.80103" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,776.70508" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,73.082809" HasCustomColor="0">
+        <Key time="0" value="0,73.082809" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.99" value="2.99,73.082809" flags="73" ds="0.99666667,0" dd="0.99666667,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="RebootShutters" Flags="0" StartTime="0" EndTime="20" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small3" Flags="0" paramIdVersion="9" EntityGUID="42FE9C59CC2E50AB">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,605.77997" HasCustomColor="0">
+        <Key time="0" value="0,605.77997" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.477135" value="18.477135,605.77997" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1219.23" HasCustomColor="0">
+        <Key time="0" value="0,1219.23" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.477135" value="18.477135,1219.23" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,35.470001" HasCustomColor="0">
+        <Key time="0" value="0,35.470001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.477135" value="18.477135,56.456234" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-90" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small12" Flags="0" paramIdVersion="9" EntityGUID="4CB6546466020120">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,608.09998" HasCustomColor="0">
+        <Key time="0" value="0,608.09998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="17.831484" value="17.831484,608.09998" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1217.3999" HasCustomColor="0">
+        <Key time="0" value="0,1217.3999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="17.831484" value="17.831484,1217.3999" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="17.831484" value="17.831484,56.469135" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-3.4150946e-06" HasCustomColor="0">
+        <Key time="0" value="0,-3.4150944e-06" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="3" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small11" Flags="0" paramIdVersion="9" EntityGUID="476A25F94DDCF0CB">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,607.79999" HasCustomColor="0">
+        <Key time="0" value="0,607.79999" flags="73" ds="1,0" dd="0.85449195,0"/>
+        <Key time="2.280273" value="2.280273,607.79999" flags="9" ds="0.85449195,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,607.79999" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1213.2999" HasCustomColor="0">
+        <Key time="0" value="0,1213.2999" flags="73" ds="1,0" dd="0.85449195,0"/>
+        <Key time="2.280273" value="2.280273,1213.2999" flags="9" ds="0.85449195,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,1213.2999" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="0.85449195,0"/>
+        <Key time="2.280273" value="2.280273,39.599998" flags="9" ds="0.85449195,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,56.3699" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.85449195,0"/>
+        <Key time="2.280273" value="2.280273,0" flags="9" ds="0.85449195,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.85449195,0"/>
+        <Key time="2.280273" value="2.280273,0" flags="9" ds="0.85449195,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="0.85449195,0"/>
+        <Key time="2.280273" value="2.280273,89.999992" flags="9" ds="0.85449195,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="4" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small10" Flags="0" paramIdVersion="9" EntityGUID="40B826AC37B529F1">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,613.69995" HasCustomColor="0">
+        <Key time="0" value="0,613.69995" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="17.881088" value="17.881088,613.69995" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1211.7999" HasCustomColor="0">
+        <Key time="0" value="0,1211.7999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="17.881088" value="17.881088,1211.7999" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="17.881088" value="17.881088,56.414772" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-3.4150946e-06" HasCustomColor="0">
+        <Key time="0" value="0,-3.4150944e-06" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="5" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small9" Flags="0" paramIdVersion="9" EntityGUID="4FFCDD5B95DEB9F1">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,613.19995" HasCustomColor="0">
+        <Key time="0" value="0,613.19995" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4032586" value="2.4032586,613.19995" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.710207" value="19.710207,613.19995" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1208.5" HasCustomColor="0">
+        <Key time="0" value="0,1208.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4032586" value="2.4032586,1208.5" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.710207" value="19.710207,1208.5" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4032586" value="2.4032586,39.599998" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.710207" value="19.710207,56.853924" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4032586" value="2.4032586,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4032586" value="2.4032586,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4032586" value="2.4032586,89.999992" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="6" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small1" Flags="0" paramIdVersion="9" EntityGUID="4DAE34DCF5689893">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,619.40002" HasCustomColor="0">
+        <Key time="0" value="0,619.40002" flags="73" ds="1,0" dd="0.76293916,0"/>
+        <Key time="1.9934077" value="1.9934077,619.40002" flags="9" ds="0.76293916,0" dd="1,0"/>
+        <Key time="19.728832" value="19.728832,619.40002" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1207.1" HasCustomColor="0">
+        <Key time="0" value="0,1207.1" flags="73" ds="1,0" dd="0.76293916,0"/>
+        <Key time="1.9934077" value="1.9934077,1207.1" flags="9" ds="0.76293916,0" dd="1,0"/>
+        <Key time="19.728832" value="19.728832,1207.1" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="0.76293916,0"/>
+        <Key time="1.9934077" value="1.9934077,39.599998" flags="9" ds="0.76293916,0" dd="1,0"/>
+        <Key time="19.728832" value="19.728832,56.153599" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.76293916,0"/>
+        <Key time="1.9934077" value="1.9934077,0" flags="9" ds="0.76293916,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.76293916,0"/>
+        <Key time="1.9934077" value="1.9934077,0" flags="9" ds="0.76293916,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="0.76293916,0"/>
+        <Key time="1.9934077" value="1.9934077,0" flags="9" ds="0.76293916,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="7" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small4" Flags="0" paramIdVersion="9" EntityGUID="4975EDCBCFE6041E">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,619" HasCustomColor="0">
+        <Key time="0" value="0,619" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.715553" value="18.715553,619" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1203.5" HasCustomColor="0">
+        <Key time="0" value="0,1203.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.715553" value="18.715553,1203.5" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.715553" value="18.715553,56.11153" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="8" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small2" Flags="0" paramIdVersion="9" EntityGUID="458C56E16BDFB97F">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,625.20001" HasCustomColor="0">
+        <Key time="0" value="0,625.20001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.5939937" value="2.5939937,625.20001" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,625.20001" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1202" HasCustomColor="0">
+        <Key time="0" value="0,1202" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.5939937" value="2.5939937,1202" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,1202" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.5" HasCustomColor="0">
+        <Key time="0" value="0,39.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.5939937" value="2.5939937,39.5" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,64.581467" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.5939937" value="2.5939937,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.5939937" value="2.5939937,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.5939937" value="2.5939937,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="9" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small7" Flags="0" paramIdVersion="9" EntityGUID="4B9DDFA893CAD173">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,625.20001" HasCustomColor="0">
+        <Key time="0" value="0,625.20001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2806389" value="3.2806389,625.20001" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.720207" value="19.720207,625.20001" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1196.4" HasCustomColor="0">
+        <Key time="0" value="0,1196.4" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2806389" value="3.2806389,1196.4" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.720207" value="19.720207,1196.4" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.5" HasCustomColor="0">
+        <Key time="0" value="0,35.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2806389" value="3.2806389,35.5" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.720207" value="19.720207,56.584892" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2806389" value="3.2806389,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2806389" value="3.2806389,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,5.0089552e-06" HasCustomColor="0">
+        <Key time="0" value="0,5.0089552e-06" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="3.2806389" value="3.2806389,5.0089552e-06" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="10" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small5" Flags="0" paramIdVersion="9" EntityGUID="45083C3BBACD9715">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,625.09998" HasCustomColor="0">
+        <Key time="0" value="0,625.09998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.7084343" value="2.7084343,625.09998" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,625.09998" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1184.6" HasCustomColor="0">
+        <Key time="0" value="0,1184.6" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.7084343" value="2.7084343,1184.6" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,1184.6" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.5" HasCustomColor="0">
+        <Key time="0" value="0,39.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.7084343" value="2.7084343,39.5" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,62.037678" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.7084343" value="2.7084343,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.7084343" value="2.7084343,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.7084343" value="2.7084343,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="11" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small8" Flags="0" paramIdVersion="9" EntityGUID="426E8F52DE53208D">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,625.20001" HasCustomColor="0">
+        <Key time="0" value="0,625.20001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.696928" value="18.696928,625.20001" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1178.9" HasCustomColor="0">
+        <Key time="0" value="0,1178.9" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.696928" value="18.696928,1178.9" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.5" HasCustomColor="0">
+        <Key time="0" value="0,35.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.696928" value="18.696928,56.437229" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,5.0089552e-06" HasCustomColor="0">
+        <Key time="0" value="0,5.0089552e-06" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="12" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small6" Flags="0" paramIdVersion="9" EntityGUID="4268BC517DB4D951">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,625.09998" HasCustomColor="0">
+        <Key time="0" value="0,625.09998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.746929" value="18.746929,625.09998" flags="73" ds="3.0166669,0" dd="3.0166669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1167.3" HasCustomColor="0">
+        <Key time="0" value="0,1167.3" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.746929" value="18.746929,1167.3" flags="73" ds="3.0166669,0" dd="3.0166669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.5" HasCustomColor="0">
+        <Key time="0" value="0,39.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.746929" value="18.746929,64.743256" flags="73" ds="3.0166669,0" dd="3.0166669,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="13" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small20" Flags="0" paramIdVersion="9" EntityGUID="43E43B6E9931C8C2">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,623.09998" HasCustomColor="0">
+        <Key time="0" value="0,623.09998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.059902" value="18.059902,623.09998" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1159.9" HasCustomColor="0">
+        <Key time="0" value="0,1159.9" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.059902" value="18.059902,1159.9" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.059902" value="18.059902,56.378994" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-90.000023" HasCustomColor="0">
+        <Key time="0" value="0,-90.000015" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="14" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small22" Flags="0" paramIdVersion="9" EntityGUID="4CAB0614E7C064AF">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,619.10004" HasCustomColor="0">
+        <Key time="0" value="0,619.10004" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.059936" value="2.059936,619.10004" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,619.10004" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1160.6001" HasCustomColor="0">
+        <Key time="0" value="0,1160.6001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.059936" value="2.059936,1160.6001" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,1160.6001" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.059936" value="2.059936,39.599998" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,56.479351" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.059936" value="2.059936,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.059936" value="2.059936,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-1.7075474e-05" HasCustomColor="0">
+        <Key time="0" value="0,-1.7075472e-05" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.059936" value="2.059936,-1.7075472e-05" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="15" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small24" Flags="0" paramIdVersion="9" EntityGUID="4433DB6B6352EDD1">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,618.20001" HasCustomColor="0">
+        <Key time="0" value="0,618.20001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.000298" value="18.000298,618.20001" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1154.3003" HasCustomColor="0">
+        <Key time="0" value="0,1154.3003" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.000298" value="18.000298,1154.3003" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.000298" value="18.000298,56.175724" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-90.000023" HasCustomColor="0">
+        <Key time="0" value="0,-90.000015" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="16" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small25" Flags="0" paramIdVersion="9" EntityGUID="488E068055E70743">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,614.40002" HasCustomColor="0">
+        <Key time="0" value="0,614.40002" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.861022" value="2.861022,614.40002" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,614.40002" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1154.4091" HasCustomColor="0">
+        <Key time="0" value="0,1154.2002" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.861022" value="2.861022,1154.2002" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,1154.2002" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.861022" value="2.861022,39.599998" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,56.26268" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.861022" value="2.861022,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.861022" value="2.861022,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-1.7075474e-05" HasCustomColor="0">
+        <Key time="0" value="0,-1.7075472e-05" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.861022" value="2.861022,-1.7075472e-05" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="17" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small27" Flags="0" paramIdVersion="9" EntityGUID="40B0F352FC0143D0">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,613.10004" HasCustomColor="0">
+        <Key time="0" value="0,613.10004" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.41753" value="18.41753,613.10004" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1148.8003" HasCustomColor="0">
+        <Key time="0" value="0,1148.8003" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.41753" value="18.41753,1148.8003" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="18.41753" value="18.41753,56.420094" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-90.000023" HasCustomColor="0">
+        <Key time="0" value="0,-90.000015" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="18" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small29" Flags="0" paramIdVersion="9" EntityGUID="4DF32595C2F29D14">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,609.09998" HasCustomColor="0">
+        <Key time="0" value="0,609.09998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.9373162" value="2.9373162,609.09998" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.728832" value="19.728832,609.09998" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1149.2175" HasCustomColor="0">
+        <Key time="0" value="0,1149.2175" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.9373162" value="2.9373162,1149.2175" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.728832" value="19.728832,1149.2175" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,39.599998" HasCustomColor="0">
+        <Key time="0" value="0,39.599998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.9373162" value="2.9373162,39.599998" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.728832" value="19.728832,56.53326" flags="73" ds="3,0" dd="3,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.9373162" value="2.9373162,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.9373162" value="2.9373162,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-1.7075474e-05" HasCustomColor="0">
+        <Key time="0" value="0,-1.7075472e-05" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.9373162" value="2.9373162,-1.7075472e-05" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="19" Type="Entity" Name="shutters_exterior_a_powersource_reactorroom_small31" Flags="0" paramIdVersion="9" EntityGUID="4F54078D0BCB5180">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,594.27991" HasCustomColor="0">
+        <Key time="0" value="0,594.27991" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4795525" value="2.4795525,594.27991" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,594.27991" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1143.4298" HasCustomColor="0">
+        <Key time="0" value="0,1143.4298" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4795525" value="2.4795525,1143.4298" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,1143.4298" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,35.470001" HasCustomColor="0">
+        <Key time="0" value="0,35.470001" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4795525" value="2.4795525,35.470001" flags="9" ds="1,0" dd="1,0"/>
+        <Key time="19.738832" value="19.738832,56.672619" flags="73" ds="3.0033336,0" dd="3.0033336,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4795525" value="2.4795525,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4795525" value="2.4795525,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0" value="0,89.999985" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.4795525" value="2.4795525,89.999985" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="20" Type="Entity" Name="AudioTriggerSpot88_Shutters5" Flags="0" paramIdVersion="9" EntityGUID="4829B52ED0EBEC89">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,609.43048" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1154.8846" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,43.863316" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1">
+       <Key time="19.928196" StartTrigger="Stop_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+     <Node Id="21" Type="Entity" Name="AudioTriggerSpot88_Shutters3" Flags="0" paramIdVersion="9" EntityGUID="49B6865FA04B4D13">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,619.15637" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1172.0431" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,44.918594" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1">
+       <Key time="0.084000006" StartTrigger="Play_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+     <Node Id="22" Type="Entity" Name="AudioTriggerSpot88_Shutters2" Flags="0" paramIdVersion="9" EntityGUID="41D54FE026973560">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,619.0434" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1198.1344" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,43.59243" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1">
+       <Key time="0.12399998" StartTrigger="Play_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="19.916384" StartTrigger="Stop_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+     <Node Id="23" Type="Entity" Name="AudioTriggerSpot88_Shutters" Flags="0" paramIdVersion="9" EntityGUID="45892DCD43ABBD79">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,609.67645" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1209.2096" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,43.036533" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1">
+       <Key time="0.059999999" StartTrigger="Play_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="19.875" StartTrigger="Stop_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+     <Node Id="24" Type="Entity" Name="AudioTriggerSpot88_Shutters4" Flags="0" paramIdVersion="9" EntityGUID="4EFE5B514650D1C0">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,620.52814" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,1161.3236" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,41.49408" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="20" HasCustomColor="0" ValueType="-1">
+       <Key time="0.12399998" StartTrigger="Play_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="19.924974" StartTrigger="Stop_Obj_PowerSource_Massive_Shutters_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="PowerSource_Sq_01" Flags="4" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="MikhailaIlyushin" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Engineers.Mikhaila Ilyushin (sick)">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_PowerSource_Sq01_GiveMikhailaMedicine_SIdle_MikhailaIlyushin" duration="12.033334" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.0069905706,4.3368092e-19,-3.0319413e-21,0.99997556" t="560.85651,1180.8831,115.4911" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="PowerSource_Sq_02A_PlayerGivesMedicine" Flags="0" StartTime="0" EndTime="25.66667" ID="0" ConversationID="4A0EEEE558D65B3">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="MikhailaIlyushin" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Engineers.Mikhaila Ilyushin (sick)">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_PowerSource_Sq02_GiveMikhailaMed_Dialogue_MikhailaIlyushin" duration="25.666668" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="2.3399999" parentName="ArkPlayer" boneAttachName="anchor" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550F869" PAChannel="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.31500003" dialogId="4A0EEEE558D660B" channelId="-1" duration="6.1408162" animTime="0" dialogBrief="Oh god, Morgan, I... you surprise the hell out of me sometimes."/>
+       <Key time="7.4000006" dialogId="4A0EEEE558D68D0" channelId="-1" duration="1.845986" animTime="0" dialogBrief="Please... right at the neck..."/>
+       <Key time="9.750001" dialogId="4A0EEEE558D6914" channelId="-1" duration="5.330431" animTime="0" dialogBrief="...just look for the marks, it&apos;s harder when I was doing it ..."/>
+       <Key time="16.333334" dialogId="BDDB548E56B01915" channelId="-1" duration="1.282902" animTime="0" dialogBrief="Hnnnnnnnnnh!"/>
+       <Key time="19.666668" dialogId="BDDB548E56B01F94" channelId="-1" duration="5.5263491" animTime="0" dialogBrief="Oh god, I can breathe again..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.0069900937,0,0,0.99997556" t="560.85651,1180.8831,115.4911" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_PowerSource_Sq02A_GiveMikhailaMedicine_Player" duration="25.666668" priority="10" blendIn="2" blendOut="2" loop="1"/>
+      </Track>
+      <Track paramType="CameraLock" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" lock="1" interp="2"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.97778445,-0,0,-0.20961276" t="560.13812,1179.2858,115.4911" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Entity" Name="psi_hypo_cinematic2" Flags="0" paramIdVersion="9" EntityGUID="4FBB29DA798025A8">
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="3">
+       <Key time="0"/>
+       <Key time="2.6666667"/>
+       <Key time="25.66667"/>
+      </Track>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="17.199999" StartTrigger="Play_UFI_Psi_Hypo" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="ArkPlayer" boneAttachName="r_hand_prop" tOffset="0.050000001,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkHideAttachment" Type="-1" Flags="0" StartTime="0" EndTime="25.66667" HasCustomColor="0" ValueType="-1">
+       <Key time="2.6666701" hide="0"/>
+       <Key time="25.66667" hide="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Telepath" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="GeomEntity952" Flags="0" paramIdVersion="9" EntityGUID="4E604654AC31672B">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,475.25" HasCustomColor="0">
+        <Key time="0" value="0,475.0705" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.98" value="2.98,478.39612" flags="73" ds="0.99333334,0" dd="0.99333334,0"/>
+        <Key time="4.9899998" value="4.9899998,484.76471" flags="73" ds="0.66999996,0" dd="0.66999996,0"/>
+        <Key time="6.6999998" value="6.6999998,484.76471" flags="73" ds="0.57000005,0" dd="0.57000005,0"/>
+        <Key time="7.9699998" value="7.9699998,481.61951" flags="73" ds="0.42333335,0" dd="0.42333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,760.5" HasCustomColor="0">
+        <Key time="0" value="0,760.51971" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.98" value="2.98,757.80743" flags="73" ds="0.99333334,0" dd="0.99333334,0"/>
+        <Key time="4.9899998" value="4.9899998,757.80743" flags="73" ds="0.66999996,0" dd="0.66999996,0"/>
+        <Key time="6.6999998" value="6.6999998,750.46295" flags="73" ds="0.57000005,0" dd="0.57000005,0"/>
+        <Key time="7.9699998" value="7.9699998,746.84015" flags="73" ds="0.42333335,0" dd="0.42333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,68" HasCustomColor="0">
+        <Key time="0" value="0,68" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.98" value="2.98,68" flags="73" ds="0.99333334,0" dd="0.99333334,0"/>
+        <Key time="4.9899998" value="4.9899998,68" flags="73" ds="0.66999996,0" dd="0.66999996,0"/>
+        <Key time="6.6999998" value="6.6999998,68" flags="73" ds="0.57000005,0" dd="0.57000005,0"/>
+        <Key time="7.9699998" value="7.9699998,68" flags="73" ds="0.42333335,0" dd="0.42333335,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="2.98" value="2.98,2.1425872e-07" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="4.9899998" value="4.9899998,5.0383663" flags="73" ds="0.66999996,0" dd="0.66999996,0"/>
+        <Key time="6.6999998" value="6.6999998,20.038364" flags="73" ds="0.57000005,0" dd="0.57000005,0"/>
+        <Key time="7.9699998" value="7.9699998,8.0623388" flags="73" ds="0.42333335,0" dd="0.42333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="2.98" value="2.98,5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="4.9899998" value="4.9899998,-8.6491632" flags="73" ds="0.66999996,0" dd="0.66999996,0"/>
+        <Key time="6.6999998" value="6.6999998,-8.6491642" flags="73" ds="0.57000005,0" dd="0.57000005,0"/>
+        <Key time="7.9699998" value="7.9699998,1.1473206" flags="73" ds="0.42333335,0" dd="0.42333335,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,65" HasCustomColor="0">
+        <Key time="2.98" value="2.98,65" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="4.9899998" value="4.9899998,34.618767" flags="73" ds="0.66999996,0" dd="0.66999996,0"/>
+        <Key time="6.6999998" value="6.6999998,34.618763" flags="73" ds="0.57000005,0" dd="0.57000005,0"/>
+        <Key time="7.9699998" value="7.9699998,-100.29235" flags="73" ds="0.42333335,0" dd="0.42333335,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="PowerSource_Sq_02A_PlayerGivesMedicine_Part02" Flags="0" StartTime="0" EndTime="13.400001" ID="0" ConversationID="4A0EEEE558D65B3">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="MikhailaIlyushin" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Engineers.Mikhaila Ilyushin (sick)">
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="13.400001" HasCustomColor="0" ValueType="-1">
+       <Key time="4.9133301" node="_LocalPlayer" lookPose="" blendInTime="0" smoothTime="0" blendOutTime="0" maxDegreesXY="0" maxDegreesZ="0" blendInTimeHead="1" smoothTimeHead="1" blendOutTimeHead="1" maxDegreesXYHead="10" maxDegreesZHead="-1" blendInTimeEyes="0.1" smoothTimeEyes="0.1" blendOutTimeEyes="0.1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="12.27085" node="" lookPose="" blendInTime="0" smoothTime="0" blendOutTime="0" maxDegreesXY="0" maxDegreesZ="0" blendInTimeHead="1" smoothTimeHead="1" blendOutTimeHead="1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="1" smoothTimeEyes="1" blendOutTimeEyes="1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.400001" HasCustomColor="0" ValueType="-1">
+       <Key time="0.0099999998" fragName="Cs_PowerSource_Sq02_GiveMikhailaMed_Dialogue02_MikhailaIlyushin" duration="13.400001" priority="10" blendIn="0.30000001" blendOut="0.5" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550F869" PAChannel="-1" Flags="0" StartTime="0" EndTime="13.400001" HasCustomColor="0" ValueType="-1">
+       <Key time="0.42964363" dialogId="BDDB548E56B01FBA" channelId="-1" duration="2.7718821" animTime="0.30587494" dialogBrief="...and feel my legs."/>
+       <Key time="3.7629757" dialogId="BDDB548E56B01FD4" channelId="-1" duration="4.4030838" animTime="0.32393688" dialogBrief="Still have some spots in the eye, but those should clear up..."/>
+       <Key time="8.9755859" dialogId="BDDB548E56B01FEC" channelId="-1" duration="1.282177" animTime="0.28441861" dialogBrief="...thanks, Morgan."/>
+       <Key time="34.100002" dialogId="BDDB548E56B01FEC" channelId="-1" duration="1.282177" animTime="0.28441861" dialogBrief="...thanks, Morgan."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.400001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.0069902129,0,0,0.99997556" t="560.85651,1180.8831,115.4911" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.400001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="open_box2" Flags="0" StartTime="0" EndTime="2" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="Entity" Name="GeomEntity7" Flags="0" paramIdVersion="9" EntityGUID="47A7F8AF70E17DF4">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,494.74997" HasCustomColor="0">
+        <Key time="0" value="0,494.74997" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.2692512" value="1.2692512,494.75" flags="73" ds="0.42030424,0" dd="0.42030424,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,764.25" HasCustomColor="0">
+        <Key time="0" value="0,764.25" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.2692512" value="1.2692512,766.37506" flags="73" ds="0.42030424,0" dd="0.42030424,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,27.875" HasCustomColor="0">
+        <Key time="0" value="0,-1.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.2692512" value="1.2692512,-2.5" flags="73" ds="0.42030424,0" dd="0.42030424,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.2682912" value="1.2682912,0" flags="73" ds="0.41943043,0" dd="0.41943043,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,-0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.2682912" value="1.2682912,-39.999996" flags="73" ds="0.41943043,0" dd="0.41943043,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0" value="0,89.999992" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.2682912" value="1.2682912,89.999992" flags="73" ds="0.41943043,0" dd="0.41943043,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="2" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="open_box" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="GeomEntity6" Flags="0" paramIdVersion="9" EntityGUID="481811190E4DC39A">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,490.875" HasCustomColor="0">
+        <Key time="0.0013100654" value="0.0013100654,490.875" flags="73" ds="0.0061535323,-1.9371008e-08" dd="1.3400366,-4.2183678e-06"/>
+        <Key time="4.0300002" value="4.0300002,490.875" flags="73" ds="0.99504346,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,763.875" HasCustomColor="0">
+        <Key time="0.0013100654" value="0.0013100654,763.87506" flags="73" ds="0.0061535323,2.5152241e-07" dd="1.3400366,5.4773296e-05"/>
+        <Key time="4.0300002" value="4.0300002,765.5" flags="73" ds="0.99504346,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-1.5" HasCustomColor="0">
+        <Key time="0.0013100654" value="0.0013100654,-1.625" flags="73" ds="0.0061535323,1.0616572e-10" dd="1.3400366,2.3119396e-08"/>
+        <Key time="4.0300002" value="4.0300002,-2.375" flags="73" ds="0.99504346,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0.0010848846" value="0.0010848846,2.0506986e-06" flags="73" ds="0.006675018,0" dd="1.3400366,0"/>
+        <Key time="4.0300002" value="4.0300002,0" flags="73" ds="0.99504346,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0.0010848846" value="0.0010848846,5.1226434e-06" flags="73" ds="0.006675018,4.7046051e-09" dd="1.3400366,9.4446835e-07"/>
+        <Key time="4.0300002" value="4.0300002,-30" flags="73" ds="0.99504346,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,89.999992" HasCustomColor="0">
+        <Key time="0.0010848846" value="0.0010848846,89.999977" flags="73" ds="0.006675018,-1.4014568e-08" dd="1.3400366,-2.8134807e-06"/>
+        <Key time="4.0300002" value="4.0300002,90.000008" flags="73" ds="0.99504346,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="NewExternalReactorDoor" Flags="0" StartTime="0" EndTime="2.0999999" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="coreframing3" Flags="0" paramIdVersion="9" EntityGUID="4B39F8E907A85FFE">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,596.86072" HasCustomColor="0">
+        <Key time="0" value="0,596.86072" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,596.86072" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1164.3217" HasCustomColor="0">
+        <Key time="0" value="0,1164.3217" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,1162.3669" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,30" HasCustomColor="0">
+        <Key time="0" value="0,30" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2" value="2,30" flags="73" ds="0.66666669,0" dd="0.66666669,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="2.0999999" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="coreframing6" Flags="0" paramIdVersion="9" EntityGUID="4DC792EFEE08CE38">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,596.86072" HasCustomColor="0">
+        <Key time="0" value="0,596.86072" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,596.86072" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1164.3217" HasCustomColor="0">
+        <Key time="0" value="0,1164.3217" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,1166.4614" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,30" HasCustomColor="0">
+        <Key time="0" value="0,30" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="2.01" value="2.01,30" flags="73" ds="0.67000002,0" dd="0.67000002,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999985" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="2.0999999" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+  </SequenceData>
+ </Mission>
+</MovieData>
