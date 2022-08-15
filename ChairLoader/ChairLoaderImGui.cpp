@@ -4,15 +4,16 @@
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
-#include <Prey/CryRenderer/Renderer.h>
 #include <Prey/CryRenderer/Texture.h>
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 
 class CBasicEventListener;
 
 ChairLoaderImGui *ChairLoaderImGui::m_pInstance = nullptr;
+ChairLoaderImGui::IDXGISwapChain_Present ChairLoaderImGui::m_hookPresent;
 static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHook();
 static auto s_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
 static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventListener* const _this, HWND__* hWnd)>(0x1685F90);
@@ -74,7 +75,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 
 	// Setup display size (every frame to accommodate for window resizing)
 	int x, y, width, height;
-	gEnv->pRenderer->GetViewport(x, y, width, height);
+	gEnv->pRenderer->GetViewport(&x, &y, &width, &height);
 	io.DisplaySize = ImVec2((float)width, (float)height);
 
 	// Setup time step
@@ -165,7 +166,7 @@ void ChairLoaderImGui::CreateFontsTexture() {
 
 void ChairLoaderImGui::HookPresent() {
 	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
-	auto pSwapChain = mem::OffsetInStruct<IDXGISwapChain *>(pRenderer, CD3D9Renderer::OFFSET_SWAP_CHAIN);
+	DXGISwapChain* pSwapChain = pRenderer->m_devInfo.SwapChain();
 
 	DWORD_PTR *pSwapChainVtable = nullptr;
 	pSwapChainVtable = (DWORD_PTR *)pSwapChain;
@@ -363,11 +364,11 @@ bool ChairLoaderImGui::RT_Initialize() {
 	data.bIsInitialized = true;
 
 	CD3D9Renderer *pRenderer = static_cast<CD3D9Renderer *>(gEnv->pRenderer);
-	const DeviceInfo &devInfo = mem::OffsetInStruct<DeviceInfo>(pRenderer, CD3D9Renderer::OFFSET_DEV_INFO);
+	const DeviceInfo& devInfo = pRenderer->m_devInfo;
 
-	data.pd3dDevice = devInfo.m_pDevice;
-	data.pd3dDeviceContext = devInfo.m_pContext;
-	data.pFactory = devInfo.m_pFactory;
+	data.pd3dDevice = devInfo.Device();
+	data.pd3dDeviceContext = devInfo.Context();
+	data.pFactory = devInfo.Factory();
 
 	// Create the vertex shader
 	{
@@ -800,22 +801,26 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 }
 
 HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UINT Flags) {
-	RenderThreadData &data = m_pInstance->m_RTData;
+	if (m_pInstance)
+	{
+		RenderThreadData& data = m_pInstance->m_RTData;
 
-	if (!data.bIsInitialized) {
-		m_pInstance->m_RenderThreadId = std::this_thread::get_id();
-		if (m_pInstance->RT_Initialize()) {
-			data.bIsReady = true;
-		} else {
-			data.bIsReady = false;
-			CryFatalError("ImGui RT: Failed to initialize. God help you.");
+		if (!data.bIsInitialized) {
+			m_pInstance->m_RenderThreadId = std::this_thread::get_id();
+			if (m_pInstance->RT_Initialize()) {
+				data.bIsReady = true;
+			}
+			else {
+				data.bIsReady = false;
+				CryFatalError("ImGui RT: Failed to initialize. God help you.");
+			}
 		}
+
+		if (data.bIsReady)
+			m_pInstance->RT_Render();
 	}
 
-	if (data.bIsReady)
-		m_pInstance->RT_Render();
-
-	return m_pInstance->m_hookPresent(pChain, SyncInterval, Flags);
+	return m_hookPresent(pChain, SyncInterval, Flags);
 }
 
 bool ChairLoaderImGui::CheckVersionAndDataLayout(const char* version_str, size_t sz_io, size_t sz_style, size_t sz_vec2, size_t sz_vec4, size_t sz_drawvert, size_t sz_drawidx)

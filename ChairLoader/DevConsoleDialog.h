@@ -13,7 +13,7 @@ private:
 	IConsole *m_pConsole = nullptr;
 	bool m_bAutoScroll = true;
 	bool m_bScrollToBottom = false;
-	char m_InputBuf[1024];
+	char m_InputBuf[1024] = {};
 	int m_LastInputPos = 0;
 	bool m_IsCompletionReset = true;
 

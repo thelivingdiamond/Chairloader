@@ -13,15 +13,15 @@ template <typename ReturnType, typename ... ArgumentTypes>
 class PreyFunctionHook<ReturnType(ArgumentTypes ...)>;
 
 //------------------------------------------------------------
-// PreyFunction
+// PreyPointer
 //------------------------------------------------------------
 
-//! Base non-templated class for pointers to functions in the game DLL.
-class PreyFunctionBase : NoCopy {
+//! Base non-templated class for pointers to objects and functions in the game DLL.
+class PreyPointer : NoCopy {
 public:
 	//! Contructs the function pointer.
 	//! @param	offset	Offset into the game module.
-	PreyFunctionBase(uintptr_t offset);
+	PreyPointer(uintptr_t offset);
 
 	//! @returns raw pointer to the function. If not initialized, returns offset.
 	//! @{
@@ -33,7 +33,7 @@ protected:
 	uintptr_t m_Ptr = 0;
 
 private:
-	PreyFunctionBase* m_pNext = nullptr;
+	PreyPointer* m_pNext = nullptr;
 
 	//! Initializes the function pointer.
 	//! @param	moduleBase	Base address of the game module.
@@ -42,14 +42,39 @@ private:
 	friend class PreyFunctionSystem;
 };
 
+//------------------------------------------------------------
+// PreyGlobal
+//------------------------------------------------------------
+
+//! Class for pointers to global variables in the game DLL.
+//! @tparam T Type of the global variable (not a pointer to it)
+template <typename T>
+class PreyGlobal : public PreyPointer
+{
+public:
+	using Type = T;
+
+	using PreyPointer::PreyPointer;
+
+	//! @returns a pointer to the global variable.
+	inline T* Get() { return reinterpret_cast<T*>(GetIntPtr()); }
+
+	inline T& operator*() { return *Get(); }
+	inline T& operator->() { return *Get(); }
+};
+
+//------------------------------------------------------------
+// PreyFunction
+//------------------------------------------------------------
+
 //! Class for pointers to functions in the game DLL.
 //! Instances of this class must exist for as long as current DLL does.
 template <typename ReturnType, typename ... ArgumentTypes>
-class PreyFunction<ReturnType(ArgumentTypes ...)> : public PreyFunctionBase {
+class PreyFunction<ReturnType(ArgumentTypes ...)> : public PreyPointer {
 public:
 	using Type = ReturnType(ArgumentTypes ...);
 
-	using PreyFunctionBase::PreyFunctionBase;
+	using PreyPointer::PreyPointer;
 
 	//! Calls the function with specified arguments.
 	inline ReturnType operator ()(ArgumentTypes ... args) {
@@ -76,20 +101,24 @@ public:
 	//! @returns whether a hook is installed.
 	inline bool IsHooked() { return m_Hook.IsHooked(); }
 
+	//! Installs the hook. Called automatically during init.
+	void InstallHook();
+
+	//! Removes the hook.
+	//! Must be called in a Detours transaction.
+	void RemoveHook();
+
 protected:
-	PreyFunctionBase *m_pOrigFunc = nullptr;
+	PreyPointer* m_pOrigFunc = nullptr;
 	void* m_pHookFunc = nullptr;
 	FunctionHookTypeless m_Hook;
 
 	//! Constructs the hook.
 	//! @param	origFunc	Function to be hooked
-	PreyFunctionHookBase(PreyFunctionBase* origFunc);
+	PreyFunctionHookBase(PreyPointer* origFunc);
 
 private:
 	PreyFunctionHookBase* m_pNext = nullptr;
-
-	void InstallHook();
-	void RemoveHook();
 
 	friend class PreyFunctionSystem;
 };
@@ -97,7 +126,7 @@ private:
 //! Class for PreyDll function hooks.
 //! Instances of this class must exist for as long as current DLL does.
 template <typename ReturnType, typename ... ArgumentTypes>
-class PreyFunctionHook<ReturnType(ArgumentTypes ...)> : PreyFunctionHookBase {
+class PreyFunctionHook<ReturnType(ArgumentTypes ...)> : public PreyFunctionHookBase {
 public:
 	using Type = ReturnType(ArgumentTypes ...);
 

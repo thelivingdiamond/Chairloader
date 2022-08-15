@@ -1,12 +1,6 @@
 # Select path to common
 if(CHAIRLOADER_COMMON_PATH)
 	set(COMMON_PATH ${CHAIRLOADER_COMMON_PATH})
-	
-	cmake_path(ABSOLUTE_PATH COMMON_PATH
-		BASE_DIRECTORY ${CMAKE_SOURCE_DIR}
-		NORMALIZE
-	)
-	
 	set(COMMON_ROOT_PATH "${COMMON_PATH}/..")
 else()
 	set(COMMON_PATH "../Common")
@@ -20,7 +14,8 @@ file(GLOB_RECURSE COMMON_CPP_SOURCE_FILES
 )
 
 if(NOT COMMON_CPP_SOURCE_FILES)
-	message(FATAL_ERROR "No Common source files found")
+	message(STATUS "Chairloader common path: ${COMMON_PATH}")
+	message(FATAL_ERROR "No Chairloader Common source files found. Check Common/README_ModSDK.txt")
 endif()
 
 # Grab all files in Common directory
@@ -51,7 +46,7 @@ target_include_directories(CommonMod PUBLIC
 
 target_link_libraries(CommonMod PUBLIC
 	pugixml::pugixml
-	detours
+	Detours::Detours
 )
 
 target_precompile_headers(CommonMod PUBLIC CommonModPch.h)

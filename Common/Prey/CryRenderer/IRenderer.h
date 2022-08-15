@@ -1,10 +1,14 @@
 #pragma once
+
 #include <Prey/CryCore/smartptr.h>
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryRenderer/ITexture.h>
+#include <Prey/CryRenderer/IShader.h>
 
 #include "Prey/CryMath/Cry_Camera.h"
 #include "Prey/CrySystem/IConsole.h"
+
+const int MAX_GSM_LODS_NUM = 16;
 
 // Object states
 #define OS_ALPHA_BLEND         0x1
@@ -100,6 +104,86 @@
 #define FRO_GEOMETRY       8
 #define FRO_FORCERELOAD    0x10
 
+//! SLI/CROSSFIRE GPU maximum count.
+#define MAX_GPU_NUM 4
+
+//////////////////////////////////////////////////////////////////////
+#define R_CULL_DISABLE 0
+#define R_CULL_NONE    0
+#define R_CULL_FRONT   1
+#define R_CULL_BACK    2
+
+//////////////////////////////////////////////////////////////////////////
+/// CRenderObject::m_ObjFlags: Flags used by shader pipeline
+//////////////////////////////////////////////////////////////////////////
+enum ERenderObjectFlags : uint64
+{
+	FOB_TRANS_ROTATE                = BIT64(0),
+	FOB_TRANS_SCALE                 = BIT64(1),
+	FOB_TRANS_TRANSLATE             = BIT64(2),
+	//FOB_RENDER_AFTER_POSTPROCESSING = BIT64(3),
+	FOB_OWNER_GEOMETRY              = BIT64(4),
+	FOB_MESH_SUBSET_INDICES         = BIT64(5),
+	//FOB_SELECTED                    = BIT64(6),
+	FOB_RENDERER_IDENDITY_OBJECT    = BIT64(7),
+	FOB_IN_DOORS							      = BIT64(8),
+	FOB_NO_FOG                      = BIT64(9),
+	FOB_DECAL                       = BIT64(10),
+	FOB_OCTAGONAL                   = BIT64(11),
+	FOB_BLEND_WITH_TERRAIN_COLOR    = BIT64(12),
+	FOB_POINT_SPRITE                = BIT64(13),
+	FOB_SOFT_PARTICLE               = BIT64(14),
+	FOB_REQUIRES_RESOLVE            = BIT64(15),
+	FOB_UPDATED_RTMASK              = BIT64(16),
+	FOB_AFTER_WATER                 = BIT64(17),
+	FOB_BENDED                      = BIT64(18),
+	FOB_ZPREPASS                    = BIT64(19),
+	FOB_INSHADOW                    = BIT64(20),
+	FOB_DISSOLVE                    = BIT64(21),
+	FOB_MOTION_BLUR                 = BIT64(22),
+	FOB_NEAREST                     = BIT64(23), // [Rendered in Camera Space]
+	FOB_SKINNED                     = BIT64(24),
+	FOB_DISSOLVE_OUT                = BIT64(25),
+	FOB_DYNAMIC_OBJECT              = BIT64(26),
+	FOB_ALLOW_TESSELLATION          = BIT64(27),
+	FOB_DECAL_TEXGEN_2D             = BIT64(28),
+	FOB_ALPHATEST                   = BIT64(29),  // Careful when moving (used in ObjSort)
+	FOB_HAS_PREVMATRIX              = BIT64(30),  // Careful when moving (used in ObjSort)
+	FOB_LIGHTVOLUME                 = BIT64(31),
+
+	FOB_TERRAIN_LAYER               = BIT64(32),
+
+	FOB_TRANS_MASK                  = (FOB_TRANS_ROTATE | FOB_TRANS_SCALE | FOB_TRANS_TRANSLATE),
+	FOB_DECAL_MASK                  = (FOB_DECAL | FOB_DECAL_TEXGEN_2D),
+	FOB_PARTICLE_MASK               = (FOB_SOFT_PARTICLE | FOB_NO_FOG | FOB_INSHADOW | FOB_NEAREST | FOB_MOTION_BLUR | FOB_LIGHTVOLUME | FOB_ALLOW_TESSELLATION | FOB_IN_DOORS | FOB_AFTER_WATER),
+
+	// WARNING: FOB_MASK_AFFECTS_MERGING must start from 0x10000/bit 16 (important for instancing).
+	FOB_MASK_AFFECTS_MERGING_GEOM = (FOB_ZPREPASS | FOB_SKINNED | FOB_BENDED | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION | FOB_NEAREST),
+	FOB_MASK_AFFECTS_MERGING      = (FOB_ZPREPASS | FOB_MOTION_BLUR | FOB_HAS_PREVMATRIX | FOB_SKINNED | FOB_BENDED | FOB_INSHADOW | FOB_AFTER_WATER | FOB_DISSOLVE | FOB_DISSOLVE_OUT | FOB_NEAREST | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION),
+};
+
+
+//! Flags used in DrawText function.
+enum EDrawTextFlags
+{
+	eDrawText_Center = BIT(0),  //!< Centered alignment, otherwise right or left.
+	eDrawText_Right = BIT(1),  //!< Right alignment, otherwise center or left.
+	eDrawText_CenterV = BIT(2),  //!< Center vertically, oterhwise top.
+	eDrawText_Bottom = BIT(3),  //!< Bottom alignment.
+
+	eDrawText_2D = BIT(4),  //!< 3-component vector is used for xy screen position, otherwise it's 3d world space position.
+
+	eDrawText_FixedSize = BIT(5),  //!< Font size is defined in the actual pixel resolution, otherwise it's in the virtual 800x600.
+	eDrawText_800x600 = BIT(6),  //!< Position are specified in the virtual 800x600 resolution, otherwise coordinates are in pixels.
+
+	eDrawText_Monospace = BIT(7),  //!< Non proportional font rendering (Font width is same for all characters).
+
+	eDrawText_Framed = BIT(8),  //!< Draw a transparent, rectangular frame behind the text to ease readability independent from the background.
+
+	eDrawText_DepthTest = BIT(9),  //!< Text should be occluded by world geometry using the depth buffer.
+	eDrawText_IgnoreOverscan = BIT(10), //!< Ignore the overscan borders, text should be drawn at the location specified.
+};
+
 class IRendererEventListener
 {
 public:
@@ -165,44 +249,6 @@ enum EScreenShotMode : __int32
 {
 	eScreenShotMode_Normal = 0x0,
 	eScreenShotMode_AppCrash = 0x1,
-};
-
-enum EShaderType
-{
-	eST_All = 0xFFFFFFFF,
-	eST_General = 0x0,
-	eST_Metal = 0x1,
-	eST_Glass = 0x2,
-	eST_Vegetation = 0x3,
-	eST_Ice = 0x4,
-	eST_Terrain = 0x5,
-	eST_Shadow = 0x6,
-	eST_Water = 0x7,
-	eST_FX = 0x8,
-	eST_PostProcess = 0x9,
-	eST_HDR = 0xA,
-	eST_Sky = 0xB,
-	eST_Particle = 0xC,
-	eST_Compute = 0xD,
-	eST_Max = 0xE,
-};
-
-enum EShaderQuality
-{
-	eSQ_Low = 0x0,
-	eSQ_Medium = 0x1,
-	eSQ_High = 0x2,
-	eSQ_VeryHigh = 0x3,
-	eSQ_Max = 0x4,
-};
-
-enum ERenderQuality
-{
-	eRQ_Low = 0x0,
-	eRQ_Medium = 0x1,
-	eRQ_High = 0x2,
-	eRQ_VeryHigh = 0x3,
-	eRQ_Max = 0x4,
 };
 
 enum EDataType : __int8
@@ -364,6 +410,34 @@ class ILoadtimeCallback;
 struct ShadowFrustumMGPUCache;
 class IArkBinkManager;
 struct SSkinningData;
+struct IRenderAuxGeom;
+struct IImageFile;
+struct IGraphicsDeviceConstantBuffer;
+namespace gpu_pfx2
+{
+class IManager;
+} // namespace gpu_pfx2
+
+//! This structure used in DrawText method of renderer.
+//! It provide all necessary information of how to render text on screen.
+struct SDrawTextInfo
+{
+	//! One of EDrawTextFlags flags.
+	int flags;
+
+	//! Text color, (r,g,b,a) all members must be specified.
+	float color[4];
+	float xscale;
+	float yscale;
+
+	SDrawTextInfo()
+	{
+		flags = 0;
+		color[0] = color[1] = color[2] = color[3] = 1;
+		xscale = 1.0f;
+		yscale = 1.0f;
+	}
+};
 
 class CLodValue
 {
@@ -515,13 +589,40 @@ struct IRenderView : public CMultiThreadRefCount
 	virtual void EnableLookingGlass(bool) = 0;
 };
 
+struct ISyncMainWithRenderListener // Id=8001A45 Size=8
+{
+	virtual void SyncMainWithRender() = 0;
+	virtual ~ISyncMainWithRenderListener() {};
+};
+
 struct IRenderer {
 public:
-	struct SLoadShaderItemArgs;
-	struct SUpdateRect;
-	struct ESFMaskOp;
+	struct SLoadShaderItemArgs // Id=8001A36 Size=16
+	{
+		IMaterial* m_pMtlSrc;
+		IMaterial* m_pMtlSrcParent;
+	};
 
-	struct SRenderTimes
+	struct SUpdateRect // Id=8001A46 Size=24
+	{
+		unsigned dstX;
+		unsigned dstY;
+		unsigned srcX;
+		unsigned srcY;
+		unsigned width;
+		unsigned height;
+	};
+
+	enum class ESFMaskOp
+	{
+		BeginSubmitMask_Clear = 0,
+		BeginSubmitMask_Inc = 1,
+		BeginSubmitMask_Dec = 2,
+		EndSubmitMask = 3,
+		DisableMask = 4,
+	};
+
+	struct SRenderTimes // Id=8001A5D Size=28
 	{
 		float fWaitForMain;
 		float fWaitForRender;
@@ -532,290 +633,284 @@ public:
 		float fTimeGPUIdlePercent;
 	};
 
-	virtual ~IRenderer() = 0;
-	virtual void AddListener(IRendererEventListener *) = 0;
-	virtual void RemoveListener(IRendererEventListener *) = 0;
-	virtual ERenderType GetRenderType() = 0;
-	virtual void *Init(int, int, int, int, unsigned int, int, int, EFullscreenMode, void *, void *, bool, const SCustomRenderInitArgs *, bool) = 0;
+	virtual ~IRenderer();
+	virtual void AddListener(IRendererEventListener* arg0) = 0;
+	virtual void RemoveListener(IRendererEventListener* arg0) = 0;
+	virtual ERenderType GetRenderType() const = 0;
+	virtual void* Init(int arg0, int arg1, int arg2, int arg3, unsigned arg4, int arg5, int arg6, EFullscreenMode arg7, void* arg8, void* arg9, bool arg10, SCustomRenderInitArgs const* arg11, bool arg12) = 0;
 	virtual void PostInit() = 0;
-	virtual bool CreateDeviceMemoryHeap(EDeviceMemoryHeap, EDeviceMemoryType, unsigned __int64, unsigned __int64, unsigned __int64) = 0;
-	virtual void StartRenderIntroMovies(bool) = 0;
-	virtual void StopRenderIntroMovies(bool) = 0;
-	virtual bool IsRenderingIntroMovies() = 0;
+	virtual bool CreateDeviceMemoryHeap(EDeviceMemoryHeap arg0, EDeviceMemoryType arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4) = 0;
+	virtual void StartRenderIntroMovies(bool arg0) = 0;
+	virtual void StopRenderIntroMovies(bool arg0) = 0;
+	virtual bool IsRenderingIntroMovies() const = 0;
 	virtual void ExecuteAsyncDIP() = 0;
 	virtual int GetFeatures() = 0;
-	virtual void GetVideoMemoryUsageStats(unsigned __int64 *, unsigned __int64 *, bool) = 0;
+	virtual void GetVideoMemoryUsageStats(uint64_t& arg0, uint64_t& arg1, bool arg2) = 0;
 	virtual int GetNumGeomInstances() = 0;
 	virtual int GetNumGeomInstanceDrawCalls() = 0;
-	virtual int GetCurrentNumberOfDrawCalls(const unsigned int) = 0;
-	virtual void GetCurrentNumberOfDrawCalls(int *, int *) = 0;
 	virtual int GetCurrentNumberOfDrawCalls() = 0;
-	virtual float GetCurrentDrawCallRTTimes(const unsigned int) = 0;
-	virtual bool DeleteContext(void *) = 0;
-	virtual bool CreateContext(void *, bool, int, int, bool) = 0;
-	virtual bool SetCurrentContext(void *) = 0;
+	virtual void GetCurrentNumberOfDrawCalls(int& arg0, int& arg1) = 0;
+	virtual int GetCurrentNumberOfDrawCalls(const unsigned arg0) = 0;
+	virtual float GetCurrentDrawCallRTTimes(const unsigned arg0) = 0;
+	virtual bool DeleteContext(void* arg0) = 0;
+	virtual bool CreateContext(void* arg0, bool arg1, int arg2, int arg3, bool arg4) = 0;
+	virtual bool SetCurrentContext(void* arg0) = 0;
 	virtual void MakeMainContextActive() = 0;
 	virtual bool IsMainContextActive() = 0;
-	virtual void *GetMainContextHWND() = 0;
-	virtual void *GetCurrentContextHWND() = 0;
+	virtual void* GetMainContextHWND() = 0;
+	virtual void* GetCurrentContextHWND() = 0;
 	virtual bool IsCurrentContextMainVP() = 0;
-	virtual int GetCurrentContextViewportHeight() = 0;
-	virtual int GetCurrentContextViewportWidth() = 0;
+	virtual int GetCurrentContextViewportHeight() const = 0;
+	virtual int GetCurrentContextViewportWidth() const = 0;
 	virtual void SuspendDevice() = 0;
 	virtual void ResumeDevice() = 0;
-	virtual void ShutDown(bool) = 0;
+	virtual void ShutDown(bool arg0) = 0;
 	virtual void ShutDownFast() = 0;
-	virtual IArkVideoInfo *GetIArkVideoInfo() = 0;
-	virtual bool ChangeResolution(int, int, int, int, EFullscreenMode, bool) = 0;
-	virtual void BeginFrame(bool) = 0;
-	virtual void InitSystemResources(int) = 0;
-	virtual void FreeResources(int) = 0;
+	virtual IArkVideoInfo& GetIArkVideoInfo() = 0;
+	virtual bool ChangeResolution(int arg0, int arg1, int arg2, int arg3, EFullscreenMode arg4, bool arg5) = 0;
+	virtual void BeginFrame(bool arg0) = 0;
+	virtual void InitSystemResources(int arg0) = 0;
+	virtual void FreeResources(int arg0) = 0;
 	virtual void Release() = 0;
-	virtual void RenderDebug(bool) = 0;
+	virtual void RenderDebug(bool arg0) = 0;
 	virtual void EndFrame() = 0;
 	virtual void TryFlush() = 0;
-	virtual void GetViewport(int &x, int &y, int &width, int &height) = 0;
-	virtual void SetViewport(int, int, int, int, int) = 0;
-	virtual void SetRenderTile(float, float, float, float) = 0;
-	virtual void SetScissor(int, int, int, int) = 0;
-	virtual EScreenAspectRatio GetScreenAspect(int, int) = 0;
-	virtual Vec2_tpl<float> *SetViewportDownscale(Vec2_tpl<float> *result, float, float) = 0;
-	virtual void DrawDynVB(SVF_P3F_C4B_T2F *, unsigned __int16 *, int, int, const PublicRenderPrimitiveType) = 0;
-	virtual void SetCamera(const CCamera &) = 0;
-	virtual const CCamera *GetCamera() = 0;
-	virtual CRenderView *GetRenderViewForThread(int, bool) = 0;
-	virtual bool SetGammaDelta(const float) = 0;
+	virtual void GetViewport(int* x, int* y, int* width, int* height) = 0;
+	virtual void SetViewport(int arg0, int arg1, int arg2, int arg3, int arg4) = 0;
+	virtual void SetRenderTile(float arg0, float arg1, float arg2, float arg3) = 0;
+	virtual void SetScissor(int arg0, int arg1, int arg2, int arg3) = 0;
+	virtual EScreenAspectRatio GetScreenAspect(int arg0, int arg1) = 0;
+	virtual Vec2 SetViewportDownscale(float arg0, float arg1) = 0;
+	virtual void DrawDynVB(SVF_P3F_C4B_T2F* arg0, uint16_t* arg1, int arg2, int arg3, PublicRenderPrimitiveType arg4) = 0;
+	virtual void SetCamera(CCamera const& arg0) = 0;
+	virtual CCamera const& GetCamera() = 0;
+	virtual CRenderView* GetRenderViewForThread(int arg0, bool arg1) = 0;
+	virtual bool SetGammaDelta(const float arg0) = 0;
 	virtual void RestoreGamma() = 0;
-	virtual bool ChangeDisplay(unsigned int, unsigned int, unsigned int) = 0;
-	virtual void ChangeViewport(unsigned int, unsigned int, unsigned int, unsigned int, bool) = 0;
-	virtual bool SaveTga(unsigned __int8 *, int, int, int, const char *, bool) = 0;
-	virtual int GetWhiteTextureId() = 0;
-	virtual void Draw2dImage(float xpos, float ypos, float w, float h, int texture_id, float s0 = 0, float t0 = 0, float s1 = 1, float t1 = 1, float angle = 0, float r = 1, float g = 1, float b = 1, float a = 1, float z = 1) = 0;
-	virtual void Draw2dImageStretchMode(bool) = 0;
-	virtual void Push2dImage(float, float, float, float, int, float, float, float, float, float, float, float, float, float, float) = 0;
+	virtual bool ChangeDisplay(unsigned arg0, unsigned arg1, unsigned arg2) = 0;
+	virtual void ChangeViewport(unsigned arg0, unsigned arg1, unsigned arg2, unsigned arg3, bool arg4) = 0;
+	virtual bool SaveTga(uint8_t* arg0, int arg1, int arg2, int arg3, const char* arg4, bool arg5) const = 0;
+	virtual int GetWhiteTextureId() const = 0;
+	virtual void Draw2dImage(float arg0, float arg1, float arg2, float arg3, int arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, float arg13, float arg14) = 0;
+	virtual void Draw2dImageStretchMode(bool arg0) = 0;
+	virtual void Push2dImage(float arg0, float arg1, float arg2, float arg3, int arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, float arg13, float arg14) = 0;
 	virtual void Draw2dImageList() = 0;
-	virtual void DrawImage(float, float, float, float, int, float, float, float, float, float, float, float, float, bool) = 0;
-	virtual void DrawImageWithUV(float, float, float, float, float, int, float *, float *, float, float, float, float, bool) = 0;
-	virtual void PushWireframeMode(int) = 0;
+	virtual void DrawImage(float arg0, float arg1, float arg2, float arg3, int arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, bool arg13) = 0;
+	virtual void DrawImageWithUV(float arg0, float arg1, float arg2, float arg3, float arg4, int arg5, float* arg6, float* arg7, float arg8, float arg9, float arg10, float arg11, bool arg12) = 0;
+	virtual void PushWireframeMode(int arg0) = 0;
 	virtual void PopWireframeMode() = 0;
 	virtual int GetHeight() = 0;
 	virtual int GetWidth() = 0;
-	virtual float GetPixelAspectRatio() = 0;
+	virtual float GetPixelAspectRatio() const = 0;
 	virtual int GetOverlayHeight() = 0;
 	virtual int GetOverlayWidth() = 0;
 	virtual void SwitchToNativeResolutionBackbuffer() = 0;
-	virtual void GetMemoryUsage(ICrySizer *) = 0;
-	virtual void GetBandwidthStats(float *) = 0;
-	virtual void SetTextureStreamListener(ITextureStreamListener *) = 0;
-	virtual int GetOcclusionBuffer(float *, int, int, Matrix44_tpl<float> *) = 0;
-	virtual bool ScreenShot(const char *, int, EScreenShotMode) = 0;
+	virtual void GetMemoryUsage(ICrySizer* arg0) = 0;
+	virtual void GetBandwidthStats(float* arg0) = 0;
+	virtual void SetTextureStreamListener(ITextureStreamListener* arg0) = 0;
+	virtual int GetOcclusionBuffer(float* arg0, int arg1, int arg2, Matrix44* arg3) = 0;
+	virtual bool ScreenShot(const char* arg0, int arg1, EScreenShotMode arg2) = 0;
 	virtual int GetStencilBpp() = 0;
-	virtual float GetNearestRangeMax() = 0;
-	virtual bool ProjectToScreen(float, float, float, float *, float *, float *) = 0;
-	virtual int UnProjectFromScreen(float, float, float, float *, float *, float *) = 0;
-	virtual void GetModelViewMatrix(float *) = 0;
-	virtual void GetProjectionMatrix(float *) = 0;
-	virtual void GetCameraZeroMatrix(float *) = 0;
-	virtual bool FontUploadTexture(CFBitmap *, ETEX_Format) = 0;
-	virtual int FontCreateTexture(int, int, unsigned __int8 *, ETEX_Format, bool) = 0;
-	virtual bool FontUpdateTexture(int, int, int, int, int, unsigned __int8 *) = 0;
-	virtual void FontReleaseTexture(CFBitmap *) = 0;
-	virtual void FontSetTexture(int, int) = 0;
-	virtual void FontSetTexture(CFBitmap *, int) = 0;
-	virtual void FontSetRenderingState(unsigned int, unsigned int) = 0;
-	virtual void FontSetBlending(int, int) = 0;
+	virtual float GetNearestRangeMax() const = 0;
+	virtual bool ProjectToScreen(float arg0, float arg1, float arg2, float* arg3, float* arg4, float* arg5) = 0;
+	virtual int UnProjectFromScreen(float arg0, float arg1, float arg2, float* arg3, float* arg4, float* arg5) = 0;
+	virtual void GetModelViewMatrix(float* arg0) = 0;
+	virtual void GetProjectionMatrix(float* arg0) = 0;
+	virtual void GetCameraZeroMatrix(float* arg0) = 0;
+	virtual bool FontUploadTexture(CFBitmap* arg0, ETEX_Format arg1) = 0;
+	virtual int FontCreateTexture(int arg0, int arg1, uint8_t* arg2, ETEX_Format arg3, bool arg4) = 0;
+	virtual bool FontUpdateTexture(int arg0, int arg1, int arg2, int arg3, int arg4, uint8_t* arg5) = 0;
+	virtual void FontReleaseTexture(CFBitmap* arg0) = 0;
+	virtual void FontSetTexture(CFBitmap* arg0, int arg1) = 0;
+	virtual void FontSetTexture(int arg0, int arg1) = 0;
+	virtual void FontSetRenderingState(unsigned arg0, unsigned arg1) = 0;
+	virtual void FontSetBlending(int arg0, int arg1) = 0;
 	virtual void FontRestoreRenderingState() = 0;
-	virtual bool FlushRTCommands(bool, bool, bool) = 0;
-	virtual void DrawStringW(IFFont_RenderProxy *, float, float, float, const wchar_t *, const bool, const STextDrawContext *) = 0;
+	virtual bool FlushRTCommands(bool arg0, bool arg1, bool arg2) = 0;
+	virtual void DrawStringW(IFFont_RenderProxy* arg0, float arg1, float arg2, float arg3, const wchar_t* arg4, const bool arg5, STextDrawContext const& arg6) const = 0;
 	virtual int RT_CurThreadList() = 0;
-	virtual void RT_FlashRender(IFlashPlayer_RenderProxy *) = 0;
-	virtual void RT_FlashRenderPlaybackLockless(IFlashPlayer_RenderProxy *, int, bool) = 0;
-	virtual void RT_FlashRemoveTexture(ITexture *) = 0;
-	virtual bool EF_PrecacheResource(CDLight *, float, float, int, int) = 0;
-	virtual bool EF_PrecacheResource(IRenderMesh *, IMaterial *, float, float, int, int) = 0;
-	virtual bool EF_PrecacheResource(ITexture *, float, float, int, int, int) = 0;
-	virtual bool EF_PrecacheResource(IShader *, float, float, int) = 0;
-	virtual bool EF_PrecacheResource(SShaderItem *, float, float, int, int, int) = 0;
+	virtual void RT_FlashRender(IFlashPlayer_RenderProxy* arg0) = 0;
+	virtual void RT_FlashRenderPlaybackLockless(IFlashPlayer_RenderProxy* arg0, int arg1, bool arg2) = 0;
+	virtual void RT_FlashRemoveTexture(ITexture* arg0) = 0;
+	virtual bool EF_PrecacheResource(SShaderItem* arg0, float arg1, float arg2, int arg3, int arg4, int arg5) = 0;
+	virtual bool EF_PrecacheResource(IShader* arg0, float arg1, float arg2, int arg3) = 0;
+	virtual bool EF_PrecacheResource(ITexture* arg0, float arg1, float arg2, int arg3, int arg4, int arg5) = 0;
+	virtual bool EF_PrecacheResource(IRenderMesh* arg0, IMaterial* arg1, float arg2, float arg3, int arg4, int arg5) = 0;
+	virtual bool EF_PrecacheResource(CDLight* arg0, float arg1, float arg2, int arg3, int arg4) = 0;
 	virtual void PrecacheTick() = 0;
 	virtual void PostLevelLoading() = 0;
 	virtual void PostLevelUnload() = 0;
-	virtual void EF_AddMultipleParticlesToScene(const SAddParticlesToSceneJob *, unsigned __int64, const SRenderingPassInfo *) = 0;
-	virtual void GetMemoryUsageParticleREs(ICrySizer *) = 0;
-	virtual CRenderObject *EF_AddPolygonToScene(SShaderItem *, CRenderObject *, const SRenderingPassInfo *, int, int, SVF_P3F_C4B_T2F **, SPipTangents **, unsigned __int16 **, int) = 0;
-	virtual CRenderObject *EF_AddPolygonToScene(SShaderItem *, int, const SVF_P3F_C4B_T2F *, const SPipTangents *, CRenderObject *, const SRenderingPassInfo *, unsigned __int16 *, int, int) = 0;
-	virtual void EF_SetShaderMissCallback(void(const char *)) = 0;
-	virtual const char *EF_GetShaderMissLogPath() = 0;
-	virtual CryStringT<char> *EF_GetShaderNames(int *) = 0;
-	virtual bool EF_ReloadFile(const char *) = 0;
-	virtual bool EF_ReloadFile_Request(const char *) = 0;
-	//virtual _smart_ptr<IImageFile> *EF_LoadImage(_smart_ptr<IImageFile> *result, const char *, unsigned int) = 0;
-	virtual void *EF_LoadImage(int unfinished) = 0; // TODO:
-	virtual unsigned __int64 EF_GetRemapedShaderMaskGen(const char *, unsigned __int64, bool) = 0;
-	virtual unsigned __int64 EF_GetShaderGlobalMaskGenFromString(const char *, const char *, unsigned __int64) = 0;
-	virtual const char *EF_GetStringFromShaderGlobalMaskGen(const char *, unsigned __int64) = 0;
-	virtual const SShaderProfile *GetShaderProfile(EShaderType) = 0;
-	virtual void EF_SetShaderQuality(EShaderType, EShaderQuality) = 0;
-	virtual ERenderQuality EF_GetRenderQuality() = 0;
-	virtual EShaderQuality EF_GetShaderQuality(EShaderType) = 0;
-	virtual SShaderItem *EF_LoadShaderItem(SShaderItem *result, const char *, bool, int, SInputShaderResources *, unsigned __int64, const IRenderer::SLoadShaderItemArgs *) = 0;
-	virtual IShader *EF_LoadShader(const char *, int, unsigned __int64) = 0;
+	virtual void EF_AddMultipleParticlesToScene(SAddParticlesToSceneJob const* arg0, uint64_t arg1, SRenderingPassInfo const& arg2) = 0;
+	virtual void GetMemoryUsageParticleREs(ICrySizer* pSizer);
+	virtual CRenderObject* EF_AddPolygonToScene(SShaderItem& arg0, int arg1, SVF_P3F_C4B_T2F const* arg2, SPipTangents const* arg3, CRenderObject* arg4, SRenderingPassInfo const& arg5, uint16_t* arg6, int arg7, int arg8) = 0;
+	virtual CRenderObject* EF_AddPolygonToScene(SShaderItem& arg0, CRenderObject* arg1, SRenderingPassInfo const& arg2, int arg3, int arg4, SVF_P3F_C4B_T2F*& arg5, SPipTangents*& arg6, uint16_t*& arg7, int arg8) = 0;
+	virtual void EF_SetShaderMissCallback(void (*arg0)(const char*)) = 0;
+	virtual const char* EF_GetShaderMissLogPath() = 0;
+	virtual string* EF_GetShaderNames(int& arg0) = 0;
+	virtual bool EF_ReloadFile(const char* arg0) = 0;
+	virtual bool EF_ReloadFile_Request(const char* arg0) = 0;
+	virtual _smart_ptr<IImageFile> EF_LoadImage(const char* arg0, unsigned arg1) = 0;
+	virtual uint64_t EF_GetRemapedShaderMaskGen(const char* arg0, uint64_t arg1, bool arg2) = 0;
+	virtual uint64_t EF_GetShaderGlobalMaskGenFromString(const char* arg0, const char* arg1, uint64_t arg2) = 0;
+	virtual const char* EF_GetStringFromShaderGlobalMaskGen(const char* arg0, uint64_t arg1) = 0;
+	virtual SShaderProfile const& GetShaderProfile(EShaderType arg0) const = 0;
+	virtual void EF_SetShaderQuality(EShaderType arg0, EShaderQuality arg1) = 0;
+	virtual ERenderQuality EF_GetRenderQuality() const = 0;
+	virtual EShaderQuality EF_GetShaderQuality(EShaderType arg0) = 0;
+	virtual SShaderItem EF_LoadShaderItem(const char* arg0, bool arg1, int arg2, SInputShaderResources* arg3, uint64_t arg4, IRenderer::SLoadShaderItemArgs const* arg5) = 0;
+	virtual IShader* EF_LoadShader(const char* arg0, int arg1, uint64_t arg2) = 0;
 	virtual void EF_ReloadTextures() = 0;
-	virtual ITexture *EF_GetTextureByID(int) = 0;
-	virtual ITexture *EF_GetTextureByName(const char *, unsigned int) = 0;
-	virtual ITexture *EF_LoadTexture(const char *, const unsigned int) = 0;
-	virtual unsigned int EF_CacheTextureAsync(const char *, unsigned int, EDeviceMemoryHeap) = 0;
-	virtual void EF_ReleaseCacheTexture(unsigned int) = 0;
-	virtual ITexture *EF_TryGetCacheTexture(unsigned int) = 0;
-	virtual IDynTextureSource *EF_LoadDynTexture(const char *, bool) = 0;
-	virtual CRendElementBase *EF_CreateRE(EDataType) = 0;
-	virtual void EF_StartEf(const SRenderingPassInfo *) = 0;
-	virtual CRenderObject *EF_GetObject_Temp(int) = 0;
-	virtual CRenderObject *EF_GetObject() = 0;
-	virtual void EF_FreeObject(CRenderObject *) = 0;
-	virtual CRenderObject *EF_DuplicateRO(CRenderObject *, const SRenderingPassInfo *) = 0;
-	virtual void EF_AddEf(CRendElementBase *, SShaderItem *, CRenderObject *, const SRenderingPassInfo *, int, int) = 0;
-	virtual void EF_EndEf3D(const int, const int, const int, const SRenderingPassInfo *) = 0;
-	virtual void EF_InvokeShadowMapRenderJobs(CRenderView *, const int) = 0;
-	virtual bool EF_IsFakeDLight(const CDLight *) = 0;
-	virtual void EF_ADDDlight(CDLight *, const SRenderingPassInfo *) = 0;
-	virtual Color_tpl<float> *EF_GetLightAnimColor(Color_tpl<float> *result, unsigned __int8, unsigned __int8, float) = 0;
-	virtual bool EF_UpdateDLight(SRenderLight *) = 0;
-	virtual bool EF_AddDeferredDecal(const SDeferredDecal *, const SRenderingPassInfo *) = 0;
-	virtual int EF_AddDeferredLight(const CDLight *, float, const SRenderingPassInfo *, const SRendParams *) = 0;
+	virtual ITexture* EF_GetTextureByID(int arg0) = 0;
+	virtual ITexture* EF_GetTextureByName(const char* arg0, unsigned arg1) = 0;
+	virtual ITexture* EF_LoadTexture(const char* arg0, const unsigned arg1) = 0;
+	virtual unsigned EF_CacheTextureAsync(const char* arg0, unsigned arg1, EDeviceMemoryHeap arg2) = 0;
+	virtual void EF_ReleaseCacheTexture(unsigned arg0) = 0;
+	virtual ITexture* EF_TryGetCacheTexture(unsigned arg0) = 0;
+	virtual IDynTextureSource* EF_LoadDynTexture(const char* arg0, bool arg1) = 0;
+	virtual CRendElementBase* EF_CreateRE(EDataType arg0) = 0;
+	virtual void EF_StartEf(SRenderingPassInfo const& arg0) = 0;
+	virtual CRenderObject* EF_GetObject_Temp(int arg0) = 0;
+	virtual CRenderObject* EF_GetObject() = 0;
+	virtual void EF_FreeObject(CRenderObject* arg0) = 0;
+	virtual CRenderObject* EF_DuplicateRO(CRenderObject* arg0, SRenderingPassInfo const& arg1) = 0;
+	virtual void EF_AddEf(CRendElementBase* arg0, SShaderItem& arg1, CRenderObject* arg2, SRenderingPassInfo const& arg3, int arg4, int arg5) = 0;
+	virtual void EF_EndEf3D(const int arg0, const int arg1, const int arg2, SRenderingPassInfo const& arg3) = 0;
+	virtual void EF_InvokeShadowMapRenderJobs(CRenderView* arg0, const int arg1) = 0;
+	virtual bool EF_IsFakeDLight(CDLight const* arg0) = 0;
+	virtual void EF_ADDDlight(CDLight* arg0, SRenderingPassInfo const& arg1) = 0;
+	virtual ColorF EF_GetLightAnimColor(uint8_t arg0, uint8_t arg1, float arg2) = 0;
+	virtual bool EF_UpdateDLight(SRenderLight* arg0) = 0;
+	virtual bool EF_AddDeferredDecal(SDeferredDecal const& rDecal, SRenderingPassInfo const& passInfo);
+	virtual int EF_AddDeferredLight(CDLight const& arg0, float arg1, SRenderingPassInfo const& arg2, SRendParams const& arg3) = 0;
 	virtual void EF_ReleaseDeferredData() = 0;
-	virtual SInputShaderResources *EF_CreateInputShaderResource(IRenderShaderResources *) = 0;
-	virtual unsigned __int64 EF_PostEffectParamHandleFromName(const char *) = 0;
-	virtual void EF_SetPostEffectParam(const SSetPostEffectParamString *) = 0;
-	virtual void EF_SetPostEffectParam(const SSetPostEffectParamVec4 *) = 0;
-	virtual void EF_SetPostEffectParam(const SSetPostEffectParam *) = 0;
-	virtual float EF_GetPostEffectParam(unsigned __int64) = 0;
-	virtual Vec4_tpl<float> *EF_GetPostEffectParamVec4(Vec4_tpl<float> *result, unsigned __int64) = 0;
-	virtual const char *EF_GetPostEffectParamString(unsigned __int64) = 0;
-	virtual bool EF_IsPostEffectParam(const char *) = 0;
-	virtual void EF_ResetPostEffects(bool) = 0;
+	virtual SInputShaderResources* EF_CreateInputShaderResource(IRenderShaderResources* arg0) = 0;
+	virtual uint64_t EF_PostEffectParamHandleFromName(const char* arg0) const = 0;
+	virtual void EF_SetPostEffectParam(SSetPostEffectParam const& arg0) const = 0;
+	virtual void EF_SetPostEffectParam(SSetPostEffectParamVec4 const& arg0) const = 0;
+	virtual void EF_SetPostEffectParam(SSetPostEffectParamString const& arg0) const = 0;
+	virtual float EF_GetPostEffectParam(uint64_t arg0) const = 0;
+	virtual Vec4 EF_GetPostEffectParamVec4(uint64_t arg0) const = 0;
+	virtual const char* EF_GetPostEffectParamString(uint64_t arg0) const = 0;
+	virtual bool EF_IsPostEffectParam(const char* arg0) const = 0;
+	virtual void EF_ResetPostEffects(bool arg0) = 0;
 	virtual void EF_DisableTemporalEffects() = 0;
-	virtual void EF_AddWaterSimHit(const Vec3_tpl<float> *, const float, const float) = 0;
+	virtual void EF_AddWaterSimHit(Vec3 const& arg0, const float arg1, const float arg2) = 0;
 	virtual void EF_DrawWaterSimHits() = 0;
 	virtual void ForceGC() = 0;
-	virtual void GetPolyCount(int *, int *) = 0;
 	virtual int GetPolyCount() = 0;
-	virtual void SetClearColor(const Vec3_tpl<float> *) = 0;
-	//virtual _smart_ptr<IRenderMesh> *CreateRenderMesh(_smart_ptr<IRenderMesh> *result, const char *, const char *, IRenderMesh::SInitParamerers *, ERenderMeshType) = 0;
-	//virtual _smart_ptr<IRenderMesh> *CreateRenderMeshInitialized(_smart_ptr<IRenderMesh> *result, const void *, int, EVertexFormat, const unsigned __int16 *, int, const PublicRenderPrimitiveType, const char *, const char *, ERenderMeshType, int, int, bool(IRenderMesh *, bool), void *, bool, bool, const SPipTangents *, bool, Vec3_tpl<float> *) = 0;
-	virtual void *CreateRenderMesh(int unfinished) = 0;
-	virtual void *CreateRenderMeshInitialized(int unfinished) = 0;
+	virtual void GetPolyCount(int& arg0, int& arg1) = 0;
+	virtual void SetClearColor(Vec3 const& arg0) = 0;
+	//virtual _smart_ptr<IRenderMesh> CreateRenderMesh(const char* arg0, const char* arg1, IRenderMesh::SInitParamerers* arg2, ERenderMeshType arg3) = 0;
+	//virtual _smart_ptr<IRenderMesh> CreateRenderMeshInitialized(const void* arg0, int arg1, EVertexFormat arg2, const uint16_t* arg3, int arg4, PublicRenderPrimitiveType arg5, const char* arg6, const char* arg7, ERenderMeshType arg8, int arg9, int arg10, bool (*arg11)(IRenderMesh*, bool), void* arg12, bool arg13, bool arg14, SPipTangents const* arg15, bool arg16, Vec3* arg17) = 0;
+	virtual void* CreateRenderMesh_Unfinished();
+	virtual void* CreateRenderMeshInitialized_Unfinished();
 	virtual int GetFrameID(bool bIncludeRecursiveCalls = true) = 0;
-	virtual void MakeMatrix(const Vec3_tpl<float> *, const Vec3_tpl<float> *, const Vec3_tpl<float> *, Matrix34_tpl<float> *) = 0;
-	virtual void Draw2dText(float, float, const char *, const SDrawTextInfo *) = 0;
-	virtual void DrawTextQueued(Vec3_tpl<float>, SDrawTextInfo *, const char *) = 0;
-	virtual void DrawTextQueued(Vec3_tpl<float>, SDrawTextInfo *, const char *, char *) = 0;
-	virtual void Draw2dTextWithDepth(float, float, float, const char *, const SDrawTextInfo *) = 0;
-	virtual float ScaleCoordX(float) = 0;
-	virtual float ScaleCoordY(float) = 0;
-	virtual void ScaleCoord(float *, float *) = 0;
-	virtual void SetState(int state, int alphaRef) = 0;
-	virtual void SetCullMode(int) = 0;
-	virtual void PushProfileMarker(const char *) = 0;
-	virtual void PopProfileMarker(const char *) = 0;
-	virtual bool EnableFog(bool) = 0;
-	virtual void SetFogColor(const Color_tpl<float> *) = 0;
-	virtual void SetColorOp(unsigned __int8, unsigned __int8, unsigned __int8, unsigned __int8) = 0;
-	virtual void RequestFlushAllPendingTextureStreamingJobs(int) = 0;
-	virtual void SetTexturesStreamingGlobalMipFactor(float) = 0;
-	virtual void* GetIRenderAuxGeom(void*) = 0;
-	// virtual IRenderAuxGeom *GetIRenderAuxGeom(void *) = 0;
-	virtual IArkRenderPersistentAuxGeom *GetIArkRenderPersistentAuxGeom() = 0;
-	virtual IColorGradingController *GetIColorGradingController() = 0;
-	virtual void TextToScreen(float, float, const char *, ...) = 0;
-	virtual void TextToScreenColor(int, int, float, float, float, float, const char *, ...) = 0;
+	virtual void MakeMatrix(Vec3 const& arg0, Vec3 const& arg1, Vec3 const& arg2, Matrix34* arg3) = 0;
+	virtual void Draw2dText(float arg0, float arg1, const char* arg2, SDrawTextInfo const& arg3) = 0;
+	virtual void DrawTextQueued(Vec3 arg0, SDrawTextInfo& arg1, const char* arg2, char* arg3) = 0;
+	virtual void DrawTextQueued(Vec3 arg0, SDrawTextInfo& arg1, const char* arg2) = 0;
+	virtual void Draw2dTextWithDepth(float arg0, float arg1, float arg2, const char* arg3, SDrawTextInfo const& arg4) = 0;
+	virtual float ScaleCoordX(float arg0) const = 0;
+	virtual float ScaleCoordY(float arg0) const = 0;
+	virtual void ScaleCoord(float& arg0, float& arg1) const = 0;
+	virtual void SetState(int arg0, int arg1) = 0;
+	virtual void SetCullMode(int arg0) = 0;
+	virtual void PushProfileMarker(char* arg0) = 0;
+	virtual void PopProfileMarker(char* arg0) = 0;
+	virtual bool EnableFog(bool arg0) = 0;
+	virtual void SetFogColor(ColorF const& arg0) = 0;
+	virtual void SetColorOp(uint8_t arg0, uint8_t arg1, uint8_t arg2, uint8_t arg3) = 0;
+	virtual void RequestFlushAllPendingTextureStreamingJobs(int nFrames);
+	virtual void SetTexturesStreamingGlobalMipFactor(float fFactor);
+	virtual IRenderAuxGeom* GetIRenderAuxGeom(void* arg0) = 0;
+	virtual IArkRenderPersistentAuxGeom* GetIArkRenderPersistentAuxGeom() = 0;
+	virtual IColorGradingController* GetIColorGradingController() = 0;
+	virtual void TextToScreen(float arg0, float arg1, const char* arg2, ...) = 0;
+	virtual void TextToScreenColor(int arg0, int arg1, float arg2, float arg3, float arg4, float arg5, const char* arg6, ...) = 0;
 	virtual void ResetToDefault() = 0;
-	virtual void SetMaterialColor(float, float, float, float) = 0;
-	virtual void Graph(unsigned __int8 *, int, int, int, int, int, int, char *, Color_tpl<float> *, float) = 0;
+	virtual void SetMaterialColor(float arg0, float arg1, float arg2, float arg3) = 0;
+	virtual void Graph(uint8_t* arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, char* arg7, ColorF& arg8, float arg9) = 0;
 	virtual void FlushTextMessages() = 0;
-	virtual void ClearTargetsImmediately(unsigned int, float) = 0;
-	virtual void ClearTargetsImmediately(unsigned int, const Color_tpl<float> *) = 0;
-	virtual void ClearTargetsImmediately(unsigned int, const Color_tpl<float> *, float) = 0;
-	virtual void ClearTargetsImmediately(unsigned int) = 0;
-	virtual void ClearTargetsLater(unsigned int, float) = 0;
-	virtual void ClearTargetsLater(unsigned int, const Color_tpl<float> *) = 0;
-	virtual void ClearTargetsLater(unsigned int, const Color_tpl<float> *, float) = 0;
-	virtual void ClearTargetsLater(unsigned int) = 0;
-	virtual void CreateResourceAsync(SResourceAsync *) = 0;
-	virtual void ReleaseResourceAsync(SResourceAsync *) = 0;
-	virtual unsigned int DownLoadToVideoMemory(unsigned __int8 *, int, int, ETEX_Format, ETEX_Format, int, bool, int, int, const char *, int, bool, RectI *, bool) = 0;
-	virtual void UpdateTextureInVideoMemory(unsigned int, unsigned __int8 *, int, int, int, int, ETEX_Format, int, int) = 0;
-	virtual void RemoveTexture(unsigned int) = 0;
-	//virtual struct gpu_pfx2::IManager *GetGpuParticleManager() = 0;
-	virtual void *GetGpuParticleManager() = 0; // TODO:
-	virtual void RegisterSyncWithMainListener(ISyncMainWithRenderListener *) = 0;
-	virtual void RemoveSyncWithMainListener(const ISyncMainWithRenderListener *) = 0;
-	virtual void Set2DMode(bool, int, int, float, float) = 0;
-	virtual int ScreenToTexture(int) = 0;
-	virtual bool StopRendererAtFrameEnd(unsigned int) = 0;
+	virtual void ClearTargetsImmediately(unsigned arg0) = 0;
+	virtual void ClearTargetsImmediately(unsigned arg0, ColorF const& arg1, float arg2) = 0;
+	virtual void ClearTargetsImmediately(unsigned arg0, ColorF const& arg1) = 0;
+	virtual void ClearTargetsImmediately(unsigned arg0, float arg1) = 0;
+	virtual void ClearTargetsLater(unsigned arg0) = 0;
+	virtual void ClearTargetsLater(unsigned arg0, ColorF const& arg1, float arg2) = 0;
+	virtual void ClearTargetsLater(unsigned arg0, ColorF const& arg1) = 0;
+	virtual void ClearTargetsLater(unsigned arg0, float arg1) = 0;
+	virtual void CreateResourceAsync(SResourceAsync* arg0) = 0;
+	virtual void ReleaseResourceAsync(SResourceAsync* arg0) = 0;
+	virtual unsigned DownLoadToVideoMemory(uint8_t* arg0, int arg1, int arg2, ETEX_Format arg3, ETEX_Format arg4, int arg5, bool arg6, int arg7, int arg8, const char* arg9, int arg10, bool arg11, RectI* arg12, bool arg13) = 0;
+	virtual void UpdateTextureInVideoMemory(unsigned arg0, uint8_t* arg1, int arg2, int arg3, int arg4, int arg5, ETEX_Format arg6, int arg7, int arg8) = 0;
+	virtual void RemoveTexture(unsigned arg0) = 0;
+	virtual gpu_pfx2::IManager* GetGpuParticleManager() = 0;
+	virtual void RegisterSyncWithMainListener(ISyncMainWithRenderListener* arg0) = 0;
+	virtual void RemoveSyncWithMainListener(ISyncMainWithRenderListener const* arg0) = 0;
+	virtual void Set2DMode(bool arg0, int arg1, int arg2, float arg3, float arg4) = 0;
+	virtual int ScreenToTexture(int arg0) = 0;
+	virtual bool StopRendererAtFrameEnd(unsigned arg0) = 0;
 	virtual void ResumeRendererFromFrameEnd() = 0;
-	virtual void *GetHWND() = 0;
-	virtual void OnEntityDeleted(IRenderNode *) = 0;
-	virtual int CreateRenderTarget(int, int, const Color_tpl<float> *, ETEX_Format) = 0;
-	virtual bool DestroyRenderTarget(int) = 0;
-	virtual bool SetRenderTarget(int) = 0;
-	virtual IOpticsElementBase *CreateOptics(EFlareType) = 0;
-	virtual ISoftOcclusionQuery *CreateSoftOcclusionQuery() = 0;
-	virtual void GetThreadIDs(unsigned int *, unsigned int *) = 0;
-	virtual bool SF_UpdateTexture(int, int, int, const IRenderer::SUpdateRect *, unsigned __int8 *, unsigned __int64, unsigned __int64, ETEX_Format) = 0;
-	virtual void SF_GetMeshMaxSize(int *, int *) = 0;
-	virtual void SF_ConfigMask(IRenderer::ESFMaskOp, unsigned int) = 0;
-	virtual void SF_DrawIndexedTriList(int, int, int, int, int, const SSF_GlobalDrawParams *) = 0;
-	virtual void SF_DrawLineStrip(int, int, const SSF_GlobalDrawParams *) = 0;
-	virtual void SF_DrawGlyphClear(const SSF_GlobalDrawParams *) = 0;
-	virtual void SF_DrawBlurRect(const SSF_GlobalDrawParams *) = 0;
+	virtual void* GetHWND() = 0;
+	virtual void OnEntityDeleted(IRenderNode* arg0) = 0;
+	virtual int CreateRenderTarget(int arg0, int arg1, ColorF const& arg2, ETEX_Format arg3) = 0;
+	virtual bool DestroyRenderTarget(int arg0) = 0;
+	virtual bool SetRenderTarget(int arg0) = 0;
+	virtual IOpticsElementBase* CreateOptics(EFlareType arg0) const = 0;
+	virtual ISoftOcclusionQuery* CreateSoftOcclusionQuery() const = 0;
+	virtual void GetThreadIDs(unsigned long& arg0, unsigned long& arg1) const = 0;
+	virtual bool SF_UpdateTexture(int arg0, int arg1, int arg2, IRenderer::SUpdateRect const* arg3, uint8_t* arg4, uint64_t arg5, uint64_t arg6, ETEX_Format arg7) = 0;
+	virtual void SF_GetMeshMaxSize(int& arg0, int& arg1) const = 0;
+	virtual void SF_ConfigMask(IRenderer::ESFMaskOp arg0, unsigned arg1) = 0;
+	virtual void SF_DrawIndexedTriList(int arg0, int arg1, int arg2, int arg3, int arg4, SSF_GlobalDrawParams const& arg5) = 0;
+	virtual void SF_DrawLineStrip(int arg0, int arg1, SSF_GlobalDrawParams const& arg2) = 0;
+	virtual void SF_DrawGlyphClear(SSF_GlobalDrawParams const& arg0) = 0;
+	virtual void SF_DrawBlurRect(SSF_GlobalDrawParams const& arg0) = 0;
 	virtual void SF_Flush() = 0;
-	virtual int SF_CreateTexture(int, int, int, unsigned __int8 *, ETEX_Format, int) = 0;
-	virtual ITexture *CreateTexture(const char *name, int width, int height, int numMips, unsigned char *pData, ETEX_Format eTF, int flags) = 0;
-	virtual const RPProfilerStats *GetRPPStats(ERenderPipelineProfilerStats, bool) = 0;
-	virtual const RPProfilerStats *GetRPPStatsArray(bool) = 0;
-	virtual int GetPolygonCountByType(unsigned int, EVertexCostTypes, unsigned int, bool) = 0;
-	virtual void StartLoadtimeFlashPlayback(ILoadtimeCallback *) = 0;
+	virtual int SF_CreateTexture(int arg0, int arg1, int arg2, uint8_t* arg3, ETEX_Format arg4, int arg5) = 0;
+	virtual ITexture* CreateTexture(const char* arg0, int arg1, int arg2, int arg3, uint8_t* arg4, ETEX_Format arg5, int arg6) = 0;
+	virtual RPProfilerStats const* GetRPPStats(ERenderPipelineProfilerStats arg0, bool arg1) = 0;
+	virtual RPProfilerStats const* GetRPPStatsArray(bool arg0) = 0;
+	virtual int GetPolygonCountByType(unsigned arg0, EVertexCostTypes arg1, unsigned arg2, bool arg3) = 0;
+	virtual void StartLoadtimeFlashPlayback(ILoadtimeCallback* arg0) = 0;
 	virtual void StopLoadtimeFlashPlayback() = 0;
-	virtual void StartLoadtimeBinkPlayback(ILoadtimeCallback *) = 0;
+	virtual void StartLoadtimeBinkPlayback(ILoadtimeCallback* arg0) = 0;
 	virtual void StopLoadtimeBinkPlayback() = 0;
-	virtual unsigned __int16 PushFogVolumeContribution(const Color_tpl<float> *, const SRenderingPassInfo *) = 0;
+	virtual uint16_t PushFogVolumeContribution(ColorF const& arg0, SRenderingPassInfo const& arg1) = 0;
 	virtual int GetMaxTextureSize() = 0;
-	virtual const char *GetTextureFormatName(ETEX_Format) = 0;
-	virtual int GetTextureFormatDataSize(int, int, int, int, ETEX_Format) = 0;
-	virtual void SetDefaultMaterials(IMaterial *, IMaterial *) = 0;
-	virtual unsigned int GetActiveGPUCount() = 0;
-	virtual ShadowFrustumMGPUCache *GetShadowFrustumMGPUCache() = 0;
-	//virtual const StaticArray<int, 16, int> *GetCachedShadowsResolution() = 0;
-	virtual const void *GetCachedShadowsResolution() = 0;
-	//virtual void SetCachedShadowsResolution(const StaticArray<int, 16, int> *) = 0;
-	virtual void SetCachedShadowsResolution(const void *) = 0;
-	virtual void UpdateCachedShadowsLodCount(int) = 0;
-	virtual void SetTexturePrecaching(bool) = 0;
-	virtual void EnablePipelineProfiler(bool) = 0;
-	virtual void GetRenderTimes(IRenderer::SRenderTimes *) = 0;
+	virtual const char* GetTextureFormatName(ETEX_Format arg0) = 0;
+	virtual int GetTextureFormatDataSize(int arg0, int arg1, int arg2, int arg3, ETEX_Format arg4) = 0;
+	virtual void SetDefaultMaterials(IMaterial* arg0, IMaterial* arg1) = 0;
+	virtual unsigned GetActiveGPUCount() const = 0;
+	virtual ShadowFrustumMGPUCache* GetShadowFrustumMGPUCache() = 0;
+	virtual StaticArray<int, 16, int> const& GetCachedShadowsResolution() const = 0;
+	virtual void SetCachedShadowsResolution(StaticArray<int, 16, int> const& arg0) = 0;
+	virtual void UpdateCachedShadowsLodCount(int arg0) const = 0;
+	virtual void SetTexturePrecaching(bool arg0) = 0;
+	virtual void EnablePipelineProfiler(bool arg0) = 0;
+	virtual void GetRenderTimes(IRenderer::SRenderTimes& arg0) = 0;
 	virtual float GetGPUFrameTime() = 0;
-	virtual void EnableBatchMode(bool) = 0;
-	virtual SSkinningData *EF_CreateSkinningData(unsigned int, bool) = 0;
-	virtual SSkinningData *EF_CreateRemappedSkinningData(unsigned int, SSkinningData *, unsigned int, unsigned int) = 0;
+	virtual void EnableBatchMode(bool arg0) = 0;
+	virtual SSkinningData* EF_CreateSkinningData(unsigned arg0, bool arg1) = 0;
+	virtual SSkinningData* EF_CreateRemappedSkinningData(unsigned arg0, SSkinningData* arg1, unsigned arg2, unsigned arg3) = 0;
 	virtual int EF_GetSkinningPoolID() = 0;
-	virtual void UpdateShaderItem(SShaderItem *, IMaterial *) = 0;
-	virtual void ForceUpdateShaderItem(SShaderItem *, IMaterial *) = 0;
-	virtual void RefreshShaderResourceConstants(SShaderItem *, IMaterial *) = 0;
+	virtual void UpdateShaderItem(SShaderItem* arg0, IMaterial* arg1) = 0;
+	virtual void ForceUpdateShaderItem(SShaderItem* arg0, IMaterial* arg1) = 0;
+	virtual void RefreshShaderResourceConstants(SShaderItem* arg0, IMaterial* arg1) = 0;
 	virtual void SyncComputeVerticesJobs() = 0;
-	virtual void ActivateLayer(const char *, bool) = 0;
+	virtual void ActivateLayer(const char* arg0, bool arg1) = 0;
 	virtual void FlushPendingTextureTasks() = 0;
-	virtual void SetShadowJittering(float) = 0;
-	virtual float GetShadowJittering() = 0;
+	virtual void SetShadowJittering(float arg0) = 0;
+	virtual float GetShadowJittering() const = 0;
 	virtual bool LoadShaderStartupCache() = 0;
 	virtual void UnloadShaderStartupCache() = 0;
 	virtual bool LoadShaderLevelCache() = 0;
 	virtual void UnloadShaderLevelCache() = 0;
-	virtual void SetRendererCVar(ICVar *, const char *, const bool) = 0;
-	//virtual _smart_ptr<IGraphicsDeviceConstantBuffer> *CreateGraphiceDeviceConstantBuffer(_smart_ptr<IGraphicsDeviceConstantBuffer> *result) = 0;
-	virtual void *CreateGraphiceDeviceConstantBuffer(void *result) = 0;
-	virtual void EF_QueryImpl(ERenderQueryTypes, void *, unsigned int, void *, unsigned int) = 0;
-	virtual void PeekWindowMessage(unsigned int, unsigned __int64, unsigned __int64) = 0;
-	virtual IArkBinkManager *GetIArkBinkManager() = 0;
+	virtual void SetRendererCVar(ICVar* arg0, const char* arg1, const bool arg2) = 0;
+	virtual _smart_ptr<IGraphicsDeviceConstantBuffer> CreateGraphiceDeviceConstantBuffer() = 0;
+	virtual void EF_QueryImpl(ERenderQueryTypes arg0, void* arg1, unsigned arg2, void* arg3, unsigned arg4) = 0;
+	virtual void PeekWindowMessage(unsigned message, uint64_t wParam, uint64_t lParam);
+	virtual IArkBinkManager* GetIArkBinkManager() = 0;
 
 	//! Returns various Renderer Settings, see ERenderQueryTypes.
 	//! \param Query e.g. EFQ_GetShaderCombinations.

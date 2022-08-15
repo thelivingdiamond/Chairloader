@@ -1,0 +1,1244 @@
+<MovieData>
+ <Mission Name="Mission0">
+  <SequenceData>
+   <Sequence SequenceVersion="3" Name="LifeReview_10_I Want To Show You Something." Flags="0" StartTime="0" EndTime="21.133335" ID="0" ConversationID="BDDB548E579CFF99">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue08_Alex" duration="14.633334" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.83004206" dialogId="BDDB548E579CFFBE" channelId="-1" duration="1.509184" animTime="0.32945019" dialogBrief="But we have to make a choice."/>
+       <Key time="3.3900001" dialogId="BDDB548E579CFFD4" channelId="-1" duration="7.047574" animTime="0.42431223" dialogBrief="You can hear us, can&apos;t you? Here... I want to show you somet..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.4895704e-17,4.8243589e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_Turn_FrontToBack_Chair_Debrief_B" length="21.133335" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="ChairTurn1Rumble" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="12" event="ChairTurn1Rumble"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Entity" Name="AudioTriggerSpot6" Flags="0" paramIdVersion="9" EntityGUID="4C93D39A73A89288">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,28.626305" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,28.198576" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,13.998141" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="11.4" StartTrigger="Play_EndGame_Chair_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="20.434641" StartTrigger="Stop_EndGame_Chair_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="ChairTurn1Rumble"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_01_Intro" Flags="0" StartTime="0" EndTime="10.500001" ID="0" ConversationID="BDDB548E579B801A">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="10.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Start_Alex" duration="10.666667" priority="10" blendIn="0" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="10.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.4895637e-17,4.8243886e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="10.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_14_We&apos;re Going To Shake Things Up." Flags="0" StartTime="0" EndTime="6.3333335" ID="0" ConversationID="BDDB548E579D0070">
+    <Nodes>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_HandShake_PlayerMaleAlien" duration="12.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="DebriefChairB" boneAttachName="seat_attachment" tOffset="0,0,0" rOffset="2.219725e-07,2.2197243e-07,-0.70710665,-0.70710689" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710737,-1.7982551e-07,9.5531917e-08,0.70710617" t="30,27.99999,14.457176" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Director" Name="Director" Flags="4" paramIdVersion="9">
+      <Track paramType="Camera" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="5"/>
+     </Node>
+     <Node Id="7" Type="ScreenFader" Name="ScreenFader" Flags="0" ParentNode="6" paramIdVersion="9">
+      <Track paramType="ScreenFader" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="4.3333335" fadeTime="2" fadeColor="0,0,0" fadeType="1" fadeChangeType="0" texture="" useCurColor="1"/>
+      </Track>
+     </Node>
+     <Node Id="9" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue12_Alex" duration="7.3333335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.83333337" parentName="ArkPlayer" boneAttachName="anchor" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.9333334" dialogId="BDDB548E579D0093" channelId="-1" duration="3.2152381" animTime="0" dialogBrief="We&apos;re going to shake things up. Like old times."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347392,0,0,-0.88611054" t="29.112,28.7754,13.9891" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="10" Type="Event" Name="AlexHandshakeRumble" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="6.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="2.25" event="AlexHandshakeRumble"/>
+      </Track>
+     </Node>
+     <Node Id="21" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine.[1]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,41" flags="73" ds="0.32222223,0" dd="0.32222223,0"/>
+      </Track>
+     </Node>
+     <Node Id="20" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_base_cine.[1]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,100" flags="100" ds="0,0" dd="0.13333334,0"/>
+       <Key time="0.40000001" value="0.40000001,100" flags="73" ds="0.13295323,-3.620518" dd="0.16142926,-4.3959637"/>
+       <Key time="0.89999998" value="0.89999998,80" flags="73" ds="0.17508277,-1.1152043" dd="2.1115737,-13.449844"/>
+       <Key time="6.3333335" value="6.3333335,10" flags="73" ds="0.51709121,-8.6092834" dd="1.1111112,-18.499388"/>
+      </Track>
+      <Track paramUserValue="BlendFalloff" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,0.5" flags="64" ds="0,0" dd="1.5444444,0.091860995"/>
+       <Key time="4.6333332" value="4.6333332,0.77558297" flags="73" ds="1.0138285,0.095632344" dd="1.2792907,0.12067284"/>
+      </Track>
+      <Track paramUserValue="BlendFactor" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,90" flags="36" ds="0,0" dd="0.45666665,-26.666668"/>
+       <Key time="1.3699999" value="1.3699999,10" flags="96" ds="0.45666665,-8.8705034" dd="1.0877779,-3.3333335"/>
+       <Key time="4.6333332" value="4.6333332,0" flags="76" ds="1.0877779,-3.3333335" dd="0.53333336,0"/>
+      </Track>
+     </Node>
+     <Node Id="22" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine_02.[3]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,44" flags="73" ds="1,0" dd="1,0"/>
+       <Key time="4.4000001" value="4.4000001,100" flags="73" ds="1.4666667,0" dd="1.4666667,0"/>
+      </Track>
+     </Node>
+     <Node Id="23" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine_02.[4]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,85" flags="73" ds="1,0" dd="1,0"/>
+       <Key time="4.4000001" value="4.4000001,100" flags="73" ds="1.4666667,0" dd="1.4666667,0"/>
+      </Track>
+     </Node>
+     <Node Id="24" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine_02.[5]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,5" flags="73" ds="1,0" dd="1,0"/>
+       <Key time="4.4000001" value="4.4000001,100" flags="73" ds="1.4666667,0" dd="1.4666667,0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="AlexHandshakeRumble"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_Idle_Alex Looking At Screen." Flags="4" StartTime="0" EndTime="8.9000006" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="8.9000006" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue08_Loop_Alex" duration="8.9000006" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="8.9000006" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.41508225,0,-0,-0.9097839" t="30.106119,28.859968,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="8.9000006" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8.9000006" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_BackIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="8.9000006" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_15_Alex&apos;s Death" Flags="0" StartTime="0" EndTime="11.666667" ID="0" ConversationID="BDDB548E589AC28F">
+    <Nodes>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="7" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Death_Alex" duration="11.666667" priority="10" blendIn="1" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.83333337" parentName="ArkPlayer" boneAttachName="anchor" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="1.6000001" dialogId="BDDB548E56C761A0" channelId="-1" duration="0.688254" animTime="0.29916534" dialogBrief="(Yelp)"/>
+       <Key time="3.9666669" dialogId="BDDB548E56C762C6" channelId="-1" duration="7.6317458" animTime="0.043395042" dialogBrief="(Scream)"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347392,0,-0,-0.88611054" t="29.112,28.7754,13.9891" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="8" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_AlexDeath_PlayerMaleAlien" duration="11.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="DebriefChairB" boneAttachName="seat_attachment" tOffset="0,0,0" rOffset="2.219725e-07,2.2197243e-07,-0.70710665,-0.70710689" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710719,-3.2733951e-07,1.1660541e-07,0.70710641" t="30,27.99999,14.457176" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="9" Type="Director" Name="Director" Flags="4" paramIdVersion="9">
+      <Track paramType="Camera" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="5"/>
+     </Node>
+     <Node Id="10" Type="ScreenFader" Name="ScreenFader" Flags="0" ParentNode="9" paramIdVersion="9">
+      <Track paramType="ScreenFader" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="9.6765499" fadeTime="2" fadeColor="0,0,0" fadeType="1" fadeChangeType="0" texture="" useCurColor="1"/>
+      </Track>
+     </Node>
+     <Node Id="11" Type="Entity" Name="CIN_VFX_AlexBloodChest_00" Flags="0" paramIdVersion="9" EntityGUID="43F9439011FB46A8">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,27.471943" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,27.90568" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,14.384035" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="7.7521863" event="Restart"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="7.5996861" parentName="Alex" boneAttachName="fx_attachupperchest" tOffset="-0.050000001,0.2,0.050000001" rOffset="0.95371699,-1.1202163e-09,-3.5528736e-09,-0.30070573" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="12" Type="Entity" Name="CIN_VFX_AlexBloodChest_2" Flags="0" paramIdVersion="9" EntityGUID="45908318CB94B39C">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,29.460442" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,28.496119" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,15.299532" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,66.405556" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,67.931587" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-67.075264" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="6.3225002" event="Restart"/>
+      </Track>
+     </Node>
+     <Node Id="13" Type="Entity" Name="CIN_VFX_AlexBloodHead_00" Flags="0" paramIdVersion="9" EntityGUID="4009BE94DF6C2D2E">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,27.471943" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,27.790419" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,14.384035" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="8.5249996" event="Restart"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="8.0874996" parentName="Alex" boneAttachName="fx_head" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="14" Type="Entity" Name="CIN_VFX_TyphonArmSmoke_00" Flags="0" paramIdVersion="9" EntityGUID="400C2FD89A590211">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,27.471943" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,27.675303" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,14.384035" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="1.6199999" event="Restart"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.89999998" parentName="ArkPlayer" boneAttachName="r_hand_prop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="15" Type="Entity" Name="CIN_VFX_TyphonArmSmoke_01" Flags="0" paramIdVersion="9" EntityGUID="494757809ADE853A">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,27.471943" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,27.565571" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,14.384035" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="3.03" event="Restart"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="2.73" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="16" Type="Entity" Name="CIN_VFX_AlexBloodChest_3" Flags="0" paramIdVersion="9" EntityGUID="464102EED03D7FA5">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,29.408714" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,28.713387" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,15.262021" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,98.661278" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,69.441841" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-53.92852" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="6.7599998" event="Restart"/>
+      </Track>
+     </Node>
+     <Node Id="17" Type="Event" Name="AlexKillRumble" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="2.0161061" event="AlexPreKillJerk"/>
+       <Key time="6" event="AlexKillRumble"/>
+      </Track>
+     </Node>
+     <Node Id="18" Type="Material" Name="objects/characters/humans/corporate/corporate_largemalebody_variant.[2]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramUserValue="BlendFalloff" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="6" value="6,22" flags="73" ds="1,0" dd="0.80000019,0"/>
+       <Key time="6.8000002" value="6.8000002,0.5" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+      </Track>
+      <Track paramUserValue="BlendFactor" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="6" value="6,0" flags="73" ds="1,0" dd="0.80000019,0"/>
+       <Key time="6.8000002" value="6.8000002,16" flags="73" ds="0.33333334,0" dd="0.33333334,0"/>
+      </Track>
+     </Node>
+     <Node Id="19" Type="Entity" Name="CIN_VFX_BloodScreen_Human_00" Flags="0" paramIdVersion="9" EntityGUID="41E85200E0968869">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,26.880657" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,27.27421" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,14.000053" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,90" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="7.7800002" event="Restart"/>
+      </Track>
+     </Node>
+     <Node Id="20" Type="Entity" Name="AudioTriggerSpot6" Flags="0" paramIdVersion="9" EntityGUID="4C93D39A73A89288">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,28.626305" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,28.198576" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,13.998141" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="11.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.97500002" StartTrigger="Play_EndGame_hand_shake" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="1" StartTrigger="Play_EndGame_grab_arm" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="5.2391834" StartTrigger="Play_EndGame_Rise" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="6.3299999" StartTrigger="Play_EndGame_main_tentacle_stab" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="6.3803205" StartTrigger="Play_EndGame_DarkHit_Verb" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="8.1863995" StartTrigger="Play_EndGame_DarkHit" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="9.6437502" StartTrigger="Play_EndGame_alex_fall" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="10.277929" StartTrigger="Play_Evnt_EndGame_Drama_Hit" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+     </Node>
+     <Node Id="20" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_base_cine.[1]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,100" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track paramUserValue="BlendFalloff" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0.42500001" value="0.42500001,0.5" flags="73" ds="0.13333333,0" dd="0.07240355,0"/>
+       <Key time="0.82499999" value="0.82499999,1" flags="73" ds="0.15690023,0.13475135" dd="0.07646548,0.065671206"/>
+       <Key time="1.5000001" value="1.5000001,1" flags="73" ds="0.019232875,0" dd="0.10000001,0"/>
+      </Track>
+      <Track paramUserValue="BlendFactor" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,90" flags="73" ds="1,0" dd="0.084894635,0"/>
+       <Key time="0.53333336" value="0.53333336,50" flags="9" ds="0.40959999,0" dd="0.084894635,0"/>
+       <Key time="0.80000001" value="0.80000001,8" flags="73" ds="0.13333333,-0.074342415" dd="0.40784162,-0.2273995"/>
+       <Key time="1.2333333" value="1.2333333,8" flags="73" ds="0.0073405718,0" dd="0.01698222,0"/>
+       <Key time="1.5000001" value="1.5000001,5" flags="9" ds="0.0054706833,0" dd="0.066666648,0"/>
+       <Key time="2" value="2,50" flags="9" ds="0.0073405718,0" dd="0.066666648,0"/>
+      </Track>
+     </Node>
+     <Node Id="22" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine_02.[3]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,86" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+     </Node>
+     <Node Id="23" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine_02.[4]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,85" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+     </Node>
+     <Node Id="24" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_alien_cine_02.[5]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,5" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="AlexKillRumble"/>
+     <Event Name="AlexPreKillJerk"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_13_We Spent Years..." Flags="0" StartTime="0" EndTime="23.300001" ID="0" ConversationID="BDDB548E579CFF99">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue11_Alex" duration="23.366669" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0.46666718" dialogId="BDDB548E579D0025" channelId="-1" duration="7.405261" animTime="0.36015451" dialogBrief="We spent years trying to put what you can do into us. We nev..."/>
+       <Key time="8.9706745" dialogId="BDDB548E579D0038" channelId="-1" duration="0.862086" animTime="0.19285089" dialogBrief="Until now."/>
+       <Key time="10.493334" dialogId="BDDB548E579D0048" channelId="-1" duration="9.3468933" animTime="0.32327795" dialogBrief="You&apos;re the bridge between our species. I need to know if you..."/>
+       <Key time="20.764132" dialogId="BDDB548E579D0064" channelId="-1" duration="1.5117691" animTime="0.37628862" dialogBrief="Take my hand if you do."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.41508225,0,-0,-0.9097839" t="30.106119,28.859968,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_Turn_BackToFront_Chair_Debrief_B" length="23.333334" blendGap="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="1.3599999" StartTrigger="Play_EndGame_Chair_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="6" StartTrigger="Stop_EndGame_Chair_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="ChairTurn2Rumble" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="23.300001" HasCustomColor="0" ValueType="-1">
+       <Key time="0.80000001" event="ChairTurn2Rumble"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="ChairTurn2Rumble"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Danielle_MoveToSpeak" Flags="0" StartTime="0" EndTime="6.666667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Danielle" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.DanielleBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Danielle_Move_Operator" duration="6.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.64278722,0,0,-0.76604474" t="27.494463,28.623096,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_Player_Intro" Flags="0" StartTime="0" EndTime="7.3333335" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="5" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_ChairIdle_PlayerMaleAlien" duration="0.33333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="DebriefChairB" boneAttachName="seat_attachment" tOffset="0,0,0" rOffset="3.0626623e-07,3.0626612e-07,-0.70710665,-0.70710695" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="CameraLock" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" lock="1" interp="-1"/>
+       <Key time="10.633334" lock="0" interp="-1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710719,-4.5378002e-07,1.5875223e-07,0.70710641" t="30.006733,27.996496,14.457176" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="19" Type="Entity" Name="AnimObject1" Flags="0" paramIdVersion="9" EntityGUID="4AB7E23E20ED0028">
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="3">
+       <Key time="7.3374124"/>
+      </Track>
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="21">
+       <Key time="2.0117183" anim="EndGame_Sq01_Open_VRHeadSet" length="5.666667" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="ArkPlayer" boneAttachName="vr_headset" tOffset="0.0049999999,-0.071249999,-0.067500003" rOffset="1,0,0,0" type="0" AutoHide="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+      <Track paramType="ArkHideAttachment" Type="-1" Flags="0" StartTime="0" EndTime="7.3333335" HasCustomColor="0" ValueType="-1">
+       <Key time="7.3333335" hide="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_Idle_Alex&apos;s Hand Extended." Flags="4" StartTime="0" EndTime="6.0333338" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.0333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue11_Loop_Alex" duration="6.0333338" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.0333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347392,0,-0,-0.88611054" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.0333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="6.0333338" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.0333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Mikhaila_Idle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Mikhaila" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.MikhailaBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Mikhaila_Idle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.95371699,0,0,-0.30070573" t="28.637228,26.571558,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_03_It Probably Thinks..." Flags="0" StartTime="0" EndTime="15.2" ID="0" ConversationID="BDDB548E579B84B4">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue02_Alex" duration="7.6000004" priority="10" blendIn="1" blendOut="1" loop="1"/>
+       <Key time="6.597084" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue03_Alex" duration="9.8666668" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0.73333335" dialogId="BDDB548E579B84E0" channelId="-1" duration="4.0590482" animTime="0.30232397" dialogBrief="It probably thinks it was dreaming. That nothing mattered."/>
+       <Key time="7.5666671" dialogId="BDDB548E579B84F8" channelId="-1" duration="6.3672342" animTime="0.33358037" dialogBrief="Its life depends on it. Ours too. It all comes down to the c..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.4895637e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="DynamicEntity" Name="Igwe" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.IgweBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Igwe_ListenIdle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550FC76" PAChannel="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="6.0000005" dialogId="BDDB548E579B84ED" channelId="-1" duration="1.9606349" animTime="0" dialogBrief="You&apos;re assuming it thinks like us."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.79335344,-0,0,-0.60876125" t="27.811337,27.022739,15.044351" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="15.2" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="IgweSpeaks"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_09_I Would Have Done The Same..." Flags="0" StartTime="0" EndTime="5.2333336" ID="0" ConversationID="BDDB548E579CFE4A">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.2333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue05_Alex" duration="5.2666669" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="5.2333336" HasCustomColor="0" ValueType="-1">
+       <Key time="1.1802084" dialogId="BDDB548E579CFE96" channelId="-1" duration="3.2519729" animTime="0.31410688" dialogBrief="Back then, I would have done the same thing to me."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.2333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.4895717e-17,4.8243721e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="5.2333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5.2333336" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.2333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710683,0,-0,0.70710671" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Sarah_MoveToSpeak" Flags="0" StartTime="0" EndTime="6.666667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Sarah" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.SarahBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Sarah_Move_Operator" duration="6.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,-0,0,-0.70710665" t="27.509115,27.769825,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_05_Mikhaila..." Flags="0" StartTime="0" EndTime="4.4333334" ID="0" ConversationID="BDDB548E579B8FF7">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue04_Alex" duration="4.4666667" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="1.0602084" dialogId="BDDB548E579B901F" channelId="-1" duration="0.657143" animTime="0.24362887" dialogBrief="Mikhaila?"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.489571e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Sarah_ListenIdle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Sarah" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.SarahBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Sarah_ListenIdle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,-0,0,-0.70710665" t="27.509115,27.769825,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_11_What You Experienced..." Flags="0" StartTime="0" EndTime="8" ID="0" ConversationID="BDDB548E579CFF99">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue09_Alex" duration="8.0333338" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0.60000002" dialogId="BDDB548E579CFFF1" channelId="-1" duration="4.5516782" animTime="0.41073096" dialogBrief="What you experienced was a reconstruction based on Morgan&apos;s ..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.41508016,0,-0,-0.90978485" t="30.106119,28.859968,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_BackIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="8" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_Player_Loop" Flags="4" StartTime="0" EndTime="1" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="5" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="1" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_ChairIdle_PlayerMaleAlien" duration="0.33333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="1" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="DebriefChairB" boneAttachName="seat_attachment" tOffset="0,0,0" rOffset="1.3767878e-07,1.3767875e-07,-0.70710671,-0.70710683" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="1" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710737,-1.7982551e-07,9.5531917e-08,0.70710617" t="30.006733,27.996496,14.457176" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="1" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="1" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710683,0,-0,0.70710671" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Material" Name="objects/characters/player/male/player1p_male02_arms_base_cine.[1]" Flags="4" paramIdVersion="9" MeshSlot="0" AttachmentName="">
+      <Track paramType="MaterialAlphaTest" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,100" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+      <Track paramUserValue="BlendFactor" paramType="ByString" Type="4" Flags="0" defaultValue="0,0" HasCustomColor="0" ValueType="0">
+       <Key time="0" value="0,90" flags="73" ds="1,0" dd="1,0"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_16_Psychopath" Flags="0" StartTime="0" EndTime="60.000004" ID="0" ConversationID="BDDB548E579D0114">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="50.294247" StartTrigger="Play_Evnt_EndGame_Drama_Enhance" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Start_Alex" duration="10.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+       <Key time="10.000591" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue01_Alex" duration="7.1333337" priority="10" blendIn="1" blendOut="1" loop="1"/>
+       <Key time="16.6" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue01_Loop_Alex" duration="16.200001" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+       <Key time="23.456972" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue02_Alex" duration="7.6000004" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+       <Key time="30.056581" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue03_Alex" duration="9.8666668" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+       <Key time="39.667255" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue01_Loop_Alex" duration="16.200001" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+       <Key time="49.059261" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue05_Alex" duration="5.2666669" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+       <Key time="54.000591" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue01_Loop_Alex" duration="16.200001" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="10.933334" dialogId="BDDB548E579B80F4" channelId="-1" duration="0.83986402" animTime="0.23078391" dialogBrief="It&apos;s finished."/>
+       <Key time="13.667257" dialogId="BDDB548E579B8115" channelId="-1" duration="1.0809751" animTime="0.29049042" dialogBrief="How did it do?"/>
+       <Key time="24.133335" dialogId="BDDB548E579B84E0" channelId="-1" duration="4.0590482" animTime="0.30232397" dialogBrief="It probably thinks it was dreaming. That nothing mattered."/>
+       <Key time="31.000002" dialogId="BDDB548E579B84F8" channelId="-1" duration="6.3672342" animTime="0.33358037" dialogBrief="Its life depends on it. Ours too. It all comes down to the c..."/>
+       <Key time="50.344631" dialogId="BDDB548E579D029C" channelId="-1" duration="2.8318591" animTime="0.31429166" dialogBrief="We failed. This isn&apos;t the one."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.4895333e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_ChairIdle_PlayerMaleAlien" duration="0.33333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="DebriefChairB" boneAttachName="seat_attachment" tOffset="0,0,0" rOffset="2.219725e-07,2.2197243e-07,-0.70710665,-0.70710689" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="CameraLock" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" lock="1" interp="-1"/>
+       <Key time="4.3402042" lock="0" interp="-1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710701,0,0,0.70710653" t="30,27.99999,14.457176" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="DynamicEntity" Name="Igwe" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.IgweBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Psycho_Igwe_Operator" duration="59.966671" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550FC76" PAChannel="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="15.766667" dialogId="BDDB548E579D0193" channelId="-1" duration="7.548027" animTime="0.36191154" dialogBrief="Activation of the mirror neurons was... not promising. Empat..."/>
+       <Key time="39.238552" dialogId="BDDB548E579D0236" channelId="-1" duration="7.6256008" animTime="0.41737944" dialogBrief="There&apos;s no question   at every test, every juncture, it show..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.79335445,0,0,-0.60875994" t="27.110771,26.597271,15.044351" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="7" Type="DynamicEntity" Name="Danielle" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.DanielleBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Psycho_Danielle_Operator" duration="59.966671" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5640F9F7" PAChannel="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="29.309511" dialogId="BDDB548E579D01D1" channelId="-1" duration="1.590385" animTime="0.32710263" dialogBrief="You&apos;re assuming it thinks like us."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.64278769,0,0,-0.76604438" t="27.475563,29.082737,15.199236" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="8" Type="DynamicEntity" Name="Mikhaila" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.MikhailaBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Psycho_Mikhaila_Operator" duration="59.966671" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550F869" PAChannel="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="48.047367" dialogId="BDDB548E579D027C" channelId="-1" duration="1.314785" animTime="0.27964184" dialogBrief="What are we going to do?"/>
+       <Key time="54.23991" dialogId="BDDB548E579D02B1" channelId="-1" duration="0.98419499" animTime="0.20609681" dialogBrief="Start over."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.92027867,-0,0,-0.39126357" t="29.162197,26.026674,15.044352" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="9" Type="Director" Name="Director" Flags="4" paramIdVersion="9">
+      <Track paramType="Camera" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="5"/>
+     </Node>
+     <Node Id="10" Type="ScreenFader" Name="ScreenFader" Flags="0" ParentNode="9" paramIdVersion="9">
+      <Track paramType="ScreenFader" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="56.972752" fadeTime="2" fadeColor="0,0,0" fadeType="1" fadeChangeType="0" texture="" useCurColor="1"/>
+      </Track>
+     </Node>
+     <Node Id="15" Type="DynamicEntity" Name="Sarah" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.SarahBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Psycho_Sarah_Operator" duration="59.966671" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,-0,0,-0.70710665" t="26.217552,27.769823,15.298078" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="19" Type="Entity" Name="AnimObject1" Flags="0" paramIdVersion="9" EntityGUID="4AB7E23E20ED0028">
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="3">
+       <Key time="5.6032443"/>
+      </Track>
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_Open_VRHeadSet" length="5.666667" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="ArkPlayer" boneAttachName="vr_headset" tOffset="0.0049999999,-0.071249999,-0.067500003" rOffset="1,0,0,0" type="0" AutoHide="0"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="60.000004" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_12_This Is The World Today." Flags="0" StartTime="0" EndTime="5.333333" ID="0" ConversationID="BDDB548E579CFF99">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue10_Alex" duration="5.3666668" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0.40000004" dialogId="BDDB548E579CFFF7" channelId="-1" duration="2.748843" animTime="0.31334862" dialogBrief="This is the world today."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.41508225,0,-0,-0.9097839" t="30.106119,28.859968,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0.015624998" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_BackIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="5.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Sarah_Idle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Sarah" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.SarahBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Sarah_Idle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,-0,0,-0.70710665" t="27.509115,27.769825,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_04_Its Life Depends..." Flags="0" StartTime="0" EndTime="9.8666668" ID="0" ConversationID="BDDB548E579B84B4">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="9.8666668" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue03_Alex" duration="9.8666668" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="9.8666668" HasCustomColor="0" ValueType="-1">
+       <Key time="1.4602084" dialogId="BDDB548E579B84F8" channelId="-1" duration="6.3672342" animTime="0.33358037" dialogBrief="Its life depends on it. Ours too. It all comes down to the c..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="9.8666668" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.489571e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="9.8666668" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="9.8666668" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="9.8666668" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_Idle_Alex&apos;s Standard." Flags="4" StartTime="0" EndTime="16.200001" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="16.200001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue01_Loop_Alex" duration="16.200001" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="16.200001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.489571e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="16.200001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="16.200001" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="16.200001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Igwe_Idle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Igwe" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.IgweBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Igwe_Idle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.79335344,-0,0,-0.60876125" t="27.811337,27.022739,15.044351" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_07_Sarah. YoureNext." Flags="0" StartTime="0" EndTime="4.4333334" ID="0" ConversationID="BDDB548E579BA70F">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue04_Alex" duration="4.4666667" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="1.1802084" dialogId="BDDB548E579BA72A" channelId="-1" duration="1.552268" animTime="0.36587566" dialogBrief="Sarah. You&apos;re next."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.489571e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0.0099999998" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="4.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Danielle_Idle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Danielle" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.DanielleBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Danielle_Idle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.64278722,0,0,-0.76604474" t="27.494463,28.623096,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Danielle_ListenIdle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Danielle" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.DanielleBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Danielle_ListenIdle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.64278722,0,0,-0.76604474" t="27.494463,28.623096,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_02_It&apos;s Finished..." Flags="0" StartTime="0" EndTime="7.1333342" ID="0" ConversationID="BDDB548E579B801A">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="7.1333342" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue01_Alex" duration="7.1333337" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="7.1333342" HasCustomColor="0" ValueType="-1">
+       <Key time="1.0695834" dialogId="BDDB548E579B80F4" channelId="-1" duration="0.83986402" animTime="0.23078391" dialogBrief="It&apos;s finished."/>
+       <Key time="3.7187502" dialogId="BDDB548E579B8115" channelId="-1" duration="1.0809751" animTime="0.29049042" dialogBrief="How did it do?"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="7.1333342" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.4895704e-17,4.8243589e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="7.1333342" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="7.1333342" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="7.1333342" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Mikhaila_MoveToSpeak" Flags="0" StartTime="0" EndTime="6.666667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Mikhaila" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.MikhailaBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Mikhaila_Move_Operator" duration="6.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.95371693,0,0,-0.30070576" t="28.637228,26.571558,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_06_Would You Let..." Flags="0" StartTime="0" EndTime="5.166667" ID="0" ConversationID="BDDB548E579BA65F">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue05_Alex" duration="5.2666669" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="5.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="1.1802084" dialogId="BDDB548E579BA692" channelId="-1" duration="1.090839" animTime="0.28091493" dialogBrief="Would you let it live?"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347392,-8.4895809e-17,4.824382e-18,-0.88611054" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="5.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5.166667" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Mikhaila_ListenIdle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Mikhaila" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.MikhailaBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Mikhaila_ListenIdle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.95371693,0,0,-0.30070576" t="28.637228,26.571558,15.044352" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Igwe_MoveToSpeak" Flags="0" StartTime="0" EndTime="6.666667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Igwe" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.IgweBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Igwe_Move_Operator" duration="6.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.79335344,-0,0,-0.60876125" t="27.811337,27.022739,15.044351" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="6.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeReview_08_Danielle.What Do You Say?" Flags="0" StartTime="0" EndTime="5.666667" ID="0" ConversationID="BDDB548E579C107F">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl Variant">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_LifeReview_Dialogue07_Alex" duration="5.7666669" priority="10" blendIn="1" blendOut="1" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="5.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="1.2002084" dialogId="BDDB548E579C1098" channelId="-1" duration="1.988027" animTime="0.29117623" dialogBrief="Danielle? What do you say?"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.46347404,-8.489571e-17,4.8243655e-18,-0.88611048" t="29.112022,28.775368,13.989088" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="5.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="0"/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="Entity" Name="DebriefChairB" Flags="0" paramIdVersion="9" EntityGUID="4A0EBA11FE031C92">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="5.666667" HasCustomColor="0" ValueType="21">
+       <Key time="0" anim="EndGame_Sq01_LifeReview_FrontIdle_Chair_Debrief_B" length="0.33333334" end="1.7042642" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.666667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.70710677,0,0,-0.70710677" t="30,27.999996,14.000224" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Main_Igwe_ListenIdle" Flags="4" StartTime="0" EndTime="13.333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Igwe" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.IgweBot">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_EndGame_Sq01_Main_Igwe_ListenIdle_Operator" duration="13.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.79335344,-0,0,-0.60876125" t="27.811337,27.022739,15.044351" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="13.333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+  </SequenceData>
+ </Mission>
+</MovieData>

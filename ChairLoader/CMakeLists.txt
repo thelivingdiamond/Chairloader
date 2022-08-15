@@ -4,6 +4,15 @@ set(SOURCE_FILES
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h
 	
+	RenderDll/D3DRenderAuxGeom.cpp
+	RenderDll/D3DRenderAuxGeom.h
+	RenderDll/RenderAuxGeom.cpp
+	RenderDll/RenderAuxGeomPatch.cpp
+	RenderDll/RenderAuxGeomPatch.h
+	RenderDll/RenderCommandHandler.cpp
+	RenderDll/RenderCommandHook.asm
+	RenderDll/TextMessages.cpp
+	
 	ChairLoader.cpp
 	ChairLoader.h
 	ChairloaderConfigManager.cpp
@@ -31,7 +40,7 @@ set(SOURCE_FILES
 	pugiconfig.hpp
 	pugixml.cpp
 	pugixml.hpp
-)
+        )
 
 add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader

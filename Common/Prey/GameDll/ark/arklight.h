@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryRenderer/IShader.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkEmissiveComponent.h>

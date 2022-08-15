@@ -10,8 +10,8 @@ public:
 	/* Example configuration file
 	 *
 	 	<?xml version="1.0"?>
-		<ExampleMod>
-		    <testString type="string">The quick brown fox fuckin jumped over the lazy dogwhat if I add \n???? what happens next</testString>
+		<ExampleMod version="1.0">
+		    <testString type="string">The quick brown fox fuckin jumped over the lazy dogw. What happens next?</testString>
 		    <testBool type="bool">1</testBool>
 		    <testInt type="int">-691</testInt>
 		    <testUInt type="uint">421</testUInt>
@@ -19,7 +19,7 @@ public:
 		    <testUInt64 type="uint64">42000000001</testUInt64>
 		    <testFloat type="float">69.6969</testFloat>
 		    <testXMLNode type="xmlnode" readonly="1">
-		        <node1>IDK put whatever tf you want here</node1>testXMLNode
+		        <node1>IDK put whatever you want here</node1>testXMLNode
 		    </testXMLNode>
 		</ExampleMod>
 	 * Read only has to be set explicitly in the default configuration file. It will disallow changing the value in the config GUI manager

@@ -1,0 +1,33 @@
+<Graph isModule="1" moduleName="Crew_DisplayScreens" isObjectList="1" objectListClass="GeomEntity" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:GeomEntity" pos="-372,14,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="4" Class="entity:GeomEntity" pos="-372,39,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="6" Class="entity:GeomEntity" pos="-372,64,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="8" Class="entity:GeomEntity" pos="-372,89,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="10" Class="entity:GeomEntity" pos="-372,114,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="12" Class="entity:GeomEntity" pos="-372,139,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="14" Class="entity:GeomEntity" pos="-372,164,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="16" Class="entity:GeomEntity" pos="-372,189,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="18" Class="entity:GeomEntity" pos="-372,214,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

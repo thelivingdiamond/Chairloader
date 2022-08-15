@@ -1,0 +1,33 @@
+<Graph isModule="1" moduleName="GeomEntities_BalconyObjects" isObjectList="1" objectListClass="GeomEntity" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="58" Class="entity:GeomEntity" pos="-400,140,0" EntityGUID="{1E3D1ADA-0141-4FE6-99CD-E64BD130BFB0}" EntityGUID_64="4FE601411E3D1ADA">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="70" Class="entity:GeomEntity" pos="-373.12845,417.98209,0" EntityGUID="{012F0EBD-F6C7-4C31-A2AD-327FC4F65761}" EntityGUID_64="4C31F6C7012F0EBD">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="72" Class="entity:GeomEntity" pos="-640,270,0" EntityGUID="{3F403D1F-D701-4266-9144-49602CA32110}" EntityGUID_64="4266D7013F403D1F">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="78" Class="entity:GeomEntity" pos="5.4605098,23.662209,0" EntityGUID="{64D4BA3C-654E-4D92-B5CE-CA1B7F4C8955}" EntityGUID_64="4D92654E64D4BA3C">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="80" Class="entity:GeomEntity" pos="30,240,0" EntityGUID="{58CCF91D-2AB8-4F98-9D37-98771724EB75}" EntityGUID_64="4F982AB858CCF91D">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="82" Class="entity:GeomEntity" pos="380.55804,64.775841,0" EntityGUID="{B255D30E-62F6-4A9B-BCA7-8C8A989C0329}" EntityGUID_64="4A9B62F6B255D30E">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="84" Class="entity:GeomEntity" pos="373.27078,266.39063,0" EntityGUID="{7E4BC054-9AD5-4780-BD44-5046D482CC7E}" EntityGUID_64="47809AD57E4BC054">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="86" Class="entity:GeomEntity" pos="370,480,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="88" Class="entity:GeomEntity" pos="766.9021,300.67432,0" EntityGUID="{E7931FAD-5027-4752-8A4A-62FF72EA1232}" EntityGUID_64="47525027E7931FAD">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

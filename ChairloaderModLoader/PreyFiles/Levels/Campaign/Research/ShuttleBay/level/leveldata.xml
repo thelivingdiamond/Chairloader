@@ -1,0 +1,151 @@
+<LevelData SandboxVersion="3.7.0.179">
+ <LevelInfo CreationDate="08/01/18" Name="ShuttleBay" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
+ <SurfaceTypes>
+  <SurfaceType Name="Materials/material_terrain_default" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/material_terrain_default" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+ </SurfaceTypes>
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+  <CollisionClass type="0" ignore="65536"/>
+  <CollisionClass type="65536" ignore="65536"/>
+  <CollisionClass type="2163712" ignore="0"/>
+  <CollisionClass type="0" ignore="4294967295"/>
+  <CollisionClass type="1024" ignore="0"/>
+  <CollisionClass type="1024" ignore="65536"/>
+  <CollisionClass type="4096" ignore="0"/>
+  <CollisionClass type="0" ignore="384"/>
+  <CollisionClass type="8192" ignore="0"/>
+  <CollisionClass type="8192" ignore="65536"/>
+  <CollisionClass type="2622464" ignore="65536"/>
+  <CollisionClass type="4194304" ignore="4194304"/>
+  <CollisionClass type="0" ignore="16384"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="Shuttlebay_Geo_EscapePods" Parent="" Id="1" Specs="-1"/>
+  <Layer Name="Pilot_Debrief_Scripts" Parent="Pilot_Debrief" Id="2" Specs="-1"/>
+  <Layer Name="Mechanic_Tooling_Geo" Parent="Mechanic_Tooling" Id="3" Specs="-1"/>
+  <Layer Name="Control_Room_Lights" Parent="Control_Room" Id="4" Specs="-1"/>
+  <Layer Name="Blue_Room_Scripts" Parent="Blue_Room" Id="5" Specs="-1"/>
+  <Layer Name="Bathroom_Geo" Parent="Bathroom" Id="6" Specs="-1"/>
+  <Layer Name="Mechanic_Pit_Scripts" Parent="Mechanic_Pit" Id="7" Specs="-1"/>
+  <Layer Name="Control_Room" Parent="" Id="8" Specs="-1"/>
+  <Layer Name="Hanger_Lights" Parent="Hanger" Id="9" Specs="-1"/>
+  <Layer Name="Shuttlebay_TrackviewFinal" Parent="" Id="10" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="ShuttleBay_Shutters_Closed" Parent="" Id="11" Specs="-1" LoadTokenId="1990946021" LoadTokenValue="0"/>
+  <Layer Name="EscapePods_Lights" Parent="EscapePods" Id="12" Specs="-1"/>
+  <Layer Name="Mechanic_Pit_Geo" Parent="Mechanic_Pit" Id="13" Specs="-1"/>
+  <Layer Name="Blue_Room_Geo" Parent="Blue_Room" Id="14" Specs="-1"/>
+  <Layer Name="ShuttleBay_Lighting_OuterAreas" Parent="ShuttleBay_Lighting" Id="15" Specs="-1"/>
+  <Layer Name="Control_Room_Props" Parent="Control_Room" Id="16" Specs="-1"/>
+  <Layer Name="Mechanic_Pit_Props" Parent="Mechanic_Pit" Id="17" Specs="-1"/>
+  <Layer Name="EscapePods_Hallway" Parent="" Id="18" Specs="-1"/>
+  <Layer Name="Blue_Room_Lights" Parent="Blue_Room" Id="19" Specs="-1"/>
+  <Layer Name="Hanger" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="ShuttleBay_CoralPhase5" Parent="" Id="21" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="99"/>
+  <Layer Name="EscapePods_Hallway_Lights" Parent="EscapePods_Hallway" Id="22" Specs="-1"/>
+  <Layer Name="ShuttleBay_Sq_03_PodSuccessfulLaunch" Parent="" Id="23" Specs="-1"/>
+  <Layer Name="Shuttlebay_Apex" Parent="" Id="24" Specs="-1" LoadTokenId="659909599" LoadTokenValue="1"/>
+  <Layer Name="Grav_Shafts_Geo" Parent="Grav_Shafts" Id="25" Specs="-1"/>
+  <Layer Name="Hanger_Props" Parent="Hanger" Id="26" Specs="-1"/>
+  <Layer Name="VIP_Move_Layer" Parent="" Id="27" Specs="-1"/>
+  <Layer Name="EscapePods_Scripts" Parent="EscapePods" Id="28" Specs="-1"/>
+  <Layer Name="ShuttleBay_Shutters_Open" Parent="" Id="29" Specs="-1" LoadTokenId="1990946021" LoadTokenValue="1"/>
+  <Layer Name="LookingGlass_City" Parent="" Id="30" Specs="-1"/>
+  <Layer Name="Shuttlebay_LowerBridgeSeq" Parent="" Id="31" Specs="-1"/>
+  <Layer Name="Lobby_Entrance" Parent="" Id="32" Specs="-1"/>
+  <Layer Name="Mechanic_Tooling_Props" Parent="Mechanic_Tooling" Id="33" Specs="-1"/>
+  <Layer Name="Blue_Room_Prop" Parent="Blue_Room" Id="34" Specs="-1"/>
+  <Layer Name="Shuttlebay_FX" Parent="" Id="35" Specs="-1"/>
+  <Layer Name="ShuttleBay_Lighting_Final" Parent="ShuttleBay_Lighting" Id="36" Specs="-1"/>
+  <Layer Name="ShuttleBay_Sq_05_DahlAmbush" Parent="" Id="37" Specs="-1"/>
+  <Layer Name="Shuttlebay_ChemSpills" Parent="" Id="38" Specs="-1" LoadTokenId="1990946021" LoadTokenValue="1"/>
+  <Layer Name="Shuttlebay_ElectricalFloor" Parent="" Id="39" Specs="-1"/>
+  <Layer Name="EscapePods_Geo" Parent="EscapePods" Id="40" Specs="-1"/>
+  <Layer Name="Pilot_Debrief_Geo" Parent="Pilot_Debrief" Id="41" Specs="-1"/>
+  <Layer Name="Blue_Room" Parent="" Id="42" Specs="-1"/>
+  <Layer Name="Catwalks_Broken" Parent="" Id="43" Specs="-1"/>
+  <Layer Name="Occlusion_BSP" Parent="" Id="44" Specs="-1"/>
+  <Layer Name="shuttlebay_grayboxarchi" Parent="" Id="45" Specs="-1"/>
+  <Layer Name="ShuttleBay_Lighting_ON" Parent="ShuttleBay_Lighting" Id="46" Specs="-1"/>
+  <Layer Name="EscapePods_Hallway_Geo" Parent="EscapePods_Hallway" Id="47" Specs="-1"/>
+  <Layer Name="ShuttleBay_Shuttle_Lights" Parent="ShuttleBay_Shuttle" Id="48" Specs="-1" LoadTokenId="1990946021" LoadTokenValue="1"/>
+  <Layer Name="Mechanic_Tooling_Lights" Parent="Mechanic_Tooling" Id="49" Specs="-1"/>
+  <Layer Name="Shuttlebay_AudioVolumes" Parent="" Id="50" Specs="-1"/>
+  <Layer Name="Occluder_Planes" Parent="" Id="51" Specs="-1"/>
+  <Layer Name="Ark_MetricCameras" Parent="" Id="52" Specs="-1"/>
+  <Layer Name="Shuttlebay_Distractions" Parent="" Id="53" Specs="-1"/>
+  <Layer Name="ShuttleBay_Sq_04_ShuttleEscape" Parent="" Id="54" Specs="-1"/>
+  <Layer Name="ShuttleBay_Loot" Parent="" Id="55" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Player_Only_Collision" Parent="" Id="56" Specs="-1"/>
+  <Layer Name="Tutorials" Parent="" Id="57" Specs="-1"/>
+  <Layer Name="Shuttlebay_Solar" Parent="" Id="58" Specs="-1"/>
+  <Layer Name="Pit_Boss_Scripts" Parent="Pit_Boss" Id="59" Specs="-1"/>
+  <Layer Name="ShuttleBay_Lighting" Parent="" Id="60" Specs="-1"/>
+  <Layer Name="Lobby_Entrance_Lights" Parent="Lobby_Entrance" Id="61" Specs="-1"/>
+  <Layer Name="ShuttleBay_Sq_02_PodFailedLaunch" Parent="" Id="62" Specs="-1"/>
+  <Layer Name="Main" Parent="" Id="63" Specs="-1"/>
+  <Layer Name="Grav_Shaft_Scripts" Parent="Grav_Shafts" Id="64" Specs="-1"/>
+  <Layer Name="Shuttlebay_Nightmare" Parent="" Id="65" Specs="-1"/>
+  <Layer Name="ShuttleBay_ExteriorVista" Parent="" Id="66" Specs="-1"/>
+  <Layer Name="Mechanic_Pit" Parent="" Id="67" Specs="-1"/>
+  <Layer Name="EscapePods_Props" Parent="EscapePods" Id="68" Specs="-1"/>
+  <Layer Name="Lobby_Entrance_Prop" Parent="Lobby_Entrance" Id="69" Specs="-1"/>
+  <Layer Name="Lobby_Entrance_Scripts" Parent="Lobby_Entrance" Id="70" Specs="-1"/>
+  <Layer Name="Control_Room_Geo" Parent="Control_Room" Id="71" Specs="-1"/>
+  <Layer Name="ShuttleBay_Scripting" Parent="" Id="72" Specs="-1"/>
+  <Layer Name="Shuttlebay_Entrance_Gut" Parent="" Id="73" Specs="-1"/>
+  <Layer Name="Pilot_Debrief" Parent="" Id="74" Specs="-1"/>
+  <Layer Name="ShuttleBay_Audio" Parent="" Id="75" Specs="-1"/>
+  <Layer Name="Bathroom" Parent="" Id="76" Specs="-1"/>
+  <Layer Name="Mechanic_Tooling_Scripts" Parent="Mechanic_Tooling" Id="77" Specs="-1"/>
+  <Layer Name="ShuttleBay_Lighting_Backup" Parent="ShuttleBay_Lighting" Id="78" Specs="-1"/>
+  <Layer Name="Bathroom_Props" Parent="Bathroom" Id="79" Specs="-1"/>
+  <Layer Name="Pit_Boss_Geo" Parent="Pit_Boss" Id="80" Specs="-1"/>
+  <Layer Name="Lobby_Entrance_Geo" Parent="Lobby_Entrance" Id="81" Specs="-1"/>
+  <Layer Name="EscapePods_Hallway_Scripts" Parent="EscapePods_Hallway" Id="82" Specs="-1"/>
+  <Layer Name="ShuttleBay_Sq_01_Bridge" Parent="" Id="83" Specs="-1"/>
+  <Layer Name="Blue_Room_Tunnel" Parent="" Id="84" Specs="-1"/>
+  <Layer Name="Shuttlebay_Viz_Area" Parent="" Id="85" Specs="-1"/>
+  <Layer Name="Grav_Shaft_Lights" Parent="Grav_Shafts" Id="86" Specs="-1"/>
+  <Layer Name="EscapePods_Hallway_Props" Parent="EscapePods_Hallway" Id="87" Specs="-1"/>
+  <Layer Name="Pit_Boss_Props" Parent="Pit_Boss" Id="88" Specs="-1"/>
+  <Layer Name="Pilot_Debrief_Lights" Parent="Pilot_Debrief" Id="89" Specs="-1"/>
+  <Layer Name="EscapePods" Parent="" Id="90" Specs="-1"/>
+  <Layer Name="ShuttleBay_Lighting_ShadowShells" Parent="ShuttleBay_Lighting" Id="91" Specs="-1"/>
+  <Layer Name="ShuttleBay_CoralPhase4" Parent="" Id="92" Specs="-1" DefaultLoaded="1" LoadTokenId="1570678163" LoadTokenValue="99"/>
+  <Layer Name="Shuttlebay_Map" Parent="" Id="93" Specs="-1"/>
+  <Layer Name="Catwalks_Full" Parent="" Id="94" Specs="-1"/>
+  <Layer Name="Pit_Boss" Parent="" Id="95" Specs="-1"/>
+  <Layer Name="Shuttebay_Geo_Space" Parent="" Id="96" Specs="-1"/>
+  <Layer Name="Hanger_Scripts" Parent="Hanger" Id="97" Specs="-1"/>
+  <Layer Name="Grav_Shafts" Parent="" Id="98" Specs="-1"/>
+  <Layer Name="Pilot_Debrief_Props" Parent="Pilot_Debrief" Id="99" Specs="-1"/>
+  <Layer Name="Control_Room_Scripts" Parent="Control_Room" Id="100" Specs="-1"/>
+  <Layer Name="Exterior" Parent="" Id="101" Specs="-1"/>
+  <Layer Name="Mechanic_Pit_Lights" Parent="Mechanic_Pit" Id="102" Specs="-1"/>
+  <Layer Name="Shuttlebay_Shuttle_Props" Parent="ShuttleBay_Shuttle" Id="103" Specs="-1" LoadTokenId="1990946021" LoadTokenValue="1"/>
+  <Layer Name="ShuttleBay_Shuttle" Parent="" Id="104" Specs="-1"/>
+  <Layer Name="Pit_Boss_Lights" Parent="Pit_Boss" Id="105" Specs="-1"/>
+  <Layer Name="Mechanic_Tooling" Parent="" Id="106" Specs="-1"/>
+  <Layer Name="Hanger_Geo" Parent="Hanger" Id="107" Specs="-1"/>
+  <Layer Name="Bathroom_Lights" Parent="Bathroom" Id="108" Specs="-1"/>
+  <Layer Name="Grav_Shaft_Props" Parent="Grav_Shafts" Id="109" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="LevelShared"/>
+  <Library Name="Screen"/>
+  <Library Name="Characters"/>
+  <Library Name="MaterialEffects"/>
+  <Library Name="Interactables"/>
+  <Library Name="PlayerWeapons"/>
+  <Library Name="Player"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences>
+  <Library Name="GT_Global"/>
+  <Library Name="GT_GameTime"/>
+  <Library Name="GT_GlobalStrings"/>
+ </GameTokensLibraryReferences>
+</LevelData>

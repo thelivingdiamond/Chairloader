@@ -1,0 +1,12 @@
+<Graph isModule="1" moduleName="Mag_ArkLights" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="14" Class="entity:ArkLight" pos="-405,-112,0" EntityGUID="{98E956AE-CB2E-448F-88E4-6141A5CF95CB}" EntityGUID_64="448FCB2E98E956AE">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="16" Class="entity:ArkLight" pos="-405,-87,0" EntityGUID="{1962F402-1522-48D0-8445-00E5BB9BC725}" EntityGUID_64="48D015221962F402">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

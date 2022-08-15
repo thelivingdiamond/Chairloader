@@ -1,0 +1,127 @@
+<MovieData>
+ <Mission Name="Mission0">
+  <SequenceData>
+   <Sequence SequenceVersion="3" Name="LifeSupport_Sq_02_DahlPassesOut" Flags="0" StartTime="0" EndTime="21.133335" ID="0" ConversationID="BDDB548E569DA2D0">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Dahl" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Commander Dahl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="8.6616011" StartTrigger="Play_Dahl_Choke_01" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="9.6779299" StartTrigger="Play_Dahl_Choke_02" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="10.673243" StartTrigger="Play_Dahl_Choke_03" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="11.8" StartTrigger="Play_Dahl_Choke_04" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="13.874219" StartTrigger="Play_Dahl_Choke_05" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="15.8" StartTrigger="Play_NPC_Human_Foley_Worksuit_Steps" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="17.762501" StartTrigger="Play_Dahl_Choke_06" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="4.1429315" StartTrigger="Trigger_Creep_Long" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_LifeSupport_Sq02_DahlPassesOut" duration="21.133335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="0" PAChannel="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" dialogId="0" channelId="-1" duration="-1" animTime="0" dialogBrief=""/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.133335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="9.0996292e-07,0,0,1" t="113.77,197.17,92.919998" eo="1" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Dahl_KASPAR_Convo2" Flags="0" StartTime="0" EndTime="57.259998" ID="0" ConversationID="BDDB548E56A13652">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Dahl" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Commander Dahl">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="57.259998" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_LifeSupport_Sq01_DahlKasper_Convo2_Dahl" duration="60.400002" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550F706" PAChannel="-1" Flags="0" StartTime="0" EndTime="57.259998" HasCustomColor="0" ValueType="-1">
+       <Key time="1.7333335" dialogId="BDDB548E56A164A4" channelId="-1" duration="0.84317499" animTime="0.32281023" dialogBrief="Kaspar."/>
+       <Key time="3.9333336" dialogId="BDDB548E56A164CE" channelId="-1" duration="2.105397" animTime="0.30757359" dialogBrief="What&apos;s the situation in Cargo Bay?"/>
+       <Key time="14.266667" dialogId="BDDB548E56A17725" channelId="-1" duration="0.51174599" animTime="0.37730718" dialogBrief="Good."/>
+       <Key time="15.166667" dialogId="BDDB548E56A164FC" channelId="-1" duration="2.806349" animTime="0.38006639" dialogBrief="We&apos;ll see how our friend Morgan responds. "/>
+       <Key time="18.333334" dialogId="BDDB548E56A165F4" channelId="-1" duration="3.151746" animTime="0.39558023" dialogBrief="Have you been able to put a tap on Morgan&apos;s TranScribe?"/>
+       <Key time="31.266668" dialogId="BDDB548E56A16688" channelId="-1" duration="6.5015869" animTime="0.33131427" dialogBrief="You can&apos;t stand to be beaten. No. Keep current allocations. ..."/>
+       <Key time="41.666668" dialogId="BDDB548E56A166E5" channelId="-1" duration="1.92" animTime="0.36902991" dialogBrief="It&apos;s another Operator."/>
+       <Key time="47.666668" dialogId="BDDB548E56A166F8" channelId="-1" duration="3.558095" animTime="0.39112297" dialogBrief="Every one of you thinks that. Keep working.   "/>
+       <Key time="53.000004" dialogId="BDDB548E55B030B5" channelId="-1" duration="0.69333303" animTime="0.080217823" dialogBrief="Dahl out."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="57.259998" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70715946,0,0,-0.70705408" t="112.9763,194.7355,92.810799" eo="1" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="Entity" Name="ArkAnimSpeakerObject1" Flags="0" paramIdVersion="9" EntityGUID="45371964F0502F26">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="57.259998" HasCustomColor="0" ValueType="21">
+       <Key time="1.35" anim="Acc_1p_Select_Transcribe" length="0.63333338" end="0.63333338" start="0.029999999" charSlot="0" admotion="0" stopAll="0"/>
+       <Key time="1.9833335" anim="Acc_1p_Idle_Transcribe" length="3.3333335" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+       <Key time="54.640007" anim="Acc_1p_Unselect_Transcribe" length="0.66666669" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="57.259998" HasCustomColor="0" ValueType="-1">
+       <Key time="0.95999992" parentName="Dahl" boneAttachName="l_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="55.446671" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E555106D2" PAChannel="-1" Flags="0" StartTime="0" EndTime="57.259998" HasCustomColor="0" ValueType="-1">
+       <Key time="3.0666668" dialogId="BDDB548E56A164B2" channelId="-1" duration="0.793917" animTime="0" dialogBrief="I read you."/>
+       <Key time="6.4502616" dialogId="BDDB548E56A164D7" channelId="-1" duration="3.371814" animTime="0" dialogBrief="Holding. Small group of survivors still present. "/>
+       <Key time="9.833334" dialogId="BDDB548E56A17483" channelId="-1" duration="5.0484381" animTime="0" dialogBrief="Oxygen nearly depleted. I expect loss of consciousness momen..."/>
+       <Key time="22.466667" dialogId="BDDB548E56A16604" channelId="-1" duration="5.670022" animTime="0" dialogBrief="Negative. The encryption is trivial, but another user is emp..."/>
+       <Key time="28.333334" dialogId="BDDB548E56A16615" channelId="-1" duration="2.8629169" animTime="0" dialogBrief="I would like dedicate more processing power to it."/>
+       <Key time="38.000004" dialogId="BDDB548E56A16654" channelId="-1" duration="4.03825" animTime="0" dialogBrief="There is no person aboard Talos I who can perform operations..."/>
+       <Key time="44.333336" dialogId="BDDB548E56A166EE" channelId="-1" duration="3.0309579" animTime="0" dialogBrief="Improbable. There are none like me.  "/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeSupport_Sq_05_DahlReactions" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes />
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Dahl_KASPAR_Convo1" Flags="0" StartTime="0" EndTime="35.400002" ID="0" ConversationID="BDDB548E569DA2D0">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="ArkAnimSpeakerObject1" Flags="0" paramIdVersion="9" EntityGUID="45371964F0502F26">
+      <Track paramType="Animation" Type="-1" AnimationLayer="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="21">
+       <Key time="1.421719" anim="Acc_1p_Select_Transcribe" length="0.63333338" end="0.62333339" charSlot="0" admotion="0" stopAll="0"/>
+       <Key time="1.8558804" anim="Acc_1p_Idle_Transcribe" length="3.3333335" end="3.3333335" loop="1" charSlot="0" admotion="0" stopAll="0"/>
+       <Key time="32.429207" anim="Acc_1p_Unselect_Transcribe" length="0.66666669" end="0.47135419" charSlot="0" admotion="0" stopAll="0"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="-1">
+       <Key time="1.16" parentName="Dahl" boneAttachName="l_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="33.753803" parentName="Dahl" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E555106D2" PAChannel="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="-1">
+       <Key time="3.0000002" dialogId="BDDB548E56A164B2" channelId="-1" duration="0.793917" animTime="0" dialogBrief="I read you."/>
+       <Key time="6.5000005" dialogId="BDDB548E56A164D7" channelId="-1" duration="3.345875" animTime="0" dialogBrief="Holding. Small group of survivors still present. "/>
+       <Key time="19.533335" dialogId="BDDB548E56A16520" channelId="-1" duration="4.4961681" animTime="0" dialogBrief="Network is still locked down. Alex has no means of access.    "/>
+       <Key time="24.145922" dialogId="BDDB548E56A1652F" channelId="-1" duration="4.5091162" animTime="0" dialogBrief="Installing Rip and Intercept protocols. Thirty five percent ..."/>
+      </Track>
+     </Node>
+     <Node Id="4" Type="DynamicEntity" Name="Dahl" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Commander Dahl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_LifeSupport_Sq01_DahlKasper_Convo1_Dahl" duration="38.800003" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550F706" PAChannel="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="-1">
+       <Key time="1.7" dialogId="BDDB548E56A164A4" channelId="-1" duration="0.84317499" animTime="0.32281023" dialogBrief="Kaspar."/>
+       <Key time="3.8333335" dialogId="BDDB548E56A164CE" channelId="-1" duration="2.105397" animTime="0.30757359" dialogBrief="What&apos;s the situation in Cargo Bay?"/>
+       <Key time="9.9466152" dialogId="BDDB548E56A164E2" channelId="-1" duration="2.661587" animTime="0.30043453" dialogBrief="I&apos;m about to push all the oxygen out of there."/>
+       <Key time="13.166667" dialogId="BDDB548E56A164FC" channelId="-1" duration="2.806349" animTime="0.38006639" dialogBrief="We&apos;ll see how our friend Morgan responds. "/>
+       <Key time="17.6" dialogId="BDDB548E56A16505" channelId="-1" duration="1.483175" animTime="0.3128204" dialogBrief="Progress on the rest?"/>
+       <Key time="28.400002" dialogId="BDDB548E56A1653E" channelId="-1" duration="2.435555" animTime="0.40652829" dialogBrief="Let me know when it reaches 100."/>
+       <Key time="32.166668" dialogId="BDDB548E55B030B5" channelId="-1" duration="0.69333303" animTime="0.080217823" dialogBrief="Dahl out."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="35.400002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="1,0,0,0" t="113.9972,196.1405,92.810799" eo="1" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="LifeSupport_Sq_03_WaterRoom" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes />
+    <Events />
+   </Sequence>
+  </SequenceData>
+ </Mission>
+</MovieData>

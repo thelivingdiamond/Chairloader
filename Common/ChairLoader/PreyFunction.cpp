@@ -4,16 +4,16 @@
 
 namespace {
 bool s_bFuncsInited = false;
-PreyFunctionBase* s_pFirstFunc = nullptr;
+PreyPointer* s_pFirstFunc = nullptr;
 
 bool s_bHooksInited = false;
 PreyFunctionHookBase* s_pFirstHook = nullptr;
 }
 
 //------------------------------------------------------------
-// PreyFunctionBase
+// PreyPointer
 //------------------------------------------------------------
-PreyFunctionBase::PreyFunctionBase(uintptr_t offset)
+PreyPointer::PreyPointer(uintptr_t offset)
 {
 	CRY_ASSERT_MESSAGE(!s_bFuncsInited, "PreyFunction must be created before DLL initialization");
 	m_Ptr = offset;
@@ -21,7 +21,7 @@ PreyFunctionBase::PreyFunctionBase(uintptr_t offset)
 	s_pFirstFunc = this;
 }
 
-void PreyFunctionBase::Init(uintptr_t moduleBase)
+void PreyPointer::Init(uintptr_t moduleBase)
 {
 	// Before Init m_Ptr holds the offset
 	m_Ptr = moduleBase + m_Ptr;
@@ -30,7 +30,7 @@ void PreyFunctionBase::Init(uintptr_t moduleBase)
 //------------------------------------------------------------
 // PreyFunctionHookBase
 //------------------------------------------------------------
-PreyFunctionHookBase::PreyFunctionHookBase(PreyFunctionBase* origFunc)
+PreyFunctionHookBase::PreyFunctionHookBase(PreyPointer* origFunc)
 {
 	CRY_ASSERT_MESSAGE(!s_bHooksInited, "PreyFunctionHook must be created before DLL initialization");
 	// Do not dereference origFunc - may not be initialized yet.
@@ -57,7 +57,7 @@ void PreyFunctionSystem::Init(uintptr_t moduleBase)
 	CRY_ASSERT(!s_bFuncsInited);
 	s_bFuncsInited = true;
 
-	for (PreyFunctionBase* p = s_pFirstFunc; p; p = p->m_pNext) {
+	for (PreyPointer* p = s_pFirstFunc; p; p = p->m_pNext) {
 		p->Init(moduleBase);
 	}
 }

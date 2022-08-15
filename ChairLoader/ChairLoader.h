@@ -117,6 +117,7 @@ private:
 	void CreateConsole();
 	void InstallHooks();
 	void UpdateFreeCam();
+	void WaitForRenderDoc();
 
 public:
 	// IChairloader

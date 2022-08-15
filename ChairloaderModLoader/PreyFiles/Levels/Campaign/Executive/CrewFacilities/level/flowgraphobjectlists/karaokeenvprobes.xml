@@ -1,0 +1,24 @@
+<Graph isModule="1" moduleName="KaraokeEnvProbes" isObjectList="1" objectListClass="EnvironmentLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="6" Class="entity:EnvironmentLight" pos="-430.68164,360.54492,0" EntityGUID="{CCE0C6E8-1CB6-43C4-B112-9CBBB6BBC43E}" EntityGUID_64="43C41CB6CCE0C6E8">
+   <Inputs entityId="0" Active="0" Disable="0" Enable="0"/>
+  </Node>
+  <Node Id="8" Class="entity:EnvironmentLight" pos="-428.08594,458.44922,0" EntityGUID="{48A713B1-494B-44BE-996C-70EAC50997E6}" EntityGUID_64="44BE494B48A713B1">
+   <Inputs entityId="0" Active="0" Disable="0" Enable="0"/>
+  </Node>
+  <Node Id="10" Class="entity:EnvironmentLight" pos="-399.93945,244.20898,0" EntityGUID="{55B30593-8C20-4B4F-B890-AB50F4768F60}" EntityGUID_64="4B4F8C2055B30593">
+   <Inputs entityId="0" Active="0" Disable="0" Enable="0"/>
+  </Node>
+  <Node Id="12" Class="entity:EnvironmentLight" pos="-380.65039,24.798828,0" EntityGUID="{9EF35A1B-EA35-4149-8554-77163F1EE7D6}" EntityGUID_64="4149EA359EF35A1B">
+   <Inputs entityId="0" Active="0" Disable="0" Enable="0"/>
+  </Node>
+  <Node Id="14" Class="entity:EnvironmentLight" pos="-380.65039,49.798828,0" EntityGUID="{90FA74C8-1CAE-407A-8C90-DC49FB88DBDA}" EntityGUID_64="407A1CAE90FA74C8">
+   <Inputs entityId="0" Active="0" Disable="0" Enable="0"/>
+  </Node>
+  <Node Id="16" Class="entity:EnvironmentLight" pos="-410.18555,-80.6875,0" EntityGUID="{D959CE40-C473-410A-BEEC-E3970DD698C9}" EntityGUID_64="410AC473D959CE40">
+   <Inputs entityId="0" Active="0" Disable="0" Enable="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

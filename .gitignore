@@ -406,5 +406,9 @@ ChairLoader/PreyDll.dll.gzf
 # Ignore CMake build directory
 /build
 /_build
-/cmake-build-debug/
+/cmake-build-*/
 /.idea/
+/ChairloaderModLoader/Test/
+ChairloaderModLoader/patch_chairloader.pak
+/ChairloaderModLoader/Output/
+/ChairloaderModLoader/LevelOutput/
