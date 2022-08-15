@@ -350,20 +350,30 @@ void CPostAAStage_DoFinalComposition_Hook(CPostAAStage* const _this, CTexture* p
 //------------------------------------------------------------
 // CTexture
 //------------------------------------------------------------
-auto g_CTexture_CreateDeviceTexture = PreyFunction<bool(CTexture* const _this, uint8_t** pData)>(0xF2A300);
-auto g_CTexture_CreateDeviceTexture_Hook = g_CTexture_CreateDeviceTexture.MakeHook();
+auto g_CTexture_CreateDeviceTexture_Hook = CTexture::FCreateDeviceTexture.MakeHook();
+auto g_CTexture_CreateRenderTarget_Hook = CTexture::FCreateRenderTargetOv0.MakeHook();
+
+void SetTextureDebugName(CTexture* tex)
+{
+	CDeviceTexture* pDevTex = tex->GetDevTexture();
+	const char* name = tex->GetName();
+	pDevTex->GetBaseTexture()->SetPrivateData(WKPDID_D3DDebugObjectName, strlen(name), name);
+}
 
 bool CTexture_CreateDeviceTexture_Hook(CTexture* _this, byte* pData[6])
 {
 	bool res = g_CTexture_CreateDeviceTexture_Hook.InvokeOrig(_this, pData);
-
 	if (res)
-	{
-		CDeviceTexture* pDevTex = _this->GetDevTexture();
-		const char* name = _this->GetName();
-		pDevTex->GetBaseTexture()->SetPrivateData(WKPDID_D3DDebugObjectName, strlen(name), name);
-	}
+		SetTextureDebugName(_this);
+	return res;
+}
 
+bool CTexture_CreateRenderTarget_Hook(CTexture* const _this, ETEX_Format eTF, ColorF const& cClear)
+{
+	// CreateDeviceTexture is inlined in CreateRenderTarget
+	bool res = g_CTexture_CreateRenderTarget_Hook.InvokeOrig(_this, eTF, cClear);
+	if (res)
+		SetTextureDebugName(_this);
 	return res;
 }
 
@@ -408,6 +418,7 @@ void InitHooks()
 	g_CPostAAStage_DoFinalComposition_Hook.SetHookFunc(&CPostAAStage_DoFinalComposition_Hook);
 
 	g_CTexture_CreateDeviceTexture_Hook.SetHookFunc(&CTexture_CreateDeviceTexture_Hook);
+	g_CTexture_CreateRenderTarget_Hook.SetHookFunc(&CTexture_CreateRenderTarget_Hook);
 }
 
 void InitGame()
