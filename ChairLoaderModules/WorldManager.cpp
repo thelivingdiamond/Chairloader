@@ -55,8 +55,8 @@ void WorldManager::DrawLevelManagerWindow() {
                     ImGui::TableNextColumn();
                     ImGui::Text("%s", map.first.c_str());
                     ImGui::TableNextColumn();
-                    if(ImGui::Selectable(std::to_string(map.second).c_str())){
-                        locationManager.SetLoaded(map.second, true);
+                    if(ImGui::Selectable(locationManager.GetLocationLabel(locationManager.GetCurrentLocation()))){
+                        //do nothing I guess
                     }
 //                    ImGui::Text("%llu", map.second);
                 }
@@ -68,7 +68,6 @@ void WorldManager::DrawLevelManagerWindow() {
             ImGui::InputText("Level To Load", &levelToLoad);
             ImGui::InputText("Mission", &mission);
             if(ImGui::Button("Load Level")){
-                CryLog("poopy");
 //                gEnv->pConsole->ExecuteString(("map " + levelToLoad + " nb").c_str());
 //                ArkGame::GetArkGame()->LoadLastSave(ArkGame::GetArkGame()->m_pLoadListener);
                 gCLEnv->cl->GetFramework()->ScheduleEndLevelNow(levelToLoad.c_str());
