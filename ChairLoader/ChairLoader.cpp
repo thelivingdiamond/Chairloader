@@ -400,7 +400,7 @@ void ChairLoader::ReadModList() {
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for(auto &mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-        if(mod.child("enabled").text().as_bool()) {
+        if(mod.child("enabled").text().as_bool() && mod.child("hasDLL").text().as_bool()) {
             auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
             modLoadOrder.insert(std::pair(modName, loadOrder));
             CryLog("Load order found: %s %i", modName.c_str(), loadOrder);
