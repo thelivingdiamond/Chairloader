@@ -1,4 +1,4 @@
-<Mod modName="ExampleMod" version="1.1A">
+<Mod modName="Example Mod" version="1.0" hasDLL="false" hasXML="true" author="The Chair">
     <ArchetypeLibraries>
         <ArchetypeLibrary>ArkNpcs.xml</ArchetypeLibrary>
         <ArchetypeLibrary>ExampleMod.xml</ArchetypeLibrary>
