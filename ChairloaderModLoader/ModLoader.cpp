@@ -942,6 +942,7 @@ bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideN
 void ModLoader::mergeXMLFiles() {
     fs::remove_all("./Output/");
     fs::create_directory("./Output/");
+    fs::copy("./PreyFiles/Levels", "./Output/Levels", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
     //legacy mods
     for(auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")) {
         if(fs::is_directory(directory)) {
@@ -968,12 +969,12 @@ void ModLoader::DrawOverlayLog(){
     time_t now = time(nullptr);
 //    localtime_s(&nowTime,&now);
     const uint64_t fadeDuration = 500;
-    const uint64_t totalElementTime = 2000;
+    const uint64_t totalElementTime = 4000;
     float y = 0.0f;
 
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
-    ImGui::PushClipRect(ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x - OverlayElementWidth - 2 * overlayLogPadding, ImGui::GetWindowPos().y + + overlayLogPadding + 60.0f),
+    ImGui::PushClipRect(ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x - OverlayElementWidth - 2*ImGui::GetStyle().FramePadding.x - 2 * overlayLogPadding, ImGui::GetWindowPos().y + + overlayLogPadding + 60.0f),
                                  ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x - 2 * overlayLogPadding, ImGui::GetWindowPos().y + 2 * OverlayElementHeight + (2 + 1) * overlayLogPadding + 60.0f),
                                  false);
 
@@ -1078,7 +1079,8 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
     fs::path originalPath = "./PreyFiles" + path.string();
     fs::path outputPath = "./Output" + path.string();
     try {
-        if (is_directory(modPath) && modPath != PreyPath.string() + "/Mods/" + modName + "/Data/Levels") {
+        // merge level files anyway
+        if (is_directory(modPath)/* && modPath != PreyPath.string() + "/Mods/" + modName + "/Data/Levels"*/) {
             log(severityLevel::trace, "Exploring directory %s", modPath.string().c_str());
             if(!fs::exists(outputPath)) {
                 fs::create_directories(outputPath);
@@ -1109,10 +1111,44 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
 bool ModLoader::packChairloaderPatch() {
     try {
         fs::remove("patch_chairloader.pak");
+        fs::remove_all("./LevelOutput");
     } catch (std::exception & exception) {
-        overlayLog(severityLevel::error, "Could not remove patch_chairloader.pak: %s", exception.what());
+        overlayLog(severityLevel::error, "Error: %s", exception.what());
         return false;
     }
+
+    auto levelDirectories = exploreLevelDirectory("./Output/Levels");
+    try {
+        fs::create_directories("./LevelOutput/Levels");
+        fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
+    } catch (std::exception & exception) {
+        overlayLog(severityLevel::error, "Error Copying level directory: %s", exception.what());
+        return false;
+    }
+    try {
+        for (auto &levelDirectory: levelDirectories) {
+            fs::path basePath = levelDirectory.string().substr(std::string("./Output/").size(),
+                                                               levelDirectory.string().size() - 1);
+            log(severityLevel::trace, "Packing level %s", levelDirectory.string().c_str());
+            if (packLevel(levelDirectory)) {
+                fs::remove_all("./LevelOutput/" + basePath.string() + "/level/");
+                log(severityLevel::trace, "Removing level directory %s",
+                    "./LevelOutput/" + basePath.string() + "/level/");
+//            log(severityLevel::trace, "Removing output level directory %s", "./Output/" + basePath.string() + "/level/");
+                fs::copy("./LevelOutput/" + basePath.string(),
+                         PreyPath.string() + "/GameSDK/" + basePath.string(),
+                         fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                log(severityLevel::trace, "Copying Level files from %s to %s",
+                    "./LevelOutput/" + basePath.string(),
+                    PreyPath.string() + "/GameSDK/" + basePath.string());
+            }
+        }
+        fs::remove_all("./Output/Levels");
+    } catch (std::exception & exception) {
+        overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
+        return false;
+    }
+
     system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
     if(!fs::exists("patch_chairloader.pak")) {
         overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
@@ -1133,5 +1169,36 @@ bool ModLoader::copyChairloaderPatch() {
         return false;
     }
 }
+
+std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
+    std::vector<fs::path> levelPaths;
+    for(auto &directory: fs::directory_iterator(pathToExplore)) {
+        if(fs::exists(directory.path().string() + "/level/")){
+            levelPaths.emplace_back(directory.path().string());
+        } else {
+            auto childrenPaths = exploreLevelDirectory(directory.path());
+            for(auto &childPath: childrenPaths) {
+                levelPaths.emplace_back(childPath);
+            }
+        }
+    }
+    return levelPaths;
+}
+
+bool ModLoader::packLevel(fs::path path) {
+    try {
+        fs::path basePath = path.string().substr(std::string("./Output/").size(), path.string().size() - 1);
+        std::string tempPath = basePath.string();
+        std::replace(tempPath.begin(), tempPath.end(), '/', '\\');
+        log(severityLevel::debug, "Base level path: %s", basePath.string().c_str());
+        system((std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*").c_str());
+        return true;
+    } catch (std::exception & exception){
+        log(severityLevel::error, "Exception while packing level %s: %s", path.string().c_str(), exception.what());
+        return false;
+    }
+    return false;
+}
+
 
 

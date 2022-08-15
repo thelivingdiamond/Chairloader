@@ -87,7 +87,7 @@ private:
     float OverlayWidth = 20.0f;
     float OverlayHeight = 60.0f;
     float OverlayElementWidth = 300.0f;
-    float OverlayElementHeight = 60.0f;
+    float OverlayElementHeight = 100.0f;
 
     void DrawOverlayLog();
     void ModLoader::OverlayLogElement(LogEntry entry);
@@ -133,6 +133,9 @@ private:
     void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
     void mergeXMLFiles();
 
+
+    std::vector<fs::path> exploreLevelDirectory(fs::path);
+    bool packLevel(fs::path);
     bool packChairloaderPatch();
     bool copyChairloaderPatch();
 
