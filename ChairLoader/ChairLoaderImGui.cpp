@@ -674,7 +674,7 @@ void ChairLoaderImGui::RT_Render() {
 				// Bind texture, Draw
 				ITexture *pITexture = (ITexture *)cmd.GetTexID();
 				CTexture *pTexture = static_cast<CTexture *>(pITexture);
-				auto pView = mem::OffsetInStruct<ID3D11ShaderResourceView *>(pTexture, CTexture::OFFSET_SHADER_RESOURCE);
+				ID3D11ShaderResourceView* pView = pTexture->m_pDeviceShaderResource;
 				ctx->PSSetShaderResources(0, 1, &pView);
 				ctx->DrawIndexed(cmd.ElemCount, cmd.IdxOffset + drawList.idxOffset, cmd.VtxOffset + drawList.vtxOffset);
 			}

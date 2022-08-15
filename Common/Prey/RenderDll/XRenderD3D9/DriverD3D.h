@@ -817,7 +817,7 @@ public:
 	void FX_ClearTarget(SDepthTexture* pTex) { FFX_ClearTargetOv0(this, pTex); }
 	bool FX_SetRenderTarget(int nTarget, ID3D11RenderTargetView* pTargetSurf, SDepthTexture* pDepthTarget, unsigned nTileCount = -1) { return FFX_SetRenderTargetOv1(this, nTarget, pTargetSurf, pDepthTarget, nTileCount); }
 	bool FX_SetRenderTarget(int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, bool bPush = false, int nCMSide = -1, bool bScreenVP = false, unsigned nTileCount = -1) { return FFX_SetRenderTargetOv0(this, nTarget, pTarget, pDepthTarget, bPush, nCMSide, bScreenVP, nTileCount); }
-	bool FX_PushRenderTarget(int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, int nCMSide, bool bScreenVP, unsigned nTileCount) { return FFX_PushRenderTargetOv0(this, nTarget, pTarget, pDepthTarget, nCMSide, bScreenVP, nTileCount); }
+	bool FX_PushRenderTarget(int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, int nCMSide = -1, bool bScreenVP = false, unsigned nTileCount = -1) { return FFX_PushRenderTargetOv0(this, nTarget, pTarget, pDepthTarget, nCMSide, bScreenVP, nTileCount); }
 	bool FX_RestoreRenderTarget(int nTarget) { return FFX_RestoreRenderTarget(this, nTarget); }
 	bool FX_PopRenderTarget(int nTarget) { return FFX_PopRenderTarget(this, nTarget); }
 	SDepthTexture* FX_GetDepthSurface(int nWidth, int nHeight, bool bAA, bool bExactMatch) { return FFX_GetDepthSurface(this, nWidth, nHeight, bAA, bExactMatch); }
