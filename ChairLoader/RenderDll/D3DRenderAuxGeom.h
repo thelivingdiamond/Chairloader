@@ -21,6 +21,8 @@ public:
 	virtual void RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset = false);
 
 	virtual void FlushTextMessages(CTextMessages& tMessages, bool reset);
+	virtual void SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2]) override;
+	virtual void SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj) override;
 
 	void         Process();
 
@@ -371,6 +373,11 @@ private:
 	SDrawObjMesh                              m_sphereObj[e_auxObjNumLOD];
 	SDrawObjMesh                              m_coneObj[e_auxObjNumLOD];
 	SDrawObjMesh                              m_cylinderObj[e_auxObjNumLOD];
+
+	CTexture* m_pEyeTargets[2] = {};
+	SDepthTexture* m_pEyeDepthTargets[2] = {};
+	Matrix44A m_EyeViewMats[2] = {};
+	Matrix44A m_EyeProjMats[2] = {};
 };
 
 inline

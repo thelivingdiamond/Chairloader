@@ -1508,6 +1508,22 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 			// prepare rendering
 			PrepareRendering();
 
+			// Stereo rendering
+			bool bStereoEnabled = m_pEyeTargets[0] != nullptr;
+			int nEyeCount = bStereoEnabled ? 2 : 1;
+			SMatrices stereoMats[2];
+			if (bStereoEnabled)
+			{
+				for (int i = 0; i < nEyeCount; i++)
+				{
+					stereoMats[i].m_matView = m_EyeViewMats[i];
+					stereoMats[i].m_matProj = m_EyeProjMats[i];
+					stereoMats[i].m_matViewInv = stereoMats[i].m_matView.GetInverted();
+					stereoMats[i].m_matTrans3D = stereoMats[i].m_matView * stereoMats[i].m_matProj;
+					stereoMats[i].m_pCurTransMat = &stereoMats[i].m_matTrans3D;
+				}
+			}
+
 			// get push buffer to process all submitted auxiliary geometries
 			m_pCurCBRawData->GetSortedPushBuffer(begin, end, m_auxSortedPushBuffer);
 
@@ -1555,28 +1571,40 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 				// set appropriate shader
 				SetShader(curRenderFlags);
 
-				// draw push buffer entries
-				switch (primType)
+				for (int nEye = 0; nEye < nEyeCount; nEye++)
 				{
-				case CAuxGeomCB::e_PtList:
-				case CAuxGeomCB::e_LineList:
-				case CAuxGeomCB::e_TriList:
+					if (bStereoEnabled)
+					{
+						m_renderer.FX_PushRenderTarget(0, m_pEyeTargets[nEye], m_pEyeDepthTargets[nEye]);
+						m_matrices = stereoMats[nEye];
+					}
+
+					// draw push buffer entries
+					switch (primType)
+					{
+					case CAuxGeomCB::e_PtList:
+					case CAuxGeomCB::e_LineList:
+					case CAuxGeomCB::e_TriList:
 					{
 						DrawAuxPrimitives(itCur, it, primType);
 					}
 					break;
-				case CAuxGeomCB::e_LineListInd:
-				case CAuxGeomCB::e_TriListInd:
+					case CAuxGeomCB::e_LineListInd:
+					case CAuxGeomCB::e_TriListInd:
 					{
 						DrawAuxIndexedPrimitives(itCur, it, primType);
 					}
 					break;
-				case CAuxGeomCB::e_Obj:
-				default:
+					case CAuxGeomCB::e_Obj:
+					default:
 					{
 						DrawAuxObjects(itCur, it);
 					}
 					break;
+					}
+
+					if (bStereoEnabled)
+						m_renderer.FX_PopRenderTarget(0);
 				}
 			}
 		}
@@ -1605,6 +1633,18 @@ void CRenderAuxGeomD3D::Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, siz
 void CRenderAuxGeomD3D::FlushTextMessages(CTextMessages& tMessages, bool reset)
 {
 	gRenDev->FlushTextMessages(tMessages, reset);
+}
+
+void CRenderAuxGeomD3D::SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2])
+{
+	std::copy(pTargets, pTargets + 2, m_pEyeTargets);
+	std::copy(pDepthTargets, pDepthTargets + 2, m_pEyeDepthTargets);
+}
+
+void CRenderAuxGeomD3D::SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj)
+{
+	m_EyeViewMats[eyeIdx] = matView;
+	m_EyeProjMats[eyeIdx] = matProj;
 }
 
 void CRenderAuxGeomD3D::SetOrthoMode(bool enable, Matrix44A* pMatrix)
