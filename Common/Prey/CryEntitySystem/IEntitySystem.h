@@ -625,7 +625,7 @@ struct IEntitySystem
 	virtual void ReloadEntityArchetype(const char *) = 0;
 	virtual void RenameArchetype(const char *, const char *) = 0;
 	virtual std::vector<string> GetArchetypeNames(string const& arg0) const = 0;
-	virtual std::vector<IEntityArchetype*> GetArchetypes(string const& arg0) const = 0;
+	virtual std::vector<IEntityArchetype*> GetArchetypes(std::vector<IEntityArchetype*>* result, string const& arg0) const = 0;
 	virtual bool LoadArchetypeLibrary(const CryStringT<char> *) = 0;
 	virtual void RegisterEntityArchetypeListener(IEntityArchetypeListener *) = 0;
 	virtual void UnregisterEntityArchetypeListener(IEntityArchetypeListener *) = 0;

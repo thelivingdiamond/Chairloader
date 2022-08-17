@@ -7,6 +7,7 @@
 #include "ChairLoader/IChairloader.h"
 #include "Logging.h"
 #include "ChairLoader/IChairloaderMod.h"
+#include "EntityManager.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 
@@ -81,7 +82,7 @@ public:
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
 	inline uintptr_t GetModuleBase() { return m_ModuleBase; }
-	inline IGameFramework* GetFramework() { return m_pFramework; }
+	inline IGameFramework* GetFramework() override { return m_pFramework; }
 
 private:
 	//! The mod list

@@ -62,6 +62,8 @@ auto g_SmokeForm_Exit_hook = ArkPsiPowerSmokeForm::FExit.MakeHook();
 auto g_SmokeForm_TryMorphOut_hook = ArkPsiPowerSmokeForm::FTryMorphOut.MakeHook();
 auto g_SmokeForm_Stop_hook = ArkPsiPowerSmokeForm::FStop.MakeHook();
 
+
+
 bool CSystem_InitializeEngineModule_Hook(
 	CSystem* _this,
 	const SModuleInitInfo* _initInfo,
@@ -118,18 +120,18 @@ void SmokeForm_Exit_Hook(ArkPsiPowerSmokeForm* _this) {
 	g_SmokeForm_Exit_hook.InvokeOrig(_this);
 }
 
-char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
-	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
-	ArkPlayerMovementStates::Smoke::Exit();
-	gEntUtils->ArkPlayerPtr()->Physicalize();
-	return retValue;
-}
-
-char SmokeForm_Stop_Hook(ArkPsiPowerSmokeForm* _this) {
-	auto retValue = g_SmokeForm_Stop_hook.InvokeOrig(_this);
-	gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
-	return retValue;
-}
+//char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
+//	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
+//	ArkPlayerMovementStates::Smoke::Exit();
+//	gCLEnv->entUtils->ArkPlayerPtr()->Physicalize();
+//	return retValue;
+//}
+//
+//char SmokeForm_Stop_Hook(ArkPsiPowerSmokeForm* _this) {
+//	auto retValue = g_SmokeForm_Stop_hook.InvokeOrig(_this);
+//	gCLEnv->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+//	return retValue;
+//}
 }
 
 ChairLoader::ChairLoader() {
@@ -227,7 +229,7 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
-	gui = new ChairloaderGui();
+	gui = new ChairloaderGui(&s_CLEnv);
 	g_pProfiler = new Profiler();
 
 	s_CLEnv.cl = this;
@@ -337,7 +339,7 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 
 void ChairLoader::SmokeFormExit() {
 	if(smokeFormExited) {
-		gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+		s_CLEnv.entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
 }
@@ -398,7 +400,7 @@ void ChairLoader::ReadModList() {
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for(auto &mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-        if(mod.child("enabled").text().as_bool()) {
+        if(mod.child("enabled").text().as_bool() && mod.child("hasDLL").text().as_bool()) {
             auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
             modLoadOrder.insert(std::pair(modName, loadOrder));
             CryLog("Load order found: %s %i", modName.c_str(), loadOrder);

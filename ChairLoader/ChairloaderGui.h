@@ -4,6 +4,7 @@
 #include "OverlayLog.h"
 #include "EntityManager.h"
 #include "PlayerManager.h"
+#include "WorldManager.h"
 #include "ChairloaderConfigManager.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"
@@ -14,7 +15,7 @@
 
 class ChairloaderGui : public IChairloaderGui {
 public:
-    ChairloaderGui();
+    ChairloaderGui(ChairloaderGlobalEnvironment* env);
 
     bool IsDevConsoleVisible() { return control.showDevConsole; }
     void SetDevConsoleVisible(bool state) { control.showDevConsole = state; }
@@ -27,6 +28,7 @@ public:
 
     void dockingTest();
 private:
+    ChairloaderGlobalEnvironment* gCLEnv;
     struct chairloaderGuiControl {
         bool showPlayerManager = false,
             showEntityList = false,
@@ -46,14 +48,15 @@ private:
     
     bool g_PresentHooked;
     bool g_ShowMenu;
-    BOOL g_bInitialised;
+    bool g_bInitialised;
 
 
     //TODO: switch to module internal draw booleans
     chairloaderGuiControl control;
     ChairloaderGUILog log;
-    ChairloaderGUIPlayerManager playerManager; 
-    ChairloaderGUIEntityManager entityManager;
+    PlayerManager playerManager;
+    EntityManager entityManager;
+    WorldManager worldManager;
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;

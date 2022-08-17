@@ -5,8 +5,8 @@
 #include "boost/algorithm/string.hpp"
 #include "Prey/CryAction/GameObject.h"
 #include "Prey/CryGame/Game.h"
-#include "Chairloader.h"
 #include "Prey/CrySystem/Profiling.h"
+#include "../ChairLoader/GUIUtils.h"
 #include <Prey/CrySystem/IConsole.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/GameDll/ark/player/ArkPlayerStatusComponent.h>
@@ -16,31 +16,34 @@
 #include <Prey/GameDll/ark/ArkGame.h>
 #include <Prey/GameDll/ark/ArkItemSystem.h>
 #include <Prey/GameDll/arkitem.h>
+#include <Prey/ArkAbilityLibrary.h>
 
 // PUBLIC:
-void ChairloaderGUIPlayerManager::draw(bool* bShow) {
-	if (!ImGui::Begin("Player Manager", bShow, ImGuiWindowFlags_NoNavInputs)) {
-		ImGui::End();
-		return;
-	}
+void PlayerManager::draw() {
 
-	if (ImGui::BeginTabBar("Player Bar")) {
-		ImGui::BeginDisabled(gEntUtils->ArkPlayerPtr() == nullptr);
-		drawPositionTab();
-		drawHealthTab();
-		drawAbilitiesTab();
-		drawInventoryTab();
-		ImGui::EndDisabled();
-		ImGui::EndTabBar();
-	}
+    drawMenuBar();
+    if(showPlayerManager) {
+        if (!ImGui::Begin("Player Manager", &showPlayerManager, ImGuiWindowFlags_NoNavInputs)) {
+            ImGui::End();
+            return;
+        }
 
-	ImGui::End();
+        if (ImGui::BeginTabBar("Player Bar")) {
+            ImGui::BeginDisabled(gCLEnv->entUtils->ArkPlayerPtr() == nullptr);
+            drawPositionTab();
+            drawHealthTab();
+            drawAbilitiesTab();
+            drawInventoryTab();
+            ImGui::EndDisabled();
+            ImGui::EndTabBar();
+        }
+
+        ImGui::End();
+    }
 }
 
-void ChairloaderGUIPlayerManager::drawPositionTab() {
+void PlayerManager::drawPositionTab() {
 	if (ImGui::BeginTabItem("Position")) {
-		// static std::vector<std::string> positionStrings = {"Pos 1", "Pos 2", "Pos 3", "Pos 4", "pos 5"};
-		// static std::vector<Vec3_tpl<float>> savedPositions = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 		ImGui::Checkbox("Enable Position Hotkeys", &enablePosHotKeys);
 		ImGui::Text("Load Positions:");
 		for (int i = 0; i < 5; i++) {
@@ -61,65 +64,43 @@ void ChairloaderGUIPlayerManager::drawPositionTab() {
 		for (int i = 0; i < 5; i++) {
 			if (ImGui::Button(("Save Pos " + std::to_string(i+1)).c_str())) {
 				// index = i;
-				savePosition(i, gEntUtils->ArkPlayerPtr()->GetEntity()->GetPos());
+				savePosition(i, gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
 			}
 			ImGui::SameLine();
 		}
-
-
-		// if (ImGui::BeginCombo("Position Combo", comboPreviewValue.c_str())) {
-		// 	for (int i = 0; i < positionStrings.size(); i++) {
-		// 		bool isSelected = (i == index);
-		// 		if (ImGui::Selectable(positionStrings[i].c_str(), isSelected)) {
-		// 			index = i;
-		// 		}
-		// 		// if(isSelected){
-		// 		// 	ImGui::SetItemDefaultFocus();
-		// 		//}
-		// 	}
-		// 	ImGui::EndCombo();
-		// }
-		// if (ImGui::Button("Save Position")) {
-		// 	if (gEntUtils->ArkPlayerPtr() != nullptr) {
-		// 		savedPositions[index] = gEntUtils->ArkPlayerPtr()->GetEntity()->GetPos();
-		// 		GUILog->logItem(
-		// 			positionStrings[index] + " set to " + std::to_string(savedPositions[index].x) + "," +
-		// 			std::to_string(savedPositions[index].y) + "," + std::to_string(savedPositions[index].z), modName);
-		// 	}
-		// }
 		ImGui::EndTabItem();
 	}
 }
 
-void ChairloaderGUIPlayerManager::drawHealthTab() {
+
+void PlayerManager::drawHealthTab() {
 	if (ImGui::BeginTabItem("Health/Statuses")) {
-		if (gEntUtils->ArkPlayerPtr() != nullptr) {
-			float currentHealth = gEntUtils->ArkPlayerPtr()->GetHealth();
-			float maxHealth = gEntUtils->ArkPlayerPtr()->GetMaxHealth();
-			ArkPlayer* player = ArkPlayer::GetInstancePtr();
-			float currentArmor = 100.0f - gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus( EArkPlayerStatus::SuitIntegrity)->m_currentAmount;
+		if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
+			float currentHealth = gCLEnv->entUtils->ArkPlayerPtr()->GetHealth();
+			float maxHealth = gCLEnv->entUtils->ArkPlayerPtr()->GetMaxHealth();
+			float currentArmor = 100.0f - gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus( EArkPlayerStatus::SuitIntegrity)->m_currentAmount;
 			float maxArmor = 100.0f;
-			float currentRad = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount;
+			float currentRad = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount;
 			float maxRad = 100.0f;
-			float currentPsi = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
-			float maxPsi = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
-			float currentFatigue = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
+			float currentPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
+			float maxPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
+			float currentFatigue = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
 			                                  m_amount;
-			float maxFatigue = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
+			float maxFatigue = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
 			                              m_maxAmount;
 			static float setHealth = 0;
 			static float setPsi = 0;
 			static float setMaxPsi = 0;
 			
-			ImGui::Text("Player Entity Name: %s", gEntUtils->ArkPlayerPtr()->GetEntity()->GetName());
-			ImGui::Text("Player Entity ID: %u", gEntUtils->ArkPlayerPtr()->GetEntity()->GetId());
+			ImGui::Text("Player Entity Name: %s", gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetName());
+			ImGui::Text("Player Entity ID: %u", gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetId());
 			ImGui::Text("Health: %.2f / %.2f", currentHealth / 10, maxHealth / 10);
 			ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(209, 37, 43, 255));
 			ImGui::ProgressBar(currentHealth / maxHealth);
 			ImGui::PopStyleColor();
 			if (ImGui::InputFloat("Set Health", &setHealth, 0, 0, "%.2f")) {
-				gEntUtils->ArkPlayerPtr()->SetHealth(setHealth * 10);
-				setHealth = gEntUtils->ArkPlayerPtr()->GetHealth() / 10;
+				gCLEnv->entUtils->ArkPlayerPtr()->SetHealth(setHealth * 10);
+				setHealth = gCLEnv->entUtils->ArkPlayerPtr()->GetHealth() / 10;
 			}
 			//TODO: update armor and radiation (apply statuses/
 			//Armor
@@ -127,8 +108,8 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			ImGui::Text("Armor: %.2f / %.2f", currentArmor, maxArmor);
 			ImGui::ProgressBar(currentArmor / maxArmor);
 			if (ImGui::InputFloat("Set Armor", &currentArmor)) {
-				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::SuitIntegrity)->m_currentAmount = 100.0f - currentArmor;
-				// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->Update(0.1f);
+				gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::SuitIntegrity)->m_currentAmount = 100.0f - currentArmor;
+				// gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->Update(0.1f);
 			}
 			//Psi
 			ImGui::Text("Psi: %.2f / %.2f", currentPsi, maxPsi);
@@ -136,21 +117,21 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			ImGui::ProgressBar(currentPsi / maxPsi);
 			ImGui::PopStyleColor();
 			if (ImGui::InputFloat("Set Psi", &setPsi, 0, 0, "%.2f")) {
-				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points = setPsi;
-				setPsi = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
-				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->UpdateHUDMarkerElements();
+				gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points = setPsi;
+				setPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
+				gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->UpdateHUDMarkerElements();
 			}
 			//Set Max Psi
 			if (ImGui::InputFloat("Set Max Psi", &setMaxPsi, 0, 0, "%.2f")) {
-				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints = setMaxPsi;
-				setMaxPsi = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
+				gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints = setMaxPsi;
+				setMaxPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
 			}
 			//show fatigue
 			ImGui::Text("Stamina: %.2f / %.2f", maxFatigue - currentFatigue, maxFatigue);
 			ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(150, 150, 150, 255));
 			ImGui::ProgressBar((maxFatigue - currentFatigue) / maxFatigue);
 			ImGui::PopStyleColor();
-			ImGui::Checkbox("Infinite Stamina", (bool*)&gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_bInfiniteStamina);
+			ImGui::Checkbox("Infinite Stamina", (bool*)&gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_bInfiniteStamina);
 			if (currentRad > 0.1f) {
 				ImGui::Text("Radiation: %.2f / %.2f", currentRad, maxRad);
 				ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(16, 147, 18, 255));
@@ -163,27 +144,27 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 				ImGui::PopStyleColor();
 			}
 			if (ImGui::InputFloat("Set Radiation", &currentRad)) {
-				gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount = currentRad;
-				// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->Update(0.1f);
+				gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount = currentRad;
+				// gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->Update(0.1f);
 			}
 			static bool showArmor = true;
 			if(ImGui::Checkbox("Show Armor", &showArmor)) {
-				gEntUtils->ArkPlayerPtr()->SetShowArmor(showArmor, true);
+				gCLEnv->entUtils->ArkPlayerPtr()->SetShowArmor(showArmor, true);
 			}
 			ImGui::Separator();
 			ImGui::Text("Statuses: ");
 			ImGui::Columns(2);
-			for (auto& status : gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_statuses) {
+			for (auto& status : gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_statuses) {
 				if (ImGui::Selectable(status.get()->m_desc.m_Name.c_str())) {
 					// status->m_desc.m_Duration = 1000.0f;
 					if (status != nullptr) {
 						// int level = status->m_currentLevel;
 						status->Activate(0);
 					}
-					// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->ForceStatus
+					// gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->ForceStatus
 					// status->UpdateHudIcon(status.get());
 					// status->UpdateVisuals(true, true);
-					// gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->SetStatus(gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), status.get()->m_status, true, false);
+					// gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->SetStatus(gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), status.get()->m_status, true, false);
 					// status.get()->UpdateVisuals(true, false);
 				}
 				ImGui::NextColumn();
@@ -197,7 +178,7 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 			}
 			ImGui::Columns(1);
 			// if (ImGui::Button("Add Status")) {
-			// 	gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(
+			// 	gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(
 			// 		EArkPlayerStatus::Radiation);
 			// }
 			// TODO: figure out armor
@@ -207,25 +188,33 @@ void ChairloaderGUIPlayerManager::drawHealthTab() {
 	}
 }
 
-void ChairloaderGUIPlayerManager::drawAbilitiesTab() {
+void PlayerManager::drawAbilitiesTab() {
 	if (ImGui::BeginTabItem("Abilities")) {
 		refreshAbilityList = ImGui::Button("Refresh");
-		if (ImGui::BeginChild("AbilityList", ImGui::GetContentRegionAvail(), false,
-		                      ImGuiWindowFlags_HorizontalScrollbar)) {
-			for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
-				if (!itr->acquired) {
-					if (ImGui::Selectable(itr->name.c_str())) {
-						abilityRequestQueue.push(itr->id);
+		if (ImGui::BeginChild("AbilityList", ImGui::GetContentRegionAvail(), false, ImGuiWindowFlags_HorizontalScrollbar)) {
+			for (auto &ability : gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->m_abilities) {
+                std::string name;
+                if(arkAbilityMap.find(ability.m_id) != arkAbilityMap.end()) {
+                    name = arkAbilityMap.find(ability.m_id)->second.c_str();
+                } else {
+                    name = ToString(ability.m_id);
+                }
+				if (!ability.m_bAcquired) {
+
+					if (ImGui::Selectable(name.c_str())) {
+						if(!gCLEnv->entUtils->ArkPlayerPtr()->HasAbility(ability.m_id)){
+                            gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(ability.m_id);
+                        }
 					}
 				}
 				else {
-					ImGui::TextColored(ImVec4{1.0f, 1.0f, 1.0f, 0.7f}, "%s - acquired", itr->name.c_str());
+					ImGui::TextColored(ImVec4{1.0f, 1.0f, 1.0f, 0.7f}, "%s - acquired", name.c_str());
 				}
 			}
 			ImGui::EndChild();
 		}
 		//TODO: figure out how to remove abilities too
-		// std::vector<ArkAbilityData>* abilities = &gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+		// std::vector<ArkAbilityData>* abilities = &gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
 		// if (!abilities->empty()) {
 		//     ImGui::Text("Size: %d\n", abilities->size());
 		//     int clip = 0;
@@ -238,32 +227,31 @@ void ChairloaderGUIPlayerManager::drawAbilitiesTab() {
 		//             } else {
 		//                 ImGui::Text(std::to_string(itr->m_id).c_str());
 		//             }
-		//             
 		//         }
 		//     }
 		// }
 		ImGui::EndTabItem();
 	}
 	if (ImGui::BeginTabItem("Smoke Form Test")) {
-		auto abilityComponent = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get();
+		auto abilityComponent = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get();
 		// static auto acquiredAbilities = abilityComponent->GetAcquiredAbilities(abilityComponent);
-		for (auto& power : gEntUtils->ArkPlayerPtr()->GetPsiPowerComponent().m_powers) {
+		for (auto& power : gCLEnv->entUtils->ArkPlayerPtr()->GetPsiPowerComponent().m_powers) {
 			wstring localizedName;
 			gEnv->pSystem->GetLocalizationManager()->LocalizeString(power->GetDescription(), localizedName);
 			ImGui::Text("%ls", localizedName.c_str());
 		}
-		auto &PsiPowerComponent = gEntUtils->ArkPlayerPtr()->GetPsiPowerComponent();
-		ArkPlayerMovementFSM* fsm = &gEntUtils->ArkPlayerPtr()->m_movementFSM;
+		auto &PsiPowerComponent = gCLEnv->entUtils->ArkPlayerPtr()->GetPsiPowerComponent();
+		ArkPlayerMovementFSM* fsm = &gCLEnv->entUtils->ArkPlayerPtr()->m_movementFSM;
 		if (ImGui::Button("Smoke Form"))
 			PsiPowerComponent.UnlockPower(EArkPsiPowers::smokeForm, 1);
 		if (ImGui::Button("Fly Mode Test"))
 			fsm->m_flyMode = ArkPlayerMovementFSM::EArkFlyMode::on;
 		ImGui::Text("Fly Mode: %u", fsm->m_flyMode);
 		ImGui::Text("Current State: %u", fsm->m_currentStateId);
-		ImGui::Text("Stance: %u", gEntUtils->ArkPlayerPtr()->GetStance());
-		ImGui::Text("Spectator Mode: %u", gEntUtils->ArkPlayerPtr()->GetSpectatorMode());
-		ImGui::Text("Input Disabled Mode: %u", gEntUtils->ArkPlayerPtr()->m_input.m_disabledMode);
-		ArkPlayerCamera* camera = &gEntUtils->ArkPlayerPtr()->m_camera;
+		ImGui::Text("Stance: %u", gCLEnv->entUtils->ArkPlayerPtr()->GetStance());
+		ImGui::Text("Spectator Mode: %u", gCLEnv->entUtils->ArkPlayerPtr()->GetSpectatorMode());
+		ImGui::Text("Input Disabled Mode: %u", gCLEnv->entUtils->ArkPlayerPtr()->m_input.m_disabledMode);
+		ArkPlayerCamera* camera = &gCLEnv->entUtils->ArkPlayerPtr()->m_camera;
 		ImGui::Text("Camera Mode: %llu", (uintptr_t)camera->m_customViewFunction.target<void __cdecl(SViewParams&)>());
 		ImGui::Separator();
 #if 0
@@ -285,7 +273,7 @@ void ChairloaderGUIPlayerManager::drawAbilitiesTab() {
 			//fix something later I guess
 		}
 		if (ImGui::Button("Exit Smoke Movement State")) {
-			gEntUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+			gCLEnv->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 			//fix something later I guess
 		}
 		ImGui::Separator();
@@ -343,10 +331,10 @@ void ChairloaderGUIPlayerManager::drawAbilitiesTab() {
 	}
 }
 
-void ChairloaderGUIPlayerManager::drawInventoryTab() {
-	if (gEntUtils->ArkPlayerPtr() != nullptr) {
+void PlayerManager::drawInventoryTab() {
+	if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
 		inventoryItems.clear();
-		for (auto& cell : gEntUtils->ArkPlayerPtr()->m_pInventory->m_storedItems) {
+		for (auto& cell : gCLEnv->entUtils->ArkPlayerPtr()->m_pInventory->m_storedItems) {
 			std::pair<int, ArkInventory::StorageCell> newItem = {cell.m_entityId, cell};
 			inventoryItems.insert(newItem);
 		}
@@ -354,9 +342,9 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 	if (ImGui::BeginTabItem("Inventory")) {
 		float size = 75.0f;
 		int inventoryWidth = 0, inventoryHeight = 0;
-		if (gEntUtils->ArkPlayerPtr() != nullptr) {
-			inventoryHeight = gEntUtils->ArkPlayerPtr()->m_pInventory->GetHeight();
-			inventoryWidth = gEntUtils->ArkPlayerPtr()->m_pInventory->GetWidth();
+		if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
+			inventoryHeight = gCLEnv->entUtils->ArkPlayerPtr()->m_pInventory->GetHeight();
+			inventoryWidth = gCLEnv->entUtils->ArkPlayerPtr()->m_pInventory->GetWidth();
 		}
 		else {
 			inventoryWidth = 12;
@@ -409,7 +397,7 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImColor(255, 255, 255, 60).Value);
 				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImColor(255, 255, 255, 120).Value);
 				if (ImGui::Button("", ImVec2(item.second.m_width * size, item.second.m_height * size))) {
-					// GUILog->logItem(name_string + " Pressed!", modName);
+					// gCLEnv->gui->logItem(name_string + " Pressed!", modName);
 					selected = item.first;
 				}
 				ImGui::PopID();
@@ -483,7 +471,7 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 			}
 		}
 		if (ImGui::Button("Make the game unplayable")) {
-			gEntUtils->ArkPlayerPtr()->m_pInventory->m_size = ArkInventory::EArkGridSizes::smallExternal;
+			gCLEnv->entUtils->ArkPlayerPtr()->m_pInventory->m_size = ArkInventory::EArkGridSizes::smallExternal;
 		}
 		ImGui::EndChild();
 		//TODO: add items
@@ -491,72 +479,76 @@ void ChairloaderGUIPlayerManager::drawInventoryTab() {
 	}
 }
 
-void ChairloaderGUIPlayerManager::loadPosition(int saveSlot) {
-	if (gEntUtils->ArkPlayerPtr() != nullptr) {
+void PlayerManager::loadPosition(int saveSlot) {
+	if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
 		if (positions[saveSlot] != Vec3_tpl{ 0, 0, 0 }) {
-			gEntUtils->ArkPlayerPtr()->GetEntity()->SetPos(positions[saveSlot]);
+			gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->SetPos(positions[saveSlot]);
 			std::string playerMessage = "Player position set to ";
-			GUILog->logItem(
+			gCLEnv->gui->logItem(
 				playerMessage + "Pos "+ std::to_string(saveSlot + 1) + " at " + std::to_string(positions[saveSlot].x) + "," +
 				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
 		}
 		else {
-			GUILog->logItem(
+			gCLEnv->gui->logItem(
 				std::string("Invalid Saved Position: ") + std::to_string(positions[saveSlot].x) + "," +
 				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
 		}
 	}
 }
-void ChairloaderGUIPlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
-	positions[saveSlot] = gEntUtils->ArkPlayerPtr()->GetEntity()->GetPos();
-	GUILog->logItem("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
+	positions[saveSlot] = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+	gCLEnv->gui->logItem("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
 }
 
 
-void ChairloaderGUIPlayerManager::drawMenuBar(bool* control) {
-	if (ImGui::BeginMenu("Player")) {
-		ImGui::MenuItem("Refresh Abilities");
-		if (ImGui::MenuItem("Full Heal")) {
-			if (gEntUtils->ArkPlayerPtr() != nullptr) {
-				gEntUtils->ArkPlayerPtr()->SetHealth(gEntUtils->ArkPlayerPtr()->GetMaxHealth());
-			}
-		}
-		ImGui::MenuItem("God Mode", NULL, &godMode);
-		ImGui::MenuItem("Show Player Manager", NULL, control);
-		ImGui::EndMenu();
-		// }
-	}
+void PlayerManager::drawMenuBar() {
+    if(ImGui::BeginMainMenuBar()) {
+        if (ImGui::BeginMenu("Player")) {
+            ImGui::MenuItem("Refresh Abilities");
+            if (ImGui::MenuItem("Full Heal")) {
+                if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
+                    gCLEnv->entUtils->ArkPlayerPtr()->SetHealth(gCLEnv->entUtils->ArkPlayerPtr()->GetMaxHealth());
+                }
+            }
+            ImGui::MenuItem("God Mode", NULL, &godMode);
+            ImGui::MenuItem("Show Player Manager", NULL, &showPlayerManager);
+            ImGui::EndMenu();
+            // }
+        }
+        ImGui::EndMainMenuBar();
+    }
 }
 
-void ChairloaderGUIPlayerManager::update(ChairloaderGUILog* log) {
-	if (!gEnv->pSystem->IsPaused()) {
-		abilityRequestHandler(log);
-	}
-	checkAbilities(log);
+void PlayerManager::update() {
+//	if (!gEnv->pSystem->IsPaused()) {
+//		abilityRequestHandler(log);
+//	}
+//	checkAbilities(log);
 	static ICVar* g_godMode = gEnv->pConsole->GetCVar("g_godMode");
 	g_godMode->Set(godMode);
 
-	if (enablePosHotKeys) {
-		for (int i = 1; i <= 5; i++) {
-			if (GetAsyncKeyState(0x30 + i) & 1) {
-				if (GetAsyncKeyState(VK_SHIFT)) {
-					loadPosition(i - 1);
-				} else if(GetAsyncKeyState(VK_CONTROL)) {
-					savePosition(i - 1, gEntUtils->ArkPlayerPtr()->GetEntity()->GetPos());
-				}
-			}
-		}
-	}
+//	if (enablePosHotKeys) {
+//		for (int i = 1; i <= 5; i++) {
+//			if (GetAsyncKeyState(0x30 + i) & 1) {
+//				if (GetAsyncKeyState(VK_SHIFT)) {
+//					loadPosition(i - 1);
+//				} else if(GetAsyncKeyState(VK_CONTROL)) {
+//					savePosition(i - 1, gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
+//				}
+//			}
+//		}
+//	}
 }
 
 
 //PRIVATE:
+#if 0
 void ChairloaderGUIPlayerManager::checkAbilities(ChairloaderGUILog* log) {
 	if (refreshAbilityList) {
-		if (gEntUtils->ArkPlayerPtr() != nullptr) {
+		if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
 			for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
-				if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-					itr->acquired = gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(itr->id);
+				if (gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+					itr->acquired = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(itr->id);
 				}
 				//abilityDisplayList.emplace_back(entry);
 			}
@@ -574,12 +566,12 @@ void ChairloaderGUIPlayerManager::checkAbilities(ChairloaderGUILog* log) {
 void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) {
 	try {
 		if (!AbilityListInitialized) {
-			if (gEntUtils->ArkPlayerPtr() != nullptr) {
-				for (auto itr = gEntUtils->abilityLibrary.arkAbilityMap.begin(); itr != gEntUtils->abilityLibrary.
+			if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
+				for (auto itr = gCLEnv->entUtils->abilityLibrary.arkAbilityMap.begin(); itr != gCLEnv->entUtils->abilityLibrary.
 				     arkAbilityMap.end(); ++itr) {
 					abilityEntry entry = {itr->first, itr->second, false};
-					if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-						if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(itr->first)) {
+					if (gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+						if (gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(itr->first)) {
 							entry.acquired = true;
 						}
 					}
@@ -604,15 +596,15 @@ void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) 
 				}
 				if (entry != nullptr) {
 					if (!entry->acquired) {
-						if (gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !
-							gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(entry->id)) {
-							gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(entry->id);
-							
-							// CryLog("Granted Ability: %s\n", gEntUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
+						if (gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !
+							gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(entry->id)) {
+							gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(entry->id);
+
+							// CryLog("Granted Ability: %s\n", gCLEnv->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
 							entry->acquired = true;
-							// std::string msg = "Granted Ability: " + gEntUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n";
+							// std::string msg = "Granted Ability: " + gCLEnv->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n";
 							log->logItem(
-								("Granted Ability: " + gEntUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second +
+								("Granted Ability: " + gCLEnv->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second +
 									"\n"), modName);
 						}
 						else {
@@ -630,3 +622,4 @@ void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) 
 		log->logItem(c, modName, logLevel::error);
 	}
 }
+#endif

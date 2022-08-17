@@ -18,10 +18,10 @@ class EntityUtils {
 public:
 	void DumpEntity(IEntity* entity, bool dumpProxies);
 	void DumpGameObject(CGameObject* obj);
+//    IEntity* spawnEntity
 
-	IEntity* spawnNpcFromArchetype(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned int spawnCount = 1);
-	IEntity* spawnEntityFromArchetype(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned int spawnCount = 1);
-
+    IEntity* spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned int spawnCount = 1);
+    IEntity* spawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned int spawnCount = 1);
 	// entities (WIP)
 	// IEntity* CreateEntity(IEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
 	// IEntity* CreateEntityBasic(IEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
@@ -34,8 +34,8 @@ public:
 	ArkPlayer* ArkPlayerPtr();
 
 	// ArchetypeLibrary entityArchetypeLibrary;
-	ArkAbilityLibrary abilityLibrary;
-	
+private:
+
 };
 
 extern EntityUtils *gEntUtils;
