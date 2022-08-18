@@ -238,6 +238,20 @@ void ModLoader::DrawModList() {
                     }
                     i++;
                 }
+                //TODO: add ability to reorder legacy mods...
+                if(!LegacyModList.empty()){
+                    ImGui::TableNextRow();
+                    ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBg0, ImColor(40,40,40));
+                    ImGui::TableSetColumnIndex(1);
+//                    ImGui::Spacing();
+//                    ImGui::Separator();
+                    ImGui::Text("Legacy Mods");
+                    for (auto &legacyMod : LegacyModList){
+                        ImGui::TableNextRow();
+                        ImGui::TableSetColumnIndex(1);
+                        ImGui::Text("%s", legacyMod.c_str());
+                    }
+                }
                 ImGui::EndTable();
             }
         }
@@ -524,7 +538,7 @@ void ModLoader::LoadModsFromConfig() {
 }
 void ModLoader::DetectNewMods() {
     for(auto &directory : fs::directory_iterator(fs::path(PreyPath.string() + "/Mods/"))){
-        if(directory.path().string() != PreyPath.string() + "/Mods/config") {
+        if(directory.path().string() != PreyPath.string() + "/Mods/config" && directory.path().string() != PreyPath.string() + "/Mods/Legacy") {
             Mod mod;
             if(LoadModInfoFile(directory.path(), &mod)) {
                 if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
@@ -548,28 +562,25 @@ void ModLoader::loadModInfoFiles() {
     overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
     //TODO: Handle dependencies
 //    serializeLoadOrder();
-    for(auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")){
-        if(directory.is_directory()){
-            LegacyModList.emplace_back(directory.path().filename().string());
+    try {
+        for (auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")) {
+            if (directory.is_directory()) {
+                LegacyModList.emplace_back(directory.path().filename().string());
+            }
         }
+        if(LegacyModList.size() > 0) {
+            if(LegacyModList.size() == 1) {
+                log(severityLevel::info, "Found %i legacy mod", LegacyModList.size());
+            } else {
+                log(severityLevel::info, "Found %i legacy mods", LegacyModList.size());
+            }
+        }
+    } catch (std::exception & exception) {
+        log(severityLevel::debug, "%s", exception.what());
     }
 }
 
 ModLoader::ModLoader() {
-    if(!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())){
-        log(severityLevel::fatal, "Chairloader config file not found");
-        MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
-        exit(-1);
-    }
-    log(severityLevel::info, "Chairloader Config File Loaded");
-    ModListNode = ChairloaderConfigFile.child("Chairloader").child("ModList");
-    std::string foundMods = "Previously Loaded Mods Found:";
-    for(auto &foundMod : ModListNode){
-        foundMods += std::string(" ") + foundMod.name() + ",";
-    }
-    log(severityLevel::info, "%s", foundMods);
-    std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
-    ofs.close();
     if(ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())){
         if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
             PreyPath = ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string();
@@ -585,6 +596,20 @@ ModLoader::ModLoader() {
         ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
     }
     log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
+    if(!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())){
+        log(severityLevel::fatal, "Chairloader config file not found");
+        MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
+        exit(-1);
+    }
+    log(severityLevel::info, "Chairloader Config File Loaded");
+    ModListNode = ChairloaderConfigFile.child("Chairloader").child("ModList");
+    std::string foundMods = "Previously Loaded Mods Found:";
+    for(auto &foundMod : ModListNode){
+        foundMods += std::string(" ") + foundMod.name() + ",";
+    }
+    log(severityLevel::info, "%s", foundMods);
+    std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
+    ofs.close();
     loadModInfoFiles();
 }
 
@@ -731,7 +756,6 @@ void ModLoader::Update() {
         time(&lastFileTime);
         flushFileQueue();
     }
-    //TODO: automatic saving of the file
 }
 
 ModLoader::~ModLoader() {
@@ -871,7 +895,6 @@ void ModLoader::EnableMod(std::string modName, bool enabled) {
 }
 
 bool ModLoader::DeployMods() {
-    //TODO: handle legacy mods
     mergeXMLFiles();
     saveChairloaderConfigFile();
     if(packChairloaderPatch()){
