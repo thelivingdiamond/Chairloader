@@ -50,7 +50,7 @@ void Drawing::Draw()
 
 void Drawing::Setup() {
     ImGui::StyleColorsDark();
-    ImGui::GetStyle().WindowBorderSize = 0.0f;
+//    ImGui::GetStyle().WindowBorderSize = 0.0f;
     ImGui::GetStyle().FramePadding = {8, 5};
     ImGui::GetStyle().FrameRounding = 2;
     ImGui::GetStyle().ChildRounding = 2;

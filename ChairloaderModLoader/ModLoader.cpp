@@ -91,168 +91,202 @@ void ModLoader::DrawModList() {
     static bool showDeleteConfirmation;
     if(ImGui::BeginTabItem("Mod List")) {
         if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.7f, 0))) {
-
-            if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
-                                                 ImGuiTableFlags_NoBordersInBody)) {
-                ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed);
-                ImGui::TableSetupColumn("Mod Name");
-                ImGui::TableSetupColumn("Version", ImGuiTableColumnFlags_WidthFixed,
-                                        ImGui::CalcTextSize("Version").x + 16.0f);
-                ImGui::TableSetupColumn("Order", ImGuiTableColumnFlags_WidthFixed,
-                                        ImGui::CalcTextSize("Order").x + 16.0f);
-                ImGui::TableSetupColumn("##Buttons", ImGuiTableColumnFlags_WidthFixed);
-                ImGui::TableHeadersRow();
-                if(selectedMod.empty() && !ModList.empty()){
-                    selectedMod = ModList.at(0).modName;
-                }
-                int i = 0;
-                for (auto &ModEntry: ModList) {
-                    ImGui::TableNextRow();
-                    ImGui::TableNextColumn();
-                    if(ModEntry.installed) {
-                        ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
-                    } else {
-                        ImGui::BeginDisabled();
-                        ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
-                        ImGui::EndDisabled();
-                    }
-                    ImGui::TableNextColumn();
-                    ImVec2 SelectableSize = {0, /*ImGui::GetTextLineHeightWithSpacing() + 4.0f*/0};
+            if(ImGui::BeginTabBar("Mod List Bar")) {
+                float checkboxColumnSize = 0.0f;
+                if(ImGui::BeginTabItem("Mods")) {
+                    if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
+                                                         ImGuiTableFlags_NoBordersInBody)) {
+                        ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed);
+                        ImGui::TableSetupColumn("Mod Name");
+                        ImGui::TableSetupColumn("Version", ImGuiTableColumnFlags_WidthFixed,
+                                                ImGui::CalcTextSize("Version").x + 16.0f);
+                        ImGui::TableSetupColumn("Order", ImGuiTableColumnFlags_WidthFixed,
+                                                ImGui::CalcTextSize("Order").x + 16.0f);
+                        ImGui::TableSetupColumn("##Buttons", ImGuiTableColumnFlags_WidthFixed);
+                        ImGui::TableHeadersRow();
+                        if (selectedMod.empty() && !ModList.empty()) {
+                            selectedMod = ModList.at(0).modName;
+                        }
+                        int i = 0;
+                        for (auto &ModEntry: ModList) {
+                            ImGui::TableNextRow();
+                            ImGui::TableNextColumn();
+                            if (ModEntry.installed) {
+                                ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
+                            } else {
+                                ImGui::BeginDisabled();
+                                ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
+                                ImGui::EndDisabled();
+                            }
+                            checkboxColumnSize = ImGui::GetColumnWidth();
+                            ImGui::TableNextColumn();
+                            ImVec2 SelectableSize = {0, /*ImGui::GetTextLineHeightWithSpacing() + 4.0f*/0};
 //                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 4.0f);
 
 
 //                    ImGui::PushStyleColor(ImGuiCol_TextSelectedBg, ImColor(0,0,0,0).operator ImU32());
-                    auto storedpos = ImGui::GetCursorPosY() + 4;
-                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 3.5);
-                    if(ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(), selectedMod == ModEntry.modName, 0, ImVec2{ImGui::GetColumnWidth(), 27.0f}))
-                        selectedMod = ModEntry.modName;
-                    if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
-                        ImGui::OpenPopup((ModEntry.modName + " Mod Actions").c_str());
-                    }
-                    ImGui::SetCursorPosY(storedpos);
-                    if(ModEntry.installed) {
-                        if(ModEntry.enabled) {
-                            ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s", ModEntry.modName.c_str());
+                            auto storedpos = ImGui::GetCursorPosY() + 4;
+                            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 3.5);
+                            if (ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(),
+                                                  selectedMod == ModEntry.modName, 0,
+                                                  ImVec2{ImGui::GetColumnWidth(), 27.0f}))
+                                selectedMod = ModEntry.modName;
+                            if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
+                                ImGui::OpenPopup((ModEntry.modName + " Mod Actions").c_str());
+                            }
+                            ImGui::SetCursorPosY(storedpos);
+                            if (ModEntry.installed) {
+                                if (ModEntry.enabled) {
+                                    ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s",
+                                                       ModEntry.modName.c_str());
 //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                                selectedMod = ModEntry.modName;
-                        } else {
+                                } else {
 //                            ImGui::PushStyleColor(ImGuiCol_Text,ImColor(180,180,180).operator ImU32());
 //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                                selectedMod = ModEntry.modName;
 //                            ImGui::PopStyleColor();
-                            ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s", ModEntry.modName.c_str());
-                            if(ImGui::IsItemHovered()){
-                                ImGui::BeginTooltip();
-                                ImGui::Text("Mod is not enabled");
-                                ImGui::EndTooltip();
-                            }
-                        }
-                    } else {
+                                    ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s",
+                                                       ModEntry.modName.c_str());
+                                    if (ImGui::IsItemHovered()) {
+                                        ImGui::BeginTooltip();
+                                        ImGui::Text("Mod is not enabled");
+                                        ImGui::EndTooltip();
+                                    }
+                                }
+                            } else {
 //                        ImGui::PushStyleColor(ImGuiCol_Text,ImColor(245,100,100).operator ImU32());
 //                        if (ImGui::Selectable((ModEntry.modName + " *").c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                            selectedMod = ModEntry.modName;
 //                        ImGui::PopStyleColor();
-                        ImGui::TextColored(ImColor(245,100,100), "%s *", ModEntry.modName.c_str());
-                        if(ImGui::IsItemHovered()){
-                            ImGui::BeginTooltip();
-                            ImGui::Text("Mod is not installed. Please install it before you can enable it");
-                            ImGui::EndTooltip();
-                        }
-
-                    }
-                    if(ImGui::BeginPopup((ModEntry.modName + " Mod Actions").c_str())){
-                        ImGui::Text("%s:", ModEntry.modName.c_str());
-                        ImGui::BeginDisabled();
-                        ImGui::Checkbox("Has DLL", &ModEntry.hasDLL);
-                        ImGui::SameLine();
-                        ImGui::Checkbox("Has XML", &ModEntry.hasXML);
-                        ImGui::EndDisabled();
-                        if(ModEntry.installed) {
-                            if(ImGui::Button(("Uninstall" + std::string("##") + ModEntry.modName).c_str())){
-                                UninstallMod(ModEntry.modName);
-                            }
-                            if(ModEntry.enabled){
-                                if(ImGui::Button("Disable"))
-                                    EnableMod(ModEntry.modName, false);
-                            } else {
-                                if(ImGui::Button("Enable"))
-                                    EnableMod(ModEntry.modName, true);
-                            }
-                        } else {
-                            if(ImGui::Button(("Install" + std::string("##") + ModEntry.modName).c_str())) {
-                                InstallMod(ModEntry.modName);
-                            }
-                            if(ImGui::Button(("Delete" + std::string("##") + ModEntry.modName).c_str())){
-                                showDeleteConfirmation = true;
-                            }
-                        }
-                        ImGui::EndPopup();
-                    }
-                    if(showDeleteConfirmation){
-                        ImGui::OpenPopup(("Delete Confirmation"+ std::string("##") + ModEntry.modName).c_str());
-                        showDeleteConfirmation = false;
-                    }
-
-                    if(ImGui::BeginPopupModal(("Delete Confirmation"+ std::string("##") + ModEntry.modName).c_str())){
-                        ImGui::Text("Are you sure you want to delete %s?\nConfig data will be preserved.", ModEntry.modName.c_str());
-                        if(ImGui::Button("Delete")){
-                            if(!ModEntry.modName.empty()) {
-                                log(severityLevel::info, "Deleting %s/Mods/%s/", PreyPath.string(), ModEntry.modName);
-                                fs::remove_all(PreyPath.string() + "/Mods/" + ModEntry.modName + "/");
-                                ModList.erase(std::find(ModList.begin(), ModList.end(),ModEntry.modName));
+                                ImGui::TextColored(ImColor(245, 100, 100), "%s *", ModEntry.modName.c_str());
+                                if (ImGui::IsItemHovered()) {
+                                    ImGui::BeginTooltip();
+                                    ImGui::Text("Mod is not installed. Please install it before you can enable it");
+                                    ImGui::EndTooltip();
+                                }
 
                             }
-                            ImGui::CloseCurrentPopup();
-                        }
-                        ImGui::SameLine();
-                        if(ImGui::Button("Cancel")){
-                            ImGui::CloseCurrentPopup();
-                        }
-                        ImGui::EndPopup();
-                    }
-                    ImGui::TableNextColumn();
-                    ImGui::Text("%s", ModEntry.version.c_str());
-                    ImGui::TableNextColumn();
-                    ImGui::Text("%i", ModEntry.loadOrder);
+                            if (ImGui::BeginPopup((ModEntry.modName + " Mod Actions").c_str())) {
+                                ImGui::Text("%s:", ModEntry.modName.c_str());
+                                ImGui::BeginDisabled();
+                                ImGui::Checkbox("Has DLL", &ModEntry.hasDLL);
+                                ImGui::SameLine();
+                                ImGui::Checkbox("Has XML", &ModEntry.hasXML);
+                                ImGui::EndDisabled();
+                                if (ModEntry.installed) {
+                                    if (ImGui::Button(("Uninstall" + std::string("##") + ModEntry.modName).c_str())) {
+                                        UninstallMod(ModEntry.modName);
+                                    }
+                                    if (ModEntry.enabled) {
+                                        if (ImGui::Button("Disable"))
+                                            EnableMod(ModEntry.modName, false);
+                                    } else {
+                                        if (ImGui::Button("Enable"))
+                                            EnableMod(ModEntry.modName, true);
+                                    }
+                                } else {
+                                    if (ImGui::Button(("Install" + std::string("##") + ModEntry.modName).c_str())) {
+                                        InstallMod(ModEntry.modName);
+                                    }
+                                    if (ImGui::Button(("Delete" + std::string("##") + ModEntry.modName).c_str())) {
+                                        showDeleteConfirmation = true;
+                                    }
+                                }
+                                ImGui::EndPopup();
+                            }
+                            if (showDeleteConfirmation) {
+                                ImGui::OpenPopup(
+                                        ("Delete Confirmation" + std::string("##") + ModEntry.modName).c_str());
+                                showDeleteConfirmation = false;
+                            }
 
-                    ImGui::TableNextColumn();
-                    if (selectedMod == ModEntry.modName) {
-                        try {
-                            if (ModEntry.loadOrder > 0) {
-                                if (ImGui::ArrowButton(("##" + ModEntry.modName + "Up").c_str(), ImGuiDir_Up)) {
-                                    std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
-                                    std::sort(ModList.begin(), ModList.end());
+                            if (ImGui::BeginPopupModal(
+                                    ("Delete Confirmation" + std::string("##") + ModEntry.modName).c_str())) {
+                                ImGui::Text("Are you sure you want to delete %s?\nConfig data will be preserved.",
+                                            ModEntry.modName.c_str());
+                                if (ImGui::Button("Delete")) {
+                                    if (!ModEntry.modName.empty()) {
+                                        log(severityLevel::info, "Deleting %s/Mods/%s/", PreyPath.string(),
+                                            ModEntry.modName);
+                                        fs::remove_all(PreyPath.string() + "/Mods/" + ModEntry.modName + "/");
+                                        ModList.erase(std::find(ModList.begin(), ModList.end(), ModEntry.modName));
+
+                                    }
+                                    ImGui::CloseCurrentPopup();
                                 }
                                 ImGui::SameLine();
+                                if (ImGui::Button("Cancel")) {
+                                    ImGui::CloseCurrentPopup();
+                                }
+                                ImGui::EndPopup();
                             }
-                            if (ModEntry.loadOrder < ModList.size() - 1) {
-                                if (ImGui::ArrowButton(("##" + ModEntry.modName + "Down").c_str(), ImGuiDir_Down)) {
-                                    std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
-                                    std::sort(ModList.begin(), ModList.end());
+                            ImGui::TableNextColumn();
+                            ImGui::Text("%s", ModEntry.version.c_str());
+                            ImGui::TableNextColumn();
+                            ImGui::Text("%i", ModEntry.loadOrder);
+
+                            ImGui::TableNextColumn();
+                            if (selectedMod == ModEntry.modName) {
+                                try {
+                                    if (ModEntry.loadOrder > 0) {
+                                        if (ImGui::ArrowButton(("##" + ModEntry.modName + "Up").c_str(), ImGuiDir_Up)) {
+                                            std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
+                                            std::sort(ModList.begin(), ModList.end());
+                                        }
+                                        ImGui::SameLine();
+                                    }
+                                    if (ModEntry.loadOrder < ModList.size() - 1) {
+                                        if (ImGui::ArrowButton(("##" + ModEntry.modName + "Down").c_str(),
+                                                               ImGuiDir_Down)) {
+                                            std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
+                                            std::sort(ModList.begin(), ModList.end());
+                                        }
+                                    }
+                                } catch (const std::exception &exc) {
+                                    log(severityLevel::error, "%s", exc.what());
+                                    std::cerr << exc.what() << std::endl;
                                 }
                             }
-                        } catch (const std::exception &exc) {
-                            log(severityLevel::error, "%s", exc.what());
-                            std::cerr << exc.what() << std::endl;
+                            i++;
                         }
+                        //TODO: add ability to reorder legacy mods...
+                        ImGui::EndTable();
                     }
-                    i++;
+                    ImGui::EndTabItem();
                 }
-                //TODO: add ability to reorder legacy mods...
-                if(!LegacyModList.empty()){
-                    ImGui::TableNextRow();
-                    ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBg0, ImColor(40,40,40));
-                    ImGui::TableSetColumnIndex(1);
+                if (!LegacyModList.empty()) {
+                    if(ImGui::BeginTabItem("Legacy Mods")) {
+                        if (ImGui::BeginTable("Legacy Mod List", 2,
+                                              ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
+                                              ImGuiTableFlags_NoBordersInBody)) {
+
+                            ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed,
+                                                    28.0f);
+                            ImGui::TableSetupColumn("Mod Name");
+                            ImGui::TableNextRow();
+                            ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBg0, ImColor(40, 40, 40));
+                            ImGui::TableSetColumnIndex(1);
 //                    ImGui::Spacing();
 //                    ImGui::Separator();
-                    ImGui::Text("Legacy Mods");
-                    for (auto &legacyMod : LegacyModList){
-                        ImGui::TableNextRow();
-                        ImGui::TableSetColumnIndex(1);
-                        ImGui::Text("%s", legacyMod.c_str());
+                            ImGui::Text("Legacy Mods");
+                            for (auto &legacyMod: LegacyModList) {
+                                ImGui::TableNextRow();
+                                ImGui::TableSetColumnIndex(1);
+                                ImGui::Text("%s", legacyMod.c_str());
+                            }
+                            ImGui::EndTable();
+                        }
+                        ImGui::EndTabItem();
                     }
+                } else {
+                    ImGui::BeginDisabled();
+                    if(ImGui::BeginTabItem("Legacy Mods")){
+                        ImGui::EndTabItem();
+                    }
+                    ImGui::EndDisabled();
                 }
-                ImGui::EndTable();
+                ImGui::EndTabBar();
             }
         }
         ImGui::EndChild();
@@ -262,21 +296,24 @@ void ModLoader::DrawModList() {
                 loadModInfoFiles();
                 selectedMod.clear();
             }
-            auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
             ImGui::Separator();
-            if(ModSelect != ModList.end()){
-                if(!ModSelect->installed)
-                    ImGui::BeginDisabled();
-                ImGui::Text("%s", ModSelect->modName.c_str());
-                ImGui::Text("By: %s", ModSelect->author.c_str());
-                if(!ModSelect->installed) {
-                    ImGui::EndDisabled();
-                    if(ImGui::Button("Install")) {
-                        InstallMod(ModSelect->modName);
+            if(ImGui::BeginChild("Mod Info", {0, 250})) {
+                auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
+                if (ModSelect != ModList.end()) {
+                    if (!ModSelect->installed)
+                        ImGui::BeginDisabled();
+                    ImGui::Text("%s", ModSelect->modName.c_str());
+                    ImGui::Text("By: %s", ModSelect->author.c_str());
+                    if (!ModSelect->installed) {
+                        ImGui::EndDisabled();
+                        if (ImGui::Button("Install")) {
+                            InstallMod(ModSelect->modName);
+                        }
                     }
                 }
             }
-            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -100);
+            ImGui::EndChild();
+//            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -100);
             if(ImGui::Button("Save Mod List")){
                 SaveAllMods();
                 overlayLog(severityLevel::info, "Mod list saved");
@@ -325,17 +362,17 @@ void ModLoader::DrawDLLSettings() {
             if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
                 log(severityLevel::trace, "Prey Path set to %s", PreyPath.string());
                 ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().set(PreyPath.string().c_str());
-                ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+                saveModLoaderConfigFile();
             } else {
                 ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
-                ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+                saveModLoaderConfigFile();
             }
         }
         if(ImGui::Button("Reset Path")){
             PreyPath = DefaultPreyPath;
             preyPathString = DefaultPreyPath.string();
             ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().set(PreyPath.string().c_str());
-            ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+            saveModLoaderConfigFile();
         }
         ImGui::EndTabItem();
     }
@@ -556,6 +593,7 @@ void ModLoader::DetectNewMods() {
 
 void ModLoader::loadModInfoFiles() {
     ModList.clear();
+    LegacyModList.clear();
     // load previously loaded (assumedly) valid config
     LoadModsFromConfig();
     DetectNewMods();
@@ -760,6 +798,7 @@ void ModLoader::Update() {
 
 ModLoader::~ModLoader() {
     flushFileQueue();
+    saveModLoaderConfigFile();
 }
 
 bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {

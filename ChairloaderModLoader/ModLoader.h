@@ -101,7 +101,9 @@ private:
     inline bool saveChairloaderConfigFile() {
         return ChairloaderConfigFile.save_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str());
     };
-
+    inline bool saveModLoaderConfigFile(){
+        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+    }
     /* XML Functions */
     fs::path selectedFile;
     bool TreeNodeWalkDirectory(fs::path path, std::string modName);
