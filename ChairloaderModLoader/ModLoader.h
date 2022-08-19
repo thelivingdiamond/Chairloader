@@ -49,6 +49,7 @@ public:
         int loadOrder = -1;
         pugi::xml_node infoFile;
         pugi::xml_node configFile;
+        std::vector<std::string> dependencies;
         // installed = Mod loader remembers
         // enabled = Mod loader will load
         // deployed = files are ready
@@ -87,7 +88,7 @@ private:
     float OverlayWidth = 20.0f;
     float OverlayHeight = 60.0f;
     float OverlayElementWidth = 300.0f;
-    float OverlayElementHeight = 100.0f;
+    float OverlayElementHeight = 150.0f;
 
     void DrawOverlayLog();
     void ModLoader::OverlayLogElement(LogEntry entry);
@@ -102,8 +103,9 @@ private:
         return ChairloaderConfigFile.save_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str());
     };
     inline bool saveModLoaderConfigFile(){
-        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+        return ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
     }
+
     /* XML Functions */
     fs::path selectedFile;
     bool TreeNodeWalkDirectory(fs::path path, std::string modName);
@@ -114,6 +116,8 @@ private:
     void DetectNewMods();
     void loadModInfoFiles();
     void FindMod(Mod* modEntry);
+    bool verifyDependencies(std::string modName);
+    bool verifyDependenciesEnabled(std::string modName);
     std::string fileToLoad;
     fs::path modToLoadPath;
 
@@ -160,6 +164,10 @@ private:
     std::vector<LogEntry> logRecord;
     std::vector<LogEntry> fileQueue;
     std::vector<LogEntry> overlayQueue;
+
+    ImColor errorColor = {255,70,70};
+    ImColor warningColor = {255, 190, 70};
+
     #ifdef _DEBUG
         severityLevel filterLevel = severityLevel::trace;
     #else

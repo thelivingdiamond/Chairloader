@@ -38,22 +38,23 @@ void ModLoader::Draw() {
             ImGui::EndMenu();
         }
         // Print test overlay log messages for each severity level
-//        if(ImGui::BeginMenu("Log", true)){
-//            if(ImGui::MenuItem("Info")){
-//                overlayLog(severityLevel::info, "Info");
-//            }
-//            if(ImGui::MenuItem("Warning")){
-//                overlayLog(severityLevel::warning, "Warning");
-//            }
-//            if(ImGui::MenuItem("Error")){
-//                overlayLog(severityLevel::error, "Error");
-//            }
-//            if(ImGui::MenuItem("Trace")){
-//                overlayLog(severityLevel::trace, "Trace");
-//            }
-//            ImGui::EndMenu();
-//        }
-
+#ifdef _DEBUG
+        if(ImGui::BeginMenu("Log", true)){
+            if(ImGui::MenuItem("Info")){
+                overlayLog(severityLevel::info, "Info");
+            }
+            if(ImGui::MenuItem("Warning")){
+                overlayLog(severityLevel::warning, "Warning");
+            }
+            if(ImGui::MenuItem("Error")){
+                overlayLog(severityLevel::error, "Error");
+            }
+            if(ImGui::MenuItem("Trace")){
+                overlayLog(severityLevel::trace, "Trace");
+            }
+            ImGui::EndMenu();
+        }
+#endif
         ImGui::EndMenuBar();
 
     }
@@ -90,7 +91,7 @@ void ModLoader::DrawModList() {
     static std::string selectedMod;
     static bool showDeleteConfirmation;
     if(ImGui::BeginTabItem("Mod List")) {
-        if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.7f, 0))) {
+        if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.65f, 0))) {
             if(ImGui::BeginTabBar("Mod List Bar")) {
                 float checkboxColumnSize = 0.0f;
                 if(ImGui::BeginTabItem("Mods")) {
@@ -111,7 +112,7 @@ void ModLoader::DrawModList() {
                         for (auto &ModEntry: ModList) {
                             ImGui::TableNextRow();
                             ImGui::TableNextColumn();
-                            if (ModEntry.installed) {
+                            if (ModEntry.installed && verifyDependenciesEnabled(ModEntry.modName)) {
                                 ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
                             } else {
                                 ImGui::BeginDisabled();
@@ -135,6 +136,8 @@ void ModLoader::DrawModList() {
                                 ImGui::OpenPopup((ModEntry.modName + " Mod Actions").c_str());
                             }
                             ImGui::SetCursorPosY(storedpos);
+                            if(!verifyDependenciesEnabled(ModEntry.modName))
+                                ModEntry.enabled = false;
                             if (ModEntry.installed) {
                                 if (ModEntry.enabled) {
                                     ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s",
@@ -146,12 +149,33 @@ void ModLoader::DrawModList() {
 //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                                selectedMod = ModEntry.modName;
 //                            ImGui::PopStyleColor();
-                                    ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s",
-                                                       ModEntry.modName.c_str());
-                                    if (ImGui::IsItemHovered()) {
-                                        ImGui::BeginTooltip();
-                                        ImGui::Text("Mod is not enabled");
-                                        ImGui::EndTooltip();
+                                    if(verifyDependencies(ModEntry.modName)) {
+                                        if(verifyDependenciesEnabled(ModEntry.modName)){
+                                            ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s",
+                                                               ModEntry.modName.c_str());
+                                            if (ImGui::IsItemHovered()) {
+                                                ImGui::BeginTooltip();
+                                                ImGui::Text("Mod is not enabled");
+                                                ImGui::EndTooltip();
+                                            }
+                                        } else {
+                                            ImGui::TextColored (warningColor, "%s",
+                                                               ModEntry.modName.c_str());
+                                            if (ImGui::IsItemHovered()) {
+                                                ImGui::BeginTooltip();
+                                                ImGui::Text("Dependencies are installed, but not enabled");
+                                                ImGui::EndTooltip();
+                                            }
+                                        }
+
+                                    } else {
+                                        ImGui::TextColored(errorColor, "%s",
+                                                           ModEntry.modName.c_str());
+                                        if (ImGui::IsItemHovered()) {
+                                            ImGui::BeginTooltip();
+                                            ImGui::Text("Dependencies not found");
+                                            ImGui::EndTooltip();
+                                        }
                                     }
                                 }
                             } else {
@@ -159,7 +183,8 @@ void ModLoader::DrawModList() {
 //                        if (ImGui::Selectable((ModEntry.modName + " *").c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                            selectedMod = ModEntry.modName;
 //                        ImGui::PopStyleColor();
-                                ImGui::TextColored(ImColor(245, 100, 100), "%s *", ModEntry.modName.c_str());
+
+                                ImGui::TextColored(errorColor, "%s *", ModEntry.modName.c_str());
                                 if (ImGui::IsItemHovered()) {
                                     ImGui::BeginTooltip();
                                     ImGui::Text("Mod is not installed. Please install it before you can enable it");
@@ -224,7 +249,7 @@ void ModLoader::DrawModList() {
                             ImGui::TableNextColumn();
                             ImGui::Text("%s", ModEntry.version.c_str());
                             ImGui::TableNextColumn();
-                            ImGui::Text("%i", ModEntry.loadOrder);
+                            ImGui::Text("%i", ModEntry.loadOrder + 1);
 
                             ImGui::TableNextColumn();
                             if (selectedMod == ModEntry.modName) {
@@ -296,14 +321,48 @@ void ModLoader::DrawModList() {
                 loadModInfoFiles();
                 selectedMod.clear();
             }
+            ImGui::SameLine();
+            if(ImGui::Button("Enable All")){
+                for(auto& mod : ModList){
+                    EnableMod(mod.modName);
+                    // if dependencies aren't installed then those mods will disable themselves later
+                }
+            }
             ImGui::Separator();
-            if(ImGui::BeginChild("Mod Info", {0, 250})) {
+            if(ImGui::BeginChild("Mod Info", {0, 260})) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
                         ImGui::BeginDisabled();
                     ImGui::Text("%s", ModSelect->modName.c_str());
                     ImGui::Text("By: %s", ModSelect->author.c_str());
+                    if(!ModSelect->dependencies.empty()){
+                        ImGui::Separator();
+                        ImGui::Text("Dependencies:");
+                        for(auto & dependency : ModSelect->dependencies){
+                            auto dependencySearch = std::find(ModList.begin(), ModList.end(), dependency);
+                            if(dependencySearch == ModList.end())
+                                ImGui::PushStyleColor(ImGuiCol_Text, errorColor.operator ImU32());
+                            else if(!dependencySearch->enabled)
+                                ImGui::PushStyleColor(ImGuiCol_Text, warningColor.operator ImU32());
+                            if(ImGui::TreeNode(dependency.c_str())){
+                                if(dependencySearch != ModList.end()){
+                                    if(dependencySearch->enabled) {
+                                        ImGui::Text("Version Installed: %s", dependencySearch->version.c_str());
+                                    } else {
+                                        ImGui::Text("Dependency not enabled");
+                                    }
+                                } else {
+                                    ImGui::Text("Dependency not found");
+                                }
+                                ImGui::TreePop();
+                            }
+                            if(dependencySearch == ModList.end())
+                                ImGui::PopStyleColor();
+                            else if(!dependencySearch->enabled)
+                                ImGui::PopStyleColor();
+                        }
+                    }
                     if (!ModSelect->installed) {
                         ImGui::EndDisabled();
                         if (ImGui::Button("Install")) {
@@ -496,15 +555,15 @@ void ModLoader::DrawLog() {
                                 break;
                             case severityLevel::warning:
                                 level = "warning";
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 255, 0).operator ImU32());
+                                ImGui::PushStyleColor(ImGuiCol_Text, warningColor.operator ImU32());
                                 break;
                             case severityLevel::error:
                                 level = "error";
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 0, 0).operator ImU32());
+                                ImGui::PushStyleColor(ImGuiCol_Text, errorColor.operator ImU32());
                                 break;
                             case severityLevel::fatal:
                                 level = "fatal";
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 0, 0).operator ImU32());
+                                ImGui::PushStyleColor(ImGuiCol_Text, errorColor.operator ImU32());
                                 break;
                         }
                         ImGui::TableNextColumn();
@@ -543,6 +602,9 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
             mod->infoFile = result.child("Mod");
             mod->hasDLL = result.child("Mod").attribute("hasDLL").as_bool();
             mod->hasXML = result.child("Mod").attribute("hasXML").as_bool();
+            for(auto & dependency : result.child("Mod").child("Dependencies")){
+                mod->dependencies.emplace_back(dependency.text().get());
+            }
             return true;
         }
         else {
@@ -615,6 +677,9 @@ void ModLoader::loadModInfoFiles() {
         }
     } catch (std::exception & exception) {
         log(severityLevel::debug, "%s", exception.what());
+    }
+    for(auto & mod : ModList){
+        mod.enabled = mod.enabled && verifyDependencies(mod.modName);
     }
 }
 
@@ -929,8 +994,11 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
 }
 
 void ModLoader::EnableMod(std::string modName, bool enabled) {
-    if(std::find(ModList.begin(), ModList.end(),modName) != ModList.end())
-        std::find(ModList.begin(), ModList.end(),modName)->enabled = enabled;
+    auto mod = std::find(ModList.begin(), ModList.end(),modName);
+    if(mod != ModList.end()) {
+        if(mod->installed)
+            mod->enabled = enabled;
+    }
 }
 
 bool ModLoader::DeployMods() {
@@ -1014,7 +1082,7 @@ void ModLoader::mergeXMLFiles() {
     }
     //registered mods
     for(auto &mod : ModList) {
-        if (mod.installed && mod.enabled) {
+        if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
             mergeDirectory("", mod.modName);
             ModListNode.child(mod.modName.c_str()).child("deployed").text().set(true);
         }
@@ -1102,11 +1170,11 @@ void ModLoader::OverlayLogElement(LogEntry entry) {
                 ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyleColorVec4(ImGuiCol_Text));
                 break;
             case severityLevel::warning:
-                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 255, 0).operator ImU32());
+                ImGui::PushStyleColor(ImGuiCol_Text, warningColor.operator ImU32());
                 break;
             case severityLevel::error:
             case severityLevel::fatal:
-                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(255, 0, 0).operator ImU32());
+                ImGui::PushStyleColor(ImGuiCol_Text, errorColor.operator ImU32());
                 break;
         }
         auto messageSize = ImGui::CalcTextSize(message.c_str(), nullptr, false, OverlayElementWidth);
@@ -1258,6 +1326,37 @@ bool ModLoader::packLevel(fs::path path) {
     } catch (std::exception & exception){
         log(severityLevel::error, "Exception while packing level %s: %s", path.string().c_str(), exception.what());
         return false;
+    }
+    return false;
+}
+
+bool ModLoader::verifyDependencies(std::string modName) {
+    auto mod = std::find(ModList.begin(), ModList.end(),modName);
+    if(mod != ModList.end()){
+        for(auto& dependency: mod->dependencies){
+            auto modSearch = std::find(ModList.begin(), ModList.end(),dependency);
+            if(modSearch == ModList.end()){
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+bool ModLoader::verifyDependenciesEnabled(std::string modName) {
+    auto mod = std::find(ModList.begin(), ModList.end(),modName);
+    if(mod != ModList.end()){
+        for(auto& dependency: mod->dependencies){
+            auto modSearch = std::find(ModList.begin(), ModList.end(),dependency);
+            if(modSearch == ModList.end()){
+                return false;
+            }
+            if(!modSearch->enabled){
+                return false;
+            }
+        }
+        return true;
     }
     return false;
 }
