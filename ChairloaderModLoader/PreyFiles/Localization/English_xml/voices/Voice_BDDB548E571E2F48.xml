@@ -1,0 +1,850 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E2FD1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E2FD7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey, over here!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey, over here!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3111</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Listen. You run into any other fellas wearing an green jumpsuit ... watch your ass.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Listen. You run into any other fellas wearing an green jumpsuit ... watch your ass.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3189</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you a scientist?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you a scientist?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E318F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">My name's Aaron. Aaron Ingram. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">My name's Aaron. Aaron Ingram. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3196</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Come... come closer.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Come... come closer.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E319B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah, hell, uh.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah, hell, uh.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E31A2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Let's talk.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Let's talk.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E31B8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You need guns? Ammo? I saw one of them science types go into that armory. Saw him punch in the code. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You need guns? Ammo? I saw one of them science types go into that armory. Saw him punch in the code. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E31BF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You get me out of here, I'll let you have it. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You get me out of here, I'll let you have it. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E31E0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Find anything good in that armory?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Find anything good in that armory?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E31EB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I was gonna give you the code, but I guess you don't need it. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I was gonna give you the code, but I guess you don't need it. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E31F5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Still, I sure would appreciate being let out of here!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Still, I sure would appreciate being let out of here!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3346</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No reason to keep me locked up in here anymore.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No reason to keep me locked up in here anymore.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3358</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">C'mon, now, goddammit. Let me out!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">C'mon, now, goddammit. Let me out!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3361</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All you gotta do is open the door.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All you gotta do is open the door.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3371</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Most of the other fellas were Russian. I speak a little, but as you can tell I ain't from there.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Most of the other fellas were Russian. I speak a little, but as you can tell I ain't from there.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E337B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">As you might'ave guessed.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">As you might'ave guessed.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E33A6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You know I used to be a reverend? Training for it anyways.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You know I used to be a reverend? Training for it anyways.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E33B2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Till I got locked up. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Till I got locked up. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E33BE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Behold, the wicked man conceives evil, is pregnant with mischief and gives birth to lies.  </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Behold, the wicked man conceives evil, is pregnant with mischief and gives birth to lies.  </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E33CE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Does that sound like anybody you know?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Does that sound like anybody you know?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E33F1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know my life ain't worth two dead crickets, but nobody deserves this. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know my life ain't worth two dead crickets, but nobody deserves this. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E33FB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Y'all really shit and fell backwards in it, huh?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Y'all really shit and fell backwards in it, huh?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3403</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E342A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey! Oh- whoa, whoa, whoa! Just what the hell are you doing?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey! Oh- whoa, whoa, whoa! Just what the hell are you doing?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E344B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What's that thing doing in there, huh?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What's that thing doing in there, huh?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E346C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't do it. Please, God, don't do it - I'm begging you. One human being to another, don't do it!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't do it. Please, God, don't do it - I'm begging you. One human being to another, don't do it!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E347C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know what it's like to cross that line. There ain't no coming back. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know what it's like to cross that line. There ain't no coming back. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3488</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Godammit show me some mercy, you sick sonuvabitch.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Godammit show me some mercy, you sick sonuvabitch.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3504</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shit! You- I told you not to do it! Oh shit!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shit! You- I told you not to do it! Oh shit!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3514</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Now that's what I'm talking about! Some human decency, friend.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Now that's what I'm talking about! Some human decency, friend.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3528</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You're the one person that showed me any real kindness, and you can believe I won't forget it.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You're the one person that showed me any real kindness, and you can believe I won't forget it.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E3534</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If you still want that code, it's 8714.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If you still want that code, it's 8714.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E35A2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They ain't all decent human beings like me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They ain't all decent human beings like me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E35BA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'll just lay low for a bit. Plan a route outta here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'll just lay low for a bit. Plan a route outta here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E35D9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You look kind of familiar. You sure you ain't been here before?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You look kind of familiar. You sure you ain't been here before?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E35E6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I never seen creatures like that. Where'd they get 'em? Bottom of the ocean or something?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I never seen creatures like that. Where'd they get 'em? Bottom of the ocean or something?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E37BD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh! Lots of good stuff in here. Maybe there's a spare pistol.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh! Lots of good stuff in here. Maybe there's a spare pistol.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B7FFE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know there's something over there...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know there's something over there...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8016</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah, shit.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah, shit.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B801E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What was that?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What was that?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B803E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You can't hide forever.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You can't hide forever.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8056</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">C'mon now. Let's see what you got.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">C'mon now. Let's see what you got.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B80A2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Where in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Where in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B80EE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh, shit! That ain't right.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh, shit! That ain't right.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8170</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lord have mercy. What kind of devil have you got inside you?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lord have mercy. What kind of devil have you got inside you?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B822D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You sure there ain't some numbers scratched on your forehead? Add up to eighteen?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You sure there ain't some numbers scratched on your forehead? Add up to eighteen?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8262</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What are you doin'?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What are you doin'?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B82B1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can't say I understand your motive.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can't say I understand your motive.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B82D5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8346</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I thought we were square!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I thought we were square!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B83D4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You left me no choice.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You left me no choice.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B83E5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There it is!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There it is!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8414</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You damn son of a-!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You damn son of a-!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B85E1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gone now.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gone now.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B860C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Woo! Whooped his ass good.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Woo! Whooped his ass good.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B8629</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Probably ain't the last time.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Probably ain't the last time.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B88C9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Cry of Relief) Somebody must be watchin' over me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Cry of Relief) Somebody must be watchin' over me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B88EC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh, I got a real bad feelin'.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh, I got a real bad feelin'.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B88FB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I expect we ain't gonna like what's comin'.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I expect we ain't gonna like what's comin'.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E572B893A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Kill it!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Kill it!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A7808</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I seen one of the other volunteers come through here. A big guy. Bastard wouldn't let me out and now I'm glad he didn't.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I seen one of the other volunteers come through here. A big guy. Bastard wouldn't let me out and now I'm glad he didn't.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A7812</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Watched him bash some poor sucker's head in with a wrench. Kept going on and on about... black eggs and whatnot. Real disturbed.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Watched him bash some poor sucker's head in with a wrench. Kept going on and on about... black eggs and whatnot. Real disturbed.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A7896</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Being here, you start to miss things. Things you gladly said good riddance to. Like this miniature poodle I used to have. Ugly as sin.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Being here, you start to miss things. Things you gladly said good riddance to. Like this miniature poodle I used to have. Ugly as sin.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A78B5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Little shit used to chew holes in my boots. (Sigh) Wonder what he's doin' now?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Little shit used to chew holes in my boots. (Sigh) Wonder what he's doin' now?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A88E8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey, what you reading? My rap sheet? Huh?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey, what you reading? My rap sheet? Huh?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A89AA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm telling you, on my momma's grave that is a stack of lies meant to make pushing that button easier on you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm telling you, on my momma's grave that is a stack of lies meant to make pushing that button easier on you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A89C1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ok fine, listen - I want to be honest - some of it probably is true.  I done some wrong in my days.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ok fine, listen - I want to be honest - some of it probably is true.  I done some wrong in my days.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A89CA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">But this ain't right, now. C'mon, y'all got to let me out of here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">But this ain't right, now. C'mon, y'all got to let me out of here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A95E3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I never did anything to those kids. I was just gettin'em out of a bad spot. That's all.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I never did anything to those kids. I was just gettin'em out of a bad spot. That's all.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A966A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The real criminals - they didn't like how I was chipping away at their pile of rubles.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The real criminals - they didn't like how I was chipping away at their pile of rubles.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A9674</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They got their claw sunk deep in the government. Got me shipped off to the gulag. That's how I ended up here. See?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They got their claw sunk deep in the government. Got me shipped off to the gulag. That's how I ended up here. See?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A9B66</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I thought they wasn't gonna to let me in at first. On account of this volunteer get up.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I thought they wasn't gonna to let me in at first. On account of this volunteer get up.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579A9B8B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ha, ha! Thanks again for lettin' me out. I won't forget it. You're a real decent human being, Morgan Yu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ha, ha! Thanks again for lettin' me out. I won't forget it. You're a real decent human being, Morgan Yu.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

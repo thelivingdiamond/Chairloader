@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5553690D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Pressure loss detected. Starting oxygen supply.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Pressure loss detected. Starting oxygen supply.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5553691C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Contamination detected. Starting oxygen supply.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Contamination detected. Starting oxygen supply.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536925</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen supply low.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen supply low.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536933</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen depleted.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen depleted.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5553693A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Microgravity detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Microgravity detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536944</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Caution. Radiation levels unsafe.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Caution. Radiation levels unsafe.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536949</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Caution. Radioactive threat.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Caution. Radioactive threat.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536951</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Trauma detected. Seek medical attention.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Trauma detected. Seek medical attention.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536964</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Vital signs critical.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Vital signs critical.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5553696A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Research complete.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Research complete.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55536970</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New research topic available.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New research topic available.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E563A1DB6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Hemorrhage detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Hemorrhage detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E563A1DBF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seek medical attention.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seek medical attention.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E563A1E9E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Concussion detected. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Concussion detected. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E563A217F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Skeletal trauma detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Skeletal trauma detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E563A221A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Burn trauma detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Burn trauma detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E563A2273</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Radiation poisoning detected. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Radiation poisoning detected. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">2BB4A699569593FE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity compromised.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity compromised.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">2BB4A69956959440</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Suit patch kit required.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Suit patch kit required.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCB872</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope calibration finished.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope calibration finished.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCB8F0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Scan complete.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Scan complete.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCB8F8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">More specimens required.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">More specimens required.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56E3278D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hazardous atmosphere conditions.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hazardous atmosphere conditions.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56E327AA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Normal atmosphere conditions.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Normal atmosphere conditions.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56E328FB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Microgravity detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Microgravity detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56E3290B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Normal gravity detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Normal gravity detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56E84A2B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New psionic aptitude available. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New psionic aptitude available. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570CF9C2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity below 50%.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity below 50%.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570CFA18</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity below 20%.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity below 20%.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570CFBFC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Severe risk of exposure.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Severe risk of exposure.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570CFF9E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity damaged.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Suit integrity damaged.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E579C05CC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Vital signs critical.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Vital signs critical.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

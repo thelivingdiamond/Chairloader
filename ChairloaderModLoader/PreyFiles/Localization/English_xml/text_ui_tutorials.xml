@@ -1,0 +1,1532 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Title>Audio script template</Title>
+  <Author>Susan Kath</Author>
+  <LastAuthor>Austin-Meeting</LastAuthor>
+  <LastPrinted>2003-10-30T09:38:41Z</LastPrinted>
+  <Created>2002-06-17T19:14:00Z</Created>
+  <LastSaved>2017-07-11T18:52:34Z</LastSaved>
+  <Company>Arkane Studios</Company>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13110</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <TabRatio>274</TabRatio>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#92D050" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s77">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#92D050" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s78">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s79">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s80">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior ss:Color="#D0CECE" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s81">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#D0CECE" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s82">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#A5A5A5"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#A5A5A5"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#A5A5A5"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#A5A5A5"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s83">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior ss:Color="#92D050" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="231" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="181.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="477"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="570.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="160.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s65">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">KEY</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="s65">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains original text meant for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains text for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">set to &quot;LOCKED&quot; if this string is final.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Character limit for translated text.</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s71">
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Tutorial</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s63"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">Card Sets</Data></Cell>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleCombat</Data></Cell>
+    <Cell><Data ss:Type="String">Combat: Basics</Data></Cell>
+    <Cell><Data ss:Type="String">Combat: Basics</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptCombat</Data></Cell>
+    <Cell><Data ss:Type="String">Take advantage of your environment and tools in combat.</Data></Cell>
+    <Cell><Data ss:Type="String">Take advantage of your environment and tools in combat.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_CombatCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Take advantage of your environment and tools in combat. You do not have to fight every enemy head on. Use alternate routes to sneak past tough enemies, or to get the drop on them. &lt;br&gt;&lt;br&gt;If you intend to fight, disabling enemies first with tools like the GLOO cannon can increase your odds of surviving.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Take advantage of your environment and tools in combat. You do not have to fight every enemy head on. Use alternate routes to sneak past tough enemies, or to get the drop on them. &lt;br&gt;&lt;br&gt;If you intend to fight, disabling enemies first with tools like the GLOO cannon can increase your odds of surviving.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell><Data ss:Type="String">ui_TitleCombat2</Data></Cell>
+    <Cell><Data ss:Type="String">Combat: Sneak Attacks</Data></Cell>
+    <Cell><Data ss:Type="String">Combat: Sneak Attacks</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptCombat2</Data></Cell>
+    <Cell><Data ss:Type="String">Press %player:sneak% to sneak if you wish to avoid direct confrontation.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %player:sneak% to sneak if you wish to avoid direct confrontation.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_CombatCard2</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Press %player:sneak% to sneak if you wish to avoid direct confrontation. While sneaking you move silently and can hide behind cover to avoid being spotted. As enemies detect you, a meter will appear over them. White means they are suspicious. Red means you’re busted.&lt;br&gt;&lt;br&gt;Unaware enemies take more damage from your attacks. </Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Press %player:sneak% to sneak if you wish to avoid direct confrontation. While sneaking you move silently and can hide behind cover to avoid being spotted. As enemies detect you, a meter will appear over them. White means they are suspicious. Red means you’re busted.&lt;br&gt;&lt;br&gt;Unaware enemies take more damage from your attacks. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="9.75">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleMicrogravity</Data></Cell>
+    <Cell><Data ss:Type="String">Microgravity</Data></Cell>
+    <Cell><Data ss:Type="String">Microgravity</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptZeroGCard</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information about zero-g.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information about zero-g.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="63.75">
+    <Cell><Data ss:Type="String">ui_ExteriorTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">Your TranStar suit is equipped with a propulsion system to navigate the harsh environment of space.  To navigate in Zero-G, use %default:xi_movex% to thrust and %player:sprint% to boost thrust. Press %player:leanleft% + %player:leanright% to brake.  &lt;br&gt;&lt;br&gt;You can press %player:jump% to ascend and %player:sneak% to descend.  Hold %player:leanleft% or %player:leanright% to roll.</Data></Cell>
+    <Cell><Data ss:Type="String">Your TranStar suit is equipped with a propulsion system to navigate the harsh environment of space.  To navigate in Zero-G, use %default:xi_movex% to thrust and %player:sprint% to boost thrust. Press %player:leanleft% + %player:leanright% to brake.  &lt;br&gt;&lt;br&gt;You can press %player:jump% to ascend and %player:sneak% to descend.  Hold %player:leanleft% or %player:leanright% to roll.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="63.75">
+    <Cell><Data ss:Type="String">ui_ExteriorTutorialCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">Your TranStar suit is equipped with a propulsion system to navigate the harsh environment of space.  To navigate in Zero-G, use &lt;b&gt;%default:moveforward%&lt;/b&gt;, &lt;b&gt;%default:moveleft%&lt;/b&gt;, &lt;b&gt;%default:moveback%&lt;/b&gt;, or &lt;b&gt;%default:moveright%&lt;/b&gt; to thrust and &lt;b&gt;%player:sprint%&lt;/b&gt; to boost thrust.  Press &lt;b&gt;%player:leanleft%&lt;/b&gt; + &lt;b&gt;%player:leanright%&lt;/b&gt; to brake.  &lt;br&gt;&lt;br&gt;You can press &lt;b&gt;%player:jump%&lt;/b&gt; to ascend and &lt;b&gt;%player:sneak%&lt;/b&gt; to descend.  Hold &lt;b&gt;%player:leanright%&lt;/b&gt; or &lt;b&gt;%player:leanleft%&lt;/b&gt; to roll.</Data></Cell>
+    <Cell><Data ss:Type="String">Your TranStar suit is equipped with a propulsion system to navigate the harsh environment of space.  To navigate in Zero-G, use &lt;b&gt;%default:moveforward%&lt;/b&gt;, &lt;b&gt;%default:moveleft%&lt;/b&gt;, &lt;b&gt;%default:moveback%&lt;/b&gt;, or &lt;b&gt;%default:moveright%&lt;/b&gt; to thrust and &lt;b&gt;%player:sprint%&lt;/b&gt; to boost thrust.  Press &lt;b&gt;%player:leanleft%&lt;/b&gt; + &lt;b&gt;%player:leanright%&lt;/b&gt; to brake.  &lt;br&gt;&lt;br&gt;You can press &lt;b&gt;%player:jump%&lt;/b&gt; to ascend and &lt;b&gt;%player:sneak%&lt;/b&gt; to descend.  Hold &lt;b&gt;%player:leanright%&lt;/b&gt; or &lt;b&gt;%player:leanleft%&lt;/b&gt; to roll.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitlePsychoscope</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoscope</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoscope</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptPsychoscopeCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Psychoscope allows you to scan Typhon to learn new abilities. </Data></Cell>
+    <Cell><Data ss:Type="String">The Psychoscope allows you to scan Typhon to learn new abilities. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="51">
+    <Cell><Data ss:Type="String">ui_PsychoscopeTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Toggle your Psychoscope with %player:toggle_scope% to mark and scan nearby enemies. Scanning Typhon reveals new abilities you can acquire by installing Neuromods. </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Toggle your Psychoscope with %player:toggle_scope% to mark and scan nearby enemies. Scanning Typhon reveals new abilities you can acquire by installing Neuromods. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleFavorites</Data></Cell>
+    <Cell><Data ss:Type="String">Quick Select</Data></Cell>
+    <Cell><Data ss:Type="String">Quick Select</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptFavoritesCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Quick Select menu allows you to assign weapons and powers for easy access. </Data></Cell>
+    <Cell><Data ss:Type="String">The Quick Select menu allows you to assign weapons and powers for easy access.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_FavoritesTutorialCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">The Quick Select menu allows you to quickly alternate between weapons and powers. Assign weapons and powers from your inventory or favorites wheel by selecting the item or skill, then pressing a number key to assign.</Data></Cell>
+    <Cell><Data ss:Type="String">The Quick Select menu allows you to quickly alternate between weapons and powers. Assign weapons and powers from your inventory or favorites wheel by selecting the item or skill, then pressing a number key to assign.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="51">
+    <Cell><Data ss:Type="String">ui_FavoritesTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Quick Select menu allows you to quickly alternate between weapons and powers. Assign weapons and powers to the Quick Select menu by highlighting the items in your inventory, then press %menu:menu_examine% to bring up the assign menu. Assign from your favorites wheel by selecting, then using %focusmode:quickselect_left% %focusmode:quickselect_right% or %focusmode:quickselect_down%.</Data></Cell>
+    <Cell><Data ss:Type="String">The Quick Select menu allows you to quickly alternate between weapons and powers. Assign weapons and powers to the Quick Select menu by highlighting the items in your inventory, then press %menu:menu_examine% &lt;/font&gt;to bring up the assign menu. Assign from your favorites wheel by selecting, then using %focusmode:quickselect_left% %focusmode:quickselect_right% or %focusmode:quickselect_down%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleFabricators</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricators</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricators</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="63.75">
+    <Cell><Data ss:Type="String">ui_FabricatorTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricators use Fabrication Plans to create dozens of useful items aboard Talos I. &lt;br&gt;&lt;br&gt;Each item fabricated consumes some combination of Organic, Mineral, Synthetic, and Exotic materials. Search Talos I to find plans and materials.</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricators use Fabrication Plans to create dozens of useful items aboard Talos I. &lt;br&gt;&lt;br&gt;Each item fabricated consumes some combination of Organic, Mineral, Synthetic, and Exotic materials. Search Talos I to find plans and materials.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleHacking</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="63.75">
+    <Cell><Data ss:Type="String">ui_HackingTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Hacking skill allows you to bypass security systems protecting keypads, workstations, and security stations. At higher skill levels, you can hack into robotic systems such as turrets and Operators. &lt;br&gt;&lt;br&gt;To hack, use %hacking:hack_moveprompt_y% to quickly navigate the bitstream to reach the target. Once inside the target, press the prompted button to complete the hack.</Data></Cell>
+    <Cell><Data ss:Type="String">The Hacking skill allows you to bypass security systems protecting keypads, workstations, and security stations. At higher skill levels, you can hack into robotic systems such as turrets and Operators. &lt;br&gt;&lt;br&gt;To hack, use %hacking:hack_moveprompt_y% to quickly navigate the bitstream to reach the target. Once inside the target, press the prompted button to complete the hack.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="63.75">
+    <Cell><Data ss:Type="String">ui_HackingTutorialCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">The Hacking skill allows you to bypass security systems protecting keypads, workstations, and security stations. At higher skill levels, you can hack into robotic systems such as turrets and Operators. &lt;br&gt;&lt;br&gt;To hack, use %hacking:hack_moveup%, %hacking:hack_movedown%, %hacking:hack_moveright%, and %hacking:hack_moveleft% to quickly navigate the bitstream to reach the target. Once inside the target, press the prompted button to complete the hack.</Data></Cell>
+    <Cell><Data ss:Type="String">The Hacking skill allows you to bypass security systems protecting keypads, workstations, and security stations. At higher skill levels, you can hack into robotic systems such as turrets and Operators. &lt;br&gt;&lt;br&gt;To hack, use %hacking:hack_moveup%, %hacking:hack_movedown%, %hacking:hack_moveright%, and %hacking:hack_moveleft% to quickly navigate the bitstream to reach the target. Once inside the target, press the prompted button to complete the hack.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleMovement</Data></Cell>
+    <Cell><Data ss:Type="String">Movement</Data></Cell>
+    <Cell><Data ss:Type="String">Movement</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_MovementCard</Data></Cell>
+    <Cell><Data ss:Type="String">Use %default:xi_movey% to move around in the world. &lt;br&gt;&lt;br&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">Use %default:xi_movey% to move around in the world. &lt;br&gt;&lt;br&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="48.75">
+    <Cell><Data ss:Type="String">ui_MovementCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">Use %default:moveforward%, %default:moveleft%, %default:moveback%, and %default:moveright%, to move around in the world. </Data></Cell>
+    <Cell><Data ss:Type="String">Use %default:moveforward%, %default:moveleft%, %default:moveback%, and %default:moveright%, to move around in the world. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="39">
+    <Cell><Data ss:Type="String">ui_MovementCard2</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:jump% to jump and %player:sprint% to sprint. Press %player:sneak% to crouch or to slide while sprinting.</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:jump% to jump and %player:sprint% to sprint. Press %player:sneak% to crouch or to slide while sprinting.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="47.25">
+    <Cell><Data ss:Type="String">ui_MovementCardPC2</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:jump% to jump and %player:sprint% to sprint. Press %player:sneak% to crouch or to slide while sprinting.</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:jump% to jump and %player:sprint% to sprint. Press %player:sneak% to crouch or to slide while sprinting.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleNeuromods</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromods</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromods</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NeuromodTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Neuromod is a revolutionary TranStar invention that allows you to learn new skills and abilities. Press %player:togglepda% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell><Data ss:Type="String">The Neuromod is a revolutionary TranStar invention that allows you to learn new skills and abilities. Press %player:togglepda% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NeuromodTutorialCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">The Neuromod is a revolutionary TranStar invention that allows you to learn new skills and abilities. Press  %player:toggleabilities% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell><Data ss:Type="String">The Neuromod is a revolutionary TranStar invention that allows you to learn new skills and abilities. Press  %player:toggleabilities% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="9.75">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitlePlayYourWay</Data></Cell>
+    <Cell><Data ss:Type="String">Play Your Way</Data></Cell>
+    <Cell><Data ss:Type="String">Play Your Way</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptPlayYourWayCard</Data></Cell>
+    <Cell><Data ss:Type="String">There are often multiple ways to solve problems in Prey.</Data></Cell>
+    <Cell><Data ss:Type="String">There are often multiple ways to solve problems in Prey.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="51">
+    <Cell><Data ss:Type="String">ui_PlayYourWayTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Experiment with different approaches to overcome challenges and enemies. You can get past the locked door by: &lt;br&gt;&lt;br&gt;&lt;b&gt;»&lt;/b&gt;Searching for the keycard&lt;br&gt;&lt;b&gt;»&lt;/b&gt;Finding an alternate path. &lt;br&gt;&lt;br&gt;As you learn new abilities, more options will become available to you.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Experiment with different approaches to overcome challenges and enemies. You can get past the locked door by: &lt;br&gt;&lt;br&gt;&lt;b&gt;»&lt;/b&gt;Searching for the keycard&lt;br&gt;&lt;b&gt;»&lt;/b&gt;Finding an alternate path. &lt;br&gt;&lt;br&gt;As you learn new abilities, more options will become available to you.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitlePsiPowersMode</Data></Cell>
+    <Cell><Data ss:Type="String">Favorites Wheel</Data></Cell>
+    <Cell><Data ss:Type="String">Favorites Wheel</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptPsiModeCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Favorites Wheel allows you to quickly switch between weapons and other items. </Data></Cell>
+    <Cell><Data ss:Type="String">The Favorites Wheel allows you to quickly switch between weapons and other items. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="59.25">
+    <Cell><Data ss:Type="String">ui_PsiModeTutorialCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">The favorites wheel allows you to quickly select and use weapons and, eventually, psi powers.  Press %player:mouse_enter_focusmode% to open the favorites wheel and select a weapon or item using %player:mouse_enter_focusmode%. Press %focusmode:mouse_select_item% to equip a weapon.&lt;br&gt;&lt;br&gt;You can also consume medkits and psi hypos from the favorites wheel.</Data></Cell>
+    <Cell><Data ss:Type="String">The favorites wheel allows you to quickly select and use weapons and, eventually, psi powers.  Press %player:mouse_enter_focusmode% to open the favorites wheel and select a weapon or item using %player:mouse_enter_focusmode%. Press %focusmode:mouse_select_item% to equip a weapon.&lt;br&gt;&lt;br&gt;You can also consume medkits and psi hypos from the favorites wheel.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="54">
+    <Cell><Data ss:Type="String">ui_PsiModeTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">The favorites wheel allows you to quickly select and equip weapons and, eventually, psi powers.  Hold %player:enter_focusmode% to open the favorites wheel and use %focusmode:controller_left_menu_rotate_yaw% to select a weapon. Release %focusmode:controller_select_item% to equip a weapon.&lt;br&gt;&lt;br&gt;You can also consume medkits and psi hypos from the favorites wheel.</Data></Cell>
+    <Cell><Data ss:Type="String">The favorites wheel allows you to quickly select and equip weapons and, eventually, psi powers.  Hold %player:enter_focusmode% to open the favorites wheel and use %focusmode:controller_left_menu_rotate_yaw% to select a weapon. Release %focusmode:controller_select_item% to equip a weapon.&lt;br&gt;&lt;br&gt;You can also consume medkits and psi hypos from the favorites wheel.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row ss:StyleID="s63">
+    <Cell><Data ss:Type="String">ui_TitleFocusWheel</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Targeting</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Targeting</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptFocusCard</Data></Cell>
+    <Cell><Data ss:Type="String">Psi powers can be quickly accessed using psi targeting mode.</Data></Cell>
+    <Cell><Data ss:Type="String">Psi powers can be quickly accessed using psi targeting mode.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="65.25">
+    <Cell><Data ss:Type="String">ui_FocusPowersCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">Some powers are triggered instantly by pressing  %focusmode:mouse_execute_power_type1%. Some powers are targeted. To stop time and enter psi targeting mode, press and hold %focusmode:mouse_execute_power_type1%. Use  %focusmode:mouse_menu_rotate_yaw% to aim. Release %focusmode:mouse_execute_power_type1% to execute power on the targeted location or press %focusmode:mouse_cancel_focusmode_type1% to cancel. &lt;br&gt;&lt;br&gt;Powers can be equipped from the favorites wheel.</Data></Cell>
+    <Cell><Data ss:Type="String">Some powers are triggered instantly by pressing  %focusmode:mouse_execute_power_type1%. Some powers are targeted. To stop time and enter psi targeting mode, press and hold %focusmode:mouse_execute_power_type1%. Use  %focusmode:mouse_menu_rotate_yaw% to aim. Release %focusmode:mouse_execute_power_type1% to execute power on the targeted location or press %focusmode:mouse_cancel_focusmode_type1% to cancel. &lt;br&gt;&lt;br&gt;Powers can be equipped from the favorites wheel.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="66">
+    <Cell><Data ss:Type="String">ui_FocusPowersCard</Data></Cell>
+    <Cell><Data ss:Type="String">Some powers are triggered instantly by pressing %focusmode:controller_execute_power% . Some powers are targeted. To stop time and enter psi targeting mode, press and hold %focusmode:controller_execute_power%. Use %focusmode:controller_right_menu_rotate_yaw% to aim.  Release %focusmode:controller_execute_power% to execute a psi power on the targeted location or %focusmode:controller_cancel_psitargeting% to cancel.  &lt;br&gt;&lt;br&gt;Powers can be equipped from the favorites.</Data></Cell>
+    <Cell><Data ss:Type="String">Some powers are triggered instantly by pressing %focusmode:controller_execute_power% . Some powers are targeted. To stop time and enter psi targeting mode, press and hold %focusmode:controller_execute_power%. Use %focusmode:controller_right_menu_rotate_yaw% to aim.  Release %focusmode:controller_execute_power% to execute a psi power on the targeted location or %focusmode:controller_cancel_psitargeting% to cancel.  &lt;br&gt;&lt;br&gt;Powers can be equipped from the favorites.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleRepair</Data></Cell>
+    <Cell><Data ss:Type="String">Repair</Data></Cell>
+    <Cell><Data ss:Type="String">Repair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="49.5">
+    <Cell><Data ss:Type="String">ui_RepairTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">Many objects on Talos I can be repaired if you have the Repair skill and enough spare parts. &lt;br&gt;&lt;br&gt;To repair an object, hold down the %player:specialUse% button until the repair is completed. </Data></Cell>
+    <Cell><Data ss:Type="String">Many objects on Talos I can be repaired if you have the Repair skill and enough spare parts. &lt;br&gt;&lt;br&gt;To repair an object, hold down the %player:specialUse% button until the repair is completed. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleWeaponRepair</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Repair</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Repair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="49.5">
+    <Cell><Data ss:Type="String">ui_WeaponRepairTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">Damaged weapons can be repaired if you have the Repair skill and enough Spare Parts. Select the weapon you wish to repair in your inventory and press %menu:menu_examine%. Then choose &lt;i&gt;repair&lt;/i&gt;.</Data></Cell>
+    <Cell><Data ss:Type="String">Damaged weapons can be repaired if you have the Repair skill and enough Spare Parts. Select the weapon you wish to repair in your inventory and press %menu:menu_examine%. Then choose &lt;i&gt;repair&lt;/i&gt;.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleWeaponKit</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Kits</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Kits</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="57">
+    <Cell><Data ss:Type="String">ui_WeaponKitCard</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Kits allow you to upgrade your weapons. To use a Weapon Kit, select the weapon you wish to upgrade in your inventory and press %menu:menu_examine%. &lt;br&gt;&lt;br&gt;Then choose &lt;i&gt;upgrade&lt;/i&gt; to select from any available upgrades. Note: some upgrades require advanced skills.</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Kits allow you to upgrade your weapons. To use a Weapon Kit, select the weapon you wish to upgrade in your inventory and press %menu:menu_examine%. &lt;br&gt;&lt;br&gt;Then choose &lt;i&gt;upgrade&lt;/i&gt; to select from any available upgrades. Note: some upgrades require advanced skills.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleGlooGun</Data></Cell>
+    <Cell><Data ss:Type="String">GLOO Cannon</Data></Cell>
+    <Cell><Data ss:Type="String">GLOO Cannon</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagGoogun</Data></Cell>
+    <Cell><Data ss:Type="String">Use the GLOO cannon to immobilize enemies for a short period of time. Immobilized enemies take bonus damage.</Data></Cell>
+    <Cell><Data ss:Type="String">Use the GLOO cannon to immobilize enemies for a short period of time. Immobilized enemies take bonus damage.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="59.25">
+    <Cell><Data ss:Type="String">ui_GlooGunCard</Data></Cell>
+    <Cell><Data ss:Type="String">The TranStar GLOO Cannon (Gelifoam Lattice Organism Obstructor) disables and/or immobilizes targets without harming them. GLOO can extinguish flames and temporarily stop electric arcs. When hardened, GLOO can also be used as a climbable platform.&lt;br&gt;&lt;br&gt;Press %player:attack1% to fire your GLOO Cannon.  Press and hold %player:attack1% to fire a continuous stream.</Data></Cell>
+    <Cell><Data ss:Type="String">The TranStar GLOO Cannon (Gelifoam Lattice Organism Obstructor) disables and/or immobilizes targets without harming them. GLOO can extinguish flames and temporarily stop electric arcs. When hardened, GLOO can also be used as a climbable platform.&lt;br&gt;&lt;br&gt;Press %player:attack1% to fire your GLOO Cannon.  Press and hold %player:attack1% to fire a continuous stream.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleRecycleCharge</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler Charge</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler Charge</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagRecycleCharge</Data></Cell>
+    <Cell><Data ss:Type="String">The Recycler Charge recycles junk, aliens, and humans in its proximity. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">The Recycler Charge recycles junk, aliens, and humans in its proximity. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="64.5">
+    <Cell><Data ss:Type="String">ui_RecycleChargeCard</Data></Cell>
+    <Cell><Data ss:Type="String">When detonated, the Recycler Charge breaks down the molecular structure of nearby objects into recyclable material. &lt;br&gt;&lt;br&gt;Your uniform offers some degree of protection, but is not failsafe. Standing too close can prove hazardous. &lt;br&gt;&lt;br&gt;Recycler Charges can be thrown, or affixed to stationary objects using %player:attack1%.</Data></Cell>
+    <Cell><Data ss:Type="String">When detonated, the Recycler Charge breaks down the molecular structure of nearby objects into recyclable material. &lt;br&gt;&lt;br&gt;Your uniform offers some degree of protection, but is not failsafe. Standing too close can prove hazardous. &lt;br&gt;&lt;br&gt;Recycler Charges can be thrown, or affixed to stationary objects using %player:attack1%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleLaserRifle</Data></Cell>
+    <Cell><Data ss:Type="String">Q-Beam</Data></Cell>
+    <Cell><Data ss:Type="String">Q-Beam</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagLaserRifle</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:attack1% to fire your Q-Beam and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:attack1% to fire your Q-Beam and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="48.75">
+    <Cell><Data ss:Type="String">ui_LaserRifleCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Q-Beam fires a concentrated beam of unstable particles that will eventually cause a target to explode.&lt;br&gt;&lt;br&gt; Use %player:attack1% to fire your rifle and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">The Q-Beam fires a concentrated beam of unstable particles that will eventually cause a target to explode.&lt;br&gt;&lt;br&gt; Use %player:attack1% to fire your rifle and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitlePistol</Data></Cell>
+    <Cell><Data ss:Type="String">Silenced Pistol</Data></Cell>
+    <Cell><Data ss:Type="String">Silenced Pistol</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagPistol</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:attack1% to fire your pistol and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:attack1% to fire your pistol and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="70.5">
+    <Cell><Data ss:Type="String">ui_PistolCard</Data></Cell>
+    <Cell><Data ss:Type="String">The TranStar PPN-8 Pistol is the standard issue weapon for all TranStar security personnel. Small, fast, and quiet, this pistol provides satisfactory damage while maintaining a degree of stealth.&lt;br&gt;&lt;br&gt; Use %player:attack1% to fire your pistol and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">The TranStar PPN-8 Pistol is the standard issue weapon for all TranStar security personnel. Small, fast, and quiet, this pistol provides satisfactory damage while maintaining a degree of stealth.&lt;br&gt;&lt;br&gt; Use %player:attack1% to fire your pistol and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="18.75">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleShotgun</Data></Cell>
+    <Cell><Data ss:Type="String">Shotgun</Data></Cell>
+    <Cell><Data ss:Type="String">Shotgun</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagShotgun</Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:attack1% to fire your shotgun and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">Use %player:attack1% to fire your shotgun and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="56.25">
+    <Cell><Data ss:Type="String">ui_ShotgunCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Throne Tactical Shotgun provides maximum damage at close range. Effectiveness falls off significantly at longer range.&lt;br&gt;&lt;br&gt; Use %player:attack1% to fire your shotgun and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">The Throne Tactical Shotgun provides maximum damage at close range. Effectiveness falls off significantly at longer range.&lt;br&gt;&lt;br&gt; Use %player:attack1% to fire your shotgun and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleStunGun</Data></Cell>
+    <Cell><Data ss:Type="String">Disruptor Stun Gun</Data></Cell>
+    <Cell><Data ss:Type="String">Disruptor Stun Gun</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagStunGun</Data></Cell>
+    <Cell><Data ss:Type="String">The Disruptor Stun Gun is useful for incapacitating enemies without killing them. Hold %player:attack1% to charge your stun gun and release to fire. Use %player:reload% to reload.</Data></Cell>
+    <Cell><Data ss:Type="String">The Disruptor Stun Gun is useful for incapacitating enemies without killing them. Hold %player:attack1% to charge your stun gun and release to fire. Use %player:reload% to reload.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_Nag2StunGun</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %player:attack1% to charge your stun gun and release to fire. Use %player:reload% to reload.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %player:attack1% to charge your stun gun and release to fire. Use %player:reload% to reload.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="57.75">
+    <Cell><Data ss:Type="String">ui_StungunCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Disruptor Stun Gun will knock out human targets. Typhon are more resistant but can still be temporarily stunned. Robotic devices can also be temporarily disabled, and ultimately destroyed by the Disruptor.&lt;br&gt;&lt;br&gt;Hold %player:attack1% to charge your stun gun and release to fire. Use %player:reload% to reload.</Data></Cell>
+    <Cell><Data ss:Type="String">The Disruptor Stun Gun will knock out human targets. Typhon are more resistant but can still be temporarily stunned. Robotic devices can also be temporarily disabled, and ultimately destroyed by the Disruptor.&lt;br&gt;&lt;br&gt;Hold %player:attack1% to charge your stun gun and release to fire. Use %player:reload% to reload.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleNullwave</Data></Cell>
+    <Cell><Data ss:Type="String">Nullwave Transmitter</Data></Cell>
+    <Cell><Data ss:Type="String">Nullwave Transmitter</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagNullwave</Data></Cell>
+    <Cell><Data ss:Type="String">The Nullwave Transmitter blocks psi powers. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">The Nullwave Transmitter blocks psi powers. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="49.5">
+    <Cell><Data ss:Type="String">ui_NullwaveCard</Data></Cell>
+    <Cell><Data ss:Type="String">Developed in Psychotronics, the Nullwave Transmitter emits a burst of signals which suppress the psionic abilities of anyone caught in the blast for a short period of time. &lt;br&gt;&lt;br&gt;It can be thrown, or affixed to stationary objects using %player:attack1%.</Data></Cell>
+    <Cell><Data ss:Type="String">Developed in Psychotronics, the Nullwave Transmitter emits a burst of signals which suppress the psionic abilities of anyone caught in the blast for a short period of time. &lt;br&gt;&lt;br&gt;It can be thrown, or affixed to stationary objects using %player:attack1%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleWrench</Data></Cell>
+    <Cell><Data ss:Type="String">Wrench</Data></Cell>
+    <Cell><Data ss:Type="String">Wrench</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagWrench</Data></Cell>
+    <Cell><Data ss:Type="String">Swing wrench with %player:attack1%</Data></Cell>
+    <Cell><Data ss:Type="String">Swing wrench with %player:attack1%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="76.5">
+    <Cell><Data ss:Type="String">ui_WrenchCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Hephaestus &quot;Heffy&quot; Twist and Loop Handle Wrench is standard issue for all maintenance personnel employed in TranStar facilities. Good for liberal application of percussive maintenance and mechanical agitation.&lt;br&gt;&lt;br&gt; Use %player:attack1% to swing your wrench. Important: Press and hold %player:attack1% to charge your attack for maximum damage. &lt;br&gt;&lt;br&gt; All wrench attacks will drain your stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">The Hephaestus &quot;Heffy&quot; Twist and Loop Handle Wrench is standard issue for all maintenance personnel employed in TranStar facilities. Good for liberal application of percussive maintenance and mechanical agitation.&lt;br&gt;&lt;br&gt; Use %player:attack1% to swing your wrench. Important: Press and hold %player:attack1% to charge your attack for maximum damage. &lt;br&gt;&lt;br&gt; All wrench attacks will drain your stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleEMPCharge</Data></Cell>
+    <Cell><Data ss:Type="String">EMP Charge</Data></Cell>
+    <Cell><Data ss:Type="String">EMP Charge</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagEMPCharge</Data></Cell>
+    <Cell><Data ss:Type="String">The EMP Charge is useful against robots and electronics. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">The EMP Charge is useful against robots and electronics. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="43.5">
+    <Cell><Data ss:Type="String">ui_EMPGrenadeCard</Data></Cell>
+    <Cell><Data ss:Type="String">The EMP Charge emits a large burst of electromagnetic energy. Highly effective against robots, turrets, and other electrical-based entities. &lt;br&gt;&lt;br&gt;It can be thrown, or affixed to stationary objects using %player:attack1%.</Data></Cell>
+    <Cell><Data ss:Type="String">The EMP Charge emits a large burst of electromagnetic energy. Highly effective against robots, turrets, and other electrical-based entities. &lt;br&gt;&lt;br&gt;It can be thrown, or affixed to stationary objects using %player:attack1%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleLureGrenade</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Lure</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Lure</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagAlienLure</Data></Cell>
+    <Cell><Data ss:Type="String">The Typhon Lure will attract nearby aliens to its location. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">The Typhon Lure will attract nearby aliens to its location. Use %player:attack1% to throw or affix it to stationary objects. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="60.75">
+    <Cell><Data ss:Type="String">ui_LureCard</Data></Cell>
+    <Cell><Data ss:Type="String">A Typhon Lure (a.k.a. Nightlight) emits a psycholuminescent signal that entices Typhon to move toward the lure for a short period of time. Combine with other weapons or tactics to escape, ambush, or observe Typhon from a safe distance. &lt;br&gt;&lt;br&gt;It can be thrown, or affixed to stationary objects using %player:attack1% </Data></Cell>
+    <Cell><Data ss:Type="String">A Typhon Lure (a.k.a. Nightlight) emits a psycholuminescent signal that entices Typhon to move toward the lure for a short period of time. Combine with other weapons or tactics to escape, ambush, or observe Typhon from a safe distance. &lt;br&gt;&lt;br&gt;It can be thrown, or affixed to stationary objects using %player:attack1% </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="17.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleNarfGun</Data></Cell>
+    <Cell><Data ss:Type="String">Huntress Boltcaster</Data></Cell>
+    <Cell><Data ss:Type="String">Huntress Boltcaster</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagToyGun</Data></Cell>
+    <Cell><Data ss:Type="String">This Huntress Boltcaster is harmless, but still has its uses.  Use %player:attack1% to fire it and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">This Huntress Boltcaster is harmless, but still has its uses.  Use %player:attack1% to fire it and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="52.5">
+    <Cell><Data ss:Type="String">ui_NarfGunCard</Data></Cell>
+    <Cell><Data ss:Type="String">The Huntress Boltcaster launches foam darts which do zero damage. Also known for its ability to annoy coworkers, distract enemies, and remotely trigger buttons and screens. Use %player:attack1% to fire your toy gun and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">The Huntress Boltcaster launches foam darts which do zero damage. Also known for its ability to annoy coworkers, distract enemies, and remotely trigger buttons and screens. Use %player:attack1% to fire your toy gun and %player:reload% to reload. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleRecycler</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_RecyclerTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Recyclers convert unwanted items into Synthetic, Mineral, Organic, and Exotic material which can be used by Fabricators to construct new items. </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Recyclers convert unwanted items into Synthetic, Mineral, Organic, and Exotic material which can be used by Fabricators to construct new items. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleSecurityStations</Data></Cell>
+    <Cell><Data ss:Type="String">Security Stations</Data></Cell>
+    <Cell><Data ss:Type="String">Security Stations</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_SecurityStationsTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Security stations monitor all Talos I personnel assigned to an area. Selecting an employee's name will unlock an objective with tracking information, assuming their tracking bracelet is still transmitting.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Security stations monitor all Talos I personnel assigned to an area. Selecting an employee's name will unlock an objective with tracking information, assuming their tracking bracelet is still transmitting.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleWorkstations</Data></Cell>
+    <Cell><Data ss:Type="String">Workstations</Data></Cell>
+    <Cell><Data ss:Type="String">Workstations</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="51">
+    <Cell><Data ss:Type="String">ui_WorkstationsTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Many TranStar employees have private workstations. Locked stations require a password. Search the environment for clues, or use the hacking ability to bypass the login. Workstations may contain email, files to download, or special utilities. </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;br&gt;Many TranStar employees have private workstations. Locked stations require a password. Search the environment for clues, or use the hacking ability to bypass the login. Workstations may contain email, files to download, or special utilities. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleExploration</Data></Cell>
+    <Cell><Data ss:Type="String">Exploration</Data></Cell>
+    <Cell><Data ss:Type="String">Exploration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="51">
+    <Cell><Data ss:Type="String">ui_ExplorationCard</Data></Cell>
+    <Cell><Data ss:Type="String">Talos I is open for you to explore. From the Lobby, you can reach other parts of the space station via the bulkhead doors and lifts. You may return to the Lobby and other areas you’ve discovered as often as you like to complete optional objectives. </Data></Cell>
+    <Cell><Data ss:Type="String">Talos I is open for you to explore. From the Lobby, you can reach other parts of the space station via the bulkhead doors and lifts. You may return to the Lobby and other areas you’ve discovered as often as you like to complete optional objectives. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleTraumas</Data></Cell>
+    <Cell><Data ss:Type="String">Traumas</Data></Cell>
+    <Cell><Data ss:Type="String">Traumas</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptTraumaCard</Data></Cell>
+    <Cell><Data ss:Type="String">Some types of damage will result in serious trauma. </Data></Cell>
+    <Cell><Data ss:Type="String">Some types of damage will result in serious trauma. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_TraumaTutorialCard</Data></Cell>
+    <Cell><Data ss:Type="String">Some types of damage will result in serious trauma. To remove a trauma visit, a Medical Operator or use the appropriate pharmaceutical.&lt;br&gt;&lt;br&gt; Press  %player:togglepda% to open your TranScribe and view your current status.</Data></Cell>
+    <Cell><Data ss:Type="String">Some types of damage will result in serious trauma. To remove a trauma visit, a Medical Operator or use the appropriate pharmaceutical.&lt;br&gt;&lt;br&gt; Press  %player:togglepda% to open your TranScribe and view your current status.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_TraumaTutorialCardPC</Data></Cell>
+    <Cell><Data ss:Type="String">Some types of damage you sustain will result in serious trauma. To remove a trauma, visit a Medical Operator or use the appropriate pharmaceutical.&lt;br&gt;&lt;br&gt; Press  %player:togglestatus% to open your TranScribe and view your current status.</Data></Cell>
+    <Cell><Data ss:Type="String">Some types of damage you sustain will result in serious trauma. To remove a trauma, visit a Medical Operator or use the appropriate pharmaceutical.&lt;br&gt;&lt;br&gt; Press  %player:togglestatus% to open your TranScribe and view your current status.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="11.25">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleFocus</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_PromptCombatFocusCard</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus available. Hold %player:combat_focus% to focus.</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus available. Hold %player:combat_focus% to focus.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_NagCombatFocus</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus available. Hold %player:combat_focus% to focus.</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus available. Hold %player:combat_focus% to focus.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_FocusCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Combat Focus enhances your overall abilities.  When active, time slows around you and actions cost less stamina. At higher levels, your combat damage will also increase.  Combat Focus can be equipped from the Favorites Wheel. </Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Combat Focus enhances your overall abilities.  When active, time slows around you and actions cost less stamina. At higher levels, your combat damage will also increase.  Combat Focus can be equipped from the Favorites Wheel. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="10.5">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_TitleAirlock</Data></Cell>
+    <Cell><Data ss:Type="String">Airlocks</Data></Cell>
+    <Cell><Data ss:Type="String">Airlocks</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_PromptAirlock</Data></Cell>
+    <Cell><Data ss:Type="String">Talos I has multiple airlocks which lead to the exterior of the space station.</Data></Cell>
+    <Cell><Data ss:Type="String">Talos I has multiple airlocks which lead to the exterior of the space station.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_AirlockCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Talos I has multiple airlocks which lead to the exterior of the space station. Before you can use them, you have to disengage their manual seals from the inside. The more airlocks you find, the more freedom you'll have to navigate through and around the station as you wish. Access your TranScribe to view your station map to find more airlocks.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Talos I has multiple airlocks which lead to the exterior of the space station. Before you can use them, you have to disengage their manual seals from the inside. The more airlocks you find, the more freedom you'll have to navigate through and around the station as you wish. Access your TranScribe to view your station map to find more airlocks.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="10.5">
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_TitleChipsets</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Chipsets</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Chipsets</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_PromptChipsets</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your TranStar uniform and Psychoscope can be upgraded with chipsets that provide benefits, boosts, and protections.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your TranStar uniform and Psychoscope can be upgraded with chipsets that provide benefits, boosts, and protections.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_ChipsetsCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your TranStar uniform and Psychoscope can be upgraded with chipsets that provide various benefits, boosts, and protections. Install chipsets on the Suit Chipsets and Scope Chipsets pages within the Inventory tab of your Transcribe.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your TranStar uniform and Psychoscope can be upgraded with chipsets that provide various benefits, boosts, and protections. Install chipsets on the Suit Chipsets and Scope Chipsets pages within the Inventory tab of your Transcribe.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_TitleCombos</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Deadly Combos</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Deadly Combos</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_CombosCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Most enemies aboard Talos I are stronger than you - at least initially. Before attacking head on, try gaining an advantage by disabling them first. Freeze your enemies in place with &lt;font color ='#f0c869'&gt;GLOO&lt;/font&gt; or the &lt;font color ='#f0c869'&gt;Disruptor Stun Gun&lt;/font&gt;. Block them from using powers with &lt;font color ='#f0c869'&gt;Nullwave Transmitters&lt;/font&gt; or the &lt;font color ='#f0c869'&gt;Psychoshock&lt;/font&gt; ability. Drop &lt;font color ='#f0c869'&gt;EMP Charges&lt;/font&gt; to stun robotic opponents.&lt;br&gt;&lt;br&gt;Enemies always take &lt;font color ='#f0c869'&gt;bonus damage&lt;/font&gt; when they are disabled. Experiment to create your own deadly combos.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Most enemies aboard Talos I are stronger than you - at least initially. Before attacking head on, try gaining an advantage by disabling them first. Freeze your enemies in place with &lt;font color ='#f0c869'&gt;GLOO&lt;/font&gt; or the &lt;font color ='#f0c869'&gt;Disruptor Stun Gun&lt;/font&gt;. Block them from using powers with &lt;font color ='#f0c869'&gt;Nullwave Transmitters&lt;/font&gt; or the &lt;font color ='#f0c869'&gt;Psychoshock&lt;/font&gt; ability. Drop &lt;font color ='#f0c869'&gt;EMP Charges&lt;/font&gt; to stun robotic opponents.&lt;br&gt;&lt;br&gt;Enemies always take &lt;font color ='#f0c869'&gt;bonus damage&lt;/font&gt; when they are disabled. Experiment to create your own deadly combos.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_TitlePreorder</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Preorder Bonus</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Preorder Bonus</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_PreorderCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Thank you for preordering Prey. Your preorder items can be found in the special container in Morgan's office. </Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Thank you for preordering Prey. Your preorder items can be found in the special container in Morgan's office. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_zerogtutorialcard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your suit integrity is compromised. You will continue to lose oxygen (O2) until you use a Suit Patch Kit to repair your suit. Oxygen can be replenished with O2 Canisters or at Oxygen Refill Stations around the Talos I exterior.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your suit integrity is compromised. You will continue to lose oxygen (O2) until you use a Suit Patch Kit to repair your suit. Oxygen can be replenished with O2 Canisters or at Oxygen Refill Stations around the Talos I exterior.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_TitleSuitDamage</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Suit Integrity</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Suit Integrity</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_suitdamagetutorialcard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your suit is damaged. The better condition your suit is in, the more damage it will absorb from enemy attacks and hazards. Use a Suit Repair Kit to repair your suit.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your suit is damaged. The better condition your suit is in, the more damage it will absorb from enemy attacks and hazards. Use a Suit Repair Kit to repair your suit.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_TitleElectricJunction</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Electric Junctions</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Electric Junctions</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_ElectricJunctionTutorialCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">You've been hit by an arc of electricity from a broken Electric Junction. GLOO temporarily stops the arcing electricity long enough for you to use Repair II or bypass the hazard entirely.&lt;br&gt;&lt;br&gt;Broken Electric Junctions will damage your enemies as well. </Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">You've been hit by an arc of electricity from a broken Electric Junction. GLOO temporarily stops the arcing electricity long enough for you to use Repair II or bypass the hazard entirely.&lt;br&gt;&lt;br&gt;Broken Electric Junctions will damage your enemies as well. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_NewGamePlusCard</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Talos I is once again waiting for you.  You will be able to regain all of the abilities you had in your previous playthrough when you acquire the Psychoscope that has been placed in the cabinet in Morgan's office.  Good luck!</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Talos I is once again waiting for you.  You will be able to regain all of the abilities you had in your previous playthrough when you acquire the Psychoscope that has been placed in the cabinet in Morgan's office.  Good luck!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_titleNewGamePlus</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">New Game+</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">New Game+</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s76"><Data ss:Type="String">Nags</Data></Cell>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_NagClimb</Data></Cell>
+    <Cell><Data ss:Type="String">Climb up or over objects using %player:jump%</Data></Cell>
+    <Cell><Data ss:Type="String">Climb up or over objects using %player:jump%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="158" ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagConsumable</Data></Cell>
+    <Cell><Data ss:Type="String">Pick up consumable items for later use with %player:use% or consume immediately by holding %player:specialUse%</Data></Cell>
+    <Cell><Data ss:Type="String">Pick up consumable items for later use with %player:use% or consume immediately by holding %player:specialUse%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagCrawl</Data></Cell>
+    <Cell><Data ss:Type="String">While sneaking you can crawl into even smaller spaces with %player:sneak%. Damage is increased when you attack an unaware enemy.</Data></Cell>
+    <Cell><Data ss:Type="String">While sneaking you can crawl into even smaller spaces with %player:sneak%. Damage is increased when you attack an unaware enemy.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagFlashlight</Data></Cell>
+    <Cell><Data ss:Type="String">Press %player:toggle_flashlight% to toggle your flashlight.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %player:toggle_flashlight% to toggle your flashlight.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagFlightControls</Data></Cell>
+    <Cell><Data ss:Type="String">Flight controls are disabled when disrupted by EMP.</Data></Cell>
+    <Cell><Data ss:Type="String">Flight controls are disabled when disrupted by EMP.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagJump</Data></Cell>
+    <Cell><Data ss:Type="String">Jump with %player:jump% </Data></Cell>
+    <Cell><Data ss:Type="String">Jump with %player:jump% </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell><Data ss:Type="String">ui_NagKeys</Data></Cell>
+    <Cell><Data ss:Type="String">Keycodes and keycards can be found throughout Talos I to open doors and safes. Not all codes and cards are in the same area.</Data></Cell>
+    <Cell><Data ss:Type="String">Keycodes and keycards can be found throughout Talos I to open doors and safes. Not all codes and cards are in the same area.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagLean</Data></Cell>
+    <Cell><Data ss:Type="String">Check for threats before rounding a corner with lean. Lean left with %player:leanleft% and lean right with %player:leanright%</Data></Cell>
+    <Cell><Data ss:Type="String">Check for threats before rounding a corner with lean. Lean left with %player:leanleft% and lean right with %player:leanright%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagPickupAll</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %player:use% to pick up multiple items.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %player:use% to pick up multiple items.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagPickandCarry</Data></Cell>
+    <Cell><Data ss:Type="String">Carry objects with %player:use%, drop a carried object with %player:use% or throw it with %player:attack1%</Data></Cell>
+    <Cell><Data ss:Type="String">Carry objects with %player:use%, drop a carried object with %player:use% or throw it with %player:attack1%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagPropulsion</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %player:jump% while falling to glide or slow your descent.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %player:jump% while falling to glide or slow your descent.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagPsychoscope</Data></Cell>
+    <Cell><Data ss:Type="String">%player:toggle_scope% Scan</Data></Cell>
+    <Cell><Data ss:Type="String">%player:toggle_scope% Scan</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagSlide</Data></Cell>
+    <Cell><Data ss:Type="String">While sprinting, press %player:sneak% to slide</Data></Cell>
+    <Cell><Data ss:Type="String">While sprinting, press %player:sneak% to slide</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagSneak</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak with %player:sneak%</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak with %player:sneak%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagSprint</Data></Cell>
+    <Cell><Data ss:Type="String">Sprint with %player:sprint%</Data></Cell>
+    <Cell><Data ss:Type="String">Sprint with %player:sprint%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagReload</Data></Cell>
+    <Cell><Data ss:Type="String">Reload weapon with %player:reload%</Data></Cell>
+    <Cell><Data ss:Type="String">Reload weapon with %player:reload%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NagUseMedkit</Data></Cell>
+    <Cell ss:StyleID="s82"><Data ss:Type="String">Your health is low. Consume a Medkit to restore health.</Data></Cell>
+    <Cell ss:StyleID="s82"><Data ss:Type="String">Your health is low. Consume a Medkit to restore health.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagUsePsiHypo</Data></Cell>
+    <Cell><Data ss:Type="String">Your psi is low. Consume a psi hypo to restore psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">Your psi is low. Consume a psi hypo to restore psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_NagWeapons</Data></Cell>
+    <Cell><Data ss:Type="String">Add weapons to your inventory with %player:use% or equip immediately by holding %player:specialUse%</Data></Cell>
+    <Cell><Data ss:Type="String">Add weapons to your inventory with %player:use% or equip immediately by holding %player:specialUse%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_Chipsets</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your TranStar uniform and psychoscope can be upgraded with chipsets. Install new chipsets via the inventory screen of your TranScribe. </Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Your TranStar uniform and psychoscope can be upgraded with chipsets. Install new chipsets via the inventory screen of your TranScribe. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_NagStunGunCharge</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Hold %player:attack1% to charge.</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Hold %player:attack1% to charge.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s78"><Data ss:Type="String">ui_NagPlaceCharge</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Press %player:attack1% to place. </Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">Press %player:attack1% to place. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25">
+    <Cell ss:StyleID="s83"><Data ss:Type="String">Prompts</Data></Cell>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+   </Row>
+   <Row ss:Index="181" ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptNeuromod</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Neuromod.&lt;br&gt;Press %contextaction% to install new abilities.</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Neuromod.&lt;br&gt;Press %contextaction% to install new abilities.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptChipsetsTip</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Chipset.&lt;br&gt;Press %contextaction% to install the chipset in your suit or scope.</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Chipset.&lt;br&gt;Press %contextaction% to install the chipset in your suit or scope.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptFabricationPlan</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Fabrication Plan.&lt;br&gt;Press %contextaction% to view.</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Fabrication Plan.&lt;br&gt;Press %contextaction% to view.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4"><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptResearchCompleteDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon ability researched: %1%&lt;br&gt;Press %contextaction% to view available abilities.</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon ability researched: %1%&lt;br&gt;Press %contextaction% to view available abilities.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptObjectivesDesc</Data></Cell>
+    <Cell><Data ss:Type="String">You've been given an objective.&lt;br&gt;Press %contextaction% to open your TranScribe.</Data></Cell>
+    <Cell><Data ss:Type="String">You've been given an objective.&lt;br&gt;Press %contextaction% to open your TranScribe.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="21.75">
+    <Cell><Data ss:Type="String">ui_PromptOpenInventory</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired an item.&lt;br&gt;Press %contextaction% to view your Inventory. </Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired an item.&lt;br&gt;Press %contextaction% to view your Inventory. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptLore</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view research on the entity you scanned.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view research on the entity you scanned.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptNeuromodCard</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information on using a Neuromod.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information on using a Neuromod.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptFullAccessCard</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information on having full access to the station.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information on having full access to the station.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptHackingCard</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information on hacking.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information on hacking.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="193">
+    <Cell><Data ss:Type="String">ui_PromptWeaponRepairCard</Data></Cell>
+    <Cell><Data ss:Type="String">Damaged weapons can be repaired if you have the Repair skill and enough Spare Parts.</Data></Cell>
+    <Cell><Data ss:Type="String">Damaged weapons can be repaired if you have the Repair skill and enough Spare Parts.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptRepairCard</Data></Cell>
+    <Cell><Data ss:Type="String">Many objects on Talos I can be repaired if you have the Repair skill and enough spare parts.</Data></Cell>
+    <Cell><Data ss:Type="String">Many objects on Talos I can be repaired if you have the Repair skill and enough spare parts.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptRestCard</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information about resting.</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view information about resting.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptRecycleCard</Data></Cell>
+    <Cell><Data ss:Type="String">Recyclers can be used to recycle unwanted items into useful materials.</Data></Cell>
+    <Cell><Data ss:Type="String">Recyclers can be used to recycle unwanted items into useful materials.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptFabCard</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricators can be used to create weapons, ammo, and other useful items.</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricators can be used to create weapons, ammo, and other useful items.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptSecurityStationCard</Data></Cell>
+    <Cell><Data ss:Type="String">Security Stations track all the employees on board Talos I.</Data></Cell>
+    <Cell><Data ss:Type="String">Security Stations track all the employees on board Talos I.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptWorkstationCard</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar employee workstations often contain useful information, files, and utilities.</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar employee workstations often contain useful information, files, and utilities.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptAccessGrantedKeycard</Data></Cell>
+    <Cell><Data ss:Type="String">%1%</Data></Cell>
+    <Cell><Data ss:Type="String">%1%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptAccessGrantedKeycode</Data></Cell>
+    <Cell><Data ss:Type="String">%1%</Data></Cell>
+    <Cell><Data ss:Type="String">%1%</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptAccessGrantedPassword</Data></Cell>
+    <Cell><Data ss:Type="String">%1%'s password acquired</Data></Cell>
+    <Cell><Data ss:Type="String">%1%'s password acquired</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptWeaponKit</Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Weapon Upgrade Kit. Press %contextaction% to go to your inventory to use. </Data></Cell>
+    <Cell><Data ss:Type="String">You've acquired a Weapon Upgrade Kit. Press %contextaction% to go to your inventory to use. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptWeaponKitCard</Data></Cell>
+    <Cell><Data ss:Type="String">You've found a Weapon Upgrade Kit. These can be used to upgrade weapons. </Data></Cell>
+    <Cell><Data ss:Type="String">You've found a Weapon Upgrade Kit. These can be used to upgrade weapons. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_PromptEntitlementUnlock</Data></Cell>
+    <Cell><Data ss:Type="String">New items have been added to the unique container in your office!</Data></Cell>
+    <Cell><Data ss:Type="String">New items have been added to the unique container in your office!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PromptMore</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view more</Data></Cell>
+    <Cell><Data ss:Type="String">Press %contextaction% to view more</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s83"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleTutorial</Data></Cell>
+    <Cell><Data ss:Type="String">Tutorial</Data></Cell>
+    <Cell><Data ss:Type="String">Tutorial</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleLore</Data></Cell>
+    <Cell><Data ss:Type="String">Research</Data></Cell>
+    <Cell><Data ss:Type="String">Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleTranscribes</Data></Cell>
+    <Cell><Data ss:Type="String">New TranScribe</Data></Cell>
+    <Cell><Data ss:Type="String">New TranScribe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleFabricationPlans</Data></Cell>
+    <Cell><Data ss:Type="String">Fabrication Plans</Data></Cell>
+    <Cell><Data ss:Type="String">Fabrication Plans</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleInventory</Data></Cell>
+    <Cell><Data ss:Type="String">Inventory</Data></Cell>
+    <Cell><Data ss:Type="String">Inventory</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleMap</Data></Cell>
+    <Cell><Data ss:Type="String">Map</Data></Cell>
+    <Cell><Data ss:Type="String">Map</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleObjectives</Data></Cell>
+    <Cell><Data ss:Type="String">Objectives</Data></Cell>
+    <Cell><Data ss:Type="String">Objectives</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleAlienResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Alien Research</Data></Cell>
+    <Cell><Data ss:Type="String">Alien Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleUpgradingWeapons</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrading Weapons</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrading Weapons</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleFullAccess</Data></Cell>
+    <Cell><Data ss:Type="String">Full Station Access</Data></Cell>
+    <Cell><Data ss:Type="String">Full Station Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleNeuromodsAndAbilities</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromods and Abilities</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromods and Abilities</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleRest</Data></Cell>
+    <Cell><Data ss:Type="String">Rest</Data></Cell>
+    <Cell><Data ss:Type="String">Rest</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleZeroG</Data></Cell>
+    <Cell><Data ss:Type="String">Zero G</Data></Cell>
+    <Cell><Data ss:Type="String">Zero G</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_Hint_SaveLoad</Data></Cell>
+    <Cell><Data ss:Type="String">Prey will regularly auto-save your game. You can also use %default:quicksave% to quicksave whenever you like.</Data></Cell>
+    <Cell><Data ss:Type="String">Prey will regularly auto-save your game. You can also use %default:quicksave% to quicksave whenever you like.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleEntitlementUnlock</Data></Cell>
+    <Cell><Data ss:Type="String">Bonus Items</Data></Cell>
+    <Cell><Data ss:Type="String">Bonus Items</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleAccessGranted</Data></Cell>
+    <Cell><Data ss:Type="String">Access Granted</Data></Cell>
+    <Cell><Data ss:Type="String">Access Granted</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleOxygen</Data></Cell>
+    <Cell><Data ss:Type="String">Oxygen and Suit Integrity</Data></Cell>
+    <Cell><Data ss:Type="String">Oxygen and Suit Integrity</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleWeaponUpgradeKit</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Upgrade Kit</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Upgrade Kit</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleKeycodeGranted</Data></Cell>
+    <Cell><Data ss:Type="String">New Keycode</Data></Cell>
+    <Cell><Data ss:Type="String">New Keycode</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitleKeycardGranted</Data></Cell>
+    <Cell><Data ss:Type="String">New Keycard</Data></Cell>
+    <Cell><Data ss:Type="String">New Keycard</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TitlePasswordGranted</Data></Cell>
+    <Cell><Data ss:Type="String">New Password</Data></Cell>
+    <Cell><Data ss:Type="String">New Password</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s83"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_Titledemo</Data></Cell>
+    <Cell><Data ss:Type="String">Prey Demo Complete</Data></Cell>
+    <Cell><Data ss:Type="String">Play Your Way</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="51">
+    <Cell><Data ss:Type="String">ui_DemoCard</Data></Cell>
+    <Cell><Data ss:Type="String">Thank you for completing the Prey demo. Are you ready to unravel the mysteries of Talos I? Your Mind. The Station. Earth Itself. Nothing is Safe from the Alien Threat.&lt;br&gt;&lt;br&gt;Fight the Invasion on Friday, May 5th 2017.&lt;br&gt;&lt;br&gt;Preorder now to get the Exclusive Cosmonaut Shotgun Starter Pack, consisting of Morgan Yu’s family heirloom Margrave shotgun and tools to fight threats aboard Talos I including: three Neuromods players can spend to acquire new abilities, two Medkits, a Fabrication plan to create the Shotgun and Ammo, a starter kit for building tools and weapons, and a unique upgrade to help players preserve their limited resources.</Data></Cell>
+    <Cell><Data ss:Type="String">Thank you for completing the Prey demo. Are you ready to unravel the mysteries of Talos I? Your Mind. The Station. Earth Itself. Nothing is Safe from the Alien Threat.&lt;br&gt;&lt;br&gt;Fight the Invasion on Friday, May 5th 2017.&lt;br&gt;&lt;br&gt;Preorder now to get the Exclusive Cosmonaut Shotgun Starter Pack, consisting of Morgan Yu’s family heirloom Margrave shotgun and tools to fight threats aboard Talos I including: three Neuromods players can spend to acquire new abilities, two Medkits, a Fabrication plan to create the Shotgun and Ammo, a starter kit for building tools and weapons, and a unique upgrade to help players preserve their limited resources.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.51181102362204722"
+     x:Data="&amp;LTime restriction sample script"/>
+    <Footer x:Margin="0.51181102362204722" x:Data="Page &amp;P"/>
+    <PageMargins x:Bottom="0.98425196850393704" x:Left="0" x:Right="0"
+     x:Top="0.98425196850393704"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>70</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Zoom>115</Zoom>
+   <Selected/>
+   <TopRowVisible>142</TopRowVisible>
+   <LeftColumnVisible>1</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>151</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

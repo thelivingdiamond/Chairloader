@@ -1,0 +1,561 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10440</WindowHeight>
+  <WindowWidth>26490</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632096</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Cook&apos;s Request</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Cook&apos;s Request</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632097</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Will Mitchell is alive in the kitchen of the Crew Quarters and broadcasting over the loudspeakers. I should head to the cafeteria and investigate.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Will Mitchell is alive in the kitchen of the Crew Quarters and broadcasting over the loudspeakers. I should head to the cafeteria and investigate.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632098</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Will Mitchell is alive in the kitchen of the Crew Quarters, but he&apos;s besieged by crew members who are controlled by the Typhon. He says he&apos;ll talk to me if I deal with the attackers and secure the cafeteria.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Will Mitchell is alive in the kitchen of the Crew Quarters, but he&apos;s besieged by crew members who are controlled by the Typhon. He says he&apos;ll talk to me if I deal with the attackers and secure the cafeteria.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632099</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Someone is alive in the kitchen of the Crew Quarters. Now that you&apos;ve secured the cafeteria, he&apos;s willing to talk to you.[DEPRECATED, use SecureCafeteria]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Someone is alive in the kitchen of the Crew Quarters. Now that you&apos;ve secured the cafeteria, he&apos;s willing to talk to you.[DEPRECATED, use SecureCafeteria]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632100</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered Will Mitchell, the cook, trapped in the Crew Quarters kitchen. He wants me to retrieve an award from his cabin before he&apos;ll let me in.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered Will Mitchell, the cook, trapped in the Crew Quarters kitchen. He wants me to retrieve an award from his cabin before he&apos;ll let me in.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632101</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You&apos;ve proved yourself to be human to the cook&apos;s satisfaction. He&apos;s unlocked the door to the kitchen, and invited you in.[DEPRECATED, use ProveYoureHuman]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You&apos;ve proved yourself to be human to the cook&apos;s satisfaction. He&apos;s unlocked the door to the kitchen, and invited you in.[DEPRECATED, use ProveYoureHuman]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632102</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">DEPRECATED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">DEPRECATED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632103</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered Will Mitchell, the cook, trapped in the Crew Quarters kitchen. He says he had to &quot;take care of&quot; other crew members that tried to kill him. He&apos;ll let me into the freezer and give me access to their belongings if I bring him a functional water regulator from the Greenhouse in the Arboretum.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered Will Mitchell, the cook, trapped in the Crew Quarters kitchen. He says he had to &quot;take care of&quot; other crew members that tried to kill him. He&apos;ll let me into the freezer and give me access to their belongings if I bring him a functional water regulator from the Greenhouse in the Arboretum.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632104</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. He trapped me in the freezer along with the bodies of several crew members he killed and now I have to find a way out.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. He trapped me in the freezer along with the bodies of several crew members he killed and now I have to find a way out.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632105</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cafeteria</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cafeteria</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632106</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Investigate the Cafeteria</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Investigate the Cafeteria</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632107</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Secure the Cafeteria</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Secure the Cafeteria</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632108</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Survivor</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Survivor</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632109</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Talk to the survivor in the Kitchen</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Talk to the survivor in the Kitchen</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632110</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cook&apos;s Room</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cook&apos;s Room</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632111</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search the Cook&apos;s Room for his Award</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search the Cook&apos;s Room for his Award</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632112</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cook</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cook</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632113</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Give the Cook the Award</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Give the Cook the Award</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632114</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Kitchen</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Kitchen</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632115</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Enter Kitchen</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Enter Kitchen</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632116</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Water Regulator</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Water Regulator</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632117</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Get the water regulator in the Greenhouse</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Get the water regulator in the Greenhouse</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632118</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cook</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cook</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632119</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Bring the water regulator back to the cook</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Bring the water regulator back to the cook</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632120</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Regulator Socket</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Regulator Socket</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632121</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Replace the broken regulator</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Replace the broken regulator</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632122</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Freezer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Freezer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632123</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search the freezer for supplies</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search the freezer for supplies</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632124</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Escape the freezer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Escape the freezer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_844024417316182773</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. He trapped me in the freezer along with the bodies of several crew members he killed. I found my way out, but he&apos;s still at large.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. He trapped me in the freezer along with the bodies of several crew members he killed. I found my way out, but he&apos;s still at large.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_844024417316184058</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. I killed him.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. I killed him.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_844024417316184236</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. I stunned him into unconsciousness.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I discovered the cook trapped in the Crew Quarters kitchen is not actually Will Mitchell, but an escaped volunteer who&apos;s not a big fan of me or my family. I stunned him into unconsciousness.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced />
+   <Selected />
+   <TopRowVisible>18</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>6</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

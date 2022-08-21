@@ -1,0 +1,509 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11205</WindowHeight>
+  <WindowWidth>28245</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row>
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632629</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Mixed Signals</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Mixed Signals</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632630</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I found a broken satellite in the Machine Shop of Hardware Labs. There should be a functioning communication device attached to the satellite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I found a broken satellite in the Machine Shop of Hardware Labs. There should be a functioning communication device attached to the satellite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632631</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I had found a communication device on the satellite in Hardware Labs, but lost it somewhere around Talos I.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I had found a communication device on the satellite in Hardware Labs, but lost it somewhere around Talos I.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632632</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">A satellite orbiting Talos I has a damaged communications array. If the device is replaced, the satellite could be used to send psychotronic signals that will help me evade the Typhon Nightmare organism. I just have to find a replacement part somewhere.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">A satellite orbiting Talos I has a damaged communications array. If the device is replaced, the satellite could be used to send psychotronic signals that will help me evade the Typhon Nightmare organism. I just have to find a replacement part somewhere.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632633</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">[DEPRECATED]Finding a communication device and then placing it onto the satellite orbiting Talos 1 will restore functionality to that satellite. Once restored, the satellite can send signals that will assist with the new Typhon. I have retrieved a communication device. Now it&apos;s time to place it on the satellite in the orbiting Talos 1.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">[DEPRECATED]Finding a communication device and then placing it onto the satellite orbiting Talos 1 will restore functionality to that satellite. Once restored, the satellite can send signals that will assist with the new Typhon. I have retrieved a communication device. Now it&apos;s time to place it on the satellite in the orbiting Talos 1.</Data>
+    </Cell>
+    <Cell ss:Index="5">
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632634</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I fixed the satellite orbiting Talos I. Now I have two audio logs in my TranScribe that I can use to either attract or repel the Typhon Nightmare organism. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I fixed the satellite orbiting Talos I. Now I have two audio logs in my TranScribe that I can use to either attract or repel the Typhon Nightmare organism. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632635</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Communication Device</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Communication Device</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632636</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find a satellite communication device.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find a satellite communication device.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632637</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Communication Device</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Communication Device</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632638</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find a satellite communication device.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find a satellite communication device.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632639</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Exterior Satellite</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Exterior Satellite</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632640</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Place the device on the satellite in the Exterior.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Place the device on the satellite in the Exterior.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011456706</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (4).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (4).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011456990</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011456991</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (3).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (3).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011456992</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457012</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457013</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (2).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (2).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457014</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457049</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457050</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (1).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite uses remaining (1).</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457051</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457090</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457091</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Attract or repel the Typhon Nightmare using the satellite&apos;s signal.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Attract or repel the Typhon Nightmare using the satellite&apos;s signal.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457092</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457123</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457124</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Wait for satellite cooldown.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Wait for satellite cooldown.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457125</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite cooldown:</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Satellite cooldown:</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_761057048011457589</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I fixed the satellite orbiting Talos I. I used my audio log to send psychotronic signals to deal with the Typhon Nightmare organism. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I fixed the satellite orbiting Talos I. I used my audio log to send psychotronic signals to deal with the Typhon Nightmare organism. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected />
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>4</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+     <RangeSelection>R1:R1048576</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

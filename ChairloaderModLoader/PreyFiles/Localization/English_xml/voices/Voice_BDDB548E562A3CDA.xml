@@ -1,0 +1,1246 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF65EB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I've run a meta-analysis on the data you provided...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I've run a meta-analysis on the data you provided...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF65FB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoactive asomatous transmi--[voice malfunctioning]. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoactive asomatous transmi--[voice malfunctioning]. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6647</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lab safety regulations--[voice malfunctioning]--of all extremeties.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lab safety regulations--[voice malfunctioning]--of all extremeties.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF66ED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Corpus collosum-um-um-um-um bridging signal legion.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Corpus collosum-um-um-um-um bridging signal legion.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6713</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The new research director-or-or-or-or would like to meet everyone.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The new research director-or-or-or-or would like to meet everyone.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6853</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu? [operator malfunctioning]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu? [operator malfunctioning]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF685D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I have a lab report for Dr. Yu. It's... urgent.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I have a lab report for Dr. Yu. It's... urgent.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6874</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Is this part of the experiment? I predict... I will find you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Is this part of the experiment? I predict... I will find you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF68DE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I've been instructed to prep you for cell death.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I've been instructed to prep you for cell death.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF68E7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please keep your volunteer number fully visible at all times. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please keep your volunteer number fully visible at all times. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6904</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu. Your sample set is... corrupt.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu. Your sample set is... corrupt.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF690C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Performing localized spatial analysis.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Performing localized spatial analysis.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6923</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject position uncertain. Possible sign of passive aggression.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject position uncertain. Possible sign of passive aggression.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6936</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject exibiting covert behavior.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject exibiting covert behavior.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6947</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject demonstrating fear response. Recommend increase stimulus. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject demonstrating fear response. Recommend increase stimulus. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6962</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject demonstrates unwillingness to face the truth.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject demonstrates unwillingness to face the truth.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF697B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject is showing adverse reaction to lab conditions.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log. Subject is showing adverse reaction to lab conditions.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF69DA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please remove your psychoscope at all times...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please remove your psychoscope at all times...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6A25</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'd like to take a reading if you'll permit me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'd like to take a reading if you'll permit me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6A3C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you a test subject... or staff?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you a test subject... or staff?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6A55</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You won't understand until you let me help you stop living...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You won't understand until you let me help you stop living...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6AA5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">In the lab we have means--[voice malfunctioning]--concerning your mind.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">In the lab we have means--[voice malfunctioning]--concerning your mind.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6AC8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A scientist must follow the evidence wherever it leads... even if painfu--[voice malfunctioning].</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A scientist must follow the evidence wherever it leads... even if painfu--[voice malfunctioning].</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6AFA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reason will always guide you to the right con-con-con-concussions.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reason will always guide you to the right con-con-con-concussions.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6B10</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It's important to set aside all emotion. I can help you with that...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It's important to set aside all emotion. I can help you with that...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6B70</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you frightened of what the test might reveal? Don't be. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you frightened of what the test might reveal? Don't be. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6B88</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your psychometric data keeps... changing. Corrupted. Does--[voice malfunctioning]--worry you?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your psychometric data keeps... changing. Corrupted. Does--[voice malfunctioning]--worry you?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6E11</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I should take a reading.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I should take a reading.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF6E20</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Interesting. I should collect a sample.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Interesting. I should collect a sample.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF7544</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New data?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New data?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF75A3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Statistical aberration...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Statistical aberration...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BF7722</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You should be under observation, Dr. Yu. Impartial. Precise. Vigilant. Aren't you ready for that? </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You should be under observation, Dr. Yu. Impartial. Precise. Vigilant. Aren't you ready for that? </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C1321D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(buzzing)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(buzzing)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13230</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(buzzing)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(buzzing)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C1323E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log: Subject is ag-ag-ag-agitated.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log: Subject is ag-ag-ag-agitated.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13244</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You're feelings are in the way.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You're feelings are in the way.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C1324A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Stop resisting.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Stop resisting.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13250</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Testing.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Testing.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13255</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This experiment is vital.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This experiment is vital.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13277</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log: Subject vacated the test area.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log: Subject vacated the test area.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C1327C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu? We haven't finished our work.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu? We haven't finished our work.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13281</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No subject to observe. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No subject to observe. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C132C0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Test subject is inert.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Test subject is inert.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C132C9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log: Testing complete. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Log: Testing complete. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C132D8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Experiment was a failure.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Experiment was a failure.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C132F6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[operator malfunctioning]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[operator malfunctioning]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13303</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[operator malfunctioning]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[operator malfunctioning]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C1331E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I see you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I see you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13323</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Now we can work.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Now we can work.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13333</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13354</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No evidence found.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No evidence found.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13358</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Data is inconclusive. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Data is inconclusive. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C1335D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Halting data collection and analysis. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Halting data collection and analysis. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C13361</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Search results... subject not found.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Search results... subject not found.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C158FE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Typhon Anthrophantasmus. Metempsychotic remainder organism.  </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Typhon Anthrophantasmus. Metempsychotic remainder organism.  </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C15959</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Next entry. Typhon Cacoplasmus. Common name, mimic. Indexing...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Next entry. Typhon Cacoplasmus. Common name, mimic. Indexing...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C15EA9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There is no ought...there is no [voice malfunctioning]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There is no ought...there is no [voice malfunctioning]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C350FC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[quick warning beeps]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[quick warning beeps]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3512F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[quick warning beeps]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[quick warning beeps]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C35165</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm sure you didn't intend that.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm sure you didn't intend that.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C35172</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you aware you harmed me?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you aware you harmed me?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C351AD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I observe that you damaged me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I observe that you damaged me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C351E8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please stop.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please stop.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3765E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[operator malfunctioning]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[operator malfunctioning]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C376F8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hello, Dr. Yu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hello, Dr. Yu.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C37709</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C37734</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hello.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hello.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3777D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Excuse me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Excuse me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C37795</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[short beep]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[short beep]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C377B3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You probably didn't see me there.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You probably didn't see me there.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C377EB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Should I change position?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Should I change position?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C37822</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping, whirring]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping, whirring]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C37830</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping, whirring]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping, whirring]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C37911</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Scanning...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Scanning...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C38149</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Current conditions do not allow for safe interaction.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Current conditions do not allow for safe interaction.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C38244</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nueroimaging shows your psychoactive potential is at or near peak level.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nueroimaging shows your psychoactive potential is at or near peak level.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C38795</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Neuroimaging shows your mental resources are below peak.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Neuroimaging shows your mental resources are below peak.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C387A1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This should help.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This should help.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A255</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are we conducting an experiment today?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are we conducting an experiment today?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A260</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[beeping]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A2A8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Our Laboratory Quality Assurance Plan is up to date.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Our Laboratory Quality Assurance Plan is up to date.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A2B2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Try Deep Storage if you need to access archived data.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Try Deep Storage if you need to access archived data.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A2D0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The procedures manual specifies no eating, drinking, or smoking. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The procedures manual specifies no eating, drinking, or smoking. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A2DE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm afraid most systems are damaged or locked down at the moment.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm afraid most systems are damaged or locked down at the moment.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A2FC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Calibrating.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Calibrating.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A329</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Primarily, I take readings and analyze data. I also provide reference lookups. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Primarily, I take readings and analyze data. I also provide reference lookups. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A33C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu profile indicates subject and researcher. Unusual.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu profile indicates subject and researcher. Unusual.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A3D3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">But this is often ignored. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">But this is often ignored. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A3FF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A470</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your neural patterns show signs of Typhon integration.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your neural patterns show signs of Typhon integration.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C3A497</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your neural pattern shows no sign of Typhon material.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your neural pattern shows no sign of Typhon material.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D048F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I am a Sybil 495 Science Class Operator.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I am a Sybil 495 Science Class Operator.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D04E5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Everyone's eager to see what you're capable of, Dr. Yu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Everyone's eager to see what you're capable of, Dr. Yu.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D052F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar has over a dozen state of the art facilities across the globe. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar has over a dozen state of the art facilities across the globe. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D0577</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm sure your brother is waiting for you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm sure your brother is waiting for you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D08F6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The elevator will take you directly to the testing area.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The elevator will take you directly to the testing area.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D0927</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know I am.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I know I am.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D099E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">More, if you count the entire Earth-Moon system.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">More, if you count the entire Earth-Moon system.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D0A48</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">My instruments are calibrated for high volume data analysis and live readings.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">My instruments are calibrated for high volume data analysis and live readings.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570D0AD9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't worry. Nothing will be missed.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't worry. Nothing will be missed.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EA0CA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Our research often requires intense focus and long hours.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Our research often requires intense focus and long hours.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EA0CF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All our labs meet the minimum--(corrupt machine sound)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All our labs meet the minimum--(corrupt machine sound)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EB4A4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can provide you with a psychoactive stimulant after the test.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can provide you with a psychoactive stimulant after the test.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EB583</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If necessary.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If necessary.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EB634</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Strange. That's never happened before.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Strange. That's never happened before.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EB65D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'll have to file a maintenance request.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'll have to file a maintenance request.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E570EB667</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please excuse me, Dr. Yu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please excuse me, Dr. Yu.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57199239</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It won't be long before you're on a shuttle bound for Talos I. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It won't be long before you're on a shuttle bound for Talos I. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571FDA12</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning! Overload instigated-ed-ed-ed-(error sounds)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning! Overload instigated-ed-ed-ed-(error sounds)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57214E6F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That should help you concentrate.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That should help you concentrate.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57214E90</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You should feel more alert.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You should feel more alert.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

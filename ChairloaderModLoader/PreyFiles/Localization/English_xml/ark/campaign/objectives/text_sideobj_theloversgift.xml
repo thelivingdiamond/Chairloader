@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11235</WindowHeight>
+  <WindowWidth>21300</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="10" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="328.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="245.25"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632728</Data></Cell>
+    <Cell><Data ss:Type="String">The Lover's Gift</Data></Cell>
+    <Cell><Data ss:Type="String">The Lover's Gift</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632729</Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED]Lawrence left a gift for his lover Elle under rocks near a tree that he previously carved their initials into in the Arboretum.</Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED]Lawrence left a gift for his lover Elle under rocks near a tree that he previously carved their initials into in the Arboretum.</Data></Cell>
+    <Cell ss:Index="5"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632730</Data></Cell>
+    <Cell><Data ss:Type="String">A crew member named Lawrence Baxter left a gift for his lover Elle Gold under rocks near a tree that he carved their initials into in the Arboretum. I could find whatever it is, in case it's useful. Tracking Elle with a Security Station might lead me to the site.</Data></Cell>
+    <Cell><Data ss:Type="String">A crew member named Lawrence Baxter left a gift for his lover Elle Gold under rocks near a tree that he carved their initials into in the Arboretum. I could find whatever it is, in case it's useful. Tracking Elle with a Security Station might lead me to the site.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632731</Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED] Lawrence left a key for his lover Elle under rocks near a tree that he previously carved their initials into in the Arboretum. Use the key to find what Lawrence left for Elle.</Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED] Lawrence left a key for his lover Elle under rocks near a tree that he previously carved their initials into in the Arboretum. Use the key to find what Lawrence left for Elle.</Data></Cell>
+    <Cell ss:Index="5"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632732</Data></Cell>
+    <Cell><Data ss:Type="String">Find the tree with the lovers' initials</Data></Cell>
+    <Cell><Data ss:Type="String">Find the tree with the lovers' initials</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632733</Data></Cell>
+    <Cell><Data ss:Type="String">Look for the gift under some rocks near the tree.</Data></Cell>
+    <Cell><Data ss:Type="String">Look for the gift under some rocks near the tree.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632734</Data></Cell>
+    <Cell><Data ss:Type="String">Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632735</Data></Cell>
+    <Cell><Data ss:Type="String">Use keycard to open the storage closet</Data></Cell>
+    <Cell><Data ss:Type="String">Use keycard to open the storage closet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417316859154</Data></Cell>
+    <Cell><Data ss:Type="String">A crew member named Lawrence Baxter left a gift for his lover Elle Gold under rocks near a tree that he carved their initials into in the Arboretum. I found the tree and the gift nearby.</Data></Cell>
+    <Cell><Data ss:Type="String">A crew member named Lawrence Baxter left a gift for his lover Elle Gold under rocks near a tree that he carved their initials into in the Arboretum. I found the tree and the gift nearby.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>12</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

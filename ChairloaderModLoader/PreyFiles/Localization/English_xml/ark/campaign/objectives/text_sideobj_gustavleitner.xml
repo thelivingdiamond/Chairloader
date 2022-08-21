@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11400</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="8" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632359</Data></Cell>
+    <Cell><Data ss:Type="String">Gustav Leitner</Data></Cell>
+    <Cell><Data ss:Type="String">Gustav Leitner</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632360</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe asked me retrieve a connectome related to the late Gustav Leitner, a famed pianist who had his brain scanned at TranStar. Igwe gave me an audio sample of a concerto snippet that will open a safe in his cabin when played from my TranScribe.</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe asked me retrieve a connectome related to the late Gustav Leitner, a famed pianist who had his brain scanned at TranStar. Igwe gave me an audio sample of a concerto snippet that will open a safe in his cabin when played from my TranScribe.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632361</Data></Cell>
+    <Cell><Data ss:Type="String">Leitner Connectome</Data></Cell>
+    <Cell><Data ss:Type="String">Leitner Connectome</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632362</Data></Cell>
+    <Cell><Data ss:Type="String">Retrieve Gustav Leitner's Connectome from Dr. Igwe's Quarters.</Data></Cell>
+    <Cell><Data ss:Type="String">Retrieve Gustav Leitner's Connectome from Dr. Igwe's Quarters.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632363</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632364</Data></Cell>
+    <Cell><Data ss:Type="String">Return Gustav Leitner's Connectome to Dr. Igwe.</Data></Cell>
+    <Cell><Data ss:Type="String">Return Gustav Leitner's Connectome to Dr. Igwe.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417316350090</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe asked me retrieve a connectome related to the late Gustav Leitner, a famed pianist who had his brain scanned at TranStar. I found the connectome in Igwe's cabin. He was very grateful when I returned the data to him.</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe asked me retrieve a connectome related to the late Gustav Leitner, a famed pianist who had his brain scanned at TranStar. I found the connectome in Igwe's cabin. He was very grateful when I returned the data to him.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>6</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

@@ -1,0 +1,773 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Susan Kath</LastAuthor>
+  <LastSaved>2017-01-09T02:39:23Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11400</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Bottom"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="105" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultRowHeight="15">
+   <Column ss:Index="2" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="567.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="522.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561148</Data></Cell>
+    <Cell><Data ss:Type="String">Apex Tendril</Data></Cell>
+    <Cell><Data ss:Type="String">Apex Tendril</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561149</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNABLE TO CONNECT TO PSYCHOTRONICS DATABASE&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A tiny part of the Apex. Intent on devouring everything in its path. Attracted to movement. No way to permanently kill these. Use Nullwave or Q-beam to beat them back.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNABLE TO CONNECT TO PSYCHOTRONICS DATABASE&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A tiny part of the Apex. Intent on devouring everything in its path. Attracted to movement. No way to permanently kill these. Use Nullwave or Q-beam to beat them back.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561150</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNABLE TO CONNECT TO PSYCHOTRONICS DATABASE&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A tiny part of the Apex. Intent on devouring everything in its path. Attracted to movement. No way to permanently kill these. Use Nullwave or Q-beam to beat them back.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNABLE TO CONNECT TO PSYCHOTRONICS DATABASE&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A tiny part of the Apex. Intent on devouring everything in its path. Attracted to movement. No way to permanently kill these. Use Nullwave or Q-beam to beat them back.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561151</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;NONE</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;NONE</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561152</Data></Cell>
+    <Cell><Data ss:Type="String">Coral Node</Data></Cell>
+    <Cell><Data ss:Type="String">Coral Node</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561153</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2057-050565&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;Out of all the samples recovered from the &lt;i&gt;Vorona I&lt;/i&gt; site, none have proven as perplexing as the Coral. It's unclear at the moment whether this is some sort of new Typhon species or something as simple as waste material from the Weavers. Further study is warranted.&lt;br&gt;&lt;br&gt;&lt;b&gt;RAW SCAN DATA SUMMARY:&lt;/b&gt; Microscopic elements demonstrate STRONG correlation between patterns of connections within the Coral and Connectomes of volunteers, employees, and guests found in TranStar's database. Recommend exhaustive pattern matching. Early conjecture: the Psyche of Typhon victims is recreated... or STORED within the Coral. Purpose unknown.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2057-050565&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;Out of all the samples recovered from the &lt;i&gt;Vorona I&lt;/i&gt; site, none have proven as perplexing as the Coral. It's unclear at the moment whether this is some sort of new Typhon species or something as simple as waste material from the Weavers. Further study is warranted.&lt;br&gt;&lt;br&gt;&lt;b&gt;RAW SCAN DATA SUMMARY:&lt;/b&gt; Microscopic elements demonstrate STRONG correlation between patterns of connections within the Coral and Connectomes of volunteers, employees, and guests found in TranStar's database. Recommend exhaustive pattern matching. Early conjecture: the Psyche of Typhon victims is recreated... or STORED within the Coral. Purpose unknown.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561154</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2057-050565&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;Out of all the samples recovered from the &lt;i&gt;Vorona I&lt;/i&gt; site, none have proved as perplexing as the Coral. It's unclear at the moment whether this is some sort of new Typhon species or something as simple as waste material from the Weavers. Preliminary research shows a surprising similarity to neural networks, but further study is warranted.&lt;br&gt;&lt;br&gt;&lt;b&gt;RAW SCAN DATA SUMMARY:&lt;/b&gt; Microscopic elements demonstrate STRONG correlation between patterns of connections within the Coral and Connectomes of volunteers, employees, and guests found in TranStar's database. Recommend exhaustive pattern matching. Early conjecture: the Psyche of Typhon victims is recreated... or STORED within the Coral. Purpose unknown.&lt;br&gt;&lt;br&gt;&lt;b&gt;RAW SCAN DATA SUMMARY:&lt;/b&gt; Macrolevel analysis of the Coral ALSO shows resemblance to a neural network - like a vast disembodied nervous system. Evidence of increasingly frequent and rapid SIGNALING between elements, as well as broadcasting neotic signatures OUTSIDE itself. &lt;br&gt;&lt;br&gt;Requesting exhaustive database comparison... &lt;br&gt;ERROR... Deep Storage server Arx-F30 not responding.&lt;br&gt;ERROR... Deep Storage server Arx-F31 not responding.&lt;br&gt;Remote connection timed out. Manual upload required.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;One big Typhon communication beacon. But who is it calling?</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2057-050565&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;Out of all the samples recovered from the &lt;i&gt;Vorona I&lt;/i&gt; site, none have proved as perplexing as the Coral. It's unclear at the moment whether this is some sort of new Typhon species or something as simple as waste material from the Weavers. Preliminary research shows a surprising similarity to neural networks, but further study is warranted.&lt;br&gt;&lt;br&gt;&lt;b&gt;RAW SCAN DATA SUMMARY:&lt;/b&gt; Microscopic elements demonstrate STRONG correlation between patterns of connections within the Coral and Connectomes of volunteers, employees, and guests found in TranStar's database. Recommend exhaustive pattern matching. Early conjecture: the Psyche of Typhon victims is recreated... or STORED within the Coral. Purpose unknown.&lt;br&gt;&lt;br&gt;&lt;b&gt;RAW SCAN DATA SUMMARY:&lt;/b&gt; Macrolevel analysis of the Coral ALSO shows resemblance to a neural network - like a vast disembodied nervous system. Evidence of increasingly frequent and rapid SIGNALING between elements, as well as broadcasting neotic signatures OUTSIDE itself. &lt;br&gt;&lt;br&gt;Requesting exhaustive database comparison... &lt;br&gt;ERROR... Deep Storage server Arx-F30 not responding.&lt;br&gt;ERROR... Deep Storage server Arx-F31 not responding.&lt;br&gt;Remote connection timed out. Manual upload required.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;One big Typhon communication beacon. But who is it calling?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561155</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561156</Data></Cell>
+    <Cell><Data ss:Type="String">Corrupted Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Corrupted Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561157</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1258-011835&lt;br&gt;Classification: Equipment malfunction&lt;br&gt;Reporting officer: Patricia Wang&lt;br&gt;&lt;br&gt;Incident summary: I was called to the scene by Carlos Popinga, who requested assistance with another haywire Operator near the Arboretum lift. Popinga explained he had been sent to fix the main lift, which had been malfunctioning. He claims his Engineering Operator appeared to malfunction upon approaching the lift and became hostile when Popinga attempted to deactivate it. I used an EMP charge to neutralize the Operator. Popinga was sent to Trauma with severe burns. &lt;br&gt;&lt;br&gt;The engineers down in Hardware Labs have already checked out the Operator. They tell me it's been physically rewired and completely reprogrammed, just like the last four cases. This looks like sabotage to me.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1258-011835&lt;br&gt;Classification: Equipment malfunction&lt;br&gt;Reporting officer: Patricia Wang&lt;br&gt;&lt;br&gt;Incident summary: I was called to the scene by Carlos Popinga, who requested assistance with another haywire Operator near the Arboretum lift. Popinga explained he had been sent to fix the main lift, which had been malfunctioning. He claims his Engineering Operator appeared to malfunction upon approaching the lift and became hostile when Popinga attempted to deactivate it. I used an EMP charge to neutralize the Operator. Popinga was sent to Trauma with severe burns. &lt;br&gt;&lt;br&gt;The engineers down in Hardware Labs have already checked out the Operator. They tell me it's been physically rewired and completely reprogrammed, just like the last four cases. This looks like sabotage to me.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561158</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1258-011835&lt;br&gt;Classification: Equipment malfunction&lt;br&gt;Reporting officer: Patricia Wang&lt;br&gt;&lt;br&gt;Incident summary: I was called to the scene by Carlos Popinga, who requested assistance with another haywire Operator near the Arboretum lift. Popinga explained he had been sent to fix the main lift, which had been malfunctioning. He claims his Engineering Operator appeared to malfunction upon approaching the lift and became hostile when Popinga attempted to deactivate it. I used an EMP charge to neutralize the Operator. Popinga was sent to Trauma with severe burns. &lt;br&gt;&lt;br&gt;The engineers down in Hardware Labs have already checked out the Operator. They tell me it's been physically rewired and completely reprogrammed, just like the last four cases. This looks like sabotage to me.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Corrupted by some sort of Typhon ability. Will try to incinerate you at close range. Keep away. Either freeze in place with GLOO cannon or knock out with EMP. Metal body shrugs off most rounds.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1258-011835&lt;br&gt;Classification: Equipment malfunction&lt;br&gt;Reporting officer: Patricia Wang&lt;br&gt;&lt;br&gt;Incident summary: I was called to the scene by Carlos Popinga, who requested assistance with another haywire Operator near the Arboretum lift. Popinga explained he had been sent to fix the main lift, which had been malfunctioning. He claims his Engineering Operator appeared to malfunction upon approaching the lift and became hostile when Popinga attempted to deactivate it. I used an EMP charge to neutralize the Operator. Popinga was sent to Trauma with severe burns. &lt;br&gt;&lt;br&gt;The engineers down in Hardware Labs have already checked out the Operator. They tell me it's been physically rewired and completely reprogrammed, just like the last four cases. This looks like sabotage to me.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Corrupted by some sort of Typhon ability. Will try to incinerate you at close range. Keep away. Either freeze in place with GLOO cannon or knock out with EMP. Metal body shrugs off most rounds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561159</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;GLOO&lt;br&gt;Melee&lt;br&gt;Recycler&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Machine Mind I&lt;/i&gt;&lt;br&gt;&lt;i&gt;Remote Manipulation I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;GLOO&lt;br&gt;Melee&lt;br&gt;Recycler&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Machine Mind I&lt;/i&gt;&lt;br&gt;&lt;i&gt;Remote Manipulation I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561160</Data></Cell>
+    <Cell><Data ss:Type="String">Cystoid</Data></Cell>
+    <Cell><Data ss:Type="String">Cystoid</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561161</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #1824-122864&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;It's fortunate the Weaver produces so many of these because keeping Cystoids alive for long outside of those nests has proven to be exceptionally difficult. Despite the lack of any visible sensory organs, each Cystoid seems capable of detecting us through unknown means, detonating on proximity. If we can figure out what it uses to &quot;see,&quot; we may be able find a way to &quot;blind&quot; it long enough to get a closer look.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Attracted to movement. Throw something to distract them. Try to group them up to take them out with fewer shots. Releases a burst of radiation on death.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #1824-122864&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;It's fortunate the Weaver produces so many of these because keeping Cystoids alive for long outside of those nests has proven to be exceptionally difficult. Despite the lack of any visible sensory organs, each Cystoid seems capable of detecting us through unknown means, detonating on proximity. If we can figure out what it uses to &quot;see,&quot; we may be able find a way to &quot;blind&quot; it long enough to get a closer look.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Attracted to movement. Throw something to distract them. Try to group them up to take them out with fewer shots. Releases a burst of radiation on death.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561162</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Kinetic Blast I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Kinetic Blast I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561163</Data></Cell>
+    <Cell><Data ss:Type="String">Cystoid Nest</Data></Cell>
+    <Cell><Data ss:Type="String">Cystoid Nest</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561164</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-010265&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;The outer layer of each Cystoid nest appears to be made of an exceptionally thin layer of the same material that makes up most Typhon. Indeed, the nest appears to be just as fragile as the Cystoids themselves, making it less of a protective structure and more like a living mine. It's possible that the Weaver uses these to mark and even defend its territory from any kind of intruder. Initial scans reveal they are constantly leaking lethal levels of radiation. &lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Don't touch unless you want a cystoid swarm.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-010265&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;The outer layer of each Cystoid nest appears to be made of an exceptionally thin layer of the same material that makes up most Typhon. Indeed, the nest appears to be just as fragile as the Cystoids themselves, making it less of a protective structure and more like a living mine. It's possible that the Weaver uses these to mark and even defend its territory from any kind of intruder. Initial scans reveal they are constantly leaking lethal levels of radiation. &lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Don't touch unless you want a cystoid swarm.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561165</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-010265&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;The outer layer of each Cystoid nest appears to be made of an exceptionally thin layer of the same material that makes up most Typhon. Indeed, the nest appears to be just as fragile as the Cystoids themselves, making it less of a protective structure and more like a living mine. It's possible that the Weaver uses these to mark and even defend its territory from any kind of intruder. Initial scans reveal they are constantly leaking lethal levels of radiation. &lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Steer clear unless you want radiation sickness or a swarm of cystoids after you.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-010265&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;The outer layer of each Cystoid nest appears to be made of an exceptionally thin layer of the same material that makes up most Typhon. Indeed, the nest appears to be just as fragile as the Cystoids themselves, making it less of a protective structure and more like a living mine. It's possible that the Weaver uses these to mark and even defend its territory from any kind of intruder. Initial scans reveal they are constantly leaking lethal levels of radiation. &lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Steer clear unless you want radiation sickness or a swarm of cystoids after you.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561166</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561167</Data></Cell>
+    <Cell><Data ss:Type="String">Human</Data></Cell>
+    <Cell><Data ss:Type="String">Human</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561168</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Human &lt;br&gt;Scientific Name: &lt;i&gt;Homo sapiens&lt;/i&gt;&lt;br&gt;&lt;br&gt;Humans, like most mammals, possess a low natural psychoactive potential. Attempts to alter brain function through artificial means are usually temporary at best, or harmful and addictive at worst. The addition of the [REDACTED], derived from the Typhon organisms, temporarily weakens the elasticity of human neuron connections and allows for the addition of new, synthetic neurons to catalyze changes in the subject's brain.&lt;br&gt;&lt;br&gt;Removal of this serum will cause the human body to reject the new neurons and connections, effectively resetting the brain back to its original state. This process may result in memory loss and other as of yet undiscovered side-effects.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Human &lt;br&gt;Scientific Name: &lt;i&gt;Homo sapiens&lt;/i&gt;&lt;br&gt;&lt;br&gt;Humans, like most mammals, possess a low natural psychoactive potential. Attempts to alter brain function through artificial means are usually temporary at best, or harmful and addictive at worst. The addition of the [REDACTED], derived from the Typhon organisms, temporarily weakens the elasticity of human neuron connections and allows for the addition of new, synthetic neurons to catalyze changes in the subject's brain.&lt;br&gt;&lt;br&gt;Removal of this serum will cause the human body to reject the new neurons and connections, effectively resetting the brain back to its original state. This process may result in memory loss and other as of yet undiscovered side-effects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561169</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Human &lt;br&gt;Scientific Name: &lt;i&gt;Homo sapiens&lt;/i&gt;&lt;br&gt;&lt;br&gt;Humans, like most mammals, possess a low natural psychoactive potential. Attempts to alter brain function through artificial means are usually temporary at best, or harmful and addictive at worst. The addition of the [REDACTED], derived from the Typhon organisms, temporarily weakens the elasticity of human neuron connections and allows for the addition of new, synthetic neurons to catalyze changes in the subject's brain.&lt;br&gt;&lt;br&gt;Removal of this serum will cause the human body to reject the new neurons and connections, effectively resetting the brain back to its original state. This process may result in memory loss and other as of yet undiscovered side-effects.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Human &lt;br&gt;Scientific Name: &lt;i&gt;Homo sapiens&lt;/i&gt;&lt;br&gt;&lt;br&gt;Humans, like most mammals, possess a low natural psychoactive potential. Attempts to alter brain function through artificial means are usually temporary at best, or harmful and addictive at worst. The addition of the [REDACTED], derived from the Typhon organisms, temporarily weakens the elasticity of human neuron connections and allows for the addition of new, synthetic neurons to catalyze changes in the subject's brain.&lt;br&gt;&lt;br&gt;Removal of this serum will cause the human body to reject the new neurons and connections, effectively resetting the brain back to its original state. This process may result in memory loss and other as of yet undiscovered side-effects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561170</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Psychic&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Psychic&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561171</Data></Cell>
+    <Cell><Data ss:Type="String">Mimic</Data></Cell>
+    <Cell><Data ss:Type="String">Mimic</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561172</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Mimic &lt;br&gt;Scientific Name: &lt;i&gt;Typhon cacoplasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;One of the first Typhon discovered during the &lt;i&gt;Vorona I&lt;/i&gt; incident in 1960, Mimics are capable of imitating nearby objects. &lt;br&gt;&lt;br&gt;During incident case #0648-040163, it was observed that Mimics use other living organisms as a reproduction medium, killing their prey in the process. &lt;br&gt;&lt;br&gt;In accordance with the Pobeg Protocol, Mimic specimens are not to be released in environments with a containment rating of less than S4.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Mimic &lt;br&gt;Scientific Name: &lt;i&gt;Typhon cacoplasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;One of the first Typhon discovered during the &lt;i&gt;Vorona I&lt;/i&gt; incident in 1960, Mimics are capable of imitating nearby objects. &lt;br&gt;&lt;br&gt;During incident case #0648-040163, it was observed that Mimics use other living organisms as a reproduction medium, killing their prey in the process. &lt;br&gt;&lt;br&gt;In accordance with the Pobeg Protocol, Mimic specimens are not to be released in environments with a containment rating of less than S4.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561173</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Mimic &lt;br&gt;Scientific Name: &lt;i&gt;Typhon cacoplasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;One of the first Typhon discovered during the &lt;i&gt;Vorona I&lt;/i&gt; incident in 1960, Mimics are capable of imitating nearby objects. &lt;br&gt;&lt;br&gt;During incident case #0648-040163, it was observed that Mimics use other living organisms as a reproduction medium, killing their prey in the process. &lt;br&gt;&lt;br&gt;In accordance with the Pobeg Protocol, Mimic specimens are not to be released in environments with a containment rating of less than S4.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Imitation power seems limited to objects roughly the mass of the mimic itself. Could the psychoscope be modified somehow to detect hidden ones? Get to high ground and immobilize with GLOO cannon.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Mimic &lt;br&gt;Scientific Name: &lt;i&gt;Typhon cacoplasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;One of the first Typhon discovered during the &lt;i&gt;Vorona I&lt;/i&gt; incident in 1960, Mimics are capable of imitating nearby objects. &lt;br&gt;&lt;br&gt;During incident case #0648-040163, it was observed that Mimics use other living organisms as a reproduction medium, killing their prey in the process. &lt;br&gt;&lt;br&gt;In accordance with the Pobeg Protocol, Mimic specimens are not to be released in environments with a containment rating of less than S4.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Imitation power seems limited to objects roughly the mass of the mimic itself. Could the psychoscope be modified somehow to detect hidden ones? Get to high ground and immobilize with GLOO cannon.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561174</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Q-Beam&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Mimic Matter I, II, III&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Q-Beam&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Mimic Matter I, II, III&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561175</Data></Cell>
+    <Cell><Data ss:Type="String">Greater Mimic</Data></Cell>
+    <Cell><Data ss:Type="String">Greater Mimic</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561176</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-052465&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;A preliminary observation reveals that specimen 14 is moderately larger than any of the other Mimic specimens collected from the &lt;i&gt;Kletka&lt;/i&gt; incident, but a far more fascinating aspect is what appears to be its advanced mimicry ability. Specimen 14 has on numerous occasions demonstrated the capability of reproducing objects whose size and complexity far outstrip the abilities of any of the other specimens. What's more, many of these reproductions appear to be fully functioning.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-052465&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;A preliminary observation reveals that specimen 14 is moderately larger than any of the other Mimic specimens collected from the &lt;i&gt;Kletka&lt;/i&gt; incident, but a far more fascinating aspect is what appears to be its advanced mimicry ability. Specimen 14 has on numerous occasions demonstrated the capability of reproducing objects whose size and complexity far outstrip the abilities of any of the other specimens. What's more, many of these reproductions appear to be fully functioning.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561177</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-052465&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;A preliminary observation reveals that specimen 14 is moderately larger than any of the other Mimic specimens collected from the Kletka incident, but a far more fascinating aspect is what appears to be its advanced mimicry ability. Specimen 14 has on numerous occasions demonstrated the capability of reproducing objects whose size and complexity far outstrip the abilities of any of the other specimens. What's more, many of these reproductions appear to be fully functioning.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Can mimic turrets and Operators. Will attempt to go directly for the face. Stay away and immobilize with GLOO.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #2042-052465&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;A preliminary observation reveals that specimen 14 is moderately larger than any of the other Mimic specimens collected from the Kletka incident, but a far more fascinating aspect is what appears to be its advanced mimicry ability. Specimen 14 has on numerous occasions demonstrated the capability of reproducing objects whose size and complexity far outstrip the abilities of any of the other specimens. What's more, many of these reproductions appear to be fully functioning.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Can mimic turrets and Operators. Will attempt to go directly for the face. Stay away and immobilize with GLOO.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561178</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Q-Beam&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Mimic Matter I, II, III&lt;br&gt;Regeneration I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Q-Beam&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Mimic Matter I, II, III&lt;br&gt;Regeneration I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561179</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561180</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;Phantoms are not wholly alien. Created by Weavers using human remains, Phantoms have been known to exhibit human-like neural patterns at times. But as noted in observation log #1621-041477, while Phantoms may also attempt to reproduce human phrases, they do not appear to retain any form of actual speech or human comprehension.&lt;br&gt;&lt;br&gt;Due to the specimen's explosive speed, Phantom must be subdued or enclosures purged before attempting to enter.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;Phantoms are not wholly alien. Created by Weavers using human remains, Phantoms have been known to exhibit human-like neural patterns at times. But as noted in observation log #1621-041477, while Phantoms may also attempt to reproduce human phrases, they do not appear to retain any form of actual speech or human comprehension.&lt;br&gt;&lt;br&gt;Due to the specimen's explosive speed, Phantom must be subdued or enclosures purged before attempting to enter.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561181</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;Phantoms are not wholly alien. Created by Weavers using human remains, Phantoms have been known to exhibit human-like neural patterns at times. But as noted in observation log #1621-041477, while Phantoms may also attempt to reproduce human phrases, they do not appear to retain any form of actual speech or human comprehension.&lt;br&gt;&lt;br&gt;Due to the specimen's explosive speed, Phantoms must be subdued or enclosures purged before attempting to enter.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Use GLOO to slow them down. Telekinetic projectiles pack a big-ass punch but can be dodged. Better to get in close and personal. Tracking bracelets on them are still active.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus&lt;/i&gt;&lt;br&gt;&lt;br&gt;Phantoms are not wholly alien. Created by Weavers using human remains, Phantoms have been known to exhibit human-like neural patterns at times. But as noted in observation log #1621-041477, while Phantoms may also attempt to reproduce human phrases, they do not appear to retain any form of actual speech or human comprehension.&lt;br&gt;&lt;br&gt;Due to the specimen's explosive speed, Phantoms must be subdued or enclosures purged before attempting to enter.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Use GLOO to slow them down. Telekinetic projectiles pack a big-ass punch but can be dodged. Better to get in close and personal. Tracking bracelets on them are still active.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561182</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Kinetic Blast I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Kinetic Blast I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561183</Data></Cell>
+    <Cell><Data ss:Type="String">Etheric Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">Etheric Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561184</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Etheric Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychoetheric&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;Of particular note is the Etheric Phantom, which produces a particulate cloud that is highly toxic and disruptive to normal matter. The Phantom is capable of manipulating this particulate to create a duplicate of itself for short periods as demonstrated in test log #1629-0231.&lt;br&gt;&lt;br&gt;Please note that in addition to standard purge procedures required for Phantom study, any enclosure used to house an Etheric Phantom must have its atmosphere cycled.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Etheric Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychoetheric&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;Of particular note is the Etheric Phantom, which produces a particulate cloud that is highly toxic and disruptive to normal matter. The Phantom is capable of manipulating this particulate to create a duplicate of itself for short periods as demonstrated in test log #1629-0231.&lt;br&gt;&lt;br&gt;Please note that in addition to standard purge procedures required for Phantom study, any enclosure used to house an Etheric Phantom must have its atmosphere cycled.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561185</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Etheric Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychoetheric&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;Of particular note is the Etheric Phantom, which produces a particulate cloud that is highly toxic and disruptive to normal matter. The Phantom is capable of manipulating this particulate to create a duplicate of itself for short periods as demonstrated in test log #1629-0231.&lt;br&gt;&lt;br&gt;Please note that in addition to standard purge procedures required for Phantom study, any enclosure used to house an Etheric Phantom must have its atmosphere cycled.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Prefers close combat. Given the chance, will split into a weaker duplicate. GLOO down or use Nullwave to stop this. Try to attack from a distance. Avoid ether clouds.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Etheric Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychoetheric&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;Of particular note is the Etheric Phantom, which produces a particulate cloud that is highly toxic and disruptive to normal matter. The Phantom is capable of manipulating this particulate to create a duplicate of itself for short periods as demonstrated in test log #1629-0231.&lt;br&gt;&lt;br&gt;Please note that in addition to standard purge procedures required for Phantom study, any enclosure used to house an Etheric Phantom must have its atmosphere cycled.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Prefers close combat. Given the chance, will split into a weaker duplicate. GLOO down or use Nullwave to stop this. Try to attack from a distance. Avoid ether clouds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561186</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Q-Beam&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Phantom Shift I, II&lt;br&gt;Ether Resistance&lt;br&gt;Ether Absorption&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Q-Beam&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Phantom Shift I, II&lt;br&gt;Ether Resistance&lt;br&gt;Ether Absorption&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561191</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561192</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Thermal Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychothermal&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;As its name implies, this phantom manipulates thermal radiation. Infrared analysis showed it was able to radiate lethal levels of infrared energy as a defensive measure when threatened. Its most dangerous ability however, is the spontaneous eruption of superheated plasma from a distance. Range is uncertain due to the small scale of the enclosures. </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Thermal Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychothermal&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;As its name implies, this phantom manipulates thermal radiation. Infrared analysis showed it was able to radiate lethal levels of infrared energy as a defensive measure when threatened. Its most dangerous ability however, is the spontaneous eruption of superheated plasma from a distance. Range is uncertain due to the small scale of the enclosures. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561193</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Thermal Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychothermal&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;As its name implies, this phantom manipulates thermal radiation. Infrared analysis showed it was able to radiate lethal levels of infrared energy as a defensive measure when threatened. Its most dangerous ability however, is the spontaneous eruption of superheated plasma from a distance. Range is uncertain due to the small scale of the enclosures. &lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Running up to this thing is a bad idea. You'll burn. Appears to have an interaction with the Mimics - can temporarily charge them with the same thermal radiation. Flaming Mimics. Great.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Thermal Phantom &lt;br&gt;Scientific Name: &lt;i&gt;Typhon anthrophantasmus psychothermal&lt;/i&gt;&lt;br&gt;&lt;br&gt;It is unclear at this time what prompts a Weaver to invest additional resources in the creation of these more powerful phantoms. However, testing has revealed that these Phantom specimens are much more durable and more dangerous than their weaker cousins.&lt;br&gt;&lt;br&gt;&lt;b&gt;ADDENDUM:&lt;/b&gt;&lt;br&gt;As its name implies, this phantom manipulates thermal radiation. Infrared analysis showed it was able to radiate lethal levels of infrared energy as a defensive measure when threatened. Its most dangerous ability however, is the spontaneous eruption of superheated plasma from a distance. Range is uncertain due to the small scale of the enclosures. &lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Running up to this thing is a bad idea. You'll burn. Appears to have an interaction with the Mimics - can temporarily charge them with the same thermal radiation. Flaming Mimics. Great.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561194</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;Fire&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Superthermal I, II, III&lt;br&gt;Thermal Resistance&lt;br&gt;Thermal Absorption&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;Fire&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Superthermal I, II, III&lt;br&gt;Thermal Resistance&lt;br&gt;Thermal Absorption&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561195</Data></Cell>
+    <Cell><Data ss:Type="String">Voltaic Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">Voltaic Phantom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561196</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561197</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Never created in the lab - until now. Weaver's abilities must be adapting. Electromagnetic fields disrupt everything around it. Electrocutes anything dumb enough to get close. Like the thermal, keep as far away as possible. Looks like it can super-charge Mimics too.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Never created in the lab - until now. Weaver's abilities must be adapting. Electromagnetic fields disrupt everything around it. Electrocutes anything dumb enough to get close. Like the thermal, keep as far away as possible. Looks like it can super-charge Mimics too.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561198</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;Nullwave&lt;br&gt;Psychic&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Electrostatic Burst I, II, III&lt;br&gt;Electrostatic Resistance&lt;br&gt;Electrostatic Absorption&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;Nullwave&lt;br&gt;Psychic&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Electrostatic Burst I, II, III&lt;br&gt;Electrostatic Resistance&lt;br&gt;Electrostatic Absorption&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561199</Data></Cell>
+    <Cell><Data ss:Type="String">Mind-Controlled Human</Data></Cell>
+    <Cell><Data ss:Type="String">Mind-Controlled Human</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561200</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1546-031433&lt;br&gt;Classification: Containment breach&lt;br&gt;Reporting officer: Cory Richard&lt;br&gt;&lt;br&gt;Incident summary: I was on duty at about 1420 hours when I received a request from Dr. Hans Kelstrup for assistance in Live Exam. Upon arriving on the scene, I witnessed Dr. Trevor Young slamming lab instruments into some of the Typhon enclosures. When it became clear that he intended to break containment, I was forced to discharge my stun gun to subdue him. During my subsequent interview with Dr. Young, he seemed immensely distraught and unaware of my presence unless I came too close, whereupon he would turn violent. He has been turned over to the Trauma team and placed in quarantine for his and others' safety.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1546-031433&lt;br&gt;Classification: Containment breach&lt;br&gt;Reporting officer: Cory Richard&lt;br&gt;&lt;br&gt;Incident summary: I was on duty at about 1420 hours when I received a request from Dr. Hans Kelstrup for assistance in Live Exam. Upon arriving on the scene, I witnessed Dr. Trevor Young slamming lab instruments into some of the Typhon enclosures. When it became clear that he intended to break containment, I was forced to discharge my stun gun to subdue him. During my subsequent interview with Dr. Young, he seemed immensely distraught and unaware of my presence unless I came too close, whereupon he would turn violent. He has been turned over to the Trauma team and placed in quarantine for his and others' safety.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561201</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1546-031433&lt;br&gt;Classification: Containment breach&lt;br&gt;Reporting officer: Cory Richard&lt;br&gt;&lt;br&gt;Incident summary: I was on duty at about 1420 hours when I received a request from Dr. Hans Kelstrup for assistance in Live Exam. Upon arriving on the scene, I witnessed Dr. Trevor Young slamming lab instruments into some of the Typhon enclosures. When it became clear that he intended to break containment, I was forced to discharge my stun gun to subdue him. During my subsequent interview with Dr. Young, he seemed immensely distraught and unaware of my presence unless I came too close, whereupon he would turn violent. He has been turned over to the Trauma team and placed in quarantine for his and others' safety.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Connected to the Typhon Telepaths. Should avoid getting too close. Triggers a strong kinetic blast that knocks out psi abilities -  ends up killing them. Stun gun might take them out long enough to sneak past. Might be able to free them from Typhon control somehow.  </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR SECURITY RECORDS:&lt;/b&gt;&lt;br&gt;Incident report #1546-031433&lt;br&gt;Classification: Containment breach&lt;br&gt;Reporting officer: Cory Richard&lt;br&gt;&lt;br&gt;Incident summary: I was on duty at about 1420 hours when I received a request from Dr. Hans Kelstrup for assistance in Live Exam. Upon arriving on the scene, I witnessed Dr. Trevor Young slamming lab instruments into some of the Typhon enclosures. When it became clear that he intended to break containment, I was forced to discharge my stun gun to subdue him. During my subsequent interview with Dr. Young, he seemed immensely distraught and unaware of my presence unless I came too close, whereupon he would turn violent. He has been turned over to the Trauma team and placed in quarantine for his and others' safety.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Connected to the Typhon Telepaths. Should avoid getting too close. Triggers a strong kinetic blast that knocks out psi abilities -  ends up killing them. Stun gun might take them out long enough to sneak past. Might be able to free them from Typhon control somehow.  </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561202</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Nullwave&lt;br&gt;Psychic&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Psychoshock I&lt;br&gt;Mindjack I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;GLOO&lt;br&gt;Nullwave&lt;br&gt;Psychic&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Psychoshock I&lt;br&gt;Mindjack I&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561203</Data></Cell>
+    <Cell><Data ss:Type="String">Nightmare</Data></Cell>
+    <Cell><Data ss:Type="String">Nightmare</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561204</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;The Typhon response to an anomaly in their ecology - something that's like them.. but isn't. Me. Only purpose seems to be to hunt me down. Seems unstoppable.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;The Typhon response to an anomaly in their ecology - something that's like them.. but isn't. Me. Only purpose seems to be to hunt me down. Seems unstoppable.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561205</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;The Typhon response is an anomaly in their ecology - something that's like them.. but isn't. Me. Only purpose seems to be to hunt me down. Seems unstoppable.&lt;br&gt;&lt;br&gt;&lt;b&gt;SUPPLEMENTARY NOTES:&lt;/b&gt;&lt;br&gt;Psychic terror field can punch through psychoscope shielding. Appears to be resistant to most forms of physical damage. Energy weapons or psi abilities might work. If all else fails, &lt;i&gt;run&lt;/i&gt;.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;ERROR: UNKNOWN TYPHON ORGANISM&lt;/b&gt;&lt;br&gt;No entries found. Please contact Dr. Hans Kelstrup, Director of Psychotronics.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;The Typhon response is an anomaly in their ecology - something that's like them.. but isn't. Me. Only purpose seems to be to hunt me down. Seems unstoppable.&lt;br&gt;&lt;br&gt;&lt;b&gt;SUPPLEMENTARY NOTES:&lt;/b&gt;&lt;br&gt;Psychic terror field can punch through psychoscope shielding. Appears to be resistant to most forms of physical damage. Energy weapons or psi abilities might work. If all else fails, &lt;i&gt;run&lt;/i&gt;.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561206</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Backlash I, II, III&lt;br&gt;Fear Resistance I&lt;br&gt;Kinetic Blast I, II, III&lt;br&gt;Regeneration I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;Stun&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Backlash I, II, III&lt;br&gt;Fear Resistance I&lt;br&gt;Kinetic Blast I, II, III&lt;br&gt;Regeneration I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561207</Data></Cell>
+    <Cell><Data ss:Type="String">Engineering Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Engineering Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561208</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;Designed with precision craftsmanship for the dangerous vacuum of space, few utility robots can measure up to the TranStar &lt;i&gt;Kobold&lt;/i&gt; 410 Engineering Class Operator. Equipped with two GenSENSE manipulators and a swappable utility arm with a full array of tools, there's little the Engineering Operator can't fix.&lt;br&gt;&lt;br&gt;For more heavy duty work, each Engineering Operator comes standard with industrial-grade OMNI navigational systems capable of deftly maneuvering cargo containers in zero-g environments.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Can be found wandering the station, especially on the lower decks. Good for patching up holes in my suit.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;Designed with precision craftsmanship for the dangerous vacuum of space, few utility robots can measure up to the TranStar &lt;i&gt;Kobold&lt;/i&gt; 410 Engineering Class Operator. Equipped with two GenSENSE manipulators and a swappable utility arm with a full array of tools, there's little the Engineering Operator can't fix.&lt;br&gt;&lt;br&gt;For more heavy duty work, each Engineering Operator comes standard with industrial-grade OMNI navigational systems capable of deftly maneuvering cargo containers in zero-g environments.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Can be found wandering the station, especially on the lower decks. Good for patching up holes in my suit.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561209</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;Designed with precision craftsmanship for the dangerous vacuum of space, few utility robots can measure up to the TranStar &lt;i&gt;Kobold&lt;/i&gt; 410 Engineering Class Operator. Equipped with two GenSENSE manipulators and a swappable utility arm with a full array of tools, there's little the Engineering Operator can't fix.&lt;br&gt;&lt;br&gt;For more heavy duty work, each Engineering Operator comes standard with industrial-grade OMNI navigational systems capable of deftly maneuvering cargo containers in zero-g environments.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Can be found wandering the station, especially on the lower decks. Good for patching up holes in my suit.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;Designed with precision craftsmanship for the dangerous vacuum of space, few utility robots can measure up to the TranStar &lt;i&gt;Kobold&lt;/i&gt; 410 Engineering Class Operator. Equipped with two GenSENSE manipulators and a swappable utility arm with a full array of tools, there's little the Engineering Operator can't fix.&lt;br&gt;&lt;br&gt;For more heavy duty work, each Engineering Operator comes standard with industrial-grade OMNI navigational systems capable of deftly maneuvering cargo containers in zero-g environments.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Can be found wandering the station, especially on the lower decks. Good for patching up holes in my suit.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561210</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;Psychic</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;Psychic</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561211</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561212</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;A vast anatomical database coupled with a top-of-the-line compact surgical toolset makes the TranStar &lt;i&gt;Pyramid&lt;/i&gt; class 490 medical series Operator the finest in automated healthcare, rivaling even the most skilled surgeon. Patients concerned with safety and privacy can also rest assured. With its patented Panacea Governor technology, the TranStar Medical Operator is programmed to be minimally invasive and fully discreet. &lt;br&gt;&lt;br&gt;This latest iteration in TranStar technology also boasts an increased 98.2% diagnosis accuracy rating as well as the introduction of a &quot;bedside manner&quot; protocol designed to improve rapport with patients.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Most medical facilities on station have these in the operator dispensers. Can handle just about any trauma. If only they didn't tell stupid jokes.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;A vast anatomical database coupled with a top-of-the-line compact surgical toolset makes the TranStar &lt;i&gt;Pyramid&lt;/i&gt; class 490 medical series Operator the finest in automated healthcare, rivaling even the most skilled surgeon. Patients concerned with safety and privacy can also rest assured. With its patented Panacea Governor technology, the TranStar Medical Operator is programmed to be minimally invasive and fully discreet. &lt;br&gt;&lt;br&gt;This latest iteration in TranStar technology also boasts an increased 98.2% diagnosis accuracy rating as well as the introduction of a &quot;bedside manner&quot; protocol designed to improve rapport with patients.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Most medical facilities on station have these in the operator dispensers. Can handle just about any trauma. If only they didn't tell stupid jokes.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561213</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;A vast anatomical database coupled with a top-of-the-line compact surgical toolset makes the TranStar &lt;i&gt;Pyramid&lt;/i&gt; class 490 medical series Operator the finest in automated healthcare, rivaling even the most skilled surgeon. Patients concerned with safety and privacy can also rest assured. With its patented Panacea Governor technology, the TranStar Medical Operator is programmed to be minimally invasive and fully discreet. &lt;br&gt;&lt;br&gt;This latest iteration in TranStar technology also boasts an increased 98.2% diagnosis accuracy rating as well as the introduction of a &quot;bedside manner&quot; protocol designed to improve rapport with patients.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Most medical facilities on station have these in the operator dispensers. Can handle just about any trauma. If only they didn't tell stupid jokes.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;A vast anatomical database coupled with a top-of-the-line compact surgical toolset makes the TranStar &lt;i&gt;Pyramid&lt;/i&gt; class 490 medical series Operator the finest in automated healthcare, rivaling even the most skilled surgeon. Patients concerned with safety and privacy can also rest assured. With its patented Panacea Governor technology, the TranStar Medical Operator is programmed to be minimally invasive and fully discreet. &lt;br&gt;&lt;br&gt;This latest iteration in TranStar technology also boasts an increased 98.2% diagnosis accuracy rating as well as the introduction of a &quot;bedside manner&quot; protocol designed to improve rapport with patients.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Most medical facilities on station have these in the operator dispensers. Can handle just about any trauma. If only they didn't tell stupid jokes.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561214</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561215</Data></Cell>
+    <Cell><Data ss:Type="String">Military Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Military Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561216</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;The N-CN9 &lt;i&gt;Blackbox&lt;/i&gt; Military Operator is the world's most advanced unmanned multi-role fighter. Armed with a state-of-the-art MAG-directed energy weapon and an OMNI navigation systems, the Military Operator is never short on firepower. From assault operations to security detail, the innovative &lt;i&gt;Synthetic Hyperdynamic Neural Network&lt;/i&gt; ensures the Military Operator is quick to respond to developing and dangerous situations.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;TranStar's been covering their tracks about these. Don't want to look like an arms-tech company. They're probably wired into &lt;i&gt;Talos I&lt;/i&gt;'s security system. Could track me using the station's security rosters. Might be a way to get rid of my tracking bracelet.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;The N-CN9 &lt;i&gt;Blackbox&lt;/i&gt; Military Operator is the world's most advanced unmanned multi-role fighter. Armed with a state-of-the-art MAG-directed energy weapon and an OMNI navigation systems, the Military Operator is never short on firepower. From assault operations to security detail, the innovative &lt;i&gt;Synthetic Hyperdynamic Neural Network&lt;/i&gt; ensures the Military Operator is quick to respond to developing and dangerous situations.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;TranStar's been covering their tracks about these. Don't want to look like an arms-tech company. They're probably wired into &lt;i&gt;Talos I&lt;/i&gt;'s security system. Could track me using the station's security rosters. Might be a way to get rid of my tracking bracelet.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561217</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;The N-CN9 &lt;i&gt;Blackbox&lt;/i&gt; Military Operator is the world's most advanced unmanned multi-role fighter. Armed with a state-of-the-art MAG-directed energy weapon and an OMNI navigation systems, the Military Operator is never short on firepower. From assault operations to security detail, the innovative &lt;i&gt;Synthetic Hyperdynamic Neural Network&lt;/i&gt; ensures the Military Operator is quick to respond to developing and dangerous situations.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;TranStar's been covering their tracks about these. Don't want to look like an arms-tech company. They're probably wired into &lt;i&gt;Talos I&lt;/i&gt;'s security system. Could track me using the station's security rosters. Might be a way to get rid of my tracking bracelet.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;The N-CN9 &lt;i&gt;Blackbox&lt;/i&gt; Military Operator is the world's most advanced unmanned multi-role fighter. Armed with a state-of-the-art MAG-directed energy weapon and an OMNI navigation systems, the Military Operator is never short on firepower. From assault operations to security detail, the innovative &lt;i&gt;Synthetic Hyperdynamic Neural Network&lt;/i&gt; ensures the Military Operator is quick to respond to developing and dangerous situations.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;TranStar's been covering their tracks about these. Don't want to look like an arms-tech company. They're probably wired into &lt;i&gt;Talos I&lt;/i&gt;'s security system. Could track me using the station's security rosters. Might be a way to get rid of my tracking bracelet.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561218</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;Psychic</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;Psychic</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561219</Data></Cell>
+    <Cell><Data ss:Type="String">Science Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Science Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561220</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;In the world of scientific progress, nothing is more important than accuracy and safety. This is why all TranStar laboratories are equipped with &lt;i&gt;Sybil&lt;/i&gt; 495 science class Operators.&lt;br&gt;&lt;br&gt;The latest in TranStar's line of Operators, the Science Operator combines unprecedented access to TranStar's scientific databases with two highly customizable utility arms to make an unrivaled laboratory assistant.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Can be found floating around Psychotronics. Helps restore psi potential.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;In the world of scientific progress, nothing is more important than accuracy and safety. This is why all TranStar laboratories are equipped with &lt;i&gt;Sybil&lt;/i&gt; 495 science class Operators.&lt;br&gt;&lt;br&gt;The latest in TranStar's line of Operators, the Science Operator combines unprecedented access to TranStar's scientific databases with two highly customizable utility arms to make an unrivaled laboratory assistant.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Can be found floating around Psychotronics. Helps restore psi potential.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561221</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;In the world of scientific progress, nothing is more important than accuracy and safety. This is why all TranStar laboratories are equipped with &lt;i&gt;Sybil&lt;/i&gt; 495 science class Operators.&lt;br&gt;&lt;br&gt;The latest in TranStar's line of Operators, the Science Operator combines unprecedented access to TranStar's scientific databases with two highly customizable utility arms to make an unrivaled laboratory assistant.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Can be found floating around Psychotronics. Helps restore psi potential.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM TRANSTAR OPERATOR BROCHURE:&lt;/b&gt;&lt;br&gt;In the world of scientific progress, nothing is more important than accuracy and safety. This is why all TranStar laboratories are equipped with &lt;i&gt;Sybil&lt;/i&gt; 495 science class Operators.&lt;br&gt;&lt;br&gt;The latest in TranStar's line of Operators, the Science Operator combines unprecedented access to TranStar's scientific databases with two highly customizable utility arms to make an unrivaled laboratory assistant.&lt;br&gt;&lt;br&gt;&lt;b&gt;Morgan's Notes:&lt;/b&gt;&lt;br&gt;Can be found floating around Psychotronics. Helps restore psi potential.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561222</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561223</Data></Cell>
+    <Cell><Data ss:Type="String">Poltergeist</Data></Cell>
+    <Cell><Data ss:Type="String">Poltergeist</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561224</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Poltergeist&lt;br&gt;Scientific Name: &lt;i&gt;Typhon dysmorpha&lt;/i&gt;&lt;br&gt;&lt;br&gt;Poltergeists are not a normal part of the Typhon ecology. Instead, they appear to be a result of a rare mutation that occurs in less than 5% of Phantom genesis cases. The Poltergeist is also the only known Typhon to possess the ability to render themselves invisible, undetectable even to Psychoscope scanning. The exact mechanism is unknown at this time as their limited numbers make adequate study difficult.&lt;br&gt;&lt;br&gt;Please note that any enclosure used for Phantom genesis studies must be subjected to a full purge to avoid overlooked Poltergeist specimens.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Poltergeist&lt;br&gt;Scientific Name: &lt;i&gt;Typhon dysmorpha&lt;/i&gt;&lt;br&gt;&lt;br&gt;Poltergeists are not a normal part of the Typhon ecology. Instead, they appear to be a result of a rare mutation that occurs in less than 5% of Phantom genesis cases. The Poltergeist is also the only known Typhon to possess the ability to render themselves invisible, undetectable even to Psychoscope scanning. The exact mechanism is unknown at this time as their limited numbers make adequate study difficult.&lt;br&gt;&lt;br&gt;Please note that any enclosure used for Phantom genesis studies must be subjected to a full purge to avoid overlooked Poltergeist specimens.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561225</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Poltergeist&lt;br&gt;Scientific Name: &lt;i&gt;Typhon dysmorpha&lt;/i&gt;&lt;br&gt;&lt;br&gt;Poltergeists are not a normal part of the Typhon ecology. Instead, they appear to be a result of a rare mutation that occurs in less than 5% of Phantom genesis cases. The Poltergeist is also the only known Typhon to possess the ability to render themselves invisible, undetectable even to Psychoscope scanning. The exact mechanism is unknown at this time as their limited numbers make adequate study difficult.&lt;br&gt;&lt;br&gt;Please note that any enclosure used for Phantom genesis studies must be subjected to a full purge to avoid overlooked Poltergeist specimens.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Prefers to ambush prey. Uses psychokinetic action to throw objects. Stunted legs make it slow. Use a Typhon Lure to help detect it or wait for it to attack.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Poltergeist&lt;br&gt;Scientific Name: &lt;i&gt;Typhon dysmorpha&lt;/i&gt;&lt;br&gt;&lt;br&gt;Poltergeists are not a normal part of the Typhon ecology. Instead, they appear to be a result of a rare mutation that occurs in less than 5% of Phantom genesis cases. The Poltergeist is also the only known Typhon to possess the ability to render themselves invisible, undetectable even to Psychoscope scanning. The exact mechanism is unknown at this time as their limited numbers make adequate study difficult.&lt;br&gt;&lt;br&gt;Please note that any enclosure used for Phantom genesis studies must be subjected to a full purge to avoid overlooked Poltergeist specimens.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Prefers to ambush prey. Uses psychokinetic action to throw objects. Stunted legs make it slow. Use a Typhon Lure to help detect it or wait for it to attack.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561226</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Fire&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Remote Manipulation I, II&lt;br&gt;Lift Field I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Fire&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;None&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Remote Manipulation I, II&lt;br&gt;Lift Field I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561227</Data></Cell>
+    <Cell><Data ss:Type="String">Turret</Data></Cell>
+    <Cell><Data ss:Type="String">Turret</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561228</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Testing log #1008-010435&lt;br&gt;Product: Eradicator Auto-Turret v0.7.6&lt;br&gt;Observer: Franklin Goode&lt;br&gt;&lt;br&gt;The accuracy grade for this newest turret iteration is a significant improvement over the last generation, with a marked 17% increase. The jamming issues when transitioning to portability mode also seem to have been resolved. Stability is still shit. &lt;br&gt;&lt;br&gt;The Psychoscope element works well, but I recommend tuning the sensitivity down somewhat. I've received complaints from Psychotronics that some of the prototypes we sent down for testing are a little high-strung.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Easy to upgrade and repair. Base model is weak against some of the larger Typhon. Be careful around them with Neuromods. Does not like &lt;i&gt;any&lt;/i&gt; Typhon material around.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Testing log #1008-010435&lt;br&gt;Product: Eradicator Auto-Turret v0.7.6&lt;br&gt;Observer: Franklin Goode&lt;br&gt;&lt;br&gt;The accuracy grade for this newest turret iteration is a significant improvement over the last generation, with a marked 17% increase. The jamming issues when transitioning to portability mode also seem to have been resolved. Stability is still shit. &lt;br&gt;&lt;br&gt;The Psychoscope element works well, but I recommend tuning the sensitivity down somewhat. I've received complaints from Psychotronics that some of the prototypes we sent down for testing are a little high-strung.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Easy to upgrade and repair. Base model is weak against some of the larger Typhon. Be careful around them with Neuromods. Does not like &lt;i&gt;any&lt;/i&gt; Typhon material around.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561229</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Testing log #1008-010435&lt;br&gt;Product: Eradicator Auto-Turret v0.7.6&lt;br&gt;Observer: Franklin Goode&lt;br&gt;&lt;br&gt;The accuracy grade for this newest turret iteration is a significant improvement over the last generation, with a marked 17% increase. The jamming issues when transitioning to portability mode also seem to have been resolved. Stability is still shit. &lt;br&gt;&lt;br&gt;The Psychoscope element works well, but I recommend tuning the sensitivity down somewhat. I've received complaints from Psychotronics that some of the prototypes we sent down for testing are a little high-strung.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Easy to upgrade and repair. Base model is weak against some of the larger Typhon. Be careful around them with Neuromods. Does not like &lt;i&gt;any&lt;/i&gt; Typhon material around.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Testing log #1008-010435&lt;br&gt;Product: Eradicator Auto-Turret v0.7.6&lt;br&gt;Observer: Franklin Goode&lt;br&gt;&lt;br&gt;The accuracy grade for this newest turret iteration is a significant improvement over the last generation, with a marked 17% increase. The jamming issues when transitioning to portability mode also seem to have been resolved. Stability is still shit. &lt;br&gt;&lt;br&gt;The Psychoscope element works well, but I recommend tuning the sensitivity down somewhat. I've received complaints from Psychotronics that some of the prototypes we sent down for testing are a little high-strung.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Easy to upgrade and repair. Base model is weak against some of the larger Typhon. Be careful around them with Neuromods. Does not like &lt;i&gt;any&lt;/i&gt; Typhon material around.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561230</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;EMP&lt;br&gt;Explosive&lt;br&gt;Melee&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITIES:&lt;/b&gt;&lt;br&gt;Psychic&lt;br&gt;Nullwave</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561231</Data></Cell>
+    <Cell><Data ss:Type="String">Technopath</Data></Cell>
+    <Cell><Data ss:Type="String">Technopath</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561232</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Maintenance log #1546-011735&lt;br&gt;Filed by: Carlos Popinga&lt;br&gt;&lt;br&gt;It took forever, but repairs to Arboretum airlock doors are finally complete. I think someone's been tampering with the electronics up there. When I popped open the control box, the whole thing looked like someone had been at it with a soldering iron, just a bunch of crossed wires - stuff that's not even supposed to be in there. The programming was all wonky, too. I had to wipe it clean and reinstall.&lt;br&gt;&lt;br&gt;I'll have to bring up an Engineering Operator to clean up the rest of this. I'm filing a report with security about this, too. We have enough junk malfunctioning around here.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Maintenance log #1546-011735&lt;br&gt;Filed by: Carlos Popinga&lt;br&gt;&lt;br&gt;It took forever, but repairs to Arboretum airlock doors are finally complete. I think someone's been tampering with the electronics up there. When I popped open the control box, the whole thing looked like someone had been at it with a soldering iron, just a bunch of crossed wires - stuff that's not even supposed to be in there. The programming was all wonky, too. I had to wipe it clean and reinstall.&lt;br&gt;&lt;br&gt;I'll have to bring up an Engineering Operator to clean up the rest of this. I'm filing a report with security about this, too. We have enough junk malfunctioning around here.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561233</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Maintenance log #1546-011735&lt;br&gt;Filed by: Carlos Popinga&lt;br&gt;&lt;br&gt;It took forever, but repairs to Arboretum airlock doors are finally complete. I think someone's been tampering with the electronics up there. When I popped open the control box, the whole thing looked like someone had been at it with a soldering iron, just a bunch of crossed wires - stuff that's not even supposed to be in there. The programming was all wonky, too. I had to wipe it clean and reinstall.&lt;br&gt;&lt;br&gt;I'll have to bring up an Engineering Operator to clean up the rest of this. I'm filing a report with security about this, too. We have enough junk malfunctioning around here.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Takes control of nearby tech. If this thing gets ahold of turrets, you're dead. Shrugs off GLOO. Prefers to keep away from enemies. Stun or Nullwave it to get in close.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE ENGINEERING DATABASE:&lt;/b&gt;&lt;br&gt;Maintenance log #1546-011735&lt;br&gt;Filed by: Carlos Popinga&lt;br&gt;&lt;br&gt;It took forever, but repairs to Arboretum airlock doors are finally complete. I think someone's been tampering with the electronics up there. When I popped open the control box, the whole thing looked like someone had been at it with a soldering iron, just a bunch of crossed wires - stuff that's not even supposed to be in there. The programming was all wonky, too. I had to wipe it clean and reinstall.&lt;br&gt;&lt;br&gt;I'll have to bring up an Engineering Operator to clean up the rest of this. I'm filing a report with security about this, too. We have enough junk malfunctioning around here.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Takes control of nearby tech. If this thing gets ahold of turrets, you're dead. Shrugs off GLOO. Prefers to keep away from enemies. Stun or Nullwave it to get in close.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561234</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;Explosive&lt;br&gt;Psychic&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Electrostatic Burst I, II, III&lt;br&gt;Remote Manipulation I, II, III&lt;br&gt;Machine Mind I, II, III&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Electric&lt;br&gt;Explosive&lt;br&gt;Psychic&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Electrostatic Burst I, II, III&lt;br&gt;Remote Manipulation I, II, III&lt;br&gt;Machine Mind I, II, III&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561235</Data></Cell>
+    <Cell><Data ss:Type="String">Telepath</Data></Cell>
+    <Cell><Data ss:Type="String">Telepath</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561236</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Telepath &lt;br&gt;Scientific Name: &lt;i&gt;Typhon psychocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;The Telepath is considered to be one of the most dangerous known Typhon. Capable of psychically controlling weaker-willed organisms and even people, it is almost impossible to contain for further study.&lt;br&gt;&lt;br&gt;WARNING: Please note that subsequent to incident case #1405-031433, the creation/containment of Telepath-class specimens is no longer permitted. All personnel entering Psychotronics are required to wear a psychoscope in addition to regular safety equipment.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Telepath &lt;br&gt;Scientific Name: &lt;i&gt;Typhon psychocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;The Telepath is considered to be one of the most dangerous known Typhon. Capable of psychically controlling weaker-willed organisms and even people, it is almost impossible to contain for further study.&lt;br&gt;&lt;br&gt;WARNING: Please note that subsequent to incident case #1405-031433, the creation/containment of Telepath-class specimens is no longer permitted. All personnel entering Psychotronics are required to wear a psychoscope in addition to regular safety equipment.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561237</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Telepath &lt;br&gt;Scientific Name: &lt;i&gt;Typhon psychocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;The Telepath is considered to be one of the most dangerous known Typhon. Capable of psychically controlling weaker-willed organisms and even people, it is almost impossible to contain for further study.&lt;br&gt;&lt;br&gt;WARNING: Please note that subsequent to incident case #1405-031433, the creation/containment of Telepath-class specimens is no longer permitted. All personnel entering Psychotronics are required to wear a psychoscope in addition to regular safety equipment.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Powers not just limited to mind control. Watch out for the homing spheres. Can emit a powerful wave that nullifies other psychic abilities around it. Getting too close will get you mangled by another powerful blast. GLOO doesn't seem to work well. Should keep away from it. Stick to long-range weapons or a nullwave device.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Telepath &lt;br&gt;Scientific Name: &lt;i&gt;Typhon psychocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;The Telepath is considered to be one of the most dangerous known Typhon. Capable of psychically controlling weaker-willed organisms and even people, it is almost impossible to contain for further study.&lt;br&gt;&lt;br&gt;WARNING: Please note that subsequent to incident case #1405-031433, the creation/containment of Telepath-class specimens is no longer permitted. All personnel entering Psychotronics are required to wear a psychoscope in addition to regular safety equipment.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Powers not just limited to mind control. Watch out for the homing spheres. Can emit a powerful wave that nullifies other psychic abilities around it. Getting too close will get you mangled by another powerful blast. GLOO doesn't seem to work well. Should keep away from it. Stick to long-range weapons or a nullwave device.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561238</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Explosive&lt;br&gt;Fire&lt;br&gt;Nullwave&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;Backlash&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Psychoshock I, II, III&lt;br&gt;Kinetic Blast I, II, III&lt;br&gt;Mind Jack I, II, III&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Explosive&lt;br&gt;Fire&lt;br&gt;Nullwave&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;Backlash&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Psychoshock I, II, III&lt;br&gt;Kinetic Blast I, II, III&lt;br&gt;Mind Jack I, II, III&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561239</Data></Cell>
+    <Cell><Data ss:Type="String">Weaver</Data></Cell>
+    <Cell><Data ss:Type="String">Weaver</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561240</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Weaver &lt;br&gt;Scientific Name: &lt;i&gt;Typhon geneocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;Along with Mimics, Weavers were some of the first Typhon encountered near the &lt;i&gt;Vorona I&lt;/i&gt;. As observed in log #0215-051060, in larger Mimic populations, one mimic will be chosen via an as yet unknown mechanism to undergo a specialized metamorphosis. The chosen mimic is stung repeatedly by the others, triggering a rapid change, resulting in a new Typhon geneocratis, or 'Weaver'. &lt;br&gt;&lt;br&gt;Weavers appear to be central to the Typhon ecology, largely as vectors for production for some of the other species as well as the substance known as Coral.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Weaver &lt;br&gt;Scientific Name: &lt;i&gt;Typhon geneocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;Along with Mimics, Weavers were some of the first Typhon encountered near the &lt;i&gt;Vorona I&lt;/i&gt;. As observed in log #0215-051060, in larger Mimic populations, one mimic will be chosen via an as yet unknown mechanism to undergo a specialized metamorphosis. The chosen mimic is stung repeatedly by the others, triggering a rapid change, resulting in a new Typhon geneocratis, or 'Weaver'. &lt;br&gt;&lt;br&gt;Weavers appear to be central to the Typhon ecology, largely as vectors for production for some of the other species as well as the substance known as Coral.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561241</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Weaver &lt;br&gt;Scientific Name: &lt;i&gt;Typhon geneocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;Along with Mimics, Weavers were some of the first Typhon encountered near the &lt;i&gt;Vorona I&lt;/i&gt;. As observed in log #0215-051060, in larger Mimic populations, one mimic will be chosen via an as-yet-unknown mechanism to undergo a specialized metamorphosis. The chosen mimic is stung repeatedly by the others, triggering a rapid change, resulting in a new Typhon geneocratis, or 'Weaver'. &lt;br&gt;&lt;br&gt;Weavers appear to be central to the Typhon ecology, largely as vectors for production for some of the other species as well as the substance known as Coral.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Prefers to avoid direct fights.  Watch out for cystoids. Protected by a shield that floods attackers with a terror effect when struck. GLOO ineffective while shield is up.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM PSYCHOTRONICS DATABASE:&lt;/b&gt;&lt;br&gt;Common Name: Weaver &lt;br&gt;Scientific Name: &lt;i&gt;Typhon geneocratis&lt;/i&gt;&lt;br&gt;&lt;br&gt;Along with Mimics, Weavers were some of the first Typhon encountered near the &lt;i&gt;Vorona I&lt;/i&gt;. As observed in log #0215-051060, in larger Mimic populations, one mimic will be chosen via an as-yet-unknown mechanism to undergo a specialized metamorphosis. The chosen mimic is stung repeatedly by the others, triggering a rapid change, resulting in a new Typhon geneocratis, or 'Weaver'. &lt;br&gt;&lt;br&gt;Weavers appear to be central to the Typhon ecology, largely as vectors for production for some of the other species as well as the substance known as Coral.&lt;br&gt;&lt;br&gt;&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;Prefers to avoid direct fights.  Watch out for cystoids. Protected by a shield that floods attackers with a terror effect when struck. GLOO ineffective while shield is up.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887561242</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;Psychoshock&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Backlash I, II, III&lt;br&gt;Phantom Genesis I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;WEAKNESSES:&lt;/b&gt;&lt;br&gt;Nullwave&lt;br&gt;Psychoshock&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;EMP&lt;br&gt;&lt;br&gt;&lt;b&gt;SCANNABLE POWERS:&lt;/b&gt;&lt;br&gt;&lt;i&gt;Backlash I, II, III&lt;br&gt;Phantom Genesis I, II&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515490679797</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #1824-122864&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;It's fortunate the Weaver produces so many of these because keeping Cystoids alive for long outside of those nests has proven to be exceptionally difficult. Despite the lack of any visible sensory organs, each Cystoid seems capable of detecting us through unknown means, detonating on proximity. If we can figure out what it uses to &quot;see,&quot; we may be able find a way to &quot;blind&quot; it long enough to get a closer look.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;EXCERPT FROM THE PROJECT AXIOM ARCHIVE:&lt;/b&gt;&lt;br&gt;Observation log #1824-122864&lt;br&gt;Researcher: Louis Sullivan&lt;br&gt;&lt;br&gt;It's fortunate the Weaver produces so many of these because keeping Cystoids alive for long outside of those nests has proven to be exceptionally difficult. Despite the lack of any visible sensory organs, each Cystoid seems capable of detecting us through unknown means, detonating on proximity. If we can figure out what it uses to &quot;see,&quot; we may be able find a way to &quot;blind&quot; it long enough to get a closer look.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216977828499</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216977828500</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216977828501</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;STRENGTH:&lt;/b&gt;&lt;br&gt;Devastatingly handsome&lt;br&gt;&lt;br&gt;&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Toxic family&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;I wish&lt;br&gt;&lt;br&gt;&lt;b&gt;RESISTANCE:&lt;/b&gt;&lt;br&gt;Good advice</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;STRENGTH:&lt;/b&gt;&lt;br&gt;Devastatingly handsome&lt;br&gt;&lt;br&gt;&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Toxic family&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;I wish&lt;br&gt;&lt;br&gt;&lt;b&gt;RESISTANCE:&lt;/b&gt;&lt;br&gt;Good advice</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216977828554</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515496710447</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515496710448</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515496710449</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;I always feel like somebody's watching me.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515496710450</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;STRENGTH:&lt;/b&gt;&lt;br&gt;Devastating beauty&lt;br&gt;&lt;br&gt;&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Toxic family&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;I wish&lt;br&gt;&lt;br&gt;&lt;b&gt;RESISTANCE:&lt;/b&gt;&lt;br&gt;Good advice</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;STRENGTH:&lt;/b&gt;&lt;br&gt;Devastating beauty&lt;br&gt;&lt;br&gt;&lt;b&gt;WEAKNESS:&lt;/b&gt;&lt;br&gt;Toxic family&lt;br&gt;&lt;br&gt;&lt;b&gt;IMMUNITY:&lt;/b&gt;&lt;br&gt;I wish&lt;br&gt;&lt;br&gt;&lt;b&gt;RESISTANCE:&lt;/b&gt;&lt;br&gt;Good advice</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013228071082</Data></Cell>
+    <Cell><Data ss:Type="String">Corrupted Device</Data></Cell>
+    <Cell><Data ss:Type="String">Corrupted Device</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013228071083</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A few of the Typhon have demonstrated an ability to interfere with technology, but the Technopath can take over a system entirely. I've found screens surrounded by a dark, psychoetheric matter. Displays distorted. Programming incomprehensible. Destroying the Technopath should clear it up. With some systems, like Operators, the changes appear to be permanent.&lt;br&gt;&lt;br&gt;Found more. Looked a little closer - it's remarkable. The tech is completely hijacked, hardware and software. All the way down to the machine code. The Typhon is intuitively sabotaging and repurposing on the fly, remotely. </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A few of the Typhon have demonstrated an ability to interfere with technology, but the Technopath can take over a system entirely. I've found screens surrounded by a dark, psychoetheric matter. Displays distorted. Programming incomprehensible. Destroying the Technopath should clear it up. With some systems, like Operators, the changes appear to be permanent.&lt;br&gt;&lt;br&gt;Found more. Looked a little closer - it's remarkable. The tech is completely hijacked, hardware and software. All the way down to the machine code. The Typhon is intuitively sabotaging and repurposing on the fly, remotely. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013228071084</Data></Cell>
+    <Cell><Data ss:Type="String">A device corrupted and controlled by a nearby Technopath.</Data></Cell>
+    <Cell><Data ss:Type="String">A device corrupted and controlled by a nearby Technopath.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263411781636</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A few of the Typhon have demonstrated an ability to interfere with technology, but the Technopath can take over a system entirely. I've found screens surrounded by a dark, psychoetheric matter. Displays distorted. Programming incomprehensible. Destroying the Technopath should clear it up. With some systems, like Operators, the changes appear to be permanent.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;MORGAN'S NOTES:&lt;/b&gt;&lt;br&gt;A few of the Typhon have demonstrated an ability to interfere with technology, but the Technopath can take over a system entirely. I've found screens surrounded by a dark, psychoetheric matter. Displays distorted. Programming incomprehensible. Destroying the Technopath should clear it up. With some systems, like Operators, the changes appear to be permanent.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <TopRowVisible>72</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>87</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

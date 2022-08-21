@@ -1,0 +1,1015 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C77F06</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Uh...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Uh...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C77F57</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Was that really you?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Was that really you?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C77F76</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't know how that's possible.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't know how that's possible.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C77FB5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't explain that.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't explain that.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C77FBB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No way.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No way.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78090</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Holy shit!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Holy shit!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C780C0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's not right.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's not right.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C780D5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Jesus! Are you... one of them?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Jesus! Are you... one of them?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7814A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">My God.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">My God.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78188</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's impossible.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's impossible.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7824F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You all right?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You all right?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7825D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You don't look so good.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You don't look so good.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78277</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You look like you need a Medical Operator.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You look like you need a Medical Operator.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78377</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's it!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's it!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7837F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You crossed a line.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You crossed a line.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78389</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's enough!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's enough!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78397</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What's wrong with you?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What's wrong with you?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7839D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You lost your mind?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You lost your mind?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C783A9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sick of you!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sick of you!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78413</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seriously?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seriously?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7841A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Not a good time.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Not a good time.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78428</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Quit messing around.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Quit messing around.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78437</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Stop it.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Stop it.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7846A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Yeah, that's hilarious.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Yeah, that's hilarious.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78475</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78757</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh) Thank God that's over.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh) Thank God that's over.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78760</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We made it.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We made it.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7877B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can't believe I survived.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can't believe I survived.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C787A5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Is that all of them?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Is that all of them?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C787B5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Did we get'em all?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Did we get'em all?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7888F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mimic!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mimic!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7889E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't let it grab you!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't let it grab you!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C788A4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't let it get away!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't let it get away!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C788BB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C788C8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C788F2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Kill it! Quick!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Kill it! Quick!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C789D2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Phantom!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Phantom!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C789DB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That thing used to be one of us.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That thing used to be one of us.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78A30</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It's a mimic!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It's a mimic!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78A70</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Growl)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Growl)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78A83</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Go to hell!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Go to hell!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78AA1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Son of a bitch.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Son of a bitch.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78AD8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Die already.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Die already.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78B46</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't let it get close!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't let it get close!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78B99</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shit. We're dead.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shit. We're dead.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78D5E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get away from me!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get away from me!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78DB7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Piece of shit trash can.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Piece of shit trash can.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C78DE6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shut it down!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shut it down!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79074</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What was that?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What was that?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79089</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't think that was a rat.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't think that was a rat.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79097</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There's something over there.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There's something over there.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C790A0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I swear...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I swear...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79174</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's not right.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's not right.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7920E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shhh... there's something.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shhh... there's something.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7925D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm going to take look over here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm going to take look over here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7926F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There better not be anything.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There better not be anything.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79282</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Just give me a clean shot.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Just give me a clean shot.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C792A5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Come out.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Come out.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C792ED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't see anything yet.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't see anything yet.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7937F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I didn't find anything.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I didn't find anything.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79383</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nothing.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nothing.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79399</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I must be losing my mind.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I must be losing my mind.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C793A8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I swear there was something here a second ago.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I swear there was something here a second ago.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C793FF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">...just vanished.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">...just vanished.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79421</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It was just here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It was just here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79425</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">He was just here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">He was just here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7942A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">She was just here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">She was just here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7943A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gone.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gone.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79451</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Means we're going to have to fight it again later, huh?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Means we're going to have to fight it again later, huh?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79473</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I got a bad feeling.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I got a bad feeling.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C79483</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What the hell was that?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What the hell was that?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C794C5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">How are we supposed to fight that!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">How are we supposed to fight that!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C794D5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No way we can take that!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No way we can take that!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C794FC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What is that thing?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What is that thing?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7958D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh shit, we're so dead!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh shit, we're so dead!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C795BD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is some kind of bad dream.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is some kind of bad dream.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7D8F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'll try to get somewhere safe as soon as I catch my breath.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'll try to get somewhere safe as soon as I catch my breath.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7DDC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Still a little woozy. I'll head out as soon as I feel better.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Still a little woozy. I'll head out as soon as I feel better.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7DF7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Thanks, Morgan. My head's clear. I just need a minute.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Thanks, Morgan. My head's clear. I just need a minute.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7E27</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Appreciate the help. Maybe I'll try the Cargo Bay. Heard Chief Elazar's there.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Appreciate the help. Maybe I'll try the Cargo Bay. Heard Chief Elazar's there.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7E36</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You ever been half-awake - can't move your body no matter how hard you try. What do they call that... sleep paralysis?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You ever been half-awake - can't move your body no matter how hard you try. What do they call that... sleep paralysis?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7FB7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm out of here as soon as my legs stop shaking. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm out of here as soon as my legs stop shaking. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA7FDA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's what it was like. Terrifying.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">That's what it was like. Terrifying.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA805A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't believe you beat that thing.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't believe you beat that thing.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA80AC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Where did something like that even come from?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Where did something like that even come from?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA80E7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't know if I want to live in a universe where something like that is possible.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't know if I want to live in a universe where something like that is possible.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA8190</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I just want to get home. Feel real grass under my feet. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I just want to get home. Feel real grass under my feet. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA81DA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Did we... make that in one of the labs? God, I hope not.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Did we... make that in one of the labs? God, I hope not.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA81FA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">49B3C706581A61ED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Rule [HumanGeneric] Player Bumped/Touched Player</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Rule [HumanGeneric] Player Bumped/Touched Player</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

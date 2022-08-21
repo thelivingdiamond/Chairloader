@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="27" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="288.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632738</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay Defenses</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay Defenses</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632739</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricating turrets is one way to go, but if I search this area I might find some already assembled.</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricating turrets is one way to go, but if I search this area I might find some already assembled.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632740</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers are pinned down in Cargo Bay. If I set them up turrets in the loading zone next to the Cargo Bay B door, she'll open it for me, trusting the turrets to keep them safe. There's a fabrication plan for turrets nearby and a fabricator here that needs power restored before I can manufacture any. Or maybe I can find some turrets already made if I search through all the cargo here.</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers are pinned down in Cargo Bay. If I set them up turrets in the loading zone next to the Cargo Bay B door, she'll open it for me, trusting the turrets to keep them safe. There's a fabrication plan for turrets nearby and a fabricator here that needs power restored before I can manufacture any. Or maybe I can find some turrets already made if I search through all the cargo here.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632741</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers are pinned down in Cargo Bay. She said if I set up some turrets in the loading zone next to the Cargo Bay B door she'll open it for me. I could try to find the fabrication to make my own, or search the area for any that might be stowed away.</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers are pinned down in Cargo Bay. She said if I set up some turrets in the loading zone next to the Cargo Bay B door she'll open it for me. I could try to find the fabrication to make my own, or search the area for any that might be stowed away.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632742</Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED] </Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED] </Data></Cell>
+    <Cell ss:Index="5"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632743</Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED] </Data></Cell>
+    <Cell><Data ss:Type="String">[DEPRECATED] </Data></Cell>
+    <Cell ss:Index="5"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632744</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers are pinned down in Cargo Bay. I set up turrets in the loading zone next to the Cargo Bay B door to keep them safe.</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers are pinned down in Cargo Bay. I set up turrets in the loading zone next to the Cargo Bay B door to keep them safe.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632745</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers were pinned down in Cargo Bay by the Typhon. She asked me to supply her and her officers with turrets to help them defend their position in exchange for opening the door. I provided the turrets and she held up her end of the bargain.</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers were pinned down in Cargo Bay by the Typhon. She asked me to supply her and her officers with turrets to help them defend their position in exchange for opening the door. I provided the turrets and she held up her end of the bargain.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632746</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B door</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632747</Data></Cell>
+    <Cell><Data ss:Type="String">Place turrets in the loading zone of Cargo Bay B.</Data></Cell>
+    <Cell><Data ss:Type="String">Place turrets in the loading zone of Cargo Bay B.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632748</Data></Cell>
+    <Cell><Data ss:Type="String">Fabrication Plan</Data></Cell>
+    <Cell><Data ss:Type="String">Fabrication Plan</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632749</Data></Cell>
+    <Cell><Data ss:Type="String">Retrieve the Turret Fabrication Plan</Data></Cell>
+    <Cell><Data ss:Type="String">Retrieve the Turret Fabrication Plan</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632750</Data></Cell>
+    <Cell><Data ss:Type="String">Power Panel</Data></Cell>
+    <Cell><Data ss:Type="String">Power Panel</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632751</Data></Cell>
+    <Cell><Data ss:Type="String">Restore Power to the Fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">Restore Power to the Fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632752</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632753</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricate turrets</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricate turrets</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632754</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632755</Data></Cell>
+    <Cell><Data ss:Type="String">Open Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Open Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632756</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632757</Data></Cell>
+    <Cell><Data ss:Type="String">Get the Cargo Bay B keycode from Sarah</Data></Cell>
+    <Cell><Data ss:Type="String">Get the Cargo Bay B keycode from Sarah</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632758</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632759</Data></Cell>
+    <Cell><Data ss:Type="String">Place two more turrets in the loading zone of Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Place two more turrets in the loading zone of Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632760</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632761</Data></Cell>
+    <Cell><Data ss:Type="String">Place one more turret in the loading zone of Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Place one more turret in the loading zone of Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417316861245</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers were pinned down in Cargo Bay by the Typhon. She asked me to supply her and her officers with turrets to help them defend their position in exchange for opening the door, but I found a way to open the door on my own.</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers were pinned down in Cargo Bay by the Typhon. She asked me to supply her and her officers with turrets to help them defend their position in exchange for opening the door, but I found a way to open the door on my own.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417316861389</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers were pinned down in Cargo Bay by the Typhon. She asked me to supply her and her officers with turrets to help them defend their position in exchange for opening the door. I found a way to open the door on my own and took care of the alien threat myself.</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar and her officers were pinned down in Cargo Bay by the Typhon. She asked me to supply her and her officers with turrets to help them defend their position in exchange for opening the door. I found a way to open the door on my own and took care of the alien threat myself.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>8</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

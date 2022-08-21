@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Ricardo Bare</LastAuthor>
+  <LastSaved>2017-02-03T18:38:00Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="21" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="201"/>
+   <Column ss:AutoFitWidth="0" ss:Width="400.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="233.25"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632770</Data></Cell>
+    <Cell><Data ss:Type="String">Whistleblower</Data></Cell>
+    <Cell><Data ss:Type="String">Whistleblower</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632771</Data></Cell>
+    <Cell><Data ss:Type="String">The security report on Annalise Gallegos implicates Chef William Mitchell.</Data></Cell>
+    <Cell><Data ss:Type="String">The security report on Annalise Gallegos implicates Chef William Mitchell.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632772</Data></Cell>
+    <Cell><Data ss:Type="String">Mikhaila asked me to help her find out what happened to her father. She suggested I begin searching for a scientist named Dr. Annalise Gallegos who worked in Psychotronics. Supposedly she worked closely with the volunteer test subjects. I could use a Security Station to track her down.</Data></Cell>
+    <Cell><Data ss:Type="String">Mikhaila asked me to help her find out what happened to her father. She suggested I begin searching for a scientist named Dr. Annalise Gallegos who worked in Psychotronics. Supposedly she worked closely with the volunteer test subjects. I could use a Security Station to track her down.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632773</Data></Cell>
+    <Cell><Data ss:Type="String">I found a TranScribe message from a scientist named Annalise Gallegos. Apparently she was having a crisis of conscience over the experiments performed on the volunteer test subjects. Looks like she and a friend planned to smuggle incriminating evidence off the station. Gallegos hid the evidence on a thumb-drive labeled 'Mementos'.</Data></Cell>
+    <Cell><Data ss:Type="String">I found a TranScribe message from a scientist named Annalise Gallegos. Apparently she was having a crisis of conscience over the experiments performed on the volunteer test subjects. Looks like she and a friend planned to smuggle incriminating evidence off the station. Gallegos hid the evidence on a thumb-drive labeled 'Mementos'.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632774</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Annalise Gallegos was conspiring to get incriminating evidence off the station, but her plan never succeeded. I found her collaborator Quinten Purvis dead in the crate he intended to use to sneak off the station. He had a thumb-drive full of incriminating data: volunteer names, test results, and a decryption key to match volunteer numbers to names. </Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Annalise Gallegos was conspiring to get incriminating evidence off the station, but her plan never succeeded. I found her collaborator Quinten Purvis dead in the crate he intended to use to sneak off the station. He had a thumb-drive full of incriminating data: volunteer names, test results, and a decryption key to match volunteer numbers to names. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632775</Data></Cell>
+    <Cell><Data ss:Type="String">Look for Annalise Gallegos in Psychotronics</Data></Cell>
+    <Cell><Data ss:Type="String">Look for Annalise Gallegos in Psychotronics</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632776</Data></Cell>
+    <Cell><Data ss:Type="String">Search Dr. Gallegos's habitation pod in Crew Quarters for evidence pertaining to what went on in Psychotronics.</Data></Cell>
+    <Cell><Data ss:Type="String">Search Dr. Gallegos's habitation pod in Crew Quarters for evidence pertaining to what went on in Psychotronics.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632777</Data></Cell>
+    <Cell><Data ss:Type="String">Search the security station in Crew Quarters for Officer Fowles's surveillance on Annalise Gallegos and known associates.</Data></Cell>
+    <Cell><Data ss:Type="String">Search the security station in Crew Quarters for Officer Fowles's surveillance on Annalise Gallegos and known associates.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632778</Data></Cell>
+    <Cell><Data ss:Type="String">Search William Mitchell's cabin.</Data></Cell>
+    <Cell><Data ss:Type="String">Search William Mitchell's cabin.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632779</Data></Cell>
+    <Cell><Data ss:Type="String">Find Quinten Purvis</Data></Cell>
+    <Cell><Data ss:Type="String">Find Quinten Purvis</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632780</Data></Cell>
+    <Cell><Data ss:Type="String">Search Cargo Bay for the secret crate where Quinten Purvis intended to hide. </Data></Cell>
+    <Cell><Data ss:Type="String">Search Cargo Bay for the secret crate where Quinten Purvis intended to hide. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632781</Data></Cell>
+    <Cell><Data ss:Type="String">Collect Annalise's thumb-drive</Data></Cell>
+    <Cell><Data ss:Type="String">Collect Annalise's thumb-drive</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291230564075</Data></Cell>
+    <Cell><Data ss:Type="String">William Mitchell's cabin</Data></Cell>
+    <Cell><Data ss:Type="String">William Mitchell's cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263410642879</Data></Cell>
+    <Cell><Data ss:Type="String">I found a Transcribe message from a scientist named Annalise Gallegos. Apparently she was having a crisis of conscience over the experiments performed on the volunteer test subjects. Looks like she and a friend planned to smuggle incriminating evidence off the station. Gallegos hid the evidence on a thumb-drive labeled 'Mementos'. Mikhaila thinks tracking the thumb-drive down will help her find out what happened to her father.</Data></Cell>
+    <Cell><Data ss:Type="String">I found a Transcribe message from a scientist named Annalise Gallegos. Apparently she was having a crisis of conscience over the experiments performed on the volunteer test subjects. Looks like she and a friend planned to smuggle incriminating evidence off the station. Gallegos hid the evidence on a thumb-drive labeled 'Mementos'. Mikhaila thinks tracking the thumb-drive down will help her find out what happened to her father.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291237480376</Data></Cell>
+    <Cell><Data ss:Type="String">Maliah Fowles sent a security report on scientist Annalise Gallegos directly to Alex Yu. I should search the security station in Crew Quarters.</Data></Cell>
+    <Cell><Data ss:Type="String">Maliah Fowles sent a security report on scientist Annalise Gallegos directly to Alex Yu. I should search the security station in Crew Quarters.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291237481243</Data></Cell>
+    <Cell><Data ss:Type="String">Fowles's surveillance and security report confirmed that Annalise Gallegos collaborated with Quinten Purvis. It appears Purvis, carrying a portable drive, went into hiding in container number 3232 in Cargo Bay B. </Data></Cell>
+    <Cell><Data ss:Type="String">Fowles's surveillance and security report confirmed that Annalise Gallegos collaborated with Quinten Purvis. It appears Purvis, carrying a portable drive, went into hiding in container number 3232 in Cargo Bay B. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291238080414</Data></Cell>
+    <Cell><Data ss:Type="String">Surveillance Report</Data></Cell>
+    <Cell><Data ss:Type="String">Surveillance Report</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291238080436</Data></Cell>
+    <Cell><Data ss:Type="String">Gallegos's Habitation Pod</Data></Cell>
+    <Cell><Data ss:Type="String">Gallegos's Habitation Pod</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263416249195</Data></Cell>
+    <Cell><Data ss:Type="String">Secret Crate</Data></Cell>
+    <Cell><Data ss:Type="String">Secret Crate</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263416250751</Data></Cell>
+    <Cell><Data ss:Type="String">Thumb-drive</Data></Cell>
+    <Cell><Data ss:Type="String">Thumb-drive</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>11</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

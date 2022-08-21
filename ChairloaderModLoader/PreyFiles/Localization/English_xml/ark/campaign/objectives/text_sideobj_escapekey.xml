@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="223.5" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632243</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Who is December?</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Who is December?</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632244</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632245</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632246</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone. I found a strange note on December though - with a keycode to a safe in Alex&apos;s Office. Maybe the escape pod key is there?</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone. I found a strange note on December though - with a keycode to a safe in Alex&apos;s Office. Maybe the escape pod key is there?</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632247</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone. I went to meet December, and it gave me a keycode to a safe in Alex&apos;s Office. Maybe the escape pod key is there?</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone. I went to meet December, and it gave me a keycode to a safe in Alex&apos;s Office. Maybe the escape pod key is there?</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632248</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone. I tracked a series of clues that led me to a safe in Alex&apos;s office. The safe had old TranScribe logs from... me. Plus a key to Alex&apos;s room in the crew facilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room of the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone. I tracked a series of clues that led me to a safe in Alex&apos;s office. The safe had old TranScribe logs from... me. Plus a key to Alex&apos;s room in the crew facilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632249</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room in the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone, but I tracked a series of clues that led me to a safe in Alex&apos;s office. The safe had old TranScribe logs from... me. Plus a key to Alex&apos;s room in the crew facilities. I found Alex&apos;s Escape Pod Key in his room. I could just leave all this behind now.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod in the debriefing room in the Neuromod Division. It looks like Alex figured out my - its? - scheme first though. The key was gone, but I tracked a series of clues that led me to a safe in Alex&apos;s office. The safe had old TranScribe logs from... me. Plus a key to Alex&apos;s room in the crew facilities. I found Alex&apos;s Escape Pod Key in his room. I could just leave all this behind now.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632250</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I was contacted by another operator named December. Like January, it had my voice. However, December&apos;s directive was to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod, but Alex got to it first. I eventually found the key in Alex&apos;s room. Good bye Talos I.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I was contacted by another operator named December. Like January, it had my voice. However, December&apos;s directive was to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod, but Alex got to it first. I eventually found the key in Alex&apos;s room. Good bye Talos I.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632251</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Escape Pod Key</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Escape Pod Key</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632252</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Get the key to Alex&apos;s escape pod</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Get the key to Alex&apos;s escape pod</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632253</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Foyer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Foyer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632254</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Meet December in the Foyer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Meet December in the Foyer</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632255</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Alex&apos;s Safe</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Alex&apos;s Safe</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632256</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search Alex&apos;s Office Safe</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search Alex&apos;s Office Safe</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632257</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Alex&apos;s Room</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Alex&apos;s Room</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632258</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search Alex&apos;s Room for the Escape Pod Key</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search Alex&apos;s Room for the Escape Pod Key</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632259</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Alex&apos;s Escape Pod</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Alex&apos;s Escape Pod</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632260</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Escape Talos I</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Escape Talos I</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_12889009725045300222</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod, but December was killed by January before I could look for it. I&apos;ve found December&apos;s remains in the foyer of the Neuromod Division.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;ve been contacted by another operator named December. Like January, it has my voice. However, December&apos;s directive is to help me escape Talos I. It claims that before I lost my memory, I hid the key to Alex&apos;s private escape pod, but December was killed by January before I could look for it. I&apos;ve found December&apos;s remains in the foyer of the Neuromod Division.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_12889009725045300273</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search December</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Search December</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_12889009725045300283</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">December</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">December</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced />
+   <Selected />
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>4</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

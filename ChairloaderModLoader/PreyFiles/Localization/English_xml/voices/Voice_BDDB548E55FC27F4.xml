@@ -1,0 +1,1114 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55FC2BCB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Dangerous level of explosive gas detected. Please evacuate and avoid all open flames or sparks until repairs can be made.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Dangerous level of explosive gas detected. Please evacuate and avoid all open flames or sparks until repairs can be made.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55FC5671</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tank integrity restored. Hydrogen loss reduced by 33 per cent.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tank integrity restored. Hydrogen loss reduced by 33 per cent.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55FC5753</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tank integrity restored. Hydrogen loss reduced by 66 per cent.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tank integrity restored. Hydrogen loss reduced by 66 per cent.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55FC57C2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tank integrity restored. Hydrogen loss reduced by 99.79 per cent.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tank integrity restored. Hydrogen loss reduced by 99.79 per cent.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55FC57F4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Threat of explosive gas minimal. Normal operations may resume pending supervisor approval.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Threat of explosive gas minimal. Normal operations may resume pending supervisor approval.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56264A91</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Live exam procedure in progress. Local lockdown in effect until procedure terminates.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Live exam procedure in progress. Local lockdown in effect until procedure terminates.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56264AE8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Live specimen detected in examination theater.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Live specimen detected in examination theater.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56264C08</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Examination theater compromised. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Examination theater compromised. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56264C34</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Live exam terminated. Lifting local lockdown. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Live exam terminated. Lifting local lockdown. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56264FBD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please activate psychoscopes before opening containment screens.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please activate psychoscopes before opening containment screens.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5626505B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Personel active in the containment area must have psychoscopes equiped at all times.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Personel active in the containment area must have psychoscopes equiped at all times.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5626642A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope required beyond this point.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope required beyond this point.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268957</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: plasma shockwave imminent. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: plasma shockwave imminent. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268A11</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Seek shelter. Plasma shockwave in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Seek shelter. Plasma shockwave in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268A24</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Five...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Five...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268A2A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Four...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Four...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268A31</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Three...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Three...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268A35</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Two...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Two...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268A39</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">One...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">One...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268CE4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Magnetosphere deactived.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Magnetosphere deactived.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268D51</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar radiation exposure at maximum.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar radiation exposure at maximum.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56268DDC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere activated.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere activated.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56279F30</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We'd like to remind all TranStar personnel to please be respectful of the privacy of our special guests. This will ensure their stay aboard our facility is as pleasant as possible. Thank you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We'd like to remind all TranStar personnel to please be respectful of the privacy of our special guests. This will ensure their stay aboard our facility is as pleasant as possible. Thank you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A242</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event will result in lethal radiation across Talos I in approximately 60 minutes. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event will result in lethal radiation across Talos I in approximately 60 minutes. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A264</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seek shelter. Magnetosphere shielding is down. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seek shelter. Magnetosphere shielding is down. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A4C9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. This is a station-wide emergency.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. This is a station-wide emergency.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A5AC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event will result in lethal radiation across Talos I in approximately 30 minutes. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event will result in lethal radiation across Talos I in approximately 30 minutes. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A5D4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event will result in lethal radiation across Talos I in approximately 15 minutes. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event will result in lethal radiation across Talos I in approximately 15 minutes. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A6A3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">10 minutes to solar particle event.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">10 minutes to solar particle event.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A6C1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">5 minutes to solar particle event.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">5 minutes to solar particle event.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A70A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event is now.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Solar particle event is now.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2A726</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seek shelter from ionizing radiation.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seek shelter from ionizing radiation.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2334C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good morning. The time is now 7:00 AM.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good morning. The time is now 7:00 AM.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2334E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Standard work hours begin in thirty minutes. We hope you have a productive shift aboard Talos I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Standard work hours begin in thirty minutes. We hope you have a productive shift aboard Talos I.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2334F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All personnel should report to their workstations for the day. If you expect to be absent for any reason, please inform your immediate supervisor.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All personnel should report to their workstations for the day. If you expect to be absent for any reason, please inform your immediate supervisor.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23350</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Breakfast is served in the cafeteria until 9:00 AM.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Breakfast is served in the cafeteria until 9:00 AM.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23352</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good afternoon, Talos. The time is now 12:00 PM.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good afternoon, Talos. The time is now 12:00 PM.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23353</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Safety aboard Talos I is everyone's responsibility. Send all help requests or concerns to security at transtar dot talos.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Safety aboard Talos I is everyone's responsibility. Send all help requests or concerns to security at transtar dot talos.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23354</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Join us in congratulating Dr. Lorenzo Calvino, winner of the employee innovation award this quarter.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Join us in congratulating Dr. Lorenzo Calvino, winner of the employee innovation award this quarter.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23355</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lunch is served in the cafeteria from 12 to 2 PM. Please refer to the Weekly Upgrade for today's menu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lunch is served in the cafeteria from 12 to 2 PM. Please refer to the Weekly Upgrade for today's menu.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23356</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good evening. The time is now 7:00 PM.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good evening. The time is now 7:00 PM.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23357</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Standard work hours are now ending. Second shift begins in thirty minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Standard work hours are now ending. Second shift begins in thirty minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23383</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dinner is served in the cafeteria from 6 to 8 PM.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dinner is served in the cafeteria from 6 to 8 PM.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23384</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We'd like to remind you that company policy requires you to log any voluntary extension of your work hours with the station counselor. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We'd like to remind you that company policy requires you to log any voluntary extension of your work hours with the station counselor. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23385</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">As a reminder, all personnel must complete monthly physicals during their stay aboard Talos I. Dr. De Vries promises to make them as quick and painless as possible.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">As a reminder, all personnel must complete monthly physicals during their stay aboard Talos I. Dr. De Vries promises to make them as quick and painless as possible.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23386</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is a reminder that the identity of guests visiting Talos is strictly confidential.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is a reminder that the identity of guests visiting Talos is strictly confidential.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23387</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mr. Tucker from HR would like to remind you that if your personal data has changed since the previous pay cycle please contact him immediately. Mr. Tucker's office is on the second floor of the Lobby.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mr. Tucker from HR would like to remind you that if your personal data has changed since the previous pay cycle please contact him immediately. Mr. Tucker's office is on the second floor of the Lobby.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23388</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A word from our security chief, Ms. Elazar. To protect your coworker's privacy, security terminals are reserved for authorized uses only.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A word from our security chief, Ms. Elazar. To protect your coworker's privacy, security terminals are reserved for authorized uses only.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23436</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Registration for the Talos Employees Talent Show is now open. See Galen in the crew quarters front desk to reserve a slot.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Registration for the Talos Employees Talent Show is now open. See Galen in the crew quarters front desk to reserve a slot.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23437</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Hadley Dalton will deliver a supplemental seminar on neural connectomes in the lobby training center later this week. Sounds exciting. Space is limited so reserve your seat by emailing Dr. Dalton.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Hadley Dalton will deliver a supplemental seminar on neural connectomes in the lobby training center later this week. Sounds exciting. Space is limited so reserve your seat by emailing Dr. Dalton.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23438</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't forget that Transtar safety standards call for a weekly inspection of your uniform. Report to the Hardware Labs for a diagnostic.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't forget that Transtar safety standards call for a weekly inspection of your uniform. Report to the Hardware Labs for a diagnostic.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23439</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Security reminder. Sticky notes--even well hidden ones--are not a secure means of storing your work station password.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Security reminder. Sticky notes--even well hidden ones--are not a secure means of storing your work station password.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2343A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Our resident counselor, Dr.Khol, would like to encourage anyone experiencing symptoms of disturbed sleep, chronic stress, or anxiety to schedule an appointment in the Trauma Center.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Our resident counselor, Dr.Khol, would like to encourage anyone experiencing symptoms of disturbed sleep, chronic stress, or anxiety to schedule an appointment in the Trauma Center.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2343C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Tampering with administrative controls on workstations or keypads may result in electric shock. If you're having trouble accessing a system, please send a help alert to security.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Tampering with administrative controls on workstations or keypads may result in electric shock. If you're having trouble accessing a system, please send a help alert to security.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2343D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">In the event of a loss of atmosphere, gravity, or other serious emergency, please report to the nearest muster station.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">In the event of a loss of atmosphere, gravity, or other serious emergency, please report to the nearest muster station.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2343E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. Station leadership has issued an alert. All personnel should report to muster stations immediately and await further instructions.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. Station leadership has issued an alert. All personnel should report to muster stations immediately and await further instructions.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2343F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If you cannot reach a muster station file a help request with security and someone will assist you as soon as possible.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If you cannot reach a muster station file a help request with security and someone will assist you as soon as possible.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23440</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is a pre-recorded message.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is a pre-recorded message.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23441</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Rain system activating in 5 seconds.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Rain system activating in 5 seconds.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23442</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. Due to a catastrophic breach in Cargo Bay One, all personnel are to avoid the area until repairs have been completed and safety checks confirmed.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. Due to a catastrophic breach in Cargo Bay One, all personnel are to avoid the area until repairs have been completed and safety checks confirmed.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23443</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. Incoming shipments from Earth have been temporarily delayed. Personnel are directed to clear up backlog deliveries until notified by a supervisor.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Attention. Incoming shipments from Earth have been temporarily delayed. Personnel are directed to clear up backlog deliveries until notified by a supervisor.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23444</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is a reminder that all cargo must be scanned and cleared by authorized personnel.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This is a reminder that all cargo must be scanned and cleared by authorized personnel.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23445</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Oxygen levels critical. Please seek a breathing apparatus immediately.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Oxygen levels critical. Please seek a breathing apparatus immediately.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23446</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Air supply system malfunction. Please evacuate until repairs can be made by an Engineer or an Operator.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning: Air supply system malfunction. Please evacuate until repairs can be made by an Engineer or an Operator.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23447</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Air Supply System Repaired. Stand by for Oxygenation.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Air Supply System Repaired. Stand by for Oxygenation.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23448</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen restored to twenty percent. You may breathe freely.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen restored to twenty percent. You may breathe freely.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C23449</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This escape pod is currently experiencing a malfunction. Engineering has been notified. Please use another.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This escape pod is currently experiencing a malfunction. Engineering has been notified. Please use another.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">E93FD2D456C2344A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation imminent.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation imminent.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCD8A6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Gravity shifting to 1G. Please move to a safety platform.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Gravity shifting to 1G. Please move to a safety platform.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCD8C4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravitational shift in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravitational shift in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCD8FF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity is now set to 1G.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity is now set to 1G.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCD97D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Microgravity condition imminent. Please stand by.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Microgravity condition imminent. Please stand by.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCDA23</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Microgravity engaged.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Microgravity engaged.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E8FCC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good morning, Talos.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good morning, Talos.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E91B5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good afternoon, Talos.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good afternoon, Talos.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E9475</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good evening, Talos.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Good evening, Talos.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E94BB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We know the projects aboard Talos I are exciting, but even the brightest minds need adequate rest.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We know the projects aboard Talos I are exciting, but even the brightest minds need adequate rest.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E9504</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String"> If you're not wearing a blue uniform, you're probably not authorized.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String"> If you're not wearing a blue uniform, you're probably not authorized.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E9735</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Affected personnel will be contacted for temporary reassignment.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Affected personnel will be contacted for temporary reassignment.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E980B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String"> You are the first line of defense against unsanctioned materials entering Talos I. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String"> You are the first line of defense against unsanctioned materials entering Talos I. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571E980F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Report shipping anomalies immediately.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Report shipping anomalies immediately.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA396</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please evacuate Talos I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please evacuate Talos I.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA4C9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 20 minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 20 minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA4EC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 15 minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 15 minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA4FC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 10 minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 10 minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA507</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 5 minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 5 minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA51F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 25 minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 25 minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EA52A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 30 minutes.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Reactor detonation in T minus 30 minutes.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EAAB9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Welcome, Morgan Yu.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Welcome, Morgan Yu.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EAACB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You have a...9 A.M. appointment in the testing facility.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You have a...9 A.M. appointment in the testing facility.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E571EAADA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please confirm.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please confirm.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D278</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">1963: A top secret Cold War negotiation culminates with Americans and Soviets working together on a research facility named Kletka. Kletka, Russian for Cage, produces the skeleton and core emergency systems of what will one day become Talos I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">1963: A top secret Cold War negotiation culminates with Americans and Soviets working together on a research facility named Kletka. Kletka, Russian for Cage, produces the skeleton and core emergency systems of what will one day become Talos I.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D288</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Kletka, Russian for Cage, produces the skeleton and core emergency systems of what will one day become Talos I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Kletka, Russian for Cage, produces the skeleton and core emergency systems of what will one day become Talos I.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D295</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">1964: After the attemped assassination of Kennedy's and Krushchev's departure, the US pays for the rights to use Kletka as a testing facility. This period, known as Project Axiom, leads to many advancements in next generation materials and bio-science fundamental to neural modification.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">1964: After the attemped assassination of Kennedy's and Krushchev's departure, the US pays for the rights to use Kletka as a testing facility. This period, known as Project Axiom, leads to many advancements in next generation materials and bio-science fundamental to neural modification.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D29D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This period, known as Project Axiom, leads to many advancements in next generation materials and bio-science fundamental to neural modification.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">This period, known as Project Axiom, leads to many advancements in next generation materials and bio-science fundamental to neural modification.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D2A9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">1980 - 1994: Geopolitical developments result in a temporary hold on Project Axiom. After the unfortunate Pobeg Incident, in which two research scientists lose their lives, the Kletka facility is decommissioned and cleaned.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">1980 - 1994: Geopolitical developments result in a temporary hold on Project Axiom. After the unfortunate Pobeg Incident, in which two research scientists lose their lives, the Kletka facility is decommissioned and cleaned.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D2BA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">After the unfortunate Pobeg Incident, in which two research scientists lose their lives, the Kletka facility is decommissioned and cleaned.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">After the unfortunate Pobeg Incident, in which two research scientists lose their lives, the Kletka facility is decommissioned and cleaned.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D2C7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">2025: The TranStar board of directors is established.  TranStar purchases and privatizes the Kletka facility with a focus on safety and state of the art upgrades.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">2025: The TranStar board of directors is established.  TranStar purchases and privatizes the Kletka facility with a focus on safety and state of the art upgrades.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D2D0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">2030: Talos I becomes fully operational, representing a monument of private space industry.  The first Neuromod is released, allowing for dramatic enhancement to the human mind and body.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">2030: Talos I becomes fully operational, representing a monument of private space industry.  The first Neuromod is released, allowing for dramatic enhancement to the human mind and body.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

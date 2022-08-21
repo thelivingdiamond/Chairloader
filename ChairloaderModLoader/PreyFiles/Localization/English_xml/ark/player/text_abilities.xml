@@ -1,0 +1,1611 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Seth Shain</LastAuthor>
+  <LastSaved>2017-06-07T21:09:13Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12075</WindowHeight>
+  <WindowWidth>24000</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="Segoe UI" x:Family="Swiss" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="219" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="230.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="792"/>
+   <Column ss:Width="1078.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">rpg_ElecBurstName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Electrostatic Burst I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Electrostatic Burst I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">rpg_ElecBurstName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Electrostatic Burst II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Electrostatic Burst II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">rpg_ElecBurstName3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Electrostatic Burst III</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Electrostatic Burst III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_GunsmithName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Gunsmith I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Gunsmith I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_GunsmithName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Gunsmith II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Gunsmith II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_backlashname</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Backlash I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Backlash I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_backlashname2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Backlash II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Backlash II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_backlashname3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Backlash III</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Backlash III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_backlash1</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Create a shield for 20 seconds which prevents the next enemy attack from damaging you. Enemies that attack the shield are repelled.</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Create a shield for 20 seconds which prevents the next enemy attack from damaging you. Enemies that attack the shield are repelled.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_backlash2</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Create a shield for 20 seconds which prevents the next 2 enemy attacks from damaging you. Enemies that attack the shield are repelled.</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Create a shield for 20 seconds which prevents the next 2 enemy attacks from damaging you. Enemies that attack the shield are repelled.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_backlash3</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Create a shield for 20 seconds which prevents the next 3 enemy attacks from damaging you. Enemies that attack the shield are repelled.</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Create a shield for 20 seconds which prevents the next 3 enemy attacks from damaging you. Enemies that attack the shield are repelled.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsychoshockName</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoshock I</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoshock I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsychoshockName2</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoshock II</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoshock II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsychoshockName3</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoshock III</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoshock III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PsychoshockShort</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Execute a direct psychic attack against biological targets for 45 damage and nullify psi abilities for 10 seconds.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Execute a direct psychic attack against biological targets for 45 damage and nullify psi abilities for 10 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PsychoshockShort2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Execute a direct psychic attack against biological targets for 65 damage and nullify psi abilities for 15 seconds.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Execute a direct psychic attack against biological targets for 65 damage and nullify psi abilities for 15 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PsychoshockShort3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Execute a direct psychic attack against biological targets for 90 damage and nullify psi abilities for 20 seconds.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Execute a direct psychic attack against biological targets for 90 damage and nullify psi abilities for 20 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RemoteMani1</Data></Cell>
+    <Cell><Data ss:Type="String">Use your mind to retrieve distant objects and interact with devices up to 10 meters away.</Data></Cell>
+    <Cell><Data ss:Type="String">Use your mind to retrieve distant objects and interact with devices up to 10 meters away.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RemoteMani2</Data></Cell>
+    <Cell><Data ss:Type="String">Use your mind to retrieve distant objects and interact with devices up to 20 meters away.</Data></Cell>
+    <Cell><Data ss:Type="String">Use your mind to retrieve distant objects and interact with devices up to 20 meters away.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RemoteMani3</Data></Cell>
+    <Cell><Data ss:Type="String">Use your mind to retrieve distant objects and interact with devices up to 30 meters away.</Data></Cell>
+    <Cell><Data ss:Type="String">Use your mind to retrieve distant objects and interact with devices up to 30 meters away.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RemoteManiName</Data></Cell>
+    <Cell><Data ss:Type="String">Remote Manipulation I</Data></Cell>
+    <Cell><Data ss:Type="String">Remote Manipulation I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RemoteManiName2</Data></Cell>
+    <Cell><Data ss:Type="String">Remote Manipulation II</Data></Cell>
+    <Cell><Data ss:Type="String">Remote Manipulation II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RemoteManiName3</Data></Cell>
+    <Cell><Data ss:Type="String">Remote Manipulation III</Data></Cell>
+    <Cell><Data ss:Type="String">Remote Manipulation III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermBlast1</Data></Cell>
+    <Cell><Data ss:Type="String">Create 1 trap of super-heated plasma that deal up to 75 fire damage within 3.5 meters when triggered. Organic enemies will continue to burn for several seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">Create 1 trap of super-heated plasma that deal up to 75 fire damage within 3.5 meters when triggered. Organic enemies will continue to burn for several seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermBlastName</Data></Cell>
+    <Cell><Data ss:Type="String">Superthermal I</Data></Cell>
+    <Cell><Data ss:Type="String">Superthermal I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_CombatFocus1</Data></Cell>
+    <Cell><Data ss:Type="String">Enter a state of Combat Focus for 10 seconds in which time slows around you and actions cost 50% stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">Enter a state of Combat Focus for 10 seconds in which time slows around you and actions cost 50% stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_CombatFocusName</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus I</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Conditioning</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 115 and your stamina to 105. Run, sneak, climb, and sprint 5% faster.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 115 and your stamina to 105. Run, sneak, climb, and sprint 5% faster.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ConditioningName</Data></Cell>
+    <Cell><Data ss:Type="String">Conditioning</Data></Cell>
+    <Cell><Data ss:Type="String">Conditioning</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PhantomGenesisName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Phantom Genesis I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Phantom Genesis I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PhantomGenesisName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Phantom Genesis II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Phantom Genesis II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PhantomGenesis1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a Phantom that will fight for you from a human corpse.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a Phantom that will fight for you from a human corpse.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_PhantomGenesis2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a more powerful Phantom to fight for you from a human corpse. Phantom type is randomly determined.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a more powerful Phantom to fight for you from a human corpse. Phantom type is randomly determined.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Dismantle</Data></Cell>
+    <Cell><Data ss:Type="String">Break down equipment in your inventory into Spare Parts and recover Spare Parts from destroyed Operators. </Data></Cell>
+    <Cell><Data ss:Type="String">Break down equipment in your inventory into Spare Parts and recover Spare Parts from destroyed Operators. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_DismantleName</Data></Cell>
+    <Cell><Data ss:Type="String">Dismantle</Data></Cell>
+    <Cell><Data ss:Type="String">Dismantle</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecAbsorb</Data></Cell>
+    <Cell><Data ss:Type="String">Absorb 50% of all electrical damage as psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">Absorb 50% of all electrical damage as psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecAbsorbName</Data></Cell>
+    <Cell><Data ss:Type="String">Electrostatic Absorption</Data></Cell>
+    <Cell><Data ss:Type="String">Electrostatic Absorption</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecBurst1</Data></Cell>
+    <Cell><Data ss:Type="String">Create an electrostatic burst that deals up to 25 damage within 3 meters of the targeted area. Additionally, the burst disrupts electronic equipment, stuns robotic targets for 3 seconds, and stuns biological targets for 2 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">Create an electrostatic burst that deals up to 25 damage within 3 meters of the targeted area. Additionally, the burst disrupts electronic equipment, stuns robotic targets for 3 seconds, and stuns biological targets for 2 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecBurst2</Data></Cell>
+    <Cell><Data ss:Type="String">Create an electrostatic burst that deals up to 40 damage within 4 meters of the targeted area. Additionally, the burst disrupts electronic equipment, stuns robotic targets for 6 seconds, and stuns biological targets for 4 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">Create an electrostatic burst that deals up to 40 damage within 4 meters of the targeted area. Additionally, the burst disrupts electronic equipment, stuns robotic targets for 6 seconds, and stuns biological targets for 4 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecBurst3</Data></Cell>
+    <Cell><Data ss:Type="String">Create an electrostatic burst that deals up to 55 damage within 5 meters of the targeted area. Additionally, the burst disrupts electronic equipment, stuns robotic targets for 9 seconds, and stuns biological targets for 6 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">Create an electrostatic burst that deals up to 55 damage within 5 meters of the targeted area. Additionally, the burst disrupts electronic equipment, stuns robotic targets for 9 seconds, and stuns biological targets for 6 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecResist</Data></Cell>
+    <Cell><Data ss:Type="String">Take 50% less damage from electrical attacks and hazards and negate stun.</Data></Cell>
+    <Cell><Data ss:Type="String">Take 50% less damage from electrical attacks and hazards and negate stun.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ElecResistName</Data></Cell>
+    <Cell><Data ss:Type="String">Electrostatic Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">Electrostatic Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_EtherAbsorb</Data></Cell>
+    <Cell><Data ss:Type="String">Absorb 50% of all ether damage as psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">Absorb 50% of all ether damage as psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_EtherAbsorbName</Data></Cell>
+    <Cell><Data ss:Type="String">Ether Absorption</Data></Cell>
+    <Cell><Data ss:Type="String">Ether Absorption</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_EtherResist</Data></Cell>
+    <Cell><Data ss:Type="String">Take 50% less damage from ether attacks and hazards.</Data></Cell>
+    <Cell><Data ss:Type="String">Take 50% less damage from ether attacks and hazards.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_EtherResistName</Data></Cell>
+    <Cell><Data ss:Type="String">Ether Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">Ether Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FearResist</Data></Cell>
+    <Cell><Data ss:Type="String">Reduce duration of fear effects by 25%.</Data></Cell>
+    <Cell><Data ss:Type="String">Reduce duration of fear effects by 25%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FearResistName</Data></Cell>
+    <Cell><Data ss:Type="String">Fear Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">Fear Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FieldSurgeon</Data></Cell>
+    <Cell><Data ss:Type="String">Use a Medkit to remove trauma.</Data></Cell>
+    <Cell><Data ss:Type="String">Use a Medkit to remove trauma.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FieldSurgeonName</Data></Cell>
+    <Cell><Data ss:Type="String">Field Surgeon</Data></Cell>
+    <Cell><Data ss:Type="String">Field Surgeon</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Firearms1</Data></Cell>
+    <Cell><Data ss:Type="String">Increases damage with security weapons to 120% and chance to critically hit to 6%.</Data></Cell>
+    <Cell><Data ss:Type="String">Increases damage with security weapons to 120% and chance to critically hit to 6%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Firearms2</Data></Cell>
+    <Cell><Data ss:Type="String">Increases damage with security weapons to 150% and chance to critically hit to 10%.</Data></Cell>
+    <Cell><Data ss:Type="String">Increases damage with security weapons to 150% and chance to critically hit to 10%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FirearmsName</Data></Cell>
+    <Cell><Data ss:Type="String">Firearms I</Data></Cell>
+    <Cell><Data ss:Type="String">Firearms I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FirearmsName2</Data></Cell>
+    <Cell><Data ss:Type="String">Firearms II</Data></Cell>
+    <Cell><Data ss:Type="String">Firearms II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Fitness1</Data></Cell>
+    <Cell><Data ss:Type="String">Increase overall movement speed. Run, sneak, climb, and sprint 25% faster.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase overall movement speed. Run, sneak, climb, and sprint 25% faster.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Fitness2</Data></Cell>
+    <Cell><Data ss:Type="String">Gain the ability to sprint with ludicrous speed and to jump incredibly high.</Data></Cell>
+    <Cell><Data ss:Type="String">Gain the ability to sprint with ludicrous speed and to jump incredibly high.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FitnessName</Data></Cell>
+    <Cell><Data ss:Type="String">Mobility I</Data></Cell>
+    <Cell><Data ss:Type="String">Mobility I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_FitnessName2</Data></Cell>
+    <Cell><Data ss:Type="String">Mobility II</Data></Cell>
+    <Cell><Data ss:Type="String">Mobility II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Gunsmith1</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to upgrade security weapons beyond modification level 1.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to upgrade security weapons beyond modification level 1.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Gunsmith2</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to fully upgrade security weapons.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to fully upgrade security weapons.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Hacking1</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 1 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 1 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Hacking2</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 2 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 2 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Hacking3</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 3 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 3 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Hacking4</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 4 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 4 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_HackingName</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking I</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_HackingName2</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking II</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_HackingName3</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking III</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_HackingName4</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking IV</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking IV</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_KineticBlastName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Kinetic Blast I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Kinetic Blast I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_KineticBlastName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Kinetic Blast II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Kinetic Blast II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_KineticBlastName3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Kinetic Blast III</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Kinetic Blast III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_KineticBlast1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a physical blast that deals up to 50 damage and pushes away anything within 5 meters of the targeted area.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a physical blast that deals up to 50 damage and pushes away anything within 5 meters of the targeted area.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_KineticBlast2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a physical blast that deals up to 75 damage and pushes away anything within 6 meters of the targeted area.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a physical blast that deals up to 75 damage and pushes away anything within 6 meters of the targeted area.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_KineticBlast3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a physical blast that deals up to 100 damage and pushes away anything within 7 meters of the targeted area.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Create a physical blast that deals up to 100 damage and pushes away anything within 7 meters of the targeted area.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LabTech1</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to upgrade non-standard tech weapons beyond modification level 1.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to upgrade non-standard tech weapons beyond modification level 1.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LabTech2</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to fully upgrade non-standard tech weapons.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows use of Weapon Upgrade Kits to fully upgrade non-standard tech weapons.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LabTechName</Data></Cell>
+    <Cell><Data ss:Type="String">Lab Tech I</Data></Cell>
+    <Cell><Data ss:Type="String">Lab Tech I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LabTechName2</Data></Cell>
+    <Cell><Data ss:Type="String">Lab Tech II</Data></Cell>
+    <Cell><Data ss:Type="String">Lab Tech II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Leverage1</Data></Cell>
+    <Cell><Data ss:Type="String">Lift heavy objects with ease and throw objects further. Thrown objects will damage enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">Lift heavy objects with ease and throw objects further. Thrown objects will damage enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Leverage2</Data></Cell>
+    <Cell><Data ss:Type="String">Lift even heavier objects and throw objects even further. Thrown objects will damage enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">Lift even heavier objects and throw objects even further. Thrown objects will damage enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Leverage3</Data></Cell>
+    <Cell><Data ss:Type="String">Lift anything that isn't bolted to the floor and throw objects even further. Your brute strength can be applied to force open an unpowered door.</Data></Cell>
+    <Cell><Data ss:Type="String">Lift anything that isn't bolted to the floor and throw objects even further. Your brute strength can be applied to force open an unpowered door.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LeverageName</Data></Cell>
+    <Cell><Data ss:Type="String">Leverage I</Data></Cell>
+    <Cell><Data ss:Type="String">Leverage I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LeverageName2</Data></Cell>
+    <Cell><Data ss:Type="String">Leverage II</Data></Cell>
+    <Cell><Data ss:Type="String">Leverage II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_LeverageName3</Data></Cell>
+    <Cell><Data ss:Type="String">Leverage III</Data></Cell>
+    <Cell><Data ss:Type="String">Leverage III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_LiftName</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Lift Field I</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Lift Field I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_LiftName2</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Lift Field II</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Lift Field II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Lift1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Manipulate gravity to create a column of upward force up to 7m tall that lasts 15 seconds and can trap enemies.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Manipulate gravity to create a column of upward force up to 7m tall that lasts 15 seconds and can trap enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Lift2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Manipulate gravity to create a column of upward force up to 12m tall that lasts 15 seconds and can trap enemies.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Manipulate gravity to create a column of upward force up to 12m tall that lasts 15 seconds and can trap enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MachineMindName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Machine Mind I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Machine Mind I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MachineMindName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Machine Mind II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Machine Mind II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MachineMindName3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Machine Mind III</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Machine Mind III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MachineMind1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to end hostilities and fight for you for 30 seconds.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to end hostilities and fight for you for 30 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MachineMind2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to end hostilities and fight for you for 60 seconds.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to end hostilities and fight for you for 60 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MachineMind3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to end hostilities and fight for you for 90 seconds.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to end hostilities and fight for you for 90 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_MaterialsExpert</Data></Cell>
+    <Cell><Data ss:Type="String">Increase recycling yield by 20%.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase recycling yield by 20%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_MaterialsExpertName</Data></Cell>
+    <Cell><Data ss:Type="String">Materials Expert</Data></Cell>
+    <Cell><Data ss:Type="String">Materials Expert</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_MetaConversion</Data></Cell>
+    <Cell><Data ss:Type="String">Doubles both the duration of the Well Fed bonus and the health gained by consuming food.</Data></Cell>
+    <Cell><Data ss:Type="String">Doubles both the duration of the Well Fed bonus and the health gained by consuming food.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_MetaConversionName</Data></Cell>
+    <Cell><Data ss:Type="String">Metabolic Boost</Data></Cell>
+    <Cell><Data ss:Type="String">Metabolic Boost</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MimicName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mimic Matter I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mimic Matter I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MimicName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mimic Matter II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mimic Matter II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_MimicName3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mimic Matter III</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mimic Matter III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Mimic1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Camouflage yourself by taking the form of a nearby object. Movement is possible, but may draw attention. Uses 2 psi per second.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Camouflage yourself by taking the form of a nearby object. Uses 2 psi per second.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Mimic2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Camouflage yourself by taking the form of a nearby object. Movement is possible, but may draw attention. Mimic slightly more complex machines such as turrets. Uses 2 psi per second.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Camouflage yourself by taking the form of a nearby object. Mimic slightly more complex machines such as turrets. Uses 2 psi per second.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Mimic3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Camouflage yourself by taking the form of a nearby object. Movement is possible, but may draw attention. Mimic complex machinery such as Operators. Uses 2 psi per second.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Camouflage yourself by taking the form of a nearby object. Mimic complex machinery such as Operators. Uses 2 psi per second.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Necropsy</Data></Cell>
+    <Cell><Data ss:Type="String">Recover more valuable organs from Typhon remains. Typhon organs can be recycled for exotic material, which is used in the fabrication of Neuromods.</Data></Cell>
+    <Cell><Data ss:Type="String">Recover more valuable organs from Typhon remains. Typhon organs can be recycled for exotic material, which is used in the fabrication of Neuromods.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_NecropsyName</Data></Cell>
+    <Cell><Data ss:Type="String">Necropsy</Data></Cell>
+    <Cell><Data ss:Type="String">Necropsy</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Neurostimulant</Data></Cell>
+    <Cell><Data ss:Type="String">Increase the effectiveness of psi hypos by 50%.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase the effectiveness of psi hypos by 50%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_NeurostimulantName</Data></Cell>
+    <Cell><Data ss:Type="String">Neurostimulant I</Data></Cell>
+    <Cell><Data ss:Type="String">Neurostimulant I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_OverrideName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mindjack I</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mindjack I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_OverrideName2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mindjack II</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mindjack II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_OverrideName3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mindjack III</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Mindjack III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Override1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force biological enemies to end hostilities and fight for you up to 20 seconds. Also frees humans from Typhon mind control. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force biological enemies to end hostilities and fight for you up to 20 seconds. Also frees humans from Typhon mind control. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Override2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force biological enemies to end hostilities and fight for you up to 40 seconds. Also frees humans from Typhon mind control. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force biological enemies to end hostilities and fight for you up to 40 seconds. Also frees humans from Typhon mind control. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_Override3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force biological enemies to end hostilities and fight for you up to 60 seconds. Also frees humans from Typhon mind control. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force biological enemies to end hostilities and fight for you up to 60 seconds. Also frees humans from Typhon mind control. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Physician1</Data></Cell>
+    <Cell><Data ss:Type="String">Your knowledge of medical practice increases the effectiveness of Medkits to 150%.</Data></Cell>
+    <Cell><Data ss:Type="String">Your knowledge of medical practice increases the effectiveness of Medkits to 150%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Physician2</Data></Cell>
+    <Cell><Data ss:Type="String">Your knowledge of medical practice increases the effectiveness of Medkits to 300%.</Data></Cell>
+    <Cell><Data ss:Type="String">Your knowledge of medical practice increases the effectiveness of Medkits to 300%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PhysicianName</Data></Cell>
+    <Cell><Data ss:Type="String">Physician I</Data></Cell>
+    <Cell><Data ss:Type="String">Physician I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PhysicianName2</Data></Cell>
+    <Cell><Data ss:Type="String">Physician II</Data></Cell>
+    <Cell><Data ss:Type="String">Physician II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsiAptitude1</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your psi pool to 150.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your psi pool to 150.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsiAptitude2</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your psi pool to 200.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your psi pool to 200.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsiAptitude3</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your psi pool to 250.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your psi pool to 250.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsiAptitudeName</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Aptitude I</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Aptitude I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsiAptitudeName2</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Aptitude II</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Aptitude II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsiAptitudeName3</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Aptitude III</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Aptitude III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Psychotronics1</Data></Cell>
+    <Cell><Data ss:Type="String">Allows installation of two additional chipsets on your Psychoscope.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows installation of two additional chipsets on your Psychoscope.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Psychotronics2</Data></Cell>
+    <Cell><Data ss:Type="String">Allows installation of two additional chipsets on your Psychoscope.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows installation of two additional chipsets on your Psychoscope.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Psychotronics3</Data></Cell>
+    <Cell><Data ss:Type="String">Allows installation of two additional chipsets on your Psychoscope.</Data></Cell>
+    <Cell><Data ss:Type="String">Allows installation of two additional chipsets on your Psychoscope.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsychotronicsName</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics I</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsychotronicsName2</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics II</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PsychotronicsName3</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics III</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Pulverize</Data></Cell>
+    <Cell><Data ss:Type="String">Attacking with the wrench has a 25% chance to do Bonus Damage.</Data></Cell>
+    <Cell><Data ss:Type="String">Attacking with the wrench has a 25% chance to do Bonus Damage.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_PulverizeName</Data></Cell>
+    <Cell><Data ss:Type="String">Pulverize</Data></Cell>
+    <Cell><Data ss:Type="String">Pulverize</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Regeneration</Data></Cell>
+    <Cell><Data ss:Type="String">Regenerate up to 10 health immediately after taking damage.</Data></Cell>
+    <Cell><Data ss:Type="String">Regenerate up to 10 health immediately after taking damage.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Regeneration2</Data></Cell>
+    <Cell><Data ss:Type="String">Regenerate up to 25 health immediately after taking damage.</Data></Cell>
+    <Cell><Data ss:Type="String">Regenerate up to 25 health immediately after taking damage.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RegenerationName</Data></Cell>
+    <Cell><Data ss:Type="String">Regeneration I</Data></Cell>
+    <Cell><Data ss:Type="String">Regeneration I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RegenerationName2</Data></Cell>
+    <Cell><Data ss:Type="String">Regeneration II</Data></Cell>
+    <Cell><Data ss:Type="String">Regeneration II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Repair1</Data></Cell>
+    <Cell><Data ss:Type="String">Fix broken Grav Shafts, Fabricators, and Recyclers with Spare Parts.  Fix broken Weapons if Weapon Degradation is enabled.</Data></Cell>
+    <Cell><Data ss:Type="String">FIx broken Grav Shafts, Fabricators, and Recyclers with Spare Parts. If Survival Mode is enabled, use Spare Parts to repair damaged weapons.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Repair2</Data></Cell>
+    <Cell><Data ss:Type="String">Fix broken Turrets, Operators, and Electrical Junctions with Spare Parts. Increased efficiency with Spare Parts and Suit Patch Kits.</Data></Cell>
+    <Cell><Data ss:Type="String">Fix broken Turrets, Operators, and Electrical Junctions with Spare Parts. Increased efficiency with Spare Parts and Suit Patch Kits.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Repair3</Data></Cell>
+    <Cell><Data ss:Type="String">Fortify Turrets with Spare Parts. Increased efficiency with Spare Parts and Suit Patch Kits.</Data></Cell>
+    <Cell><Data ss:Type="String">Fortify Turrets with Spare Parts. Increased efficiency with Spare Parts and Suit Patch Kits.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RepairName</Data></Cell>
+    <Cell><Data ss:Type="String">Repair I</Data></Cell>
+    <Cell><Data ss:Type="String">Repair I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RepairName2</Data></Cell>
+    <Cell><Data ss:Type="String">Repair II</Data></Cell>
+    <Cell><Data ss:Type="String">Repair II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_RepairName3</Data></Cell>
+    <Cell><Data ss:Type="String">Repair III</Data></Cell>
+    <Cell><Data ss:Type="String">Repair III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SneakAttack</Data></Cell>
+    <Cell><Data ss:Type="String">Do 200% damage to enemies while they are unaware of you.</Data></Cell>
+    <Cell><Data ss:Type="String">Do 200% damage to enemies while they are unaware of you.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SneakAttack2</Data></Cell>
+    <Cell><Data ss:Type="String">Do 250% damage to enemies while they are unaware of you.</Data></Cell>
+    <Cell><Data ss:Type="String">Do 250% damage to enemies while they are unaware of you.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SneakAttackName</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak Attack I</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak Attack I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SneakAttackName2</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak Attack II</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak Attack II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Stamina</Data></Cell>
+    <Cell><Data ss:Type="String">Stamina I</Data></Cell>
+    <Cell><Data ss:Type="String">Stamina I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Stamina2</Data></Cell>
+    <Cell><Data ss:Type="String">Stamina II</Data></Cell>
+    <Cell><Data ss:Type="String">Stamina II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_staminadesc</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Increases your stamina to 125.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Increases your stamina to 125.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">rpg_staminadesc2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Increases your stamina to 150.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Increases your stamina to 150.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Stealth1</Data></Cell>
+    <Cell><Data ss:Type="String">Enemies take longer to detect you when you are sneaking or crawling.</Data></Cell>
+    <Cell><Data ss:Type="String">Enemies take longer to detect you when you are sneaking or crawling.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Stealth2</Data></Cell>
+    <Cell><Data ss:Type="String">Walk and run without making noise.</Data></Cell>
+    <Cell><Data ss:Type="String">Walk and run without making noise.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Stealth3</Data></Cell>
+    <Cell><Data ss:Type="String">Sprint without making noise.</Data></Cell>
+    <Cell><Data ss:Type="String">Sprint without making noise.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_StealthName</Data></Cell>
+    <Cell><Data ss:Type="String">Stealth I</Data></Cell>
+    <Cell><Data ss:Type="String">Stealth I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_StealthName2</Data></Cell>
+    <Cell><Data ss:Type="String">Stealth II</Data></Cell>
+    <Cell><Data ss:Type="String">Stealth II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_StealthName3</Data></Cell>
+    <Cell><Data ss:Type="String">Stealth III</Data></Cell>
+    <Cell><Data ss:Type="String">Stealth III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SuitMod1</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrade your TranStar uniform with extra inventory space and allow installation of two additional chipsets.</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrade your TranStar uniform with extra inventory space and allow installation of two additional chipsets.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SuitMod2</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrade your TranStar uniform with extra inventory space and allow installation of two additional chipsets.</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrade your TranStar uniform with extra inventory space and allow installation of two additional chipsets.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SuitMod3</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrade your TranStar uniform with extra inventory space and allow installation of two additional chipsets.</Data></Cell>
+    <Cell><Data ss:Type="String">Upgrade your TranStar uniform with extra inventory space and allow installation of two additional chipsets.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SuitModName</Data></Cell>
+    <Cell><Data ss:Type="String">Suit Modification I</Data></Cell>
+    <Cell><Data ss:Type="String">Suit Modification I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SuitModName2</Data></Cell>
+    <Cell><Data ss:Type="String">Suit Modification II</Data></Cell>
+    <Cell><Data ss:Type="String">Suit Modification II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_SuitModName3</Data></Cell>
+    <Cell><Data ss:Type="String">Suit Modification III</Data></Cell>
+    <Cell><Data ss:Type="String">Suit Modification III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermAbsorb</Data></Cell>
+    <Cell><Data ss:Type="String">Absorb 50% of all fire damage as psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">Absorb 50% of all fire damage as psi points.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermAbsorbName</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Absorption</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Absorption</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermBlast2</Data></Cell>
+    <Cell><Data ss:Type="String">Create 2 traps of super-heated plasma that deal up to 100 fire damage within 4.5 meters when triggered. Organic enemies will continue to burn for several seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">Create 2 traps of super-heated plasma that deal up to 100 fire damage within 4.5 meters when triggered. Organic enemies will continue to burn for several seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermBlast3</Data></Cell>
+    <Cell><Data ss:Type="String">Create 3 traps of super-heated plasma that deal up to 125 fire damage within 5.5 meters when triggered. Organic enemies will continue to burn for several seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">Create 3 traps of super-heated plasma that deal up to 125 fire damage within 5.5 meters when triggered. Organic enemies will continue to burn for several seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermBlastName2</Data></Cell>
+    <Cell><Data ss:Type="String">Superthermal II</Data></Cell>
+    <Cell><Data ss:Type="String">Superthermal II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermBlastName3</Data></Cell>
+    <Cell><Data ss:Type="String">Superthermal III</Data></Cell>
+    <Cell><Data ss:Type="String">Superthermal III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermResist</Data></Cell>
+    <Cell><Data ss:Type="String">Take 50% less damage from fire attacks and hazards.</Data></Cell>
+    <Cell><Data ss:Type="String">Take 50% less damage from fire attacks and hazards.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ThermResistName</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Resistance</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Toughness1</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 150. Natural life span increased by 25 years.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 150. Natural life span increased by 25 years.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Toughness2</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 200. Natural life span increased by 50 years.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 200. Natural life span increased by 50 years.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_Toughness3</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 300. Natural life span increased by 75 years.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase your health to 300. Natural life span increased by 75 years.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ToughnessName</Data></Cell>
+    <Cell><Data ss:Type="String">Toughness I</Data></Cell>
+    <Cell><Data ss:Type="String">Toughness I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ToughnessName2</Data></Cell>
+    <Cell><Data ss:Type="String">Toughness II</Data></Cell>
+    <Cell><Data ss:Type="String">Toughness II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ToughnessName3</Data></Cell>
+    <Cell><Data ss:Type="String">Toughness III</Data></Cell>
+    <Cell><Data ss:Type="String">Toughness III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_WrenchFu1</Data></Cell>
+    <Cell><Data ss:Type="String">Reduce stamina cost of wrench attacks by 25%.</Data></Cell>
+    <Cell><Data ss:Type="String">Reduce stamina cost of wrench attacks by 25%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_WrenchFu2</Data></Cell>
+    <Cell><Data ss:Type="String">Wrench attacks deal 50% more damage.</Data></Cell>
+    <Cell><Data ss:Type="String">Wrench attacks deal 50% more damage.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_WrenchFuName</Data></Cell>
+    <Cell><Data ss:Type="String">Impact Calibration I</Data></Cell>
+    <Cell><Data ss:Type="String">Impact Calibration I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_WrenchFuName2</Data></Cell>
+    <Cell><Data ss:Type="String">Impact Calibration II</Data></Cell>
+    <Cell><Data ss:Type="String">Impact Calibration II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ShiftName1</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom Shift I</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom Shift I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ShiftName2</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom Shift II</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom Shift II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ShiftDesc1</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Rapidly change position up to 6 meters away and leave behind a double that fool enemies for 4 seconds.</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Rapidly change position up to 6 meters away and leave behind a double that fools enemies for 4 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">rpg_ShiftDesc2</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Rapidly change position up to 12 meters away and leave behind a double that fool enemies for 8 seconds.</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">Rapidly change position up to 12 meters away and leave behind a double that fools enemies for 8 seconds.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_10641886185852603002</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking V</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking V</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_10641886185852603003</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 4 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">Bypass level 4 security measures on computers and robotic systems.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216977824649</Data></Cell>
+    <Cell><Data ss:Type="String">Neurostimulant II</Data></Cell>
+    <Cell><Data ss:Type="String">Neurostimulant II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216977824650</Data></Cell>
+    <Cell><Data ss:Type="String">Increase the effectiveness of psi hypos by 100%.</Data></Cell>
+    <Cell><Data ss:Type="String">Increase the effectiveness of psi hypos by 100%.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216979649413</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus III</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216979649414</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus duration increases to 15 seconds, time slows around you but you can move normally, your attacks deal 125% damage, and actions cost no stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus duration increases to 15 seconds, time slows around you but you can move normally, your attacks deal 125% damage, and actions cost no stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216979649416</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus II</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_3149325216979649417</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus duration increases to 12 seconds, time slows less for you than your enemies, your attacks deal 110% damage, and actions cost 25% stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">Combat Focus duration increases to 12 seconds, time slows less for you than your enemies, your attacks deal 110% damage, and actions cost 25% stamina.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902449692</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:controller_execute_power%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:controller_execute_power%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902449721</Data></Cell>
+    <Cell><Data ss:Type="String">Hold  %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw%  to aim Kinetic Blast. Release %focusmode:mouse_execute_power_type1%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold  %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw%  to aim Kinetic Blast. Release %focusmode:mouse_execute_power_type1%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902449770</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:controller_execute_power%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:controller_execute_power%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902449773</Data></Cell>
+    <Cell><Data ss:Type="String">Hold  %focusmode:mouse_execute_power_type1%  to enter psi targeting mode and use  %focusmode:mouse_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:mouse_execute_power_type1%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold  %focusmode:mouse_execute_power_type1%  to enter psi targeting mode and use  %focusmode:mouse_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:mouse_execute_power_type1%  to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902449777</Data></Cell>
+    <Cell><Data ss:Type="String">Hold  %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:mouse_execute_power_type1% to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold  %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Kinetic Blast. Release %focusmode:mouse_execute_power_type1% to execute. Enemies caught in the blast will be knocked down and damaged. Kinetic Blast will also shove objects out of the way. Higher levels of Kinetic Blast will shove heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594771</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594795</Data></Cell>
+    <Cell><Data ss:Type="String">Turn a Human corpse into a Phantom that will fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select a nearby Human corpse. Release %focusmode:mouse_execute_power_type1% to turn the corpse into a Phantom.  Phantoms you create will fight to defend you as long as they live. </Data></Cell>
+    <Cell><Data ss:Type="String">Turn a Human corpse into a Phantom that will fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select a nearby Human corpse. Release %focusmode:mouse_execute_power_type1% to turn the corpse into a Phantom.  Phantoms you create will fight to defend you as long as they live. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594849</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Turn a Human corpse into a Phantom that will fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a nearby Human corpse. Release  %focusmode:controller_execute_power% to turn the corpse into a Phantom. Phantoms you create will fight to defend you as long as they live. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Turn a Human corpse into a Phantom that will fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a nearby Human corpse. Release  %focusmode:controller_execute_power% to turn the corpse into a Phantom. Phantoms you create will fight to defend you as long as they live. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594872</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a target. Release %focusmode:controller_execute_power% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. &lt;br&gt;&lt;br&gt;This power may now be available for installation. Press %player:togglepda% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a target. Release %focusmode:controller_execute_power% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. &lt;br&gt;&lt;br&gt;This power may now be available for installation. Press %player:togglepda% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594879</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to fight for you.&lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select a target. Release %focusmode:mouse_execute_power_type1% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. &lt;br&gt;&lt;br&gt;This power may now be available for installation. Press %player:toggleabilities% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force robotic enemies to fight for you.&lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select a target. Release %focusmode:mouse_execute_power_type1% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. &lt;br&gt;&lt;br&gt;This power may now be available for installation. Press %player:toggleabilities% to open your TranScribe and navigate to the Neuromods section.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594952</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Electrostatic Burst. Release %focusmode:controller_execute_power%  to execute a burst that stuns robotic and biological targets and causes a moderate amount of damage. Robotic targets are stunned longer and take increased damage. Electrostatic Burst also temporarily disrupts electronic equipment. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Electrostatic Burst. Release %focusmode:controller_execute_power%  to execute a burst that stuns robotic and biological targets and causes a moderate amount of damage. Robotic targets are stunned longer and take increased damage. Electrostatic Burst also temporarily disrupts electronic equipment. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594961</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Electrostatic Burst. Release %focusmode:mouse_execute_power_type1% to execute a burst that stuns robotic and biological targets and causes a moderate amount of damage. Robotic targets are stunned longer and take increased damage. Electrostatic Burst also temporarily disrupts electronic equipment. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Electrostatic Burst. Release %focusmode:mouse_execute_power_type1% to execute a burst that stuns robotic and biological targets and causes a moderate amount of damage. Robotic targets are stunned longer and take increased damage. Electrostatic Burst also temporarily disrupts electronic equipment. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594987</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force organic enemies to fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a target. Release %focusmode:controller_execute_power% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force organic enemies to fight for you. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a target. Release %focusmode:controller_execute_power% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902594995</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force organic enemies to fight for you.&lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select a target. Release %focusmode:mouse_execute_power_type1% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. </Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Force organic enemies to fight for you.&lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select a target. Release %focusmode:mouse_execute_power_type1% to execute. Affected enemies will fight for you for the duration of the power and then revert to their previous state. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595024</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Use Lift Field to trap enemies, move heavy objects out of the way, or climb to great heights. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Lift Field. Release %focusmode:controller_execute_power% to execute. Targets caught in the field will be lifted up and trapped in the field for the duration of the power.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Use Lift Field to trap enemies, move heavy objects out of the way, or climb to great heights. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Lift Field. Release %focusmode:controller_execute_power% to execute. Targets caught in the field will be lifted up and trapped in the field for the duration of the power.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595032</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Use Lift Field to trap enemies, move heavy objects out of the way, or climb to great heights. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Lift Field. Release %focusmode:mouse_execute_power_type1% to execute. Targets caught in the field will be lifted up and trapped in the field for the duration of the power.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Use Lift Field to trap enemies, move heavy objects out of the way, or climb to great heights. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Lift Field. Release %focusmode:mouse_execute_power_type1% to execute. Targets caught in the field will be lifted up and trapped in the field for the duration of the power.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595045</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Sneak past enemies or slip into small spaces by taking on the shape of everyday objects. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select an object to Mimic. Release %focusmode:controller_execute_power% to execute. You will appear as the object where you were standing. Use %default:xi_movey% to move. Enemies will become suspicious if they spot you moving too much.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Sneak past enemies or slip into small spaces by taking on the shape of everyday objects. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select an object to Mimic. Release %focusmode:controller_execute_power% to execute. You will appear as the object where you were standing. Use %default:xi_movey% to move. Enemies will become suspicious if they spot you moving too much.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595051</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Sneak past enemies or slip into small spaces by taking on the shape of everyday objects. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select an object to Mimic. Release %focusmode:mouse_execute_power_type1% to execute. You will appear as the object where you were standing. Use %default:moveforward%, %default:moveleft%, %default:moveback%, and %default:moveright% to move. Enemies will become suspicious if they spot you moving too much.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Sneak past enemies or slip into small spaces by taking on the shape of everyday objects. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select an object to Mimic. Release %focusmode:mouse_execute_power_type1% to execute. You will appear as the object where you were standing. Use %default:moveforward%, %default:moveleft%, %default:moveback%, and %default:moveright% to move. Enemies will become suspicious if they spot you moving too much.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595080</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Block Typhon enemies from using psi abilities as you attack their minds. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a target. Release %focusmode:controller_execute_power% to execute. Psychoshocked enemies take a moderate amount of direct damage and will be temporarily unable to use psi abilities. Enemies also take bonus damage from other sources while psychoshocked.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Block Typhon enemies from using psi abilities as you attack their minds. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select a target. Release %focusmode:controller_execute_power% to execute. Psychoshocked enemies take a moderate amount of direct damage and will be temporarily unable to use psi abilities. Enemies also take bonus damage from other sources while psychoshocked.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595087</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Block Typhon enemies from using psi abilities as you attack their minds. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use  %focusmode:mouse_menu_rotate_yaw% to select a target. Release %focusmode:mouse_execute_power_type1% to execute. Psychoshocked enemies take a moderate amount of direct damage and will be temporarily unable to use psi abilities. Enemies also take bonus damage from other sources while psychoshocked.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Block Typhon enemies from using psi abilities as you attack their minds. &lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use  %focusmode:mouse_menu_rotate_yaw% to select a target. Release %focusmode:mouse_execute_power_type1% to execute. Psychoshocked enemies take a moderate amount of direct damage and will be temporarily unable to use psi abilities. Enemies also take bonus damage from other sources while psychoshocked.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595110</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Spooky action at a distance. Retrieve objects, throw switches, manipulate computer screens, and loot containers.&lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select an object. Release %focusmode:controller_execute_power% to execute. With the Leverage ability, you can retrieve even heavier objects.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Spooky action at a distance. Retrieve objects, throw switches, manipulate computer screens, and loot containers.&lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to select an object. Release %focusmode:controller_execute_power% to execute. With the Leverage ability, you can retrieve even heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595112</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Spooky action at a distance. Retrieve objects, throw switches, manipulate computer screens, and loot containers.&lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select an object. Release %focusmode:mouse_execute_power_type1% to execute. With the Leverage ability, you can retrieve even heavier objects.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Spooky action at a distance. Retrieve objects, throw switches, manipulate computer screens, and loot containers.&lt;br&gt;&lt;br&gt;Hold %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to select an object. Release %focusmode:mouse_execute_power_type1% to execute. With the Leverage ability, you can retrieve even heavier objects.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595163</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Set fiery traps for your enemies. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Superthermal. Release %focusmode:controller_execute_power% to place a trap. Enemies who approach the trap will trigger a fiery explosion that causes damage and ignites anything flammable.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Set fiery traps for your enemies. &lt;br&gt;&lt;br&gt;Hold %focusmode:controller_execute_power%  to enter psi targeting mode and use %focusmode:controller_right_menu_rotate_yaw% to aim Superthermal. Release %focusmode:controller_execute_power% to place a trap. Enemies who approach the trap will trigger a fiery explosion that causes damage and ignites anything flammable.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595167</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Set fiery traps for your enemies. &lt;br&gt;&lt;br&gt;Hold  %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Superthermal. Release %focusmode:mouse_execute_power_type1% to place a trap. Enemies who approach the trap will trigger a fiery explosion that causes damage and ignites anything flammable.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Set fiery traps for your enemies. &lt;br&gt;&lt;br&gt;Hold  %focusmode:mouse_execute_power_type1% to enter psi targeting mode and use %focusmode:mouse_menu_rotate_yaw% to aim Superthermal. Release %focusmode:mouse_execute_power_type1% to place a trap. Enemies who approach the trap will trigger a fiery explosion that causes damage and ignites anything flammable.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595197</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Dash across a space while leaving a Phantom duplicate behind. &lt;br&gt;&lt;br&gt;With Phantom Shift equipped, press %focusmode:controller_execute_power% to shift. Press %default:xi_movey% to adjust the direction of your shift before executing. Phantom Shift leaves a shadowy duplicate where you started that will distract your enemies.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Dash across a space while leaving a Phantom duplicate behind. &lt;br&gt;&lt;br&gt;With Phantom Shift equipped, press %focusmode:controller_execute_power% to shift. Press %default:xi_movey% to adjust the direction of your shift before executing. Phantom Shift leaves a shadowy duplicate where you started that will distract your enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129902595204</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Dash across a space while leaving a Phantom duplicate behind. &lt;br&gt;&lt;br&gt;With Phantom Shift equipped, press %focusmode:mouse_execute_power_type1% to shift. Press %default:moveforward%, %default:moveleft%, %default:moveback%, and %default:moveright% to adjust the direction of your shift before executing. Phantom Shift leaves a shadowy duplicate where you started that will distract your enemies.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Dash across a space while leaving a Phantom duplicate behind. &lt;br&gt;&lt;br&gt;With Phantom Shift equipped, press %focusmode:mouse_execute_power_type1% to shift. Press %default:moveforward%, %default:moveleft%, %default:moveback%, and %default:moveright% to adjust the direction of your shift before executing. Phantom Shift leaves a shadowy duplicate where you started that will distract your enemies.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <TopRowVisible>129</TopRowVisible>
+   <LeftColumnVisible>2</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>141</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

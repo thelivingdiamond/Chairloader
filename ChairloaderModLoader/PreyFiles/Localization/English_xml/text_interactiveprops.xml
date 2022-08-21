@@ -1,0 +1,884 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Title>Audio script template</Title>
+  <Author>Susan Kath</Author>
+  <LastAuthor>Susan Kath</LastAuthor>
+  <LastPrinted>2003-10-30T09:38:41Z</LastPrinted>
+  <Created>2002-06-17T19:14:00Z</Created>
+  <LastSaved>2016-10-07T17:26:44Z</LastSaved>
+  <Company>Arkane Studios</Company>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11070</WindowHeight>
+  <WindowWidth>20085</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <TabRatio>274</TabRatio>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s77">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#F4B084" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s78">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#F4B084" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s79">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#333399"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="120" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="271.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="343.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="329.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="130.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="174.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s65">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">KEY</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="s65">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This column is used for reference to the original text. This text is not displayed in-game.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This column is used to display the text in-game. This should be translated into the specific language.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">set to &quot;LOCKED&quot; if this string is final.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Character limit for translated text.</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s71">
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Interactive Props</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Apartment</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_shower</Data></Cell>
+    <Cell><Data ss:Type="String">Shower</Data></Cell>
+    <Cell><Data ss:Type="String">Shower</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_sink</Data></Cell>
+    <Cell><Data ss:Type="String">Sink</Data></Cell>
+    <Cell><Data ss:Type="String">Sink</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_toilet</Data></Cell>
+    <Cell><Data ss:Type="String">Toilet</Data></Cell>
+    <Cell><Data ss:Type="String">Toilet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_trashcan</Data></Cell>
+    <Cell><Data ss:Type="String">Trash Can</Data></Cell>
+    <Cell><Data ss:Type="String">Trash Can</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_door</Data></Cell>
+    <Cell><Data ss:Type="String">Door</Data></Cell>
+    <Cell><Data ss:Type="String">Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorlock</Data></Cell>
+    <Cell><Data ss:Type="String">Door (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Door (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorjam</Data></Cell>
+    <Cell><Data ss:Type="String">Door (Jammed)</Data></Cell>
+    <Cell><Data ss:Type="String">Door (Jammed)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_suit</Data></Cell>
+    <Cell><Data ss:Type="String">Suit</Data></Cell>
+    <Cell><Data ss:Type="String">Suit</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_note</Data></Cell>
+    <Cell><Data ss:Type="String">Note</Data></Cell>
+    <Cell><Data ss:Type="String">Note</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_closet</Data></Cell>
+    <Cell><Data ss:Type="String">Closet Door</Data></Cell>
+    <Cell><Data ss:Type="String">Closet Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_light</Data></Cell>
+    <Cell><Data ss:Type="String">Light</Data></Cell>
+    <Cell><Data ss:Type="String">Light</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Global</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">prop_watercooler</Data></Cell>
+    <Cell><Data ss:Type="String">Water Cooler</Data></Cell>
+    <Cell><Data ss:Type="String">Water Cooler</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">prop_fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">prop_recycler</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">prop_MedStation</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Bay</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Bay</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_O2Station</Data></Cell>
+    <Cell><Data ss:Type="String">O2 Station</Data></Cell>
+    <Cell><Data ss:Type="String">O2 Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_GravShaft</Data></Cell>
+    <Cell><Data ss:Type="String">Grav Shaft</Data></Cell>
+    <Cell><Data ss:Type="String">Grav Shaft</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorLockedUnpowered</Data></Cell>
+    <Cell><Data ss:Type="String">Unpowered Door (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Unpowered Door (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorUnlockedUnpowered</Data></Cell>
+    <Cell><Data ss:Type="String">Unpowered Door</Data></Cell>
+    <Cell><Data ss:Type="String">Unpowered Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorLockedManual</Data></Cell>
+    <Cell><Data ss:Type="String">Door (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Door (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorUnlockedManual</Data></Cell>
+    <Cell><Data ss:Type="String">Door</Data></Cell>
+    <Cell><Data ss:Type="String">Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorClose</Data></Cell>
+    <Cell><Data ss:Type="String">Close</Data></Cell>
+    <Cell><Data ss:Type="String">Close</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorOpen</Data></Cell>
+    <Cell><Data ss:Type="String">Open</Data></Cell>
+    <Cell><Data ss:Type="String">Open</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_doorForceOpen</Data></Cell>
+    <Cell><Data ss:Type="String">Force Open</Data></Cell>
+    <Cell><Data ss:Type="String">Force Open</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_holdVerb</Data></Cell>
+    <Cell><Data ss:Type="String">Hold</Data></Cell>
+    <Cell><Data ss:Type="String">Hold</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_powerKiosk</Data></Cell>
+    <Cell><Data ss:Type="String">Power Kiosk</Data></Cell>
+    <Cell><Data ss:Type="String">Power Kiosk</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_iceblock</Data></Cell>
+    <Cell><Data ss:Type="String">Ice Blockage</Data></Cell>
+    <Cell><Data ss:Type="String">Ice Blockage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_drillpress</Data></Cell>
+    <Cell><Data ss:Type="String">Drill Press</Data></Cell>
+    <Cell><Data ss:Type="String">Drill Press</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_lathe</Data></Cell>
+    <Cell><Data ss:Type="String">Lathe</Data></Cell>
+    <Cell><Data ss:Type="String">Lathe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_vice</Data></Cell>
+    <Cell><Data ss:Type="String">Vise</Data></Cell>
+    <Cell><Data ss:Type="String">Vise</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_lasertest</Data></Cell>
+    <Cell><Data ss:Type="String">Beam Test</Data></Cell>
+    <Cell><Data ss:Type="String">Beam Test</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_theatrechair</Data></Cell>
+    <Cell><Data ss:Type="String">Theater Chair</Data></Cell>
+    <Cell><Data ss:Type="String">Theater Chair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_scanner</Data></Cell>
+    <Cell><Data ss:Type="String">Reservation Scanner</Data></Cell>
+    <Cell><Data ss:Type="String">Reservation Scanner</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_firehose</Data></Cell>
+    <Cell><Data ss:Type="String">Fire Hose</Data></Cell>
+    <Cell><Data ss:Type="String">Fire Hose</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_treadmill</Data></Cell>
+    <Cell><Data ss:Type="String">Treadmill</Data></Cell>
+    <Cell><Data ss:Type="String">Treadmill</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_button</Data></Cell>
+    <Cell><Data ss:Type="String">Button</Data></Cell>
+    <Cell><Data ss:Type="String">Button</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_waterfountain</Data></Cell>
+    <Cell><Data ss:Type="String">Water Fountain</Data></Cell>
+    <Cell><Data ss:Type="String">Water Fountain</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_bass</Data></Cell>
+    <Cell><Data ss:Type="String">Bass</Data></Cell>
+    <Cell><Data ss:Type="String">Bass</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_keytar</Data></Cell>
+    <Cell><Data ss:Type="String">Keytar</Data></Cell>
+    <Cell><Data ss:Type="String">Keytar</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_drums</Data></Cell>
+    <Cell><Data ss:Type="String">Drums</Data></Cell>
+    <Cell><Data ss:Type="String">Drums</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">i_sprinklerfertilizerdispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Fertilizer Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Fertilizer Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_securitystation</Data></Cell>
+    <Cell><Data ss:Type="String">Security Station</Data></Cell>
+    <Cell><Data ss:Type="String">Security Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_operatorDispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s77"><Data ss:Type="String">Physics Props</Data></Cell>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_coffeetable</Data></Cell>
+    <Cell><Data ss:Type="String">Coffee Table</Data></Cell>
+    <Cell><Data ss:Type="String">Coffee Table</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_crate</Data></Cell>
+    <Cell><Data ss:Type="String">Crate</Data></Cell>
+    <Cell><Data ss:Type="String">Crate</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_bench</Data></Cell>
+    <Cell><Data ss:Type="String">Bench</Data></Cell>
+    <Cell><Data ss:Type="String">Bench</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_debris</Data></Cell>
+    <Cell><Data ss:Type="String">Debris</Data></Cell>
+    <Cell><Data ss:Type="String">Debris</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_punchingbag</Data></Cell>
+    <Cell><Data ss:Type="String">Punching Bag</Data></Cell>
+    <Cell><Data ss:Type="String">Punching Bag</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_servingcart</Data></Cell>
+    <Cell><Data ss:Type="String">Serving Cart</Data></Cell>
+    <Cell><Data ss:Type="String">Serving Cart</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_sofachair</Data></Cell>
+    <Cell><Data ss:Type="String">Sofa Chair</Data></Cell>
+    <Cell><Data ss:Type="String">Sofa Chair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_sofa</Data></Cell>
+    <Cell><Data ss:Type="String">Sofa</Data></Cell>
+    <Cell><Data ss:Type="String">Sofa</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_chesstable</Data></Cell>
+    <Cell><Data ss:Type="String">Chess Table</Data></Cell>
+    <Cell><Data ss:Type="String">Chess Table</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_grate</Data></Cell>
+    <Cell><Data ss:Type="String">Grate</Data></Cell>
+    <Cell><Data ss:Type="String">Grate</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_lectern</Data></Cell>
+    <Cell><Data ss:Type="String">Lectern</Data></Cell>
+    <Cell><Data ss:Type="String">Lectern</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_movieposter</Data></Cell>
+    <Cell><Data ss:Type="String">Movie Poster</Data></Cell>
+    <Cell><Data ss:Type="String">Movie Poster</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_divider</Data></Cell>
+    <Cell><Data ss:Type="String">Divider</Data></Cell>
+    <Cell><Data ss:Type="String">Divider</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_whiteboard</Data></Cell>
+    <Cell><Data ss:Type="String">Whiteboard</Data></Cell>
+    <Cell><Data ss:Type="String">Whiteboard</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_anesthesiacart</Data></Cell>
+    <Cell><Data ss:Type="String">Anesthesia Cart</Data></Cell>
+    <Cell><Data ss:Type="String">Anesthesia Cart</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_gurney</Data></Cell>
+    <Cell><Data ss:Type="String">Gurney</Data></Cell>
+    <Cell><Data ss:Type="String">Gurney</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_crashcart</Data></Cell>
+    <Cell><Data ss:Type="String">Crash Cart</Data></Cell>
+    <Cell><Data ss:Type="String">Crash Cart</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_reelcabinet</Data></Cell>
+    <Cell><Data ss:Type="String">Reel Cabinet</Data></Cell>
+    <Cell><Data ss:Type="String">Reel Cabinet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_computercart</Data></Cell>
+    <Cell><Data ss:Type="String">Computer Cart</Data></Cell>
+    <Cell><Data ss:Type="String">Computer Cart</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_reployer</Data></Cell>
+    <Cell><Data ss:Type="String">Reployer</Data></Cell>
+    <Cell><Data ss:Type="String">Reployer</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_rock</Data></Cell>
+    <Cell><Data ss:Type="String">Rock</Data></Cell>
+    <Cell><Data ss:Type="String">Rock</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_shelf</Data></Cell>
+    <Cell><Data ss:Type="String">Shelf</Data></Cell>
+    <Cell><Data ss:Type="String">Shelf</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_cargo</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_partition</Data></Cell>
+    <Cell><Data ss:Type="String">Partition</Data></Cell>
+    <Cell><Data ss:Type="String">Partition</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_lightfixture</Data></Cell>
+    <Cell><Data ss:Type="String">Light Fixture</Data></Cell>
+    <Cell><Data ss:Type="String">Light Fixture</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_loungechair</Data></Cell>
+    <Cell><Data ss:Type="String">Lounge Chair</Data></Cell>
+    <Cell><Data ss:Type="String">Lounge Chair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_table</Data></Cell>
+    <Cell><Data ss:Type="String">Table</Data></Cell>
+    <Cell><Data ss:Type="String">Table</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_laundrycart</Data></Cell>
+    <Cell><Data ss:Type="String">Laundry Cart</Data></Cell>
+    <Cell><Data ss:Type="String">Laundry Cart</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_luggagecart</Data></Cell>
+    <Cell><Data ss:Type="String">Luggage Cart</Data></Cell>
+    <Cell><Data ss:Type="String">Luggage Cart</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_moonrock</Data></Cell>
+    <Cell><Data ss:Type="String">Moon Rock Statue</Data></Cell>
+    <Cell><Data ss:Type="String">Moon Rock Statue</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_spacecraftdoor</Data></Cell>
+    <Cell><Data ss:Type="String">Spacecraft Door</Data></Cell>
+    <Cell><Data ss:Type="String">Spacecraft Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_clamp</Data></Cell>
+    <Cell><Data ss:Type="String">Clamp</Data></Cell>
+    <Cell><Data ss:Type="String">Clamp</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_couch</Data></Cell>
+    <Cell><Data ss:Type="String">Couch</Data></Cell>
+    <Cell><Data ss:Type="String">Couch</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_dumbbell</Data></Cell>
+    <Cell><Data ss:Type="String">Dumbbell</Data></Cell>
+    <Cell><Data ss:Type="String">Dumbbell</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_girder</Data></Cell>
+    <Cell><Data ss:Type="String">Girder</Data></Cell>
+    <Cell><Data ss:Type="String">Girder</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_pallet</Data></Cell>
+    <Cell><Data ss:Type="String">Pallet</Data></Cell>
+    <Cell><Data ss:Type="String">Pallet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_tankstorage</Data></Cell>
+    <Cell><Data ss:Type="String">Tank Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Tank Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_tapedrive</Data></Cell>
+    <Cell><Data ss:Type="String">Tape Drive</Data></Cell>
+    <Cell><Data ss:Type="String">Tape Drive</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_roofpanel</Data></Cell>
+    <Cell><Data ss:Type="String">Roof Panel</Data></Cell>
+    <Cell><Data ss:Type="String">Roof Panel</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_speaker</Data></Cell>
+    <Cell><Data ss:Type="String">Speaker</Data></Cell>
+    <Cell><Data ss:Type="String">Speaker</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_lamppost</Data></Cell>
+    <Cell><Data ss:Type="String">Lamp Post</Data></Cell>
+    <Cell><Data ss:Type="String">Lamp Post</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_telescope</Data></Cell>
+    <Cell><Data ss:Type="String">Telescope</Data></Cell>
+    <Cell><Data ss:Type="String">Telescope</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_eeltank</Data></Cell>
+    <Cell><Data ss:Type="String">Eel Tank</Data></Cell>
+    <Cell><Data ss:Type="String">Eel Tank</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">prop_tarp</Data></Cell>
+    <Cell><Data ss:Type="String">Tarp</Data></Cell>
+    <Cell><Data ss:Type="String">Tarp</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_chesstimer</Data></Cell>
+    <Cell><Data ss:Type="String">Chess Timer</Data></Cell>
+    <Cell><Data ss:Type="String">Chess Timer</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_fertsack</Data></Cell>
+    <Cell><Data ss:Type="String">Fertilizer Sack</Data></Cell>
+    <Cell><Data ss:Type="String">Fertilizer Sack</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_fertsacks</Data></Cell>
+    <Cell><Data ss:Type="String">Fertilizer Sacks</Data></Cell>
+    <Cell><Data ss:Type="String">Fertilizer Sacks</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_industrialpipe</Data></Cell>
+    <Cell><Data ss:Type="String">Industrial Pipe</Data></Cell>
+    <Cell><Data ss:Type="String">Industrial Pipe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_junk</Data></Cell>
+    <Cell><Data ss:Type="String">Junk</Data></Cell>
+    <Cell><Data ss:Type="String">Junk</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_sparepart</Data></Cell>
+    <Cell><Data ss:Type="String">Spare Part</Data></Cell>
+    <Cell><Data ss:Type="String">Spare Part</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_amp</Data></Cell>
+    <Cell><Data ss:Type="String">Guitar Amp</Data></Cell>
+    <Cell><Data ss:Type="String">Guitar Amp</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s79"><Data ss:Type="String">prop_capchair</Data></Cell>
+    <Cell><Data ss:Type="String">Captain's Chair</Data></Cell>
+    <Cell><Data ss:Type="String">Captain's Chair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s79"><Data ss:Type="String">prop_rocktile</Data></Cell>
+    <Cell><Data ss:Type="String">Rock Tile</Data></Cell>
+    <Cell><Data ss:Type="String">Rock Tile</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s77"><Data ss:Type="String">Use Objects</Data></Cell>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_turnon</Data></Cell>
+    <Cell><Data ss:Type="String">Turn on</Data></Cell>
+    <Cell><Data ss:Type="String">Turn on</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_flush</Data></Cell>
+    <Cell><Data ss:Type="String">Flush</Data></Cell>
+    <Cell><Data ss:Type="String">Flush</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_press</Data></Cell>
+    <Cell><Data ss:Type="String">Press</Data></Cell>
+    <Cell><Data ss:Type="String">Press</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_harvest</Data></Cell>
+    <Cell><Data ss:Type="String">Harvest</Data></Cell>
+    <Cell><Data ss:Type="String">Harvest</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_activate</Data></Cell>
+    <Cell><Data ss:Type="String">Activate</Data></Cell>
+    <Cell><Data ss:Type="String">Activate</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_raise</Data></Cell>
+    <Cell><Data ss:Type="String">Raise</Data></Cell>
+    <Cell><Data ss:Type="String">Raise</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_lower</Data></Cell>
+    <Cell><Data ss:Type="String">Lower</Data></Cell>
+    <Cell><Data ss:Type="String">Lower</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_drink</Data></Cell>
+    <Cell><Data ss:Type="String">Drink</Data></Cell>
+    <Cell><Data ss:Type="String">Drink</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_play</Data></Cell>
+    <Cell><Data ss:Type="String">Play</Data></Cell>
+    <Cell><Data ss:Type="String">Play</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_Tank_Hazard</Data></Cell>
+    <Cell><Data ss:Type="String">Radioactive Waste</Data></Cell>
+    <Cell><Data ss:Type="String">Radioactive Waste</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_Bartap</Data></Cell>
+    <Cell><Data ss:Type="String">Bar Tap</Data></Cell>
+    <Cell><Data ss:Type="String">Bar Tap</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_turnoff</Data></Cell>
+    <Cell><Data ss:Type="String">Turn off</Data></Cell>
+    <Cell><Data ss:Type="String">Turn off</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">prop_piano</Data></Cell>
+    <Cell><Data ss:Type="String">Piano</Data></Cell>
+    <Cell><Data ss:Type="String">Piano</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.51181102362204722"
+     x:Data="&amp;LTime restriction sample script"/>
+    <Footer x:Margin="0.51181102362204722" x:Data="Page &amp;P"/>
+    <PageMargins x:Bottom="0.98425196850393704" x:Left="0" x:Right="0"
+     x:Top="0.98425196850393704"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>70</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Zoom>130</Zoom>
+   <Selected/>
+   <TopRowVisible>92</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>116</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
