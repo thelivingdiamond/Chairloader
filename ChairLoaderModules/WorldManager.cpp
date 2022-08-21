@@ -152,7 +152,7 @@ void WorldManager::DrawKeycardManagerWindow() {
 
 void WorldManager::DrawStationAccessManagerWindow() {
     if(showStationAccessManagerWindow) {
-        if(ImGui::Begin("Station Access")) {
+        if(ImGui::Begin("Station Access", &showStationAccessManagerWindow, ImGuiWindowFlags_NoNavInputs)){
             static std::string xmlFile = "Ark/Campaign/StationAccessLibrary.xml";
             ImGui::InputText("XML File", &xmlFile);
             CCryFile file;
