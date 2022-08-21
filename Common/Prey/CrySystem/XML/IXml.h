@@ -16,6 +16,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryMath/Cry_Color.h>
 #include <Prey/CryString/CryString.h>
+//#include <ChairLoader/PreyFunction.h>
 
 class ICrySizer;
 
@@ -113,6 +114,7 @@ public:
 #endif
 };
 
+#if 0
 //! Never use IXmlNode directly - instead use reference counted XmlNodeRef.
 class IXmlNode
 {
@@ -362,7 +364,123 @@ public:
 	// Lets be friendly to him.
 	friend class XmlNodeRef;
 };
+#endif
+class IXmlNode // Id=800041A Size=16
+{
+public:
+    int m_nRefCount;
 
+    virtual void DeleteThis() = 0;
+    virtual ~IXmlNode();
+//    static bool TagMatches(IXmlNode const *_node, const char *_tagStart, int _tagLen) { return FTagMatches(_node,_tagStart,_tagLen); }
+//    static bool CheckFilter(IXmlNode const *_node, const char *_leftCmp, int _leftCmpLen, const char *_rightCmp, int _rightCmpLen, const char *_firstNodeStart, int _nodeTagLen) { return FCheckFilter(_node,_leftCmp,_leftCmpLen,_rightCmp,_rightCmpLen,_firstNodeStart,_nodeTagLen); }
+//    static bool findNodes_r(IXmlNode *_node, const char *_xPathFilter, std::function<void __cdecl(XmlNodeRef)> onMatched) { return FfindNodes_r(_node,_xPathFilter,onMatched); }
+    virtual XmlNodeRef createNode(const char *arg0) = 0;
+    virtual void AddRef();
+    virtual void Release();
+    virtual int GetRefCount() const;
+    virtual const char *getTag() const = 0;
+    virtual void setTag(const char *arg0) = 0;
+    virtual bool isTag(const char *arg0) const = 0;
+    virtual int getNumAttributes() const = 0;
+    virtual bool getAttributeByIndex(int arg0, const char **arg1, const char **arg2) const = 0;
+    virtual void copyAttributes(XmlNodeRef arg0) = 0;
+    virtual bool removeAttr(const char *arg0) = 0;
+    virtual const char *getAttr(const char *arg0) const = 0;
+    virtual bool getAttr(const char *arg0, const char **arg1) const = 0;
+    virtual bool getAttr(const char *arg0, int &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, unsigned &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, int64_t &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, uint64_t &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, float &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, double &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Vec2 &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Vec2d &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Ang3 &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Vec3 &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Vec4 &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Vec3d &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, Quat &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, bool &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, XmlString &arg1) const = 0;
+    virtual bool getAttr(const char *arg0, ColorB &arg1) const = 0;
+    virtual bool haveAttr(const char *arg0) const = 0;
+    virtual void addChild(XmlNodeRef const &arg0) = 0;
+    virtual XmlNodeRef newChild(const char *arg0) = 0;
+    virtual void removeChild(XmlNodeRef const &arg0) = 0;
+    virtual void insertChild(int arg0, XmlNodeRef const &arg1) = 0;
+    virtual void insertChild(XmlNodeRef const &arg0, XmlNodeRef const &arg1) = 0;
+    virtual void replaceChild(int arg0, XmlNodeRef const &arg1) = 0;
+    virtual void removeAllChilds() = 0;
+    virtual int getChildCount() const = 0;
+    virtual XmlNodeRef getChild(int arg0) const = 0;
+//    XmlNodeRef xPathFindNode(const char *_xPathFilter) { return FxPathFindNode(this,_xPathFilter); }
+    virtual void _xPathFindNodes(std::function<void __cdecl(XmlNodeRef)> arg0, const char *arg1) = 0;
+    virtual XmlNodeRef ensureChild(const char *arg0) = 0;
+    virtual XmlNodeRef getRoot() = 0;
+    virtual void xPathIDFromAttribute(const char *arg0, CryStackStringT<char,512> &arg1) = 0;
+    virtual bool MatchesXPath(const char *arg0) = 0;
+    virtual int findChildIndex(XmlNodeRef const &arg0) const = 0;
+    virtual XmlNodeRef findChild(const char *arg0) const = 0;
+    virtual XmlNodeRef findChildWithAttibuteValue(const char *arg0, const char *arg1) const = 0;
+    virtual XmlNodeRef getParent() const = 0;
+    virtual void setParent(XmlNodeRef const &arg0) = 0;
+    virtual const char *getContent() const = 0;
+    virtual void setContent(const char *arg0) = 0;
+    virtual XmlNodeRef clone() = 0;
+    virtual int getLine() const = 0;
+    virtual void setLine(int arg0) = 0;
+    virtual IXmlStringData *getXMLData(int arg0) const = 0;
+    virtual XmlString getXML(int arg0) const = 0;
+    virtual bool saveToFile(const char *arg0, bool arg1) = 0;
+    virtual bool saveToFile(const char *arg0, uint64_t arg1, _iobuf *arg2, bool arg3) = 0;
+    virtual void setAttr(const char *arg0, const char *arg1) = 0;
+    virtual void setAttr(const char *arg0, int arg1) = 0;
+    virtual void setAttr(const char *arg0, unsigned arg1) = 0;
+    virtual void setAttr(const char *arg0, int64_t arg1) = 0;
+    virtual void setAttr(const char *arg0, uint64_t arg1) = 0;
+    virtual void setAttr(const char *arg0, float arg1) = 0;
+    virtual void setAttr(const char *arg0, double arg1) = 0;
+    virtual void setAttr(const char *arg0, Vec2 const &arg1) = 0;
+    virtual void setAttr(const char *arg0, Vec2d const &arg1) = 0;
+    virtual void setAttr(const char *arg0, Ang3 const &arg1) = 0;
+    virtual void setAttr(const char *arg0, Vec3 const &arg1) = 0;
+    virtual void setAttr(const char *arg0, Vec4 const &arg1) = 0;
+    virtual void setAttr(const char *arg0, Vec3d const &arg1) = 0;
+    virtual void setAttr(const char *arg0, Quat const &arg1) = 0;
+    virtual void setAttrHex(const char *arg0, uint64_t arg1) = 0;
+    virtual void delAttr(const char *arg0) = 0;
+    virtual void removeAllAttributes() = 0;
+    virtual bool getAttrHex(const char *arg0, uint64_t &arg1) const = 0;
+    virtual void GetMemoryUsage(ICrySizer *arg0) const = 0;
+    virtual void shareChildren(XmlNodeRef const &arg0) = 0;
+    virtual void deleteChildAt(int arg0) = 0;
+    virtual XmlString getXMLUnsafe(int level, char *tmpBuffer, unsigned sizeOfTmpBuffer) const = 0;
+
+#if 0
+    static int FindNext(const char *arg0, const char *arg1);
+	static bool startsWith(const char *arg0, const char *arg1);
+	static bool NodeHasFilter(const char *arg0);
+	bool getAttr(const char *arg0, long &arg1) const;
+	bool getAttr(const char *arg0, unsigned long &arg1) const;
+	bool getAttr(const char *arg0, uint16_t &arg1) const;
+	bool getAttr(const char *arg0, uint8_t &arg1) const;
+	bool getAttr(const char *arg0, int16_t &arg1) const;
+	bool getAttr(const char *arg0, char &arg1) const;
+	std::set<XmlNodeRef,std::less<XmlNodeRef>> xPathFindNodes(const char *arg0);
+	void setAttr(const char *arg0, unsigned long arg1);
+	void setAttr(const char *arg0, long arg1);
+#endif
+
+//    static inline auto FTagMatches = PreyFunction<bool(IXmlNode const *_node, const char *_tagStart, int _tagLen)>(0xE117C0);
+//    static inline auto FCheckFilter = PreyFunction<bool(IXmlNode const *_node, const char *_leftCmp, int _leftCmpLen, const char *_rightCmp, int _rightCmpLen, const char *_firstNodeStart, int _nodeTagLen)>(0xE0E3E0);
+//    static inline auto FfindNodes_r = PreyFunction<bool(IXmlNode *_node, const char *_xPathFilter, std::function<void __cdecl(XmlNodeRef)> onMatched)>(0xE13220);
+//    static inline auto FAddRef = PreyFunction<void(IXmlNode *const _this)>(0x49B5B0);
+//    static inline auto FRelease = PreyFunction<void(IXmlNode *const _this)>(0xE11530);
+//    static inline auto FGetRefCount = PreyFunction<int(IXmlNode const *const _this)>(0xEEBB60);
+//    static inline auto FxPathFindNode = PreyFunction<XmlNodeRef(IXmlNode *const _this, const char *_xPathFilter)>(0xD58400);
+//    static inline auto FgetXMLUnsafe = PreyFunction<XmlString(IXmlNode const *const _this, int level, char *tmpBuffer, unsigned sizeOfTmpBuffer)>(0xE14530);
+};
 /*
    //! Inline Implementation of XmlNodeRef
    inline XmlNodeRef::XmlNodeRef(const char *tag, IXmlNode *node)
@@ -555,3 +673,4 @@ struct IXmlUtils
 	// </interfuscator:shuffle>
 #endif
 };
+

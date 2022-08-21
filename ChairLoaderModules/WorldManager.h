@@ -12,11 +12,14 @@ public:
 
     std::string GetModuleName();
 private:
-    bool showLevelManagerWindow = false;
+    XmlNodeRef stationAccessLibrary;
+    bool showLevelManagerWindow = false, showKeycardManagerWindow = false, showStationAccessManagerWindow = false;
     ChairloaderGlobalEnvironment* gCLEnv;
     const std::string ModuleName = "WorldManager";
 
     void DrawLevelManagerWindow();
+    void DrawKeycardManagerWindow();
+    void DrawStationAccessManagerWindow();
 
     void DrawMenuBar();
 

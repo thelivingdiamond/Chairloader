@@ -8,7 +8,7 @@ file(GLOB_RECURSE SOURCE_FILES
 # CommonMod static library
 add_library(Common STATIC
 	${SOURCE_FILES}
-		)
+        Prey/ArkKeycardLibrary.h)
 
 target_include_directories(Common PUBLIC
 	.

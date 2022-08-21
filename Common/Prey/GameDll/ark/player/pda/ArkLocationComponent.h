@@ -5,7 +5,7 @@
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/pda/ArkLocationComponent.h
-class ArkLocationComponent // Id=8016F1C Size=48
+class   ArkLocationComponent // Id=8016F1C Size=48
 {
 public:
 	std::vector<unsigned __int64> m_discovered;

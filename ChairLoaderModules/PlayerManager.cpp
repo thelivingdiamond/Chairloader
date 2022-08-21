@@ -68,6 +68,19 @@ void PlayerManager::drawPositionTab() {
 			}
 			ImGui::SameLine();
 		}
+        ImGui::Separator();
+        static float position[3];
+        auto player = gCLEnv->entUtils->ArkPlayerPtr();
+        if(player != nullptr) {
+            ImGui::Text("Player Position:");
+            position[0] = player->GetEntity()->GetPos().x;
+            position[1] = player->GetEntity()->GetPos().y;
+            position[2] = player->GetEntity()->GetPos().z;
+            if (ImGui::InputFloat3("Pos", position, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue)) {
+                Vec3 newPos = Vec3(position[0], position[1], position[2]);
+                player->GetEntity()->SetPos(newPos, 0, true, true);
+            }
+        }
 		ImGui::EndTabItem();
 	}
 }
@@ -82,12 +95,10 @@ void PlayerManager::drawHealthTab() {
 			float maxArmor = 100.0f;
 			float currentRad = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount;
 			float maxRad = 100.0f;
-			float currentPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
-			float maxPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
-			float currentFatigue = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
-			                                  m_amount;
-			float maxFatigue = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_fatigue.
-			                              m_maxAmount;
+			float currentPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->m_points;
+			float maxPsi = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->m_maxPoints;
+			float currentFatigue = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent->m_fatigue.m_amount;
+			float maxFatigue = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent->m_fatigue.m_maxAmount;
 			static float setHealth = 0;
 			static float setPsi = 0;
 			static float setMaxPsi = 0;
