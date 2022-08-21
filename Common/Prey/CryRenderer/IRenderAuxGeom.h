@@ -222,6 +222,32 @@ struct IRenderAuxGeom
 	//! Set world matrix for the next primitives based on ID. This function allows us to do push/pop semantics
 	//! \param matID matrix ID. Should be a matrix id returned by PushMatrix
 	virtual void SetMatrixIndex(int matID) = 0;
+
+	// Chairloader extensions
+
+	//! Draws three lines pointing in XYZ directions in given local space.
+	//! @param	origin	Origin
+	//! @param	orient	Orientation
+	//! @param	size	Length of lines
+	void DrawAxis(const Vec3& origin, const Quat& orient, float size)
+	{
+		Vec3 v[3] = {
+			Vec3(1, 0, 0),
+			Vec3(0, 1, 0),
+			Vec3(0, 0, 1),
+		};
+
+		ColorB col[3] = {
+			ColorB(255, 0, 0, 255),
+			ColorB(0, 255, 0, 255),
+			ColorB(0, 0, 255, 255),
+		};
+
+		for (int i = 0; i < 3; i++)
+		{
+			DrawLine(origin, col[i], origin + orient * (size * v[i]), col[i], 0.02f);
+		}
+	}
 };
 
 //! Don't change the xxxShift values blindly as they affect the rendering output.
