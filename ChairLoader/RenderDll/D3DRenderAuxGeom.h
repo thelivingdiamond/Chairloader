@@ -314,7 +314,7 @@ private:
 	void PrepareThickLines3D(CAuxGeomCB::AuxSortedPushBuffer::const_iterator itBegin, CAuxGeomCB::AuxSortedPushBuffer::const_iterator itEnd);
 
 	void PrepareRendering();
-	void SetShader(const SAuxGeomRenderFlags& renderFlags);
+	void SetShader(const SAuxGeomRenderFlags& renderFlags, int nEye);
 	void AdjustRenderStates(const SAuxGeomRenderFlags& renderFlags);
 	bool BindStreams(EVertexFormat newVertexFormat, ID3D11Buffer* pNewVB, ID3D11Buffer* pNewIB);
 
@@ -363,6 +363,7 @@ private:
 
 	CShader*                                  m_pAuxGeomShader;
 	EAuxGeomPublicRenderflags_DrawInFrontMode m_curDrawInFrontMode;
+	int                                       m_curEyeIdx = -1;
 
 	CAuxGeomCB::AuxSortedPushBuffer           m_auxSortedPushBuffer;
 	const CAuxGeomCB::SAuxGeomCBRawData*      m_pCurCBRawData;

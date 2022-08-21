@@ -1257,7 +1257,7 @@ bool CRenderAuxGeomD3D::BindStreams(EVertexFormat newVertexFormat, D3DVertexBuff
 	return SUCCEEDED(hr);
 }
 
-void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags)
+void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags, int nEye)
 {
 	if (0 == m_pAuxGeomShader)
 	{
@@ -1283,7 +1283,11 @@ void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags)
 		EAuxGeomPublicRenderflags_DrawInFrontMode newDrawInFrontMode(renderFlags.GetDrawInFrontMode());
 		CAuxGeomCB::EPrimType newPrimType(CAuxGeomCB::GetPrimType(renderFlags));
 
-		if (false != dirty || m_pAuxGeomShader != m_renderer.m_RP.m_pShader || m_curDrawInFrontMode != newDrawInFrontMode || m_curPrimType != newPrimType)
+		if (false != dirty
+			|| m_pAuxGeomShader != m_renderer.m_RP.m_pShader
+			|| m_curDrawInFrontMode != newDrawInFrontMode
+			|| m_curPrimType != newPrimType
+			|| m_curEyeIdx != nEye)
 		{
 			if (CAuxGeomCB::e_Obj != newPrimType)
 			{
@@ -1344,6 +1348,7 @@ void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags)
 				}
 			}
 			m_curPrimType = newPrimType;
+			m_curEyeIdx = nEye;
 		}
 	}
 	else
@@ -1568,9 +1573,6 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 					}
 				}
 
-				// set appropriate shader
-				SetShader(curRenderFlags);
-
 				for (int nEye = 0; nEye < nEyeCount; nEye++)
 				{
 					if (bStereoEnabled)
@@ -1578,6 +1580,9 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 						m_renderer.FX_PushRenderTarget(0, m_pEyeTargets[nEye], m_pEyeDepthTargets[nEye]);
 						m_matrices = stereoMats[nEye];
 					}
+
+					// set appropriate shader
+					SetShader(curRenderFlags, nEye);
 
 					// draw push buffer entries
 					switch (primType)
