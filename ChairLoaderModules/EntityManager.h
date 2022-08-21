@@ -38,7 +38,7 @@ private:
     // archetype filter
     std::string archetypeFilterText, oldArchetypeFilterText;
 
-    std::vector<IEntityArchetype*> archetypeFilteredList;
+    std::vector<uint64_t> archetypeFilteredList;
     std::vector<unsigned int> entityDisplayList;
 
     // std::unordered_map< uint64_t, IEntityArchetype*>* archetypeList = &((IEntityArchetype*)gEnv->pEntitySystem)->m_pEntityArchetypeManager->m_idToArchetypeMap;

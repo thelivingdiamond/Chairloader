@@ -70,7 +70,7 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
                     std::transform(archetypeFilterText.begin(), archetypeFilterText.end(), archetypeFilterText.begin(),
                                    ::tolower);
                     if (archetypeName.find(archetypeFilterText) != std::string::npos || archetypeFilterText.empty()) {
-                        archetypeFilteredList.emplace_back(itr->second.get());
+                        archetypeFilteredList.emplace_back(itr->second->m_id);
                         i++;
 
                     }
@@ -93,14 +93,15 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
                 ImGui::TableHeadersRow();
                 auto itr = archetypeFilteredList.begin();
                 for (int clip = 0; clip < 500 && itr != archetypeFilteredList.end(); clip++, ++itr) {
-                    IEntityArchetype *archetype = *itr;
+                    IEntityArchetype *archetype = gEnv->pEntitySystem->GetEntityArchetype(*itr);
                     ImGui::TableNextRow();
                     //Yeah boi
                     ImGui::TableSetColumnIndex(0);
-
-                    if (ImGui::Selectable(archetype->GetName(), archetypeToSpawn == archetype->GetId(),
-                                          ImGuiSelectableFlags_SpanAllColumns)) {
-                        archetypeToSpawn = archetype->GetId();
+                    if(archetype != nullptr) {
+                        if (ImGui::Selectable(archetype->GetName(), archetypeToSpawn == archetype->GetId(),
+                                              ImGuiSelectableFlags_SpanAllColumns)) {
+                            archetypeToSpawn = archetype->GetId();
+                        }
                     }
 
                     // if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
