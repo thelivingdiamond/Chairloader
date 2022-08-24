@@ -31,6 +31,7 @@ set(SOURCE_FILES
         #ModLoader
         ModLoader.cpp
         ModLoader.h
+        pch.h
         main.cpp
         #Miscellaneous
         zipconf.h
@@ -48,5 +49,7 @@ target_link_libraries(ChairloaderModLoader
         libzip::zip
         ${Boost_LIBRARIES}
         )
+
+target_precompile_headers(ChairloaderModLoader PRIVATE pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
