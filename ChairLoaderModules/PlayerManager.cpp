@@ -17,6 +17,7 @@
 #include <Prey/GameDll/ark/ArkItemSystem.h>
 #include <Prey/GameDll/arkitem.h>
 #include <Prey/ArkAbilityLibrary.h>
+#include "Prey/CryEntitySystem/EntitySystem.h"
 
 // PUBLIC:
 void PlayerManager::draw() {
@@ -29,12 +30,13 @@ void PlayerManager::draw() {
         }
 
         if (ImGui::BeginTabBar("Player Bar")) {
-            ImGui::BeginDisabled(gCLEnv->entUtils->ArkPlayerPtr() == nullptr);
-            drawPositionTab();
-            drawHealthTab();
-            drawAbilitiesTab();
-            drawInventoryTab();
-            ImGui::EndDisabled();
+            if(ArkPlayer::GetInstancePtr() != nullptr) {
+                drawPositionTab();
+                drawHealthTab();
+                drawAbilitiesTab();
+                drawInventoryTab();
+            }
+//            ImGui::EndDisabled();
             ImGui::EndTabBar();
         }
 
@@ -243,7 +245,8 @@ void PlayerManager::drawAbilitiesTab() {
 		// }
 		ImGui::EndTabItem();
 	}
-	if (ImGui::BeginTabItem("Smoke Form Test")) {
+    //TODO: clean me up
+	if (ImGui::BeginTabItem("Random fun shit")) {
 		auto abilityComponent = gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get();
 		// static auto acquiredAbilities = abilityComponent->GetAcquiredAbilities(abilityComponent);
 		for (auto& power : gCLEnv->entUtils->ArkPlayerPtr()->GetPsiPowerComponent().m_powers) {
@@ -260,6 +263,49 @@ void PlayerManager::drawAbilitiesTab() {
 		ImGui::Text("Fly Mode: %u", fsm->m_flyMode);
 		ImGui::Text("Current State: %u", fsm->m_currentStateId);
 		ImGui::Text("Stance: %u", gCLEnv->entUtils->ArkPlayerPtr()->GetStance());
+        static Vec3 ptc = {0, 0, 0};
+        static Vec3 gravity = {0, 0, 0};
+        ptc = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetWorldPos();
+        pe_params_buoyancy buoyancy;
+//        pe_action action;
+        auto impulse = new pe_action_impulse();
+        auto randDir = cry_random_unit_vector<Vec3>();
+        impulse->impulse = randDir *= 10000;
+        ImGui::Text("Player Physics Type %u", gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPhysics()->GetType());
+        if(ImGui::Button("Force Player")) {
+            gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPhysics()->Action(impulse);
+
+        }
+        if(ImGui::Button("Check Areas")){
+//            gCLEnv->entUtils->ArkPlayerPtr()->SetStance(EStance::STANCE_ZEROG);
+
+            auto result = ArkPlayer::GetInstancePtr()->GetEntity()->GetPhysics()->GetWorld()->CheckAreas(ptc, gravity, &buoyancy);
+//            gCLEnv->entUtils->ArkPlayerPtr()->m_movementFSM.m_currentStateId = ArkPlayerMovementFSM::EStateId::fly;
+            CryLog("Result: %d", result);
+        }
+        static bool katamari;
+        ImGui::Checkbox("Katamari", &katamari);
+        if(katamari){
+            for(auto centity :((CEntitySystem*)gEnv->pEntitySystem)->m_EntityArray){
+                IEntity* entity = (IEntity*)centity;
+                if(entity!= nullptr) {
+                    auto physics = entity->GetPhysics();
+                    if (physics != nullptr) {
+                        if (physics->GetType() == pe_type::PE_RIGID) {
+                            auto distance = (ArkPlayer::GetInstancePtr()->GetEntity()->GetWorldPos() - entity->GetWorldPos()).GetLength();
+                            auto forceDir = ArkPlayer::GetInstancePtr()->GetEntity()->GetWorldPos() - entity->GetWorldPos();
+                            forceDir.Normalize();
+                            auto force = new pe_action_impulse();
+//                            pe_params_collision_class
+                            force->impulse = forceDir *= 1.0f * distance;
+                            physics->Action(force);
+                        }
+                    }
+                }
+            }
+        }
+        ImGui::Text("ptc: %f %f %f", ptc.x, ptc.y, ptc.z);
+        ImGui::Text("gravity: %f %f %f", gravity.x, gravity.y, gravity.z);
 		ImGui::Text("Spectator Mode: %u", gCLEnv->entUtils->ArkPlayerPtr()->GetSpectatorMode());
 		ImGui::Text("Input Disabled Mode: %u", gCLEnv->entUtils->ArkPlayerPtr()->m_input.m_disabledMode);
 		ArkPlayerCamera* camera = &gCLEnv->entUtils->ArkPlayerPtr()->m_camera;
