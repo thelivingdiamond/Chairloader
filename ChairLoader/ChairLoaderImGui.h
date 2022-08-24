@@ -6,6 +6,7 @@
 #include "LibD3D11.h"
 
 class ITexture;
+struct ID3DUserDefinedAnnotation;
 
 class ChairLoaderImGui : public IChairloaderImGui {
 public:
@@ -98,6 +99,7 @@ private:
 	};
 
 	RenderThreadData m_RTData;
+	ID3DUserDefinedAnnotation* m_pAnnot = nullptr;
 	bool RT_Initialize();
 	void RT_Render();
 	void RT_SetupRenderState(RenderLists *list, ID3D11DeviceContext *ctx);

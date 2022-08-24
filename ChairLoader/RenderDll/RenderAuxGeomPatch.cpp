@@ -1,7 +1,9 @@
+#include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <detours/detours.h>
 #include "D3DRenderAuxGeom.h"
+#include "../ChairLoader.h"
 
 static_assert(offsetof(CD3D9Renderer, m_bStopRendererAtFrameEnd) == 96);
 static_assert(offsetof(CD3D9Renderer, m_pRT) == 3472);
@@ -60,7 +62,10 @@ void CD3D9Renderer_InitRenderer(CD3D9Renderer* _this)
 	CD3D9Renderer_InitRenderer_Hook.InvokeOrig(_this);
 
 	if (CV_r_enableauxgeom)
+	{
 		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*_this);
+		gCL->GetChairloaderEnvironment()->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
+	}
 }
 
 void CD3D9Renderer_EF_RemoveParticlesFromScene(CRenderer* _this)

@@ -592,20 +592,20 @@ class CShaderResources;
 
 class CHWShader : public CBaseResource
 {
-	static CCryNameTSCRC s_sClassNameVS;
-	static CCryNameTSCRC s_sClassNamePS;
+	static inline auto s_sClassNameVS = PreyGlobal<CCryNameTSCRC>(0x2B175A4);
+	static inline auto s_sClassNamePS = PreyGlobal<CCryNameTSCRC>(0x2B175A8);
 
 public:
 	EHWShaderClass            m_eSHClass;
 	//EHWSProfile m_eHWProfile;
 	SShaderCache*             m_pGlobalCache;
 
-	static struct SD3DShader* s_pCurPS;
-	static struct SD3DShader* s_pCurVS;
-	static struct SD3DShader* s_pCurGS;
-	static struct SD3DShader* s_pCurDS;
-	static struct SD3DShader* s_pCurHS;
-	static struct SD3DShader* s_pCurCS;
+	static inline auto s_pCurPS = PreyGlobal<SD3DShader*>(0x2B12770);
+	static inline auto s_pCurVS = PreyGlobal<SD3DShader*>(0x2B12778);
+	static inline auto s_pCurGS = PreyGlobal<SD3DShader*>(0x2B12780);
+	static inline auto s_pCurDS = PreyGlobal<SD3DShader*>(0x2B12788);
+	static inline auto s_pCurHS = PreyGlobal<SD3DShader*>(0x2B12790);
+	static inline auto s_pCurCS = PreyGlobal<SD3DShader*>(0x2B12798);
 
 	string                    m_Name;
 	string                    m_NameSourceFX;
@@ -682,9 +682,9 @@ public:
 	static CCryNameTSCRC  mfGetClassName(EHWShaderClass eClass)
 	{
 		if (eClass == eHWSC_Vertex)
-			return s_sClassNameVS;
+			return *s_sClassNameVS;
 		else
-			return s_sClassNamePS;
+			return *s_sClassNamePS;
 	}
 
 	static const char*      GetCurrentShaderCombinations(bool bForLevel);

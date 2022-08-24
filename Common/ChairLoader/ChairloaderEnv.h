@@ -5,6 +5,7 @@ struct IChairloaderImGui;
 struct IChairloaderGui;
 struct IChairloaderConfigManager;
 class EntityUtils;
+struct IRenderAuxGeomEx;
 
 struct ChairloaderGlobalEnvironment {
 	IChairloader* cl;
@@ -12,4 +13,5 @@ struct ChairloaderGlobalEnvironment {
 	IChairloaderGui* gui;
 	IChairloaderConfigManager* conf;
 	EntityUtils* entUtils;
+	IRenderAuxGeomEx* pAuxGeomEx;
 };

@@ -203,7 +203,7 @@ enum ERenderType
 	eRT_OpenGL = 0x6,
 };
 
-enum EFullscreenMode : int8_t
+enum class EFullscreenMode : int8_t
 {
 	windowed = 0x0,
 	fullscreen = 0x1,
@@ -676,7 +676,7 @@ public:
 	virtual void EndFrame() = 0;
 	virtual void TryFlush() = 0;
 	virtual void GetViewport(int* x, int* y, int* width, int* height) = 0;
-	virtual void SetViewport(int arg0, int arg1, int arg2, int arg3, int arg4) = 0;
+	virtual void SetViewport(int x, int y, int width, int height, int id = 0) = 0;
 	virtual void SetRenderTile(float arg0, float arg1, float arg2, float arg3) = 0;
 	virtual void SetScissor(int arg0, int arg1, int arg2, int arg3) = 0;
 	virtual EScreenAspectRatio GetScreenAspect(int arg0, int arg1) = 0;
@@ -813,7 +813,7 @@ public:
 	virtual float ScaleCoordX(float arg0) const = 0;
 	virtual float ScaleCoordY(float arg0) const = 0;
 	virtual void ScaleCoord(float& arg0, float& arg1) const = 0;
-	virtual void SetState(int arg0, int arg1) = 0;
+	virtual void SetState(int State, int AlphaRef = -1) = 0;
 	virtual void SetCullMode(int arg0) = 0;
 	virtual void PushProfileMarker(char* arg0) = 0;
 	virtual void PopProfileMarker(char* arg0) = 0;

@@ -33,6 +33,9 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 # Game path
 set(PREY_PATH "" CACHE PATH "(optional) Path to the game root directory (where Engine and GameSDK are) to automatically install built binaries")
 
+# Options
+option(RENDERDLL_DEBUG_MARKERS "Enables section markers for GPU profilers like RenderDoc" OFF)
+
 # Macros and functions
 
 # Sets target's output directory to a path in the game

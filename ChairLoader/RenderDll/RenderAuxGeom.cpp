@@ -1974,6 +1974,9 @@ void CAuxGeomCB::SetMatrixIndex(int matID)
 
 void CAuxGeomCB::Flush()
 {
+	if (m_iFlushDisabledCount > 0)
+		return;
+
 	Flush(false);
 }
 
@@ -2001,6 +2004,27 @@ void CAuxGeomCB::Process()
 	m_pRenderAuxGeom->FlushTextMessages(m_cbCurrent->m_TextMessages, true);
 	m_lastFlushPos = 0;
 	m_cbCurrent->Reset();
+}
+
+bool CAuxGeomCB::IsFlushAllowed()
+{
+	return m_iFlushDisabledCount > 0;
+}
+
+void CAuxGeomCB::SetFlushAllowed(bool state)
+{
+	m_iFlushDisabledCount += state ? -1 : 1;
+	assert(m_iFlushDisabledCount >= 0);
+}
+
+void CAuxGeomCB::SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2])
+{
+	m_pRenderAuxGeom->SetStereoTargets(pTargets, pDepthTargets);
+}
+
+void CAuxGeomCB::SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj)
+{
+	m_pRenderAuxGeom->SetStereoTransform(eyeIdx, matView, matProj);
 }
 
 void CAuxGeomCBMainThread::Commit(uint frames)
