@@ -19,6 +19,8 @@
 namespace fs = std::filesystem;
 class ModLoader {
 public:
+    static ModLoader& Get() { return *m_spInstance; }
+
     enum class severityLevel{
         trace,
         debug,
@@ -188,4 +190,6 @@ private:
         fileQueue.emplace_back(LogEntry(message, level));
         overlayQueue.emplace_back(LogEntry(message, level));
     }
+
+    static inline ModLoader* m_spInstance = nullptr;
 };

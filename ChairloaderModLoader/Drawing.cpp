@@ -20,10 +20,6 @@ bool Drawing::isActive() {
 	return bDraw;
 }
 
-
-static ModLoader modLoader;
-
-
 void Drawing::Draw()
 {
 	if (isActive())
@@ -36,11 +32,11 @@ void Drawing::Draw()
 //        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(5, 5));
 		ImGui::Begin(lpWindowName, &bDraw, WindowFlags);
 		{
-            modLoader.Draw();
+            ModLoader::Get().Draw();
 		}
 		ImGui::End();
 //        ImGui::PopStyleVar(1);
-        modLoader.Update();
+		ModLoader::Get().Update();
 	}
 	#ifdef _WINDLL
 	if (GetAsyncKeyState(VK_INSERT) & 1)

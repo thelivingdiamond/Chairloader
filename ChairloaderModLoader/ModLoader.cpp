@@ -684,6 +684,9 @@ void ModLoader::loadModInfoFiles() {
 }
 
 ModLoader::ModLoader() {
+    assert(!m_spInstance);
+    m_spInstance = this;
+
     if(ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())){
         if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
             PreyPath = ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string();
@@ -716,6 +719,13 @@ ModLoader::ModLoader() {
     loadModInfoFiles();
 }
 
+ModLoader::~ModLoader() {
+    flushFileQueue();
+    saveModLoaderConfigFile();
+
+    assert(m_spInstance == this);
+    m_spInstance = nullptr;
+}
 
 
 void ModLoader::FindMod(Mod* modEntry) {
@@ -859,11 +869,6 @@ void ModLoader::Update() {
         time(&lastFileTime);
         flushFileQueue();
     }
-}
-
-ModLoader::~ModLoader() {
-    flushFileQueue();
-    saveModLoaderConfigFile();
 }
 
 bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {

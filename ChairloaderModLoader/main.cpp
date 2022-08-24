@@ -10,6 +10,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 //    AllocConsole();
 //    FILE *pFileCon = NULL;
 //    pFileCon = freopen("CONOUT$", "w", stdout);
-UI::Render();
+	UI::Render();
 
 }

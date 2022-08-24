@@ -1,5 +1,7 @@
+#include <memory>
 #include "UI.h"
 #include "Drawing.h"
+#include "ModLoader.h"
 
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
@@ -185,6 +187,9 @@ void UI::Render()
     bool bDone = false;
 
     Drawing::Setup();
+
+    auto pModLoader = std::make_unique<ModLoader>();
+
     while (!bDone)
     {
         MSG msg;
@@ -225,6 +230,8 @@ void UI::Render()
                 break;
         #endif
     }
+
+    pModLoader.reset();
 
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
