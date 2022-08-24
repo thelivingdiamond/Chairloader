@@ -24,8 +24,6 @@ set(SOURCE_FILES
         ImGuiFileDialog/ImGuiFileDialog.cpp
 
         #ImGuiStandalone
-        Drawing.cpp
-        Drawing.h
         UI.cpp
         UI.h
         #ModLoader

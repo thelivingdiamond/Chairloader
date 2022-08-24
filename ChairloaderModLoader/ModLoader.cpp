@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <sstream>
 #include "ModLoader.h"
+#include "UI.h"
 
 
 static std::string ErrorMessage;
@@ -13,6 +14,23 @@ static bool showErrorPopup = false;
 static bool showDemo = false;
 
 void ModLoader::Draw() {
+    bool bDraw = true;
+    ImGuiWindowFlags windowFlags =
+        ImGuiWindowFlags_NoSavedSettings |
+        ImGuiWindowFlags_NoCollapse |
+        ImGuiWindowFlags_NoScrollbar |
+        ImGuiWindowFlags_NoResize |
+        ImGuiWindowFlags_MenuBar;
+
+    ImGui::SetNextWindowSize({ 800, 500 });
+    ImGui::SetNextWindowBgAlpha(1.0f);
+    // ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(5, 5));
+    if (!ImGui::Begin("Chairloader Mod Manager", &bDraw, windowFlags))
+    {
+        ImGui::End();
+    }
+
     if(ImGui::BeginMenuBar()){
         if(ImGui::BeginMenu("Files", true)){
             if(ImGui::MenuItem("Install Mod")){
@@ -84,6 +102,11 @@ void ModLoader::Draw() {
         ImGui::ShowDemoWindow(&showDemo);
     }
     std::sort(ModList.begin(), ModList.end());
+
+    ImGui::End();
+
+    if (!bDraw)
+        UI::RequestExit();
 }
 
 

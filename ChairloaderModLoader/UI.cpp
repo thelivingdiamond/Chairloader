@@ -1,6 +1,5 @@
 #include <memory>
 #include "UI.h"
-#include "Drawing.h"
 #include "ModLoader.h"
 
 #include "ImGui/imgui_impl_dx11.h"
@@ -10,6 +9,7 @@ ID3D11Device* UI::pd3dDevice = nullptr;
 ID3D11DeviceContext* UI::pd3dDeviceContext = nullptr;
 IDXGISwapChain* UI::pSwapChain = nullptr;
 ID3D11RenderTargetView* UI::pMainRenderTargetView = nullptr;
+bool UI::bIsRunning = false;
 
 bool UI::CreateDeviceD3D(HWND hWnd)
 {
@@ -125,6 +125,17 @@ LRESULT WINAPI UI::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
+void UI::Setup()
+{
+    ImGui::StyleColorsDark();
+    // ImGui::GetStyle().WindowBorderSize = 0.0f;
+    ImGui::GetStyle().FramePadding = { 8, 5 };
+    ImGui::GetStyle().FrameRounding = 2;
+    ImGui::GetStyle().ChildRounding = 2;
+    ImGui::GetStyle().WindowRounding = 2;
+    ImGui::GetStyle().PopupRounding = 2;
+}
+
 void UI::Render()
 {
     //TODO: decide on dpi awareness
@@ -184,13 +195,12 @@ void UI::Render()
 
     const ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    bool bDone = false;
-
-    Drawing::Setup();
+    Setup();
 
     auto pModLoader = std::make_unique<ModLoader>();
+    bIsRunning = true;
 
-    while (!bDone)
+    while (bIsRunning)
     {
         MSG msg;
         while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
@@ -198,16 +208,18 @@ void UI::Render()
             ::TranslateMessage(&msg);
             ::DispatchMessage(&msg);
             if (msg.message == WM_QUIT)
-                bDone = true;
+                bIsRunning = false;
         }
-        if (bDone)
+
+        if (!bIsRunning)
             break;
 
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         {
-            Drawing::Draw();
+            ModLoader::Get().Draw();
+            ModLoader::Get().Update();
         }
         ImGui::EndFrame();
 
@@ -224,11 +236,6 @@ void UI::Render()
         }
 
         pSwapChain->Present(1, 0);
-
-        #ifndef _WINDLL
-            if (!Drawing::isActive())
-                break;
-        #endif
     }
 
     pModLoader.reset();
@@ -244,4 +251,9 @@ void UI::Render()
     #ifdef _WINDLL
     ExitThread(0);
     #endif
+}
+
+void UI::RequestExit()
+{
+    bIsRunning = false;
 }
