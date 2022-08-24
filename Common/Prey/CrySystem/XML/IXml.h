@@ -114,7 +114,6 @@ public:
 #endif
 };
 
-#if 0
 //! Never use IXmlNode directly - instead use reference counted XmlNodeRef.
 class IXmlNode
 {
@@ -364,7 +363,7 @@ public:
 	// Lets be friendly to him.
 	friend class XmlNodeRef;
 };
-#endif
+#if 0
 class IXmlNode // Id=800041A Size=16
 {
 public:
@@ -430,10 +429,10 @@ public:
     virtual XmlNodeRef clone() = 0;
     virtual int getLine() const = 0;
     virtual void setLine(int arg0) = 0;
-    virtual IXmlStringData *getXMLData(int arg0) const = 0;
+    virtual IXmlStringData *getXMLData(int nReserveMem = 0) const = 0;
     virtual XmlString getXML(int arg0) const = 0;
-    virtual bool saveToFile(const char *arg0, bool arg1) = 0;
-    virtual bool saveToFile(const char *arg0, uint64_t arg1, _iobuf *arg2, bool arg3) = 0;
+    virtual bool saveToFile(const char *filename, bool bAllowUseFilesystem) = 0;
+    virtual bool saveToFile(const char *filename, uint64_t chunkSize, _iobuf *pFile, bool cleanupUnicode) = 0;
     virtual void setAttr(const char *arg0, const char *arg1) = 0;
     virtual void setAttr(const char *arg0, int arg1) = 0;
     virtual void setAttr(const char *arg0, unsigned arg1) = 0;
@@ -481,6 +480,8 @@ public:
 //    static inline auto FxPathFindNode = PreyFunction<XmlNodeRef(IXmlNode *const _this, const char *_xPathFilter)>(0xD58400);
 //    static inline auto FgetXMLUnsafe = PreyFunction<XmlString(IXmlNode const *const _this, int level, char *tmpBuffer, unsigned sizeOfTmpBuffer)>(0xE14530);
 };
+#endif
+
 /*
    //! Inline Implementation of XmlNodeRef
    inline XmlNodeRef::XmlNodeRef(const char *tag, IXmlNode *node)
