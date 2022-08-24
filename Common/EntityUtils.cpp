@@ -3,6 +3,7 @@
 #include <Prey/GameDll/ark/npc/ArkNpcSpawnManager.h>
 #include "EntityUtils.h"
 #include <Prey/ArkEntityClassLibrary.h>
+#include <Prey/GameDll/ark/npc/ArkNpc.h>
 
 EntityUtils *gEntUtils = nullptr;
 
@@ -138,6 +139,28 @@ EntityUtils::EntityUtils() {
 
 ArkPlayer* EntityUtils::ArkPlayerPtr() {
 	return ArkPlayer::GetInstancePtr();
+}
+
+ArkNpc *EntityUtils::GetArkNpc(IEntity *entity) {
+    if(entity != nullptr){
+        return FSafeGetArkNpc(entity);
+    }
+    return nullptr;
+//    if(entity != nullptr){
+//        auto proxy = entity->GetProxy(EEntityProxy::ENTITY_PROXY_USER);
+//        if(proxy->GetType() == EEntityProxy::ENTITY_PROXY_USER){
+//
+//        }
+//        if(proxy != nullptr) {
+//            auto gameObject = (IGameObject*)proxy;
+//            auto extensionId = gameObject->GetExtensionId("ArkNpc");
+//            if(extensionId != 0){
+//                auto npc = (ArkNpc*)gameObject->QueryExtension(extensionId);
+//                return npc;
+//            }
+//        }
+//    }
+//    return nullptr;
 }
 
 

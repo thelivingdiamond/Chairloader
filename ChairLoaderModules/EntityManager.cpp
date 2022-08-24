@@ -10,6 +10,7 @@
 #include "Prey/CryEntitySystem/EntityClassRegistry.h"
 #include "Prey/GameDll/ark/ArkGame.h"
 #include "Prey/GameDll/ark/ArkLocationManager.h"
+#include "Prey/GameDll/ark/npc/ArkNpc.h"
 
 static ClassLibrary gClassLibrary;
 
@@ -180,7 +181,6 @@ void EntityManager::drawEntityList(bool* bShow) {
                 ImGui::EndChild();
             }
             ImGui::SameLine();
-
             // Right
             {
                 ImGui::BeginGroup();
@@ -303,6 +303,15 @@ void EntityManager::drawEntityList(bool* bShow) {
                                 Vec3 newScale{scale, scale, scale};
                                 entity->SetScale(newScale, 0);
                             }
+                            auto npc = gCLEnv->entUtils->GetArkNpc(entity);
+                            if(npc != nullptr){
+                                ImGui::Text("NPC: %p", npc);
+                                if(ImGui::Button("Kill NPC")){
+                                    
+                                }
+                            } else {
+                                ImGui::Text("NPC: null");
+                            }
                         } else {
                             ImGui::Text("No Entity Selected");
                         }
@@ -337,6 +346,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                         }
                         ImGui::EndTabItem();
                     }
+
                     // TODO: ALL OF THIS
                     if (ImGui::BeginTabItem("Npc Details")) {
                         if (ImGui::BeginTable("SettableGettables", 2,

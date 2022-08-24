@@ -5,6 +5,7 @@
 
 class ArkPlayer;
 class CGameObject;
+class ArkNpc;
 
 // spawn non-npc entities through IEntitySystem.spawnNpcfromArchetype()
    //- create spawn parameters from Vec3 pos, Rot, name, archetype ID or class ID
@@ -32,6 +33,7 @@ public:
 	
 	EntityUtils();
 	ArkPlayer* ArkPlayerPtr();
+    ArkNpc* GetArkNpc(IEntity* entity);
 
 	// ArchetypeLibrary entityArchetypeLibrary;
 private:
