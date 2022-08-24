@@ -622,7 +622,7 @@ public:
 	virtual void RT_DrawImageWithUV(float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, unsigned long col, bool filtered);
 	void RT_DrawImageWithUVInternal(float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, unsigned long col, bool filtered) { FRT_DrawImageWithUVInternal(this, xpos, ypos, z, w, h, texture_id, s, t, col, filtered); }
 	void RT_Draw2dImageInternal(CD3D9Renderer::S2DImage* images, unsigned numImages) { FRT_Draw2dImageInternal(this, images, numImages); }
-	virtual void RT_SetViewport(int x, int y, int width, int height, int id);
+	virtual void RT_SetViewport(int x, int y, int width, int height, int id = -1);
 	virtual void RT_RenderDebug(bool bRenderStats);
 	virtual void RT_SetRendererCVar(ICVar* pCVar, const char* pArgText, const bool bSilentMode);
 	virtual void RT_PresentFast();
@@ -1190,7 +1190,7 @@ public:
 	static inline auto FSF_PrecacheShaders = PreyFunction<void(CD3D9Renderer* const _this)>(0xECB480);
 	static inline auto FSF_DestroyResources = PreyFunction<void(CD3D9Renderer* const _this)>(0xECA6D0);
 	//static inline auto FSF_SetVertexDeclaration = PreyFunction<bool(CD3D9Renderer* const _this, SSF_GlobalDrawParams::EVertexFmt vertexFmt)>(0xECBDE0);
-	//static inline auto FSF_SetBlendOp = PreyFunction<void(CD3D9Renderer* const _this, SSF_GlobalDrawParams::EAlphaBlendOp blendOp, bool reset)>(0xECBA80);
+	static inline auto FSF_SetBlendOp = PreyFunction<void(CD3D9Renderer* const _this, int blendOp, bool reset)>(0xECBA80);
 	static inline auto FSF_DrawIndexedTriList = PreyFunction<void(CD3D9Renderer* const _this, int baseVertexIndex, int minVertexIndex, int numVertices, int startIndex, int triangleCount, SSF_GlobalDrawParams const& params)>(0xECAC80);
 	static inline auto FSF_DrawLineStrip = PreyFunction<void(CD3D9Renderer* const _this, int baseVertexIndex, int lineCount, SSF_GlobalDrawParams const& params)>(0xECB0A0);
 	static inline auto FSF_DrawGlyphClear = PreyFunction<void(CD3D9Renderer* const _this, SSF_GlobalDrawParams const& params)>(0xECA9C0);

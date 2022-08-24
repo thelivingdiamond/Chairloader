@@ -813,7 +813,7 @@ public:
 	virtual float ScaleCoordX(float arg0) const = 0;
 	virtual float ScaleCoordY(float arg0) const = 0;
 	virtual void ScaleCoord(float& arg0, float& arg1) const = 0;
-	virtual void SetState(int arg0, int arg1) = 0;
+	virtual void SetState(int State, int AlphaRef = -1) = 0;
 	virtual void SetCullMode(int arg0) = 0;
 	virtual void PushProfileMarker(char* arg0) = 0;
 	virtual void PopProfileMarker(char* arg0) = 0;
