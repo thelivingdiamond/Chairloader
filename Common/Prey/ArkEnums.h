@@ -2327,3 +2327,67 @@ enum class EArkRawMaterialClass {
 	Large = 3,
 	XLarge = 4
 };
+
+enum EAIFireState {
+    eAIFS_Off = 0,
+    eAIFS_On,
+    eAIFS_Blocking,
+    eAIFS_COUNT
+};
+
+enum ERequestedGrenadeType {
+    eRGT_INVALID = -1,
+    eRGT_ANY,
+    eRGT_SMOKE_GRENADE,
+    eRGT_FLASHBANG_GRENADE,
+    eRGT_FRAG_GRENADE,
+    eRGT_EMP_GRENADE,
+    eRGT_GRUNT_GRENADE,
+    eRGT_COUNT
+};
+
+enum EActorTargetPhase {
+    eATP_None,
+    eATP_Waiting,
+    eATP_Starting,
+    eATP_Started,
+    eATP_Playing,
+    eATP_StartedAndFinished,
+    eATP_Finished,
+    eATP_Error
+};
+
+enum EAITargetType {
+    AITARGET_NONE,
+    AITARGET_SOUND,
+    AITARGET_MEMORY,
+    AITARGET_VISUAL,
+    AITARGET_ENEMY,
+    AITARGET_FRIENDLY,
+    AITARGET_BEACON,
+    AITARGET_GRENADE,
+    AITARGET_RPG,
+    AITARGET_LAST
+};
+
+enum EAITargetContextType {
+    AITARGET_CONTEXT_UNKNOWN,
+    AITARGET_CONTEXT_GUNFIRE,
+    AITARGET_CONTEXT_LAST
+};
+
+enum EAITargetThreat {
+    AITHREAT_NONE,
+    AITHREAT_SUSPECT,
+    AITHREAT_INTERESTING,
+    AITHREAT_THREATENING,
+    AITHREAT_AGGRESSIVE,
+    AITHREAT_LAST
+};
+
+enum EAITargetStuntReaction {
+    AITSR_NONE,
+    AITSR_SEE_STUNT_ACTION,
+    AITSR_SEE_CLOAKED,
+    AITSR_LAST
+};

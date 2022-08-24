@@ -9,3 +9,6 @@ static_assert(sizeof(ArkNpcSpawnedState_Dead) == 1);
 #include "ArkNpcSpawnManager.h"
 static_assert(sizeof(ArkNpcSpawnManager) == 24);
 static_assert(sizeof(ArkNpcSpawnManager::SpawnRequest) == 32);
+
+#include "ArkNpc.h"
+static_assert(sizeof(ArkNpc) == 7512);

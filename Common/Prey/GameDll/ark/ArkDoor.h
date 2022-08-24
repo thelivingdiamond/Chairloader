@@ -17,7 +17,7 @@
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/iface/IArkDoor.h>
 //#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h>
-//#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
+#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 
 struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
