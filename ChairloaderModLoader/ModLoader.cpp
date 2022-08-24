@@ -1072,7 +1072,23 @@ bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideN
 void ModLoader::mergeXMLFiles() {
     fs::remove_all("./Output/");
     fs::create_directory("./Output/");
-    fs::copy("./PreyFiles/Levels", "./Output/Levels", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+    try {
+        fs::copy("./PreyFiles/Levels", "./Output/Levels",
+                 fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+    } catch (std::exception &exc){
+        std::cerr << exc.what() << std::endl;
+        overlayLog(severityLevel::error, "Could not copy Levels folder: %s", exc.what());
+        return;
+    }
+    try{
+        fs::create_directories("./Output/Localization/English_xml");
+        fs::copy("./PreyFiles/Localization/English_xml_patch/", "./Output/Localization/English_xml/",
+                 fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+    } catch (std::exception &exc){
+        std::cerr << exc.what() << std::endl;
+        overlayLog(severityLevel::error, "Could not copy Localization folder: %s", exc.what());
+        return;
+    }
     //legacy mods
     for(auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")) {
         if(fs::is_directory(directory)) {
@@ -1242,11 +1258,12 @@ bool ModLoader::packChairloaderPatch() {
     try {
         fs::remove("patch_chairloader.pak");
         fs::remove_all("./LevelOutput");
+        fs::remove("English_xml_patch.pak");
     } catch (std::exception & exception) {
         overlayLog(severityLevel::error, "Error: %s", exception.what());
         return false;
     }
-
+    // packing level files
     auto levelDirectories = exploreLevelDirectory("./Output/Levels");
     try {
         fs::create_directories("./LevelOutput/Levels");
@@ -1278,7 +1295,23 @@ bool ModLoader::packChairloaderPatch() {
         overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
         return false;
     }
+    log(severityLevel::trace, "Packing localization patch");
+    // pack localization patch
+    system(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)");
+    if(!fs::exists("./English_xml_patch.pak")) {
+        overlayLog(severityLevel::error, "Error packing localization patch");
+        return false;
+    } else {
+        try {
+            fs::remove_all("./Output/Localization/");
+            fs::copy_file("./English_xml_patch.pak", PreyPath.string() + "/Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
+        } catch (std::exception &exception) {
+            overlayLog(severityLevel::error, "Error removing localization patch files: %s", exception.what());
+            return false;
+        }
+    }
 
+    // pack chairloader patch
     system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
     if(!fs::exists("patch_chairloader.pak")) {
         overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
@@ -1358,6 +1391,10 @@ bool ModLoader::verifyDependenciesEnabled(std::string modName) {
         }
         return true;
     }
+    return false;
+}
+
+bool ModLoader::copyLocalizationPatch() {
     return false;
 }
 

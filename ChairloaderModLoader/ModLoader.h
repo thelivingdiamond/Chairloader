@@ -144,6 +144,7 @@ private:
     bool packLevel(fs::path);
     bool packChairloaderPatch();
     bool copyChairloaderPatch();
+    bool copyLocalizationPatch();
 
     // Load Order
     std::map<int, std::string> loadOrder;
