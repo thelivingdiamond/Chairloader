@@ -223,6 +223,7 @@ struct CRY_ALIGN(128) SRenderThread
 	bool IsMultithreaded();
 	int CurThreadFill() const;
 
+	void RC_SetViewport(int x, int y, int width, int height, int id = 0);
 	void RC_AuxFlush(IRenderAuxGeomImpl* pAux, SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset);
 
 	inline size_t Align4(size_t value)
@@ -242,6 +243,15 @@ struct CRY_ALIGN(128) SRenderThread
 	{
 	}
 
+	inline byte* AddCommand(ERenderCommand eRC, size_t nParamBytes)
+	{
+#ifdef STRIP_RENDER_THREAD
+		return NULL;
+#else
+		return AddCommandTo((ERenderCommandCustom)eRC, nParamBytes, m_Commands[m_nCurThreadFill]);
+#endif
+	}
+
 	inline byte* AddCommand(ERenderCommandCustom eRCC, size_t nParamBytes)
 	{
 #ifdef STRIP_RENDER_THREAD
@@ -254,9 +264,6 @@ struct CRY_ALIGN(128) SRenderThread
 
 	inline void EndCommand(byte* ptr)
 	{
-#ifndef STRIP_RENDER_THREAD
-		EndCommandTo(ptr, m_CustomCommands[m_nCurThreadFill]);
-#endif
 	}
 
 	inline void AddDWORD(byte*& ptr, uint32 nVal)

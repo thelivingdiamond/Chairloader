@@ -145,6 +145,9 @@ void ChairLoaderImGui::InitBackend() {
 	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
 	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
 
+	// Get ID3DUserDefinedAnnotation
+	static_cast<CD3D9Renderer*>(gEnv->pRenderer)->m_DeviceContextWrapper.QueryInterface(__uuidof(ID3DUserDefinedAnnotation), (void**)&m_pAnnot);
+
 	CreateFontsTexture();
 }
 
@@ -433,6 +436,21 @@ bool ChairLoaderImGui::RT_Initialize() {
 			desc.MiscFlags = 0;
 			data.pd3dDevice->CreateBuffer(&desc, NULL, &data.pVertexConstantBuffer);
 		}
+
+		// Create texture sampler
+		{
+			D3D11_SAMPLER_DESC desc;
+			ZeroMemory(&desc, sizeof(desc));
+			desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+			desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+			desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+			desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+			desc.MipLODBias = 0.f;
+			desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+			desc.MinLOD = 0.f;
+			desc.MaxLOD = 0.f;
+			data.pd3dDevice->CreateSamplerState(&desc, &data.pFontSampler);
+		}
 	}
 
 	// Create the pixel shader
@@ -671,7 +689,7 @@ void ChairLoaderImGui::RT_Render() {
 				// Bind texture, Draw
 				ITexture *pITexture = (ITexture *)cmd.GetTexID();
 				CTexture *pTexture = static_cast<CTexture *>(pITexture);
-				auto pView = mem::OffsetInStruct<ID3D11ShaderResourceView *>(pTexture, CTexture::OFFSET_SHADER_RESOURCE);
+				ID3D11ShaderResourceView* pView = pTexture->m_pDeviceShaderResource;
 				ctx->PSSetShaderResources(0, 1, &pView);
 				ctx->DrawIndexed(cmd.ElemCount, cmd.IdxOffset + drawList.idxOffset, cmd.VtxOffset + drawList.vtxOffset);
 			}
@@ -817,7 +835,11 @@ HRESULT ChairLoaderImGui::Present(IDXGISwapChain *pChain, UINT SyncInterval, UIN
 		}
 
 		if (data.bIsReady)
+		{
+			m_pInstance->m_pAnnot->BeginEvent(L"Chairloader ImGui");
 			m_pInstance->RT_Render();
+			m_pInstance->m_pAnnot->EndEvent();
+		}
 	}
 
 	return m_hookPresent(pChain, SyncInterval, Flags);

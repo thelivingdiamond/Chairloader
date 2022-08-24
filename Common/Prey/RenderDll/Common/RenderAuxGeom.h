@@ -10,6 +10,7 @@
 	#include <Prey/CryRenderer/IRenderAuxGeom.h>
 	#include <Prey/CryRenderer/VertexFormats.h>
 	#include <Prey/RenderDll/Common/TextMessages.h>
+	#include <ChairLoader/IRenderAuxGeomEx.h>
 
 class ICrySizer;
 class CAuxGeomCB;
@@ -23,9 +24,12 @@ public:
 	virtual void RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset = false) = 0;
 
 	virtual void FlushTextMessages(CTextMessages& tMessages, bool reset) = 0;
+
+	virtual void SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2]) = 0;
+	virtual void SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj) = 0;
 };
 
-class CAuxGeomCB : public IRenderAuxGeom
+class CAuxGeomCB : public IRenderAuxGeom, public IRenderAuxGeomEx
 {
 public:
 	// interface
@@ -73,6 +77,12 @@ public:
 	virtual void                Flush();
 	virtual void                Commit(uint frames = 0);
 	virtual void                Process();
+
+	// IRenderAuxGeomEx
+	virtual bool IsFlushAllowed() override;
+	virtual void SetFlushAllowed(bool state) override;
+	virtual void SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2]) override;
+	virtual void SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj) override;
 
 public:
 	enum EPrimType
@@ -364,6 +374,8 @@ protected:
 	CBList             m_cbData;
 
 	SAuxGeomCBRawData* m_cbCurrent;
+
+	int m_iFlushDisabledCount = 0;
 
 	SAuxGeomCBRawData* AddCBuffer()
 	{

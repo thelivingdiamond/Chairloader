@@ -6,6 +6,8 @@ set(SOURCE_FILES
 	
 	RenderDll/D3DRenderAuxGeom.cpp
 	RenderDll/D3DRenderAuxGeom.h
+	RenderDll/DebugMarkers.cpp
+	RenderDll/DebugMarkers.h
 	RenderDll/RenderAuxGeom.cpp
 	RenderDll/RenderAuxGeomPatch.cpp
 	RenderDll/RenderAuxGeomPatch.h
@@ -42,10 +44,18 @@ set(SOURCE_FILES
 	pugixml.hpp
         )
 
+if(RENDERDLL_DEBUG_MARKERS)
+	set(RENDERDLL_DEBUG_MARKERS_DEFS RENDERDLL_DEBUG_MARKERS)
+endif()
+
 add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader
 	Common
 	ChairloaderModules
+)
+
+target_compile_definitions(Chairloader PRIVATE
+	${RENDERDLL_DEBUG_MARKERS_DEFS}
 )
 
 cl_output_dir(Chairloader "Binaries/Danielle/x64/Release")
