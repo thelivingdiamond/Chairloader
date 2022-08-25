@@ -29,6 +29,10 @@ set(SOURCE_FILES
         #ModLoader
         ModLoader.cpp
         ModLoader.h
+        PathUtils.cpp
+        PathUtils.h
+        GamePathDialog.cpp
+        GamePathDialog.h
         pch.h
         main.cpp
         #Miscellaneous
