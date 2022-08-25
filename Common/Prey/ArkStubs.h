@@ -6,8 +6,8 @@ namespace detail
 
 struct StubSmartPtrIface
 {
-	void Release();
-	void AddRef();
+	void Release() {};
+	void AddRef() {};
 };
 
 }

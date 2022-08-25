@@ -11,6 +11,7 @@
 #include "Prey/GameDll/ark/ArkGame.h"
 #include "Prey/GameDll/ark/ArkLocationManager.h"
 #include "Prey/GameDll/ark/npc/ArkNpc.h"
+#include "Prey/GameDll/ark/ArkFactionManager.h"
 
 static ClassLibrary gClassLibrary;
 
@@ -22,7 +23,8 @@ EntityManager::EntityManager(ChairloaderGlobalEnvironment* env) {
 EntityManager::~EntityManager() {
 
 }
-
+static uint64_t selectedSpawnerFaction = 0;
+static float offsetDistance[3] = {0,5,0};
 void EntityManager::drawEntitySpawner(bool* bShow) {
     if(showEntitySpawner){
         if (ImGui::Begin("Entity Spawner", bShow, ImGuiWindowFlags_NoNavInputs)) {
@@ -40,10 +42,36 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
             ImGui::Checkbox("Use Player Pos", &usePlayerPos);
             if (usePlayerPos) {
                 ImGui::Checkbox("Offset In front of Player", &offsetFromPlayer);
+                if(offsetFromPlayer) {
+//                    ImGui::SliderFloat("Left/Right", &offsetDistance[0], -10.0f, 10.0f, "%.2f");
+                    ImGui::SliderFloat2("Offset: In/Out, Up/Down", &offsetDistance[1], -10.0f, 10.0f, "%.2f");
+//                    ImGui::SliderFloat("Forward/Backward", &offsetDistance[1], -10.0f, 10.0f, "%.2f");
+//                    ImGui::SliderFloat("Up/Down", &offsetDistance[2], -10.0f, 10.0f, "%.2f");
+                }
             } else {
                 ImGui::InputFloat("X", &spawnX);
                 ImGui::InputFloat("Y", &spawnY);
                 ImGui::InputFloat("Z", &spawnZ);
+            }
+            auto IfactionManager = gEnv->pGame->GetIArkFactionManager();
+            auto factionmanager = static_cast<ArkFactionManager*>(IfactionManager);
+            ImGui::Separator();
+            std::string previewText;
+            if(selectedSpawnerFaction != 0){
+                previewText = IfactionManager->GetFactionName(selectedSpawnerFaction);
+            } else {
+                previewText = "Default";
+            }
+            if(ImGui::BeginCombo("Faction", previewText.c_str())){
+                if(ImGui::Selectable("Default")){
+                    selectedSpawnerFaction = 0;
+                }
+                for(auto faction : factionmanager->m_idToIndexMap){
+                    if(ImGui::Selectable(IfactionManager->GetFactionName(faction.first).c_str())){
+                        selectedSpawnerFaction = faction.first;
+                    }
+                }
+                ImGui::EndCombo();
             }
             if (ImGui::Button("Spawn Entity")) {
                 spawnEntity();
@@ -63,7 +91,7 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
                 auto archetypeNameList = GetEntitySystem()->m_pEntityArchetypeManager->m_nameToArchetypeMap;
                 auto itr = archetypeNameList.begin();
                 archetypeFilteredList.clear();
-                for (int i = 0; i < 400 && itr != archetypeNameList.end(); ++itr) {
+                for (int i = 0; i < 500 && itr != archetypeNameList.end(); ++itr) {
                     std::string archetypeName = (*itr).second->GetName();
                     // size_t last_period = archetypeName.find_last_of('.');
                     // archetypeName = archetypeName.substr(last_period, archetypeName.size());
@@ -77,11 +105,11 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
                     }
                 }
             }
-            ImGuiUtils::HelpMarker("Filter usage:\n"
-                                   "  \"\"         display all lines\n"
-                                   "  \"xxx\"      display lines containing \"xxx\"\n"
-                                   "  \"xxx,yyy\"  display lines containing \"xxx\" or \"yyy\"\n"
-                                   "  \"-xxx\"     hide lines containing \"xxx\"");
+//            ImGuiUtils::HelpMarker("Filter usage:\n"
+//                                   "  \"\"         display all lines\n"
+//                                   "  \"xxx\"      display lines containing \"xxx\"\n"
+//                                   "  \"xxx,yyy\"  display lines containing \"xxx\" or \"yyy\"\n"
+//                                   "  \"-xxx\"     hide lines containing \"xxx\"");
 
             static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter |
                                            ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Hideable;
@@ -130,10 +158,27 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
     }
 }
 
+std::string getDispositionStr(EArkDisposition disposition) {
+    switch (disposition) {
+        case EArkDisposition::friendly:
+            return "Friendly";
+        case EArkDisposition::neutral:
+            return "Neutral";
+        case EArkDisposition::hostile:
+            return "Hostile";
+        case EArkDisposition::none:
+            return "None";
+        default:
+            return "Unknown";
+    }
+}
+
+
 void EntityManager::drawEntityList(bool* bShow) {
     if(showEntityList) {
         if (ImGui::Begin("Entity List", bShow, ImGuiWindowFlags_NoNavInputs)) {
             {
+                static bool filterByNpcs = false;
                 ImGui::BeginChild("left pane", ImVec2(250, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
                 ImGui::InputText("##input", &filterText);
                 if (oldFilterText != filterText) {
@@ -144,6 +189,8 @@ void EntityManager::drawEntityList(bool* bShow) {
                 if (ImGui::Button("Refresh")) {
                     refreshDisplayList = true;
                 }
+                if(ImGui::Checkbox("Filter By NPCs", &filterByNpcs))
+                    refreshDisplayList = true;
                 if (refreshDisplayList) {
                     refreshDisplayList = false;
                     entityDisplayList.clear();
@@ -154,11 +201,16 @@ void EntityManager::drawEntityList(bool* bShow) {
                             if (!(*itr)->m_szName.empty()) {
                                 std::string name = (*itr)->m_szName.c_str();
                                 std::string newFilterText = filterText;
-                                std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(),
-                                               ::tolower);
+                                std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
                                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
                                 if (name.find(newFilterText) != name.npos || filterText.empty()) {
-                                    entityDisplayList.emplace_back((*itr)->GetId());
+                                    if(filterByNpcs) {
+                                        if(gCLEnv->entUtils->GetArkNpc(*itr) != nullptr) {
+                                            entityDisplayList.emplace_back((*itr)->GetId());
+                                        }
+                                    } else {
+                                        entityDisplayList.emplace_back((*itr)->GetId());
+                                    }
                                 }
                             }
                         }
@@ -184,8 +236,7 @@ void EntityManager::drawEntityList(bool* bShow) {
             // Right
             {
                 ImGui::BeginGroup();
-                ImGui::BeginChild("item view",
-                                  ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
+                ImGui::BeginChild("entity view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
                 if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
                     ImGui::Text("Entity: %llu", gEnv->pEntitySystem->GetEntity(selectedEntity)->GetId());
                 } else {
@@ -194,11 +245,11 @@ void EntityManager::drawEntityList(bool* bShow) {
                 ImGui::Separator();
                 if (ImGui::BeginTabBar("##Tabs",
                                        ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_TabListPopupButton)) {
-                    if (ImGui::BeginTabItem("Entity Details")) {
-                        // CryLog("at the entity check\n");
-
-                        if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
-                            auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
+                    if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
+                        auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
+                        auto npc = gCLEnv->entUtils->GetArkNpc(entity);
+                        if (ImGui::BeginTabItem("Entity Details")) {
+                            // CryLog("at the entity check\n");
                             if (ImGui::BeginTable("Details", 2, ImGuiTableFlags_NoClip | ImGuiTableFlags_BordersH)) {
                                 // Setup Columns
                                 ImGui::TableSetupColumn(" Item:", ImGuiTableColumnFlags_WidthFixed, 75.0f);
@@ -265,7 +316,6 @@ void EntityManager::drawEntityList(bool* bShow) {
 
                                 ImGui::EndTable();
                             }
-
                             ImGui::Text("Position: ");
                             static float position[3];
                             position[0] = entity->GetPos().x;
@@ -275,11 +325,6 @@ void EntityManager::drawEntityList(bool* bShow) {
                                 Vec3 newPos = Vec3(position[0], position[1], position[2]);
                                 entity->SetPos(newPos, 0, true, true);
                             }
-//                        ImGui::InputFloat("x", &selected->m_vPos.x, 0, 0, "% .1f");
-//                        ImGui::SameLine();
-//                        ImGui::InputFloat("y", &selected->m_vPos.y, 0, 0, "% .1f");
-//                        ImGui::SameLine();
-//                        ImGui::InputFloat("z", &selected->m_vPos.z, 0, 0, "% .1f");
                             if (ImGui::Button("Set to player pos")) {
                                 entity->SetPos(gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
                             }
@@ -307,124 +352,472 @@ void EntityManager::drawEntityList(bool* bShow) {
                             if(npc != nullptr){
                                 ImGui::Text("NPC: %p", npc);
                                 if(ImGui::Button("Kill NPC")){
-                                    
+
                                 }
                             } else {
                                 ImGui::Text("NPC: null");
                             }
-                        } else {
-                            ImGui::Text("No Entity Selected");
+                            ImGui::EndTabItem();
                         }
-                        ImGui::EndTabItem();
-                    }
-
-                    if (ImGui::BeginTabItem("Status Effects")) {
-                        static std::string selectedStatus;
-                        // if(ImGui::BeginChild("status list", ImVec2(0, ImGui::GetContentRegionAvail().y * 0.6f))){
-                        if (ImGui::BeginTable("statusList", 1, ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersOuter,
-                                              ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                            ImGui::TableSetupColumn("Status");
-                            ImGui::TableHeadersRow();
-                            for (auto itr = statusPush.begin(); itr != statusPush.end(); ++itr) {
-                                ImGui::TableNextRow();
-                                // if(ImGui::TreeNode((itr)->c_str())) {
-                                // ImGui::Text("%s", itr->c_str());
-                                ImGui::TableSetColumnIndex(0);
-                                if (ImGui::Selectable(itr->c_str(), *itr == selectedStatus)) {
-                                    selectedStatus = *itr;
+                        if(ImGui::BeginTabItem("Physics")){
+                            if(entity->GetPhysics() != nullptr){
+                                auto physics = entity->GetPhysics();
+                                std::string type;
+                                switch(physics->GetType()){
+                                    case pe_type::PE_NONE:
+                                        type = "None";
+                                        break;
+                                    case pe_type::PE_STATIC:
+                                        type = "Static";
+                                        break;
+                                    case pe_type::PE_RIGID:
+                                        type = "Rigid";
+                                        break;
+                                    case pe_type::PE_WHEELEDVEHICLE:
+                                        type = "Wheeled Vehicle";
+                                        break;
+                                    case pe_type::PE_LIVING:
+                                        type = "Living";
+                                        break;
+                                    case pe_type::PE_PARTICLE:
+                                        type = "Particles";
+                                        break;
+                                    case pe_type::PE_ARTICULATED:
+                                        type = "Articulated";
+                                        break;
+                                    case pe_type::PE_ROPE:
+                                        type = "Rope";
+                                        break;
+                                    case pe_type::PE_SOFT:
+                                        type = "Soft";
+                                        break;
+                                    case pe_type::PE_AREA:
+                                        type = "Area";
+                                        break;
                                 }
+                                ImGui::Text("Type: %s", type.c_str());
+//                                auto params = new pe_params_flags();
+//                                physics->GetParams(params);
+//                                ImGui::Text("Params:");
+//                                ImGui::Text("  Flags: %u", params->flags);
+//                                ImGui::Text("  Ignore Areas: %u", params->flags & pef_ignore_areas);
+//                                if(ImGui::Button("Set Ignore Gravity Flag")){
+//                                    params->flags = params->flags & pef_ignore_areas;
+//                                    physics->SetParams(params);
+//                                }
                             }
-                            ImGui::EndTable();
+                            ImGui::EndTabItem();
                         }
-                        ImGui::Text("%s", selectedStatus.c_str());
-                        if (std::find(statusPush.begin(), statusPush.end(), selectedStatus) != statusPush.end()) {
-                            ImGui::Button("Push");
-                        }
-                        if (std::find(statusPop.begin(), statusPop.end(), selectedStatus) != statusPop.end()) {
-                            ImGui::SameLine();
-                            ImGui::Button("Pop");
-                        }
-                        ImGui::EndTabItem();
-                    }
-
-                    // TODO: ALL OF THIS
-                    if (ImGui::BeginTabItem("Npc Details")) {
-                        if (ImGui::BeginTable("SettableGettables", 2,
-                                              ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersH |
-                                              ImGuiTableFlags_BordersInnerV)) {
-                            ImGui::TableSetupColumn("Readable", ImGuiTableColumnFlags_WidthFixed,
-                                                    ImGui::GetContentRegionAvail().x * 0.5f);
-                            ImGui::TableSetupColumn("Writable", ImGuiTableColumnFlags_WidthFixed,
-                                                    ImGui::GetContentRegionAvail().x * 0.5f);
-                            ImGui::TableSetupScrollFreeze(0, 1);
-                            ImGui::TableHeadersRow();
-                            auto itrget = get.begin();
-                            auto itrset = set.begin();
-                            bool setend = false, getend = false;
-                            while (itrset != set.end() || itrget != get.end()) {
-                                ImGui::TableNextRow();
-                                if (!getend) {
-                                    ++itrget;
-                                    if (itrget == get.end()) {
-                                        getend = true;
+                        // Push Pop Effects
+                        // TODO: ALL OF THIS
+                        if(ImGui::BeginTabItem("Factions")){
+                            auto IfactionManager = gEnv->pGame->GetIArkFactionManager();
+                            auto factionmanager = static_cast<ArkFactionManager*>(IfactionManager);
+                            ImGui::Text("Current Faction: %s", IfactionManager->GetFactionName(IfactionManager->GetEntityFaction(entity->GetId())).c_str());
+                            ImGui::Separator();
+                            static auto selectedFaction = (++factionmanager->m_idToIndexMap.begin())->first;
+                            if(ImGui::BeginCombo("Faction", IfactionManager->GetFactionName(selectedFaction).c_str())){
+                                for(auto faction : factionmanager->m_idToIndexMap){
+                                    if(ImGui::Selectable(IfactionManager->GetFactionName(faction.first).c_str())){
+                                        selectedFaction = faction.first;
                                     }
                                 }
-                                if (!getend) {
-                                    ImGui::TableSetColumnIndex(0);
-                                    ImGui::Text("%s", itrget->c_str());
-                                    ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - 10.0f);
-                                    std::string text = "0";
-                                    ImGui::InputText("##NPC", &text, ImGuiInputTextFlags_ReadOnly);
-                                    ImGui::PopItemWidth();
-                                } else {
-
+                                ImGui::EndCombo();
+                            }
+                            ImGui::Text("Relation to selected entity: %s", getDispositionStr(IfactionManager->GetEffectiveFactionDispositionToEntity(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction))).c_str());
+                            if(ImGui::Button("Set Entity to Selected Faction")){
+                                factionmanager->SetEntityFaction(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction));
+                                gCLEnv->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
+                            }
+                            ImGui::EndTabItem();
+                        }
+                        if(npc!= nullptr) {
+                            if (ImGui::BeginTabItem("Status Effects")) {
+                                //"AIAlwaysUpdate",AIAlwaysUpdateForPatrol",AttentionDrainLockOnTarget",DisableAiTree",DisableAllAmbientSounds",DisableAttentionAndSenses",DisableAttentionObjectAndPerceivable "DisableAudible",DisableBreakable",DisableDeathReactions",DisableHearing",DisableHitReactions",DisableLifetimeEffect",DisableNpcHealthUI",DisableOperatorLevitatorsEffect",DisableSenses",DisableVisible",DisableVision",Dumbed",EnableAbilities",EnableAiTree",EnableAttentionObject",
+                                if (ImGui::Button("Push AI Always Update")) {
+                                    npc->PushAIAlwaysUpdate();
                                 }
-                                if (!setend) {
-                                    ++itrset;
-                                    if (itrset == set.end()) {
-                                        setend = true;
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop AI Always Update")) {
+                                    npc->PopAIAlwaysUpdate();
+                                }
+                                if (ImGui::Button("Push AI Always Update For Patrol")) {
+                                    npc->PushAIAlwaysUpdateForPatrol();
+                                }
+//                            ImGui::SameLine();
+//                            if(ImGui::Button("Pop AI Always Update For Patrol")){
+//                                npc->PopAIAlwaysUpdateForPatrol();
+//                            }
+                                // NEEDS TARGET
+//                            if(ImGui::Button("Push Attention Drain Lock On Target")){
+//                                npc->PushAttentionDrainLockOnTarget();
+//                            }
+//                            ImGui::SameLine();
+//                            if(ImGui::Button("Pop Attention Drain Lock On Target")){
+//                                npc->PopAttentionDrainLockOnTarget();
+//                            }
+                                if (ImGui::Button("Push Disable AI Tree")) {
+                                    npc->PushDisableAiTree();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable AI Tree")) {
+                                    npc->PopDisableAiTree();
+                                }
+                                if (ImGui::Button("Push Disable All Ambient Sounds")) {
+                                    npc->PushDisableAllAmbientSounds();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable All Ambient Sounds")) {
+                                    npc->PopDisableAllAmbientSounds();
+                                }
+                                if (ImGui::Button("Push Disable Attention And Senses")) {
+                                    npc->PushDisableAttentionAndSenses();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Attention And Senses")) {
+                                    npc->PopDisableAttentionAndSenses();
+                                }
+                                if (ImGui::Button("Push Disable Attention Object And Perceivable")) {
+                                    npc->PushDisableAttentionObjectAndPerceivables();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Attention Object And Perceivable")) {
+                                    npc->PopDisableAttentionObjectAndPerceivables();
+                                }
+                                if (ImGui::Button("Push Disable Audible")) {
+                                    npc->PushDisableAudible();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Audible")) {
+                                    npc->PopDisableAudible();
+                                }
+                                if (ImGui::Button("Push Disable Breakable")) {
+                                    npc->PushDisableBreakable();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Breakable")) {
+                                    npc->PopDisableBreakable();
+                                }
+                                if (ImGui::Button("Push Disable Death Reactions")) {
+                                    npc->PushDisableDeathReactions();
+                                }
+//                            ImGui::SameLine();
+//                            if(ImGui::Button("Pop Disable Death Reactions")){
+//                                npc;
+//                            }
+                                if (ImGui::Button("Push Disable Hearing")) {
+                                    npc->PushDisableHearing();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Hearing")) {
+                                    npc->PopDisableHearing();
+                                }
+                                if (ImGui::Button("Push Disable Hit Reactions")) {
+                                    npc->PushDisableHitReactions();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Hit Reactions")) {
+                                    npc->PopDisableHitReactions();
+                                }
+                                if (ImGui::Button("Push Disable Lifetime Effect")) {
+                                    npc->PushDisableLifetimeEffect();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Lifetime Effect")) {
+                                    npc->PopDisableLifetimeEffect();
+                                }
+                                if (ImGui::Button("Push Disable Npc Health UI")) {
+                                    npc->PushDisableNpcHealthUI();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Npc Health UI")) {
+                                    npc->PopDisableNpcHealthUI();
+                                }
+                                if (ImGui::Button("Push Disable Operator Levitators Effect")) {
+                                    npc->PushDisableOperatorLevitatorsEffect();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Operator Levitators Effect")) {
+                                    npc->PopDisableOperatorLevitatorsEffect();
+                                }
+                                if (ImGui::Button("Push Disable Senses")) {
+                                    npc->PushDisableSenses();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Senses")) {
+                                    npc->PopDisableSenses();
+                                }
+                                if (ImGui::Button("Push Disable Visible")) {
+                                    npc->PushDisableVisible();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Disable Visible")) {
+                                    npc->PopDisableVisible();
+                                }
+                                if (ImGui::Button("Push Enable Abilities")) {
+                                    npc->PushEnableAbilities();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Abilities")) {
+                                    npc->PopEnableAbilities();
+                                }
+                                //EnableAttentiveSubject",EnableAudible",EnableGlassBreaking",EnableHearing",EnableLifetimeEffect",EnableOperatorLevitatorsEffect",EnableRoomPerceiver",EnableVisible",EnableVision",EnabledAmbientSound",Fear",ForceRigidOnGloo",IndefiniteRagdoll"
+                                if (ImGui::Button("Push Enable Attentive Subject")) {
+                                    npc->PushEnableAttentiveSubject();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Attentive Subject")) {
+                                    npc->PopEnableAttentiveSubject();
+                                }
+                                if (ImGui::Button("Push Enable Audible")) {
+                                    npc->PushEnableAudible();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Audible")) {
+                                    npc->PopEnableAudible();
+                                }
+                                if (ImGui::Button("Push Enable Glass Breaking")) {
+                                    npc->PushEnableGlassBreaking();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Glass Breaking")) {
+                                    npc->PopEnableGlassBreaking();
+                                }
+                                if (ImGui::Button("Push Enable Hearing")) {
+                                    npc->PushEnableHearing();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Hearing")) {
+                                    npc->PopEnableHearing();
+                                }
+                                if (ImGui::Button("Push Enable Lifetime Effect")) {
+                                    npc->PushEnableLifetimeEffect();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Lifetime Effect")) {
+                                    npc->PopEnableLifetimeEffect();
+                                }
+                                if (ImGui::Button("Push Enable Operator Levitators Effect")) {
+                                    npc->PushEnableOperatorLevitatorsEffect();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Operator Levitators Effect")) {
+                                    npc->PopEnableOperatorLevitatorsEffect();
+                                }
+                                if (ImGui::Button("Push Enable Room Perceiver")) {
+                                    npc->PushEnableRoomPerceiver();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Room Perceiver")) {
+                                    npc->PopEnableRoomPerceiver();
+                                }
+                                if (ImGui::Button("Push Enable Vision")) {
+                                    npc->PushEnableVision();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Vision")) {
+                                    npc->PopEnableVision();
+                                }
+                                if (ImGui::Button("Push Enable Visible")) {
+                                    npc->PushEnableVisible();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Enable Visible")) {
+                                    npc->PopEnableVisible();
+                                }
+                                // needs sound id
+//                            if(ImGui::Button("Push Enabled Ambient Sound")){
+//                                npc->PushEnabledAmbientSound();
+//                            }
+//                            ImGui::SameLine();
+//                            if(ImGui::Button("Pop Enabled Ambient Sound")){
+//                                npc->PopEnabledAmbientSound();
+//                            }
+//                            needs parameter setup
+//                            if(ImGui::Button("Push Fear")){
+//                                npc->PushFear();
+//                            }
+//                            ImGui::SameLine();
+//                            if(ImGui::Button("Pop Fear")){
+//                                npc->PopFear();
+//                            }
+                                if (ImGui::Button("Push Force Rigid On Gloo")) {
+                                    npc->PushForceRigidOnGloo();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Force Rigid On Gloo")) {
+                                    npc->PopForceRigidOnGloo();
+                                }
+                                if (ImGui::Button("Push Indefinite Ragdoll")) {
+                                    npc->PushIndefiniteRagdoll();
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::Button("Pop Indefinite Ragdoll")) {
+                                    npc->PopIndefiniteRagdoll();
+                                }
+
+
+//                            static std::string selectedStatus;
+//                            // if(ImGui::BeginChild("status list", ImVec2(0, ImGui::GetContentRegionAvail().y * 0.6f))){
+//                            if (ImGui::BeginTable("statusList", 1, ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersOuter,
+//                                                  ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
+//                                ImGui::TableSetupColumn("Status");
+//                                ImGui::TableHeadersRow();
+//                                for (auto itr = statusPush.begin(); itr != statusPush.end(); ++itr) {
+//                                    ImGui::TableNextRow();
+//                                    // if(ImGui::TreeNode((itr)->c_str())) {
+//                                    // ImGui::Text("%s", itr->c_str());
+//                                    ImGui::TableSetColumnIndex(0);
+//                                    if (ImGui::Selectable(itr->c_str(), *itr == selectedStatus)) {
+//                                        selectedStatus = *itr;
+//                                    }
+//                                }
+//                                ImGui::EndTable();
+//                            }
+//                            ImGui::Text("%s", selectedStatus.c_str());
+//                            if (std::find(statusPush.begin(), statusPush.end(), selectedStatus) != statusPush.end()) {
+//                                ImGui::Button("Push");
+//                            }
+//                            if (std::find(statusPop.begin(), statusPop.end(), selectedStatus) != statusPop.end()) {
+//                                ImGui::SameLine();
+//                                ImGui::Button("Pop");
+//                            }
+                                ImGui::EndTabItem();
+                            }
+#if 0
+                            if (ImGui::BeginTabItem("Npc Details")) {
+//                                ActiveEthericDoppelgangerId,AmmoCount,AttachedPistolId,Attachment,AttentionOnPlayer,CachedThrowAtLocation,CachedThrowAtType,CharacterEffectsManager,ComplexHearingGain,ComplexVisionGain,CurrentAbilityContextId,CurrentCombatRole,DefaultFaction,DesiredSpeed,DodgeTimeStamp,EnergizedAmount,EntityPoolSignature,EthericDoppelgangerOwnerId,GlooEffect,HeadDirection,HeadPosition,HitReactKnockDownTimeStamp,HitReactStaggerTimeStamp,IsHitReactingPrereqFlag,IsRegainingLosPrereqFlag,IsShuttingDownHack,IsTakingDamagePrereqFlag,LastPerformedContextId,LeaderId,MaterialAnimationDuration,MaterialAnimationManager,MimicingEntityId,MimicryReason,MovementRequestId,NpcManagerCombatPoints,NumControlledTurrets,NumCorruptedNpcs,PhysicalEntitiesInBox,Properties,RMIBase,SearchReasonFromChangeReason,TopAttentionTargetEntityId"
+                                ImGui::Text("ActiveEthericDoppelgangerId: %d", npc->GetActiveEthericDoppelgangerId());
+                                ImGui::Text("AmmoCount: %d", npc->GetAmmoCount());
+                                ImGui::Text("AttachedPistolId: %d", npc->GetAttachedPistolId());
+                                ImGui::Text("CachedThrowAtLocation: %f %f %f", npc->GetCachedThrowAtLocation().x, npc->GetCachedThrowAtLocation().y, npc->GetCachedThrowAtLocation().z);
+                                ImGui::Text("CachedThrowAtType: %d", npc->GetCachedThrowAtType());
+                                ImGui::Text("CharacterEffectsManager: %p", &npc->GetCharacterEffectsManager());
+                                ImGui::Text("ComplexHearingGain: %f", npc->GetComplexHearingGain());
+                                ImGui::Text("ComplexVisionGain: %f", npc->GetComplexVisionGain());
+                                ImGui::Text("CurrentAbilityContextId: %llu", npc->GetCurrentAbilityContextId());
+                                ImGui::Text("CurrentCombatRole: %d", npc->GetCurrentCombatRole());
+                                ImGui::Text("DefaultFaction: %d", npc->GetDefaultFaction());
+                                ImGui::Text("DesiredSpeed: %d", npc->GetDesiredSpeed());
+//                                ImGui::Text("DodgeTimeStamp: %d", npc->GetDodgeTimeStamp().);
+                                ImGui::Text("EnergizedAmount: %f", npc->GetEnergizedAmount());
+//                                ImGui::Text("EntityPoolSignature: %d", npc->GetEntityPoolSignature());
+                                ImGui::Text("EthericDoppelgangerOwnerId: %d", npc->GetEthericDoppelgangerOwnerId());
+                                ImGui::Text("GlooEffect: %p", npc->GetGlooEffect());
+                                ImGui::Text("HeadDirection: %f %f %f", npc->GetHeadDirection().x, npc->GetHeadDirection().y, npc->GetHeadDirection().z);
+                                ImGui::Text("HeadPosition: %f %f %f", npc->GetHeadPosition().x, npc->GetHeadPosition().y, npc->GetHeadPosition().z);
+//                                ImGui::Text("HitReactKnockDownTimeStamp: %d", npc->GetHitReactKnockDownTimeStamp());
+//                                ImGui::Text("HitReactStaggerTimeStamp: %d", npc->GetHitReactStaggerTimeStamp());
+                                ImGui::Text("IsHitReactingPrereqFlag: %d", npc->GetIsHitReactingPrereqFlag());
+                                ImGui::Text("IsRegainingLosPrereqFlag: %d", npc->GetIsRegainingLosPrereqFlag());
+                                ImGui::Text("IsShuttingDownHack: %d", npc->GetIsShuttingDown_Hack());
+                                ImGui::Text("IsTakingDamagePrereqFlag: %d", npc->GetIsTakingDamagePrereqFlag());
+                                ImGui::Text("LastPerformedContextId: %llu", npc->GetLastPerformedContextId());
+                                ImGui::Text("LeaderId: %d", npc->GetLeaderId());
+//                                ImGui::Text("MaterialAnimationDuration: %f", npc->GetMaterialAnimationDuration());
+                                ImGui::Text("MaterialAnimationManager: %p", &npc->GetMaterialAnimationManager());
+                                ImGui::Text("MimicingEntityId: %d", npc->GetMimicingEntityId());
+                                ImGui::Text("MimicryReason: %d", npc->GetMimicryReason());
+//                                ImGui::Text("MovementRequestId: %d", npc->GetMovementRequestId().id);
+                                ImGui::Text("NpcManagerCombatPoints: %d", npc->GetNpcManagerCombatPoints());
+                                ImGui::Text("NumControlledTurrets: %d", npc->GetNumControlledTurrets());
+                                ImGui::Text("NumCorruptedNpcs: %d", npc->GetNumCorruptedNpcs());
+//                                ImGui::Text("PhysicalEntitiesInBox: %d", npc.);
+//                                ImGui::Text("Properties: %d", npc->GetProperties().);
+//                                ImGui::Text("RMIBase: %p", npc->GetRMIBase());
+//                                ImGui::Text("SearchReasonFromChangeReason: %d", npc.getse;
+//                                ImGui::Text("TopAttentionTargetEntityId: %d", npc->GetTopAttentionTargetEntityId());
+
+
+//                                if (ImGui::BeginTable("SettableGettables", 2,
+//                                                      ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersH |
+//                                                      ImGuiTableFlags_BordersInnerV)) {
+//                                    ImGui::TableSetupColumn("Readable", ImGuiTableColumnFlags_WidthFixed,
+//                                                            ImGui::GetContentRegionAvail().x * 0.5f);
+//                                    ImGui::TableSetupColumn("Writable", ImGuiTableColumnFlags_WidthFixed,
+//                                                            ImGui::GetContentRegionAvail().x * 0.5f);
+//                                    ImGui::TableSetupScrollFreeze(0, 1);
+//                                    ImGui::TableHeadersRow();
+//                                    auto itrget = get.begin();
+//                                    auto itrset = set.begin();
+//                                    bool setend = false, getend = false;
+//                                    while (itrset != set.end() || itrget != get.end()) {
+//                                        ImGui::TableNextRow();
+//                                        if (!getend) {
+//                                            ++itrget;
+//                                            if (itrget == get.end()) {
+//                                                getend = true;
+//                                            }
+//                                        }
+//                                        if (!getend) {
+//                                            ImGui::TableSetColumnIndex(0);
+//                                            ImGui::Text("%s", itrget->c_str());
+//                                            ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - 10.0f);
+//                                            std::string text = "0";
+//                                            ImGui::InputText("##NPC", &text, ImGuiInputTextFlags_ReadOnly);
+//                                            ImGui::PopItemWidth();
+//                                        } else {
+//
+//                                        }
+//                                        if (!setend) {
+//                                            ++itrset;
+//                                            if (itrset == set.end()) {
+//                                                setend = true;
+//                                            }
+//                                        }
+//                                        if (!setend) {
+//                                            ImGui::TableSetColumnIndex(1);
+//                                            ImGui::Text("%s", itrset->c_str());
+//                                            ImGui::PushItemWidth(
+//                                                    ImGui::GetContentRegionAvail().x -
+//                                                    ImGui::CalcTextSize(" Set   ").x);
+//                                            std::string text = "0";
+//                                            ImGui::InputText("", &text, ImGuiInputTextFlags_ReadOnly);
+//                                            ImGui::SameLine();
+//                                            ImGui::Button("Set");
+//                                            ImGui::PopItemWidth();
+//                                        } else {
+//
+//                                        }
+//                                    }
+//                                    ImGui::EndTable();
+//                                }
+                                ImGui::EndTabItem();
+                            }
+#endif
+                            if(ImGui::BeginTabItem("Npc Properties")){
+                                auto properties = npc->GetProperties();
+                                ImGui::EndTabItem();
+                            }
+                            if (ImGui::BeginTabItem("Npc Info")) {
+                                if (ImGui::BeginTable("IsTable", 2,
+                                                      ImGuiTableFlags_SizingFixedFit | ImGuiTableFlags_BordersH |
+                                                      ImGuiTableFlags_ScrollY, ImGui::GetContentRegionAvail())) {
+                                    ImGui::TableSetupColumn("Param");
+                                    ImGui::TableSetupColumn("Value");
+                                    for (auto itr = is.begin(); itr != is.end(); ++itr) {
+                                        ImGui::TableNextRow();
+                                        ImGui::TableSetColumnIndex(0);
+                                        // RightAlignText(itr->c_str());
+                                        ImGui::Text("%s", itr->c_str());
+                                        // ImGui::SetCursorPosX(ImGui::GetColumnWidth(1));
+                                        ImGui::TableSetColumnIndex(1);
+                                        ImGui::Text("True");
                                     }
+                                    ImGui::EndTable();
                                 }
-                                if (!setend) {
-                                    ImGui::TableSetColumnIndex(1);
-                                    ImGui::Text("%s", itrset->c_str());
-                                    ImGui::PushItemWidth(
-                                            ImGui::GetContentRegionAvail().x - ImGui::CalcTextSize(" Set   ").x);
-                                    std::string text = "0";
-                                    ImGui::InputText("", &text, ImGuiInputTextFlags_ReadOnly);
-                                    ImGui::SameLine();
-                                    ImGui::Button("Set");
-                                    ImGui::PopItemWidth();
-                                } else {
-
-                                }
+                                // ImGui::ListBox("")
+                                ImGui::EndTabItem();
                             }
-                            ImGui::EndTable();
-                        }
-                        ImGui::EndTabItem();
-                    }
-                    if (ImGui::BeginTabItem("Npc Info")) {
-                        if (ImGui::BeginTable("IsTable", 2, ImGuiTableFlags_SizingFixedFit | ImGuiTableFlags_BordersH |
-                                                            ImGuiTableFlags_ScrollY, ImGui::GetContentRegionAvail())) {
-                            ImGui::TableSetupColumn("Param");
-                            ImGui::TableSetupColumn("Value");
-                            for (auto itr = is.begin(); itr != is.end(); ++itr) {
-                                ImGui::TableNextRow();
-                                ImGui::TableSetColumnIndex(0);
-                                // RightAlignText(itr->c_str());
-                                ImGui::Text("%s", itr->c_str());
-                                // ImGui::SetCursorPosX(ImGui::GetColumnWidth(1));
-                                ImGui::TableSetColumnIndex(1);
-                                ImGui::Text("True");
-                            }
-                            ImGui::EndTable();
-                        }
-                        // ImGui::ListBox("")
-                        ImGui::EndTabItem();
-                    }
-                    if (ImGui::BeginTabItem("Actions:")) {
 
-                        ImGui::EndTabItem();
+                        }
+                        if (ImGui::BeginTabItem("Actions:")) {
+
+                            ImGui::EndTabItem();
+                        }
+                    }
+                    else {
+                        ImGui::Text("No Entity Selected");
                     }
                     // ENDTODO
                     ImGui::EndTabBar();
@@ -562,8 +955,9 @@ void EntityManager::spawnEntity() {
             if (usePlayerPos) {
                 pos = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
                 if (offsetFromPlayer) {
-                    pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * 5;
-                    pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * 5;
+                    pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
+                    pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
+                    pos.z += offsetDistance[2];
                 }
             }
             else {
@@ -603,7 +997,12 @@ void EntityManager::spawnEntity() {
                 // TODO: ADD ability for mods to define what their archetypes are
                 // TODO: add cystoid support
                 {
-                    gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                    auto entity = gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                    if(entity != nullptr){
+                        if(selectedSpawnerFaction != 0){
+                            static_cast<ArkFactionManager*>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(entity->GetId(), gEnv->pGame->GetIArkFactionManager()->GetFactionIndex(selectedSpawnerFaction));
+                        }
+                    }
                 } else {
                     gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
                 }

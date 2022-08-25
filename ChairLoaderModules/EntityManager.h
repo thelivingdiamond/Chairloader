@@ -333,7 +333,7 @@ private:
             "SearchReasonFromChangeReason",
             "TopAttentionTargetEntityId"
     };
-    std::vector<std::string> set{
+    std::vector<std::string> set {
             "AnimTag",
             "BreakGlooEntity",
             "CachedThrowAtLocation",

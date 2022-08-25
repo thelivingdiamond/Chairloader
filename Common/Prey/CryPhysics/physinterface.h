@@ -120,7 +120,16 @@ enum EPE_Status
 };
 
 //! CStatoscope::AddPhysEntity must be updated when changing this enum.
-enum pe_type { PE_NONE = 0, PE_STATIC = 1, PE_RIGID = 2, PE_WHEELEDVEHICLE = 3, PE_LIVING = 4, PE_PARTICLE = 5, PE_ARTICULATED = 6, PE_ROPE = 7, PE_SOFT = 8, PE_AREA = 9 };
+enum pe_type { PE_NONE = 0,
+        PE_STATIC = 1,
+        PE_RIGID = 2,
+        PE_WHEELEDVEHICLE = 3,
+        PE_LIVING = 4,
+        PE_PARTICLE = 5,
+        PE_ARTICULATED = 6,
+        PE_ROPE = 7,
+        PE_SOFT = 8,
+        PE_AREA = 9 };
 enum sim_class { SC_STATIC = 0, SC_SLEEPING_RIGID = 1, SC_ACTIVE_RIGID = 2, SC_LIVING = 3, SC_INDEPENDENT = 4, SC_TRIGGER = 6, SC_DELETED = 7 };
 struct IGeometry;
 struct IPhysicalEntity;

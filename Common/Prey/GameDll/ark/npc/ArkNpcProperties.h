@@ -4,6 +4,7 @@
 
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/ArkStubs.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/npc/ArkNpcProperties.h
