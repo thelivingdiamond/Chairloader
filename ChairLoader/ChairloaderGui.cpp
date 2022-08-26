@@ -28,14 +28,13 @@ void ChairloaderGui::draw(bool* bShow) {
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
                 ImGui::MenuItem("Hide All", NULL, &control.hideAll);
-                ImGui::MenuItem("Show Console", NULL, &control.showDevConsole);
-                ImGui::MenuItem("Show Player Manager", NULL, &control.showPlayerManager);
-                ImGui::MenuItem("Show Entity List", NULL, &control.showEntityList);
-                ImGui::MenuItem("Show Entity Spawner", NULL, &control.showEntitySpawner);
+                ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
+//                ImGui::MenuItem("Show Player Manager", NULL, &control.showPlayerManager);
+//                ImGui::MenuItem("Show Entity List", NULL, &control.showEntityList);
+//                ImGui::MenuItem("Show Entity Spawner", NULL, &control.showEntitySpawner);
                 ImGui::Separator();
                 ImGui::MenuItem("Show Log History", nullptr, &control.showLogHistory);
                 ImGui::Separator();
-
                 if (ImGui::BeginMenu("Performance")) {
                     ImGui::MenuItem("Profiler", nullptr, &control.showProfilerDialog);
                     ImGui::Separator();
@@ -62,40 +61,39 @@ void ChairloaderGui::draw(bool* bShow) {
 //            playerManager.drawMenuBar();
             ImGui::EndMainMenuBar();
         }
-
-        if (ImGui::BeginMainMenuBar()) {
-            if (ImGui::BeginMenu("Console")) {
-                if (control.freeCam) {
-                    ImGui::Text("Free Cam: enabled");
-                }
-                else {
-                    ImGui::Text("Free Cam: disabled");
-                }
-                if (ImGui::Button("Toggle Free Cam")) {
-                    control.freeCam = !control.freeCam;
+        if (!control.hideAll) {
+            if (ImGui::BeginMainMenuBar()) {
+                if (ImGui::BeginMenu("Console")) {
                     if (control.freeCam) {
-                        control.devMode = true;
-                        ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
-                        gEnv->pConsole->ExecuteString("FreeCamEnable", false, true);
+                        ImGui::Text("Free Cam: enabled");
                     }
                     else {
-                        ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
-                        gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
+                        ImGui::Text("Free Cam: disabled");
                     }
+                    if (ImGui::Button("Toggle Free Cam")) {
+                        control.freeCam = !control.freeCam;
+                        if (control.freeCam) {
+                            control.devMode = true;
+                            ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
+                            gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
+                        }
+                        else {
+                            ((CSystem*)gEnv->pSystem)->SetDevMode(true);
+                            gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
+                            ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
+                        }
+                    }
+                    ImGui::EndMenu();
+                    // }
                 }
-
-                ImGui::EndMenu();
-                // }
+                ImGui::EndMainMenuBar();
             }
-            ImGui::EndMainMenuBar();
-        }
-        ImGui::SetNextWindowPos(ImVec2(0, 0));
-        ImGui::SetNextWindowBgAlpha(0.0);
-        ImGui::SetNextWindowSize(ImGui::GetWindowViewport()->Size);
-        ImGui::Begin("Main Dockspace Window", 0, ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
-        ImGui::DockSpace(ImGui::GetID("Main Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoDockingInCentralNode);
-        ImGui::End();
-        if (!control.hideAll) {
+            ImGui::SetNextWindowPos(ImVec2(0, 0));
+            ImGui::SetNextWindowBgAlpha(0.0);
+            ImGui::SetNextWindowSize(ImGui::GetWindowViewport()->Size);
+            ImGui::Begin("Main Dockspace Window", 0, ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
+            ImGui::DockSpace(ImGui::GetID("Main Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoDockingInCentralNode);
+            ImGui::End();
             if (control.showDemoWindow)
                 ImGui::ShowDemoWindow(&control.showDemoWindow);
             if (control.showStyleManager)
@@ -115,23 +113,27 @@ void ChairloaderGui::draw(bool* bShow) {
             }
             if (control.showConfigMenu)
                 gConf->Draw(&control.showConfigMenu);
+            log.drawDisplay();
         }
-        log.drawDisplay();
         drawHandleMutex.unlock();
-
+        ImGui::PopStyleVar();
     }
-    ImGui::PopStyleVar();
+    auto drawList = ImGui::GetBackgroundDrawList();
+    auto screenSize = ImGui::GetIO().DisplaySize;
+    auto color =  ImColor(ImGui::GetColorU32(ImGuiCol_Border)).operator ImVec4();
+    color.w = 0.5f;
+    drawList->AddLine(ImVec2(0, screenSize.y-1.0f), ImVec2(screenSize.x, screenSize.y - 1.0f), ImColor(color).operator ImU32(),1.0f);
 }
 
 void ChairloaderGui::update() {
     // FIXME: Add IGameFramework
     //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
-        drawHandleMutex.lock();
-        entityManager.Update();
+    drawHandleMutex.lock();
+    entityManager.Update();
     playerManager.update();
-        worldManager.Update();
-        drawHandleMutex.unlock();
+    worldManager.Update();
+    drawHandleMutex.unlock();
     //}
     perfOverlay.Update();
     

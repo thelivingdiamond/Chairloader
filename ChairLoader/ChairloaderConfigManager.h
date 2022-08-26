@@ -70,7 +70,7 @@ public:
 	ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName) override;
 
 	void setConfigDirty(std::string modName, bool bDirty) override;
-
+    bool getConfigDirty(std::string modName) override;
 
 	/**
 	 * \brief Sets a chairloader-formatted parameter to an xml node. Use this function for writing to xmlnode parameters in your config file. 

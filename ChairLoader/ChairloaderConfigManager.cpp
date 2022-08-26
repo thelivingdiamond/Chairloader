@@ -196,10 +196,10 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 		// daBoi = 2;
 		// auto var = boost::get<int>(daBoi);
 		// static std::string input = "In your mom";
-		if (ImGui::Button("Load Test Config File")) {
-			// loadConfigFile();
-			loadModConfigFile("ExampleMod");
-		}
+//		if (ImGui::Button("Load Test Config File")) {
+//			// loadConfigFile();
+//			loadModConfigFile("ExampleMod");
+//		}
 		// if(ImGui::Button("Save Parameter 1")) {
 		// 	setConfigValue("ExampleMod", "parameterName", "1", parameterType::Int);
 		// }
@@ -404,5 +404,12 @@ fs::path ChairloaderConfigManager::getConfigPath(std::string modName) {
 
 fs::path ChairloaderConfigManager::getDefaultConfigPath(std::string modName) {
 	return fs::path{ ("./Mods/" + modName + "/" + modName + "_default.xml").c_str() };
+}
+
+bool ChairloaderConfigManager::getConfigDirty(std::string modName) {
+    if (modConfigsDirty.find(modName) != modConfigsDirty.end()) {
+        return modConfigsDirty.find(modName)->second;
+    }
+    return false;
 }
 

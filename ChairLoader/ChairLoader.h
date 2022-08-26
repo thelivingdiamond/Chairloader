@@ -7,6 +7,7 @@
 #include "ChairLoader/IChairloader.h"
 #include "Logging.h"
 #include "ChairLoader/IChairloaderMod.h"
+#include <boost/assign.hpp>
 #include "EntityManager.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
@@ -103,6 +104,9 @@ private:
 	//! load all registered mod configs
 	void loadAllConfigs();
 
+    //! load config parameters from chairloader config file
+    void loadConfigParameters();
+
 	const std::string chairloaderModName = "Chairloader";
 	uintptr_t m_ModuleBase = 0;
 	IGameFramework* m_pFramework = nullptr;
@@ -113,14 +117,23 @@ private:
 	int m_FreeCamKey = 0;
 	bool m_DevMode;
 	bool m_FreeCamEnabled = false;
+    bool m_ShowGui = true;
+
+    // key binds
+    EKeyId m_hideGuiKey = EKeyId::eKI_F1;
 
 	void CreateConsole();
 	void InstallHooks();
 	void UpdateFreeCam();
 	void WaitForRenderDoc();
+    using KeyNamePair = boost::bimap<EKeyId, std::string>::value_type;
+    boost::bimap<EKeyId, std::string> m_KeyNames;
 
+    // init m_KeyNames. Call once
+    void LoadKeyNames();
 public:
 	// IChairloader
+    const boost::bimap<EKeyId, std::string> &GetKeyNames() const { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
 };
 

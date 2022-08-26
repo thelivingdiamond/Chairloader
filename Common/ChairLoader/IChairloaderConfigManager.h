@@ -38,6 +38,7 @@ struct IChairloaderConfigManager {
 	virtual ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName) = 0;
 
 	virtual void setConfigDirty(std::string modName, bool bDirty) = 0;
+    virtual bool getConfigDirty(std::string modName) = 0;
 
 	/**
 	 * \brief Sets a chairloader-formatted parameter to an xml node. Use this function for writing to xmlnode parameters in your config file.
