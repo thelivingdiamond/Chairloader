@@ -291,13 +291,13 @@ void PlayerManager::drawAbilitiesTab() {
                 if(entity!= nullptr) {
                     auto physics = entity->GetPhysics();
                     if (physics != nullptr) {
-                        if (physics->GetType() == pe_type::PE_RIGID) {
+                        if (physics->GetType() == pe_type::PE_LIVING || physics->GetType() == pe_type::PE_ARTICULATED) {
                             auto distance = (ArkPlayer::GetInstancePtr()->GetEntity()->GetWorldPos() - entity->GetWorldPos()).GetLength();
                             auto forceDir = ArkPlayer::GetInstancePtr()->GetEntity()->GetWorldPos() - entity->GetWorldPos();
                             forceDir.Normalize();
                             auto force = new pe_action_impulse();
 //                            pe_params_collision_class
-                            force->impulse = forceDir *= 1.0f * distance;
+                            force->impulse = forceDir *= 1000.0f;
                             physics->Action(force);
                         }
                     }
