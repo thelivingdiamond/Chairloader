@@ -7,4 +7,6 @@
 - Enable and disable mods from loading through Chairloader
 - Asset management and patching
 - **Merging XML based asset files**
+  - Base asset files *and* level files are supported
+  - Localization file support coming soon!
 - Supports merging "Legacy" mods
