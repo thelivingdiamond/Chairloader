@@ -114,26 +114,26 @@ private:
 	FILE *m_pConsoleFile = nullptr;
 	std::thread::id m_MainThreadId;
 
-	int m_FreeCamKey = 0;
 	bool m_DevMode;
 	bool m_FreeCamEnabled = false;
     bool m_ShowGui = true;
 
-    // key binds
+    //! key binds
     EKeyId m_hideGuiKey = EKeyId::eKI_F1;
+    EKeyId m_toggleFreecamKey = EKeyId::eKI_F2;
 
 	void CreateConsole();
 	void InstallHooks();
-	void UpdateFreeCam();
 	void WaitForRenderDoc();
-    using KeyNamePair = boost::bimap<EKeyId, std::string>::value_type;
-    boost::bimap<EKeyId, std::string> m_KeyNames;
+    KeyNameMap m_KeyNames;
 
     // init m_KeyNames. Call once
     void LoadKeyNames();
 public:
 	// IChairloader
-    const boost::bimap<EKeyId, std::string> &GetKeyNames() const { return m_KeyNames; }
+    //TODO: reconsider where this map should go
+    //! get key names map. Useful for config purposes
+    const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
 };
 

@@ -14,7 +14,7 @@
 #include "Profiler.h"
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
-#include "ChairLoader/ChairloaderEnv.h"
+#include "Chairloader/ChairloaderEnv.h"
 #include "RenderDll/RenderAuxGeomPatch.h"
 #include "RenderDll/DebugMarkers.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
@@ -312,7 +312,6 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
         loadConfigParameters();
     }
 	m_ImGui->PreUpdate(haveFocus);
-	UpdateFreeCam();
 	SmokeFormExit();
 	gui->update();
 	gConf->Update();
@@ -324,7 +323,7 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 
 	gui->draw(&m_ShowGui);
 
-	// draw all mods
+	// draw all mods if gui is visible
     if(m_ShowGui) {
         for (auto &mod: modList) {
             mod.pMod->Draw();
@@ -353,6 +352,20 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 	}
     if(event.keyId == m_hideGuiKey && event.state == eIS_Pressed) {
         m_ShowGui = !m_ShowGui;
+        return true;
+    }
+    if(event.keyId == m_toggleFreecamKey && event.state == eIS_Pressed) {
+        m_FreeCamEnabled = !m_FreeCamEnabled;
+        CryLog("Freecam state: %u\n", m_FreeCamEnabled);
+        if (m_FreeCamEnabled) {
+            m_DevMode = true;
+            ((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
+            gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
+        }
+        else {
+            ((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
+            gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
+        }
         return true;
     }
 	return false;
@@ -414,8 +427,8 @@ bool ChairLoader::RegisterMod(ModEntry&& mod) {
 void ChairLoader::ReadModList() {
 	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
 
-	// FIXME: Magic numbers
-	if (cfgValue.which() != 7)
+	// FIXED: Magic numbers
+	if (cfgValue.type() != typeid(pugi::xml_node))
 		return;
 
 	auto node = boost::get<pugi::xml_node>(cfgValue);
@@ -449,21 +462,6 @@ void ChairLoader::InstallHooks()
 
 //TODO: deprecated config system keys
 
-void ChairLoader::UpdateFreeCam() {
-	if (GetAsyncKeyState(m_FreeCamKey) & 1) {
-		m_FreeCamEnabled = !m_FreeCamEnabled;
-		CryLog("Freecam state: %u\n", m_FreeCamEnabled);
-		if (m_FreeCamEnabled) {
-			m_DevMode = true;
-			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
-			gEnv->pConsole->ExecuteString("FreeCamEnable", false, true);
-		}
-		else {
-			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
-			gEnv->pConsole->ExecuteString("FreeCamDisable", false, true);
-		}
-	}
-}
 
 void ChairLoader::WaitForRenderDoc()
 {
@@ -611,6 +609,7 @@ void ChairLoader::LoadKeyNames() {
 }
 
 void ChairLoader::loadConfigParameters() {
+    // Hide GUI Key, default = f1
     auto key = gConf->getConfigValue(chairloaderModName, "HideGUIKey");
     if(key.type() == typeid(std::string)){
         auto keyName = boost::get<std::string>(key);
@@ -631,5 +630,27 @@ void ChairLoader::loadConfigParameters() {
         CryError("Chairloader: HideGUIKey config parameter not found, setting to default");
         m_hideGuiKey = eKI_F1;
         gConf->setConfigValue(chairloaderModName, "HideGUIKey", m_KeyNames.left.at(m_hideGuiKey), IChairloaderConfigManager::parameterType::String);
+    }
+    // toggle freecam key, default = f2
+    key = gConf->getConfigValue(chairloaderModName, "ToggleFreecamKey");
+    if(key.type() == typeid(std::string)){
+        auto keyName = boost::get<std::string>(key);
+        std::transform(keyName.begin(), keyName.end(), keyName.begin(), ::tolower);
+        if(m_KeyNames.right.find(keyName) != m_KeyNames.right.end()){
+            // Load Key into file
+            auto keyCode = m_KeyNames.right.at(keyName);
+            m_toggleFreecamKey = keyCode;
+            CryLog("Chairloader: Toggle Freecam Key set to %s", keyName.c_str());
+        } else {
+            // Key was an invalid string, reset to default
+            CryError("Chairloader: Invalid ToggleFreecamKey string '%s', setting to default", keyName.c_str());
+            m_toggleFreecamKey = eKI_F2;
+            gConf->setConfigValue(chairloaderModName, "ToggleFreecamKey", m_KeyNames.left.at(m_toggleFreecamKey), IChairloaderConfigManager::parameterType::String);
+        }
+    } else {
+        // Key config parameter was not found, set to default
+        CryError("Chairloader: ToggleFreecamKey config parameter not found, setting to default");
+        m_toggleFreecamKey = eKI_F2;
+        gConf->setConfigValue(chairloaderModName, "ToggleFreecamKey", m_KeyNames.left.at(m_toggleFreecamKey), IChairloaderConfigManager::parameterType::String);
     }
 }

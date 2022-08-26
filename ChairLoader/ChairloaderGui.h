@@ -26,7 +26,6 @@ public:
     void draw(bool* bShow);
     void update();
 
-    void dockingTest();
 private:
     ChairloaderGlobalEnvironment* gCLEnv;
     struct chairloaderGuiControl {
