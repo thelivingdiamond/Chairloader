@@ -1013,7 +1013,7 @@ bool ModLoader::DeployMods() {
 }
 
 
-
+//FIXME: add support for merging localization files
 pugi::xml_document
 ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName) {
     pugi::xml_document modFile;
@@ -1397,6 +1397,76 @@ bool ModLoader::verifyDependenciesEnabled(std::string modName) {
 bool ModLoader::copyLocalizationPatch() {
     return false;
 }
+bool ModLoader::verifyChairloaderConfigFile() {
+    try {
+        return fs::exists(PreyPath.string() + "/Mods/config/chairloader.xml");
+    } catch (std::exception &exception) {
+        overlayLog(severityLevel::error, "Exception while verifying chairloader.xml: %s", exception.what());
+        return false;
+    }
+}
+void ModLoader::createChairloaderConfigFile() {
+    try {
+        fs::copy("chairloader_default.xml", PreyPath.string() + "/Mods/config/chairloader.xml", fs::copy_options::overwrite_existing);
+    } catch (std::exception & exception){
+        overlayLog(severityLevel::error, "Exception while creating chairloader config file: %s", exception.what());
+    }
+}
+
+bool ModLoader::verifyChairloaderInstalled() {
+    try{
+        // Files we care about: chairloder.xml, Chairloader.dll, mswsock.dll
+        if(fs::exists(PreyPath.string() + "/Binaries/Danielle/x64/Release/Chairloader.dll")
+        && fs::exists(PreyPath.string() + "/Binaries/Danielle/x64/Release/mswsock.dll"))
+        {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (std::exception & exception){
+        overlayLog(severityLevel::error, "Exception while verifying chairloader: %s", exception.what());
+        return false;
+    }
+    return false;
+}
+
+void ModLoader::installChairloaderDLLs() {
+    // copy everything from ./Release/ to the Prey directory
+    try {
+        fs::copy("./Release/", PreyPath.string() + "/Binaries/Danielle/x64/Release", fs::copy_options::overwrite_existing | fs::copy_options::recursive);
+    } catch (std::exception & exception){
+        overlayLog(severityLevel::error, "Exception while installing chairloader dlls: %s", exception.what());
+    }
+}
+
+bool ModLoader::verifyDefaultFileStructure() {
+    try {
+        if(fs::exists(PreyPath.string() + "/Mods/")
+        && fs::exists(PreyPath.string() + "/Mods/config/")
+        && fs::exists(PreyPath.string() + "/Mods/Legacy/"))
+        {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (std::exception & exception){
+        overlayLog(severityLevel::error, "Exception while verifying default file structure: %s", exception.what());
+        return false;
+    }
+    return false;
+}
+
+void ModLoader::createDefaultFileStructure() {
+    try {
+        fs::create_directories(PreyPath.string() + "/Mods/");
+        fs::create_directories(PreyPath.string() + "/Mods/config/");
+        fs::create_directories(PreyPath.string() + "/Mods/Legacy/");
+    } catch (std::exception & exception){
+        overlayLog(severityLevel::error, "Exception while creating default file structure: %s", exception.what());
+    }
+}
+
+
 
 
 

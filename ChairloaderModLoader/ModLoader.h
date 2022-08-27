@@ -188,4 +188,19 @@ private:
         fileQueue.emplace_back(LogEntry(message, level));
         overlayQueue.emplace_back(LogEntry(message, level));
     }
+
+    //! Install Functions
+    bool chairloaderInstalled = false;
+    // verify config file
+    bool verifyChairloaderConfigFile();
+    // Create default chairloader config file
+    void createChairloaderConfigFile();
+    // Verify chairloader is installed
+    bool verifyChairloaderInstalled();
+    // install DLL's
+    void installChairloaderDLLs();
+    // Verify default file structure
+    bool verifyDefaultFileStructure();
+    // Create default file structure
+    void createDefaultFileStructure();
 };
