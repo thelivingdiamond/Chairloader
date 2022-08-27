@@ -77,6 +77,14 @@ void GamePathDialog::ValidatePath()
     if (exePath.empty())
         return;
 
+    if (PathUtils::ValidateGamePath(exePath))
+    {
+        // Allow the input of game path instead of exe path
+        m_IsValid = true;
+        m_Path = exePath;
+        return;
+    }
+
     m_IsValid = PathUtils::ValidateExePath(exePath, &m_ValidationError);
 
     if (m_IsValid)
