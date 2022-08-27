@@ -249,7 +249,7 @@ void ModLoader::DrawModList() {
                                                   ImVec2{ImGui::GetColumnWidth(), 27.0f}))
                                 selectedMod = ModEntry.modName;
                             if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-                                ImGui::OpenPopup((ModEntry.modName + " Mod Actions").c_str());
+                                ImGui::OpenPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str());
                             }
                             ImGui::SetCursorPosY(storedpos);
                             if(!verifyDependenciesEnabled(ModEntry.modName))
@@ -257,7 +257,7 @@ void ModLoader::DrawModList() {
                             if (ModEntry.installed) {
                                 if (ModEntry.enabled) {
                                     ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s",
-                                                       ModEntry.modName.c_str());
+                                                       ModEntry.displayName.c_str());
 //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
 //                                selectedMod = ModEntry.modName;
                                 } else {
@@ -268,7 +268,7 @@ void ModLoader::DrawModList() {
                                     if(verifyDependencies(ModEntry.modName)) {
                                         if(verifyDependenciesEnabled(ModEntry.modName)){
                                             ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s",
-                                                               ModEntry.modName.c_str());
+                                                               ModEntry.displayName.c_str());
                                             if (ImGui::IsItemHovered()) {
                                                 ImGui::BeginTooltip();
                                                 ImGui::Text("Mod is not enabled");
@@ -276,7 +276,7 @@ void ModLoader::DrawModList() {
                                             }
                                         } else {
                                             ImGui::TextColored (warningColor, "%s",
-                                                               ModEntry.modName.c_str());
+                                                               ModEntry.displayName.c_str());
                                             if (ImGui::IsItemHovered()) {
                                                 ImGui::BeginTooltip();
                                                 ImGui::Text("Dependencies are installed, but not enabled");
@@ -286,7 +286,7 @@ void ModLoader::DrawModList() {
 
                                     } else {
                                         ImGui::TextColored(errorColor, "%s",
-                                                           ModEntry.modName.c_str());
+                                                           ModEntry.displayName.c_str());
                                         if (ImGui::IsItemHovered()) {
                                             ImGui::BeginTooltip();
                                             ImGui::Text("Dependencies not found");
@@ -300,7 +300,7 @@ void ModLoader::DrawModList() {
 //                            selectedMod = ModEntry.modName;
 //                        ImGui::PopStyleColor();
 
-                                ImGui::TextColored(errorColor, "%s *", ModEntry.modName.c_str());
+                                ImGui::TextColored(errorColor, "%s *", ModEntry.displayName.c_str());
                                 if (ImGui::IsItemHovered()) {
                                     ImGui::BeginTooltip();
                                     ImGui::Text("Mod is not installed. Please install it before you can enable it");
@@ -308,8 +308,8 @@ void ModLoader::DrawModList() {
                                 }
 
                             }
-                            if (ImGui::BeginPopup((ModEntry.modName + " Mod Actions").c_str())) {
-                                ImGui::Text("%s:", ModEntry.modName.c_str());
+                            if (ImGui::BeginPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str())) {
+                                ImGui::Text("%s:", ModEntry.displayName.c_str());
                                 ImGui::BeginDisabled();
                                 ImGui::Checkbox("Has DLL", &ModEntry.hasDLL);
                                 ImGui::SameLine();
@@ -450,7 +450,7 @@ void ModLoader::DrawModList() {
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
                         ImGui::BeginDisabled();
-                    ImGui::Text("%s", ModSelect->modName.c_str());
+                    ImGui::Text("%s", ModSelect->displayName.c_str());
                     ImGui::Text("By: %s", ModSelect->author.c_str());
                     if(!ModSelect->dependencies.empty()){
                         ImGui::Separator();
@@ -705,7 +705,29 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
     if(loadResult){
         std::string modName = result.child("Mod").attribute("modName").as_string();
         if(!modName.empty()) {
+            // Validate mod name
+            for (char c : modName)
+            {
+                bool validChar = (c >= 'a' && c <= 'z') ||
+                    (c >= 'A' && c <= 'Z') ||
+                    (c >= '0' && c <= '9') ||
+                    c == '.';
+                if (!validChar)
+                {
+                    log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Illegal chars in mod name'", directory.string());
+                    return false;
+                }
+            }
+
             mod->modName = modName;
+            mod->displayName = result.child("Mod").attribute("displayName").as_string();
+
+            if (mod->displayName.empty())
+            {
+                mod->displayName = modName;
+                log(severityLevel::warning, "%s: Empty display name", modName.c_str());
+            }
+
             mod->version = result.child("Mod").attribute("version").as_string();
             mod->author = result.child("Mod").attribute("author").as_string();
             mod->infoFile = result.child("Mod");
@@ -728,7 +750,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
 
 void ModLoader::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
-        fs::path modPath = PreyPath.string() + "/Mods/" + PrevMod.child("modName").text().as_string();
+        fs::path modPath = PreyPath.string() + "/Mods/" + PrevMod.name();
         Mod mod;
         if(LoadModInfoFile(modPath, &mod)) {
             FindMod(&mod);

@@ -48,6 +48,7 @@ public:
     };
     struct Mod{
         std::string modName;
+        std::string displayName;
         std::string version;
         std::string author;
         int loadOrder = -1;
