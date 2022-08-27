@@ -43,7 +43,12 @@ void ModLoader::LoadModLoaderConfig()
 {
     if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())) {
         if (ChairloaderModLoaderConfigFile.first_child().child("PreyPath")) {
-            SetGamePath(fs::u8path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string()));
+            fs::path path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string());
+
+            if (PathUtils::ValidateGamePath(path))
+            {
+                SetGamePath(path);
+            }
         }
     }
     else {
