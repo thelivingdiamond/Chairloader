@@ -1,7 +1,0 @@
-
-<EquipPack name="Ark_AI_Human_Temp" primary="ArkShotgun">
- <Items>
-  <ArkShotgun type="ItemGivable" setup="" archetype=""/>
- </Items>
- <Ammos/>
-</EquipPack>

@@ -1,0 +1,229 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="Ark:Email:EmailAcquired" pos="-1740,-360,0">
+   <Inputs email_Email="844024417315570188"/>
+  </Node>
+  <Node Id="4" Class="Ark:Email:EmailAcquired" pos="-1780,-290,0">
+   <Inputs email_Email="844024417315570399"/>
+  </Node>
+  <Node Id="6" Class="Logic:Gate" pos="-1420,-330,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="8" Class="Ark:Objectives:ObjectiveState" pos="-740,-370,0">
+   <Inputs objective_Objective="844024417315587333" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="12" Class="Ark:Objectives:TaskState" pos="640,-440,0">
+   <Inputs task_Task="844024417315650542" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="13" Class="Ark:Objectives:TaskState" pos="660,50,0">
+   <Inputs task_Task="844024417315650761" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="14" Class="Ark:Objectives:TaskState" pos="670,440,0">
+   <Inputs task_Task="844024417315650763" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="15" Class="Ark:Objectives:TaskState" pos="660,860,0">
+   <Inputs task_Task="844024417315650765" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="17" Class="Logic:All" pos="1910,210,0">
+   <Inputs/>
+  </Node>
+  <Node Id="22" Class="Ark:Workstation:DownloadAcquired" pos="-370,970,0">
+   <Inputs download_Download="844024417315652856"/>
+  </Node>
+  <Node Id="28" Class="Ark:RemoteEvent" pos="-320,510,0">
+   <Inputs remoteEvent_Event="844024417315655516"/>
+  </Node>
+  <Node Id="31" Class="Ark:Notes:HasNote" pos="-30,380,0">
+   <Inputs note_Note="844024417315649303"/>
+  </Node>
+  <Node Id="32" Class="Ark:Notes:HasNote" pos="130,790,0">
+   <Inputs note_Note="844024417315648734"/>
+  </Node>
+  <Node Id="35" Class="Ark:RemoteEvent" pos="-150,-290,0">
+   <Inputs remoteEvent_Event="844024417315655961"/>
+  </Node>
+  <Node Id="36" Class="Ark:Notes:HasNote" pos="-130,-690,0">
+   <Inputs note_Note="844024417315648828"/>
+  </Node>
+  <Node Id="39" Class="Ark:Notes:HasNote" pos="-120,-580,0">
+   <Inputs note_Note="844024417315648825"/>
+  </Node>
+  <Node Id="40" Class="Ark:Notes:HasNote" pos="-110,-470,0">
+   <Inputs note_Note="844024417315648782"/>
+  </Node>
+  <Node Id="41" Class="Logic:Gate" pos="360,-410,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="43" Class="Logic:All" pos="350,-590,0">
+   <Inputs/>
+  </Node>
+  <Node Id="44" Class="Ark:Workstation:DownloadAcquired" pos="-470,110,0">
+   <Inputs download_Download="844024417315652947"/>
+  </Node>
+  <Node Id="45" Class="Ark:Notes:HasNote" pos="150,-10,0">
+   <Inputs note_Note="844024417315648822"/>
+  </Node>
+  <Node Id="47" Class="Ark:Debug:ConsoleEvent" pos="-1450,-420,0">
+   <Inputs Command="treasureHunt"/>
+  </Node>
+  <Node Id="49" Class="Ark:Debug:ConsoleEvent" pos="-370,1040,0">
+   <Inputs Command="giveEliasMap"/>
+  </Node>
+  <Node Id="51" Class="Ark:Notes:GiveNote" pos="-80,1040,0">
+   <Inputs note_Note="844024417315648734"/>
+  </Node>
+  <Node Id="52" Class="Ark:Debug:ConsoleEvent" pos="-200,590,0">
+   <Inputs Command="giveZachMap"/>
+  </Node>
+  <Node Id="53" Class="Ark:Notes:GiveNote" pos="110,640,0">
+   <Inputs note_Note="844024417315649303"/>
+  </Node>
+  <Node Id="55" Class="Ark:Objectives:TaskState" pos="1090,-430,0">
+   <Inputs task_Task="844024417315673237" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="56" Class="Ark:Objectives:TaskState" pos="1120,60,0">
+   <Inputs task_Task="844024417315673243" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="57" Class="Ark:Objectives:TaskState" pos="1130,450,0">
+   <Inputs task_Task="844024417315673239" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="58" Class="Ark:Objectives:TaskState" pos="1120,870,0">
+   <Inputs task_Task="844024417315673241" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="59" Class="Ark:Objectives:TaskState" pos="2100,200,0">
+   <Inputs task_Task="844024417315650767" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="60" Class="Ark:Debug:ConsoleEvent" pos="-460,180,0">
+   <Inputs Command="giveDanielleMap"/>
+  </Node>
+  <Node Id="61" Class="Ark:Notes:GiveNote" pos="-150,160,0">
+   <Inputs note_Note="844024417315648822"/>
+  </Node>
+  <Node Id="62" Class="Ark:Debug:ConsoleEvent" pos="-220,-180,0">
+   <Inputs Command="giveEmmaBloodyMap"/>
+  </Node>
+  <Node Id="63" Class="Ark:Notes:GiveNote" pos="110,-200,0">
+   <Inputs note_Note="844024417315648828"/>
+  </Node>
+  <Node Id="64" Class="Ark:Debug:ConsoleEvent" pos="-220,-110,0">
+   <Inputs Command="giveEmmaMap"/>
+  </Node>
+  <Node Id="65" Class="Ark:Notes:GiveNote" pos="110,-120,0">
+   <Inputs note_Note="844024417315648782"/>
+  </Node>
+  <Node Id="67" Class="Ark:Debug:ConsoleEvent" pos="-840,470,0">
+   <Inputs Command="giveTreasureMaps"/>
+  </Node>
+  <Node Id="69" Class="Ark:Objectives:GetObjectiveState" pos="-1130,-390,0">
+   <Inputs objective_Objective="844024417315587333"/>
+  </Node>
+  <Node Id="73" Class="Ark:Debug:ConsoleEvent" pos="650,-1030,0">
+   <Inputs Command="findEmmaMapClue"/>
+  </Node>
+  <Node Id="74" Class="Ark:Debug:ConsoleEvent" pos="650,-860,0">
+   <Inputs Command="findZachMapClue"/>
+  </Node>
+  <Node Id="75" Class="Ark:Debug:ConsoleEvent" pos="660,-800,0">
+   <Inputs Command="findEliasMapClue"/>
+  </Node>
+  <Node Id="76" Class="Ark:Debug:ConsoleEvent" pos="650,-940,0">
+   <Inputs Command="findDanielleMapClue"/>
+  </Node>
+  <Node Id="78" Class="Ark:Objectives:ShowClue" pos="1210,-1170,0">
+   <Inputs objectiveclue_Clue="844024417315587478"/>
+  </Node>
+  <Node Id="79" Class="Ark:Objectives:ShowClue" pos="1210,-1060,0">
+   <Inputs objectiveclue_Clue="844024417315587449"/>
+  </Node>
+  <Node Id="80" Class="Ark:Objectives:ShowClue" pos="1210,-950,0">
+   <Inputs objectiveclue_Clue="844024417315587476"/>
+  </Node>
+  <Node Id="81" Class="Ark:Objectives:ShowClue" pos="1210,-830,0">
+   <Inputs objectiveclue_Clue="844024417315587480"/>
+  </Node>
+  <Node Id="82" Class="Ark:RemoteEvent" pos="-120,960,0">
+   <Inputs remoteEvent_Event="844024417320575864"/>
+  </Node>
+  <Node Id="86" Class="Ark:Objectives:GetTaskState" pos="240,930,0">
+   <Inputs task_Task="844024417315650765"/>
+  </Node>
+  <Node Id="87" Class="Ark:Objectives:GetTaskState" pos="110,490,0">
+   <Inputs task_Task="844024417315650763"/>
+  </Node>
+  <Node Id="88" Class="Ark:Objectives:GetTaskState" pos="160,160,0">
+   <Inputs task_Task="844024417315650761"/>
+  </Node>
+  <Node Id="89" Class="Ark:Objectives:GetTaskState" pos="300,-310,0" InHideMask="3" OutHideMask="63">
+   <Inputs task_Task="844024417315650542"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="6" nodeOut="2" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="4" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="69" nodeOut="6" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="31" nodeOut="8" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="32" nodeOut="8" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="8" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="8" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="40" nodeOut="8" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="8" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="55" nodeOut="12" portIn="Activate" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="13" portIn="Activate" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="14" portIn="Activate" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="15" portIn="Activate" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="59" nodeOut="17" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="51" nodeOut="22" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="87" nodeOut="28" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="31" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="31" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="32" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="32" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="89" nodeOut="35" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="41" nodeOut="36" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="36" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="41" nodeOut="39" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="39" portIn="in2" portOut="False" enabled="1"/>
+  <Edge nodeIn="41" nodeOut="40" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="40" portIn="in3" portOut="False" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="41" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="43" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="61" nodeOut="44" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="45" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="45" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="69" nodeOut="47" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="51" nodeOut="49" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="51" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="53" nodeOut="52" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="53" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="55" portIn="in1" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="56" portIn="in1" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="57" portIn="in1" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="58" portIn="in1" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="61" nodeOut="60" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="61" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="63" nodeOut="62" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="63" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="65" nodeOut="64" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="65" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="51" nodeOut="67" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="53" nodeOut="67" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="61" nodeOut="67" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="65" nodeOut="67" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="69" portIn="Add" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="55" nodeOut="73" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="78" nodeOut="73" portIn="Show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="74" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="80" nodeOut="74" portIn="Show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="75" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="75" portIn="Show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="76" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="79" nodeOut="76" portIn="Show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="82" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="86" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="87" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="88" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="89" portIn="Complete" portOut="Active" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

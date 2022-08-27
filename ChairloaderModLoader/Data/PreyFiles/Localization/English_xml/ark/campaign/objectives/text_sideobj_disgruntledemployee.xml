@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Quin Matteson</LastAuthor>
+  <LastSaved>2016-11-09T21:42:19Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13035</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:Index="2" ss:Width="1342.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632207</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Disgruntled Employee</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Disgruntled Employee</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632208</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">[DEPRECATED]Grant Lockwood&apos;s tracking chip has been re-enabled. Use your map and your hud tracking marker to locate him.[[DEPRECATED, use Go To Deep Storage]]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">[DEPRECATED]Grant Lockwood&apos;s tracking chip has been re-enabled. Use your map and your hud tracking marker to locate him.[[DEPRECATED, use Go To Deep Storage]]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632209</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">[DEPRECATED]Use the Employee ID Kiosk to reactivate Grant Lockwood&apos;s tracking chip.  His Employee ID number is 1129.[DEPRECATED], use Go To Deep Storage]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">[DEPRECATED]Use the Employee ID Kiosk to reactivate Grant Lockwood&apos;s tracking chip.  His Employee ID number is 1129.[DEPRECATED], use Go To Deep Storage]</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632210</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood (Employee 1129) was fired and scheduled to leave the station on the last shuttle to earth, but he skipped getting on the shuttle. HR made the situation worse by deactivating his tracking bracelet before he was officially off the station. If I can get to Deep Storage and reactivate his tracking bracelet, I can find out what happened to him.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood (Employee 1129) was fired and scheduled to leave the station on the last shuttle to earth, but he skipped getting on the shuttle. HR made the situation worse by deactivating his tracking bracelet before he was officially off the station. If I can get to Deep Storage and reactivate his tracking bracelet, I can find out what happened to him.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632211</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood (Employee 1129) was fired and scheduled to leave the station on the last shuttle to earth but he skipped getting on the shuttle. HR made the situation worse by deactivating his tracking chip before he was officially off the station. I fried his tracking bracelet from Deep Storage, so it&apos;s unlikely anyone will ever find him.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood (Employee 1129) was fired and scheduled to leave the station on the last shuttle to earth but he skipped getting on the shuttle. HR made the situation worse by deactivating his tracking chip before he was officially off the station. I fried his tracking bracelet from Deep Storage, so it&apos;s unlikely anyone will ever find him.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632212</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Deep Storage</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Deep Storage</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632213</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Go to Deep Storage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Go to Deep Storage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632214</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Kiosk</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Kiosk</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632215</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Activate Grant Lockwood&apos;s Tracking Bracelet</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Activate Grant Lockwood&apos;s Tracking Bracelet</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632216</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632217</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Locate Grant Lockwood.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Locate Grant Lockwood.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632218</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Hope to run across Grant Lockwood.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Hope to run across Grant Lockwood.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_844024417316189840</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood (Employee 1129) was fired and scheduled to leave the station on the last shuttle to earth but he skipped getting on the shuttle. HR made the situation worse by deactivating his tracking bracelet before he was officially off the station. I reactivated his bracelet from Deep Storage and tracked his body.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood (Employee 1129) was fired and scheduled to leave the station on the last shuttle to earth but he skipped getting on the shuttle. HR made the situation worse by deactivating his tracking bracelet before he was officially off the station. I reactivated his bracelet from Deep Storage and tracked his body.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_844024417316190378</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood&apos;s tracking number is 1129</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Grant Lockwood&apos;s tracking number is 1129</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced />
+   <Selected />
+   <LeftColumnVisible>1</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>13</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

@@ -1,0 +1,39 @@
+
+<Objectives>
+ <Objective id="761057047974128806" title="@loc_15373294129891632429" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="761057047974128807" displayName="Introduction (Beginner)" text="@loc_15373294129891632430"/>
+   <Desc id="761057047974128817" displayName="Complete (Beginner)" text="@loc_15373294129891632431"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="761057047974128837" displayName="Participate (Beginner)" optional="true" text="@loc_15373294129891632433" markerLabel="@loc_15373294129891632432" Location="1713490239386284337" description="761057047974128807"/>
+   <Task id="761057047974128874" displayName="Win (Beginner)" optional="true" text="@loc_15373294129891632434" Location="1713490239386284337" description="761057047974128807" timerLabel="@loc_761057048003745756"/>
+   <Task id="761057047974128911" displayName="ClaimPrize (Beginner)" optional="true" text="@loc_15373294129891632436" markerLabel="@loc_15373294129891632435" Location="1713490239386284337" description="761057047974128817"/>
+  </Tasks>
+ </Objective>
+ <Objective id="761057047989582040" title="@loc_15373294129891632437" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="761057047989582560" displayName="Introduction (Intermediate)" text="@loc_15373294129891632438"/>
+   <Desc id="761057047989582608" displayName="Complete (Intermediate)" text="@loc_15373294129891632439"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="761057047989582094" displayName="Participate (Intermediate)" optional="true" text="@loc_15373294129891632441" markerLabel="@loc_15373294129891632440" Location="1713490239386284337" description="761057047989582560"/>
+   <Task id="761057047989582974" displayName="Win (Intermediate)" optional="true" text="@loc_15373294129891632442" Location="1713490239386284337" description="761057047989582560" timerLabel="@loc_761057048003745882"/>
+   <Task id="761057047989582984" displayName="Claim Prize (Intermediate)" optional="true" text="@loc_15373294129891632444" markerLabel="@loc_15373294129891632443" Location="1713490239386284337" description="761057047989582608"/>
+  </Tasks>
+ </Objective>
+ <Objective id="761057047989750129" title="@loc_15373294129891632445" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="761057047989750130" displayName="Introduction (Expert)" text="@loc_15373294129891632446"/>
+   <Desc id="761057047989750177" displayName="Complete (Expert)" text="@loc_15373294129891632447"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="761057047989750208" displayName="Participate (Expert)" optional="true" text="@loc_15373294129891632449" markerLabel="@loc_15373294129891632448" Location="1713490239386284337" description="761057047989750130"/>
+   <Task id="761057047989750259" displayName="Win (Expert)" optional="true" text="@loc_15373294129891632450" Location="1713490239386284337" description="761057047989750130" timerLabel="@loc_761057048003745907"/>
+   <Task id="761057047989750289" displayName="Claim Prize (Expert)" optional="true" text="@loc_15373294129891632452" markerLabel="@loc_15373294129891632451" Location="1713490239386284337" description="761057047989750177"/>
+  </Tasks>
+ </Objective>
+</Objectives>

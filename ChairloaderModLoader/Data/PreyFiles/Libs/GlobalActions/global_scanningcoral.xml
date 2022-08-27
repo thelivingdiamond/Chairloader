@@ -1,0 +1,276 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="Ark:RemoteEvent" pos="-980,-890,0">
+   <Inputs remoteEvent_Event="844024417286454381"/>
+  </Node>
+  <Node Id="9" Class="Ark:Objectives:TaskState" pos="2830,-1230,0">
+   <Inputs task_Task="844024417286443889" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="13" Class="Ark:Objectives:TaskState" pos="990,-850,0">
+   <Inputs task_Task="844024417286442830" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="33" Class="Ark:Locations:CheckLocation" pos="2400,-1580,0">
+   <Inputs location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="35" Class="Ark:Locations:CheckLocation" pos="2390,-1410,0">
+   <Inputs location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="36" Class="Ark:Locations:CheckLocation" pos="2390,-1290,0">
+   <Inputs location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="37" Name="Player_scanned_a_coral_node" Class="_commentbox" pos="-540,-2057,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="4120" Height="1910"/>
+  </Node>
+  <Node Id="38" Class="Ark:Objectives:TaskState" pos="990,-1050,0">
+   <Inputs task_Task="844024417286442820" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="44" Class="Ark:Dialog:PlayTranscribeMessage" pos="1270,-1400,0">
+   <Inputs dialogRule_Conversation="844024417286600435" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="45" Class="Ark:Dialog:PlayTranscribeMessage" pos="1450,-810,0">
+   <Inputs dialogRule_Conversation="844024417286600539" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="51" Class="Ark:Objectives:TaskState" pos="-360,60,0">
+   <Inputs task_Task="844024417286442820" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="53" Class="Logic:Gate" pos="180,70,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="55" Class="Game:Start" pos="60,340,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="56" Class="Logic:Gate" pos="490,340,0">
+   <Inputs SetClosed="1" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="58" Class="Ark:Locations:CheckLocation" pos="800,320,0">
+   <Inputs location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="59" Class="Ark:Locations:CheckLocation" pos="800,430,0">
+   <Inputs location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="60" Class="Logic:Gate" pos="1102.6481,360.16144,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="62" Class="Ark:EventScheduler:RelativeTimeEvent" pos="1410,380,0">
+   <Inputs TimeFromNow="0.025" Period="0"/>
+  </Node>
+  <Node Id="64" Class="Ark:Dialog:PlayTranscribeMessage" pos="2850,300,0">
+   <Inputs dialogRule_Conversation="13680621263393720329" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="65" Class="Ark:EventScheduler:RelativeTimeEvent" pos="917.71906,99.170319,0">
+   <Inputs TimeFromNow="0.2" Period="0"/>
+  </Node>
+  <Node Id="66" Name="Alex_warns_Morgan_about_the_reclamation_team" Class="_commentbox" pos="-400,11,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="3780" Height="520"/>
+  </Node>
+  <Node Id="68" Class="Debug:DisplayMessage" pos="760,580,0">
+   <Inputs entityId="0" message="# player level transitioned" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="69" Class="Debug:DisplayMessage" pos="1390,600,0">
+   <Inputs entityId="0" message="# player is in a relevant level" DisplayTime="5" posX="50" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="70" Class="Debug:DisplayMessage" pos="1804.209,472.12946,0">
+   <Inputs entityId="0" message="timer set for message" DisplayTime="5" posX="50" posY="150" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="71" Class="Debug:DisplayMessage" pos="1850,40,0">
+   <Inputs entityId="0" message="timer expired" DisplayTime="5" posX="50" posY="150" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="73" Class="ArkPlayer:AlienScanEvent" pos="-980,-640,0">
+   <Inputs Enable="0" researchTopic_ResearchTopic="3149325216948275658"/>
+  </Node>
+  <Node Id="75" Class="Debug:DisplayMessage" pos="-310,-1560,0">
+   <Inputs entityId="0" message="coral scanned" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="76" Class="Debug:DisplayMessage" pos="2330,-2040,0">
+   <Inputs entityId="0" message="scanned in exterior" DisplayTime="5" posX="50" posY="150" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="77" Class="Debug:DisplayMessage" pos="2310,-890,0">
+   <Inputs entityId="0" message="scanned in psych" DisplayTime="5" posX="50" posY="150" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="79" Class="Ark:Objectives:ObjectiveState" pos="-1610,-710,0">
+   <Inputs objective_Objective="844024417286442409" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="81" Class="Math:BooleanTo" pos="-1210,-680,0">
+   <Inputs/>
+  </Node>
+  <Node Id="85" Class="Logic:Gate" pos="470,-1050,0">
+   <Inputs SetClosed="1" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="86" Class="Ark:SendRemoteEvent" pos="150,-1140,0">
+   <Inputs remoteEvent_Event="844024417304769325"/>
+  </Node>
+  <Node Id="87" Class="Ark:Debug:ConsoleEvent" pos="-3930,450,0">
+   <Inputs Command="fakeCoralScan"/>
+  </Node>
+  <Node Id="89" Class="Logic:Gate" pos="-360,-1180,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="91" Class="Logic:Gate" pos="1532.3738,230.61218,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="93" Class="Logic:Gate" pos="1860,300,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="95" Class="Mission:GameTokenCheck" pos="2230,310,0">
+   <Inputs gametokenid_Token="1990946021" CheckValue="true"/>
+  </Node>
+  <Node Id="96" Class="Ark:Objectives:TaskState" pos="2850,-1430,0">
+   <Inputs task_Task="844024417315414590" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="102" Class="Time:FrameDelay" pos="-1630,510,0">
+   <Inputs/>
+  </Node>
+  <Node Id="105" Class="Ark:Objectives:ObjectiveState" pos="-3630,440,0">
+   <Inputs objective_Objective="844024417286442409" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="107" Class="Ark:Objectives:TaskState" pos="-2720,440,0">
+   <Inputs task_Task="844024417286442820" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="108" Class="Ark:Objectives:TaskState" pos="-2820,1080,0">
+   <Inputs task_Task="844024417315414590" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="110" Class="Ark:Objectives:GetTaskState" pos="-3240,440,0">
+   <Inputs task_Task="844024417286442820"/>
+  </Node>
+  <Node Id="112" Class="Ark:Objectives:GetTaskState" pos="-3320,1080,0">
+   <Inputs task_Task="844024417315414590"/>
+  </Node>
+  <Node Id="113" Class="Logic:Sequentializer" pos="-50,-1230,0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="115" Class="Logic:Gate" pos="-2120,1140,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="117" Class="Game:SaveGame" pos="1260,-1610,0">
+   <Inputs Name="quicksave" Desc="" DelaySaveIfPlayerInAir="0"/>
+  </Node>
+  <Node Id="654" Class="Ark:RemoteEvent" pos="150,-1050,0">
+   <Inputs remoteEvent_Event="844024417304837680"/>
+  </Node>
+  <Node Id="659" Name="deprecated_debug_stuff_that_made_the_whole_damn_thing_too_complicated" Class="_commentbox" pos="-3940,432,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2452" Height="861"/>
+  </Node>
+  <Node Id="661" Class="Logic:Gate" pos="310,-1370,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="664" Class="Logic:Gate" pos="-80,-970,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="665" Class="Debug:DisplayMessage" pos="348.56702,-1760.1193,0">
+   <Inputs entityId="0" message="scanned coral 1" DisplayTime="5" posX="50" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="666" Class="Debug:DisplayMessage" pos="656.80389,-1752.9175,0">
+   <Inputs entityId="0" message="scanned coral 2" DisplayTime="5" posX="50" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="667" Class="Debug:DisplayMessage" pos="937.67401,-1734.1927,0">
+   <Inputs entityId="0" message="scanned coral 3" DisplayTime="5" posX="50" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="668" Class="Debug:DisplayMessage" pos="2740,-2020,0">
+   <Inputs entityId="0" message="scanned in GUTS" DisplayTime="5" posX="50" posY="150" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="669" Class="Logic:Sequentializer" pos="2640,-1660,0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="671" Class="Logic:Gate" pos="2850,-1800,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="672" Class="Time:Delay" pos="600,-1390,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="673" Class="Time:Delay" pos="730,-1030,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="674" Class="Game:SaveGame" pos="1070,-600,0">
+   <Inputs Name="quicksave" Desc="" DelaySaveIfPlayerInAir="0"/>
+  </Node>
+  <Node Id="676" Class="Ark:Debug:ConsoleEvent" pos="-2331.4961,-1400.4408,0">
+   <Inputs Command="testCoralScan"/>
+  </Node>
+  <Node Id="678" Class="Inventory:ItemAdd" pos="-1940,-1540,0">
+   <Inputs entityId="0" archetype="ArkPickups.Mods.Psychoscope.CanScanCoral" quantity="1" playfanfare="0"/>
+  </Node>
+  <Node Id="680" Class="Ark:Objectives:TaskState" pos="-1500,-1250,0">
+   <Inputs task_Task="844024417286442820" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="681" Class="Ark:Objectives:ObjectiveState" pos="-1930,-1250,0">
+   <Inputs objective_Objective="844024417286442409" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="683" Class="Ark:EnableScope" pos="480.66025,-1149.0784,0">
+   <Inputs/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="45" nodeOut="13" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="76" nodeOut="33" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="669" nodeOut="33" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="96" nodeOut="35" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="668" nodeOut="35" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="36" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="77" nodeOut="36" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="53" nodeOut="51" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="53" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="65" nodeOut="53" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="55" portIn="In" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="55" portIn="In" portOut="output" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="56" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="59" nodeOut="56" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="68" nodeOut="56" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="60" nodeOut="58" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="60" nodeOut="59" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="60" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="62" nodeOut="60" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="65" nodeOut="60" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="69" nodeOut="60" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="70" nodeOut="62" portIn="Show" portOut="Enabled" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="62" portIn="Show" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="93" nodeOut="62" portIn="In" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="93" nodeOut="65" portIn="In" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="73" portIn="Show" portOut="ScanCompleted" enabled="1"/>
+  <Edge nodeIn="89" nodeOut="73" portIn="In" portOut="ScanCompleted" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="79" portIn="true" portOut="Added" enabled="1"/>
+  <Edge nodeIn="73" nodeOut="81" portIn="Enable" portOut="out" enabled="1"/>
+  <Edge nodeIn="673" nodeOut="85" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="674" nodeOut="85" portIn="Save" portOut="Out" enabled="1"/>
+  <Edge nodeIn="683" nodeOut="86" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="105" nodeOut="87" portIn="Add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="113" nodeOut="89" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="95" nodeOut="93" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="64" nodeOut="95" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="89" nodeOut="102" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="105" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="115" nodeOut="107" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="115" nodeOut="108" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="107" nodeOut="110" portIn="Activate" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="115" nodeOut="110" portIn="In" portOut="Active" enabled="1"/>
+  <Edge nodeIn="115" nodeOut="110" portIn="In" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="108" nodeOut="112" portIn="Activate" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="115" nodeOut="112" portIn="In" portOut="Active" enabled="1"/>
+  <Edge nodeIn="115" nodeOut="112" portIn="In" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="44" nodeOut="113" portIn="Stop" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="113" portIn="Open" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="113" portIn="Send" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="661" nodeOut="113" portIn="In" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="664" nodeOut="113" portIn="In" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="665" nodeOut="113" portIn="Show" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="666" nodeOut="113" portIn="Show" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="102" nodeOut="115" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="654" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="683" nodeOut="654" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="117" nodeOut="661" portIn="Save" portOut="Out" enabled="1"/>
+  <Edge nodeIn="672" nodeOut="661" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="113" nodeOut="664" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="671" nodeOut="669" portIn="In" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="44" nodeOut="672" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="673" portIn="Activate" portOut="out" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="673" portIn="Complete" portOut="out" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="673" portIn="false" portOut="out" enabled="1"/>
+  <Edge nodeIn="678" nodeOut="676" portIn="add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="681" nodeOut="676" portIn="Add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="680" nodeOut="681" portIn="Activate" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

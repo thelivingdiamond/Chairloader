@@ -1,0 +1,120 @@
+
+<NpcAbilities>
+ <ArkNpcAbility_PsiAttack id="3" name="Phantom_KineticProjectile" projectileSourceAttachment="attach_fx" projectileSpawnDistance="1.25" fragmentName="PsiAttack" bStop="false"/>
+ <ArkNpcAbility_HitReactShift id="4" name="Phantom_HitReactShift" stopDistance="1.0" delayBeforeShift="0.25"/>
+ <ArkNpcAbility_EthericDoppelganger id="6" name="EthericPhantom_EthericDoppelganger" castTime="0.25" doppelgangerMoveTime="0.65" doppelgangerLifeTime="10.0" doppelgangerOutboundModifierId="9469288860526468776" doppelgangerGameEffectId="22" doppelgangerArchetype="ArkNpcs.Phantoms.EthericDoppelganger" pDisappearParticleEffect="Characters.Aliens.Phantom.Etheric.EthericDoppelganger.SpawnIn_00" pTrailParticleEffect="Characters.Aliens.Phantom.Etheric.EthericDoppelganger.DirectionalSmokeBlast_00" pReappearParticleEffect="Characters.Aliens.Phantom.Etheric.EthericDoppelganger.SpawnIn_00"/>
+ <ArkNpcAbility_ThermalAura id="8" name="ThermalPhantom_ThermalAura" auraGameEffectId="13" bSkipCast="false" castTime="0.25" warmupAudioTrigger=""/>
+ <ArkNpcAbility_ThermalAura id="9" name="ThermalPhantom_ThermalAura_FromIgniteMimics" auraGameEffectId="13" bSkipCast="true" castTime="0.0" warmupAudioTrigger=""/>
+ <ArkNpcAbility_Thermogenesis id="10" name="ThermalPhantom_Thermogenesis_Vs_Player" castTime="2.0" blastRadius="3.5" castAudioTrigger="" pPrecachedTelegraphEffect="Characters.Aliens.Phantom.Thermal.Thermogenesis.WarmUp_01" pPrecachedExplosionEffect="Characters.Aliens.Phantom.Thermal.Thermogenesis.Eruption_01"/>
+ <ArkNpcAbility_Thermogenesis id="11" name="ThermalPhantom_Thermogenesis_Vs_NPC" castTime="0.5" blastRadius="3.5" castAudioTrigger="" pPrecachedTelegraphEffect="Characters.Aliens.Phantom.Thermal.Thermogenesis.WarmUp_01" pPrecachedExplosionEffect="Characters.Aliens.Phantom.Thermal.Thermogenesis.Eruption_01"/>
+ <ArkNpcAbility_PsiAttack id="12" name="VoltaicPhantom_EMPLightningBall" projectileSourceAttachment="attach_fx" projectileSpawnDistance="1.25" fragmentName="EMPLightningBallAttack" bStop="false"/>
+ <ArkNpcAbility_CallAndActivateEffectOnNpcs id="13" name="VoltaicPhantom_EnergizeMimics" callDuration="6.0" callSuccessCallReductionTime="1.0" callEffectApplicationRadius="15.0" callEffectGameEffectId="14" castTime="0.25" calleeInboundSignalModifierId="5310807215636213074" fragmentName="CallNPCs" excludeGameEffectId="12"/>
+ <ArkNpcAbility_CallAndActivateEffectOnNpcs id="14" name="ThermalPhantom_IgniteMimics" callDuration="6.0" callSuccessCallReductionTime="1.0" callEffectApplicationRadius="15.0" callEffectGameEffectId="12" castTime="0.25" calleeInboundSignalModifierId="8109010857438863890" fragmentName="CallNPCs" excludeGameEffectId="14" callerEffectGameEffectId="13"/>
+ <ArkNpcAbility_MeleeAttack id="15" name="MeleeAttack_Phantom_Front" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Front" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175777" damageSignalPackageScale="1.0" playerImpulse="20.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="16" name="MeleeAttack_Phantom_Right" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Right" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175777" damageSignalPackageScale="1.0" playerImpulse="20.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="17" name="MeleeAttack_Phantom_Left" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Left" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175777" damageSignalPackageScale="1.0" playerImpulse="20.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_ShiftChargeAttack id="18" name="Phantom_Shift_Charge_Attack" damageSignalPackageId="3149325216914175777" stopDistance="3.2"/>
+ <ArkNpcAbility_MeleeAttack id="19" name="MeleeAttack_Phantom_Vertical" fragmentName="Melee_Vertical" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Front" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175777" damageSignalPackageScale="1.0" playerImpulse="20.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="20" name="Lurk_MeleeAttack_Phantom_Front" fragmentName="Lurk_Attack_A" distanceTagGroupName="NONE" directionTagGroupName="NONE" distanceTag="NONE" directionTag="NONE" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175777" damageSignalPackageScale="1.0" playerImpulse="20.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_ThermalAura id="103" name="ThermalPhantom_IgniteMimics_MimicThermalAura" bSkipCast="true" castTime="0.0" auraGameEffectId="" warmupAudioTrigger=""/>
+ <ArkNpcAbility_MeleeAttack id="105" name="MeleeAttack_Mimic_Front" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Front" bCrouchNightmare="false" bReorientMimic="true" damageSignalPackageId="3149325216914175803" damageSignalPackageScale="1.0" playerImpulse="5.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="106" name="MeleeAttack_Mimic_Right" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Right" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175803" damageSignalPackageScale="1.0" playerImpulse="5.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="107" name="MeleeAttack_Mimic_Left" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Left" bCrouchNightmare="false" bReorientMimic="false" damageSignalPackageId="3149325216914175803" damageSignalPackageScale="1.0" playerImpulse="5.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="108" name="MeleeAttack_Mimic_Back" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Front" bCrouchNightmare="false" bReorientMimic="true" damageSignalPackageId="3149325216914175803" damageSignalPackageScale="1.0" playerImpulse="5.0" npcImpulse="10.0" otherImpulse="5.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_JumpAttack id="109" name="Mimic_JumpAttack" bImmediate="false" bForcePath="false"/>
+ <ArkNpcAbility_Sidestep id="110" name="Mimic_Sidestep" fragmentName="SideStep"/>
+ <ArkNpcAbility_MimicGrabAttack id="111" name="Mimic_GrabAttack" jumpAbortDistance="7.0" jumpAbortCosAngle="0.90630776" grabDamageSignal="3149325216948718001" grabDuration="30000" grabDamageCooldown="0.5" grabFragmentName="GrabPlayer_Wrestling" jumpFragmentName="GrabPlayer_In"/>
+ <ArkNpcAbility_CombatIdle id="120" name="Taunt" fragmentName="Taunt" bFaceTargetFirst="true"/>
+ <ArkNpcAbility_JumpAttack id="121" name="Mimic_JumpAttackFromMimicry" bImmediate="true" bForcePath="true"/>
+ <ArkNpcAbility_JumpAttack id="122" name="Mimic_JumpAttackUnreachable" bImmediate="false" bForcePath="true"/>
+ <ArkNpcAbility_OperatorRamAttack id="1002" name="MilitaryOperator_Ram" orientDuration="1.70" chargeDuration="1.20" ramDuration="2.5" explosionRadius="5.0" explosionDamageSignalPackageId="243995946780379822" explosionSelfDestroySignalPackageId="243995946784200275" collisionSelfDamageSignalPackageId="243995946780379906" deathExplosionDamageSignalPackageId="243995946780379842" orientAudioTrigger="Play_Operator_Corrupted_Orient" chargeAudioTrigger="Play_Operator_Corrupted_Orient" ramAudioTrigger="Play_Operator_Corrupted_RAM" cameraShakeId="10739735956147043737" pOrientParticleEffect="" pChargeParticleEffect="" pRamParticleEffect="" particleEffectAttachmentName="attach_fx"/>
+ <ArkNpcAbility_OperatorSwipeAttack id="1004" name="MilitaryOperator_SwipeAttack">
+  <config abilityTotalDuration="7.5" abilityLostLosTimeToQuit="1.5" laserChargeDuration="0.5" laserDamagePerSecond="200.0" laserAimingGoalThresholdDegrees="7.0" laserNextAimGoalDelay="0.25" accuracyIncreaseRate="1.0" accuracyIncreaseStopAtTargetSpeed="5.0" accuracyMinBeforeIncreaseStop="0.9" accuracyExponent="1" swipeShootAreaWidthRange="0.5,0.0" abilityFailDelay="0.25" turnSpeedPerSecond="2000.0"/>
+ </ArkNpcAbility_OperatorSwipeAttack>
+ <ArkNpcAbility_OperatorStrafeAttack id="1005" name="MilitaryOperator_StrafeAttack">
+  <config laserChargeDuration="0.5" laserDamagePerSecond="400.0" minStrafeDistance="6.0" stopDistanceToGoal="2.0"/>
+ </ArkNpcAbility_OperatorStrafeAttack>
+ <ArkNpcAbility_OperatorScienceZap id="1100" name="MeleeAttack_ScienceOperator" arcMaterialName="Materials/ArkEffects/Environment/Lightning/Phantom_LightningArcs" lightningArchetype="ArkGameplayObjects.LightningArc.LightningArc_ScienceOperator" damageSignalPackageId="9469288860517477196" chargeDuration="4.0" maxDistanceToZapTarget="12.0" lightningAttachmentName0="FX_Electrode_Right_00" lightningAttachmentName1="FX_Electrode_Left_00"/>
+ <ArkNpcAbility_CorruptedEngineerFlame id="1200" name="EngineerOperator_Flame" abilityDuration="2.5" damagePackageId="9469288860517477357" fragmentName="Engineer_Torch"/>
+ <ArkNpcAbility_PoltergeistThrowAttack id="2000" name="Poltergeist_Throw" fragmentName="Power_Throw" preAppearLiftDuration="1.5" postAppearLiftDuration="0.3" postLiftDisappearDuration="0.3" multipleThrowDelay="0.25" liftAudioTrigger="" impulseAudioTrigger=""/>
+ <ArkNpcAbility_PoltergeistLift id="2001" name="Poltergeist_Lift" fragmentName="Power_Lift" liftParticleEffectName="Characters.Aliens.Poltergeist.Lift.LiftVortex" startDuration="0.4" preAppearDuration="0.1" appearDuration="1.0" liftDuration="5.5" liftRadius="1.5" targetLeadTime="0.5" targetForwardOffset="0.5" pLiftStartParticleEffect=""/>
+ <ArkNpcAbility_Fear id="10001" name="Fear_Nightmare" fragmentName="Fear" radius="6.0" fearPackageId="10641886185795233515"/>
+ <ArkNpcAbility_MeleeAttack id="10003" name="MeleeAttack_Nightmare_FrontShort" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Front" bCrouchNightmare="true" bReorientMimic="false" damageSignalPackageId="10641886185795233495" damageSignalPackageScale="1.0" playerImpulse="30.0" npcImpulse="10.0" otherImpulse="15.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="10004" name="MeleeAttack_Nightmare_FrontMedium" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Medium" directionTag="Front" bCrouchNightmare="true" bReorientMimic="false" damageSignalPackageId="10641886185795233495" damageSignalPackageScale="1.0" playerImpulse="30.0" npcImpulse="10.0" otherImpulse="15.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="10005" name="MeleeAttack_Nightmare_FrontLong" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Long" directionTag="Front" bCrouchNightmare="true" bReorientMimic="false" damageSignalPackageId="10641886185795233495" damageSignalPackageScale="1.0" playerImpulse="40.0" npcImpulse="10.0" otherImpulse="15.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="10006" name="MeleeAttack_Nightmare_Right" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Right" bCrouchNightmare="true" bReorientMimic="false" damageSignalPackageId="10641886185795233495" damageSignalPackageScale="1.0" playerImpulse="30.0" npcImpulse="10.0" otherImpulse="15.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_MeleeAttack id="10007" name="MeleeAttack_Nightmare_Left" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="Short" directionTag="Left" bCrouchNightmare="true" bReorientMimic="false" damageSignalPackageId="10641886185795233495" damageSignalPackageScale="1.0" playerImpulse="30.0" npcImpulse="10.0" otherImpulse="15.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_CombatIdle id="10008" name="NoEtherFormTaunt" fragmentName="Taunt" bFaceTargetFirst="true"/>
+ <ArkNpcAbility_MeleeAttack id="10009" name="MeleeAttack_Nightmare_Stomp" fragmentName="Melee" distanceTagGroupName="Distance" directionTagGroupName="Direction" distanceTag="VeryShort" directionTag="Front" bCrouchNightmare="true" bReorientMimic="false" damageSignalPackageId="10641886185795233495" damageSignalPackageScale="1.0" playerImpulse="50.0" npcImpulse="10.0" otherImpulse="15.0">
+  <Delay minimum="0.0" maximum="0.0"/>
+ </ArkNpcAbility_MeleeAttack>
+ <ArkNpcAbility_PsiAttack id="10106" name="Nightmare_Projectile" projectileSourceAttachment="PsiAttack_Attachment" projectileSpawnDistance="-0.175" fragmentName="PsiAttack" bStop="true"/>
+ <ArkNpcAbility_EMPBlast id="100000" name="Technopath_ElectricalBlast_1g" castTime="1.68" electricalBoxArchetype="ArkProjectiles.AlienPowers.TechnopathElectricalHazard_1g" warmupEffectName="Characters.Aliens.Technopath.ElectricAttack.ElectricalAttack_WarmUp"/>
+ <ArkNpcAbility_EMPBlast id="100002" name="Technopath_ElectricalBlast_0g" castTime="1.1" electricalBoxArchetype="ArkProjectiles.AlienPowers.TechnopathElectricalHazard_0g" warmupEffectName="Characters.Aliens.Technopath.ElectricAttack.ElectricalAttack_WarmUp"/>
+ <ArkNpcAbility_CorruptNpc id="100001" name="Technopath_CorruptOperator" castTime="1.85" preAbilityFacingTime="2.0" corruptionProjectileRadius="0.5" corruptionProjectileSpeed="20.0" projectileSourceAttachment="PsiAttack_Attachment" projectileTargetAttachment="PsiTarget_Attachment" pCastParticleEffect="Characters.Aliens.Telepath.Cast.CorruptCast" castParticleEffectAttachmentName="Rope_bellyLowerA01" pProjectileParticleEffect="Characters.Aliens.Telepath.Projectile.CorruptProjectile"/>
+ <ArkNpcAbility_Psychoshock id="100100" name="Telepath_Psychoshock_1G" damagePackageId="17591291352642463461" damageSourceAttachment="PsiAttack_Attachment" damageRadius="40.0" castDuration="5" cameraShakeId="3149325216979739866"/>
+ <ArkNpcAbility_Psychoshock id="100105" name="Telepath_Psychoshock_0G" damagePackageId="17591291352642463461" damageSourceAttachment="PsiAttack_Attachment" damageRadius="40.0" castDuration="5" cameraShakeId="3149325216979739866"/>
+ <ArkNpcAbility_RepelBlast id="100101" name="Telepath_RepelBlast_1G" radius="10" impulse="50" verticalImpulse="0" minimumExplosionDistanceScale="3.0" damageSourceAttachment="PsiAttack_Attachment" packageId="3149325216973158283" abilityDelayDuration="1.0" cameraShakeId="3149325216979739536"/>
+ <ArkNpcAbility_RepelBlast id="100103" name="Telepath_RepelBlast_1G_FromGlooed" radius="10" impulse="50" verticalImpulse="0" minimumExplosionDistanceScale="3.0" damageSourceAttachment="PsiAttack_Attachment" packageId="3149325216973158283" abilityDelayDuration="0.0" cameraShakeId="3149325216979739536"/>
+ <ArkNpcAbility_RepelBlast id="100106" name="Telepath_RepelBlast_0G" radius="6" impulse="15" verticalImpulse="0" minimumExplosionDistanceScale="1.5" damageSourceAttachment="PsiAttack_Attachment" packageId="3149325216973158283" abilityDelayDuration="1.0" cameraShakeId="3149325216979739536"/>
+ <ArkNpcAbility_CorruptNpc id="100102" name="Telepath_CorruptHuman" castTime="1.85" preAbilityFacingTime="2.0" corruptionProjectileRadius="0.5" corruptionProjectileSpeed="20.0" projectileSourceAttachment="PsiAttack_Attachment" projectileTargetAttachment="FX_Head" pCastParticleEffect="Characters.Aliens.Telepath.Cast.CorruptCast" castParticleEffectAttachmentName="PsiAttack_Attachment" pProjectileParticleEffect="Characters.Aliens.Telepath.Projectile.CorruptProjectile"/>
+ <ArkNpcAbility_PsiAttack id="100104" name="Telepath_Projectile" projectileSourceAttachment="PsiAttack_Attachment" projectileSpawnDistance="1.0" fragmentName="PsiAttack" bStop="false"/>
+ <ArkNpcAbility_LaunchCystoids id="100200" name="Weaver_LaunchCystoids_1G" cystoidArchetype="ArkNpcs.Cystoids.Cystoid" mindControlledCystoidArchetype="ArkNpcs.Cystoids.Cystoid_IgnorePlayer" fragmentName="Create_Cystoid" spawnDistance="1.5" spawnRadius="1.0" spawnMaxAngle="25.0" minTimeBetweenSpawns="0.1" maxTimeBetweenSpawns="0.2" minNumCystoids="8" maxNumCystoids="12" expectedRangeMin="0.0" expectedRangeMax="40.0" forceAtMinRange="5.0" forceAtMaxRange="20.0" launchAngleFloor="0.0" relativeSpawnHeight="2.75" castTime="0.5"/>
+ <ArkNpcAbility_LaunchCystoids id="100201" name="Weaver_LaunchCystoids_0G" cystoidArchetype="ArkNpcs.Cystoids.Cystoid" mindControlledCystoidArchetype="ArkNpcs.Cystoids.Cystoid_IgnorePlayer" fragmentName="Create_Cystoid" spawnDistance="1.5" spawnRadius="1.0" spawnMaxAngle="25.0" minTimeBetweenSpawns="0.1" maxTimeBetweenSpawns="0.2" minNumCystoids="4" maxNumCystoids="6" expectedRangeMin="0.0" expectedRangeMax="40.0" forceAtMinRange="5.0" forceAtMaxRange="20.0" launchAngleFloor="0.0" relativeSpawnHeight="2.75" castTime="0.5"/>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100250" name="Weaver_Combat_RaisePhantomFromCorpse_Base" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.BasePhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="false">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100251" name="Weaver_Combat_RaisePhantomFromCorpse_Etheric" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.EthericPhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="false">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100252" name="Weaver_Combat_RaisePhantomFromCorpse_Thermal" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.ThermalPhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="false">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100253" name="Weaver_Combat_RaisePhantomFromCorpse_Voltaic" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.VoltaicPhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="false">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100254" name="Weaver_Combat_RaisePhantomFromCorpse_Base_NoMove" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.BasePhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="true">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100255" name="Weaver_Combat_RaisePhantomFromCorpse_Etheric_NoMove" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.EthericPhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="true">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100256" name="Weaver_Combat_RaisePhantomFromCorpse_Thermal_NoMove" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.ThermalPhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="true">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_RaisePhantomFromCorpse id="100257" name="Weaver_Combat_RaisePhantomFromCorpse_Voltaic_NoMove" fragmentName="Create_Phantom" startRaiseCorpseEventName="StartRaisingCorpse" phantomArchetypeName="ArkNpcs.Phantoms.VoltaicPhantom" distanceFromCorpse="2.5" timeBetweenRaisePosUpdate="3.0" bIgnoreMovement="true">
+  <NavMeshSearchBounds horizontalDistance="3.0" downDistance="3.0" upDistance="3.0"/>
+ </ArkNpcAbility_RaisePhantomFromCorpse>
+ <ArkNpcAbility_ShootPistol id="1000000" name="Human_ShootPistol" projectileSourceAttachment="weapon" actionEvent="ShootBullet" fragmentName="Wpn_Fire" bulletArchetype="ArkProjectiles.Bullets.PistolRound_NPC" shotSpread="3.0" pMuzzleFlashParticleEffect="Characters.Humans.Cinematic.Weapon.PistolMuzzleBlast_00" muzzleFlashAttachmentName="fx_muzzle"/>
+ <ArkNpcAbility_ReloadPistol id="1000001" name="Human_ReloadPistol" actionEvent="Reloaded" fragmentName="Wpn_Reload"/>
+ <ArkNpcAbility_ShootPistol id="1000002" name="Dahl_ShootPistol" projectileSourceAttachment="weapon" actionEvent="ShootBullet" fragmentName="Wpn_Fire" bulletArchetype="ArkProjectiles.Bullets.PistolRound_Dahl" shotSpread="1" pMuzzleFlashParticleEffect="Characters.Humans.Cinematic.Weapon.PistolMuzzleBlast_00" muzzleFlashAttachmentName="fx_muzzle"/>
+ <ArkNpcAbility_CorruptedExplode id="1000100" name="CorruptedHuman_Explode" damageSourceAttachment="FX_Head" fragmentName="Explode" giveUpDelayDuration="2.0" explodeDelayDuration="0.5" damagePackageId="17591291352643785042" damageRadius="7.0" damageImpulse="25" distanceToStopAbility="25.0" distanceToExplode="6.0" damageMinimumDistanceScaleAmount="0.4" chargeDialogRepeatCooldown="5.0" cameraShakeId="10739735956147043737"/>
+</NpcAbilities>

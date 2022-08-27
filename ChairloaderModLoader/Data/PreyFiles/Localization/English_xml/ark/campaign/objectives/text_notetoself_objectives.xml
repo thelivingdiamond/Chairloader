@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11205</WindowHeight>
+  <WindowWidth>28245</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="10" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row>
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631931</Data></Cell>
+    <Cell><Data ss:Type="String">Note To Self (DEPRECATED)</Data></Cell>
+    <Cell><Data ss:Type="String">Note To Self (DEPRECATED)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631932</Data></Cell>
+    <Cell><Data ss:Type="String">Access a conference room and play back Morgan's message.</Data></Cell>
+    <Cell><Data ss:Type="String">Access a conference room and play back Morgan's message.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631933</Data></Cell>
+    <Cell><Data ss:Type="String">One of Dahl's men, Martin Giroud, is stationed in the shuttle bay. He is tasked with remotely operating station systems at Dahl's command. Gain entry to the VIP Shuttle Bay.</Data></Cell>
+    <Cell><Data ss:Type="String">One of Dahl's men, Martin Giroud, is stationed in the shuttle bay. He is tasked with remotely operating station systems at Dahl's command. Gain entry to the VIP Shuttle Bay.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631934</Data></Cell>
+    <Cell><Data ss:Type="String">Your office</Data></Cell>
+    <Cell><Data ss:Type="String">Your office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631935</Data></Cell>
+    <Cell><Data ss:Type="String">Return to your office to play the looking glass video.</Data></Cell>
+    <Cell><Data ss:Type="String">Return to your office to play the looking glass video.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631936</Data></Cell>
+    <Cell><Data ss:Type="String">O2 Station</Data></Cell>
+    <Cell><Data ss:Type="String">O2 Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631937</Data></Cell>
+    <Cell><Data ss:Type="String">Find an O2 station and refill your tank..</Data></Cell>
+    <Cell><Data ss:Type="String">Find an O2 station and refill your tank..</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631938</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891631939</Data></Cell>
+    <Cell><Data ss:Type="String">Find the shuttle bay and prevent Dahl's recovery team from remotely operating station systems from their shuttle.</Data></Cell>
+    <Cell><Data ss:Type="String">Find the shuttle bay and prevent Dahl's recovery team from remotely operating station systems from their shuttle.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>1</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+     <RangeSelection>R2C4:R10C4</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

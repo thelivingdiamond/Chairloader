@@ -1,5 +1,0 @@
-
-<ReactionsPreloadList>
- <Entry reactionsFile="Libs/HitDeathReactionsData/HitDeathReactions_PlayerSP.xml"/>
- <Entry reactionsFile="Libs/HitDeathReactionsData/HitDeathReactions_SDKGrunt.xml"/>
-</ReactionsPreloadList>

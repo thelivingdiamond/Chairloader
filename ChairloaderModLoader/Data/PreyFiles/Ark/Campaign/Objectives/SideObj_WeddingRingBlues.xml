@@ -1,0 +1,17 @@
+
+<Objectives>
+ <Objective id="4349723564927784705" title="@loc_15373294129891632762" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="4349723564927784706" displayName="Find Nicole" text="@loc_15373294129891632763"/>
+   <Desc id="4349723564927785239" displayName="Inform Kevin" text="@loc_15373294129891632764"/>
+   <Desc id="4349723564927787846" displayName="Wedding Ring Objective Done" text="@loc_15373294129891632765"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564927784871" displayName="Locate Nicole Hague" optional="false" text="@loc_15373294129891632767" markerLabel="@loc_15373294129891632766" Location="844024417252490146" description="4349723564927784706"/>
+   <Task id="4349723564961040031" displayName="Recover the Wedding Ring" optional="false" text="@loc_4349723564961040032" markerLabel="@loc_4349723564961040066" Location="844024417252490146" description="4349723564927784706"/>
+   <Task id="4349723564927785023" displayName="Give Kevin the Bad News" optional="false" text="@loc_15373294129891632769" markerLabel="@loc_15373294129891632768" Location="15659330456296333985" description="4349723564927785239"/>
+   <Task id="844024417323429978" displayName="RetrieveMemento" optional="false" text="@loc_844024417323429979" markerLabel="@loc_844024417323429991" Location="844024417314265553" description="4349723564927784706"/>
+  </Tasks>
+ </Objective>
+</Objectives>

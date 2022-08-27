@@ -1,7 +1,0 @@
-
-<download name="arboretum" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="14241824" md5="5aeb40998ec95bb670e92bccab14aa5a"/>
- </files>
-</download>

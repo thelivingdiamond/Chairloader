@@ -1,0 +1,102 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="8" Class="Ark:Dialog:PlayTranscribeMessage" pos="-130,256,0">
+   <Inputs dialogRule_Conversation="13680621263383347988" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="1774" Class="Ark:Objectives:TaskState" pos="-1580,-180,0">
+   <Inputs task_Task="-4589863060486409800" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1775" Class="Ark:Dialog:PlayTranscribeMessage" pos="530,246,0">
+   <Inputs dialogRule_Conversation="13680621263383427295" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="1776" Class="Time:Delay" pos="400,266,0" InHideMask="7" OutHideMask="1">
+   <Inputs delay="2" resetOnInput="0"/>
+  </Node>
+  <Node Id="1945" Class="Mission:GameTokenCheck" pos="-130,36,0">
+   <Inputs gametokenid_Token="417275679" CheckValue="true"/>
+  </Node>
+  <Node Id="2468" Class="Mission:GameTokenCheck" pos="-130,146,0">
+   <Inputs gametokenid_Token="1307807168" CheckValue="true"/>
+  </Node>
+  <Node Id="2795" Class="Ark:Objectives:TaskState" pos="530,376,0">
+   <Inputs task_Task="-4766122810326111158" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2796" Class="Time:Delay" pos="-360,140,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2797" Class="Ark:Objectives:TaskState" pos="-1580,0,0">
+   <Inputs task_Task="-4589863060486409660" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2798" Class="Ark:Objectives:TaskState" pos="-1580,180,0">
+   <Inputs task_Task="-4589863060486409656" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2799" Class="Ark:Objectives:TaskState" pos="-1580,360,0">
+   <Inputs task_Task="-4589863060486409652" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2801" Class="Math:Counter" pos="-1130,120,0">
+   <Inputs max="5"/>
+  </Node>
+  <Node Id="2802" Class="Math:EqualCheck" pos="-950,120,0">
+   <Inputs A="0" B="4"/>
+  </Node>
+  <Node Id="2806" Class="Ark:Objectives:GetObjectiveState" pos="-750,110,0">
+   <Inputs objective_Objective="-4766122810326129635"/>
+  </Node>
+  <Node Id="2991" Class="Ark:Roster:SetLocation" pos="-970,-640,0">
+   <Inputs character_Character="4349723564911793869" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2992" Class="Ark:Roster:SetLocation" pos="-970,-440,0">
+   <Inputs character_Character="1713490239396469284" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2993" Class="Ark:Roster:SetLocation" pos="-970,-540,0">
+   <Inputs character_Character="4349723564911792200" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2994" Class="Ark:Roster:SetLocation" pos="-970,-330,0">
+   <Inputs character_Character="12889009724998731622" location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="2995" Class="Ark:Objectives:TaskState" pos="-1600,-570,0">
+   <Inputs task_Task="-4589863060486409800" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2996" Class="Logic:Once" pos="-1190,-550,0" InHideMask="127" OutHideMask="1">
+   <Inputs/>
+  </Node>
+  <Node Id="2997" Class="Ark:Debug:ConsoleEvent" pos="-1833.0612,828.61639,0">
+   <Inputs Command="dahlambush"/>
+  </Node>
+  <Node Id="2998" Class="Ark:Objectives:TaskState" pos="-1130,810,0">
+   <Inputs task_Task="-4766122810326111158" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2999" Class="Ark:Objectives:ObjectiveState" pos="-1520,810,0">
+   <Inputs objective_Objective="-4766122810326129635" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="1776" nodeOut="8" portIn="in" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2795" nodeOut="8" portIn="Activate" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2795" nodeOut="8" portIn="Activate" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2795" nodeOut="8" portIn="Activate" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2801" nodeOut="1774" portIn="in" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="1775" nodeOut="1776" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="1776" nodeOut="1945" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="2468" nodeOut="1945" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="2468" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1776" nodeOut="2468" portIn="in" portOut="True" enabled="1"/>
+  <Edge nodeIn="1945" nodeOut="2796" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2801" nodeOut="2797" portIn="in" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="2801" nodeOut="2798" portIn="in" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="2801" nodeOut="2799" portIn="in" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="2802" nodeOut="2801" portIn="A" portOut="count" enabled="1"/>
+  <Edge nodeIn="2802" nodeOut="2801" portIn="Check" portOut="count" enabled="1"/>
+  <Edge nodeIn="2806" nodeOut="2802" portIn="Trigger" portOut="true" enabled="1"/>
+  <Edge nodeIn="2796" nodeOut="2806" portIn="in" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="2996" nodeOut="2995" portIn="Input1" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="2991" nodeOut="2996" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2992" nodeOut="2996" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2993" nodeOut="2996" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2994" nodeOut="2996" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2999" nodeOut="2997" portIn="Add" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="2998" nodeOut="2999" portIn="Activate" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

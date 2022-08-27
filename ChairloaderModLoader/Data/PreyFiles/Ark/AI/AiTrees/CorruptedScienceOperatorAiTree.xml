@@ -1,0 +1,37 @@
+
+<ArkAiTree>
+ <Root>
+  <ArkAiTreeStackNode>
+   <Children>
+    <ArkAiTreeHypnotizedNode/>
+    <ArkAiTreeScriptMoveNode/>
+    <ArkAiTreeCombatSearchForHiddenMimicPlayer searchFailsafeTime="10.0" bAllowShifting="false" timeUntilShiftEnabled="0.0" combatSearchSpeed="0" movementStopDistance="2.0" throttleCanSeeTimer="0.5">
+     <ValidPointSearchBounds horizontalDistance="10.0" downDistance="5.0" upDistance="5.0"/>
+    </ArkAiTreeCombatSearchForHiddenMimicPlayer>
+    <ArkAiTreeOperatorScienceCombatNode stopDistance="8.25" avoidanceFieldRadius="7.0" resumeDistance="11.0"/>
+    <ArkAiTreeSearchNode>
+     <FsmConfig bStartInDebugState="false" searchNoiseLoudness="9469288860501649210" searchNoiseTypeId="10850392949532183298" minTimeBetweenSearchAnims="8.0" investigateApproachStopDist="3.0" investigateUnreachableApproachStopDist="1.0" investigateFaceProxyDistance="4.5" timeBetweenInvestigateDialogEvents="1.0" nearestPointHorizontalSearchDist="5.0" nearestPointVerticalSearchDist="5.0" unreachableTargetingTimeToFindPoint="5.0" investigateWaitForFacingAfterMoveTime="3.0" timeBetweenExamineStareDialogEvents="1.0" bUsesSearchExamineAnim="false" reachableTestUpTolerance="1.0" reachableTestDownTolerance="2.0" reachableTestHorizTolerance="1.0" bHunts="true" bHuntForever="false" minHuntTime="8.0" huntStopDist="0.75" timeBetweenHuntDialogEvents="1.0" huntFaceDestinationDist="1.0" investigateMovementSpeed="2" huntMovementSpeed="0" turnSpeed="2" timeBetweenProxyLoSChecks="3.0" investigateFailedMovementDelayTime="3.0" numberOfHitsToSeeThroughWalls="8" amountOfDamageToSeeThroughWalls="400.0" percentageOfHealthLostToSeeThroughWalls="0.4" xRayVisionTime="15.0">
+      <InterruptNoticeAnimDistance minimum="0.0" maximum="3.0"/>
+      <InterruptNoticeAnimMinPlayTime minimum="0.0" maximum="0.5"/>
+      <ExamineStareTimeRange minimum="2.0" maximum="3.0"/>
+      <InvestigateRandomDelay minimum="0.0" maximum="0.0"/>
+     </FsmConfig>
+    </ArkAiTreeSearchNode>
+    <ArkAiTreeDormantNode/>
+    <ArkAiTreeNoticeNode speed="fastest">
+     <InterruptNoticeAnimDistance minimum="0.0" maximum="4.0"/>
+     <InterruptNoticeAnimMinPlayTime minimum="0.0" maximum="0.5"/>
+    </ArkAiTreeNoticeNode>
+    <ArkAiTreeDistractedNode>
+     <config distractionCloseArrivalDistance="1.75" distractionCloseFailTimerDuration="10.0" distractionStopArrivalDistance="0.1" distractionMoveDistanceFail="4.0"/>
+    </ArkAiTreeDistractedNode>
+    <ArkAiTreePatrolNode patrolDialogPulseTime="1.0" timeToGiveupUnreachablePatrol="20.0" patrolIdleCooldown="2.0"/>
+    <ArkAiTreeGuardNode/>
+    <ArkAiTreeWanderNode maxDistanceToWander="15" minDistanceToNextWanderPoint="5.0" chanceToRandomWander="0.05000001" attractorRadius="50" bStartsActive="true" randomWaitIdleAnimChance="0" tryFollowLeaderDist="5.0">
+     <RandomWaitPeriod minimum="1" maximum="2"/>
+     <NumPointsToWanderInAreasBeforeChange minimum="3" maximum="7"/>
+    </ArkAiTreeWanderNode>
+   </Children>
+  </ArkAiTreeStackNode>
+ </Root>
+</ArkAiTree>

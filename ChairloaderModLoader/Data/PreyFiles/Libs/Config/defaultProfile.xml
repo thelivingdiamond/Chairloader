@@ -1,0 +1,947 @@
+
+<profile version="73">
+ <platforms>
+  <PC keyboard="1" xboxpad="1" ps4pad="1" steam="1"/>
+  <XboxOne keyboard="1" xboxpad="1" ps4pad="0"/>
+  <PS4 keyboard="1" xboxpad="0" ps4pad="1"/>
+ </platforms>
+ <actionmap name="debug">
+  <action name="thirdperson" onPress="1" noModifiers="1" keyboard="f2"/>
+  <action name="flymode" onPress="1" noModifiers="1" keyboard="f3"/>
+  <action name="togglepdrawhelpers" onPress="1" noModifiers="1" keyboard="f10"/>
+  <action name="togglearkprofile" onPress="1" noModifiers="1" keyboard="f8"/>
+  <action name="debug" onPress="1" keyboard="7"/>
+  <action name="increasetimedilation" onPress="1" keyboard="np_add"/>
+  <action name="decreasetimedilation" onPress="1" keyboard="np_subtract"/>
+  <action name="normaltimedilation" onPress="1" keyboard="np_multiply"/>
+  <action name="ui_toggle_debug" onPress="1" keyboard="f1"/>
+  <action name="editor_pause" onPress="1" keyboard="ctrl,p"/>
+  <action name="reportbug" onPress="1" keyboard="ctrl,b"/>
+  <action name="openlog" onPress="1" keyboard="ctrl,l"/>
+ </actionmap>
+ <actionmap name="flycam">
+  <action name="flycam_movey" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="flycam_movex" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="flycam_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="flycam_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="flycam_moveup" onPress="1" onRelease="1" xboxpad="xi_triggerr" ps4pad="pad_r2" steam="game:sc_triggerr"/>
+  <action name="flycam_movedown" onPress="1" onRelease="1" xboxpad="xi_triggerl" ps4pad="pad_l2" steam="game:sc_triggerl"/>
+  <action name="flycam_speedup" onPress="1" xboxpad="xi_dpad_up" ps4pad="pad_up" steam="game:sc_dpad_up"/>
+  <action name="flycam_speeddown" onPress="1" xboxpad="xi_dpad_down" ps4pad="pad_down" steam="game:sc_dpad_down"/>
+  <action name="flycam_turbo" onPress="1" onRelease="1" keyboard="space" xboxpad="xi_a" ps4pad="pad_cross" steam="game:sc_a"/>
+  <action name="flycam_setpoint" onPress="1" xboxpad="xi_shoulderl" ps4pad="pad_l1" steam="game:sc_l1"/>
+  <action name="flycam_play" onPress="1" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="flycam_clear" onPress="1" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y"/>
+ </actionmap>
+ <actionmap name="default">
+  <action name="xi_movey" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="xi_movex" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="moveleft" onPress="1" onRelease="1" retriggerable="1" keyboard="a"/>
+  <action name="moveright" onPress="1" onRelease="1" retriggerable="1" keyboard="d"/>
+  <action name="moveforward" onPress="1" onRelease="1" retriggerable="1" keyboard="w"/>
+  <action name="moveback" onPress="1" onRelease="1" retriggerable="1" keyboard="s"/>
+  <action name="loadLastSave" keyboard="f9" onPress="1"/>
+  <action name="quicksave" keyboard="f5" onPress="1"/>
+  <action name="ui_toggle_pause" onPress="1" xboxpad="xi_start" ps4pad="pad_start" steam="game:sc_start"/>
+  <action name="ui_start_pause" onPress="1" keyboard="escape"/>
+  <action name="ui_click" onPress="1" onRelease="1" xboxpad="xi_a" ps4pad="pad_cross" steam="menu:sc_a">
+   <keyboard>
+    <inputdata input="enter"/>
+    <inputdata input="np_enter"/>
+   </keyboard>
+  </action>
+  <action name="ui_up" onPress="1" onHold="1" holdTriggerDelay="0.15" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="up"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_up"/>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+    <inputdata input="xi_thumbry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_up"/>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+    <inputdata input="pad_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_up"/>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+    <inputdata input="menu:sc_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="ui_down" onPress="1" onHold="1" holdTriggerDelay="0.15" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="down"/>
+    <inputdata input="tab"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_down"/>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+    <inputdata input="xi_thumbry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_down"/>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+    <inputdata input="pad_stickry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_down"/>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+    <inputdata input="menu:sc_stickry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="ui_left" onPress="1" onHold="1" holdTriggerDelay="0.15" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="left"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_left"/>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+    <inputdata input="xi_thumbrx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_left"/>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+    <inputdata input="pad_stickrx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_left"/>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+    <inputdata input="menu:sc_stickrx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="ui_right" onPress="1" onHold="1" holdTriggerDelay="0.15" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="right"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_right"/>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+    <inputdata input="xi_thumbrx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_right"/>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+    <inputdata input="pad_stickrx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_right"/>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+    <inputdata input="menu:sc_stickrx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="ui_back" keyboard="escape" onPress="1" onRelease="1" xboxpad="xi_b" ps4pad="pad_circle" steam="menu:sc_b"/>
+  <action name="ui_confirm" onPress="1" onRelease="1" xboxpad="xi_y" ps4pad="pad_triangle" steam="menu:sc_y"/>
+  <action name="ui_reset" onPress="1" onRelease="1" xboxpad="xi_x" ps4pad="pad_square" steam="menu:sc_x"/>
+  <action name="ui_skip_video" onPress="1" keyboard="escape" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+ </actionmap>
+ <actionmap name="player">
+  <action name="reload" onRelease="1" keyboard="r" xboxpad="xi_x" ps4pad="pad_square" steam="game:sc_x"/>
+  <action name="use" onPress="1" onHold="1" onRelease="1" holdTriggerDelay="0.33" holdRepeatDelay="-1" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="game:sc_x"/>
+  <action name="carry" onHold="1" holdRepeatDelay="-1" holdTriggerDelay="0.2" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="game:sc_x"/>
+  <action name="specialUse" onPress="1" onHold="1" onRelease="1" holdRepeatDelay="-1" holdTriggerDelay="0.25" keyboard="g" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y"/>
+  <action name="viewTutorial" onPress="1" keyboard="t" xboxpad="xi_start" ps4pad="pad_start" steam="game:sc_start"/>
+  <action name="attack1" onPress="1" onRelease="1" onHold="1" keyboard="mouse1" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" steam="game:sc_r2"/>
+  <action name="fire_turret" onPress="1" onRelease="1" onHold="1" keyboard="mouse1" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" steam="game:sc_r2"/>
+  <action name="worldui_examine" onPress="1" keyboard="z" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="game:sc_r3"/>
+  <action name="scanner_lock_target" onRelease="1" releaseTriggerThreshold="0.15" keyboard="x" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y"/>
+  <action name="toggle_scope" onPress="1" keyboard="z" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="game:sc_r3"/>
+  <action name="zoom_in" onPress="1" onHold="1" holdRepeatDelay="0.25" holdTriggerDelay="0.25" keyboard="mwheel_up" xboxpad="xi_dpad_up" ps4pad="pad_up" steam="game:sc_dpad_up"/>
+  <action name="zoom_out" onPress="1" onHold="1" holdRepeatDelay="0.25" holdTriggerDelay="0.25" keyboard="mwheel_down" xboxpad="xi_dpad_down" ps4pad="pad_down" steam="game:sc_dpad_down"/>
+  <action name="jump" onPress="1" onRelease="1" keyboard="space" xboxpad="xi_a" ps4pad="pad_cross" steam="game:sc_a"/>
+  <action name="mimic_swap_camera" onPress="1" keyboard="z" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="game:sc_r3"/>
+  <action name="sneak" onPress="1" onRelease="1" retriggerable="1" keyboard="c" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="flycam_moveup" onPress="1" onHold="1" onRelease="1" xboxpad="xi_shoulderl" ps4pad="pad_l1" steam="game:sc_l1"/>
+  <action name="flycam_movedown" onPress="1" onHold="1" onRelease="1" xboxpad="xi_shoulderr" ps4pad="pad_r1" steam="game:sc_r1"/>
+  <action name="sprint" onPress="1" onRelease="1" retriggerable="1" keyboard="lshift" xboxpad="xi_thumbl" ps4pad="pad_l3" steam="game:sc_l3"/>
+  <action name="respawn" onPress="1" onRelease="1" keyboard="mouse1" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" steam="game:sc_r2"/>
+  <action name="leanleft" onPress="1" onRelease="1" keyboard="q" xboxpad="xi_shoulderl" ps4pad="pad_l1" steam="game:sc_l1"/>
+  <action name="leanright" onPress="1" onRelease="1" keyboard="e" xboxpad="xi_shoulderr" ps4pad="pad_r1" steam="game:sc_r1"/>
+  <action name="toggle_weapon" onPress="1" keyboard="1"/>
+  <action name="nextweapon" onRelease="1" releaseTriggerThreshold="0.25" keyboard="mwheel_up"/>
+  <action name="prevweapon" onRelease="1" releaseTriggerThreshold="0.25" keyboard="mwheel_down"/>
+  <action name="nextitem" onRelease="1" releaseTriggerThreshold="0.25" keyboard="down"/>
+  <action name="previtem" onRelease="1" releaseTriggerThreshold="0.25" keyboard="up"/>
+  <action name="quickselect_left" onPress="1" onRelease="1" onHold="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_left" ps4pad="pad_left" steam="game:sc_dpad_left"/>
+  <action name="quickselect_right" onPress="1" onRelease="1" onHold="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_right" ps4pad="pad_right" steam="game:sc_dpad_right"/>
+  <action name="quickselect_down" onPress="1" onRelease="1" onHold="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_down" ps4pad="pad_down" steam="game:sc_dpad_down"/>
+  <action name="toggle_flashlight" onRelease="1" xboxpad="xi_dpad_up" ps4pad="pad_up" keyboard="v" steam="game:sc_dpad_up"/>
+  <action name="play_audiolog" onHold="1" holdRepeatDelay="-1" holdTriggerDelay="0.5">
+   <keyboard input="l" onPress="1"/>
+   <xboxpad input="xi_back"/>
+   <ps4pad input="pad_select"/>
+   <steam input="game:sc_back"/>
+  </action>
+  <action name="rotateyaw" keyboard="maxis_x"/>
+  <action name="rotatepitch" keyboard="maxis_y"/>
+  <action name="xi_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="xi_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="mouse_enter_focusmode" onPress="1">
+   <keyboard>
+    <inputdata input="mwheel_up"/>
+    <inputdata input="mwheel_down"/>
+   </keyboard>
+  </action>
+  <action name="enter_focusmode" onHold="1" holdRepeatDelay="-1" holdTriggerDelay="0.15" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y">
+   <keyboard input="mouse3" onPress="1"/>
+  </action>
+  <action name="select_equipped_power" onPress="1" keyboard="mouse2" xboxpad="xi_triggerl_btn" ps4pad="pad_l2" steam="game:sc_l2"/>
+  <action name="equip_last_weapon" onRelease="1" releaseTriggerThreshold="0.15" keyboard="tab" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y"/>
+  <action name="togglepda" onRelease="1" releaseTriggerThreshold="0.25" xboxpad="xi_back" ps4pad="pad_select" steam="game:sc_back"/>
+  <action name="toggleinventory" onPress="1" keyboard="i"/>
+  <action name="toggleobjectives" onPress="1" keyboard="o"/>
+  <action name="toggleabilities" onPress="1" keyboard="n"/>
+  <action name="togglemap" onPress="1" keyboard="m"/>
+  <action name="toggledata" onPress="1" keyboard="j"/>
+  <action name="togglestatus" onPress="1" keyboard="p"/>
+  <action name="instakill" onPress="1" keyboard="k"/>
+  <action name="loot_navup" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="up"/>
+   <xboxpad input="xi_dpad_up"/>
+   <ps4pad input="pad_up"/>
+   <steam input="game:sc_dpad_up"/>
+  </action>
+  <action name="loot_navdown" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="down"/>
+   <xboxpad input="xi_dpad_down"/>
+   <ps4pad input="pad_down"/>
+   <steam input="game:sc_dpad_down"/>
+  </action>
+  <action name="loot_navright" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="right"/>
+   <xboxpad input="xi_dpad_right"/>
+   <ps4pad input="pad_right"/>
+   <steam input="game:sc_dpad_right"/>
+  </action>
+  <action name="loot_navleft" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="left"/>
+   <xboxpad input="xi_dpad_left"/>
+   <ps4pad input="pad_left"/>
+   <steam input="game:sc_dpad_left"/>
+  </action>
+  <action name="loot_search" onRelease="1" releaseTriggerThreshold="0.25">
+   <keyboard input="g"/>
+   <xboxpad input="xi_y"/>
+   <ps4pad input="pad_triangle"/>
+   <steam input="game:sc_y"/>
+  </action>
+  <action name="loot_scroll_up" onRelease="1" keyboard="mwheel_up"/>
+  <action name="loot_scroll_down" onRelease="1" keyboard="mwheel_down"/>
+  <action name="favorites_confirm" onPress="1" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="game:sc_x"/>
+  <action name="favorites_cancel" onPress="1" onRelease="1" retriggerable="1" keyboard="escape" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="keypad0" onRelease="1" keyboard="np_0"/>
+  <action name="keypad1" onRelease="1" keyboard="np_1"/>
+  <action name="keypad2" onRelease="1" keyboard="np_2"/>
+  <action name="keypad3" onRelease="1" keyboard="np_3"/>
+  <action name="keypad4" onRelease="1" keyboard="np_4"/>
+  <action name="keypad5" onRelease="1" keyboard="np_5"/>
+  <action name="keypad6" onRelease="1" keyboard="np_6"/>
+  <action name="keypad7" onRelease="1" keyboard="np_7"/>
+  <action name="keypad8" onRelease="1" keyboard="np_8"/>
+  <action name="keypad9" onRelease="1" keyboard="np_9"/>
+  <action name="numkey0" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="0"/>
+   </keyboard>
+  </action>
+  <action name="numkey1" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="1"/>
+   </keyboard>
+  </action>
+  <action name="numkey2" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="2"/>
+   </keyboard>
+  </action>
+  <action name="numkey3" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="3"/>
+   </keyboard>
+  </action>
+  <action name="numkey4" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="4"/>
+   </keyboard>
+  </action>
+  <action name="numkey5" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="5"/>
+   </keyboard>
+  </action>
+  <action name="numkey6" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="6"/>
+   </keyboard>
+  </action>
+  <action name="numkey7" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="7"/>
+   </keyboard>
+  </action>
+  <action name="numkey8" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="8"/>
+   </keyboard>
+  </action>
+  <action name="numkey9" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="9"/>
+   </keyboard>
+  </action>
+  <action name="backspace" onRelease="1" keyboard="backspace"/>
+ </actionmap>
+ <actionmap name="mimic_grab">
+  <action name="attack1" onPress="1" onRelease="1" onHold="1" keyboard="mouse1" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" steam="game:sc_r2"/>
+  <action name="moveleft" onPress="1" onRelease="1" retriggerable="1" keyboard="a"/>
+  <action name="moveright" onPress="1" onRelease="1" retriggerable="1" keyboard="d"/>
+  <action name="moveforward" onPress="1" onRelease="1" retriggerable="1" keyboard="w"/>
+  <action name="moveback" onPress="1" onRelease="1" retriggerable="1" keyboard="s"/>
+  <action name="jump" onPress="1" onRelease="1" keyboard="space" xboxpad="xi_a" ps4pad="pad_cross" steam="game:sc_a"/>
+  <action name="sneak" onPress="1" onRelease="1" retriggerable="1" keyboard="c" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="prone" onPress="1" onHold="1" onRelease="1" keyboard="v" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="game:sc_r3"/>
+  <action name="sprint" onPress="1" onRelease="1" retriggerable="1" keyboard="lshift" xboxpad="xi_thumbl" ps4pad="pad_l3" steam="game:sc_l3"/>
+  <action name="respawn" onPress="1" onRelease="1" keyboard="mouse1" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" steam="game:sc_r2"/>
+  <action name="toggle_flashlight" onHold="1" holdRepeatDelay="-1" holdTriggerDelay="0.25">
+   <keyboard input="g" onPress="1" pressTriggerDelayRepeatOverride="0.0"/>
+   <xboxpad input="xi_dpad_down" inputsToBlock="xi_dpad_left|xi_dpad_right" inputBlockTime="0.12"/>
+   <ps4pad input="pad_down" inputsToBlock="pad_left|pad_right" inputBlockTime="0.12"/>
+   <steam input="game:sc_dpad_down" inputsToBlock="game:sc_dpad_left|game:sc_dpad_right" inputBlockTime="0.12"/>
+  </action>
+  <action name="rotateyaw" keyboard="maxis_x"/>
+  <action name="rotatepitch" keyboard="maxis_y"/>
+  <action name="rotaterollleft" onPress="1" onRelease="1" onHold="1" keyboard="q"/>
+  <action name="rotaterollright" onPress="1" onRelease="1" onHold="1" keyboard="e"/>
+  <action name="xi_movey" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="xi_movex" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="xi_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="xi_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="togglepda" onPress="1" xboxpad="xi_back" ps4pad="pad_select" steam="game:sc_back"/>
+  <action name="toggleinventory" onPress="1" keyboard="i"/>
+  <action name="toggleobjectives" onPress="1" keyboard="o"/>
+  <action name="toggleabilities" onPress="1" keyboard="n"/>
+  <action name="togglemap" onPress="1" keyboard="m"/>
+  <action name="toggledata" onPress="1" keyboard="j"/>
+  <action name="togglestatus" onPress="1" keyboard="p"/>
+  <action name="instakill" onPress="1" keyboard="k"/>
+ </actionmap>
+ <actionmap name="etherDuplicate">
+  <action name="start_ether_duplicate" onPress="1" keyboard="mouse1">
+   <xboxpad>
+    <inputdata input="xi_a"/>
+    <inputdata input="xi_triggerr_btn"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_cross"/>
+    <inputdata input="pad_r2"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="game:sc_a"/>
+    <inputdata input="game:sc_r2"/>
+   </steam>
+  </action>
+  <action name="moveleft" onPress="1" onRelease="1" retriggerable="1" keyboard="a"/>
+  <action name="moveright" onPress="1" onRelease="1" retriggerable="1" keyboard="d"/>
+  <action name="moveforward" onPress="1" onRelease="1" retriggerable="1" keyboard="w"/>
+  <action name="moveback" onPress="1" onRelease="1" retriggerable="1" keyboard="s"/>
+  <action name="xi_movey" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="xi_movex" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="xi_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="xi_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="rotateyaw" keyboard="maxis_x"/>
+  <action name="rotatepitch" keyboard="maxis_y"/>
+  <action name="sprint" onPress="1" onRelease="1" retriggerable="1" keyboard="lshift" xboxpad="xi_thumbl" ps4pad="pad_l3" steam="game:sc_l3"/>
+ </actionmap>
+ <actionmap name="focusmode">
+  <action name="mouse_cancel_focusmode_type1" onPress="1">
+   <keyboard>
+    <inputdata input="f"/>
+    <inputdata input="escape"/>
+   </keyboard>
+  </action>
+  <action name="mouse_execute_power_type1" onRelease="1" keyboard="mouse2"/>
+  <action name="mouse_cancel_focusmode_type2" onRelease="1">
+   <keyboard>
+    <inputdata input="mouse2"/>
+    <inputdata input="mouse3"/>
+    <inputdata input="escape"/>
+   </keyboard>
+  </action>
+  <action name="mouse_execute_power_type2" onPress="1" keyboard="mouse1"/>
+  <action name="controller_cancel_focusmode" onPress="1" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="controller_cancel_psitargeting" onPress="1" xboxpad="xi_x" ps4pad="pad_square" steam="game:sc_x"/>
+  <action name="controller_execute_power" onRelease="1" xboxpad="xi_triggerl_btn" ps4pad="pad_l2" steam="game:sc_l2"/>
+  <action name="controller_select_item" onRelease="1" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y"/>
+  <action name="mouse_select_item" onPress="1">
+   <keyboard>
+    <inputdata input="mouse1"/>
+    <inputdata input="mouse3"/>
+   </keyboard>
+  </action>
+  <action name="mouse_cancel_select_item" onPress="1" keyboard="mouse2"/>
+  <action name="mouse_menu_rotate_yaw" keyboard="maxis_x"/>
+  <action name="mouse_menu_rotate_pitch" keyboard="maxis_y"/>
+  <action name="controller_left_menu_rotate_yaw" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="controller_left_menu_rotate_pitch" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="controller_right_menu_rotate_yaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="controller_right_menu_rotate_pitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="menu_rotate_up" onPress="1" keyboard="mwheel_down"/>
+  <action name="menu_rotate_down" onPress="1" keyboard="mwheel_up"/>
+  <action name="target_rotate_yaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="target_rotate_pitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="rotateyaw" keyboard="maxis_x"/>
+  <action name="rotatepitch" keyboard="maxis_y"/>
+  <action name="xi_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="xi_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="sprint" onPress="1" onRelease="1" retriggerable="1" keyboard="lshift" xboxpad="xi_thumbl" ps4pad="pad_l3" steam="game:sc_l3"/>
+  <action name="sneak" onPress="1" onRelease="1" retriggerable="1" keyboard="c" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="jump" onPress="1" onRelease="1" keyboard="space" xboxpad="xi_a" ps4pad="pad_cross" steam="game:sc_a"/>
+  <action name="leanleft" onPress="1" onRelease="1" keyboard="q" xboxpad="xi_shoulderl" ps4pad="pad_l1" steam="game:sc_l1"/>
+  <action name="leanright" onPress="1" onRelease="1" keyboard="e" xboxpad="xi_shoulderr" ps4pad="pad_r1" steam="game:sc_r1"/>
+  <action name="use_psi_item" onPress="1" xboxpad="xi_triggerl_btn" ps4pad="pad_l2" keyboard="q" steam="game:sc_l2"/>
+  <action name="use_healing_item" onPress="1" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" keyboard="e" steam="game:sc_r2"/>
+  <action name="use_food_item" onPress="1" xboxpad="xi_shoulderr" ps4pad="pad_r1" keyboard="c" steam="game:sc_r1"/>
+  <action name="quickselect_left" onPress="1" onRelease="1" onHold="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_left" ps4pad="pad_left" steam="game:sc_dpad_left"/>
+  <action name="quickselect_right" onPress="1" onRelease="1" onHold="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_right" ps4pad="pad_right" steam="game:sc_dpad_right"/>
+  <action name="quickselect_down" onPress="1" onRelease="1" onHold="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_down" ps4pad="pad_down" steam="game:sc_dpad_down"/>
+  <action name="numkey0" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="0"/>
+   </keyboard>
+  </action>
+  <action name="numkey1" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="1"/>
+   </keyboard>
+  </action>
+  <action name="numkey2" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="2"/>
+   </keyboard>
+  </action>
+  <action name="numkey3" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="3"/>
+   </keyboard>
+  </action>
+  <action name="numkey4" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="4"/>
+   </keyboard>
+  </action>
+  <action name="numkey5" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="5"/>
+   </keyboard>
+  </action>
+  <action name="numkey6" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="6"/>
+   </keyboard>
+  </action>
+  <action name="numkey7" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="7"/>
+   </keyboard>
+  </action>
+  <action name="numkey8" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="8"/>
+   </keyboard>
+  </action>
+  <action name="numkey9" onPress="1" onHold="1" holdTriggerDelay="0.5" onRelease="1">
+   <keyboard>
+    <inputdata input="9"/>
+   </keyboard>
+  </action>
+ </actionmap>
+ <actionmap name="psi_scanning_fanfare">
+  <action name="toggle_scope" onPress="1" keyboard="z" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="game:sc_r3"/>
+  <action name="scanner_exit_fanfare" onPress="1" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b">
+   <keyboard>
+    <inputdata input="mouse2"/>
+    <inputdata input="x"/>
+   </keyboard>
+  </action>
+  <action name="toggleabilities" onPress="1" keyboard="n"/>
+  <action name="togglepda" onPress="1" xboxpad="xi_back" ps4pad="pad_select" steam="game:sc_back"/>
+ </actionmap>
+ <actionmap name="hacking">
+  <action name="hack_moveprompt_y" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="hack_moveprompt_x" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="hack_moveup" onPress="1" onRelease="1" keyboard="w"/>
+  <action name="hack_movedown" onPress="1" onRelease="1" keyboard="s"/>
+  <action name="hack_moveleft" onPress="1" onRelease="1" keyboard="a"/>
+  <action name="hack_moveright" onPress="1" onRelease="1" keyboard="d"/>
+  <action name="hack_final1" onPress="1" xboxpad="xi_x" ps4pad="pad_square" keyboard="z" steam="game:sc_x"/>
+  <action name="hack_final2" onPress="1" xboxpad="xi_y" ps4pad="pad_triangle" keyboard="x" steam="game:sc_y"/>
+  <action name="hack_final3" onPress="1" xboxpad="xi_a" ps4pad="pad_cross" keyboard="c" steam="game:sc_a"/>
+  <action name="hack_final4" onPress="1" xboxpad="xi_b" ps4pad="pad_circle" keyboard="f" steam="game:sc_b"/>
+ </actionmap>
+ <actionmap name="world_ui_examination">
+  <action name="togglepda" onRelease="1" releaseTriggerThreshold="0.25" xboxpad="xi_back" ps4pad="pad_select" steam="game:sc_back"/>
+  <action name="toggleinventory" onPress="1" keyboard="i"/>
+  <action name="toggleobjectives" onPress="1" keyboard="o"/>
+  <action name="toggleabilities" onPress="1" keyboard="n"/>
+  <action name="togglemap" onPress="1" keyboard="m"/>
+  <action name="toggledata" onPress="1" keyboard="j"/>
+  <action name="togglestatus" onPress="1" keyboard="p"/>
+  <action name="worldui_examine" onPress="1" keyboard="z" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="game:sc_r3"/>
+  <action name="jump" onPress="1" onRelease="1" keyboard="space"/>
+  <action name="use" onRelease="1">
+   <keyboard input="f" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <keyboard input="mouse1" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <xboxpad input="xi_x" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <xboxpad input="xi_a" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <xboxpad input="xi_triggerr_btn" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <ps4pad input="pad_square" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <ps4pad input="pad_cross" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <ps4pad input="pad_r2" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <steam input="game:sc_x" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <steam input="game:sc_a" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+   <steam input="game:sc_r2" onPress="1" onHold="1" holdTriggerDelay="0.2" holdRepeatDelay="-1"/>
+  </action>
+  <action name="rotateyaw" keyboard="maxis_x"/>
+  <action name="rotatepitch" keyboard="maxis_y"/>
+  <action name="xi_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="xi_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="xi_reticle_movex" xboxpad="xi_thumblx" ps4pad="pad_sticklx" steam="game:sc_sticklx"/>
+  <action name="xi_reticle_movey" xboxpad="xi_thumbly" ps4pad="pad_stickly" steam="game:sc_stickly"/>
+  <action name="xi_recenter_worldui" onPress="1" xboxpad="xi_thumbl" ps4pad="pad_l3" steam="game:sc_l3"/>
+  <action name="examination_back" onPress="1" keyboard="mouse2" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="viewTutorial" onPress="1" keyboard="t" xboxpad="xi_start" ps4pad="pad_start" steam="game:sc_start"/>
+  <action name="keypad0" onRelease="1" keyboard="np_0"/>
+  <action name="keypad1" onRelease="1" keyboard="np_1"/>
+  <action name="keypad2" onRelease="1" keyboard="np_2"/>
+  <action name="keypad3" onRelease="1" keyboard="np_3"/>
+  <action name="keypad4" onRelease="1" keyboard="np_4"/>
+  <action name="keypad5" onRelease="1" keyboard="np_5"/>
+  <action name="keypad6" onRelease="1" keyboard="np_6"/>
+  <action name="keypad7" onRelease="1" keyboard="np_7"/>
+  <action name="keypad8" onRelease="1" keyboard="np_8"/>
+  <action name="keypad9" onRelease="1" keyboard="np_9"/>
+  <action name="backspace" onRelease="1" keyboard="backspace"/>
+ </actionmap>
+ <actionmap name="examination">
+  <action name="use" onPress="1" onHold="1" onRelease="1" holdTriggerDelay="0.33" holdRepeatDelay="-1" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="game:sc_x"/>
+  <action name="specialUse" onPress="1" onHold="1" onRelease="1" holdRepeatDelay="-1" holdTriggerDelay="0.25" keyboard="g" xboxpad="xi_y" ps4pad="pad_triangle" steam="game:sc_y"/>
+  <action name="rotateyaw" keyboard="maxis_x"/>
+  <action name="rotatepitch" keyboard="maxis_y"/>
+  <action name="xi_rotateyaw" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="game:sc_stickrx"/>
+  <action name="xi_rotatepitch" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="game:sc_stickry"/>
+  <action name="examination_back" onPress="1" keyboard="mouse2" xboxpad="xi_b" ps4pad="pad_circle" steam="game:sc_b"/>
+  <action name="viewTutorial" onPress="1" keyboard="t" xboxpad="xi_start" ps4pad="pad_start" steam="game:sc_start"/>
+  <action name="loot_navup" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="up"/>
+   <xboxpad input="xi_dpad_up"/>
+   <ps4pad input="pad_up"/>
+   <steam input="game:sc_dpad_up"/>
+  </action>
+  <action name="loot_navdown" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="down"/>
+   <xboxpad input="xi_dpad_down"/>
+   <ps4pad input="pad_down"/>
+   <steam input="game:sc_dpad_down"/>
+  </action>
+  <action name="loot_navright" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="right"/>
+   <xboxpad input="xi_dpad_right"/>
+   <ps4pad input="pad_right"/>
+   <steam input="game:sc_dpad_right"/>
+  </action>
+  <action name="loot_navleft" onPress="1" onHold="1" holdRepeatDelay="0.2">
+   <keyboard input="left"/>
+   <xboxpad input="xi_dpad_left"/>
+   <ps4pad input="pad_left"/>
+   <steam input="game:sc_dpad_left"/>
+  </action>
+  <action name="loot_search" onRelease="1" releaseTriggerThreshold="0.25">
+   <keyboard input="g"/>
+   <xboxpad input="xi_y"/>
+   <ps4pad input="pad_triangle"/>
+   <steam input="game:sc_y"/>
+  </action>
+  <action name="loot_scroll_up" onRelease="1" keyboard="mwheel_up"/>
+  <action name="loot_scroll_down" onRelease="1" keyboard="mwheel_down"/>
+ </actionmap>
+ <actionmap name="menu">
+  <action name="menu_map_zoomout">
+   <keyboard input="mwheel_down" onPress="1"/>
+   <xboxpad input="xi_thumbry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   <ps4pad input="pad_stickry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   <steam input="menu:sc_stickry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+  </action>
+  <action name="menu_map_zoomin">
+   <keyboard input="mwheel_up" onPress="1"/>
+   <xboxpad input="xi_thumbry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   <ps4pad input="pad_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   <steam input="menu:sc_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+  </action>
+  <action name="menu_rotatex" xboxpad="xi_thumbrx" ps4pad="pad_stickrx" steam="menu:sc_stickrx"/>
+  <action name="menu_rotatey" xboxpad="xi_thumbry" ps4pad="pad_stickry" steam="menu:sc_stickry"/>
+  <action name="menu_map_pan_up" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <keyboard>
+    <inputdata input="w"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="0.1" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="0.1" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="0.1" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_map_pan_down" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <keyboard>
+    <inputdata input="s"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="-0.1" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="-0.1" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="-0.1" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_map_pan_right" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <keyboard>
+    <inputdata input="d"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="0.1" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="0.1" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="0.1" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_map_pan_left" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <keyboard>
+    <inputdata input="a"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="-0.1" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="-0.1" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="-0.1" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_map_floor_up" onPress="1" xboxpad="xi_dpad_up" ps4pad="pad_up" keyboard="up" steam="menu:sc_dpad_up"/>
+  <action name="menu_map_floor_down" onPress="1" xboxpad="xi_dpad_down" ps4pad="pad_down" keyboard="down" steam="menu:sc_dpad_down"/>
+  <action name="menu_map_center_to_player" onPress="1" xboxpad="xi_thumbl" ps4pad="pad_l3" keyboard="space" steam="menu:sc_l3"/>
+  <action name="menu_map_reset_zoom" onPress="1" xboxpad="xi_thumbr" ps4pad="pad_r3" keyboard="mouse3" steam="menu:sc_r3"/>
+  <action name="menu_map_objective" onPress="1" xboxpad="xi_y" ps4pad="pad_triangle" keyboard="r" steam="menu:sc_y"/>
+  <action name="menu_show_completed_objectives" onPress="1" xboxpad="xi_x" ps4pad="pad_square" keyboard="x" steam="menu:sc_x"/>
+  <action name="menu_scrollup" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <keyboard>
+    <inputdata input="mwheel_up"/>
+   </keyboard>
+  </action>
+  <action name="xi_menu_scrollup" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <xboxpad>
+    <inputdata input="xi_thumbry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_scrolldown" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <keyboard>
+    <inputdata input="mwheel_down"/>
+   </keyboard>
+  </action>
+  <action name="xi_menu_scrolldown" onPress="1" onHold="1" holdTriggerDelay="0.01" holdRepeatDelay="0.01">
+   <xboxpad>
+    <inputdata input="xi_thumbry" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_stickry" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_fcommand1" onPress="1" keyboard="f1"/>
+  <action name="menu_fcommand2" onPress="1" keyboard="f2"/>
+  <action name="menu_switchtab_left" onPress="1" keyboard="q" xboxpad="xi_shoulderl" ps4pad="pad_l1" steam="menu:sc_l1"/>
+  <action name="menu_switchtab_right" onPress="1" keyboard="e" xboxpad="xi_shoulderr" ps4pad="pad_r1" steam="menu:sc_r1"/>
+  <action name="menu_switchpage_left" onPress="1" keyboard="lshift" xboxpad="xi_triggerl_btn" ps4pad="pad_l2" steam="menu:sc_l2"/>
+  <action name="menu_switchpage_right" onPress="1" keyboard="tab" xboxpad="xi_triggerr_btn" ps4pad="pad_r2" steam="menu:sc_r2"/>
+  <action name="menu_up" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="up"/>
+    <inputdata input="w"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_up"/>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_up"/>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_up"/>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_down" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="down"/>
+    <inputdata input="s"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_down"/>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_down"/>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_down"/>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_left" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="left"/>
+    <inputdata input="a"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_left"/>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_left"/>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_left"/>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_right" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <keyboard>
+    <inputdata input="right"/>
+    <inputdata input="d"/>
+   </keyboard>
+   <xboxpad>
+    <inputdata input="xi_dpad_right"/>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_right"/>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_dpad_right"/>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_stick_up" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <xboxpad>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_stick_down" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <xboxpad>
+    <inputdata input="xi_thumbly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_stickly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_stickly" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_stick_left" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <xboxpad>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_stick_right" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <xboxpad>
+    <inputdata input="xi_thumblx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </xboxpad>
+   <ps4pad>
+    <inputdata input="pad_sticklx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </ps4pad>
+   <steam>
+    <inputdata input="menu:sc_sticklx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   </steam>
+  </action>
+  <action name="menu_arrow_up" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <keyboard input="up"/>
+   <xboxpad input="xi_dpad_up"/>
+   <ps4pad input="pad_up"/>
+   <steam input="menu:sc_dpad_up"/>
+  </action>
+  <action name="menu_arrow_down" onPress="1" onHold="1" holdTriggerDelay="0.3" holdRepeatDelay="0.15">
+   <keyboard input="down"/>
+   <xboxpad input="xi_dpad_down"/>
+   <ps4pad input="pad_down"/>
+   <steam input="menu:sc_dpad_down"/>
+  </action>
+  <action name="menu_use" onRelease="1" releaseTriggerThreshold="0.2" keyboard="g" xboxpad="xi_x" ps4pad="pad_square" steam="menu:sc_x"/>
+  <action name="menu_drop" onPress="1" keyboard="x" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="menu:sc_r3"/>
+  <action name="menu_examine" onPress="1">
+   <keyboard input="r"/>
+   <xboxpad input="xi_y"/>
+   <ps4pad input="pad_triangle"/>
+   <steam input="menu:sc_y"/>
+  </action>
+  <action name="menu_dismantle" onPress="1" onHold="1" holdTriggerDelay="0.2" keyboard="t" xboxpad="xi_y" ps4pad="pad_triangle" steam="menu:sc_y"/>
+  <action name="menu_split" onPress="1" keyboard="z" xboxpad="xi_thumbr" ps4pad="pad_r3" steam="menu:sc_r3"/>
+  <action name="menu_qsopen" onPress="1" onHold="1" holdTriggerDelay="0.2" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="menu:sc_x"/>
+  <action name="menu_qs_left" onPress="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_left" ps4pad="pad_left" steam="menu:sc_dpad_left"/>
+  <action name="menu_qs_right" onPress="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_right" ps4pad="pad_right" steam="menu:sc_dpad_right"/>
+  <action name="menu_qs_down" onPress="1" holdTriggerDelay="0.5" xboxpad="xi_dpad_down" ps4pad="pad_down" steam="menu:sc_dpad_down"/>
+  <action name="menu_inventory_prev" onPress="1">
+   <keyboard>
+    <inputdata input="mwheel_up"/>
+   </keyboard>
+   <xboxpad input="xi_thumbrx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   <ps4pad input="pad_stickrx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+   <steam input="menu:sc_stickrx" useAnalogCompare="1" analogCompareVal="-0.5" analogCompareOp="LESSTHAN"/>
+  </action>
+  <action name="menu_inventory_next" onPress="1">
+   <keyboard>
+    <inputdata input="mwheel_down"/>
+   </keyboard>
+   <xboxpad input="xi_thumbrx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   <ps4pad input="pad_stickrx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+   <steam input="menu:sc_stickrx" useAnalogCompare="1" analogCompareVal="0.5" analogCompareOp="GREATERTHAN"/>
+  </action>
+  <action name="menu_confirm" onPress="1" xboxpad="xi_a" ps4pad="pad_cross" steam="menu:sc_a">
+   <keyboard>
+    <inputdata input="enter"/>
+    <inputdata input="np_enter"/>
+   </keyboard>
+  </action>
+  <action name="inventory_confirm" onPress="1" onHold="1" onRelease="1" releaseTriggerThreshold="0.2" holdTriggerDelay="0.2" xboxpad="xi_a" ps4pad="pad_cross" steam="menu:sc_a">
+   <keyboard>
+    <inputdata input="enter"/>
+    <inputdata input="np_enter"/>
+   </keyboard>
+  </action>
+  <action name="menu_back" onPress="1" xboxpad="xi_b" ps4pad="pad_circle" steam="menu:sc_b">
+   <keyboard>
+    <inputdata input="backspace"/>
+    <inputdata input="mouse4"/>
+   </keyboard>
+  </action>
+  <action name="menu_dialog_cancel" onPress="1" xboxpad="xi_b" ps4pad="pad_circle" steam="menu:sc_b">
+   <keyboard>
+    <inputdata input="mouse2"/>
+    <inputdata input="backspace"/>
+   </keyboard>
+  </action>
+  <action name="menu_exit" onPress="1" xboxpad="xi_back" ps4pad="pad_select" steam="menu:sc_back">
+   <keyboard>
+    <inputdata input="escape"/>
+   </keyboard>
+  </action>
+  <action name="menu_external_exit" onPress="1" keyboard="mouse2" steam="menu:sc_b"/>
+  <action name="menu_xi_start" onPress="1" xboxpad="xi_start" ps4pad="pad_start" steam="menu:sc_start"/>
+  <action name="menu_take_stow" onRelease="1" releaseTriggerThreshold="0.2" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="menu:sc_x"/>
+  <action name="menu_take_all" onPress="1" onHold="1" onRelease="1" holdRepeatDelay="-1" holdTriggerDelay="0.2" keyboard="f" xboxpad="xi_x" ps4pad="pad_square" steam="menu:sc_x"/>
+  <action name="menu_external_consume" onPress="1" keyboard="g" xboxpad="xi_y" ps4pad="pad_triangle" steam="menu:sc_y"/>
+  <action name="pdanextpage" onPress="1" xboxpad="xi_shoulderr" ps4pad="pad_r1" keyboard="e" steam="menu:sc_r1"/>
+  <action name="pdaprevpage" onPress="1" xboxpad="xi_shoulderl" ps4pad="pad_l1" keyboard="q" steam="menu:sc_l1"/>
+  <action name="toggleinventory" onPress="1" keyboard="i"/>
+  <action name="toggleobjectives" onPress="1" keyboard="o"/>
+  <action name="toggleabilities" onPress="1" keyboard="n"/>
+  <action name="togglemap" onPress="1" keyboard="m"/>
+  <action name="toggledata" onPress="1" keyboard="j"/>
+  <action name="togglestatus" onPress="1" keyboard="p"/>
+  <action name="autosort" onPress="1" keyboard="y" xboxpad="xi_thumbl" ps4pad="pad_l3" steam="menu:sc_l3"/>
+  <action name="menu_reset" onPress="1" keyboard="lalt" xboxpad="xi_x" ps4pad="pad_square" steam="menu:sc_x"/>
+  <action name="menu_delete" onPress="1" keyboard="delete" xboxpad="xi_y" ps4pad="pad_triangle" steam="menu:sc_y"/>
+  <action name="numkey1" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="1"/>
+   </keyboard>
+  </action>
+  <action name="numkey2" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="2"/>
+   </keyboard>
+  </action>
+  <action name="numkey3" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="3"/>
+   </keyboard>
+  </action>
+  <action name="numkey4" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="4"/>
+   </keyboard>
+  </action>
+  <action name="numkey5" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="5"/>
+   </keyboard>
+  </action>
+  <action name="numkey6" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="6"/>
+   </keyboard>
+  </action>
+  <action name="numkey7" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="7"/>
+   </keyboard>
+  </action>
+  <action name="numkey8" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="8"/>
+   </keyboard>
+  </action>
+  <action name="numkey9" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="9"/>
+   </keyboard>
+  </action>
+  <action name="numkey0" onPress="1" onRelease="1">
+   <keyboard>
+    <inputdata input="0"/>
+   </keyboard>
+  </action>
+ </actionmap>
+ <controllerlayouts>
+  <layout name="buttonlayout_default" file="buttonlayout_default.xml"/>
+  <layout name="buttonlayout_alt" file="buttonlayout_alt.xml"/>
+  <layout name="buttonlayout_altlefty" file="buttonlayout_altlefty.xml"/>
+  <layout name="buttonlayout_lefty" file="buttonlayout_lefty.xml"/>
+  <layout name="sticklayout_default" file="sticklayout_default.xml"/>
+  <layout name="sticklayout_lefty" file="sticklayout_lefty.xml"/>
+  <layout name="sticklayout_legacy" file="sticklayout_legacy.xml"/>
+  <layout name="sticklayout_legacylefty" file="sticklayout_legacylefty.xml"/>
+ </controllerlayouts>
+</profile>

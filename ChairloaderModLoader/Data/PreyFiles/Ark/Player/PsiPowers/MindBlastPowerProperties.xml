@@ -1,0 +1,42 @@
+
+<MindBlastPowerProperties>
+ <Common DisplayName="@rpg_PsychoshockName" PsiCost="25" Description="@rpg_PsychoshockShort" PickerLabel="Mind Blast" InterruptsMimicGrabSequence="true" PostProcessVFX="2428940965260336861" PersistentPostProcessVFX="" TargetHighlightColorAlpha="1.0" TargetHighlightColor="0.71,0.32,0.58" ExecutionAudioTrigger="Play_Power_Psychoshock" ExecutionPlayerEffect="Player.Powers.Psychoshock.Psychoshock_CastPV" CostReductionStat="psiCostScaleTelepathic"/>
+ <Levels>
+  <ArkPsiMindBlastProperties SignalPackageId="10641886185795236225" DisplayName="@rpg_PsychoshockName" Description="@rpg_PsychoshockShort" CooldownDurationSec="20">
+   <TargetingProperties MaxRange="15" MinRange="0">
+    <ValidTargetMetaTags>
+     <MetaTag value="9469288860498988665"/>
+     <MetaTag value="9469288860498988629"/>
+    </ValidTargetMetaTags>
+    <ValidTargetClasses>
+     <Class value="ArkApexTentacle"/>
+     <Class value="ArkApexTentacleHead"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+  </ArkPsiMindBlastProperties>
+  <ArkPsiMindBlastProperties SignalPackageId="3149325216954182842" DisplayName="@rpg_PsychoshockName2" Description="@rpg_PsychoshockShort2" CooldownDurationSec="20">
+   <TargetingProperties MaxRange="15" MinRange="0">
+    <ValidTargetMetaTags>
+     <MetaTag value="9469288860498988665"/>
+     <MetaTag value="9469288860498988629"/>
+    </ValidTargetMetaTags>
+    <ValidTargetClasses>
+     <Class value="ArkApexTentacle"/>
+     <Class value="ArkApexTentacleHead"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+  </ArkPsiMindBlastProperties>
+  <ArkPsiMindBlastProperties SignalPackageId="3149325216954182841" DisplayName="@rpg_PsychoshockName3" Description="@rpg_PsychoshockShort3" CooldownDurationSec="20">
+   <TargetingProperties MaxRange="15" MinRange="0">
+    <ValidTargetMetaTags>
+     <MetaTag value="9469288860498988665"/>
+     <MetaTag value="9469288860498988629"/>
+    </ValidTargetMetaTags>
+    <ValidTargetClasses>
+     <Class value="ArkApexTentacle"/>
+     <Class value="ArkApexTentacleHead"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+  </ArkPsiMindBlastProperties>
+ </Levels>
+</MindBlastPowerProperties>

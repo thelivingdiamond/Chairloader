@@ -1,0 +1,182 @@
+
+<Dialog>
+ <Dialog id="13680621263359126007" facefx="0" sync="true" notes="(Lucia Jimenez) A littel under her breath, like &quot;shh he&apos;s listening&quot;" text="Speaker&apos;s still on." modified="04/14/2015 02:54:03 PM"/>
+ <Dialog id="13680621263359126080" facefx="0" sync="true" notes="(Lucia Jimenez) Screaming." text="Oh my god! Security. Security!" modified="07/08/2016 10:28:47 PM"/>
+ <Dialog id="13680621263359126124" facefx="2" sync="0" notes="(Alice Aiken) Shocked someone is still alive." text="Robert?" modified="04/14/2015 02:55:44 PM"/>
+ <Dialog id="13680621263359126141" facefx="2" sync="0" notes="(Alice Aiken) " text="Where are you? " modified="04/14/2015 02:55:58 PM"/>
+ <Dialog id="13680621263359126148" facefx="2" sync="0" notes="(Alice Aiken) " text="Jesus! You&apos;re still in the lab?" modified="07/08/2016 10:30:06 PM"/>
+ <Dialog id="13680621263359126154" facefx="2" sync="0" notes="(Alice Aiken) " text="I don&apos;t know what&apos;s happening. Robert, you have to get out of there. Come to the elevators. Someone said we&apos;re evacuating." modified="07/08/2016 10:30:12 PM"/>
+ <Dialog id="13680621263359126188" facefx="2" sync="0" notes="(Alice Aiken)  Are you still there?" text="Robert?" modified="04/14/2015 02:56:46 PM"/>
+ <Dialog id="13680621263365951467" text="I wanted to be a Gertrude Elion." modified="07/08/2016 10:30:15 PM" notes="(Annalise Gallegos) Confessional. Perhaps she&apos;s been drinking a little. " facefx="2"/>
+ <Dialog id="844024417277874527" text="All right, does everyone have their character sheets-" modified="01/15/2016 11:08:49 PM" notes="(Abigail Foy) Cuts off last word as she&apos;s noticed something amiss" facefx="2"/>
+ <Dialog id="844024417278849279" text="So - I found your sticky note. The one under the desk. With your password." modified="12/03/2015 06:56:38 PM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417278849346" text="I could have gone through all your files, you know. All your secrets." modified="12/03/2015 06:57:19 PM" notes="(Abigail Foy)Chiding" facefx="2"/>
+ <Dialog id="13680621263369402535" text="Hello, Dr. Kelstrup? I wanted to follow up on my request to view one of the volunteer abdication contracts." modified="02/09/2016 01:05:58 AM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263369435082" text="I&apos;m sure. Are you having second thoughts?" modified="02/09/2016 01:29:11 AM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263369435136" text="There&apos;s no happy ending for me, either way. I&apos;m trying not to think about it." modified="02/09/2016 02:11:40 AM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263369603487" text="Nils? Where are you?" modified="02/11/2016 08:31:49 PM" notes="(Mia Bayer) Concerned" facefx="2"/>
+ <Dialog id="13680621263369603664" text="No. We cut the power to lifts to keep those damn things from getting up to the control room." modified="07/08/2016 10:30:24 PM" notes="(Mia Bayer)" facefx="2"/>
+ <Dialog id="13680621263369603837" text="I don&apos;t understand." modified="07/08/2016 10:30:28 PM" notes="(Mia Bayer) To herself, frustrated..." facefx="2"/>
+ <Dialog id="13680621263369604242" text="Yeah, I heard it." modified="07/08/2016 10:30:32 PM" notes="(Mia Bayer) I think we&apos;re screeewed." facefx="2"/>
+ <Dialog id="13680621263369604385" text="That&apos;s what I&apos;m doing, Nils. It&apos;s not responding. None of them are. Shit." modified="05/09/2016 12:03:27 AM" notes="(Mia Bayer) Frustrated." facefx="2"/>
+ <Dialog id="13680621263369604443" text="I don&apos;t know." modified="07/08/2016 10:30:36 PM" notes="(Mia Bayer)" facefx="2"/>
+ <Dialog id="13680621263369604511" text="No, Nils. The system is working in reverse. It&apos;s pulling oxygen out of the air. We&apos;ve got... ten minutes. Tops." modified="07/08/2016 10:30:52 PM" notes="(Mia Bayer) Almost like talking to a child." facefx="2"/>
+ <Dialog id="4349723564913701508" text="Have you seen Price?" modified="02/12/2016 05:46:40 PM" notes="(emily carter) Worried." facefx="2"/>
+ <Dialog id="4349723564913701777" text="No." modified="02/12/2016 05:50:07 PM" notes="(emily carter)" facefx="2"/>
+ <Dialog id="4349723564913701880" text="He&apos;s not answering TranScribe. I even asked Abigail check his cabin before she came in." modified="02/12/2016 06:25:06 PM" notes="(emily carter)" facefx="2"/>
+ <Dialog id="4349723564913702026" text="I thought he was doing good. With the naltrexone. Seeing Dr. Khol." modified="02/12/2016 06:19:45 PM" notes="(emily carter) Sad for him." facefx="2"/>
+ <Dialog id="844024417282819143" text="Our game." modified="12/03/2015 07:10:38 PM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417282819225" text="Yes. I know using the memory - it&apos;s not reg-" modified="07/12/2016 04:24:28 PM" notes="(Abigail Foy)Interrupted mid-word" facefx="2"/>
+ <Dialog id="4349723564915148341" text="It&apos;s my day off..." modified="02/09/2016 06:18:49 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="4349723564915148830" text="Ugh. Grant..." modified="09/04/2015 04:34:38 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="4349723564915148855" text="Are you at the Crate Docking Controls station?" modified="07/08/2016 10:31:11 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="4349723564915148870" text="First, enter the handling number of the container you want to dock." modified="02/09/2016 06:20:49 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="4349723564915156724" text="Look at the container, Grant. It&apos;s stenciled on the outside. Once you enter the number you should see some options pop up. Select &quot;Dock.&quot; That&apos;s it." modified="02/09/2016 06:21:50 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="4349723564915156829" text="Yes Grant. It docks itself. They are all self-piloting." modified="02/09/2016 06:22:07 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="4349723564915156855" text="Yes. But both ends can never be open at the same time. That way the interior loading zone stay pressurized, even when the cargo bay doors are open." modified="02/09/2016 06:24:18 PM" notes="(Jessica Wiley)" facefx="2"/>
+ <Dialog id="13680621263374353887" text="Subject 32 is in the chamber." modified="02/04/2016 03:36:24 PM" notes="(Annalise Gallegos) Dry, clinical. Like doctors describing events around an operating table." facefx="2"/>
+ <Dialog id="13680621263374354066" text="Mimic is in the tube." modified="10/07/2015 09:04:24 PM" notes="(Annalise Gallegos) Almost regretful." facefx="2"/>
+ <Dialog id="13680621263374354452" text="32 is showing signs of distress. Elevated cortisol, heartrate. Perspiration. Nothing in the red yet." modified="05/05/2016 11:35:24 PM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263374355149" text="Typhon Cacoplasmus specimen is in the chamber with subject 32." modified="02/04/2016 04:21:30 PM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263374355249" text="Subject... uh... (clears throat) subject vital signs are gone. " modified="02/04/2016 04:00:39 PM" notes="(Annalise Gallegos) Clears throat. Unconfortable, trying to be cool. " facefx="2"/>
+ <Dialog id="13680621263376920792" text="Is she... she&apos;s hiding behind the chair." modified="11/06/2015 01:54:26 PM" notes="(Lucia Jimenez) Hushed."/>
+ <Dialog id="13680621263376920900" text="Is he... he&apos;s hiding behind the chair." modified="11/06/2015 01:55:33 PM" notes="(Lucia Jimenez) Hushed."/>
+ <Dialog id="13680621263376921369" text="Oh! Glass won&apos;t break, will it?" modified="07/12/2016 05:49:56 PM" notes="(Lucia Jimenez) Jumps / Surprised. Then hushed to Marco. "/>
+ <Dialog id="844024417290850511" text="You love me?" modified="12/03/2015 06:58:23 PM" notes="(Abigail Foy)Genuine surprise" facefx="2"/>
+ <Dialog id="844024417290850583" text="Flattery will get you nowhere. Wait, are you heading out again? It&apos;s game night." modified="12/03/2015 06:59:35 PM" notes="(Abigail Foy) Mock defiant in the first line. Beat between the two, switching to a serious disappointed tone." facefx="2"/>
+ <Dialog id="844024417290851315" text="Oh, I&apos;m so sorry-" modified="12/03/2015 07:11:47 PM" notes="(Abigail Foy) Genuinely sorry, this was the worst way this could play out" facefx="2"/>
+ <Dialog id="844024417290852126" text="What?" modified="12/03/2015 07:25:18 PM" notes="Genuinely alarmed" facefx="2"/>
+ <Dialog id="844024417290852156" text="What?" modified="12/03/2015 07:25:48 PM" notes="(Abigail Foy) Surprised" facefx="2"/>
+ <Dialog id="844024417290852178" text="...yes." modified="12/03/2015 07:26:10 PM" notes="(Abigail Foy) Before she can think, quiet agreement" facefx="2"/>
+ <Dialog id="844024417291200791" text="Joint TranScribes are fun." modified="12/07/2015 08:16:23 PM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417291200856" text="It&apos;s like mental scrapbooking, you both save the moments that matter." modified="12/07/2015 08:17:28 PM" notes="(Abigail Foy) Refuses to be less than positive." facefx="2"/>
+ <Dialog id="844024417291200922" text="Some don&apos;t. Oh, come on, turn that frown upside down. " modified="12/07/2015 08:18:34 PM" notes="(Abigail Foy) Teasing" facefx="2"/>
+ <Dialog id="844024417291201084" text="Dear Future Us. Today-" modified="12/07/2015 08:21:16 PM" notes="(Abigail Foy) Interrupted" facefx="2"/>
+ <Dialog id="844024417291201154" text="TODAY, I was able to convince my beautiful, but stubborn, partner to-" modified="12/07/2015 08:22:26 PM" notes="(Abigail Foy) Ahem, continuing where she left off. Emphasis on today, interrupted again." facefx="2"/>
+ <Dialog id="844024417291201259" text="-to stay in bed and not report for an extra shift." modified="07/08/2016 10:34:29 PM" notes="(Abigail Foy) Picking up where she left off again. Emphasis on the words to and not." facefx="2"/>
+ <Dialog id="844024417291201302" text="I am the reward you get. And tonight, I&apos;ll be your number one fan." modified="02/24/2016 12:26:11 AM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="13856881013196024008" text="(Rapid Breathing) I can&apos;t find an open airlock..." modified="07/08/2016 10:34:38 PM" notes="(Mariana Arias) Almost hyperventilating a littel into her helment." facefx="2"/>
+ <Dialog id="13856881013196025661" text="Jean. It&apos;s Mariana. I can&apos;t get in. " modified="02/11/2016 09:07:06 PM" notes="(Mariana Arias) Worried" facefx="2"/>
+ <Dialog id="844024417293801453" text="Danielle!" modified="01/06/2016 10:40:45 PM" notes="(Abigail Foy) excited" facefx="2"/>
+ <Dialog id="844024417293801459" text="Hey, Future Us, Danielle&apos;s home." modified="07/08/2016 10:32:34 PM" notes="(Abigail Foy) Speaking to her TranScribe as if it&apos;s a person." facefx="2"/>
+ <Dialog id="844024417293801622" text="Danielle?" modified="01/06/2016 10:43:34 PM" notes="(Abigail Foy)  pause and tone change to concern." facefx="2"/>
+ <Dialog id="844024417293801898" text="Was it as insincere as a Danielle Sho apology?" modified="07/15/2016 05:53:31 PM" notes="(Abigail Foy) slight teasing, but trying to make a point" facefx="2"/>
+ <Dialog id="844024417293802040" text="Danielle - I&apos;m not saying working with them is easy, but..." modified="04/27/2016 02:06:47 PM" notes="(Abigail Foy)  realizes that she&apos;s crossed a line. interrupted" facefx="2"/>
+ <Dialog id="844024417293802433" text="Calm down." modified="01/06/2016 10:57:05 PM" notes="(Abigail Foy)  stern" facefx="2"/>
+ <Dialog id="844024417293802460" text="Danielle... this has to stop." modified="01/06/2016 10:57:32 PM" notes="(Abigail Foy) " facefx="2"/>
+ <Dialog id="844024417293802492" text="Danielle..." modified="01/06/2016 10:58:04 PM" notes="trying to be conciliatory" facefx="2"/>
+ <Dialog id="844024417294581442" text="Elias - are you recording this?" modified="01/15/2016 11:20:34 PM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417294583093" text="Danielle? Uh... she works in Deep Storage, right?" modified="07/15/2016 05:10:21 PM" notes="(Abigail Foy) Surprised, then trying to be casual. Has a crush on Danielle but doesn&apos;t want to let on." facefx="2"/>
+ <Dialog id="844024417294583279" text="What? Why?" modified="01/15/2016 11:51:11 PM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417294585100" text="She&apos;s nice! What do you mean?" modified="01/16/2016 12:21:32 AM" notes="(Abigail Foy) beat after &quot;she&apos;s nice&quot;. Wondering what she&apos;s missing." facefx="2"/>
+ <Dialog id="844024417294586606" text="All right... Elias has..." modified="01/16/2016 12:46:38 AM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417294586669" text="Stabfellow has vanished into the darkness beyond the tower door. The only sign of him is his blood trail - but as you watch, the flagstones seem to drink in the blood, the cracks glistening red..." modified="01/16/2016 12:47:41 AM" notes="(Abigail Foy) repeating the character&apos;s name as an annoyed concession. Gets increasingly dramatic with the scene description" facefx="2"/>
+ <Dialog id="844024417294587319" text="Hell no." modified="01/16/2016 12:58:31 AM" notes="(Abigail Foy) an aside to Elias" facefx="2"/>
+ <Dialog id="844024417294587335" text="You hear nothing from the darkness. It has swallowed Stabfellow - completely.  " modified="07/12/2016 04:43:55 PM" notes="(Abigail Foy) addressing the group. ominous tone" facefx="2"/>
+ <Dialog id="844024417294587423" text="You made it... Yes, right here." modified="01/16/2016 01:00:15 AM" notes="(Abigail Foy) a bit surprised and regaining her footing" facefx="2"/>
+ <Dialog id="844024417294846842" text="You, too, Emma?" modified="07/08/2016 10:35:20 PM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417294847150" text="We... negotiated. I had to say yes to some things, too." modified="01/19/2016 01:09:02 AM" notes="(Abigail Foy)" facefx="2"/>
+ <Dialog id="844024417294918530" text="We all here? Elias... you&apos;re up." modified="01/19/2016 08:58:42 PM" notes="(Abigail Foy) A bit snappy and impatient" facefx="2"/>
+ <Dialog id="844024417295022470" text="She won&apos;t be joining us." modified="01/21/2016 01:51:02 AM" notes="(Abigail Foy) a little stiffly" facefx="2"/>
+ <Dialog id="844024417295022841" text="Wh- Where&apos;s Danielle? I have to go make sure she&apos;s-" modified="07/15/2016 09:13:22 PM" notes="(Abigail Foy) worried, cut off by Zach" facefx="2"/>
+ <Dialog id="844024417295692503" text="...it&apos;s a role-playing game. You&apos;re supposed to take on a role." modified="07/08/2016 10:35:31 PM" notes="(Abigail Foy) " facefx="2"/>
+ <Dialog id="844024417295702634" text="Well, that sense of humor is probably why Morgan got reassigned." modified="07/08/2016 10:35:35 PM" notes="(Abigail Foy)  Judging, nodding, a little quiet - and worried the same thing will happen to Danielle, so she&apos;s trying to communicate a lesson." facefx="2"/>
+ <Dialog id="844024417295702693" text="Ooooooooh. If you sat your ass on a coal mine we&apos;d be drowning in diamonds." modified="01/28/2016 10:48:05 PM" notes="(Abigail Foy)  Teases" facefx="2"/>
+ <Dialog id="844024417295702807" text="Look... think about your character, all right? I&apos;ll see you at 7. It&apos;ll be fun, I promise." modified="07/08/2016 10:35:40 PM" notes="(Abigail Foy) Changing the subject, lightly" facefx="2"/>
+ <Dialog id="4349723564928318840" text="Kyrkos." modified="07/08/2016 10:35:42 PM" notes="[Captain Jada Marks] Cool"/>
+ <Dialog id="4349723564928373839" text="Sorry, Dr. Berger. The system shut down. Some kind of failsafe trigger. We&apos;re working on it." modified="07/08/2016 10:35:46 PM" notes="[Ash Lasair] Businesslike" facefx="2"/>
+ <Dialog id="4349723564928374378" text="I have a crew investigating the point of the failure on our side as we speak. ETA is probably a few hours." modified="02/09/2016 05:49:02 PM" notes="[Ash Lasair] Businesslike" facefx="2"/>
+ <Dialog id="4349723564928374514" text="No. But, since you have some time, you could call Mr. Yu and ask him for permission to reboot the entire space station. That would fix the problem immediately." modified="07/08/2016 10:35:55 PM" notes="[Ash Lasair] Turns sarcastic" facefx="2"/>
+ <Dialog id="4349723564928374589" text="Well, since being ridiculous is off the table, I&apos;m afraid you&apos;re just going to have to wait." modified="07/08/2016 10:35:58 PM" notes="[Ash Lasair] " facefx="2"/>
+ <Dialog id="4349723564928374717" text="Knock yourself out." modified="07/08/2016 10:35:59 PM" notes="[Ash Lasair] " facefx="2"/>
+ <Dialog id="13680621263385082814" text="I had some free time so I thought-" modified="07/08/2016 10:29:38 PM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263385082850" text="But isn&apos;t there some allowance for the researchers? I mean, my God, I&apos;m the one pushing the button." modified="07/08/2016 10:29:45 PM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263385082933" text="I just want to be sure." modified="02/09/2016 01:09:09 AM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263385082971" text="That&apos;s because Talos I is in extra-national space... there ARE no laws." modified="04/27/2016 02:31:16 PM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263385083105" text="Yes, Dr. Kelstrup. I understand." modified="07/08/2016 10:36:07 PM" notes="(Annalise Gallegos)" facefx="2"/>
+ <Dialog id="13680621263385084670" text="Did you make arrangements?" modified="07/12/2016 05:56:22 PM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263385084689" text="I don&apos;t need to know the details. Better that way." modified="02/09/2016 01:38:25 AM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263385084947" text="It has to happen on your next rotation. I put everything in a package labeled &quot;Mementos.&quot; The package is in my cabin." modified="10/13/2016 09:49:43 PM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263385084976" text="It&apos;s got to go to every media outlet imaginable." modified="07/08/2016 10:36:54 PM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263385085075" text="And, Quinten? Be careful. Security is already scrutinizing me more than usual." modified="05/08/2016 11:44:10 PM" notes="(Annalise G.)" facefx="2"/>
+ <Dialog id="13680621263385323599" text="These men are murderers - I told myself - some of them worse." modified="07/08/2016 10:29:47 PM" notes="(Annalise Gallegos) " facefx="2"/>
+ <Dialog id="13680621263385323607" text="Whether they died on death row or on Talos I was the difference between pointless waste and the potential to improve the human condition." modified="07/08/2016 10:36:57 PM" notes="(Annalise Gallegos) " facefx="2"/>
+ <Dialog id="13680621263385323611" text="It&apos;s so easy to lie to yourself when you&apos;re invested in the outcome. Wowed by the technology. And everyone else is going along." modified="07/08/2016 10:37:01 PM" notes="(Annalise Gallegos) " facefx="2"/>
+ <Dialog id="13680621263385324012" text="The truth is, this is a manufacturing plant, and the volunteers are the raw material." modified="02/11/2016 08:21:52 PM" notes="(Annalise Gallegos) " facefx="2"/>
+ <Dialog id="13680621263385324175" text="I imagined I was Elion... all along, I was Mengele." modified="07/08/2016 10:37:06 PM" notes="(Annalise Gallegos) " facefx="2"/>
+ <Dialog id="13680621263385327258" text="I tried the airlock at Power Plant but it&apos;s got some kind of lock-down on it." modified="04/22/2016 03:22:08 AM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385327326" text="And... there&apos;s something else..." modified="02/11/2016 09:10:55 PM" notes="(Mariana Arias) Almost doesn&apos;t want to mention it." facefx="2"/>
+ <Dialog id="13680621263385327350" text="I saw something - when I was checking the last O2 station." modified="07/08/2016 10:29:25 PM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385327806" text="Ovoid mass. Roughly the size of a truck, maybe. Hard to tell because it was silhouetted." modified="05/09/2016 12:01:24 AM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385327826" text="I mean - could have just been debris - loose tubing... I don&apos;t know, but it scared the shit out of me." modified="07/12/2016 06:07:45 PM" notes="(Mariana Arias) Prob just that, right?" facefx="2"/>
+ <Dialog id="13680621263385327866" text="God, I sound crazy." modified="02/11/2016 09:14:26 PM" notes="(Mariana Arias) Self-depricating, to herself" facefx="2"/>
+ <Dialog id="13680621263385327886" text="Just gotta breathe... (Deep Breathing)" modified="12/22/2016 10:59:08 PM" notes="(Mariana Arias) To herself, under her breath almost" facefx="2"/>
+ <Dialog id="13680621263385327996" text="I&apos;m gonna try another airlock then... I&apos;ll call back." modified="07/08/2016 10:37:42 PM" notes="(Mariana Arias) Back to jean." facefx="2"/>
+ <Dialog id="13680621263385328711" text="I think... there&apos;s something following me. " modified="02/11/2016 09:25:27 PM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385328768" text="It&apos;s... I keep hearing it. That doesn&apos;t make any sense. It&apos;s just in my head. (Breathing)" modified="07/08/2016 10:37:50 PM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385328823" text="Mateo, David... I love you both. Mom, I&apos;m sorry. I know you were just trying to protect me. I love you so much." modified="04/22/2016 03:21:15 AM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385329191" text="(Hyperventilating)" modified="07/08/2016 10:37:56 PM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385329200" text="(Breathing Slows)" modified="07/08/2016 10:38:02 PM" notes="(Mariana Arias) " facefx="2"/>
+ <Dialog id="13680621263385329219" text="Ay dios santo!" modified="02/09/2017 10:57:09 PM" notes="(Mariana Arias) Under her breath" facefx="2"/>
+ <Dialog id="4349723564930121482" text="Is Tamiko all right? Tamiko?" modified="07/08/2016 10:38:05 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930121545" text="They just kept coming... Was worried we&apos;d run out of bullets." modified="02/24/2016 11:39:53 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930121557" text="We did it. Area secured." modified="02/24/2016 11:40:05 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122282" text="Officer Rose is down. We should secure his ID chip for his family, let them know what happened..." modified="02/24/2016 11:52:10 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122295" text="Officer Hague - even when he was cut off from his wife, he... remained at his post." modified="02/24/2016 11:52:23 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122307" text="Officer Hertz is dead. Recording the event in case we&apos;re found." modified="02/24/2016 11:52:35 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122319" text="Tamiko... I&apos;m so sorry. I should... I should have been there for you. I&apos;ll make sure your family knows of your bravery." modified="02/24/2016 11:52:47 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122332" text="Officer Cool is dead. He went out fighting." modified="02/24/2016 11:53:00 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122349" text="Chief Elazar was a good officer. The finest. She trusted me, trusted us all... more than TranStar ever did." modified="02/24/2016 11:53:17 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122373" text="Without the Chief, we never would have made it here. I owe her my life, and now I can&apos;t repay her." modified="02/24/2016 11:53:41 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122412" text="Officer Maddox ready." modified="02/24/2016 11:54:20 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122521" text="No activity, Chief." modified="02/24/2016 11:56:09 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122532" text="All quiet here, Chief Elazar." modified="02/24/2016 11:56:20 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122546" text="Dr. Yu." modified="02/24/2016 11:56:34 PM" notes="[Darcy Maddox] Acknowledging"/>
+ <Dialog id="4349723564930122567" text="No movement, room secure." modified="02/24/2016 11:56:55 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122579" text="Watching the main door." modified="02/24/2016 11:57:07 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122641" text="Dr. Yu, please step back from the door." modified="02/24/2016 11:58:09 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930122652" text="Dr. Yu - I will not warn you again." modified="02/24/2016 11:58:20 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123313" text="Area secure. No movement. " modified="02/25/2016 12:09:21 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123324" text="No sign of any Typhon activity, beginning to sweep the area." modified="07/08/2016 10:38:35 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123398" text="Chief Elazar&apos;s been waiting for you." modified="04/27/2016 02:04:04 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123491" text="We&apos;re taking fire!" modified="02/25/2016 12:12:19 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123503" text="We&apos;re being attacked!" modified="02/25/2016 12:12:31 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123512" text="Dr. Yu! Stop!" modified="02/25/2016 12:12:40 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123587" text="With the lifts operational, we can start taking back the station." modified="07/08/2016 10:32:06 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123630" text="Oh my god, hostile contact!" modified="02/25/2016 12:14:38 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123639" text="They&apos;re inside the room!" modified="07/08/2016 10:38:44 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123648" text="Dr. Yu!" modified="07/08/2016 10:38:45 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123762" text="These TranStar PPN pistols don&apos;t have the stopping power Eradicator turrets do." modified="02/25/2016 12:16:50 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123774" text="If we can get the Eradicators operational, we might be able to secure the area." modified="07/08/2016 10:32:08 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123835" text="Eradicator turrets are on-line. Those creatures won&apos;t know what hit them." modified="02/25/2016 12:18:03 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930123851" text="Feel a lot better with those E.A.T.s covering the main door. That was very brave. Thank you." modified="04/27/2016 02:05:03 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124037" text="Why is the Commander here? To arrest you? I don&apos;t buy it. Your brother...? Maybe." modified="02/25/2016 12:21:25 AM" notes="[Darcy Maddox] Second part under her breath"/>
+ <Dialog id="4349723564930124062" text="Commander Dahl must have come from the Argus Orbital to get here so quickly. Something&apos;s wrong." modified="02/25/2016 12:21:50 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124074" text="The Commander won&apos;t be able to get in here." modified="02/25/2016 12:22:02 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124163" text="Commander Dahl&apos;s little trick didn&apos;t work... he&apos;s going to regret that." modified="02/25/2016 12:23:31 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124174" text="So this is how TranStar handles its employees? We&apos;ll see about that." modified="07/08/2016 10:32:40 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124251" text="I heard Commander Dahl tried to kill us all, and he had to be shot in the face in self-defense." modified="07/08/2016 10:39:12 PM" notes="[Darcy Maddox] Faking a stiff &quot;eyewitness&quot; report"/>
+ <Dialog id="4349723564930124269" text="I can hear the report being written in my mind... just let me know the details about Dahl&apos;s accident, and I&apos;ll fill in the blanks." modified="02/25/2016 12:25:17 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124279" text="Dahl&apos;s cause of death: Morgan Yu. He should be honored." modified="02/25/2016 12:25:27 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124773" text="Hey." modified="07/08/2016 10:39:20 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124902" text="I&apos;ll let TranStar know about your... recklessness. Ma&apos;am." modified="02/25/2016 12:36:26 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930124923" text="That main door was sealed for a reason. Ma&apos;am." modified="02/25/2016 12:36:11 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930125006" text="I&apos;ll let TranStar know about your... recklessness. Sir." modified="02/25/2016 12:38:00 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930125023" text="The door was sealed for a reason. Sir." modified="02/25/2016 12:37:51 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930125135" text="Heard Dr. Igwe was floating in a cargo crate outside the ship? If he&apos;d stayed there, he might have survived longer than any of us." modified="02/25/2016 12:39:43 AM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930125237" text="Thank you for rescuing Officer Chaudhary. She&apos;s... she&apos;s all right, isn&apos;t she?" modified="07/08/2016 10:39:29 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930125366" text="Ready for orders." modified="04/27/2016 02:10:14 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930125377" text="If we can&apos;t escape Talos, then we need to retake it." modified="07/08/2016 10:39:36 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564930296390" text="It&apos;s locked down, sealed tight." modified="02/27/2016 12:13:58 AM" notes="[Darcy Maddox] " facefx="2"/>
+ <Dialog id="4349723564930296424" text="You got it, Chief. Sending it now." modified="02/27/2016 12:14:32 AM" notes="[Darcy Maddox] " facefx="2"/>
+ <Dialog id="844024417298534225" text="I&apos;m busy enough with Captain Marks breathing down my neck. I don&apos;t have time for a stalker." modified="03/01/2016 05:20:17 PM"/>
+ <Dialog id="13680621263393784845" text="Yeah. Maybe." modified="05/19/2016 06:21:01 PM" notes="(Mia Bayer) Almost muttered. Tone says prob not"/>
+ <Dialog id="13680621263394292797" text="Wait - you were under my desk?" modified="05/25/2016 03:26:53 PM" notes="(Abigail Foy) Underline under."/>
+ <Dialog id="13680621263394292843" text="You love me?" modified="05/25/2016 03:27:39 PM" notes="Surprise."/>
+ <Dialog id="13680621263394292881" text="Flatterer." modified="05/25/2016 03:28:17 PM" notes="Said with a smirk"/>
+ <Dialog id="4349723564941759536" text="Hopefully that Medical Operator is ready to go, because we&apos;re going to need it after this." modified="07/11/2016 10:46:02 PM" notes="[Darcy Maddox] "/>
+ <Dialog id="4349723564942894338" text="Have you seen that... golden stuff that they make? It&apos;s beautiful but... it fills me with dread. Anyway. Chief Elezar is waiting on you." modified="07/22/2016 07:50:46 PM"/>
+ <Dialog id="13680621263400785918" text="Danielle. Stop checking your TranScribe." modified="08/08/2016 07:05:34 PM" notes="(Abigail Foy) Under her breath"/>
+ <Dialog id="13680621263400785964" text="No more work. Put it away!" modified="08/08/2016 07:06:20 PM" notes="Hissing, under her breath."/>
+ <Dialog id="13680621263400785993" text="Get it later." modified="08/08/2016 07:06:49 PM"/>
+</Dialog>

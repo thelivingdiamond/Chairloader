@@ -1,7 +1,0 @@
-
-<TelemetryConfig>
- <Events default="always">
-  <Event name="lookdir" enabled="never"/>
-  <Event name="player_action" enabled="never"/>
- </Events>
-</TelemetryConfig>

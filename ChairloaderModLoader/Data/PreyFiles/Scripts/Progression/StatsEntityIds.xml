@@ -1,0 +1,10 @@
+
+<StatsEntityIds>
+ <GameModes default="1">
+  <Entity name="InstantAction" value="2"/>
+ </GameModes>
+ <Maps default="1"/>
+ <Weapons default="1"/>
+ <WeaponExtensions/>
+ <DamageTypes default="1"/>
+</StatsEntityIds>

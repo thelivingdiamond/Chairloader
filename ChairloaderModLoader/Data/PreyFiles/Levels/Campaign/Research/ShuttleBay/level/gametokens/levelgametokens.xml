@@ -1,0 +1,18 @@
+<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/research/shuttlebay">
+ <GameToken Id="-796502749" Name="Repo.ShuttleDoorOpen" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1655202210" Name="MilitaryBots.SquadA_MilitaryBot1_Alive" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1396734781" Name="MilitaryBots.SquadA_MilitaryBot2_Alive" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1966567561" Name="MilitaryBots.SquadA_MilitaryBot3_Alive" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1583382014" Name="Ambush.MilitaryBot_FollowingPlayer" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1512804144" Name="MilitaryBots.IDofFirstBotToSeePlayer" Flags="4" Type="Int" Value="0"/>
+ <GameToken Id="-1504669385" Name="Ambush.DahlKnowsPlayerIsHere" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-751273863" Name="Ambush.PlayerInFlightControlRoom" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1278331679" Name="Ambush.DahlSurprisedByPlayer" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1167875312" Name="Ambush.AmbushDahlSpawned" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1759588836" Name="Ambush.DahlInSightOfDahl_UpperArea" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-355586173" Name="Ambush.AttackBot1_ID" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-112781257" Name="Ambush.AttackBot2_ID" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-1040482478" Name="Ambush.AttackBot3_ID" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-601077781" Name="Ambush.AttackBot4_ID" Flags="4" Type="Bool" Value="false"/>
+ <GameToken Id="-180924874" Name="EscapePod.InEscapePodArea" Flags="4" Type="Bool" Value="false"/>
+</GameTokensLibrary>

@@ -1,0 +1,59 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="3" Class="Ark:Objectives:ObjectiveState" pos="160,10,0">
+   <Inputs objective_Objective="-3778744661183044743" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="4" Class="Ark:Objectives:TaskState" pos="630,10,0">
+   <Inputs task_Task="-3778744661183044612" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="41" Class="Ark:Objectives:SetObjectiveDescription" pos="1510,330,0">
+   <Inputs objectiveDescription_Description="-4766122810303921718"/>
+  </Node>
+  <Node Id="65" Class="Ark:Dialog:ConversationEvent" pos="-960,-40,0">
+   <Inputs conversation_Conversation="13680621263370189072"/>
+  </Node>
+  <Node Id="79" Class="Ark:Objectives:ShowClue" pos="1059,7,0">
+   <Inputs objectiveclue_Clue="-3778744661144685726"/>
+  </Node>
+  <Node Id="80" Class="Ark:Objectives:GetObjectiveState" pos="-190,20,0">
+   <Inputs objective_Objective="-3778744661183044743"/>
+  </Node>
+  <Node Id="81" Class="Mission:GameTokenCheck" pos="160,310,0">
+   <Inputs gametokenid_Token="1309346404" CheckValue="true"/>
+  </Node>
+  <Node Id="82" Class="Ark:Objectives:ObjectiveState" pos="1180,320,0">
+   <Inputs objective_Objective="-3778744661183044743" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="83" Class="Ark:Objectives:TaskState" pos="660,300,0">
+   <Inputs task_Task="-3778744661183044612" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="84" Class="Mission:GameTokenCheck" pos="660,-210,0">
+   <Inputs gametokenid_Token="1309346404" CheckValue="true"/>
+  </Node>
+  <Node Id="85" Class="Logic:Gate" pos="-490,-20,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="86" Class="Ark:Dialog:ConversationEvent" pos="-1100,140,0">
+   <Inputs conversation_Conversation="13680621263370187456"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="84" nodeOut="3" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="79" nodeOut="4" portIn="Show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="65" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="65" portIn="In" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="80" portIn="Add" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="80" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="81" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="83" nodeOut="81" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="41" nodeOut="82" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="82" nodeOut="83" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="84" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="83" nodeOut="84" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="80" nodeOut="85" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="86" portIn="In" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="86" portIn="In" portOut="OnInterrupt" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

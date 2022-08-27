@@ -1,0 +1,34 @@
+
+<SmokeFormPowerProperties>
+ <Common DisplayName="@rpg_ShiftDesc1" PsiCost="10" PickerLabel="Smoke Form" Description="@rpg_ShiftDesc1" InterruptsMimicGrabSequence="true" TargetHighlightColorAlpha="1.0" TargetHighlightColor="0.0,0.75,0.75" PersistentPostProcessVFX="3" CostReductionStat="psiCostScaleEtherMorph" ExecutionAudioTrigger="Play_Player_Power_SmokeForm_In">
+  <ActiveBlacklist>
+   <BlacklistEntry Power="Shift"/>
+   <BlacklistEntry Power="Mimic"/>
+  </ActiveBlacklist>
+  <ModalLegend ActionMap="player">
+   <Items>
+    <ArkInputLegendItem Label="@input_move" ActionMap="default" ControlScheme="keyboard">
+     <ActionList>
+      <ArkInputAction Action="moveforward"/>
+      <ArkInputAction Action="moveleft"/>
+      <ArkInputAction Action="moveback"/>
+      <ArkInputAction Action="moveright"/>
+     </ActionList>
+    </ArkInputLegendItem>
+    <ArkInputLegendItem Action="xi_movex" ActionMap="default" Label="@input_move" ControlScheme="controller"/>
+    <ArkInputLegendItem Action="sprint" Label="@input_sprint"/>
+    <ArkInputLegendItem Action="jump" Label="@input_ascend"/>
+    <ArkInputLegendItem Action="sneak" Label="@input_descend"/>
+   </Items>
+  </ModalLegend>
+ </Common>
+ <Unique ObjectFadeDistance="10.0" PostProcessEffect="3">
+  <SignalModifiers>
+   <SignalModifier value="3149325216937325440"/>
+  </SignalModifiers>
+ </Unique>
+ <Levels>
+  <ArkPsiPowerSmokeFormProperties PsiCostPerSec="3" MaxHeight="2.0" DisplayName="@rpg_ShiftDesc1" Description="@rpg_ShiftDesc1" CooldownDurationSec="1"/>
+  <ArkPsiPowerSmokeFormProperties PsiCostPerSec="3" MaxHeight="-1.0" DisplayName="@rpg_ShiftDesc1" Description="@rpg_ShiftDesc1" CooldownDurationSec="1"/>
+ </Levels>
+</SmokeFormPowerProperties>

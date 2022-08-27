@@ -1,0 +1,218 @@
+
+<ResponseRules>
+ <WritebackKeys>
+  <WritebackKey id="13680621263386009957" name="RecentlyPlayedOuch"/>
+ </WritebackKeys>
+ <ResponseRule id="13680621263386004183" name="TookDamage" cooldown="" response="13680621263386010017" description="Normal pain barks." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onTakeDamage" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="13680621263386009957" value="1" time="3"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010017">
+  <Response dialog="13680621263386010016" id="13680621263386010018" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+  <Response dialog="13680621263386010022" id="13680621263386010023" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+  <Response dialog="13680621263386010027" id="13680621263386010028" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010044" name="KOdByTazer" cooldown="" response="13680621263386010120" description="Zapped by tazer-style weapon and then knocked out." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcKOdByTazer" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010120">
+  <Response dialog="13680621263386010119" id="13680621263386010121" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010130" name="StuckByGloo" cooldown="" response="13680621263386010203" description="Hit with enough gloo ot freeze." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcGlood" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010203">
+  <Response dialog="13680621263386010202" id="13680621263386010204" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+  <Response dialog="13680621263386010224" id="13680621263386010225" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010236" name="Singed By Laser or Fire" cooldown="" response="13680621263386010265" description="Hit by a laser or a quick burst of flame" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcFireLaserSinged" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010265">
+  <Response dialog="13680621263386010264" id="13680621263386010266" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010289" name="Immolated to Death" cooldown="" response="13680621263386010311" description="Caught on fire and died." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcImmolatedDeath" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010311">
+  <Response dialog="13680621263386010310" id="13680621263386010312" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010323" name="On Death" cooldown="" response="13680621263386010351" description="Died" priority="0">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onDeath" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010351">
+  <Response dialog="13680621263386010350" id="13680621263386010352" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+  <Response dialog="13680621263386010361" id="13680621263386010362" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+  <Response dialog="13680621263386012513" id="13680621263386012514" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010415" name="Lethal Mine Stuck to Me" cooldown="" response="13680621263386010442" description="Player stuck an explosive mine or recycler mine to the NPC." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcMineAttached" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010442">
+  <Response dialog="13680621263386010441" id="13680621263386010443" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+  <Response dialog="13680621263386010450" id="13680621263386010451" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386023614" name="Affected by Fear Power " cooldown="" response="13680621263386023650" description="Affected by the player or the Nightmare&apos;s fear blast." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcFearHit" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010477" name="Affected By Null Wave" cooldown="" response="13680621263386012642" description="Was in the vicinity of the Null Wave charge went it went off.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcNullWaveHit" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010527" name="Affected By EMP" cooldown="20" response="13680621263386012725" description="Was in the vicinity of an EMP charge went it went off.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcEmpHit" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911789705"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010562" name="Affected by Flare Power" cooldown="" response="13680621263386010599" description="Mind has been captured by the player&apos;s Flare Power">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcFlareHit" fromResponse="0" type="default"/>
+   <Criterion comparison="5" passIfMissing="true" id="13680621263386009957" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386010599">
+  <Response dialog="13680621263386010598" id="13680621263386010600" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+  <Response dialog="13680621263386010603" id="13680621263386010604" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263386010628" name="Affected by Lift Power (Start)" cooldown="" response="13680621263386012897" description="Target by a lift field." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcLiftStartHit" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010651" name="Affected by Lift Power (Held)" cooldown="5" response="13680621263386013059" description="Held in place at the top of a Lift Field" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcLiftHeld" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010658" name="Falling" cooldown="" response="13680621263386013009" description="Mind has been captured by the player&apos;s Flare Power" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcFalling" fromResponse="0" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010721" name="Affected by Player Mind Control (Override)" cooldown="" response="13680621263386013119" description="Trageted by the player&apos;s mind control power." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcPlayerMindControlled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010755" name="Affected by Telepath Mind Control (Override)" cooldown="" response="13680621263386013417" description="Trageted by a Telepath&apos;s Mind Control." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcTelepathMindControlled" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010796" name="Affected by Remote Manipulate Power" cooldown="" response="13680621263386013172" description="Goosed by the player&apos;s remote manipulate power.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcRemoteManipulated" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="17591291352635828515" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263386010830" name="Grabbed By A Mimic" cooldown="" response="13680621263386013224" description="Screams as a mimic grabs and squeezes, draining the life from them." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353094452" comparison="6" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNpcGrabbedByMimic" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213159" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263386012642">
+  <Response dialog="13680621263386012641" id="13680621263386012643" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+  <Response dialog="13680621263386012663" id="13680621263386012664" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386012725">
+  <Response dialog="13680621263386012724" id="13680621263386012726" cooldown="30" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+  <Response dialog="13680621263386012748" id="13680621263386012749" cooldown="60" weight="1" oneshot="0" completeConversation="1" delay="0" entityOneshot="true" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386012897">
+  <Response dialog="13680621263386012896" id="13680621263386012898" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318053"/>
+  <Response dialog="13680621263386012902" id="13680621263386012903" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386013009">
+  <Response dialog="13680621263386013008" id="13680621263386013010" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386013059">
+  <Response dialog="13680621263386013058" id="13680621263386013060" cooldown="6" weight="2" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318053"/>
+  <Response dialog="13680621263386013082" id="13680621263386013083" cooldown="0" weight="2" oneshot="0" completeConversation="1" delay="0" entityOneshot="true" emotion="3152439162748318053"/>
+  <Response dialog="13680621263386012896" id="13680621263408741336" cooldown="6" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" emotion="3152439162748318053"/>
+  <Response dialog="13680621263386012902" id="13680621263408741372" cooldown="6" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" emotion="3152439162748318053"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386013119">
+  <Response dialog="13680621263386013118" id="13680621263386013120" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+  <Response dialog="13680621263386013146" id="13680621263386013147" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386013172">
+  <Response dialog="13680621263386013171" id="13680621263386013173" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1" emotion="15659330456346423977"/>
+  <Response dialog="13680621263386013187" id="13680621263386013188" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1" emotion="3152439162748318060"/>
+  <Response dialog="13680621263386013203" id="13680621263386013204" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386013224">
+  <Response dialog="13680621263386013223" id="13680621263386013225" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424000"/>
+  <Response dialog="13680621263386013236" id="13680621263386013237" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318053"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386013417">
+  <Response dialog="13680621263386013416" id="13680621263386013418" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010"/>
+  <Response dialog="13680621263386013437" id="13680621263386013438" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+  <Response dialog="13680621263386013462" id="13680621263386013463" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263386023650">
+  <Response dialog="13680621263386023649" id="13680621263386023651" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+  <Response dialog="13680621263386023669" id="13680621263386023670" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+</ResponseRules>

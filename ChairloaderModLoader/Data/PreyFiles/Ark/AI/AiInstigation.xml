@@ -1,0 +1,7 @@
+
+<TrackableEntityClasses>
+ <Class>RigidBodyEx</Class>
+ <Class>ArkLight</Class>
+ <Class>ArkBreakable</Class>
+ <Class>ArkScalableBreakable</Class>
+</TrackableEntityClasses>

@@ -1,0 +1,28 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Ark:EventScheduler:RelativeTimeEvent" pos="-630,-1060,0">
+   <Inputs TimeFromNow="0.166" Period="0"/>
+  </Node>
+  <Node Id="2" Class="Mission:GameTokenSet" pos="160,-1060,0">
+   <Inputs gametokenid_Token="166480615" Value="True"/>
+  </Node>
+  <Node Id="4" Class="Ark:RemoteEvent" pos="-1000,-1060,0">
+   <Inputs remoteEvent_Event="1713490239419990800"/>
+  </Node>
+  <Node Id="2585" Class="Game:Start" pos="-670,-910,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="2586" Class="Logic:Gate" pos="-180,-1060,0">
+   <Inputs SetClosed="1" AutoCloseCount="1" Reset="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2586" nodeOut="1" portIn="Open" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="1" nodeOut="4" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2586" nodeOut="2585" portIn="In" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2586" nodeOut="2585" portIn="In" portOut="output" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="2586" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

@@ -1,0 +1,35 @@
+
+<ActionMaps ignoreVersion="1">
+ <actionmap name="player">
+  <action name="xi_movey">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+  <action name="xi_movex">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+  <action name="xi_rotatepitch">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+  <action name="xi_rotateyaw">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+ </actionmap>
+ <actionmap name="vehicle_driver">
+  <action name="xi_v_movex">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+  <action name="xi_v_rotateyaw">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+  <action name="xi_v_rotatepitch">
+   <rebind device="xboxpad" input="DEFAULT"/>
+   <rebind device="ps4pad" input="DEFAULT"/>
+  </action>
+ </actionmap>
+</ActionMaps>

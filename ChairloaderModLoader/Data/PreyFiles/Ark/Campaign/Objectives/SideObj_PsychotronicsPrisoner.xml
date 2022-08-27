@@ -1,0 +1,20 @@
+
+<Objectives>
+ <Objective id="11824555372663723002" title="@loc_15373294129891632542" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="11824555372663723003" displayName="Complete mimic extraction process or liberate volunteer" text="@loc_15373294129891632543"/>
+   <Desc id="11824555372663723336" displayName="Complete mimic extraction process." text="@loc_15373294129891632544"/>
+   <Desc id="11824555372663723527" displayName="Follow volunteer" text="@loc_15373294129891632545"/>
+   <Desc id="11824555372663724710" displayName="Collect exotic materials" text="@loc_15373294129891632546"/>
+   <Desc id="844024417316686408" displayName="Completed - saved" text="@loc_844024417316686409"/>
+   <Desc id="844024417316687441" displayName="Completed - killed" text="@loc_844024417316687442"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="11824555372663723165" displayName="Initiate extraction process or liberate volunteer" optional="true" text="@loc_15373294129891632548" markerLabel="@loc_15373294129891632547" Location="11824555372632688907" description="11824555372663723003"/>
+   <Task id="11824555372663723248" displayName="Complete mimic extraction process" optional="true" text="@loc_15373294129891632550" markerLabel="@loc_15373294129891632549" Location="11824555372632688907" description="11824555372663723003"/>
+   <Task id="11824555372663723464" displayName="Follow volunteer" optional="true" text="@loc_15373294129891632552" markerLabel="@loc_15373294129891632551" Location="11824555372632688907" description="11824555372663723003"/>
+   <Task id="11824555372663724682" displayName="Collect exotic materials" optional="true" text="@loc_15373294129891632554" markerLabel="@loc_15373294129891632553" Location="11824555372632688907" description="11824555372663723003"/>
+  </Tasks>
+ </Objective>
+</Objectives>

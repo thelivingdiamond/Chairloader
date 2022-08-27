@@ -1,0 +1,14 @@
+
+<ATLConfig atl_name="Launcher">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Amb_Launcher_Menu_LP">
+   <WwiseEvent wwise_name="Play_Amb_Launcher_Menu_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_MainMenu_Rollover">
+   <WwiseEvent wwise_name="Play_MainMenu_Rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_MainMenu_Select">
+   <WwiseEvent wwise_name="Play_MainMenu_Select"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

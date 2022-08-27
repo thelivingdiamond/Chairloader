@@ -1,0 +1,275 @@
+
+<ArkStatModifierPackages>
+ <Packages>
+  <ArkStatModifierPackage ID="3149325216966331296" Name="Ability_CombatFocus_I">
+   <Modifiers>
+    <ArkStatModifier StatName="fatigueGainedFromWrench" Modifier="-8.75"/>
+    <ArkStatModifier StatName="fatigueGainedFromChargedWrench" Modifier="-8.75"/>
+    <ArkStatModifier StatName="fatigueSprintGainRate" Modifier="-2"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="3149325216966333953" Name="Ability_CombatFocus_II">
+   <Modifiers>
+    <ArkStatModifier StatName="fatigueGainedFromWrench" Modifier="-13.125"/>
+    <ArkStatModifier StatName="fatigueGainedFromChargedWrench" Modifier="-13.125"/>
+    <ArkStatModifier StatName="fatigueSprintGainRate" Modifier="-3"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="3149325216980163972" Name="Ability_CombatFocus_III">
+   <Modifiers>
+    <ArkStatModifier StatName="fatigueGainedFromWrench" Modifier="-17.5"/>
+    <ArkStatModifier StatName="fatigueGainedFromChargedWrench" Modifier="-17.5"/>
+    <ArkStatModifier StatName="fatigueSprintGainRate" Modifier="-4"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031653" Name="Pharma_Speedboost">
+   <Modifiers>
+    <ArkStatModifier StatName="carryLeverage1SpeedScale" Modifier="2.0"/>
+    <ArkStatModifier StatName="carryLeverage2SpeedScale" Modifier="2.0"/>
+    <ArkStatModifier StatName="carryLeverage3SpeedScale" Modifier="2.0"/>
+    <ArkStatModifier StatName="maxSpeedCrawl" Modifier="2.0"/>
+    <ArkStatModifier StatName="maxSpeedSneak" Modifier="2.0"/>
+    <ArkStatModifier StatName="maxSpeedStand" Modifier="2.0"/>
+    <ArkStatModifier StatName="strafeSpeedScale" Modifier=".3"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031650" Name="Pharma_RepairBoost">
+   <Modifiers>
+    <ArkStatModifier StatName="repairTimeScale" Modifier="-0.5"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185846542217" Name="Pharma_ImprovedStamina">
+   <Modifiers>
+    <ArkStatModifier StatName="fatigueDrainRate" Modifier="15"/>
+    <ArkStatModifier StatName="fatigueDrainDelay" Modifier="-1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031646" Name="Pharma_StrengthEnhancer">
+   <Modifiers>
+    <ArkStatModifier StatName="throwImpulse" Modifier="15.0"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185863418199" Name="Chipset_BacklashBuff">
+   <Modifiers>
+    <ArkStatModifier StatName="kineticShieldReflectDamageChance" Modifier="0.15"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826521616" Name="Chipset_BiochemicalManager">
+   <Modifiers>
+    <ArkStatModifier StatName="pharmasDurationScale" Modifier="1.5"/>
+    <ArkStatModifier StatName="fearCameraResponsiveness" Modifier=".40"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185850449026" Name="Chipset_CanScanCoral">
+   <Modifiers>
+    <ArkStatModifier StatName="bCanScanCoral" Modifier="1.0"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="3149325216982682484" Name="Chipset_CoralPsiRegen">
+   <Modifiers>
+    <ArkStatModifier StatName="bCoralRegensPsi" Modifier="1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826519728" Name="Chipset_CritHitPlus10_Pistol">
+   <Modifiers>
+    <ArkStatModifier StatName="pistolCriticalHitChance" Modifier=".10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826253814" Name="Chipset_CritHitPlus10_Shotgun">
+   <Modifiers>
+    <ArkStatModifier StatName="shotgunCriticalHitChance" Modifier=".10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826253281" Name="Chipset_CritHitPlus10_Wrench">
+   <Modifiers>
+    <ArkStatModifier StatName="wrenchCriticalHitChance" Modifier=".10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275180053466" Name="Chipset_DecreaseEtherCost">
+   <Modifiers>
+    <ArkStatModifier StatName="psiCostScaleEtherMorph" Modifier="-0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275180051376" Name="Chipset_DecreaseKineticCost">
+   <Modifiers>
+    <ArkStatModifier StatName="psiCostScaleKineticEnergy" Modifier="-0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275180053550" Name="Chipset_DecreaseTelepathicCost">
+   <Modifiers>
+    <ArkStatModifier StatName="psiCostScaleTelepathic" Modifier="-0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826246008" Name="Chipset_DecreaseScanningTime">
+   <Modifiers>
+    <ArkStatModifier StatName="researchScanningDurationScale" Modifier="-.33"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185838178234" Name="Chipset_DetectEliteMimicPoltergeist">
+   <Modifiers>
+    <ArkStatModifier StatName="markedEnemyMimickedMarkDuration" Modifier="1"/>
+    <ArkStatModifier StatName="markedEnemyEliteMimicMarkDuration" Modifier="1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185838176856" Name="Chipset_DetectMimics">
+   <Modifiers>
+    <ArkStatModifier StatName="markedEnemyMimickedMarkDuration" Modifier="1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275179615134" Name="Chipset_FearOnAlienDeathChance">
+   <Modifiers>
+    <ArkStatModifier StatName="alienFearOnDeathChance" Modifier="0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185844920410" Name="Chipset_FlashlightDuration">
+   <Modifiers>
+    <ArkStatModifier StatName="flashlightBatteryDrainRate" Modifier="-.5"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275179554269" Name="Chipset_FreePowerChance">
+   <Modifiers>
+    <ArkStatModifier StatName="freePowerChance" Modifier="0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275179537865" Name="Chipset_HealthForPsi">
+   <Modifiers>
+    <ArkStatModifier StatName="healthDrainForPsi" Modifier="15"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031631" Name="Chipset_HeavyMachinery">
+   <Modifiers>
+    <ArkStatModifier StatName="laserCameraSpeedMultiplier" Modifier="0.15"/>
+    <ArkStatModifier StatName="gooGunCameraSpeedMultiplier" Modifier="0.15"/>
+    <ArkStatModifier StatName="gooGunWalkSpeedMultiplier" Modifier="0.2"/>
+    <ArkStatModifier StatName="laserWalkSpeedMultiplier" Modifier="0.2"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031638" Name="Chipset_IncreaseMaxO2">
+   <Modifiers>
+    <ArkStatModifier StatName="maxOxygen" Modifier="1000"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826244184" Name="Chipset_IncreaseMaxPsi">
+   <Modifiers>
+    <ArkStatModifier StatName="psiPointsBonus" Modifier="50"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275152339678" Name="Chipset_IncreasePsiScanningResearch">
+   <Modifiers>
+    <ArkStatModifier StatName="researchesPerScan" Modifier="1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185857952096" Name="Chipset_IncreaseScanningRange">
+   <Modifiers>
+    <ArkStatModifier StatName="psiScanningRange" Modifier="10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275171090809" Name="Chipset_LastChance">
+   <Modifiers>
+    <ArkStatModifier StatName="lastChanceMod" Modifier="10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185848372114" Name="Chipset_LeverageAssist">
+   <Modifiers>
+    <ArkStatModifier StatName="carryPickupSpeedScale" Modifier="-0.75"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185848373976" Name="Chipset_MarkedEnemiesDamage">
+   <Modifiers>
+    <ArkStatModifier StatName="markedEnemyDamageScale" Modifier=".10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185855807329" Name="Chipset_MechTechs">
+   <Modifiers>
+    <ArkStatModifier StatName="repairTimeScale" Modifier="-0.5"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="2524450536748921087" Name="Chipset_PlayerNotRecyclable">
+   <Modifiers>
+    <ArkStatModifier StatName="recyclingPlayerScale" Modifier="-1.0"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185837558105" Name="Chipset_PowersCooldown">
+   <Modifiers>
+    <ArkStatModifier StatName="psiPowerCooldownScale" Modifier="0.2"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031635" Name="Chipset_PropulsionUpgrade_I">
+   <Modifiers>
+    <ArkStatModifier StatName="propulsionDuration" Modifier="4.0"/>
+    <ArkStatModifier StatName="propulsionGlideSpeed" Modifier="2.0"/>
+    <ArkStatModifier StatName="zeroGSprintMaxSpeed" Modifier="6"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185833509882" Name="Chipset_PropulsionUpgrade_II">
+   <Modifiers>
+    <ArkStatModifier StatName="propulsionForce" Modifier="4.2"/>
+    <ArkStatModifier StatName="propulsionForceDuration" Modifier="0.5"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275180334436" Name="Chipset_PsiRegen">
+   <Modifiers>
+    <ArkStatModifier StatName="psiRegenRate" Modifier="0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185826256433" Name="Chipset_ReduceO2ConsumptionRate">
+   <Modifiers>
+    <ArkStatModifier StatName="oxygenConsumptionRate" Modifier="-2"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275179645345" Name="Chipset_RobotAmmoDrops">
+   <Modifiers>
+    <ArkStatModifier StatName="robotLaserAmmoDropScale" Modifier="0.1"/>
+    <ArkStatModifier StatName="robotStunAmmoDropScale" Modifier="0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275179721172" Name="Chipset_SneakAttackHealthRestore">
+   <Modifiers>
+    <ArkStatModifier StatName="sneakAttackHealthRestore" Modifier="100"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275179793327" Name="Chipset_SneakAttackPsiRestore">
+   <Modifiers>
+    <ArkStatModifier StatName="sneakAttackPsiRestore" Modifier="10"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185838353742" Name="Chipset_SneakyStep">
+   <Modifiers>
+    <ArkStatModifier StatName="maxSpeedCrawl" Modifier="0.75"/>
+    <ArkStatModifier StatName="maxSpeedSneak" Modifier=".85"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="10641886185855806633" Name="Chipset_StaminaBoost">
+   <Modifiers>
+    <ArkStatModifier StatName="fatigueDrainRate" Modifier="25"/>
+    <ArkStatModifier StatName="fatigueDrainDelay" Modifier="-1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275151031627" Name="Chipset_TightSpaces">
+   <Modifiers>
+    <ArkStatModifier StatName="maxSpeedCrawl" Modifier="0.75"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="12348086275152333034" Name="Chipset_TraumaChanceReduction">
+   <Modifiers>
+    <ArkStatModifier StatName="traumaActivationChance" Modifier="-25"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="844024417326870424" Name="Chipset_RecyclerLootBonus">
+   <Modifiers>
+    <ArkStatModifier StatName="recyclingYieldScale" Modifier="0.1"/>
+    <ArkStatModifier StatName="wrenchCriticalHitChance" Modifier="0.05"/>
+    <ArkStatModifier StatName="flashlightBatteryDrainRate" Modifier="-0.25"/>
+    <ArkStatModifier StatName="flashlightRechargeRate" Modifier="1.0"/>
+    <ArkStatModifier StatName="maxSpeedCrawl" Modifier=".25"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+  <ArkStatModifierPackage ID="844024417326870442" Name="Chipset_RecyclerLootLimiter">
+   <Modifiers>
+    <ArkStatModifier StatName="maxSpeedCrawl" Modifier="-0.25"/>
+    <ArkStatModifier StatName="flashlightBatteryDrainRate" Modifier="1.0"/>
+    <ArkStatModifier StatName="recyclingYieldScale" Modifier="-0.1"/>
+   </Modifiers>
+  </ArkStatModifierPackage>
+ </Packages>
+</ArkStatModifierPackages>

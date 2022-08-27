@@ -1,0 +1,8 @@
+
+<EquipPack name="Player_Default" primary="ArkShotgun">
+ <Items>
+  <ArkShotgun type="ItemGivable" setup="" archetype=""/>
+  <NoWeapon type="ItemGivable" setup="" archetype=""/>
+ </Items>
+ <Ammos/>
+</EquipPack>

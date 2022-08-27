@@ -1,0 +1,20 @@
+
+<Objectives>
+ <Objective id="761057047970222617" title="@loc_15373294129891632492" optional="true">
+  <Clues>
+   <Clue id="761057047979395127" displayName="GUT" text="@loc_15373294129891632493"/>
+   <Clue id="761057047997796734" displayName="Roster" text="@loc_15373294129891632494"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="761057047970223748" displayName="Blackbox project" text="@loc_15373294129891632495"/>
+   <Desc id="761057047996412412" displayName="Found Blackbox key only" text="@loc_15373294129891632496"/>
+   <Desc id="761057047971604571" displayName="Found Josh First" text="@loc_15373294129891632497"/>
+   <Desc id="761057047970222618" displayName="Josh Found" text="@loc_15373294129891632498"/>
+   <Desc id="761057047979395521" displayName="Completed" text="@loc_15373294129891632499"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="761057047970223069" displayName="Find Josh Dalton" optional="false" text="@loc_15373294129891632500" description="761057047970223748" Location="844024417314265553"/>
+   <Task id="761057047996343693" displayName="Blackbox Project Lab" optional="false" text="@loc_15373294129891632502" Location="844024417263019221" markerLabel="@loc_15373294129891632501"/>
+  </Tasks>
+ </Objective>
+</Objectives>

@@ -1,0 +1,66 @@
+
+<UIElements name="DanielleDeadScreen">
+ <UIElement name="DanielleDeadScreen" render_lockless="1" mouseevents="1" keyevents="1" cursor="1" controller_input="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_death_screen.gfx" layer="6">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="deathScreenOpen" funcname="death.deathScreenOpen"/>
+   <function name="deathHLNav" funcname="death.hlNav">
+    <param name="Num" desc="button number" type="int"/>
+   </function>
+   <function name="deathBtnSelect" funcname="death.btnSelect">
+    <param name="Num" desc="button number" type="int"/>
+   </function>
+   <function name="addButton" funcname="death.addButton">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Text" desc="player facing text" type="string"/>
+    <param name="isEnabled" desc="true=enabled, false=disabled" type="bool"/>
+   </function>
+   <function name="deathScreenClose" funcname="death.deathScreenClose"/>
+   <function name="setTip" funcname="death.setTip">
+    <param name="Tip" desc="" type="string"/>
+   </function>
+   <function name="deathScreenDim" funcname="death.deathScreenDim"/>
+   <function name="deathScreenUnDim" funcname="death.deathScreenUnDim"/>
+   <function name="screenRotate" funcname="camera.rotateOffset">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="setPrompt" funcname="death.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="death.formatPrompts"/>
+  </functions>
+  <Events>
+   <event name="DeathScreenBtnPressed" fscommand="mouseBtnPress" desc="Menu button pressed event">
+    <param name="Value" desc="Button display text" type="string"/>
+   </event>
+   <event name="DeathScreenKeyBtnPressed" fscommand="keyBtnPress" desc="Menu button pressed event">
+    <param name="Value" desc="Button display text" type="string"/>
+   </event>
+   <event name="closeCompleted" fscommand="closeCompleted" desc=""/>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

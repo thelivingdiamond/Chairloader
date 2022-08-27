@@ -1,0 +1,21 @@
+<Graph isModule="1" moduleName="ArkLights_Bathroom" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkLight" pos="-340,-120,0" EntityGUID="{45D6566E-FFA2-46EB-8AEA-8819FEEB25F3}" EntityGUID_64="46EBFFA245D6566E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="4" Class="entity:ArkLight" pos="-103,-121,0" EntityGUID="{4A42764F-798A-47A7-8DA5-5A1CBA993D9E}" EntityGUID_64="47A7798A4A42764F">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="6" Class="entity:ArkLight" pos="-103,-96,0" EntityGUID="{9824469B-E13F-452A-8054-62BD511616AF}" EntityGUID_64="452AE13F9824469B">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="8" Class="entity:ArkLight" pos="-103,-71,0" EntityGUID="{5E9607D4-D4B3-40FD-A5E1-76596B27899F}" EntityGUID_64="40FDD4B35E9607D4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="10" Class="entity:ArkLight" pos="-103,-46,0" EntityGUID="{612B6C4C-A472-4533-99FA-69C09010F1EB}" EntityGUID_64="4533A472612B6C4C">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

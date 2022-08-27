@@ -1,0 +1,7 @@
+
+<EquipPack name="ArkPlayer_LaserTest" primary="ArkWeaponInstalaser">
+ <Items>
+  <ArkWeaponInstalaser type="" archetype="ArkPickups.Weapons.Instalaser" count="1"/>
+  <ArkAmmoPickupHeavyLaser type="" archetype="ArkPickups.Ammo.InstaLaser" count="900"/>
+ </Items>
+</EquipPack>

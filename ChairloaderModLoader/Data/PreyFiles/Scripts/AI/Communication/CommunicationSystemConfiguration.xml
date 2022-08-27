@@ -1,0 +1,10 @@
+
+<Communications>
+ <GlobalConfiguration>
+  <WWISE prefixForPlayTrigger="" prefixForStopTrigger="" switchNameForCharacterVoice="" switchNameForCharacterType=""/>
+ </GlobalConfiguration>
+ <Variables>
+  <Variable name="TargetIsAbove"/>
+  <Variable name="TargetIsBelow"/>
+ </Variables>
+</Communications>

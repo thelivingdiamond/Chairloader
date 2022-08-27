@@ -1,0 +1,120 @@
+
+<Graph Description="" Group="HUD" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="294" Class="UI:Display:Display" pos="690,960,0">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1"/>
+  </Node>
+  <Node Id="364" Class="Game:Start" pos="-170,960,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="373" Name="Start_DNL_HUD" Class="_commentbox" pos="0,873,0">
+   <Inputs TextSize="1" Color="0.163641,0.91575,0.193972" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1900" Height="600"/>
+  </Node>
+  <Node Id="411" Class="UI:Display:Constraints" pos="690,1190,0">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1" type="2" left="0" top="0" width="1920" height="1080" scale="1" hAlign="1" vAlign="1" maximize="1"/>
+  </Node>
+  <Node Id="509" Class="UI:Functions:DanielleHUD:debugDrawSafeFrame" pos="1430,1160,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="515" Class="Ark:Debug:ConsoleEvent" pos="1480,1050,0">
+   <Inputs Command="ui_safeframeOn"/>
+  </Node>
+  <Node Id="630" Class="UI:Display:Display" pos="1030,960,0">
+   <Inputs uiElements_Element="DanielleMarkers" instanceID="-1"/>
+  </Node>
+  <Node Id="654" Class="UI:Events:DanielleHUD:UIAbilityMenuOpen" pos="70,2630,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="655" Class="UI:Events:DanielleHUD:UIAbilityMenuClose" pos="60,2800,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="656" Class="UI:Functions:DanielleMarkers:openAbilities" pos="510,2670,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="657" Class="UI:Functions:DanielleMarkers:closeAbilities" pos="510,2840,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="658" Class="UI:Functions:DanielleHUD:openAbilities" pos="510,2600,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="659" Class="UI:Functions:DanielleHUD:closeAbilities" pos="510,2770,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="660" Class="UI:Events:DaniellePDA:PDAMenuOpen" pos="70,3020,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="661" Class="UI:Events:DaniellePDA:PDAMenuClose" pos="70,3200,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="667" Name="Hide_HUD_elements_when_opening_PSI_Mode_or_Transcribe\n" Class="_commentbox" pos="-10,2555,0">
+   <Inputs TextSize="1" Color="0.752942,0.287441,0.238398" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="890" Height="780"/>
+  </Node>
+  <Node Id="669" Class="Math:SetNumber" pos="410,1340,0">
+   <Inputs in="90"/>
+  </Node>
+  <Node Id="670" Class="UI:Display:Constraints" pos="940,1190,0">
+   <Inputs uiElements_Element="DanielleSubtitles" instanceID="-1" type="2" left="0" top="0" width="1920" height="1080" scale="1" hAlign="1" vAlign="1" maximize="1"/>
+  </Node>
+  <Node Id="671" Class="Math:SetNumber" pos="410,1190,0">
+   <Inputs in="1920"/>
+  </Node>
+  <Node Id="672" Class="Math:SetNumber" pos="410,1260,0">
+   <Inputs in="1080"/>
+  </Node>
+  <Node Id="673" Class="UI:Functions:DanielleHUD:HUDFadeOn" pos="430,3200,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="674" Class="UI:Functions:DanielleHUD:HUDFadeOut" pos="420,3020,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="675" Class="UI:Functions:DanielleMarkers:MarkersFadeOn" pos="430,3270,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="676" Class="UI:Functions:DanielleMarkers:MarkersFadeOut" pos="410,3090,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="678" Class="Image:ScreenFader" pos="420,3370,0">
+   <Inputs FadeGroup="0" UseCurColor="1" FadeInTime="0.5" FadeOutTime="0.5" color_FadeColor="0,0,0" tex_TextureName="" UpdateAlways="1"/>
+  </Node>
+  <Node Id="679" Class="UI:Events:DaniellePDA:closeCompleted" pos="80,3370,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="680" Class="Ark:Locations:CheckLocation" pos="420,950,0">
+   <Inputs location_Location="13680621263401479941"/>
+  </Node>
+  <Node Id="683" Class="Time:Delay" pos="220,960,0">
+   <Inputs delay="0.5" resetOnInput="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="630" nodeOut="294" portIn="show" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="669" nodeOut="364" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="671" nodeOut="364" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="672" nodeOut="364" portIn="set" portOut="output" enabled="1"/>
+  <Edge nodeIn="683" nodeOut="364" portIn="in" portOut="output" enabled="1"/>
+  <Edge nodeIn="509" nodeOut="515" portIn="Call" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="656" nodeOut="654" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="658" nodeOut="654" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="657" nodeOut="655" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="659" nodeOut="655" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="674" nodeOut="660" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="676" nodeOut="660" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="678" nodeOut="660" portIn="FadeOut" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="673" nodeOut="661" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="675" nodeOut="661" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="678" nodeOut="661" portIn="FadeIn" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="411" nodeOut="671" portIn="set" portOut="out" enabled="1"/>
+  <Edge nodeIn="411" nodeOut="671" portIn="width" portOut="out" enabled="1"/>
+  <Edge nodeIn="670" nodeOut="671" portIn="width" portOut="out" enabled="1"/>
+  <Edge nodeIn="411" nodeOut="672" portIn="height" portOut="out" enabled="1"/>
+  <Edge nodeIn="670" nodeOut="672" portIn="height" portOut="out" enabled="1"/>
+  <Edge nodeIn="670" nodeOut="672" portIn="set" portOut="out" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="680" portIn="show" portOut="False" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="680" portIn="unload" portOut="True" enabled="1"/>
+  <Edge nodeIn="630" nodeOut="680" portIn="unload" portOut="True" enabled="1"/>
+  <Edge nodeIn="680" nodeOut="683" portIn="Trigger" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

@@ -1,0 +1,29 @@
+
+<CreatePhantomPowerProperties>
+ <Common DisplayName="@rpg_PhantomGenesisName" PsiCost="50" Description="@rpg_PhantomGenesis1" NoiseId="9469288860501998057" LoudnessId="9469288860501649190" PickerLabel="CreatePhantom" ExecutionAudioTrigger="Play_Power_Create_Phantom_Cast" InterruptsMimicGrabSequence="false" TargetHighlightColorAlpha="1.0" TargetHighlightColor="0.8,0.76,0.96" CostReductionStat="psiCostScaleEtherMorph" ExecutionPlayerEffect="Player.Powers.PhantomGenesis.PhantomGenesis_CastPV"/>
+ <Unique RaiseHeight="1.3" RaiseSpeed="4.0" RaiseDuration="3.0" CorpseDamping="6.0" CorpseGravity="-10.0" CorpseParticleEffect="Player.Powers.PhantomGenesis.PhantomGenesis_HumanLift" CorpseParticleEffectAttachment="FX_Head"/>
+ <Levels>
+  <ArkPsiPowerCreatePhantomProperties DisplayName="@rpg_PhantomGenesisName" Description="@rpg_PhantomGenesis1" CooldownDurationSec="60">
+   <TargetingProperties MaxRange="20" MinRange="0.0" TargetParticleEffect="Player.Powers.PhantomGenesis.PhantomGenesis_Targeting" TargetParticleEffectAttachment="FX_Head" TargetParticleLightEffect="Player.Powers.PhantomGenesis.PhantomGenesis_Targeting_Light">
+    <ValidTargetMetaTags>
+     <MetaTag value="9469288860498988629"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <Archetypes>
+    <Archetype value="ArkNpcs.Phantoms.BasePhantom"/>
+   </Archetypes>
+  </ArkPsiPowerCreatePhantomProperties>
+  <ArkPsiPowerCreatePhantomProperties DisplayName="@rpg_PhantomGenesisName2" Description="@rpg_PhantomGenesis2" CooldownDurationSec="60">
+   <TargetingProperties MaxRange="20" MinRange="0.0" TargetParticleEffect="Player.Powers.PhantomGenesis.PhantomGenesis_Targeting" TargetParticleEffectAttachment="FX_Head" TargetParticleLightEffect="Player.Powers.PhantomGenesis.PhantomGenesis_Targeting_Light">
+    <ValidTargetMetaTags>
+     <MetaTag value="9469288860498988629"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <Archetypes>
+    <Archetype value="ArkNpcs.Phantoms.EthericPhantom"/>
+    <Archetype value="ArkNpcs.Phantoms.VoltaicPhantom"/>
+    <Archetype value="ArkNpcs.Phantoms.ThermalPhantom"/>
+   </Archetypes>
+  </ArkPsiPowerCreatePhantomProperties>
+ </Levels>
+</CreatePhantomPowerProperties>

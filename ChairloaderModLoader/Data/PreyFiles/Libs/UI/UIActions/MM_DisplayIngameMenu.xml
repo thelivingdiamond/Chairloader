@@ -1,0 +1,23 @@
+
+<Graph Description="" Group="Menus" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="25" Name="Init_MainMenu_and_display_the_Main_page" Class="_commentbox" pos="-520,-313,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="890" Height="250"/>
+  </Node>
+  <Node Id="76" Class="UI:Action:Start" pos="-480,-290,0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="77" Class="UI:Action:End" pos="190,-290,0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="78" Class="UI:Display:Display" pos="-220,-290,0">
+   <Inputs uiElements_Element="DaniellePauseMenu" instanceID="-1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="78" nodeOut="76" portIn="show" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="77" nodeOut="78" portIn="EndAction" portOut="onUnload" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

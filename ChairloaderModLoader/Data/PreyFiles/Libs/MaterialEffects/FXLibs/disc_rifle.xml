@@ -1,0 +1,517 @@
+
+<FXLib>
+ <Effect name="mat_null">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Null.Null"/>
+  </Particle>
+ </Effect>
+ <Effect name="mat_default">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.SurfaceMaterials.Default_00"/>
+  </Particle>
+  <Decal minscale="0.15" maxscale="0.15" lifetime="4.0">
+   <Material materialPath="Materials/ArkEffects/Utilities/SurfaceMaterials/MatDefault_00"/>
+  </Decal>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+ </Effect>
+ <Effect name="mat_discrifle_cardboard">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_carpet">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.ShotgunShell.Hit_Carpet.CarpetDust_00"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="carpet"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_concrete" delay="0.05">
+  <RandEffect>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.A"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.B"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.C"/>
+   </Particle>
+  </RandEffect>
+  <RandEffect>
+   <Decal minscale="0.07" maxscale="0.09" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_concrete_01"/>
+   </Decal>
+   <Decal minscale="0.07" maxscale="0.09" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_concrete_02"/>
+   </Decal>
+   <Decal minscale="0.07" maxscale="0.09" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_concrete_03"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_dirt">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.ShotgunShell.Hit_Carpet.CarpetDust_00"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.15" maxscale="0.15" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Generic/GenericBulletImpact_00"/>
+   </Decal>
+   <Decal minscale="0.15" maxscale="0.15" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Generic/GenericBulletImpact_01"/>
+   </Decal>
+   <Decal minscale="0.15" maxscale="0.15" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Generic/GenericBulletImpact_02"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="dirt"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="mat_discrifle_electrical">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="80" particleName="MaterialEffects.ShotgunShell.Hit_Electrical.Hit_Electrical"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.25" maxscale="0.65" lifetime="15.0">
+    <Material materialPath="Materials/ArkEffects/Environment/ElectricalBurn_00"/>
+   </Decal>
+   <Decal minscale="0.25" maxscale="0.65" lifetime="15.0">
+    <Material materialPath="Materials/ArkEffects/Environment/ElectricalBurn_01"/>
+   </Decal>
+   <Decal minscale="0.25" maxscale="0.65" lifetime="15.0">
+    <Material materialPath="Materials/ArkEffects/Environment/ElectricalBurn_02"/>
+   </Decal>
+   <Decal minscale="0.25" maxscale="0.65" lifetime="15.0">
+    <Material materialPath="Materials/ArkEffects/Environment/ElectricalBurn_03"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="electrical"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="mat_discrifle_leather">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="leather"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_metal_thin" delay="0.05">
+  <RandEffect>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.A"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.B"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.C"/>
+   </Particle>
+  </RandEffect>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="metal_thin"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_metal_thick" delay="0.05">
+  <RandEffect>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.A"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.B"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.C"/>
+   </Particle>
+  </RandEffect>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="metal_thick"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_oil">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+ </Effect>
+ <Effect name="mat_discrifle_paper">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_plastic" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="plastic"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_porcelain">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="porcelain"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_rock">
+  <RandEffect>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.A"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.B"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_Generic.C"/>
+   </Particle>
+  </RandEffect>
+  <RandEffect>
+   <Decal minscale="0.07" maxscale="0.09" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_concrete_01"/>
+   </Decal>
+   <Decal minscale="0.07" maxscale="0.09" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_concrete_02"/>
+   </Decal>
+   <Decal minscale="0.07" maxscale="0.09" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_concrete_03"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_rubber">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="leather"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_water">
+  <Particle>
+   <Name minscale="0.5" maxscale="0.65" maxscaledist="50" particleName="MaterialEffects.ShotgunShell.HitWater.WaterImpact_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="water"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649202"/>
+ </Effect>
+ <Effect name="mat_discrifle_wood">
+  <RandEffect>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_wood.A"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_wood.B"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_wood.C"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Bullet.Hit_wood.D"/>
+   </Particle>
+  </RandEffect>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.07" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_wood_01"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.07" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_wood_02"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.07" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Pistol/BulletDecal_wood_03"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="wood"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_canopy">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_vegetation">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.HitEffects.Generic.Vegetation.VegHit_00"/>
+  </Particle>
+  <RandEffect>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_00"/>
+   </Decal>
+   <Decal minscale="0.05" maxscale="0.05" lifetime="10.0">
+    <Material materialPath="Materials/ArkEffects/Weapons/Shotgun/bulletdecal_metal_1"/>
+   </Decal>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="vegetation"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_human" delay="0.05">
+  <RandEffect>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+   </Particle>
+   <Particle>
+    <Name minscale="1" maxscale="1" maxscaledist="70" particleName="MaterialEffects.ShotgunShell.Hit_Flesh.Hit_Flesh"/>
+   </Particle>
+  </RandEffect>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_mech">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="80" particleName="MaterialEffects.ShotgunShell.Hit_Flesh_Mechanical.Sparks_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="mechanical"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_mech_armor">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="80" particleName="MaterialEffects.ShotgunShell.Hit_Flesh_Mechanical.Sparks_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="shield"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_mimic">
+  <Particle>
+   <Name minscale="1.0" maxscale="1.0" maxscaledist="50" particleName="MaterialEffects.AlienBlood.MimicBlood.MimicInkHit_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh_mimic"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_nightmare">
+  <Particle>
+   <Name minscale="1.0" maxscale="1.0" maxscaledist="50" particleName="MaterialEffects.AlienBlood.MimicBlood.MimicInkHit_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh_nightmare"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_phantom">
+  <Particle>
+   <Name minscale="1.0" maxscale="1.0" maxscaledist="50" particleName="MaterialEffects.AlienBlood.BetaBlood.BetaBodyHit_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh_phantom"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_apex">
+  <Particle>
+   <Name minscale=".75" maxscale="1.15" maxscaledist="50" particleName="MaterialEffects.AlienBlood.MimicBlood.MimicInkHit_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh_apex"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_cystoid">
+  <Particle>
+   <Name minscale="1.0" maxscale="1.0" maxscaledist="50" particleName="MaterialEffects.AlienBlood.MimicBlood.MimicInkHit_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh_cystoid"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_flesh_weaver">
+  <Particle>
+   <Name minscale="1.0" maxscale="1.0" maxscaledist="50" particleName="MaterialEffects.AlienBlood.MimicBlood.MimicInkHit_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="flesh_weaver"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649195"/>
+ </Effect>
+ <Effect name="mat_discrifle_glass" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="glass_dynamic"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_glass_dynamic" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="glass_dynamic"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_glass_unbreakable" delay="0.05">
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="glass_unbreakable"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+  <RandEffect>
+   <Decal minscale="0.144" maxscale="0.164" rotation="-1" growTime="0" assembledecals="false" forceedge="false" lifetime="15" projDepth="1" decaltrans="true">
+    <Material materialPath="Materials/ArkDecals/glass/GlassDecal_Set_A_00"/>
+   </Decal>
+   <Decal minscale="0.144" maxscale="0.164" rotation="-1" growTime="0" assembledecals="false" forceedge="false" lifetime="15" projDepth="1" decaltrans="true">
+    <Material materialPath="Materials/ArkDecals/glass/GlassDecal_Set_A_00"/>
+   </Decal>
+  </RandEffect>
+ </Effect>
+ <Effect name="mat_discrifle_glass_looking" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Ammo.Null.Null"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="glass_looking"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_glass_healing" delay="0.05">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.ShotgunShell.Hit_GlassHealing.Hit_GlassHealing_00"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="glass_healing"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_gloo_hard">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Null.Null"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="gloo_hard"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_gloo_soft">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.Null.Null"/>
+  </Particle>
+  <Audio trigger="Play_Impact_PistolProjectile">
+   <Switch name="SurfaceType" state="gloo_soft"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+ <Effect name="mat_discrifle_ice">
+  <Particle>
+   <Name minscale="0.50" maxscale="0.70" maxscaledist="80" particleName="MaterialEffects.HitEffects.Generic.Ice.IceBlockHit_00"/>
+  </Particle>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649190"/>
+ </Effect>
+</FXLib>

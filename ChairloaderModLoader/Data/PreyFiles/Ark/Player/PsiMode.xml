@@ -1,0 +1,84 @@
+
+<Config PlayerPsiModeMaterial="" PlayerPsiModeParticleEffect="Player.FocusMenu.PsiMenuBackground" selectionText="L-Stick: Navigate&lt;br&gt;A: Confirm&lt;br&gt;Y: Exit" startMainLoopTrigger="Play_Menu_Psi_Main_LP_option1" stopMainLoopTrigger="Stop_Menu_Psi_Main_LP_option1" SelectTargetAudioTrigger="Play_Menu_Psi_SelectTarget" UnselectTargetAudioTrigger="Play_Menu_Psi_SelectTarget" CooldownFinishedAudioTrigger="Play_Player_Powers_CoolDown_Complete" ActivatePowerFailAudioTrigger="Play_Player_Powers_CannotCast">
+ <Zoom minDepth="5.0" maxDepth="50.0" minHFOV="65" maxHFOV="35" interpTime="0.15"/>
+ <OneG>
+  <ArkInputLegend ActionMap="focusmode">
+   <Items>
+    <ArkInputLegendItem Action="mouse_execute_power_type1" Label="@ui_ExecutePower" ControlScheme="keyboard"/>
+    <ArkInputLegendItem Action="controller_execute_power" Label="@ui_ExecutePower" ControlScheme="controller"/>
+    <ArkInputLegendItem Action="rotateyaw" Label="@ui_MoveCamera" ControlScheme="keyboard"/>
+    <ArkInputLegendItem Action="xi_rotateyaw" Label="@ui_MoveCamera" ControlScheme="controller"/>
+    <ArkInputLegendItem Action="sneak" Label="@ui_Sneak"/>
+    <ArkInputLegendItem Action="jump" Label="@input_jump"/>
+    <ArkInputLegendItem Label="@ui_Lean" ComboString="@input_or">
+     <ActionList>
+      <ArkInputAction Action="leanleft"/>
+      <ArkInputAction Action="leanright"/>
+     </ActionList>
+    </ArkInputLegendItem>
+    <ArkInputLegendItem Action="mouse_cancel_focusmode_type1" Label="@ui_CancelPsiPower" ControlScheme="keyboard"/>
+    <ArkInputLegendItem Action="controller_cancel_psitargeting" Label="@ui_CancelPsiPower" ControlScheme="controller"/>
+   </Items>
+  </ArkInputLegend>
+  <Mimic>
+   <ArkInputLegend ActionMap="focusmode">
+    <Items>
+     <ArkInputLegendItem Action="mouse_execute_power_type1" Label="@ui_ExecutePower" ControlScheme="keyboard"/>
+     <ArkInputLegendItem Action="controller_execute_power" Label="@ui_ExecutePower" ControlScheme="controller"/>
+     <ArkInputLegendItem Action="rotateyaw" Label="@ui_MoveCamera" ControlScheme="keyboard"/>
+     <ArkInputLegendItem Action="xi_rotateyaw" Label="@ui_MoveCamera" ControlScheme="controller"/>
+     <ArkInputLegendItem Action="jump" Label="@input_jump"/>
+     <ArkInputLegendItem Action="mouse_cancel_focusmode_type1" Label="@ui_CancelPsiPower" ControlScheme="keyboard"/>
+     <ArkInputLegendItem Action="controller_cancel_psitargeting" Label="@ui_CancelPsiPower" ControlScheme="controller"/>
+    </Items>
+   </ArkInputLegend>
+  </Mimic>
+ </OneG>
+ <ZeroG>
+  <ArkInputLegend ActionMap="focusmode">
+   <Items>
+    <ArkInputLegendItem Action="mouse_execute_power_type1" Label="@ui_ExecutePower" ControlScheme="keyboard"/>
+    <ArkInputLegendItem Action="controller_execute_power" Label="@ui_ExecutePower" ControlScheme="controller"/>
+    <ArkInputLegendItem Action="rotateyaw" Label="@ui_MoveCamera" ControlScheme="keyboard"/>
+    <ArkInputLegendItem Action="xi_rotateyaw" Label="@ui_MoveCamera" ControlScheme="controller"/>
+    <ArkInputLegendItem Action="sneak" Label="@input_descend"/>
+    <ArkInputLegendItem Action="jump" Label="@input_ascend"/>
+    <ArkInputLegendItem Label="@input_roll" ComboString="@input_or">
+     <ActionList>
+      <ArkInputAction Action="leanleft"/>
+      <ArkInputAction Action="leanright"/>
+     </ActionList>
+    </ArkInputLegendItem>
+    <ArkInputLegendItem Label="@ui_Brake" ComboString="+">
+     <ActionList>
+      <ArkInputAction Action="leanleft"/>
+      <ArkInputAction Action="leanright"/>
+     </ActionList>
+    </ArkInputLegendItem>
+    <ArkInputLegendItem Action="mouse_cancel_focusmode_type1" Label="@ui_CancelPsiPower" ControlScheme="keyboard"/>
+    <ArkInputLegendItem Action="controller_cancel_psitargeting" Label="@ui_CancelPsiPower" ControlScheme="controller"/>
+   </Items>
+  </ArkInputLegend>
+  <Mimic>
+   <ArkInputLegend ActionMap="focusmode">
+    <Items>
+     <ArkInputLegendItem Action="mouse_execute_power_type1" Label="@ui_ExecutePower" ControlScheme="keyboard"/>
+     <ArkInputLegendItem Action="controller_execute_power" Label="@ui_ExecutePower" ControlScheme="controller"/>
+     <ArkInputLegendItem Action="rotateyaw" Label="@ui_MoveCamera" ControlScheme="keyboard"/>
+     <ArkInputLegendItem Action="xi_rotateyaw" Label="@ui_MoveCamera" ControlScheme="controller"/>
+     <ArkInputLegendItem Action="sneak" Label="@input_descend"/>
+     <ArkInputLegendItem Action="jump" Label="@input_ascend"/>
+     <ArkInputLegendItem Label="@input_roll" ComboString="@input_or">
+      <ActionList>
+       <ArkInputAction Action="leanleft"/>
+       <ArkInputAction Action="leanright"/>
+      </ActionList>
+     </ArkInputLegendItem>
+     <ArkInputLegendItem Action="mouse_cancel_focusmode_type1" Label="@ui_CancelPsiPower" ControlScheme="keyboard"/>
+     <ArkInputLegendItem Action="controller_cancel_psitargeting" Label="@ui_CancelPsiPower" ControlScheme="controller"/>
+    </Items>
+   </ArkInputLegend>
+  </Mimic>
+ </ZeroG>
+ <Targeting AudioTriggerCooldownSec="0.25" ShowHudTargetInfo="false" DepthControlSpeed="15.0" CollisionRadius="0.05" IndividualTargetingAngle="20.0" MinSizeForCrosshair="3.0" ParticleEffect="Screen.PsiMode.Targeting.SphericalTarget.SphericalMesh_00" CrosshairEffect="" TargeParticleEffect="" TargetAttachmentName="fxa_base"/>
+</Config>

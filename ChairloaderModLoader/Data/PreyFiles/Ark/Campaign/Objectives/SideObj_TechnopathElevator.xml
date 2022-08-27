@@ -1,0 +1,17 @@
+
+<Objectives>
+ <Objective id="1713490239432167397" title="@loc_15373294129891632706" optional="true">
+  <Clues>
+   <Clue id="1713490239432235886" displayName="TechnoElevClue" text="@loc_15373294129891632707"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="1713490239432167398" displayName="EliminateTechno" text="@loc_15373294129891632708"/>
+   <Desc id="1713490239432167723" displayName="FindOutWhy" text="@loc_15373294129891632709"/>
+   <Desc id="844024417309002477" displayName="Completed" text="@loc_15373294129891632710"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="1713490239432167505" displayName="FindOutWhy" optional="true" text="@loc_15373294129891632712" markerLabel="@loc_15373294129891632711" Location="1713490239386284818" description="1713490239432167723"/>
+   <Task id="1713490239432167637" displayName="EliminateTechno" optional="true" text="@loc_15373294129891632714" markerLabel="@loc_15373294129891632713" Location="1713490239386284818" description="1713490239432167398"/>
+  </Tasks>
+ </Objective>
+</Objectives>

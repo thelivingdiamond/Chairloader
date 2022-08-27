@@ -1,0 +1,556 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13605</WindowHeight>
+  <WindowWidth>26715</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="72" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564886</Data></Cell>
+    <Cell><Data ss:Type="String">Jada Marks' Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Jada Marks' Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564887</Data></Cell>
+    <Cell><Data ss:Type="String">Bridge Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Bridge Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564888</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564889</Data></Cell>
+    <Cell><Data ss:Type="String">Shipping Container 2312</Data></Cell>
+    <Cell><Data ss:Type="String">Shipping Container 2312</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564890</Data></Cell>
+    <Cell><Data ss:Type="String">Shipping Container 3232</Data></Cell>
+    <Cell><Data ss:Type="String">Shipping Container 3232</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564891</Data></Cell>
+    <Cell><Data ss:Type="String">Shipping Container 3553</Data></Cell>
+    <Cell><Data ss:Type="String">Shipping Container 3553</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564892</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay Security Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay Security Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564895</Data></Cell>
+    <Cell><Data ss:Type="String">Pharmacy Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Pharmacy Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564896</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Hutchinson's Office</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Hutchinson's Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564897</Data></Cell>
+    <Cell><Data ss:Type="String">Quarantine</Data></Cell>
+    <Cell><Data ss:Type="String">Quarantine</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564898</Data></Cell>
+    <Cell><Data ss:Type="String">ER Console</Data></Cell>
+    <Cell><Data ss:Type="String">ER Console</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564899</Data></Cell>
+    <Cell><Data ss:Type="String">Radiology Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Radiology Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564900</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. DeVries' Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. DeVries' Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564901</Data></Cell>
+    <Cell><Data ss:Type="String">ICU</Data></Cell>
+    <Cell><Data ss:Type="String">ICU</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564902</Data></Cell>
+    <Cell><Data ss:Type="String">Freezer</Data></Cell>
+    <Cell><Data ss:Type="String">Freezer</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564903</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics Access</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564904</Data></Cell>
+    <Cell><Data ss:Type="String">Hardware Labs Access</Data></Cell>
+    <Cell><Data ss:Type="String">Hardware Labs Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564905</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu's Office</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu's Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564907</Data></Cell>
+    <Cell><Data ss:Type="String">Holding Room</Data></Cell>
+    <Cell><Data ss:Type="String">Holding Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564908</Data></Cell>
+    <Cell><Data ss:Type="String">I.T. Department</Data></Cell>
+    <Cell><Data ss:Type="String">I.T. Department</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564909</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics Foyer Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Psychotronics Foyer Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564912</Data></Cell>
+    <Cell><Data ss:Type="String">Volunteer Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Volunteer Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564913</Data></Cell>
+    <Cell><Data ss:Type="String">Volunteer Security</Data></Cell>
+    <Cell><Data ss:Type="String">Volunteer Security</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564914</Data></Cell>
+    <Cell><Data ss:Type="String">Volunteer Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">Volunteer Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564915</Data></Cell>
+    <Cell><Data ss:Type="String">Simulation Lab A</Data></Cell>
+    <Cell><Data ss:Type="String">Simulation Lab A</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564916</Data></Cell>
+    <Cell><Data ss:Type="String">Maintenance Room</Data></Cell>
+    <Cell><Data ss:Type="String">Maintenance Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564917</Data></Cell>
+    <Cell><Data ss:Type="String">Storage Room</Data></Cell>
+    <Cell><Data ss:Type="String">Storage Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564918</Data></Cell>
+    <Cell><Data ss:Type="String">Storage Room</Data></Cell>
+    <Cell><Data ss:Type="String">Storage Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564919</Data></Cell>
+    <Cell><Data ss:Type="String">Test Rooms</Data></Cell>
+    <Cell><Data ss:Type="String">Test Rooms</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564920</Data></Cell>
+    <Cell><Data ss:Type="String">Test Rooms</Data></Cell>
+    <Cell><Data ss:Type="String">Test Rooms</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564921</Data></Cell>
+    <Cell><Data ss:Type="String">Simulation Lab B</Data></Cell>
+    <Cell><Data ss:Type="String">Simulation Lab B</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564922</Data></Cell>
+    <Cell><Data ss:Type="String">Exam Room</Data></Cell>
+    <Cell><Data ss:Type="String">Exam Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564923</Data></Cell>
+    <Cell><Data ss:Type="String">Material Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Material Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564924</Data></Cell>
+    <Cell><Data ss:Type="String">Security Booth</Data></Cell>
+    <Cell><Data ss:Type="String">Security Booth</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564925</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Install Room</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Install Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564926</Data></Cell>
+    <Cell><Data ss:Type="String">Annalise Gallegos's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Annalise Gallegos's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564927</Data></Cell>
+    <Cell><Data ss:Type="String">Morgue</Data></Cell>
+    <Cell><Data ss:Type="String">Morgue</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564928</Data></Cell>
+    <Cell><Data ss:Type="String">Armory</Data></Cell>
+    <Cell><Data ss:Type="String">Armory</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564929</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Kelstrup's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Kelstrup's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564931</Data></Cell>
+    <Cell><Data ss:Type="String">Director Thorstein's Office</Data></Cell>
+    <Cell><Data ss:Type="String">Director Thorstein's Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564934</Data></Cell>
+    <Cell><Data ss:Type="String">Machine Shop Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">Machine Shop Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564935</Data></Cell>
+    <Cell><Data ss:Type="String">Fitness Center</Data></Cell>
+    <Cell><Data ss:Type="String">Fitness Center</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564936</Data></Cell>
+    <Cell><Data ss:Type="String">Mail Room</Data></Cell>
+    <Cell><Data ss:Type="String">Mail Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564937</Data></Cell>
+    <Cell><Data ss:Type="String">Mikhaila's Office</Data></Cell>
+    <Cell><Data ss:Type="String">Mikhaila's Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564938</Data></Cell>
+    <Cell><Data ss:Type="String">Parts Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Parts Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564939</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Station</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564940</Data></Cell>
+    <Cell><Data ss:Type="String">Plant Entrance</Data></Cell>
+    <Cell><Data ss:Type="String">Plant Entrance</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564941</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564942</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Thorstein's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Thorstein's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564943</Data></Cell>
+    <Cell><Data ss:Type="String">Alex's Grav Shaft</Data></Cell>
+    <Cell><Data ss:Type="String">Alex's Grav Shaft</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564944</Data></Cell>
+    <Cell><Data ss:Type="String">Greenhouse</Data></Cell>
+    <Cell><Data ss:Type="String">Greenhouse</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564945</Data></Cell>
+    <Cell><Data ss:Type="String">Storage AR01</Data></Cell>
+    <Cell><Data ss:Type="String">Storage AR01</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564946</Data></Cell>
+    <Cell><Data ss:Type="String">Alex's Office Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Alex's Office Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564947</Data></Cell>
+    <Cell><Data ss:Type="String">Stairwell Access</Data></Cell>
+    <Cell><Data ss:Type="String">Stairwell Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564948</Data></Cell>
+    <Cell><Data ss:Type="String">Deep Storage Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Deep Storage Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564949</Data></Cell>
+    <Cell><Data ss:Type="String">Pilot Lounge</Data></Cell>
+    <Cell><Data ss:Type="String">Pilot Lounge</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564950</Data></Cell>
+    <Cell><Data ss:Type="String">Magnetosphere Control Room Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Magnetosphere Control Room Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564951</Data></Cell>
+    <Cell><Data ss:Type="String">Security Station Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Security Station Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564952</Data></Cell>
+    <Cell><Data ss:Type="String">Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564953</Data></Cell>
+    <Cell><Data ss:Type="String">Mia Bayer's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Mia Bayer's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564954</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Medical Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564955</Data></Cell>
+    <Cell><Data ss:Type="String">Maintenance Tunnel</Data></Cell>
+    <Cell><Data ss:Type="String">Maintenance Tunnel</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564956</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Security Cage</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Security Cage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_12889009725042785898</Data></Cell>
+    <Cell><Data ss:Type="String">Executive Suites</Data></Cell>
+    <Cell><Data ss:Type="String">Executive Suites</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417314263300</Data></Cell>
+    <Cell><Data ss:Type="String">Ballistics Lab Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Ballistics Lab Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291226415153</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Room</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047999439941</Data></Cell>
+    <Cell><Data ss:Type="String">Ballistics Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Ballistics Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_1713490239440037108</Data></Cell>
+    <Cell><Data ss:Type="String">Security Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Security Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_12889009725048253536</Data></Cell>
+    <Cell><Data ss:Type="String">Calvino's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Calvino's Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_12889009725054463945</Data></Cell>
+    <Cell><Data ss:Type="String">Debriefing Safe</Data></Cell>
+    <Cell><Data ss:Type="String">Debriefing Safe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013231168922</Data></Cell>
+    <Cell><Data ss:Type="String">Oxygen Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">Oxygen Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>57</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

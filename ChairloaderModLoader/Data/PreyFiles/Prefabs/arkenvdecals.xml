@@ -1,0 +1,143 @@
+
+<PrefabsLibrary Name="ArkEnvDecals">
+ <Prefab Name="Blood.Blood Footsteps 1" Id="{825A22CC-CE7D-48CF-8D87-48BD1AF803E5}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{B46164CD-7188-4D8C-90C5-A493EBCF4BED}" Name="Decal18" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_footsteps_1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Footsteps 2" Id="{C559F217-9FD5-4198-BB01-E1B0DABDF488}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{84E87D09-4FE2-489F-9ABC-FDA2D1470639}" Name="Decal19" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_footsteps_2" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Footsteps 3" Id="{67B3C4AC-A748-4097-8E2B-A32B879E6E4A}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{74AB336E-14BB-467D-B15D-68AA6606F40B}" Name="Decal20" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_footsteps_3" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Footsteps Single 1" Id="{5A03FBD9-CA22-4C1A-9FEF-16D3A7412F43}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{F3551A31-7855-4AE6-8F04-30C5B4658A77}" Name="Decal21" Pos="0.70007324,0.70001221,0.69999695" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.69999999,0.69999999,0.69999999" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_footsteps_single_1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Footsteps Single 2" Id="{9A7036B2-DC35-40D9-9899-2F44D84E4A1F}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{5CEEAFC3-4F24-4B7E-8DE3-B13C80957FA1}" Name="Decal22" Pos="0.70007324,0.70001221,0.69999695" FloorNumber="-1" Rotate="1,0,0,0" Scale="0.69999999,0.69999999,0.69999999" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_footsteps_single_2" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Splatter 1" Id="{EDB2F229-C3C2-425B-9465-A1DE9328C8CD}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{A62021FD-0EBF-4D5B-8229-23B83E19F725}" Name="Decal23" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_splatter_1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Stain 1" Id="{2B3017E7-5959-4B27-8D27-E652FF84884B}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{5CE3DE81-EA50-4860-B4E9-DC2A805F353B}" Name="Decal24" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_stain_1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Streak 1" Id="{3869A095-791C-40EC-9DE3-286D834359D0}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{3C169177-B312-4232-BADF-A4DA3A1EABC6}" Name="Decal25" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_streak_1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Cracks.Crack 1" Id="{46C02352-77D4-4B4F-AA43-8EDC45B257FE}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{5152915A-406E-40C8-A2EC-2B4021C38C0C}" Name="Decal26" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Crack_Decal_A/Crack_Decal_A1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Cracks.Crack 2" Id="{46936CD8-5EC3-446B-BC06-2C4A80D6B656}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{6904AB2F-E0A4-4CA3-ABDD-27BA3725519C}" Name="Decal27" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Crack_Decal_A/Crack_Decal_A2" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuff 1" Id="{2C01514E-D4D3-4981-AC32-F070BDDCE361}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{904F2BBC-F660-499D-ADED-096992CE92CB}" Name="Decal28" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/Scuff_Decal_A1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuff 2" Id="{BEFD01B5-8285-473C-9FBF-6CDC2823E8F9}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{8BA62E26-86BE-4061-A898-2BBBA0BFE50D}" Name="Decal29" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/Scuff_Decal_A2" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuff 3" Id="{2268007F-7531-48C4-A655-14A9D08FF9AD}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{65FCBD0A-DC15-4C8E-BF83-47889C10C6F6}" Name="Decal30" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/Scuff_Decal_A3" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuff 4" Id="{13F6E517-3B3A-412D-92E1-F680C6BA162E}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{6A606F04-B46E-4004-869A-F2200F3384F6}" Name="Decal31" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/Scuff_Decal_A4" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuff 5" Id="{C3AF361E-B442-443C-9F1B-FBF2B43B022E}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{843EC5E8-40A4-4771-8680-D65B8033E4C7}" Name="Decal32" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/Scuff_Decal_A5" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Stains.Stain 1" Id="{0076C879-379B-4267-AB20-7C8D77A71908}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{C9F4D19B-2DC9-4336-8BE1-3D3FB2EF1BB3}" Name="Decal33" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Stain_Decal_A/Stain_Decal_A1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Stains.Stain 2" Id="{3B66DF63-6E11-466A-9210-E9946829873F}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{7ECEEE73-3C66-454C-8BCB-1DDDA893799E}" Name="Decal34" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Stain_Decal_A/Stain_Decal_A2" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Stains.Stain 3" Id="{8EFEF292-42BB-4E04-82DE-53DC81FFEE4E}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{2D24CB28-F1C5-4A6A-902B-FA6996DCCC96}" Name="Decal35" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Stain_Decal_A/Stain_Decal_A3" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Stains.Stain 4" Id="{6B173C14-DB2C-446D-B068-B677D8842061}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{3C751D27-7A0F-4167-8292-5D8A31EFC104}" Name="Decal36" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Stain_Decal_A/Stain_Decal_A4" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Stains.Stain 5" Id="{98FE1B6B-CC25-44E8-9E91-8CE5AEF64414}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{9E4B11AF-CD1B-41D4-A3B2-80DEEFCD5FB8}" Name="Decal37" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Stain_Decal_A/Stain_Decal_A5" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Stains.Stain 6" Id="{FCDECA59-B9FC-41FB-9D34-1E178CC3EF5F}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="GamePlay" LayerGUID="{59EE7F03-3A5C-40B2-A85B-3EEAA4A6E302}" Id="{C4464A84-41FF-44C9-8EA2-0E008EC8E361}" Name="Decal38" Pos="1.000061,1,0.99999809" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Stain_Decal_A/Stain_Decal_A6" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Misc.Floor_Leaves_A" Id="{6935AF28-D743-4C72-8C64-8FDFA15845F7}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Brush" Layer="Lobby_Geo" LayerGUID="{97276500-357A-4D23-AA71-EA2C6395CCB0}" Id="{C0A39C6C-0AA4-4E32-891B-0D3E9167F30E}" Name="lobby_basetrim_straight_785" Pos="0.42074585,0.94494629,-0.018859863" FloorNumber="-1" Rotate="0.79863542,0,0,-0.6018151" Scale="2.3600001,2.3600001,2.3600001" ColorRGB="16777215" Material="Objects/User/jfuhrer/Lobby/Lobby_Floor_E" MatLayersMask="0" Prefab="objects/user/jfuhrer/lobby/lobby_grounddecal_leaves.cgf" OutdoorOnly="0" CastShadowMaps="0" RainOccluder="1" SupportSecondVisarea="0" Hideable="0" LodRatio="100" ViewDistRatio="100" NotTriangulate="0" NoDynamicWater="0" AIRadius="-1" NoStaticDecals="0" NoAmnbShadowCaster="0" RecvWind="0" Occluder="0" DrawLast="0" ShadowLodBias="0" SceneIndex="0" HiddenInProbes="0" RndFlags="536870912">
+    <CollisionFiltering>
+     <Type collision_class_terrain="0" collision_class_wheeled="0" collision_class_living="0" collision_class_articulated="0" collision_class_soft="0" collision_class_particle="0" gcc_player_capsule="0" gcc_player_body="0" gcc_vehicle="0" gcc_large_kickable="0" gcc_ragdoll="0" gcc_rigid="0" gcc_vtol="0" gcc_ai="0" gcc_goo="0" gcc_smokeform="0" gcc_psi="0"/>
+     <Ignore collision_class_terrain="0" collision_class_wheeled="0" collision_class_living="0" collision_class_articulated="0" collision_class_soft="0" collision_class_particle="0" gcc_player_capsule="0" gcc_player_body="0" gcc_vehicle="0" gcc_large_kickable="0" gcc_ragdoll="0" gcc_rigid="0" gcc_vtol="0" gcc_ai="0" gcc_goo="0" gcc_smokeform="0" gcc_psi="0"/>
+    </CollisionFiltering>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuffs_circle1" Id="{0745B688-796F-4616-9587-185CA0E7BBD3}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="Lobby_Geo" LayerGUID="{97276500-357A-4D23-AA71-EA2C6395CCB0}" Id="{A3560447-6500-4BFB-856B-988C46546CBD}" Name="Decal88" Pos="2.3436279,2.3436279,1.6778564" FloorNumber="-1" Rotate="0.45399055,0,0,0.89100653" Scale="1.6778588,1.6778588,1.6778582" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/scuff_decal_circle_a1" ProjectionType="1" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuffs_circle2" Id="{0D2ACFDD-DE1E-4116-9D79-1CC9271DAB7C}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="Lobby_Geo" LayerGUID="{97276500-357A-4D23-AA71-EA2C6395CCB0}" Id="{2A2CB9A4-C4D5-42FA-BC7A-5BD685654FD3}" Name="Decal115" Pos="2.8323364,2.8323364,2.0475159" FloorNumber="-1" Rotate="-0.28401518,0,0,0.95881981" Scale="2.0475166,2.0475166,2.0475163" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/scuff_decal_circle_a2" ProjectionType="1" Deferred="0" ViewDistRatio="100" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Blood.Blood Splatter 2" Id="{EF28ED5F-7CCF-4F0E-B50B-53399191398D}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="Lobby_Geo" LayerGUID="{97276500-357A-4D23-AA71-EA2C6395CCB0}" Id="{9E9CD5CA-161A-4046-B621-B86EA6118665}" Name="Decal241" Pos="1.8666382,1.8666382,1.3201294" FloorNumber="-1" Rotate="-0.39073125,0,0,0.92050481" Scale="1.3201201,1.3201201,1.3201201" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Blood_Decal_A/blood_decal_a_splatter_2" ProjectionType="1" Deferred="0" ViewDistRatio="20" SortPriority="16" ProjectionDepth="1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuffs_circle3" Id="{52E2295D-C377-44B9-857C-9744EC9F40B1}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="Simulation_AptHall_Prop" LayerGUID="{8127FFEE-FBA3-4281-98A9-361A55CD59EE}" Id="{4BF04BBB-5B1C-4FE5-991A-2A8EE49F15E7}" Name="Decal16" Pos="3.2723999,3.2282715,2.304318" FloorNumber="-1" Rotate="0.30070609,0,0,0.95371687" Scale="2.3340116,2.3340116,2.3340125" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/scuff_decal_circle_a3" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="0.1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Scuffs.Scuffs_streak1" Id="{1C6B5C53-4D93-47C2-8709-2D5944D28DF4}" Library="ArkEnvDecals">
+  <Objects>
+   <Object Type="Decal" Layer="Simulation_AptHall_Prop" LayerGUID="{8127FFEE-FBA3-4281-98A9-361A55CD59EE}" Id="{9F44A791-08DF-46B5-BDB9-B827225E3CDF}" Name="Decal160" Pos="2.5283203,2.5283203,1.7888732" FloorNumber="-1" Rotate="0.93041748,0,0,-0.36650145" Scale="1.788873,1.788873,1.7888733" ColorRGB="16744319" Material="Objects/Environment/Architecture/Decals/Scuff_Decal_A/scuff_decal_streak_a1" ProjectionType="0" Deferred="1" ViewDistRatio="100" SortPriority="16" ProjectionDepth="0.1" RndFlags="0"/>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

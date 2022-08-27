@@ -1,0 +1,18 @@
+
+<RemoteManipulationPowerProperties>
+ <Common DisplayName="@rpg_RemoteManiName" PsiCost="5" Description="@rpg_RemoteMani1" PickerLabel="Remote Manipulation" PostProcessVFX="2428940965260278183" PersistentPostProcessVFX="2428940965260279729" TargetHighlightColorAlpha="1.0" TargetHighlightColor="0.0,0.75,0.75" ExecutionPlayerEffect="Player.Powers.RemoteManipulation.ScreensEffect_00" CostReductionStat="psiCostScaleTelepathic" ExecutionAudioTrigger="Play_Power_RemoteManipulation_End"/>
+ <Unique WorldUIPostProcessVFX="2428940965260278183" UsePowerAudioTrigger="Play_Power_RemoteManipulation_Start">
+  <CostOverrides/>
+ </Unique>
+ <Levels>
+  <ArkPsiPowerRemoteManipulationProperties DisplayName="@rpg_RemoteManiName" Description="@rpg_RemoteMani1" CooldownDurationSec="1" NpcSignalPackageId="3149325216962723867">
+   <TargetingProperties MaxRange="10" TargetParticleEffect="Player.Powers.RemoteManipulation.RemoteManip_lv_00"/>
+  </ArkPsiPowerRemoteManipulationProperties>
+  <ArkPsiPowerRemoteManipulationProperties DisplayName="@rpg_RemoteManiName2" Description="@rpg_RemoteMani2" CooldownDurationSec="1" NpcSignalPackageId="3149325216962723867">
+   <TargetingProperties MaxRange="20" TargetParticleEffect="Player.Powers.RemoteManipulation.RemoteManip_lv_00"/>
+  </ArkPsiPowerRemoteManipulationProperties>
+  <ArkPsiPowerRemoteManipulationProperties DisplayName="@rpg_RemoteManiName3" Description="@rpg_RemoteMani3" CooldownDurationSec="1" NpcSignalPackageId="3149325216962723867">
+   <TargetingProperties MaxRange="30" TargetParticleEffect="Player.Powers.RemoteManipulation.RemoteManip_lv_00"/>
+  </ArkPsiPowerRemoteManipulationProperties>
+ </Levels>
+</RemoteManipulationPowerProperties>

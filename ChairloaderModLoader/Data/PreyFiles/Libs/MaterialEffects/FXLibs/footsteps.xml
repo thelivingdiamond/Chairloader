@@ -1,0 +1,49 @@
+
+<FXLib>
+ <Effect name="default">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+  <Particle>
+   <Name particleName="MaterialEffects.HitEffects.Default.Default_HitEffect"/>
+  </Particle>
+ </Effect>
+ <Effect name="concrete">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="concrete"/>
+  </Audio>
+ </Effect>
+ <Effect name="wood_hollow">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="wood"/>
+  </Audio>
+ </Effect>
+ <Effect name="dirt">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="dirt"/>
+  </Audio>
+  <Particle>
+   <Name minscale="0.9" maxscale="0.9" maxscaledist="100" particleName="MaterialEffects.CollisionEffects.Default.Default_CollisionEffect"/>
+  </Particle>
+ </Effect>
+ <Effect name="wood_solid">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="wood"/>
+  </Audio>
+ </Effect>
+ <Effect name="metal_thick">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="metal_thick"/>
+  </Audio>
+ </Effect>
+ <Effect name="metal_thin">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="metal_thin"/>
+  </Audio>
+ </Effect>
+ <Effect name="vegetation">
+  <Audio trigger="Play_NPC_Steps">
+   <Switch name="SurfaceType" state="vegetation"/>
+  </Audio>
+ </Effect>
+</FXLib>

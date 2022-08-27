@@ -1,0 +1,1042 @@
+
+<ArkCharacterEffects>
+ <Effects>
+  <ArkCharacterEffect Id="17591291352644294396" Name="Common_MindControl">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.AffectedFromPlayerPowers.Cyberkinesis.Cyberkinesis_Med"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647005938" Name="Mimic_ElectricalEnergize">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Mimic.Body.Mimic_ElectricalBoost" PositionOffset="0,-.1,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349646989644" Name="Mimic_ThermalEnergize">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Mimic.Body.Mimic_ThermalBoost" PositionOffset="0,-.1,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656483511" Name="Mimic_Glitch">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachment_01" ParticleEffect="Characters.Aliens.Mimic.Body.BodyGlitch01" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647075965" Name="Mimic_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_sml" PositionOffset="0,-0.05,0" RotationOffset="0,0,30"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389253" Name="Mimic_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Sml_Start" PositionOffset="0,-0.05,0" RotationOffset="0,0,30"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389461" Name="Mimic_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Sml_End" PositionOffset="0,-0.05,0" RotationOffset="0,0,30"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623488121" Name="Mimic_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Sml" PositionOffset="0,-0.05,0" RotationOffset="-90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633668614" Name="Mimic_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Sml" PositionOffset="0,-0.05,0" RotationOffset="0,0,30"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633696167" Name="Mimic_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Sml" PositionOffset="0,-0.05,0" RotationOffset="0,0,30"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349615643948" Name="Mimic_LifetimeEffect">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_BodyPersist" ParticleEffect="Characters.Aliens.Mimic.Body.BodyPersistent"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349617466974" Name="Mimic_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Sml" PositionOffset="0,-0.05,0" RotationOffset="0,0,30"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286790116918" Name="Mimic_EliteDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Mimic.Death.MimicEliteDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349629292714" Name="Mimic_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_head" ParticleEffect="Characters.Aliens.Mimic.Death.MimicDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634202949" Name="Mimic_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_head" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Sml" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622813897" Name="Mimic_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_BodyPersist" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Sml" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_tent03" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Sml" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_tent01" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Sml" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616061816" Name="Mimic_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Death_Attachment" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261398128" Name="Mimic_Kinetic_Backlash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachment_01" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Small_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638538565" Name="Nightmare_OutOfEther">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="AimAssist_Lower_Attachment" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherBody_DisappearBase" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="etherformspawn_attachment" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherBody_Disappear" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638536018" Name="Nightmare_IntoEther">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="etherformspawn_attachment" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherBody_Appear" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnMed_head" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherBody_AppearHead" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="AimAssist_Lower_Attachment" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherBody_AppearBase" PositionOffset="0,0,6" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349636692022" Name="NightmareEther_Persistant">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_trail_center" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherForm_CenterTrail" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_trail_lt" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherForm_SideTrail" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_trail_rt" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.EtherForm_SideTrail" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_cog" ParticleEffect="Characters.Aliens.Nightmare.EtherForm.Etherform_base" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352644294397" Name="Nightmare_FrozenInGooSlow">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Nightmare.Body.SlowBody"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633677129" Name="Nightmare_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Xlrg" PositionOffset="0.4,0,0" RotationOffset="0,0,170"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633692523" Name="Nightmare_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Xlrg" PositionOffset="0.4,0,0" RotationOffset="0,0,170"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623500573" Name="Nightmare_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Xlrg" PositionOffset="0.4,0,0" RotationOffset="90,0,-50"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389548" Name="Nightmare_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Xlrg_Start" PositionOffset="0.4,0,0" RotationOffset="0,0,170"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389570" Name="Nightmare_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Xlrg_End" PositionOffset="0.4,0,0" RotationOffset="0,0,170"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261401980" Name="Nightmare_Kinetic_Blacklash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachHead" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Large_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622798992" Name="Nightmare_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnLrg_clavicleRt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Lrg" PositionOffset="-.25,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnLrg_clavicleLt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Lrg" PositionOffset="-.25,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_lt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Lrg" PositionOffset="1,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_rt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Lrg" PositionOffset="1,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachHip_lt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Lrg" PositionOffset="1.2,0,-.25" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachHip_rt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Lrg" PositionOffset="1.2,0,.25" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286789925289" Name="Nightmare_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FocusTarget_Attachment" ParticleEffect="Characters.Aliens.Nightmare.Death.NightmareDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076145" Name="Nightmare_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_xlrg" PositionOffset="0.4,0,0" RotationOffset="90,0,-50"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656538235" Name="Nightmare_FearBlast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachHead" ParticleEffect="Characters.Aliens.Nightmare.Fear.FearCast" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="AimAssist_Lower_Attachment" ParticleEffect="Characters.Aliens.Nightmare.Fear.FearCastAOE_00" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349617468167" Name="Nightmare_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_head" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Xlrg" PositionOffset="0.4,0,0" RotationOffset="0,0,170"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="243995946807508150" Name="Nightmare_NullWaved_EtherForm">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_cog" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Xlrg" PositionOffset="0,0,0" RotationOffset="0,0,170"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634210559" Name="Nightmare_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Xlrg" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616088296" Name="Nightmare_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachHip_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachHip_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachRibCage_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachRibCage_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachHead" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349627629422" Name="Nightmare_Smoke">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Nightmare.Body.BodySmoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnMed_elbowRt" ParticleEffect="Characters.Aliens.Nightmare.Body.LimbSmoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnMed_elbowLt" ParticleEffect="Characters.Aliens.Nightmare.Body.LimbSmoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="243995946805175995" Name="Nightmare_Smoke_2">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_cog" ParticleEffect="Characters.Aliens.Nightmare.Body.BodySmoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnMed_elbowRt" ParticleEffect="Characters.Aliens.Nightmare.Body.LimbSmoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnMed_elbowLt" ParticleEffect="Characters.Aliens.Nightmare.Body.LimbSmoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349642066480" Name="Operator_LaserDeathExplosion">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="PsiTarget_Attachment" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349635600646" Name="Operator_MachineMind_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="PsiTarget_Attachment" ParticleEffect="Characters.AffectedFromPlayerPowers.Cyberkinesis.Cyberkinesis_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349635601767" Name="Operator_MachineMind">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="lightBack01" ParticleEffect="Characters.AffectedFromPlayerPowers.Cyberkinesis.Cyberkinesis_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352644294320" Name="OperatorCorrupted">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorGeneric.CorruptedEffect_00" PositionOffset="0,0,0.15" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352653888042" Name="OperatorEngineer_Levitators">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_r_levitator_01" ParticleEffect="Characters.Robots.OperatorGeneric.Levitators_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_r_levitator_02" ParticleEffect="Characters.Robots.OperatorGeneric.Levitators_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_r_levitator_03" ParticleEffect="Characters.Robots.OperatorGeneric.Levitators_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_l_levitator_01" ParticleEffect="Characters.Robots.OperatorGeneric.Levitators_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_l_levitator_02" ParticleEffect="Characters.Robots.OperatorGeneric.Levitators_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_l_levitator_03" ParticleEffect="Characters.Robots.OperatorGeneric.Levitators_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965270635283" Name="OperatorEngineer_Torch_Melee">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="operatorengineer01_blowtorch" ParticleEffect="Characters.Robots.OperatorEngineer.BlowTorch_Active_Large_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965279544626" Name="OperatorScience_ElectrodeIdle">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Electrode_Left_00" ParticleEffect="Characters.Robots.OperatorScience.ElectricalCharging_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="FX_Electrode_Right_00" ParticleEffect="Characters.Robots.OperatorScience.ElectricalCharging_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965279544716" Name="OperatorScience_ElectrodeActive">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Electrode_Right_00" ParticleEffect="Characters.Robots.OperatorScience.ElectricalFullCharge_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="FX_Electrode_Left_00" ParticleEffect="Characters.Robots.OperatorScience.ElectricalFullCharge_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965279544739" Name="OperatorScience_ElectrodeFiring">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Electrode_Left_00" ParticleEffect="Characters.Robots.OperatorScience.ElectricalFiring_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="FX_Electrode_Right_00" ParticleEffect="Characters.Robots.OperatorScience.ElectricalFiring_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965272358848" Name="OperatorEngineer_DamageState_2">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorEngineer.Damage_02" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965272359471" Name="OperatorEngineer_DamageState_0">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorEngineer.Damage_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352654575339" Name="OperatorEngineer_Torch_Idle">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="operatorengineer01_blowtorch" ParticleEffect="Characters.Robots.OperatorEngineer.BlowTorch_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965272358719" Name="OperatorEngineer_DamageState_1">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorEngineer.Damage_01" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352653887158" Name="OperatorEngineer_Torch">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="operatorengineer01_blowtorch" ParticleEffect="Characters.Robots.OperatorEngineer.BlowTorch_Active_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="10850392949539797719" Name="OperatorGeneric_Damaged">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorGeneric.Damaged_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="10850392949539797807" Name="OperatorGeneric_Disabled">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorGeneric.Disabled_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616087567" Name="OperatorGeneric_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_CorruptSparks_00" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="10850392949539801177" Name="OperatorScience_Damaged">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorScience.Damage_01"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352650596140" Name="OperatorGeneric_Destroyed">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorGeneric.DeathExplosion_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656579532" Name="OperatorGeneric_PreDestroyed">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorGeneric.Electrical.ElectricalDeath_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656625240" Name="OperatorGeneric_OnHit">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorGeneric.Electrical.SurgeHit_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="10850392949539801232" Name="OperatorScience_Disabled">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Robots.OperatorScience.Damage_02"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261402020" Name="Operator_Kinetic_Blacklash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Small_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286760874655" Name="Phantom_AttackGlow">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Phantom.Base.AttackFlare.AttackFlare_01"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286760879101" Name="Phantom_AttackJitter">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Characters.Aliens.Phantom.Base.AttackJitter.Jitter_Temp_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349646568595" Name="Phantom_Genesis">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnNull_hip" ParticleEffect="Player.Powers.PhantomGenesis.PhantomGenesis_Appear" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Player.Powers.PhantomGenesis.PhantomGenesis_Appear" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Player.Powers.PhantomGenesis.PhantomGenesis_AppearBase" PositionOffset="0,0,0" RotationOffset="180,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349629274672" Name="Phantom_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Phantom.Death.PhantomDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286790105647" Name="Phantom_EthericDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Phantom.Death.EthericDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286790104120" Name="Phantom_ThermalDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Phantom.Death.ThermalDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286790104189" Name="Phantom_VoltaicDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Phantom.Death.VoltaicDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634203346" Name="Phantom_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965258472766" Name="Phantom_Electrical">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_atch_electrical_01" ParticleEffect="Temporary.testing.attachment.Electerical_00"/>
+    <ArkAttachmentEffect Attachment="fx_atch_electrical_02" ParticleEffect="Temporary.testing.attachment.Electerical_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286758235330" Name="Phantom_EthericBodyPersist">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Phantom.Etheric.BodyEffects.EthericBodyPersist" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965258472671" Name="Phantom_Fire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_atch_fire_01" ParticleEffect="Temporary.testing.attachment.Fire_Temp_00"/>
+    <ArkAttachmentEffect Attachment="fx_atch_fire_02" ParticleEffect="Temporary.testing.attachment.Fire_Temp_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076210" Name="Phantom_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_med" PositionOffset="0,0,0" RotationOffset="0,90,15"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623487529" Name="Phantom_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med" PositionOffset="0,0,0" RotationOffset="0,90,15"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633668793" Name="Phantom_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Med" PositionOffset="0,0,0" RotationOffset="0,0,-90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633691050" Name="Phantom_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,0,-90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389592" Name="Phantom_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med_Start" PositionOffset="0,0,0" RotationOffset="0,0,-90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389642" Name="Phantom_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med_End" PositionOffset="0,0,0" RotationOffset="0,0,-90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349617466496" Name="Phantom_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,-90,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286763654353" Name="Phantom_Body_Persist">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_upper_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_ArmUpper" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_upper_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_ArmUpper" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_lower_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_ArmLower" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_lower_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_ArmLower" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_lower_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_LegLower" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_lower_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_LegLower" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_upper_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_LegUpper" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_upper_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_LegUpper" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_body_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Body" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_body_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Body" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_back_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Back" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_back_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Back" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_head" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Head" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_foot_r" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Feet" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_foot_l" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EdgeWind_Feet" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_eyes" ParticleEffect="Characters.Aliens.Phantom.Base.BodyEffects.EyeStreaks" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656540600" Name="Phantom_PsiBlastCast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx_mid" ParticleEffect="Characters.Aliens.Phantom.Kinetic.KineticMissile.ChargeUp_01" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622811405" Name="Phantom_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_upper_l" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_upper_r" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_upper_r" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_upper_l" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261401845" Name="Phantom_kinetic_blacklash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Medium_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286761482000" Name="Phantom_ShiftStart">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_lower_l" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbShift" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_lower_r" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbShift" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_lower_r" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbShift_Low" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_lower_l" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbShift_Low" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.ShiftStartDissolve" PositionOffset="0,0,0.35" RotationOffset="45,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349641464850" Name="Phantom_ShiftOut">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.ShiftEnd" PositionOffset="0,0,0.35" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349641456885" Name="Phantom_ShiftLurk">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_lower_l" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbLurk" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_arm_lower_r" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbLurk" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_lower_r" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbShift_Low" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_phan_leg_lower_l" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LimbShift_Low" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Characters.Aliens.Phantom.Base.Shift.LurkDissolve" PositionOffset="0,0,0.25" RotationOffset="45,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286758240521" Name="Phantom_SolarBodyPersist">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Characters.Aliens.Phantom.Solar.BodyEffects.SolarBodyPersist"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616062298" Name="Phantom_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_GooParticleBreak03" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="FX_GooParticleBreak02" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="FX_GooParticleBreak_01" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638600069" Name="Phantom_Thermogenesis">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fxa_base" ParticleEffect="Characters.Aliens.Phantom.Thermal.Thermogenesis.ThermogenesisCast" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638598871" Name="Phantom_ThermalAura">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FocusTarget_Attachment" ParticleEffect="Characters.Aliens.Phantom.Thermal.ThermalAura.ThermalAura_Cast" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616146141" Name="Phantom_ThermalBodyPersist">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Phantom.Thermal.BodyEffects.ThermalBodyPersist" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622977400" Name="Phantom_VoltaicAttackGlow">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Phantom.Voltaic.BodyEffects.VoltaicAttackTelegraph" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616158954" Name="Phantom_VoltaicBodyPersist">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Phantom.Voltaic.BodyEffects.VoltaicBodyPersist" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349617466787" Name="Poltergeist_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Med" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634201456" Name="Poltergeist_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Med" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634201543" Name="Poltergeist_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Med" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076251" Name="Poltergeist_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_sml" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623500042" Name="Poltergeist_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389667" Name="Poltergeist_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med_Start" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389673" Name="Poltergeist_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med_End" PositionOffset="0.1,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622900683" Name="Poltergeist_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_lt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset=".25,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowRt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset=".25,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowLt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset=".25,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_rt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset=".5,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286789935235" Name="Poltergeist_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Poltergeist.Death.PoltergeistDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634210620" Name="Poltergeist_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Med" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616084132" Name="Poltergeist_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachHip" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="243995946806304698" Name="Poltergeist_Cast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Poltergeist.Lift.LiftCast" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="243995946806213845" Name="Poltergeist_Appear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_midChest" ParticleEffect="Characters.Aliens.Poltergeist.Body.Body_Smoke_Appear" PositionOffset="0.1,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowRt" ParticleEffect="Characters.Aliens.Poltergeist.Body.Limb_Smoke_Appear" PositionOffset="0.5,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowLt" ParticleEffect="Characters.Aliens.Poltergeist.Body.Limb_Smoke_Appear" PositionOffset="0.5,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Aliens.Poltergeist.Body.Smoke_Base_Appear" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349637930705" Name="Poltergeist_Disappear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Aliens.Poltergeist.Body.Smoke_Base_Disappear" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Poltergeist.Body.Body_Smoke_Disappear" PositionOffset="0.1,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowRt" ParticleEffect="Characters.Aliens.Poltergeist.Body.Limb_Smoke_Disappear" PositionOffset="0.35,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowLt" ParticleEffect="Characters.Aliens.Poltergeist.Body.Limb_Smoke_Disappear" PositionOffset="0.35,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="243995946806214050" Name="Poltergeist_Psychoscope">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowRt" ParticleEffect="Characters.Aliens.Poltergeist.Body.PsyScope_Limb" PositionOffset="0.35,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_gibSpawnPrt_elbowLt" ParticleEffect="Characters.Aliens.Poltergeist.Body.PsyScope_Limb" PositionOffset="0.35,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_lt" ParticleEffect="Characters.Aliens.Poltergeist.Body.PsyScope_Limb" PositionOffset="0.35,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachShoulder_rt" ParticleEffect="Characters.Aliens.Poltergeist.Body.PsyScope_Limb" PositionOffset="0.35,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="attach_fx" ParticleEffect="Characters.Aliens.Poltergeist.Body.PsyVisibilityBlur_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261401946" Name="Paths_kinetic_blacklash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Large_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656474841" Name="Technopath_EmpCast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.Aliens.Technopath.ElectricAttack.ElectricAttackCast" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349642749692" Name="Technopath_EyeCone">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachEye" ParticleEffect="Characters.Aliens.Technopath.Body.EyeGlow_Trail" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349617467054" Name="Technopath_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Lrg" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616086964" Name="Technopath_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperBack_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperBack_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachBackUpper" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachLowerBelly" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634210767" Name="Technopath_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBackUpper" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Lrg" PositionOffset="0,0.25,-0.05" RotationOffset="15,0,110"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633676006" Name="Technopath_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Lrg" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633691850" Name="Technopath_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Lrg" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076333" Name="Technopath_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_lrg" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623489598" Name="Technopath_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Lrg" PositionOffset="0,-0.35,-0.25" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389710" Name="Technopath_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Lrg_Start" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389713" Name="Technopath_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Lrg_End" PositionOffset="0,-0.35,-0.25" RotationOffset="90,-80,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622900285" Name="Technopath_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBackUpper" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Lrg" PositionOffset="0,0,-.5" RotationOffset="0,0,90"/>
+    <ArkAttachmentEffect Attachment="fx_attachLowerBelly" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Lrg" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286789935943" Name="Technopath_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="PsiTarget_Attachment" ParticleEffect="Characters.Aliens.Technopath.Death.TechnopathDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349644504177" Name="Telepath_EyeCone">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachEye" ParticleEffect="Characters.Aliens.Telepath.Body.EyeGlow_Trail" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638342866" Name="Telepath_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Lrg" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656472896" Name="Telepath_PsycoshockBlast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachRoot" ParticleEffect="Characters.Aliens.Telepath.Pscyhoshock.PsychoshockAoe" PositionOffset="0,-1,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.Aliens.Telepath.Cast.PsychoshockCastFlash" PositionOffset="0.2,-0.15,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349639295777" Name="Telepath_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Lrg" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656472807" Name="Telepath_PsycoshockCasting">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.Aliens.Telepath.Cast.PsychoshockWarmUp" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076383" Name="Telepath_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_lrg" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638688403" Name="Telepath_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachRoot" ParticleEffect="Characters.Aliens.Telepath.Death.TelepathDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656472683" Name="Telepath_RepelBlast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachRoot" ParticleEffect="Characters.Aliens.Telepath.Repel.RepelBlast_00" PositionOffset="0,-1,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349638341221" Name="Telepath_RepelBlast_Cast">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.Aliens.Telepath.Repel.RepelCast" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616085606" Name="Telepath_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperBack_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperBack_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachBackUpper" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachLowerBelly" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622876214" Name="Telepath_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBackUpper" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Lrg" PositionOffset="0,0,-.5" RotationOffset="0,0,90"/>
+    <ArkAttachmentEffect Attachment="fx_attachLowerBelly" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Lrg" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623488728" Name="Telepath_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Lrg" PositionOffset="0.2,-0.15,0" RotationOffset="25,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634795806" Name="Telepath_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Lrg_End" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634795784" Name="Telepath_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachFrontFace" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Lrg_Start" PositionOffset="0.2,-0.15,0" RotationOffset="90,-50,90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349635930688" Name="Turret_Cyberkinesis">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="PsiTarget_Attachment" ParticleEffect="Characters.AffectedFromPlayerPowers.Cyberkinesis.Cyberkinesis_TurretBody" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachBase" ParticleEffect="Characters.AffectedFromPlayerPowers.Cyberkinesis.Cyberkinesis_TurretBase" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352643253524" Name="Turret_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBarrelBody" ParticleEffect="Characters.Robots.Turret.Damaged_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349615736586" Name="Turret_Electrified">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBarrelBody" ParticleEffect="Characters.Robots.Turret.Interference_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352643607050" Name="Turret_Damaged">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBarrelBody" ParticleEffect="Characters.Robots.Turret.Damaged_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352643607091" Name="Turret_Disabled">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBarrelBody" ParticleEffect="Characters.Robots.Turret.Disabled_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352643607109" Name="Turret_Destroyed">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachBarrelBody" ParticleEffect="Characters.Robots.Turret.DeathExplosion_00"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_front" ParticleEffect="Characters.Robots.Turret.Mesh.Panel_Front_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_back" ParticleEffect="Characters.Robots.Turret.Mesh.Panel_Front_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_right" ParticleEffect="Characters.Robots.Turret.Mesh.Panel_Side_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_left" ParticleEffect="Characters.Robots.Turret.Mesh.Panel_Side_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_T_right" ParticleEffect="Characters.Robots.Turret.Mesh.Panel_Top_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_T_left" ParticleEffect="Characters.Robots.Turret.Mesh.Panel_Top_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_turret_destroy_gun" ParticleEffect="Characters.Robots.Turret.Mesh.TurretGun_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="14610450286789939216" Name="Weaver_Death">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_gibspawnmed_body" ParticleEffect="Characters.Aliens.Weaver.Death.WeaverDeath" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622901743" Name="Weaver_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_01" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,-.1,0" RotationOffset="-90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_02" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,.25,0" RotationOffset="-90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachMidChest_rt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachMidChest_lt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_01" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0.2,0.1,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_02" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0.2,0.1,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_03" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Med" PositionOffset="0.2,0.1,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076424" Name="Weaver_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_med" PositionOffset="0,0,0" RotationOffset="-90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623490497" Name="Weaver_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med" PositionOffset="0,0,0" RotationOffset="-90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389755" Name="Weaver_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med_Start" PositionOffset="0,0,0" RotationOffset="0,0,75"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389758" Name="Weaver_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Med_End" PositionOffset="0,0,0" RotationOffset="0,0,75"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261401894" Name="Weaver_kinetic_blacklash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_01" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Medium_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634210825" Name="Weaver_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_01" ParticleEffect="PlayerWeapons.InstaLaser.Impact.Laser_Impact_Lrg"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349617467839" Name="Weaver_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,0,75"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633675652" Name="Weaver_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Med" PositionOffset="0,0,0" RotationOffset="0,0,75"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634201766" Name="Weaver_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Med" PositionOffset="0,0,0" RotationOffset="0,0,75"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349637386352" Name="Weaver_ShieldStart">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Weaver.Shield.ShieldLight_Start" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_03" ParticleEffect="Characters.Aliens.Weaver.Shield.Shield_Start_limb" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_01" ParticleEffect="Characters.Aliens.Weaver.Shield.Shield_Start_limb" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_02" ParticleEffect="Characters.Aliens.Weaver.Shield.Shield_Start_limb" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_01" ParticleEffect="Characters.Aliens.Weaver.Shield.ShieldStart_Smoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_02" ParticleEffect="Characters.Aliens.Weaver.Shield.ShieldStart_Smoke" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349637387082" Name="Weaver_ShieldBurst">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Aliens.Weaver.Shield.ShieldLight_Burst" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_03" ParticleEffect="Characters.Aliens.Weaver.Shield.shield_burst_limb" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_02" ParticleEffect="Characters.Aliens.Weaver.Shield.shield_burst_limb" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_01" ParticleEffect="Characters.Aliens.Weaver.Shield.shield_burst_limb" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_01" ParticleEffect="Characters.Aliens.Weaver.Shield.Shield_burst_spikes" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_02" ParticleEffect="Characters.Aliens.Weaver.Shield.Shield_burst_spikes" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616084970" Name="Weaver_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_03" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_02" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachtentacle_01" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpactLrg_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_02" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachmidchest_01" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633607844" Name="Human_Psychoshock_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Player.Powers.Psychoshock.Psychoshock_Target_Sml" PositionOffset="0.05,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633609822" Name="Human_Psychoshock_Impact">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Psychoshock.Psychoshock_Impact_Sml" PositionOffset="0.05,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634197468" Name="Human_NullWaved">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Nullwave.Nullwave_Impact_Sml" PositionOffset="0.05,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349647076509" Name="Human_Fear">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Fear.Fear_sml" PositionOffset="0.05,0,0" RotationOffset="30,90,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349623416773" Name="Human_Hypnotized">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Sml" PositionOffset="0.05,0,0" RotationOffset="30,90,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349633609439" Name="Human_Hypnotized_Target">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Player.Powers.MindJack.MindJack_Target_Sml" PositionOffset="0.05,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389795" Name="Human_Hypnotized_Start">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Sml_Start" PositionOffset="0.05,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349632389797" Name="Human_Hypnotized_End">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.AffectedFromPlayerPowers.Hypnosis.Hypnosis_Sml_End" PositionOffset="0.05,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352644294392" Name="Human_Corrupted">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Humans.Shared.Impacts.PsychoscopeHead" PositionOffset="0.05,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349622879127" Name="Human_DamageFire">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireBody_Med" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperArm_lt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Sml" PositionOffset="0.1,0,0" RotationOffset="0,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attachUpperArm_rt" ParticleEffect="Characters.AffectedFromPlayerPowers.Thermal.FireLimb_Sml" PositionOffset="0.1,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349634210866" Name="Human_LaserDeath">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Humans.Shared.Impacts.LaserHeadExplode" PositionOffset="0,0,0" RotationOffset="0,0,-90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="17591291352656479113" Name="Human_HeadExplode">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="FX_Head" ParticleEffect="Characters.Humans.Shared.Corrupted.HeadExplode" PositionOffset="0,0,0" RotationOffset="0,0,-90"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349641718896" Name="Human_LaserHeadBurn">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attach_eye_r" ParticleEffect="Characters.Humans.Shared.Impacts.LaserBurnEye_Single" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attach_eye_l" ParticleEffect="Characters.Humans.Shared.Impacts.LaserBurnEye_Single" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+    <ArkAttachmentEffect Attachment="fx_attach_mouth" ParticleEffect="Characters.Humans.Shared.Impacts.LaserBurnMouth" PositionOffset="0,0,0" RotationOffset="90,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965261401730" Name="Human_Kinetic_Blacklash">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="Characters.Aliens.Generic.Kenetic_Backlash.Small_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="12635110349616083492" Name="Human_Stunned">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_attachUpperChest" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachThigh_lt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+    <ArkAttachmentEffect Attachment="fx_attachThigh_rt" ParticleEffect="PlayerWeapons.StunGun.Generic.StunnedImpact_00"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280299237" Name="OperatorMilitary_DamageState_2">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorMilitary.Damage_02" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280299208" Name="OperatorMilitary_DamageState_1">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorMilitary.Damage_01" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280299178" Name="OperatorMilitary_DamageState_0">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorMilitary.Damage_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280299148" Name="OperatorScience_DamageState_2">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorScience.Damage_02" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280298955" Name="OperatorScience_DamageState_1">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorScience.Damage_01" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280298931" Name="OperatorScience_DamageState_0">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorScience.Damage_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280298898" Name="OperatorMedical_DamageState_2">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorMedical.Damage_02" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280298866" Name="OperatorMedical_DamageState_1">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorMedical.Damage_01" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965280298705" Name="OperatorMedical_DamageState_0">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="fx_corrupted" ParticleEffect="Characters.Robots.OperatorMedical.Damage_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965289302982" Name="OperatorMilitary_Laser_ChargeUp">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="LaserMuzzle" ParticleEffect="Characters.Robots.OperatorGeneric.Weapon.LaserChargeUp_00" PositionOffset="0,0,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+  <ArkCharacterEffect Id="2428940965289303111" Name="OperatorMilitary_Laser_MaintainFire_3P">
+   <AttachEffects>
+    <ArkAttachmentEffect Attachment="LaserMuzzle" ParticleEffect="Characters.Robots.OperatorGeneric.Weapon.LaserMaintainFire_00" PositionOffset="0,0.2,0" RotationOffset="0,0,0"/>
+   </AttachEffects>
+  </ArkCharacterEffect>
+ </Effects>
+</ArkCharacterEffects>

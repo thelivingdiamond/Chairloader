@@ -1,0 +1,197 @@
+
+<Dialog>
+ <Dialog id="844024417275559124" text="Whoever you are, run. There is no more food here except you. " modified="07/13/2016 11:12:04 PM" notes="Sighs, this is said as defeat, not a warning. Worried. Doesn&apos;t know if the appraoching person is a person or controlled by the aliens." facefx="2"/>
+ <Dialog id="844024417275719584" text="You found something?" modified="08/26/2016 03:57:13 PM" facefx="3" sync="true"/>
+ <Dialog id="844024417276244234" text="Hnh... what is this? " modified="11/13/2015 10:37:28 PM" sync="true"/>
+ <Dialog id="844024417276244273" text="I open the door, I&apos;ll let you in. " modified="11/13/2015 10:37:48 PM" sync="true"/>
+ <Dialog id="844024417277971738" text="You are safe now, the beasts... they cannot get in." modified="08/26/2016 04:08:49 PM" sync="true" facefx="3"/>
+ <Dialog id="844024417277971755" text="I cannot pry open freezer vents. Tried already, locked tight. Try if you do not believe me. " modified="11/13/2015 10:41:40 PM"/>
+ <Dialog id="844024417277971799" text="We have food, but it will not last long, I think." modified="11/13/2015 10:42:18 PM" sync="true"/>
+ <Dialog id="844024417277987347" text="I know who you are, M. Yu... " modified="11/16/2015 06:37:35 PM" facefx="2"/>
+ <Dialog id="844024417277987442" text="Son of William Yu. William. TranStar... always playing with lives. " modified="07/07/2016 04:15:32 PM" notes="Realization." facefx="2"/>
+ <Dialog id="844024417277987495" text="Your father, he put so many of us in prison, then in this prison." modified="11/16/2015 06:51:34 PM" facefx="2"/>
+ <Dialog id="13680621263377554653" text="Running out of bodies, wasting food. Seen you once, you cannot step in again. " modified="11/13/2015 09:57:49 PM" notes="Slight taunt, rocking to himself, singing slightly (he&apos;s talking about the telepath)"/>
+ <Dialog id="13680621263377554690" text="Where did 84 go, I wonder. " modified="11/13/2015 09:58:26 PM"/>
+ <Dialog id="13680621263377554700" text="Stop making those. There is no &quot;Quinten&quot; here." modified="11/02/2016 09:31:22 PM"/>
+ <Dialog id="13680621263377554715" text="Hnh. One prison cell for another." modified="07/13/2016 11:14:07 PM"/>
+ <Dialog id="13680621263377554730" text="(Eating Noises)" modified="07/07/2016 04:16:54 PM"/>
+ <Dialog id="13680621263377554742" text="Stupid piece of American chunk." modified="07/13/2016 11:15:04 PM" notes="Luka confuses &quot;chunk&quot; for &quot;junk&quot;"/>
+ <Dialog id="13680621263377554919" text="If you are still ahold of your brain, good. Others here? Are not. Shoot first before they get close - they are puppets. Bombs." modified="11/13/2015 10:02:15 PM" facefx="2"/>
+ <Dialog id="13680621263377554983" text="You still here? Still you?" modified="11/13/2015 10:03:19 PM" facefx="2"/>
+ <Dialog id="13680621263377554989" text="Only safe place is in kitchen. If you are human, I will let you in, then the two of us figure out what to do next." modified="11/13/2015 10:03:25 PM" facefx="2"/>
+ <Dialog id="13680621263377555328" text="No eggs behind your eyes, no black swimming. Others come... try to act human, get me to open the door. " modified="11/13/2015 10:09:27 PM"/>
+ <Dialog id="13680621263377555356" text="(Negative Grunt) Safe in here." modified="07/07/2016 04:17:03 PM"/>
+ <Dialog id="13680621263377555429" text="When puppets can&apos;t get in, explode like bombs. The beast lays eggs in their head, make them explode. " modified="11/13/2015 10:11:15 PM"/>
+ <Dialog id="13680621263377555475" text="Maybe you&apos;re one, too... hunh? Come to dig me out." modified="07/13/2016 11:16:52 PM" notes="{Frown, calculating}"/>
+ <Dialog id="13680621263377555792" text="Your suit - what is on your nametag - &quot;Yu&quot;? &quot;M. Yu&quot;?" modified="07/13/2016 11:15:56 PM" notes="Ruminating on the name. It sounds familiar." sync="true" facefx="3"/>
+ <Dialog id="13680621263377555833" text="M. Yu, maybe you are like me, maybe not - but you want to come in, be safe? Bring me something human, something a human can understand. This key... it opens bunk." modified="07/13/2016 11:17:42 PM" notes="Luka drops key into service tray" sync="true"/>
+ <Dialog id="13680621263377556169" text="Now go. " modified="07/13/2016 11:19:52 PM" sync="true"/>
+ <Dialog id="13680621263377556745" text="Hnh. No. Something else, I think." modified="11/13/2015 10:32:41 PM"/>
+ <Dialog id="13680621263377556759" text="What crosses your mind with this? " modified="11/13/2015 10:32:55 PM"/>
+ <Dialog id="13680621263377556771" text="I have no use for this." modified="11/13/2015 10:33:07 PM"/>
+ <Dialog id="13680621263377556779" text="No. Think harder. " modified="11/13/2015 10:33:23 PM" notes="Irritated."/>
+ <Dialog id="13680621263377556797" text="Bring me nothing, you get nothing. " modified="11/13/2015 10:33:33 PM"/>
+ <Dialog id="13680621263377556857" text="What crosses your mind with this? Too alien, I think." modified="11/13/2015 10:34:33 PM" notes="Player dropped an alien organ in the tray"/>
+ <Dialog id="13680621263377557228" text="Come inside. Quick now." modified="11/13/2015 10:40:44 PM" sync="true"/>
+ <Dialog id="13680621263377557343" text="Taste like eel... and something else. " modified="11/13/2015 10:42:39 PM" notes="Wrinkles in disgust." sync="true"/>
+ <Dialog id="13680621263377557358" text="If hungry, eat, but I warn you." modified="11/13/2015 10:42:54 PM" notes="Dismissive." sync="true"/>
+ <Dialog id="13680621263377558227" text="I already hear this name before... where..." modified="07/07/2016 04:20:54 PM" notes="Muttering to himself."/>
+ <Dialog id="13680621263377558268" text="But... look at this... " modified="08/26/2016 04:08:56 PM" notes="Luka points or walks player toward water closet / sink. " sync="true" facefx="3"/>
+ <Dialog id="13680621263377558354" text="Did you check Greenhouse?" modified="07/07/2016 04:21:17 PM"/>
+ <Dialog id="13680621263377558722" text="Who are you?" modified="11/13/2015 11:05:38 PM" notes="Squints."/>
+ <Dialog id="13680621263377792785" text="We have food. But no water. This... pressure regulator... it is broken. System automatic cut off until fixed.  " modified="11/16/2015 04:06:41 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263377793139" text="You can find a replacement part in Greenhouse, I think. With water, we can wait for rescue. No water... (Negative Grunt)" modified="07/07/2016 04:21:37 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263377793176" text="Do this favor, I let you into freezer. " modified="11/16/2015 04:13:12 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263377793193" text="That&apos;s where I hid all the puppets the beast send first. Maybe they have useful things for you, no?" modified="11/16/2015 04:17:02 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263377793608" text="You fix? Hmmph. Smart one... " modified="11/16/2015 04:20:24 PM" notes="Luka did not expect this and should sound dissapointed." sync="true" facefx="3"/>
+ <Dialog id="13680621263377793669" text="Here. Key to freezer, like I promised. Lots of dead puppets and supplies." modified="11/16/2015 04:21:25 PM" notes="Sharp. A little upset because things are moving too fast for him. (alt in case it&apos;s a lock/key)"/>
+ <Dialog id="13680621263377793780" text="No water. Need to find another regulator." modified="11/16/2015 04:23:16 PM"/>
+ <Dialog id="13680621263377793799" text="(Grunt)" modified="07/07/2016 04:17:11 PM" notes="Like a hmph. Judging."/>
+ <Dialog id="13680621263377793843" text="Are you frightened of the puppets?" modified="11/16/2015 04:24:19 PM"/>
+ <Dialog id="13680621263377794061" text="M. Yu... how do you have this already? You are thinking in front of time?" modified="07/13/2016 11:39:37 PM" notes="Unnerved. Suspicious." sync="true" facefx="3"/>
+ <Dialog id="13680621263377794084" text="(Grunt) What kind of brain?" modified="07/08/2016 03:33:12 PM" notes="Grumbling to self." sync="true"/>
+ <Dialog id="13680621263377794353" text="Good. Now we safe until rescue comes. Take some food. Drink water." modified="07/08/2016 11:23:29 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263377794613" text="If you hungry... eat." modified="07/14/2016 10:22:27 PM"/>
+ <Dialog id="13680621263377794655" text="Go in. Take whatever you want. Only leave puppets for me." modified="11/16/2015 04:37:51 PM"/>
+ <Dialog id="13680621263377794712" text="Ehn.. M. Yu... M. Yu... Hmm." modified="07/14/2016 09:50:47 PM" notes="To self.. thinking. Why does his name sound familiar."/>
+ <Dialog id="13680621263377794846" text="(Grunt)" modified="07/07/2016 04:17:13 PM" notes="Thoughtful. Considering something."/>
+ <Dialog id="13680621263377794942" text="You don&apos;t like the taste?" modified="11/16/2015 04:42:38 PM" notes="to self. ends in a bitter chuckle"/>
+ <Dialog id="13680621263377795011" text="Can&apos;t let them close..." modified="11/16/2015 04:43:47 PM" notes="Muttering to self."/>
+ <Dialog id="13680621263377795072" text="...is not black eggs." modified="11/16/2015 04:47:21 PM" notes="Muttering to self."/>
+ <Dialog id="13680621263377795514" text="Keep it closed. We do not need to keep twisting our luck." modified="11/16/2015 04:52:10 PM"/>
+ <Dialog id="13680621263377795544" text="Close door. It is all that is between us and beasts." modified="11/16/2015 04:52:40 PM"/>
+ <Dialog id="13680621263377801045" text="(Snort)" modified="07/07/2016 04:17:18 PM" notes="Derisive. Almost a laugh."/>
+ <Dialog id="13680621263377801050" text="Now speaking piece of chunk is silent piece of chunk." modified="11/16/2015 06:24:26 PM"/>
+ <Dialog id="13680621263377801105" text="TranStar trashcan. Not even worth the parts." modified="11/16/2015 06:25:30 PM"/>
+ <Dialog id="13680621263377801254" text="(Chuckle)" modified="07/07/2016 04:17:27 PM" notes="Satisfied chuckle 2-3 seconds."/>
+ <Dialog id="13680621263377801276" text="Quiet now. " modified="11/16/2015 06:28:12 PM"/>
+ <Dialog id="13680621263377801287" text="Shhhhhhhhh." modified="07/07/2016 04:18:10 PM" notes="Mocking, to destroyed Operator."/>
+ <Dialog id="13680621263377801304" text="TranStar trashcan. Not even worth the parts." modified="11/16/2015 06:28:40 PM"/>
+ <Dialog id="13680621263377802452" text="You are said to be the smart one. You have a way off station? " modified="05/02/2016 07:56:29 PM" facefx="2"/>
+ <Dialog id="13680621263377802524" text="Now... maybe I watch these beasts eat you. Like you tried to feed me to them. " modified="11/16/2015 06:49:37 PM" facefx="2"/>
+ <Dialog id="13680621263377802582" text="Or... cold kills you first. Make you into a frozen puppet." modified="07/08/2016 11:20:20 PM" notes="End on a chuckle. " facefx="2"/>
+ <Dialog id="13680621263377803197" text="Daughter of William Yu. William. TranStar... always playing with lives. " modified="07/07/2016 04:15:52 PM"/>
+ <Dialog id="13680621263377809414" text="TranStar piece of chunk... Are you awake, M. Yu? Frozen dead maybe? " modified="07/14/2016 10:46:05 PM" notes="Luka is trying to get Chloe&apos;s TS. " facefx="2"/>
+ <Dialog id="13680621263377809676" text="I take puppet&apos;s toy screen. I see all the names in a list. Your name too." modified="11/16/2015 08:50:07 PM" facefx="2"/>
+ <Dialog id="13680621263377809720" text="Means you listen from now on." modified="11/16/2015 08:50:12 PM" facefx="2"/>
+ <Dialog id="13680621263377815009" text="...you go, where you go... M. Yu. Maybe... this setting." modified="11/16/2015 10:19:20 PM" notes="Starts with some muttering, static." facefx="2"/>
+ <Dialog id="13680621263377815076" text="Stupid chunk. Ah, wait, wait. Are you in station vault? Make it hard to find you." modified="11/16/2015 10:19:33 PM" facefx="2"/>
+ <Dialog id="13680621263377815200" text="You will not like what is inside. Maybe you feel it in your head, like I do? Like birthing pain, maybe." modified="11/16/2015 10:20:16 PM" facefx="2"/>
+ <Dialog id="13680621263377815207" text="The beasts, I think they make a child just to kill you." modified="11/16/2015 10:20:23 PM" facefx="2"/>
+ <Dialog id="13680621263377815508" text="You ripped open an eye in my brain. I see a horizon, filled with teeth. It is coming closer. Maybe it is what you see?" modified="07/08/2016 11:24:01 PM" facefx="2"/>
+ <Dialog id="13680621263377815519" text="I am hungry. I am always hungry." modified="11/16/2015 10:25:35 PM" notes="Confused, distant." facefx="2"/>
+ <Dialog id="13680621263377815536" text="I will wait, M. Yu. You will come out. Nowhere to go. " modified="05/02/2016 07:56:51 PM" notes="Cold. Back to Morgan." facefx="2"/>
+ <Dialog id="13680621263377815563" text="Nowhere to go. " modified="11/16/2015 10:26:19 PM" notes="Soft. Sinister, pulling away from TS." facefx="2"/>
+ <Dialog id="13680621263377815870" text="M. Yu. I find you outside your prison. Maybe trying to escape. Like me." modified="11/16/2015 10:31:26 PM" notes="Chiding. Taunting." facefx="2"/>
+ <Dialog id="13680621263377815923" text="Not safe out there. But you know this." modified="11/16/2015 10:32:19 PM"/>
+ <Dialog id="13680621263377815929" text="You have headaches? See things?" modified="11/16/2015 10:32:25 PM" facefx="2"/>
+ <Dialog id="13680621263377816005" text="It is not fever, not hallucinations. A horizon is coming, cutting through space. If we are still here when it arrives..." modified="11/16/2015 10:33:41 PM" notes="Warning. Clicks his tongue at the end." facefx="2"/>
+ <Dialog id="13680621263377816038" text="It screams so loud, we hear it in our head. It is still far away, but it is coming closer. It will eat your prison, every person on board. And it will still be hungry. Where will it go next, I wonder?" modified="11/16/2015 10:34:14 PM" facefx="2"/>
+ <Dialog id="13680621263377816044" text="I see you back in your prison soon, M. Yu." modified="01/28/2016 08:11:08 PM" notes="Cold." facefx="2"/>
+ <Dialog id="13680621263377873018" text="You came back in from outside. Fixed elevators. Thank you, now I can move free. " modified="05/02/2016 07:58:49 PM" facefx="2"/>
+ <Dialog id="13680621263377873026" text="You - not so much. " modified="11/17/2015 02:24:02 PM" facefx="2"/>
+ <Dialog id="13680621263377873044" text="You are... in Life Support. A joke there, I think. " modified="11/17/2015 02:24:41 PM" notes="Checking, says Life Support slowly, like trying to get his head around each word" facefx="2"/>
+ <Dialog id="13680621263377873081" text="Eel tanks. Where your TranStar food comes from, chopped up and made new colors. Connected to septic system. A joke there too, I think." modified="11/17/2015 02:31:36 PM" facefx="2"/>
+ <Dialog id="13680621263377873595" text="M. Yu? You are still alive? Good." modified="11/17/2015 02:36:01 PM" notes="" facefx="2"/>
+ <Dialog id="13680621263377873748" text="We learn to make mines in Ukraine from recycling TranStar chunk, wanted to share knowledge with you." modified="11/17/2015 02:36:04 PM" notes="Slightly proud, but cold - enjoying the poetic justice" facefx="2"/>
+ <Dialog id="13680621263377873805" text="TranStar chunk not go off. M. Yu... maybe you see it, avoid it?" modified="11/17/2015 02:37:34 PM" notes="Slightly concerned. Thinking." facefx="2"/>
+ <Dialog id="13680621263377874164" text="The Yu family cause much trouble on Earth. Now they play with the stars and expect not to burn." modified="07/08/2016 11:18:38 PM" facefx="2"/>
+ <Dialog id="13680621263377874180" text="I wondered why you opened us to the chamber, make us see a horizon. Sharp, razored... hungry. " modified="11/17/2015 02:44:56 PM" facefx="2"/>
+ <Dialog id="13680621263377874208" text="You surround yourself with machines, with things. They cannot keep you safe. They will eat you as well. " modified="11/17/2015 02:43:44 PM" facefx="2"/>
+ <Dialog id="13680621263377874221" text="After they eat you, maybe I take your suit, become M. Yu, get shuttle access? " modified="11/17/2015 02:45:10 PM" facefx="2"/>
+ <Dialog id="13680621263377874477" text="These headaches, they are getting worse. Like teeth in the brain, sinking in. " modified="11/17/2015 02:48:13 PM" notes="Wincing a little." facefx="2"/>
+ <Dialog id="13680621263377874488" text="You feel it, M. Yu? " modified="11/17/2015 02:48:24 PM" facefx="2"/>
+ <Dialog id="13680621263377874502" text="Screaming is louder now, getting close. I think screams are coming from the future, M. Yu. Screams of people on Earth. Screams an animal makes when caught in a hunter&apos;s jaw." modified="07/08/2016 11:18:05 PM" notes="Worried, then becomes slightly distant" facefx="2"/>
+ <Dialog id="13680621263377875263" text="This is for M.Yu. So you don&apos;t forget." modified="11/17/2015 03:01:38 PM" facefx="2"/>
+ <Dialog id="13680621263377875269" text="TranStar asks for volunteers for experiment in space. Promises to let us go from prison if we come to this one - a life sentence, over in a day. " modified="11/17/2015 03:01:25 PM" facefx="2"/>
+ <Dialog id="13680621263377875297" text="Like all TranStar deals... is false. " modified="11/17/2015 03:01:53 PM" facefx="2"/>
+ <Dialog id="13680621263377875480" text="They take us up in shuttle, like cattle. Take us to your prison, feed us, run tests.   " modified="11/17/2015 03:04:56 PM" facefx="2"/>
+ <Dialog id="13680621263377875509" text="But something is wrong, I think. They put us back on shuttle, say the tests are over, we are free. They drug us, herd us like cattle... " modified="11/17/2015 03:06:03 PM" facefx="2"/>
+ <Dialog id="13680621263377875591" text="...and then they bring us back here. You bring us back here. And kill us one by one, feed us to your beasts while you watch and take notes." modified="11/17/2015 03:06:58 PM" facefx="2"/>
+ <Dialog id="13680621263377875606" text="I see it. There - &quot;M. Yu,&quot; on your uniform. You watch as you open my cage, let me see the beast you keep here." modified="07/14/2016 10:46:36 PM" facefx="2"/>
+ <Dialog id="13680621263377875630" text="It is not evil, I think. It is an animal. It is hungry, but the hunger... it is everywhere, it is hungry for thought. " modified="11/17/2015 03:07:49 PM" facefx="2"/>
+ <Dialog id="13680621263377875655" text="It enters my brain, leaves hunger there, like an egg, it grows, cracks. Its hunger is inside me... it is almost all I can think about." modified="11/17/2015 03:07:51 PM" facefx="2"/>
+ <Dialog id="13680621263377875672" text="But it does not eat me, maybe it does not like how I think. Or sees my brain is wrong. Or maybe you decide to stop when I scream?" modified="07/08/2016 11:18:09 PM" notes="Curious" facefx="2"/>
+ <Dialog id="13680621263377875742" text="I go back to my cell, and doctors comes with needles and tests and questions. I bite their fingers, swallow them whole - and they beat me, take me to security." modified="11/17/2015 03:09:18 PM" facefx="2"/>
+ <Dialog id="13680621263377875816" text="Alarms... guards try and move me... and I kill them. But their uniforms do not fit, I am still hungry. Go find crew to blend in. Find the kitchen, find an idiot man who lets me in, and I look at him - his suit is my size. I kill him, and now I am him." modified="11/17/2015 03:10:32 PM" facefx="2"/>
+ <Dialog id="13680621263377875832" text="I do this again, and again, help people come to kitchen, see what they have, kill them. They are just TranStar." modified="11/17/2015 03:10:48 PM" facefx="2"/>
+ <Dialog id="844024417295095751" text="Go back to your master, puppets. Tell it that you will have to go hungry today." modified="01/21/2016 10:12:23 PM" facefx="2"/>
+ <Dialog id="844024417295095807" text="I can see what&apos;s behind your eyes. You can&apos;t fool me." modified="01/21/2016 10:13:19 PM" facefx="2"/>
+ <Dialog id="844024417295095957" text="There is no food here for you, puppets! Leave me be." modified="01/21/2016 10:15:49 PM" facefx="2"/>
+ <Dialog id="4349723564928987018" text="Morgan Yu. This pod will work, but I do not know how to launch it." modified="02/11/2016 08:31:06 PM" notes="Luka is badly injured and laboring to speak. He is dying." sync="true"/>
+ <Dialog id="4349723564928987033" text="Let&apos;s resolve our conflict on Earth. In the fresh air. With worms under our feet." modified="02/11/2016 08:31:21 PM" notes="Luka is badly injured and laboring to speak. He is dying."/>
+ <Dialog id="4349723564928987049" text="Join me. I saved you a seat." modified="02/11/2016 08:31:37 PM" notes="Luka is badly injured and laboring to speak. He is dying."/>
+ <Dialog id="4349723564928987079" text="I will die soon. No need to fear me now." modified="02/11/2016 08:32:07 PM"/>
+ <Dialog id="4349723564928987270" text="We are over now. Hahahahaha..." modified="02/11/2016 08:40:19 PM" notes="Weak and dying, but summons up just enough energy to be triumphant. He is serving justice with his death. The laugh will trail into the explosion." sync="true"/>
+ <Dialog id="13680621263390537359" text="You..." modified="04/12/2016 04:21:31 AM" notes="Grumbling over the PA mic." facefx="2"/>
+ <Dialog id="13680621263390537689" text="I see you. Another puppet." modified="04/12/2016 04:21:45 AM" notes="Player should mistake Luka as addressing him, but actually talking to the MC humans." facefx="2"/>
+ <Dialog id="13680621263390537705" text="Looking for me with black eggs behind your eyes. Come closer." modified="04/12/2016 04:23:34 AM" notes="Almost angry. " facefx="2"/>
+ <Dialog id="13680621263390537710" text="Yes... a little closer-" modified="07/07/2016 04:09:44 PM" notes="(explosive blast) cuts of Luka - Trying to taunt a mc human into attacking." facefx="2"/>
+ <Dialog id="13680621263390537920" text="(Grim Chuckle)" modified="07/07/2016 04:11:08 PM" notes="Luka chuckling to himself. Stupid puppets." facefx="2"/>
+ <Dialog id="13680621263390538528" text="Stupid puppets. What? You too? You want to come into kitchen? Good, come!" modified="07/07/2016 04:14:48 PM" notes="Trolling the mc humans." facefx="2"/>
+ <Dialog id="13680621263390538741" text="How many? How many bodies do you have, eh?" modified="04/12/2016 04:39:46 AM" notes="A little anger at the end. " facefx="2"/>
+ <Dialog id="13680621263390538822" text="Keep sending and sending..." modified="04/12/2016 04:40:38 AM" notes="Angry muttering under his breath."/>
+ <Dialog id="13680621263390538858" text="When will you stop? Stop!" modified="07/08/2016 11:16:10 PM" notes="ramp up to an agnry shout."/>
+ <Dialog id="13680621263390538952" text="...can&apos;t think with all the puppet bombs." modified="07/07/2016 04:10:01 PM" notes="back to under his breath"/>
+ <Dialog id="13680621263390539246" text="Nnh... why do you obey? You can&apos;t fight the beast voice?" modified="07/13/2016 11:11:32 PM" notes="Almost taunting the mc humans for being weak-minded."/>
+ <Dialog id="13680621263390539392" text="When no more puppets... maybe we talk." modified="04/12/2016 04:50:25 AM" facefx="2"/>
+ <Dialog id="13680621263391808256" text="What is this?" modified="04/26/2016 09:17:52 PM" notes="suspicious murmur"/>
+ <Dialog id="13680621263391808265" text="Eh... something." modified="04/26/2016 09:18:01 PM" notes="suspicious murmur"/>
+ <Dialog id="13680621263391808401" text="Shhh. More beasts coming..." modified="04/26/2016 09:35:23 PM" notes="Danger. Get ready."/>
+ <Dialog id="13680621263391808411" text="No. No. Nothing." modified="04/26/2016 09:20:27 PM" notes="Disregard. More like grunts. "/>
+ <Dialog id="13680621263391808468" text="It&apos;s gone. I did not imagine it. " modified="04/26/2016 09:21:24 PM" notes="I&apos;m not crazy."/>
+ <Dialog id="13680621263391808546" text="Bah. It will come back later." modified="04/26/2016 09:22:42 PM"/>
+ <Dialog id="13680621263391808592" text="You should stop that. They will come for you." modified="04/26/2016 09:26:53 PM"/>
+ <Dialog id="13680621263391808682" text="That is... (Grunt)" modified="07/08/2016 03:35:37 PM" notes="Keeping my thoughts to myself."/>
+ <Dialog id="13680621263391808774" text="Hmmn. Your brain is like a beast. " modified="04/26/2016 09:26:30 PM"/>
+ <Dialog id="13680621263391809573" text="What?" modified="04/26/2016 09:39:49 PM"/>
+ <Dialog id="13680621263391809581" text="You make joke?" modified="04/26/2016 09:39:57 PM"/>
+ <Dialog id="13680621263391809586" text="Stop." modified="04/26/2016 09:40:02 PM"/>
+ <Dialog id="13680621263391809604" text="No!" modified="04/26/2016 09:40:20 PM"/>
+ <Dialog id="13680621263391809677" text="Now you have woken something terrrible. " modified="04/26/2016 09:41:33 PM"/>
+ <Dialog id="13680621263391809686" text="(Laugh)" modified="07/07/2016 04:33:43 PM" notes="Chuckling to  himself. A bit manic."/>
+ <Dialog id="13680621263391809745" text="No, no. I won&apos;t fight." modified="04/26/2016 09:47:07 PM"/>
+ <Dialog id="13680621263391809782" text="Peace! Don&apos;t harm me." modified="04/26/2016 09:46:43 PM"/>
+ <Dialog id="13680621263391809843" text="Why?" modified="04/26/2016 09:44:19 PM" notes="Surprised. A little angry?"/>
+ <Dialog id="13680621263391809882" text="Please. I&apos;m not a threat to you." modified="04/26/2016 09:46:53 PM"/>
+ <Dialog id="13680621263391810046" text="You tricked me?" modified="04/26/2016 09:47:42 PM" notes="Surprised. A little angry?"/>
+ <Dialog id="13680621263394128709" text="Almost. Only a few puppets left." modified="07/13/2016 11:12:48 PM" facefx="2"/>
+ <Dialog id="13680621263394128741" text="Good. Come to kitchen window. We will talk. " modified="05/23/2016 05:52:37 PM" facefx="2"/>
+ <Dialog id="13680621263394128909" text="Go around. The side entrance." modified="05/23/2016 05:55:25 PM" sync="true" facefx="3"/>
+ <Dialog id="13680621263394129107" text="Wait." modified="05/23/2016 05:58:43 PM" notes="A little projected... player&apos;s on the other side of the door."/>
+ <Dialog id="13680621263394129121" text="A minute..." modified="05/23/2016 05:58:57 PM" notes="A little projected... player&apos;s on the other side of the door."/>
+ <Dialog id="13680621263394129128" text="(Grunt)" modified="07/07/2016 04:10:30 PM" notes="short exhertion, like gritted teeth, pulling hard on a rusty bolt or swinging a hammer one time."/>
+ <Dialog id="13680621263394131219" text="Here. I open freezer now, like I promised. Lots of dead puppets and supplies." modified="05/23/2016 06:34:05 PM" notes="Alt, in case it&apos;s a keypad instead of a lock." sync="true" facefx="3"/>
+ <Dialog id="13680621263394131407" text="You can find a replacement part in the Fitness Center. The pool, I think. With water, we can wait for rescue. No water... (Negative Grunt)" modified="07/07/2016 04:10:32 PM" notes="Alt in case we move the quest to the pool area. "/>
+ <Dialog id="4349723564939011955" text="Your cowardice will haunt you for the reminder of your days. But my death is easy. No more nightmares..." modified="06/06/2016 09:15:12 PM" notes="Luka passes out at the end of this line. He is fading. "/>
+ <Dialog id="14538910657199721293" text="Who&apos;s there?!" modified="07/14/2016 05:27:58 PM" notes="Someone&apos;s rattling at his front door, accusing."/>
+ <Dialog id="14538910657199721307" text="You can&apos;t get in here!" modified="07/14/2016 05:28:30 PM"/>
+ <Dialog id="14538910657199721432" text="Can&apos;t get in heerrre." modified="07/14/2016 05:28:56 PM" notes="Sing-song, taunt."/>
+ <Dialog id="14538910657199721481" text="Only get in if I let you in." modified="07/14/2016 05:29:45 PM" notes="Emphasis on &quot;I.&quot;"/>
+ <Dialog id="14538910657199739800" text="Regulator first." modified="07/14/2016 10:35:04 PM"/>
+ <Dialog id="14538910657199739834" text="Open freezer when have new regulator." modified="07/14/2016 10:35:38 PM"/>
+ <Dialog id="13680621263400356433" text="You are one of them!" modified="08/03/2016 07:47:29 PM"/>
+ <Dialog id="13680621263400356530" text="Stupid beast! You think you can kill me with them?" modified="08/03/2016 07:49:06 PM" notes="Taunting, emphasis on THEM, like they&apos;re worthless (he&apos;s referring to TranStar employees)."/>
+ <Dialog id="13680621263400356546" text="Can&apos;t get me, can you." modified="08/03/2016 07:49:22 PM" notes="Cold, speaking to Telepath. Emphasis on CAN."/>
+ <Dialog id="13680621263400356571" text="You run out of puppets, maybe you starve." modified="08/03/2016 07:49:47 PM"/>
+ <Dialog id="13680621263400356657" text="Their master is close. Kill beast, or puppets, or both - but do it before they kill you." modified="08/03/2016 07:51:13 PM"/>
+ <Dialog id="13680621263400357599" text="Their master... it is running out of bodies." modified="08/03/2016 08:07:17 PM"/>
+ <Dialog id="13680621263400357778" text="Ha!" modified="08/03/2016 08:09:54 PM" notes="Viciously gleeful (player killed an evil telepath)"/>
+ <Dialog id="13680621263400358726" text="Your puppets all dead - now you join them!" modified="08/03/2016 08:25:42 PM" notes="Emphasis on JOIN."/>
+ <Dialog id="13680621263400358751" text="You... come to kitchen window. Let me see you." modified="08/03/2016 08:26:07 PM" notes="Talking to player, curious, beckoning (thinks player might be good victim)."/>
+ <Dialog id="13680621263400358785" text="Kill a few of your puppets, now you join them." modified="08/03/2016 08:26:41 PM" notes="Emphasis on JOIN."/>
+ <Dialog id="13680621263400358811" text="Couldn&apos;t hide behind your puppets - hnh. Kill you, saves them?" modified="08/03/2016 08:27:07 PM" notes="Gets quieter, to himself, asking as if he wouldn&apos;t have made that choice (shrugging it off)."/>
+ <Dialog id="13680621263400358910" text="M. Yu. You kill beast yourself? Hnh. If you want to come in, be safe... you go... get something of mine, hnh? " modified="08/03/2016 08:28:46 PM" notes="Suspicious, knows who Morgan Yu is, wants to kill him - 2nd half after ellipses is &quot;thinking&quot; as if thinking of a way to kill Morgan." facefx="3" sync="true"/>
+ <Dialog id="13680621263400358932" text="Here - key... it opens my room. " modified="08/03/2016 08:30:02 PM" notes="" facefx="3" sync="true"/>
+ <Dialog id="13680621263400358988" text="Go there, get my... award. It&apos;s important to me." modified="08/03/2016 08:30:04 PM" notes="A little eviler, the award isn&apos;t important, it&apos;s a trap." facefx="3" sync="true"/>
+ <Dialog id="13680621263400359002" text="Then... Maybe we talk." modified="01/24/2017 06:38:10 PM" notes="&quot;I&apos;ll never see you again.&quot;" facefx="3" sync="true"/>
+ <Dialog id="13680621263400359085" text="Don&apos;t worry about power, flickering... station is just hurting. Keep going." modified="08/03/2016 08:31:41 PM" notes="Pushing player to go on. Emphasis on &quot;hurting.&quot;"/>
+ <Dialog id="13680621263400359275" text="You still there, M. Yu? You still alive? Hnh." modified="08/03/2016 08:34:51 PM" notes="Player finds item. Luka isn&apos;t sure, but prompting to see if player alive, hoping player is dead."/>
+ <Dialog id="13680621263400359319" text="Hnh. What if M. Yu comes back... let M. Yu in? But..." modified="08/03/2016 08:35:35 PM" notes="Mumbles to himself, a little worried, doesn&apos;t realize he might be heard."/>
+ <Dialog id="13680621263400359417" text="You find it? You back?" modified="08/03/2016 08:37:13 PM" notes="More surprise, worry."/>
+ <Dialog id="13680621263400359431" text="Come to window. Show me." modified="08/03/2016 08:37:27 PM" notes="Angry, accusing."/>
+ <Dialog id="13680621263400359603" text="Hnh. Have to let you in, promised." modified="08/03/2016 08:40:19 PM" notes="Realization, not happy, says this to himself, as if trying to convince himself to do something he doesn&apos;t want to do." facefx="3" sync="true"/>
+ <Dialog id="13680621263400359717" text="Replacement part in Greenhouse, but... hnh." modified="08/03/2016 08:42:13 PM" notes="Shrugs at end."/>
+ <Dialog id="13680621263400359886" text="Hnh. Freezer... it is where I hid puppets beast send first." modified="08/03/2016 08:45:02 PM" notes="Worried. Trying to make up a story as to why there are bodies in the fridge."/>
+ <Dialog id="13680621263400359961" text="Maybe they have useful things for you? Or maybe inside is another way out?" modified="08/03/2016 08:46:17 PM"/>
+</Dialog>

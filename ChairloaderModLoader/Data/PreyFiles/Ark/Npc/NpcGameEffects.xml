@@ -1,0 +1,70 @@
+
+<NpcGameEffects>
+ <ArkNpcGameEffect_WeaverShield id="1" name="ArkNpcGameEffect_WeaverShield" activationCooldown="7.0" blockDamageTime="0.25" startAudioTrigger="Play_Weaver_Shield_Start" stopAudioTrigger="Play_Weaver_Shield_Stop" impactAudioTrigger="Play_Weaver_Shield_Impact" signalModifierId="3149325216954329552" fearPackageId="3149325216972485085" shieldSkinAttachmentName="shield_skin" dissolveOnSignalGroupId="8109010857482007364"/>
+ <ArkNpcGameEffect_PoltergeistForceAura id="2" name="Poltergeist ForceAura" radius="2.5" minForce="2" maxForce="50" minMass="5" maxMass="400"/>
+ <ArkNpcGameEffect_PoltergeistInvisibility id="3" name="Poltergeist Invisibility" visibleTimeAfterHit="0.3" visibleTimeAfterGloo="0.25" visibleTimeAfterStun="0.25" visibleAfterHitCapTime="0.5" visibleAfterHitCooldown="0.2" appearAudioTrigger="Play_Poltergeist_Appear" disappearAudioTrigger="Play_Poltergeist_Dissappear" glooSignalId="3149325216915549017"/>
+ <ArkNpcGameEffect_Interference id="4" name="Voltaic Interference" signalPackageId="3149325216936549501" signalRadius="5.0" signalFrequency="1.0">
+  <BlackList>
+   <ArkBlackListItem className="ArkElectricalBox" archetypeName=""/>
+  </BlackList>
+ </ArkNpcGameEffect_Interference>
+ <ArkNpcGameEffect_Interference id="5" name="Technopath Interference" signalPackageId="3149325216951319437" signalRadius="8.0" signalFrequency="1.0">
+  <BlackList/>
+ </ArkNpcGameEffect_Interference>
+ <ArkNpcGameEffect_EnergizeAura id="6" name="Energize Aura" signalPackageId="5310807215636213063" signalRadius="6.0" signalFrequency="1.0" lightningMaterial="Materials/ArkEffects/Environment/Lightning/Phantom_LightningArcs" sourceOffset="0.0,0.0,1.5" sourceOffsetVariation="0.0,0.0,1.2" modifierId="5310807215636213093">
+  <BlackList>
+   <ArkBlackListItem className="ArkDoor" archetypeName=""/>
+   <ArkBlackListItem className="ArkPoltergeist" archetypeName=""/>
+   <ArkBlackListItem className="ArkWorldUI" archetypeName=""/>
+   <ArkBlackListItem className="ArkApexTentacle" archetypeName=""/>
+   <ArkBlackListItem className="ArkLight" archetypeName="GravShaft"/>
+  </BlackList>
+ </ArkNpcGameEffect_EnergizeAura>
+ <ArkNpcGameEffect_PsiSuppression id="7" name="Psi Suppression"/>
+ <ArkNpcGameEffect_ControlTurrets id="8" name="Control Turrets" maxControllableTurrets="3" turretDesiredDistanceFromNpc="2.0" desiredTurretHeight="0.40" turretCheckRadius="15.0" requiredTurretTag="9469288860498988699" defaultTurretFaction="17591291352618367186" conditionalOwnerFaction="17591291352647918218" conditionalTurretFaction="17591291352646192141" timeBetweenTurretScans="1.0" formationChangeRotationSpeed="60.0" turretRotationSpeed="15.0" turretTraceAdjustmentRadius="1.0"/>
+ <ArkNpcGameEffect_EthericFog id="9" name="Etheric Fog" fogSpawnCooldown="2.0"/>
+ <ArkNpcGameEffect_ExcreteCystoids id="10" name="Excrete Cystoids" cystoidArchetypeName="ArkNpcs.Cystoids.Cystoid" excreteAudioTrigger="Play_Weaver_Excrete_Cystoid">
+  <SpawnCountInterval minimum="1" maximum="1"/>
+  <SpawnPeriodInterval minimum="0.1" maximum="0.1"/>
+ </ArkNpcGameEffect_ExcreteCystoids>
+ <ArkNpcGameEffect_SimplePackageAura id="12" name="Mimic Thermal Aura" auraPackageId="9469288860495533935" auraInboundModifierId="8109010857438863890" auraDurationTime="10.0" auraTickRate="0.25" auraRadius="3.0" characterEffectType="0" defaultEffectRadius="1.0" bStoppedByGoo="true"/>
+ <ArkNpcGameEffect_SimplePackageAura id="13" name="Phantom Thermal Aura" auraPackageId="10641886185795228216" auraInboundModifierId="8109010857438863890" auraDurationTime="7.0" auraTickRate="0.25" auraRadius="5.75" characterEffectType="0" defaultEffectRadius="3.0" bStoppedByGoo="false"/>
+ <ArkNpcGameEffect_SimplePackageAura id="14" name="Mimic Electric Aura" auraPackageId="3149325216955820299" auraInboundModifierId="5310807215636213074" auraDurationTime="10.0" auraTickRate="0.25" auraRadius="3.0" characterEffectType="1" defaultEffectRadius="1.0" bStoppedByGoo="false"/>
+ <ArkNpcGameEffect_Interference id="15" name="Phantom Interference" signalPackageId="3149325216936549501" signalRadius="8.0" signalFrequency="1.0">
+  <BlackList>
+   <ArkBlackListItem className="ArkElectricalBox" archetypeName=""/>
+  </BlackList>
+ </ArkNpcGameEffect_Interference>
+ <ArkNpcGameEffect_Gloo id="16" name="Gloo" glooBreakBuildupTrigger="Play_GLOO_BreakOut_Build" glooHitTrigger="Play_GLOO_Freeze_Small" glooSignalId="3149325216915549017" glooLowerThresholdPreBreakSfxTime="1.8" glooSignalModifier="8109010857446316334" glooGrowAccumulationSpeedPerSecond="3.5"/>
+ <ArkNpcGameEffect_Feared id="18" name="Feared" endFearDistance="25.0" bFleesFromHostileDamage="true"/>
+ <ArkNpcGameEffect_Feared id="19" name="Feared No Flee" endFearDistance="25.0" bFleesFromHostileDamage="false"/>
+ <ArkNpcGameEffect_OnFire id="20" name="On Fire" onFireTime="5" damageTickRate="0.5" fireDamagePackageId="9469288860524043211" instigatingSignalGroup="3473393341384819456" bFleesWhenIgnited="true" aoePackageId="9469288860544424503" aoeRadiusFromNpc="2.0"/>
+ <ArkNpcGameEffect_HitReactionMaterialAnimation id="21" name="Hit Reaction Material Animation"/>
+ <ArkNpcGameEffect_DoppelgangerLink id="22" name="Doppelganger Link"/>
+ <ArkNpcGameEffect_Gloo id="23" name="Mimic Gloo Slow" glooBreakBuildupTrigger="Play_GLOO_BreakOut_Build" glooHitTrigger="Play_GLOO_Freeze_Small" glooSignalId="3149325216915549017" glooLowerThresholdPreBreakSfxTime="1.8" glooSignalModifier="9469288860532525380" glooGrowAccumulationSpeedPerSecond="3.5"/>
+ <ArkNpcGameEffect_Energized id="24" name="Energized_Small" energizingSignalId="3149325216914689683" drainPerSecond="50.0" delayBeforeDrain="2.0" energizedExplosionPackageId="8109010857459426814" energizedExplosionRadius="4.0" energizedExplosionImpulse="20.0" energizedExplosionCameraShakeId="10739735956147043737"/>
+ <ArkNpcGameEffect_Feared id="25" name="TelepathFeared" endFearDistance="25.0" bFleesFromHostileDamage="false"/>
+ <ArkNpcGameEffect_Energized id="26" name="Energized_Large" energizingSignalId="3149325216914689683" drainPerSecond="25.0" delayBeforeDrain="2.0" energizedExplosionPackageId="8109010857459426814" energizedExplosionRadius="8.0" energizedExplosionImpulse="20.0" energizedExplosionCameraShakeId="3149325216979739536"/>
+ <ArkNpcGameEffect_OnFire id="27" name="On Fire" onFireTime="5" damageTickRate="0.5" fireDamagePackageId="9469288860524043211" instigatingSignalGroup="3473393341384819456" bFleesWhenIgnited="false" aoePackageId="9469288860544424503" aoeRadiusFromNpc="2.0"/>
+ <ArkNpcGameEffect_OnFire id="28" name="On Fire" onFireTime="5" damageTickRate="0.5" fireDamagePackageId="9469288860524043211" instigatingSignalGroup="3473393341384819456" bFleesWhenIgnited="false" aoePackageId="9469288860544424503" aoeRadiusFromNpc="8.0"/>
+ <ArkNpcGameEffect_Hacked id="100" name="Hacked" hackedFaction="961149214835558829" hackedMetaTag="3149325216945014920"/>
+ <ArkNpcGameEffect_Corrupted id="200" name="Human Corrupted" corruptedFactionId="17591291352643759759" corruptedMetaTag="9469288860518010452" corruptedContextProfileId="1000100" corruptedSignalModifierId="3149325216954329551" corruptedExplodeOnDeathPackageId="17591291352643785042" uncorruptOnSignalGroupId="17591291352664858578" corruptedExplodeOnDeathCameraShakeId="10739735956147043737" corruptedExplodeMinimumDistanceScaleAmount="0.4" corruptedExplodeOnDeathRadius="6.0" corruptedExplodeOnDeathImpulse="10.0" corruptedAiTreePath="Ark/AI/AiTrees/CorruptedHumanAiTree.xml" healthMultiplier="2.0" bShouldExplodeHeadOnDeath="true" corruptedExplodeDamageSourceAttachment="FX_Head" playerDeprogrammingSignalId="3149325216915549079" instantKillSignalGroupId="3149325216987245430"/>
+ <ArkNpcGameEffect_Corrupted id="201" name="OPERATOR_Military Corrupted" corruptedFactionId="17591291352638749004" corruptedMetaTag="3149325216945013533" corruptedContextProfileId="1001" corruptedSignalModifierId="9469288860525160118" corruptedExplodeOnDeathPackageId="10850392949541355458" corruptedExplodeOnDeathRadius="4.0" corruptedExplodeOnDeathImpulse="10.0" corruptedExplodeOnDeathCameraShakeId="10739735956147043737" corruptedAiTreePath="Ark/AI/AiTrees/CorruptedMilitaryOperatorAiTree.xml" healthMultiplier="1.0" corruptedExplodeDamageSourceAttachment="invalid" corruptedExplodeMinimumDistanceScaleAmount="0.4" bShouldExplodeHeadOnDeath="false" instantKillSignalGroupId="0"/>
+ <ArkNpcGameEffect_Corrupted id="202" name="OPERATOR_Science Corrupted" corruptedFactionId="17591291352638749004" corruptedMetaTag="3149325216945013533" corruptedContextProfileId="1101" corruptedSignalModifierId="9469288860525160118" corruptedExplodeOnDeathPackageId="10850392949541355458" corruptedExplodeOnDeathRadius="4.0" corruptedExplodeOnDeathImpulse="10.0" corruptedExplodeOnDeathCameraShakeId="10739735956147043737" corruptedAiTreePath="Ark/AI/AiTrees/CorruptedScienceOperatorAiTree.xml" healthMultiplier="1.0" corruptedExplodeDamageSourceAttachment="invalid" corruptedExplodeMinimumDistanceScaleAmount="0.4" bShouldExplodeHeadOnDeath="false" instantKillSignalGroupId="0"/>
+ <ArkNpcGameEffect_Corrupted id="203" name="OPERATOR_Egineering Corrupted" corruptedFactionId="17591291352638749004" corruptedMetaTag="3149325216945013533" corruptedContextProfileId="1201" corruptedSignalModifierId="9469288860525160118" corruptedExplodeOnDeathPackageId="10850392949541355458" corruptedExplodeOnDeathRadius="4.0" corruptedExplodeOnDeathImpulse="10.0" corruptedExplodeOnDeathCameraShakeId="10739735956147043737" corruptedAiTreePath="Ark/AI/AiTrees/CorruptedEngineeringOperatorAiTree.xml" healthMultiplier="1.0" corruptedExplodeDamageSourceAttachment="invalid" corruptedExplodeMinimumDistanceScaleAmount="0.4" bShouldExplodeHeadOnDeath="false" instantKillSignalGroupId="0"/>
+ <ArkNpcGameEffect_Corrupted id="204" name="OPERATOR_Medical Corrupted" corruptedFactionId="17591291352638749004" corruptedMetaTag="3149325216945013533" corruptedContextProfileId="1301" corruptedSignalModifierId="9469288860525160118" corruptedExplodeOnDeathPackageId="10850392949541355458" corruptedExplodeOnDeathRadius="4.0" corruptedExplodeOnDeathImpulse="10.0" corruptedExplodeOnDeathCameraShakeId="10739735956147043737" corruptedAiTreePath="Ark/AI/AiTrees/CorruptedMedicalOperatorAiTree.xml" healthMultiplier="1.0" corruptedExplodeDamageSourceAttachment="invalid" corruptedExplodeMinimumDistanceScaleAmount="0.4" bShouldExplodeHeadOnDeath="false" instantKillSignalGroupId="0"/>
+ <ArkNpcGameEffect_NightmareEtherFormDamageAura id="300" name="Nightmare Etherform Damage Aura" auraPackageId="10641886185795233513" auraTickRate="0.5" auraRadius="2.5"/>
+ <ArkNpcGameEffect_MindControl id="400" name="HUMAN MindControl" mindControlSingalId="3149325216915549079" mindControlFactionId="17591291352664927822" mindControlMetaTag="9469288860545217341" loopEffectDelayTime="0.25" playerDamageAmountToBreakControl="500"/>
+ <ArkNpcGameEffect_MindControl id="401" name="ALIEN MindControl" mindControlSingalId="3149325216915549079" mindControlFactionId="17591291352647918218" mindControlMetaTag="9469288860545217341" loopEffectDelayTime="0.25" playerDamageAmountToBreakControl="500"/>
+ <ArkNpcGameEffect_MindControl id="402" name="OPERATOR MindControl" mindControlSingalId="3149325216915549106" mindControlFactionId="961149214835558829" mindControlMetaTag="9469288860545217341" loopEffectDelayTime="0.25" playerDamageAmountToBreakControl="500"/>
+ <ArkNpcGameEffect_PlayerProximityPackage id="500" name="UNUSED-EXAMPLE" packageId="3149325216955820299" packageFrequency="0.25" minDistance="3" maxDistance="10" minScale="0.1" maxScale="1"/>
+ <ArkNpcGameEffect_RaiseFromCorpse id="987" name="Phantom_RaiseFromCorpse" breakOutSignalGroupId="8109010857482007340" minRagdollTime="3.0" maxRagdollTime="7.0"/>
+ <ArkNpcGameEffect_Disintegration id="1000" name="Disintegration"/>
+ <ArkNpcGameEffect_OperatorArmsRetracted id="1100" name="OperatorArmsRetracted"/>
+ <ArkNpcGameEffect_Stun id="2000" name="StunnedAnimated" stunSignalModifierId="3149325216969007122" stunVfxDuration="-1.0" bStunRagdoll="false" bStunLastsForever="false"/>
+ <ArkNpcGameEffect_Stun id="2001" name="StunnedRagdoll" stunSignalModifierId="3149325216969007122" stunVfxDuration="-1.0" bStunRagdoll="false" bStunLastsForever="false"/>
+ <ArkNpcGameEffect_Stun id="2002" name="StunnedRagdollForever" stunSignalModifierId="3149325216969007122" stunVfxDuration="3.0" bStunRagdoll="true" bStunLastsForever="true"/>
+ <ArkNpcGameEffect_PlayerControlled id="3000" name="PlayerControlled"/>
+ <ArkNpcGameEffect_Gloo id="4000" name="Phantom Gloo" glooBreakBuildupTrigger="Play_GLOO_BreakOut_Build" glooHitTrigger="Play_GLOO_Freeze_Small" glooSignalId="3149325216915549017" glooLowerThresholdPreBreakSfxTime="1.8" glooSignalModifier="8109010857446316334" glooGrowAccumulationSpeedPerSecond="7.0"/>
+ <ArkNpcGameEffect_Gloo id="4001" name="Overseer Gloo" glooBreakBuildupTrigger="Play_GLOO_BreakOut_Build" glooHitTrigger="Play_GLOO_Freeze_Small" glooSignalId="3149325216915549017" glooLowerThresholdPreBreakSfxTime="1.8" glooSignalModifier="8109010857446316334" glooGrowAccumulationSpeedPerSecond="7.0"/>
+</NpcGameEffects>

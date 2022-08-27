@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56460E6E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh, hello, Ms. Sho, I thought I recognized your voice.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh, hello, Ms. Sho, I thought I recognized your voice.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564612B3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm Operator Skillet, Ms. Sho. My, you sound like you could use a healthy dose of Sunburst Banana Pudding.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm Operator Skillet, Ms. Sho. My, you sound like you could use a healthy dose of Sunburst Banana Pudding.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56461308</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Apologies, chef. I'll... "C" my way out.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Apologies, chef. I'll... "C" my way out.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56461FA2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh my, what a mess.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh my, what a mess.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56461FAA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't suppose you know where Quinten Purvis is? His meals are waiting for him.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't suppose you know where Quinten Purvis is? His meals are waiting for him.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56461FB0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I certainly hope I'm making enough for Mr. Purvis. He must be very hungry.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I certainly hope I'm making enough for Mr. Purvis. He must be very hungry.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56461FB9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Feeling peckish?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Feeling peckish?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56461FC9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We have a wide (and delicious) array of TranStar foods, just waiting for you! Yummy! </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We have a wide (and delicious) array of TranStar foods, just waiting for you! Yummy! </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56462059</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Operator Skillet, at your service! </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Operator Skillet, at your service! </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5646207B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Try [error sound] Unagi Rollz, fresh from the eel tank!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Try [error sound] Unagi Rollz, fresh from the eel tank!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56462093</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We have only the finest Pacific Beef, peeled fresh from their plastic lattices. Indistinguishable from natural born beef. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">We have only the finest Pacific Beef, peeled fresh from their plastic lattices. Indistinguishable from natural born beef. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564620A2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Have you tried the Jellied Eels? They've been especially dethawed for today. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Have you tried the Jellied Eels? They've been especially dethawed for today. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564620AA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Why has everyone missed their appointed meal time? </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Why has everyone missed their appointed meal time? </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564620B9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Looks like someone's in need of some calories.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Looks like someone's in need of some calories.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564620D6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Chef Mitchell modified my dialogue sequencer to improve morale. Nothing aids digestion more than a positive attitude!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Chef Mitchell modified my dialogue sequencer to improve morale. Nothing aids digestion more than a positive attitude!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5646213A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Let me prepare your special meal, Morgan. Oyster omelette, coming right up!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Let me prepare your special meal, Morgan. Oyster omelette, coming right up!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564627FA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The only other crew member with special dietary requirements is Quinten Purvis. Chef Mitchell has asked me to prepare non perishables for him.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The only other crew member with special dietary requirements is Quinten Purvis. Chef Mitchell has asked me to prepare non perishables for him.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564627FF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Although he hasn't told me to stop yet.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Although he hasn't told me to stop yet.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5646282C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Purvis' meals are ready for delivery to the Cargo Bay. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Purvis' meals are ready for delivery to the Cargo Bay. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56462834</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't understand why he doesn't just come up here.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't understand why he doesn't just come up here.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5646286E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu, I'm afraid the kitchen staff are quite... absent.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu, I'm afraid the kitchen staff are quite... absent.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5646289F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu, welcome back! The usual, with...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu, welcome back! The usual, with...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564628AB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">...wait, green tea to wash it down, hmmm?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">...wait, green tea to wash it down, hmmm?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564628C5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please eat something. You wouldn't want to disappoint me, would you?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please eat something. You wouldn't want to disappoint me, would you?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56463E62</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A day without TranStar food products is a like a tiny slice of hell.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A day without TranStar food products is a like a tiny slice of hell.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56463E6A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Some eel? </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Some eel? </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56463E73</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">How about some eel? </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">How about some eel? </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56463E80</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please eat the eel or it will go bad. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please eat the eel or it will go bad. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56463E90</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Guess it's back in the ol' tank for this batch until the next waste cycle.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Guess it's back in the ol' tank for this batch until the next waste cycle.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464138</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh. I think that was the other gentlemen's stew. He hasn't shared his name with me, though I've asked him repeatedly.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh. I think that was the other gentlemen's stew. He hasn't shared his name with me, though I've asked him repeatedly.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564641CA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ms. Yu, I am so sorry. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ms. Yu, I am so sorry. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564641D8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please don't report me. The auto-lock is to blame. It never liked me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please don't report me. The auto-lock is to blame. It never liked me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564641DF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you all right? No frost burns? Let me see your fingers.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Are you all right? No frost burns? Let me see your fingers.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564641FA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You should report to the Trauma Center. The Operators there will take good care of you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You should report to the Trauma Center. The Operators there will take good care of you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564642BA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">An open freezer door is an open invitation to salmonella. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">An open freezer door is an open invitation to salmonella. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564642C9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Someone might catch a chill.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Someone might catch a chill.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564642D2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">"Hello, Salmonella, why don't you come right in!"</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">"Hello, Salmonella, why don't you come right in!"</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564642E0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Temperature dropping. Slowly, but dropping.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Temperature dropping. Slowly, but dropping.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564642E8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All authorized personnel, please seal the freezer.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">All authorized personnel, please seal the freezer.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564643B0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh dear, auto-locks engaged. Temperature controls engaged. And dropping. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oh dear, auto-locks engaged. Temperature controls engaged. And dropping. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464409</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Why, of all th- the autolock is not responding. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Why, of all th- the autolock is not responding. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464422</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu, I'm calling security. We'll get you out, just try to stay warm. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Dr. Yu, I'm calling security. We'll get you out, just try to stay warm. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5646442E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Jump up and down, try to stay active. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Jump up and down, try to stay active. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464443</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Calling...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Calling...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464458</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mr. Yu? I'm afraid there's no response. But I've left multiple strongly worded messages.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mr. Yu? I'm afraid there's no response. But I've left multiple strongly worded messages.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464D04</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">So I've been told.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">So I've been told.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464D6B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine humming]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine humming]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56464DB1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine humming]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine humming]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56465F08</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Why, Dr. Morgan Yu, what a pleasant surprise after all this time! Shall I prepare a- </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Why, Dr. Morgan Yu, what a pleasant surprise after all this time! Shall I prepare a- </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564A2362</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Morgan Yu, brother of Alex Yu, he's one of the station's co-directors, and one of the nicest executives you'll ever meet! Hasn't been around much for sev-</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Morgan Yu, brother of Alex Yu, he's one of the station's co-directors, and one of the nicest executives you'll ever meet! Hasn't been around much for sev-</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E564A278F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Morgan Yu, sister of Alex Yu, she's one of the station's co-directors, and one of the nicest executives you'll ever meet! Hasn't been around much for sev-</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Morgan Yu, sister of Alex Yu, she's one of the station's co-directors, and one of the nicest executives you'll ever meet! Hasn't been around much for sev-</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">C9C4963656C4F58F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mr. Yu I am so sorry.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mr. Yu I am so sorry.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

@@ -1,0 +1,51 @@
+
+<Graph isModule="1" moduleName="ArkConvertDecimalTime" isObjectList="0" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="DecimalTime" Type="2" Input="1"/>
+  <Port Name="Hours" Type="1" Input="0"/>
+  <Port Name="Minutes" Type="1" Input="0"/>
+  <Port Name="Seconds" Type="1" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_ArkConvertDecimalTime" pos="-270,10,0"/>
+  <Node Id="2" Class="Module:End_ArkConvertDecimalTime" pos="970,30,0">
+   <Inputs Hours="0" Minutes="0" Seconds="0"/>
+  </Node>
+  <Node Id="10" Class="Math:Mod" pos="100,160,0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="11" Class="Math:Mul" pos="270,160,0">
+   <Inputs A="0" B="60"/>
+  </Node>
+  <Node Id="14" Class="Math:Mod" pos="500,190,0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="16" Class="Math:Mul" pos="660,190,0">
+   <Inputs A="0" B="60"/>
+  </Node>
+  <Node Id="18" Class="Math:Floor" pos="100,80,0">
+   <Inputs A="0"/>
+  </Node>
+  <Node Id="24" Class="Math:Floor" pos="500,110,0">
+   <Inputs A="0"/>
+  </Node>
+  <Node Id="25" Class="Math:Floor" pos="810,190,0">
+   <Inputs A="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Cancel" portOut="Cancel" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="1" portIn="A" portOut="DecimalTime" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="1" portIn="A" portOut="DecimalTime" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="10" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="11" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="11" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="14" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="25" nodeOut="16" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="18" portIn="Hours" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="24" portIn="Minutes" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="25" portIn="Seconds" portOut="out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="25" portIn="Success" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

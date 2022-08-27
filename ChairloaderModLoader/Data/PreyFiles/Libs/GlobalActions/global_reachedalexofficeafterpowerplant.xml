@@ -1,0 +1,43 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2026" Class="Ark:Dialog:PlayTranscribeMessage" pos="-342.92493,198.03564,0">
+   <Inputs dialogRule_Conversation="13680621263366667700" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2064" Class="Ark:Objectives:TaskState" pos="540,400,0">
+   <Inputs task_Task="844024417284033794" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2069" Class="Ark:Objectives:TaskState" pos="987.07507,178.03564,0">
+   <Inputs task_Task="844024417286442617" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2071" Class="Ark:Objectives:ObjectiveState" pos="547.07507,178.03564,0">
+   <Inputs objective_Objective="844024417286442409" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="2073" Name="Watch_Video_Objective" Class="_commentbox" pos="-1010,-31,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="3170" Height="670"/>
+  </Node>
+  <Node Id="3120" Class="Ark:Roster:GiveCharacterPassword" pos="1670,70,0">
+   <Inputs character_Character="1713490239389130908" ShowHUDNotification="1"/>
+  </Node>
+  <Node Id="3122" Class="Ark:RemoteEvent" pos="-880,190,0">
+   <Inputs remoteEvent_Event="14667999412583095405"/>
+  </Node>
+  <Node Id="3124" Class="Ark:SendRemoteEvent" pos="1640,200,0">
+   <Inputs remoteEvent_Event="14667999412583095462"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2064" nodeOut="2026" portIn="Complete" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2064" nodeOut="2026" portIn="Complete" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2064" nodeOut="2026" portIn="Complete" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2071" nodeOut="2026" portIn="Add" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2071" nodeOut="2026" portIn="Add" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2071" nodeOut="2026" portIn="Add" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="3120" nodeOut="2069" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3124" nodeOut="2069" portIn="Send" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2069" nodeOut="2071" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2026" nodeOut="3122" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

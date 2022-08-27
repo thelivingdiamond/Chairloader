@@ -1,0 +1,10 @@
+
+<sotemplate>
+ <object model="c3_doorbreak_human.cgf"/>
+ <helper name="start_2" pos="0,-1.1,0" rot="1.0,0.0,0.0,0.0" radius="0.2" projectOnGround="1"/>
+ <helper name="end_2" pos="0,3.1,0" rot="0.0,0.0,0.0,-1.0" radius="0.2" projectOnGround="1"/>
+ <helper name="start_3" pos="0,4.1,0" rot="0.0,0.0,0.0,-1.0" radius="0.2" projectOnGround="1"/>
+ <helper name="end_3" pos="0,-0.1,0" rot="1.0,0.0,0.0,0.0" radius="0.2" projectOnGround="1"/>
+ <helper name="start_4" pos="0,0.65,0" rot="1.0,0.0,0.0,0.0" radius="0.2" projectOnGround="1"/>
+ <helper name="end_4" pos="0,2.35,0" rot="0.0,0.0,0.0,-1.0" radius="0.2" projectOnGround="1"/>
+</sotemplate>

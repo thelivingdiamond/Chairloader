@@ -1,0 +1,12 @@
+<Graph isModule="1" moduleName="ArkLights_Bed" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkLight" pos="-414,-90,0" EntityGUID="{E64BB6B3-4602-4900-AF4B-7C9FCA989B94}" EntityGUID_64="49004602E64BB6B3">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="4" Class="entity:ArkLight" pos="-414,-65,0" EntityGUID="{71110582-BD8F-432B-A27C-031018222CCD}" EntityGUID_64="432BBD8F71110582">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

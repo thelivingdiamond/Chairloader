@@ -1,0 +1,106 @@
+
+<Dialog>
+ <Dialog id="13680621263359126287" facefx="0" sync="0" notes="(miyu sato)" text="What&apos;s up? " modified="04/14/2015 02:58:31 PM"/>
+ <Dialog id="13680621263359126299" facefx="0" sync="0" notes="(miyu sato) Off-put." text="Okay. Do you still want me to finish this array? I fabricated a shit-ton of glass." modified="04/14/2015 02:58:37 PM"/>
+ <Dialog id="13680621263359126314" facefx="0" sync="0" notes="(miyu sato)" text="You asked me to set up a new array." modified="04/14/2015 02:58:51 PM"/>
+ <Dialog id="13680621263359126322" facefx="0" sync="0" notes="(miyu sato) Irritated, trying to be respectful." text="Uh... well. Look - I have a message you left me. Seriously, I would not have made all this if you hadn&apos;t-" modified="07/12/2016 06:12:11 PM"/>
+ <Dialog id="13680621263359126346" facefx="0" sync="0" notes="(miyu sato) wtf?" text="It doesn&apos;t matter?" modified="04/14/2015 02:59:24 PM"/>
+ <Dialog id="13680621263360018709" text="I thought we were done." modified="04/24/2015 10:52:05 PM" notes="(miyu sato)" sync="true" facefx="3"/>
+ <Dialog id="13680621263360018758" text="I feel like you&apos;re upset with me." modified="04/24/2015 10:52:54 PM" notes="(miyu sato)" sync="true" facefx="3"/>
+ <Dialog id="13680621263360018840" text="What about you?" modified="04/24/2015 10:54:16 PM" notes="(miyu sato)" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019028" text="Right. I guess I&apos;ll see you later then." modified="04/24/2015 10:57:24 PM" notes="(miyu sato)" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019364" text="What?" modified="04/24/2015 11:03:00 PM" notes="(miyu sato)" sync="true" facefx="3"/>
+ <Dialog id="13680621263360019423" text="Good night, Dr. Calvino." modified="04/24/2015 11:03:59 PM" notes="(miyu sato)" sync="true" facefx="3"/>
+ <Dialog id="13680621263360252971" text="Light field capture looks a little hot." modified="04/27/2015 03:56:27 PM" notes="(miyu sato)" sync="true"/>
+ <Dialog id="13680621263360257481" text="No." modified="04/27/2015 05:11:37 PM" notes="(miyu sato)" sync="true"/>
+ <Dialog id="13680621263360257518" text="We&apos;ve only ever had one." modified="04/27/2015 05:12:14 PM" notes="(miyu sato)" sync="true"/>
+ <Dialog id="13680621263360258209" text="I guess you forgot." modified="04/27/2015 05:23:45 PM" notes="(miyu sato)" sync="true"/>
+ <Dialog id="13680621263360258703" text="Test 23. Image sensor dynamic range." modified="04/27/2015 05:31:59 PM" notes="(miyu sato)"/>
+ <Dialog id="13680621263360259340" text="Hello?" modified="04/27/2015 05:42:36 PM" notes="(miyu sato) Answering sudden beeping from her Transcribe." facefx="2"/>
+ <Dialog id="13680621263360260036" text="No. Like what?" modified="04/27/2015 05:54:12 PM" notes="(miyu sato)" facefx="2"/>
+ <Dialog id="13680621263360260075" text="What is going on, Langly?" modified="07/11/2016 11:41:17 PM" notes="(miyu sato)" facefx="2"/>
+ <Dialog id="13680621263360260245" text="I guess. I don&apos;t know. I&apos;ve been in the lab all day. Hang on. I&apos;m looking now. I don&apos;t-" modified="07/08/2016 04:26:54 PM" notes="(miyu sato) Distantly we where the muffled &quot;whoomp&quot; of an explosion. Miyu jumps." facefx="2"/>
+ <Dialog id="13680621263360260416" text="Oh my god. I think we just lost two labs." modified="04/27/2015 06:00:32 PM" notes="(miyu sato)" facefx="2"/>
+ <Dialog id="13680621263360260709" text="I have to go." modified="04/27/2015 06:05:25 PM" notes="(miyu sato)" facefx="2"/>
+ <Dialog id="13680621263360261120" text="(Death Scream)" modified="07/08/2016 04:27:26 PM" notes="(miyu sato) The mimic has been shifting through the room to get closer to her. As she hangs up the TranScribe it leaps on her, kills her and multiplies. " facefx="2"/>
+ <Dialog id="13680621263365952161" text="You were looking for me?" modified="07/02/2015 03:02:57 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263366568899" text="I&apos;ve loaded the replacement reactor divertors on the freight lift as requested. I asked Connolly to send them down when convenient. " modified="02/06/2017 06:57:20 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263366579616" text="I filed an incident report. " modified="07/09/2015 09:20:32 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263366582432" text="So what&apos;s the problem?" modified="07/09/2015 10:07:28 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263366582459" text="The grounding resistor malfunctioned. Swap a new one and you should have your lights. Is that all?" modified="07/09/2015 10:07:55 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263366582496" text="I tried replacing the resistor yesterday." modified="07/09/2015 10:08:32 PM" notes="(Lan Nyugen) Sigh. Confessing." facefx="2"/>
+ <Dialog id="13680621263366582522" text="And it just... melted into some kind of goo. Smelled like fried ass." modified="07/09/2015 10:08:58 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263366582560" text="I need to get some sleep. My shift&apos;s over anyway. Maybe you&apos;ll have better luck." modified="07/09/2015 10:09:36 PM" notes="(Lan Nyugen)" facefx="2"/>
+ <Dialog id="13680621263367532930" text="Duncan. Access code to parts storage changed last shift. We had a short, so security came up and reset." modified="07/12/2016 06:03:07 PM" notes="(Lan Nguyen) Tonless. Business-like. " facefx="2"/>
+ <Dialog id="13680621263368789914" text="How&apos;s it coming?" modified="11/19/2015 05:36:47 PM" notes="(Ivy Park) Frightened"/>
+ <Dialog id="13680621263368790156" text="Still not answering. What&apos;s wrong?" modified="07/11/2016 11:41:20 PM" notes="(Ivy Park) Beat after I don&apos;t know. Then slightly urgent, doesn&apos;t understand why Zach is taking so long"/>
+ <Dialog id="13680621263368790328" text="Would voice samples work? TranScribe recordings?" modified="11/19/2015 05:41:40 PM" notes="(Ivy Park) Thinking."/>
+ <Dialog id="13680621263369494666" text="Langly!" modified="11/02/2016 08:40:40 PM" notes="(Laurel Davis)" facefx="2"/>
+ <Dialog id="844024417282887438" text="I&apos;ll see if I can find her. Or her TranScribe. I&apos;ll check her room first." modified="02/09/2016 03:17:21 AM" notes="(Ivy Park)"/>
+ <Dialog id="13680621263375461981" text="He&apos;s... he&apos;s dead!" modified="10/20/2015 04:39:57 PM" notes="(Laurel Davis)" facefx="2"/>
+ <Dialog id="13680621263375462017" text="Anders. I tried to call security... I tried-" modified="07/08/2016 04:26:56 PM" notes="(Laurel Davis)" facefx="2"/>
+ <Dialog id="13680621263375462080" text="I said he&apos;s dead, Langely!" modified="07/08/2016 04:30:00 PM" notes="(Laurel Davis)" facefx="2"/>
+ <Dialog id="13680621263375462219" text="Okay. I&apos;m okay. Sorry. " modified="10/20/2015 04:43:55 PM" notes="(Laurel Davis) Takes a calming breath" facefx="2"/>
+ <Dialog id="13680621263375462267" text="Anders went into the mag chamber to test one of the coils that&apos;s been flaking on us. I don&apos;t know what happened exactly - but there was a pulse. I think it cooked him in his suit." modified="07/08/2016 04:27:06 PM" notes="(Laurel Davis)" facefx="2"/>
+ <Dialog id="13680621263375467598" text="No. Anders had the keycard." modified="10/20/2015 06:20:51 PM" notes="(Laurel Davis)" facefx="2"/>
+ <Dialog id="13680621263376754633" text="Dr. Calvino?" modified="11/04/2015 03:44:09 PM" notes="(miyu sato)" facefx="2"/>
+ <Dialog id="13680621263376754942" text="You need my help." modified="02/09/2016 02:23:11 AM" notes="(miyu sato) Flat. Doesn&apos;t care for him." facefx="2"/>
+ <Dialog id="13680621263376755007" text="I guess." modified="11/04/2015 03:50:23 PM" notes="(miyu sato)" facefx="2"/>
+ <Dialog id="13680621263376919542" facefx="2" sync="0" notes="(miyu sato)" text="Besides Calvino getting stuck in microgravity? Because that&apos;s normal. " modified="11/06/2015 01:35:35 PM"/>
+ <Dialog id="844024417294582596" text="You are not putting this up anywhere. We&apos;re not supposed to be using TranScribe functionality for gaming." modified="01/15/2016 11:39:48 PM" notes="(Emma Beatty) Emphasis on NOT. Sort of like a scolding big sister." facefx="2"/>
+ <Dialog id="844024417294583305" text="Oh, god, Zach, shut up. And Elias, you better not be recording." modified="01/15/2016 11:51:37 PM" notes="(Emma Beatty) Reprimanding" facefx="2"/>
+ <Dialog id="844024417294584766" text="That&apos;s great!" modified="01/16/2016 12:15:58 AM" notes="(Emma Beatty) Ignoring Zach&apos;s previous line." facefx="2"/>
+ <Dialog id="844024417294586958" text="Don&apos;t be such a baby. We either head through the door-" modified="11/29/2016 08:43:26 PM" notes="(Emma Beatty) taking charge" facefx="2"/>
+ <Dialog id="844024417294587034" text="Unless you can handle the entire pack of Rat Men, oh spell-less wonder, we don&apos;t have much choice." modified="07/11/2016 11:38:50 PM" notes="(Emma Beatty)" facefx="2"/>
+ <Dialog id="844024417294587148" text="Elias? Sorry - Stabfellow?" modified="07/12/2016 04:42:55 PM" notes="(Emma Beatty) Catches herself after using his real name, corrects and calls out in her character&apos;s voice (accent of some sort?)" facefx="2"/>
+ <Dialog id="844024417294846698" text="Abigail, I&apos;m recording this time." modified="01/19/2016 01:01:30 AM" notes="(Emma Beatty)" facefx="2"/>
+ <Dialog id="844024417294847105" text="Really? What did she say when you asked her to join us?" modified="01/19/2016 01:08:17 AM" notes="(Emma Beatty)" facefx="2"/>
+ <Dialog id="844024417295023273" text=" I left some Neuromods in my desk, and I&apos;m not about to let those get sucked into space. I&apos;ll meet you at the front desk, Abigail. Good luck, Zach!" modified="07/11/2016 11:40:04 PM" notes="(Emma Beatty)" facefx="2"/>
+ <Dialog id="13680621263385171958" text="What? Spit it out." modified="02/10/2016 01:53:00 AM" notes="(Lan Nguyen) Annoyed." facefx="2"/>
+ <Dialog id="13680621263385172254" text="Duncan. I don&apos;t give a shit about your pissing contest with Connolly. Take it to Brooks." modified="02/06/2017 06:57:18 PM" notes="(Lan Nguyen) Tired. A little on edge. " facefx="2"/>
+ <Dialog id="13680621263385172346" text="Code&apos;s embedded in this message." modified="07/12/2016 06:12:13 PM" notes="(Lan Nguyen) As she&apos;s hanging up. Eye roll. " facefx="2"/>
+ <Dialog id="844024417297947058" text="What happened? You two get into a fight? " modified="02/23/2016 10:14:10 PM" notes="(Emma Beatty)" facefx="2"/>
+ <Dialog id="844024417297947171" text="Shut up, Zach." modified="02/23/2016 10:16:03 PM" notes="(Emma Beatty)" facefx="2"/>
+ <Dialog id="4349723564930036625" text="Officer Hayashi, Dr. Yu." modified="02/24/2016 12:04:33 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930036636" text="I&apos;m ready, Dr. Yu." modified="07/08/2016 04:31:30 PM" notes="[Tamiko Hayashi] "/>
+ <Dialog id="4349723564930036650" text="Nothing will get past me." modified="04/29/2016 03:52:07 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037070" text="Is there something I can help with, Dr. Yu?" modified="02/24/2016 12:11:58 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037087" text="Please stand away from the door, Dr. Yu." modified="02/24/2016 12:12:15 AM" notes="[Tamiko Hayashi] Frantic when player messes with the door that is holding back a flood of aliens"/>
+ <Dialog id="4349723564930037125" text="Those were not the last of the enemy. If more come, we will be ready." modified="04/29/2016 03:52:17 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037134" text="Nothing to report." modified="04/29/2016 03:52:24 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037144" text="All clear." modified="04/29/2016 03:52:23 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037166" text="We survived. We did it. Thank you." modified="04/29/2016 03:52:35 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037195" text="Captain Elazar inspired me, trained me. She was the reason I was assigned to Talos." modified="02/24/2016 12:14:03 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037205" text="I owe Captain Elazar so much. Now she is gone." modified="02/24/2016 12:14:13 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037215" text="Captain Elazar was a brave woman, I owe her for her trust. I will honor her memory." modified="02/24/2016 12:14:23 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037237" text="More dead. More innocent blood. Our enemies will answer for it." modified="02/24/2016 12:14:45 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037265" text="When will this end? What caused this?" modified="04/29/2016 03:52:43 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037287" text="Captain Elazar will want to speak to you. We only recently learned you were still on the station." modified="04/29/2016 03:52:48 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037301" text="Dr. Yu, stand down!" modified="02/24/2016 12:15:49 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037311" text="I am warning you!" modified="04/29/2016 03:52:57 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037328" text="With the lifts working, we have a chance to retake the station. Thank you." modified="04/29/2016 03:53:04 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037345" text="What are you doing? What are you?" modified="04/29/2016 03:53:14 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037355" text="Dr. Yu is one of them! Open fire!" modified="02/24/2016 12:16:43 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037376" text="Were you able to get the Eradicator turret plans?" modified="04/29/2016 03:55:32 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037396" text="These Eradicator turrets will be a great help. Thank you." modified="04/29/2016 03:53:28 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037411" text="There was no need to open the door, Dr. Yu. We all could have died." modified="02/24/2016 12:17:39 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037422" text="Is it your wish to kill us all? " modified="02/24/2016 12:17:50 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037444" text="Commander Dahl is not to be trusted." modified="02/24/2016 12:18:12 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037470" text="If Commander Dahl is sighted, I will deal with him." modified="04/29/2016 03:53:40 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037490" text="I heard Commander Dahl is dead. There has been too much death this day - but his, I do not regret." modified="02/24/2016 12:18:58 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037506" text="I heard you found Chief Ilyushin and helped her. Thank you." modified="04/29/2016 03:53:50 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037529" text="Dr. Igwe is blessed. It was fortunate you came along when you did." modified="02/24/2016 12:19:37 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037579" text="Thank you for saving Officer Chaudhary, Dr. Yu." modified="07/08/2016 04:33:56 PM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037595" text="She has told us of the... telepaths." modified="02/24/2016 12:20:43 AM" notes="[Tamiko Hayashi]  Slightly uncomfortable"/>
+ <Dialog id="4349723564930037625" text="If we are trapped here, we will take them with us." modified="02/24/2016 12:21:13 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037637" text="We are not trapped here with them. They are trapped here with us." modified="02/24/2016 12:21:25 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="4349723564930037646" text="They will not defeat us. I will keep fighting until my last breath." modified="02/24/2016 12:21:34 AM" notes="[Tamiko Hayashi]  "/>
+ <Dialog id="844024417303542036" text="Just a Neuromod hangover. I feel... weird." modified="08/08/2016 06:29:05 PM" notes="(Skye Braxton) Slightly tired."/>
+ <Dialog id="844024417303542083" text="Are you kidding? I&apos;ve always wanted to play an instrument, but never had the time..." modified="08/08/2016 06:50:25 PM" notes="(Skye Braxton) Slightly smiling at the &apos;keytar&apos; part."/>
+ <Dialog id="844024417303542125" text="I&apos;m busy enough with the extra shifts I&apos;m getting from Captain Marks. I don&apos;t have time for a stalker." modified="04/28/2016 04:25:17 PM" notes="(Skye Braxton)"/>
+ <Dialog id="13680621263399143454" text="Uh... still nothing. Sorry." modified="07/20/2016 06:52:10 PM" notes="Takes a sec... check a diagnostic screen. Shakes head"/>
+ <Dialog id="13680621263400784954" text="It&apos;s so... it&apos;s like I can see the sheet music in my head... I feel like I&apos;ve been doing this since I was seven." modified="08/08/2016 06:49:30 PM" notes="As if remembering an amazing memory."/>
+ <Dialog id="13680621263400785048" text="Besides... you ARE going to be on stage with me, right?" modified="08/08/2016 06:51:04 PM" notes="Making sure Danielle&apos;s ain&apos;t gonna chicken out. Emphasis on ARE."/>
+ <Dialog id="13680621263401308564" text="In light of what we now know the Typhon are capable of... and not capable of... it seems prudent to revisit the project cobalt material. " modified="08/14/2016 08:16:22 PM" notes="emphasis on NOT"/>
+ <Dialog id="13680621263401308735" text="The new neural structures would need to mature over a series of actual experiences." modified="08/14/2016 08:19:11 PM"/>
+</Dialog>

@@ -1,0 +1,24 @@
+
+<Objectives>
+ <Objective id="844024417256800162" title="@loc_15373294129891630425" optional="false">
+  <Descriptions>
+   <Desc id="844024417272546594" displayName="Cargo Bay" text="@loc_15373294129891630426"/>
+   <Desc id="4349723564915765995" displayName="Dock Crate" text="@loc_15373294129891630427"/>
+   <Desc id="4349723564915766087" displayName="Completed" text="@loc_15373294129891630428"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="1006" displayName="Get to the Cargo Bay" text="@loc_15373294129891630430" markerLabel="@loc_15373294129891630429" optional="false" Location="1713490239386284337"/>
+   <Task id="4349723564878783685" displayName="Dock a Cargo Container" optional="false" text="@loc_15373294129891630432" markerLabel="@loc_15373294129891630431" Location="1713490239386284337"/>
+   <Task id="4349723564915765781" displayName="Enter the Docked Container" optional="false" text="@loc_15373294129891630434" Location="1713490239386284337" markerLabel="@loc_15373294129891630433"/>
+  </Tasks>
+  <Clues>
+   <Clue id="4349723564940569226" displayName="Shipping Container 2312" text="@loc_15373294129891630435"/>
+   <Clue id="4349723564940569240" displayName="Shipping Container 3202" text="@loc_15373294129891630436"/>
+   <Clue id="4349723564920261263" displayName="Shipping Container 5645" text="@loc_15373294129891630437"/>
+   <Clue id="4349723564920261261" displayName="Shipping Container 2525" text="@loc_15373294129891630438"/>
+   <Clue id="4349723564920261240" displayName="Shipping Container 3553" text="@loc_15373294129891630439"/>
+   <Clue id="4349723564918794260" displayName="Shipping Container 4564" text="@loc_15373294129891630440"/>
+   <Clue id="4349723564918617071" displayName="Shipping Container Numbers" text="@loc_15373294129891630441"/>
+  </Clues>
+ </Objective>
+</Objectives>

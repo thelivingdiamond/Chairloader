@@ -1,0 +1,25 @@
+
+<RichPresence>
+ <Element name="c3mp_rooftop_gardens" id="0"/>
+ <Element name="c3mp_museum" id="1"/>
+ <Element name="c3mp_airport" id="2"/>
+ <Element name="c3mp_dam" id="3"/>
+ <Element name="c3mp_bridge" id="4"/>
+ <Element name="c3mp_canyon" id="5"/>
+ <Element name="c3mp_river" id="6"/>
+ <Element name="c3mp_swamp_boat" id="7"/>
+ <Element name="c3mp_cave" id="8"/>
+ <Element name="c3mp_fields" id="9"/>
+ <Element name="c3mp_con_ed" id="10"/>
+ <Element name="c3mp_tanker" id="11"/>
+ <Element name="InstantAction" id="0"/>
+ <Element name="TeamInstantAction" id="1"/>
+ <Element name="Assault" id="2"/>
+ <Element name="CaptureTheFlag" id="3"/>
+ <Element name="Extraction" id="4"/>
+ <Element name="CrashSite" id="5"/>
+ <Element name="AllOrNothing" id="6"/>
+ <Element name="BombTheBase" id="7"/>
+ <Element name="PowerStruggle" id="8"/>
+ <Element name="Gladiator" id="9"/>
+</RichPresence>

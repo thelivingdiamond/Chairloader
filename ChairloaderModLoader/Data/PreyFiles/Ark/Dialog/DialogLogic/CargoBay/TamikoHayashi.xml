@@ -1,0 +1,347 @@
+
+<ResponseRules>
+ <WritebackKeys/>
+ <ResponseRule id="4349723564930036591" name="Tamiko Hayashi: Guard Duty Bark 1" cooldown="" oneshot="0" response="4349723564930036626" conversation="1" description="Tamiko is standing guard in the Cargo Bay. Just beyond the doors and windows there are unimaginable horrors stalking about, so tension is very high. The guards here have witnessed a great deal of death and chaos in the last few hours. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930036626">
+  <Response dialog="4349723564930036625" id="4349723564930036627" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930036636" id="4349723564930036637" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930036650" id="4349723564930036651" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930036749" name="Tamiko Hayashi: Guard Duty Bark 2" cooldown="" response="4349723564930037071" oneshot="1" description="Tamiko is standing guard in the Cargo Bay. Just beyond the doors and windows there are unimaginable horrors stalking about, so tension is very high. The guards here have witnessed a great deal of death and chaos in the last few hours. She is concealing dread" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036762" name="Tamiko Hayashi: player futz with door" cooldown="" response="4349723564930037088" oneshot="1" conversation="1" description="The door seals off Cargo Bay from the alien swarm outside, and Morgan has just started tampering with the lock that keeps it closed.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036774" name="Tamiko Hayashi: All Aliens Dead" cooldown="" response="4349723564930037126" oneshot="0" description="Security guards have been holding out for a miracle, and Morgan has delivered it to them. Morgan made turrets that, combined with the security small-arms fire, wiped out the attacking aliens in this section.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036792" name="Tamiko Hayashi: Ready For Combat" cooldown="" response="4349723564930037183" oneshot="1" description="Security is bracing for an imminent battle with alien forces. They have been holed up in a safe place, but the time has come to fight the aliens">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036920" name="Tamiko Hayashi: Turrets Ready" cooldown="" response="4349723564930037397" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="3" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036805" name="Tamiko Hayashi: Mourning Sarah" cooldown="" response="4349723564930037196" oneshot="0" description="The Chief of Security, Sarah Elazar, died in combat with the aliens. Even though the security forces won they mourn her death. She enabled them to survive this far." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="1230984417" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036820" name="Tamiko Hayashi: Mourning Dwayne" cooldown="" response="4349723564930037238" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="164725461" keyType="gameToken" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036829" name="Tamiko Hayashi: Mourning Kevin" cooldown="" response="4349723564930037747" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1074463772" keyType="gameToken" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036839" name="Tamiko Hayashi: Mourning Sam" cooldown="" response="4349723564930037266" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="749395434" keyType="gameToken" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036853" name="Tamiko Hayashi: Mourning Austin" cooldown="" response="4349723564930037771" oneshot="1" description="Security guard mourns a fallen comrade that was killed when they went into battle with a horde of aliens.  " priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="651297438" keyType="gameToken" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036874" name="Tamiko Hayashi: Go see Sarah" cooldown="" response="4349723564930037288" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564878623606" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036882" name="Tamiko Hayashi: Player is Attacking Guards" cooldown="" response="4349723564930037302" oneshot="0" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onNewTarget" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451416" type="default" keyType="default" value="ArkPlayer"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036890" name="Tamiko Hayashi: Player got lifts working" cooldown="" response="4349723564930037329" oneshot="1" conversation="1" description="" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="1105212212" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036900" name="Tamiko Hayashi: Player Uses Alien Powers" cooldown="" response="4349723564930037346" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerUsePower" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="3" passIfMissing="false" id="5310807215636213148" type="default" keyType="default" value="2"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036909" name="Tamiko Hayashi: Got Turret Scematics?" cooldown="" response="4349723564930037377" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915765029" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036933" name="Tamiko Hayashi: Player Opened Door Early, She Survived" cooldown="" response="4349723564930037412" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036943" name="Tamiko Hayashi: Dahl Announcement" cooldown="" response="4349723564930037445" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036972" name="Tamiko Hayashi: Dahl Failed" cooldown="" response="4349723564930037471" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036984" name="Tamiko Hayashi: Dahl killed by Player" cooldown="" response="4349723564930037491" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930036996" name="Tamiko Hayashi: Player found Mika" cooldown="" response="4349723564930037507" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930037014" name="Tamiko Hayashi: Player Rescued Igwe" cooldown="" response="4349723564930037530" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1118468358" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="1928122795" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930037022" name="Tamiko Hayashi: Player Rescued Mancuso" cooldown="" response="4349723564930037580" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="14667999412548025540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="1018317790" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930037032" name="Tamiko Hayashi: No Hope of Escape" cooldown="" response="4349723564930037626" oneshot="1" conversation="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034870"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930037071">
+  <Response dialog="4349723564930037070" id="4349723564930037072" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346424008"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037088">
+  <Response dialog="4349723564930037087" id="4349723564930037089" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037126">
+  <Response dialog="4349723564930037125" id="4349723564930037127" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930037134" id="4349723564930037135" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930037144" id="4349723564930037145" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564930037166" id="4349723564930037167" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037183">
+  <Response dialog="4349723564930036636" id="4349723564930037184" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037196">
+  <Response dialog="4349723564930037195" id="4349723564930037197" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318046" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930037205" id="4349723564930037206" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346424000" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930037215" id="4349723564930037216" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318046" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037238">
+  <Response dialog="4349723564930037237" id="4349723564930037239" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037266">
+  <Response dialog="4349723564930037265" id="4349723564930037267" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037288">
+  <Response dialog="4349723564930037287" id="4349723564930037289" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037302">
+  <Response dialog="4349723564930037301" id="4349723564930037303" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318060"/>
+  <Response dialog="4349723564930037311" id="4349723564930037312" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037329">
+  <Response dialog="4349723564930037328" id="4349723564930037330" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037346">
+  <Response dialog="4349723564930037345" id="4349723564930037347" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318060"/>
+  <Response dialog="4349723564930037355" id="4349723564930037356" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037377">
+  <Response dialog="4349723564930037376" id="4349723564930037378" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318087" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037397">
+  <Response dialog="4349723564930037396" id="4349723564930037398" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423989"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037412">
+  <Response dialog="4349723564930037411" id="4349723564930037413" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930037422" id="4349723564930037423" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037445">
+  <Response dialog="4349723564930037444" id="4349723564930037446" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037471">
+  <Response dialog="4349723564930037470" id="4349723564930037472" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037491">
+  <Response dialog="4349723564930037490" id="4349723564930037492" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037507">
+  <Response dialog="4349723564930037506" id="4349723564930037508" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037530">
+  <Response dialog="4349723564930037529" id="4349723564930037531" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037580">
+  <Response dialog="4349723564930037579" id="4349723564930037581" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930037596" name="" cooldown="" response="4349723564930037597">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263353786228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930037581" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564907034870" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930037597">
+  <Response dialog="4349723564930037595" id="4349723564930037598" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318010" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037626">
+  <Response dialog="4349723564930037625" id="4349723564930037627" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930037637" id="4349723564930037638" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930037646" id="4349723564930037647" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037747">
+  <Response dialog="4349723564930037237" id="4349723564930037748" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930037771">
+  <Response dialog="4349723564930037265" id="4349723564930037772" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318010"/>
+ </ResponseSet>
+</ResponseRules>

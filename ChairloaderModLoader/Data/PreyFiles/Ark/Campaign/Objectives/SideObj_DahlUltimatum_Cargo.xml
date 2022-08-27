@@ -1,0 +1,15 @@
+
+<Objectives>
+ <Objective id="844024417287653111" title="@loc_15373294129891632125" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="844024417287653112" displayName="Initial" text="@loc_15373294129891632126"/>
+   <Desc id="844024417287653220" displayName="Complete - success" text="@loc_15373294129891632127"/>
+   <Desc id="844024417287653228" displayName="Complete - Fail" text="@loc_15373294129891632128"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417287653115" displayName="find dahl" optional="true" text="@loc_15373294129891632129"/>
+   <Task id="844024417287653148" displayName="fix O2" optional="true" text="@loc_15373294129891632131" Location="4349723564895209499" markerLabel="@loc_15373294129891632130" timerLabel="@loc_13856881013223934908"/>
+  </Tasks>
+ </Objective>
+</Objectives>

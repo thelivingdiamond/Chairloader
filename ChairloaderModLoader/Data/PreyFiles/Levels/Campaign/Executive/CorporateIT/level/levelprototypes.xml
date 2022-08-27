@@ -1,0 +1,16 @@
+<EntityPrototypeLibrary Name="Level">
+ <EntityPrototype Name="InteractiveScreens._DEPRECATED_Workstation1" Id="{39781C6E-D5D2-45BC-9CDD-EE0A79334C25}" Library="Level" Class="ArkWorkstationScreen" Description="" ArchetypeId="1713490239432950306">
+  <Properties fActiveDistance="15" tutorial_ContextualTutorial="3149325216937909688" bDisallowGrenades="1" textDisplayName="" bEnableCollisionInteraction="1" ability_HackRequirement="" bHideTutorialOnOwner="1" nIdleDelay="15000" fInteractAngle="75" fInteractDistance="2.25" object_Model="objects/environment/props/tech/screen_utility_a/screen_interactive_a.cga" ei_ObjectMapIcon="0" material_PowerOffMaterial="" object_Screen="objects/user/gameplaytest/screen_interactive_a/screen_interactive_a_uiquad.cga" sScreenBoneName="helper_screen" material_ScreensaverMaterial="" nSubMatIndex="0" sUIElementName="DanielleWorkstationV2">
+   <Disrupt disruptionProfile_Profile="10739735956140212131" vector_SparkPosOffset="0,0,0" vector_SparkRotOffset="0,0,0" audioTrigger_SparkSFX="" particleeffect_SparkVFX="LevelShared.Sparks.ElectricalBox03"/>
+   <Physics Density="-1" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <Sound audioTrigger_PowerLP="Play_Workstation_On_LP" audioTrigger_PowerStop=""/>
+   <AdditionalArchetypeProperties PrototypeMaterial="Objects/Environment/Architecture/Custom/00-BadTextures/bad_deprecated"/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="2" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+</EntityPrototypeLibrary>

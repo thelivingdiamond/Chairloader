@@ -1,0 +1,23 @@
+
+<Objectives>
+ <Objective id="844024417256800439" title="@loc_15373294129891630525" optional="false">
+  <Descriptions>
+   <Desc id="11824555372619982935" displayName="Command Shuttle" text="@loc_15373294129891630526"/>
+   <Desc id="11824555372619982955" displayName="Disable Tech Officer " text="@loc_15373294129891630527"/>
+   <Desc id="844024417256800440" displayName="Completed" text="@loc_15373294129891630528"/>
+   <Desc id="14667999412568426791" displayName="Search Shuttle" text="@loc_15373294129891630529"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="11824555372619982850" displayName="Access command shuttle" optional="false" text="@loc_15373294129891630531" markerLabel="@loc_15373294129891630530" Location="1713490239386284988" description="11824555372619982935"/>
+   <Task id="14667999412568426627" displayName="Search Shuttle" optional="false" text="@loc_15373294129891630533" Location="1713490239386284988" markerLabel="@loc_15373294129891630532" description="11824555372619982935"/>
+   <Task id="11824555372619982890" displayName="Disable Tech Officer - GUTs" optional="false" text="@loc_15373294129891630535" markerLabel="@loc_15373294129891630534" Location="4349723564886052417" description="11824555372619982955"/>
+   <Task id="844024417286531309" displayName="Disable Tech Officer - Trauma" optional="false" text="@loc_15373294129891630537" markerLabel="@loc_15373294129891630536" targetCharacterId="844024417286531310" Location="12889009724980689392" description="11824555372619982955"/>
+   <Task id="844024417286531317" displayName="Disable Tech Officer - Cargo Bay" optional="false" text="@loc_15373294129891630539" markerLabel="@loc_15373294129891630538" targetCharacterId="844024417286531318" Location="1713490239386284337" description="11824555372619982955"/>
+   <Task id="844024417286531495" displayName="Disable Tech Officer - Hardware" optional="false" text="@loc_15373294129891630541" markerLabel="@loc_15373294129891630540" targetCharacterId="844024417286531496" Location="844024417263019221" description="11824555372619982955"/>
+   <Task id="844024417286531505" displayName="Disable Tech Officer - Neuromod Division" optional="false" text="@loc_15373294129891630543" markerLabel="@loc_15373294129891630542" targetCharacterId="844024417286531506" Location="12889009724983807463" description="11824555372619982955"/>
+   <Task id="844024417286531513" displayName="Disable Tech Officer - Exterior" optional="false" text="@loc_15373294129891630545" markerLabel="@loc_15373294129891630544" targetCharacterId="844024417286531514" Location="1713490239386284337" description="11824555372619982955"/>
+   <Task id="844024417286627623" displayName="Disable Tech Officer - Psychotronics" optional="false" text="@loc_15373294129891630547" markerLabel="@loc_15373294129891630546" targetCharacterId="844024417286627624" Location="11824555372632688907" description="11824555372619982955"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+</Objectives>

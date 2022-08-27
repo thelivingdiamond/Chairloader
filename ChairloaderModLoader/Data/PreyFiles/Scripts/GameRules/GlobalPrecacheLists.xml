@@ -1,0 +1,14 @@
+
+<PrecacheLists>
+ <Always>
+  <GFXs/>
+ </Always>
+ <GameMode name="SinglePlayer">
+  <CDFs/>
+  <CGFs/>
+  <Particles/>
+  <ADBs/>
+  <FlashTexs/>
+  <GFXs/>
+ </GameMode>
+</PrecacheLists>

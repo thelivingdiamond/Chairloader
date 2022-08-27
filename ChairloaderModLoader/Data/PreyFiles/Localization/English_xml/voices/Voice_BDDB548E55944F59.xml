@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+ <Worksheet ss:Name="Sheet1">
+  <Table>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">BDDB548E55944FF7</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">This is a placeholder conversation. Replace me.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">This is a placeholder conversation. Replace me.</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">BDDB548E56660A9B</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">This is a test line to see if wwise is working. Yo.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">This is a test line to see if wwise is working. Yo.</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">C9C49636577A8A90</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">This is where you would enter placeholder text.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">This is where you would enter placeholder text.</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">C9C49636577A8BBC</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Yes indeed.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Yes indeed.</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">C9C49636577A8BE9</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Yes indeed.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Yes indeed.</Data>
+    </Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>

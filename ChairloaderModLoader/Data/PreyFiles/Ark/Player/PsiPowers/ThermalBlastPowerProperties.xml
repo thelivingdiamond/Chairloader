@@ -1,0 +1,48 @@
+
+<ThermalBlastPowerProperties>
+ <Common DisplayName="@rpg_ThermBlastName" PsiCost="45" Description="@rpg_ThermBlast1" NoiseId="9469288860501649125" LoudnessId="9469288860501649232" PickerLabel="Thermal Blast" InterruptsMimicGrabSequence="false" TargetHighlightColorAlpha="1.0" PostProcessVFX="2428940965260337727" PersistentPostProcessVFX="" ExecutionPlayerEffect="Player.Powers.Thermo.ThermalPlayerCast" ExecutionAudioTrigger="Play_Player_Power_Thermal_Execute" CostReductionStat="psiCostScaleKineticEnergy" TargetHighlightColor="0.97,0.61,0.12"/>
+ <Levels>
+  <ArkPsiThermalBlastProperties DisplayName="@rpg_ThermBlastName" Description="@rpg_ThermBlast1" CooldownDurationSec="6">
+   <TargetingProperties MinRange="0" MaxRange="20" TargetParticleEffect="Player.Powers.Thermo.Thermo_Target_lv_01" TargetParticleLightEffect="Player.Powers.Thermo.thermo_target_light">
+    <ValidTargetMetaTags>
+     <MetaTag value="17591291352642463355"/>
+     <MetaTag value="9469288860517748071"/>
+    </ValidTargetMetaTags>
+    <ValidTargetClasses>
+     <Class value="ArkProjectileToyGun"/>
+    </ValidTargetClasses>
+   </TargetingProperties>
+   <BlastTypeProperties>
+    <BlastProperties MaxBlastCount="1" Radius="3.5" TriggerRadius="3" Force="500" DelaySec="300" StopDelayAudioTrigger="" ExplosionAudioTrigger="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level1" StartPersistentAudioTrigger="" StopPersistentAudioTrigger="Play_Player_Power_ThermalBlast_ExplosionEnd_2D" StartDelayAudioTrigger="Play_Player_Power_Thermal_Flash" PreExplosionParticleEffect="Player.Powers.Thermo.ThermalTelegraph_00" UpdateIntervalSec="0.0" NoiseId="9469288860501649125" LoudnessId="9469288860501649232" ExplosionParticleEffect="Player.Powers.Thermo.ThermalBlast_lv_01" ExplosionDelaySec="0.5" FalloffRadius="3.5" FalloffScale="1.0" ExplosionSignalPackageId="3149325216928226510"/>
+   </BlastTypeProperties>
+  </ArkPsiThermalBlastProperties>
+  <ArkPsiThermalBlastProperties DisplayName="@rpg_ThermBlastName2" Description="@rpg_ThermBlast2" CooldownDurationSec="6">
+   <TargetingProperties MinRange="0" MaxRange="20" TargetParticleEffect="Player.Powers.Thermo.Thermo_Target_lv_02" TargetParticleLightEffect="Player.Powers.Thermo.thermo_target_light">
+    <ValidTargetClasses>
+     <Class value="ArkProjectileToyGun"/>
+    </ValidTargetClasses>
+    <ValidTargetMetaTags>
+     <MetaTag value="17591291352642463355"/>
+     <MetaTag value="9469288860517748071"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <BlastTypeProperties>
+    <BlastProperties MaxBlastCount="2" Radius="4.5" TriggerRadius="4" Force="500" DelaySec="300" StopDelayAudioTrigger="" ExplosionAudioTrigger="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level2" StartPersistentAudioTrigger="" StopPersistentAudioTrigger="Play_Player_Power_ThermalBlast_ExplosionEnd_2D" StartDelayAudioTrigger="Play_Player_Power_Thermal_Flash" PreExplosionParticleEffect="Player.Powers.Thermo.ThermalTelegraph_00" UpdateIntervalSec="0.0" NoiseId="9469288860501649125" LoudnessId="9469288860501649232" ExplosionParticleEffect="Player.Powers.Thermo.ThermalBlast_lv_02" ExplosionDelaySec="0.5" FalloffRadius="4.5" FalloffScale="1.0" ExplosionSignalPackageId="3149325216945624770"/>
+   </BlastTypeProperties>
+  </ArkPsiThermalBlastProperties>
+  <ArkPsiThermalBlastProperties DisplayName="@rpg_ThermBlastName3" Description="@rpg_ThermBlast3" CooldownDurationSec="6">
+   <TargetingProperties MinRange="0" MaxRange="20" TargetParticleEffect="Player.Powers.Thermo.Thermo_Target_lv_03" TargetParticleLightEffect="Player.Powers.Thermo.thermo_target_light">
+    <ValidTargetClasses>
+     <Class value="ArkProjectileToyGun"/>
+    </ValidTargetClasses>
+    <ValidTargetMetaTags>
+     <MetaTag value="17591291352642463355"/>
+     <MetaTag value="9469288860517748071"/>
+    </ValidTargetMetaTags>
+   </TargetingProperties>
+   <BlastTypeProperties>
+    <BlastProperties MaxBlastCount="3" Radius="5.5" TriggerRadius="5" Force="500" DelaySec="300" StopDelayAudioTrigger="" ExplosionAudioTrigger="Play_Player_Power_ThermalBlast_ExplosionStart_2D_Level3" StartPersistentAudioTrigger="" StopPersistentAudioTrigger="Play_Player_Power_ThermalBlast_ExplosionEnd_2D" StartDelayAudioTrigger="Play_Player_Power_Thermal_Flash" PreExplosionParticleEffect="Player.Powers.Thermo.ThermalTelegraph_00" UpdateIntervalSec="0.0" NoiseId="9469288860501649125" LoudnessId="9469288860501649232" ExplosionParticleEffect="Player.Powers.Thermo.ThermalBlast_lv_03" ExplosionDelaySec="0.5" FalloffRadius="5.5" FalloffScale="1.0" ExplosionSignalPackageId="3149325216945624776"/>
+   </BlastTypeProperties>
+  </ArkPsiThermalBlastProperties>
+ </Levels>
+</ThermalBlastPowerProperties>

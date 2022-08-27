@@ -1,0 +1,732 @@
+
+<ParticleLibrary Name="Interactables" ParticleVersion="26">
+ <Particles Name="Empty.Null"/>
+ <Particles Name="Fabricator.CraftingFinish">
+  <Params/>
+  <Childs>
+   <Particles Name="FirstBlast">
+    <Params Count="1" ParticleLifeTime="0.2" BlendType="Additive" Texture="textures/arkeffects/glows/detailglow_01.tif" SoftParticle="true" EmissiveLighting="2" Size="1.2,ParticleAge=(v=1;t=1,flags=4)" Speed="1"/>
+   </Particles>
+   <Particles Name="FirstPuff">
+    <Params Count="15" ParticleLifeTime="1,Random=0.5" RandomOffset="x=0.1,y=0.1,z=0.1" EmitOffsetDir="true" Texture="textures/arkeffects/smoke/ink_light_smoke_soft_gray_00_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=1,VariantCount=3" SoftParticle="true" EmissiveLighting="1" Size="0.5,Random=0.5,ParticleAge=(v=1;t=1)" Speed="0.4" Acceleration="z=1.4" Turbulence3DSpeed="0.4" RandomAngles="y=360" RandomRotationRate="y=45"/>
+   </Particles>
+   <Particles Name="Glow">
+    <Params Count="1" ParticleLifeTime="0.2" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_03.tif" SoftParticle="true" EmissiveLighting="2" Size="1.4,ParticleAge=(v=1;t=1,flags=4)" Speed="1"/>
+   </Particles>
+   <Particles Name="Sparks">
+    <Params Count="10" EmitterLifeTime="0.1" ParticleLifeTime="0.4,Random=0.5" RandomOffset="x=0.1,y=0.1,z=0.1" EmitAngle="90,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/utilities/solid_white.tif" EmissiveLighting="3" Size="0.01,Random=0.5,ParticleAge=(v=1;t=1,flags=4)" TailLength="0.03,Random=0.4,TailSteps=5" Speed="4" GravityScale="0.2" PhysicsType="SimpleCollision" CollideTerrain="true" CollideStaticObjects="true" Elasticity="0.8"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.Temp.RolingSmoke_00">
+  <Params Count="50" Continuous="true" ParticleLifeTime="2.5,Random=0.35" RandomOffset="z=0.5" EmitAngle="15,Random=0.65" Texture="textures/arkeffects/smoke/ink_light_smoke_soft_00.tif" SoftParticle="true" Alpha="0.227,ParticleAge=(flags=32;t=0.28,v=1;t=1)" AlphaClip="Scale=(Max=0.2),SourceMin=(Min=0.9,Max=0.1),SourceWidth=(Min=0.6,Max=0.1)" DiffuseLighting="0.668" DiffuseBacklighting="0.557" EmissiveLighting="0.327" Size="0.773,Random=0.101,ParticleAge=(v=0.365;t=1,v=1)" Stretch="Random=0.42,ParticleAge=(v=1,flags=32;t=1)" Speed="1.5,Random=0.65" AirResistance="3.98,Random=0.45,ParticleAge=(v=0.294;t=0.325,v=1,flags=4;t=0.99,v=0.408,flags=4),RotationalDragScale=0.17,WindScale=0" GravityScale="0.2,Random=1" Turbulence3DSpeed="0.2,EmitterStrength=(v=1;t=0.69,v=1;t=1)" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="y=100"/>
+ </Particles>
+ <Particles Name="Fabricator.Temp.Lasers_00">
+  <Params Count="2" Continuous="true" EmitterLifeTime="2" PulsePeriod="2" ParticleLifeTime="0.3,Random=0.65" FocusAngle="EmitterStrength=(v=1,flags=32;t=1,flags=4)" FocusAzimuth="EmitterStrength=(v=1,flags=32;t=1,flags=4)" EmitAngle="EmitterStrength=(v=1;t=1)" Facing="Free" BlendType="Additive" Texture="Textures/ArkEffects/Gameplay/LaserLights_diff.tif" TextureTiling="FlipChance=0.5" SoftParticle="true" Alpha="0.858,Random=0.923,ParticleAge=(;t=0.5,v=1;t=1)" Color="ParticleAge=(t=0.016,v=(x=0.424,y=0.906,z=1);t=0.51,v=(y=0.165,z=0.165);t=0.973,v=(x=0.447,y=1,z=0.5))" EmissiveLighting="1" LightSource="Radius=2,Intensity=0.15" Size="0.795,Random=0.259" Aspect="0.455" PivotY="-1" Speed="0.1" InitAngles="z=-50" RotationRate="x=50,y=50,z=300" RandomRotationRate="x=100,y=100,z=300"/>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionRadiation_00">
+  <Params/>
+  <Childs>
+   <Particles Name="start_burst">
+    <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="0.3" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.2" Color="(x=0.023153368,y=0.21223079)" DiffuseLighting="4" Size="ParticleAge=(flags=32;t=0.5,v=1)" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="proxy_fire">
+    <Params Enabled="false" Count="1" EmitterLifeTime="1" ParticleLifeTime="1.5" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=1)" Color="(x=0.007499032,y=0.01228649,z=0.9911022)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionFreeze_00">
+  <Params/>
+  <Childs>
+   <Particles Name="start_burst">
+    <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="0.3" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_blue" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.2" Color="(x=0.023153368,y=0.21223079)" DiffuseLighting="4" Size="ParticleAge=(flags=32;t=0.5,v=1)" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="proxy_fire">
+    <Params Enabled="false" Count="1" EmitterLifeTime="1" ParticleLifeTime="1.5" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=1)" Color="(x=0.007499032,y=0.01228649,z=0.9911022)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionPoison_00">
+  <Params/>
+  <Childs>
+   <Particles Name="start_burst">
+    <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="0.3" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_green" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.2" Color="(x=0.023153368,y=0.21223079)" DiffuseLighting="4" Size="ParticleAge=(flags=32;t=0.5,v=1)" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="proxy_fire">
+    <Params Enabled="false" Count="1" EmitterLifeTime="1" ParticleLifeTime="1.5" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=1)" Color="(x=0.007499032,y=0.01228649,z=0.9911022)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+   </Particles>
+   <Particles Name="DecalTemp">
+    <Params Count="1" EmitterLifeTime="0.1" ParticleLifeTime="1" Facing="Decal" Material="Materials/ArkEffects/Utilities/HelperCircle_00" Size="0.16" Thickness="10"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionFuel_00">
+  <Params/>
+  <Childs>
+   <Particles Name="start_burst">
+    <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="0.3" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.2" Color="(x=0.023153368,y=0.21223079)" DiffuseLighting="4" Size="ParticleAge=(flags=32;t=0.5,v=1)" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="proxy_fire">
+    <Params Enabled="false" Count="1" EmitterLifeTime="1" ParticleLifeTime="1.5" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=1)" Color="(x=0.007499032,y=0.01228649,z=0.9911022)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister..ExplosionRadiation_Linger_00">
+  <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="1" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_yellow" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=0.945,v=1,flags=32;t=1,flags=4)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+ </Particles>
+ <Particles Name="Object.Canister..ExplosionFreeze_Linger_00">
+  <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="1" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_blue" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=0.835,v=1,flags=32;t=1,flags=4)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+ </Particles>
+ <Particles Name="Object.Canister..ExplosionPoision_Linger_00">
+  <Params Count="1" EmitterLifeTime="1" ParticleLifeTime="1" Facing="Free" Material="Materials/ArkEffects/Utilities/transparent_green" SoftParticle="true" Geometry="objects/arkeffects/utilities/primitive_sphere.cgf" Alpha="0.5,ParticleAge=(v=1;t=0.835,v=1,flags=32;t=1,flags=4)" EmissiveLighting="1" Size="ParticleAge=(v=0.976,flags=32;t=1,v=1)"/>
+  <Childs>
+   <Particles Name="decal_test">
+    <Params Count="1" EmitterLifeTime="0.1" ParticleLifeTime="0.95" Facing="Decal" Material="Materials/ArkEffects/Utilities/HelperCircle_00" Color="(x=0,y=0.086500466,z=0.9473067)" Size="0.5"/>
+   </Particles>
+   <Particles Name="FacingSprite">
+    <Params Count="1" EmitterLifeTime="0.1" ParticleLifeTime="1" Material="Materials/ArkEffects/Utilities/HelperCircle_00" Color="(x=0.9559735,y=0,z=0)" Size="0.205"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplLingerPlayer_Rad_00">
+  <Params Count="1" ParticleLifeTime="1" PositionOffset="y=2" Curvature="0" Texture="textures/arkeffects/utilities/solid_gray.tif" Alpha="ParticleAge=(flags=32;t=0.082,v=1;t=1)" Color="(z=0)" DiffuseBacklighting="1" EmissiveLighting="1" MoveRelativeEmitter="true" BindEmitterToCamera="true"/>
+ </Particles>
+ <Particles Name="Object.Canister.ExplLingerPlayer_Freeze_00">
+  <Params Count="1" ParticleLifeTime="1" PositionOffset="y=2" Curvature="0" Texture="textures/arkeffects/utilities/solid_gray.tif" Alpha="ParticleAge=(flags=32;t=0.082,v=1;t=1)" Color="(x=0.002428216,y=0)" DiffuseBacklighting="1" EmissiveLighting="1" MoveRelativeEmitter="true" BindEmitterToCamera="true"/>
+ </Particles>
+ <Particles Name="Object.Canister.ExplLingerPlayer_Poison_00">
+  <Params Count="1" ParticleLifeTime="1" PositionOffset="y=2" Curvature="0" Texture="textures/arkeffects/utilities/solid_gray.tif" Alpha="ParticleAge=(flags=32;t=0.082,v=1;t=1)" Color="(x=0,z=0)" DiffuseBacklighting="1" EmissiveLighting="1" MoveRelativeEmitter="true" BindEmitterToCamera="true"/>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionPoision_Linger_01">
+  <Params Count="1" EmitterLifeTime="0.1" ParticleLifeTime="5" Material="Materials/ArkEffects/Utilities/HelperCircle_00" Size="0.5"/>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionTest_00">
+  <Params Comment="Mesh FLat Parent" Inheritance="Parent" Count="1" EmitterLifeTime="1" ParticleLifeTime="6" PositionOffset="y=2" Facing="Free" Material="objects/arkeffects/utilities/CastingArrayFlat_00" Geometry="objects/arkeffects/utilities/castingarrayflat_00.cgf" NoOffset="true" Alpha="0" Size="10" InitAngles="x=-90"/>
+  <Childs>
+   <Particles Name="ChildCollision_00">
+    <Params SpawnIndirection="ParentStart" Count="20" ParticleLifeTime="3" AttachType="Render" EmitAngle="30,Random=1" Texture="textures/arkeffects/utilities/solid_white.tif" Alpha="0" Size="0.02" Speed="20" PhysicsType="SimpleCollision" CollideStaticObjects="true" MaxCollisionEvents="1"/>
+    <Childs>
+     <Particles Name="DeathSpawn_decal_00">
+      <Params SpawnIndirection="ParentDeath" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="6" Facing="Decal" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Material="Materials/ArkDecals/wood/liquidspill_large_00" OctagonalShape="true" Color="(y=0.027320893,z=0.027320893)" Size="1.003,Random=0.5" RandomAngles="y=180" SortOffset="-0.197"/>
+      <Childs>
+       <Particles Name="decal_bubbles_00">
+        <Params Inheritance="Zero" SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="5" Curvature="1" BlendType="AlphaBased" Alpha="1" Color="(x=1,y=1,z=1)" DiffuseLighting="1" SoundFXParam="1" Size="0.137" Aspect="1" CollisionFraction="1" Thickness="1" Density="1000" ViewDistanceAdjust="1" FillRateCost="1" ConfigMax="VeryHigh"/>
+        <Childs>
+         <Particles Name="BubblePopping_00">
+          <Params SpawnIndirection="ParentStart" Count="2,Random=0.857" Continuous="true" EmitterLifeTime="5" ParticleLifeTime="0.5,Random=0.839" RandomOffset="x=0.3,z=0.3" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Material="objects/arkeffects/environment/HalfDome_00" Geometry="objects/arkeffects/environment/halfdome_00.cgf" NoOffset="true" Size="Random=0.221,ParticleAge=(v=0.25;t=1,v=1)"/>
+         </Particles>
+        </Childs>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="RandomArray_00">
+    <Params Count="60" ParticleLifeTime="3" PositionOffset="y=0.1" EmitAngle="62.8,Random=1" Texture="textures/arkeffects/utilities/arrowup.tif" Alpha="0" Size="0.1" Speed="100,Random=1" GravityScale="100" PhysicsType="SimpleCollision" CollideStaticObjects="true" MaxCollisionEvents="1" Elasticity="-1" DynamicFriction="10"/>
+    <Childs>
+     <Particles Name="ChildCollide_00">
+      <Params Inheritance="Standard" SpawnIndirection="ParentDeath" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="6" Facing="Decal" Material="Materials/ArkDecals/wood/liquidspill_03_yellow" Size="1.1,Random=0.45" RandomAngles="y=180" Thickness="10" SortOffset="0.162"/>
+      <Childs>
+       <Particles Name="ChildRandomSpwan_00">
+        <Params SpawnIndirection="ParentStart" Count="0.75,Random=0.9" SpawnDelay="0.2,Random=0.85" EmitterLifeTime="0.1" ParticleLifeTime="5" Texture="textures/arkeffects/utilities/circleguide_00.tif" Size="0"/>
+        <Childs>
+         <Particles Name="SteamSpawn_00">
+          <Params SpawnIndirection="ParentStart" Count="13" Continuous="true" SpawnDelay="3,Random=1" EmitterLifeTime="5,Random=0.7" ParticleLifeTime="6,Random=0.549" EmitAngle="Random=0.525" Curvature="0" Texture="textures/arkeffects/smoke/softgraysmoke_00.tif" Tessellation="true" Alpha="0.057,EmitterStrength=(;t=0.227,v=1;t=0.635,v=1;t=1),ParticleAge=(flags=32;t=0.08,v=1;t=0.992)" AlphaClip="SourceMin=(Min=0.99,Max=0.05),SourceWidth=(Min=0.5,Max=0.5)" DiffuseLighting="0.427" DiffuseBacklighting="0.345" Size="0.05,Random=0.6,EmitterStrength=(v=1;t=0.537,v=1;t=1),ParticleAge=(v=1;t=1,v=0.067)" Connection="true,TextureMapping=PerStream" Speed="0.2,Random=0.2" AirResistance="1.34,Random=0.481,ParticleAge=(v=0.725,flags=32;t=0.19,v=1),WindScale=0" GravityScale="-0.12,Random=0.25" TurbulenceSize="0.5,Random=0.75" TurbulenceSpeed="30,Random=0.179"/>
+         </Particles>
+         <Particles Name="LargeSoft_00">
+          <Params SpawnIndirection="ParentStart" Count="3,Random=0.5,EmitterStrength=(v=1;t=0.624,v=1;t=1)" Continuous="true" EmitterLifeTime="5" ParticleLifeTime="3,Random=0.5" RandomOffset="x=0.2,y=0.2" Curvature="0.103" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Material="Materials/ArkEffects/Temporary/Deformation_AlphaCrush_1" OctagonalShape="true" SoftParticle="true" Alpha="0.05,EmitterStrength=(flags=32;t=0.16,v=1;t=1,v=1),ParticleAge=(;t=0.286,v=1,flags=4;t=0.494,v=1;t=1)" AlphaClip="SourceMin=(Min=0.65),SourceWidth=(Min=0.3,Max=0.3)" Color="(x=0.701102,y=0.701102,z=0.701102)" DiffuseBacklighting="0.245" Size="1.664,Random=0.65,EmitterStrength=(flags=32;t=0.17,v=1;t=1,v=1),ParticleAge=(v=0.318;t=1,v=1)" AirResistance="2.08,RotationalDragScale=0.328,WindScale=0" GravityScale="-0.1,Random=0.603" RotationRate="y=20" RandomRotationRate="y=20"/>
+         </Particles>
+        </Childs>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="CenterBubbles_00">
+    <Params Count="10" Continuous="true" EmitterLifeTime="5" ParticleLifeTime="0.5,Random=0.5" RandomOffset="x=1.5,z=1.5" OffsetRoundness="1" OffsetInnerFraction="0.202" Size="0.1"/>
+    <Childs>
+     <Particles Name="BubblePopping_00">
+      <Params SpawnIndirection="ParentStart" Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="0.5,Random=0.839" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Material="objects/arkeffects/environment/HalfDome_00" Geometry="objects/arkeffects/environment/halfdome_01.cgf" NoOffset="true" Size="0.4,Random=0.3,ParticleAge=(v=0.25;t=1,v=1)" NonUniformScale="true,ZAxisScale=0.8" InitAngles="x=-90"/>
+     </Particles>
+     <Particles Name="ParticleSplash_00">
+      <Params SpawnIndirection="ParentStart" Count="1" SpawnDelay="0.3" EmitterLifeTime="0.1" ParticleLifeTime="0.75,Random=0.35" Texture="textures/arkeffects/smoke/ink_light_smoke_soft_00.tif" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Material="Materials/ArkEffects/Environment/ToxicBubble_00" SoftParticle="true" Alpha="ParticleAge=(v=1,flags=32;t=1,flags=4)" AlphaClip="Scale=(Min=1),SourceMin=(Min=0.95,Max=0.05),SourceWidth=(Min=0,Max=0)" Color="(x=0.9046613,y=0.9046613,z=0.9046613)" DiffuseLighting="0.501" DiffuseBacklighting="0.274" Size="0.501,Random=0.272,ParticleAge=(flags=32;t=0.85,v=1)" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=20"/>
+     </Particles>
+    </Childs>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplLingerPlayer_Fire_00">
+  <Params Count="1" ParticleLifeTime="1" PositionOffset="y=2" Curvature="0" Texture="textures/arkeffects/utilities/solid_gray.tif" Alpha="ParticleAge=(flags=32;t=0.082,v=1;t=1)" Color="(x=0.9734454,y=0.000607054,z=0.000607054)" DiffuseBacklighting="1" EmissiveLighting="1" MoveRelativeEmitter="true" BindEmitterToCamera="true"/>
+ </Particles>
+ <Particles Name="Turrets.Explosion.Explosion_A_00">
+  <Params Inheritance="Parent" Count="30" Continuous="true" EmitterLifeTime="0.2" ParticleLifeTime="1" EmitAngle="36" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" StartTrigger="Play_Turret_Destroyed" StopTrigger="null" Size="0.1" Speed="30,Random=0.963" AirResistance="15,RotationalDragScale=0.07,WindScale=0" RandomAngles="y=180"/>
+  <Childs>
+   <Particles Name="Smoke">
+    <Params SpawnIndirection="ParentStart" Count="1,Random=0.468" Continuous="true" ParticleLifeTime="2" Texture="textures/arkeffects/fire/explosion_test_smoke_01.tif" SoftParticle="true" Alpha="0.67,ParticleAge=(t=0.34,v=1;t=1,v=0.047,flags=4)" AlphaClip="SourceMin=(Min=0.95,Max=0.001),SourceWidth=(Min=0.5,Max=0.5)" Color="(x=0.4793202,y=0.6724433,z=0.9734454),ParticleAge=(t=0.035,v=(x=0.05,y=0.05,z=0.05);t=0.79,v=(x=0.204,y=0.204,z=0.204))" DiffuseLighting="0.083" DiffuseBacklighting="0.47" EmissiveLighting="0.108" Size="0.914,Random=0.157,ParticleAge=(flags=32;t=0.318,v=1)" Speed="2.2,Random=1.291" InheritVelocity="0.025" AirResistance="0.73,ParticleAge=(v=1;t=1,v=0.365),WindScale=0" GravityScale="-0.06,Random=1.117,ParticleAge=(v=1;t=1,v=0.455)" Turbulence3DSpeed="0.51,Random=0.114,ParticleAge=(v=1,flags=32;t=1)" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="y=30"/>
+   </Particles>
+   <Particles Name="Fire">
+    <Params SpawnIndirection="ParentStart" Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="0.5,Random=0.13" OrientToVelocity="true" Texture="textures/arkeffects/fire/explosion_test_glow_01.tif" SoftParticle="true" Alpha="EmitterStrength=(v=1;t=1),ParticleAge=(v=1;t=0.243,v=0.91,flags=32;t=0.98)" AlphaClip="Scale=(Max=0.9),SourceMin=(Min=0.95,Max=0.1),SourceWidth=(Min=0.75,Max=0.75)" Color="(x=0.9822507,y=0.74540436,z=0.28744087),Random=0.46,ParticleAge=(t=0.133,v=(x=1,y=1,z=1);t=0.875,v=(x=0.93,y=0.286,z=0.043);t=0.957,v=(x=0.937,y=0.06,z=0.04))" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="1" LightSource="Radius=(2.84,Random=0.551),Intensity=(1.07,ParticleAge=(;t=0.125,v=1;t=1)),Attenuation=(8.931,Random=0.438)" Size="1.2,Random=0.348,ParticleAge=(flags=32;t=0.067,v=0.365;t=1,v=1)" Stretch="0.13,Random=0.361" Speed="1" InheritVelocity="1" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=60" SortBoundsScale="0.286"/>
+   </Particles>
+   <Particles Name="Glow">
+    <Params Count="1" EmitterLifeTime="0.1" ParticleLifeTime="0.2" PositionOffset="y=0.35" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" SoftParticle="true" Color="(x=0.13286835,y=0.13286835,z=0.13286835),ParticleAge=(t=0.016;t=0.204,v=(x=0.992,y=0.886,z=0.553);t=0.427,v=(x=0.318,y=0.07,z=0.004),flags=4;t=0.933)" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="1" Size="2.133,ParticleAge=(v=0.204,flags=32;t=1,v=1)" SortBoundsScale="0.079"/>
+   </Particles>
+   <Particles Name="Sparks">
+    <Params Count="60" Continuous="true" EmitterLifeTime="0.25" ParticleLifeTime="3,Random=0.826" RandomOffset="y=0.2" EmitAngle="46.3,Random=0.96" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/sparks/multiple_sparks_streaks_00.tif" TextureTiling="TilesX=4,TilesY=2,VariantCount=8" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.091,Random=0.525,ParticleAge=(t=0.263,v=1;t=1)" PivotX="-1,ParticleAge=(v=1,flags=32;t=1,flags=4)" Speed="10,Random=0.589" GravityScale="1"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Recycler.MainBody_00">
+  <Params Continuous="true" ParticleLifeTime="3" PositionOffset="x=1.29,y=-0.24,z=1.37" FocusAngle="90" FocusAzimuth="270" Texture="textures/arkeffects/utilities/circleguide_00.tif" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.3,ParticleAge=(v=1;t=1,v=0.39)" Speed="1" InitAngles="z=90"/>
+  <Childs>
+   <Particles Name="Vortex_00">
+    <Params Count="30" Continuous="true" ParticleLifeTime="1.5" PositionOffset="x=1.29,y=-0.24,z=0.76" RandomOffset="y=0.2" OffsetRoundness="1" OffsetInnerFraction="1" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Geometry="objects/arkeffects/environment/fxmiscdebris_collsion_group_00.cgf" GeometryPieces="RandomPiece" Color="Random=0.518,ParticleAge=(t=0.02,v=(x=0.114,y=0.075,z=0.992);t=0.976,v=(x=0.992,y=0.07,z=0.16))" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="1" Size="1.5,Random=0.206,ParticleAge=(v=1,flags=32;t=1,v=0.09,flags=4)" Speed="2,Random=0.25" Turbulence3DSpeed="0.05,ParticleAge=(v=1,flags=32;t=1)" TurbulenceSize="0.75,Random=0.194,ParticleAge=(v=1,flags=32;t=0.996,flags=4)" TurbulenceSpeed="600,Random=0.506" InitAngles="z=90" RandomAngles="x=180,y=180,z=180" RotationRate="x=200,y=200,z=200" RandomRotationRate="x=600,y=600,z=600"/>
+   </Particles>
+   <Particles Name="Vortex_01">
+    <Params Count="30" Continuous="true" ParticleLifeTime="1.5" PositionOffset="x=1.29,y=-0.24,z=0.76" RandomOffset="y=0.2" OffsetRoundness="1" OffsetInnerFraction="1" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Geometry="objects/arkeffects/environment/fxmiscdebris_collsion_group_00.cgf" GeometryPieces="RandomPiece" Color="Random=0.518,ParticleAge=(t=0.02,v=(x=0.114,y=0.075,z=0.992);t=0.976,v=(x=0.992,y=0.07,z=0.16))" DiffuseBacklighting="1" EmissiveLighting="1" Size="1.5,Random=0.206,ParticleAge=(v=1,flags=32;t=1,v=0.09,flags=4)" Speed="2,Random=0.25" TurbulenceSize="0.75,Random=0.194,ParticleAge=(v=1,flags=32;t=0.996,flags=4)" TurbulenceSpeed="-600,Random=0.506" RandomAngles="x=180,y=180,z=180" RotationRate="x=600,y=200,z=200" RandomRotationRate="x=30,y=30,z=30"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionPressure_00">
+  <Params Count="10" MaintainDensity="1,ReduceLifeTime=0.25" SpawnDelay="0.1" ParticleLifeTime="3,Random=0.35" RandomOffset="x=0.2,y=0.2,z=0.2" OffsetRoundness="1" OffsetInnerFraction="0.435" FocusCameraDir="1" EmitOffsetDir="true" EmitAngle="0.5,Random=0.65" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Material="Materials/ArkEffects/Interactables/ExplosiveCannisterSmoke_00" SoftParticle="true" Alpha="0.75,ParticleAge=(;t=0.043,v=1;t=0.165,v=1;t=0.518,v=0.227;t=1)" AlphaClip="SourceMin=(Min=0.15,Max=0.05)" DiffuseLighting="0.71" DiffuseBacklighting="0.497" EmissiveLighting="0.68" Size="0.185,Random=0.15,ParticleAge=(v=0.84;t=0.08,v=0.933;t=1,v=1)" Stretch="0.2,Random=0.42,ParticleAge=(v=1,flags=32;t=1)" Speed="0.1,Random=0.2" AirResistance="2.11,RotationalDragScale=0.303,WindScale=0" GravityScale="Random=1" Turbulence3DSpeed="0.25,Random=0.287,EmitterStrength=(v=1;t=0.125,v=1;t=1)" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="y=30"/>
+  <Childs>
+   <Particles Name="DirectionalBurst_00">
+    <Params Count="30" ParticleLifeTime="0.4,Random=0.35" EmitAngle="180,Random=1" Texture="textures/arkeffects/smoke/ink_light_smoke_soft_gray_00_dif.tif" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Material="Materials/ArkEffects/Interactables/ExplosiveCannisterSmoke_00" SoftParticle="true" Alpha="ParticleAge=(;t=0.043,v=1;t=0.153,v=1;t=0.518,v=0.227;t=1)" AlphaClip="SourceMin=(Min=0.15,Max=0.05)" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.2,Random=0.15,ParticleAge=(v=0.047,flags=32;t=0.337,v=0.82;t=1,v=1)" Stretch="0.155,Random=0.2,ParticleAge=(v=1;t=1,v=0.48)" Speed="2,Random=0.5" AirResistance="4,RotationalDragScale=0,WindScale=0" GravityScale="1,Random=1" Turbulence3DSpeed="Random=0.287,EmitterStrength=(v=1;t=0.125,v=1;t=1)" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=20" PhysicsType="SimpleCollision" CollideStaticObjects="true"/>
+   </Particles>
+   <Particles Name="ParentSpwaner_00">
+    <Params Count="8,Random=0.5" MaintainDensity="1,ReduceLifeTime=0.25" ParticleLifeTime="0.75,Random=0.35" OffsetRoundness="1" OffsetInnerFraction="1" EmitAngle="180,Random=1" Texture="textures/arkeffects/utilities/circleguide_00.tif" SoftParticle="true" Alpha="0" Size="0.01,Random=0.15,ParticleAge=(v=0.047,flags=32;t=0.337,v=0.82;t=1,v=1)" Stretch="Random=0.2,ParticleAge=(v=1;t=1,v=0.48)" Speed="2.5,Random=0.2" AirResistance="2,Random=0.2,RotationalDragScale=0,WindScale=0" GravityScale="2,Random=1" Turbulence3DSpeed="10,Random=0.287,EmitterStrength=(v=1;t=0.125,v=1;t=1)" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=20" PhysicsType="SimpleCollision" CollideStaticObjects="true" Elasticity="0.3"/>
+    <Childs>
+     <Particles Name="ChildSmokeTendril_00">
+      <Params SpawnIndirection="ParentStart" Count="10" MaintainDensity="0.2" Continuous="true" EmitterLifeTime="0.75" ParticleLifeTime="0.75,Random=0.4" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Material="Materials/ArkEffects/Interactables/ExplosiveCannisterSmoke_00" SoftParticle="true" Alpha="0.5,EmitterStrength=(v=1;t=0.63,v=1;t=1,flags=4),ParticleAge=(;t=0.043,v=1;t=0.227,v=0.275;t=1)" AlphaClip="SourceMin=(Min=0.15,Max=0.05)" DiffuseLighting="0.933" DiffuseBacklighting="0.829" EmissiveLighting="1.5" Size="0.06,Random=0.45,EmitterStrength=(v=1;t=1,v=0.75),ParticleAge=(;t=0.13,v=0.34;t=0.47,v=0.66;t=1,v=1,flags=4)" InheritVelocity="0.1" GravityScale="0.05" Turbulence3DSpeed="2.01,Random=0.247,ParticleAge=(v=0.16;t=1,v=1)" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="y=60"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="MeshShrapnel_00">
+    <Params Count="10" ParticleLifeTime="8" EmitAngle="180,Random=1" Facing="Free" Material="Objects/ArkEffects/Gameplay/MiscDebris/CannisterMiscDebris_00" Geometry="objects/arkeffects/gameplay/amberdebris/amberdebris_00.cgf" GeometryPieces="AllPieces" NoOffset="true" Size="0.075,Random=0.12" Speed="1.5,Random=0.2" AirResistance="ParticleAge=(;t=1,v=1),RotationalDragScale=0,WindScale=0" GravityScale="2,Random=0.2" RandomAngles="x=180,y=180,z=180" RotationRate="x=30,y=30,z=30" RandomRotationRate="x=30,y=30,z=30" PhysicsType="SimpleCollision" CollideStaticObjects="true" SurfaceType="Metal_Thin_Small"/>
+   </Particles>
+   <Particles Name="Flash">
+    <Params Count="3" ParticleLifeTime="0.15" BlendType="Additive" Texture="textures/arkeffects/lights/noisy_hotdot.tif" SoftParticle="true" Alpha="ParticleAge=(v=1;t=1,flags=4)" Color="(x=0.9911022,y=0.4677838,z=0.068478175)" EmissiveLighting="1" Size="0.33" Aspect="0.552,Random=0.25,ParticleAge=(v=1;t=1,v=0.52,flags=4)" RandomAngles="y=180"/>
+   </Particles>
+   <Particles Name="SparksClustered">
+    <Params Count="3" ParticleLifeTime="0.2" BlendType="Additive" Texture="textures/arkeffects/sparks/sparks_quad.tif" Alpha="ParticleAge=(v=1;t=1)" Color="(y=0.4019778,z=0.043735035)" EmissiveLighting="10" Size="0.09,ParticleAge=(;t=1,v=1)" Aspect="0.75,Random=0.25,ParticleAge=(v=0.61,flags=32;t=1,v=1)" PivotY="0.75" RandomAngles="y=180"/>
+   </Particles>
+   <Particles Name="Light">
+    <Params Count="1" ParticleLifeTime="0.2" Color="ParticleAge=(t=0.016,v=(x=0.992,y=0.282,z=0.008);t=0.97)" LightSource="Radius=0.75,Intensity=5"/>
+   </Particles>
+   <Particles Name="BouncingSparks">
+    <Params Count="40" ParticleLifeTime="0.35,Random=0.5" EmitAngle="90,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/sparks/multiple_sparks_round_00.tif" TextureTiling="TilesX=2,TilesY=2,AnimFramesCount=4" Color="(y=0.6038275,z=0.21223079)" EmissiveLighting="1" Size="0.005,Random=0.25" Stretch="0.04" Speed="3,Random=0.5" AirResistance="5" GravityScale="2,Random=0.35" PhysicsType="SimpleCollision" CollideStaticObjects="true" CollisionFraction="0.4" CollisionCutoffDistance="15" MaxCollisionEvents="2" Elasticity="0.546"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Canister.ExplosionPressure_Jet_00">
+  <Params DiffuseLighting="0"/>
+  <Childs>
+   <Particles Name="MainCore_00">
+    <Params Count="20" Continuous="true" ParticleLifeTime="0.25,Random=0.417" EmitAngle="3.9,Random=0.369" OrientToVelocity="true" Texture="textures/arkeffects/smoke/ink_light_smoke_soft_gray_00_dif.tif" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" Alpha="0.834,ParticleAge=(flags=32;t=0.118,v=1;t=0.533,v=1;t=1)" AlphaClip="SourceMin=(Min=0.99,Max=0.05),SourceWidth=(Min=0.75,Max=0.75)" DiffuseLighting="0.5" DiffuseBacklighting="0.575" EmissiveLighting="0.1" Size="0.153,Random=0.408,ParticleAge=(v=0.294;t=1,v=1)" Stretch="0.054" Speed="5.2,Random=0.435" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=200" RandomRotationRate="y=200"/>
+   </Particles>
+   <Particles Name="LargeSpray_00">
+    <Params Count="50" MaintainDensity="1,ReduceLifeTime=0.25" Continuous="true" ParticleLifeTime="1.2,Random=0.35" EmitAngle="0.5,Random=0.65" Texture="textures/arkeffects/smoke/ink_light_smoke_soft_gray_00_dif.tif" TextureTiling="TilesX=2,TilesY=2,VariantCount=4" SoftParticle="true" Alpha="0.456,Random=0.35,ParticleAge=(flags=32;t=0.047,v=1,flags=32;t=1)" AlphaClip="SourceMin=(Min=0.15,Max=0.001),SourceWidth=(Min=0.1,Max=0.8)" DiffuseLighting="0.5" DiffuseBacklighting="0.5" EmissiveLighting="0.05" Size="0.742,Random=0.45,ParticleAge=(v=0.18;t=1,v=1)" Stretch="0.071,Random=0.42,ParticleAge=(v=1,flags=32;t=1)" Speed="2,Random=0.2" AirResistance="0.75,Random=0.274,ParticleAge=(v=0.294;t=0.09,v=1,flags=36;t=1),RotationalDragScale=0.056,WindScale=0" GravityScale="0.05,Random=1" Turbulence3DSpeed="0.25,Random=0.287,EmitterStrength=(v=1;t=0.125,v=1;t=1)" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="y=100"/>
+   </Particles>
+   <Particles Name="SmallSpray_00">
+    <Params Count="35" Continuous="true" ParticleLifeTime="0.2,Random=0.35" EmitAngle="6.4,Random=0.65" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" SoftParticle="true" Alpha="ParticleAge=(flags=32;t=0.106,v=1;t=1)" DiffuseLighting="0.342" DiffuseBacklighting="0.389" Size="0.02,Random=0.2,EmitterStrength=(v=1;t=0.855,v=0.976;t=1,v=1),ParticleAge=(v=0.682;t=1,v=1)" Stretch="0.02,Random=0.42,ParticleAge=(v=1,flags=32;t=1)" MinPixels="0.05" Speed="8,Random=0.65" AirResistance="Random=0.45,ParticleAge=(v=0.294;t=0.325,v=1,flags=4;t=0.99,v=0.408,flags=4),RotationalDragScale=0.17,WindScale=0" GravityScale="Random=0.589" Turbulence3DSpeed="1.39,EmitterStrength=(v=1;t=0.69,v=1;t=1)" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=30" RandomRotationRate="y=100"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Recycler.MainBody_01">
+  <Params Count="1" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=1.4,y=1.38,z=0.21" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="10" Size="0.1" InitAngles="x=90,y=90"/>
+  <Childs>
+   <Particles Name="ParentSpinner_00">
+    <Params Count="60" Continuous="true" EmitterLifeTime="2" ParticleLifeTime="1.5" PositionOffset="x=1.4,y=1.38,z=0.21" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" Size="ParticleAge=(v=1,flags=32;t=0.88)" Speed="2" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=300"/>
+    <Childs>
+     <Particles Name="ChildrenParticles_00">
+      <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="1.5" PositionOffset="x=0,y=0,z=0" RandomOffset="x=0.3,z=0.3" OffsetRoundness="1" Facing="Camera" Color="(x=0.9911022,y=0.02842604,z=0.02842604)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.1" MoveRelativeEmitter="true" InitAngles="z=0"/>
+      <Childs>
+       <Particles Name="GrandChildMesh_00">
+        <Params SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="1.5" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Geometry="objects/arkeffects/environment/fxmiscdebris_collsion_group_00.cgf" GeometryPieces="RandomPiece" Color="Random=0.518,ParticleAge=(t=0.02,v=(x=0.114,y=0.075,z=0.992);t=0.976,v=(x=0.992,y=0.07,z=0.16))" Size="1.25,Random=0.2,ParticleAge=(v=1;t=1,v=0.39,flags=4)" MinPixels="2" MoveRelativeEmitter="true" RandomAngles="x=180,y=180,z=180" RotationRate="x=300,y=300,z=300" RandomRotationRate="x=200,y=200,z=200"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Recycler.MainBody_02">
+  <Params Count="1" Continuous="true" ParticleLifeTime="0.5" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="10" StartTrigger="Play_OBJ_Recycler_Exist_LP" StopTrigger="Stop_OBJ_Recycler_Exist_LP" Size="0.1" InitAngles="x=90,y=90"/>
+  <Childs>
+   <Particles Name="ParentSpinner_00">
+    <Params Count="15" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="0.5" PulsePeriod="0.5" ParticleLifeTime="1.25" PositionOffset="x=0.1" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" Size="1.5,ParticleAge=(v=0.365,flags=32;t=0.5,v=1;t=1,v=0.5)" Speed="2.8" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=300"/>
+    <Childs>
+     <Particles Name="ChildrenParticles_00">
+      <Params SpawnIndirection="ParentStart" Count="1" Continuous="true" ParticleLifeTime="1.25" RandomOffset="x=0.3,z=0.3" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Material="Objects/ArkEffects/Environment/FXMiscDebris_RecyclerDebris_00" Geometry="objects/arkeffects/environment/fxmiscdebris_collsion_group_00.cgf" GeometryPieces="RandomPiece" Color="Random=0.518,ParticleAge=(t=0.02,v=(x=0.114,y=0.075,z=0.992);t=0.976,v=(x=0.992,y=0.07,z=0.16))" Size="Random=0.2" MinPixels="2" MoveRelativeEmitter="true" RandomAngles="x=180,y=180,z=180" RotationRate="x=300,y=300,z=300" RandomRotationRate="x=200,y=200,z=200"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="GlowingSparks_00">
+    <Params Enabled="false" Count="200" Continuous="true" ParticleLifeTime="1" RandomOffset="x=0.2,y=0.2,z=0.2" FocusAngle="90" FocusAzimuth="270" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" EmissiveLighting="1" Size="0.003,Random=0.584" Stretch="0.007,Random=0.5" MinPixels="0.1" Speed="3" Turbulence3DSpeed="0.21,ParticleAge=(v=1;t=1)"/>
+   </Particles>
+   <Particles Name="ThingLine_00">
+    <Params Count="80" Continuous="true" ParticleLifeTime="0.3" PositionOffset="x=-0.05" FocusAngle="90" FocusAzimuth="270" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" EmissiveLighting="1" Size="0.009,Random=0.792" Stretch="0.003" MinPixels="0.1" Speed="10.7" Turbulence3DSpeed="ParticleAge=(v=1;t=1)"/>
+   </Particles>
+   <Particles Name="CapGlow_00">
+    <Params Count="1" EmitterLifeTime="0.3" PulsePeriod="0.5" ParticleLifeTime="0.6" PositionOffset="x=0.15" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="ParticleAge=(;t=0.086,v=1;t=0.165,v=0.48;t=0.255,v=1;t=0.33,v=0.48;t=0.42,v=1;t=0.498,v=0.52;t=0.58,v=1;t=0.667,v=0.5;t=0.75,v=1;t=0.83,v=0.5;t=0.918,v=1;t=1)" Size="0.32,ParticleAge=(v=1;t=0.086,v=0.773;t=0.17,v=1;t=0.255,v=0.773;t=0.337,v=1;t=0.42,v=0.725;t=0.5,v=1;t=0.584,v=0.725;t=0.663,v=1;t=0.753,v=0.725;t=0.83,v=1;t=0.918,v=0.706;t=1,v=1)" InitAngles="x=90,y=90"/>
+    <Childs>
+     <Particles Name="endCapLT">
+      <Params Inheritance="Standard" SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="0.3" PulsePeriod="0.5" ParticleLifeTime="0.6" PositionOffset="y=-3.6" FocusAngle="90" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="ParticleAge=(;t=0.086,v=1;t=0.165,v=0.48;t=0.255,v=1;t=0.33,v=0.48;t=0.42,v=1;t=0.498,v=0.52;t=0.58,v=1;t=0.667,v=0.5;t=0.75,v=1;t=0.83,v=0.5;t=0.918,v=1;t=1)" Size="0.32,ParticleAge=(v=1;t=0.086,v=0.773;t=0.17,v=1;t=0.255,v=0.773;t=0.337,v=1;t=0.42,v=0.725;t=0.5,v=1;t=0.584,v=0.725;t=0.663,v=1;t=0.753,v=0.725;t=0.83,v=1;t=0.918,v=0.706;t=1,v=1)"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="CapGlow_01">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="0.15" ParticleLifeTime="0.2" PositionOffset="x=-3" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="ParticleAge=(;t=0.145,v=1;t=0.65,v=1;t=1)" Size="0.284,ParticleAge=(v=1;t=0.498,v=0.725;t=1,v=1)" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="parentSpinner">
+    <Params Count="1" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="1" ParticleLifeTime="1" PositionOffset="x=-0.05" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.425" InitAngles="z=90" RotationRate="y=360" CameraDistanceOffset="-0.05" SortOffset="5"/>
+    <Childs>
+     <Particles Name="StreakGlowLeft">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="5" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="1" ParticleLifeTime="0.5,Random=0.15" PositionOffset="x=0.5" RandomOffset="x=0.5" Facing="CameraX" OrientToVelocity="true" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" Material="Materials/ArkEffects/Interactables/RecyclerLightStreakGlow" SoftParticle="true" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="1.5" NonUniformScale="true,XAxisScale=(0.25,Random=0.15,ParticleAge=(v=1;t=0.1,v=1;t=1,flags=4)),YAxisScale=(2,ParticleAge=(flags=32;t=1,v=1))" PivotY="0.3" Speed="0.5" MoveRelativeEmitter="true" SortOffset="4"/>
+     </Particles>
+     <Particles Name="streaksGlowRight">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="5" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="1" ParticleLifeTime="0.5,Random=0.15" PositionOffset="x=0.5,y=7" RandomOffset="x=0.5" Facing="CameraX" OrientToVelocity="true" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" Material="Materials/ArkEffects/Interactables/RecyclerLightStreakGlow" SoftParticle="true" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="1.5" NonUniformScale="true,XAxisScale=(0.25,Random=0.15,ParticleAge=(v=1;t=0.1,v=1;t=1,flags=4)),YAxisScale=(2,ParticleAge=(flags=32;t=1,v=1))" PivotY="0.3" Speed="0.5" MoveRelativeEmitter="true" InitAngles="y=180" SortOffset="3"/>
+     </Particles>
+     <Particles Name="GlowEdgeCircle">
+      <Params Count="1" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="1" ParticleLifeTime="1" PositionOffset="x=-3.23" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.4" InitAngles="z=90" RotationRate="y=360" CameraDistanceOffset="-0.05" SortOffset="5"/>
+     </Particles>
+     <Particles Name="smallPiecesGlow">
+      <Params SpawnIndirection="ParentStart" Count="12" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="0.5" ParticleLifeTime="0.5" PositionOffset="y=-0.5" RandomOffset="x=0.6,z=0.6" OffsetRoundness="1" OffsetInnerFraction="0.5" Texture="textures/arkeffects/player/powers/thermalcylindertiled_displ.tif" TextureTiling="TilesX=8,TilesY=4,AnimFramesCount=32,AnimCycle=Loop" Material="Materials/ArkEffects/Screen/PsiMode/Main/EmissiveShards_02_blue" OctagonalShape="true" Alpha="ParticleAge=(v=1;t=0.643,v=1;t=1)" Color="(x=0.015996294,y=0.4396572,z=0.7835379)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.2,ParticleAge=(v=0.047,flags=32;t=0.224,v=0.84;t=1,v=0.204,flags=4)" Speed="5" MoveRelativeEmitter="true" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=720"/>
+     </Particles>
+     <Particles Name="SmallPiecesRight">
+      <Params SpawnIndirection="ParentStart" Count="12" Continuous="true" SpawnDelay="0.1" EmitterLifeTime="1" PulsePeriod="0.5" ParticleLifeTime="0.5" PositionOffset="y=4.8" RandomOffset="x=0.6,z=0.6" OffsetRoundness="1" OffsetInnerFraction="0.5" Texture="textures/arkeffects/player/powers/thermalcylindertiled_displ.tif" TextureTiling="TilesX=8,TilesY=4,AnimFramesCount=32,AnimCycle=Loop" Material="Materials/ArkEffects/Screen/PsiMode/Main/EmissiveShards_02_blue" OctagonalShape="true" Alpha="ParticleAge=(;t=0.467,v=1;t=0.937,v=1;t=1,v=1)" Color="ParticleAge=(t=0.698,v=(x=0.086,y=0.486,z=0.84);t=0.882,v=(x=0.83,y=0.93,z=0.973))" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.15,ParticleAge=(v=0.047;t=1,v=1)" Speed="5.5" MoveRelativeEmitter="true" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=720"/>
+     </Particles>
+     <Particles Name="SingleLightStreakParent">
+      <Params SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="1" ParticleLifeTime="0.95" PositionOffset="x=0.82,y=0.2" Facing="CameraX" OrientToVelocity="true" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="5" NonUniformScale="true,XAxisScale=0.02,YAxisScale=4.2" PivotY="0.2" Speed="0.05" MoveRelativeEmitter="true" SortOffset="4"/>
+      <Childs>
+       <Particles Name="StreakTrailChild">
+        <Params SpawnIndirection="ParentStart" Count="20" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="0.5" PositionOffset="z=-0.05" FocusAngle="90" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" Color="ParticleAge=(t=0.04,v=(x=0.008,y=0.208,z=0.435);t=0.584,v=(x=0.008,y=0.008,z=0.286))" DiffuseBacklighting="1" EmissiveLighting="5" NonUniformScale="true,XAxisScale=(0.02,ParticleAge=(v=1,flags=32;t=1)),YAxisScale=(2,ParticleAge=(v=1,flags=32;t=1))" PivotY="0.5" Speed="0.01" SortOffset="4"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.BasePlate_00">
+  <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="4.5" Facing="Free" Texture="textures/arkeffects/utilities/solid_gray.tif" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlowParticle_00" Alpha="ParticleAge=(;t=0.11,v=1;t=0.83,v=1;t=1)" DiffuseLighting="0" NonUniformScale="true,XAxisScale=0.6,YAxisScale=0.3" MoveRelativeEmitter="true"/>
+  <Childs>
+   <Particles Name="SquareMesh_00">
+    <Params Count="1" EmitterLifeTime="0.1" ParticleLifeTime="4" PositionOffset="y=-0.05" Facing="Free" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlow_00" Geometry="Objects/ArkEffects/Gameplay/Fabricator/fabricatorglowmesh_00.cgf" NoOffset="true" Alpha="0.497,ParticleAge=(;t=0.11,v=1;t=0.792,v=1;t=1)" Color="ParticleAge=(t=0.047,v=(x=1,y=0.02,z=0.02);t=0.925,v=(x=0.024,y=0.26,z=0.95))" NonUniformScale="true,XAxisScale=1.2,YAxisScale=0.61,ZAxisScale=0.6" MoveRelativeEmitter="true" InitAngles="x=-90"/>
+   </Particles>
+   <Particles Name="GravPad_01">
+    <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_01.tif" SoundControlTime="EmitterPulsePeriod" Size="0.1" Speed="-0.2" MoveRelativeEmitter="true"/>
+    <Childs>
+     <Particles Name="Part_00">
+      <Params Count="5" Continuous="true" EmitterLifeTime="4.85" ParticleLifeTime="0.5" PositionOffset="x=0.28,y=-0.02,z=0.015" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_00.tif" Alpha="0.5,ParticleAge=(v=1,flags=32;t=1)" Color="(x=0.09084172,y=0.27049783,z=0.2961383),ParticleAge=(t=0.027,v=(x=0.64,y=0.98,z=0.816);t=0.482,v=(x=0.808,y=0.48,z=0.98);t=0.957,v=(x=0.498,y=0.965,z=0.475))" EmissiveLighting="2" Size="0.213" NonUniformScale="true,XAxisScale=1.16" MinPixels="1" Speed="0.1,Random=0.1,EmitterStrength=(v=1;t=0.88,v=1;t=1)" MoveRelativeEmitter="true"/>
+     </Particles>
+     <Particles Name="Part_01">
+      <Params Count="2" Continuous="true" EmitterLifeTime="4.85" ParticleLifeTime="0.5" PositionOffset="x=0.28,y=-0.02,z=0.015" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_02.tif" Alpha="0.792,ParticleAge=(t=0.23,v=1;t=1)" Color="(x=0.08865559,y=0.3005438,z=0.37626216),ParticleAge=(t=0.04,v=(x=0.992,y=0.576,z=0.898);t=0.494,v=(x=0.8,y=0.573,z=0.98);t=0.937,v=(x=0.553,y=0.992,z=0.847))" EmissiveLighting="2" Size="0.213" NonUniformScale="true,XAxisScale=1.16" MinPixels="1" Speed="0.02,Random=0.35" MoveRelativeEmitter="true"/>
+     </Particles>
+     <Particles Name="Refreaction_00">
+      <Params Count="5" Continuous="true" EmitterLifeTime="4.85" ParticleLifeTime="0.1" PositionOffset="x=0.3,y=0.045" OrientToVelocity="true" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.8,Random=0.535,ParticleAge=(v=1;t=1)" Size="0.3" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.368"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="GravPad_02">
+    <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_01.tif" SoundControlTime="EmitterPulsePeriod" Size="0.1" Speed="-0.2" MoveRelativeEmitter="true"/>
+    <Childs>
+     <Particles Name="Part_00">
+      <Params Count="5" Continuous="true" EmitterLifeTime="4.85" ParticleLifeTime="0.5" PositionOffset="x=-0.23,y=-0.02,z=0.015" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_00.tif" Alpha="0.5,ParticleAge=(v=1,flags=32;t=1)" Color="(x=0.09084172,y=0.27049783,z=0.2961383),ParticleAge=(t=0.027,v=(x=0.64,y=0.98,z=0.816);t=0.482,v=(x=0.808,y=0.48,z=0.98);t=0.957,v=(x=0.498,y=0.965,z=0.475))" EmissiveLighting="2" Size="0.213" NonUniformScale="true,XAxisScale=1.16" MinPixels="1" Speed="0.1,Random=0.1,EmitterStrength=(v=1;t=0.88,v=1;t=1)" MoveRelativeEmitter="true"/>
+     </Particles>
+     <Particles Name="Part_01">
+      <Params Count="2" Continuous="true" EmitterLifeTime="4.85" ParticleLifeTime="0.5" PositionOffset="x=-0.23,y=-0.02,z=0.015" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_02.tif" Alpha="0.792,ParticleAge=(t=0.23,v=1;t=1)" Color="(x=0.08865559,y=0.3005438,z=0.37626216),ParticleAge=(t=0.04,v=(x=0.992,y=0.576,z=0.898);t=0.494,v=(x=0.8,y=0.573,z=0.98);t=0.937,v=(x=0.553,y=0.992,z=0.847))" EmissiveLighting="2" Size="0.213" NonUniformScale="true,XAxisScale=1.16" MinPixels="1" Speed="0.02,Random=0.35" MoveRelativeEmitter="true"/>
+     </Particles>
+     <Particles Name="Refreaction_00">
+      <Params Count="5" Continuous="true" EmitterLifeTime="4.85" ParticleLifeTime="0.1" PositionOffset="x=-0.3,y=0.045" OrientToVelocity="true" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.8,Random=0.535,ParticleAge=(v=1;t=1)" Size="0.3" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.368"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="LargeHeatRefraction_00">
+    <Params Count="10" Continuous="true" SpawnDelay="0.5" EmitterLifeTime="2" ParticleLifeTime="0.1" PositionOffset="y=0.3,z=0.2" RandomOffset="x=0.5" OrientToVelocity="true" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.85,Random=0.535,EmitterStrength=(;t=0.1,v=1;t=0.3,v=1;t=1),ParticleAge=(;t=0.235,v=1;t=0.804,v=1;t=1)" Size="0.5" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" GravityScale="-1" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=300" SortOffset="-0.748"/>
+   </Particles>
+   <Particles Name="P_Help_00">
+    <Params Enabled="false" Count="10" Continuous="true" SpawnDelay="0.5" EmitterLifeTime="2" ParticleLifeTime="0.1" PositionOffset="y=0.3,z=0.2" RandomOffset="x=0.5" OrientToVelocity="true" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0.85,Random=0.535,ParticleAge=(;t=0.235,v=1;t=0.804,v=1;t=1)" Size="0.5" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" GravityScale="-0.5" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.748"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.InnerRing_00">
+  <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="5" Facing="Free" Geometry="objects/arkeffects/utilities/primitivering_00.cgf" DiffuseLighting="0" Size="0.4" NonUniformScale="true,ZAxisScale=3" MoveRelativeEmitter="true" InitAngles="y=90"/>
+  <Childs>
+   <Particles Name="Mesh_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="2.25" Facing="Free" Material="Objects/ArkEffects/Gameplay/Fabricator/FabricatorInnerGlowMesh_mat_00" Geometry="Objects/ArkEffects/Gameplay/Fabricator/fabricatorinnerglowmesh_00.cgf" AlphaClip="SourceMin=(Min=0.99,Max=0.5),SourceWidth=(Min=0.2,Max=0.2)" DiffuseBacklighting="1" MoveRelativeEmitter="true" RotationRate="x=2000"/>
+   </Particles>
+   <Particles Name="Circle_00">
+    <Params Count="1" SpawnDelay="0.95" EmitterLifeTime="0.1" ParticleLifeTime="2.25" PositionOffset="x=-0.085" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/utilities/solid_white.tif" Material="materials/arkeffects/interactables/fabricatorgridglow_00" Alpha="0.5,ParticleAge=(t=0.37;t=0.38,v=1;t=0.83,v=1;t=0.85,v=0.365;t=0.89,v=1;t=0.918,v=0.18;t=0.96,v=1;t=1)" Color="ParticleAge=(t=0.016,v=(x=0.247,y=0.737,z=0.992);t=0.267,v=(x=0.243,y=0.992,z=0.667);t=0.537,v=(x=0.243,y=0.784,z=0.93);t=0.83,v=(x=0.243,y=0.992,z=0.67))" DiffuseBacklighting="1" EmissiveLighting="0.5" Size="0.45" MoveRelativeEmitter="true,IgnoreRotation=true" InitAngles="y=25,z=90"/>
+   </Particles>
+   <Particles Name="Circle_01">
+    <Params Count="1" SpawnDelay="0.95" EmitterLifeTime="0.1" ParticleLifeTime="2.25" PositionOffset="x=0.085" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/utilities/solid_white.tif" Material="materials/arkeffects/interactables/fabricatorgridglow_00" Alpha="0.5,ParticleAge=(t=0.37;t=0.38,v=1;t=0.83,v=1;t=0.85,v=0.365;t=0.89,v=1;t=0.918,v=0.18;t=0.96,v=1;t=1)" Color="ParticleAge=(t=0.016,v=(x=0.247,y=0.737,z=0.992);t=0.267,v=(x=0.243,y=0.992,z=0.667);t=0.537,v=(x=0.243,y=0.784,z=0.93);t=0.83,v=(x=0.243,y=0.992,z=0.67))" DiffuseBacklighting="1" EmissiveLighting="0.5" Size="0.45" MoveRelativeEmitter="true,IgnoreRotation=true" InitAngles="y=25,z=90"/>
+   </Particles>
+   <Particles Name="Circle_02">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="2.25" PositionOffset="x=0.09" OffsetInnerFraction="1" Facing="Free" Texture="textures/arkeffects/glows/solidglow_alpha_01.tif" OctagonalShape="true" Color="(x=0.13843164,y=0.30946895,z=0.35153264)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.45" MoveRelativeEmitter="true" InitAngles="z=90" SortOffset="0.119"/>
+   </Particles>
+   <Particles Name="Circle_03">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="2.25" PositionOffset="x=-0.09" OffsetInnerFraction="1" Facing="Free" Texture="textures/arkeffects/glows/solidglow_alpha_01.tif" OctagonalShape="true" Color="(x=0.13843164,y=0.30946895,z=0.35153264)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.45" MoveRelativeEmitter="true" InitAngles="z=90" SortOffset="0.119"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.OuterRing_00">
+  <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="5.5" Facing="Free" Geometry="objects/arkeffects/utilities/primitivering_00.cgf" Size="0.55" NonUniformScale="true,ZAxisScale=3" MoveRelativeEmitter="true" InitAngles="y=90"/>
+  <Childs>
+   <Particles Name="Electrical_00">
+    <Params Count="50,Random=0.65,EmitterStrength=(v=0.43;t=0.114,v=1;t=0.38,v=1;t=1)" Continuous="true" EmitterLifeTime="4.25" ParticleLifeTime="0.2,Random=0.5" RandomOffset="y=0.51,z=0.51" OffsetRoundness="1" OffsetInnerFraction="1" EmitOffsetDir="true" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/electricity/lightingproxy_00.tif" TextureTiling="TilesX=2,TilesY=4,FirstTile=1,VariantCount=3,AnimCycle=Loop,AnimBlend=true,FlipChance=0.5" Material="Materials/ArkEffects/Environment/Lightning/OperatorDispenserElectricty_00" SoftParticle="true,Softness=0.2" Alpha="Random=0.305,ParticleAge=(v=1;t=0.616,v=1;t=0.976)" Color="(x=0.29177067,y=0.8227859,z=0.9646864)" EmissiveLighting="1" LightSource="Attenuation=0" Size="0.1,Random=0.2,ParticleAge=(v=1;t=0.643,v=0.953;t=1,v=1)" NonUniformScale="true,XAxisScale=0.8,YAxisScale=(3,Random=0.35,EmitterStrength=(v=1;t=0.694,v=1;t=1,v=0.43))" MinPixels="4" Speed="0.001" MoveRelativeEmitter="true,IgnoreRotation=true" InitAngles="y=90"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.WeldingSmoke_00">
+  <Params Count="60" Continuous="true" EmitterLifeTime="2" ParticleLifeTime="3,Random=0.45" RandomOffset="x=0.5,y=0.2,z=0.3" EmitAngle="17.7,Random=0.232" TextureTiling="TilesX=2,TilesY=2,VariantCount=4,FlipChance=0.5" Material="Materials/ArkEffects/Interactables/FabricatorSmoke_00" OctagonalShape="true" SoftParticle="true,Softness=0.261" Alpha="0.25,EmitterStrength=(v=0.047;t=0.333,v=1;t=1,v=1),ParticleAge=(;t=0.173,v=1;t=0.525,v=1;t=1)" AlphaClip="Scale=(Max=0.5),SourceMin=(Min=0.8,Max=0.1)" DiffuseLighting="0.658" DiffuseBacklighting="0.389" EmissiveLighting="0.85" Size="0.45,Random=0.328,ParticleAge=(v=0.5;t=1,v=1)" Speed="2,Random=0.618" AirResistance="3,ParticleAge=(v=1;t=0.45,v=0.455),RotationalDragScale=0.247,WindScale=0" GravityScale="0.02,Random=0.831" Turbulence3DSpeed="0.15,Random=0.356" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=100" CameraDistanceOffset="-0.15"/>
+ </Particles>
+ <Particles Name="Object.Canister.Radiation.RadiationLeak_00">
+  <Params Count="11,Random=0.166" Continuous="true" ParticleLifeTime="2,Random=0.445" PositionOffset="z=1.55" TextureTiling="TilesX=2,TilesY=2,FirstTile=3" Material="Materials/ArkEffects/Environment/Radiation/Deformation_AlphaCrush_00" Alpha="Random=0.227,ParticleAge=(v=0.545;t=0.243,v=1;t=1,v=0.024)" Size="0.772,Random=0.217,ParticleAge=(v=0.545;t=1,v=1,flags=4)" Speed="0.1" AirResistance="2.68,Random=0.311,ParticleAge=(flags=32;t=0.455,v=1,flags=4),WindScale=0" GravityScale="-0.1" RandomAngles="y=90" RandomRotationRate="y=40"/>
+ </Particles>
+ <Particles Name="Object.Environment.Props.Stove.StoveBurner_00">
+  <Params Count="1" Continuous="true" ParticleLifeTime="1" Facing="Free" Material="objects/arkeffects/environment/props/Stovetop_Apt_a_fx_mesh_mat_00" Tessellation="true" Geometry="objects/arkeffects/environment/props/stovetop_apt_a_fx_mesh_00.cgf" InitAngles="x=90,y=15"/>
+  <Childs>
+   <Particles Name="childeFlames_00">
+    <Params SpawnIndirection="ParentStart" Count="20" Continuous="true" ParticleLifeTime="0.1" AttachType="Render" FocusGravityDir="true" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Material="Materials/ArkEffects/Environment/Props/StoveTop_BlueFlame_00" Alpha="ParticleAge=(;t=0.5,v=0.82;t=1)" Size="0.01,Random=0.108,ParticleAge=(v=0.706;t=1,v=1)" NonUniformScale="true,YAxisScale=(1.02,Random=0.153,ParticleAge=(v=0.82;t=1,v=1))" PivotY="1" Stretch="0.1,Random=0.458" MinPixels="0.2" GravityScale="-0.1"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Environment.Props.Faucet.BathroomCrew_00">
+  <Params Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="8" PositionOffset="y=0.1275,z=0.025" FocusAzimuth="144" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Color="(y=0.019382363,z=0.019382363)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.001" MinPixels="0.1"/>
+  <Childs>
+   <Particles Name="Body_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="40,EmitterStrength=(v=1;t=0.827,v=1;t=1)" EmitterLifeTime="7.5" ParticleLifeTime="0.3,Random=0.1" PositionOffset="z=-0.2" FocusAngle="90" EmitAngle="65.6,Random=0.42" Facing="Camera" TextureTiling="FlipChance=0.5" Material="Materials/ArkEffects/Environment/WaterFoam_00" SoftParticle="true,Softness=0.414" Alpha="1.5,Random=0.08,ParticleAge=(flags=32;t=0.08,v=1;t=0.376,v=1;t=1)" Color="(y=1,z=1)" Size="0.02,Random=0.2,ParticleAge=(v=0.067;t=1,v=1)" Stretch="0.1,ParticleAge=(v=1;t=0.71,v=1;t=1)" Speed="0.2,Random=1.238" AirResistance="WindScale=0" GravityScale="Random=1.107" RandomAngles="x=180,y=180,z=180"/>
+   </Particles>
+   <Particles Name="Splash_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="30,EmitterStrength=(v=1;t=0.83,v=1;t=0.996)" EmitterLifeTime="7.5" ParticleLifeTime="0.35,Random=0.367" FocusAngle="90" EmitAngle="Random=0.058" Facing="Camera" OrientToVelocity="true" TextureTiling="FlipChance=0.5" Material="Materials/ArkEffects/Environment/WaterFoam_00" Alpha="Random=0.2,ParticleAge=(flags=32;t=0.08,v=1;t=0.6,v=1;t=1)" Color="(y=1,z=1)" Size="0.011,Random=0.373,EmitterStrength=(v=1;t=0.75,v=1;t=1,v=0.25),ParticleAge=(v=0.592;t=1,v=1)" Stretch="0.037,ParticleAge=(v=1;t=0.835,v=1;t=0.996)" MinPixels="0" AirResistance="WindScale=0" GravityScale="0.5,Random=0.5" RandomAngles="y=180"/>
+   </Particles>
+   <Particles Name="AirBubbles_00">
+    <Params Enabled="false" Count="10,Random=0.2,EmitterStrength=(v=1;t=0.663,v=1;t=1)" Continuous="true" EmitterLifeTime="6" ParticleLifeTime="1.2,Random=0.2" PositionOffset="z=1.2" RandomOffset="x=0.05,y=0.05" FocusAngle="90" EmitAngle="0.1" TextureTiling="TilesX=7,TilesY=7,AnimFramesCount=30,AnimFramerate=15,AnimCycle=Loop" Material="Materials/ArkEffects/Temporary/Deformation_12" SoftParticle="true,Softness=0.175" Alpha="0.483,ParticleAge=(v=1;t=0.91,v=1;t=1)" Size="0.03,Random=0.6" Speed="0.5,Random=0.25" Turbulence3DSpeed="0.1,Random=0.75" MoveRelativeEmitter="true" RandomAngles="y=90"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Environment.Props.Faucet.Bar_Sink_Tap_00">
+  <Params Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="8" PositionOffset="y=-0.14,z=0.5" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Color="(y=0.019382363,z=0.019382363)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.001" MinPixels="0.1"/>
+  <Childs>
+   <Particles Name="BaseSplash_00">
+    <Params Count="10,EmitterStrength=(v=1;t=0.827,v=1;t=1)" Continuous="true" EmitterLifeTime="5.5" ParticleLifeTime="0.45,Random=0.1" PositionOffset="y=-0.35,z=0.975" FocusAngle="90" EmitAngle="50,Random=0.058" TextureTiling="TilesX=4,TilesY=2,AnimFramesCount=8,AnimFramerate=16,AnimCycle=Loop,AnimBlend=true,FlipChance=0.5,AnimCurve=(;t=1,v=1,flags=4)" Material="Materials/particle/liquid/liquid_small" SoftParticle="Softness=0" Alpha="0.8,Random=0.1,ParticleAge=(;t=0.047,v=1,flags=4;t=0.753,v=1;t=1,flags=4)" AlphaClip="SourceMin=(Max=0.5)" DiffuseBacklighting="1" ReceiveShadows="true" Size="0.04,Random=0.1,ParticleAge=(v=0.16;t=0.663,v=1)" Stretch="0.05" Speed="0.14,Random=0.2" AirResistance="WindScale=0" GravityScale="0.3,Random=0.1,ParticleAge=(t=0.216;t=1,v=1,flags=4)" RandomAngles="x=180,y=180,z=180"/>
+   </Particles>
+   <Particles Name="MainFlow_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="8,EmitterStrength=(v=1;t=0.83,v=1;t=0.996)" EmitterLifeTime="7.5" ParticleLifeTime="0.5,Random=0.1" PositionOffset="y=-0.2,z=0.73" FocusAngle="90" EmitAngle="Random=0.058" Facing="Camera" OrientToVelocity="true" TextureTiling="TilesX=3,VariantCount=3" Material="Materials/particle/liquid/liquid_impact" Alpha="Random=0.1,ParticleAge=(flags=32;t=0.08,v=1;t=0.6,v=1;t=1)" Color="(y=1,z=1)" EmissiveLighting="0" Size="0.055,Random=0.373,EmitterStrength=(v=1;t=0.75,v=1;t=1,v=0.25),ParticleAge=(v=0.82,flags=32;t=0.25,v=1;t=0.32,v=0.48,flags=4)" Aspect="0.5" PivotY="0.25" Stretch="0.45,ParticleAge=(v=1;t=0.835,v=1;t=1,v=0.48)" MinPixels="0" AirResistance="WindScale=0" GravityScale="0.55,Random=0.5,ParticleAge=(v=0.455,flags=32;t=0.086,v=1;t=1,v=1)" RandomAngles="y=10"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Environment.Props.Faucet.Bar_Tap_00">
+  <Params Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="8" PositionOffset="y=-0.014,z=0.1975" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Color="(y=0.019382363,z=0.019382363)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.001" MinPixels="0.1"/>
+  <Childs>
+   <Particles Name="BaseSplash_00">
+    <Params Count="10,EmitterStrength=(v=1;t=0.827,v=1;t=1)" Continuous="true" EmitterLifeTime="5.5" ParticleLifeTime="0.45,Random=0.1" PositionOffset="y=-0.025,z=0.015" FocusAngle="90" EmitAngle="50,Random=0.058" TextureTiling="TilesX=4,TilesY=2,AnimFramesCount=8,AnimFramerate=16,AnimCycle=Loop,AnimBlend=true,FlipChance=0.5,AnimCurve=(;t=1,v=1,flags=4)" Material="Materials/particle/liquid/liquid_small" SoftParticle="Softness=0" Alpha="0.8,Random=0.1,ParticleAge=(;t=0.047,v=1,flags=4;t=0.753,v=1;t=1,flags=4)" AlphaClip="SourceMin=(Max=0.5)" DiffuseBacklighting="1" ReceiveShadows="true" Size="0.04,Random=0.1,ParticleAge=(v=0.16;t=0.663,v=1)" Stretch="0.05" Speed="0.14,Random=0.2" AirResistance="WindScale=0" GravityScale="0.3,Random=0.1,ParticleAge=(t=0.216;t=1,v=1,flags=4)" RandomAngles="x=180,y=180,z=180"/>
+   </Particles>
+   <Particles Name="MainFlow_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="8,EmitterStrength=(v=1;t=0.83,v=1;t=0.996)" EmitterLifeTime="7.5" ParticleLifeTime="0.5,Random=0.1" PositionOffset="x=-0.002,z=0.1925" FocusAngle="90" EmitAngle="Random=0.058" Facing="Camera" OrientToVelocity="true" TextureTiling="TilesX=3,VariantCount=3" Material="Materials/particle/liquid/liquid_impact" Alpha="Random=0.1,ParticleAge=(flags=32;t=0.08,v=1;t=0.6,v=1;t=1)" Color="(y=1,z=1)" EmissiveLighting="0" Size="0.055,Random=0.373,EmitterStrength=(v=1;t=0.75,v=1;t=1,v=0.25),ParticleAge=(v=0.82,flags=32;t=0.25,v=1;t=0.32,v=0.48,flags=4)" Aspect="0.5" PivotY="0.25" Stretch="0.45,ParticleAge=(v=1;t=0.835,v=1;t=1,v=0.48)" MinPixels="0" AirResistance="WindScale=0" GravityScale="0.55,Random=0.5,ParticleAge=(v=0.455,flags=32;t=0.086,v=1;t=1,v=1)" RandomAngles="y=10"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Environment.Props.Faucet.DoubleFaucet_00">
+  <Params Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="8" PositionOffset="y=0.095,z=-0.015" FocusAzimuth="144" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Color="(y=0.019382363,z=0.019382363)" DiffuseBacklighting="1" EmissiveLighting="1" ReceiveShadows="true" Size="0.001" MinPixels="0.1"/>
+  <Childs>
+   <Particles Name="Splashing_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="5,EmitterStrength=(v=1;t=0.827,v=1;t=1)" SpawnDelay="0.3" EmitterLifeTime="7.5" ParticleLifeTime="0.3,Random=0.1" PositionOffset="z=-0.3" FocusAngle="90" FocusAzimuth="0" EmitAngle="20,Random=0.42" Facing="Camera" TextureTiling="TilesX=8,TilesY=4,AnimFramesCount=32,FlipChance=0.5" Material="Materials/particle/liquid/liquid_medium" SoftParticle="true,Softness=0.414" Alpha="1.5,Random=0.08,ParticleAge=(flags=32;t=0.08,v=1;t=0.376,v=1;t=1)" Color="(y=1,z=1)" Size="0.08,Random=0.2,ParticleAge=(v=0.067;t=1,v=1)" Stretch="0.098,ParticleAge=(v=1;t=0.71,v=1;t=1)" Speed="0.35,Random=1.238" AirResistance="WindScale=0" GravityScale="0.2,Random=1.107" RandomAngles="x=180,y=180,z=180"/>
+   </Particles>
+   <Particles Name="MainStream_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="30,EmitterStrength=(v=1;t=0.83,v=1;t=0.996)" EmitterLifeTime="7.5" ParticleLifeTime="0.45,Random=0.367" FocusAngle="90" EmitAngle="Random=0.058" Facing="Camera" OrientToVelocity="true" TextureTiling="FlipChance=0.5" Material="Materials/particle/liquid/liquid_impact" Alpha="Random=0.2,ParticleAge=(flags=32;t=0.08,v=1;t=0.6,v=1;t=1)" Color="(y=1,z=1)" Size="0.011,Random=0.373,EmitterStrength=(v=1;t=0.75,v=1;t=1,v=0.25),ParticleAge=(v=0.592;t=1,v=1)" Stretch="0.037,ParticleAge=(v=1;t=0.835,v=1;t=0.996)" MinPixels="0" AirResistance="WindScale=0" GravityScale="0.5,Random=0.5" RandomAngles="y=180"/>
+   </Particles>
+   <Particles Name="AirBubbles_00">
+    <Params Enabled="false" Count="10,Random=0.2,EmitterStrength=(v=1;t=0.663,v=1;t=1)" Continuous="true" EmitterLifeTime="6" ParticleLifeTime="1.2,Random=0.2" PositionOffset="z=1.2" RandomOffset="x=0.05,y=0.05" FocusAngle="90" EmitAngle="0.1" TextureTiling="TilesX=7,TilesY=7,AnimFramesCount=30,AnimFramerate=15,AnimCycle=Loop" Material="Materials/ArkEffects/Temporary/Deformation_12" SoftParticle="true,Softness=0.175" Alpha="0.483,ParticleAge=(v=1;t=0.91,v=1;t=1)" Size="0.03,Random=0.6" Speed="0.5,Random=0.25" Turbulence3DSpeed="0.1,Random=0.75" MoveRelativeEmitter="true" RandomAngles="y=90"/>
+   </Particles>
+   <Particles Name="puddle">
+    <Params Count="2" Continuous="true" SpawnDelay="0.3" EmitterLifeTime="7.5" ParticleLifeTime="0.3" PositionOffset="y=0.2,z=-0.32" Facing="Free" Material="Materials/particle/liquid/liquid_pool" Alpha="ParticleAge=(;t=0.506,v=0.5;t=1)" ReceiveShadows="true" Size="0.15,ParticleAge=(v=0.52;t=1,v=1)" InitAngles="x=90,z=45" RandomAngles="z=20"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Recycler.RecyclerOff">
+  <Params Count="1" Continuous="true" ParticleLifeTime="0.5" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" DiffuseLighting="10" DiffuseBacklighting="1" EmissiveLighting="10" Size="0.1" InitAngles="x=90,y=90"/>
+  <Childs>
+   <Particles Name="ParentSpinner_00">
+    <Params Enabled="false" Count="15" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="0.5" PulsePeriod="0.5" ParticleLifeTime="1.25" PositionOffset="x=0.1" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" Size="1.5,ParticleAge=(v=0.365,flags=32;t=0.5,v=1;t=1,v=0.5)" Speed="2.8" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=300"/>
+    <Childs>
+     <Particles Name="ChildrenParticles_00">
+      <Params SpawnIndirection="ParentStart" Count="1" Continuous="true" ParticleLifeTime="1.25" RandomOffset="x=0.3,z=0.3" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Material="Objects/ArkEffects/Environment/FXMiscDebris_RecyclerDebris_00" Geometry="objects/arkeffects/environment/fxmiscdebris_collsion_group_00.cgf" GeometryPieces="RandomPiece" Color="Random=0.518,ParticleAge=(t=0.02,v=(x=0.114,y=0.075,z=0.992);t=0.976,v=(x=0.992,y=0.07,z=0.16))" Size="Random=0.2" MinPixels="2" MoveRelativeEmitter="true" RandomAngles="x=180,y=180,z=180" RotationRate="x=300,y=300,z=300" RandomRotationRate="x=200,y=200,z=200"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="GlowingSparks_00">
+    <Params Enabled="false" Count="200" Continuous="true" ParticleLifeTime="1" RandomOffset="x=0.2,y=0.2,z=0.2" FocusAngle="90" FocusAzimuth="270" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" EmissiveLighting="1" Size="0.003,Random=0.584" Stretch="0.007,Random=0.5" MinPixels="0.1" Speed="3" Turbulence3DSpeed="0.21,ParticleAge=(v=1;t=1)"/>
+   </Particles>
+   <Particles Name="ThingLine_00">
+    <Params Count="50" Continuous="true" EmitterLifeTime="0.6" ParticleLifeTime="0.3" PositionOffset="x=-0.05" FocusAngle="90" FocusAzimuth="270" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" EmissiveLighting="1" Size="0.009,Random=0.385,EmitterStrength=(v=1;t=0.486,v=1;t=1,flags=4)" Stretch="0.003,EmitterStrength=(v=1;t=1)" MinPixels="0.1" Speed="10.7" Turbulence3DSpeed="ParticleAge=(v=1;t=1)"/>
+   </Particles>
+   <Particles Name="CapGlow_00">
+    <Params Count="1" EmitterLifeTime="0.3" ParticleLifeTime="0.6" PositionOffset="x=0.15" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="ParticleAge=(v=0.5;t=0.086,v=1;t=0.165,v=0.48;t=0.255,v=1;t=0.33,v=0.48;t=0.42,v=1;t=0.498,v=0.52;t=0.58,v=1;t=0.667,v=0.5;t=0.75,v=1;t=0.83,v=0.5;t=0.918,v=1;t=1)" Size="0.32,ParticleAge=(v=1;t=0.086,v=0.773;t=0.17,v=1;t=0.255,v=0.773;t=0.337,v=1;t=0.42,v=0.725;t=0.5,v=1;t=0.584,v=0.725;t=0.663,v=1;t=0.753,v=0.725;t=0.83,v=1;t=0.918,v=0.706;t=1,v=1)" InitAngles="x=90,y=90"/>
+    <Childs>
+     <Particles Name="endCapLT">
+      <Params Inheritance="Standard" SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="0.3" ParticleLifeTime="0.6" PositionOffset="y=-3.6" FocusAngle="90" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="ParticleAge=(v=0.48;t=0.086,v=1;t=0.165,v=0.48;t=0.255,v=1;t=0.33,v=0.48;t=0.42,v=1;t=0.498,v=0.52;t=0.58,v=1;t=0.667,v=0.5;t=0.75,v=1;t=0.83,v=0.5;t=0.918,v=1;t=1)" Size="0.32,ParticleAge=(v=1;t=0.086,v=0.773;t=0.17,v=1;t=0.255,v=0.773;t=0.337,v=1;t=0.42,v=0.725;t=0.5,v=1;t=0.584,v=0.725;t=0.663,v=1;t=0.753,v=0.725;t=0.83,v=1;t=0.918,v=0.706;t=1,v=1)"/>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="CapGlow_01">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="0.15" ParticleLifeTime="0.2" PositionOffset="x=-3" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="ParticleAge=(;t=0.145,v=1;t=0.65,v=1;t=1)" Size="0.284,ParticleAge=(v=1;t=0.498,v=0.725;t=1,v=1)" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="parentSpinner">
+    <Params Count="1" SpawnDelay="0.02" EmitterLifeTime="1" ParticleLifeTime="0.65" PositionOffset="x=-0.05" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" Alpha="ParticleAge=(v=1;t=0.84,v=1;t=1,flags=4)" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.425,ParticleAge=(v=1;t=0.796,v=1;t=1,flags=4)" InitAngles="z=90" RotationRate="y=360" CameraDistanceOffset="-0.05" SortOffset="5"/>
+    <Childs>
+     <Particles Name="StreakGlowLeft">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="5" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="1" ParticleLifeTime="0.5,Random=0.15" PositionOffset="x=0.5" RandomOffset="x=0.5" Facing="CameraX" OrientToVelocity="true" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" Material="Materials/ArkEffects/Interactables/RecyclerLightStreakGlow" SoftParticle="true" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="1.5" NonUniformScale="true,XAxisScale=(0.25,Random=0.15,ParticleAge=(v=1;t=0.1,v=1;t=1,flags=4)),YAxisScale=(2,ParticleAge=(flags=32;t=1,v=1))" PivotY="0.3" Speed="0.5" MoveRelativeEmitter="true" SortOffset="4"/>
+     </Particles>
+     <Particles Name="streaksGlowRight">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="5" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="1" ParticleLifeTime="0.5,Random=0.15" PositionOffset="x=0.5,y=7" RandomOffset="x=0.5" Facing="CameraX" OrientToVelocity="true" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" Material="Materials/ArkEffects/Interactables/RecyclerLightStreakGlow" SoftParticle="true" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="1.5" NonUniformScale="true,XAxisScale=(0.25,Random=0.15,ParticleAge=(v=1;t=0.1,v=1;t=1,flags=4)),YAxisScale=(2,ParticleAge=(flags=32;t=1,v=1))" PivotY="0.3" Speed="0.5" MoveRelativeEmitter="true" InitAngles="y=180" SortOffset="3"/>
+     </Particles>
+     <Particles Name="GlowEdgeCircle">
+      <Params Count="1" SpawnDelay="0.02" EmitterLifeTime="1" ParticleLifeTime="0.65" PositionOffset="x=-3.23" FocusAngle="90" FocusAzimuth="270" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" Alpha="ParticleAge=(v=1;t=0.835,v=1;t=1,flags=4)" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.4,ParticleAge=(v=1;t=0.82,v=1;t=1,flags=4)" InitAngles="z=90" RotationRate="y=360" CameraDistanceOffset="-0.05" SortOffset="5"/>
+     </Particles>
+     <Particles Name="smallPiecesGlow">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="12" Continuous="true" SpawnDelay="0.02" EmitterLifeTime="1" PulsePeriod="0.5" ParticleLifeTime="0.5" PositionOffset="y=-0.5" RandomOffset="x=0.6,z=0.6" OffsetRoundness="1" OffsetInnerFraction="0.5" Texture="textures/arkeffects/player/powers/thermalcylindertiled_displ.tif" TextureTiling="TilesX=8,TilesY=4,AnimFramesCount=32,AnimCycle=Loop" Material="Materials/ArkEffects/Screen/PsiMode/Main/EmissiveShards_02_blue" OctagonalShape="true" Alpha="ParticleAge=(v=1;t=0.643,v=1;t=1)" Color="(x=0.015996294,y=0.4396572,z=0.7835379)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.2,ParticleAge=(v=0.047,flags=32;t=0.224,v=0.84;t=1,v=0.204,flags=4)" Speed="5" MoveRelativeEmitter="true" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=720"/>
+     </Particles>
+     <Particles Name="SmallPiecesRight">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="12" Continuous="true" SpawnDelay="0.1" EmitterLifeTime="1" PulsePeriod="0.5" ParticleLifeTime="0.5" PositionOffset="y=4.8" RandomOffset="x=0.6,z=0.6" OffsetRoundness="1" OffsetInnerFraction="0.5" Texture="textures/arkeffects/player/powers/thermalcylindertiled_displ.tif" TextureTiling="TilesX=8,TilesY=4,AnimFramesCount=32,AnimCycle=Loop" Material="Materials/ArkEffects/Screen/PsiMode/Main/EmissiveShards_02_blue" OctagonalShape="true" Alpha="ParticleAge=(;t=0.467,v=1;t=0.937,v=1;t=1,v=1)" Color="ParticleAge=(t=0.698,v=(x=0.086,y=0.486,z=0.84);t=0.882,v=(x=0.83,y=0.93,z=0.973))" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.15,ParticleAge=(v=0.047;t=1,v=1)" Speed="5.5" MoveRelativeEmitter="true" InitAngles="z=90" RandomAngles="y=180" RotationRate="y=720"/>
+     </Particles>
+     <Particles Name="SingleLightStreakParent">
+      <Params Enabled="false" SpawnIndirection="ParentStart" Count="1" EmitterLifeTime="1" ParticleLifeTime="0.95" PositionOffset="x=0.82,y=0.2" Facing="CameraX" OrientToVelocity="true" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="5" NonUniformScale="true,XAxisScale=0.02,YAxisScale=4.2" PivotY="0.2" Speed="0.05" MoveRelativeEmitter="true" SortOffset="4"/>
+      <Childs>
+       <Particles Name="StreakTrailChild">
+        <Params SpawnIndirection="ParentStart" Count="20" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="0.5" PositionOffset="z=-0.05" FocusAngle="90" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/glowbase_01_diff.tif" Color="ParticleAge=(t=0.04,v=(x=0.008,y=0.208,z=0.435);t=0.584,v=(x=0.008,y=0.008,z=0.286))" DiffuseBacklighting="1" EmissiveLighting="5" NonUniformScale="true,XAxisScale=(0.02,ParticleAge=(v=1,flags=32;t=1)),YAxisScale=(2,ParticleAge=(v=1,flags=32;t=1))" PivotY="0.5" Speed="0.01" SortOffset="4"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.InnerRing_01">
+  <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="5" Facing="Free" Geometry="objects/arkeffects/utilities/primitivering_00.cgf" Size="0.4" NonUniformScale="true,ZAxisScale=3" MoveRelativeEmitter="true" InitAngles="y=90"/>
+  <Childs>
+   <Particles Name="LaserBeam_00">
+    <Params Count="30" Continuous="true" EmitterLifeTime="2" ParticleLifeTime="0.1,EmitterStrength=(v=1;t=0.957,v=1;t=0.976)" PositionOffset="y=0.45" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/blast_glow_01.tif" Color="(y=0.038204376,z=0.038204376)" DiffuseBacklighting="1" EmissiveLighting="10" Size="0.01" NonUniformScale="true,YAxisScale=1.5" Speed="-4.2" MoveRelativeEmitter="true" CollideStaticObjects="true"/>
+   </Particles>
+   <Particles Name="LaserBeam_01">
+    <Params Count="30" Continuous="true" EmitterLifeTime="2" ParticleLifeTime="0.1,EmitterStrength=(v=1;t=0.953,v=1;t=0.973)" PositionOffset="y=-0.27,z=0.32" FocusAngle="132.4" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/blast_glow_01.tif" Color="(y=0.038204376,z=0.038204376)" DiffuseBacklighting="1" EmissiveLighting="10" Size="0.01" NonUniformScale="true,YAxisScale=1.5" Speed="-4.2" MoveRelativeEmitter="true" CollideStaticObjects="true"/>
+   </Particles>
+   <Particles Name="LaserBeam_02">
+    <Params Count="30" Continuous="true" EmitterLifeTime="2" ParticleLifeTime="0.1,EmitterStrength=(v=1;t=0.957,v=1;t=0.976)" PositionOffset="y=-0.27,z=-0.33" FocusAngle="131" FocusAzimuth="180" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/blast_glow_01.tif" Color="(y=0.038204376,z=0.038204376)" DiffuseBacklighting="1" EmissiveLighting="10" Size="0.01" NonUniformScale="true,YAxisScale=1.5" Speed="-4.2" MoveRelativeEmitter="true" CollideStaticObjects="true"/>
+   </Particles>
+   <Particles Name="CenteGlow_00">
+    <Params Count="10" Continuous="true" EmitterLifeTime="1.85" ParticleLifeTime="0.25,Random=0.638" BlendType="Additive" Texture="textures/arkeffects/weapon/muzzle_flare_01.tif" Color="ParticleAge=(t=0.016;t=0.224,v=(x=0.973,y=0.545,z=0.192);t=0.953,v=(x=0.957,y=0.45,z=0.098))" DiffuseBacklighting="1" EmissiveLighting="1" LightSource="Radius=1.5,Intensity=(2,ParticleAge=(flags=32;t=0.494,v=1;t=0.984)),Attenuation=0.066" Size="0.075,Random=0.697,ParticleAge=(v=0.09;t=1,v=1)" MoveRelativeEmitter="true" RandomAngles="x=180,y=180,z=180" CameraDistanceOffset="-0.5"/>
+   </Particles>
+   <Particles Name="SmallSparks_00">
+    <Params Count="50" Continuous="true" EmitterLifeTime="1.85" ParticleLifeTime="0.5" EmitAngle="180,Random=1" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/sparks/multiple_sparks_streaks_00.tif" TextureTiling="TilesX=4,TilesY=2,VariantCount=8" Material="Materials/ArkEffects/Interactables/FabricatorSparks_00" Color="ParticleAge=(t=0.004;t=0.286,v=(x=1,y=1,z=1);t=0.553,v=(x=0.98,y=0.64,z=0.145);t=0.84,v=(x=0.886,y=0.816,z=0.173);t=0.984)" DiffuseLighting="10" EmissiveLighting="1" Size="0.015,Random=0.163" NonUniformScale="true,YAxisScale=(ParticleAge=(v=1;t=1,v=0.275,flags=4))" Stretch="0.01" MinPixels="0.01" Speed="2,Random=0.596" GravityScale="1,Random=0.472" PhysicsType="SimpleCollision" CollideStaticObjects="true" MaxCollisionEvents="2" Elasticity="0.3"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Object.Environment.Props.Faucet.Island_Kitchen_A_Faucet_00">
+  <Params Count="1" Continuous="true" EmitterLifeTime="0.1" ParticleLifeTime="8" PositionOffset="x=1.165,y=0.175,z=0.565" RandomOffset="x=0.01,y=0.01" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Color="(y=0.019382363,z=0.019382363)" DiffuseBacklighting="1" EmissiveLighting="1" Size="0.0015" MinPixels="0.1"/>
+  <Childs>
+   <Particles Name="BaseSplash_00">
+    <Params Count="10,EmitterStrength=(v=1;t=0.827,v=1;t=1)" Continuous="true" EmitterLifeTime="5.5" ParticleLifeTime="0.45,Random=0.1" PositionOffset="x=2.325,z=0.75" FocusAngle="90" EmitAngle="50,Random=0.058" TextureTiling="TilesX=4,TilesY=2,AnimFramesCount=8,AnimFramerate=16,AnimCycle=Loop,AnimBlend=true,FlipChance=0.5,AnimCurve=(;t=1,v=1,flags=4)" Material="Materials/particle/liquid/liquid_small" SoftParticle="Softness=0" Alpha="0.8,Random=0.1,ParticleAge=(;t=0.047,v=1,flags=4;t=0.753,v=1;t=1,flags=4)" AlphaClip="SourceMin=(Max=0.5)" DiffuseBacklighting="1" ReceiveShadows="true" Size="0.05,Random=0.1,ParticleAge=(v=0.16;t=0.663,v=1)" Stretch="0.05" Speed="0.14,Random=0.2" AirResistance="WindScale=0" GravityScale="0.3,Random=0.1,ParticleAge=(t=0.216;t=1,v=1,flags=4)" RandomAngles="x=180,y=180,z=180"/>
+   </Particles>
+   <Particles Name="MainFlow_00">
+    <Params Inheritance="Parent" SpawnIndirection="ParentStart" Count="10,EmitterStrength=(v=1;t=0.83,v=1;t=0.996)" EmitterLifeTime="7.5" ParticleLifeTime="0.5,Random=0.1" PositionOffset="y=-0.2,z=0.73" FocusAngle="90" EmitAngle="Random=0.058" Facing="Camera" OrientToVelocity="true" TextureTiling="TilesX=3,VariantCount=3" Material="Materials/particle/liquid/liquid_impact" Alpha="Random=0.1,ParticleAge=(flags=32;t=0.08,v=1;t=0.6,v=1;t=1)" Color="(y=1,z=1)" EmissiveLighting="0" Size="0.055,Random=0.373,EmitterStrength=(v=1;t=0.75,v=1;t=1,v=0.25),ParticleAge=(v=0.82,flags=32;t=0.25,v=1;t=0.32,v=0.48,flags=4)" Aspect="0.5" PivotY="0.25" Stretch="0.45,ParticleAge=(v=1;t=0.835,v=1;t=1,v=0.48)" MinPixels="0" AirResistance="WindScale=0" GravityScale="0.55,Random=0.5,ParticleAge=(v=0.455,flags=32;t=0.086,v=1;t=1,v=1)" RandomAngles="y=10"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.FirstRing_00">
+  <Childs>
+   <Particles Name="Circle_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="2.25" Facing="Free" Texture="textures/arkeffects/glows/solidglow_alpha_00.tif" Material="Materials/ArkEffects/Environment/Props/FabrictorGlow_00" OctagonalShape="true" Alpha="0.196,ParticleAge=(;t=0.1,v=1;t=0.894,v=1;t=1)" AlphaClip="SourceMin=(Min=0.5,Max=0.001),SourceWidth=(Min=0.1,Max=0.1)" DiffuseBacklighting="1" Size="0.45" MoveRelativeEmitter="true" InitAngles="z=90" RotationRate="y=2500"/>
+   </Particles>
+   <Particles Name="JetSmoke_00">
+    <Params Count="30" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="0.35" PositionOffset="y=0.4" FocusAngle="125" FocusAzimuth="90" EmitAngle="15" TextureTiling="TilesX=2,TilesY=2,VariantCount=4,FlipChance=0.5" Material="Materials/ArkEffects/Interactables/FabricatorSmoke_00" OctagonalShape="true" SoftParticle="true,Softness=0.261" Alpha="ParticleAge=(;t=0.082,v=1;t=0.525,v=1;t=1)" AlphaClip="Scale=(Max=0.5),SourceMin=(Min=0.8,Max=0.1)" DiffuseBacklighting="0.524" EmissiveLighting="0.65" Size="0.112,ParticleAge=(v=0.365;t=1,v=1)" Stretch="0.133" Speed="2" AirResistance="3.22,WindScale=0" Turbulence3DSpeed="1.47" MoveRelativeEmitter="true,IgnoreRotation=true" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=100"/>
+   </Particles>
+   <Particles Name="JetSmoke_01">
+    <Params Count="30" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="0.35" PositionOffset="y=-0.4" FocusAngle="63" FocusAzimuth="90" EmitAngle="15" TextureTiling="TilesX=2,TilesY=2,VariantCount=4,FlipChance=0.5" Material="Materials/ArkEffects/Interactables/FabricatorSmoke_00" OctagonalShape="true" SoftParticle="true,Softness=0.261" Alpha="ParticleAge=(;t=0.082,v=1;t=0.525,v=1;t=1)" AlphaClip="Scale=(Max=0.5),SourceMin=(Min=0.8,Max=0.1)" DiffuseBacklighting="0.524" EmissiveLighting="0.65" Size="0.112,ParticleAge=(v=0.365;t=1,v=1)" Stretch="0.056" Speed="2" AirResistance="3.22,WindScale=0" Turbulence3DSpeed="1.47" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=100"/>
+   </Particles>
+   <Particles Name="JetSmoke_02">
+    <Params Count="30" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="0.35" PositionOffset="z=0.4" FocusAngle="90" FocusAzimuth="125" EmitAngle="15" TextureTiling="TilesX=2,TilesY=2,VariantCount=4,FlipChance=0.5" Material="Materials/ArkEffects/Interactables/FabricatorSmoke_00" OctagonalShape="true" SoftParticle="true,Softness=0.261" Alpha="ParticleAge=(;t=0.082,v=1;t=0.525,v=1;t=1)" AlphaClip="Scale=(Max=0.5),SourceMin=(Min=0.8,Max=0.1)" DiffuseBacklighting="0.524" EmissiveLighting="0.65" Size="0.112,ParticleAge=(v=0.365;t=1,v=1)" Stretch="0.056" Speed="2" AirResistance="3.22,WindScale=0" Turbulence3DSpeed="1.47" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=100"/>
+   </Particles>
+   <Particles Name="JetSmoke_03">
+    <Params Count="30" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="0.35" PositionOffset="z=-0.4" FocusAngle="90" FocusAzimuth="63" EmitAngle="15" TextureTiling="TilesX=2,TilesY=2,VariantCount=4,FlipChance=0.5" Material="Materials/ArkEffects/Interactables/FabricatorSmoke_00" OctagonalShape="true" SoftParticle="true,Softness=0.261" Alpha="ParticleAge=(;t=0.082,v=1;t=0.525,v=1;t=1)" AlphaClip="Scale=(Max=0.5),SourceMin=(Min=0.8,Max=0.1)" DiffuseBacklighting="0.524" EmissiveLighting="0.65" Size="0.112,ParticleAge=(v=0.365;t=1,v=1)" Stretch="0.056" Speed="2" AirResistance="3.22,WindScale=0" Turbulence3DSpeed="1.47" MoveRelativeEmitter="true" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=100"/>
+   </Particles>
+   <Particles Name="JetSmokeCenter">
+    <Params Count="60" Continuous="true" EmitterLifeTime="1" ParticleLifeTime="3,Random=0.45" RandomOffset="x=0.2,y=0.2,z=0.2" EmitAngle="17.7,Random=0.232" TextureTiling="TilesX=2,TilesY=2,VariantCount=4,FlipChance=0.5" Material="Materials/ArkEffects/Interactables/FabricatorSmoke_00" OctagonalShape="true" SoftParticle="true,Softness=0.185" Alpha="EmitterStrength=(;t=0.14,v=1;t=1,v=1),ParticleAge=(;t=0.145,v=1;t=0.525,v=1;t=1)" AlphaClip="Scale=(Max=0.5),SourceMin=(Min=0.8,Max=0.1)" Color="(x=0.6307573,y=0.6307573,z=0.6307573),Random=0.62" DiffuseLighting="0.658" DiffuseBacklighting="0.389" EmissiveLighting="0.81" Size="0.65,Random=0.328,ParticleAge=(v=0.5;t=1,v=1)" Speed="Random=0.618" AirResistance="3,ParticleAge=(v=1;t=0.45,v=0.455),RotationalDragScale=0.247,WindScale=0" GravityScale="-0.02,Random=0.831" Turbulence3DSpeed="0.15,Random=0.356" RandomAngles="y=180" RotationRate="y=20" RandomRotationRate="y=100" CameraDistanceOffset="-0.2" FillRateCost="2" SortQuality="1"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Recycler.IdleEffect_00">
+  <Params/>
+  <Childs>
+   <Particles Name="CapGlow_00">
+    <Params Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=2,y=-0.22,z=1.84" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="0.25,ParticleAge=(;t=0.086,v=1;t=0.918,v=1;t=1)" Size="0.32" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="P_Help">
+    <Params Enabled="false" Count="1" Continuous="true" ParticleLifeTime="0.1" PositionOffset="y=-0.22,z=1.84" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Size="3.75" NonUniformScale="true,YAxisScale=0.1"/>
+   </Particles>
+   <Particles Name="CapGlow_01">
+    <Params Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=-1.74,y=-0.22,z=1.84" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="0.25,ParticleAge=(;t=0.086,v=1;t=0.918,v=1;t=1)" Size="0.32" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="RingGlow_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=1.72,y=-0.22,z=1.84" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.4" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="RingGlow_01">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=-1.48,y=-0.22,z=1.84" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.4" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="SoftGlow_00">
+    <Params Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=1.92,y=-0.22,z=1.84" FocusAngle="90" FocusAzimuth="270" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/tempbeam_cruciform.tif" TextureTiling="TilesX=2,FirstTile=1" SoftParticle="true,Softness=0.2" Alpha="0.371,ParticleAge=(;t=0.506,v=1;t=1)" Color="(x=0.6038275,y=0.6038275,z=0.6038275),ParticleAge=(v=(x=0.094,y=0.07,z=0.28);t=0.525,v=(x=0.06,y=0.118,z=0.333);t=0.973,v=(x=0.098,y=0.07,z=0.28))" EmissiveLighting="1" Size="1.515" NonUniformScale="true,YAxisScale=1.36" PivotY="0.432" Speed="0.001" InitAngles="x=90"/>
+   </Particles>
+   <Particles Name="SingleLight_00">
+    <Params Count="2" Continuous="true" ParticleLifeTime="2" PositionOffset="z=2.14" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" Color="(x=0.6038275,y=0.6038275,z=0.6038275),ParticleAge=(v=(x=0.094,y=0.07,z=0.28);t=0.494,v=(x=0.06,y=0.118,z=0.333);t=0.973,v=(x=0.098,y=0.07,z=0.28))" EmissiveLighting="1" LightSource="AffectsThisAreaOnly=true,Radius=2.2,Intensity=(2,ParticleAge=(;t=0.5,v=1;t=1)),Attenuation=0,SpecularMultiplier=1" Size="0.1"/>
+   </Particles>
+   <Particles Name="SoftGlow_01">
+    <Params Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=-1.6,y=-0.22,z=1.84" FocusAngle="90" FocusAzimuth="90" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/tempbeam_cruciform.tif" TextureTiling="TilesX=2,FirstTile=1" SoftParticle="true,Softness=0.2" Alpha="0.371,ParticleAge=(;t=0.506,v=1;t=1)" Color="(x=0.6038275,y=0.6038275,z=0.6038275),ParticleAge=(v=(x=0.094,y=0.07,z=0.28);t=0.525,v=(x=0.06,y=0.118,z=0.333);t=0.973,v=(x=0.098,y=0.07,z=0.28))" EmissiveLighting="1" Size="1.515" NonUniformScale="true,YAxisScale=1.36" PivotY="0.432" Speed="0.001" InitAngles="x=-90"/>
+   </Particles>
+   <Particles Name="DustMoats_00">
+    <Params Count="30" Continuous="true" ParticleLifeTime="3.5" PositionOffset="z=1.84" RandomOffset="x=2,y=0.2,z=0.35" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Alpha="Random=0.35,ParticleAge=(flags=32;t=0.16,v=1;t=0.706,v=1;t=1)" EmissiveLighting="0.1" Size="0.01,Random=0.25" MinPixels="0.01" AirResistance="4.41,RotationalDragScale=0,WindScale=0" GravityScale="0.05,Random=2" Turbulence3DSpeed="0.2,Random=0.5"/>
+   </Particles>
+   <Particles Name="Sound">
+    <Params StartTrigger="Play_Coral_LP_01" AudioDistanceCutoff="true"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="OperatorDispenser.Idle_00">
+  <Childs>
+   <Particles Name="P_Help_00">
+    <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.1" PositionOffset="x=-0.02,y=-0.05,z=1.35" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" EmissiveLighting="1" InitAngles="x=90"/>
+   </Particles>
+   <Particles Name="P_Help_01">
+    <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.1" PositionOffset="x=-0.02,y=-0.03,z=2.9" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" EmissiveLighting="1" InitAngles="x=90"/>
+   </Particles>
+   <Particles Name="BasePlateLower_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="4.5" Facing="Free" Texture="textures/arkeffects/utilities/solid_gray.tif" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlowParticle_00" Alpha="ParticleAge=(;t=0.11,v=1;t=0.83,v=1;t=1)" DiffuseLighting="0" NonUniformScale="true,XAxisScale=0.6,YAxisScale=0.3" MoveRelativeEmitter="true"/>
+    <Childs>
+     <Particles Name="SquareMesh_00">
+      <Params Enabled="false" Count="1" ParticleLifeTime="4.85" PositionOffset="y=-0.05" Facing="Free" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlow_00" Geometry="Objects/ArkEffects/Gameplay/Fabricator/fabricatorglowmesh_00.cgf" NoOffset="true" Alpha="0.497,ParticleAge=(;t=0.11,v=1;t=0.792,v=1;t=1)" Color="ParticleAge=(t=0.047,v=(x=1,y=0.02,z=0.02);t=0.925,v=(x=0.024,y=0.26,z=0.95))" NonUniformScale="true,XAxisScale=1.2,YAxisScale=0.61,ZAxisScale=0.6" MoveRelativeEmitter="true" InitAngles="x=-90"/>
+     </Particles>
+     <Particles Name="GravPad_01">
+      <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_01.tif" SoundControlTime="EmitterPulsePeriod" Size="0.1" Speed="-0.2" MoveRelativeEmitter="true"/>
+      <Childs>
+       <Particles Name="Part_00">
+        <Params Count="4" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.015,y=0.185,z=1.36" FocusAngle="90" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_00.tif" Alpha="0.5,ParticleAge=(v=1,flags=32;t=1)" Color="(x=0.09084172,y=0.27049783,z=0.2961383),ParticleAge=(t=0.027,v=(x=0.64,y=0.98,z=0.816);t=0.482,v=(x=0.808,y=0.48,z=0.98);t=0.957,v=(x=0.498,y=0.965,z=0.475))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.1,Random=0.1,EmitterStrength=(v=1;t=0.88,v=1;t=1)" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Part_01">
+        <Params Count="2" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.015,y=0.185,z=1.36" FocusAngle="90" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_02.tif" Alpha="0.792,ParticleAge=(t=0.23,v=1;t=1)" Color="(x=0.08865559,y=0.3005438,z=0.37626216),ParticleAge=(t=0.04,v=(x=0.992,y=0.576,z=0.898);t=0.494,v=(x=0.8,y=0.573,z=0.98);t=0.937,v=(x=0.553,y=0.992,z=0.847))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.02,Random=0.35" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Refreaction_00">
+        <Params Count="2" Continuous="true" ParticleLifeTime="0.1" PositionOffset="x=-0.015,y=0.185,z=1.36" OrientToVelocity="true" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.8,Random=0.535,ParticleAge=(v=1;t=1)" Size="0.25" MinPixels="1" Speed="Random=0.418" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.368"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="GravPad_02">
+      <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_01.tif" SoundControlTime="EmitterPulsePeriod" Size="0.1" Speed="-0.2" MoveRelativeEmitter="true"/>
+      <Childs>
+       <Particles Name="Part_00">
+        <Params Count="4" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.005,y=-0.26,z=1.36" FocusAngle="90" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_00.tif" Alpha="0.5,ParticleAge=(v=1,flags=32;t=1)" Color="(x=0.09084172,y=0.27049783,z=0.2961383),ParticleAge=(t=0.027,v=(x=0.64,y=0.98,z=0.816);t=0.482,v=(x=0.808,y=0.48,z=0.98);t=0.957,v=(x=0.498,y=0.965,z=0.475))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.1,Random=0.1,EmitterStrength=(v=1;t=0.88,v=1;t=1)" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Part_01">
+        <Params Count="2" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.005,y=-0.26,z=1.36" FocusAngle="90" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_02.tif" Alpha="0.792,ParticleAge=(t=0.23,v=1;t=1)" Color="(x=0.08865559,y=0.3005438,z=0.37626216),ParticleAge=(t=0.04,v=(x=0.992,y=0.576,z=0.898);t=0.494,v=(x=0.8,y=0.573,z=0.98);t=0.937,v=(x=0.553,y=0.992,z=0.847))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.02,Random=0.35" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Refreaction_00">
+        <Params Count="2" Continuous="true" ParticleLifeTime="0.1" PositionOffset="x=-0.005,y=-0.26,z=1.36" OrientToVelocity="true" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.8,Random=0.535,ParticleAge=(v=1;t=1)" Size="0.3" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.368"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="BasePlateUpper_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" ParticleLifeTime="4.5" Facing="Free" Texture="textures/arkeffects/utilities/solid_gray.tif" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlowParticle_00" Alpha="ParticleAge=(;t=0.11,v=1;t=0.83,v=1;t=1)" DiffuseLighting="0" NonUniformScale="true,XAxisScale=0.6,YAxisScale=0.3" MoveRelativeEmitter="true"/>
+    <Childs>
+     <Particles Name="SquareMesh_00">
+      <Params Enabled="false" Count="1" ParticleLifeTime="4.85" PositionOffset="y=-0.05" Facing="Free" Material="Materials/ArkEffects/Interactables/FabricatorBaseGlow_00" Geometry="Objects/ArkEffects/Gameplay/Fabricator/fabricatorglowmesh_00.cgf" NoOffset="true" Alpha="0.497,ParticleAge=(;t=0.11,v=1;t=0.792,v=1;t=1)" Color="ParticleAge=(t=0.047,v=(x=1,y=0.02,z=0.02);t=0.925,v=(x=0.024,y=0.26,z=0.95))" NonUniformScale="true,XAxisScale=1.2,YAxisScale=0.61,ZAxisScale=0.6" MoveRelativeEmitter="true" InitAngles="x=-90"/>
+     </Particles>
+     <Particles Name="GravPad_01">
+      <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_01.tif" SoundControlTime="EmitterPulsePeriod" Size="0.1" Speed="-0.2" MoveRelativeEmitter="true"/>
+      <Childs>
+       <Particles Name="Part_00">
+        <Params Count="4" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.01,y=0.19,z=2.89" FocusAngle="90" FocusAzimuth="180" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_00.tif" Alpha="0.5,ParticleAge=(v=1,flags=32;t=1)" Color="(x=0.09084172,y=0.27049783,z=0.2961383),ParticleAge=(t=0.027,v=(x=0.64,y=0.98,z=0.816);t=0.482,v=(x=0.808,y=0.48,z=0.98);t=0.957,v=(x=0.498,y=0.965,z=0.475))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.1,Random=0.1,EmitterStrength=(v=1;t=0.88,v=1;t=1)" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Part_01">
+        <Params Count="2" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.01,y=0.19,z=2.89" FocusAngle="90" FocusAzimuth="180" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_02.tif" Alpha="0.792,ParticleAge=(t=0.23,v=1;t=1)" Color="(x=0.08865559,y=0.3005438,z=0.37626216),ParticleAge=(t=0.04,v=(x=0.992,y=0.576,z=0.898);t=0.494,v=(x=0.8,y=0.573,z=0.98);t=0.937,v=(x=0.553,y=0.992,z=0.847))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.02,Random=0.35" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Refreaction_00">
+        <Params Count="3" Continuous="true" ParticleLifeTime="0.1" PositionOffset="x=-0.01,y=0.19,z=2.89" FocusAngle="90" FocusAzimuth="180" Curvature="0" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.8,Random=0.535,ParticleAge=(v=1;t=1)" Size="0.3" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.368"/>
+       </Particles>
+      </Childs>
+     </Particles>
+     <Particles Name="GravPad_02">
+      <Params Enabled="false" Count="10" Continuous="true" ParticleLifeTime="0.5" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_01.tif" SoundControlTime="EmitterPulsePeriod" Size="0.1" Speed="-0.2" MoveRelativeEmitter="true"/>
+      <Childs>
+       <Particles Name="Part_00">
+        <Params Count="4" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.01,y=-0.25,z=2.89" FocusAngle="90" FocusAzimuth="180" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_00.tif" Alpha="0.5,ParticleAge=(v=1,flags=32;t=1)" Color="(x=0.09084172,y=0.27049783,z=0.2961383),ParticleAge=(t=0.027,v=(x=0.64,y=0.98,z=0.816);t=0.482,v=(x=0.808,y=0.48,z=0.98);t=0.957,v=(x=0.498,y=0.965,z=0.475))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.1,Random=0.1,EmitterStrength=(v=1;t=0.88,v=1;t=1)" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Part_01">
+        <Params Count="2" Continuous="true" ParticleLifeTime="0.5" PositionOffset="x=-0.01,y=-0.25,z=2.89" FocusAngle="90" FocusAzimuth="180" Facing="Free" Curvature="0" BlendType="Additive" Texture="textures/arkeffects/characters/operators/levitator_02.tif" Alpha="0.792,ParticleAge=(t=0.23,v=1;t=1)" Color="(x=0.08865559,y=0.3005438,z=0.37626216),ParticleAge=(t=0.04,v=(x=0.992,y=0.576,z=0.898);t=0.494,v=(x=0.8,y=0.573,z=0.98);t=0.937,v=(x=0.553,y=0.992,z=0.847))" EmissiveLighting="2" Size="0.206" NonUniformScale="true" MinPixels="1" Speed="0.02,Random=0.35" MoveRelativeEmitter="true" InitAngles="x=90"/>
+       </Particles>
+       <Particles Name="Refreaction_00">
+        <Params Count="3" Continuous="true" ParticleLifeTime="0.1" PositionOffset="x=-0.01,y=-0.25,z=2.89" FocusAngle="90" FocusAzimuth="180" Curvature="0" TextureTiling="TilesX=6,TilesY=6,AnimFramesCount=36,AnimFramerate=30" Material="Materials/ArkEffects/Props/DroneExhaust_00" Alpha="0.8,Random=0.535,ParticleAge=(v=1;t=1)" Size="0.3" NonUniformScale="true" MinPixels="1" Speed="Random=0.418" MoveRelativeEmitter="true" RandomAngles="y=90" RotationRate="y=100" SortOffset="-0.368"/>
+       </Particles>
+      </Childs>
+     </Particles>
+    </Childs>
+   </Particles>
+   <Particles Name="SingleLight_00">
+    <Params Count="1" Continuous="true" ParticleLifeTime="2.5" PositionOffset="z=2" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" Color="(x=0.5271152,y=0.8796225,z=0.9822507)" LightSource="Radius=0.92,Intensity=(0.25,ParticleAge=(;t=0.32,v=1;t=0.682,v=1;t=1)),Attenuation=2.179,SpecularMultiplier=0.1"/>
+   </Particles>
+   <Particles Name="Helper_00">
+    <Params Enabled="false" Count="1" Continuous="true" ParticleLifeTime="1" PositionOffset="z=1" FocusAngle="90" Texture="textures/arkeffects/utilities/arrowup.tif" Size="0.1" Speed="2"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="OperatorDispenser.Scanner_00">
+  <Childs>
+   <Particles Name="Square_00">
+    <Params Count="1" Continuous="true" EmitterLifeTime="3.25" ParticleLifeTime="0.025" PositionOffset="z=-0.58" RandomOffset="x=0.005,z=0.005" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/utilities/solid_white.tif" Material="materials/arkeffects/interactables/operatordispenser/gridparticle_00" Alpha="Random=0.85" Color="ParticleAge=(t=0.016,v=(x=0.247,y=0.737,z=0.992);t=0.267,v=(x=0.243,y=0.992,z=0.667);t=0.537,v=(x=0.243,y=0.784,z=0.93);t=0.83,v=(x=0.243,y=0.992,z=0.67))" DiffuseBacklighting="1" EmissiveLighting="0.5" Size="0.336,Random=0.01" NonUniformScale="true,YAxisScale=1.54" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="Square_01_top">
+    <Params Count="1" Continuous="true" EmitterLifeTime="3.25" ParticleLifeTime="0.025" PositionOffset="y=0.12,z=-0.58" RandomOffset="x=0.005,z=0.005" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/utilities/solid_white.tif" Material="materials/arkeffects/interactables/operatordispenser/gridparticle_00" Alpha="Random=0.85" Color="ParticleAge=(t=0.016,v=(x=0.247,y=0.737,z=0.992);t=0.267,v=(x=0.243,y=0.992,z=0.667);t=0.537,v=(x=0.243,y=0.784,z=0.93);t=0.83,v=(x=0.243,y=0.992,z=0.67))" DiffuseBacklighting="1" EmissiveLighting="0.5" Size="0.336,Random=0.01" NonUniformScale="true,YAxisScale=1.54" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="Electrical_00">
+    <Params Count="30,EmitterStrength=(t=0.306,v=1;t=1,v=0.024)" Continuous="true" EmitterLifeTime="3.1" ParticleLifeTime="0.2,Random=0.85" PositionOffset="z=-0.58" RandomOffset="z=0.45" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/utilities/arrowup.tif" TextureTiling="TilesX=2,TilesY=4,AnimFramesCount=8,AnimFramerate=16,AnimCycle=Loop,FlipChance=0.5" Material="Materials/ArkEffects/Environment/Lightning/OperatorDispenserElectricty_00" Color="ParticleAge=(v=(x=0.992,y=0.28,z=0.28);t=0.96,v=(x=0.573,y=0.1,z=0.98))" Size="0.13,ParticleAge=(t=0.773,v=1;t=1)" NonUniformScale="true,XAxisScale=2.65,YAxisScale=3" MoveRelativeEmitter="true"/>
+   </Particles>
+   <Particles Name="Electrical_01">
+    <Params Count="30,EmitterStrength=(t=0.306,v=1;t=1,v=0.024)" Continuous="true" EmitterLifeTime="3.1" ParticleLifeTime="0.2,Random=0.85" PositionOffset="y=0.12,z=-0.58" RandomOffset="z=0.45" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/utilities/arrowup.tif" TextureTiling="TilesX=2,TilesY=4,AnimFramesCount=8,AnimFramerate=16,AnimCycle=Loop,FlipChance=0.5" Material="Materials/ArkEffects/Environment/Lightning/OperatorDispenserElectricty_00" Color="ParticleAge=(v=(x=0.992,y=0.28,z=0.28);t=0.96,v=(x=0.573,y=0.1,z=0.98))" Size="0.13,ParticleAge=(t=0.773,v=1;t=1)" NonUniformScale="true,XAxisScale=2.65,YAxisScale=3" MoveRelativeEmitter="true"/>
+   </Particles>
+  </Childs>
+ </Particles>
+ <Particles Name="Fabricator.IdleEffect_00">
+  <Params/>
+  <Childs>
+   <Particles Name="CapGlow_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=2,y=-0.22,z=1.84" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="0.25,ParticleAge=(;t=0.086,v=1;t=0.918,v=1;t=1)" Size="0.32" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="P_Help">
+    <Params Enabled="false" Count="1" Continuous="true" ParticleLifeTime="0.02" PositionOffset="x=0.3,y=-0.27,z=1.96" Facing="Free" Texture="textures/arkeffects/utilities/circleguide_00.tif" Size="3.75" NonUniformScale="true,YAxisScale=0.1"/>
+   </Particles>
+   <Particles Name="CapGlow_01">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=-1.74,y=-0.22,z=1.84" Facing="Free" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Material="Materials/ArkEffects/Environment/Props/Recycler_Glow_00" Alpha="0.25,ParticleAge=(;t=0.086,v=1;t=0.918,v=1;t=1)" Size="0.32" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="RingGlow_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=1.72,y=-0.22,z=1.84" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.4" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="RingGlow_01">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=-1.48,y=-0.22,z=1.84" Facing="Free" Texture="textures/arkeffects/glows/targetingringglow_2x2_dif.tif" TextureTiling="TilesX=2,TilesY=2,FirstTile=2" DiffuseLighting="2" DiffuseBacklighting="1" EmissiveLighting="2" Size="0.4" InitAngles="x=90,y=90"/>
+   </Particles>
+   <Particles Name="SoftGlow_00">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=1.92,y=-0.22,z=1.84" FocusAngle="90" FocusAzimuth="270" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/tempbeam_cruciform.tif" TextureTiling="TilesX=2,FirstTile=1" SoftParticle="true,Softness=0.2" Alpha="0.371,ParticleAge=(;t=0.506,v=1;t=1)" Color="(x=0.6038275,y=0.6038275,z=0.6038275),ParticleAge=(v=(x=0.094,y=0.07,z=0.28);t=0.525,v=(x=0.06,y=0.118,z=0.333);t=0.973,v=(x=0.098,y=0.07,z=0.28))" EmissiveLighting="1" Size="1.515" NonUniformScale="true,YAxisScale=1.36" PivotY="0.432" Speed="0.001" InitAngles="x=90"/>
+   </Particles>
+   <Particles Name="SingleLight_00">
+    <Params Count="2" Continuous="true" EmitterLifeTime="11" ParticleLifeTime="5.5" PositionOffset="x=0.3,y=-0.27,z=1.96" Texture="textures/arkeffects/utilities/circleguide_00.tif" Alpha="0" Color="(x=0.6038275,y=0.6038275,z=0.6038275),ParticleAge=(t=0.016,v=(y=0.592,z=0.694);t=0.482,v=(x=0.604,y=0.98,z=0.992);t=0.965,v=(y=0.592,z=0.694))" EmissiveLighting="1" LightSource="AffectsThisAreaOnly=true,Radius=2,Intensity=(0.2,ParticleAge=(;t=0.51,v=1;t=1)),Attenuation=0,SpecularMultiplier=1" Size="0.1"/>
+   </Particles>
+   <Particles Name="SoftGlow_01">
+    <Params Enabled="false" Count="1" EmitterLifeTime="0.1" PulsePeriod="1" ParticleLifeTime="2" PositionOffset="x=-1.6,y=-0.22,z=1.84" FocusAngle="90" FocusAzimuth="90" Facing="CameraX" OrientToVelocity="true" BlendType="Additive" Texture="textures/arkeffects/glows/tempbeam_cruciform.tif" TextureTiling="TilesX=2,FirstTile=1" SoftParticle="true,Softness=0.2" Alpha="0.371,ParticleAge=(;t=0.506,v=1;t=1)" Color="(x=0.6038275,y=0.6038275,z=0.6038275),ParticleAge=(v=(x=0.094,y=0.07,z=0.28);t=0.525,v=(x=0.06,y=0.118,z=0.333);t=0.973,v=(x=0.098,y=0.07,z=0.28))" EmissiveLighting="1" Size="1.515" NonUniformScale="true,YAxisScale=1.36" PivotY="0.432" Speed="0.001" InitAngles="x=-90"/>
+   </Particles>
+   <Particles Name="DustMoats_00">
+    <Params Count="20,Random=0.35" Continuous="true" EmitterLifeTime="10" ParticleLifeTime="3.5" PositionOffset="x=0.3,y=-0.27,z=1.96" RandomOffset="x=1,y=0.5,z=0.5" BlendType="Additive" Texture="textures/arkeffects/glows/baseglow_01.tif" Alpha="Random=0.35,ParticleAge=(flags=32;t=0.16,v=1;t=0.706,v=1;t=1)" EmissiveLighting="0.1" Size="0.01,Random=0.25,ParticleAge=(v=1;t=0.86,v=1;t=1)" MinPixels="0.01" AirResistance="6,RotationalDragScale=0,WindScale=0" GravityScale="0.05,Random=2" Turbulence3DSpeed="0.1,Random=0.5"/>
+   </Particles>
+   <Particles Name="Sound">
+    <Params Enabled="false" StartTrigger="Play_Coral_LP_01" AudioDistanceCutoff="true"/>
+   </Particles>
+  </Childs>
+ </Particles>
+</ParticleLibrary>

@@ -1,0 +1,7 @@
+
+<VariantOptions>
+ <Restriction>
+  <Operand var="g_autoReviveTime" lessThan="7" fallback="7"/>
+  <Operand var="g_modevarivar_disableKillCam" equal="0" fallback="1"/>
+ </Restriction>
+</VariantOptions>

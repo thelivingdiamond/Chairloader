@@ -1,4 +1,0 @@
-
-<ArkNpcCombatRoleManagerConfig maxTotalMeleeRoleCost="100" maxExpectedCombatDistance="40.0" maxStalenessTime="60.0" minTimeBetweenRecalculations="3.0" maxTimeBetweenRecalculations="7.0">
- <NpcCombatMeleeModPairs/>
-</ArkNpcCombatRoleManagerConfig>

@@ -1,0 +1,49 @@
+
+<ATLConfig atl_name="Exterior">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Amb_ZeroG" path="2D_Amb">
+   <WwiseEvent wwise_name="Play_Amb_ZeroG"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Debris_Space_Tiny" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Debris_Space_Tiny"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Emitter_Exterior_Light_Pulse" path="3D_Amb">
+   <WwiseEvent wwise_name="Play_Emitter_Exterior_Light_Pulse"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_DrCalvino_Reveal" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_DrCalvino_Reveal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Leave_Airlock" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Leave_Airlock"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_ZeroG_MIDI_Test" path="Events">
+   <WwiseEvent wwise_name="Play_ZeroG_MIDI_Test"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Evnt_Exterior_Vacuum" path="Events">
+   <WwiseEvent wwise_name="Play_Evnt_Exterior_Vacuum"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Exterior_Satellite_Exist_LP" path="Objects">
+   <WwiseEvent wwise_name="Stop_Exterior_Satellite_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Exterior_Satellite_Exist_LP" path="Objects">
+   <WwiseEvent wwise_name="Play_Exterior_Satellite_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Exterior_Satellite_Beepy_Button" path="Objects">
+   <WwiseEvent wwise_name="Play_Exterior_Satellite_Beepy_Button"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Exterior.bnk" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Exterior.bnk"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

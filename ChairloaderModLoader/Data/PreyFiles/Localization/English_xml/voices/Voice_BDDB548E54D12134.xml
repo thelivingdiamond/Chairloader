@@ -1,0 +1,927 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D6D7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Run!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Run!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D6EC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get away... get away getaway getaway!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get away... get away getaway getaway!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D6F8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Keep away from me!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Keep away from me!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D7BA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Noooo!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Noooo!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D845</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can't think. I wish... I can't...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can't think. I wish... I can't...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D856</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What do you want from me?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What do you want from me?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D867</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get out of my head. Get. Out.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get out of my head. Get. Out.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D875</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please no. I don't want to do that. I won't.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please no. I don't want to do that. I won't.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D934</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Will you let me go then? Promise me you'll let me go.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Will you let me go then? Promise me you'll let me go.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D99D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah God, what's wrong with me.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah God, what's wrong with me.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1D9F2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shut up. Shuttup shuttup shuttup! </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shut up. Shuttup shuttup shuttup! </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55F1DB7D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Juss... leave me alone. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Juss... leave me alone. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C761A0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Yelp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Yelp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C761A6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Cry of Pain)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Cry of Pain)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C761AB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Grunt)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Grunt)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76207</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Shocked Grunt)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Shocked Grunt)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C7625A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Muffled Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Muffled Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76270</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Muffled Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Muffled Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76298</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Hiss of Pain)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Hiss of Pain)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C762C6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C762EE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Groan)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Groan)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C762F9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76349</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) Wha-! No... no!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) Wha-! No... no!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76352</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Shout) Get it off!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Shout) Get it off!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C763E6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Enthralled Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Enthralled Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C763EB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Enthralled Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Enthralled Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76B61</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Wet Cough)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Wet Cough)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76BE1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Grunt) ...my head.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Grunt) ...my head.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76BF7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Grunt)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Grunt)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76C34</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Whoa.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Whoa.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76C4C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shit... my TranScribe.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Shit... my TranScribe.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76CE0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sharp Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sharp Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76CE6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Startled Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Startled Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76D50</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Long Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Long Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76D82</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Worried Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Worried Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76D9A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Let me down!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Let me down!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76DBE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76DDA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) What is...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) What is...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76DF3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Hey!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76E03</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What was that?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What was that?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76E13</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What the hell?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What the hell?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76E27</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76E34</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah! Get it off! (Choking)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ah! Get it off! (Choking)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76EE8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) Oh God.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) Oh God.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76EFD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Speechless Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Speechless Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C76F16</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) No. Please no.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp) No. Please no.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C796E1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Startled Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Startled Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56C796F5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Startled Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Startled Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA41AB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Scream)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4304</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't believe in the devil. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't believe in the devil. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4370</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You can't make me do it.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You can't make me do it.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA43ED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm in control. I'm in control. I'm ngh- (Pained Sigh)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I'm in control. I'm in control. I'm ngh- (Pained Sigh)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA44E7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your voice is so familiar. Who are you?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Your voice is so familiar. Who are you?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA44FE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA468A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No. Stop talking. No. You're not real. You're not real.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No. Stop talking. No. You're not real. You're not real.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA46B6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You have to leave.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You have to leave.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA46C1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't- I can't control myself.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't- I can't control myself.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA46E3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't stop myself, you understand?! Go!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't stop myself, you understand?! Go!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA46FC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If I find you, we're both dead.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">If I find you, we're both dead.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4721</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It wants you dead. It won't shut up. Please. Just go.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It wants you dead. It won't shut up. Please. Just go.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA472D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can you help me? Can you make it stop?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Can you help me? Can you make it stop?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4745</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It's in my head. It won't stop talking about you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">It's in my head. It won't stop talking about you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4791</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They... they're worried. You're not like the rest of us. (Pained Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They... they're worried. You're not like the rest of us. (Pained Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA47C3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't want to find you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I don't want to find you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA47EB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They won't stop hunting you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">They won't stop hunting you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA47FE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Not until they're finished. Something's co- (Pained Cry)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Not until they're finished. Something's co- (Pained Cry)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA481F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4845</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Was that...?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Was that...?</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4857</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Gasp)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4877</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA48BF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't... Stop! Stop!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't... Stop! Stop!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA48E4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get back!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Get back!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4925</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I have to listen. I have to- (Labored Breathing)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I have to listen. I have to- (Labored Breathing)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA497F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What are you doing? Run! Run!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">What are you doing? Run! Run!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA49E7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't control myself.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I can't control myself.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4A0E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't get close to me!</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Don't get close to me!</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4A20</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You have to go. Hurry.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">You have to go. Hurry.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4A67</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please - don't let me die like this.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please - don't let me die like this.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4A7E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Sigh)</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4A9C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nothing. See? It was nothing.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nothing. See? It was nothing.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4ADC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I told you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">I told you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CA4AF9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There's nothing.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">There's nothing.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

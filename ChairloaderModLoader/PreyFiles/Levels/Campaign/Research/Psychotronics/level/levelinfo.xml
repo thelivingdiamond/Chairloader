@@ -1,6 +1,0 @@
-<LevelInfo SandboxVersion="3.7.0.179" Name="gamesdk/levels/campaign/research/psychotronics" HeightmapSize="400">
- <TerrainInfo HeightmapSize="1024" UnitSize="2" SectorSize="64" SectorsTableSize="32" HeightmapZRatio="0.015625" OceanWaterLevel="0"/>
- <Missions>
-  <Mission Name="Mission0" Description=""/>
- </Missions>
-</LevelInfo>

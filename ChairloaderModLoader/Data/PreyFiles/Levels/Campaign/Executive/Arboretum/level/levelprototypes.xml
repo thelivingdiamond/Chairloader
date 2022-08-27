@@ -1,0 +1,9 @@
+<EntityPrototypeLibrary Name="Level">
+ <EntityPrototype Name="AlexOffice.Alex_LookingGlass" Id="{5A90AABB-1A93-478C-B713-7D5172D0607C}" Library="Level" Class="ArkSceneWindow" Description="" ArchetypeId="14667999412568394457">
+  <Properties object_Model="objects/environment/props/lookingglass/frame_lookingglass_a/looking_glass_frame_a_half.cgf">
+   <Physics Density="100" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bResting="1" bRigidBody="0"/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+</EntityPrototypeLibrary>

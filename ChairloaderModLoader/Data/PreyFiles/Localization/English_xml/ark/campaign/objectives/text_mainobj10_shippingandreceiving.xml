@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12345</WindowHeight>
+  <WindowWidth>20295</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="314.25" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630442</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Shipping and Receiving</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Shipping and Receiving</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630443</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him. First, I have to get through the Cargo Bay, but Chief Elazar won&apos;t open the doors unless I get her team some turrets. As soon as the doors open, the Typhon will flood their way in. It&apos;s either that, or find some other way to get the doors open.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him. First, I have to get through the Cargo Bay, but Chief Elazar won&apos;t open the doors unless I get her team some turrets. As soon as the doors open, the Typhon will flood their way in. It&apos;s either that, or find some other way to get the doors open.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630444</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him, but first I have to get through the Cargo Bay.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him, but first I have to get through the Cargo Bay.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630445</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him. First, I have to get through the Cargo Bay, but Chief Elazar won&apos;t open the doors unless I get her team some turrets. As soon as the doors open, the Typhon will flood their way in. It&apos;s either that, or find some other way to get the doors open.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him. First, I have to get through the Cargo Bay, but Chief Elazar won&apos;t open the doors unless I get her team some turrets. As soon as the doors open, the Typhon will flood their way in. It&apos;s either that, or find some other way to get the doors open.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630446</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I helped Sarah Elazar and her crew fight off the Typhon in Cargo Bay and she granted me access.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I helped Sarah Elazar and her crew fight off the Typhon in Cargo Bay and she granted me access.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630447</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I managed to get through Cargo Bay without helping Chief Elazar.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I managed to get through Cargo Bay without helping Chief Elazar.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630448</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Shipping and Receiving</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Shipping and Receiving</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630449</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find Chief Sarah Elazar</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find Chief Sarah Elazar</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630450</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cargo Bay B</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cargo Bay B</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630451</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Open Cargo Bay B</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Open Cargo Bay B</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630452</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Power Plant</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Power Plant</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630453</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Make Contact with Mikhaila in Power Plant</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Make Contact with Mikhaila in Power Plant</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630454</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Typhon</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Typhon</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891630455</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Destroy the Typhon organisms</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Destroy the Typhon organisms</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564960784636</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Listen to Sarah&apos;s Transcribe for Clues</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Listen to Sarah&apos;s Transcribe for Clues</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564960784682</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Sarah Elezar</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Sarah Elezar</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564960786030</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him. Security Chief Sarah Elazar can&apos;t help me now and she knew the door code to Cargo Bay B. Perhaps she recorded it somewhere.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">I&apos;m back inside Talos I. I still need to get Alex&apos;s Arming Key away from him. Security Chief Sarah Elazar can&apos;t help me now and she knew the door code to Cargo Bay B. Perhaps she recorded it somewhere.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced />
+   <Selected />
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>1</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

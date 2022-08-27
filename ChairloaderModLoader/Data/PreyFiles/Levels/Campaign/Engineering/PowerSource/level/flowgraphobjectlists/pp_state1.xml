@@ -1,0 +1,507 @@
+<Graph isModule="1" moduleName="PP_State1" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkLight" pos="-104.59711,-133.0062,0" EntityGUID="{C2530201-7377-47CC-9887-A210A2218C04}" EntityGUID_64="47CC7377C2530201">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="14" Class="entity:ArkLight" pos="-104.59711,-108.0062,0" EntityGUID="{E4DB1409-C6D7-41BB-9B46-B5C9C468E1EC}" EntityGUID_64="41BBC6D7E4DB1409">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="16" Class="entity:ArkLight" pos="-104.59711,-83.006195,0" EntityGUID="{2A461609-8B3E-4484-8D55-86735F3EF2D3}" EntityGUID_64="44848B3E2A461609">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="19" Class="entity:ArkLight" pos="-104.59711,-58.006195,0" EntityGUID="{24186B0A-9C3F-4B96-B829-6E156821E7E7}" EntityGUID_64="4B969C3F24186B0A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="21" Class="entity:ArkLight" pos="-104.59711,-33.006195,0" EntityGUID="{8F59960A-19F3-4C71-AEE9-3195215AB912}" EntityGUID_64="4C7119F38F59960A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="25" Class="entity:ArkLight" pos="-104.59711,-8.0061951,0" EntityGUID="{3BA9E00B-9F5D-4161-8B7E-B2B18A3E9A91}" EntityGUID_64="41619F5D3BA9E00B">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="28" Class="entity:ArkLight" pos="-104.59711,16.993805,0" EntityGUID="{B661520E-CD6E-4DE7-BBC2-FC24B1824C50}" EntityGUID_64="4DE7CD6EB661520E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="30" Class="entity:ArkLight" pos="-104.59711,41.993805,0" EntityGUID="{71F9090F-17C4-4EDD-8DA9-2CC2A15865B3}" EntityGUID_64="4EDD17C471F9090F">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="34" Class="entity:ArkLight" pos="-104.59711,66.993805,0" EntityGUID="{36DFB510-72F2-462C-B5B4-C1DB314EC4FA}" EntityGUID_64="462C72F236DFB510">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="36" Class="entity:ArkLight" pos="-104.59711,91.993805,0" EntityGUID="{EF251B11-4E22-4E24-9C9A-C6EC9010A5BE}" EntityGUID_64="4E244E22EF251B11">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="43" Class="entity:ArkLight" pos="-104.59711,116.9938,0" EntityGUID="{A6A89F13-DDD7-47A4-B59B-233528B4D0FA}" EntityGUID_64="47A4DDD7A6A89F13">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="45" Class="entity:ArkLight" pos="-104.59711,141.9938,0" EntityGUID="{AE751214-EDCC-4D32-A505-28A6B3969736}" EntityGUID_64="4D32EDCCAE751214">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="50" Class="entity:ArkLight" pos="-104.59711,166.9938,0" EntityGUID="{AEEABF1B-B776-432D-9316-ED7C82B2463E}" EntityGUID_64="432DB776AEEABF1B">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="54" Class="entity:ArkLight" pos="-104.59711,191.9938,0" EntityGUID="{9CE1491D-E458-44B3-A1CC-AB909BE3EE31}" EntityGUID_64="44B3E4589CE1491D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="58" Class="entity:ArkLight" pos="-104.59711,216.9938,0" EntityGUID="{41180D21-F6A0-4ABE-8282-DCADC682E60D}" EntityGUID_64="4ABEF6A041180D21">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="62" Class="entity:ArkLight" pos="-104.59711,241.9938,0" EntityGUID="{A141A723-B1AE-451E-BB1D-C25A75775F55}" EntityGUID_64="451EB1AEA141A723">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="64" Class="entity:ArkLight" pos="-104.59711,266.9938,0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="66" Class="entity:ArkLight" pos="-104.59711,291.9938,0" EntityGUID="{C41FA024-9009-495E-928B-F05CABAF5F24}" EntityGUID_64="495E9009C41FA024">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="68" Class="entity:ArkLight" pos="-104.59711,316.9938,0" EntityGUID="{A45F3925-019F-4606-945F-76378943AC4D}" EntityGUID_64="4606019FA45F3925">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="70" Class="entity:ArkLight" pos="-104.59711,341.9938,0" EntityGUID="{3170A025-E179-488B-B275-7E7D2B5B4D80}" EntityGUID_64="488BE1793170A025">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="74" Class="entity:ArkLight" pos="-104.59711,366.9938,0" EntityGUID="{1A688927-AF53-41A3-AD0E-99C8C1D4611F}" EntityGUID_64="41A3AF531A688927">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="79" Class="entity:ArkLight" pos="-104.59711,391.9938,0" EntityGUID="{09AB9029-0B33-44CC-A529-885B982051AD}" EntityGUID_64="44CC0B3309AB9029">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="83" Class="entity:ArkLight" pos="-104.59711,416.9938,0" EntityGUID="{0926FE2D-DFA6-4DFA-8DAF-A69A206B4D51}" EntityGUID_64="4DFADFA60926FE2D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="85" Class="entity:ArkLight" pos="-104.59711,441.9938,0" EntityGUID="{BC9C022E-EE32-44F2-B7F4-FAC0874B4483}" EntityGUID_64="44F2EE32BC9C022E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="87" Class="entity:ArkLight" pos="-104.59711,466.9938,0" EntityGUID="{9FD2532E-8DE8-48AB-8EED-953FA24C7F4B}" EntityGUID_64="48AB8DE89FD2532E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="92" Class="entity:ArkLight" pos="-104.59711,491.9938,0" EntityGUID="{4D2B6631-21FF-403E-A98D-47534D996982}" EntityGUID_64="403E21FF4D2B6631">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="95" Class="entity:ArkLight" pos="-104.59711,516.99377,0" EntityGUID="{35D55932-0D24-4185-84BA-FA7D13319A9A}" EntityGUID_64="41850D2435D55932">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="99" Class="entity:ArkLight" pos="-104.59711,541.99377,0" EntityGUID="{F8899033-C300-4D4B-9A5A-65294A6E5DC6}" EntityGUID_64="4D4BC300F8899033">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="104" Class="entity:ArkLight" pos="-104.59711,566.99377,0" EntityGUID="{72656136-5BDB-4B80-9F86-9895493FBF4F}" EntityGUID_64="4B805BDB72656136">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="106" Class="entity:ArkLight" pos="-104.59711,591.99377,0" EntityGUID="{0D68FC36-6CF1-4503-9ED1-6F20E255A41A}" EntityGUID_64="45036CF10D68FC36">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="110" Class="entity:ArkLight" pos="-104.59711,616.99377,0" EntityGUID="{BD532D38-A105-4049-9793-0DFDAB3A4A58}" EntityGUID_64="4049A105BD532D38">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="112" Class="entity:ArkLight" pos="-104.59711,641.99377,0" EntityGUID="{2F97B438-8F00-4753-9362-469173955A61}" EntityGUID_64="47538F002F97B438">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="119" Class="entity:ArkLight" pos="-104.59711,666.99377,0" EntityGUID="{5F9EEA3C-96D6-48D8-99D9-EE698F7CDA9E}" EntityGUID_64="48D896D65F9EEA3C">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="122" Class="entity:ArkLight" pos="-104.59711,691.99377,0" EntityGUID="{1E21053D-2833-4A0F-8721-DF5B5A4C9B10}" EntityGUID_64="4A0F28331E21053D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="124" Class="entity:ArkLight" pos="-104.59711,716.99377,0" EntityGUID="{0BCF8A3D-CC93-4E27-B3D0-18F727A8BD76}" EntityGUID_64="4E27CC930BCF8A3D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="126" Class="entity:ArkLight" pos="-104.59711,741.99377,0" EntityGUID="{FEDD953D-1DD9-4102-894C-F798438B8280}" EntityGUID_64="41021DD9FEDD953D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="128" Class="entity:ArkLight" pos="-104.59711,766.99377,0" EntityGUID="{287B333E-54D2-4D29-B58D-F2EAC74957F5}" EntityGUID_64="4D2954D2287B333E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="132" Class="entity:ArkLight" pos="-104.59711,791.99377,0" EntityGUID="{ECD6E344-5AA4-480C-8D1B-36A789268F1D}" EntityGUID_64="480C5AA4ECD6E344">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="135" Class="entity:ArkLight" pos="-104.59711,816.99377,0" EntityGUID="{11EE7445-E031-47DE-B831-FFA99F8B686A}" EntityGUID_64="47DEE03111EE7445">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="138" Class="entity:ArkLight" pos="-104.59711,841.99377,0" EntityGUID="{5BDAD646-8219-414D-9A33-1663B2596C6F}" EntityGUID_64="414D82195BDAD646">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="141" Class="entity:ArkLight" pos="-104.59711,866.99377,0" EntityGUID="{3417E647-35CB-434A-BF93-3F840FDFDEED}" EntityGUID_64="434A35CB3417E647">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="143" Class="entity:ArkLight" pos="-104.59711,891.99377,0" EntityGUID="{A7F23A48-CB24-4791-8AC3-F97E3B12979F}" EntityGUID_64="4791CB24A7F23A48">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="148" Class="entity:ArkLight" pos="-104.59711,916.99377,0" EntityGUID="{F05DE14B-97C1-4C94-BC18-45B24E448585}" EntityGUID_64="4C9497C1F05DE14B">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="150" Class="entity:ArkLight" pos="-104.59711,941.99377,0" EntityGUID="{F8E1794D-706B-4E26-8A41-65F1F339C376}" EntityGUID_64="4E26706BF8E1794D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="152" Class="entity:ArkLight" pos="-104.59711,966.99377,0" EntityGUID="{900E944D-2B5A-4D10-B2D1-36DC62659D74}" EntityGUID_64="4D102B5A900E944D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="154" Class="entity:ArkLight" pos="-104.59711,991.99377,0" EntityGUID="{7023D350-AE42-4CE7-BE2B-3326802145D8}" EntityGUID_64="4CE7AE427023D350">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="156" Class="entity:ArkLight" pos="-104.59711,1016.9938,0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="161" Class="entity:ArkLight" pos="-104.59711,1041.9938,0" EntityGUID="{7512E256-3CB8-466F-9833-BC57496C62A0}" EntityGUID_64="466F3CB87512E256">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="163" Class="entity:ArkLight" pos="-104.59711,1066.9938,0" EntityGUID="{F9863F57-7F9F-41ED-A58E-F86551E33AD8}" EntityGUID_64="41ED7F9FF9863F57">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="167" Class="entity:ArkLight" pos="-104.59711,1091.9938,0" EntityGUID="{9757D15A-5493-41E2-84B5-86F7A2B5A7FF}" EntityGUID_64="41E254939757D15A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="177" Class="entity:ArkLight" pos="-104.59711,1116.9938,0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="179" Class="entity:ArkLight" pos="-104.59711,1141.9938,0" EntityGUID="{3C92185E-DE60-4F65-9665-69EED3D70025}" EntityGUID_64="4F65DE603C92185E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="185" Class="entity:ArkLight" pos="-104.59711,1166.9938,0" EntityGUID="{23AED761-8A1B-4BD6-BE88-2C5C2EEDCAC2}" EntityGUID_64="4BD68A1B23AED761">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="188" Class="entity:ArkLight" pos="-104.59711,1191.9938,0" EntityGUID="{2FD01F63-9950-4FC0-81BA-245A8825E2EE}" EntityGUID_64="4FC099502FD01F63">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="191" Class="entity:ArkLight" pos="-104.59711,1216.9938,0" EntityGUID="{5AC65D64-A3A1-472A-B79F-A8B1E8FD090F}" EntityGUID_64="472AA3A15AC65D64">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="193" Class="entity:ArkLight" pos="-104.59711,1241.9938,0" EntityGUID="{1BEE8964-9EBD-475C-BF1F-ECF04E1E3E19}" EntityGUID_64="475C9EBD1BEE8964">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="195" Class="entity:ArkLight" pos="-104.59711,1266.9938,0" EntityGUID="{36B83C66-DA94-423E-B514-8CD8099CAD20}" EntityGUID_64="423EDA9436B83C66">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="197" Class="entity:ArkLight" pos="-104.59711,1291.9938,0" EntityGUID="{A8095166-D5A5-499C-8CAB-FBA996CC496D}" EntityGUID_64="499CD5A5A8095166">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="201" Class="entity:ArkLight" pos="-104.59711,1316.9938,0" EntityGUID="{0583FB69-69C1-4448-B788-66BB4376863E}" EntityGUID_64="444869C10583FB69">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="203" Class="entity:ArkLight" pos="-104.59711,1341.9938,0" EntityGUID="{8DB95A6A-A9DD-407F-A21C-2033F61C1811}" EntityGUID_64="407FA9DD8DB95A6A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="205" Class="entity:ArkLight" pos="-104.59711,1366.9938,0" EntityGUID="{B653AD6A-06D2-4590-8A78-F789993242B3}" EntityGUID_64="459006D2B653AD6A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="210" Class="entity:ArkLight" pos="-104.59711,1391.9938,0" EntityGUID="{84118E6C-B500-438D-8B51-E8D52DC977C9}" EntityGUID_64="438DB50084118E6C">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="212" Class="entity:ArkLight" pos="-104.59711,1416.9938,0" EntityGUID="{F8BDAF6C-228E-4E66-BAC0-55D98E5D81BE}" EntityGUID_64="4E66228EF8BDAF6C">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="220" Class="entity:ArkLight" pos="-104.59711,1441.9938,0" EntityGUID="{B86F976F-1379-45FD-BAB0-CA71A487097C}" EntityGUID_64="45FD1379B86F976F">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="222" Class="entity:ArkLight" pos="-104.59711,1466.9938,0" EntityGUID="{CCEE9470-D8E3-4622-A631-33BDAB268EB9}" EntityGUID_64="4622D8E3CCEE9470">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="226" Class="entity:ArkLight" pos="-104.59711,1491.9938,0" EntityGUID="{AA91B673-8F48-4459-90F7-CF518725E7D5}" EntityGUID_64="44598F48AA91B673">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="228" Class="entity:ArkLight" pos="-104.59711,1516.9938,0" EntityGUID="{4657BE73-9C8B-42D0-98EE-9CAC7D9A5102}" EntityGUID_64="42D09C8B4657BE73">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="230" Class="entity:ArkLight" pos="-104.59711,1541.9938,0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="232" Class="entity:ArkLight" pos="-104.59711,1566.9938,0" EntityGUID="{CEDE0774-DC8E-42E9-9E99-D57783FD9546}" EntityGUID_64="42E9DC8ECEDE0774">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="234" Class="entity:ArkLight" pos="-104.59711,1591.9938,0" EntityGUID="{C2957974-3583-4007-AF2C-44A083FC849E}" EntityGUID_64="40073583C2957974">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="237" Class="entity:ArkLight" pos="-104.59711,1616.9938,0" EntityGUID="{408E3F76-E432-4C99-B6E7-D503B86ADBCB}" EntityGUID_64="4C99E432408E3F76">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="240" Class="entity:ArkLight" pos="-104.59711,1641.9938,0" EntityGUID="{E3187D77-F937-4F55-91AA-A4C80D7A7443}" EntityGUID_64="4F55F937E3187D77">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="242" Class="entity:ArkLight" pos="-104.59711,1666.9938,0" EntityGUID="{1C95C777-4BE9-4B23-90E2-10EEF23B95A6}" EntityGUID_64="4B234BE91C95C777">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="244" Class="entity:ArkLight" pos="-104.59711,1691.9938,0" EntityGUID="{E9B6927A-BFCF-4FC0-AA04-C7C7833A952B}" EntityGUID_64="4FC0BFCFE9B6927A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="250" Class="entity:ArkLight" pos="-104.59711,1716.9938,0" EntityGUID="{9349F481-2127-4C14-BE44-A8BCAD120619}" EntityGUID_64="4C1421279349F481">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="252" Class="entity:ArkLight" pos="-104.59711,1741.9938,0" EntityGUID="{A941B182-5A05-4DE0-BAD6-292F61556750}" EntityGUID_64="4DE05A05A941B182">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="254" Class="entity:ArkLight" pos="-104.59711,1766.9938,0" EntityGUID="{889E5B83-C941-4F08-A38A-9F1944DAC03A}" EntityGUID_64="4F08C941889E5B83">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="257" Class="entity:ArkLight" pos="-104.59711,1791.9938,0" EntityGUID="{962D0E84-99EC-4677-8D1F-4FE302D3803C}" EntityGUID_64="467799EC962D0E84">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="261" Class="entity:ArkLight" pos="-104.59711,1816.9938,0" EntityGUID="{D5492E87-1443-4E3D-A392-097CB2BDA598}" EntityGUID_64="4E3D1443D5492E87">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="263" Class="entity:ArkLight" pos="-104.59711,1841.9938,0" EntityGUID="{83244B88-5760-40A1-B1D2-B6DE3F2B4DA8}" EntityGUID_64="40A1576083244B88">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="266" Class="entity:ArkLight" pos="-104.59711,1866.9938,0" EntityGUID="{56E1A588-FDD8-444E-8488-BD138A1A3448}" EntityGUID_64="444EFDD856E1A588">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="268" Class="entity:ArkLight" pos="-104.59711,1891.9938,0" EntityGUID="{128D8189-F9F1-4B9B-A62B-FA6D734B8206}" EntityGUID_64="4B9BF9F1128D8189">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="271" Class="entity:ArkLight" pos="-104.59711,1916.9938,0" EntityGUID="{A733AB8A-974C-4862-B87C-893EFB297B87}" EntityGUID_64="4862974CA733AB8A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="273" Class="entity:ArkLight" pos="-104.59711,1941.9938,0" EntityGUID="{4C52118B-742B-4042-8B13-57ACFC199C66}" EntityGUID_64="4042742B4C52118B">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="275" Class="entity:ArkLight" pos="-104.59711,1966.9938,0" EntityGUID="{DADE118B-482D-4829-9475-D54B8FE283A0}" EntityGUID_64="4829482DDADE118B">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="279" Class="entity:ArkLight" pos="-104.59711,1991.9938,0" EntityGUID="{04F2AC8D-8EFE-4870-B836-7D6D8A1733FB}" EntityGUID_64="48708EFE04F2AC8D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="281" Class="entity:ArkLight" pos="-104.59711,2016.9938,0" EntityGUID="{E73DBD8E-7275-48A1-9F10-4641C45D1391}" EntityGUID_64="48A17275E73DBD8E">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="283" Class="entity:ArkLight" pos="-104.59711,2041.9938,0" EntityGUID="{9962078F-E370-4410-9AA8-FF5BC518F395}" EntityGUID_64="4410E3709962078F">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="285" Class="entity:ArkLight" pos="-104.59711,2066.9937,0" EntityGUID="{1CB8328F-2E71-4505-BCA0-85FAEC966821}" EntityGUID_64="45052E711CB8328F">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="288" Class="entity:ArkLight" pos="-104.59711,2091.9937,0" EntityGUID="{AC20BE90-D067-437E-975B-CFE9CEF11C72}" EntityGUID_64="437ED067AC20BE90">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="290" Class="entity:ArkLight" pos="-104.59711,2116.9937,0" EntityGUID="{CD328D91-A1AC-4FD6-90AD-D3C99313F425}" EntityGUID_64="4FD6A1ACCD328D91">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="293" Class="entity:ArkLight" pos="-104.59711,2141.9937,0" EntityGUID="{24C03092-9F0B-46CE-9337-1581CD30EC97}" EntityGUID_64="46CE9F0B24C03092">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="296" Class="entity:ArkLight" pos="-104.59711,2166.9937,0" EntityGUID="{42290295-E4BC-4DCA-A5E1-1A5AF67185A0}" EntityGUID_64="4DCAE4BC42290295">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="298" Class="entity:ArkLight" pos="-104.59711,2191.9937,0" EntityGUID="{ACAC3695-A582-4578-8EB5-4EF634D1819B}" EntityGUID_64="4578A582ACAC3695">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="300" Class="entity:ArkLight" pos="-104.59711,2216.9937,0" EntityGUID="{EA7BAC95-D8AE-4A1D-B63F-4613F04CEDED}" EntityGUID_64="4A1DD8AEEA7BAC95">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="302" Class="entity:ArkLight" pos="-104.59711,2241.9937,0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="306" Class="entity:ArkLight" pos="-104.59711,2266.9937,0" EntityGUID="{CC54CD97-0E37-4935-BC97-2D0E5AD3EF04}" EntityGUID_64="49350E37CC54CD97">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="310" Class="entity:ArkLight" pos="-104.59711,2291.9937,0" EntityGUID="{B8049C98-3ADE-46D6-8136-6796D33FDAFE}" EntityGUID_64="46D63ADEB8049C98">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="313" Class="entity:ArkLight" pos="-104.59711,2316.9937,0" EntityGUID="{C4AA4599-844B-452F-810C-21D240CC204D}" EntityGUID_64="452F844BC4AA4599">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="315" Class="entity:ArkLight" pos="-104.59711,2341.9937,0" EntityGUID="{052F059A-866C-4431-8670-CE3D5B20CEB4}" EntityGUID_64="4431866C052F059A">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="318" Class="entity:ArkLight" pos="-104.59711,2366.9937,0" EntityGUID="{69090B9D-B2DF-4D55-B138-9635E16D405B}" EntityGUID_64="4D55B2DF69090B9D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="320" Class="entity:ArkLight" pos="-104.59711,2391.9937,0" EntityGUID="{EACB209D-8A12-4403-9788-BEF6A73CF437}" EntityGUID_64="44038A12EACB209D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="322" Class="entity:ArkLight" pos="-104.59711,2416.9937,0" EntityGUID="{D36A929D-D586-4B3D-9975-7C1031DD51C7}" EntityGUID_64="4B3DD586D36A929D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="324" Class="entity:ArkLight" pos="-104.59711,2441.9937,0" EntityGUID="{E906A49D-B2E6-450E-86B4-0830B771CF59}" EntityGUID_64="450EB2E6E906A49D">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="329" Class="entity:ArkLight" pos="-104.59711,2466.9937,0" EntityGUID="{2F499D9F-002B-4A50-8B3D-8106826A36AB}" EntityGUID_64="4A50002B2F499D9F">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="333" Class="entity:ArkLight" pos="-104.59711,2491.9937,0" EntityGUID="{CAB524A0-6262-4589-8DF1-4CFE67375AFB}" EntityGUID_64="45896262CAB524A0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="336" Class="entity:ArkLight" pos="-104.59711,2516.9937,0" EntityGUID="{9168F4A0-29C5-4D71-9F82-32052826A092}" EntityGUID_64="4D7129C59168F4A0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="338" Class="entity:ArkLight" pos="-104.59711,2541.9937,0" EntityGUID="{22BC9FA1-D4AA-4DE7-A2CB-43E3BF6412D2}" EntityGUID_64="4DE7D4AA22BC9FA1">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="341" Class="entity:ArkLight" pos="-104.59711,2566.9937,0" EntityGUID="{5595DDA2-34FF-48FD-B18E-EA1C4E664D5C}" EntityGUID_64="48FD34FF5595DDA2">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="344" Class="entity:ArkLight" pos="-104.59711,2591.9937,0" EntityGUID="{D56C6EA3-20D9-4272-8C9F-F6DA3B2A8E3F}" EntityGUID_64="427220D9D56C6EA3">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="348" Class="entity:ArkLight" pos="-104.59711,2616.9937,0" EntityGUID="{B1627CA4-BC74-4393-A973-4258CAEC8FBB}" EntityGUID_64="4393BC74B1627CA4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="350" Class="entity:ArkLight" pos="-104.59711,2641.9937,0" EntityGUID="{CF61CCA4-AD73-47E3-8B3C-B04D67CBB1D1}" EntityGUID_64="47E3AD73CF61CCA4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="353" Class="entity:ArkLight" pos="-104.59711,2666.9937,0" EntityGUID="{0BD52CA5-8A2A-4CB1-9CD6-80B420009A2B}" EntityGUID_64="4CB18A2A0BD52CA5">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="357" Class="entity:ArkLight" pos="-104.59711,2691.9937,0" EntityGUID="{456035A6-3B12-40FD-91A9-EDEE11ABC561}" EntityGUID_64="40FD3B12456035A6">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="363" Class="entity:ArkLight" pos="-104.59711,2716.9937,0" EntityGUID="{060BC5A8-2478-42C4-A539-6A371E0750F9}" EntityGUID_64="42C42478060BC5A8">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="365" Class="entity:ArkLight" pos="-104.59711,2741.9937,0" EntityGUID="{33B94FA9-A367-4C71-8F99-DA1418173F81}" EntityGUID_64="4C71A36733B94FA9">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="367" Class="entity:ArkLight" pos="-104.59711,2766.9937,0" EntityGUID="{DD379DA9-A49B-47AF-966A-08292116C8D2}" EntityGUID_64="47AFA49BDD379DA9">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="370" Class="entity:ArkLight" pos="-104.59711,2791.9937,0" EntityGUID="{9EDBF0AB-4CA3-4FEC-ADC5-91547DFEE25A}" EntityGUID_64="4FEC4CA39EDBF0AB">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="375" Class="entity:ArkLight" pos="-104.59711,2841.9937,0" EntityGUID="{730176AF-C87B-4545-8C61-A4A74C509D31}" EntityGUID_64="4545C87B730176AF">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="379" Class="entity:ArkLight" pos="-104.59711,2866.9937,0" EntityGUID="{F758DCB1-213E-4BCD-9EF1-A474ABAAFD1B}" EntityGUID_64="4BCD213EF758DCB1">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="381" Class="entity:ArkLight" pos="-104.59711,2891.9937,0" EntityGUID="{CE68FAB2-D1AE-4B5F-9A58-BC6F2AF1BB82}" EntityGUID_64="4B5FD1AECE68FAB2">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="384" Class="entity:ArkLight" pos="-104.59711,2916.9937,0" EntityGUID="{BAD51DB4-7236-4C37-A97A-E8A0268B3CC0}" EntityGUID_64="4C377236BAD51DB4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="386" Class="entity:ArkLight" pos="-104.59711,2941.9937,0" EntityGUID="{8868B7B4-C326-4D1F-A5DF-6CCA36498274}" EntityGUID_64="4D1FC3268868B7B4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="390" Class="entity:ArkLight" pos="-104.59711,2966.9937,0" EntityGUID="{A986A3B8-A63F-49A2-A04D-99B90A7412DC}" EntityGUID_64="49A2A63FA986A3B8">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="394" Class="entity:ArkLight" pos="-104.59711,2991.9937,0" EntityGUID="{BE7E22BA-C039-4CF8-ADD1-2AB46DF0309C}" EntityGUID_64="4CF8C039BE7E22BA">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="396" Class="entity:ArkLight" pos="-104.59711,3016.9937,0" EntityGUID="{A35476BA-5CF7-4186-B14C-15B593391C3C}" EntityGUID_64="41865CF7A35476BA">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="400" Class="entity:ArkLight" pos="-104.59711,3041.9937,0" EntityGUID="{6F06D5BD-BDDE-4793-BD4D-C139EEDC4C90}" EntityGUID_64="4793BDDE6F06D5BD">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="407" Class="entity:ArkLight" pos="-104.59711,3066.9937,0" EntityGUID="{113088C3-D6F4-455D-8D1F-59D15A2EDE82}" EntityGUID_64="455DD6F4113088C3">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="409" Class="entity:ArkLight" pos="-104.59711,3091.9937,0" EntityGUID="{F1B408C5-BE7C-489C-A9C4-D24425990275}" EntityGUID_64="489CBE7CF1B408C5">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="414" Class="entity:ArkLight" pos="-104.59711,3116.9937,0" EntityGUID="{FB7B23C9-A1F0-463D-B1E1-4D9084944213}" EntityGUID_64="463DA1F0FB7B23C9">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="416" Class="entity:ArkLight" pos="-104.59711,3141.9937,0" EntityGUID="{A733E3CB-58C5-459E-91ED-15897B23FAF6}" EntityGUID_64="459E58C5A733E3CB">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="420" Class="entity:ArkLight" pos="-104.59711,3166.9937,0" EntityGUID="{84E707CE-E8C3-42C4-9504-AA45D476927E}" EntityGUID_64="42C4E8C384E707CE">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="422" Class="entity:ArkLight" pos="-104.59711,3191.9937,0" EntityGUID="{BE9B54CF-9EB3-4C8B-8D93-2E66740072DC}" EntityGUID_64="4C8B9EB3BE9B54CF">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="425" Class="entity:ArkLight" pos="-104.59711,3216.9937,0" EntityGUID="{78535DD0-4F2E-44F2-BE44-9024B0519DE3}" EntityGUID_64="44F24F2E78535DD0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="428" Class="entity:ArkLight" pos="-104.59711,3241.9937,0" EntityGUID="{D2A54AD1-019E-4D60-A374-3A538B65258A}" EntityGUID_64="4D60019ED2A54AD1">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="431" Class="entity:ArkLight" pos="-104.59711,3266.9937,0" EntityGUID="{60F1C2D1-B99A-4676-A730-1605E7AA9953}" EntityGUID_64="4676B99A60F1C2D1">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="434" Class="entity:ArkLight" pos="-104.59711,3291.9937,0" EntityGUID="{D72234D2-2DCE-4C4B-BCBD-9EC4752033E0}" EntityGUID_64="4C4B2DCED72234D2">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="441" Class="entity:ArkLight" pos="-104.59711,3341.9937,0" EntityGUID="{B85629D5-425D-471C-88C6-32B2F1E5FC16}" EntityGUID_64="471C425DB85629D5">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="447" Class="entity:ArkLight" pos="-104.59711,3366.9937,0" EntityGUID="{CA2B42DC-2CD4-4F38-9A00-39B66B0A703C}" EntityGUID_64="4F382CD4CA2B42DC">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="449" Class="entity:ArkLight" pos="-104.59711,3391.9937,0" EntityGUID="{73BFE4DC-8DC0-45B0-9C55-C223275C1494}" EntityGUID_64="45B08DC073BFE4DC">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="451" Class="entity:ArkLight" pos="-104.59711,3416.9937,0" EntityGUID="{3AA8EFDE-0055-40C7-A745-E2343767E362}" EntityGUID_64="40C700553AA8EFDE">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="453" Class="entity:ArkLight" pos="-104.59711,3441.9937,0" EntityGUID="{DC2880E1-F1CB-49EF-8B8D-0F5C73CA9FF5}" EntityGUID_64="49EFF1CBDC2880E1">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="455" Class="entity:ArkLight" pos="-104.59711,3466.9937,0" EntityGUID="{1A798DE2-27BB-4BDC-B771-893F453F09A8}" EntityGUID_64="4BDC27BB1A798DE2">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="457" Class="entity:ArkLight" pos="-104.59711,3491.9937,0" EntityGUID="{8788A3E2-6872-473A-9EF0-2913F6878080}" EntityGUID_64="473A68728788A3E2">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="461" Class="entity:ArkLight" pos="-104.59711,3516.9937,0" EntityGUID="{19ADB4E4-4F60-4D7F-967D-EBA0512C1FD8}" EntityGUID_64="4D7F4F6019ADB4E4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="465" Class="entity:ArkLight" pos="-104.59711,3541.9937,0" EntityGUID="{FC75B8E6-7286-4504-99F7-B58163B6DA87}" EntityGUID_64="45047286FC75B8E6">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="470" Class="entity:ArkLight" pos="-104.59711,3566.9937,0" EntityGUID="{B82A77EA-A2F1-4F3D-9527-E2EA52932F5F}" EntityGUID_64="4F3DA2F1B82A77EA">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="475" Class="entity:ArkLight" pos="-104.59711,3591.9937,0" EntityGUID="{14619AEB-F625-4133-8B85-AA145ABB353D}" EntityGUID_64="4133F62514619AEB">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="477" Class="entity:ArkLight" pos="-104.59711,3616.9937,0" EntityGUID="{84BD2BEC-E81F-4915-B4BF-0E05721E76AB}" EntityGUID_64="4915E81F84BD2BEC">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="479" Class="entity:ArkLight" pos="-104.59711,3641.9937,0" EntityGUID="{99D76AEC-57E4-4345-A852-E933FE2A67C4}" EntityGUID_64="434557E499D76AEC">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="481" Class="entity:ArkLight" pos="-104.59711,3666.9937,0" EntityGUID="{D6FF11ED-73B7-45EA-92F0-054E494E2F27}" EntityGUID_64="45EA73B7D6FF11ED">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="483" Class="entity:ArkLight" pos="-104.59711,3691.9937,0" EntityGUID="{52841AED-E089-4627-B386-3937320DE6A9}" EntityGUID_64="4627E08952841AED">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="485" Class="entity:ArkLight" pos="-104.59711,3716.9937,0" EntityGUID="{589C17EE-7C47-4770-A719-A5C0A4B1D5DB}" EntityGUID_64="47707C47589C17EE">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="490" Class="entity:ArkLight" pos="-104.59711,3741.9937,0" EntityGUID="{4A0A7BF0-E172-4589-936F-0F80C41DA42D}" EntityGUID_64="4589E1724A0A7BF0">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="493" Class="entity:ArkLight" pos="-104.59711,3766.9937,0" EntityGUID="{129596F1-2752-4397-8EA9-709D0C6AB0D0}" EntityGUID_64="43972752129596F1">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="497" Class="entity:ArkLight" pos="-104.59711,3791.9937,0" EntityGUID="{3B0511F4-1337-4CE5-B19F-2548862AF633}" EntityGUID_64="4CE513373B0511F4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="501" Class="entity:ArkLight" pos="-104.59711,3816.9937,0" EntityGUID="{056DF2F4-4367-4401-855B-C2A9B66247A1}" EntityGUID_64="44014367056DF2F4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="503" Class="entity:ArkLight" pos="-104.59711,3841.9937,0" EntityGUID="{CB8200F5-38BB-43A7-92D6-014870B46E59}" EntityGUID_64="43A738BBCB8200F5">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="506" Class="entity:ArkLight" pos="-104.59711,3866.9937,0" EntityGUID="{E8B074F6-9194-4F4B-A09E-153F34F77B8C}" EntityGUID_64="4F4B9194E8B074F6">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="509" Class="entity:ArkLight" pos="-104.59711,3891.9937,0" EntityGUID="{B9A36FF7-26A7-4103-9B7F-B1D117396FE6}" EntityGUID_64="410326A7B9A36FF7">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="511" Class="entity:ArkLight" pos="-104.59711,3916.9937,0" EntityGUID="{ABB46CF8-38D9-4CD0-80B8-BE9BCD5A894D}" EntityGUID_64="4CD038D9ABB46CF8">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="514" Class="entity:ArkLight" pos="-104.59711,3941.9937,0" EntityGUID="{A500D7F9-4966-4AEC-B89C-9A0E26E9273A}" EntityGUID_64="4AEC4966A500D7F9">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="517" Class="entity:ArkLight" pos="-104.59711,3966.9937,0" EntityGUID="{CC1677FC-8B72-46B8-8BE0-8A5311DAB150}" EntityGUID_64="46B88B72CC1677FC">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="519" Class="entity:ArkLight" pos="-104.59711,3991.9937,0" EntityGUID="{43FA42FD-CE5B-45CA-86D1-AF18FD112C30}" EntityGUID_64="45CACE5B43FA42FD">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="522" Class="entity:ArkLight" pos="-104.59711,4016.9937,0" EntityGUID="{2ADFCAFD-A018-4486-87A6-185F1D6F5072}" EntityGUID_64="4486A0182ADFCAFD">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="524" Class="entity:ArkLight" pos="-104.59711,4041.9937,0" EntityGUID="{F5E7F4FD-61C0-48B2-918C-0CDD47EC2A7C}" EntityGUID_64="48B261C0F5E7F4FD">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="527" Class="entity:ArkLight" pos="-104.59711,4066.9937,0" EntityGUID="{823A29FF-F073-4419-98C8-C945CDB7F8B7}" EntityGUID_64="4419F073823A29FF">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

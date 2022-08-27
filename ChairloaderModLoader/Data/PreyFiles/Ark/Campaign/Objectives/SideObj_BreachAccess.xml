@@ -1,0 +1,15 @@
+
+<Objectives>
+ <Objective id="761057047974138293" title="@loc_15373294129891631852" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="761057047974138294" displayName="Player Found Breach" text="@loc_15373294129891631853"/>
+   <Desc id="761057047974138616" displayName="Complete" text="@loc_15373294129891631854"/>
+   <Desc id="761057047986035692" displayName="Restored_Atmos" text="@loc_15373294129891631855"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="761057047974138484" displayName="Restore Atmosphere" optional="true" text="@loc_15373294129891631857" markerLabel="@loc_15373294129891631856" Location="1713490239386284337" description="761057047974138294"/>
+   <Task id="761057047974138580" displayName="Lab Access" optional="true" text="@loc_15373294129891631859" markerLabel="@loc_15373294129891631858" Location="844024417263019221" description="761057047986035692"/>
+  </Tasks>
+ </Objective>
+</Objectives>

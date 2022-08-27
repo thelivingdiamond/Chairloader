@@ -1,0 +1,67 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="Actor:LocalPlayer" pos="-500,-40,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2" Class="Actor:Sensor" pos="-420,90,0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="3" Class="Audio:Trigger" pos="30,-380,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Player_Jump" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="4" Class="Audio:Trigger" pos="100,-220,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Player_Sneak_In" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="14" Class="Game:Start" pos="-860,-70,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="15" Class="Audio:Trigger" pos="-460,-400,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="GameStart" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="23" Class="Mission:GameTokenSet" pos="630,120,0">
+   <Inputs gametokenid_Token="-988125753" Value="1"/>
+  </Node>
+  <Node Id="24" Class="Math:EqualCheck" pos="-10,180,0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="25" Class="Mission:GameTokenCheck" pos="230,340,0">
+   <Inputs gametokenid_Token="-988125753" CheckValue="1"/>
+  </Node>
+  <Node Id="26" Class="Mission:GameTokenSet" pos="640,210,0">
+   <Inputs gametokenid_Token="-988125753" Value="0"/>
+  </Node>
+  <Node Id="27" Class="Audio:Trigger" pos="680,290,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Set_State_MX_Explore_Sneak" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="28" Class="Audio:Trigger" pos="710,440,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Set_State_MX_Explore_Calm" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="29" Class="Audio:Trigger" pos="170,-50,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Player_Sneak_Out" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2" nodeOut="1" portIn="Enable" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="1" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="1" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="1" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="29" nodeOut="1" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="2" portIn="Play" portOut="Jump" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="2" portIn="A" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="2" portIn="Check" portOut="StanceChanged" enabled="1"/>
+  <Edge nodeIn="1" nodeOut="14" portIn="update" portOut="output" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="14" portIn="Play" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="14" portIn="Play" portOut="output" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="24" portIn="Play" portOut="true" enabled="1"/>
+  <Edge nodeIn="23" nodeOut="24" portIn="Trigger" portOut="true" enabled="1"/>
+  <Edge nodeIn="25" nodeOut="24" portIn="Trigger" portOut="false" enabled="1"/>
+  <Edge nodeIn="27" nodeOut="24" portIn="Play" portOut="true" enabled="1"/>
+  <Edge nodeIn="28" nodeOut="24" portIn="Play" portOut="false" enabled="1"/>
+  <Edge nodeIn="26" nodeOut="25" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="29" nodeOut="25" portIn="Play" portOut="True" enabled="1"/>
+ </Edges>
+ <GraphTokens>
+  <Token Id="-988125753" Name="CrouchState" Type="6"/>
+ </GraphTokens>
+</Graph>

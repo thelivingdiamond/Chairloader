@@ -1,0 +1,191 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="13" Class="Logic:Gate" pos="980,1750,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14" Class="Ark:Objectives:TaskState" pos="1250,1740,0">
+   <Inputs task_Task="-4766122810336240946" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="38" Class="Ark:Objectives:GetTaskState" pos="450,1750,0">
+   <Inputs task_Task="-4766122810336240946"/>
+  </Node>
+  <Node Id="805" Name="Whistleblower_logic\n" Class="_commentbox" pos="-620,266,0">
+   <Inputs TextSize="1" Color="0.737911,0.184475,0.871367" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1990" Height="1030"/>
+  </Node>
+  <Node Id="1045" Class="Debug:DisplayMessage" pos="-70,50,0">
+   <Inputs entityId="0" message="You Rescued Mik" DisplayTime="5" posX="750" posY="200" fontSize="3" clr_Color="1,1,1" centered="1" ShowInLauncher="0"/>
+  </Node>
+  <Node Id="1490" Class="Ark:Objectives:ObjectiveState" pos="120,3350,0">
+   <Inputs objective_Objective="-4766122810336339505" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="1669" Class="Ark:Objectives:ObjectiveState" pos="1280,1950,0">
+   <Inputs objective_Objective="-4766122810336242129" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="1671" Class="Logic:Gate" pos="1020,1950,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="1685" Class="Logic:Gate" pos="-140,1750,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="1686" Class="Ark:Objectives:TaskState" pos="4470,1740,0">
+   <Inputs task_Task="-4766122810336240705" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="1702" Class="Logic:All" pos="-260,1750,0">
+   <Inputs/>
+  </Node>
+  <Node Id="1703" Class="Ark:RemoteEvent" pos="-570,1860,0">
+   <Inputs remoteEvent_Event="6732635291239050429"/>
+  </Node>
+  <Node Id="1704" Class="Ark:Objectives:GetObjectiveState" pos="630,1950,0">
+   <Inputs objective_Objective="-4766122810336339505"/>
+  </Node>
+  <Node Id="2380" Class="Ark:Objectives:TaskState" pos="710,670,0">
+   <Inputs task_Task="-4766122810336241222" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2381" Class="Ark:Objectives:ObjectiveState" pos="160,680,0">
+   <Inputs objective_Objective="-4766122810336242129" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="2382" Class="Ark:Objectives:SetObjectiveDescription" pos="710,860,0">
+   <Inputs objectiveDescription_Description="-4766122810336241924"/>
+  </Node>
+  <Node Id="2569" Class="Ark:Dialog:ConversationEvent" pos="-400,3350,0">
+   <Inputs conversation_Conversation="13680621263373550153"/>
+  </Node>
+  <Node Id="2579" Class="Ark:Objectives:TaskState" pos="510,3350,0">
+   <Inputs task_Task="-4766122810336337683" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2777" Class="Mission:GameTokenSet" pos="710,950,0">
+   <Inputs gametokenid_Token="1175416595" Value="true"/>
+  </Node>
+  <Node Id="3140" Class="Ark:Roster:GiveCharacterPassword" pos="510,3540,0">
+   <Inputs character_Character="1713490239432330764" ShowHUDNotification="1"/>
+  </Node>
+  <Node Id="3154" Class="Ark:Debug:ConsoleEvent" pos="-510,510,0">
+   <Inputs Command="whistleblower"/>
+  </Node>
+  <Node Id="4769" Class="Ark:Dialog:ConversationEvent" pos="-560,580,0">
+   <Inputs conversation_Conversation="13680621263369402673"/>
+  </Node>
+  <Node Id="4771" Class="Ark:Objectives:TaskState" pos="710,480,0">
+   <Inputs task_Task="-4766122810336241651" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="4772" Class="Ark:Objectives:GetObjectiveState" pos="-210,580,0">
+   <Inputs objective_Objective="-4766122810336242129"/>
+  </Node>
+  <Node Id="4775" Class="Ark:Objectives:GetObjectiveState" pos="120,1750,0">
+   <Inputs objective_Objective="-4766122810336242129"/>
+  </Node>
+  <Node Id="4776" Class="Ark:Objectives:TaskState" pos="3410,2140,0">
+   <Inputs task_Task="-4766122810336240946" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="4777" Class="Ark:Objectives:TaskState" pos="3950,2140,0">
+   <Inputs task_Task="-4766122810336240946" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="4778" Name="Search_Security_Station" Class="_commentbox" pos="-700,1575,0">
+   <Inputs TextSize="1" Color="0.737911,0.184475,0.871367" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="6080" Height="990"/>
+  </Node>
+  <Node Id="4780" Class="Ark:Dialog:ConversationEvent" pos="-630,1750,0">
+   <Inputs conversation_Conversation="13680621263369437296"/>
+  </Node>
+  <Node Id="4781" Class="Ark:Objectives:GetTaskState" pos="160,480,0">
+   <Inputs task_Task="-4766122810336241651"/>
+  </Node>
+  <Node Id="4782" Class="Ark:Debug:ConsoleEvent" pos="-500,330,0">
+   <Inputs Command="RescueMik"/>
+  </Node>
+  <Node Id="4783" Class="Mission:GameTokenSet" pos="-160,320,0">
+   <Inputs gametokenid_Token="377478512" Value="True"/>
+  </Node>
+  <Node Id="4784" Class="Ark:Debug:ConsoleEvent" pos="-420,-390,0">
+   <Inputs Command="dead?"/>
+  </Node>
+  <Node Id="4785" Class="Mission:GameTokenCheck" pos="-150,-390,0">
+   <Inputs gametokenid_Token="1008825921" CheckValue="true"/>
+  </Node>
+  <Node Id="4788" Class="Ark:Debug:ConsoleEvent" pos="-410,-720,0">
+   <Inputs Command="rescued?"/>
+  </Node>
+  <Node Id="4789" Class="Mission:GameTokenCheck" pos="-140,-720,0">
+   <Inputs gametokenid_Token="377478512" CheckValue="true"/>
+  </Node>
+  <Node Id="4792" Class="Debug:DisplayMessage" pos="290,-960,0">
+   <Inputs entityId="0" message="RESCUED" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="4793" Class="Debug:DisplayMessage" pos="290,-720,0">
+   <Inputs entityId="0" message="NOT RESCUED" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="4794" Class="Debug:DisplayMessage" pos="290,-390,0">
+   <Inputs entityId="0" message="DEAD" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="4795" Class="Debug:DisplayMessage" pos="290,-160,0">
+   <Inputs entityId="0" message="ALIVE" DisplayTime="5" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="4796" Class="Ark:Objectives:SetObjectiveDescription" pos="4950,1740,0">
+   <Inputs objectiveDescription_Description="6732635291237481242"/>
+  </Node>
+  <Node Id="4797" Name="Give_Mikhaila&apos;s_Father_after_player_completes_Whistleblower_if_assigned_by_Mikhaila" Class="_commentbox" pos="-600,3065,0">
+   <Inputs TextSize="1" Color="0.737911,0.184475,0.871367" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2010" Height="990"/>
+  </Node>
+  <Node Id="4798" Class="Ark:Objectives:SetObjectiveDescription" pos="960,3350,0">
+   <Inputs objectiveDescription_Description="-4766122810336339504"/>
+  </Node>
+  <Node Id="4801" Class="Mission:GameTokenUpdated" pos="-300,3790,0">
+   <Inputs gametokenid_Token="659909599" compare_Value="true"/>
+  </Node>
+  <Node Id="4802" Class="Ark:Objectives:ObjectiveState" pos="580,3790,0">
+   <Inputs objective_Objective="-4766122810336339505" SetTracked="0" ShowOnHUD="0"/>
+  </Node>
+  <Node Id="4804" Class="Ark:Objectives:GetObjectiveState" pos="160,3790,0">
+   <Inputs objective_Objective="-4766122810336339505"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="14" nodeOut="13" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1686" nodeOut="14" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="38" portIn="In" portOut="Active" enabled="1"/>
+  <Edge nodeIn="4776" nodeOut="38" portIn="Activate" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="2579" nodeOut="1490" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3140" nodeOut="1490" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4776" nodeOut="1669" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1669" nodeOut="1671" portIn="Add" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4775" nodeOut="1685" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4796" nodeOut="1686" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1685" nodeOut="1702" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1702" nodeOut="1703" portIn="in2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1671" nodeOut="1704" portIn="In" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="2381" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2382" nodeOut="2381" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2777" nodeOut="2381" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1490" nodeOut="2569" portIn="Add" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="4798" nodeOut="2579" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4772" nodeOut="3154" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="4772" nodeOut="4769" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="4772" nodeOut="4769" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="4772" nodeOut="4769" portIn="Trigger" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="2380" nodeOut="4771" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2777" nodeOut="4771" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2381" nodeOut="4772" portIn="Add" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="4781" nodeOut="4772" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="4775" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="1704" nodeOut="4775" portIn="Trigger" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="4777" nodeOut="4776" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1686" nodeOut="4777" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="1702" nodeOut="4780" portIn="in1" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="4771" nodeOut="4781" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="1045" nodeOut="4782" portIn="Show" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="4783" nodeOut="4782" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="4785" nodeOut="4784" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="4794" nodeOut="4785" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="4795" nodeOut="4785" portIn="Show" portOut="False" enabled="1"/>
+  <Edge nodeIn="4789" nodeOut="4788" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="4792" nodeOut="4789" portIn="Show" portOut="True" enabled="1"/>
+  <Edge nodeIn="4793" nodeOut="4789" portIn="Show" portOut="False" enabled="1"/>
+  <Edge nodeIn="4804" nodeOut="4801" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="4802" nodeOut="4804" portIn="Fail" portOut="Assigned" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

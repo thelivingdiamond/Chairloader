@@ -1,0 +1,568 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Andrew Brown</Author>
+  <LastAuthor>Seth Shain</LastAuthor>
+  <Created>2017-04-17T20:33:29Z</Created>
+  <LastSaved>2017-05-19T21:04:46Z</LastSaved>
+  <Company>Arkane Studios</Company>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="72" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultRowHeight="15">
+   <Column ss:StyleID="s63" ss:Width="164.25"/>
+   <Column ss:StyleID="s62" ss:Width="1224"/>
+   <Column ss:StyleID="s62" ss:Width="363.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="101.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="124.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5" ss:StyleID="s65">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">KEY</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="27" ss:StyleID="s65">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains original text meant for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains text for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">set to &quot;LOCKED&quot; if this string is final.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Character limit for translated text.</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s71">
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Input</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_SCConfig</Data></Cell>
+    <Cell><Data ss:Type="String">Official Steam Controller Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Steam Controller Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_SCConfig_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Steam Controller Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Steam Controller Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_XB1Config</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox One Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox One Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_XB1Config_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox One Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox One Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_XB360Config</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox 360 Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox 360 Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_XB360Config_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox 360 Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox 360 Gamepad Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_PS4Config</Data></Cell>
+    <Cell><Data ss:Type="String">Official DualShock®4 Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official DualShock®4 Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_PS4Config_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw DualShock®4 Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw DualShock®4 Configuration</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_PS4Gyro</Data></Cell>
+    <Cell><Data ss:Type="String">Official DualShock®4 Configuration with Gyro</Data></Cell>
+    <Cell><Data ss:Type="String">Official DualShock®4 Configuration with Gyro</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Title_PS4Gyro_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw DualShock®4 Configuration with Gyro</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw DualShock®4 Configuration with Gyro</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_SCConfig</Data></Cell>
+    <Cell><Data ss:Type="String">Official Steam Controller configuration for PREY. Uses a combination of right pad and motion controls for aiming.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Steam Controller configuration for PREY. Uses a combination of right pad and motion controls for aiming.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_SCConfig_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Steam Controller configuration for PREY. Uses left stick for aiming and right pad for movement.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Steam Controller configuration for PREY. Uses left stick for aiming and right pad for movement.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_XB1Config</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox One gamepad configuration for PREY. Standard FPS gamepad controls.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox One gamepad configuration for PREY. Standard FPS gamepad controls.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_XB1Config_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox One gamepad configuration for PREY. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox One gamepad configuration for PREY. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_XB360Config</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox 360 gamepad configuration for PREY. Standard FPS gamepad controls.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Xbox 360 gamepad configuration for PREY. Standard FPS gamepad controls.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_XB360Config_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox 360 gamepad configuration for PREY. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw Xbox 360 gamepad configuration for PREY. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_PS4Config</Data></Cell>
+    <Cell><Data ss:Type="String">Official DualShock®4 configuration for PREY. Standard FPS gamepad controls.</Data></Cell>
+    <Cell><Data ss:Type="String">Official DualShock®4 configuration for PREY. Standard FPS gamepad controls.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_PS4Config_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw DualShock®4 configuration for PREY. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw DualShock®4 configuration for PREY. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_PS4Gyro</Data></Cell>
+    <Cell><Data ss:Type="String">Official alternate DualShock®4 configuration for PREY. Uses motion control to aim and turn while jumping, gliding, and ascending in microgravity.</Data></Cell>
+    <Cell><Data ss:Type="String">Official alternate DualShock®4 configuration for PREY. Uses motion control to aim and turn while jumping, gliding, and ascending in microgravity.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Description_PS4Gyro_SP</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw alternate DualShock®4 configuration for PREY. Uses motion control to aim and turn while jumping, gliding, and ascending in microgravity. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">Official Southpaw alternate DualShock®4 configuration for PREY. Uses motion control to aim and turn while jumping, gliding, and ascending in microgravity. Sticks are swapped and face buttons are swapped with d-pad. Triggers and bumpers are unchanged.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Set_FPSControls</Data></Cell>
+    <Cell><Data ss:Type="String">In Game</Data></Cell>
+    <Cell><Data ss:Type="String">In Game</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">Set_MenuControls</Data></Cell>
+    <Cell><Data ss:Type="String">Menu</Data></Cell>
+    <Cell><Data ss:Type="String">Menu</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="28" ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_sticklx</Data></Cell>
+    <Cell><Data ss:Type="String">Movement</Data></Cell>
+    <Cell><Data ss:Type="String">Movement</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_stickly</Data></Cell>
+    <Cell><Data ss:Type="String">Movement</Data></Cell>
+    <Cell><Data ss:Type="String">Movement</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_stickaimx</Data></Cell>
+    <Cell><Data ss:Type="String">Stick Aim</Data></Cell>
+    <Cell><Data ss:Type="String">Stick Aim</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_stickaimy</Data></Cell>
+    <Cell><Data ss:Type="String">Stick Aim</Data></Cell>
+    <Cell><Data ss:Type="String">Stick Aim</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_stickrx</Data></Cell>
+    <Cell><Data ss:Type="String">Aim</Data></Cell>
+    <Cell><Data ss:Type="String">Aim</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_stickry</Data></Cell>
+    <Cell><Data ss:Type="String">Aim</Data></Cell>
+    <Cell><Data ss:Type="String">Aim</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_triggerl</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Ability</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Ability</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_triggerr</Data></Cell>
+    <Cell><Data ss:Type="String">Attack</Data></Cell>
+    <Cell><Data ss:Type="String">Attack</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_start</Data></Cell>
+    <Cell><Data ss:Type="String">Pause</Data></Cell>
+    <Cell><Data ss:Type="String">Pause</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_back</Data></Cell>
+    <Cell><Data ss:Type="String">Transcribe</Data></Cell>
+    <Cell><Data ss:Type="String">Transcribe</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_dpad_up</Data></Cell>
+    <Cell><Data ss:Type="String">Flashlight</Data></Cell>
+    <Cell><Data ss:Type="String">Flashlight</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_dpad_down</Data></Cell>
+    <Cell><Data ss:Type="String">Quickselect Down</Data></Cell>
+    <Cell><Data ss:Type="String">Quickselect Down</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_dpad_left</Data></Cell>
+    <Cell><Data ss:Type="String">Quickselect Left</Data></Cell>
+    <Cell><Data ss:Type="String">Quickselect Left</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_dpad_right</Data></Cell>
+    <Cell><Data ss:Type="String">Quickselect Right</Data></Cell>
+    <Cell><Data ss:Type="String">Quickselect Right</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_a</Data></Cell>
+    <Cell><Data ss:Type="String">Jump / Ascend</Data></Cell>
+    <Cell><Data ss:Type="String">Jump / Ascend</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_b</Data></Cell>
+    <Cell><Data ss:Type="String">Crouch / Descend</Data></Cell>
+    <Cell><Data ss:Type="String">Crouch / Descend</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_x</Data></Cell>
+    <Cell><Data ss:Type="String">Interact / Reload</Data></Cell>
+    <Cell><Data ss:Type="String">Interact / Reload</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_y</Data></Cell>
+    <Cell><Data ss:Type="String">(HOLD) Favorites Wheel / Swap Weapon</Data></Cell>
+    <Cell><Data ss:Type="String">(HOLD) Favorites Wheel / Swap Weapon</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_l1</Data></Cell>
+    <Cell><Data ss:Type="String">Lean Left / Roll Left</Data></Cell>
+    <Cell><Data ss:Type="String">Lean Left / Roll Left</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_r1</Data></Cell>
+    <Cell><Data ss:Type="String">Lean Right / Roll Right</Data></Cell>
+    <Cell><Data ss:Type="String">Lean Right / Roll Right</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_l2</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Ability</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Ability</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_r2</Data></Cell>
+    <Cell><Data ss:Type="String">Attack</Data></Cell>
+    <Cell><Data ss:Type="String">Attack</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_l3</Data></Cell>
+    <Cell><Data ss:Type="String">Sprint</Data></Cell>
+    <Cell><Data ss:Type="String">Sprint</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_game:sc_r3</Data></Cell>
+    <Cell><Data ss:Type="String">Scope</Data></Cell>
+    <Cell><Data ss:Type="String">Scope</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="53" ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_sticklx</Data></Cell>
+    <Cell><Data ss:Type="String">Navigate Menu / Map Pan</Data></Cell>
+    <Cell><Data ss:Type="String">Navigate Menu / Map Pan</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_stickly</Data></Cell>
+    <Cell><Data ss:Type="String">Navigate Menu / Map Pan</Data></Cell>
+    <Cell><Data ss:Type="String">Navigate Menu / Map Pan</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_stickrx</Data></Cell>
+    <Cell><Data ss:Type="String">Map Zoom</Data></Cell>
+    <Cell><Data ss:Type="String">Map Zoom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_stickry</Data></Cell>
+    <Cell><Data ss:Type="String">Map Zoom</Data></Cell>
+    <Cell><Data ss:Type="String">Map Zoom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_dpad_up</Data></Cell>
+    <Cell><Data ss:Type="String">Up</Data></Cell>
+    <Cell><Data ss:Type="String">Up</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_dpad_down</Data></Cell>
+    <Cell><Data ss:Type="String">Down</Data></Cell>
+    <Cell><Data ss:Type="String">Down</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_dpad_left</Data></Cell>
+    <Cell><Data ss:Type="String">Left</Data></Cell>
+    <Cell><Data ss:Type="String">Left</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_dpad_right</Data></Cell>
+    <Cell><Data ss:Type="String">Right</Data></Cell>
+    <Cell><Data ss:Type="String">Right</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_a</Data></Cell>
+    <Cell><Data ss:Type="String">Select</Data></Cell>
+    <Cell><Data ss:Type="String">Select</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_b</Data></Cell>
+    <Cell><Data ss:Type="String">Cancel</Data></Cell>
+    <Cell><Data ss:Type="String">Cancel</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_x</Data></Cell>
+    <Cell><Data ss:Type="String">Use / Take</Data></Cell>
+    <Cell><Data ss:Type="String">Use / Take</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_y</Data></Cell>
+    <Cell><Data ss:Type="String">Menu / Consume</Data></Cell>
+    <Cell><Data ss:Type="String">Menu / Consume</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_l1</Data></Cell>
+    <Cell><Data ss:Type="String">Tab Left</Data></Cell>
+    <Cell><Data ss:Type="String">Tab Left</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_r1</Data></Cell>
+    <Cell><Data ss:Type="String">Tab Right</Data></Cell>
+    <Cell><Data ss:Type="String">Tab Right</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell><Data ss:Type="String">input_menu:sc_l2</Data></Cell>
+    <Cell><Data ss:Type="String">Page Left</Data></Cell>
+    <Cell><Data ss:Type="String">Page Left</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_r2</Data></Cell>
+    <Cell><Data ss:Type="String">Page Right</Data></Cell>
+    <Cell><Data ss:Type="String">Page Right</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_l3</Data></Cell>
+    <Cell><Data ss:Type="String">Sort / Center Map</Data></Cell>
+    <Cell><Data ss:Type="String">Sort / Center Map</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_r3</Data></Cell>
+    <Cell><Data ss:Type="String">Drop / Reset Map Zoom</Data></Cell>
+    <Cell><Data ss:Type="String">Drop / Reset Map Zoom</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_start</Data></Cell>
+    <Cell><Data ss:Type="String">Unpause</Data></Cell>
+    <Cell><Data ss:Type="String">Unpause</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">input_menu:sc_back</Data></Cell>
+    <Cell><Data ss:Type="String">Exit Menu</Data></Cell>
+    <Cell><Data ss:Type="String">Exit Menu</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <Selected/>
+   <TopRowVisible>18</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>31</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

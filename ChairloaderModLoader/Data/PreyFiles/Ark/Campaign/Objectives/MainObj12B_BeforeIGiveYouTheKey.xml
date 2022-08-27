@@ -1,0 +1,27 @@
+
+<Objectives>
+ <Objective id="844024417286442409" title="@loc_15373294129891630509" optional="false">
+  <Clues>
+   <Clue id="844024417286539271" displayName="Node Location - exterior" text="@loc_15373294129891630510"/>
+   <Clue id="844024417286539295" displayName="Node Location - cargo" text="@loc_15373294129891630511"/>
+   <Clue id="844024417286539296" displayName="Node Location - GUT" text="@loc_15373294129891630512"/>
+   <Clue id="844024417286539298" displayName="Node Location - Psychotronics" text="@loc_15373294129891630513"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="844024417286442410" displayName="Watch the video" text="@loc_15373294129891630514"/>
+   <Desc id="844024417286442435" displayName="Scan the coral" text="@loc_15373294129891630515"/>
+   <Desc id="844024417286531857" displayName="Completed" text="@loc_15373294129891630516"/>
+   <Desc id="14667999412573242159" displayName="Upgrade the psychoscope" text="@loc_14667999412573242160"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417286442617" displayName="Watch the video" optional="false" text="@loc_15373294129891630518" markerLabel="@loc_15373294129891630517" Location="1713490239386284818" description="844024417286442410"/>
+   <Task id="14667999412573241529" displayName="Upgrade the psychoscope" optional="false" text="@loc_14667999412573241530" markerLabel="@loc_14667999412573241902" Location="1713490239386284818" description="844024417286442435"/>
+   <Task id="844024417286442820" displayName="Scan the Coral - Exterior" optional="false" text="@loc_15373294129891630520" markerLabel="@loc_15373294129891630519" Location="1713490239386284337" description="844024417286442435"/>
+   <Task id="844024417286443889" displayName="Scan the Coral - Psychotronics" optional="false" text="@loc_15373294129891630522" markerLabel="@loc_15373294129891630521" targetCharacterId="844024417286443890" Location="11824555372632688907" description="844024417286442435"/>
+   <Task id="844024417315414590" displayName="Scan the Coral - GUTS" optional="false" text="@loc_844024417315414593" markerLabel="@loc_844024417315414592" targetCharacterId="844024417315414591" Location="4349723564886052417" description="844024417286442435"/>
+   <Task id="844024417315414624" displayName="Scan the Coral - Lobby" optional="false" text="@loc_844024417315414627" markerLabel="@loc_844024417315414626" targetCharacterId="844024417315414625" Location="1713490239377285936" description="844024417286442435"/>
+   <Task id="844024417315414638" displayName="Scan the Coral - Life Support" optional="false" text="@loc_844024417315414641" markerLabel="@loc_844024417315414640" targetCharacterId="844024417315414639" Location="4349723564895209499" description="844024417286442435"/>
+   <Task id="844024417286442830" displayName="Upload the data" optional="false" text="@loc_15373294129891630524" Location="1713490239386284818" markerLabel="@loc_15373294129891630523" description="844024417286442435"/>
+  </Tasks>
+ </Objective>
+</Objectives>

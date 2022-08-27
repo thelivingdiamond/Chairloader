@@ -408,9 +408,3 @@ ChairLoader/PreyDll.dll.gzf
 /_build
 /cmake-build-*/
 /.idea/
-/ChairloaderModLoader/Test/
-ChairloaderModLoader/patch_chairloader.pak
-/ChairloaderModLoader/Output/
-/ChairloaderModLoader/LevelOutput/
-ChairloaderModLoader/Decrypt/.idea/workspace.xml
-ChairloaderModLoader/English_xml_patch.pak

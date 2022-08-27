@@ -1,0 +1,14 @@
+
+<Objectives>
+ <Objective id="13680621263383944217" title="@loc_15373294129891632359" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="13680621263383944218" displayName="Start" text="@loc_15373294129891632360"/>
+   <Desc id="844024417316350089" displayName="Complete" text="@loc_844024417316350090"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="13680621263383944312" displayName="Get Leitner&apos;s Connectome" optional="false" text="@loc_15373294129891632362" markerLabel="@loc_15373294129891632361" description="13680621263383944218" Location="844024417252490146"/>
+   <Task id="13680621263383944814" displayName="Give Connectome to Igwe" optional="false" text="@loc_15373294129891632364" markerLabel="@loc_15373294129891632363" Location="1713490239377285936" description="13680621263383944218"/>
+  </Tasks>
+ </Objective>
+</Objectives>

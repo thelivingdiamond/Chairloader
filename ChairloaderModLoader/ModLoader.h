@@ -15,10 +15,14 @@
 
 #include <boost/format.hpp>
 
+class GamePathDialog;
+class GameVersion;
 
 namespace fs = std::filesystem;
 class ModLoader {
 public:
+    static ModLoader& Get() { return *m_spInstance; }
+
     enum class severityLevel{
         trace,
         debug,
@@ -44,6 +48,7 @@ public:
     };
     struct Mod{
         std::string modName;
+        std::string displayName;
         std::string version;
         std::string author;
         int loadOrder = -1;
@@ -70,15 +75,38 @@ public:
     ~ModLoader();
     void Draw();
     void Update();
+
+    const fs::path& GetGamePath() { return PreyPath; }
 private:
+    //! Current UI state
+    enum class State
+    {
+        Invalid,
+        LocateGameDir,
+        MainWindow,
+    };
+
+    State m_State = State::Invalid;
+
     /* Globals */
-    const fs::path DefaultPreyPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey)";
-    fs::path PreyPath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey)";
+    fs::path PreyPath;
+    std::string m_PreyPathString; //!< String used to display the path in UI
     fs::path ChairloaderModLoaderConfigPath = R"(.\ChairloaderModLoaderConfig.xml)";
     std::vector<Mod> ModList;
     std::vector<std::string> LegacyModList;
 
+    /* Init */
+    void LoadModLoaderConfig();
+    void SetGamePath(const fs::path& path);
+
+    /* LocateGameDir */
+    std::unique_ptr<GamePathDialog> m_pGamePathDialog;
+    void SwitchToGameSelectionDialog(const fs::path& gamePath);
+    void DrawGamePathSelectionDialog(bool* pbIsOpen);
+
     /* Draw Functions */
+    std::unique_ptr<GameVersion> m_pGameVersion;
+    void DrawMainWindow(bool* pbIsOpen);
     void DrawModList();
     void DrawDLLSettings();
     void DrawXMLSettings();
@@ -203,4 +231,5 @@ private:
     bool verifyDefaultFileStructure();
     // Create default file structure
     void createDefaultFileStructure();
+    static inline ModLoader* m_spInstance = nullptr;
 };

@@ -1,0 +1,943 @@
+
+<UIElements name="DaniellePDA">
+ <UIElement name="DaniellePDA" mouseevents="1" keyevents="1" cursor="1" controller_input="0" use_steam_menu="1">
+  <GFx file="GFX/danielle_PDA.gfx" layer="2">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="setSafeFrame" funcname="sf.initStage">
+    <param name="Width" desc="Screen Width" type="int"/>
+    <param name="Height" desc="Screen Height" type="int"/>
+    <param name="SafeFrame" desc="Percentage of area.  Typically 85-90" type="int"/>
+   </function>
+   <function name="setWidgetsScale" funcname="sf.resizeWidgets">
+    <param name="Scale" desc="0-100%" type="int"/>
+   </function>
+   <function name="debugDrawSafeFrame" funcname="sf.drawSafeFrame"/>
+   <function name="debugRemoveSafeFrame" funcname="sf.removeSafeFrame"/>
+   <function name="inventorySetGridSize" funcname="inv.setGridSize">
+    <param name="Row" desc="define grid size" type="int"/>
+    <param name="Column" desc="define grid size" type="int"/>
+   </function>
+   <function name="inventoryClearItems" funcname="inv.clearItems"/>
+   <function name="inventoryAddItem" funcname="inv.addInventoryItem">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Icon" desc="icon file" type="string"/>
+    <param name="Width" desc="" type="int"/>
+    <param name="Height" desc="" type="int"/>
+    <param name="Rotation" desc="" type="int"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Quantity" desc="" type="int"/>
+    <param name="Stackable" desc="" type="bool"/>
+    <param name="Equipped" desc="" type="bool"/>
+    <param name="Assigned" desc="" type="string"/>
+    <param name="Type" desc="" type="int"/>
+    <param name="Favorite" desc="" type="bool"/>
+    <param name="isBlocked" desc="" type="bool"/>
+   </function>
+   <function name="updateGrid" funcname="inv.updateGrid"/>
+   <function name="inventoryUpdateCount" funcname="inv.updateCount">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Quantity" desc="" type="string"/>
+   </function>
+   <function name="inventoryUpdateIcon" funcname="inv.updateIcon">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Icon" desc="" type="string"/>
+   </function>
+   <function name="inventoryNav" funcname="inv.itemNav">
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Width" desc="" type="int"/>
+    <param name="Height" desc="" type="int"/>
+    <param name="Conflict" desc="conflicting=true" type="bool"/>
+   </function>
+   <function name="inventoryUpdateDisplayPane" funcname="inv.inventoryUpdateDisplayPane">
+    <param name="Name" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+    <param name="HasMods" desc="" type="bool"/>
+    <param name="ModText" desc="" type="string"/>
+   </function>
+   <function name="inventorySetDurability" funcname="inv.inventorySetDurability">
+    <param name="percent" desc="0-1" type="float"/>
+   </function>
+   <function name="inventoryAddWeaponMod" funcname="inv.addWeaponMod">
+    <param name="ModNumber" desc="" type="int"/>
+    <param name="Name" desc="" type="string"/>
+    <param name="Level" desc="" type="int"/>
+    <param name="MaxLevel" desc="" type="int"/>
+    <param name="Stat" desc="" type="string"/>
+    <param name="NextStat" desc="" type="string"/>
+   </function>
+   <function name="inventorySetBreakdown" funcname="inv.inventorySetBreakdown">
+    <param name="isVisible" desc="" type="bool"/>
+    <param name="Organic" desc="" type="string"/>
+    <param name="Mineral" desc="" type="string"/>
+    <param name="Synthetic" desc="" type="string"/>
+    <param name="Exotic" desc="" type="string"/>
+    <param name="Breakdown" desc="" type="string"/>
+   </function>
+   <function name="itemStartMove" funcname="inv.itemStartMove">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+   </function>
+   <function name="itemMove" funcname="inv.itemMove">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+   </function>
+   <function name="itemMoveRelease" funcname="inv.itemMoveRelease">
+    <param name="ID" desc="unique identifier" type="string"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+   </function>
+   <function name="itemPickResult" funcname="inv.itemPickResult">
+    <param name="result" type="bool"/>
+   </function>
+   <function name="inventoryDropItem" funcname="inv.inventoryDropItem">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Icon" desc="icon file" type="string"/>
+    <param name="Width" desc="" type="int"/>
+    <param name="Height" desc="" type="int"/>
+    <param name="Rotation" desc="" type="int"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Quantity" desc="" type="int"/>
+    <param name="Stackable" desc="" type="bool"/>
+    <param name="Equipped" desc="" type="bool"/>
+    <param name="Assigned" desc="" type="string"/>
+    <param name="Type" desc="" type="int"/>
+    <param name="Favorite" desc="" type="bool"/>
+    <param name="isBlocked" desc="" type="bool"/>
+   </function>
+   <function name="inventorySetDimmedItems" funcname="inv.setDimmedItems"/>
+   <function name="inventorySetTargetItems" funcname="inv.setTargetItems"/>
+   <function name="inventoryPopUpClear" funcname="context.clearContextMenuBtns"/>
+   <function name="inventoryAddPopupMenuBtn" funcname="context.addContextMenuBtn">
+    <param name="BtnText" desc="" type="string"/>
+    <param name="BtnEnabled" desc="" type="bool"/>
+    <param name="BtnIsDrop" desc="" type="bool"/>
+   </function>
+   <function name="inventoryUpdatePopupMenuBtn" funcname="context.contextMenuUpdateButton">
+    <param name="Index" desc="" type="int"/>
+    <param name="BtnText" desc="" type="string"/>
+    <param name="BtnEnabled" desc="" type="bool"/>
+    <param name="BtnIsDrop" desc="" type="bool"/>
+   </function>
+   <function name="inventoryPopUpMenuOpen" funcname="context.contextMenuOpen">
+    <param name="ID" desc="unique identifier" type="string"/>
+   </function>
+   <function name="invPopUpMenuClose" funcname="context.contextMenuClose"/>
+   <function name="invPopUpMenuHL" funcname="context.contextMenuHL">
+    <param name="BtnNum" desc="Which button to highlight 1-8" type="int"/>
+   </function>
+   <function name="invPopUpMenuSelect" funcname="context.contextSelect"/>
+   <function name="inventoryKeyItemsDisplay" funcname="inv.invKeyItemsDisplay">
+    <param name="Scope" desc="PsiScope" type="bool"/>
+    <param name="Suit" desc="Suit" type="bool"/>
+    <param name="SuitMod1" desc="SuitMod1" type="int"/>
+    <param name="SuitMod2" desc="SuitMod2" type="int"/>
+    <param name="SuitMod3" desc="SuitMod3" type="int"/>
+   </function>
+   <function name="itemFlash" funcname="inv.itemFlash">
+    <param name="ID" desc="unique identifier" type="int"/>
+   </function>
+   <function name="inventoryReleaseDragItem" funcname="inv.releaseDragItem"/>
+   <function name="invPromptsOpen" funcname="invPrompt.promptsOpen"/>
+   <function name="invPromptsClose" funcname="invPrompt.promptsClose"/>
+   <function name="invSetPrompt" funcname="invPrompt.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="invFormatPrompts" funcname="invPrompt.formatPrompts"/>
+   <function name="quickSelectClearItems" funcname="fav.clearItems"/>
+   <function name="quickSelectUpdateAbility" funcname="fav.updateAbility">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="cost" desc="" type="int"/>
+    <param name="isEnabled" desc="" type="bool"/>
+    <param name="active" desc="" type="bool"/>
+    <param name="cooldown" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateWeapon" funcname="fav.updateWeapon">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="ammo" desc="" type="string"/>
+    <param name="durability" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateItem" funcname="fav.updateItem">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+    <param name="uniqueID" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="text" desc="" type="string"/>
+    <param name="quantity" desc="" type="int"/>
+    <param name="iconWidth" desc="" type="int"/>
+    <param name="iconHeight" desc="" type="int"/>
+   </function>
+   <function name="quickSelectUpdateNone" funcname="fav.updateNone">
+    <param name="direction" desc="0=Up, 1=Right, 2, 3" type="int"/>
+   </function>
+   <function name="quickSelectOpen" funcname="fav.quickSelectOpen">
+    <param name="uniqueID" desc="" type="string"/>
+   </function>
+   <function name="quickSelectClose" funcname="fav.quickSelectClose"/>
+   <function name="quickSelectHL" funcname="fav.itemHL">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+    <param name="fillValue" desc="0-100" type="float"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="quickSelectFlashWhite" funcname="fav.itemFlashWhite">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+   </function>
+   <function name="quickSelectFlashRed" funcname="fav.itemFlashRed">
+    <param name="direction" desc="0=N, 1=E, 2=S, 3=W" type="int"/>
+   </function>
+   <function name="quickSelectSetPrompt" funcname="fav.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="quickSelectFormatPrompts" funcname="fav.formatPrompts"/>
+   <function name="suitClearChipsets" funcname="suit.clearChipsets"/>
+   <function name="suitAddChipset" funcname="suit.addChipset">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Name" desc="" type="string"/>
+    <param name="Icon" desc="icon file" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="isNew" desc="" type="bool"/>
+   </function>
+   <function name="suitUpdateList" funcname="suit.updateList"/>
+   <function name="suitUpdateDisplayPane" funcname="suit.updateDisplayPane">
+    <param name="Name" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+    <param name="ErrorText" desc="" type="string"/>
+   </function>
+   <function name="suitChipsetFanfare" funcname="suit.slotFanfare">
+    <param name="slot" desc="1-8" type="int"/>
+    <param name="fanfareType" desc="1=equip, 2=unequip" type="int"/>
+   </function>
+   <function name="suitUpdateSlots" funcname="suit.updateSlots">
+    <param name="ShipsetType" desc="1-4" type="int"/>
+    <param name="Filled" desc="0-8" type="int"/>
+    <param name="Unlocked" desc="0-8" type="int"/>
+    <param name="Slot1" desc="isFilled" type="bool"/>
+    <param name="Slot2" desc="isFilled" type="bool"/>
+    <param name="Slot3" desc="isFilled" type="bool"/>
+    <param name="Slot4" desc="isFilled" type="bool"/>
+    <param name="Slot5" desc="isFilled" type="bool"/>
+    <param name="Slot6" desc="isFilled" type="bool"/>
+    <param name="Slot7" desc="isFilled" type="bool"/>
+    <param name="Slot8" desc="isFilled" type="bool"/>
+   </function>
+   <function name="suitHighlightSlot" funcname="suit.highlightSlot">
+    <param name="slot" desc="1-8" type="int"/>
+   </function>
+   <function name="suitSetEquipped" funcname="suit.chipsetSetEquip">
+    <param name="ID" type="int"/>
+    <param name="isEquipped" type="bool"/>
+   </function>
+   <function name="scopeClearChipsets" funcname="scope.clearChipsets"/>
+   <function name="scopeAddChipset" funcname="scope.addChipset">
+    <param name="ID" desc="Unique ID" type="string"/>
+    <param name="Name" desc="" type="string"/>
+    <param name="Icon" desc="icon file" type="string"/>
+    <param name="isEquipped" desc="" type="bool"/>
+    <param name="isNew" desc="" type="bool"/>
+   </function>
+   <function name="scopeUpdateList" funcname="scope.updateList"/>
+   <function name="scopeUpdateDisplayPane" funcname="scope.updateDisplayPane">
+    <param name="Name" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+    <param name="ErrorText" desc="" type="string"/>
+   </function>
+   <function name="scopeChipsetFanfare" funcname="scope.slotFanfare">
+    <param name="slot" desc="1-8" type="int"/>
+    <param name="fanfareType" desc="1=equip, 2=unequip" type="int"/>
+   </function>
+   <function name="scopeUpdateSlots" funcname="scope.updateSlots">
+    <param name="ShipsetType" desc="1-4" type="int"/>
+    <param name="Filled" desc="0-8" type="int"/>
+    <param name="Unlocked" desc="0-8" type="int"/>
+    <param name="Slot1" desc="isFilled" type="bool"/>
+    <param name="Slot2" desc="isFilled" type="bool"/>
+    <param name="Slot3" desc="isFilled" type="bool"/>
+    <param name="Slot4" desc="isFilled" type="bool"/>
+    <param name="Slot5" desc="isFilled" type="bool"/>
+    <param name="Slot6" desc="isFilled" type="bool"/>
+    <param name="Slot7" desc="isFilled" type="bool"/>
+    <param name="Slot8" desc="isFilled" type="bool"/>
+   </function>
+   <function name="scopeHighlightSlot" funcname="scope.highlightSlot">
+    <param name="slot" desc="1-8" type="int"/>
+   </function>
+   <function name="scopeSetEquipped" funcname="scope.chipsetSetEquip">
+    <param name="ID" type="int"/>
+    <param name="isEquipped" type="bool"/>
+   </function>
+   <function name="upgradeMenuOpen" funcname="upgrade.openWeaponUpgrade"/>
+   <function name="upgradeMenuClose" funcname="upgrade.closeWeaponUpgrade"/>
+   <function name="upgradeMenuSetName" funcname="upgrade.setUpgradePageTitle">
+    <param name="itemName" desc="" type="string"/>
+   </function>
+   <function name="upgradeMenuSetWeaponKits" funcname="upgrade.setWeaponKits">
+    <param name="NumOfKits" desc="" type="int"/>
+   </function>
+   <function name="upgradeMenuSetMod" funcname="upgrade.setUpgradePageMod">
+    <param name="ModNumber" desc="1-5" type="int"/>
+    <param name="Name" desc="" type="string"/>
+    <param name="Level" desc="" type="int"/>
+    <param name="MaxLevel" desc="" type="int"/>
+    <param name="Stat" desc="" type="string"/>
+    <param name="NextStat" desc="" type="string"/>
+    <param name="Unlocked" desc="" type="int"/>
+   </function>
+   <function name="upgradeMenuSetModStats" funcname="upgrade.setUpgradePageModStats">
+    <param name="ModNumber" desc="1-5" type="int"/>
+    <param name="Stat" desc="" type="string"/>
+    <param name="NextStat" desc="" type="string"/>
+   </function>
+   <function name="upgradeMenuSetDescription" funcname="upgrade.setUpgradePageDescription">
+    <param name="ModDescription" desc="" type="string"/>
+    <param name="Prerequisite" desc="" type="string"/>
+   </function>
+   <function name="upgradeMenuSetHL" funcname="upgrade.upgradeNav">
+    <param name="NumOfSelection" desc="" type="int"/>
+    <param name="Level" desc="" type="int"/>
+   </function>
+   <function name="upgradeFanfare" funcname="upgrade.upgradeFanfare">
+    <param name="WeaponName" desc="" type="string"/>
+    <param name="statName" desc="" type="string"/>
+   </function>
+   <function name="upgradeMenuSetPrompt" funcname="upgrade.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="upgradeMenuFormatPrompts" funcname="upgrade.formatPrompts"/>
+   <function name="populateMapInfo" funcname="map.populateMapInfo">
+    <param name="Text" desc="level name" type="string"/>
+   </function>
+   <function name="addFloorData" funcname="map.addFloorData">
+    <param name="levelName" type="string"/>
+    <param name="left" type="int"/>
+    <param name="top" type="int"/>
+    <param name="right" type="int"/>
+    <param name="bottom" type="int"/>
+   </function>
+   <function name="updateFloorData" funcname="map.updateFloorData">
+    <param name="index" desc="index of the floor to update" type="int"/>
+    <param name="isPlayerOn" desc="is the player is on this level" type="bool"/>
+    <param name="isObjective" desc="0=none, 1=story, 2=side mission" type="int"/>
+   </function>
+   <function name="startFog" funcname="map.startFog"/>
+   <function name="updateFog" funcname="map.updateFog">
+    <param name="index" type="int"/>
+   </function>
+   <function name="removeFogData" funcname="map.removeFogData"/>
+   <function name="setCurrentFloor" funcname="map.setCurrentFloor">
+    <param name="Floor" desc="" type="int"/>
+   </function>
+   <function name="mapUpdateList" funcname="map.mapUpdateList"/>
+   <function name="showIcon" funcname="map.showIcon">
+    <param name="icon" type="int"/>
+    <param name="x" type="float"/>
+    <param name="y" type="float"/>
+    <param name="rot" type="float"/>
+    <param name="upright" type="bool"/>
+    <param name="state" type="string"/>
+    <param name="label" type="string"/>
+    <param name="width" type="int"/>
+   </function>
+   <function name="clearIcons" funcname="map.clearIcons"/>
+   <function name="mapZoom" funcname="map.mapZoom">
+    <param name="value" type="float"/>
+   </function>
+   <function name="mapPan" funcname="map.mapPan">
+    <param name="x" type="float"/>
+    <param name="y" type="float"/>
+   </function>
+   <function name="mapFloorNav" funcname="map.mapFloorNav">
+    <param name="value" type="int"/>
+   </function>
+   <function name="initLevelMap" funcname="map.initLevelMap">
+    <param name="x" type="float"/>
+    <param name="y" type="float"/>
+    <param name="floor" type="int"/>
+    <param name="mapAcquired" type="bool"/>
+   </function>
+   <function name="centerToPlayer" funcname="map.centerToPlayer">
+    <param name="anim" type="bool"/>
+   </function>
+   <function name="alignToPosition" funcname="map.alignToPosition">
+    <param name="x" type="float"/>
+    <param name="y" type="float"/>
+   </function>
+   <function name="resetZoom" funcname="map.resetZoom"/>
+   <function name="objectivesRemoveButtons" funcname="obj.objectivesRemoveButtons"/>
+   <function name="objectivesAddButton" funcname="obj.objectivesAddButton">
+    <param name="ID" desc="identifyingID" type="int"/>
+    <param name="Title" desc="" type="string"/>
+    <param name="Objective" desc="1=Current/2=NotCurrent/3=Completed/4=Failed" type="int"/>
+    <param name="Location" desc="" type="string"/>
+    <param name="isCurrent" desc="" type="bool"/>
+    <param name="isNew" desc="" type="bool"/>
+    <param name="isObjectiveType" desc="" type="int"/>
+    <param name="isTracked" desc="" type="bool"/>
+   </function>
+   <function name="objectivesAddDetails" funcname="obj.objectivesAddDetails">
+    <param name="Title" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+   </function>
+   <function name="objectivesAddTask" funcname="obj.objectivesAddTask">
+    <param name="Text" desc="" type="string"/>
+    <param name="State" desc="1=Active, 2=Inactive, 3=Completed, 4=Failed" type="int"/>
+    <param name="Location" desc="optional" type="string"/>
+    <param name="Timer" desc="optional" type="string"/>
+    <param name="isOptional" desc="" type="bool"/>
+   </function>
+   <function name="objectivesAddClue" funcname="obj.objectivesAddClue">
+    <param name="Text" desc="" type="string"/>
+    <param name="State" desc="" type="int"/>
+   </function>
+   <function name="objectivesShowMapButton" funcname="obj.objectivesShowMapBtn">
+    <param name="isVis" desc="" type="bool"/>
+   </function>
+   <function name="objectivesUpdateDisplayPane" funcname="obj.objectivesUpdateDisplayPane"/>
+   <function name="objectivesSetTracking" funcname="obj.objectivesSetTracking">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="isTracking" desc="" type="bool"/>
+   </function>
+   <function name="objectivesFormat" funcname="obj.updateList"/>
+   <function name="setMorganImage" funcname="stats.setMorganImage">
+    <param name="GenderLevel" desc="male0, male1, male2, female0, female1, female2" type="string"/>
+   </function>
+   <function name="statusSetInfoText" funcname="stats.statusSetInfoText">
+    <param name="HP" desc="" type="string"/>
+    <param name="PSI" desc="" type="string"/>
+    <param name="Oxygen" desc="" type="string"/>
+    <param name="Neuromods" desc="" type="string"/>
+    <param name="Suit" desc="0-100" type="int"/>
+    <param name="Radiation" desc="0-100" type="int"/>
+   </function>
+   <function name="statusSetSuitMeter" funcname="stats.statusSetSuitMeter">
+    <param name="Suit" desc="0-100" type="int"/>
+    <param name="Text" desc="body text next to icon" type="string"/>
+    <param name="isVis" desc="" type="bool"/>
+   </function>
+   <function name="statusSetRadiationMeter" funcname="stats.statusSetRadiationMeter">
+    <param name="Radiation" desc="0-100" type="int"/>
+    <param name="Text" desc="body text next to icon" type="string"/>
+    <param name="isVis" desc="" type="bool"/>
+   </function>
+   <function name="statusSetAlienationMeter" funcname="stats.statusSetAlienationMeter">
+    <param name="Level" desc="0-2" type="int"/>
+    <param name="Text" desc="body text next to icon" type="string"/>
+    <param name="isVis" desc="" type="bool"/>
+   </function>
+   <function name="statusRemoveSubjects" funcname="stats.statusRemoveSubjects"/>
+   <function name="statusAddSubject" funcname="stats.statusAddSubject">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="State" desc="" type="int"/>
+    <param name="Icon" desc="" type="string"/>
+    <param name="Subtext" desc="how to remove" type="string"/>
+    <param name="Effects" desc="text of stats affected" type="string"/>
+   </function>
+   <function name="statusUpdateList" funcname="stats.statusUpdateList"/>
+   <function name="abilitiesNeuromodCount" funcname="abil.abilitiesNeuromodCount">
+    <param name="amount" type="int"/>
+   </function>
+   <function name="abilitiesRemoveTree" funcname="abil.abilitiesRemoveTree"/>
+   <function name="abilitiesAddTree" funcname="abil.abilitiesAddTree">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Text" desc="Display Text" type="string"/>
+    <param name="Summary" desc="(x/n)" type="string"/>
+    <param name="isActive" desc="if currently selected tree" type="bool"/>
+    <param name="isNew" desc="true=NEW, false=old" type="bool"/>
+   </function>
+   <function name="abilitiesUpdateTree" funcname="abil.abilitiesUpdateTree">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Text" desc="Display Text" type="string"/>
+    <param name="Summary" desc="(x/n)" type="string"/>
+    <param name="isActive" desc="if currently selected tree" type="bool"/>
+    <param name="isNew" desc="true=NEW, false=old" type="bool"/>
+   </function>
+   <function name="abilitiesUpdateList" funcname="abil.abilitiesUpdateList"/>
+   <function name="abilitiesRemoveSkills" funcname="abil.abilitiesRemoveSkills"/>
+   <function name="abilitiesAddSkill" funcname="abil.abilitiesAddSkill">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Icon" desc="icon to display" type="string"/>
+    <param name="State" desc="0=locked, 1=unlocked, 2=purchasable, 3=purchased" type="int"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Research" desc="0-1" type="float"/>
+    <param name="isNew" desc="" type="bool"/>
+    <param name="Cost" desc="" type="int"/>
+   </function>
+   <function name="abilitiesUpdateGrid" funcname="abil.abilitiesUpdateGrid"/>
+   <function name="abilitiesUpdateSkill" funcname="abil.abilitiesUpdateSkill">
+    <param name="ID" desc="uniqueID" type="string"/>
+    <param name="Icon" desc="icon to display" type="string"/>
+    <param name="State" desc="0=locked, 1=unlocked, 2=purchasable, 3=purchased" type="int"/>
+    <param name="Row" desc="" type="int"/>
+    <param name="Column" desc="" type="int"/>
+    <param name="Research" desc="0-1" type="float"/>
+    <param name="isNew" desc="" type="bool"/>
+   </function>
+   <function name="abilitiesHighlightSkill" funcname="abil.abilitiesHighlightSkill">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </function>
+   <function name="abilitiesUpdateDisplayPane" funcname="abil.abilitiesUpdateDisplayPane">
+    <param name="name" type="string"/>
+    <param name="description" type="string"/>
+    <param name="image" desc="texture file" type="string"/>
+    <param name="cost" desc="purchase  text" type="string"/>
+    <param name="costCanPurchase" desc="true = white text, false = red" type="bool"/>
+    <param name="prereqText" desc="" type="string"/>
+    <param name="prereqCanPurchase" desc="true = white text, false = red" type="bool"/>
+    <param name="researchVis" desc="" type="bool"/>
+    <param name="researchText" desc="" type="string"/>
+   </function>
+   <function name="abilitiesAddPreReq" funcname="abil.abilitiesAddPreReq">
+    <param name="FromRow" desc="-1 if first column" type="int"/>
+    <param name="FromCol" desc="" type="int"/>
+    <param name="ToRow" desc="" type="int"/>
+    <param name="ToCol" desc="" type="int"/>
+    <param name="lineColor" desc="" type="string"/>
+    <param name="lineThickness" desc="default is 2" type="int"/>
+    <param name="priority" desc="1=default, 2=on top" type="int"/>
+   </function>
+   <function name="abilitiesFanfare" funcname="abil.abilitiesFanfare">
+    <param name="ID" desc="" type="string"/>
+    <param name="Name" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+    <param name="Image" desc="" type="string"/>
+   </function>
+   <function name="abilityPurchaseFanfare" funcname="abil.abilityPurchaseFanfare">
+    <param name="ID" desc="" type="string"/>
+   </function>
+   <function name="notesRemoveSubjects" funcname="notes.notesRemoveSubjects"/>
+   <function name="notesAddSubject" funcname="notes.notesAddSubject">
+    <param name="ID" desc="uniqueID" type="String"/>
+    <param name="Text" desc="Note Title" type="String"/>
+    <param name="isUnread" desc="flag for if viewed or not" type="bool"/>
+   </function>
+   <function name="notesUpdateList" funcname="notes.notesUpdateList"/>
+   <function name="notesUpdateDisplayPane" funcname="notes.notesUpdateDisplayPane">
+    <param name="Subject" desc="" type="string"/>
+    <param name="Text" desc="html formatted text" type="string"/>
+    <param name="Image" desc="" type="string"/>
+   </function>
+   <function name="emailsRemoveSubjects" funcname="emails.emailsRemoveSubjects"/>
+   <function name="emailsAddSubject" funcname="emails.emailsAddSubject">
+    <param name="ID" desc="uniqueID" type="String"/>
+    <param name="Text" desc="Note Title" type="String"/>
+    <param name="isUnread" desc="flag for if viewed or not" type="bool"/>
+    <param name="isImportant" desc="" type="bool"/>
+   </function>
+   <function name="emailsUpdateList" funcname="emails.emailsUpdateList"/>
+   <function name="emailsUpdateDisplayPane" funcname="emails.emailsUpdateDisplayPane">
+    <param name="Subject" desc="" type="string"/>
+    <param name="Date" desc="" type="string"/>
+    <param name="From" desc="" type="string"/>
+    <param name="To" desc="" type="string"/>
+    <param name="Cc" desc="" type="string"/>
+    <param name="Text" desc="html formatted text" type="string"/>
+   </function>
+   <function name="codesRemoveData" funcname="codes.codesRemoveData"/>
+   <function name="codesAddCode" funcname="codes.codesAddCode">
+    <param name="ID" desc="unique ID" type="String"/>
+    <param name="Text" desc="Code Description" type="String"/>
+    <param name="Code" desc="Key Code" type="String"/>
+    <param name="isUsed" desc="" type="bool"/>
+   </function>
+   <function name="codesAddPassword" funcname="codes.codesAddPassword">
+    <param name="ID" desc="unique ID" type="String"/>
+    <param name="Text" desc="Code Description" type="String"/>
+    <param name="Code" desc="Key Code" type="String"/>
+    <param name="isUsed" desc="" type="bool"/>
+   </function>
+   <function name="codesAddKeyCard" funcname="codes.codesAddKeyCard">
+    <param name="ID" desc="unique ID" type="String"/>
+    <param name="Text" desc="Code Description" type="String"/>
+    <param name="Code" desc="Key Code" type="String"/>
+    <param name="isUsed" desc="" type="bool"/>
+   </function>
+   <function name="codesUpdateList" funcname="codes.codesUpdateList"/>
+   <function name="audiologsRemoveSubjects" funcname="logs.audiologsRemoveSubjects"/>
+   <function name="audiologsAddSubject" funcname="logs.audiologsAddSubject">
+    <param name="ID" desc="uniqueID" type="String"/>
+    <param name="Text" desc="subject text" type="String"/>
+    <param name="isUnread" desc="flag for if viewed or not" type="bool"/>
+   </function>
+   <function name="audiologsUpdateList" funcname="logs.audiologsUpdateList"/>
+   <function name="audiologsSetListened" funcname="logs.audiologsSetListened">
+    <param name="ID" desc="" type="string"/>
+   </function>
+   <function name="audiologsUpdateDisplayPane" funcname="logs.audiologsUpdateDisplayPane">
+    <param name="Subject" desc="" type="string"/>
+    <param name="From" desc="" type="string"/>
+    <param name="To" desc="" type="string"/>
+    <param name="Date" desc="" type="string"/>
+    <param name="Text" desc="optional" type="string"/>
+   </function>
+   <function name="setPlaybackDetails" funcname="logs.setPlaybackDetails">
+    <param name="currentTime" desc="seconds" type="int"/>
+    <param name="totalTime" desc="seconds" type="int"/>
+   </function>
+   <function name="setMaterialsHeld" funcname="plans.setMaterialsHeld">
+    <param name="Organic" desc="" type="int"/>
+    <param name="Mineral" desc="" type="int"/>
+    <param name="Synthetic" desc="" type="int"/>
+    <param name="Exotic" desc="" type="int"/>
+   </function>
+   <function name="plansRemoveSubjects" funcname="plans.plansRemoveSubjects"/>
+   <function name="plansAddSubject" funcname="plans.plansAddSubject">
+    <param name="ID" desc="uniqueID" type="String"/>
+    <param name="Text" desc="subject text" type="String"/>
+    <param name="Licenses" desc="-1=Infinite" type="int"/>
+    <param name="isNew" desc="flag for if viewed or not" type="bool"/>
+    <param name="Icon" desc="" type="String"/>
+   </function>
+   <function name="plansUpdateList" funcname="plans.plansUpdateList"/>
+   <function name="plansUpdateDisplayPane" funcname="plans.plansUpdateDisplayPane">
+    <param name="Subject" desc="" type="string"/>
+    <param name="Image" desc="not used yet" type="string"/>
+    <param name="Text" desc="html formatted text" type="string"/>
+    <param name="Licenses" desc="-1=Infinite" type="int"/>
+    <param name="Oxygen" desc="" type="int"/>
+    <param name="Mineral" desc="" type="int"/>
+    <param name="Synthetic" desc="" type="int"/>
+    <param name="Exotic" desc="" type="int"/>
+   </function>
+   <function name="loreRemoveSubjects" funcname="lore.loreRemoveSubjects"/>
+   <function name="loreAddSubject" funcname="lore.loreAddSubject">
+    <param name="ID" desc="uniqueID" type="String"/>
+    <param name="Text" desc="subject text" type="String"/>
+    <param name="isUnread" desc="flag for if viewed or not" type="bool"/>
+   </function>
+   <function name="loreUpdateList" funcname="lore.loreUpdateList"/>
+   <function name="loreUpdateDisplayPane" funcname="lore.loreUpdateDisplayPane">
+    <param name="Subject" desc="" type="string"/>
+    <param name="Text" desc="html formatted text" type="string"/>
+    <param name="Image" desc="" type="string"/>
+    <param name="ResearchMax" desc="" type="int"/>
+    <param name="ResearchValue" desc="" type="int"/>
+   </function>
+   <function name="metadataRemoveSubjects" funcname="meta.metadataRemoveSubjects"/>
+   <function name="metadataAddSubject" funcname="meta.metadataAddSubject">
+    <param name="ID" desc="uniqueID" type="String"/>
+    <param name="Text" desc="subject text" type="String"/>
+    <param name="Stat" desc="stat text" type="string"/>
+   </function>
+   <function name="metadataUpdateList" funcname="meta.metadataUpdateList"/>
+   <function name="stationFormat" funcname="station.format"/>
+   <function name="stationLocationUpdate" funcname="station.updateLocation">
+    <param name="id" type="string"/>
+    <param name="label" type="string"/>
+    <param name="buttonIndex" type="int"/>
+    <param name="airlock" type="int"/>
+    <param name="player" type="bool"/>
+    <param name="objective" desc="1=story, 2=roster, 3=side, 0=empty" type="int"/>
+   </function>
+   <function name="stationLocationDetails" funcname="station.setDetails">
+    <param name="label" type="string"/>
+    <param name="image" desc="saveload image" type="string"/>
+   </function>
+   <function name="stationAddObjective" funcname="station.addObjective">
+    <param name="text" type="string"/>
+    <param name="type" desc="0-story, 1=roster, 2=side, 3=task" type="int"/>
+   </function>
+   <function name="stationMapPan" funcname="station.pan">
+    <paran name="x" type="float"/>
+    <param name="y" type="float"/>
+   </function>
+   <function name="stationMapZoom" funcname="station.mapZoom">
+    <param name="value" type="float"/>
+   </function>
+   <function name="OnOpenPDA" funcname="btn.openPDA"/>
+   <function name="OnClosePDA" funcname="btn.closePDA"/>
+   <function name="sectionsEnabled" funcname="global.sectionsEnabled">
+    <param name="Inventory" desc="" type="bool"/>
+    <param name="Map" desc="" type="bool"/>
+    <param name="Objectives" desc="" type="bool"/>
+    <param name="Status" desc="" type="bool"/>
+    <param name="Abilities" desc="" type="bool"/>
+    <param name="Data" desc="" type="bool"/>
+   </function>
+   <function name="updateSections" desc="updates the top sections for isNew" funcname="sections.updateSections"/>
+   <function name="updatePages" desc="updates the pages for isNew" funcname="tabs.updatePages"/>
+   <function name="setNavigationPrompts" desc="strings of keybinds" funcname="tabs.setNavigationPrompts">
+    <param name="L1" desc="" type="string"/>
+    <param name="L2" desc="" type="string"/>
+    <param name="R1" desc="" type="string"/>
+    <param name="R2" desc="" type="string"/>
+   </function>
+   <function name="gotoTab" funcname="btn.sectionSelect">
+    <param name="tabName" desc="" type="String"/>
+   </function>
+   <function name="gotoPage" funcname="btn.gotoPage">
+    <param name="PageName" desc="" type="String"/>
+    <param name="Instantly" desc="true=instant, false=animate" type="bool"/>
+   </function>
+   <function name="highlightID" funcname="btn.highlightID">
+    <param name="ID" desc="" type="String"/>
+   </function>
+   <function name="HLUp" funcname="btn.HLUp"/>
+   <function name="HLDown" funcname="btn.HLDown"/>
+   <function name="HLLeft" funcname="btn.HLLeft"/>
+   <function name="HLRight" funcname="btn.HLRight"/>
+   <function name="prevTab" funcname="tabs.tabsPrev"/>
+   <function name="nextTab" funcname="tabs.tabsNext"/>
+   <function name="btnSelect" funcname="btn.btnSelect"/>
+   <function name="btnBack" funcname="btn.btnBack"/>
+   <function name="openPage" funcname="btn.openPage"/>
+   <function name="scrollX" funcname="btn.scrollX">
+    <param name="value" type="float"/>
+   </function>
+   <function name="scrollY" funcname="btn.scrollY">
+    <param name="value" type="float"/>
+   </function>
+   <function name="screenRotate" funcname="camera.rotateOffset">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+   <function name="controllerRotate" funcname="camera.controllerRotate">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+   <function name="setPrompt" funcname="global.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="global.formatPrompts"/>
+   <function name="displayHelpText" funcname="global.displayHelpText">
+    <param name="Text" desc="" type="String"/>
+   </function>
+   <function name="showErrorText" funcname="global.showErrorText">
+    <param name="Text" desc="" type="String"/>
+   </function>
+   <function name="hideErrorText" funcname="global.hideErrorText"/>
+   <function name="setClock" funcname="global.setClock">
+    <param name="Time" desc="" type="String"/>
+   </function>
+   <function name="setHealth" funcname="global.setHealth">
+    <param name="value" type="int"/>
+    <param name="max" type="int"/>
+    <param name="limiterValue" type="int"/>
+   </function>
+   <function name="setPsi" funcname="global.setPsi">
+    <param name="value" type="int"/>
+    <param name="max" type="int"/>
+    <param name="isVisible" type="bool"/>
+    <param name="limiterValue" type="int"/>
+   </function>
+   <function name="setArmor" funcname="global.setArmor">
+    <param name="value" type="int"/>
+    <param name="max" type="int"/>
+    <param name="isVisible" type="bool"/>
+   </function>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="subtitleUpdate" funcname="subtitles.subtitleUpdate">
+    <param name="text" type="string"/>
+   </function>
+   <function name="subtitleClose" funcname="subtitles.subtitleClose"/>
+   <function name="tutorialOpen" funcname="tut.openTutorial"/>
+   <function name="tutorialUpdate" funcname="tut.tutorialUpdate">
+    <param name="Title" desc="" type="string"/>
+    <param name="icon" desc="" type="string"/>
+    <param name="body" desc="" type="string"/>
+   </function>
+   <function name="tutorialClose" funcname="tut.closeTutorial"/>
+   <function name="tutorialCloseInstant" funcname="tut.closeTutorialInstant"/>
+   <function name="tutorialSetPrompt" funcname="tut.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="tutorialFormatPrompts" funcname="tut.formatPrompts"/>
+  </functions>
+  <Events>
+   <event name="PDAMenuOpen" fscommand="PDAMenuOpen"/>
+   <event name="PDAMenuClose" fscommand="PDAMenuClose"/>
+   <event name="closeCompleted" fscommand="closeCompleted"/>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="requestOpenPage" fscommand="requestOpenPage" desc="">
+    <param name="PageName" desc="" type="string"/>
+   </event>
+   <event name="currentOpenPage" fscommand="currentOpenPage" desc="">
+    <param name="PageName" desc="" type="string"/>
+   </event>
+   <event name="currentOpenTab" fscommand="currentOpenTab" desc="">
+    <param name="TabName" desc="" type="string"/>
+   </event>
+   <event name="showDisplayPane" fscommand="showDisplayPane" desc="">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="InvChangesOutput" fscommand="InvChangesOutput" desc="Outputs the changed items parameters">
+    <param name="ItemParameters" desc="" type="array"/>
+   </event>
+   <event name="InventoryEquipItem" fscommand="InventoryEquip" desc="Outputs the ID of the item to be equipped">
+    <param name="ItemID" desc="" type="int"/>
+   </event>
+   <event name="InventoryUseItem" fscommand="InventoryUse" desc="Outputs the ID of the item to be used">
+    <param name="ItemID" desc="" type="int"/>
+   </event>
+   <event name="InventoryDropItem" fscommand="InventoryDrop" desc="Outputs the ID of the item to be dropped">
+    <param name="ItemID" desc="" type="int"/>
+   </event>
+   <event name="inventorySetHL" fscommand="inventorySetHL" desc="Outputs the ID of the item the mouse has selected">
+    <param name="ItemID" desc="" type="int"/>
+   </event>
+   <event name="InventoryUpdateReady" fscommand="InventoryUpdateReady" desc="Animation complete, ready for update">
+    <param name="Setting" desc="" type="bool"/>
+   </event>
+   <event name="InventoryPopUpSelect" fscommand="contextSelect" desc="1-8">
+    <param name="buttonPressed" desc="" type="int"/>
+   </event>
+   <event name="inventoryPickItem" fscommand="inventoryPickItem">
+    <param name="itemId" type="int"/>
+    <param name="x" type="int"/>
+    <param name="y" type="int"/>
+   </event>
+   <event name="inventoryPlaceItem" fscommand="inventoryPlaceItem">
+    <param name="itemId" type="int"/>
+   </event>
+   <event name="inventoryDragPos" fscommand="inventoryDragPos">
+    <param name="x" type="int"/>
+    <param name="y" type="int"/>
+   </event>
+   <event name="weaponUpgradeModIndex" fscommand="weaponUpgradeModIndex" desc="Outputs the index of the selected mod">
+    <param name="buttonNum" desc="" type="int"/>
+   </event>
+   <event name="weaponUpgradeModLevel" fscommand="weaponUpgradeModLevel" desc="Outputs the level of the selected mod">
+    <param name="levelNum" desc="" type="int"/>
+   </event>
+   <event name="weaponUpgradeDoubleClick" fscommand="upgradeDoubleClick">
+    <param name="Index" desc="" type="int"/>
+   </event>
+   <event name="WeaponUpgradeClose" fscommand="weaponUpgradeClose" desc="">
+    <param name="isTrue" desc="" type="bool"/>
+   </event>
+   <event name="tutorialClose" fscommand="tutorialClose"/>
+   <event name="inventoryDoubleClick" fscommand="inventoryDoubleClick">
+    <param name="itemId" type="int"/>
+   </event>
+   <event name="inventoryRightClick" fscommand="inventoryRightClick">
+    <param name="itemId" type="int"/>
+   </event>
+   <event name="modFocus" fscommand="modFocus">
+    <param name="Which" desc="suit or scope" type="string"/>
+   </event>
+   <event name="chipsetSetEquip" fscommand="chipsetSetEquip">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="chipsetDoubleClick" fscommand="chipsetDoubleClick">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="chipsetHighlightSlot" fscommand="chipsetHighlightSlot">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="OnShowLevel" fscommand="mapDisplayID">
+    <param name="ID" desc="map floor index" type="int"/>
+   </event>
+   <event name="objectiveSetTracking" fscommand="objectiveSetTracking">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="objectiveGoToMap" fscommand="objectiveGoToMap"/>
+   <event name="objectiveDoubleClick" fscommand="objectiveDoubleClick">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="abilityTreeDisplayID" fscommand="abilityTreeDisplayID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="abilityDisplayID" fscommand="abilityDisplayID">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="abilitiesRequestPurchaseSkill" fscommand="abilitiesRequestPurchaseSkill">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="abilitiesDoubleClick" fscommand="abilitiesDoubleClick">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="startAudioLogPlayback" fscommand="startAudioLogPlayback" desc="">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="pauseAudioLogPlayback" fscommand="pauseAudioLogPlayback" desc="">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="audioLogDoubleClick" fscommand="audioLogDoubleClick">
+    <param name="ID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="OnSelectLevel" fscommand="selectStationMapLevel">
+    <param name="ID" desc="level" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+  <Arrays>
+   <Array name="tabs" varname="global.sectionsArray" desc="List of available tabs to display for pda navigation"/>
+   <Array name="pages" varname="global.pagesArray" desc="List of available pages to display for pda navigation"/>
+   <Array name="tabsIsNew" varname="global.sectionsIsNewArray" desc="Bools of isNew sections"/>
+   <Array name="pagesIsNew" varname="global.pagesIsNewArray" desc="Name of pages that have new content"/>
+   <Array name="invDimmed" varname="inv.isDimmedArray" desc="list of inventory items that should be dimmed"/>
+   <Array name="invTargets" varname="inv.isTargetArray" desc="list of inventory items that can be combined with"/>
+   <Array name="stationLockedPaths" varname="station.lockedPaths" desc="list of paths that have been locked"/>
+   <Array name="areaVisited" varname="map.visitedAreas" desc="list of areas that have been visited"/>
+   <Array name="floorData" varname="map.floorData" desc="list of floors"/>
+  </Arrays>
+  <variables>
+   <variable name="btnDefaultColor" varname="color.btnDefaultColor" desc="Default Button Color" type="string"/>
+   <variable name="btnHighlightColor" varname="color.btnHighlightColor" desc="Mouse HL Button Color" type="string"/>
+   <variable name="btnSelectedColor" varname="color.btnSelectedColor" desc="Selected Button Color" type="string"/>
+   <variable name="btnDisabledColor" varname="color.btnDisabledColor" desc="Disabled Button Color" type="string"/>
+   <variable name="textBtnColor" varname="color.textBtnColor" desc="Default Button Text Color" type="string"/>
+   <variable name="textBtnHLColor" varname="color.textBtnHLColor" desc="Selected Button Text Color" type="string"/>
+   <variable name="textHeaderColor" varname="color.textHeaderColor" desc="Default Header Color" type="string"/>
+   <variable name="textHeaderHLColor" varname="color.textHeaderHLColor" desc="HL Header Color" type="string"/>
+   <variable name="textSubheaderColor" varname="color.textSubheaderColor" desc="Default SubHeader Color" type="string"/>
+   <variable name="textTabColor" varname="color.textTabColor" desc="Default Tab Text Color" type="string"/>
+   <variable name="textTitleColor" varname="color.textTitleColor" desc="Text Title Color" type="string"/>
+   <variable name="textBodyColor" varname="color.textBodyColor" desc="Text Body Color" type="string"/>
+  </variables>
+ </UIElement>
+</UIElements>

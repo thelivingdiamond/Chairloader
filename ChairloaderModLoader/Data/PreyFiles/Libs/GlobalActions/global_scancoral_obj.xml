@@ -1,0 +1,133 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="112" Class="Game:SaveGame" pos="820,60,0">
+   <Inputs Name="quicksave" Desc="" DelaySaveIfPlayerInAir="0"/>
+  </Node>
+  <Node Id="544" Class="Time:Delay" pos="833,345.04175,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="545" Name="Video_Done_-_Give_Scan_Coaral_Obj" Class="_commentbox" pos="-397,-66,0">
+   <Inputs TextSize="1" Color="0.496933,0.564712,0.806952" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="6000" Height="1560"/>
+  </Node>
+  <Node Id="2037" Class="Ark:Objectives:TaskState" pos="233,345.04175,0">
+   <Inputs task_Task="844024417286442617" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2068" Class="Ark:Dialog:PlayTranscribeMessage" pos="1050,460,0">
+   <Inputs dialogRule_Conversation="844024417286440351" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="2074" Class="Ark:Objectives:TaskState" pos="4500,-70,0">
+   <Inputs task_Task="844024417286442820" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2135" Class="Ark:Objectives:TaskState" pos="3670,780,0">
+   <Inputs task_Task="-3778744661136310087" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2288" Class="Ark:RemoteEvent" pos="-367,395.04175,0">
+   <Inputs remoteEvent_Event="14667999412582148924"/>
+  </Node>
+  <Node Id="2299" Class="Logic:Gate" pos="-37,375.04175,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="2369" Class="Ark:SendRemoteEvent" pos="1670,510,0">
+   <Inputs remoteEvent_Event="14667999412562863576"/>
+  </Node>
+  <Node Id="2370" Class="Ark:Objectives:TaskState" pos="5090,400,0">
+   <Inputs task_Task="-3778744661136310087" ShowOnHUD="0" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="3205" Class="ArkPlayer:ArkChipsetInstalled" pos="2550,610,0">
+   <Inputs Active="1" chipsetArchetypes_Archetype="ArkPickups.Mods.Psychoscope.CanScanCoral"/>
+  </Node>
+  <Node Id="3206" Class="Inventory:ItemCheck" pos="1780,-170,0">
+   <Inputs entityId="0" Active="0" archetype="ArkPickups.Mods.Psychoscope.CanScanCoral" itemClass=""/>
+  </Node>
+  <Node Id="3207" Class="Actor:LocalPlayer" pos="1670,-200,0">
+   <Inputs/>
+  </Node>
+  <Node Id="3208" Class="Ark:Objectives:TaskState" pos="2160,300,0">
+   <Inputs task_Task="-3778744661136310087" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="3212" Class="Logic:Gate" pos="3040,460,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="3213" Class="ArkPlayer:ArkChipsetInstalled" pos="1660,410,0">
+   <Inputs Active="0" chipsetArchetypes_Archetype="ArkPickups.Mods.Psychoscope.CanScanCoral"/>
+  </Node>
+  <Node Id="3215" Class="Game:Start" pos="1660,630,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="3216" Class="Math:SetNumber" pos="2360,590,0">
+   <Inputs in="1"/>
+  </Node>
+  <Node Id="3217" Class="Ark:Objectives:GetTaskState" pos="3340,450,0">
+   <Inputs task_Task="844024417286442617"/>
+  </Node>
+  <Node Id="3219" Class="Ark:Objectives:GetTaskState" pos="3910,-50,0">
+   <Inputs task_Task="844024417286442820"/>
+  </Node>
+  <Node Id="3221" Class="Ark:Objectives:GetTaskState" pos="3980,420,0">
+   <Inputs task_Task="-3778744661136310087"/>
+  </Node>
+  <Node Id="3222" Class="Ark:Objectives:GetTaskState" pos="3070,830,0">
+   <Inputs task_Task="-3778744661136310087"/>
+  </Node>
+  <Node Id="3223" Class="ArkPlayer:ArkChipsetInstalled" pos="4530,480,0">
+   <Inputs Active="0" chipsetArchetypes_Archetype="ArkPickups.Mods.Psychoscope.CanScanCoral"/>
+  </Node>
+  <Node Id="3225" Class="Ark:Objectives:GetObjectiveState" pos="3070,650,0">
+   <Inputs objective_Objective="844024417286442409"/>
+  </Node>
+  <Node Id="3226" Class="Ark:Objectives:TaskState" pos="4290.8857,1045.7689,0">
+   <Inputs task_Task="844024417286442820" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="3228" Class="Ark:Objectives:GetTaskState" pos="3700.8855,1065.7689,0">
+   <Inputs task_Task="844024417286442820"/>
+  </Node>
+  <Node Id="3231" Class="Ark:Objectives:ObjectiveState" pos="1600,790,0">
+   <Inputs objective_Objective="844024417286442409" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="3232" Class="Math:SetNumber" pos="2360,730,0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="3233" Class="Logic:Gate" pos="2090,600,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2068" nodeOut="544" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="112" nodeOut="2037" portIn="Save" portOut="Out" enabled="1"/>
+  <Edge nodeIn="544" nodeOut="2037" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2369" nodeOut="2068" portIn="Send" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="2369" nodeOut="2068" portIn="Send" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="2369" nodeOut="2068" portIn="Send" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="3213" nodeOut="2068" portIn="Check" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="3213" nodeOut="2068" portIn="Check" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="3213" nodeOut="2068" portIn="Check" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="2299" nodeOut="2288" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2037" nodeOut="2299" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3212" nodeOut="3205" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="3222" nodeOut="3205" portIn="Trigger" portOut="True" enabled="1"/>
+  <Edge nodeIn="3225" nodeOut="3205" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="3206" nodeOut="3207" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="3217" nodeOut="3212" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3208" nodeOut="3213" portIn="Activate" portOut="False" enabled="1"/>
+  <Edge nodeIn="3212" nodeOut="3213" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="3233" nodeOut="3215" portIn="In" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="3233" nodeOut="3215" portIn="In" portOut="output" enabled="1"/>
+  <Edge nodeIn="3205" nodeOut="3216" portIn="Active" portOut="out" enabled="1"/>
+  <Edge nodeIn="3219" nodeOut="3217" portIn="Trigger" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="3221" nodeOut="3217" portIn="Trigger" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="2074" nodeOut="3219" portIn="Activate" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="3223" nodeOut="3221" portIn="Check" portOut="Inactive" enabled="1"/>
+  <Edge nodeIn="2135" nodeOut="3222" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2370" nodeOut="3223" portIn="Complete" portOut="True" enabled="1"/>
+  <Edge nodeIn="2135" nodeOut="3225" portIn="Activate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="3228" nodeOut="3225" portIn="Trigger" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="3226" nodeOut="3228" portIn="Deactivate" portOut="Active" enabled="1"/>
+  <Edge nodeIn="3232" nodeOut="3231" portIn="set" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="3233" nodeOut="3231" portIn="Close" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="3205" nodeOut="3232" portIn="Active" portOut="out" enabled="1"/>
+  <Edge nodeIn="3216" nodeOut="3233" portIn="set" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

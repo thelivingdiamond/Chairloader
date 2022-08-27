@@ -1,0 +1,8 @@
+Script.ReloadScript("SCRIPTS/Entities/AI/Ark/ArkNightmare_x.lua")
+Script.ReloadScript("SCRIPTS/Entities/actor/BasicActor.lua")
+Script.ReloadScript("SCRIPTS/Entities/AI/Shared/BasicAI.lua")
+Script.ReloadScript("SCRIPTS/Entities/actor/ArkNpc.lua")
+CreateActor(ArkNightmare_x)
+CreateArkNpc(ArkNightmare_x)
+ArkNightmare = CreateAI(ArkNightmare_x)
+ArkNightmare:Expose()

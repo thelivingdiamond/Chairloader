@@ -1,0 +1,34 @@
+
+<ATLConfig atl_name="Voice_BDDB548E5744DACE">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_BDDB548E5744DACEBDDB548E5744DBB3">
+   <WwiseEvent wwise_name="Play_BDDB548E5744DACEBDDB548E5744DBB3"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E5744DACEBDDB548E5744DBA8">
+   <WwiseEvent wwise_name="Play_BDDB548E5744DACEBDDB548E5744DBA8"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E5744DACEBDDB548E5744DB9C">
+   <WwiseEvent wwise_name="Play_BDDB548E5744DACEBDDB548E5744DB9C"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E5744DACEBDDB548E5744DB8E">
+   <WwiseEvent wwise_name="Play_BDDB548E5744DACEBDDB548E5744DB8E"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_BDDB548E5744DACEBDDB548E5744DB85">
+   <WwiseEvent wwise_name="Play_BDDB548E5744DACEBDDB548E5744DB85"/>
+  </ATLTrigger>
+ </AudioTriggers>
+ <AudioPreloads>
+  <ATLPreloadRequest atl_name="Voice_BDDB548E5744DACE_Load" atl_type="AutoLoad">
+   <ATLPlatforms>
+    <Platform atl_name="pc" atl_config_group_name="default"/>
+    <Platform atl_name="ps4" atl_config_group_name="default"/>
+    <Platform atl_name="xboxone" atl_config_group_name="default"/>
+    <Platform atl_name="mac" atl_config_group_name="default"/>
+    <Platform atl_name="linux" atl_config_group_name="default"/>
+   </ATLPlatforms>
+   <ATLConfigGroup atl_name="default">
+    <WwiseFile wwise_name="Voice_BDDB548E5744DACE.bnk" wwise_localised="true"/>
+   </ATLConfigGroup>
+  </ATLPreloadRequest>
+ </AudioPreloads>
+</ATLConfig>

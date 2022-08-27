@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Quin Matteson</LastAuthor>
+  <LastSaved>2016-10-07T15:05:40Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10440</WindowHeight>
+  <WindowWidth>26490</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="63" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="135.75"/>
+   <Column ss:Width="144.75" ss:Span="1"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564216</Data></Cell>
+    <Cell><Data ss:Type="String">EP101</Data></Cell>
+    <Cell><Data ss:Type="String">EP101</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564217</Data></Cell>
+    <Cell><Data ss:Type="String">Storage Room A2</Data></Cell>
+    <Cell><Data ss:Type="String">Storage Room A2</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564218</Data></Cell>
+    <Cell><Data ss:Type="String">Kevin Sabian's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Kevin Sabian's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564219</Data></Cell>
+    <Cell><Data ss:Type="String">Emma Beaty's Habitation Pod</Data></Cell>
+    <Cell><Data ss:Type="String">Emma Beaty's Habitation Pod</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564220</Data></Cell>
+    <Cell><Data ss:Type="String">Jorgen Thorstein's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Jorgen Thorstein's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564221</Data></Cell>
+    <Cell><Data ss:Type="String">Annalise Gallegos' Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Annalise Gallegos' Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564222</Data></Cell>
+    <Cell><Data ss:Type="String">Abigail Foy's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Abigail Foy's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564223</Data></Cell>
+    <Cell><Data ss:Type="String">Will Mitchell's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Will Mitchell's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564224</Data></Cell>
+    <Cell><Data ss:Type="String">Lorenzo Calvino's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Lorenzo Calvino's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564225</Data></Cell>
+    <Cell><Data ss:Type="String">Maintenance Tunnel</Data></Cell>
+    <Cell><Data ss:Type="String">Maintenance Tunnel</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564226</Data></Cell>
+    <Cell><Data ss:Type="String">Fuel Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Fuel Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564227</Data></Cell>
+    <Cell><Data ss:Type="String">Ballistics Lab</Data></Cell>
+    <Cell><Data ss:Type="String">Ballistics Lab</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564228</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564229</Data></Cell>
+    <Cell><Data ss:Type="String">Employee Entrance</Data></Cell>
+    <Cell><Data ss:Type="String">Employee Entrance</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564230</Data></Cell>
+    <Cell><Data ss:Type="String">Trauma Center</Data></Cell>
+    <Cell><Data ss:Type="String">Trauma Center</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564231</Data></Cell>
+    <Cell><Data ss:Type="String">Looking Glass Station </Data></Cell>
+    <Cell><Data ss:Type="String">Looking Glass Station </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564232</Data></Cell>
+    <Cell><Data ss:Type="String">Morgue</Data></Cell>
+    <Cell><Data ss:Type="String">Morgue</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564233</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan's Self Destruct Access</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan's Self Destruct Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564234</Data></Cell>
+    <Cell><Data ss:Type="String">Parts Storage</Data></Cell>
+    <Cell><Data ss:Type="String">Parts Storage</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564235</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Access</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564236</Data></Cell>
+    <Cell><Data ss:Type="String">Alex's Self Destruct Access</Data></Cell>
+    <Cell><Data ss:Type="String">Alex's Self Destruct Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564237</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle Bay</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle Bay</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564238</Data></Cell>
+    <Cell><Data ss:Type="String">Halden Graves' Office</Data></Cell>
+    <Cell><Data ss:Type="String">Halden Graves' Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564239</Data></Cell>
+    <Cell><Data ss:Type="String">Dahl's Cargo Hold</Data></Cell>
+    <Cell><Data ss:Type="String">Dahl's Cargo Hold</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564240</Data></Cell>
+    <Cell><Data ss:Type="String">Simulation Lab</Data></Cell>
+    <Cell><Data ss:Type="String">Simulation Lab</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564241</Data></Cell>
+    <Cell><Data ss:Type="String">Secured Pharmaceuticals</Data></Cell>
+    <Cell><Data ss:Type="String">Secured Pharmaceuticals</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564242</Data></Cell>
+    <Cell><Data ss:Type="String">Briefing Room</Data></Cell>
+    <Cell><Data ss:Type="String">Briefing Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564243</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Loading Access 01</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Loading Access 01</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564244</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564245</Data></Cell>
+    <Cell><Data ss:Type="String">Director Level Access</Data></Cell>
+    <Cell><Data ss:Type="String">Director Level Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564246</Data></Cell>
+    <Cell><Data ss:Type="String">Atmosphere Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">Atmosphere Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564247</Data></Cell>
+    <Cell><Data ss:Type="String">Waste Processing</Data></Cell>
+    <Cell><Data ss:Type="String">Waste Processing</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564248</Data></Cell>
+    <Cell><Data ss:Type="String">Bunk A13</Data></Cell>
+    <Cell><Data ss:Type="String">Bunk A13</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564249</Data></Cell>
+    <Cell><Data ss:Type="String">Kitchen Access</Data></Cell>
+    <Cell><Data ss:Type="String">Kitchen Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564250</Data></Cell>
+    <Cell><Data ss:Type="String">Dayo Igwe's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Dayo Igwe's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564251</Data></Cell>
+    <Cell><Data ss:Type="String">Danielle Sho's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Danielle Sho's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564252</Data></Cell>
+    <Cell><Data ss:Type="String">Jada Marks' Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Jada Marks' Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564253</Data></Cell>
+    <Cell><Data ss:Type="String">December</Data></Cell>
+    <Cell><Data ss:Type="String">December</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564254</Data></Cell>
+    <Cell><Data ss:Type="String">Bianca Goodwin's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Bianca Goodwin's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564255</Data></Cell>
+    <Cell><Data ss:Type="String">Sylvain Bellamy's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Sylvain Bellamy's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564256</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Sarah Elazar's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564257</Data></Cell>
+    <Cell><Data ss:Type="String">Hans Kelstrup's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Hans Kelstrup's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564258</Data></Cell>
+    <Cell><Data ss:Type="String">Hendrik DeVries' Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Hendrik DeVries' Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564259</Data></Cell>
+    <Cell><Data ss:Type="String">Yellow Tulip Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">Yellow Tulip Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564260</Data></Cell>
+    <Cell><Data ss:Type="String">Security Office</Data></Cell>
+    <Cell><Data ss:Type="String">Security Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564261</Data></Cell>
+    <Cell><Data ss:Type="String">Coolant Chamber</Data></Cell>
+    <Cell><Data ss:Type="String">Coolant Chamber</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564262</Data></Cell>
+    <Cell><Data ss:Type="String">I.T. Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">I.T. Supply Closet</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564263</Data></Cell>
+    <Cell><Data ss:Type="String">Security Key</Data></Cell>
+    <Cell><Data ss:Type="String">Security Key</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564264</Data></Cell>
+    <Cell><Data ss:Type="String">G.U.T.S. Cargo Terminal</Data></Cell>
+    <Cell><Data ss:Type="String">G.U.T.S. Cargo Terminal</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564265</Data></Cell>
+    <Cell><Data ss:Type="String">Alex Yu's Suite</Data></Cell>
+    <Cell><Data ss:Type="String">Alex Yu's Suite</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129887564266</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu's Suite</Data></Cell>
+    <Cell><Data ss:Type="String">Morgan Yu's Suite</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i_CrewFacilitiesKey</Data></Cell>
+    <Cell><Data ss:Type="String">Crew Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">Crew Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:Index="55" ss:AutoFitHeight="0" ss:Height="45">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_BallisticsLabKey</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Ballistics Lab</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Ballistics Lab</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="45">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_PRDirectorsKey</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">DEPRECATED</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">DEPRECATED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="45">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">i_psychotronicsKeycard</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">General Access</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">General Access</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291222790586</Data></Cell>
+    <Cell><Data ss:Type="String">Director Kelstrup's Office</Data></Cell>
+    <Cell><Data ss:Type="String">Director Kelstrup's Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047996404705</Data></Cell>
+    <Cell><Data ss:Type="String">Blackbox Lab</Data></Cell>
+    <Cell><Data ss:Type="String">Blackbox Lab</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_12889009725042907358</Data></Cell>
+    <Cell><Data ss:Type="String">Mikhaila Ilyushin's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">Mikhaila Ilyushin's Cabin</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417314372119</Data></Cell>
+    <Cell><Data ss:Type="String">Security Office</Data></Cell>
+    <Cell><Data ss:Type="String">Security Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263411175871</Data></Cell>
+    <Cell><Data ss:Type="String">Hendrik DeVries' Office</Data></Cell>
+    <Cell><Data ss:Type="String">Hendrik DeVries' Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_1713490239448502259</Data></Cell>
+    <Cell><Data ss:Type="String">Teleconferencing</Data></Cell>
+    <Cell><Data ss:Type="String">Teleconferencing</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <TopRowVisible>45</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>61</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+     <RangeSelection>R62C4:R63C4</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

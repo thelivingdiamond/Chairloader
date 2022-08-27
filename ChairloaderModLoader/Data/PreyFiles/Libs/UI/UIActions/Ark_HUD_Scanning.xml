@@ -1,0 +1,189 @@
+
+<Graph Description="" Group="HUD" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="3" Class="Ark:PDA:EnablePDAPage" pos="640,1590,0">
+   <Inputs bEnable="1" Page="Abilities"/>
+  </Node>
+  <Node Id="21" Class="Logic:Gate" pos="360,1590,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="34" Class="Logic:Gate" pos="740,210,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="52" Class="Time:Delay" pos="520,310,0">
+   <Inputs delay="0.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="471" Class="Image:ColorCorrection" pos="510,-590,0">
+   <Inputs entityId="0" Enabled="0" Disabled="1" Force="0" Global_User_ColorC="0" Global_User_ColorM="0.1" Global_User_ColorY="0.25" Global_User_ColorK="0" Global_User_Brightness="1" Global_User_Contrast="1" Global_User_Saturation="1" Global_User_ColorHue="0"/>
+  </Node>
+  <Node Id="479" Class="Image:FilterRadialBlur" pos="700,-590,0">
+   <Inputs entityId="0" Enabled="0" Disabled="1" Force="0" FilterRadialBlurring_Amount="0.25" FilterRadialBlurring_ScreenPosX="0.5" FilterRadialBlurring_ScreenPosY="0.5" FilterRadialBlurring_Radius="4"/>
+  </Node>
+  <Node Id="480" Class="Image:FilterVisualArtifacts" pos="890,-590,0">
+   <Inputs entityId="0" Enabled="0" Disabled="1" Force="0" VisualArtifacts_Vsync="0.5" VisualArtifacts_VsyncFreq="1" VisualArtifacts_Interlacing="0.25" VisualArtifacts_InterlacingTile="1" VisualArtifacts_InterlacingRot="0" VisualArtifacts_SyncWavePhase="0.5" VisualArtifacts_SyncWaveFreq="0.2" VisualArtifacts_SyncWaveAmplitude="0.2" FilterArtifacts_ChromaShift="0" FilterArtifacts_Grain="0.5" clr_VisualArtifacts_ColotTint="1,1,1" tex_VisualArtifacts_Mask=""/>
+  </Node>
+  <Node Id="482" Class="Image:FilterSharpen" pos="330,-590,0">
+   <Inputs entityId="0" Enabled="0" Disabled="1" Force="0" FilterSharpening_Type="0" FilterSharpening_Amount="10"/>
+  </Node>
+  <Node Id="483" Class="UI:Events:ArkUIHUD:scanningResearchCompleted" pos="-50,1590,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="495" Class="Audio:Trigger" pos="770,730,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Psi_Research_Losing_Target" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="499" Class="Audio:Trigger" pos="360,-180,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Psi_Mode_Start" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="500" Class="Audio:Trigger" pos="360,-30,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Stop_Psi_Mode" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="501" Class="Audio:Trigger" pos="360,1240,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Psi_Research_Research_LP" audioTrigger_StopTrigger="Stop_Psi_Research_Research_LP" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="506" Class="UI:Functions:DanielleMarkers:scanningDetailsOpen" pos="360,520,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="507" Class="UI:Functions:DanielleMarkers:scanningDetailsClose" pos="360,600,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="516" Class="UI:Events:ArkUIHUD:ScannerUnequip" pos="-30,20,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="518" Class="UI:Events:ArkUIHUD:ScannerEquip" pos="-30,-130,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="520" Class="UI:Events:ArkUIHUD:ScannerShowTargetDetails" pos="-40,520,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="521" Class="UI:Events:ArkUIHUD:ScannerHideTargetDetails" pos="-40,600,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="522" Class="UI:Events:ArkUIHUD:ScannerLoseScanTarget" pos="-40,730,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="524" Class="UI:Events:ArkUIHUD:ScannerCompleteScanning" pos="-100,1110,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="527" Class="UI:Events:ArkUIHUD:ScannerStartScanning" pos="-40,1210,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="532" Class="UI:Events:ArkUIHUD:ScannerStopScanning" pos="-50,1420,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="534" Class="Audio:Trigger" pos="360,1390,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Stop_Psi_Research_Research_LP" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="535" Class="Audio:Trigger" pos="370,870,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Stop_Psi_Research_Research_LP" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="536" Class="UI:Events:ArkUIHUD:ScannerFindLostScanTarget" pos="-40,1300,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="543" Class="Audio:Trigger" pos="360,730,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Stop_Psi_Research_Research_LP" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="549" Class="UI:Events:ArkUIHUD:ScannerUpdateEnemyMeter" pos="-40,210,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="550" Class="UI:Functions:DanielleMarkers:updateEnemyMeter" pos="340,210,0">
+   <Inputs instanceID="-1" Percent="0"/>
+  </Node>
+  <Node Id="551" Class="Audio:Trigger" pos="760,960,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Psi_Research_Scan_Complete" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="552" Class="UI:Events:DanielleHUD:spiralWheelOpen" pos="270,-1260,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="553" Class="UI:Events:DanielleHUD:spiralWheelClose" pos="280,-990,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="554" Class="UI:Functions:DanielleMarkers:pauseMarkers" pos="680,-1470,0">
+   <Inputs instanceID="-1" PauseBoolean="1"/>
+  </Node>
+  <Node Id="555" Class="UI:Functions:DanielleMarkers:pauseMarkers" pos="700,-1020,0">
+   <Inputs instanceID="-1" PauseBoolean="0"/>
+  </Node>
+  <Node Id="556" Class="UI:Functions:DanielleMarkers:scanningAlpha" pos="690,-1360,0">
+   <Inputs instanceID="-1" Percent="100"/>
+  </Node>
+  <Node Id="557" Class="UI:Functions:DanielleMarkers:scanningAlpha" pos="700,-940,0">
+   <Inputs instanceID="-1" Percent="100"/>
+  </Node>
+  <Node Id="560" Class="UI:Functions:DanielleMarkers:detailsPanelAlpha" pos="690,-1280,0">
+   <Inputs instanceID="-1" Alpha="0"/>
+  </Node>
+  <Node Id="561" Class="UI:Functions:DanielleMarkers:detailsPanelAlpha" pos="700,-860,0">
+   <Inputs instanceID="-1" Alpha="100"/>
+  </Node>
+  <Node Id="562" Class="UI:Functions:DanielleMarkers:scanTargetsAlpha" pos="690,-1200,0">
+   <Inputs instanceID="-1" alpha="0"/>
+  </Node>
+  <Node Id="563" Class="UI:Functions:DanielleMarkers:scanTargetsAlpha" pos="710,-770,0">
+   <Inputs instanceID="-1" alpha="100"/>
+  </Node>
+  <Node Id="564" Class="UI:Functions:DanielleMarkers:reticleAlpha" pos="690,-1120,0">
+   <Inputs instanceID="-1" Percent="0"/>
+  </Node>
+  <Node Id="565" Class="UI:Functions:DanielleMarkers:reticleAlpha" pos="710,-680,0">
+   <Inputs instanceID="-1" Percent="100"/>
+  </Node>
+  <Node Id="566" Class="UI:Functions:DanielleMarkers:setMarkerAlpha" pos="1070,-1270,0">
+   <Inputs instanceID="-1" alpha="0"/>
+  </Node>
+  <Node Id="567" Class="UI:Functions:DanielleMarkers:setMarkerAlpha" pos="1160,-880,0">
+   <Inputs instanceID="-1" alpha="100"/>
+  </Node>
+  <Node Id="568" Class="UI:Functions:DanielleMarkers:setScannerAlpha" pos="1180,-1430,0">
+   <Inputs instanceID="-1" alpha="80"/>
+  </Node>
+  <Node Id="569" Class="UI:Functions:DanielleMarkers:setScannerAlpha" pos="1090,-1010,0">
+   <Inputs instanceID="-1" alpha="100"/>
+  </Node>
+  <Node Id="570" Class="UI:Events:DanielleHUD:audioLogOpen" pos="1190,-100,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="571" Class="UI:Events:DanielleHUD:audioLogClose" pos="1190,40,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="572" Class="UI:Functions:DanielleMarkers:detailsPanelAlpha" pos="1530,-100,0">
+   <Inputs instanceID="-1" Alpha="10"/>
+  </Node>
+  <Node Id="573" Class="UI:Functions:DanielleMarkers:detailsPanelAlpha" pos="1530,40,0">
+   <Inputs instanceID="-1" Alpha="100"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3" nodeOut="21" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="34" nodeOut="52" portIn="Open" portOut="out" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="483" portIn="In" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="500" nodeOut="516" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="499" nodeOut="518" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="506" nodeOut="520" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="507" nodeOut="521" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="543" nodeOut="522" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="535" nodeOut="524" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="551" nodeOut="524" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="501" nodeOut="527" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="501" nodeOut="532" portIn="Stop" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="501" nodeOut="536" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="495" nodeOut="543" portIn="Play" portOut="Out" enabled="1"/>
+  <Edge nodeIn="550" nodeOut="549" portIn="Percent" portOut="Percentage" enabled="1"/>
+  <Edge nodeIn="550" nodeOut="549" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="34" nodeOut="550" portIn="In" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="554" nodeOut="552" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="560" nodeOut="552" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="562" nodeOut="552" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="564" nodeOut="552" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="566" nodeOut="552" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="568" nodeOut="552" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="555" nodeOut="553" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="561" nodeOut="553" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="563" nodeOut="553" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="565" nodeOut="553" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="567" nodeOut="553" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="569" nodeOut="553" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="572" nodeOut="570" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="573" nodeOut="571" portIn="Call" portOut="onEvent" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

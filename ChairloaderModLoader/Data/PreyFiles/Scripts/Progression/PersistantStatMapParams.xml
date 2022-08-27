@@ -1,0 +1,8 @@
+
+<PersistantMapStats>
+ <Type name="GameRules"/>
+ <Type name="MPWeapons"/>
+ <Type name="Weapon"/>
+ <Type name="HitType"/>
+ <Type name="Level"/>
+</PersistantMapStats>

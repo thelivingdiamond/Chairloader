@@ -1,0 +1,50 @@
+
+<UIElements name="DanielleKeyReader">
+ <UIElement name="DanielleKeyReader" render_lockless="1">
+  <WorldUI enable="1" distance="3" cursorEvents="true" poolSize="1"/>
+  <GFx file="GFX/danielle_keyreader.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="0" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="keyreaderState" funcname="key.keyreaderState">
+    <param name="State" desc="0=Locked Default, 1=Locked No Card, 2= Locked Fail, 3=Locked Match, 4=Unlocked Default, 5=Unlocked no Card, 6=Unlocked Fail, 7=Unlocked With Card, 8=Processing" type="int"/>
+   </function>
+   <function name="keyreaderIsInteractable" funcname="key.keyreaderInteractState">
+    <param name="State" desc="true=Interactable, false=Passive" type="bool"/>
+   </function>
+   <function name="keyreaderCardName" funcname="key.keyreaderCardName">
+    <param name="CardName" desc="Name of the Matching Card" type="string"/>
+   </function>
+   <function name="keyreaderInteract" funcname="key.keyreaderInteract"/>
+   <function name="powerOn" funcname="key.powerOn">
+    <param name="animate" type="bool"/>
+   </function>
+   <function name="powerOff" funcname="key.powerOff">
+    <param name="animate" type="bool"/>
+   </function>
+   <function name="pauseUI" funcname="togglePause">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+   <function name="debugText" funcname="key.debugText">
+    <param name="Text" desc="Display text for debugging" type="string"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="keyReaderBtnPress" fscommand="keyReaderBtnPress" desc="&apos;Lock&apos; or &apos;Unlock&apos;">
+    <param name="Button" desc="Button Name" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

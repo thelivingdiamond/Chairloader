@@ -1,0 +1,28 @@
+
+<ArkDlcMappings>
+ <Dlcs>
+  <Dlc Id="0">
+   <Folders>
+    <Folder folderName="Campaign"/>
+   </Folders>
+   <PS4Info ContentLabel="PREYPS4FULLGAME1"/>
+   <XB1Info AlignmentChunkID="1073741823" ProductID="fddcc5fd-456d-4f21-9f8a-a2329dda2746"/>
+  </Dlc>
+  <Dlc Id="1">
+   <PS4Info ContentLabel="PREYGAMEPS4DLC00"/>
+   <XB1Info Version="1.1.0.0" AlignmentChunkID="1073741823" Logo="DurangoLogo.png" SmallLogo="DurangoSmallLogo.png" WideLogo="DurangoWideLogo.png" ProductID="ffcc066d-860f-40c6-802a-e23510e2199e">
+    <LocInfo Language="english" DisplayName="Cosmonaut Shotgun Pack" Description="Margrave Shotgun &amp; Ammo Plans 2 Medkits Starter Fabrication Materials 3 Transtar Neuromods 1 Recycler Shielding Chipset"/>
+    <LocInfo Language="french" DisplayName="Pack Fusil de cosmonaute" Description="Fusil à pompe Margrave &amp; Plans pour munitions 2 Kits de secours Matériaux pour fabricateur 3 Neuromods TranStar 1 Puce anti-recycleur"/>
+    <LocInfo Language="german" DisplayName="Schrotflinte-des-Kosmonauten-Starterpaket" Description="Margrave-Schrotflinte &amp; Munitions-Pläne 2 Medkits Fabrikator-Ressourcen-Starterkit 3 TranStar-Neuromods 1 Recycler-Schild-Chipsatz"/>
+    <LocInfo Language="italian" DisplayName="Pacchetto Fucile Cosmonauta" Description="Progetti per fucile a pompa Margrave e munizioni 2 kit medici Set materiali per assemblaggio 3 neuromod TranStar 1 chip Schermatura riciclaggio"/>
+    <LocInfo Language="spanish" DisplayName="Pack de escopeta del cosmonauta" Description="Diseño de munición y escopeta Margrave 2 kits médicos Materiales iniciales de fabricación 3 neuromods de TranStar 1 chip de escudo antirrecicladora"/>
+    <LocInfo Language="latin_american_spanish" DisplayName="Pack de escopeta del cosmonauta" Description="Diseño de munición y escopeta Margrave 2 kits médicos Materiales iniciales de fabricación 3 neuromods de TranStar 1 chip de escudo antirrecicladora"/>
+    <LocInfo Language="brazilian_portuguese" DisplayName="Exclusivo Pacote Escopeta de Cosmonauta" Description="Escopeta Margrave e plantas de munição 2 kits médicos Materiais de construção iniciais 3 neuromods da TranStar 1 chipset de proteção contra reciclagem"/>
+    <LocInfo Language="polish" DisplayName="Pakiet ze strzelbą kosmonauty" Description="Strzelba Margrave i projekt amunicji 2 apteczki Materiały fabrykacyjne 3 neuromody TranStaru 1 układ tarczy przeciwrecyklingowej"/>
+    <LocInfo Language="russian" DisplayName="Эксклюзивный набор «Космонавт-стрелок»" Description="Дробовик «Маркграф» и чертежи боеприпасов 2 аптечки Сырье для фабрикатора 3 нейромода «Транстар» 1 чип защиты от утилизации"/>
+    <LocInfo Language="japanese" DisplayName="限定「宇宙飛行士ショットガンパック」" Description="マルグレイブショットガン&amp;弾薬の図面 治療キットx2 スターター分子成形素材 トランスター・ニューロモッドx3 リサイクラー・チップセットx1"/>
+    <LocInfo Language="chineset" DisplayName="獨家太空人霰彈槍包" Description="馬爾奎霰彈槍與彈藥製程 2 個醫療包 新手生產材料 3 個轉星神經調整儀 1 個分解器防護晶片組"/>
+   </XB1Info>
+  </Dlc>
+ </Dlcs>
+</ArkDlcMappings>

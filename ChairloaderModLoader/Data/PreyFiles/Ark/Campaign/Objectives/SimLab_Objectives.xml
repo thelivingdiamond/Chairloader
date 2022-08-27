@@ -1,0 +1,40 @@
+
+<Objectives>
+ <Objective id="12889009724986564805" title="@loc_15373294129891632782" optional="true">
+  <Descriptions>
+   <Desc id="12889009724986564806" displayName="Main" text="@loc_15373294129891632783"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009724986566393" displayName="Get Into the Test Preparation Chamber" optional="false" text="@loc_15373294129891632785" markerLabel="@loc_15373294129891632784"/>
+   <Task id="12889009724986566329" displayName="Download Dr. Igwe&apos;s Files" optional="false" text="@loc_15373294129891632787" markerLabel="@loc_15373294129891632786"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+ <Objective id="12889009725042956885" title="@loc_15373294129891632788" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="12889009725042956919" displayName="InitialDesc" text="@loc_15373294129891632789"/>
+   <Desc id="12889009725042956886" displayName="CompleteDesc" text="@loc_15373294129891632790"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009725042956952" displayName="Pick up the Neuromod" optional="false" text="@loc_15373294129891632792" markerLabel="@loc_15373294129891632791" Location="12889009724983807463" description="12889009725042956919"/>
+  </Tasks>
+ </Objective>
+ <Objective id="12889009725000731150" title="@loc_15373294129891632793" optional="true">
+  <Descriptions>
+   <Desc id="12889009725000731151" displayName="InitialDesc" text="@loc_15373294129891632794"/>
+   <Desc id="12889009725000731612" displayName="GravesDesc" text="@loc_15373294129891632795"/>
+   <Desc id="12889009725000731614" displayName="CompletedDesc" text="@loc_15373294129891632796"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009725000731152" displayName="FindGravesOffice" optional="false" text="@loc_15373294129891632797" targetCharacterId="12889009725000731153" Location="12889009724983807463"/>
+   <Task id="12889009725000731154" displayName="GetIntoGravesOffice" optional="false" text="@loc_15373294129891632798" targetCharacterId="12889009725000731155" Location="12889009724983807463"/>
+   <Task id="12889009725000740132" displayName="ResetSecurityKey" optional="false" text="@loc_15373294129891632799" targetCharacterId="12889009725000740133" Location="12889009724983807463"/>
+   <Task id="12889009725014543382" displayName="FabricateNeuromod" optional="false" text="@loc_15373294129891632800"/>
+  </Tasks>
+  <Clues>
+   <Clue id="12889009725000741048" displayName="SecGuardKeycard" text="@loc_15373294129891632801"/>
+   <Clue id="12889009725033922217" displayName="VolunteerAccess" text="@loc_15373294129891632802"/>
+  </Clues>
+ </Objective>
+</Objectives>

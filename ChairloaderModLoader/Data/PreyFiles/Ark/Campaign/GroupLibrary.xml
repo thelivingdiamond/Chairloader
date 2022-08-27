@@ -1,0 +1,19 @@
+
+<ArkCharacterGroups>
+ <Groups>
+  <ArkCharacterGroup ID="15659330456312989501" Name="Administration" Notes=""/>
+  <ArkCharacterGroup ID="15659330456312989347" Name="Engineer" Notes=""/>
+  <ArkCharacterGroup ID="15659330456312989473" Name="Main" Notes=""/>
+  <ArkCharacterGroup ID="15659330456312989493" Name="Player" Notes=""/>
+  <ArkCharacterGroup ID="15659330456312989362" Name="Scientist" Notes=""/>
+  <ArkCharacterGroup ID="15659330456312989459" Name="Security" Notes=""/>
+  <ArkCharacterGroup ID="15659330456312989450" Name="Test" Notes=""/>
+  <ArkCharacterGroup ID="13680621263361473507" Name="Volunteer" Notes="The prisoners who come aboard Talos I as &quot;Volunteers&quot;"/>
+  <ArkCharacterGroup ID="13680621263361475893" Name="Repo" Notes="The Repo mercenaries"/>
+  <ArkCharacterGroup ID="4349723564911544367" Name="Guest" Notes="At any time there may be as many as thirty (30) guests visiting Talos. Guests will be coordinated and chaperoned by Executive Services. Guest quarters may be in the crew facilities or other locations as determined by management."/>
+  <ArkCharacterGroup ID="4349723564911544284" Name="Volunteer" Notes="At any time there may be as many as ten (10) volunteers on Talos aiding the neuromod development.  &#10;Volunteers are under the direction of Talos Security and will be restricted to the R&amp;D department.  Volunteers are ultimately sacrificed to Mimic&apos;s in order to farm more exotic substance for Neuromod creation"/>
+  <ArkCharacterGroup ID="4349723564911544447" Name="EarthSide" Notes="Some recordings or communicatons from people still stationed on Earth"/>
+  <ArkCharacterGroup ID="13680621263372014269" Name="CorruptedHumans" Notes="Temp: people who are mind-controlled. This is just a temp group to prototype the explody people."/>
+  <ArkCharacterGroup ID="5310807215636213022" Name="Corrupted Operators" Notes="Temp: temp group for corrupted operators."/>
+ </Groups>
+</ArkCharacterGroups>

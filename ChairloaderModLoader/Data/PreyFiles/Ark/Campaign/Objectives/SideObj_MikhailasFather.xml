@@ -1,0 +1,20 @@
+
+<Objectives>
+ <Objective id="13680621263373212111" title="@loc_15373294129891632453" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="13680621263373212112" displayName="Objective Start" text="@loc_15373294129891632454"/>
+   <Desc id="13680621263373214843" displayName="Player Listened To Recording" text="@loc_15373294129891632455"/>
+   <Desc id="13680621263373215510" displayName="Complete: Listened With Mikhaila" text="@loc_15373294129891632456"/>
+   <Desc id="13680621263373215699" displayName="Complete: Erased Audiolog" text="@loc_15373294129891632457"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="13680621263373213933" displayName="Access Archive Terminal" optional="false" text="@loc_15373294129891632458" Location="1713490239377738413" description="13680621263373212112" markerLabel="@loc_844024417329839008"/>
+   <Task id="13680621263373213995" displayName="Input Volunteer Number" optional="false" text="@loc_15373294129891632459" Location="1713490239377738413" description="13680621263373212112" markerLabel="@loc_844024417329839011"/>
+   <Task id="13680621263373214099" displayName="Transfer Experiment Auidialog" optional="true" text="@loc_15373294129891632460" Location="1713490239377738413" targetCharacterId="13680621263373214100" description="13680621263373214843" markerLabel="@loc_844024417329839017"/>
+   <Task id="13680621263373214169" displayName="Erase Experiment Auidialog" optional="true" text="@loc_15373294129891632461" Location="1713490239377738413" targetCharacterId="13680621263373214170" description="13680621263373214843" markerLabel="@loc_844024417329839022"/>
+   <Task id="13680621263373214518" displayName="Listen to Audiolog with Mikhaila" optional="false" text="@loc_15373294129891632462" Location="1713490239377285936" description="13680621263373214843" markerLabel="@loc_6732635291241098447"/>
+   <Task id="13680621263373214624" displayName="Talk to Mikhaila" optional="false" text="@loc_15373294129891632463" Location="1713490239377285936" targetCharacterId="13680621263373214625" description="13680621263373214843" markerLabel="@loc_844024417329839028"/>
+  </Tasks>
+ </Objective>
+</Objectives>

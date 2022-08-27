@@ -1,0 +1,11 @@
+
+<Dialog>
+ <Dialog id="13680621263388023995" text="System fault. System faul- [Error Sound]" modified="12/06/2016 07:02:18 PM"/>
+ <Dialog id="13680621263388024002" text="Shutting down." modified="03/14/2016 02:06:58 AM"/>
+ <Dialog id="13680621263388024019" text="Integrity error. Safe mode." modified="03/14/2016 02:09:47 AM"/>
+ <Dialog id="13680621263388024413" text="System alert. Repairs needed." modified="06/08/2016 10:42:20 PM"/>
+ <Dialog id="13680621263388024556" text="Please contact a qualified engineer." modified="03/14/2016 02:16:12 AM"/>
+ <Dialog id="13680621263388024692" text="All systems operational." modified="03/14/2016 02:18:28 AM"/>
+ <Dialog id="13680621263388024700" text="Thank you." modified="03/14/2016 02:18:36 AM"/>
+ <Dialog id="243995946798091715" facefx="0" sync="0" notes="DNR" text="Navigation error." modified="07/15/2016 04:22:42 PM"/>
+</Dialog>

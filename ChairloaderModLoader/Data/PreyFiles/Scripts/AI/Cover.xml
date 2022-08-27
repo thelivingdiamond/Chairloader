@@ -1,0 +1,7 @@
+
+<Cover>
+ <DynamicSurfaceEntities>
+  <EntityClass name="BreakableObject"/>
+  <EntityClass name="DestroyableObject"/>
+ </DynamicSurfaceEntities>
+</Cover>

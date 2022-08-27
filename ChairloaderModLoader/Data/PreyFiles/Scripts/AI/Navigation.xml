@@ -1,0 +1,53 @@
+
+<Navigation version="6">
+ <AgentTypes>
+  <AgentType name="MediumSizedCharacters" voxelSize="0.125, 0.125, 0.125" radius="4" height="16" climbableHeight="3" maxWaterDepth="8">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkAlien"/>
+    <class name="ArkBeta"/>
+    <class name="ArkMimic"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+  <AgentType name="ArkAlien_Large" voxelSize="0.125, 0.125, 0.125" radius="12" height="32" climbableHeight="6" maxWaterDepth="8" testHeight="1">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkAlien"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+  <AgentType name="ArkAlien_Medium" voxelSize="0.125, 0.125, 0.125" radius="5" height="21" climbableHeight="3" maxWaterDepth="8">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkAlien"/>
+    <class name="ArkBeta"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+  <AgentType name="ArkAlien_Small" voxelSize="0.125, 0.125, 0.125" radius="4" height="5" climbableHeight="3" maxWaterDepth="8" testHeight="1">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkAlien"/>
+    <class name="ArkMimic"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+  <AgentType name="ArkOperator" voxelSize="0.125, 0.125, 0.125" radius="5" height="12" climbableHeight="12" maxWaterDepth="8" downwardSearch="128">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkOperator"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+  <AgentType name="ArkTelepath" voxelSize="0.125, 0.125, 0.125" radius="11" height="16" climbableHeight="10" maxWaterDepth="8" downwardSearch="128">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkAlien"/>
+    <class name="ArkTelepath"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+  <AgentType name="ArkWeaver" voxelSize="0.125, 0.125, 0.125" radius="6" height="16" climbableHeight="10" maxWaterDepth="8" downwardSearch="128">
+   <SmartObjectUserClasses>
+    <class name="Human"/>
+    <class name="ArkAlien"/>
+    <class name="ArkTelepath"/>
+   </SmartObjectUserClasses>
+  </AgentType>
+ </AgentTypes>
+</Navigation>

@@ -1,0 +1,42 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="ArkPlayer:CheckStat" pos="-300,-210,0">
+   <Inputs Active="1" playerstat_statName="bCoralRegensPsi"/>
+  </Node>
+  <Node Id="5" Class="Ark:Signal:AddModifier" pos="490,-220,0">
+   <Inputs entityId="0" signalModifier_Modifier="3149325216982680897"/>
+  </Node>
+  <Node Id="6" Class="Ark:Signal:RemoveModifier" pos="490,-130,0">
+   <Inputs entityId="0" signalModifier_Modifier="3149325216982680897"/>
+  </Node>
+  <Node Id="10" Class="Actor:LocalPlayer" pos="450,-330,0">
+   <Inputs/>
+  </Node>
+  <Node Id="12" Class="Game:Start" pos="-690,-210,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="15" Class="Math:Equal" pos="-10,-210,0">
+   <Inputs A="0" B="0"/>
+  </Node>
+  <Node Id="19" Class="Logic:Gate" pos="180,-260,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="20" Class="Logic:Gate" pos="180,-100,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="15" nodeOut="2" portIn="A" portOut="out" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="5" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="6" portIn="Open" portOut="Success" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="10" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="10" portIn="entityId" portOut="entityId" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="12" portIn="Check" portOut="output" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="15" portIn="In" portOut="true" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="15" portIn="In" portOut="false" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="19" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="20" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

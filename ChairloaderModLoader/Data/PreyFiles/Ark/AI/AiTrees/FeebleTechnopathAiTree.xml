@@ -1,0 +1,12 @@
+
+<ArkAiTree>
+ <Root>
+  <ArkAiTreeStackNode>
+   <Children>
+    <ArkAiTreeScriptMoveNode/>
+    <ArkAiTreePatrolNode patrolDialogPulseTime="1.0" timeToGiveupUnreachablePatrol="20.0" patrolIdleCooldown="2.0"/>
+    <ArkAiTreeGuardNode/>
+   </Children>
+  </ArkAiTreeStackNode>
+ </Root>
+</ArkAiTree>

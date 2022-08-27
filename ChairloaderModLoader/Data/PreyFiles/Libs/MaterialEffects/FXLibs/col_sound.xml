@@ -1,0 +1,505 @@
+
+<FXLib>
+ <Effect name="glass_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="glass"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="glass"/>
+   </Audio>
+  </Rolling>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="glass"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="collision_null">
+  <GameNoise type="9469288860501998057" loudness="9469288860501649167"/>
+  <Particle>
+   <Name particleName="MaterialEffects.Null.Null"/>
+  </Particle>
+ </Effect>
+ <Effect name="mat_default">
+  <Particle>
+   <Name minscale="1" maxscale="1" maxscaledist="50" particleName="MaterialEffects.SurfaceMaterials.Default_00"/>
+  </Particle>
+  <Decal minscale="0.15" maxscale="0.15" lifetime="4.0">
+   <Material materialPath="Materials/ArkEffects/Utilities/SurfaceMaterials/MatDefault_00"/>
+  </Decal>
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thick_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649167"/>
+ </Effect>
+ <Effect name="cardboard_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="cardboard_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="cardboard_small"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="cardboard_small"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="cardboard_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="cardboard_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="cardboard_medium"/>
+   </Audio>
+  </Rolling>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="cardboard_medium"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="cardboard_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="cardboard_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="cardboard_large"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="leather_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="leather_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="leather_small"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="leather_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="leather_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="leather_medium"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="leather_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="leather_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="leather_large"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="metal_thin_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="metal_thin_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="metal_thin_small"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="metal_thin_small"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="metal_thin_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="metal_thin_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="metal_thin_medium"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="metal_thin_medium"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="metal_thin_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="metal_thin_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="metal_thin_large"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="metal_thin_large"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="metal_thick_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="metal_thick_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="metal_thick_small"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="metal_thick_small"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="metal_thick_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="metal_thick_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="metal_thick_medium"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="metal_thick_medium"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="metal_thick_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="metal_thick_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="metal_thick_large"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="metal_thick_large"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="plastic_thin_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thin_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="plastic_thin_small"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="plastic_thin_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thin_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide"/>
+  </Sliding>
+ </Effect>
+ <Effect name="plastic_thin_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thin_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="plastic_thin_large"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="plastic_thick_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thick_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="plastic_thick_small"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="plastic_thick_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thick_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="plastic_thick_medium"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="plastic_thick_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="plastic_thick_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="plastic_thick_large"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="porcelain_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="porcelain_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="porcelain_small"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="porcelain_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="porcelain_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="porcelain_medium"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="porcelain_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="porcelain_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="porcelain_large"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="rock">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="rock"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="rock"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="rubber">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="rubber"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="rubber"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="wood_small">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="wood_small"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="wood_small"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="wood_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="wood_medium"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="wood_medium"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="wood_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="wood_large"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="wood_large"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="grenade">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="grenade"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="grenade"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="super_bounce">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="super_bounce"/>
+  </Audio>
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+ </Effect>
+ <Effect name="paper">
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Paper"/>
+  </Audio>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="paper"/>
+   </Audio>
+  </Rolling>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="paper"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="concrete">
+  <GameNoise type="9469288860501998057" loudness="9469288860501649210"/>
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="concrete"/>
+  </Audio>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="concrete"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="body_human">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Body_Human"/>
+  </Audio>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="Body_Human"/>
+   </Audio>
+  </Sliding>
+  <Rolling>
+   <Audio trigger="PhysType">
+    <Switch name="PhysType" state="Body_Human"/>
+   </Audio>
+  </Rolling>
+ </Effect>
+ <Effect name="carpet">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Cushion"/>
+  </Audio>
+ </Effect>
+ <Effect name="glass_medium">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="Phys_Type" state="glass"/>
+  </Audio>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="glass"/>
+   </Audio>
+  </Rolling>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="glass"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="glass_large">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="glass"/>
+  </Audio>
+  <Rolling>
+   <Audio trigger="Play_Physics_Roll">
+    <Switch name="PhysType" state="glass"/>
+   </Audio>
+  </Rolling>
+  <Sliding>
+   <Audio trigger="Play_Physics_Slide">
+    <Switch name="PhysType" state="glass"/>
+   </Audio>
+  </Sliding>
+ </Effect>
+ <Effect name="goo_soft">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="goo_soft"/>
+  </Audio>
+ </Effect>
+ <Effect name="goo_hard">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="goo_hard"/>
+  </Audio>
+ </Effect>
+ <Effect name="dirt">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Dirt"/>
+  </Audio>
+ </Effect>
+ <Effect name="armor">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="armor"/>
+  </Audio>
+ </Effect>
+ <Effect name="gib">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="gib"/>
+  </Audio>
+ </Effect>
+ <Effect name="operator">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Body_Operator"/>
+  </Audio>
+ </Effect>
+ <Effect name="splash">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="splash"/>
+  </Audio>
+ </Effect>
+ <Effect name="body_typhon">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Body_Typhon"/>
+  </Audio>
+ </Effect>
+ <Effect name="Ice">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="Ice"/>
+  </Audio>
+ </Effect>
+ <Effect name="water">
+  <Audio trigger="Play_Physics_Impacts">
+   <Switch name="PhysType" state="splash"/>
+  </Audio>
+ </Effect>
+</FXLib>

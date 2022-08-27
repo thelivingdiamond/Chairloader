@@ -1,0 +1,10 @@
+
+<EquipPack name="ArkPlayer_SurvivorLoadout" primary="ArkWeaponWrench">
+ <Items>
+  <ArkWeaponWrench type="" archetype="ArkPickups.Weapons.Wrench" count="1"/>
+  <ArkMedKit type="" archetype="ArkPickups.Medical.MedKit" count="2"/>
+  <ArkAmmoPickupHeavyLaser type="" archetype="ArkPickups.Ammo.InstaLaser" count="500"/>
+  <ArkPharma type="" archetype="ArkPickups.Medical.Pharma" count="2"/>
+  <ArkOxygenBottle type="" archetype="ArkPickups.Player.O2Bottle" count="1"/>
+ </Items>
+</EquipPack>

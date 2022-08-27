@@ -1,0 +1,142 @@
+
+<Dialog>
+ <Dialog id="13680621263369498244" text="Commander. We found the access panel. Biometric authentication." modified="01/21/2016 02:13:44 AM" notes="Panel is already open when the player arrives."/>
+ <Dialog id="13680621263369498971" text="All done." modified="08/12/2015 04:16:27 PM"/>
+ <Dialog id="13680621263369500644" text="All units report no sign of Morgan Yu." modified="01/21/2016 02:41:46 AM"/>
+ <Dialog id="13680621263369500683" text="Affirmative." modified="08/12/2015 04:44:59 PM"/>
+ <Dialog id="13680621263383317989" text="Yes, commander." modified="01/19/2016 02:56:47 PM"/>
+ <Dialog id="13680621263383318109" text="Establishing defensive perimeter." modified="01/19/2016 03:36:03 PM"/>
+ <Dialog id="13680621263383435427" text="Morgan? Is that you?" modified="01/20/2016 11:30:43 PM"/>
+ <Dialog id="13680621263383435528" text="Primary target is in the kill zone. " modified="01/20/2016 11:44:17 PM"/>
+ <Dialog id="13680621263383435624" text="Morgan?" modified="01/20/2016 11:34:00 PM" notes="Calling for help."/>
+ <Dialog id="13680621263383435691" text="Back here." modified="01/20/2016 11:35:07 PM"/>
+ <Dialog id="13680621263383435756" text="Over here." modified="01/20/2016 11:36:12 PM"/>
+ <Dialog id="13680621263383435767" text="I don&apos;t think I can move." modified="01/20/2016 11:36:23 PM"/>
+ <Dialog id="13680621263383435775" text="Hurry up, man." modified="01/20/2016 11:36:31 PM"/>
+ <Dialog id="13680621263383435783" text="I need some help." modified="01/20/2016 11:36:39 PM"/>
+ <Dialog id="13680621263383435791" text="Hey!" modified="01/20/2016 11:36:47 PM"/>
+ <Dialog id="13680621263383435802" text="I&apos;m in the ICU." modified="01/20/2016 11:36:58 PM"/>
+ <Dialog id="13680621263383435812" text="My arm&apos;s broken." modified="01/20/2016 11:37:08 PM"/>
+ <Dialog id="13680621263383435820" text="Back here." modified="01/20/2016 11:37:16 PM"/>
+ <Dialog id="13680621263383435835" text="It&apos;s me! Luther!" modified="01/20/2016 11:37:31 PM"/>
+ <Dialog id="13680621263383436245" text="Open fire." modified="01/20/2016 11:44:21 PM"/>
+ <Dialog id="13680621263383446681" text="Gathering..." modified="01/21/2016 02:39:53 AM"/>
+ <Dialog id="13680621263383446869" text="Relaying order." modified="01/21/2016 02:41:25 AM"/>
+ <Dialog id="13680621263383585068" text="I&apos;ve got a blip. Investigate. &#10;" modified="01/22/2016 05:04:44 PM"/>
+ <Dialog id="13680621263383585074" text="Possible echo on the radar...   " modified="01/22/2016 05:04:50 PM"/>
+ <Dialog id="13680621263383585080" text="Notify. Something just splashed my scanners.  " modified="01/22/2016 05:04:56 PM"/>
+ <Dialog id="13680621263383585086" text="Possible threat.  " modified="01/22/2016 05:05:02 PM"/>
+ <Dialog id="13680621263383585096" text="Notify. Might have an echo." modified="01/22/2016 05:05:12 PM"/>
+ <Dialog id="13680621263383585102" text="Interrupt. I&apos;ve got suspicious pingback. &#10;" modified="01/22/2016 05:05:18 PM"/>
+ <Dialog id="13680621263383586055" text="Contact." modified="01/22/2016 05:21:11 PM"/>
+ <Dialog id="13680621263383586071" text="Echo found. Echo found.  " modified="01/22/2016 05:21:27 PM"/>
+ <Dialog id="13680621263383586086" text="Engaging.  " modified="01/22/2016 05:21:42 PM"/>
+ <Dialog id="13680621263383586101" text="Visual contact." modified="01/22/2016 05:21:57 PM"/>
+ <Dialog id="13680621263383586186" text="Echo painted." modified="01/22/2016 05:23:22 PM"/>
+ <Dialog id="13680621263383586216" text="(Alarm Sounding)" modified="07/12/2016 12:03:10 AM"/>
+ <Dialog id="13680621263383586232" text="Got her." modified="01/22/2016 05:24:08 PM"/>
+ <Dialog id="13680621263383586273" text="Got him." modified="01/22/2016 05:24:49 PM"/>
+ <Dialog id="13680621263383586586" text="Weapons hot.  " modified="01/22/2016 05:30:02 PM" notes="Attacking."/>
+ <Dialog id="13680621263383586638" text="Firing.  " modified="01/22/2016 05:30:54 PM"/>
+ <Dialog id="13680621263383586647" text="Notify. Cleared hot." modified="01/22/2016 05:59:10 PM"/>
+ <Dialog id="13680621263383586669" text="Full burn." modified="01/22/2016 05:31:25 PM"/>
+ <Dialog id="13680621263383586675" text="Firing angle zero." modified="01/22/2016 05:31:31 PM"/>
+ <Dialog id="13680621263383586681" text="Lights on." modified="01/22/2016 05:31:37 PM"/>
+ <Dialog id="13680621263383586686" text="Fox seven. Fox seven." modified="01/22/2016 06:04:30 PM"/>
+ <Dialog id="13680621263383586964" text="Lasers on." modified="01/22/2016 05:37:13 PM"/>
+ <Dialog id="13680621263383587025" text="Lasing echos." modified="01/22/2016 05:37:57 PM"/>
+ <Dialog id="13680621263383588345" text="Green to kill." modified="01/22/2016 06:04:42 PM"/>
+ <Dialog id="13680621263383589053" text="A-star in progress. Will report." modified="01/22/2016 06:11:09 PM"/>
+ <Dialog id="13680621263383589069" text="Looking for echo contacts." modified="01/22/2016 06:11:25 PM"/>
+ <Dialog id="13680621263383589077" text="Instruments wide open." modified="01/22/2016 06:11:33 PM"/>
+ <Dialog id="13680621263383589083" text="Perimeter check." modified="01/22/2016 06:11:39 PM"/>
+ <Dialog id="13680621263383589093" text="Zone sweep. Checking angles of attack." modified="01/22/2016 06:11:49 PM"/>
+ <Dialog id="13680621263383589100" text="Greenlight on sierra delta." modified="01/22/2016 06:11:56 PM"/>
+ <Dialog id="13680621263383589115" text="Bracketing area for clean sweep." modified="01/22/2016 06:12:11 PM"/>
+ <Dialog id="13680621263383589236" text="Checking three, six, nine, and noon.  " modified="07/12/2016 12:04:48 AM"/>
+ <Dialog id="13680621263383589296" text="If you are TranStar personnel, please stand down. I am a rescue Operator." modified="07/12/2016 12:04:31 AM"/>
+ <Dialog id="13680621263383589307" text="Please show yourself so I can assist you.  " modified="01/22/2016 06:15:23 PM"/>
+ <Dialog id="13680621263383589320" text="Don&apos;t hide. I&apos;m programmed to assist Talos I crew in evacutation procedures." modified="01/22/2016 06:15:49 PM"/>
+ <Dialog id="13680621263383589340" text="I&apos;m not a threat. I am a search and rescue Operator." modified="07/12/2016 12:04:54 AM"/>
+ <Dialog id="13680621263383589885" text="(Operator Scanning)" modified="07/12/2016 12:01:47 AM" notes="computerized / machine scanning sweeing noise."/>
+ <Dialog id="13680621263383589969" text="Sweep turned up zero." modified="01/22/2016 06:26:25 PM"/>
+ <Dialog id="13680621263383589977" text="Nothing found." modified="01/22/2016 06:26:33 PM"/>
+ <Dialog id="13680621263383589983" text="No echos. That&apos;s a negative." modified="01/22/2016 06:26:39 PM"/>
+ <Dialog id="13680621263383589990" text="Zone is clean. No echos." modified="01/22/2016 06:26:46 PM"/>
+ <Dialog id="13680621263383589997" text="Nothing. Sensor charlie foxtrot." modified="01/22/2016 06:26:53 PM"/>
+ <Dialog id="13680621263383590005" text="Stop search. Point of origin... unknown." modified="01/22/2016 06:27:01 PM"/>
+ <Dialog id="13680621263383590012" text="No sign. Breaking off." modified="01/22/2016 06:27:08 PM"/>
+ <Dialog id="13680621263383590110" text="Lost visual on the echo." modified="01/22/2016 06:28:46 PM"/>
+ <Dialog id="13680621263383590116" text="Hostile is out of sensor range." modified="01/22/2016 06:28:52 PM"/>
+ <Dialog id="13680621263383590128" text="Contact lost. I repeat, contact lost." modified="01/22/2016 06:29:04 PM"/>
+ <Dialog id="13680621263383590134" text="No contact. Disengaging. " modified="01/22/2016 06:29:10 PM"/>
+ <Dialog id="13680621263383590143" text="Echo is out of bounds. Dropping combat.  " modified="01/22/2016 06:29:19 PM"/>
+ <Dialog id="13680621263383590154" text="Weapons cold. Nothing to burn." modified="01/22/2016 06:29:30 PM"/>
+ <Dialog id="13680621263383590158" text="Contact faded." modified="01/22/2016 06:29:34 PM"/>
+ <Dialog id="13680621263383590291" text="Maintain a personal perimeter of one meter." modified="01/22/2016 06:31:47 PM"/>
+ <Dialog id="13680621263383590723" text="Buffering." modified="01/22/2016 06:38:59 PM"/>
+ <Dialog id="13680621263383590729" text="Stand at safe distance." modified="01/22/2016 06:39:05 PM"/>
+ <Dialog id="13680621263383590734" text="You are too close." modified="01/22/2016 06:39:10 PM"/>
+ <Dialog id="13680621263383590844" text="Notify Dahl. Morgan Yu eliminated." modified="01/22/2016 06:41:00 PM"/>
+ <Dialog id="13680621263383590850" text="Echo down. Echo down." modified="01/22/2016 06:41:06 PM"/>
+ <Dialog id="13680621263383590860" text="Threat level zulu." modified="01/22/2016 06:41:16 PM"/>
+ <Dialog id="13680621263383590906" text="(Operator Malfunction Beep, Mechanical Noises)" modified="07/11/2016 11:59:40 PM" notes="Malfunction / Alarm beep. Mechanical grumble. "/>
+ <Dialog id="13680621263383590940" text="(Operator Malfunction Beep, Mechanical Noises)" modified="07/11/2016 11:59:43 PM" notes="Alt variation. Malfunction / Alarm beep. Mechanical grumble. "/>
+ <Dialog id="13680621263383599068" text="Subject Morgan Yu approaching.  " modified="01/22/2016 08:58:04 PM"/>
+ <Dialog id="13680621263383599083" text="Verifying IFF. Morgan Yu is off the echo list." modified="01/22/2016 08:58:19 PM"/>
+ <Dialog id="13680621263383599089" text="Weapons Safe. Do not engage." modified="01/22/2016 08:58:25 PM"/>
+ <Dialog id="13680621263383599174" text="Alpha check. Affirmative." modified="01/22/2016 08:59:50 PM"/>
+ <Dialog id="13680621263383599179" text="Instrument IFF. Typhon class echos... validated." modified="01/22/2016 08:59:55 PM"/>
+ <Dialog id="13680621263383599186" text="Cleared for Sierra and Delta actions." modified="01/22/2016 09:00:02 PM"/>
+ <Dialog id="13680621263383599191" text="Perimeter secure. Resume." modified="01/22/2016 09:00:07 PM"/>
+ <Dialog id="13680621263383599198" text="Flying CAP. Status as fragged. Over." modified="01/22/2016 09:00:14 PM"/>
+ <Dialog id="13680621263383599204" text="Zone tagged and stamped. Resume." modified="01/22/2016 09:00:20 PM"/>
+ <Dialog id="13680621263383599210" text="All units. Pingback and authenticate." modified="01/22/2016 09:00:26 PM"/>
+ <Dialog id="13680621263383599216" text="All clear." modified="01/22/2016 09:00:32 PM"/>
+ <Dialog id="13680621263383599221" text="Instruments clean. No echos. " modified="01/22/2016 09:00:37 PM"/>
+ <Dialog id="13680621263385932794" text="Insruments- (Operator Voice Malfunctioning) I am an instrument." modified="07/11/2016 11:58:34 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385932869" text="IFF look up- (Operator Voice Malfunctioning) - new table loaded." modified="07/11/2016 11:58:19 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385932890" text="All units. Pingback and authenticate-ate-ate-ate." modified="02/18/2016 09:15:06 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385932940" text="You&apos;re not Co-co-co-commander Dahl. Comply. Complying." modified="02/18/2016 09:15:56 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385933024" text="Echos-os-os-os [machine malfunctioning]. " modified="03/22/2016 08:48:25 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385933084" text="Status check. As fragged. (Operator Malfunctioning Noises) Secure perimter." modified="07/12/2016 12:00:20 AM" notes="Corrupt"/>
+ <Dialog id="13680621263385933208" text="New CO. Direct comm. Inaudible." modified="02/18/2016 09:20:24 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385933260" text="Moving." modified="02/18/2016 09:21:16 PM"/>
+ <Dialog id="13680621263385933283" text="Moving- (Operator Voice Malfunctioning) " modified="07/12/2016 12:00:55 AM" notes="Corrupt"/>
+ <Dialog id="13680621263385933367" text="Possible threat. Possible Morgan- (Operator Voice Malfunctioning) -Yu. " modified="07/11/2016 11:58:10 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385933424" text="Notify. Suspicious activity." modified="02/18/2016 09:24:36 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385933498" text="Scanners got an echo-o-o-o (Operator Voice Malfunctioning)" modified="07/12/2016 12:01:02 AM" notes="Corrupt."/>
+ <Dialog id="13680621263385933518" text="Interrupt." modified="02/18/2016 09:25:34 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385933546" text="Contact." modified="02/18/2016 09:26:50 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385933549" text="(Operator Alarm Beeps)" modified="07/12/2016 12:02:58 AM" notes="Corrupt. 1 sec. Like a security alam."/>
+ <Dialog id="13680621263385933791" text="Lost visual. " modified="02/18/2016 09:30:07 PM" notes="corrupt"/>
+ <Dialog id="13680621263385933812" text="Hostile is out of ran- (Operator Voice Malfunctioning)" modified="07/11/2016 11:58:04 PM" notes="corrupt"/>
+ <Dialog id="13680621263385933830" text="Weapons col-col-col-cold." modified="02/18/2016 09:30:46 PM" notes="corrupt"/>
+ <Dialog id="13680621263385933836" text="No contact." modified="02/18/2016 09:30:57 PM" notes="corrupt"/>
+ <Dialog id="13680621263385933903" text="New commander is pleased." modified="02/18/2016 09:31:59 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385933916" text="Mission accom-om-om-omplished." modified="02/18/2016 09:32:12 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385933937" text="All echoes cleared [machine malfunctioning]." modified="03/22/2016 08:47:55 PM" notes="Corrupt. error noises."/>
+ <Dialog id="13680621263385934007" text="(Operator Voice Malfunctioning) " modified="07/12/2016 12:01:11 AM" notes="Corrupt. Variant 1."/>
+ <Dialog id="13680621263385934032" text="(Operator Voice Malfunctioning) " modified="07/12/2016 12:01:14 AM" notes="Corrupt. Variant 2."/>
+ <Dialog id="13680621263385934058" text="(Operator Explodes) " modified="07/12/2016 12:01:21 AM" notes="Corrupt. Loud, Self-Destruct Sound. 1-2 seconds."/>
+ <Dialog id="13680621263385934112" text="I would like to rescue you." modified="02/18/2016 09:35:28 PM"/>
+ <Dialog id="13680621263385934141" text="I am a rescue- (Operator Voice Malfunctioning) -erator." modified="07/11/2016 11:57:59 PM" notes="corrupt"/>
+ <Dialog id="13680621263385934168" text="I&apos;m not a threat. " modified="02/18/2016 09:36:24 PM"/>
+ <Dialog id="13680621263385934223" text="Search and rescue protocols active. " modified="02/18/2016 09:37:19 PM"/>
+ <Dialog id="13680621263385934279" text="Target re-re-re-rescued." modified="02/18/2016 09:38:15 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934331" text="Don&apos;t hide. I&apos;m- (Operator Voice Malfunctioning) -to assist you in evacuation." modified="07/11/2016 11:57:49 PM" notes="corrupt"/>
+ <Dialog id="13680621263385934405" text="I will assist you until you have- (Operator Voice Malfunctioning) -no vital signs." modified="07/11/2016 11:57:40 PM" notes="corrupt"/>
+ <Dialog id="13680621263385934478" text="I won&apos;t haaaaarm you." modified="02/18/2016 09:41:34 PM" notes="cprri[t"/>
+ <Dialog id="13680621263385934501" text="Zero targets to rescue." modified="02/18/2016 09:41:57 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934523" text="No survivors f-f-f-found." modified="02/18/2016 09:43:55 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934548" text="Stop search. (Machine Error Beep)" modified="07/12/2016 12:02:23 AM" notes="Corrupt."/>
+ <Dialog id="13680621263385934607" text="No more signal. Breaking off." modified="02/18/2016 09:43:43 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934676" text="Initiate rescue." modified="02/18/2016 09:44:52 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934690" text="I&apos;m here to (Operator Voice Malfunctioning) help." modified="07/12/2016 12:02:31 AM" notes="Corrupt. scrambled error sounds"/>
+ <Dialog id="13680621263385934738" text="Help is on the way." modified="02/18/2016 09:45:54 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934744" text="Remain ca-ca-ca-calm." modified="02/18/2016 09:46:17 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934813" text="I can assist." modified="02/18/2016 09:47:09 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385934840" text="(Machine Malfunctioning, Beeps Loudly)" modified="07/12/2016 12:02:46 AM" notes="Corrupt. Shout, Alarming, louds sound. 2-3 sec."/>
+ <Dialog id="13680621263395450508" text="Morgan?" modified="06/08/2016 01:02:04 AM" notes="(Luther Glass)Calling out for help. Variant."/>
+ <Dialog id="13680621263395450525" text="Hey!" modified="06/08/2016 01:02:21 AM" notes="(Luther Glass)Calling out for help. Varaint."/>
+</Dialog>

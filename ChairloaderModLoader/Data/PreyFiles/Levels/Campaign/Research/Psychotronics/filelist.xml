@@ -1,0 +1,7 @@
+
+<download name="psychotronics" type="Map">
+ <index src="filelist.xml" dest="filelist.xml"/>
+ <files>
+  <file src="level.pak" dest="level.pak" size="5384463" md5="b21b0d5910a7d00e59f94c773ee45879"/>
+ </files>
+</download>

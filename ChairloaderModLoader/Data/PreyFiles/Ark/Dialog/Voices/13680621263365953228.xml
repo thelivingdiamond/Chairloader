@@ -1,0 +1,187 @@
+
+<Dialog>
+ <Dialog id="4349723564910658924" text="Goddamn waiting is driving me crazy. But better than being dead." modified="02/29/2016 08:20:07 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564910742316" text="Are you ready for your instructions, my lady?" modified="02/12/2016 12:06:30 PM" notes="(Lawrence Baxter) Mock formal." facefx="2"/>
+ <Dialog id="13680621263367533174" text="Oh sure. Thank you. Hey - maybe it&apos;s not my place, but..." modified="07/08/2016 04:02:26 PM" notes="(Duncan Krassikoff) "/>
+ <Dialog id="13680621263368792802" text="Yesterday&apos;s batch was an abysmal failure. Pisspoor root initiation." modified="07/12/2016 05:45:42 PM" notes="(Julien Howard)" facefx="2"/>
+ <Dialog id="13680621263368795694" text="Calvino. What did you do to my conference room?" modified="02/10/2016 12:10:50 AM" notes="(Hans Kelstrup) Annoyed. Has a meeting to get to. Talking to a subordinate." facefx="2"/>
+ <Dialog id="13680621263368796009" text="All I see...  is a dot. " modified="02/10/2016 12:13:50 AM" notes="(Hans Kelstrup)" facefx="2"/>
+ <Dialog id="13680621263368796143" text="(Sigh) Are you kidding me?" modified="07/08/2016 04:03:19 PM" notes="(Hans Kelstrup)" facefx="2"/>
+ <Dialog id="13680621263368796185" text="I&apos;ll call you back." modified="02/10/2016 12:37:26 AM" notes="(Hans Kelstrup)" facefx="2"/>
+ <Dialog id="4349723564912493088" text="Whoa, whoa, hey now! Step away from there, Doctor!" modified="02/29/2016 08:22:49 PM" notes="[Sam Hertz] Frantic when player messes with the door that is holding back a flood of aliens"/>
+ <Dialog id="13680621263369402598" text="Anna. You&apos;re supposed to be off today. " modified="02/09/2016 01:06:22 AM" notes="(Hans Kelstrup) Why are you bothering me with this shit again." facefx="2"/>
+ <Dialog id="13680621263369492585" text="Dr. Thorstein? " modified="10/13/2016 09:48:08 PM" notes="(Thaddeus York) I little stunned. Doesn&apos;t know what&apos;s going on, but hears distant alarms. " facefx="2"/>
+ <Dialog id="13680621263369603530" text="Escape pods. Can you get to us?" modified="02/11/2016 08:31:55 PM" notes="(Nils Kjaergaard) Slightly out of breath"/>
+ <Dialog id="13680621263369603798" text="Well - we&apos;re all stuck here, anyway. We can&apos;t get these pods open." modified="07/08/2016 05:33:05 PM" notes="(Nils Kjaergaard)"/>
+ <Dialog id="13680621263369603842" text="Yeah. Maybe." modified="08/13/2015 09:24:18 PM" notes="(Nils Kjaergaard) Tone says probably not."/>
+ <Dialog id="13680621263369604216" text="Bayer? Did you hear that?" modified="08/13/2015 09:30:32 PM" notes="(Nils Kjaergaard) Very worried."/>
+ <Dialog id="13680621263369604369" text="Send an Operator." modified="07/11/2016 10:48:37 PM" notes="(Nils Kjaergaard) "/>
+ <Dialog id="13680621263369604425" text="Was it those things? Did they shut the air off?" modified="05/09/2016 12:02:21 AM" notes="(Nils Kjaergaard) Shocked. "/>
+ <Dialog id="13680621263369604468" text="It doesn&apos;t matter though, right? I mean, should be hours before we run out." modified="02/11/2016 08:36:40 PM" notes="(Nils Kjaergaard) Trying to find a silver lining."/>
+ <Dialog id="13680621263369604523" text="What? But..." modified="02/09/2016 03:10:33 AM" notes="(Nils Kjaergaard) Trails off, stunned."/>
+ <Dialog id="4349723564913358611" text="Chief, yeah... so I checked that flight plan for the Volunteer Shuttle like you requested. You&apos;re right - it went dark for twelve minutes before it resumed a path towards Earth - but at a slightly different trajectory than before." modified="07/08/2016 04:02:30 PM" notes="[Matt Cothron]" facefx="2"/>
+ <Dialog id="4349723564913688953" text="Did you see me take out that one? Nailed him. Right in his stupid tentacles." modified="02/29/2016 08:47:55 PM" notes="[Sam Hertz] Pleased, smug."/>
+ <Dialog id="4349723564913688974" text="Ready as I&apos;ll ever be. " modified="02/29/2016 08:42:54 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564913689627" text="I thought out of all of us, Elazar would make it. " modified="02/29/2016 08:23:18 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564913690517" text="Dwayne, too? But... I was sure he&apos;d make it." modified="02/29/2016 08:24:29 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564913690870" text="Hague..." modified="02/29/2016 08:29:02 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564913690942" text="Al, ol&apos; buddy, I&apos;ll miss you. Never thought it&apos;d end like this." modified="02/29/2016 08:24:54 PM" notes="[Sam Hertz] "/>
+ <Dialog id="13680621263370534529" text="I... I don&apos;t know." modified="08/24/2015 03:59:35 PM" notes="(Frank Jones) Obviously lying." facefx="2"/>
+ <Dialog id="13680621263370534626" text="Yes. " modified="08/24/2015 04:03:55 PM" notes="(Frank Jones) " facefx="2"/>
+ <Dialog id="13680621263370534674" text="I don&apos;t know Drew. I&apos;m sorry." modified="08/24/2015 04:10:58 PM" notes="(Frank Jones) " facefx="2"/>
+ <Dialog id="13680621263370534892" text="I can&apos;t do that." modified="08/24/2015 04:16:00 PM" notes="(Frank Jones)" facefx="2"/>
+ <Dialog id="13680621263370535760" text="Bolts on the outside hatch misfired. We&apos;re stuck in the launch tube." modified="08/24/2015 04:16:16 PM" notes="(Frank Jones)"/>
+ <Dialog id="13680621263370536604" text="Hello? Is someone- I&apos;m in the escape pod with Emmanuella Desilva. We&apos;re stuck in the launch tube." modified="07/08/2016 04:03:30 PM" notes="(Frank Jones) Something squierrely about this guy" facefx="2"/>
+ <Dialog id="13680621263370536663" text="The hatch on the outside is supposed to blow when the pod launch initiates... but I guess the bolts misfired." modified="07/12/2016 05:45:41 PM" notes="(Frank Jones)" facefx="2"/>
+ <Dialog id="13680621263370536682" text="Could you help us out? You&apos;d have to EVA to get the hatch off from the outside." modified="02/13/2016 04:39:15 PM" notes="(Frank Jones)"/>
+ <Dialog id="13680621263370536745" text="I know it&apos;s a lot to ask... I don&apos;t know what else to do... Sit here and starve, I guess." modified="02/13/2016 04:42:51 PM" notes="(Frank Jones)"/>
+ <Dialog id="13680621263370536813" text="That should do it. Now just head back in and hit that launch switch for us." modified="05/09/2016 05:05:08 AM" notes="(Frank Jones)"/>
+ <Dialog id="13680621263370536984" text="Hey! What are you doing? If you hit that switch, we&apos;ll smash into the damn hatch. You have to get it off first." modified="02/13/2016 04:44:54 PM" notes="(Frank Jones) "/>
+ <Dialog id="13680621263370537493" text="Wait! What are you doing? Ah... Dammit. Okay - okay - listen! I don&apos;t know what you saw or read or- it&apos;s not what it looks like." modified="07/08/2016 04:03:47 PM" notes="(Frank Jones) Knows he&apos;s screwed. Desperate."/>
+ <Dialog id="4349723564914309227" text="Hey Lane, this is Gus down in Cargo. Hey listen, uh... did you order any Reployers from Earth?" modified="08/25/2015 11:28:47 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="4349723564914309550" text="Reployer. It&apos;s uh... machine." modified="08/25/2015 11:26:38 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="4349723564914309592" text="Well, I&apos;m not sure. I was hoping that you could tell me." modified="08/25/2015 11:34:55 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="4349723564914309796" text="You&apos;re an industrial designer right, so I thought you would know." modified="08/25/2015 11:30:44 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="4349723564914309858" text="RE-ployer." modified="08/25/2015 11:31:46 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="4349723564914309904" text="I did! I&apos;ve been asking everyone. No one ordered it or knows anything about it." modified="08/25/2015 11:33:17 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="4349723564914309998" text="That&apos;d be great. Thanks, Lane!" modified="07/13/2016 04:44:19 PM" notes="[Gus Magill]" facefx="2"/>
+ <Dialog id="13680621263374353853" text="Initiating test procedure 29. Variant C. Subject V-010655-32." modified="05/05/2016 11:33:19 PM" notes="(Hans Kelstrup). Dry, clinical. Like doctors describing events around an operating table."/>
+ <Dialog id="13680621263374354010" text="Pyschoscopes on, everyone." modified="02/04/2016 04:02:38 PM" notes="(Hans Kelstrup)"/>
+ <Dialog id="13680621263374354042" text="Prep the Typhon Cacoplasmus." modified="05/05/2016 11:34:22 PM" notes="(Hans Kelstrup)"/>
+ <Dialog id="13680621263374354412" text="Track his vitals." modified="05/05/2016 11:35:05 PM" notes="(Hans Kelstrup)"/>
+ <Dialog id="13680621263374355356" text="Make a note. Replication followed the usual pattern. Appears unaffected by the subject&apos;s age." modified="02/04/2016 03:53:14 PM" notes="(Hans Kelstrup)"/>
+ <Dialog id="13680621263374355409" text="Morgan? Did you get a good scan? " modified="02/04/2016 04:28:02 PM" notes="(Hans Kelstrup)"/>
+ <Dialog id="13856881013195397660" text="Matthew. I have a... uh... hypothetical question for you." modified="02/09/2016 05:09:57 PM" notes="(Emmanuel Mendez) Nervous. Wound a little tight. " facefx="2"/>
+ <Dialog id="4349723564922860687" text="I think I&apos;m going to be sick." modified="02/25/2016 10:11:00 PM" notes="[Sam Hertz]" sync="true" facefx="3"/>
+ <Dialog id="4349723564922861483" text="Corpse? Maybe... I don&apos;t know, maybe it saved him? It could still be Enoch." modified="02/25/2016 10:11:26 PM" notes="[Sam Hertz] Swallows, doubtful" sync="true" facefx="3"/>
+ <Dialog id="4349723564922861623" text="Sarah will get us out of this. She got us this far. We&apos;re safe in here." modified="02/25/2016 10:12:04 PM" notes="[Sam Hertz] Easy now" sync="true" facefx="3"/>
+ <Dialog id="4349723564923554847" text="Eventually. Had to wait a while. Two assholes from the sales team chose that exact moment to stand under the alarm bell and smoke cigars." modified="02/10/2016 02:08:46 AM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="4349723564923555173" text="Yeah. Just made the last shipment. Should be Earthside by morning, Pacific Time." modified="02/11/2016 09:40:22 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="4349723564923555317" text="Drop site?" modified="02/10/2016 02:10:38 AM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="4349723564923555378" text="Of course it works. Three taps with a wrench. That&apos;ll pop it open. All of them will work that way by tomorrow." modified="02/10/2016 02:12:14 AM" notes="(Eddie Voss) How dare you even ask. " facefx="2"/>
+ <Dialog id="13680621263384542939" text="...I don&apos;t think so, Chief. The main lift and all the airlocks shut down at once. It had to be manual. " modified="02/02/2016 07:09:15 PM" notes="(Sam Hertz)"/>
+ <Dialog id="13680621263384543080" text="Chief, I&apos;m not a comm tech, I&apos;m doing the best I can-" modified="02/02/2016 07:11:36 PM" notes="(Sam Hertz) {Background, defensive, a bit meek/apologetic, has a good heart}" facefx="2"/>
+ <Dialog id="13680621263384543145" text="Check the wrench first." modified="02/02/2016 07:12:41 PM" notes="(Sam Hertz) {Background, interjects}" facefx="2"/>
+ <Dialog id="13680621263384705038" text="(Sigh) Let&apos;s stay focused everyone." modified="02/04/2016 04:11:12 PM" notes="(Hans Kelstrup) Almost under his breath"/>
+ <Dialog id="13680621263384705512" text="Permission to release? Morgan?" modified="02/04/2016 04:18:48 PM" notes="(Hans Kelstrup) Asking Morgan for the greenlight."/>
+ <Dialog id="13680621263385082828" text="I&apos;ve already told you the V.A.C&apos;s are sealed documents. My hands are tied." modified="02/09/2016 01:07:24 AM" notes="(Hans Kelstrup) " facefx="2"/>
+ <Dialog id="13680621263385082900" text="(Deep Breath) Look. I understand. I really do. You wouldn&apos;t be human if this was easy. " modified="07/08/2016 04:04:15 PM" notes="(Hans Kelstrup) Trying to handle her." facefx="2"/>
+ <Dialog id="13680621263385082942" text="Believe me. Everything we&apos;ve done is perfectly legal.  " modified="02/09/2016 01:09:18 AM" notes="(Hans Kelstrup) " facefx="2"/>
+ <Dialog id="13680621263385083008" text="Anna. You&apos;re tired. It&apos;s affecting your judgement. Now, I&apos;ve tolerated it for a while, but enough is enough." modified="05/08/2016 11:44:53 PM" notes="(Hans Kelstrup) Stern. Supervisor tone. Patronizing." facefx="2"/>
+ <Dialog id="13680621263385083178" text="You need to take some time. Understood?" modified="02/09/2016 01:13:14 AM" notes="(Hans Kelstrup) " facefx="2"/>
+ <Dialog id="13680621263385083196" text="Good. Look, you&apos;ve made me late for a meeting with Alex. " modified="02/09/2016 01:13:50 AM" notes="(Hans Kelstrup) " facefx="2"/>
+ <Dialog id="13680621263385135660" text="(Clears Throat) Mr. Yu. This Eddie Voss. I work down in Cargo." modified="08/15/2016 01:32:43 AM" notes="(Eddie Voss) Nervous. He&apos;s confessing. Hoping for mercy." facefx="2"/>
+ <Dialog id="13680621263385135669" text="The fact is, we&apos;ve been stealing from you, sir." modified="02/09/2016 03:51:46 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385135683" text="It started small - just moving harmless contraband on and off the station. Pharmas, food not on the &quot;safe&quot; list." modified="07/08/2016 04:04:38 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385135696" text="I don&apos;t know, maybe you don&apos;t pay your techs in Hardware enough. But... Lily got ambitious after a while.   " modified="11/02/2016 09:00:51 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385135719" text="Started stealing Neuromods. Fabrication plans. Selling them to TranStar rivals." modified="07/12/2016 05:46:15 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385135728" text="Yeah. Sit on that for a sec, Mr. Yu. Kasma&apos;s got our I.P. now." modified="02/09/2016 03:53:17 PM" notes="(Eddie Voss) I&apos;m going to get in big trouble for this." facefx="2"/>
+ <Dialog id="13680621263385135740" text="Lily made me modify some of the old alarm panels around Talos so we could use them as dead drops. " modified="11/02/2016 09:00:54 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385135746" text="I&apos;m certain a few of them still have company property. Three taps with a wrench will pop it open." modified="02/09/2016 03:53:46 PM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385135752" text="Anyway - I just wanted to say... I never meant for things get out of hand. It just took on a life of it&apos;s own after a while." modified="08/15/2016 01:41:21 AM" notes="(Eddie Voss)" facefx="2"/>
+ <Dialog id="13680621263385139072" text="No, I do not. This is serious. " modified="02/09/2016 04:44:48 PM" notes="(Emmanuel Mendez)" facefx="2"/>
+ <Dialog id="13680621263385139157" text="Let&apos;s say you discovered something... incredibly treacherous. Life-threatening. Something everyone ought to know about." modified="05/08/2016 11:50:28 PM" notes="(Emmanuel Mendez)" facefx="2"/>
+ <Dialog id="13680621263385140076" text="But! But... you needed to do it anonymously." modified="07/08/2016 11:40:43 PM" notes="(Emmanuel Mendez) Rushing to fill in, like &quot;wait, wait... there&apos;s more&quot; " facefx="2"/>
+ <Dialog id="13680621263385140114" text="I didn&apos;t do anything. Not yet. " modified="02/09/2016 05:17:42 PM" notes="(Emmanuel Mendez)" facefx="2"/>
+ <Dialog id="13680621263385141136" text="Not a bad idea. Thank you, Matthew. " modified="02/09/2016 05:29:38 PM" notes="(Emmanuel Mendez) First part to himself almost." facefx="2"/>
+ <Dialog id="13680621263385141191" text="And for the record, your bottom looks frumpy." modified="02/09/2016 05:24:49 PM" notes="(Emmanuel Mendez)" facefx="2"/>
+ <Dialog id="13680621263385166818" text="Dammit Calvino, I do not have time to play sing along with your bouncing ball." modified="02/10/2016 12:27:21 AM" notes="(Hans Kelstrup)" facefx="2"/>
+ <Dialog id="13680621263385168539" text="Machine shop. I was just- I... heard an explosion." modified="07/08/2016 04:04:57 PM" notes="(Thaddeus York)" facefx="2"/>
+ <Dialog id="13680621263385168592" text="What? What should I-" modified="07/08/2016 04:05:11 PM" notes="(Thaddeus York)" facefx="2"/>
+ <Dialog id="13680621263385168686" text="Yes, sir. " modified="07/08/2016 05:33:48 PM" notes="(Thaddeus York)" facefx="2"/>
+ <Dialog id="13680621263385171387" text="However, Dr. Linn from Psychotronics was kind enough to provide me with a sample of material that should multiply the effectiveness of the phytohormones when applied to already mature plants." modified="02/10/2016 01:43:25 AM" notes="(Julien Howard)" facefx="2"/>
+ <Dialog id="13680621263385171435" text="I expect reduced time to maturity, increased yield, and an above normal salutary effect." modified="02/10/2016 01:44:11 AM" notes="(Julien Howard)" facefx="2"/>
+ <Dialog id="13680621263385171445" text="Hopefully... it doesn&apos;t taste like shit." modified="04/22/2016 03:15:08 AM" notes="(Julien Howard)" facefx="2"/>
+ <Dialog id="13680621263385171464" text="I just need permission to run the plan through the Fabricator. " modified="07/08/2016 04:05:27 PM" notes="(Julien Howard)" facefx="2"/>
+ <Dialog id="13680621263385172074" text="Well, it&apos;s just that there was a minor leak and uh... I told Connolly we should wait for new parts, but..." modified="02/06/2017 06:48:45 PM" notes="(Duncan Krassikoff) Kind of weasel. Talttling. "/>
+ <Dialog id="13680621263385173415" text="Don&apos;t patronize me, Lily." modified="10/04/2016 09:00:25 PM" notes="(Eddit Voss) Irritated." facefx="2"/>
+ <Dialog id="13680621263385325621" text="I&apos;ll keep spamming the security computers with help requests. Maybe someone will notice eventually." modified="07/12/2016 06:11:03 PM" notes="(Nils Kjaergaard) "/>
+ <Dialog id="13680621263385381481" text="First - you must journey to the tree where we carved our initials." modified="07/08/2016 04:05:33 PM" notes="(Lawrence Baxter)" facefx="2"/>
+ <Dialog id="13680621263385381500" text="And don&apos;t worry about work. Mikhaila said you could take an extra shift since it&apos;s your birthday. " modified="11/29/2016 08:55:01 PM" notes="(Lawrence Baxter)" facefx="2"/>
+ <Dialog id="13680621263385381540" text="This keycard will unlock everything your heart desires." modified="02/12/2016 12:37:07 PM" notes="(Lawrence Baxter)" facefx="2"/>
+ <Dialog id="13680621263385382220" text="Run like hell. Julien the Ogre does not like people touching his trees. Or his fruit." modified="02/12/2016 12:33:32 PM" notes="(Lawrence Baxter)" facefx="2"/>
+ <Dialog id="13680621263385383308" text="Anyway - beneath a stone you will find a magical keycard." modified="07/08/2016 04:05:38 PM" notes="(Lawrence Baxter) Back on track" facefx="2"/>
+ <Dialog id="13680621263385423731" text="Yes. I&apos;d like to arrange a time to oversee installation of a special particle injector in the water treatment facility. " modified="02/12/2016 11:49:34 PM" notes="(Tobias Frost) Officious."/>
+ <Dialog id="13680621263385423813" text="I&apos;ve already confirmed the inlet and outlet fittings are to spec." modified="02/12/2016 11:50:29 PM" notes="(Tobias Frost) You can&apos;t deny me!"/>
+ <Dialog id="13680621263385423837" text="I&apos;m not at liberty to say." modified="02/12/2016 11:50:53 PM" notes="(Tobias Frost)"/>
+ <Dialog id="13680621263385423850" text="Dr. Kelstrup has already seen and approved-" modified="07/08/2016 04:05:41 PM" notes="(Tobias Frost) Flustered."/>
+ <Dialog id="13680621263385423873" text="But-" modified="07/08/2016 04:05:42 PM" notes="(Tobias Frost) Flustered."/>
+ <Dialog id="13680621263385484318" text="There&apos;s an override switch behind the panel to force a pod launch." modified="07/12/2016 05:43:58 PM" notes="(Frank Jones)"/>
+ <Dialog id="13680621263385484405" text="But... don&apos;t hit that until the outside hatch is off. " modified="02/13/2016 04:41:56 PM" notes="(Frank Jones)"/>
+ <Dialog id="13680621263385484509" text="We&apos;d be blown to bits." modified="02/13/2016 04:42:05 PM" notes="(Frank Jones) More to himself."/>
+ <Dialog id="4349723564930295950" text="It&apos;s almost unnoticeable, like it left from a different part of the station, or changed its flight pattern around Talos." modified="02/27/2016 12:06:41 AM" notes="[Matt Cothron]" facefx="2"/>
+ <Dialog id="4349723564930296000" text="It&apos;s only the Volunteer shuttles - but it&apos;s all of them. They go dark 8-10 minutes after leaving the station, then suddenly re-appear. The VIP shuttles don&apos;t show the same... irregularity." modified="02/27/2016 12:08:01 AM" notes="[Matt Cothron]" facefx="2"/>
+ <Dialog id="4349723564930296055" text="About what, Chief? " modified="02/27/2016 12:08:23 AM" notes="[Matt Cothron]" facefx="2"/>
+ <Dialog id="4349723564930541569" text="They can&apos;t even respect our dead." modified="02/29/2016 08:20:17 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930541582" text="That thing... it was like it was... sewing Enoch into one of their... silhouettes." modified="02/29/2016 08:20:30 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930541665" text="God, watching those things move... makes me sick." modified="02/29/2016 08:21:53 PM" notes="[Sam Hertz] Disgusted nauseous"/>
+ <Dialog id="4349723564930541760" text="Sarah was tough, but fair. I mean, mostly tough, but... for an officer, she was one of the best." modified="02/29/2016 08:23:28 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930541776" text="Guess you lost that bet, Chief. I&apos;ll miss you, Sarah. Even the yelling." modified="02/29/2016 08:23:44 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930542016" text="He never even got to see his wife again." modified="02/29/2016 08:29:07 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930542040" text="First his wife, now him. Usually it&apos;s the other way around." modified="02/29/2016 08:29:34 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930542588" text="Well, Austin, you&apos;re with the angels now. Probably making them all devils." modified="02/29/2016 08:37:16 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930542645" text="Tamiko didn&apos;t deserve this. Of all of us..." modified="02/29/2016 08:38:13 PM" notes="[Sam Hertz] &quot;she deserved to survive&quot; remains unspoken"/>
+ <Dialog id="4349723564930542655" text="Tamiko died following orders. It&apos;s what she wanted." modified="02/29/2016 08:38:23 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930542887" text="Love you, Mom." modified="02/29/2016 09:40:23 PM" notes="[Sam Hertz] Under his breath"/>
+ <Dialog id="4349723564930542891" text="See you in hell, Dad." modified="05/19/2016 06:26:03 PM" notes="[Sam Hertz] even more under his breath"/>
+ <Dialog id="4349723564930542963" text="Now or never." modified="02/29/2016 08:43:31 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930542977" text="Ammo - check. Breathing - check. Scared - check." modified="02/29/2016 08:43:45 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930543441" text="God, that felt good. Er, sir." modified="02/29/2016 08:51:29 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930543453" text="God, that felt good. Er, ma&apos;am." modified="02/29/2016 08:51:41 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930543504" text="Well, that&apos;s some fine shooting, if I do say so myself." modified="02/29/2016 08:52:32 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930543523" text="Wasn&apos;t sure how that would play out, but I like how it did." modified="02/29/2016 08:52:51 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930543545" text="I need a cigarette. " modified="02/29/2016 08:53:13 PM" notes="[Sam Hertz] Sighs in relief"/>
+ <Dialog id="4349723564930543580" text="Guess Elazar owes me that kiss... on my lily white ass." modified="02/29/2016 08:53:48 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564930544139" text="I work for a living, Captain Elazar&apos;s over there." modified="02/29/2016 09:03:07 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930544149" text="Don&apos;t tell her I said that." modified="02/29/2016 09:03:17 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930544226" text="Has everyone gone crazy?!" modified="07/15/2016 04:54:03 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930544266" text="Great, now Dr. Yu&apos;s lost it! Always knew he was crazy! " modified="02/29/2016 09:06:41 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930544297" text="Great, now Dr. Yu&apos;s lost it! Always knew she was crazy! " modified="02/29/2016 09:06:30 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930544513" text="Glad you got the lifts working - next stop, the Arboretum, huh? Or the Shuttle Bay. " modified="07/12/2016 09:03:48 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546161" text="Sweet mother of Jesus! " modified="02/29/2016 09:36:49 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546170" text="I am not seeing this. I am not seeing this." modified="02/29/2016 09:36:58 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546291" text="I&apos;m a good shot, but I&apos;d rather have a few turrets covering me." modified="02/29/2016 09:38:59 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546306" text="How&apos;s the hunt going for those E.A.T. plans?" modified="02/29/2016 09:39:14 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546317" text="A few Eradicators would really boost morale around here. " modified="02/29/2016 09:39:25 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546458" text="I feel better with these bad boys standing guard - thanks, Dr. Yu." modified="02/29/2016 09:41:46 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546467" text="These E.A.T.s - some of us call them &quot;eats&quot; because they chew through ammo like a fat kid on cake." modified="02/29/2016 09:41:55 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546483" text="Is there a setting for the Eradicators beyond full auto?" modified="02/29/2016 09:42:11 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546493" text="Can&apos;t wait to let these turrets loose on those shapechanging assholes." modified="07/08/2016 11:40:45 PM" notes="[Sam Hertz] To himself"/>
+ <Dialog id="4349723564930546644" text="Damn." modified="02/29/2016 09:44:52 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546894" text="I hope the next door you open is an airlock, sir." modified="02/29/2016 09:49:02 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546906" text="I hope the next door you open is an airlock, ma&apos;am." modified="02/29/2016 09:49:14 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930546918" text="You better watch yourself, Morgan. You need people watching your back, not aiming at it." modified="02/29/2016 09:49:26 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547072" text="You can practically guarantee the situation&apos;s FUBAR&apos;d when a &quot;Commander&quot; shows up. Who is this Dahl guy?" modified="02/29/2016 09:52:00 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547083" text="This Dahl sounds like he needs a few rounds in his backside." modified="02/29/2016 09:52:11 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547139" text="Christ... I can&apos;t believe I&apos;m grateful to breathe Talos air again." modified="02/29/2016 09:53:07 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547148" text="I&apos;m just enjoying breathing again - thanks. " modified="02/29/2016 09:53:16 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547164" text="This Dahl fights as clean as a typical TranStar officer." modified="02/29/2016 09:53:39 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547183" text="No offense." modified="02/29/2016 09:53:51 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547276" text="Heard you took down Dahl. I owe you. A beer. A case of beer." modified="02/29/2016 09:55:24 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547286" text="Wish I could have watched you kill Dahl. " modified="02/29/2016 09:55:34 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547297" text="Hope you choked Dahl out like he tried to choke us out." modified="02/29/2016 09:55:45 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547402" text="Thanks for getting to Mika, I doubt any of us could have done it - even Elazar." modified="02/29/2016 09:57:30 PM" notes="[Sam Hertz] [RICARDO SCRIPT: May not play if Mika didn&apos;t make an annoucement.]"/>
+ <Dialog id="4349723564930547480" text="Captain Elazar was worried about Mika - thanks for setting her mind at ease." modified="02/29/2016 09:58:48 PM" notes="[Sam Hertz] [RICARDO SCRIPT: May not play if Mika didn&apos;t make an annoucement.]"/>
+ <Dialog id="4349723564930547582" text="Don&apos;t know if Wiggy... er, Dr. Igwe... is lucky to be here or not. Might have been safer in his crate." modified="02/29/2016 10:00:30 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547656" text="Thanks for getting Chaudhary back to us - she&apos;s still rattled. Says the things were in her mind." modified="02/29/2016 10:01:44 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547741" text="Not how I expected to end my rotation, but if this is how I go out, this is how I go out." modified="02/29/2016 10:03:09 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547753" text="Last post - Talos I. Guess I kind of suspected it all along." modified="02/29/2016 10:03:21 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547771" text="Wonder what happens to my pension." modified="02/29/2016 10:03:39 PM" notes="[Sam Hertz]"/>
+ <Dialog id="4349723564930547779" text="Should have taken out that TranStar life insurance policy." modified="07/12/2016 05:58:28 PM" notes="[Sam Hertz]"/>
+ <Dialog id="13680621263387826341" text="Hello?" modified="03/11/2016 07:19:11 PM" notes="(Rodney Poole) Desperate. Shouting. Banging on the glass."/>
+ <Dialog id="13680621263387826345" text="Anybody in there?" modified="03/11/2016 07:19:53 PM" notes="(Rodney Poole) Shouting. Scared."/>
+ <Dialog id="13680621263387826348" text="C&apos;mon dammit! Somebody open this door!" modified="03/11/2016 07:20:09 PM" notes="(Rodney Poole) Shouting scared."/>
+ <Dialog id="13680621263387826353" text="Shit." modified="03/11/2016 07:20:21 PM" notes="(Rodney Poole) Harsh. Under his breath, &apos;I&apos;m going to die.&quot;"/>
+ <Dialog id="13680621263387826648" text="Hey! Hey over here! Open this door!" modified="03/11/2016 07:21:49 PM" notes="(Rodney Poole)"/>
+ <Dialog id="13680621263387826715" text="Please!" modified="03/11/2016 07:18:51 PM" notes="(Rodney Poole) Desperate."/>
+ <Dialog id="13680621263387826911" text="There&apos;s something after me." modified="03/11/2016 07:57:53 PM" notes="(Rodney Poole) Scared. Shouting."/>
+ <Dialog id="13680621263387829090" text="Can you get it open?" modified="03/11/2016 07:58:26 PM" notes="(Rodney Poole) Scared. Shouting."/>
+ <Dialog id="13680621263387829129" text="C&apos;mon just... just smash the GLOO off. Something!" modified="03/11/2016 07:59:42 PM" notes="(Rodney Poole) Scared. Shouting."/>
+ <Dialog id="14538910657199805606" text="Good thing we have a Medical Operator, huh? We&apos;ll all be back in fighting shape soon." modified="07/15/2016 04:51:50 PM" notes="[Sam Hertz] "/>
+ <Dialog id="4349723564942897109" text="Some of the officers reported seeing glowing structures. Called it &quot;coral&quot;. The creatures are making it. But why?" modified="07/22/2016 07:48:45 PM" notes="[Sam Hertz] "/>
+ <Dialog id="13680621263399403901" text="I&apos;m headed out there as we speak." modified="07/23/2016 07:11:57 PM" notes="(Jose Costa)"/>
+ <Dialog id="13680621263399403956" text="Hard to say until I lay eyes on it. Could be some micro meteoroids punched a hole. Rare, but it happens." modified="07/23/2016 07:12:52 PM" notes="(Jose Costa)"/>
+ <Dialog id="13680621263399403976" text="Is there something you&apos;re not telling me?" modified="07/23/2016 07:13:12 PM" notes="(Jose Costa) After an awkward pause."/>
+ <Dialog id="13680621263399404041" text="I understand." modified="07/23/2016 07:14:27 PM" notes="(Jose Costa)"/>
+ <Dialog id="13680621263401328074" text="But I&apos;d like to make it right. Any way I can. That&apos;s all." modified="08/15/2016 01:41:38 AM" notes="(Eddie Voss)"/>
+</Dialog>

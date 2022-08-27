@@ -1,7 +1,0 @@
-
-<Mode name="SinglePlayer">
- <Spawning class="SpawningBase" teamGame="1" teamSpawnsType="None" isHQSpawningCompatible="0"/>
- <DamageHandling class="SPDamageHandling">
-  <MercyTimeFilters path="Scripts/GameRules/SPMercyTimeFilters.xml"/>
- </DamageHandling>
-</Mode>

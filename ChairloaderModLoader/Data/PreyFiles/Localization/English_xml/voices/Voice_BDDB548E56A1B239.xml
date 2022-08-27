@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1B31B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine sounds]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine sounds]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C11D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[tilt alarm]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[tilt alarm]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C2D3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please place turret perpendicular to deck.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please place turret perpendicular to deck.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C2E8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please place turret upright and facing threat vector.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please place turret upright and facing threat vector.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C4BF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Eradicator Auto-Turret Version 0.7.6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Eradicator Auto-Turret Version 0.7.6</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C4CD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Deploying.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Deploying.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C4F0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ready to scan.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ready to scan.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C534</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Subject clear.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Subject clear.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C574</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No psychoactives detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No psychoactives detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C58D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Alien threat detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Alien threat detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A1C5AA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Typhon contaminant found.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Typhon contaminant found.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24E01</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Online.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Online.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24E5E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Diagnotic check...verbose.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Diagnotic check...verbose.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24E6E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Checking for updates...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Checking for updates...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24EA6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Debug build version 0.7.6. Verbose on.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Debug build version 0.7.6. Verbose on.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24F3F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reset required.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reset required.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24F83</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Target lost.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Target lost.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24F9E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error log submitted. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error log submitted. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A24FBC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please submit a crash report.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please submit a crash report.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2501F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Attitude adjustment required.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Attitude adjustment required.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A25106</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Scanning target..</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Scanning target..</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A25119</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No Typhon material detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No Typhon material detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A25278</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No alien material detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">No alien material detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2535A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Proximity sensor reset.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Proximity sensor reset.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A253AD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Servers offline.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Servers offline.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A255DF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">IFF... nominal.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">IFF... nominal.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A25625</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Power load... nominal.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Power load... nominal.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A25638</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Actuators... nominal.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Actuators... nominal.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2564A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tilt handling...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Tilt handling...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2565F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Please contact engineering.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Please contact engineering.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2577B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine clicks and beeps]</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">[machine clicks and beeps]</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2581D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sofware ver-[corrupt machine sounds]-sion unrecognized.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sofware ver-[corrupt machine sounds]-sion unrecognized.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A2586D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Re-initiali--li--li--li--li--zing. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Re-initiali--li--li--li--li--zing. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56A258DD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New targeting [corrupt machine noise] profiles.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">New targeting [corrupt machine noise] profiles.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCF72E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Possible Typhon contaminant. Monitoring.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning. Possible Typhon contaminant. Monitoring.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57617AF7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Structural upgrades detected.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Structural upgrades detected.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57617DA3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Thank you.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Thank you.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57FE7F03</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Insufficient Typhon material found. Standing down.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Insufficient Typhon material found. Standing down.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57FE7F0A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Typhon material inconclusive. Logging calibration request.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Typhon material inconclusive. Logging calibration request.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

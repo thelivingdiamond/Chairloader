@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12960</WindowHeight>
+  <WindowWidth>22695</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="7" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="240.75" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632619</Data></Cell>
+    <Cell><Data ss:Type="String">Runaway Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Runaway Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632620</Data></Cell>
+    <Cell><Data ss:Type="String">Penny Tennyson's Itinerary.&lt;br&gt;04:00 Crew Quarters. &lt;br&gt;08:00 Lobby. &lt;br&gt;12:00 Deep Storage. &lt;br&gt;18:00 Life Support. &lt;br&gt;22:00 Power Plant.</Data></Cell>
+    <Cell><Data ss:Type="String">Penny Tennyson's Itinerary.&lt;br&gt;04:00 Crew Quarters. &lt;br&gt;08:00 Lobby. &lt;br&gt;12:00 Deep Storage. &lt;br&gt;18:00 Life Support. &lt;br&gt;22:00 Power Plant.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632621</Data></Cell>
+    <Cell><Data ss:Type="String">An Operator is stuck in an infinite loop, carrying a valuable payload around Talos, but never delivering. If I time it right I can catch it next time it appears.</Data></Cell>
+    <Cell><Data ss:Type="String">An Operator is stuck in an infinite loop, carrying a valuable payload around Talos, but never delivering. If I time it right I can catch it next time it appears.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632622</Data></Cell>
+    <Cell><Data ss:Type="String">An Operator was stuck in an infinite loop while carrying a valuable payload around Talos. I managed to figure out its schedule and caught it the next time it appeared and relieved it of its cargo.</Data></Cell>
+    <Cell><Data ss:Type="String">An Operator was stuck in an infinite loop while carrying a valuable payload around Talos. I managed to figure out its schedule and caught it the next time it appeared and relieved it of its cargo.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632623</Data></Cell>
+    <Cell><Data ss:Type="String">Science Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Science Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632624</Data></Cell>
+    <Cell><Data ss:Type="String">Intercept the Runaway Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Intercept the Runaway Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>5</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

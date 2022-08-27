@@ -1,0 +1,42 @@
+
+<Dialog>
+ <Dialog id="13680621263383540507" text="[machine sounds]" modified="12/05/2016 08:38:42 PM" notes="turret acknowledge it&apos;s being carried."/>
+ <Dialog id="13680621263383544093" text="[tilt alarm]" modified="12/06/2016 07:01:23 PM" notes="An alert to indicate it&apos;s fallen over. Quick beeps."/>
+ <Dialog id="13680621263383544531" text="Please place turret perpendicular to deck." modified="02/29/2016 08:25:58 PM"/>
+ <Dialog id="13680621263383544552" text="Please place turret upright and facing threat vector." modified="01/22/2016 05:50:58 AM"/>
+ <Dialog id="13680621263383545023" text="Eradicator Auto-Turret Version 0.7.6" modified="01/22/2016 03:42:44 PM"/>
+ <Dialog id="13680621263383545037" text="Deploying." modified="01/22/2016 03:46:43 PM"/>
+ <Dialog id="13680621263383545072" text="Ready to scan." modified="01/22/2016 05:58:08 AM"/>
+ <Dialog id="13680621263383545140" text="Subject clear." modified="01/22/2016 05:59:16 AM"/>
+ <Dialog id="13680621263383545204" text="No psychoactives detected." modified="01/22/2016 06:00:20 AM"/>
+ <Dialog id="13680621263383545229" text="Alien threat detected." modified="01/22/2016 06:00:45 AM"/>
+ <Dialog id="13680621263383545258" text="Typhon contaminant found." modified="01/22/2016 06:01:14 AM"/>
+ <Dialog id="13680621263383580161" text="Online." modified="01/22/2016 03:42:57 PM"/>
+ <Dialog id="13680621263383580254" text="Diagnotic check...verbose." modified="01/22/2016 04:18:07 PM"/>
+ <Dialog id="13680621263383580270" text="Checking for updates..." modified="01/22/2016 04:20:12 PM"/>
+ <Dialog id="13680621263383580326" text="Debug build version 0.7.6. Verbose on." modified="01/22/2016 04:20:32 PM"/>
+ <Dialog id="13680621263383580479" text="Reset required." modified="01/22/2016 03:48:15 PM"/>
+ <Dialog id="13680621263383580547" text="Target lost." modified="01/22/2016 03:49:23 PM"/>
+ <Dialog id="13680621263383580574" text="Error log submitted. " modified="01/22/2016 03:50:47 PM"/>
+ <Dialog id="13680621263383580604" text="Please submit a crash report." modified="01/22/2016 03:50:20 PM"/>
+ <Dialog id="13680621263383580703" text="Error. Attitude adjustment required." modified="01/22/2016 03:51:59 PM"/>
+ <Dialog id="13680621263383580934" text="Scanning target.." modified="01/22/2016 03:57:48 PM"/>
+ <Dialog id="13680621263383580953" text="No Typhon material detected." modified="01/22/2016 04:00:59 PM"/>
+ <Dialog id="13680621263383581304" text="No alien material detected." modified="01/22/2016 04:02:00 PM"/>
+ <Dialog id="13680621263383581530" text="Proximity sensor reset." modified="01/22/2016 04:22:53 PM"/>
+ <Dialog id="13680621263383581613" text="Servers offline." modified="01/22/2016 04:07:09 PM"/>
+ <Dialog id="13680621263383582175" text="IFF... nominal." modified="01/22/2016 04:16:31 PM"/>
+ <Dialog id="13680621263383582245" text="Power load... nominal." modified="01/22/2016 04:17:52 PM"/>
+ <Dialog id="13680621263383582264" text="Actuators... nominal." modified="01/22/2016 04:19:09 PM"/>
+ <Dialog id="13680621263383582282" text="Tilt handling..." modified="01/22/2016 04:18:18 PM"/>
+ <Dialog id="13680621263383582303" text="Error. Please contact engineering." modified="01/22/2016 04:18:39 PM"/>
+ <Dialog id="13680621263383582587" text="[machine clicks and beeps]" modified="12/05/2016 08:38:34 PM" notes="Running a system check."/>
+ <Dialog id="13680621263383582749" text="Sofware ver-[corrupt machine sounds]-sion unrecognized." modified="12/05/2016 08:39:07 PM"/>
+ <Dialog id="13680621263383582829" text="Re-initiali--li--li--li--li--zing. " modified="01/22/2016 04:27:25 PM" notes="Corrupted audio. Like a record skipping."/>
+ <Dialog id="13680621263383582941" text="New targeting [corrupt machine noise] profiles." modified="12/05/2016 08:38:50 PM"/>
+ <Dialog id="13680621263386375982" facefx="0" sync="0" notes="" text="Warning. Possible Typhon contaminant. Monitoring." modified="02/24/2016 12:20:43 AM"/>
+ <Dialog id="13680621263396109047" text="Structural upgrades detected." modified="06/15/2016 03:57:43 PM" notes="Fortified"/>
+ <Dialog id="13680621263396109731" text="Thank you." modified="06/15/2016 04:09:07 PM" notes="Fortified"/>
+ <Dialog id="13680621263406399235" text="Error. Insufficient Typhon material found. Standing down." modified="10/12/2016 06:20:51 PM"/>
+ <Dialog id="13680621263406399242" text="Typhon material inconclusive. Logging calibration request." modified="10/12/2016 07:11:13 PM"/>
+</Dialog>
