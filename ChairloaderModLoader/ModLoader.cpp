@@ -803,7 +803,7 @@ ModLoader::ModLoader() {
     else
         m_State = State::MainWindow;
 
-    /*if (!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())) {
+    if (!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())) {
         log(severityLevel::fatal, "Chairloader config file not found");
         MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
         exit(-1);
@@ -817,7 +817,7 @@ ModLoader::ModLoader() {
     log(severityLevel::info, "%s", foundMods);
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
-    loadModInfoFiles();*/
+    loadModInfoFiles();
 
     m_pGameVersion = std::make_unique<GameVersion>();
 }
