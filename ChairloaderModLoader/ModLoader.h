@@ -16,6 +16,7 @@
 #include <boost/format.hpp>
 
 class GamePathDialog;
+class GameVersion;
 
 namespace fs = std::filesystem;
 class ModLoader {
@@ -73,6 +74,8 @@ public:
     ~ModLoader();
     void Draw();
     void Update();
+
+    const fs::path& GetGamePath() { return PreyPath; }
 private:
     //! Current UI state
     enum class State
@@ -101,6 +104,7 @@ private:
     void DrawGamePathSelectionDialog(bool* pbIsOpen);
 
     /* Draw Functions */
+    std::unique_ptr<GameVersion> m_pGameVersion;
     void DrawMainWindow(bool* pbIsOpen);
     void DrawModList();
     void DrawDLLSettings();

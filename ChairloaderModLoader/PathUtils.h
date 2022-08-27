@@ -8,6 +8,7 @@ namespace PathUtils
 constexpr char GAME_EXE_PATH[] = "Binaries/Danielle/x64/Release/Prey.exe";
 constexpr char GAME_DLL_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.dll";
 constexpr char GAME_DLL_PDB_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.pdb";
+constexpr char GAME_DLL_BACKUP_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.dll.chairloader_backup";
 //! @}
 
 constexpr const char* REQUIRED_GAME_FILES[] = {

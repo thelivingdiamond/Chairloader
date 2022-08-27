@@ -8,6 +8,7 @@
 #include "ModLoader.h"
 #include "UI.h"
 #include "GamePathDialog.h"
+#include "GameVersion.h"
 #include "PathUtils.h"
 
 static std::string ErrorMessage;
@@ -104,6 +105,8 @@ void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
 
 void ModLoader::DrawMainWindow(bool* pbIsOpen)
 {
+    m_pGameVersion->Update();
+
     ImGuiWindowFlags windowFlags =
         ImGuiWindowFlags_NoSavedSettings |
         ImGuiWindowFlags_NoCollapse |
@@ -529,6 +532,11 @@ void ModLoader::DrawDLLSettings() {
             SwitchToGameSelectionDialog(PreyPath);
             PreyPath.clear();
         }
+
+        ImGui::PushID("GameVersion");
+        m_pGameVersion->ShowInstalledVersion();
+        ImGui::PopID();
+
         ImGui::EndTabItem();
     }
 }
@@ -805,6 +813,8 @@ ModLoader::ModLoader() {
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();*/
+
+    m_pGameVersion = std::make_unique<GameVersion>();
 }
 
 ModLoader::~ModLoader() {

@@ -10,6 +10,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 //    AllocConsole();
 //    FILE *pFileCon = NULL;
 //    pFileCon = freopen("CONOUT$", "w", stdout);
-	UI::Render();
-
+	try
+	{
+		UI::Render();
+	}
+	catch (const std::exception& e)
+	{
+		MessageBoxA(nullptr, e.what(), "Fatal Error", MB_OK | MB_ICONERROR);
+	}
 }

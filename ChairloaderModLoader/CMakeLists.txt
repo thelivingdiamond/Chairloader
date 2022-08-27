@@ -33,6 +33,8 @@ set(SOURCE_FILES
         PathUtils.h
         GamePathDialog.cpp
         GamePathDialog.h
+        GameVersion.cpp
+        GameVersion.h
         pch.h
         main.cpp
         #Miscellaneous
@@ -46,9 +48,11 @@ set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 
 target_link_libraries(ChairloaderModLoader
+        CommonModLoader
         D3D11.lib
         pugixml::pugixml
         libzip::zip
+        ZLIB::ZLIB
         ${Boost_LIBRARIES}
         )
 
