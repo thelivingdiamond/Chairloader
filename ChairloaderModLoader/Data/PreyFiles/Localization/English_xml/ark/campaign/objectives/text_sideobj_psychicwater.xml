@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="9" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632535</Data></Cell>
+    <Cell><Data ss:Type="String">Psychic Water</Data></Cell>
+    <Cell><Data ss:Type="String">Psychic Water</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632536</Data></Cell>
+    <Cell><Data ss:Type="String">Tobias Frost may have the Psychoactive Particle Injector.</Data></Cell>
+    <Cell><Data ss:Type="String">Tobias Frost may have the Psychoactive Particle Injector.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632537</Data></Cell>
+    <Cell><Data ss:Type="String">A message from Tobias Frost mentioned a Psychoactive Particle Injector he wanted to connect to the station's water supply. If I can find it and connect it, drinking from the water fountains and faucets in the station might give my psi an additional boost.</Data></Cell>
+    <Cell><Data ss:Type="String">A message from Tobias Frost mentioned a Psychoactive Particle Injector he wanted to connect to the station's water supply. If I can find it and connect it, drinking from the water fountains and faucets in the station might give my psi an additional boost.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632538</Data></Cell>
+    <Cell><Data ss:Type="String">A message from Tobias Frost mentioned a Psychoactive Particle Injector he wanted to connect to the station's water supply. Now that I have the device, I just need to figure out where in the Water Treatment Facility to plug it in. The Water Treatment Facility area is in Life Support.</Data></Cell>
+    <Cell><Data ss:Type="String">A message from Tobias Frost mentioned a Psychoactive Particle Injector he wanted to connect to the station's water supply. Now that I have the device, I just need to figure out where in the Water Treatment Facility to plug it in. The Water Treatment Facility area is in Life Support.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632539</Data></Cell>
+    <Cell><Data ss:Type="String">A message from Tobias Frost mentioned a Psychoactive Particle Injector that he wanted to connect to the station's water supply. I found the device and hooked it up in the Water Treatment Facility. Drinking from the water fountains should be interesting now. </Data></Cell>
+    <Cell><Data ss:Type="String">A message from Tobias Frost mentioned a Psychoactive Particle Injector that he wanted to connect to the station's water supply. I found the device and hooked it up in the Water Treatment Facility. Drinking from the water fountains should be interesting now. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632540</Data></Cell>
+    <Cell><Data ss:Type="String">Search for the Psychoactive Particle Injector.</Data></Cell>
+    <Cell><Data ss:Type="String">Search for the Psychoactive Particle Injector.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891632541</Data></Cell>
+    <Cell><Data ss:Type="String">Install the Psychoactive Particle Injector in the Water Treatment Facility.</Data></Cell>
+    <Cell><Data ss:Type="String">Install the Psychoactive Particle Injector in the Water Treatment Facility.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013220295175</Data></Cell>
+    <Cell><Data ss:Type="String">Water Treatment Facility</Data></Cell>
+    <Cell><Data ss:Type="String">Water Treatment Facility</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>2</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

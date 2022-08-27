@@ -1,0 +1,63 @@
+<Graph isModule="1" moduleName="ArkSceneWindows_Disabled2ndDay" isObjectList="1" objectListClass="ArkSceneWindow" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkSceneWindow" pos="-122,-51,0" EntityGUID="{288C7AE0-5E4C-487C-B78A-612B8740DD52}" EntityGUID_64="487C5E4C288C7AE0">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="4" Class="entity:ArkSceneWindow" pos="-122,-26,0" EntityGUID="{4B3F481A-432D-4970-82A4-5A163C0F317B}" EntityGUID_64="4970432D4B3F481A">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="6" Class="entity:ArkSceneWindow" pos="-122,-1,0" EntityGUID="{C3B120B8-7C56-4B1B-86CD-7E62FFF61E95}" EntityGUID_64="4B1B7C56C3B120B8">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="8" Class="entity:ArkSceneWindow" pos="-122,24,0" EntityGUID="{7D991B6A-D220-41FF-AE51-9C718EC1299C}" EntityGUID_64="41FFD2207D991B6A">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="10" Class="entity:ArkSceneWindow" pos="-122,49,0" EntityGUID="{B3F9A87A-BB25-40FE-A787-FD590778B0A1}" EntityGUID_64="40FEBB25B3F9A87A">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="12" Class="entity:ArkSceneWindow" pos="-122,74,0" EntityGUID="{1AC9CC8C-415E-4315-A636-3C6BC89F01F1}" EntityGUID_64="4315415E1AC9CC8C">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="14" Class="entity:ArkSceneWindow" pos="-122,99,0" EntityGUID="{1FCC26D8-F9FE-4C25-9B4B-1E1C0B5352E8}" EntityGUID_64="4C25F9FE1FCC26D8">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="16" Class="entity:ArkSceneWindow" pos="-122,124,0" EntityGUID="{DFFCB96D-E939-47BA-9BF4-DD26C742FCC4}" EntityGUID_64="47BAE939DFFCB96D">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="18" Class="entity:ArkSceneWindow" pos="-122,149,0" EntityGUID="{8DA96FA4-EFFD-45F7-B871-A1BE689FE486}" EntityGUID_64="45F7EFFD8DA96FA4">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="20" Class="entity:ArkSceneWindow" pos="-122,174,0" EntityGUID="{4487368B-0F60-4968-B7A7-0002A74AC47A}" EntityGUID_64="49680F604487368B">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="22" Class="entity:ArkSceneWindow" pos="-57,509,0" EntityGUID="{836D599E-0AA2-43C0-A67E-5FD3A1DDBD54}" EntityGUID_64="43C00AA2836D599E">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="24" Class="entity:ArkSceneWindow" pos="-57,534,0" EntityGUID="{7E340F02-4DC0-4CEA-98E7-4944242ABB12}" EntityGUID_64="4CEA4DC07E340F02">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="26" Class="entity:ArkSceneWindow" pos="-57,559,0" EntityGUID="{51D63BFE-97BD-439D-9C9E-D954D9BDAB77}" EntityGUID_64="439D97BD51D63BFE">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="28" Class="entity:ArkSceneWindow" pos="-57,584,0" EntityGUID="{660759A7-3F13-4468-A151-ECA5197F985F}" EntityGUID_64="44683F13660759A7">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="30" Class="entity:ArkSceneWindow" pos="-57,609,0" EntityGUID="{86CCCCE2-028D-46FC-A19F-433F21CB123A}" EntityGUID_64="46FC028D86CCCCE2">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="32" Class="entity:ArkSceneWindow" pos="-57,634,0" EntityGUID="{312F4E2F-5795-4EF5-BC41-E98DE65BF461}" EntityGUID_64="4EF55795312F4E2F">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="34" Class="entity:ArkSceneWindow" pos="-57,659,0" EntityGUID="{17FA41A4-16C5-4F01-9F85-8499A93D861A}" EntityGUID_64="4F0116C517FA41A4">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="36" Class="entity:ArkSceneWindow" pos="-57,684,0" EntityGUID="{67AC982E-5768-48C1-9CB4-B81471251C6B}" EntityGUID_64="48C1576867AC982E">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="38" Class="entity:ArkSceneWindow" pos="-57,709,0" EntityGUID="{09019867-2A35-48E3-9B09-5AE6840776AA}" EntityGUID_64="48E32A3509019867">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

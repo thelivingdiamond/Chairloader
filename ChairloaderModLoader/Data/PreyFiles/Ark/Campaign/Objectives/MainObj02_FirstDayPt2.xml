@@ -1,0 +1,14 @@
+
+<Objectives>
+ <Objective id="12889009724984821524" title="@loc_15373294129891630234" optional="false">
+  <Descriptions>
+   <Desc id="12889009724984821525" displayName="FirstDay2" text="@loc_15373294129891630235"/>
+   <Desc id="12889009724984823063" displayName="EscapeFromApartment" text="@loc_15373294129891630236"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="12889009724984821628" displayName="Uniform2" optional="false" text="@loc_15373294129891630238" markerLabel="@loc_15373294129891630237"/>
+   <Task id="12889009725003062113" displayName="RoofTop2" text="@loc_15373294129891630240" optional="false" markerLabel="@loc_15373294129891630239" targetCharacterId="12889009725003062114"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+</Objectives>

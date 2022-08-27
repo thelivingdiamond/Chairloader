@@ -1,0 +1,8 @@
+Script.ReloadScript("SCRIPTS/Entities/AI/Ark/ArkTelepath_x.lua")
+Script.ReloadScript("SCRIPTS/Entities/actor/BasicActor.lua")
+Script.ReloadScript("SCRIPTS/Entities/AI/Shared/BasicAI.lua")
+Script.ReloadScript("SCRIPTS/Entities/actor/ArkNpc.lua")
+CreateActor(ArkTelepath_x)
+CreateArkNpc(ArkTelepath_x)
+ArkTelepath = CreateAI(ArkTelepath_x)
+ArkTelepath:Expose()

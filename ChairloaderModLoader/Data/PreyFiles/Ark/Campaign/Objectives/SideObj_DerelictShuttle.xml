@@ -1,0 +1,15 @@
+
+<Objectives>
+ <Objective id="14667999412526506873" title="@loc_15373294129891632160" optional="true">
+  <Clues>
+   <Clue id="14667999412564865890" displayName="Tracking Chip" text="@loc_15373294129891632161"/>
+  </Clues>
+  <Descriptions>
+   <Desc id="14667999412564857521" displayName="Find Hunter Hale" text="@loc_15373294129891632162"/>
+   <Desc id="13680621263405629898" displayName="Find Hunter Hale_Complete" text="@loc_13680621263405629899"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="14667999412526507004" displayName="Find Hunter Hale" optional="false" text="@loc_15373294129891632164" markerLabel="@loc_15373294129891632163" description="14667999412564857521"/>
+  </Tasks>
+ </Objective>
+</Objectives>

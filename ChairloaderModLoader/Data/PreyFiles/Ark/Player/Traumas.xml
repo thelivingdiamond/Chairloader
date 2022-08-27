@@ -1,0 +1,173 @@
+
+<ArkTraumas>
+ <Traumas>
+  <ArkTrauma ID="12348086275151114879" Name="Bleeding" DrainRate="0.1" RemoveSignal="10641886185827734578" Duration="-1" Label="@ui_TraumaLacerations" PostEffect="17152079492909370830" HowToRemove="@ui_TraumaLacerationsRemove" SuitVO="13680621263376751959" AccumulateSignal="7745561652447168043" PostEffectParam="16934642289606346096" DoesStack="true" RemoveOnDrain="true" MaxAccumulation="4000" PlayerMaterial="Objects\characters\Player\Male\player1p_male01_arms_blood" PlayerMaterialPriority="5" SurvivalMode="true">
+   <Phases>
+    <ArkTraumaPhase Description="@ui_TraumaLacerationsDesc" DamageThreshold="5" HudIcon="bleeding">
+     <SignalModifiers>
+      <SignalModifier ModifierId="12348086275137997949" IsInbound="true" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="damageOnExert" Modifier="10" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275151114854" Name="Blind" DrainRate="25" Duration="5.0" RemoveSignal="" PostEffect="" Label="@ui_TraumaBlind" HowToRemove="@ui_TraumaBlindRemove" TraumaSFX="Play_Player_Trauma_Blindness" AccumulateSignal="3149325216914689666" PostEffectParam="" DoesStack="false" RemoveOnDrain="false" MaxAccumulation="100" SurvivalMode="true">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="100" Description="@ui_TraumaBlindDesc" HudIcon="blind">
+     <SignalModifiers/>
+     <StatModifiers>
+      <StatModifier StatName="baseAccuracy" Modifier="-1.0" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275151114873" Name="Concussion" DrainRate="50" Duration="-1" RemoveSignal="10641886185827734593" Label="@ui_TraumaConcussion" PostEffect="17152079492909370879" HowToRemove="@ui_TraumaConcussionRemove" SuitVO="13680621263376752251" TraumaSFX="Play_Player_Trauma_Concussion" AccumulateSignal="3149325216947006941" RepeatMin="15" RepeatMax="25" DoesStack="false" RemoveOnDrain="false" MaxAccumulation="100" SurvivalMode="true">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="100" Description="@ui_TraumaConcussionDesc" HudIcon="concussion">
+     <SignalModifiers>
+      <SignalModifier ModifierId="3149325216945080615" IsInbound="true" IsActiveInAlternateForm="true"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="psiPointsReduction" Modifier="0.3" IsActiveInAlternateForm="true"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="10739735956128964089" Name="Disruption" DrainRate="1" Duration="0" Label="@ui_TraumaDisruption" AccumulateSignal="3149325216914689627" PostEffect="2428940965257409408" HowToRemove="@ui_TraumaDisruptionRemove" DoesStack="false" RemoveOnDrain="true" MaxAccumulation="3" TraumaSFX="Play_Player_EMP_Interrupt" TraumaStopSFX="null">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="1" Description="@ui_TraumaDisruptionDesc" HudIcon="emp">
+     <SignalModifiers/>
+     <StatModifiers/>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275158537928" Name="Drunk" DrainRate="1" Duration="-1" AccumulateSignal="3149325216943890277" PostEffect="2428940965259739999" RemoveSignal="10641886185827731695" HowToRemove="@ui_TraumaDrunkRemove" Label="@ui_TraumaDrunk" DoesStack="false" RemoveOnDrain="true" MaxAccumulation="30">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="5" Description="@ui_TraumaDrunkDesc" HudIcon="drunk">
+     <SignalModifiers>
+      <SignalModifier ModifierId="3149325216970140748" IsInbound="false" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="fatigueGainedFromWrench" Modifier="5.0" IsActiveInAlternateForm="false"/>
+      <StatModifier StatName="fatigueGainedFromChargedWrench" Modifier="5.0" IsActiveInAlternateForm="false"/>
+      <StatModifier StatName="fatigueSprintGainRate" Modifier="1.5" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="10739735956141682310" Name="Exhausted" DrainRate="1" Duration="-1" Label="@ui_TraumaExhausted" HowToRemove="@ui_TraumaExhaustedRemove" PostEffect="10739735956141682434" TagState="exhausted" DoesStack="false" RemoveOnDrain="false" MaxAccumulation="1">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="1" Description="@ui_TraumaExhaustedDesc" HudIcon="fatigue">
+     <SignalModifiers>
+      <SignalModifier ModifierId="3149325216964369238" IsInbound="false" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers/>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275151114848" Name="Fear" DrainRate="1" Duration="-1" PostEffect="3149325216939806509" TraumaSFX="Play_Player_FearState_LP" TraumaStopSFX="Stop_Player_FearState_LP" RemoveSignal="3149325216964453143" Label="@ui_TraumaFear" HowToRemove="@ui_TraumaFearRemove" AccumulateSignal="3149325216914689729" DoesStack="false" RemoveOnDrain="true" MaxAccumulation="10">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="3" Description="@ui_TraumaFearDesc" HudIcon="fear">
+     <SignalModifiers/>
+     <StatModifiers>
+      <StatModifier StatName="baseAccuracy" Modifier="-1.0" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275151114868" Name="Hobbled" DrainRate="100" Duration="-1" RemoveSignal="10641886185827734563" TagState="hobbled" Label="@ui_TraumaCrippled" HowToRemove="@ui_TraumaCrippledRemove" SuitVO="13680621263376752954" AccumulateSignal="3149325216947007897" PostEffect="2428940965257409293" DoesStack="false" RemoveOnDrain="false" MaxAccumulation="250" SurvivalMode="true">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="250" Description="@ui_TraumaCrippledDesc" HudIcon="crippled">
+     <SignalModifiers/>
+     <StatModifiers>
+      <StatModifier StatName="maxSpeedCrawl" Modifier="-0.25" IsActiveInAlternateForm="false"/>
+      <StatModifier StatName="maxSpeedSneak" Modifier="-0.25" IsActiveInAlternateForm="false"/>
+      <StatModifier StatName="maxSpeedStand" Modifier="-0.25" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="7293080054624820147" Name="PsychoShock" DrainRate="1.0" AccumulateSignal="3149325216915549045" Duration="-1" PostEffect="2428940965257409455" HowToRemove="@ui_TraumaPsychoshockRemove" Label="@ui_TraumaPsychoshock" DoesStack="false" RemoveOnDrain="true" MaxAccumulation="10">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="2" Description="@ui_TraumaPsychoshockDesc" HudIcon="psi">
+     <SignalModifiers/>
+     <StatModifiers/>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275151114858" Name="RadSickness" DrainRate="0.025" Duration="-1" RemoveSignal="10641886185827733598" TagState="" Label="@ui_TraumaRadiation" HowToRemove="@ui_TraumaRadiationRemove" SuitVO="13680621263376753242" TraumaSFX="Play_Player_Trauma_Radiation" AccumulateSignal="3149325216914689641" PostEffect="2428940965257409701" FillHudIcon="true" DoesStack="false" RemoveOnDrain="false" MaxAccumulation="100">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="100" Description="@ui_TraumaRadationDesc" HudIcon="radiation">
+     <SignalModifiers>
+      <SignalModifier ModifierId="12348086275148083147" IsInbound="true" IsActiveInAlternateForm="true"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="lowHealthRegenRate" Modifier="-15" IsActiveInAlternateForm="true"/>
+      <StatModifier StatName="fatigueMax" Modifier="-50" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275158555302" Name="Stun" DrainRate="1" Duration="-1" AccumulateSignal="3149325216954346631" PostEffect="12635110349615733129" Label="@loc_3149325216972306463" HowToRemove="@loc_3149325216972306670" DoesStack="false" RemoveOnDrain="true" MaxAccumulation=".4">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="0.1" Description="@loc_3149325216972306415">
+     <SignalModifiers>
+      <SignalModifier ModifierId="3149325216984829765" IsInbound="true" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers/>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275155884667" Name="SuitDamaged" DrainRate="0" Duration="-1" Label="@ui_TraumaSuitDamaged" AccumulateSignal="3149325216913727213" PostEffect="" HowToRemove="@ui_TraumaSuitRemove" RemoveSignal="3149325216951319156" FillHudIcon="false" DoesStack="false" RemoveOnDrain="false" MaxAccumulation="100" TraumaSFX="Play_Player_Suit_Damage">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="33" Description="@loc_12348086275184903804" HudIcon="suit_yellow">
+     <SignalModifiers>
+      <SignalModifier ModifierId="12348086275155886608" IsInbound="true" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="helmetCracksAmount" Modifier="-0.1" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+    <ArkTraumaPhase DamageThreshold="66" Description="@loc_12348086275184917763" HudIcon="suit_orange">
+     <SignalModifiers>
+      <SignalModifier ModifierId="12348086275184903613" IsInbound="true" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="helmetCracksAmount" Modifier="-0.5" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+    <ArkTraumaPhase DamageThreshold="100" Description="@ui_TraumaSuitDesc" HudIcon="suit_red">
+     <SignalModifiers>
+      <SignalModifier ModifierId="12348086275184917639" IsInbound="true" IsActiveInAlternateForm="false"/>
+     </SignalModifiers>
+     <StatModifiers>
+      <StatModifier StatName="helmetCracksAmount" Modifier="-1" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="12348086275151114863" Name="ThirdDegreeBurns" DrainRate="10" RemoveSignal="10641886185827734586" SuitVO="13680621263376753108" TraumaSFX="Play_Player_Trauma_Burn" Duration="-1" Label="@ui_TraumaBurns" HowToRemove="@ui_TraumaBurnsRemove" AccumulateSignal="7745561656291547931" DoesStack="true" RemoveOnDrain="false" MaxAccumulation="1500" PlayerMaterial="Objects\characters\Player\Male\player1p_male01_arms_burnt" SurvivalMode="true">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="100" Description="@ui_TraumaBurnsDesc" HudIcon="burns">
+     <SignalModifiers/>
+     <StatModifiers>
+      <StatModifier StatName="hitPointReduction" Modifier="1" IsActiveInAlternateForm="true"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+  <ArkTrauma ID="10641886185827992356" Name="WellFed" DrainRate="1" RemoveSignal="" Duration="-1" Label="@ui_statusWellFed" HowToRemove="@ui_BuffWellFedRemove" TraumaSFX="Play_Use_Pharma_RepairBoost" AccumulateSignal="3149325216915549059" RepeatMin="2" RepeatMax="2" DoesStack="false" RemoveOnDrain="true" MaxAccumulation="300" FillHudIcon="false">
+   <Phases>
+    <ArkTraumaPhase DamageThreshold="5" Description="@ui_statusWellFedDesc" HudIcon="food">
+     <SignalModifiers/>
+     <StatModifiers>
+      <StatModifier StatName="wellFedHealthRegen" Modifier="10" IsActiveInAlternateForm="false"/>
+      <StatModifier StatName="fatigueDrainRate" Modifier="17.5" IsActiveInAlternateForm="false"/>
+     </StatModifiers>
+    </ArkTraumaPhase>
+   </Phases>
+  </ArkTrauma>
+ </Traumas>
+</ArkTraumas>

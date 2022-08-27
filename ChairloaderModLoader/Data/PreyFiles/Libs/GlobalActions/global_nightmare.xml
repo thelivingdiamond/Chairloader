@@ -1,0 +1,291 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="Ark:Objectives:ObjectiveState" pos="-140,40,0">
+   <Inputs objective_Objective="-4766122810300033152" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="4" Class="Ark:Objectives:TaskState" pos="400,10,0">
+   <Inputs task_Task="-4766122810300028815" ShowOnHUD="1" Timer="3" ShowTimerOnHUD="1"/>
+  </Node>
+  <Node Id="6" Class="Ark:Debug:ConsoleEvent" pos="-1020,-180,0">
+   <Inputs Command="NightmareObj"/>
+  </Node>
+  <Node Id="7" Class="Ark:Debug:ConsoleEvent" pos="1460,-440,0">
+   <Inputs Command="NightmareDead"/>
+  </Node>
+  <Node Id="8" Class="Ark:Objectives:ObjectiveState" pos="3870,-290,0">
+   <Inputs objective_Objective="-4766122810300033152" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="9" Class="Ark:Objectives:TaskState" pos="3390,-290,0">
+   <Inputs task_Task="-4766122810300028815" ShowOnHUD="1" Timer="5" ShowTimerOnHUD="1"/>
+  </Node>
+  <Node Id="12" Class="Ark:Debug:ConsoleEvent" pos="1730,310,0">
+   <Inputs Command="NightmareLeft"/>
+  </Node>
+  <Node Id="13" Class="Ark:Objectives:ObjectiveState" pos="4550,-260,0">
+   <Inputs objective_Objective="-4766122810300033152" SetTracked="0" ShowOnHUD="0"/>
+  </Node>
+  <Node Id="14" Class="Ark:Objectives:TaskState" pos="4550,-80,0">
+   <Inputs task_Task="-4766122810300028815" ShowOnHUD="0" Timer="5" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="18" Class="Ark:NPC:DissipateNightmare" pos="2710,-210,0">
+   <Inputs/>
+  </Node>
+  <Node Id="37" Class="Logic:Gate" pos="-520,240,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="39" Class="Ark:RemoteEvent" pos="-970,470,0">
+   <Inputs remoteEvent_Event="13680621263409595920"/>
+  </Node>
+  <Node Id="41" Class="Ark:SendRemoteEvent" pos="-2010,-40,0">
+   <Inputs remoteEvent_Event="13680621263409595920"/>
+  </Node>
+  <Node Id="49" Class="Mission:GameTokenSet" pos="-2010,-130,0">
+   <Inputs gametokenid_Token="1372047655" Value=""/>
+  </Node>
+  <Node Id="53" Class="Mission:GameTokenUpdated" pos="-1350,260,0">
+   <Inputs gametokenid_Token="1372047655" compare_Value=""/>
+  </Node>
+  <Node Id="57" Class="Ark:AI:AttentionLevelChanged" pos="-870,280,0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="58" Class="Mission:GameTokenSet" pos="-1020,10,0">
+   <Inputs gametokenid_Token="1372047655" Value=""/>
+  </Node>
+  <Node Id="60" Name="Scripted_Nightmare_Spawn_OR_Passive_Spawn\n" Class="_commentbox" pos="-1370,234,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="750" Height="610"/>
+  </Node>
+  <Node Id="66" Name="NIGHTMARE_LEFT:_GO_AWAY_IF_TIME_RAN_OUT_AND_NO_ATTENTION\n" Class="_commentbox" pos="960,-241,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2010" Height="760"/>
+  </Node>
+  <Node Id="69" Name="NIGHTMARE_KILLED_OR_DISSIPATED" Class="_commentbox" pos="980,-874,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="850" Height="510"/>
+  </Node>
+  <Node Id="71" Class="Ark:Objectives:GetObjectiveState" pos="1240,-780,0">
+   <Inputs objective_Objective="-4766122810300033152"/>
+  </Node>
+  <Node Id="79" Class="Ark:NPC:NightmareManagerOnNightmareSpawned" pos="-1020,-120,0"/>
+  <Node Id="81" Class="Ark:AI:AttentionLevelChanged" pos="1490,0,0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="82" Class="Mission:GameTokenUpdated" pos="990,200,0">
+   <Inputs gametokenid_Token="1372047655" compare_Value=""/>
+  </Node>
+  <Node Id="83" Name="Clear_the_Nightmare_Objective\n" Class="_commentbox" pos="3330,-372,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1750" Height="550"/>
+  </Node>
+  <Node Id="85" Class="Ark:AI:GetAttention" pos="1510,-210,0">
+   <Inputs entityId="0"/>
+  </Node>
+  <Node Id="86" Class="entity:ArkNightmare" pos="1210,90,0" InHideMask="524287" OutHideMask="16383">
+   <Inputs entityId="0" ClearForcedLookDir="0" ClearForcedLookObjectId="0" Disable="0" DisableUsable="0" Enable="0" EnableUsable="0" Kill="0" MakeInvulnerable="0" MakeVulnerable="0" ResetHealth="0" SetForcedLookDir="0,0,0" SetForcedLookObjectId="0" Sleep="0" Spawn="0" UseAlternateMessage="" UseDefaultMessage="0" Used="0" WakeUp="0"/>
+  </Node>
+  <Node Id="87" Name="ADD_NIGHTMARE_OBJECTIVE" Class="_commentbox" pos="-170,-187,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1000" Height="400"/>
+  </Node>
+  <Node Id="88" Class="entity:ArkNightmare" pos="-820,540,0" InHideMask="524287" OutHideMask="8191">
+   <Inputs entityId="0" ClearForcedLookDir="0" ClearForcedLookObjectId="0" Disable="0" DisableUsable="0" Enable="0" EnableUsable="0" Kill="0" MakeInvulnerable="0" MakeVulnerable="0" ResetHealth="0" SetForcedLookDir="0,0,0" SetForcedLookObjectId="0" Sleep="0" Spawn="0" UseAlternateMessage="" UseDefaultMessage="0" Used="0" WakeUp="0"/>
+  </Node>
+  <Node Id="90" Name="Scripted_OR_Passive_Nigthmare_only_adds_the_objective_if_it_SEES_the_player\n" Class="_comment" pos="-520,390,0"/>
+  <Node Id="91" Name="Active_Spawn\n" Class="_commentbox" pos="-1040,-208,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="420" Height="310"/>
+  </Node>
+  <Node Id="92" Name="DEBUG" Class="_commentbox" pos="-2040,-194,0">
+   <Inputs TextSize="1" Color="0.89627,0.938686,0.158961" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="570" Height="220"/>
+  </Node>
+  <Node Id="94" Name="These_need_to_be_added_to_any_scripted_appearance_of_Nightmare" Class="_comment" pos="-2020,-170,0"/>
+  <Node Id="97" Class="Ark:RemoteEvent" pos="-910,640,0">
+   <Inputs remoteEvent_Event="13680621263409605111"/>
+  </Node>
+  <Node Id="103" Class="Ark:RemoteEvent" pos="1060,300,0">
+   <Inputs remoteEvent_Event="13680621263409605539"/>
+  </Node>
+  <Node Id="104" Class="Ark:RemoteEvent" pos="-960,700,0">
+   <Inputs remoteEvent_Event="13680621263409605539"/>
+  </Node>
+  <Node Id="107" Class="Ark:SendRemoteEvent" pos="2670,-80,0">
+   <Inputs remoteEvent_Event="13680621263409605111"/>
+  </Node>
+  <Node Id="109" Class="Time:FrameDelay" pos="1800,-200,0">
+   <Inputs/>
+  </Node>
+  <Node Id="110" Class="Ark:Objectives:GetObjectiveState" pos="2130,-200,0">
+   <Inputs objective_Objective="-4766122810300033152"/>
+  </Node>
+  <Node Id="112" Class="Logic:Gate" pos="1800,-130,0">
+   <Inputs SetClosed="1" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="114" Class="Ark:Debug:ConsoleEvent" pos="2760,370,0">
+   <Inputs Command=""/>
+  </Node>
+  <Node Id="117" Class="Debug:Log" pos="2640,430,0">
+   <Inputs message="NIGHTMARE: Failed to Dissipate"/>
+  </Node>
+  <Node Id="118" Class="Ark:Objectives:GetObjectiveState" pos="-140,-160,0">
+   <Inputs objective_Objective="-4766122810300033152"/>
+  </Node>
+  <Node Id="119" Name="But_only_if_you_don&apos;t_already_have_the_quest" Class="_comment" pos="280,-160,0"/>
+  <Node Id="123" Name="Per_level_tokens_for_extra_nightmare_spawners_to_activate" Class="_commentbox" pos="930,989,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2010" Height="760"/>
+  </Node>
+  <Node Id="125" Class="Mission:GameTokenSet" pos="1720,1160,0">
+   <Inputs gametokenid_Token="1421409232" Value="true"/>
+  </Node>
+  <Node Id="129" Class="Ark:Objectives:TaskState" pos="1050,1120,0">
+   <Inputs task_Task="844024417325847659" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="131" Class="Logic:Gate" pos="1590,1160,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="132" Name="Crew" Class="_commentbox" pos="1010,1089,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1230" Height="240"/>
+  </Node>
+  <Node Id="133" Class="Debug:Log" pos="-960,-420,0">
+   <Inputs message="NIGHTMARE: Passive Spawn"/>
+  </Node>
+  <Node Id="134" Class="Debug:Log" pos="-960,-350,0">
+   <Inputs message="NIGHTMARE: Active Spawn"/>
+  </Node>
+  <Node Id="135" Class="Debug:Log" pos="-600,790,0">
+   <Inputs message="NIGHTMARE: Passive Spawn or Scripted Spawn Busted Player"/>
+  </Node>
+  <Node Id="2346" Class="Ark:NPC:EnableNightmareManager" pos="50,-780,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15072" Name="Disable_the_Nightmare_if_the_Apex_has_arrived" Class="_commentbox" pos="940,1889,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2030" Height="460"/>
+  </Node>
+  <Node Id="15073" Class="Game:Start" pos="950,1910,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="15074" Class="Mission:GameTokenCheck" pos="1310,1900,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="15077" Class="Mission:GameTokenUpdated" pos="1310,2030,0">
+   <Inputs gametokenid_Token="659909599" compare_Value="true"/>
+  </Node>
+  <Node Id="15078" Class="Ark:Debug:ConsoleEvent" pos="1360,2170,0">
+   <Inputs Command="killTheNightmare"/>
+  </Node>
+  <Node Id="15080" Class="Ark:NPC:DissipateNightmare" pos="2110,1930,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15083" Class="Ark:NPC:EnableNightmareManager" pos="2100,2030,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15085" Class="Logic:Gate" pos="1750,1980,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15089" Class="Ark:Objectives:GetObjectiveState" pos="2110,2160,0">
+   <Inputs objective_Objective="-4766122810300033152"/>
+  </Node>
+  <Node Id="15091" Class="Ark:Debug:ConsoleEvent" pos="-250,-770,0">
+   <Inputs Command="enableNightmare"/>
+  </Node>
+  <Node Id="15093" Class="Ark:NPC:Nightmare:IncreaseHeat" pos="70,-660,0">
+   <Inputs Amount="1000"/>
+  </Node>
+  <Node Id="15094" Class="Ark:Debug:ConsoleEvent" pos="-290,-680,0">
+   <Inputs Command="bringNightmare"/>
+  </Node>
+  <Node Id="15099" Class="Ark:IsArchetypeInWorld" pos="1240,610,0">
+   <Inputs archetype="ArkNpcs.ArkNightmare"/>
+  </Node>
+  <Node Id="15101" Class="Time:FrameDelay" pos="1580,640,0">
+   <Inputs/>
+  </Node>
+  <Node Id="15104" Name="Player_left_the_level_with_the_nightmare" Class="_commentbox" pos="1230,596,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="492" Height="125"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="4" nodeOut="2" portIn="Activate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="4" portIn="Set" portOut="TimeElapsed" enabled="1"/>
+  <Edge nodeIn="112" nodeOut="4" portIn="Open" portOut="TimeElapsed" enabled="1"/>
+  <Edge nodeIn="15099" nodeOut="4" portIn="Trigger" portOut="TimeElapsed" enabled="1"/>
+  <Edge nodeIn="118" nodeOut="6" portIn="Trigger" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="7" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="8" portIn="Remove" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="8" portIn="Deactivate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="9" portIn="Complete" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="9" portIn="Disable" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="12" portIn="Complete" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="18" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="18" portIn="Disable" portOut="Success" enabled="1"/>
+  <Edge nodeIn="107" nodeOut="18" portIn="Send" portOut="Success" enabled="1"/>
+  <Edge nodeIn="112" nodeOut="18" portIn="Close" portOut="Success" enabled="1"/>
+  <Edge nodeIn="117" nodeOut="18" portIn="input" portOut="Failure" enabled="1"/>
+  <Edge nodeIn="118" nodeOut="37" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="39" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="39" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="53" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="88" nodeOut="53" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="57" portIn="In" portOut="Known" enabled="1"/>
+  <Edge nodeIn="135" nodeOut="57" portIn="input" portOut="Known" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="71" portIn="Complete" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="79" portIn="Close" portOut="ActiveSpawn" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="79" portIn="Open" portOut="PassiveSpawn" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="79" portIn="Enable" portOut="PassiveSpawn" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="79" portIn="Trigger" portOut="ActiveSpawn" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="79" portIn="Value" portOut="NightmareId" enabled="1"/>
+  <Edge nodeIn="58" nodeOut="79" portIn="Trigger" portOut="PassiveSpawn" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="79" portIn="Trigger" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="79" portIn="Trigger" portOut="Dissipated" enabled="1"/>
+  <Edge nodeIn="118" nodeOut="79" portIn="Trigger" portOut="ActiveSpawn" enabled="1"/>
+  <Edge nodeIn="133" nodeOut="79" portIn="input" portOut="PassiveSpawn" enabled="1"/>
+  <Edge nodeIn="134" nodeOut="79" portIn="input" portOut="ActiveSpawn" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="81" portIn="in" portOut="Curious" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="81" portIn="in" portOut="Interested" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="81" portIn="in" portOut="Noticed" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="81" portIn="in" portOut="Unknown" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="82" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="85" nodeOut="82" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="86" nodeOut="82" portIn="entityId" portOut="Out" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="85" portIn="Enable" portOut="Known" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="85" portIn="in" portOut="Curious" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="85" portIn="in" portOut="Interested" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="85" portIn="in" portOut="Noticed" enabled="1"/>
+  <Edge nodeIn="109" nodeOut="85" portIn="in" portOut="Unknown" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="86" portIn="Disable" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="88" portIn="Close" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="88" portIn="Disable" portOut="Dead" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="97" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="97" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="103" portIn="Complete" portOut="Out" enabled="1"/>
+  <Edge nodeIn="81" nodeOut="103" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="104" portIn="Close" portOut="Out" enabled="1"/>
+  <Edge nodeIn="57" nodeOut="104" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="112" nodeOut="109" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="110" portIn="Dissipate" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="112" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="118" portIn="Add" portOut="Unassigned" enabled="1"/>
+  <Edge nodeIn="131" nodeOut="129" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="131" nodeOut="129" portIn="In" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="125" nodeOut="131" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15074" nodeOut="15073" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="15074" nodeOut="15073" portIn="Trigger" portOut="output" enabled="1"/>
+  <Edge nodeIn="15085" nodeOut="15074" portIn="In" portOut="True" enabled="1"/>
+  <Edge nodeIn="15085" nodeOut="15077" portIn="In" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="15085" nodeOut="15078" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="15083" nodeOut="15080" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15089" nodeOut="15083" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15080" nodeOut="15085" portIn="Dissipate" portOut="Out" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="15089" portIn="Complete" portOut="Assigned" enabled="1"/>
+  <Edge nodeIn="2346" nodeOut="15091" portIn="Enable" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="15093" nodeOut="15094" portIn="Increase" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="15101" nodeOut="15099" portIn="in" portOut="False" enabled="1"/>
+  <Edge nodeIn="110" nodeOut="15101" portIn="Trigger" portOut="out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

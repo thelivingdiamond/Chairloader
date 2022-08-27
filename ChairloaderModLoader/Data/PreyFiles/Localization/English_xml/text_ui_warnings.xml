@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Title>Audio script template</Title>
+  <Author>Susan Kath</Author>
+  <LastAuthor>michiel</LastAuthor>
+  <LastPrinted>2003-10-30T09:38:41Z</LastPrinted>
+  <Created>2002-06-17T19:14:00Z</Created>
+  <LastSaved>2012-07-18T13:16:06Z</LastSaved>
+  <Company>Arkane Studios</Company>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>14388</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <TabRatio>274</TabRatio>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Font ss:FontName="Arial" x:CharSet="204" x:Family="Swiss"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="73" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultRowHeight="13.2">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="271.8"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="343.8"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="329.40000000000003"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="160.80000000000001"/>
+   <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s65">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">KEY</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="s65">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains original text meant for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains text for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">set to &quot;LOCKED&quot; if this string is final.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Character limit for translated text.</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s71">
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Object interaction</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_CreateNewSave</Data></Cell>
+    <Cell><Data ss:Type="String">Create new save</Data></Cell>
+    <Cell><Data ss:Type="String">Create new save</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_CreateNewSaveDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Would you like to create a new save?</Data></Cell>
+    <Cell><Data ss:Type="String">Would you like to create a new save?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_MultipleSaves</Data></Cell>
+    <Cell><Data ss:Type="String">Save already found</Data></Cell>
+    <Cell><Data ss:Type="String">Save already found</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_MultipleSavesDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Save game exists, would you like to override?</Data></Cell>
+    <Cell><Data ss:Type="String">Save game exists, would you like to override?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_SaveCorrupt</Data></Cell>
+    <Cell><Data ss:Type="String">Save corrupt</Data></Cell>
+    <Cell><Data ss:Type="String">Save corrupt</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_SaveCorruptDesc</Data></Cell>
+    <Cell><Data ss:Type="String">The save file is corrupt</Data></Cell>
+    <Cell><Data ss:Type="String">The save file is corrupt</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_DeleteCorruptSave</Data></Cell>
+    <Cell><Data ss:Type="String">Delete corrupt save</Data></Cell>
+    <Cell><Data ss:Type="String">Delete corrupt save</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_DeleteCorruptSaveDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Would you like to delete the corrupted save file?</Data></Cell>
+    <Cell><Data ss:Type="String">Would you like to delete the corrupted save file?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_DeleteInvalidSave</Data></Cell>
+    <Cell><Data ss:Type="String">Delete invalid save</Data></Cell>
+    <Cell><Data ss:Type="String">Delete invalid save</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_DeleteInvalidSaveDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Would you like to delete the invalid save file?</Data></Cell>
+    <Cell><Data ss:Type="String">Would you like to delete the invalid save file?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_DeleteError</Data></Cell>
+    <Cell><Data ss:Type="String">Delete error</Data></Cell>
+    <Cell><Data ss:Type="String">Delete error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_DeleteErrorDesc</Data></Cell>
+    <Cell><Data ss:Type="String">File could not be deleted</Data></Cell>
+    <Cell><Data ss:Type="String">File could not be deleted</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_SaveDeleted</Data></Cell>
+    <Cell><Data ss:Type="String">Save deleted</Data></Cell>
+    <Cell><Data ss:Type="String">Save deleted</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_SaveDeletedDesc</Data></Cell>
+    <Cell><Data ss:Type="String">The save file has been deleted</Data></Cell>
+    <Cell><Data ss:Type="String">The save file has been deleted</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_SaveNotFoundLoseProgress</Data></Cell>
+    <Cell><Data ss:Type="String">Save not found</Data></Cell>
+    <Cell><Data ss:Type="String">Save not found</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_SaveNotFoundLoseProgressDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Save not found, you will lose progress</Data></Cell>
+    <Cell><Data ss:Type="String">Save not found, you will lose progress</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ConfirmNoSaveDevice</Data></Cell>
+    <Cell><Data ss:Type="String">No save device</Data></Cell>
+    <Cell><Data ss:Type="String">No save device</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ConfirmNoSaveDeviceDesc</Data></Cell>
+    <Cell><Data ss:Type="String">There is no save device, would you like to continue</Data></Cell>
+    <Cell><Data ss:Type="String">There is no save device, would you like to continue</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_StorageRemoved</Data></Cell>
+    <Cell><Data ss:Type="String">Storage has been removed</Data></Cell>
+    <Cell><Data ss:Type="String">Storage has been removed</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_StorageRemovedDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Storage has been removed</Data></Cell>
+    <Cell><Data ss:Type="String">Storage has been removed</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_StorageNoSpace</Data></Cell>
+    <Cell><Data ss:Type="String">No storage space</Data></Cell>
+    <Cell><Data ss:Type="String">No storage space</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_StorageNoSpaceDesc</Data></Cell>
+    <Cell><Data ss:Type="String">There is not enough space to on the disk</Data></Cell>
+    <Cell><Data ss:Type="String">There is not enough space to on the disk</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_NotSignedIn</Data></Cell>
+    <Cell><Data ss:Type="String">Not signed in</Data></Cell>
+    <Cell><Data ss:Type="String">Not signed in</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_NotSignedInDesc</Data></Cell>
+    <Cell><Data ss:Type="String">User is not signed in, please sign in to use the online services</Data></Cell>
+    <Cell><Data ss:Type="String">User is not signed in, please sign in to use the online services</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_CableUnplugged</Data></Cell>
+    <Cell><Data ss:Type="String">Cable unplugged</Data></Cell>
+    <Cell><Data ss:Type="String">Cable unplugged</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_CableUnpluggedDesc</Data></Cell>
+    <Cell><Data ss:Type="String">The network cable was unplugged</Data></Cell>
+    <Cell><Data ss:Type="String">The network cable was unplugged</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_NetworkDisonnected</Data></Cell>
+    <Cell><Data ss:Type="String">Network disconnected</Data></Cell>
+    <Cell><Data ss:Type="String">Network disconnected</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_NetworkDisonnectedDesc</Data></Cell>
+    <Cell><Data ss:Type="String">The connection to the network has been lost</Data></Cell>
+    <Cell><Data ss:Type="String">The connection to the network has been lost</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ServerInternalError</Data></Cell>
+    <Cell><Data ss:Type="String">Sever internal error</Data></Cell>
+    <Cell><Data ss:Type="String">Sever internal error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ServerInternalErrorDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Server internal error</Data></Cell>
+    <Cell><Data ss:Type="String">Server internal error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_CDKeyInvalid</Data></Cell>
+    <Cell><Data ss:Type="String">CD Key invalid</Data></Cell>
+    <Cell><Data ss:Type="String">CD Key invalid</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_CDKeyInvalidDesc</Data></Cell>
+    <Cell><Data ss:Type="String">CD Key could not be validated</Data></Cell>
+    <Cell><Data ss:Type="String">CD Key could not be validated</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_PSNUnavailable</Data></Cell>
+    <Cell><Data ss:Type="String">PSN Unavailable</Data></Cell>
+    <Cell><Data ss:Type="String">PSN Unavailable</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_PSNUnavailableDesc</Data></Cell>
+    <Cell><Data ss:Type="String">The PSN services are currently unavailable, please try again later</Data></Cell>
+    <Cell><Data ss:Type="String">The PSN services are currently unavailable, please try again later</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ServerFull</Data></Cell>
+    <Cell><Data ss:Type="String">Server full</Data></Cell>
+    <Cell><Data ss:Type="String">Server full</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ServerFullDesc</Data></Cell>
+    <Cell><Data ss:Type="String">This server is full</Data></Cell>
+    <Cell><Data ss:Type="String">This server is full</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_LobbyStartFailed</Data></Cell>
+    <Cell><Data ss:Type="String">Lobby failed</Data></Cell>
+    <Cell><Data ss:Type="String">Lobby failed</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_LobbyStartFailedDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Lobby could not be started</Data></Cell>
+    <Cell><Data ss:Type="String">Lobby could not be started</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ProblemWithParams</Data></Cell>
+    <Cell><Data ss:Type="String">Incorrect parameters</Data></Cell>
+    <Cell><Data ss:Type="String">Incorrect parameters</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_ProblemWithParamsDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Parameters provided are incorrect</Data></Cell>
+    <Cell><Data ss:Type="String">Parameters provided are incorrect</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_OutOfMemory</Data></Cell>
+    <Cell><Data ss:Type="String">Out of memory</Data></Cell>
+    <Cell><Data ss:Type="String">Out of memory</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_OutOfMemoryDesc</Data></Cell>
+    <Cell><Data ss:Type="String">There was not enough memory to allocate for the task or its parameters</Data></Cell>
+    <Cell><Data ss:Type="String">There was not enough memory to allocate for the task or its parameters</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InvalidRequest</Data></Cell>
+    <Cell><Data ss:Type="String">Invalid request</Data></Cell>
+    <Cell><Data ss:Type="String">Invalid request</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InvalidRequestDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Invalid request</Data></Cell>
+    <Cell><Data ss:Type="String">Invalid request</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InternalError</Data></Cell>
+    <Cell><Data ss:Type="String">Internal error</Data></Cell>
+    <Cell><Data ss:Type="String">Internal error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InternalErrorDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Internal error</Data></Cell>
+    <Cell><Data ss:Type="String">Internal error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InvalidTitleID</Data></Cell>
+    <Cell><Data ss:Type="String">Invalid Title ID</Data></Cell>
+    <Cell><Data ss:Type="String">Invalid Title ID</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InvalidTitleIDDesc</Data></Cell>
+    <Cell><Data ss:Type="String">Provided Title ID is invalid</Data></Cell>
+    <Cell><Data ss:Type="String">Provided Title ID is invalid</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InsufficientPrivileges</Data></Cell>
+    <Cell><Data ss:Type="String">Insufficient privileges</Data></Cell>
+    <Cell><Data ss:Type="String">Insufficient privileges</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_InsufficientPrivilegesDesc</Data></Cell>
+    <Cell><Data ss:Type="String">You do not have the rights to perform the action</Data></Cell>
+    <Cell><Data ss:Type="String">You do not have the rights to perform the action</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_diag_no</Data></Cell>
+    <Cell><Data ss:Type="String">No</Data></Cell>
+    <Cell><Data ss:Type="String">No</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_diag_yes</Data></Cell>
+    <Cell><Data ss:Type="String">Yes</Data></Cell>
+    <Cell><Data ss:Type="String">Yes</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_diag_ok</Data></Cell>
+    <Cell><Data ss:Type="String">Ok</Data></Cell>
+    <Cell><Data ss:Type="String">Ok</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_diag_continue</Data></Cell>
+    <Cell><Data ss:Type="String">Continue</Data></Cell>
+    <Cell><Data ss:Type="String">Continue</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">ui_diag_selectdevice</Data></Cell>
+    <Cell><Data ss:Type="String">Select device</Data></Cell>
+    <Cell><Data ss:Type="String">Select device</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_CantAddInventory</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot add to inventory!</Data></Cell>
+    <Cell><Data ss:Type="String">Cannot add to inventory!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_LoginRequired</Data></Cell>
+    <Cell><Data ss:Type="String">This game saves user data. You must sign in to continue.</Data></Cell>
+    <Cell><Data ss:Type="String">This game saves user data. You must sign in to continue.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_MaxSaveCountTitle</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum Save Files</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum Save Files</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_MaxSaveCountMessage</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum save files reached. Please delete a save file before creating a new one.</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum save files reached. Please delete a save file before creating a new one.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_SwitchProfile</Data></Cell>
+    <Cell><Data ss:Type="String">Switch Profile</Data></Cell>
+    <Cell><Data ss:Type="String">Switch Profile</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_missingLevelDLC</Data></Cell>
+    <Cell><Data ss:Type="String">Your profile lacks permissions to travel to this level.</Data></Cell>
+    <Cell><Data ss:Type="String">Your profile lacks permissions to travel to this level.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_levelStillStreaming</Data></Cell>
+    <Cell><Data ss:Type="String">This level is still being installed.  Check back shortly!</Data></Cell>
+    <Cell><Data ss:Type="String">This level is still being installed.  Check back shortly!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TrialLockedTitle</Data></Cell>
+    <Cell><Data ss:Type="String">Trial Mode</Data></Cell>
+    <Cell><Data ss:Type="String">Trial Mode</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TrialLockedMessage</Data></Cell>
+    <Cell><Data ss:Type="String">Not accessible during Trial.</Data></Cell>
+    <Cell><Data ss:Type="String">Not accessible during Trial.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TrialUnlockButton</Data></Cell>
+    <Cell><Data ss:Type="String">Unlock</Data></Cell>
+    <Cell><Data ss:Type="String">Unlock</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PlotCritical</Data></Cell>
+    <Cell><Data ss:Type="String">Mission item. Cannot Recycle.</Data></Cell>
+    <Cell><Data ss:Type="String">Mission item. Cannot Recycle.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_LoadPreviousSave</Data></Cell>
+    <Cell><Data ss:Type="String">Load Previous Save</Data></Cell>
+    <Cell><Data ss:Type="String">Load Previous Save</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_ApplyChangesMessage</Data></Cell>
+    <Cell><Data ss:Type="String">Apply Changes</Data></Cell>
+    <Cell><Data ss:Type="String">Apply Changes</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_AudioLanguage</Data></Cell>
+    <Cell><Data ss:Type="String">Audio Language</Data></Cell>
+    <Cell><Data ss:Type="String">Audio Language</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.51181102362204722"
+     x:Data="&amp;LTime restriction sample script"/>
+    <Footer x:Margin="0.51181102362204722" x:Data="Page &amp;P"/>
+    <PageMargins x:Bottom="0.98425196850393704" x:Left="0" x:Right="0"
+     x:Top="0.98425196850393704"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>70</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <TopRowVisible>3</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>68</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

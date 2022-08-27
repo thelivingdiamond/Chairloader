@@ -1,0 +1,83 @@
+<LevelData SandboxVersion="3.7.0.179">
+ <LevelInfo CreationDate="08/01/18" Name="Bridge" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
+ <SurfaceTypes />
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+  <CollisionClass type="0" ignore="65536"/>
+  <CollisionClass type="4096" ignore="0"/>
+  <CollisionClass type="2163712" ignore="0"/>
+  <CollisionClass type="0" ignore="16384"/>
+  <CollisionClass type="0" ignore="8192"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="Bridge_NullwaveEnding_Geo_FirstVisit" Parent="Bridge_Main_Geo" Id="1" Specs="-1" LoadTokenId="873356940" LoadTokenValue="0"/>
+  <Layer Name="Bridge_Sq_15" Parent="Bridge_Cinematics" Id="2" Specs="-1"/>
+  <Layer Name="LookingGlass_StationLighting" Parent="LookingGlass" Id="3" Specs="-1"/>
+  <Layer Name="Bridge_PlayerCollision" Parent="" Id="4" Specs="-1"/>
+  <Layer Name="Bridge_Entrance_Geo" Parent="Bridge_Main_Geo" Id="5" Specs="-1"/>
+  <Layer Name="Exterior_Geo" Parent="" Id="6" Specs="-1"/>
+  <Layer Name="Ark_MetricCameras" Parent="" Id="7" Specs="-1"/>
+  <Layer Name="Bridge_Sq_17" Parent="Bridge_Cinematics" Id="8" Specs="-1"/>
+  <Layer Name="Bridge_Underpass_Geo" Parent="" Id="9" Specs="-1"/>
+  <Layer Name="LookingGlass" Parent="" Id="10" Specs="-1"/>
+  <Layer Name="Bridge_Sound" Parent="" Id="11" Specs="-1"/>
+  <Layer Name="Coral_Stage04" Parent="" Id="12" Specs="-1"/>
+  <Layer Name="Bridge_Cinematics" Parent="" Id="13" Specs="-1"/>
+  <Layer Name="Bridge_Distractions" Parent="" Id="14" Specs="-1"/>
+  <Layer Name="LookingGlass_Apex" Parent="LookingGlass" Id="15" Specs="-1"/>
+  <Layer Name="Bridge_geo" Parent="" Id="16" Specs="-1"/>
+  <Layer Name="Bridge_Sq_04" Parent="Bridge_Cinematics" Id="17" Specs="-1"/>
+  <Layer Name="Coral_Stage03" Parent="" Id="18" Specs="-1"/>
+  <Layer Name="Bridge_Sq_02" Parent="Bridge_Cinematics" Id="19" Specs="-1"/>
+  <Layer Name="LookingGlass_Vista" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="Bridge_Sq_13" Parent="Bridge_Cinematics" Id="21" Specs="-1"/>
+  <Layer Name="Bridge_EscapePod_Lights" Parent="" Id="22" Specs="-1"/>
+  <Layer Name="Bridge_Sq_12" Parent="Bridge_Cinematics" Id="23" Specs="-1"/>
+  <Layer Name="Bridge_FX" Parent="" Id="24" Specs="-1"/>
+  <Layer Name="Bridge_LukaDecals" Parent="" Id="25" Specs="-1"/>
+  <Layer Name="Bridge_Sq_11" Parent="Bridge_Cinematics" Id="26" Specs="-1"/>
+  <Layer Name="Bridge_Sq_08" Parent="Bridge_Cinematics" Id="27" Specs="-1"/>
+  <Layer Name="Bridge_BriefingRoom_Geo" Parent="Bridge_Main_Geo" Id="28" Specs="-1"/>
+  <Layer Name="Bridge_EscapePods_Geo" Parent="Bridge_Main_Geo" Id="29" Specs="-1"/>
+  <Layer Name="Bridge_OccluderGeo" Parent="" Id="30" Specs="-1"/>
+  <Layer Name="Bridge_Sq_09" Parent="Bridge_Cinematics" Id="31" Specs="-1"/>
+  <Layer Name="Bridge_LGCloset_Geo" Parent="Bridge_Main_Geo" Id="32" Specs="-1"/>
+  <Layer Name="Bridge_Lighting" Parent="" Id="33" Specs="-1"/>
+  <Layer Name="Bridge_VisArea" Parent="" Id="34" Specs="-1" Physics="0"/>
+  <Layer Name="Bridge_Sq_05" Parent="Bridge_Cinematics" Id="35" Specs="-1"/>
+  <Layer Name="Bridge_Main_Geo" Parent="" Id="36" Specs="-1"/>
+  <Layer Name="Bridge_Sq_10" Parent="Bridge_Cinematics" Id="37" Specs="-1"/>
+  <Layer Name="Bridge_Sq_01" Parent="Bridge_Cinematics" Id="38" Specs="-1"/>
+  <Layer Name="Bridge_Sq_06" Parent="Bridge_Cinematics" Id="39" Specs="-1"/>
+  <Layer Name="Bridge_Lighting_Backup" Parent="" Id="40" Specs="-1"/>
+  <Layer Name="Bridge_Sq_03" Parent="Bridge_Cinematics" Id="41" Specs="-1"/>
+  <Layer Name="Bridge_NullwaveEnding_Active" Parent="Bridge_Main_Geo" Id="42" Specs="-1" LoadTokenId="873356940" LoadTokenValue="1"/>
+  <Layer Name="Bridge_Sq_07" Parent="Bridge_Cinematics" Id="43" Specs="-1"/>
+  <Layer Name="Bridge_Sq_16" Parent="Bridge_Cinematics" Id="44" Specs="-1"/>
+  <Layer Name="Bridge_scripting" Parent="" Id="45" Specs="-1"/>
+  <Layer Name="Bridge_Tutorial" Parent="" Id="46" Specs="-1"/>
+  <Layer Name="Bridge_Sq_14" Parent="Bridge_Cinematics" Id="47" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="LevelShared"/>
+  <Library Name="Screen"/>
+  <Library Name="Interactables"/>
+  <Library Name="Utilities"/>
+  <Library Name="Characters"/>
+  <Library Name="PlayerWeapons"/>
+  <Library Name="MaterialEffects"/>
+  <Library Name="Player"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences>
+  <Library Name="GT_Global"/>
+  <Library Name="GT_GameTime"/>
+  <Library Name="GT_GlobalStrings"/>
+  <Library Name="VS_GameTokens"/>
+  <Library Name="sshain_Test"/>
+  <Library Name="TestTokens"/>
+ </GameTokensLibraryReferences>
+</LevelData>

@@ -1,0 +1,28 @@
+
+<UIElements name="DanielleCredits">
+ <UIElement name="DanielleCredits" render_lockless="1">
+  <GFx file="GFX/danielle_credits.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="addCreditLine" funcname="cred.addCreditLine">
+    <param name="Header" desc="" type="string"/>
+    <param name="Left" desc="" type="string"/>
+    <param name="Right" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+   </function>
+   <function name="addCreditSpace" funcname="cred.addCreditSpace"/>
+   <function name="creditsPlay" funcname="cred.creditsPlay"/>
+  </functions>
+  <Events>
+   <event name="closeCredits" fscommand="closeCredits" desc=""/>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

@@ -1,0 +1,21 @@
+<Graph isModule="1" moduleName="ArkLights_YellowTulipStage1" isObjectList="1" objectListClass="ArkLight" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkLight" pos="-383,-165,0" EntityGUID="{3B031E55-EA08-4A04-9B30-C35644F807AB}" EntityGUID_64="4A04EA083B031E55">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="4" Class="entity:ArkLight" pos="-383,-140,0" EntityGUID="{399C98A4-E03A-4C14-A634-E0CDE0B69627}" EntityGUID_64="4C14E03A399C98A4">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="6" Class="entity:ArkLight" pos="-383,-115,0" EntityGUID="{BEDCB961-23F0-4418-87FE-71CEE784D914}" EntityGUID_64="441823F0BEDCB961">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="8" Class="entity:ArkLight" pos="-44,-128,0" EntityGUID="{B3F5E635-0493-41E3-B658-33AF27230F59}" EntityGUID_64="41E30493B3F5E635">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+  <Node Id="10" Class="entity:ArkLight" pos="-40,70,0" EntityGUID="{0057FE45-7A28-43B8-A896-6AC5C60EFCAD}" EntityGUID_64="43B87A280057FE45">
+   <Inputs entityId="0" Brightness="0" DiffuseColor1="0,0,0" DiffuseColor2="0,0,0" LightStyle1="0" LightStyle2="0" Off="0" On="0" ResetBrightness="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

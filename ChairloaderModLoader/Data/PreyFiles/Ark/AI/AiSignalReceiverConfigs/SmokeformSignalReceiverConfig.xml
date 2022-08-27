@@ -1,0 +1,11 @@
+
+<SignalReceivers>
+ <Imports/>
+ <SignalData>
+  <signal id="3149325216914689683" does_damage="false" block_hit_react="false" is_laser="true"/>
+  <signal id="10641886185820022055" does_damage="true" block_hit_react="false"/>
+  <signal id="3149325216914689633" does_damage="true" block_hit_react="false" is_stun="false" is_recycle_begin="false"/>
+  <signal id="3149325216915549119" does_damage="true" block_hit_react="false" is_stun="false" is_recycle_begin="false"/>
+  <signal id="7745561656291547931" does_damage="true" block_hit_react="false" is_stun="false" is_recycle_begin="false"/>
+ </SignalData>
+</SignalReceivers>

@@ -1,0 +1,59 @@
+
+<ResponseRules description="VO for the mini-museum in the lobby">
+ <WritebackKeys/>
+ <ResponseRule id="13680621263365199445" name="Exibition Screen 1: 1963" cooldown="" description="VO for the mini-museum in the lobby" response="13680621263365199815">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263372691444" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263365199493"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263365199815">
+  <Response dialog="13680621263392002680" id="13680621263365199816" cooldown="0" weight="1" oneshot="0" completeConversation="1"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263365199920" name="Exibition Screen 2: 1964-80" cooldown="" description="VO for the mini-museum in the lobby" response="13680621263365199965">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263372691444" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263365199493"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263365199965">
+  <Response dialog="13680621263392002709" id="13680621263365199966" cooldown="0" weight="1" oneshot="0" completeConversation="1"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263365202378" name="Exibition Screen 3: 1980-94" cooldown="" description="VO for the mini-museum in the lobby" response="13680621263365202403">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263372691444" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263365199493"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263365202403">
+  <Response dialog="13680621263392002729" id="13680621263365202404" cooldown="0" weight="1" oneshot="0" completeConversation="1"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263365202456" name="Exibition Screen 4: 2025" cooldown="" description="VO for the mini-museum in the lobby" response="13680621263365202488">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263372691444" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263365199493"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263365202488">
+  <Response dialog="13680621263392002759" id="13680621263365202489" cooldown="0" weight="1" oneshot="0" completeConversation="1"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263365202491" name="Exibition Screen 5: 2030" cooldown="" description="VO for the mini-museum in the lobby" response="13680621263365202516">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263372691444" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="13680621263365199493"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239377285936"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263365202516">
+  <Response dialog="13680621263392002768" id="13680621263365202517" cooldown="0" weight="1" oneshot="0" completeConversation="1"/>
+ </ResponseSet>
+</ResponseRules>

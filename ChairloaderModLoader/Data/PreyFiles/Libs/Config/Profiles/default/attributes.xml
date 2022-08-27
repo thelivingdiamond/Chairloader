@@ -1,0 +1,62 @@
+
+<Attributes Version="30">
+ <Attr name="Brightness" cvar="r_Brightness" preview="1" value="0.5"/>
+ <Attr name="Gamma" cvar="r_Gamma" preview="1" value="1.0025"/>
+ <Attr name="SFXVolume" cvar="s_SFXVolume" preview="1" value="1.0"/>
+ <Attr name="SFXVolume" cvar="sys_flash_video_soundvolume" value="1.0" GAME="SP"/>
+ <Attr name="DialogueVolume" cvar="s_DialogVolume" preview="1" value="1.0"/>
+ <Attr name="MusicVolume" cvar="s_MusicVolume" preview="1" value="1.0"/>
+ <Attr name="MusicVolume" cvar="sys_flash_video_soundvolume" value="1.0" GAME="MP"/>
+ <Attr name="Sensitivity" cvar="cl_sensitivityController" value="3000"/>
+ <Attr name="SensitivityMP" cvar="cl_sensitivityControllerMP" value="0.6"/>
+ <Attr name="MouseSensitivity" cvar="cl_sensitivity" value="0.001"/>
+ <Attr name="ReticleSensitivity" cvar="cl_reticleSensitivityController" value="0.65"/>
+ <Attr name="InvertY" cvar="cl_invertController" value="0"/>
+ <Attr name="InvertY" cvar="cl_invertMouse" value="0"/>
+ <Attr name="InvertY" cvar="cl_invertLandVehicleInput" value="0"/>
+ <Attr name="InvertY" cvar="cl_invertAirVehicleInput" value="0"/>
+ <Attr name="HoldToggleZoom" cvar="cl_zoomToggle" value="0"/>
+ <Attr name="CrouchToggle" cvar="cl_crouchToggle" value="1"/>
+ <Attr name="AimAssistance" cvar="pl_aim_assistance_enabled" value="1"/>
+ <Attr name="VSync" cvar="r_VSync" value="1" platform="pc" confirmation="1"/>
+ <Attr name="Resolution" value="-1" platform="pc" confirmation="1"/>
+ <Attr name="Fullscreen" cvar="r_fullscreen" value="1" platform="pc" confirmation="1"/>
+ <Attr name="SysSpecGameEffects" cvar="sys_spec_GameEffects" value="3" platform="pc"/>
+ <Attr name="SysSpecObjectDetail" cvar="sys_spec_ObjectDetail" value="3" platform="pc"/>
+ <Attr name="SysSpecParticles" cvar="sys_spec_Particles" value="3" platform="pc"/>
+ <Attr name="SysSpecPostProcessing" cvar="sys_spec_PostProcessing" value="3" platform="pc"/>
+ <Attr name="SysSpecShading" cvar="sys_spec_Shading" value="3" platform="pc"/>
+ <Attr name="SysSpecShadows" cvar="sys_spec_Shadows" value="3" platform="pc"/>
+ <Attr name="SysSpecWater" cvar="sys_spec_Water" value="3" platform="pc"/>
+ <Attr name="SysSpec" cvar="sys_spec" value="3" platform="pc" writeToConfig="1"/>
+ <Attr name="Stereo" value="none"/>
+ <Attr name="StereoDevice" cvar="r_stereoDevice" value="100" requiresRestart="1" platform="pc"/>
+ <Attr name="StereoMode" cvar="r_stereoMode" value="0" requiresRestart="1" platform="pc"/>
+ <Attr name="StereoOutput" cvar="r_stereoOutput" value="0" requiresRestart="1" platform="pc"/>
+ <Attr name="StereoDevice" cvar="r_stereoDevice" value="100" platform="xbox|ps4"/>
+ <Attr name="StereoMode" cvar="r_stereoMode" value="0" platform="xbox|ps4"/>
+ <Attr name="StereoOutput" cvar="r_stereoOutput" value="0" platform="xbox|ps4"/>
+ <Attr name="HighResTextures" cvar="sys_highrestex" value="1" platform="pc" requiresRestart="1" writeToConfig="1"/>
+ <Attr name="MotionBlurState" value="2" platform="pc"/>
+ <Attr name="MotionBlur" cvar="r_MotionBlur" value="2" platform="pc"/>
+ <Attr name="MSAAMode" value="smaa_2tx" platform="pc"/>
+ <Attr name="MSAAHWEnabled" cvar="r_msaa" value="0" platform="pc"/>
+ <Attr name="MSAAHWSampleMode" cvar="r_msaa_samples" value="2" platform="pc"/>
+ <Attr name="MSAAPostAA" cvar="r_postaa" value="1" platform="pc"/>
+ <Attr name="MSAAPostAAEdgeFilter" cvar="r_postaaedgefilter" value="1" platform="pc"/>
+ <Attr name="AnisotropicFiltering" cvar="r_TexMinAnisotropy" value="16" platform="pc"/>
+ <Attr name="AnisotropicFiltering" cvar="r_TexMaxAnisotropy" value="16" platform="pc"/>
+ <Attr name="EyeDistance" cvar="r_stereoStrength" preview="1" value="0.75"/>
+ <Attr name="FlipEyes" cvar="r_StereoFlipEyes" preview="1" value="0"/>
+ <Attr name="Subtitles" cvar="hud_subtitles" value="0"/>
+ <Attr name="LensFlares" cvar="r_flares" value="1"/>
+ <Attr name="Vibration" cvar="i_forcefeedback" value="1"/>
+ <Attr name="ControllerStickLayout" value="default"/>
+ <Attr name="ControllerButtonLayout" value="default"/>
+ <Attr name="Crosshair" cvar="hud_Crosshair" value="1"/>
+ <Attr name="SP/Difficulty" cvar="g_difficultyLevel" value="1"/>
+ <Attr name="OverscanBorderX" cvar="r_OverscanBorderScaleX" gameOnly="1" preview="1" value="0.0" platform="pc"/>
+ <Attr name="OverscanBorderY" cvar="r_OverscanBorderScaleY" gameOnly="1" preview="1" value="0.0" platform="pc"/>
+ <Attr name="OverscanBorderX" cvar="r_OverscanBorderScaleX" gameOnly="1" preview="1" value="0.075" platform="xbox|ps4"/>
+ <Attr name="OverscanBorderY" cvar="r_OverscanBorderScaleY" gameOnly="1" preview="1" value="0.075" platform="xbox|ps4"/>
+</Attributes>

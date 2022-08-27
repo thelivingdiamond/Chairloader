@@ -1,0 +1,135 @@
+
+<Dialog>
+ <Dialog id="13680621263359125802" facefx="0" sync="true" notes="(Marco Simmons) Spoken to Bellamy" text="I installed exactly what Tina brought down." modified="03/15/2016 07:12:41 PM"/>
+ <Dialog id="13680621263359125833" facefx="2" sync="true" notes="(Marco Simmons) Calling alex on the TranScribe." text="Alex." modified="07/12/2016 06:08:33 PM"/>
+ <Dialog id="13680621263359125854" facefx="2" sync="true" notes="(Marco Simmons) " text="We have a problem." modified="04/14/2015 02:51:11 PM"/>
+ <Dialog id="13680621263359125860" facefx="2" sync="true" notes="(Marco Simmons) " text="He&apos;s alive. Sedated." modified="07/12/2016 06:08:34 PM"/>
+ <Dialog id="13680621263360259531" text="Hey. It&apos;s Langly. Are you... uh... is there anything weird going over there?" modified="04/27/2015 05:45:47 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360260053" text="I don&apos;t want you to panic." modified="04/27/2015 05:54:29 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360260210" text="Not sure yet. Security&apos;s running all over the place. So everyone&apos;s still working there?" modified="04/27/2015 05:57:06 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360260380" text="What was that?" modified="04/27/2015 05:59:56 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360260701" text="What?" modified="04/27/2015 06:05:17 PM" notes="(Garfield Langly) Shocked."/>
+ <Dialog id="13680621263360968075" text="The keypad was shocking everyone so I asked Clive to fix it." modified="05/05/2015 10:34:51 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360968130" text="Clive Lawrence. Engineer. Works in the Hardware Labs." modified="07/02/2015 10:10:44 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360968182" text="Sorry. It couldn&apos;t wait anymore. I sent like three emails already." modified="05/05/2015 10:36:38 PM" notes="(Garfield Langly)"/>
+ <Dialog id="13680621263360968225" text="Nope. I don&apos;t have that kind of clearance. Ask him." modified="05/05/2015 10:37:21 PM" notes="(Garfield Langly) Trolling him"/>
+ <Dialog id="13680621263360968260" text="Do you?" modified="05/05/2015 10:37:56 PM" notes="(Garfield Langly) Trolling him."/>
+ <Dialog id="13680621263360968305" text="(Sigh) Take it down a notch, deputy dog. He set it to the factory default, okay?" modified="07/12/2016 06:09:14 PM" notes="(Garfield Langly) Tired of the game."/>
+ <Dialog id="13680621263365205505" text="Mr. Yu, please make yourself comfortable and we&apos;ll be on our way." modified="04/21/2016 03:37:58 PM" notes="(Pilot)"/>
+ <Dialog id="13680621263365211174" text="TranStar facility is just a short hop. " modified="05/09/2016 04:30:25 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212450" text="That&apos;s a nice view on the bay there." modified="06/24/2015 01:34:26 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212486" text="Your brother, he said not to take the scenic route, but... hell, up here it&apos;s all scenic route." modified="06/24/2015 01:35:02 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212521" text="Helps keep things in perspective. Seeing the big picture. Know what I mean?" modified="06/24/2015 01:35:37 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212544" text="Anyway." modified="06/24/2015 01:36:00 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212803" text="Here we are, Mr. Yu." modified="04/21/2016 03:37:37 PM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212813" text="Mind the glass on the way out. Good luck to you. " modified="06/24/2015 01:40:29 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365212828" text="Watch your step on the way out. Good luck to you. " modified="06/24/2015 01:40:44 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365214918" text="Hope you don&apos;t mind me saying so, but... it&apos;s an honor to have you aboard. Your work with Operator AI. It&apos;s inspired if you ask me." modified="06/24/2015 02:15:34 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365215128" text="I can&apos;t pretend to understand half the neuroscience stuff you do. It&apos;s a black box to me. I just appreciate the results. Big fan." modified="06/24/2015 02:19:04 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365215526" text="Ms. Yu, please make yourself comfortable and we&apos;ll be on our way." modified="04/21/2016 03:37:50 PM" notes="(Pilot)"/>
+ <Dialog id="13680621263365215757" text="Here we are, Ms. Yu." modified="04/21/2016 03:37:42 PM" notes="(Pilot)"/>
+ <Dialog id="13680621263365360120" text="I hear you have quite the trip coming up." modified="06/25/2015 06:35:36 PM" notes="(Pilot)"/>
+ <Dialog id="13680621263365360311" text="Seventy-eight degrees. Clear skies all the way." modified="08/18/2015 01:19:20 AM" notes="(Pilot)"/>
+ <Dialog id="13680621263365360768" facefx="0" sync="0" notes="(Pilot)" text="Makes me miss home." modified="06/25/2015 06:46:43 PM"/>
+ <Dialog id="13680621263365360791" facefx="0" sync="0" notes="(Pilot)" text="I hear you&apos;re in for quite a trip from home yourself." modified="06/25/2015 06:48:38 PM"/>
+ <Dialog id="13680621263365978470" text="She&apos;s alive. Sedated." modified="07/02/2015 10:21:26 PM" notes="(Marco Simmons) " facefx="2"/>
+ <Dialog id="4349723564910659125" text="A suite of combat Neuromods would be welcome right now." modified="07/13/2016 04:45:04 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564912493163" text="Dr. Yu, stand away from the door. It&apos;s not safe." modified="02/25/2016 05:17:17 PM" notes="[Kevin Hague]  Frantic when player messes with the door that is holding back a flood of aliens"/>
+ <Dialog id="4349723564913357366" text="Chief? Yes. Is there something wrong?" modified="02/26/2016 11:51:58 PM" notes="[Kevin Hague] " facefx="2"/>
+ <Dialog id="4349723564913357562" text="Chief, if there were any problems, I checked the schedule, the roster... I did my best to make sure Igwe wasn&apos;t too... Igwe. Chief, I even had Leitner&apos;s cigarettes waiting..." modified="02/26/2016 11:52:56 PM" notes="[Kevin Hague] Worried, speaking fast, apologetic" facefx="2"/>
+ <Dialog id="4349723564913357610" text="Yes, Chief. Thank you, Chief." modified="02/26/2016 11:53:42 PM" notes="[Kevin Hague] Surprised and happy, then more professional, calming down" facefx="2"/>
+ <Dialog id="4349723564913618040" text="We made it. Maybe now we can take back the rest of Talos." modified="02/25/2016 05:18:06 PM" notes="[Kevin Hague]  Pumped"/>
+ <Dialog id="4349723564913618174" text="Maddox is down." modified="02/25/2016 05:21:21 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564913678144" text="Chief Elazar was the reason I got this assignment. She was the finest officer I&apos;ve ever served with." modified="02/25/2016 05:19:30 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564913678186" text="Rest easy, Sam. No need to worry now." modified="02/25/2016 05:20:49 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564913678248" text="Officer Hayashi was one of the bravest soldiers I&apos;ve served with." modified="02/25/2016 05:20:33 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564913678428" text="Let&apos;s do this! I&apos;m ready to rock and roll!" modified="08/18/2015 04:07:56 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564913692582" text="Dr. Yu... were you up in Crew Quarters? Have you seen any sign of my wife - Nicole? Last I heard from her, she was on her way there." modified="02/25/2016 05:38:54 PM" notes="[Kevin Hague]  Hesitating, is asking something of his boss"/>
+ <Dialog id="13680621263375461856" text="Hey, what&apos;s the matter?" modified="10/20/2015 04:39:43 PM" notes="Garfield Langly" facefx="2"/>
+ <Dialog id="13680621263375461995" text="Whoa... what? Who&apos;s dead?" modified="10/20/2015 04:40:11 PM" notes="Garfield Langly" facefx="2"/>
+ <Dialog id="13680621263375462045" text="Do you need a medical team?" modified="10/20/2015 06:20:00 PM" notes="Garfield Langly" facefx="2"/>
+ <Dialog id="13680621263375462203" text="Right. Laurel. Take a deep breath. Tell me what happened." modified="07/12/2016 06:05:20 PM" notes="Garfield Langly - Slowing down, deliberate." facefx="2"/>
+ <Dialog id="13680621263375467514" text="God. I&apos;m so sorry, Laurel. Can you get up to the Arboretum?" modified="05/08/2016 11:58:22 PM" notes="Garfield Langly" facefx="2"/>
+ <Dialog id="13680621263375467740" text="Okay. Got it. Listen. Just sit tight. Don&apos;t go into that chamber. I&apos;m going to find Chief Elazar - we&apos;ll get a security team your way ASAP." modified="05/08/2016 11:58:01 PM" notes="Garfield Langly" facefx="2"/>
+ <Dialog id="13680621263376920737" text="Look." modified="11/06/2015 01:52:44 PM" notes="(Marco Simmons) Hushed. " facefx="0"/>
+ <Dialog id="13680621263376921537" text="No. It&apos;s fine." modified="11/06/2015 02:05:53 PM" notes="(Marco Simmons) Hushed. Quick. Like &apos;shh&apos;"/>
+ <Dialog id="13680621263376921596" text="Well. That&apos;s... interesting." modified="11/06/2015 02:06:52 PM" notes="Hushed. Morgan is doing something weird."/>
+ <Dialog id="13680621263378048527" text="I can hear the Weaver through the walls. Son of a bitch is gloating, I know it. How you holding up?  " modified="11/19/2015 03:12:37 PM" notes="(Demian Linn)"/>
+ <Dialog id="13680621263378048805" text="Good. Safe inside the armory. Squashed a mimic that slipped in, but that&apos;s it. I got everything sealed tight." modified="02/11/2016 07:39:44 PM" notes="(Demian Linn)"/>
+ <Dialog id="13680621263378049033" text="Wait for rescue?" modified="02/09/2016 03:13:22 AM" notes="(Demian Linn)"/>
+ <Dialog id="13680621263378049079" text="You want to remember this shit?" modified="11/19/2015 03:23:15 PM" notes="(Demian Linn) "/>
+ <Dialog id="13680621263378049130" text="(Deep breath) Okay. Say the word." modified="02/09/2016 03:13:41 AM" notes="(Demian Linn) Deep breath. Steeling himself."/>
+ <Dialog id="13856881013195923146" text="So call Chief Sho up in Deep Storage. I&apos;m not a network engineer." modified="02/08/2016 07:26:32 PM" notes="(Gerald Wildman) I&apos;ve got my own problems. " facefx="2"/>
+ <Dialog id="13856881013195923398" text="Lady, do you people even know what is happening down here? " modified="07/08/2016 11:42:50 PM" notes="(Gerald Wildman) Get your head out of your ass." facefx="2"/>
+ <Dialog id="4349723564927780612" text="Oh, I see you found it. Was she - A part of me wants to know what happened but part of me doesn&apos;t - I don&apos;t think I can handle it right now. Thank you for this. Now I know." modified="12/01/2016 08:32:53 PM" notes="[Kevin Hague] Stunned and sad"/>
+ <Dialog id="4349723564927780947" text="Captain Marks officiated our ceremony. You were there, but I don&apos;t think you remember." modified="01/28/2016 09:29:55 PM" notes="[Kevin Hague] Stunned and sad"/>
+ <Dialog id="13680621263384542254" text="Running checks - Sim Lab&apos;s secure... well except for Igwe, but he&apos;ll be up all night..." modified="07/12/2016 06:08:39 PM" notes="(Marco Simmons)" facefx="2"/>
+ <Dialog id="13680621263384542279" text="Did you see the photos of his daughter Maya?" modified="01/05/2017 08:00:17 PM" notes="{lewd}" facefx="2"/>
+ <Dialog id="13680621263384542329" text="Are you kidding me?" modified="07/12/2016 06:08:40 PM" notes="(Marco Simmons)" facefx="2"/>
+ <Dialog id="13680621263384542373" text="Christ. You&apos;ve seen his records?" modified="02/02/2016 06:59:49 PM" notes="(Marco Simmons) {Beat, wait a minute}" facefx="2"/>
+ <Dialog id="13680621263384542663" text="Christ." modified="02/02/2016 07:04:39 PM" notes="(Marco Simmons)" facefx="2"/>
+ <Dialog id="13680621263385062479" text="One of my cargo bays is blown wide open, and I&apos;ve got multiple MIA&apos;s. Please tell me there&apos;s a medical team on the way." modified="07/12/2016 05:55:35 PM" notes="(Gerald Wildman)" facefx="2"/>
+ <Dialog id="13680621263385062605" text="Christ. I&apos;ve got to go..." modified="02/08/2016 07:30:21 PM" notes="(Gerald Wildman) Disgusted. Then torn away by another emergency." facefx="2"/>
+ <Dialog id="4349723564930184915" text="I don&apos;t know who was supposed to maintain the escape pods in Life Support, but I hope they paid the price for their negligence. " modified="02/25/2016 05:16:03 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930184926" text="We can&apos;t wait here forever. The crew may need our help." modified="02/25/2016 05:16:14 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930184935" text="Goddamn escape pods. Not one of them worked." modified="02/25/2016 05:16:23 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185004" text="You can&apos;t go out there!" modified="02/25/2016 05:17:32 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185135" text="Chief Elazar... I owe you." modified="02/25/2016 05:19:43 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185145" text="Sarah was tough, but fair." modified="02/25/2016 05:19:53 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185273" text="Alfred... it was too soon. You didn&apos;t deserve this." modified="02/25/2016 05:22:01 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185348" text="Of all of us, I thought Austin might make it. He was the most... optimistic about our chances." modified="02/25/2016 05:23:16 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185518" text="Hague ready." modified="02/25/2016 05:26:06 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185530" text="Say the word, Chief." modified="02/25/2016 05:26:18 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185539" text="They&apos;re not getting by me. " modified="02/25/2016 05:26:27 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185625" text="Are you all right? Let me know if I can help." modified="05/02/2016 03:25:12 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930185634" text="We&apos;ve got a chance as long as we stick together. " modified="02/25/2016 05:28:02 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930186295" text="If you find her, can you help get her here? The thought that she may have become one of those... creatures, it..." modified="02/25/2016 05:39:03 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930186308" text="I&apos;m sorry, Dr. Yu, that was out of line. Forgive me." modified="02/25/2016 05:39:16 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930186381" text="We never breathed fresh air together. Or stood in the grass together. I don&apos;t know if I want to go back to Earth now." modified="02/25/2016 05:40:29 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930186495" text="With the lifts operational, maybe I can make my way to Crew Quarters. " modified="02/25/2016 05:54:06 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930186676" text="I have to know if Nicole made it, but the Chief... she&apos;s right, we need to keep this area secure." modified="02/25/2016 05:49:25 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187114" text="I have to know if Nicole made it, but the Chief... she was right, we need to keep this area secure. " modified="02/25/2016 05:52:42 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187479" text="Dr. Yu... I heard you were up in Crew Quarters, I was hoping that my wife Nicole had..." modified="02/25/2016 05:58:47 PM" notes="[Kevin Hague] pauses sees the ring"/>
+ <Dialog id="4349723564930187504" text="Is that her ring? May I see it?" modified="02/25/2016 05:59:12 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187521" text="Nicole. So she didn&apos;t make it. I..." modified="02/25/2016 05:59:29 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187589" text="You didn&apos;t have to do this, but I... thank you, sir. " modified="05/02/2016 03:25:34 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187625" text="You didn&apos;t have to do this, but I... thank you, ma&apos;am." modified="05/02/2016 03:25:41 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187923" text="And Morgan... I owe you an apology. Once you vanished into the Sim Lab, Sarah asked me to try and learn what I could from the Psychotronics staff... discretely. " modified="02/25/2016 06:06:11 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187932" text="...I took too long, but I... learned you were in the lab without your consent. I didn&apos;t even consider that possibility." modified="02/25/2016 06:06:20 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187941" text="When we heard, Sarah was quick to begin action against your brother, but then... well, things fell apart." modified="02/25/2016 06:06:29 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930187949" text="I should have worked harder, dug deeper... especially after all you&apos;ve risked for us. I&apos;m sorry. " modified="02/25/2016 06:06:37 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930188743" text="That was a close one." modified="02/25/2016 06:19:51 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930188754" text="We&apos;re alive. We did it." modified="02/25/2016 06:20:02 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930195976" text="Chief Elazar will want to talk to you." modified="05/02/2016 03:25:47 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196083" text="Have you lost your mind?!" modified="05/02/2016 03:25:55 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196122" text="The doctor&apos;s gone crazy! Put him down!" modified="02/25/2016 08:22:50 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196153" text="The doctor&apos;s gone crazy! Put her down!" modified="02/25/2016 08:23:21 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196698" text="With the lifts running, I might be able to get to Crew Quarters, see if Nicole made it." modified="02/25/2016 08:32:26 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196755" text="Why your brother would shut down the lifts is beyond me - but I&apos;m glad you reversed that... policy." modified="02/25/2016 08:33:23 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196829" text="With the lifts, now we can try and see if we can rescue anyone else." modified="02/25/2016 08:34:37 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196905" text="Look out!" modified="02/25/2016 08:35:53 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930196930" text="Dr. Yu&apos;s one of those creatures! Shoot him! Shoot him!" modified="02/25/2016 08:36:18 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198199" text="Dr. Yu&apos;s one of those creatures! Shoot her! Shoot her! " modified="02/25/2016 08:57:27 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198352" text="There must be a way to get some turrets on-line." modified="02/25/2016 09:00:24 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198364" text="These TranStar PPN-8 pistols are mostly for show - they don&apos;t do much against the attackers. With the Eradicator turrets, we have a chance." modified="02/25/2016 09:00:12 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198451" text="Eradicators are primed. I can&apos;t wait to see them in action." modified="02/25/2016 09:01:39 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198470" text="The E.A.T.s should make the intruders think twice... if they survive full auto mode. " modified="02/25/2016 09:01:58 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198624" text="You put us all in jeopardy." modified="02/25/2016 09:04:32 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198633" text="You pull a stunt like the door again, and the next door you open will be the airlock." modified="02/25/2016 09:04:41 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198644" text="I&apos;ll make sure TranStar... Earth... knows what you did, putting us at risk like you did. " modified="02/25/2016 09:04:52 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198715" text="Is Commander Dahl here to help us? Or kill us? " modified="02/25/2016 09:06:03 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930198729" text="I feel like TranStar has decided to actively erase this... situation. We need to take out the Commander first." modified="02/25/2016 09:06:17 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930199025" text="When we get out of this, I&apos;ll make sure the good Commander... and TranStar... answer for this." modified="02/25/2016 09:11:13 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930199040" text="If I had any doubt that the escape pod failures were an accident..." modified="02/25/2016 09:11:28 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930199110" text="Wish there had been a way to talk sense to Commander Dahl, but it was kill or be killed." modified="02/25/2016 09:12:38 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930199122" text="Has the world gone insane? What was TranStar thinking? " modified="02/25/2016 09:12:50 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930199917" text="Thanks for saving Rani... there&apos;s bound to be others, we need to help as many of them get to safety as we can. " modified="02/25/2016 09:26:05 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930199932" text="We lost Teague and Remmer during the first stages of the attack - am glad you were able to save Rani." modified="02/25/2016 09:26:20 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930200308" text="If I die here, I&apos;m going to make it count." modified="02/25/2016 09:32:36 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930200318" text="Let us know what you need." modified="05/02/2016 03:26:00 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930200327" text="If we can&apos;t escape the station, then we need to make damn sure the Typhon can&apos;t either. " modified="02/25/2016 09:32:55 PM" notes="[Kevin Hague] "/>
+ <Dialog id="4349723564930202050" text="Jia here, Chief. How can I help you?" modified="02/25/2016 10:02:00 PM" notes="[Jia Kyung-Ho] " facefx="2"/>
+ <Dialog id="4349723564930202096" text="On it, Chief. " modified="02/25/2016 10:02:24 PM" notes="[Jia Kyung-Ho] " facefx="2"/>
+ <Dialog id="13680621263394229974" text="Got it." modified="05/24/2016 09:59:50 PM" notes="(Marco Simmons) "/>
+ <Dialog id="14538910657199560219" text="You found Nicole&apos;s wedding ring! But... was she..." modified="07/12/2016 08:44:34 PM" notes="[Kevin Hague] Surprised, then realization of her death sinks in."/>
+</Dialog>

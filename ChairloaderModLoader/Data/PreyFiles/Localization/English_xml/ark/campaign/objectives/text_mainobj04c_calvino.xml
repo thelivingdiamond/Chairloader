@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12300</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="24" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="15">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="283.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="380.25"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630262</Data></Cell>
+    <Cell><Data ss:Type="String">Through a Glass Darkly</Data></Cell>
+    <Cell><Data ss:Type="String">Through a Glass Darkly</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630263</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino is located in the breached hallway outside the station. I need to get to an airlock in order to reach him.</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino is located in the breached hallway outside the station. I need to get to an airlock in order to reach him.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630264</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino is currently suspended in the Micro Gravity chamber. Reaching him would require an Artax Propulsion System suit upgrade.</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino is currently suspended in the Micro Gravity chamber. Reaching him would require an Artax Propulsion System suit upgrade.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630265</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino is likely to have the keycard for his workshop. You can locate him - or what's left of him - with the security roster.</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino is likely to have the keycard for his workshop. You can locate him - or what's left of him - with the security roster.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630266</Data></Cell>
+    <Cell><Data ss:Type="String">The security roster can be used to track station personnel.</Data></Cell>
+    <Cell><Data ss:Type="String">The security roster can be used to track station personnel.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630267</Data></Cell>
+    <Cell><Data ss:Type="String">Alex disabled the Looking Glass servers before I could finish watching my video. January believes Dr. Lorenzo Calvino, the man who invented the technology, knows a way to restore the video file. His workshop is in the Hardware Labs.</Data></Cell>
+    <Cell><Data ss:Type="String">Alex disabled the Looking Glass servers before I could finish watching my video. January believes Dr. Lorenzo Calvino, the man who invented the technology, knows a way to restore the video file. His workshop is in the Hardware Labs.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630268</Data></Cell>
+    <Cell><Data ss:Type="String">Alex disabled the Looking Glass servers before I could finish watching my video. I restored the Looking Glass servers from Dr. Calvino's workshop and can now return to my office in the Lobby to watch the rest of the video.</Data></Cell>
+    <Cell><Data ss:Type="String">Alex disabled the Looking Glass servers before I could finish watching my video. I restored the Looking Glass servers from Dr. Calvino's workshop and can now return to my office in the Lobby to watch the rest of the video.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630269</Data></Cell>
+    <Cell><Data ss:Type="String">January, the video file - all of it - was a secret contingency plan I created in case Alex ever tried to stop me from destroying Talos I. With the Typhon organisms spreading and nearly everyone dead, it's the only sane option. To do it, I'll need two Arming Keys. Alex's has one. I had the other, but Alex destroyed it. Fortunately, I hid a fabrication plan in Deep Storage to recreate it.</Data></Cell>
+    <Cell><Data ss:Type="String">January, the video file - all of it - was a secret contingency plan I created in case Alex ever tried to stop me from destroying Talos I. With the Typhon organisms spreading and nearly everyone dead, it's the only sane option. To do it, I'll need two Arming Keys. Alex's has one. I had the other, but Alex destroyed it. Fortunately, I hid a fabrication plan in Deep Storage to recreate it.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630270</Data></Cell>
+    <Cell><Data ss:Type="String">While you didn't find the clue Danielle mentioned in Calvino's workstation, you found another potential thread in the Arboretum. It looks like Deep Storage might contain the key for restoring your video.</Data></Cell>
+    <Cell><Data ss:Type="String">While you didn't find the clue Danielle mentioned in Calvino's workstation, you found another potential thread in the Arboretum. It looks like Deep Storage might contain the key for restoring your video.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630271</Data></Cell>
+    <Cell><Data ss:Type="String">January</Data></Cell>
+    <Cell><Data ss:Type="String">January</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630272</Data></Cell>
+    <Cell><Data ss:Type="String">Take the Lab keycard from January</Data></Cell>
+    <Cell><Data ss:Type="String">Take the Lab keycard from January</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630273</Data></Cell>
+    <Cell><Data ss:Type="String">Security Station</Data></Cell>
+    <Cell><Data ss:Type="String">Security Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630274</Data></Cell>
+    <Cell><Data ss:Type="String">(Optional) Use the security station to discover Dr. Calvino's location.</Data></Cell>
+    <Cell><Data ss:Type="String">(Optional) Use the security station to discover Dr. Calvino's location.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630275</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Lorenzo Calvino</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Lorenzo Calvino</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630276</Data></Cell>
+    <Cell><Data ss:Type="String">Find Dr. Calvino's workshop keycard</Data></Cell>
+    <Cell><Data ss:Type="String">Find Dr. Calvino's workshop keycard</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630277</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630278</Data></Cell>
+    <Cell><Data ss:Type="String">Access Dr. Calvino's workshop</Data></Cell>
+    <Cell><Data ss:Type="String">Access Dr. Calvino's workshop</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630279</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630280</Data></Cell>
+    <Cell><Data ss:Type="String">Access Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">Access Dr. Calvino's Workshop</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630281</Data></Cell>
+    <Cell><Data ss:Type="String">Looking Glass Console</Data></Cell>
+    <Cell><Data ss:Type="String">Looking Glass Console</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630282</Data></Cell>
+    <Cell><Data ss:Type="String">Diagnose and repair the Looking Glass server connection</Data></Cell>
+    <Cell><Data ss:Type="String">Diagnose and repair the Looking Glass server connection</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630283</Data></Cell>
+    <Cell><Data ss:Type="String">Video</Data></Cell>
+    <Cell><Data ss:Type="String">Video</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15373294129891630284</Data></Cell>
+    <Cell><Data ss:Type="String">Watch the rest of your video</Data></Cell>
+    <Cell><Data ss:Type="String">Watch the rest of your video</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>21</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

@@ -1,0 +1,42 @@
+
+<Objectives>
+ <Objective id="11824555372622943533" title="@loc_15373294129891630101" optional="true">
+  <Descriptions>
+   <Desc id="11824555372622943534" displayName="Locate the smuggler&apos;s contraband" text="@loc_15373294129891630102"/>
+   <Desc id="844024417315027361" displayName="Locate Complete" text="@loc_844024417315027362"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="11824555372622943598" displayName="Locate the smuggler&apos;s contraband caches" optional="true" text="@loc_15373294129891630104" markerLabel="@loc_15373294129891630103" description="11824555372622943534"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+ <Objective id="4349723564883707397" title="@loc_15373294129891630105" optional="true">
+  <Descriptions>
+   <Desc id="4349723564883707398" displayName="Rescue Doctor Igwe" text="@loc_15373294129891630106"/>
+   <Desc id="4349723564883707456" displayName="Meet Doctor Igwe" text="@loc_15373294129891630107"/>
+   <Desc id="844024417315026437" displayName="Dr Igwe Complete" text="@loc_844024417315026438"/>
+   <Desc id="4349723564953276568" displayName="Doctor Igwe Died" text="@loc_4349723564953276569"/>
+   <Desc id="4349723564945763318" displayName="Doctor Igwe Suffocated" text="@loc_15373294129891630108"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564883707540" displayName="Rescue Dr. Igwe" optional="true" text="@loc_15373294129891630110" markerLabel="@loc_15373294129891630109" Location="1713490239386284337" description="4349723564883707398" timerLabel="@loc_4349723564950585252"/>
+   <Task id="4349723564955601952" displayName="Get Igwe Container Number" optional="true" text="@loc_4349723564955601953" Location="1713490239386284337" markerLabel="@loc_4349723564955602166" description="4349723564883707398"/>
+   <Task id="4349723564883707559" displayName="Meet Doctor Igwe" optional="true" text="@loc_15373294129891630114" markerLabel="@loc_15373294129891630113" Location="15659330456296333985" description="4349723564883707456"/>
+  </Tasks>
+  <Clues>
+   <Clue id="4349723564918795178" displayName="Container 2312" text="@loc_15373294129891630117"/>
+  </Clues>
+ </Objective>
+ <Objective id="4349723564885449573" title="@loc_15373294129891630118" optional="true">
+  <Descriptions>
+   <Desc id="4349723564885449574" displayName="Find Wedding Ring" text="@loc_15373294129891630119"/>
+   <Desc id="4349723564885449733" displayName="Deliver Wedding Ring" text="@loc_15373294129891630120"/>
+   <Desc id="844024417315025839" displayName="Wedding Ring Complete" text="@loc_844024417315025840"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564885449644" displayName="Find Wedding Ring" optional="false" text="@loc_15373294129891630122" markerLabel="@loc_15373294129891630121" description="4349723564885449574"/>
+   <Task id="4349723564885449686" displayName="Deliver Wedding Ring" optional="false" text="@loc_15373294129891630124" markerLabel="@loc_15373294129891630123" description="4349723564885449733"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+</Objectives>

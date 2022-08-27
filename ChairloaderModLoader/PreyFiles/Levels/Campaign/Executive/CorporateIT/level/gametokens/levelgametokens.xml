@@ -1,8 +1,0 @@
-<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/executive/corporateit">
- <GameToken Id="-407337014" Name="DeepStorage.PlayerIsInPurgeTube" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-1615583022" Name="DeepStorage.WeAreOn_DSMSQuestion01" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-1882214936" Name="DeepStorage.WeAreOn_DSMSQuestion02" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-121070210" Name="DeepStorage.DSMSDeadEnd" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-580738838" Name="DSLocked" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-566219007" Name="DeepStorage.HazardOn" Flags="4" Type="Bool" Value="false"/>
-</GameTokensLibrary>

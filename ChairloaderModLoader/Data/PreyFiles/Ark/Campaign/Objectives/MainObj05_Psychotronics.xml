@@ -1,0 +1,24 @@
+
+<Objectives>
+ <Objective id="844024417256731535" title="@loc_15373294129891630327" optional="false">
+  <Descriptions>
+   <Desc id="844024417256731536" displayName="Complete the exam" text="@loc_15373294129891630328"/>
+   <Desc id="844024417287220200" displayName="Exterminate the specimen" text="@loc_15373294129891630329"/>
+   <Desc id="11824555372667779925" displayName="Calibrate Psychoscope" text="@loc_15373294129891630330"/>
+   <Desc id="11824555372668540488" displayName="Collect neuromods from Dr. Kelstrup&apos;s office" text="@loc_15373294129891630331"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="11824555372632601902" displayName="Complete exam procedure" optional="true" text="@loc_15373294129891630333" markerLabel="@loc_15373294129891630332" Location="11824555372632688907"/>
+   <Task id="11824555372632602251" displayName="Exterminate Phantom" optional="false" text="@loc_15373294129891630334" Location="11824555372632688907"/>
+   <Task id="11824555372632691928" displayName="Investigate Goodall&apos;s quarters" optional="true" text="@loc_15373294129891630335"/>
+   <Task id="11824555372667780146" displayName="Scan Typhon xenomorphs to calibrate Psychoscope" optional="false" text="@loc_15373294129891630336" Location="11824555372632688907"/>
+   <Task id="11824555372667780480" displayName="Proceed past Psychoscope calibration checkpoint" optional="false" text="@loc_15373294129891630337" Location="11824555372632688907"/>
+   <Task id="11824555372668540378" displayName="Collect neuromods from Dr. Kelstrup&apos;s office" optional="true" text="@loc_15373294129891630338" Location="11824555372632688907"/>
+  </Tasks>
+  <Clues>
+   <Clue id="11824555372643141674" displayName="MorgueAccess" text="@loc_15373294129891630339"/>
+   <Clue id="11824555372643148036" displayName="SearchDr.GallegosQuarters" text="@loc_15373294129891630340"/>
+   <Clue id="11824555372643148991" displayName="PsychotronicsLookingGlass" text="@loc_15373294129891630341"/>
+  </Clues>
+ </Objective>
+</Objectives>

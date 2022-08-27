@@ -1,0 +1,922 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Title>Audio script template</Title>
+  <Author>Susan Kath</Author>
+  <LastAuthor>Zach Haefner</LastAuthor>
+  <LastPrinted>2003-10-30T09:38:41Z</LastPrinted>
+  <Created>2002-06-17T19:14:00Z</Created>
+  <LastSaved>2016-09-12T15:22:05Z</LastSaved>
+  <Company>Arkane Studios</Company>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11010</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <TabRatio>274</TabRatio>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#666699" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+   <Interior ss:Color="#FFCC00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="134" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="271.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="343.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="329.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="160.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="177"/>
+   <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s65">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">KEY</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="s65">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains original text meant for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This contains text for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">set to &quot;LOCKED&quot; if this string is final.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Character limit for translated text.</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s71">
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s74">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Object interaction</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">open_door</Data></Cell>
+    <Cell><Data ss:Type="String">Open Door</Data></Cell>
+    <Cell><Data ss:Type="String">Open Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">close_door</Data></Cell>
+    <Cell><Data ss:Type="String">Close Door</Data></Cell>
+    <Cell><Data ss:Type="String">Close Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_ladder</Data></Cell>
+    <Cell><Data ss:Type="String">Use Ladder</Data></Cell>
+    <Cell><Data ss:Type="String">Use Ladder</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_door</Data></Cell>
+    <Cell><Data ss:Type="String">Use Door</Data></Cell>
+    <Cell><Data ss:Type="String">Use Door</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_object</Data></Cell>
+    <Cell><Data ss:Type="String">Use Object</Data></Cell>
+    <Cell><Data ss:Type="String">Use Object</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_carry</Data></Cell>
+    <Cell><Data ss:Type="String">Carry</Data></Cell>
+    <Cell><Data ss:Type="String">Carry</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_consume</Data></Cell>
+    <Cell><Data ss:Type="String">Consume</Data></Cell>
+    <Cell><Data ss:Type="String">Consume</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_pickup</Data></Cell>
+    <Cell><Data ss:Type="String">Take</Data></Cell>
+    <Cell><Data ss:Type="String">Take</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_ammo</Data></Cell>
+    <Cell><Data ss:Type="String">Take Ammo</Data></Cell>
+    <Cell><Data ss:Type="String">Take Ammo</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_hack</Data></Cell>
+    <Cell><Data ss:Type="String">Hack</Data></Cell>
+    <Cell><Data ss:Type="String">Hack</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_repair</Data></Cell>
+    <Cell><Data ss:Type="String">Repair</Data></Cell>
+    <Cell><Data ss:Type="String">Repair</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_fortify</Data></Cell>
+    <Cell><Data ss:Type="String">Fortify</Data></Cell>
+    <Cell><Data ss:Type="String">Fortify</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_climb</Data></Cell>
+    <Cell><Data ss:Type="String">%contextaction% Climb</Data></Cell>
+    <Cell><Data ss:Type="String">%contextaction% Climb</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_examine</Data></Cell>
+    <Cell><Data ss:Type="String">Examine</Data></Cell>
+    <Cell><Data ss:Type="String">Examine</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_npcfocus</Data></Cell>
+    <Cell><Data ss:Type="String">Examine</Data></Cell>
+    <Cell><Data ss:Type="String">Examine</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_tutorial</Data></Cell>
+    <Cell><Data ss:Type="String">Tutorial</Data></Cell>
+    <Cell><Data ss:Type="String">Tutorial</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_equip</Data></Cell>
+    <Cell><Data ss:Type="String">Equip</Data></Cell>
+    <Cell><Data ss:Type="String">Equip</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_error_standingonobject</Data></Cell>
+    <Cell><Data ss:Type="String">Blocked</Data></Cell>
+    <Cell><Data ss:Type="String">Blocked</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_error_inventoryfull</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;font color='#990000'&gt;Not Enough Space&lt;/font&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;font color='#990000'&gt;Not Enough Space&lt;/font&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_error_missingitem</Data></Cell>
+    <Cell><Data ss:Type="String">%item% (&lt;font color='#990000'&gt;%current%/%total%&lt;/font&gt;)</Data></Cell>
+    <Cell><Data ss:Type="String">%item% (&lt;font color='#990000'&gt;%current%/%total%&lt;/font&gt;)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_requireditems</Data></Cell>
+    <Cell><Data ss:Type="String">%item% (&lt;font color='#009900'&gt;%current%/%total%&lt;/font&gt;)</Data></Cell>
+    <Cell><Data ss:Type="String">%item% (&lt;font color='#009900'&gt;%current%/%total%&lt;/font&gt;)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_error_broken</Data></Cell>
+    <Cell><Data ss:Type="String">Broken</Data></Cell>
+    <Cell><Data ss:Type="String">Broken</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_press</Data></Cell>
+    <Cell><Data ss:Type="String">Press</Data></Cell>
+    <Cell><Data ss:Type="String">Press</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_hold</Data></Cell>
+    <Cell><Data ss:Type="String">Hold</Data></Cell>
+    <Cell><Data ss:Type="String">Hold</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_npc</Data></Cell>
+    <Cell><Data ss:Type="String">Talk</Data></Cell>
+    <Cell><Data ss:Type="String">Talk</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">use_throw</Data></Cell>
+    <Cell><Data ss:Type="String">Throw</Data></Cell>
+    <Cell><Data ss:Type="String">Throw</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_search</Data></Cell>
+    <Cell><Data ss:Type="String">Search</Data></Cell>
+    <Cell><Data ss:Type="String">Search</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_read</Data></Cell>
+    <Cell><Data ss:Type="String">Read</Data></Cell>
+    <Cell><Data ss:Type="String">Read</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_board</Data></Cell>
+    <Cell><Data ss:Type="String">Board</Data></Cell>
+    <Cell><Data ss:Type="String">Board</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_turnon</Data></Cell>
+    <Cell><Data ss:Type="String">Turn On</Data></Cell>
+    <Cell><Data ss:Type="String">Turn On</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_turnoff</Data></Cell>
+    <Cell><Data ss:Type="String">Turn Off</Data></Cell>
+    <Cell><Data ss:Type="String">Turn Off</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_give_medicine</Data></Cell>
+    <Cell><Data ss:Type="String">Give Medicine</Data></Cell>
+    <Cell><Data ss:Type="String">Give Medicine</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_disarm</Data></Cell>
+    <Cell><Data ss:Type="String">Disarm</Data></Cell>
+    <Cell><Data ss:Type="String">Disarm</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">use_sitdown</Data></Cell>
+    <Cell><Data ss:Type="String">Sit Down</Data></Cell>
+    <Cell><Data ss:Type="String">Sit Down</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_hack_error</Data></Cell>
+    <Cell><Data ss:Type="String">%ability% Required</Data></Cell>
+    <Cell><Data ss:Type="String">%ability% Required</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_fabrication_error</Data></Cell>
+    <Cell><Data ss:Type="String">Error</Data></Cell>
+    <Cell><Data ss:Type="String">Error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_fabrication_requiresrepair</Data></Cell>
+    <Cell><Data ss:Type="String">Self-diagnostic complete: Fabricator requires repair.</Data></Cell>
+    <Cell><Data ss:Type="String">Self-diagnostic complete: Fabricator requires repair.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_playaudiolog</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %contextaction% to listen.</Data></Cell>
+    <Cell><Data ss:Type="String">Hold %contextaction% to listen.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_objectiveclue</Data></Cell>
+    <Cell><Data ss:Type="String">An objective clue has been added.&lt;br&gt;Press %contextaction% to view.</Data></Cell>
+    <Cell><Data ss:Type="String">An objective clue has been added.&lt;br&gt;Press %contextaction% to view.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_sneakAttack</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak attack for %1%% damage!</Data></Cell>
+    <Cell><Data ss:Type="String">Sneak attack for %1%% damage!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_criticalHit</Data></Cell>
+    <Cell><Data ss:Type="String">Critical attack against %1%!</Data></Cell>
+    <Cell><Data ss:Type="String">Critical attack against %1%!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_mimicHit</Data></Cell>
+    <Cell><Data ss:Type="String">Surprise attack on mimicked %1%!</Data></Cell>
+    <Cell><Data ss:Type="String">Surprise attack on mimicked %1%!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_HackingLevel</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking Level</Data></Cell>
+    <Cell><Data ss:Type="String">Hacking Level</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_EstablishSync</Data></Cell>
+    <Cell><Data ss:Type="String">Establishing Sync With:</Data></Cell>
+    <Cell><Data ss:Type="String">Establishing Sync With:</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_Progress</Data></Cell>
+    <Cell><Data ss:Type="String">Progress</Data></Cell>
+    <Cell><Data ss:Type="String">Progress</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_SuccessCaps</Data></Cell>
+    <Cell><Data ss:Type="String">SUCCESS</Data></Cell>
+    <Cell><Data ss:Type="String">SUCCESS</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_FailCaps</Data></Cell>
+    <Cell><Data ss:Type="String">FAIL</Data></Cell>
+    <Cell><Data ss:Type="String">FAIL</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_StartCaps</Data></Cell>
+    <Cell><Data ss:Type="String">START</Data></Cell>
+    <Cell><Data ss:Type="String">START</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_LiveAudio</Data></Cell>
+    <Cell><Data ss:Type="String">Live</Data></Cell>
+    <Cell><Data ss:Type="String">Live</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_RecordedAudio</Data></Cell>
+    <Cell><Data ss:Type="String">Pre-Recorded</Data></Cell>
+    <Cell><Data ss:Type="String">Pre-Recorded</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_lean</Data></Cell>
+    <Cell><Data ss:Type="String">Lean</Data></Cell>
+    <Cell><Data ss:Type="String">Lean</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_roll</Data></Cell>
+    <Cell><Data ss:Type="String">Roll</Data></Cell>
+    <Cell><Data ss:Type="String">Roll</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_brake</Data></Cell>
+    <Cell><Data ss:Type="String">Brake</Data></Cell>
+    <Cell><Data ss:Type="String">Brake</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_nopsipowers</Data></Cell>
+    <Cell><Data ss:Type="String">I can't remember…</Data></Cell>
+    <Cell><Data ss:Type="String">I can't remember…</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_Error_PsiBlocked</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Nullified</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Nullified</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_goto</Data></Cell>
+    <Cell><Data ss:Type="String">Go to </Data></Cell>
+    <Cell><Data ss:Type="String">Go to </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_areyousure</Data></Cell>
+    <Cell><Data ss:Type="String">Are you sure?</Data></Cell>
+    <Cell><Data ss:Type="String">Are you sure?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_LabelWithDistance</Data></Cell>
+    <Cell><Data ss:Type="String">%1% (%2%m)</Data></Cell>
+    <Cell><Data ss:Type="String">%1% (%2%m)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_eat</Data></Cell>
+    <Cell><Data ss:Type="String">Eat</Data></Cell>
+    <Cell><Data ss:Type="String">Eat</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="66">
+    <Cell><Data ss:Type="String">ui_ChargeTrapDisplayName</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler Charge Trap</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler Charge Trap</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_ChargeTrapDisplayNameBroken</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler Charge Trap (Armed)</Data></Cell>
+    <Cell><Data ss:Type="String">Recycler Charge Trap (Armed)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="69">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Scanning/Research</Data></Cell>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s74"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ui_MimicResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Mimic Research</Data></Cell>
+    <Cell><Data ss:Type="String">Mimic Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_BasePhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_VoltaicPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Voltaic Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Voltaic Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_ThermalPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Thermal Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_KineticPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Kinetic Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Kinetic Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_EtherPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Etheric Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Etheric Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_VampiricPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Vampiric Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Vampiric Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_SolarPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Solar Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Solar Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_GraviticPhantomResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Gravitic Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">Gravitic Phantom Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_NightmareResearch</Data></Cell>
+    <Cell><Data ss:Type="String">Nightmare Research</Data></Cell>
+    <Cell><Data ss:Type="String">Nightmare Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TelepathA</Data></Cell>
+    <Cell><Data ss:Type="String">Telepath Research</Data></Cell>
+    <Cell><Data ss:Type="String">Telepath Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_TelepathB</Data></Cell>
+    <Cell><Data ss:Type="String">Technopath Research</Data></Cell>
+    <Cell><Data ss:Type="String">Technopath Research</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanUpdateMessage</Data></Cell>
+    <Cell><Data ss:Type="String">Scanning…</Data></Cell>
+    <Cell><Data ss:Type="String">Scanning…</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanTargetAbilityEvent</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Event Recorded</Data></Cell>
+    <Cell><Data ss:Type="String">Psionic Event Recorded</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanCompleteAbility</Data></Cell>
+    <Cell><Data ss:Type="String">Scan Completed - %1% Available</Data></Cell>
+    <Cell><Data ss:Type="String">Scan Completed - %1% Available</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanComplete</Data></Cell>
+    <Cell><Data ss:Type="String">Scan Completed</Data></Cell>
+    <Cell><Data ss:Type="String">Scan Completed</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_researchCaps</Data></Cell>
+    <Cell><Data ss:Type="String">RESEARCH</Data></Cell>
+    <Cell><Data ss:Type="String">RESEARCH</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_researchCompleteCaps</Data></Cell>
+    <Cell><Data ss:Type="String">RESEARCH COMPLETE</Data></Cell>
+    <Cell><Data ss:Type="String">RESEARCH COMPLETE</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_researchTopicCompleteAbility</Data></Cell>
+    <Cell><Data ss:Type="String">Research Complete - %1% Available</Data></Cell>
+    <Cell><Data ss:Type="String">Research Complete - %1% Available</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_researchTopicComplete</Data></Cell>
+    <Cell><Data ss:Type="String">Research Complete</Data></Cell>
+    <Cell><Data ss:Type="String">Research Complete</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_unscannedTargetName</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanLock</Data></Cell>
+    <Cell><Data ss:Type="String">%contextaction% to lock</Data></Cell>
+    <Cell><Data ss:Type="String">%contextaction% to lock</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scannerUnavailable</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoscope Unavailable</Data></Cell>
+    <Cell><Data ss:Type="String">Psychoscope Unavailable</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanError_OutOfRange</Data></Cell>
+    <Cell><Data ss:Type="String">Target Out of Psychoscope Range</Data></Cell>
+    <Cell><Data ss:Type="String">Target out of Psychoscope Range</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_scanError_Dead</Data></Cell>
+    <Cell><Data ss:Type="String">Live Specimen Required for Scanning</Data></Cell>
+    <Cell><Data ss:Type="String">Live Specimen Required for Scanning</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_alreadyscanned</Data></Cell>
+    <Cell><Data ss:Type="String">No New Data</Data></Cell>
+    <Cell><Data ss:Type="String">No New Data</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_researchrequirement</Data></Cell>
+    <Cell><Data ss:Type="String">Research Missing</Data></Cell>
+    <Cell><Data ss:Type="String">Research Missing</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_researchnotes</Data></Cell>
+    <Cell><Data ss:Type="String">Ricardo Fill This Out</Data></Cell>
+    <Cell><Data ss:Type="String">Ricardo Fill This Out</Data></Cell>
+   </Row>
+   <Row ss:Index="99">
+    <Cell ss:StyleID="s75"><Data ss:Type="String">In Game Messages</Data></Cell>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s74"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_FabricationLicenseRevoked_Heading</Data></Cell>
+    <Cell><Data ss:Type="String">&gt;ERROR&lt;</Data></Cell>
+    <Cell><Data ss:Type="String">&gt;ERROR&lt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5">
+    <Cell><Data ss:Type="String">ui_FabricationLicenseRevoked_Body</Data></Cell>
+    <Cell><Data ss:Type="String">Fabrication Plan DRM Does Not Match Security Key! For Authorization Contact Halden Graves.</Data></Cell>
+    <Cell><Data ss:Type="String">Fabrication Plan DRM Does Not Match Security Key! For Authorization Contact Halden Graves.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Summon</Data></Cell>
+    <Cell><Data ss:Type="String">Request Operator</Data></Cell>
+    <Cell><Data ss:Type="String">Request Operator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Maxed</Data></Cell>
+    <Cell><Data ss:Type="String">Maxed</Data></Cell>
+    <Cell><Data ss:Type="String">Maxed</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Remaining</Data></Cell>
+    <Cell><Data ss:Type="String">%1%s Remaining</Data></Cell>
+    <Cell><Data ss:Type="String">%1%s Remaining</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Processing</Data></Cell>
+    <Cell><Data ss:Type="String">Processing</Data></Cell>
+    <Cell><Data ss:Type="String">Processing</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Error</Data></Cell>
+    <Cell><Data ss:Type="String">Error</Data></Cell>
+    <Cell><Data ss:Type="String">Error</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Title</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Error_Blocked</Data></Cell>
+    <Cell><Data ss:Type="String">Dispense Panel Blocked</Data></Cell>
+    <Cell><Data ss:Type="String">Dispense Panel Blocked</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Error_LifetimeLimit</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum Lifetime Operators Reached</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum Lifetime Operators Reached</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Error_Limit</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum Concurrent Operators Reached</Data></Cell>
+    <Cell><Data ss:Type="String">Maximum Concurrent Operators Reached</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_Overridden</Data></Cell>
+    <Cell><Data ss:Type="String">Overridden</Data></Cell>
+    <Cell><Data ss:Type="String">Overridden</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenser_TitleCaps</Data></Cell>
+    <Cell><Data ss:Type="String">OPERATOR DISPENSER</Data></Cell>
+    <Cell><Data ss:Type="String">OPERATOR DISPENSER</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenserName</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_OperatorDispenserNameBroken</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser (Broken)</Data></Cell>
+    <Cell><Data ss:Type="String">Operator Dispenser (Broken)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PropulsionNotResponding</Data></Cell>
+    <Cell><Data ss:Type="String">Propulsion System Not Responding</Data></Cell>
+    <Cell><Data ss:Type="String">Propulsion System Not Responding</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_lastChance</Data></Cell>
+    <Cell><Data ss:Type="String">Last Chance Chipset Activated</Data></Cell>
+    <Cell><Data ss:Type="String">Last Chance Chipset Activated</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_PsiHypoUsed</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Hypo Used</Data></Cell>
+    <Cell><Data ss:Type="String">Psi Hypo Used</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_DFAchipsetUsed</Data></Cell>
+    <Cell><Data ss:Type="String">DFA Chipset Activated</Data></Cell>
+    <Cell><Data ss:Type="String">DFA Chipset Activated</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">UI_NoFood</Data></Cell>
+    <Cell><Data ss:Type="String">No Food in Inventory</Data></Cell>
+    <Cell><Data ss:Type="String">No Food in Inventory</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_OutOfRange</Data></Cell>
+    <Cell><Data ss:Type="String">Out of Range</Data></Cell>
+    <Cell><Data ss:Type="String">Out of Range</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_TargetLost</Data></Cell>
+    <Cell><Data ss:Type="String">Target Lost</Data></Cell>
+    <Cell><Data ss:Type="String">Target Lost</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_WeaponDisrupted</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Offline</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Offline</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell><Data ss:Type="String">ui_WeaponMalfunction</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Malfunction</Data></Cell>
+    <Cell><Data ss:Type="String">Weapon Malfunction</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="12"/>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">QuickSelect</Data></Cell>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s74"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_Assign</Data></Cell>
+    <Cell><Data ss:Type="String">ASSIGN</Data></Cell>
+    <Cell><Data ss:Type="String">ASSIGN</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_Empty</Data></Cell>
+    <Cell><Data ss:Type="String">EMPTY</Data></Cell>
+    <Cell><Data ss:Type="String">EMPTY</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_InventoryFull</Data></Cell>
+    <Cell><Data ss:Type="String">Inventory Full</Data></Cell>
+    <Cell><Data ss:Type="String">Inventory Full</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_InventoryOverflow</Data></Cell>
+    <Cell><Data ss:Type="String">Inventory Overflow</Data></Cell>
+    <Cell><Data ss:Type="String">Inventory Overflow</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="131">
+    <Cell><Data ss:Type="String">ui_SubtitleNameSeperator</Data></Cell>
+    <Cell><Data ss:Type="String">:</Data></Cell>
+    <Cell><Data ss:Type="String">:</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ui_pdatimestamp</Data></Cell>
+    <Cell><Data ss:Type="String">%m.%d.%y %I:%M %p</Data></Cell>
+    <Cell><Data ss:Type="String">%m.%d.%y %I:%M %p</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:Index="134">
+    <Cell><Data ss:Type="String">UI_RELAUNCHWHIPLASH</Data></Cell>
+    <Cell><Data ss:Type="String">Launch Prey: Mooncrash</Data></Cell>
+    <Cell><Data ss:Type="String">Launch Prey: Mooncrash</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Margin="0.51181102362204722"
+     x:Data="&amp;LTime restriction sample script"/>
+    <Footer x:Margin="0.51181102362204722" x:Data="Page &amp;P"/>
+    <PageMargins x:Bottom="0.98425196850393704" x:Left="0" x:Right="0"
+     x:Top="0.98425196850393704"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>70</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <TopRowVisible>108</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>141</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

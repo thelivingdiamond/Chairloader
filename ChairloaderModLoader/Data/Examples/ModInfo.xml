@@ -1,0 +1,7 @@
+<Mod modName="Example Mod" version="1.0" hasDLL="false" hasXML="true" author="The Chair">
+    <ArchetypeLibraries>
+        <ArchetypeLibrary>ArkNpcs.xml</ArchetypeLibrary>
+        <ArchetypeLibrary>ExampleMod.xml</ArchetypeLibrary>
+    </ArchetypeLibraries>
+    <!-- TODO: Add other novel-loadable libraries to this document -->
+</Mod>

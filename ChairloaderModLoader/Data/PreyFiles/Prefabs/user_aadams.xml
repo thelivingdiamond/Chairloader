@@ -1,0 +1,66 @@
+
+<PrefabsLibrary Name="user_AAdams">
+ <Prefab Name="Tests.Chair_Spin_Test" Id="{38FE4983-1A2C-43C1-BF87-05A1A41A8C65}" Library="user_AAdams">
+  <Objects>
+   <Object Type="Entity" Layer="Main" LayerGUID="{DC27B715-C417-458A-B984-18654D950DB5}" Id="{BAAE9080-2734-40EB-8F5C-C5D35EBD9D2A}" Name="RigidBodyEx4" Pos="0.30004883,0.39990234,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="RigidBodyEx">
+    <Properties bCanTriggerAreas="0" carryHeightOffset="0" ability_CarryRequirement="" bDamagesPlayerOnCollisionSP="0" textDisplayName="Name Not Set" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bGooCannotAttachInGravity="0" bHeavyObject="0" bHideDisplayName="0" bInteractiveCollision="0" bInteractLargeObject="0" bIsCarryable="1" bIsMimicable="1" bMissionCritical="0" object_Model="objects/user/aadams/chair_spin_test/chair_spin_top.cgf" bPickable="0" bSerialize="0" soclasses_SmartObjectClass="" vector_ThrowAngularImpulse="-10,0,0" ei_TransparencyMode="0" bUsable="0" UseMessage="">
+     <AI bUsedAsDynamicObstacle="1"/>
+     <carryDirection x="0" y="0" z="0"/>
+     <CarryHoldDuration LeverageI="0.75" LeverageII="1.25" LeverageIII="1.75"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bActivateOnDamage="0" bCanBreakOthers="0" Density="-1" Mass="20" bPhysicalize="1" bPushableByAI="1" bPushableByPlayers="1" bResting="1" bRigidBody="1" bRigidBodyActive="1">
+      <Buoyancy water_damping="0" water_density="1000" water_resistance="1000"/>
+      <CGFPropsOverride player_can_break="">
+       <Constraint constraint_collides="" constraint_damping="" constraint_limit="" constraint_maxang="" constraint_minang=""/>
+       <Deformable explosion_scale="" hardness="" max_impulse="" max_stretch="" skin_dist="" stiffness="" thickness=""/>
+       <Joint bend="" limit="" pull="" push="" shift="" twist=""/>
+      </CGFPropsOverride>
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+      </CollisionFiltering>
+      <ForeignData bMovingPlatform="0"/>
+      <Simulation damping="0" bFixedDamping="0" max_time_step="0.02" sleep_speed="0.04" bUseSimpleSolver="0"/>
+     </Physics>
+     <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+     <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+     <Sound audioTrigger_Carry="" audioTrigger_HoldCarryCancel="" audioTrigger_HoldCarryStart=""/>
+    </Properties>
+    <Properties2 bUsedAsDynamicObstacle="1"/>
+   </Object>
+   <Object Type="Entity" Layer="Main" LayerGUID="{DC27B715-C417-458A-B984-18654D950DB5}" Id="{15BA993C-F29C-4663-B535-630CAB235634}" Name="RigidBodyEx3" Pos="0.29980469,0.40002441,-3.0517578e-005" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="RigidBodyEx">
+    <Properties bCanTriggerAreas="0" carryHeightOffset="0" ability_CarryRequirement="" bDamagesPlayerOnCollisionSP="0" textDisplayName="Name Not Set" DmgFactorWhenCollidingAI="1" bExcludeCover="0" esFaction="" bGooCannotAttachInGravity="0" bHeavyObject="0" bHideDisplayName="0" bInteractiveCollision="0" bInteractLargeObject="0" bIsCarryable="1" bIsMimicable="1" bMissionCritical="0" object_Model="objects/user/aadams/chair_spin_test/chair_spin_base.cgf" bPickable="0" bSerialize="0" soclasses_SmartObjectClass="" vector_ThrowAngularImpulse="-10,0,0" ei_TransparencyMode="0" bUsable="0" UseMessage="">
+     <AI bUsedAsDynamicObstacle="1"/>
+     <carryDirection x="0" y="0" z="0"/>
+     <CarryHoldDuration LeverageI="0.75" LeverageII="1.25" LeverageIII="1.75"/>
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <MultiplayerOptions bNetworked="0"/>
+     <Physics bActivateOnDamage="0" bCanBreakOthers="0" Density="-1" Mass="50" bPhysicalize="1" bPushableByAI="1" bPushableByPlayers="1" bResting="1" bRigidBody="1" bRigidBodyActive="1">
+      <Buoyancy water_damping="0" water_density="1000" water_resistance="1000"/>
+      <CGFPropsOverride player_can_break="">
+       <Constraint constraint_collides="" constraint_damping="" constraint_limit="" constraint_maxang="" constraint_minang=""/>
+       <Deformable explosion_scale="" hardness="" max_impulse="" max_stretch="" skin_dist="" stiffness="" thickness=""/>
+       <Joint bend="" limit="" pull="" push="" shift="" twist=""/>
+      </CGFPropsOverride>
+      <CollisionFiltering>
+       <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+       <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_large_kickable="0" bT_gcc_permeable="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+      </CollisionFiltering>
+      <ForeignData bMovingPlatform="0"/>
+      <Simulation damping="0" bFixedDamping="0" max_time_step="0.02" sleep_speed="0.04" bUseSimpleSolver="0"/>
+     </Physics>
+     <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+     <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+     <Sound audioTrigger_Carry="" audioTrigger_HoldCarryCancel="" audioTrigger_HoldCarryStart=""/>
+    </Properties>
+    <Properties2 bUsedAsDynamicObstacle="1"/>
+   </Object>
+   <Object Type="Entity" Layer="Main" LayerGUID="{DC27B715-C417-458A-B984-18654D950DB5}" Id="{7A034F29-B8BF-4A6A-8521-FB7DEBDB60C7}" Name="Constraint1" Pos="0.30004883,0.40002441,0.3999939" FloorNumber="-1" Rotate="0.70722896,0,-0.70698458,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="Constraint">
+    <Properties bConstrainFully="1" bConstrainToLine="0" bConstrainToPlane="0" damping="2" max_bend_torque="0" max_pull_force="0" bNoRotation="0" bNoSelfCollisions="1" radius="0.03" bUseEntityFrame="0">
+     <Limits x_max="180" x_min="-180" yz_max="0" yz_min="0"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

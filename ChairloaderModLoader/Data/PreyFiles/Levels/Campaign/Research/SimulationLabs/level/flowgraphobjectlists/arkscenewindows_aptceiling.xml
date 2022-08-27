@@ -1,0 +1,33 @@
+<Graph isModule="1" moduleName="ArkSceneWindows_AptCeiling" isObjectList="1" objectListClass="ArkSceneWindow" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkSceneWindow" pos="-260,-120,0" EntityGUID="{09019867-2A35-48E3-9B09-5AE6840776AA}" EntityGUID_64="48E32A3509019867">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="4" Class="entity:ArkSceneWindow" pos="-260,-95,0" EntityGUID="{67AC982E-5768-48C1-9CB4-B81471251C6B}" EntityGUID_64="48C1576867AC982E">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="6" Class="entity:ArkSceneWindow" pos="-260,-70,0" EntityGUID="{312F4E2F-5795-4EF5-BC41-E98DE65BF461}" EntityGUID_64="4EF55795312F4E2F">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="8" Class="entity:ArkSceneWindow" pos="-260,-45,0" EntityGUID="{17FA41A4-16C5-4F01-9F85-8499A93D861A}" EntityGUID_64="4F0116C517FA41A4">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="10" Class="entity:ArkSceneWindow" pos="-260,-20,0" EntityGUID="{86CCCCE2-028D-46FC-A19F-433F21CB123A}" EntityGUID_64="46FC028D86CCCCE2">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="12" Class="entity:ArkSceneWindow" pos="-260,5,0" EntityGUID="{660759A7-3F13-4468-A151-ECA5197F985F}" EntityGUID_64="44683F13660759A7">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="14" Class="entity:ArkSceneWindow" pos="-260,30,0" EntityGUID="{7E340F02-4DC0-4CEA-98E7-4944242ABB12}" EntityGUID_64="4CEA4DC07E340F02">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="16" Class="entity:ArkSceneWindow" pos="-260,55,0" EntityGUID="{51D63BFE-97BD-439D-9C9E-D954D9BDAB77}" EntityGUID_64="439D97BD51D63BFE">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+  <Node Id="18" Class="entity:ArkSceneWindow" pos="-260,80,0" EntityGUID="{836D599E-0AA2-43C0-A67E-5FD3A1DDBD54}" EntityGUID_64="43C00AA2836D599E">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

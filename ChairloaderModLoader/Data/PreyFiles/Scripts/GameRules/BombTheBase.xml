@@ -1,0 +1,47 @@
+
+<Mode name="BombTheBase">
+ <Spawning class="MPRSSpawning" teamGame="1" teamSpawnsType="Standard" usingLua="0"/>
+ <Scoring class="StandardScoring">
+  <Player>
+   <Event type="PlayerKill" points="50"/>
+   <Event type="PlayerTeamKill" points="-50"/>
+   <Event type="Suicide" points="-20"/>
+   <Event type="PlayerKillAssist" points="20"/>
+   <Event type="CarryObjectiveCompleted" points="150"/>
+   <Event type="CarryObjectiveDefended" points="100"/>
+   <Event type="CarryObjectiveTaken" points="20"/>
+   <Event type="CarryObjectiveCarrierKilled" points="100"/>
+  </Player>
+  <Team>
+   <Event type="BombTheBaseCompleted" points="1"/>
+  </Team>
+ </Scoring>
+ <ScoreRewards enabled="1"/>
+ <AssistScoring class="AssistScoring" maxTimeBetweenAttackAndKillForAssist="7000" maxAssistScore="99" assistScoreMultiplier="0.5"/>
+ <PlayerStats class="StandardPlayerStats"/>
+ <StatsRecording class="StandardStatsRecording"/>
+ <Teams class="StandardTwoTeams"/>
+ <State class="StandardState"/>
+ <VictoryConditions class="StandardVictoryConditionsTeam"/>
+ <PlayerSetup class="StandardSetup"/>
+ <DamageHandling class="MPDamageHandling">
+  <Table path="Scripts/GameRules/MPDamageTable.xml"/>
+ </DamageHandling>
+ <ActorAction class="MPActorAction"/>
+ <Spectator class="MPSpectator" eatsActorActions="1" enableFree="0" enableFollow="1" enableKiller="1" timeFromDeathTillAutoSpectate="5000"/>
+ <Objectives class="ProgressiveObjectives" teamBased="1">
+  <Stage>
+   <Objective type="Helper_NeutralSpawn" spawn="BTBBomb" spawnAt="BTBBombBase" maxAtOnce="1">
+    <Offset x="0.0" y="0.0" z="0.5"/>
+    <Reset onRemoved="1" onRemovedTime="5"/>
+   </Objective>
+   <Objective type="Helper_Carry" class="BTBBomb">
+    <Pickup type="Item"/>
+    <DroppedIcons neutral="EGRMO_PSL_CapturePoint_neutral" friendly="EGRMO_EXT_Weapon_blue" hostile="EGRMO_EXT_Weapon_red"/>
+    <CarriedIcons friendly="EGRMO_EXT_Weapon_carried_blue" hostile="EGRMO_EXT_Weapon_carried_red"/>
+    <Strings friendlyPickedUp="ui_msg_btb_pickedup_0" hostilePickedUp="ui_msg_btb_pickedup_1" friendlyDropped="ui_msg_btb_dropped_0" hostileDropped="ui_msg_btb_dropped_1"/>
+   </Objective>
+   <Objective type="Helper_Icon" class="BTBBombSite" friendlyIcon="28" hostileIcon="29"/>
+  </Stage>
+ </Objectives>
+</Mode>

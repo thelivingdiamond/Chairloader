@@ -1,0 +1,37 @@
+
+<Root>
+ <Campaign>
+  <Obj01_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj02_Elevator Name="Examine the Elevator" Description="Examine the Elevator."/>
+  <Obj03_MorgansOffice Name="Break Into Your Office" Description="Break into your office to locate the video."/>
+  <Obj04_GoToRDLift Name="Take the Lift to the DataCore" Description="Take the lift to the DataCore to retrieve the video backup."/>
+  <Obj05_GoToPsychotronics Name="Go To Psychotronics" Description="Go to Psychotronics to access the maintenance shaft."/>
+  <Obj06_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj07_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj08_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj09_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj10_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj11_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj12_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj13_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj14_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+  <Obj15_Report Name="Report to TranStar" Description="Report to the San Francisco branch of TranStar for training."/>
+ </Campaign>
+ <VS>
+  <Objective_01 Name="Escape Talos 1" Description="Escape Talos 1 Space Station before it self-destructs."/>
+  <Objective_02 Name="Get to the Escape Pods" Description="Get to the Escape Pods"/>
+  <Objective_03 Name="Meet Cmdr Dahl in Incubation Labs" Description="Meet Cmdr Dahl in Incubation Labs"/>
+  <Objective_04 Name="Investigate Cmdr Dahl&apos;s last-known location" Description="Investigate Cmdr Dahl&apos;s last-known location"/>
+  <Objective_05 Name="Retrieve Commander Dahl&apos;s Eyes (Head)" Description="Retrieve Commander Dahl&apos;s Eyes (Head)"/>
+  <Objective_06 Name="Open Incubation Bay Doors" Description="Open Incubation Bay Doors"/>
+  <Objective_07 Name="Exit Incubation to Station Exterior" Description="Exit Incubation to Station Exterior"/>
+  <Objective_08 Name="Approach Dahl and scan his biometrics" Description="Approach Dahl and scan his biometrics"/>
+  <Objective_08c Name="Search the wreckage for Dahl&apos;s head" Description="Find Cmdr Dahl&apos;s head in the floating debris cloud"/>
+  <Objective_09 Name="Re-enter Station via Lobby Airlock" Description="Re-enter Station via Lobby Airlock"/>
+  <Objective_09 Name="Make a Foam Gun" Description="Make a Foam Gun by colleting a fabrication plan and resources."/>
+  <Objective_10 Name="Find A Foam Gun Fabrication Plan" Description="Find A Foam Gun Fabrication Plan"/>
+  <Objective_11 Name="Collect enough resources" Description="Collect enough resources"/>
+  <Objective_08b Name="Replenish your oxygen supply" Description="Find an oxygen tank to replenish the supply in your suit"/>
+  <Objective_08c Name="Seek shelter from meteorite shower" Description="Seek shelter from incoming meteorite shower"/>
+ </VS>
+</Root>

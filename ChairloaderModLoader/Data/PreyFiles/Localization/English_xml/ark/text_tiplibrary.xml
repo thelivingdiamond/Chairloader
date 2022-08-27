@@ -1,0 +1,2039 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="449.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="738.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_15659330456356545333</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You wake up in your apartment in the year 2032...</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You wake up in your apartment in the year 2032...</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969950086</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">A mysterious contact named January is guiding you to the main lobby of this facility.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">A mysterious contact named January is guiding you to the main lobby of this facility.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969950180</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Technological marvels such as the Looking Glass terminals are prototyped and developed in the Hardware Labs.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Technological marvels such as the Looking Glass terminals are prototyped and developed in the Hardware Labs.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969950404</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Psychotronics lab was built around the Russian &lt;i&gt;Vorona I&lt;/i&gt; satellite that first encountered the Typhon ecology in 1959.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Psychotronics lab was built around the Russian &lt;i&gt;Vorona I&lt;/i&gt; satellite that first encountered the Typhon ecology in 1959.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969950768</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Gravity Utility Tunnel System, or G.U.T.S., is a microgravity environment used for maintenance and transporting cargo throughout the length of &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Gravity Utility Tunnel System, or G.U.T.S., is a microgravity environment used for maintenance and transporting cargo throughout the length of &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969950957</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Arboretum is a testament to both the technological and financial wealth of the TranStar corporation, providing an Earth-like environment for relaxation and reflection to &lt;i&gt;Talos I&lt;/i&gt; crew members.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Arboretum is a testament to both the technological and financial wealth of the TranStar corporation, providing an Earth-like environment for relaxation and reflection to &lt;i&gt;Talos I&lt;/i&gt; crew members.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969951224</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">In Crew Quarters, TranStar employees enjoy numerous amenities, including a Fitness Center, Theater, and the Yellow Tulip lounge. Employees are assigned either a grand suite, a modest cabin, or an efficient habitation pod according to their role.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">In Crew Quarters, TranStar employees enjoy numerous amenities, including a Fitness Center, Theater, and the Yellow Tulip lounge. Employees are assigned either a grand suite, a modest cabin, or an efficient habitation pod according to their role.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969951490</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Every bit of sensitive data generated aboard &lt;i&gt;Talos I&lt;/i&gt; is captured and backed up in Deep Storage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Every bit of sensitive data generated aboard &lt;i&gt;Talos I&lt;/i&gt; is captured and backed up in Deep Storage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969951567</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;i&gt;Talos I&lt;/i&gt; orbits the moon some 385,000 kilometers away from Earth. At 832 meters long, the &lt;i&gt;Talos I&lt;/i&gt; research facility is the largest known structure in space built by humankind.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;i&gt;Talos I&lt;/i&gt; orbits the moon some 385,000 kilometers away from Earth. At 832 meters long, the &lt;i&gt;Talos I&lt;/i&gt; research facility is the largest known structure in space built by humankind.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969951753</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">All supply shipments entering or leaving &lt;i&gt;Talos I&lt;/i&gt; must be processed through the Cargo Bay.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">All supply shipments entering or leaving &lt;i&gt;Talos I&lt;/i&gt; must be processed through the Cargo Bay.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969951972</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Life Support deck provides most of &lt;i&gt;Talos I&lt;/i&gt;&apos;s critical functions: power, air, and water treatment facilities. A failure of any one of these would prove catastrophic.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Life Support deck provides most of &lt;i&gt;Talos I&lt;/i&gt;&apos;s critical functions: power, air, and water treatment facilities. A failure of any one of these would prove catastrophic.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969952098</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Power Plant provides a clean and reliable source of fusion energy to &lt;i&gt;Talos I&lt;/i&gt;. Early models of the Superforge reactor experienced problems with stability and output, but are mostly resolved by careful maintenance and upkeep. Exterior solar panels provide auxiliary power.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Power Plant provides a clean and reliable source of fusion energy to &lt;i&gt;Talos I&lt;/i&gt;. Early models of the Superforge reactor experienced problems with stability and output, but are mostly resolved by careful maintenance and upkeep. Exterior solar panels provide auxiliary power.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969952277</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Shuttle Bay is the single point of ingress and egress for all TranStar personnel, visitors, and volunteers.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Shuttle Bay is the single point of ingress and egress for all TranStar personnel, visitors, and volunteers.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969952395</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Under the watchful gaze of Capt. Jada Marks, personnel on the Bridge oversee orbital station keeping, monitor space weather, and direct shuttle traffic and communications.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Under the watchful gaze of Capt. Jada Marks, personnel on the Bridge oversee orbital station keeping, monitor space weather, and direct shuttle traffic and communications.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969953017</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">A single mimic can quadruple itself after killing a human.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">A single mimic can quadruple itself after killing a human.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969954233</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Neuromods are used to install new human or Typhon abilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Neuromods are used to install new human or Typhon abilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969954256</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Morgan&apos;s invention of the Psychoscope allowed TranStar to study and eventually replicate Typhon psionic abilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Morgan&apos;s invention of the Psychoscope allowed TranStar to study and eventually replicate Typhon psionic abilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969954399</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Typhon Lure, or Nightlight, emits a type of &apos;psycholuminescent&apos; light that most Typhon lifeforms find irresistible.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Typhon Lure, or Nightlight, emits a type of &apos;psycholuminescent&apos; light that most Typhon lifeforms find irresistible.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969954632</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Nullwave Transmitter emits a short burst of psychic interferences which nullifies the ability of Typhon lifeforms to manifest psionic abilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Nullwave Transmitter emits a short burst of psychic interferences which nullifies the ability of Typhon lifeforms to manifest psionic abilities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969954835</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Psychoscope both protects the wearer from the more malicious telepathic abilities of the Typhon organisms and allows the user to research living and robotic entities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Psychoscope both protects the wearer from the more malicious telepathic abilities of the Typhon organisms and allows the user to research living and robotic entities.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969955014</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Weapon Kits can be used to tune and improve standard security weapons and non-standard tech weapons.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Weapon Kits can be used to tune and improve standard security weapons and non-standard tech weapons.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969955088</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Your TranStar uniform can take only so much abuse before suit integrity is compromised, resulting in reduced damage resistance.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Your TranStar uniform can take only so much abuse before suit integrity is compromised, resulting in reduced damage resistance.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969955245</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Recycler breaks downs objects into the four material components used by the Fabricator: Organic, Mineral, Synthetic, and Exotic.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Recycler breaks downs objects into the four material components used by the Fabricator: Organic, Mineral, Synthetic, and Exotic.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969955521</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Recycler Charge uses TranStar&apos;s Smart Field technology to pull in nearby objects that aren&apos;t bolted down and disintegrates them into the same component materials produced by the Recycler station.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Recycler Charge uses TranStar&apos;s Smart Field technology to pull in nearby objects that aren&apos;t bolted down and disintegrates them into the same component materials produced by the Recycler station.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969955785</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Some hazards and attacks will damage your TranStar uniform. Suit Repair Kits and Engineering Operators are all ways to keep your gear in good working condition.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Some hazards and attacks will damage your TranStar uniform. Suit Repair Kits and Engineering Operators are all ways to keep your gear in good working condition.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969955849</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Accumulating radiation eventually leads to Radiation Sickness. Symptoms include slow health regeneration, less stamina, and stumbling. Eating will also no longer grant Well Fed.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Accumulating radiation eventually leads to Radiation Sickness. Symptoms include slow health regeneration, less stamina, and stumbling. Eating will also no longer grant Well Fed.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969961969</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Swinging the wrench and sprinting drains stamina. Depleting stamina causes fatigue, which prevents sprinting and reduces the effectiveness of the wrench.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Swinging the wrench and sprinting drains stamina. Depleting stamina causes fatigue, which prevents sprinting and reduces the effectiveness of the wrench.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969962073</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Malfunctioning electrical junctions are dangerous hazards which can stun you and disrupt your equipment.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Malfunctioning electrical junctions are dangerous hazards which can stun you and disrupt your equipment.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969962116</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">There are often several ways to solve problems. Consider your options carefully when facing obstacles or opponents.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">There are often several ways to solve problems. Consider your options carefully when facing obstacles or opponents.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969962155</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">While sneaking, enemies take longer to notice you. Attacking an unaware enemy results in significantly more damage than a normal attack.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">While sneaking, enemies take longer to notice you. Attacking an unaware enemy results in significantly more damage than a normal attack.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969962217</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Consuming alcohol briefly makes you hit harder with the wrench and negates fear but also causes reduced stamina, blurry vision, and stumbling. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Consuming alcohol briefly makes you hit harder with the wrench and negates fear but also causes reduced stamina, blurry vision, and stumbling. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969962264</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Some Typhon trigger a powerful Fear effect which can disturb your vision and movement abilities. Alcohol can mitigate some of these effects.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Some Typhon trigger a powerful Fear effect which can disturb your vision and movement abilities. Alcohol can mitigate some of these effects.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216969962360</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Eating nutritious foods produced by TranStar Kitchens results in being Well Fed, which slowly regenerates health and increases stamina recovery.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Eating nutritious foods produced by TranStar Kitchens results in being Well Fed, which slowly regenerates health and increases stamina recovery.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972384966</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Q-Beam is a non-standard tech weapon that excites matter to the point of critical rupture. In other words, it makes enemies explode violently and inflict damage to everything nearby.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Q-Beam is a non-standard tech weapon that excites matter to the point of critical rupture. In other words, it makes enemies explode violently and inflict damage to everything nearby.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972385663</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Huntress Boltcaster is an unlikely combat tool, but can be used to remotely trigger traps, distract enemies, or interact with screens and buttons. It&apos;s also good at annoying TranStar personnel.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Huntress Boltcaster is an unlikely combat tool, but can be used to remotely trigger traps, distract enemies, or interact with screens and buttons. It&apos;s also good at annoying TranStar personnel.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972385981</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Pistol has a built in silencer which makes it an ideal weapon for use in enclosed spaces where discretion is required.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Pistol has a built in silencer which makes it an ideal weapon for use in enclosed spaces where discretion is required.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972386061</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The EMP charge is a useful tool for temporarily disrupting powered systems such as electrical junctions or hostile Operators.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The EMP charge is a useful tool for temporarily disrupting powered systems such as electrical junctions or hostile Operators.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972386155</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Though not originally considered in the specification requirements of the wrench, it functions very well as an improvised weapon. Quick striking with the wrench deals less damage but consumes less stamina than winding up for a heavy blow.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Though not originally considered in the specification requirements of the wrench, it functions very well as an improvised weapon. Quick striking with the wrench deals less damage but consumes less stamina than winding up for a heavy blow.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972386688</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Disruptor Stun Gun renders human targets unconscious and can also temporarily disable electronic systems or momentarily immobilize alien threats.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Disruptor Stun Gun renders human targets unconscious and can also temporarily disable electronic systems or momentarily immobilize alien threats.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972392601</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The GLOO Cannon has many applications useful for survival on a space station: sealing leaks, extinguishing fires, and insulating electrical hazards. But GLOO&apos;s molecular makeup is vitreophobic - it cannot adhere to glass.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The GLOO Cannon has many applications useful for survival on a space station: sealing leaks, extinguishing fires, and insulating electrical hazards. But GLOO&apos;s molecular makeup is vitreophobic - it cannot adhere to glass.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972395114</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Use a stealthy approach to scan the Typhon with your Psychoscope. Alternatively, immobilize them first with the Disruptor Stun Gun or GLOO Cannon.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Use a stealthy approach to scan the Typhon with your Psychoscope. Alternatively, immobilize them first with the Disruptor Stun Gun or GLOO Cannon.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972395425</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Fire and electrical hazards can be extremely dangerous - for both you and your enemies.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Fire and electrical hazards can be extremely dangerous - for both you and your enemies.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972395669</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You can install Chipsets in your TranStar uniform and Psychoscope. Chipsets augment or modify your existing capabilities and can dramatically change how you approach obstacles.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You can install Chipsets in your TranStar uniform and Psychoscope. Chipsets augment or modify your existing capabilities and can dramatically change how you approach obstacles.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972396283</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Psychoscope allows you to observe and mark targets at a distance. Marking enemies is useful for maintaining positional awareness, especially when trying to avoid a direct confrontation.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Psychoscope allows you to observe and mark targets at a distance. Marking enemies is useful for maintaining positional awareness, especially when trying to avoid a direct confrontation.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972396547</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Voltaic Phantom emits dangerous electrical arcs that damage, stun, and disrupt electronic equipment.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Voltaic Phantom emits dangerous electrical arcs that damage, stun, and disrupt electronic equipment.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972396673</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Thermal Phantom can create a column of superheated plasma on your position or shroud itself in fire, making close-ranged attacks inadvisable.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Thermal Phantom can create a column of superheated plasma on your position or shroud itself in fire, making close-ranged attacks inadvisable.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972397022</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">When confronted by a difficult opponent, sometimes the best option is to run. Consider your resources and choose your battleground wisely.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">When confronted by a difficult opponent, sometimes the best option is to run. Consider your resources and choose your battleground wisely.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972397542</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cystoids are blind and deaf but respond to motion by giving chase and exploding near their target. You can save ammo by tossing decoys.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Cystoids are blind and deaf but respond to motion by giving chase and exploding near their target. You can save ammo by tossing decoys.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972397561</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Apex Typhon&apos;s tendrils are extremely lethal, disintegrating, and leeching the psionic essence out of anything they come into contact with. Like cystoids, they seem to be attracted to motion.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Apex Typhon&apos;s tendrils are extremely lethal, disintegrating, and leeching the psionic essence out of anything they come into contact with. Like cystoids, they seem to be attracted to motion.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972397820</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Shotgun is extremely destructive at close range but a poor choice for long range targets.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Shotgun is extremely destructive at close range but a poor choice for long range targets.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972398054</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Silenced Pistol can fire as quickly as you can pull the trigger and is effective at close to medium ranges. At long distances, however, firepower is diminished.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Silenced Pistol can fire as quickly as you can pull the trigger and is effective at close to medium ranges. At long distances, however, firepower is diminished.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972398288</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Typhon will investigate suspicious noises. Sneak past them or lead them into ambushes by throwing objects, using devices such as Typhon Lures, or activating powers such as Phantom Shift.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Typhon will investigate suspicious noises. Sneak past them or lead them into ambushes by throwing objects, using devices such as Typhon Lures, or activating powers such as Phantom Shift.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972399054</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Locking a door is a valid strategy for keeping your enemies at bay or trapping them.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Locking a door is a valid strategy for keeping your enemies at bay or trapping them.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972399607</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Friendly TranStar Operators are at your service. Medical Operators can heal you and remove harmful traumas. Engineering Operators restore your TranStar uniform&apos;s integrity. Science Operators can replenish your psi pool.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Friendly TranStar Operators are at your service. Medical Operators can heal you and remove harmful traumas. Engineering Operators restore your TranStar uniform&apos;s integrity. Science Operators can replenish your psi pool.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972399913</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Friendly Operators can be summoned from the Operator Dispensers distributed throughout &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Friendly Operators can be summoned from the Operator Dispensers distributed throughout &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400077</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">In addition to increasing your throwing strength, each level of Leverage allows you to move quicker while carrying heavy objects.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">In addition to increasing your throwing strength, each level of Leverage allows you to move quicker while carrying heavy objects.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400180</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Security turrets can be fortified with Repair III, doubling their ability to soak damage from enemies.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Security turrets can be fortified with Repair III, doubling their ability to soak damage from enemies.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400314</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Lift ability is a useful crowd control tool but can also help you reach high spaces or accelerate quickly in microgravity environments.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Lift ability is a useful crowd control tool but can also help you reach high spaces or accelerate quickly in microgravity environments.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400477</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Mimic Matter is a useful way to sneak past enemies or escape combat. It can also be a used to squeeze through otherwise inaccessible spaces.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Mimic Matter is a useful way to sneak past enemies or escape combat. It can also be a used to squeeze through otherwise inaccessible spaces.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400684</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Operators and Turrets are resistant to fire, but vulnerable to electricity-based attacks and hacking.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Operators and Turrets are resistant to fire, but vulnerable to electricity-based attacks and hacking.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400715</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Difficulty can be changed at any time via the Gameplay Options menu without consequence.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Difficulty can be changed at any time via the Gameplay Options menu without consequence.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972400946</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You can create a Quicksave at any time via the pause menu.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">You can create a Quicksave at any time via the pause menu.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972401781</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Disruptor Stun Gun takes time to build up a charge before it can be fired at a target. The charge can be cancelled without expending battery.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Disruptor Stun Gun takes time to build up a charge before it can be fired at a target. The charge can be cancelled without expending battery.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972455228</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Poltergeist remains invisible except when it attacks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Poltergeist remains invisible except when it attacks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972455242</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Psychovoltaic Phantoms can supercharge mimics they summon with arcing electricity. Charged Mimics are invulnerable to electrical damage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Psychovoltaic Phantoms can supercharge mimics they summon with arcing electricity. Charged Mimics are invulnerable to electrical damage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972455699</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Enemies trapped by the GLOO Cannon are more vulnerable to physical attacks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Enemies trapped by the GLOO Cannon are more vulnerable to physical attacks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972455903</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Stunned enemies are more vulnerable to most attacks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Stunned enemies are more vulnerable to most attacks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972456350</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Thermal Phantoms can summon Mimics and ignite them with an aura of super heated plasma before they attack. While ignited, Mimics are invulnerable to fire damage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Thermal Phantoms can summon Mimics and ignite them with an aura of super heated plasma before they attack. While ignited, Mimics are invulnerable to fire damage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972456529</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Medical Operators heal traumas and restore health, but a Corrupted Medical Operator will harm you.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Medical Operators heal traumas and restore health, but a Corrupted Medical Operator will harm you.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972456595</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Engineering Operators can restore the integrity of your TranStar uniform, but an Engineering Operator corrupted by the Typhon will try to destroy you... and your suit.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Engineering Operators can restore the integrity of your TranStar uniform, but an Engineering Operator corrupted by the Typhon will try to destroy you... and your suit.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972456675</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Science Operators will restore your psi points, but a Corrupted Science Operator will harm you.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Science Operators will restore your psi points, but a Corrupted Science Operator will harm you.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972456747</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar Medical Operators committed .0131 fewer surgical errors per patient when compared to the global average for human doctors. Human doctors still outperformed operators on bedside manner assessment, but only by a slim margin.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar Medical Operators committed .0131 fewer surgical errors per patient when compared to the global average for human doctors. Human doctors still outperformed operators on bedside manner assessment, but only by a slim margin.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972457151</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">N-CN9 &lt;i&gt;Blackbox&lt;/i&gt; Operators employ powerful military-grade lasers. Disabling the Operators before they can fire or taking cover is your best bet. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">N-CN9 &lt;i&gt;Blackbox&lt;/i&gt; Operators employ powerful military-grade lasers. Disabling the Operators before they can fire or taking cover is your best bet. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564947201718</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The TranStar Corporation is a global leader in many diverse fields ranging from medicine to robotics.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The TranStar Corporation is a global leader in many diverse fields ranging from medicine to robotics.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564947201917</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The &lt;i&gt;Talos I&lt;/i&gt; Space Station generates a magnetic field which shields personnel from dangerous cosmic rays and solar winds.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The &lt;i&gt;Talos I&lt;/i&gt; Space Station generates a magnetic field which shields personnel from dangerous cosmic rays and solar winds.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564947202699</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Neuromod abilities are produced by recording the neural connectomes of Earth&apos;s greatest athletes, artists, and thinkers.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Neuromod abilities are produced by recording the neural connectomes of Earth&apos;s greatest athletes, artists, and thinkers.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_4349723564947205026</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The TranStar Corporation is controlled by a powerful board of directors whose members keep their identities and motives obscured. Some are rumored to be over a century old thanks to TranStar life extension technology. William and Catherine Yu are the public faces of The Board.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The TranStar Corporation is controlled by a powerful board of directors whose members keep their identities and motives obscured. Some are rumored to be over a century old thanks to TranStar life extension technology. William and Catherine Yu are the public faces of The Board.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638147</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Neuromods have revolutionized human learning, but they are only available to the world&apos;s elite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Neuromods have revolutionized human learning, but they are only available to the world&apos;s elite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638192</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Performing an &apos;Apto-Regressive Neurotomy&apos; - removing a Neuromod - resets a person&apos;s memory to the day that Neuromod was first installed.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Performing an &apos;Apto-Regressive Neurotomy&apos; - removing a Neuromod - resets a person&apos;s memory to the day that Neuromod was first installed.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638222</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar rewards outstanding employees with bonus Neuromods, but reserves the right to perform an &apos;Apto-Regressive Neurotomy&apos; in order to remove them in the event of termination.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar rewards outstanding employees with bonus Neuromods, but reserves the right to perform an &apos;Apto-Regressive Neurotomy&apos; in order to remove them in the event of termination.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638328</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">While complex objects, such as weapons, tend to be less durable than their hand-made or machined counterparts, the speed and efficiency of the Fabricators is difficult to ignore.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">While complex objects, such as weapons, tend to be less durable than their hand-made or machined counterparts, the speed and efficiency of the Fabricators is difficult to ignore.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638355</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Recyclers break down objects into their component materials using a proprietary TranStar field technology. Since the Evacuation, Recycler use has primarily been restricted to extraterrestrial usage. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Recyclers break down objects into their component materials using a proprietary TranStar field technology. Since the Evacuation, Recycler use has primarily been restricted to extraterrestrial usage. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638458</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;i&gt;Talos I&lt;/i&gt; was designed to rival the wonders of the world and stand as a monument to TranStar&apos;s wealth and technological innovation.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;i&gt;Talos I&lt;/i&gt; was designed to rival the wonders of the world and stand as a monument to TranStar&apos;s wealth and technological innovation.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638492</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The &lt;i&gt;Kletka&lt;/i&gt; was the result of a joint U.S./Soviet effort during the Space Race and went on to form the dark core of &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The &lt;i&gt;Kletka&lt;/i&gt; was the result of a joint U.S./Soviet effort during the Space Race and went on to form the dark core of &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638523</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Specialized Operators assist TranStar personnel in many tasks, from routine maintenance to medical services.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Specialized Operators assist TranStar personnel in many tasks, from routine maintenance to medical services.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638542</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The existence of the Typhon is a long-kept secret from the general public.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The existence of the Typhon is a long-kept secret from the general public.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638576</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar offers death row inmates the opportunity to volunteer as test subjects in exchange for clemency.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar offers death row inmates the opportunity to volunteer as test subjects in exchange for clemency.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638633</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Although many Typhon varieties have been observed in captivity, the full scope of their ecology is unknown.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Although many Typhon varieties have been observed in captivity, the full scope of their ecology is unknown.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638663</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar&apos;s board of directors is made up of a shadowy group of international investors with holdings in numerous industries and governments across the globe.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TranStar&apos;s board of directors is made up of a shadowy group of international investors with holdings in numerous industries and governments across the globe.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638914</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;i&gt;Talos I&lt;/i&gt; is home to hundreds of the world&apos;s best scientists and innovators.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;i&gt;Talos I&lt;/i&gt; is home to hundreds of the world&apos;s best scientists and innovators.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638937</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The standard TranStar uniform is an extremely versatile space suit, capable of being modified for a wide variety of tasks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The standard TranStar uniform is an extremely versatile space suit, capable of being modified for a wide variety of tasks.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490638958</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Many of &lt;i&gt;Talos I&lt;/i&gt;&apos;s resources are manufactured and shipped from the moon.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Many of &lt;i&gt;Talos I&lt;/i&gt;&apos;s resources are manufactured and shipped from the moon.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639049</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Typhon were first discovered when mimics damaged the Soviet satellite, &lt;i&gt;Vorona I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The Typhon were first discovered when mimics damaged the Soviet satellite, &lt;i&gt;Vorona I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639075</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The majority of the crew aboard &lt;i&gt;Talos I&lt;/i&gt; have no idea what goes on inside Psychotronics or what is contained within the &lt;i&gt;Kletka&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">The majority of the crew aboard &lt;i&gt;Talos I&lt;/i&gt; have no idea what goes on inside Psychotronics or what is contained within the &lt;i&gt;Kletka&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639113</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1955&lt;/b&gt; - The Space Race begins when both the U.S. and Soviet Union make rival announcements about their intent to launch the first satellite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1955&lt;/b&gt; - The Space Race begins when both the U.S. and Soviet Union make rival announcements about their intent to launch the first satellite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639300</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1957&lt;/b&gt; - The Soviet Union launches &lt;i&gt;Sputnik 1&lt;/i&gt;, the world&apos;s first satellite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1957&lt;/b&gt; - The Soviet Union launches &lt;i&gt;Sputnik 1&lt;/i&gt;, the world&apos;s first satellite.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639334</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1958&lt;/b&gt; - The U.S. launches &lt;i&gt;Explorer 1&lt;/i&gt;, the first American satellite. Later that year, the Soviets secretly launch a deep space probe named &lt;i&gt;Vorona I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1958&lt;/b&gt; - The U.S. launches &lt;i&gt;Explorer 1&lt;/i&gt;, the first American satellite. Later that year, the Soviets secretly launch a deep space probe named &lt;i&gt;Vorona I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639774</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1960&lt;/b&gt; - The Soviet Union makes first contact with non-terrestrial organisms during what became known as the &lt;i&gt;Vorona I&lt;/i&gt; incident.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1960&lt;/b&gt; - The Soviet Union makes first contact with non-terrestrial organisms during what became known as the &lt;i&gt;Vorona I&lt;/i&gt; incident.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639795</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1962&lt;/b&gt; - The Soviet Union secretly approaches the United States for assistance with the Typhon threat. Publicly, the two countries announce a joint mission to the moon.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1962&lt;/b&gt; - The Soviet Union secretly approaches the United States for assistance with the Typhon threat. Publicly, the two countries announce a joint mission to the moon.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639851</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1963&lt;/b&gt; - The Americans and the Soviets launch the &lt;i&gt;Kletka&lt;/i&gt; program to study the Typhon, laying down the foundation for what would later become &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1963&lt;/b&gt; - The Americans and the Soviets launch the &lt;i&gt;Kletka&lt;/i&gt; program to study the Typhon, laying down the foundation for what would later become &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490639965</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1963&lt;/b&gt; - Wavering relationships lead to a failed assassination attempt on President John F. Kennedy and put a halt to the U.S./Soviet joint space program.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1963&lt;/b&gt; - Wavering relationships lead to a failed assassination attempt on President John F. Kennedy and put a halt to the U.S./Soviet joint space program.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640085</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1964&lt;/b&gt; - After wresting control of the &lt;i&gt;Kletka&lt;/i&gt; from the Soviets, the U.S. initiates Project Axiom in an attempt to generate new technology based on researching the Typhon organisms.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1964&lt;/b&gt; - After wresting control of the &lt;i&gt;Kletka&lt;/i&gt; from the Soviets, the U.S. initiates Project Axiom in an attempt to generate new technology based on researching the Typhon organisms.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640141</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1980&lt;/b&gt; - Faulty containment procedures result in the &lt;i&gt;Pobeg&lt;/i&gt; Incident, which leaves numerous scientists dead.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1980&lt;/b&gt; - Faulty containment procedures result in the &lt;i&gt;Pobeg&lt;/i&gt; Incident, which leaves numerous scientists dead.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640169</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1984&lt;/b&gt; - Shifting national priorities, staff fatalities, and a lack of concrete applications lead to the shuttering of Project Axiom. The &lt;i&gt;Kletka&lt;/i&gt; goes dormant.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;1984&lt;/b&gt; - Shifting national priorities, staff fatalities, and a lack of concrete applications lead to the shuttering of Project Axiom. The &lt;i&gt;Kletka&lt;/i&gt; goes dormant.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640193</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2005&lt;/b&gt; - Morgan Yu is born, child of a German tech entrepreneur and distinguished Chinese neuroscientist.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2005&lt;/b&gt; - Morgan Yu is born, child of a German tech entrepreneur and distinguished Chinese neuroscientist.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640249</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2025&lt;/b&gt; - The &lt;i&gt;Kletka&lt;/i&gt; is privatized, shifting from government control to the hands of a cabal of international investors. TranStar and &lt;i&gt;Talos I&lt;/i&gt; are born. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2025&lt;/b&gt; - The &lt;i&gt;Kletka&lt;/i&gt; is privatized, shifting from government control to the hands of a cabal of international investors. TranStar and &lt;i&gt;Talos I&lt;/i&gt; are born. </Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640291</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2025&lt;/b&gt; - Alex Yu is appointed CEO of TranStar and Director of Research aboard the new &lt;i&gt;Talos I&lt;/i&gt; space station.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2025&lt;/b&gt; - Alex Yu is appointed CEO of TranStar and Director of Research aboard the new &lt;i&gt;Talos I&lt;/i&gt; space station.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640312</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2030&lt;/b&gt; - The first successful Neuromod technology is derived from research aboard &lt;i&gt;Talos I&lt;/i&gt;. Human learning is revolutionized.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2030&lt;/b&gt; - The first successful Neuromod technology is derived from research aboard &lt;i&gt;Talos I&lt;/i&gt;. Human learning is revolutionized.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640393</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2032&lt;/b&gt; - Morgan Yu is recruited as co-director of research and development aboard &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2032&lt;/b&gt; - Morgan Yu is recruited as co-director of research and development aboard &lt;i&gt;Talos I&lt;/i&gt;.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_418270515490640415</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2034&lt;/b&gt; - Morgan Yu volunteers to be the subject of his own experiments to test new Typhon-based Neuromods.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">&lt;b&gt;2034&lt;/b&gt; - Morgan Yu volunteers to be the subject of his own experiments to test new Typhon-based Neuromods.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_3149325216972744858</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Humans rescued from Typhon mind control will eventually wake up and make their way to safety.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Humans rescued from Typhon mind control will eventually wake up and make their way to safety.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_13680621263410485064</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">If a frontal assault isn&apos;t working, trying disabling your enemy first. The Disruptor Stungun, GLOO, EMP Charges, Nullwave Transmitters, and the Psychoshock ability are all potential means of weakening or disabling tough opponents before taking them out.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">If a frontal assault isn&apos;t working, trying disabling your enemy first. The Disruptor Stungun, GLOO, EMP Charges, Nullwave Transmitters, and the Psychoshock ability are all potential means of weakening or disabling tough opponents before taking them out.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_13680621263410485111</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Nullwave Transmitters and the Psychoshock power temporarily block a Typhon from using psionic powers.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Nullwave Transmitters and the Psychoshock power temporarily block a Typhon from using psionic powers.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_13680621263410485259</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">If GLOO doesn&apos;t work to immobilize an opponent, switch tactics. The Lift Field power, Disruptor Stungun and Typhon Lure are alternate ways to lock down or distract enemies.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">If GLOO doesn&apos;t work to immobilize an opponent, switch tactics. The Lift Field power, Disruptor Stungun and Typhon Lure are alternate ways to lock down or distract enemies.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_13680621263410485327</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Mechanical enemies can be temporarily disabled with electrical attacks: EMP Charges, the Electrostatic Burst Power, and the Disruptor Stungun.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Mechanical enemies can be temporarily disabled with electrical attacks: EMP Charges, the Electrostatic Burst Power, and the Disruptor Stungun.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell>
+     <Data ss:Type="String">loc_13680621263410485421</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Killing some species of Typhon with direct damage can be extremely difficult, but unaware or disabled enemies take more damage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Killing some species of Typhon with direct damage can be extremely difficult, but unaware or disabled enemies take more damage.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced />
+   <Selected />
+   <TopRowVisible>74</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>104</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

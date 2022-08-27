@@ -1,0 +1,25 @@
+
+<ArkProjectilePools>
+ <Pool ArchetypeName="ArkProjectiles.Gloo.GlooAccretion" MaxSize="200" DeleteOnLevelTransition="0" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Gloo.GlooShot" MaxSize="20" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.ShotgunBlast_Default" MaxSize="30" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.ShotgunPellet_Default" MaxSize="18" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.PistolRound_Default" MaxSize="5" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.PistolRound_Golden" MaxSize="5" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.PistolRound_Dahl" MaxSize="3" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.PistolRound_NPC" MaxSize="20" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.TurretRound_Default" MaxSize="30" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Charges.Recycler_TestChamber" MaxSize="1" DeleteOnLevelTransition="1" IsGrenade="1"/>
+ <Pool ArchetypeName="ArkProjectiles.Charges.RecyclerTrap" MaxSize="5" DeleteOnLevelTransition="1" IsGrenade="1"/>
+ <Pool ArchetypeName="ArkProjectiles.Charges.Recycler" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="1"/>
+ <Pool ArchetypeName="ArkProjectiles.Charges.Lure" MaxSize="5" DeleteOnLevelTransition="1" IsGrenade="1"/>
+ <Pool ArchetypeName="ArkProjectiles.Charges.Nullwave" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="1"/>
+ <Pool ArchetypeName="ArkProjectiles.Charges.EMP" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="1"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.ToygunDart_Default" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.Tracer_Default" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.AlienPowers.TelepathProjectile" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.AlienPowers.NightmareProjectile" MaxSize="10" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.AlienPowers.PhantomProjectile_EMP" MaxSize="5" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.AlienPowers.PhantomProjectile_Default" MaxSize="5" DeleteOnLevelTransition="1" IsGrenade="0"/>
+ <Pool ArchetypeName="ArkProjectiles.Bullets.Scripted_WindowBreak" MaxSize="4" DeleteOnLevelTransition="1" IsGrenade="0"/>
+</ArkProjectilePools>

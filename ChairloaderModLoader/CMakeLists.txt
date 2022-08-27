@@ -24,13 +24,18 @@ set(SOURCE_FILES
         ImGuiFileDialog/ImGuiFileDialog.cpp
 
         #ImGuiStandalone
-        Drawing.cpp
-        Drawing.h
         UI.cpp
         UI.h
         #ModLoader
         ModLoader.cpp
         ModLoader.h
+        PathUtils.cpp
+        PathUtils.h
+        GamePathDialog.cpp
+        GamePathDialog.h
+        GameVersion.cpp
+        GameVersion.h
+        pch.h
         main.cpp
         #Miscellaneous
         zipconf.h
@@ -43,10 +48,14 @@ set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 
 target_link_libraries(ChairloaderModLoader
+        CommonModLoader
         D3D11.lib
         pugixml::pugixml
         libzip::zip
+        ZLIB::ZLIB
         ${Boost_LIBRARIES}
         )
+
+target_precompile_headers(ChairloaderModLoader PRIVATE pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

@@ -1,0 +1,55 @@
+
+<UIElements name="DanielleTranscribeNote">
+ <UIElement name="DanielleTranscribeNote" render_lockless="1" mouseevents="1" keyevents="1" cursor="1" controller_input="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_note.gfx" layer="5">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="transcribeNoteOpen" funcname="note.transcribeNoteOpen">
+    <param name="Title" desc="" type="string"/>
+    <param name="Body" desc="" type="string"/>
+    <param name="Image" desc="" type="string"/>
+   </function>
+   <function name="transcribeNoteClose" funcname="note.transcribeNoteClose"/>
+   <function name="SetControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="setPrompt" funcname="note.setPrompt">
+    <param name="Place" desc="1-4" type="int"/>
+    <param name="Visible" desc="" type="bool"/>
+    <param name="Prompt" desc="" type="string"/>
+    <param name="isHold" desc="0-1" type="bool"/>
+    <param name="holdValue" desc="0-1" type="float"/>
+    <param name="Text" desc="" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="formatPrompts" funcname="note.formatPrompts"/>
+   <function name="scrollY" funcname="note.scrollY">
+    <param name="value" type="float"/>
+   </function>
+   <function name="screenRotate" funcname="camera.controllerRotate">
+    <param name="xValue" desc="-1 to +1" type="float"/>
+    <param name="yValue" desc="-1 to +1" type="float"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="NoteOpen" fscommand="NoteOpen" desc="">
+    <param name="Setting" desc="" type="bool"/>
+   </event>
+   <event name="NoteClose" fscommand="NoteClose" desc="">
+    <param name="Setting" desc="" type="bool"/>
+   </event>
+   <event name="closeCompleted" fscommand="closeCompleted" desc=""/>
+   <event name="requestClose" fscommand="onButtonPress" desc="">
+    <param name="Close" desc="" type="string"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

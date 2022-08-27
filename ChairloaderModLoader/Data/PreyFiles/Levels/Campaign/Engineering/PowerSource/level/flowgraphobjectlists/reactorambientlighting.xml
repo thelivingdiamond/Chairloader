@@ -1,0 +1,66 @@
+<Graph isModule="1" moduleName="ReactorAmbientLighting" isObjectList="1" objectListClass="GeomEntity" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:GeomEntity" pos="-149,2,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="4" Class="entity:GeomEntity" pos="-149,27,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="6" Class="entity:GeomEntity" pos="-149,52,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="8" Class="entity:GeomEntity" pos="-149,77,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="10" Class="entity:GeomEntity" pos="-149,102,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="12" Class="entity:GeomEntity" pos="-149,127,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="14" Class="entity:GeomEntity" pos="-149,152,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="16" Class="entity:GeomEntity" pos="-149,177,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="18" Class="entity:GeomEntity" pos="-149,202,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="20" Class="entity:GeomEntity" pos="-149,227,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="22" Class="entity:GeomEntity" pos="-149,252,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="24" Class="entity:GeomEntity" pos="-149,277,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="26" Class="entity:GeomEntity" pos="-149,302,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="28" Class="entity:GeomEntity" pos="-149,327,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="30" Class="entity:GeomEntity" pos="-149,352,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="32" Class="entity:GeomEntity" pos="-149,377,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="34" Class="entity:GeomEntity" pos="-149,402,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="36" Class="entity:GeomEntity" pos="-149,427,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="38" Class="entity:GeomEntity" pos="-149,452,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+  <Node Id="40" Class="entity:GeomEntity" pos="-140,-150,0">
+   <Inputs entityId="0" Hide="0" MakeInvulnerable="0" MakeVulnerable="0" Remove="0" ResetHealth="0" UnHide="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

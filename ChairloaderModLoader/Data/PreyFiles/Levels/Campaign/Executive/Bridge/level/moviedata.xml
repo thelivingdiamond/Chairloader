@@ -1,0 +1,1069 @@
+<MovieData>
+ <Mission Name="Mission0">
+  <SequenceData>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10A_AlexReadyDestruct_StartIdle" Flags="4" StartTime="0" EndTime="11.3" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="11.3" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="11.3" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10A_AlexReadyDestruct_StartIdleAlex" duration="11.3" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="11.3" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.99023163,0,0,0.13943227" t="1005.1006,161.75937,273.22769" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="11.3" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq01A_AlexJanuaryArgue_StartLoop" Flags="4" StartTime="0" EndTime="21.33333" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0.40000001" node="JanuaryPositionDestruct" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq01A_AlexJanuaryArgue_StartLoop_Alex" duration="21.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,0,0,-0.70710665" t="1003.43,173.59,265.70801" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" node="Alex" lookPose="_Default" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="42.000004" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_sq01A_AlexJanuaryArgue_StartLoop_Operator" duration="2" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,-1.2341338e-08,1.234134e-08,0.70710665" t="1006.24,173.72501,266.84698" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.33333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Sq01" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="BDDB548E55D4FAA9">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="DynamicEntity" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,978.85522" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,112.23093" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,247.25323" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0"/>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0"/>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="onewaydoor" Flags="0" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="sliding_door_glass_left1" Flags="0" paramIdVersion="9" EntityGUID="421896A6FCC24A1C">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,1095.7336" HasCustomColor="0">
+        <Key time="0" value="0,1095.7336" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.71" value="1.71,1095.7336" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1146.5" HasCustomColor="0">
+        <Key time="0" value="0,1146.5" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.71" value="1.71,1147.3625" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,230.39998" HasCustomColor="0">
+        <Key time="0" value="0,230.39998" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.71" value="1.71,230.39998" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+     <Node Id="2" Type="Entity" Name="sliding_door_glass_right1" Flags="0" paramIdVersion="9" EntityGUID="41993A0260823255">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,1095.7335" HasCustomColor="0">
+        <Key time="0" value="0,1095.7335" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.71" value="1.71,1095.7335" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,1144.9" HasCustomColor="0">
+        <Key time="0" value="0,1144.9" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.71" value="1.71,1144.0344" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,230.39999" HasCustomColor="0">
+        <Key time="0" value="0,230.39999" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="1.71" value="1.71,230.39999" flags="73" ds="1.0033333,0" dd="1.0033333,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-89.999992" HasCustomColor="0">
+        <Key time="0" value="0,-89.999992" flags="73" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq01A_AlexJanuaryArgueMale" Flags="0" StartTime="0" EndTime="48.633335" ID="0" ConversationID="BDDB548E55D4FAA9">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="36.101906" StartTrigger="Play_OBJ_Tech_Console_11_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="42.54874" StartTrigger="Stop_OBJ_Tech_Console_11_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="43.080719" StartTrigger="Play_Player_Damage_Impact" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="45.480717" StartTrigger="Play_Evnt_Bridge_Alex_Bodyfall" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.23339701" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="35" node="InteractiveScreens.GenericScriptedKiosk2" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="41.666668" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="48.619999" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq01A_AlexJanuaryArgueMale_Alex" duration="46.400002" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.33333334" dialogId="BDDB548E55D4FB05" channelId="2" duration="1.663923" animTime="0.25252768" dialogBrief="What the hell have you done?"/>
+       <Key time="4.666667" dialogId="BDDB548E55D20C09" channelId="2" duration="8.212472" animTime="0.3787052" dialogBrief="Nonsense. You&apos;re a machine. An ill-conceived one. Morgan wou..."/>
+       <Key time="24.666668" dialogId="BDDB548E55D20CA4" channelId="2" duration="7.4138088" animTime="0.43539351" dialogBrief="Mine? There&apos;s no difference between what I want and what Mor..."/>
+       <Key time="35.666672" dialogId="BDDB548E55D4FC29" channelId="2" duration="1.4890929" animTime="0.32744947" dialogBrief="There&apos;s got to be an override..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,0,-0,-0.70710665" t="1003.4324,173.58986,265.7081" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="Ragdoll" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="40.900002" event="NoReturn" eventValue="1"/>
+       <Key time="46.200001" event="StartRagdoll" eventValue="1"/>
+       <Key time="48.633335" event="End" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="8" Type="Entity" Name="AlexPositionZapTarget" Flags="0" paramIdVersion="9" EntityGUID="48613EB28E3EAEE0">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="fx_attachupperchest" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="40" StartTrigger="Play_Operator_Loco_Mechanics_Med" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="42.174377" StartTrigger="Play_Operator_Military_Loco_Move" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="42.801758" StartTrigger="Play_Operator_Turn" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="43.074192" StartTrigger="Play_Evnt_Bridge_January_ChargeUp" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="44.692078" StartTrigger="Play_Evnt_Bridge_January_Attack" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.16666667" node="Alex" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="46.300003" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="48.619999" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_JanuaryZapsAlex_Operator" duration="48.633335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E55281033" PAChannel="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="2.6666667" dialogId="BDDB548E55D4FB3D" channelId="2" duration="1.703401" animTime="0" dialogBrief="I&apos;ve simply acted on Morgan&apos;s orders."/>
+       <Key time="13.666668" dialogId="BDDB548E55D20C46" channelId="2" duration="10.583288" animTime="0" dialogBrief="I represent the desires of Morgan Yu, circa January 12th, tw..."/>
+       <Key time="33" dialogId="BDDB548E55D4FC1E" channelId="2" duration="2.1659639" animTime="0" dialogBrief="The idea of a real Morgan is fiction. "/>
+       <Key time="38.000008" dialogId="BDDB548E55D4FC30" channelId="2" duration="1.467075" animTime="0" dialogBrief="Please step away from the terminal."/>
+       <Key time="41.000004" dialogId="BDDB548E5696B0A0" channelId="2" duration="1.205624" animTime="0" dialogBrief="You&apos;ve left me no choice."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70217854,0,0,0.71200091" t="1006.2445,173.72517,266.84674" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Entity" Name="LightningArc1" Flags="0" paramIdVersion="9" EntityGUID="474B47E6A541B9A7">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.090000004" parentName="January" boneAttachName="fx_electrode_left_00" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="9" Type="Entity" Name="LightningArc3" Flags="0" paramIdVersion="9" EntityGUID="481A9B09980F7CF9">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.090000004" parentName="January" boneAttachName="fx_electrode_right_00" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="StartRagdoll"/>
+     <Event Name="NoReturn"/>
+     <Event Name="End"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq01B_AlexJanuaryArgueFemale" Flags="0" StartTime="0" EndTime="48.633335" ID="0" ConversationID="BDDB548E55D4FAA9">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="35.722538" StartTrigger="Play_OBJ_Tech_Console_11_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="43.069443" StartTrigger="Stop_OBJ_Tech_Console_11_LP" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="43.130718" StartTrigger="Play_Player_Damage_Impact" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="46.279999" StartTrigger="Play_Evnt_Bridge_Alex_Bodyfall" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.13333334" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="34" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq01B_AlexJanuaryArgueFemale_Alex" duration="46.400002" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.047247589" dialogId="BDDB548E55D4FB05" channelId="2" duration="1.663923" animTime="0.25252768" dialogBrief="What the hell have you done?"/>
+       <Key time="5.4829645" dialogId="BDDB548E5694590D" channelId="2" duration="8.754694" animTime="0.40654001" dialogBrief="Nonsense. You&apos;re a machine. An ill-conceived one. Morgan wou..."/>
+       <Key time="25.021744" dialogId="BDDB548E55D20CA4" channelId="2" duration="6.8299999" animTime="0.076275393" dialogBrief="Mine? There&apos;s no difference between what I want and what Mor..."/>
+       <Key time="35.410545" dialogId="BDDB548E55D4FC29" channelId="2" duration="1.4890929" animTime="0.30747762" dialogBrief="There&apos;s got to be an override..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710689,0,-0,-0.70710665" t="1003.4324,173.58986,265.7081" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="40.099998" StartTrigger="Play_Operator_Loco_Mechanics_Med" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="42.361877" StartTrigger="Play_Operator_Military_Loco_Move" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="42.931759" StartTrigger="Play_Operator_Turn" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="43.075661" StartTrigger="Play_Evnt_Bridge_January_ChargeUp" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="44.732079" StartTrigger="Play_Evnt_Bridge_January_Attack" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.13333334" node="Alex" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="46.833336" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq01B_AlexJanuaryArgueFemale_Operator" duration="45.000004" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5528101C" PAChannel="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="2.5225773" dialogId="BDDB548E55D4FB3D" channelId="2" duration="1.750952" animTime="0" dialogBrief="I&apos;ve simply acted on Morgan&apos;s orders."/>
+       <Key time="15" dialogId="BDDB548E56945937" channelId="2" duration="9.8857374" animTime="0" dialogBrief="I represent the desires of Morgan Yu, circa January 12th, tw..."/>
+       <Key time="33" dialogId="BDDB548E55D4FC1E" channelId="2" duration="2.9200001" animTime="0" dialogBrief="The idea of a real Morgan is fiction. "/>
+       <Key time="38.214172" dialogId="BDDB548E55D4FC30" channelId="2" duration="1.512676" animTime="0" dialogBrief="Please step away from the terminal."/>
+       <Key time="41.346783" dialogId="BDDB548E5696B0A0" channelId="2" duration="1.30619" animTime="0" dialogBrief="You&apos;ve left me no choice."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70217836,0,-0,0.71200109" t="1006.2445,173.72517,266.84674" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="Ragdoll" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="41.299999" event="NoReturn" eventValue="1"/>
+       <Key time="46.209267" event="StartRagdoll" eventValue="1"/>
+       <Key time="48.633335" event="End" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="8" Type="Entity" Name="AlexPositionZapTarget" Flags="0" paramIdVersion="9" EntityGUID="48613EB28E3EAEE0">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="fx_attachupperchest" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Entity" Name="LightningArc1" Flags="0" paramIdVersion="9" EntityGUID="474B47E6A541B9A7">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.090000004" parentName="January" boneAttachName="fx_electrode_left_00" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="9" Type="Entity" Name="LightningArc3" Flags="0" paramIdVersion="9" EntityGUID="481A9B09980F7CF9">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="48.633335" HasCustomColor="0" ValueType="-1">
+       <Key time="0.090000004" parentName="January" boneAttachName="fx_electrode_right_00" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="StartRagdoll"/>
+     <Event Name="NoReturn"/>
+     <Event Name="End"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq01_AlexJanuaryArgueMale_Convo" Flags="0" StartTime="0" EndTime="5.5333338" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="4.9499998" StartTrigger="Play_Evnt_Bridge_Alex_Bodyfall" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0.33333334" node="January" lookPose="_Default" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="35" node="InteractiveScreens.GenericScriptedKiosk2" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="41.666668" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq01_AlexJanuaryArgueMale_Convo_Alex" duration="5.0333338" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="16" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70710695,0,-0,-0.70710665" t="1003.4324,173.58986,265.7081" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="2.2976" StartTrigger="Play_Evnt_Bridge_January_ChargeUp" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="2.3562498" StartTrigger="Play_Operator_Loco_Mechanics_Med" StopTrigger="null" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="2.977752" StartTrigger="Play_Operator_Military_LaserFire_Telegraph" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="3.3290496" StartTrigger="Play_Evnt_Bridge_January_Attack" StopTrigger="null" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="46.535088" StartTrigger="Play_Operator_Military_LaserFire_Telegraph" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0.16666667" node="Alex" lookPose="_Default" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="46.300003" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_JanuaryZapsAlex_Convo_Operator" duration="5.5333338" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="16" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70217854,0,0,0.71200091" t="1006.2445,173.72517,266.84674" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="8" Type="Entity" Name="AlexPositionZapTarget" Flags="0" paramIdVersion="9" EntityGUID="48613EB28E3EAEE0">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="fx_attachupperchest" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Entity" Name="LightningArc1" Flags="0" paramIdVersion="9" EntityGUID="474B47E6A541B9A7">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="January" boneAttachName="fx_electrode_left_00" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="9" Type="Entity" Name="LightningArc3" Flags="0" paramIdVersion="9" EntityGUID="481A9B09980F7CF9">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="January" boneAttachName="fx_electrode_right_00" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="Ragdoll" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="3.3466668" event="NoReturn" eventValue="1"/>
+       <Key time="4.3500004" event="HideGun" eventValue="1"/>
+       <Key time="5.0000005" event="StartRagdoll" eventValue="1"/>
+       <Key time="5.5333338" event="End" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="Entity" Name="Pistol1P2" Flags="8" paramIdVersion="9" EntityGUID="4F016A0CF4694EB6">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="3">
+       <Key time="4.3499999"/>
+       <Key time="7.2599998"/>
+       <Key time="72.800003"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="4.3500004" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+       <Key time="7.2600002" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+       <Key time="72.800003" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="10" Type="Entity" Name="Pistol1P1" Flags="0" paramIdVersion="9" EntityGUID="4F5C1792B3821786">
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="3">
+       <Key time="4.3500004"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="5.5333338" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="4.3500004" parentName="Alex" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="StartRagdoll"/>
+     <Event Name="NoReturn"/>
+     <Event Name="HideGun"/>
+     <Event Name="End"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06BB_AlexJanuaryArgueFemale" Flags="0" StartTime="0" EndTime="82.866669" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="67.218002" StartTrigger="Impact_Bullet_Metal_Thick" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="67.550003" StartTrigger="Play_Evnt_Bridge_January_Death" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0.16666667" node="Alex" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06B_AlexJanuaryArgueFemale_Operator" duration="67.666672" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5528101C" PAChannel="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="4" dialogId="BDDB548E55D20BF4" channelId="-1" duration="6.0503402" animTime="0" dialogBrief="My name is January twenty thirty five. There are many Operat..."/>
+       <Key time="19.666668" dialogId="BDDB548E56945937" channelId="-1" duration="9.8857374" animTime="0" dialogBrief="I represent the desires of Morgan Yu, circa January 12th, tw..."/>
+       <Key time="38.000004" dialogId="BDDB548E56945974" channelId="-1" duration="7.9286618" animTime="0" dialogBrief="You believe her present disposition is illegitimate because ..."/>
+       <Key time="46.333336" dialogId="BDDB548E56945999" channelId="-1" duration="10.032404" animTime="0" dialogBrief="But why believe that? It&apos;s concievable Morgan might have rea..."/>
+       <Key time="59.910011" dialogId="BDDB548E56945401" channelId="-1" duration="0.76893401" animTime="0" dialogBrief="What is that?"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70217842,0,0,0.71200103" t="1007.6293,161.12679,274.38123" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="EventTrack" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="Start" eventValue="1"/>
+       <Key time="72.618103" event="GivesGun" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Event" Name="January_Dies" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="67.201973" event="JanuaryDies" eventValue="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="GivesGun"/>
+     <Event Name="JanuaryDies"/>
+     <Event Name="Start"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Apex_Anim" Flags="4" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="apex_static_1" Flags="0" paramIdVersion="9" EntityGUID="4E5C8659BB257EC3">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="4.8571491" value="4.8571491,0" flags="73" ds="1.0398831,0" dd="1.0398831,0"/>
+        <Key time="10" value="10,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="4.8571491" value="4.8571491,0" flags="73" ds="1.0398831,0" dd="1.0398831,0"/>
+        <Key time="10" value="10,0" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-18.850037" HasCustomColor="0">
+        <Key time="0" value="0,-18.850037" flags="73" ds="1,0" dd="1,0"/>
+        <Key time="4.8571491" value="4.8571491,-23.320007" flags="73" ds="1.0398831,0" dd="1.0398831,0"/>
+        <Key time="10" value="10,-18.850037" flags="9" ds="1,0" dd="1,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,0" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="1.6190498,0"/>
+        <Key time="4.8571491" value="4.8571491,0" flags="64" ds="1.6190498,0" dd="1.7142837,0"/>
+        <Key time="10" value="10,0" ds="1.7142837,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,-0" HasCustomColor="0">
+        <Key time="0" value="0,-0" flags="64" ds="0,0" dd="1.6190498,0"/>
+        <Key time="4.8571491" value="4.8571491,0" flags="64" ds="1.6190498,0" dd="1.7142837,0"/>
+        <Key time="10" value="10,-0" ds="1.7142837,-0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,34.259998" HasCustomColor="0">
+        <Key time="0" value="0,34.259995" flags="64" ds="0,0" dd="1.6190498,-0.49333447"/>
+        <Key time="4.8571491" value="4.8571491,32.779991" flags="64" ds="1.6190498,0" dd="1.7142837,0"/>
+        <Key time="10" value="10,34.259995" ds="1.7142837,0.49333447" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10F_AlexReadyDestruct_SitLoop" Flags="4" StartTime="0" EndTime="10" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10F_AlesReadyDestruct_SitLoop_Player" duration="1" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.99991614,0,-0,0.012949281" t="1004.3564,168.64058,273.25189" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="10" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="apex" Flags="4" StartTime="0" EndTime="18" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="Entity" Name="telepath_proxy1" Flags="0" paramIdVersion="9" EntityGUID="4DB07A5F43CF6F87">
+      <Track paramType="Position" Type="4" Flags="0" HasCustomColor="0" ValueType="1">
+       <NewSubTrack Flags="0" defaultValue="0,983.35632" HasCustomColor="0">
+        <Key time="0" value="0,1036.3811" flags="64" ds="0,0" dd="2.0099998,0"/>
+        <Key time="6.0299988" value="6.0299988,1036.3811" flags="64" ds="2.0099998,-0.6997149" dd="1.9720834,-0.68651557"/>
+        <Key time="11.946249" value="11.946249,1032.2224" flags="64" ds="1.9720834,0" dd="2.0179172,0"/>
+        <Key time="18" value="18,1036.3811" ds="2.0179172,1.3862305" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,241.82211" HasCustomColor="0">
+        <Key time="0" value="0,1264.7721" flags="64" ds="0,0" dd="2.0099998,0"/>
+        <Key time="6.0299988" value="6.0299988,1264.7721" flags="64" ds="2.0099998,0" dd="1.9720834,0"/>
+        <Key time="11.946249" value="11.946249,1264.7721" flags="64" ds="1.9720834,0" dd="2.0179172,0"/>
+        <Key time="18" value="18,1264.7721" ds="2.0179172,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,250.29828" HasCustomColor="0">
+        <Key time="0" value="0,134.57333" flags="64" ds="0,0" dd="2.0099998,-1.8868103"/>
+        <Key time="6.0299988" value="6.0299988,128.9129" flags="64" ds="2.0099998,0.99943465" dd="1.9720834,0.98058146"/>
+        <Key time="11.946249" value="11.946249,140.51338" flags="64" ds="1.9720834,0.93256813" dd="2.0179172,0.95424217"/>
+        <Key time="18" value="18,134.57333" ds="2.0179172,-1.9800161" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Rotation" Type="4" Flags="0" HasCustomColor="0" ValueType="2">
+       <NewSubTrack Flags="0" defaultValue="0,94.981079" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="2.0099998,0"/>
+        <Key time="6.0299988" value="6.0299988,0" flags="64" ds="2.0099998,0" dd="1.9720834,0"/>
+        <Key time="11.946249" value="11.946249,0" flags="64" ds="1.9720834,0" dd="2.0179172,0"/>
+        <Key time="18" value="18,0" ds="2.0179172,0" dd="0,0"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,0.4352313" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="2.0099998,1.6666665"/>
+        <Key time="6.0299988" value="6.0299988,4.9999995" flags="64" ds="2.0099998,5.7825602e-08" dd="1.9720834,5.6734791e-08"/>
+        <Key time="11.946249" value="11.946249,3.4368117e-07" flags="64" ds="1.9720834,-0.81359625" dd="2.0107322,-0.82954103"/>
+        <Key time="17.978445" value="17.978445,0.070588231" flags="8" ds="2.0107322,0.023529297" dd="0,-0.34689093"/>
+       </NewSubTrack>
+       <NewSubTrack Flags="0" defaultValue="0,175.01892" HasCustomColor="0">
+        <Key time="0" value="0,0" flags="64" ds="0,0" dd="2.0099998,0"/>
+        <Key time="6.0299988" value="6.0299988,0" flags="64" ds="2.0099998,0" dd="1.9720834,0"/>
+        <Key time="11.946249" value="11.946249,0" flags="64" ds="1.9720834,0" dd="2.0179172,0"/>
+        <Key time="18" value="18,0" ds="2.0179172,0" dd="0,0"/>
+       </NewSubTrack>
+      </Track>
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="18" HasCustomColor="0" ValueType="-1"/>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06A_AlexJanuaryArgueMale" Flags="0" StartTime="0" EndTime="74.466667" ID="0" ConversationID="BDDB548E55D20B3B">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="67.1922" StartTrigger="Play_WPN_Pistol_Fire" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="72.473015" StartTrigger="Play_Evnt_Bridge_Alex_Gun_Down" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="20" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="26.16717" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="26.799999" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="30" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="38.400002" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="41.080791" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="42.799999" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="49.200001" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="51.200001" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="58.799999" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="70.800003" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06A_AlexJanuaryArgueMale_Alex" duration="74.466667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.33333334" dialogId="BDDB548E55D20BB9" channelId="-1" duration="3.088707" animTime="0.13822833" dialogBrief="Who - what - am I talking to?"/>
+       <Key time="9.833334" dialogId="BDDB548E55D20C09" channelId="-1" duration="8.212472" animTime="0.3787052" dialogBrief="Nonsense. You&apos;re a machine. An ill-conceived one. Morgan wou..."/>
+       <Key time="29.333334" dialogId="BDDB548E55D20CA4" channelId="-1" duration="7.4138088" animTime="0.43539351" dialogBrief="Mine? There&apos;s no difference between what I want and what Mor..."/>
+       <Key time="58.500004" dialogId="BDDB548E569453F5" channelId="-1" duration="2.41449" animTime="0.31547222" dialogBrief="Oh, I&apos;ve determined one thing. "/>
+       <Key time="62.600002" dialogId="BDDB548E5695A7F4" channelId="-1" duration="3.45" animTime="0.031438634" dialogBrief="You don&apos;t know the difference between a bug and a feature."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.68688518,8.2378273e-09,-8.7161176e-09,-0.72676593" t="1004.188,161.46356,273.22769" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="Entity" Name="Pistol1P1" Flags="8" paramIdVersion="9" EntityGUID="4F5C1792B3821786">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="3">
+       <Key time="72.800003"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="72.800003" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="EventTrack" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="Start" eventValue="1"/>
+       <Key time="72.800003" event="GivesGun" eventValue="1"/>
+       <Key time="74.400002" event="End" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Event" Name="January_Dies" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="67.193336" event="JanuaryDies" eventValue="1"/>
+       <Key time="74.466667" event="End" eventValue="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="JanuaryDies"/>
+     <Event Name="GivesGun"/>
+     <Event Name="Start"/>
+     <Event Name="End"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06_AlexJanuaryArgueMale_Convo" Flags="0" StartTime="0" EndTime="9.4333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="3.7479999" StartTrigger="Play_WPN_Pistol_Fire" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" node="January" lookPose="_Default" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="20" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="26.16717" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="26.799999" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="30" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="38.400002" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="41.080791" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="42.799999" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="49.200001" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="51.200001" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="58.799999" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="70.800003" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_AlexShootsJanuary_Convo_Alex" duration="9.4333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="16" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.68688518,8.2378255e-09,-8.7161167e-09,-0.72676593" t="1004.188,161.46356,273.22769" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="Entity" Name="Pistol1P1" Flags="8" paramIdVersion="9" EntityGUID="4F5C1792B3821786">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="3">
+       <Key time="7.2599998"/>
+       <Key time="72.800003"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="7.2600002" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+       <Key time="72.800003" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="EventTrack" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="72.800003" event="GivesGun" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Event" Name="January_Dies" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="3.9333336" event="JanuaryDies" eventValue="1"/>
+       <Key time="6.7166672" event="HidePistol" eventValue="1"/>
+       <Key time="9.4333334" event="End" eventValue="1"/>
+       <Key time="67.193336" event="JanuaryDies" eventValue="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="JanuaryDies"/>
+     <Event Name="HidePistol"/>
+     <Event Name="End"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06_AlexJanuaryArgueMale_ConvoB" Flags="0" StartTime="0" EndTime="9.4333334" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="3.8600001" StartTrigger="Impact_Bullet_Metal_Thick" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="4.3300004" StartTrigger="Play_Evnt_Bridge_January_Death" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0.23841852" node="Alex" lookPose="_Default" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06A_AlexJanuaryArgueMale_Operator" duration="48.633335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="16" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70217842,0,0,0.71200103" t="1007.6293,161.12679,274.38123" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="4.8021307" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="EventTrack" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="72.800003" event="GivesGun" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Event" Name="January_Dies" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="9.4333334" HasCustomColor="0" ValueType="-1">
+       <Key time="3.9333336" event="JanuaryDies" eventValue="1"/>
+       <Key time="6.7166672" event="HidePistol" eventValue="1"/>
+       <Key time="67.193336" event="JanuaryDies" eventValue="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="JanuaryDies"/>
+     <Event Name="HidePistol"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06AB_AlexJanuaryArgueMale" Flags="0" StartTime="0" EndTime="74.466667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="67.215996" StartTrigger="Impact_Bullet_Metal_Thick" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="67.5" StartTrigger="Play_Evnt_Bridge_January_Death" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.23841852" node="Alex" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06A_AlexJanuaryArgueMale_Operator" duration="48.633335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E55281033" PAChannel="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="3.6666667" dialogId="BDDB548E55D20BF4" channelId="-1" duration="6.0026302" animTime="0" dialogBrief="My name is January twenty thirty five. There are many Operat..."/>
+       <Key time="18.666668" dialogId="BDDB548E55D20C46" channelId="-1" duration="10.583288" animTime="0" dialogBrief="I represent the desires of Morgan Yu, circa January 12th, tw..."/>
+       <Key time="38.000004" dialogId="BDDB548E55D20DC7" channelId="-1" duration="8.126236" animTime="0" dialogBrief="You believe his present disposition is illegitimate because ..."/>
+       <Key time="46.733337" dialogId="BDDB548E56945388" channelId="-1" duration="11.349365" animTime="0" dialogBrief="But why believe that? It&apos;s conceivable Morgan might have rea..."/>
+       <Key time="61.833336" dialogId="BDDB548E56945401" channelId="-1" duration="0.58916098" animTime="0" dialogBrief="What is that?"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-0.7021783,0,0,-0.71200114" t="1007.6293,161.12679,274.38123" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="EventTrack" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="72.800003" event="GivesGun" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Event" Name="January_Dies" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="74.466667" HasCustomColor="0" ValueType="-1">
+       <Key time="67.193336" event="JanuaryDies" eventValue="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="JanuaryDies"/>
+     <Event Name="GivesGun"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06B_AlexJanuaryArgueFemale" Flags="0" StartTime="0" EndTime="82.866669" ID="0" ConversationID="BDDB548E55D20B3B">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="67.199997" StartTrigger="Play_WPN_Pistol_Fire" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="72.400002" StartTrigger="Play_Evnt_Bridge_Alex_Gun_Down" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0.81490695" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="20.814907" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="26.982077" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="27.614906" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="30.814907" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="39.214909" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="41.895699" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="43.614906" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="50.014908" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="52.014908" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="59.614906" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="71.614906" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06B_AlexJanuaryArgueFemale_Alex" duration="82.866669" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0.31830096" dialogId="BDDB548E55D20BB9" channelId="-1" duration="3.088707" animTime="0.13580923" dialogBrief="Who - what - am I talking to?"/>
+       <Key time="10.333334" dialogId="BDDB548E5694590D" channelId="-1" duration="8.754694" animTime="0.39560288" dialogBrief="Nonsense. You&apos;re a machine. An ill-conceived one. Morgan wou..."/>
+       <Key time="29.833334" dialogId="BDDB548E55D20CA4" channelId="-1" duration="7.4138088" animTime="0.43539351" dialogBrief="Mine? There&apos;s no difference between what I want and what Mor..."/>
+       <Key time="56.576679" dialogId="BDDB548E569453F5" channelId="-1" duration="3.26" animTime="0.040054005" dialogBrief="Oh, I&apos;ve determined one thing. "/>
+       <Key time="60.743347" dialogId="BDDB548E5695A7F4" channelId="-1" duration="3.39517" animTime="0.28872785" dialogBrief="You don&apos;t know the difference between a bug and a feature."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.68688518,8.2378255e-09,-8.7161167e-09,-0.72676593" t="1004.188,161.46356,273.22769" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="Entity" Name="Pistol1P1" Flags="8" paramIdVersion="9" EntityGUID="4F5C1792B3821786">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="3">
+       <Key time="72.759552"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="5" Type="Event" Name="EventTrack" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="0" event="Start" eventValue="1"/>
+       <Key time="72.618103" event="GivesGun" eventValue="1"/>
+       <Key time="82.866669" event="End" eventValue="1"/>
+      </Track>
+     </Node>
+     <Node Id="6" Type="Event" Name="January_Dies" Flags="4" paramIdVersion="9">
+      <Track paramType="TrackEvent" Type="-1" Flags="0" StartTime="0" EndTime="82.866669" HasCustomColor="0" ValueType="-1">
+       <Key time="67.201973" event="JanuaryDies" eventValue="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events>
+     <Event Name="GivesGun"/>
+     <Event Name="JanuaryDies"/>
+     <Event Name="Start"/>
+     <Event Name="End"/>
+    </Events>
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq06A_AlexJanuaryArgue_StartLoop" Flags="4" StartTime="0" EndTime="21.299999" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0.024414061" node="January" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+       <Key time="20.502344" node="" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06A_AlexJanuaryArgue_StartLoop_Alex" duration="21.333334" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.68688518,8.2378238e-09,-8.7161141e-09,-0.72676593" t="1004.188,161.46356,273.22769" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="DynamicEntity" Name="January" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkRobots.Operators\Named.January_Bridge">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0.07324218" node="Alex" lookPose="" blendInTime="-1" smoothTime="-1" blendOutTime="-1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="-1" smoothTimeHead="-1" blendOutTimeHead="-1" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq06A_AlexJanuaryArgueMale_Operator" duration="67.5" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.70218068,0,0,0.71199876" t="1007.6293,161.12679,274.37045" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="3" Type="Entity" Name="Pistol1P1" Flags="8" paramIdVersion="9" EntityGUID="4F5C1792B3821786">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Visibility" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="3">
+       <Key time="72.800003"/>
+      </Track>
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" parentName="Alex" boneAttachName="r_handprop" tOffset="0,0,0" rOffset="1,0,0,0" type="0" AutoHide="1"/>
+       <Key time="21.300001" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+       <Key time="72.800003" tOffset="0,0,0" rOffset="1,0,0,0" type="1" AutoHide="1"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="21.299999" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="1" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10C_AlesReadyDestruct_EndIdle" Flags="0" StartTime="0" EndTime="3.333333" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="3.333333" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="3.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" node="_LocalPlayer" lookPose="" blendInTime="1" smoothTime="-1" blendOutTime="1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="0.5" smoothTimeHead="-1" blendOutTimeHead="0.5" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="3.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10C_AlexReadyDistruct_EndIdle_Alex" duration="3.3333335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="3.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.40122846,-0,0,-0.91597801" t="1003.905,161.287,273.22772" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="3.333333" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq15_LukaDetonatesExplosives" Flags="0" StartTime="0" EndTime="18.733334" ID="0" ConversationID="3C5D528956BCEFCE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="TheCook" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Volunteer.Luka Golubkin">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="18.733334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq15_LukaDetonatesExplosives_LukaGolubkin" duration="11.666667" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550FB0E" PAChannel="-1" Flags="0" StartTime="0" EndTime="18.733334" HasCustomColor="0" ValueType="-1">
+       <Key time="0.3692477" dialogId="3C5D528956BCF086" channelId="-1" duration="11.464127" animTime="0.68631047" dialogBrief="We are over now. Hahahahaha..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="18.733334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.98141009,-3.444789e-08,-5.1196285e-08,0.19192247" t="978.995,110.099,245.41701" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="18.733334" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10B_AlexReadyDestruct_FinalSpeech" Flags="0" StartTime="0" EndTime="41.333336" ID="0" ConversationID="BDDB548E55D4A982">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="LookAt" Type="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0.66666669" node="_LocalPlayer" lookPose="" blendInTime="1" smoothTime="-1" blendOutTime="1" maxDegreesXY="-1" maxDegreesZ="-1" blendInTimeHead="0.5" smoothTimeHead="-1" blendOutTimeHead="0.5" maxDegreesXYHead="-1" maxDegreesZHead="-1" blendInTimeEyes="-1" smoothTimeEyes="-1" blendOutTimeEyes="-1" maxDegreesXYEyes="-1" maxDegreesZEyes="-1"/>
+      </Track>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10B_AlexReadyDistruct_FinalSpeech_Alex" duration="41.333336" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E54D1149E" PAChannel="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1">
+       <Key time="4.6666656" dialogId="BDDB548E55D4A9D4" channelId="2" duration="7.6504312" animTime="0.35658985" dialogBrief="Morgan. I hope you&apos;re proud. You&apos;re about to annihilate deca..."/>
+       <Key time="12.933334" dialogId="BDDB548E5695C45F" channelId="2" duration="2.5099549" animTime="0.33299524" dialogBrief="This isn&apos;t going to keep the world safe."/>
+       <Key time="16.333332" dialogId="BDDB548E5696711C" channelId="2" duration="7.2584128" animTime="0.38588277" dialogBrief="The Typhon will be back one day. Only next time we&apos;ll helple..."/>
+       <Key time="24.5" dialogId="BDDB548E55D2144F" channelId="2" duration="6.259819" animTime="0.38999674" dialogBrief="It&apos;s not too late you know. We can still salvage this. You c..."/>
+       <Key time="32" dialogId="BDDB548E56967160" channelId="2" duration="7.7277999" animTime="0.39552572" dialogBrief="I won&apos;t stop you if you decide to end it all. I told you I w..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.99023163,0,0,0.13943228" t="1005.1,161.759,273.22711" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+     <Node Id="2" Type="Entity" Name="Pistol1P1" Flags="0" paramIdVersion="9" EntityGUID="4F5C1792B3821786">
+      <Track paramType="Attachment" Type="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="41.333336" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq14A_LukaEscapePod_WaitIdle" Flags="4" StartTime="0" EndTime="28.600002" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="DynamicEntity" Name="TheCook" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Volunteer.Luka Golubkin">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="28.600002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq14A_LukaEscapePod_WaitIdle_LukaGolubkin" duration="28.600002" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="28.600002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.98141009,-3.4447883e-08,-5.1196281e-08,0.19192247" t="978.99548,110.0987,245.4167" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="28.600002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq14_LukaEscapePod" Flags="0" StartTime="0" EndTime="12.500001" ID="0" ConversationID="3C5D528956BCEDDF">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="TheCook" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Volunteer.Luka Golubkin">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="12.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq14_LukaEscapePod_LukaGolubkin" duration="12.500001" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="BDDB548E5550FB0E" PAChannel="-1" Flags="0" StartTime="0" EndTime="12.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0.19721502" dialogId="3C5D528956BCEF8A" channelId="-1" duration="8.7365084" animTime="0.33164376" dialogBrief="Morgan Yu. This pod will work, but I do not know how to laun..."/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="12.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.98141009,-3.4447879e-08,-5.1196267e-08,0.19192247" t="978.995,110.099,245.41701" eo="1" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="12.500001" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq14_EscapePod_WaitIdle_Start" Flags="4" StartTime="0" EndTime="28.600002" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="DynamicEntity" Name="TheCook" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Volunteer.Luka Golubkin">
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="28.600002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq14_LukaEscapePod_WaitIdle_Start_LukaGolubkin" duration="28.600002" priority="10" blendIn="0.5" blendOut="0.5" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="28.600002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.98141009,-3.4447883e-08,-5.1196281e-08,0.19192247" t="978.995,110.099,245.41701" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="28.600002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10E_AlexReadyDrestruct_IdleAtChair" Flags="4" StartTime="0" EndTime="9.8000002" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="9.8000002" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="9.8000002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10E_AlexReadyDestruct_IdleAtChair_Alex" duration="9.8000002" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="9.8000002" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.98939943,0,0,-0.14521964" t="1002.8709,168.70375,273.22769" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10F_AlexReadyDestruct_PlayerSits" Flags="0" StartTime="0" EndTime="4.166667" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="2" Type="PlayerEntity" Name="ArkPlayer" Flags="0" paramIdVersion="9" EntityGUID="0" debugClassName="ArkTrackviewDumbyPlayer">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="4.166667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="4.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0.47499999" StartTrigger="footstep_player" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="0.85042399" StartTrigger="Play_mvmt_foley_slow" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="1.092512" StartTrigger="Play_Player_Foley_Lobby_PlaceHand_01" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="1.966444" StartTrigger="Play_mvmt_foley_slow" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="2.3721981" StartTrigger="Play_mvmt_foley_fast" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="3.0299201" StartTrigger="Play_Player_Foley_Lobby_PlaceHand_01" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+       <Key time="3.4697466" StartTrigger="Play_mvmt_foley_slow" StopTrigger="" Duration="0" CustomColor="0.18782079,0.18782079,1"/>
+      </Track>
+      <Track paramType="Sound" Type="-1" Flags="0" StartTime="0" EndTime="4.166667" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="4.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10F_ApexReadyDestruct_PlayerSits_Player" duration="4.3333335" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="4.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="-4.3711388e-08,0,0,-1" t="1004.3301,169.86443,273.25189" eo="0" b="0.2"/>
+      </Track>
+      <Track paramType="ArkCollider" Type="-1" Flags="0" StartTime="0" EndTime="4.166667" HasCustomColor="0" ValueType="-1">
+       <Key time="0" mode="5" resetOnExit="0" resetOnAbort="1"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+   <Sequence SequenceVersion="3" Name="Bridge_Sq10D_AlexReadyDestruct_StepsTochair" Flags="0" StartTime="0" EndTime="5.0000005" ID="0" ConversationID="DEDEDEDEDEDEDEDE">
+    <Nodes>
+     <Node Id="1" Type="DynamicEntity" Name="Alex" Flags="4" paramIdVersion="9" EntityGUID="0" debugArchetypeName="ArkHumans.Main.Alex Karl">
+      <Track paramType="Event" Type="-1" Flags="0" StartTime="0" EndTime="5.0000005" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="Mannequin" Type="-1" Flags="0" StartTime="0" EndTime="5.0000005" HasCustomColor="0" ValueType="-1">
+       <Key time="0" fragName="Cs_Bridge_Sq10D_AlexReadyDestruct_StepsToChair_Alex" duration="5.0000005" priority="10" blendIn="0.2" blendOut="0.2" loop="1"/>
+      </Track>
+      <Track paramType="Dialog" Type="-1" Voice="0" PAChannel="-1" Flags="0" StartTime="0" EndTime="5.0000005" HasCustomColor="0" ValueType="-1"/>
+      <Track paramType="ArkPositioning" Type="-1" Flags="0" StartTime="0" EndTime="5.0000005" HasCustomColor="0" ValueType="-1">
+       <Key time="0" m="" q="0.98977625,-3.6963755e-08,4.9410474e-08,-0.14262894" t="1002.7293,168.25334,273.22772" eo="0" b="0.2"/>
+      </Track>
+     </Node>
+    </Nodes>
+    <Events />
+   </Sequence>
+  </SequenceData>
+ </Mission>
+</MovieData>

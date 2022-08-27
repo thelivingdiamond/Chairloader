@@ -1,0 +1,568 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="Ark:PDA:SetStationAccessState" pos="-100,-280,0">
+   <Inputs stationAccess_Access="15659330456350048825"/>
+  </Node>
+  <Node Id="3" Class="Ark:PDA:SetStationAccessState" pos="-110,-180,0">
+   <Inputs stationAccess_Access="15659330456350048832"/>
+  </Node>
+  <Node Id="4" Class="Ark:PDA:SetStationAccessState" pos="-100,-70,0">
+   <Inputs stationAccess_Access="15659330456350048834"/>
+  </Node>
+  <Node Id="5" Class="Ark:PDA:SetStationAccessState" pos="-110,40,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="6" Class="Ark:PDA:SetStationAccessState" pos="-100,140,0">
+   <Inputs stationAccess_Access="15659330456350048826"/>
+  </Node>
+  <Node Id="7" Class="Ark:PDA:SetStationAccessState" pos="-100,240,0">
+   <Inputs stationAccess_Access="15659330456350048828"/>
+  </Node>
+  <Node Id="9" Class="Game:Start" pos="-1000,-30,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="11" Class="Logic:Gate" pos="-580,-50,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="12" Name="Set_up_the_initial_connections" Class="_commentbox" pos="-1130,-344,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1370" Height="830"/>
+  </Node>
+  <Node Id="13" Class="Ark:PDA:SetStationAccessState" pos="-100,350,0">
+   <Inputs stationAccess_Access="15659330456350047831"/>
+  </Node>
+  <Node Id="14" Name="Technopath_at_the_lift_defeated" Class="_commentbox" pos="320,-354,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1370" Height="830"/>
+  </Node>
+  <Node Id="16" Class="Ark:Objectives:TaskState" pos="380,-270,0">
+   <Inputs task_Task="1713490239432167637" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="17" Class="Ark:PDA:SetStationAccessState" pos="1170,-150,0">
+   <Inputs stationAccess_Access="15659330456350048825"/>
+  </Node>
+  <Node Id="18" Class="Ark:PDA:SetStationAccessState" pos="1170,-40,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="19" Class="Ark:Objectives:TaskState" pos="380,0,0">
+   <Inputs task_Task="-6622188701089568766" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="21" Class="Logic:Gate" pos="860,-120,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="22" Name="Lobby_general_access_key_obtained" Class="_commentbox" pos="-1120,646,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1140" Height="350"/>
+  </Node>
+  <Node Id="23" Class="Ark:PDA:SetStationAccessState" pos="-330,720,0">
+   <Inputs stationAccess_Access="15659330456350048834"/>
+  </Node>
+  <Node Id="24" Class="Ark:Objectives:TaskState" pos="-1080,710,0">
+   <Inputs task_Task="-6622188701089568766" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="25" Class="Logic:Gate" pos="-580,710,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="27" Class="Ark:Keycards:KeyCardAcquired" pos="-910,910,0">
+   <Inputs keycard_Keycard="1713490239391479434"/>
+  </Node>
+  <Node Id="28" Name="Locked_in_deep_storage" Class="_commentbox" pos="280,1053,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1290" Height="500"/>
+  </Node>
+  <Node Id="29" Name="Rebooted_station_-_Deep_Storage_Opened,_lockdown_lifted" Class="_commentbox" pos="280,2181,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1630" Height="490"/>
+  </Node>
+  <Node Id="30" Name="Psychotronics_key_obtained" Class="_commentbox" pos="-1120,1084,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1140" Height="350"/>
+  </Node>
+  <Node Id="31" Name="Crew_key_obtained" Class="_commentbox" pos="-1120,1514,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1140" Height="350"/>
+  </Node>
+  <Node Id="32" Name="Voice_data_to_get_in_deep_storage" Class="_commentbox" pos="270,633,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1140" Height="350"/>
+  </Node>
+  <Node Id="33" Class="Ark:PDA:SetStationAccessState" pos="-730,1150,0">
+   <Inputs stationAccess_Access="15659330456350048832"/>
+  </Node>
+  <Node Id="35" Class="Ark:Keycards:KeyCardAcquired" pos="-1040,1170,0">
+   <Inputs keycard_Keycard="15659330456309530410"/>
+  </Node>
+  <Node Id="36" Class="Ark:PDA:SetStationAccessState" pos="-750,1570,0">
+   <Inputs stationAccess_Access="15659330456350048828"/>
+  </Node>
+  <Node Id="37" Class="Ark:Keycards:KeyCardAcquired" pos="-1060,1590,0">
+   <Inputs keycard_Keycard="844024417269161838"/>
+  </Node>
+  <Node Id="39" Class="Ark:Objectives:TaskState" pos="290,650,0">
+   <Inputs task_Task="844024417325847659" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="40" Name="KASPAR_locks_down_Cargo_Bay" Class="_commentbox" pos="-1120,2343,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1140" Height="350"/>
+  </Node>
+  <Node Id="41" Name="KASPAR_defeated" Class="_commentbox" pos="-1110,2773,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1180" Height="350"/>
+  </Node>
+  <Node Id="42" Class="Ark:Objectives:TaskState" pos="310,1080,0">
+   <Inputs task_Task="844024417325847659" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="43" Class="Ark:PDA:SetStationAccessState" pos="1120,710,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="45" Class="Logic:Gate" pos="840,710,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="46" Class="Ark:PDA:SetStationAccessState" pos="1220,1080,0">
+   <Inputs stationAccess_Access="15659330456350048826"/>
+  </Node>
+  <Node Id="47" Class="Logic:Gate" pos="860,1180,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="48" Class="Ark:Objectives:TaskState" pos="330,2250,0">
+   <Inputs task_Task="-6622188701064500234" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="49" Class="Ark:PDA:SetStationAccessState" pos="1540,2560,0">
+   <Inputs stationAccess_Access="15659330456350048826"/>
+  </Node>
+  <Node Id="50" Class="Logic:Gate" pos="760,2300,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="51" Class="Ark:PDA:SetStationAccessState" pos="1230,1190,0">
+   <Inputs stationAccess_Access="15659330456350048825"/>
+  </Node>
+  <Node Id="52" Class="Ark:PDA:SetStationAccessState" pos="1250,1310,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="53" Class="Ark:PDA:SetStationAccessState" pos="1540,2210,0">
+   <Inputs stationAccess_Access="15659330456350048825"/>
+  </Node>
+  <Node Id="54" Class="Ark:PDA:SetStationAccessState" pos="1540,2340,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="55" Class="Ark:PDA:SetStationAccessState" pos="1250,1420,0">
+   <Inputs stationAccess_Access="15659330456350047832"/>
+  </Node>
+  <Node Id="56" Class="Ark:PDA:SetStationAccessState" pos="1540,2460,0">
+   <Inputs stationAccess_Access="15659330456350047832"/>
+  </Node>
+  <Node Id="58" Class="Ark:Debug:ConsoleEvent" pos="-2160,20,0">
+   <Inputs Command="StepStationAccess"/>
+  </Node>
+  <Node Id="60" Class="Logic:Sequentializer" pos="-1820,-10,0">
+   <Inputs Closed="0" Reverse="0"/>
+  </Node>
+  <Node Id="63" Class="Ark:PDA:SetStationAccessState" pos="-350,2350,0">
+   <Inputs stationAccess_Access="15659330456350047832"/>
+  </Node>
+  <Node Id="64" Class="Ark:PDA:SetStationAccessState" pos="-350,2460,0">
+   <Inputs stationAccess_Access="15659330456350049060"/>
+  </Node>
+  <Node Id="66" Class="Ark:PDA:SetStationAirlockState" pos="-350,2580,0">
+   <Inputs stationAirlock_Airlock="844024417322315561"/>
+  </Node>
+  <Node Id="68" Class="Ark:Objectives:ObjectiveState" pos="-1080,2390,0">
+   <Inputs objective_Objective="844024417287653111" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="70" Class="Mission:GameTokenUpdated" pos="-1100,2860,0">
+   <Inputs gametokenid_Token="199499730" compare_Value="true"/>
+  </Node>
+  <Node Id="71" Class="Ark:PDA:SetStationAccessState" pos="-260,2800,0">
+   <Inputs stationAccess_Access="15659330456350047832"/>
+  </Node>
+  <Node Id="72" Class="Ark:PDA:SetStationAccessState" pos="-260,2910,0">
+   <Inputs stationAccess_Access="15659330456350049060"/>
+  </Node>
+  <Node Id="73" Class="Ark:PDA:SetStationAirlockState" pos="-260,3030,0">
+   <Inputs stationAirlock_Airlock="844024417322315561"/>
+  </Node>
+  <Node Id="74" Name="Player_goes_to_exterior_for_first_time_OR_player_hears_cargo_explosion_message" Class="_commentbox" pos="270,1614,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1290" Height="500"/>
+  </Node>
+  <Node Id="76" Class="Ark:Dialog:ConversationEvent" pos="342.59985,1693.0143,0">
+   <Inputs conversation_Conversation="13680621263399217304"/>
+  </Node>
+  <Node Id="607" Class="Ark:Objectives:ObjectiveState" pos="345.45483,1866.2177,0">
+   <Inputs objective_Objective="844024417256800162" SetTracked="1" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="608" Class="Ark:PDA:SetStationAirlockState" pos="1290,1730,0">
+   <Inputs stationAirlock_Airlock="844024417322315561"/>
+  </Node>
+  <Node Id="610" Class="Logic:Gate" pos="990,1820,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="1852" Class="Mission:GameTokenCheck" pos="1170,3910,0">
+   <Inputs gametokenid_Token="2040982964" CheckValue="true"/>
+  </Node>
+  <Node Id="14677" Class="Mission:GameTokenCheck" pos="1170,3770,0">
+   <Inputs gametokenid_Token="2123749992" CheckValue="true"/>
+  </Node>
+  <Node Id="14679" Class="Mission:GameTokenCheck" pos="1170,3620,0">
+   <Inputs gametokenid_Token="709172748" CheckValue="true"/>
+  </Node>
+  <Node Id="14681" Class="Mission:GameTokenCheck" pos="1170,3480,0">
+   <Inputs gametokenid_Token="1780726777" CheckValue="true"/>
+  </Node>
+  <Node Id="14683" Class="Mission:GameTokenCheck" pos="1170,3340,0">
+   <Inputs gametokenid_Token="445174779" CheckValue="true"/>
+  </Node>
+  <Node Id="14684" Class="Mission:GameTokenUpdated" pos="-1070,4360,0">
+   <Inputs gametokenid_Token="362247578" compare_Value="true"/>
+  </Node>
+  <Node Id="14685" Class="Ark:PDA:SetStationAirlockState" pos="1780,3350,0">
+   <Inputs stationAirlock_Airlock="15659330456350049241"/>
+  </Node>
+  <Node Id="14686" Class="Ark:PDA:SetStationAirlockState" pos="1780,3500,0">
+   <Inputs stationAirlock_Airlock="15659330456350048090"/>
+  </Node>
+  <Node Id="14687" Class="Ark:PDA:SetStationAirlockState" pos="1780,3630,0">
+   <Inputs stationAirlock_Airlock="15659330456350049242"/>
+  </Node>
+  <Node Id="14688" Class="Ark:PDA:SetStationAirlockState" pos="1780,3780,0">
+   <Inputs stationAirlock_Airlock="15659330456350049240"/>
+  </Node>
+  <Node Id="14689" Class="Ark:PDA:SetStationAirlockState" pos="1780,3920,0">
+   <Inputs stationAirlock_Airlock="15659330456350138520"/>
+  </Node>
+  <Node Id="14691" Class="Mission:GameTokenUpdated" pos="-1070,4270,0">
+   <Inputs gametokenid_Token="659909599" compare_Value="true"/>
+  </Node>
+  <Node Id="14692" Class="Game:Start" pos="-1070,4180,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="14693" Class="Mission:GameTokenUpdated" pos="-350,3340,0">
+   <Inputs gametokenid_Token="445174779" compare_Value="false"/>
+  </Node>
+  <Node Id="14694" Class="Mission:GameTokenUpdated" pos="-360,3610,0">
+   <Inputs gametokenid_Token="709172748" compare_Value="false"/>
+  </Node>
+  <Node Id="14695" Class="Mission:GameTokenUpdated" pos="-360,3470,0">
+   <Inputs gametokenid_Token="1780726777" compare_Value="false"/>
+  </Node>
+  <Node Id="14696" Class="Mission:GameTokenUpdated" pos="-360,3770,0">
+   <Inputs gametokenid_Token="2123749992" compare_Value="false"/>
+  </Node>
+  <Node Id="14697" Class="Mission:GameTokenUpdated" pos="-350,3910,0">
+   <Inputs gametokenid_Token="2040982964" compare_Value="false"/>
+  </Node>
+  <Node Id="14698" Class="Mission:GameTokenCheck" pos="270,3340,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14699" Class="Mission:GameTokenCheck" pos="680,3340,0">
+   <Inputs gametokenid_Token="362247578" CheckValue="true"/>
+  </Node>
+  <Node Id="14700" Class="Mission:GameTokenCheck" pos="270,3470,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14701" Class="Mission:GameTokenCheck" pos="680,3470,0">
+   <Inputs gametokenid_Token="362247578" CheckValue="true"/>
+  </Node>
+  <Node Id="14702" Class="Mission:GameTokenCheck" pos="270,3620,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14703" Class="Mission:GameTokenCheck" pos="680,3620,0">
+   <Inputs gametokenid_Token="362247578" CheckValue="true"/>
+  </Node>
+  <Node Id="14704" Class="Mission:GameTokenCheck" pos="270,3770,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14705" Class="Mission:GameTokenCheck" pos="680,3770,0">
+   <Inputs gametokenid_Token="362247578" CheckValue="true"/>
+  </Node>
+  <Node Id="14706" Class="Mission:GameTokenCheck" pos="270,3910,0">
+   <Inputs gametokenid_Token="659909599" CheckValue="true"/>
+  </Node>
+  <Node Id="14707" Class="Mission:GameTokenCheck" pos="680,3910,0">
+   <Inputs gametokenid_Token="362247578" CheckValue="true"/>
+  </Node>
+  <Node Id="14716" Class="Logic:Once" pos="-730,4180,0" InHideMask="127" OutHideMask="1">
+   <Inputs/>
+  </Node>
+  <Node Id="14717" Name="Airlocks" Class="_commentbox" pos="-1080,3329,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="3106" Height="1128"/>
+  </Node>
+  <Node Id="14719" Class="Mission:GameTokenCheck" pos="1040,2260,0">
+   <Inputs gametokenid_Token="251244826" CheckValue="true"/>
+  </Node>
+  <Node Id="14721" Class="Logic:Gate" pos="-660,2450,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14722" Class="Logic:Gate" pos="-570,2870,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="14724" Class="Mission:GameTokenUpdated" pos="300,2460,0">
+   <Inputs gametokenid_Token="1105212212" compare_Value="true"/>
+  </Node>
+  <Node Id="14725" Name="Dahl_shows_up,_opens_shuttle_bay_to_GUTs_if_it_was_locked_OR\nfuel_room_key_obtained" Class="_commentbox" pos="-1130,1913,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1140" Height="350"/>
+  </Node>
+  <Node Id="14727" Class="Ark:PDA:SetStationAccessState" pos="-460,2000,0">
+   <Inputs stationAccess_Access="15659330456350047831"/>
+  </Node>
+  <Node Id="14728" Class="Ark:Keycards:KeyCardAcquired" pos="-1056.905,1950.8644,0">
+   <Inputs keycard_Keycard="761057047955908816"/>
+  </Node>
+  <Node Id="14729" Class="Ark:Objectives:ObjectiveState" pos="-1060,2050,0">
+   <Inputs objective_Objective="844024417256800439" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="14943" Class="Ark:Debug:ConsoleEvent" pos="-740,-2050,0">
+   <Inputs Command="openStationConnections"/>
+  </Node>
+  <Node Id="14944" Class="Ark:PDA:SetStationAccessState" pos="460,-1830,0">
+   <Inputs stationAccess_Access="15659330456350048825"/>
+  </Node>
+  <Node Id="14945" Class="Ark:PDA:SetStationAccessState" pos="320,-1560,0">
+   <Inputs stationAccess_Access="15659330456350048832"/>
+  </Node>
+  <Node Id="14946" Class="Ark:PDA:SetStationAccessState" pos="320,-1460,0">
+   <Inputs stationAccess_Access="15659330456350048834"/>
+  </Node>
+  <Node Id="14947" Class="Ark:PDA:SetStationAccessState" pos="500,-1230,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="14948" Class="Ark:PDA:SetStationAccessState" pos="400,-2160,0">
+   <Inputs stationAccess_Access="15659330456350048826"/>
+  </Node>
+  <Node Id="14949" Class="Ark:PDA:SetStationAccessState" pos="400,-2060,0">
+   <Inputs stationAccess_Access="15659330456350048828"/>
+  </Node>
+  <Node Id="14950" Class="Logic:Gate" pos="-350,-2050,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14951" Class="Ark:PDA:SetStationAccessState" pos="920,-1450,0">
+   <Inputs stationAccess_Access="15659330456350047831"/>
+  </Node>
+  <Node Id="14952" Class="Ark:PDA:SetStationAirlockState" pos="440,-3050,0">
+   <Inputs stationAirlock_Airlock="15659330456350049241"/>
+  </Node>
+  <Node Id="14953" Class="Ark:PDA:SetStationAirlockState" pos="440,-2900,0">
+   <Inputs stationAirlock_Airlock="15659330456350048090"/>
+  </Node>
+  <Node Id="14954" Class="Ark:PDA:SetStationAirlockState" pos="440,-2770,0">
+   <Inputs stationAirlock_Airlock="15659330456350049242"/>
+  </Node>
+  <Node Id="14955" Class="Ark:PDA:SetStationAirlockState" pos="440,-2620,0">
+   <Inputs stationAirlock_Airlock="15659330456350049240"/>
+  </Node>
+  <Node Id="14956" Class="Ark:PDA:SetStationAirlockState" pos="440,-2480,0">
+   <Inputs stationAirlock_Airlock="15659330456350138520"/>
+  </Node>
+  <Node Id="14957" Class="Ark:PDA:SetStationAccessState" pos="630,-1550,0">
+   <Inputs stationAccess_Access="15659330456350048831"/>
+  </Node>
+  <Node Id="14958" Name="Airlocks" Class="_commentbox" pos="430,-3058,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="256" Height="713"/>
+  </Node>
+  <Node Id="14959" Class="Ark:PDA:SetStationAccessState" pos="630,-1450,0">
+   <Inputs stationAccess_Access="15659330456350047829"/>
+  </Node>
+  <Node Id="14960" Class="Ark:PDA:SetStationAccessState" pos="730,-2110,0">
+   <Inputs stationAccess_Access="15659330456350048830"/>
+  </Node>
+  <Node Id="14961" Class="Ark:PDA:SetStationAccessState" pos="350,-960,0">
+   <Inputs stationAccess_Access="15659330456350049062"/>
+  </Node>
+  <Node Id="14962" Class="Ark:PDA:SetStationAccessState" pos="530,-850,0">
+   <Inputs stationAccess_Access="15659330456350047832"/>
+  </Node>
+  <Node Id="14963" Class="Ark:PDA:SetStationAccessState" pos="670,-960,0">
+   <Inputs stationAccess_Access="15659330456350049060"/>
+  </Node>
+  <Node Id="14964" Name="Open_up_all_level_connections" Class="_commentbox" pos="-750,-3162,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1939" Height="2404"/>
+  </Node>
+  <Node Id="14967" Class="Ark:PDA:SetStationAirlockState" pos="-100,-410,0">
+   <Inputs stationAirlock_Airlock="844024417322315561"/>
+  </Node>
+  <Node Id="14968" Name="Apex_has_arrived" Class="_commentbox" pos="270,2772,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1630" Height="490"/>
+  </Node>
+  <Node Id="14971" Class="Logic:Gate" pos="750,2890,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14972" Class="Ark:PDA:SetStationAccessState" pos="1120,2780,0">
+   <Inputs stationAccess_Access="15659330456350048828"/>
+  </Node>
+  <Node Id="14973" Class="Ark:PDA:SetStationAccessState" pos="1120,2880,0">
+   <Inputs stationAccess_Access="15659330456350048826"/>
+  </Node>
+  <Node Id="14974" Class="Ark:PDA:SetStationAccessState" pos="1120,2980,0">
+   <Inputs stationAccess_Access="15659330456350048831"/>
+  </Node>
+  <Node Id="14976" Class="Mission:GameTokenUpdated" pos="300,2830,0">
+   <Inputs gametokenid_Token="659909599" compare_Value="true"/>
+  </Node>
+  <Node Id="14977" Name="Apex_has_spread_-_self_destruct" Class="_commentbox" pos="2070,2787,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1230" Height="540"/>
+  </Node>
+  <Node Id="14979" Class="Logic:Gate" pos="2550,2910,0">
+   <Inputs SetClosed="0" AutoCloseCount="1" Reset="0"/>
+  </Node>
+  <Node Id="14980" Class="Ark:PDA:SetStationAccessState" pos="2920,2800,0">
+   <Inputs stationAccess_Access="15659330456350047832"/>
+  </Node>
+  <Node Id="14981" Class="Ark:PDA:SetStationAccessState" pos="2920,2900,0">
+   <Inputs stationAccess_Access="15659330456350048833"/>
+  </Node>
+  <Node Id="14982" Class="Ark:PDA:SetStationAccessState" pos="2920,3000,0">
+   <Inputs stationAccess_Access="15659330456350049062"/>
+  </Node>
+  <Node Id="14983" Class="Mission:GameTokenUpdated" pos="2100,2850,0">
+   <Inputs gametokenid_Token="386172703" compare_Value="true"/>
+  </Node>
+  <Node Id="14984" Class="Ark:PDA:SetStationAccessState" pos="2910,3110,0">
+   <Inputs stationAccess_Access="15659330456350049060"/>
+  </Node>
+  <Node Id="14985" Class="Ark:PDA:SetStationAccessState" pos="2927.3247,3217.2693,0">
+   <Inputs stationAccess_Access="15659330456350049071"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="11" nodeOut="9" portIn="In" portOut="output" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="4" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="5" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="11" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14967" nodeOut="11" portIn="Hide" portOut="Out" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="16" portIn="In" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="19" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="21" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="21" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="25" nodeOut="24" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="23" nodeOut="25" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="25" nodeOut="27" portIn="In" portOut="Out" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="35" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="37" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="39" portIn="In" portOut="Activated" enabled="1"/>
+  <Edge nodeIn="47" nodeOut="42" portIn="In" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="45" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="46" nodeOut="47" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="51" nodeOut="47" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="52" nodeOut="47" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="55" nodeOut="47" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="50" nodeOut="48" portIn="In" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="50" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="56" nodeOut="50" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14719" nodeOut="50" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="60" nodeOut="58" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="60" portIn="In" portOut="Out3" enabled="1"/>
+  <Edge nodeIn="25" nodeOut="60" portIn="In" portOut="Out1" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="60" portIn="Enable" portOut="Out2" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="60" portIn="Enable" portOut="Out4" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="60" portIn="In" portOut="Out5" enabled="1"/>
+  <Edge nodeIn="47" nodeOut="60" portIn="In" portOut="Out6" enabled="1"/>
+  <Edge nodeIn="50" nodeOut="60" portIn="In" portOut="Out8" enabled="1"/>
+  <Edge nodeIn="610" nodeOut="60" portIn="In" portOut="Out7" enabled="1"/>
+  <Edge nodeIn="14721" nodeOut="60" portIn="In" portOut="Out9" enabled="1"/>
+  <Edge nodeIn="14722" nodeOut="60" portIn="In" portOut="Out10" enabled="1"/>
+  <Edge nodeIn="14721" nodeOut="68" portIn="In" portOut="Added" enabled="1"/>
+  <Edge nodeIn="14722" nodeOut="70" portIn="In" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="610" nodeOut="76" portIn="In" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="610" nodeOut="607" portIn="In" portOut="Added" enabled="1"/>
+  <Edge nodeIn="608" nodeOut="610" portIn="Unhide" portOut="Out" enabled="1"/>
+  <Edge nodeIn="608" nodeOut="610" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14689" nodeOut="1852" portIn="Unlock" portOut="False" enabled="1"/>
+  <Edge nodeIn="14689" nodeOut="1852" portIn="Lock" portOut="True" enabled="1"/>
+  <Edge nodeIn="14688" nodeOut="14677" portIn="Unlock" portOut="False" enabled="1"/>
+  <Edge nodeIn="14688" nodeOut="14677" portIn="Lock" portOut="True" enabled="1"/>
+  <Edge nodeIn="14687" nodeOut="14679" portIn="Unlock" portOut="False" enabled="1"/>
+  <Edge nodeIn="14687" nodeOut="14679" portIn="Lock" portOut="True" enabled="1"/>
+  <Edge nodeIn="14686" nodeOut="14681" portIn="Unlock" portOut="False" enabled="1"/>
+  <Edge nodeIn="14686" nodeOut="14681" portIn="Lock" portOut="True" enabled="1"/>
+  <Edge nodeIn="14685" nodeOut="14683" portIn="Unlock" portOut="False" enabled="1"/>
+  <Edge nodeIn="14685" nodeOut="14683" portIn="Lock" portOut="True" enabled="1"/>
+  <Edge nodeIn="1852" nodeOut="14684" portIn="Trigger" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="14677" nodeOut="14684" portIn="Trigger" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="14679" nodeOut="14684" portIn="Trigger" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="14681" nodeOut="14684" portIn="Trigger" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="14683" nodeOut="14684" portIn="Trigger" portOut="Equal False" enabled="1"/>
+  <Edge nodeIn="14685" nodeOut="14684" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14686" nodeOut="14684" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14687" nodeOut="14684" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14688" nodeOut="14684" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14689" nodeOut="14684" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14685" nodeOut="14691" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14686" nodeOut="14691" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14687" nodeOut="14691" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14688" nodeOut="14691" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14689" nodeOut="14691" portIn="Lock" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14716" nodeOut="14692" portIn="Input1" portOut="output" enabled="1"/>
+  <Edge nodeIn="14698" nodeOut="14693" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14702" nodeOut="14694" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14700" nodeOut="14695" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14704" nodeOut="14696" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14706" nodeOut="14697" portIn="Trigger" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14699" nodeOut="14698" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14683" nodeOut="14699" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14701" nodeOut="14700" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14681" nodeOut="14701" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14703" nodeOut="14702" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14679" nodeOut="14703" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14705" nodeOut="14704" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14677" nodeOut="14705" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14707" nodeOut="14706" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="1852" nodeOut="14707" portIn="Trigger" portOut="False" enabled="1"/>
+  <Edge nodeIn="14685" nodeOut="14716" portIn="Lock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14686" nodeOut="14716" portIn="Lock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14687" nodeOut="14716" portIn="Lock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14688" nodeOut="14716" portIn="Lock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14689" nodeOut="14716" portIn="Lock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="53" nodeOut="14719" portIn="Enable" portOut="True" enabled="1"/>
+  <Edge nodeIn="54" nodeOut="14719" portIn="Enable" portOut="True" enabled="1"/>
+  <Edge nodeIn="63" nodeOut="14721" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="64" nodeOut="14721" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="66" nodeOut="14721" portIn="Lock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="14722" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="72" nodeOut="14722" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="73" nodeOut="14722" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="50" nodeOut="14724" portIn="In" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14727" nodeOut="14728" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14727" nodeOut="14729" portIn="Enable" portOut="Added" enabled="1"/>
+  <Edge nodeIn="14950" nodeOut="14943" portIn="In" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="14944" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14945" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14946" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14947" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14948" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14949" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14951" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14952" nodeOut="14950" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14953" nodeOut="14950" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14954" nodeOut="14950" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14955" nodeOut="14950" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14956" nodeOut="14950" portIn="Unlock" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14957" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14959" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14960" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14961" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14962" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14963" nodeOut="14950" portIn="Enable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14972" nodeOut="14971" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14973" nodeOut="14971" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14974" nodeOut="14971" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14971" nodeOut="14976" portIn="In" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="14980" nodeOut="14979" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14981" nodeOut="14979" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14982" nodeOut="14979" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14984" nodeOut="14979" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14985" nodeOut="14979" portIn="Disable" portOut="Out" enabled="1"/>
+  <Edge nodeIn="14979" nodeOut="14983" portIn="In" portOut="Equal True" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

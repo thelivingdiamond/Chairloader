@@ -1,0 +1,186 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="10" Class="Ark:Objectives:SetObjectiveDescription" pos="1310,830,0">
+   <Inputs objectiveDescription_Description="4349723564945763318"/>
+  </Node>
+  <Node Id="11" Class="Ark:Objectives:TaskState" pos="180,640,0">
+   <Inputs task_Task="4349723564883707540" ShowOnHUD="1" Timer="7" ShowTimerOnHUD="1"/>
+  </Node>
+  <Node Id="638" Name="Igwe_Will_Suffocate_When_Time_Expires" Class="_commentbox" pos="-250,391,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="4390" Height="870"/>
+  </Node>
+  <Node Id="1053" Name="DESTRUCT_TIMER" Class="_commentbox" pos="1150,1362,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2200" Height="990"/>
+  </Node>
+  <Node Id="2136" Class="Ark:Debug:ConsoleEvent" pos="1200,1590,0">
+   <Inputs Command="IgweSuffocate"/>
+  </Node>
+  <Node Id="2137" Class="Logic:Any" pos="1640,2250,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2368" Class="Ark:EventScheduler:RelativeTimeEvent" pos="1640,1630,0">
+   <Inputs TimeFromNow="0.13" Period="0"/>
+  </Node>
+  <Node Id="2369" Class="Debug:DisplayMessage" pos="3330,2170,0">
+   <Inputs entityId="0" message="" DisplayTime="2" posX="120" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="2370" Class="Debug:DisplayMessage" pos="3080,2180,0">
+   <Inputs entityId="0" message="Meeting" DisplayTime="2" posX="100" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="2371" Class="Debug:DisplayMessage" pos="3080,2420,0">
+   <Inputs entityId="0" message=":" DisplayTime="2" posX="115" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="2372" Class="Time:Delay" pos="2470,2410,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2373" Class="Logic:Gate" pos="2180,2430,0">
+   <Inputs SetClosed="1" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="2374" Class="Debug:DisplayMessage" pos="2820,2420,0">
+   <Inputs entityId="0" message="Igwe" DisplayTime="1" posX="1" posY="100" fontSize="2" clr_Color="0.83077,0.0116122,0.0116122" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="2375" Class="Game:Start" pos="230,1650,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="2376" Class="Debug:DisplayMessage" pos="3330,2400,0">
+   <Inputs entityId="0" message=":" DisplayTime="2" posX="135" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="2377" Class="Debug:DisplayMessage" pos="3330,2630,0">
+   <Inputs entityId="0" message="" DisplayTime="2" posX="140" posY="100" fontSize="2" clr_Color="1,1,1" centered="0" ShowInLauncher="1"/>
+  </Node>
+  <Node Id="2378" Class="Module:Call_ArkConvertDecimalTime" pos="2400,2260,0">
+   <Inputs Instanced="1" InstanceID="-1" DecimalTime="0"/>
+  </Node>
+  <Node Id="2379" Class="Logic:Any" pos="1760,2350,0">
+   <Inputs/>
+  </Node>
+  <Node Id="2381" Name="StartIgweSuffocationTimer" Class="_comment" pos="1210,1520,0"/>
+  <Node Id="2554" Class="Mission:GameTokenGet" pos="830,1680,0">
+   <Inputs gametokenid_Token="1820892482"/>
+  </Node>
+  <Node Id="2555" Class="Time:Delay" pos="610,1600,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2556" Class="Ark:RemoteEvent" pos="1200,1550,0">
+   <Inputs remoteEvent_Event="4349723564926386887"/>
+  </Node>
+  <Node Id="2557" Class="Mission:GameTokenSet" pos="2500,1300,0">
+   <Inputs gametokenid_Token="363133719" Value="true"/>
+  </Node>
+  <Node Id="2558" Class="Mission:GameTokenSet" pos="2500,1390,0">
+   <Inputs gametokenid_Token="1928122795" Value="true"/>
+  </Node>
+  <Node Id="2559" Class="Ark:Objectives:TaskState" pos="2920,1430,0">
+   <Inputs task_Task="4349723564883707540" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2560" Class="Ark:Objectives:GetTaskState" pos="2500,1480,0">
+   <Inputs task_Task="4349723564883707540"/>
+  </Node>
+  <Node Id="2562" Class="Ark:Objectives:TaskState" pos="1350,2450,0">
+   <Inputs task_Task="4349723564883707540" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="2564" Class="Mission:GameTokenSet" pos="640,640,0">
+   <Inputs gametokenid_Token="363133719" Value="true"/>
+  </Node>
+  <Node Id="2565" Class="Mission:GameTokenSet" pos="640,720,0">
+   <Inputs gametokenid_Token="1928122795" Value="true"/>
+  </Node>
+  <Node Id="2566" Class="Time:Delay" pos="790,1090,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2568" Class="Ark:SendRemoteEvent" pos="1310,890,0">
+   <Inputs remoteEvent_Event="4349723564945763000"/>
+  </Node>
+  <Node Id="2570" Class="Ark:Objectives:ObjectiveState" pos="640,490,0">
+   <Inputs objective_Objective="4349723564883707397" SetTracked="0" ShowOnHUD="1"/>
+  </Node>
+  <Node Id="2605" Class="Ark:Roster:SetVitalSigns" pos="1880,580,0">
+   <Inputs character_Character="4349723564897457173"/>
+  </Node>
+  <Node Id="2606" Class="Ark:Roster:SetIsAlive" pos="1880,490,0">
+   <Inputs character_Character="4349723564897457173"/>
+  </Node>
+  <Node Id="2608" Class="Mission:GameTokenUpdated" pos="1370,540,0">
+   <Inputs gametokenid_Token="1928122795" compare_Value="true"/>
+  </Node>
+  <Node Id="2609" Class="Time:Delay" pos="2140,1510,0">
+   <Inputs delay="1" resetOnInput="0"/>
+  </Node>
+  <Node Id="2611" Class="Time:Delay" pos="640,810,0">
+   <Inputs delay="1.5" resetOnInput="0"/>
+  </Node>
+  <Node Id="2612" Class="Ark:Objectives:GetTaskState" pos="850,810,0">
+   <Inputs task_Task="4349723564883707540"/>
+  </Node>
+  <Node Id="2613" Name="Timer=7" Class="_comment" pos="260,610,0"/>
+  <Node Id="2705" Class="Mission:GameTokenCheck" pos="383.68408,3968.4155,0">
+   <Inputs gametokenid_Token="1507606111" CheckValue="1"/>
+  </Node>
+  <Node Id="2706" Class="Mission:GameTokenCheck" pos="383.68408,4058.4155,0">
+   <Inputs gametokenid_Token="1507606111" CheckValue="2"/>
+  </Node>
+  <Node Id="2707" Class="Mission:GameTokenCheck" pos="383.68408,4148.4155,0">
+   <Inputs gametokenid_Token="1507606111" CheckValue="3"/>
+  </Node>
+  <Node Id="2708" Class="Mission:GameTokenCheck" pos="383.68408,4238.4155,0">
+   <Inputs gametokenid_Token="1507606111" CheckValue="4"/>
+  </Node>
+  <Node Id="2709" Class="Game:Start" pos="-76.315918,4118.4155,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="2566" nodeOut="10" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2564" nodeOut="11" portIn="Trigger" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="2565" nodeOut="11" portIn="Trigger" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="2570" nodeOut="11" portIn="Fail" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="2611" nodeOut="11" portIn="in" portOut="TimeElapsed" enabled="1"/>
+  <Edge nodeIn="2368" nodeOut="2136" portIn="Enable" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="2368" nodeOut="2137" portIn="GetTimeRemaining" portOut="out" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2137" portIn="Open" portOut="out" enabled="1"/>
+  <Edge nodeIn="2137" nodeOut="2368" portIn="in1" portOut="Enabled" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2368" portIn="Open" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="2374" nodeOut="2368" portIn="Hide" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="2378" nodeOut="2368" portIn="Call" portOut="TimeRemaining" enabled="1"/>
+  <Edge nodeIn="2378" nodeOut="2368" portIn="DecimalTime" portOut="TimeRemaining" enabled="1"/>
+  <Edge nodeIn="2609" nodeOut="2368" portIn="in" portOut="Alarm" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2372" portIn="In" portOut="out" enabled="1"/>
+  <Edge nodeIn="2368" nodeOut="2373" portIn="GetTimeRemaining" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2375" portIn="In" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2375" portIn="In" portOut="output" enabled="1"/>
+  <Edge nodeIn="2555" nodeOut="2375" portIn="in" portOut="output" enabled="1"/>
+  <Edge nodeIn="2369" nodeOut="2378" portIn="Show" portOut="Minutes" enabled="1"/>
+  <Edge nodeIn="2369" nodeOut="2378" portIn="message" portOut="Minutes" enabled="1"/>
+  <Edge nodeIn="2370" nodeOut="2378" portIn="Show" portOut="Hours" enabled="1"/>
+  <Edge nodeIn="2370" nodeOut="2378" portIn="message" portOut="Hours" enabled="1"/>
+  <Edge nodeIn="2371" nodeOut="2378" portIn="Show" portOut="Hours" enabled="1"/>
+  <Edge nodeIn="2372" nodeOut="2378" portIn="in" portOut="Hours" enabled="1"/>
+  <Edge nodeIn="2374" nodeOut="2378" portIn="Show" portOut="Hours" enabled="1"/>
+  <Edge nodeIn="2376" nodeOut="2378" portIn="Show" portOut="Seconds" enabled="1"/>
+  <Edge nodeIn="2377" nodeOut="2378" portIn="Show" portOut="Seconds" enabled="1"/>
+  <Edge nodeIn="2377" nodeOut="2378" portIn="message" portOut="Seconds" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2379" portIn="Close" portOut="out" enabled="1"/>
+  <Edge nodeIn="2374" nodeOut="2379" portIn="Hide" portOut="out" enabled="1"/>
+  <Edge nodeIn="2368" nodeOut="2554" portIn="TimeFromNow" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="2554" nodeOut="2555" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2559" nodeOut="2560" portIn="Fail" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2373" nodeOut="2562" portIn="Close" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="2566" portIn="Fail" portOut="out" enabled="1"/>
+  <Edge nodeIn="2605" nodeOut="2608" portIn="NoLifeSigns" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2606" nodeOut="2608" portIn="Dead" portOut="Equal True" enabled="1"/>
+  <Edge nodeIn="2557" nodeOut="2609" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2558" nodeOut="2609" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2560" nodeOut="2609" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="2612" nodeOut="2611" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="2612" portIn="Trigger" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2568" nodeOut="2612" portIn="Send" portOut="Active" enabled="1"/>
+  <Edge nodeIn="2705" nodeOut="2709" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2706" nodeOut="2709" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2707" nodeOut="2709" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+  <Edge nodeIn="2708" nodeOut="2709" portIn="Trigger" portOut="LevelStateRestored" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

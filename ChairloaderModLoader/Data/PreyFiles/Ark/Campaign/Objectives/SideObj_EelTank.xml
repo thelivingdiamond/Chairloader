@@ -1,0 +1,15 @@
+
+<Objectives>
+ <Objective id="13856881013194808268" title="@loc_15373294129891632224" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="13856881013212430719" displayName="FindPriceDesc" text="@loc_15373294129891632225"/>
+   <Desc id="13856881013212433487" displayName="ReleasePriceDesc" text="@loc_15373294129891632226"/>
+   <Desc id="13680621263405635356" displayName="ReleasePriceDesc_Complete" text="@loc_13680621263405635357"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="13856881013194808272" displayName="FindPrice" optional="false" text="@loc_15373294129891632227" Location="4349723564895209499" description="13856881013212430719"/>
+   <Task id="13856881013212433448" displayName="ReleasePrice" optional="false" text="@loc_15373294129891632228" Location="4349723564895209499" targetCharacterId="13856881013212433449" description="13856881013212433487" markerLabel="@loc_13856881013228162073"/>
+  </Tasks>
+ </Objective>
+</Objectives>

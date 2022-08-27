@@ -1,0 +1,19 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="3" Class="ArkPlayer:Helmet" pos="60,-150,0">
+   <Inputs/>
+  </Node>
+  <Node Id="5" Class="Ark:Debug:ConsoleEvent" pos="-280,-130,0">
+   <Inputs Command="helmetOn"/>
+  </Node>
+  <Node Id="6" Class="Ark:Debug:ConsoleEvent" pos="-280,-90,0">
+   <Inputs Command="helmetOff"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="3" nodeOut="5" portIn="On" portOut="Triggered" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="6" portIn="Off" portOut="Triggered" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

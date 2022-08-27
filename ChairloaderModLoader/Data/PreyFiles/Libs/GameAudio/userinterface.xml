@@ -1,0 +1,778 @@
+
+<ATLConfig atl_name="UserInterface">
+ <AudioRTPCs>
+  <ATLRtpc atl_name="Psi_Scanning_Value" path="Psi_Research">
+   <WwiseRtpc wwise_name="Psi_Scanning_Value"/>
+  </ATLRtpc>
+ </AudioRTPCs>
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_UI_INventory_Menu_Nav" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_INventory_Menu_Nav"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_FabricatorApproach_Rollover" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_FabricatorApproach_Rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_ClickSwitch" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_ClickSwitch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_Complete" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_Preparing" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_Item_Preparing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_ItemComplete" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_ItemComplete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_OpenInterface" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_OpenInterface"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_ItemRollover" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_ItemRollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_Select" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_Back" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_Back"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_CloseMenu" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_CloseMenu"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_Main_LP_option1" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_Main_LP_option1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Menu_Psi_Main_LP_option1" path="Psi_Research">
+   <WwiseEvent wwise_name="Stop_Menu_Psi_Main_LP_option1"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_OpenMenu" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_OpenMenu"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_PowerSelection_Change" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_PowerSelection_Change"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_SelectPower" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_SelectPower"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_SelectTarget" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_SelectTarget"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Research_LP" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Research_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Mode_Start" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_InScanMode"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Reserach_Complete" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Reserach_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Identify" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Identify"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_LoseTarget" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_LoseTarget"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_PowerReveal" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_PowerReveal"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_InScanMode" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_InScanMode"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Acquiring_LP" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Acquiring_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Acquiring_Complete" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Acquiring_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_EnemyUpdate" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_EnemyUpdate"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Psi_Mode" path="Psi_Research">
+   <WwiseEvent wwise_name="Stop_Psi_Research_InScanMode"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Psi_Research_Research_LP" path="Psi_Research">
+   <WwiseEvent wwise_name="Stop_Psi_Research_Research_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Communication_In" path="Communication">
+   <WwiseEvent wwise_name="Play_Communication_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Communication_Out" path="Communication">
+   <WwiseEvent wwise_name="Play_Communication_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_ExitMenu" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_ExitMenu"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Purchase_Success" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Purchase_Success"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Purchase_Fail" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Purchase_Fail"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Purchase_Nav_Up" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Purchase_Nav_Up"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Purchase_Nav_Down" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Purchase_Nav_Down"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Purchase_Nav_LR" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Purchase_Nav_LR"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_PageSwitch" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_PageSwitch"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Error" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Error"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Unlock" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Unlock"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Lock" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Lock"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Processing" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Processing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_menu_controls" path="UI_Required">
+   <WwiseEvent wwise_name="Play_menu_controls"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_menu_confirm" path="UI_Required">
+   <WwiseEvent wwise_name="Play_menu_confirm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_menu_roll_over" path="UI_Required">
+   <WwiseEvent wwise_name="Play_menu_rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_menu_screen_open" path="UI_Required">
+   <WwiseEvent wwise_name="Play_menu_screen_open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_menu_screen_close" path="UI_Required">
+   <WwiseEvent wwise_name="Play_menu_screen_close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Menu_In" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Menu_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Menu_Out" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Menu_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Menu_Pickup" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Menu_Pickup"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Menu_Place" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Menu_Place"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Cancel" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Success" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Success"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Miss" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Miss"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Hit" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Hit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Open" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Loop" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Loop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Fail" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Fail"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_External_Inventory_Open" path="Inventory">
+   <WwiseEvent wwise_name="Play_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_External_Inventory_Close" path="Inventory">
+   <WwiseEvent wwise_name="Play_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Added_Optional" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Added_Optional"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Complete_Optional" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Complete_Optional"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Failed" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Failed"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Pickup" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_Pickup"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="TEMP_UI_00" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_UI_00"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="TEMP_UI_01" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_UI_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="TEMP_UI_02" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_UI_02"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="TEMP_UI_03" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_UI_03"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="TEMP_UI_04" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_UI_04"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="TEMP_UI_05" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="TEMP_UI_05"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_External_Inventory_Take_One" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_External_Inventory_Take_One"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_External_Inventory_Store_One" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_External_Inventory_Store_One"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_External_Inventory_Take_All" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_External_Inventory_Take_All"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_External_Inventory_Full" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_External_Inventory_Full"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Button_Select">
+   <WwiseEvent wwise_name="Play_Button_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Button_Next">
+   <WwiseEvent wwise_name="Play_Button_Next"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Button_Cancel">
+   <WwiseEvent wwise_name="Play_Button_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Open">
+   <WwiseEvent wwise_name="Play_Menu_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Close">
+   <WwiseEvent wwise_name="Play_Menu_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Research_Start">
+   <WwiseEvent wwise_name="Play_Psi_Research_Research_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_SetCurrent" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_SetCurrent"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_VO_Suit_ResearchComplete" path="Suit_Vox">
+   <WwiseEvent wwise_name="Play_VO_Suit_ResearchComplete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Abilities_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Abilities_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Abilities_Purchase" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Abilities_Purchase"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Cancel" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Data_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Data_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_EnterMenu" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_EnterMenu"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Error" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Error"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Map_Next_Level" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Map_Next_Level"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Map_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Map_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Map_Previous_Level" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Map_Previous_Level"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Map_ZoomIn" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Map_ZoomIn"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Map_ZoomOut" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Map_ZoomOut"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_NavDown" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_NavDown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_NavLeft" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_NavLeft"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_NavRight" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_NavRight"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_NavUp" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_NavUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Objectives_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Objectives_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Objectives_SetActive" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Objectives_SetActive"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Page_Close" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Page_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Rollover" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Scroll_Down" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Scroll_Down"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Scroll_Up" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Scroll_Up"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Select" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Status_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Status_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Tab_Left" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Tab_Left"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Tab_Right" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Tab_Right"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Enter_Page" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_EnterPage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_EnterPassword" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_EnterPassword"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Rollover" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_Rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Select" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Rollover" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Select" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Menu_Controls" path="Ark_UI_Generic">
+   <WwiseEvent wwise_name="Play_UI_INventory_Menu_Nav"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Note_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Note_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Note_Close" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Note_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Tutorial_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Tutorial_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Tutorial_Close" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Tutorial_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Tutorial_Nag_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Tutorial_Nag_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_ItemMenu_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Inventory_ItemMenu_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_ItemMenu_Close" path="Transcribe">
+   <WwiseEvent wwise_name="Play_UI_Inventory_ItemMenu_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Dialog_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Dialog_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Dialog_Close" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Dialog_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Upgrade_Open" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Upgrade_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Upgrade_Close" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Upgrade_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Losing_Target" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Losing_Target"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Psi_Research_Scan_Complete" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Psi_Research_Scan_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LevelTransition_Enter" path="Level_Transition">
+   <WwiseEvent wwise_name="Play_LevelTransition_Enter"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LevelTransition_Cancel" path="Level_Transition">
+   <WwiseEvent wwise_name="Play_LevelTransition_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LevelTransition_Confirm" path="Level_Transition">
+   <WwiseEvent wwise_name="Play_LevelTransition_Confirm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="GameStart">
+   <WwiseEvent wwise_name="GameStart"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_In" path="UI_Required">
+   <WwiseEvent wwise_name="Play_Pause_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Out" path="UI_Required">
+   <WwiseEvent wwise_name="Play_Pause_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_LevelTransition_Complete" path="Level_Transition">
+   <WwiseEvent wwise_name="Play_LevelTransition_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Player_SuitMod" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Player_SuitMod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_MetalLobbyGarbage_Close" path="Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_MetalLobbyGarbage_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_ToolBox_Close" path="Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_ToolBox_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_ToolBox_Open" path="Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_ToolBox_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_MetalLobbyGarbage_Open" path="Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_MetalLobbyGarbage_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_Safe_Close" path="Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_Safe_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_Safe_Open" path="Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_Safe_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_MetalLobbyGarbage_Close_1" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_MetalLobbyGarbage_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_ToolBox_Close_1" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_ToolBox_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_ToolBox_Open_1" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_ToolBox_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_MetalLobbyGarbage_Open_1" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_MetalLobbyGarbage_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_Safe_Close_1" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_Safe_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Inventory_Container_Safe_Open_1" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Inventory_Container_Safe_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Fridge_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Fridge_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_LabCabinet_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_LabCabinet_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_LargeCabinet_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_LargeCabinet_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_FileCabinet_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_FileCabinet_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_LabCabinet_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_LabCabinet_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_MedDrawer_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_MedDrawer_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_MetalKitchenGarbage_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_MetalKitchenGarbage_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_FileCabinet_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_FileCabinet_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_MedLocker_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_MedLocker_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_MetalKitchenGarbage_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_MetalKitchenGarbage_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_MedLocker_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_MedLocker_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Fridge_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Fridge_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Briefcase_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Briefcase_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Briefcase_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Briefcase_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_LargeCabinet_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_LargeCabinet_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_MedDrawer_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_MedDrawer_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Microwave_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Microwave_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Microwave_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Microwave_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_SmallDrawer_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_SmallDrawer_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_SmallCabinet_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_SmallCabinet_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_SmallCabinet_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_SmallCabinet_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_SmallDrawer_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_SmallDrawer_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_SmallMetalDrawer_Close_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_SmallMetalDrawer_Close_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_SmallMetalDrawer_Open_01" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_SmallMetalDrawer_Open_01"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_PDA_Open_TEMP" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_PDA_Open_TEMP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_PDA_Close_TEMP" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_PDA_Close_TEMP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Container_Cannot_Loot" path="External_Inventory">
+   <WwiseEvent wwise_name="Play_Container_Cannot_Loot"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Psychoscope_Scan_Marked" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_UI_Psychoscope_Scan_Marked"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Psychoscope_Scan_Marked_Hidden" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_UI_Psychoscope_Scan_Marked_Hidden"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Psychoscope_Scan_Marked_Lost" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_UI_Psychoscope_Scan_Marked_Lost"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Quickloot_CannotUseItem" path="Inventory">
+   <WwiseEvent wwise_name="Play_Quickloot_CannotUseItem"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Nil" path="Keypad">
+   <WwiseEvent wwise_name="Play_UI_Nil"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_QuickSelect_Assignment" path="QuickSelect">
+   <WwiseEvent wwise_name="Play_UI_QuickSelect_Assignment"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_QuickSelect_Error" path="QuickSelect">
+   <WwiseEvent wwise_name="Play_UI_QuickSelect_Error"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_QuickSelect_Selection" path="QuickSelect">
+   <WwiseEvent wwise_name="Play_UI_QuickSelect_Selection"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_Nav_Next" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_Nav_Next"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Menu_Psi_Nav_Prev" path="Psi_Research">
+   <WwiseEvent wwise_name="Play_Menu_Psi_Nav_Prev"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Workstation_ForbiddenFile" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_ForbiddenFile"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_UI_Workstation_ForbiddenFile" path="Workstation">
+   <WwiseEvent wwise_name="Stop_UI_Workstation_ForbiddenFile"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Added" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Added"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Complete" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Failed_Optional" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Failed_Optional"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Task_Added_Timed" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Task_Added_Timed"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Ring" path="Communication">
+   <WwiseEvent wwise_name="Play_Transcribe_Ring"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_AudioLog" path="Communication">
+   <WwiseEvent wwise_name="Play_Transcribe_AudioLog"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_AnswerClick" path="Communication">
+   <WwiseEvent wwise_name="Play_Transcribe_AnswerClick"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Transcribe_AudioLog" path="Communication">
+   <WwiseEvent wwise_name="Stop_Transcribe_AudioLog"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Transcribe_Ring" path="Communication">
+   <WwiseEvent wwise_name="Stop_Transcribe_Ring"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Stacks_Cancel" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Stacks_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Stacks_Confirm" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Stacks_Confirm"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Inventory_Stacks_Count" path="Inventory">
+   <WwiseEvent wwise_name="Play_UI_Inventory_Stacks_Count"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Pause_Psi_Scanning_Research_LP" path="Psi_Research">
+   <WwiseEvent wwise_name="Pause_Psi_Scanning_Research_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Resume_Psi_Scanning_Research_LP" path="Psi_Research">
+   <WwiseEvent wwise_name="Resume_Psi_Scanning_Research_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Tutorial_Nag" path="Tutorial">
+   <WwiseEvent wwise_name="Play_UI_Tutorial_Nag"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Tutorial_Prompt" path="Tutorial">
+   <WwiseEvent wwise_name="Play_UI_Tutorial_Promt"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Tutorial_Card" path="Tutorial">
+   <WwiseEvent wwise_name="Play_UI_Tutorial_Card"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Workstation_Processing" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_Processing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_UI_Workstation_Processing" path="Workstation">
+   <WwiseEvent wwise_name="Stop_UI_Workstation_Processing"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Upgrade_Purchase" path="Fabricator">
+   <WwiseEvent wwise_name="Play_Transcribe_Upgrade_Purchase"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_File_Transferring" path="Workstation">
+   <WwiseEvent wwise_name="Play_UI_Workstation_File_Transferring"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_File_Complete" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_File_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_File_Start" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_File_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_UI_Workstation_File_Transferring" path="Workstation">
+   <WwiseEvent wwise_name="Stop_UI_Workstation_File_Transferring"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Workstation_File_Transfer" path="Workstation">
+   <WwiseEvent wwise_name="Stop_Workstation_File_Transfer"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Chipset_Psychoscope_In" path="Chipset">
+   <WwiseEvent wwise_name="Play_UI_Chipset_Psychoscope_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Chipset_Psychoscope_Out" path="Chipset">
+   <WwiseEvent wwise_name="Play_UI_Chipset_Psychoscope_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Chipset_Suit_In" path="Chipset">
+   <WwiseEvent wwise_name="Play_UI_Chipset_Suit_In"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Chipset_Suit_Out" path="Chipset">
+   <WwiseEvent wwise_name="Play_UI_Chipset_Suit_Out"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Target_Add" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Spawn_Node"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Cursor_Add" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Spawn_Cursor"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Bounce" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Bounce"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Stun" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Stun"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Start" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Start"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Transcribe_Install_Neuromod" path="Transcribe">
+   <WwiseEvent wwise_name="Play_Transcribe_Install_Neuromod"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Error" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Error"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Back" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Back"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Exit_Page" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Exit_Page"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Keypad_Back" path="Keypad">
+   <WwiseEvent wwise_name="Play_Keypad_Back"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Fabricator_Approach" path="Fabricator">
+   <WwiseEvent wwise_name="Play_UI_Fabricator_Approach"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_File_Stop" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_File_Stop"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Shell_Options_Tab">
+   <WwiseEvent wwise_name="Play_Shell_Options_Tab"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Hacking_Exit" path="Hacking_MiniGame">
+   <WwiseEvent wwise_name="Play_Hacking_Exit"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Popup_Close" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Popup_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Popup_Open" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Popup_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Success_Close" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Success_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Success_Open" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Success_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_WakeUp" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_WakeUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Error_Close" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Error_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Workstation_Error_Open" path="Workstation">
+   <WwiseEvent wwise_name="Workstation_Error_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Added" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Added"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Added_Optional" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Added_Optional"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Complete" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Complete"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Complete_Optional" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Complete_Optional"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Fail" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Fail"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_UI_Objective_Fail_Optional" path="Objectives">
+   <WwiseEvent wwise_name="Play_UI_Objective_Fail_Optional"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Rollover">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Rollover"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_NavUp">
+   <WwiseEvent wwise_name="Play_Pause_Menu_NavUp"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_NavDown">
+   <WwiseEvent wwise_name="Play_Pause_Menu_NavDown"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_NavLeft">
+   <WwiseEvent wwise_name="Play_Pause_Menu_NavLeft"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_NavRight">
+   <WwiseEvent wwise_name="Play_Pause_Menu_NavRight"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Scroll_Up">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Scroll_Up"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Scroll_Down">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Scroll_Down"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Select">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Select"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Cancel">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Cancel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Error">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Error"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Open">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Close">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Close"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Continue_Open">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Continue_Open"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Pause_Menu_Continue_Close">
+   <WwiseEvent wwise_name="Play_Pause_Menu_Continue_Close"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

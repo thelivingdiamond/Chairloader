@@ -1,0 +1,9 @@
+<Graph isModule="1" moduleName="ArkSceneWindows_Group1" isObjectList="1" objectListClass="ArkSceneWindow" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkSceneWindow" pos="-290,70,0" EntityGUID="{3A3C8FE8-7965-4EE1-856D-CEFAABB034B8}" EntityGUID_64="4EE179653A3C8FE8">
+   <Inputs entityId="0" Disable="0" Enable="0" Hide="0" UnHide="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

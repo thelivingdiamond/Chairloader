@@ -1,0 +1,17 @@
+
+<Dialog>
+ <Dialog id="13680621263378651827" text="Commander Dahl. This is William Yu, acting chairman of the TranStar Board of Directors. " modified="11/26/2015 02:44:03 PM"/>
+ <Dialog id="13680621263378651848" text="Of course. My authentication sign is Zeta. Invictus. Emperor. Tangerine. " modified="07/08/2016 10:55:18 PM"/>
+ <Dialog id="13680621263378651912" text="You must secure every piece of Cobalt clearance level technology and research aboard Talos I. Then eliminate all TranStar personnel." modified="07/12/2016 04:30:47 PM"/>
+ <Dialog id="13680621263378652068" text="No survivors." modified="11/26/2015 02:48:04 PM" notes="A smidge of hesitation."/>
+ <Dialog id="13680621263378652113" text="Payment will be deposited into six separate Benelux accounts... after you transmit evidence of success." modified="11/26/2015 02:50:42 PM"/>
+ <Dialog id="13680621263378652942" text="We strongly advise deploying your technical officer to a station router inside the firewalls first." modified="11/26/2015 03:02:38 PM"/>
+ <Dialog id="13680621263378652978" text="Ideal site would be the Cargo Bay." modified="11/26/2015 03:05:37 PM"/>
+ <Dialog id="13680621263378653026" text="You will destroy this transmission aft-" modified="05/06/2016 12:14:31 AM" notes="After cut off."/>
+ <Dialog id="13680621263378654431" text="Ideal site would be the Trauma Center." modified="05/06/2016 12:17:04 AM"/>
+ <Dialog id="13680621263378654934" text="Ideal site would be in the Hardware Labs." modified="11/26/2015 03:35:50 PM"/>
+ <Dialog id="13680621263378655001" text="Ideal site would be in the Utility Tunnels." modified="11/26/2015 03:36:57 PM"/>
+ <Dialog id="13680621263378655055" text="Ideal site would be in the Neuromod Division." modified="11/26/2015 03:37:51 PM"/>
+ <Dialog id="13680621263378655159" text="Ideal location would be the station exterior. Near the Power Plant grids." modified="05/06/2016 12:16:12 AM"/>
+ <Dialog id="13680621263379195346" text="Ideal site would be Psychotronics." modified="05/06/2016 12:13:44 AM"/>
+</Dialog>

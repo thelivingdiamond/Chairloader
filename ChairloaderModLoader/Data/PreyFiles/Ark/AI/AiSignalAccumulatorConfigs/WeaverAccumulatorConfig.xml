@@ -1,0 +1,10 @@
+
+<SignalAccumulators>
+ <Imports>
+  <File file="Ark/AI/AiSignalAccumulatorConfigs/AlienAccumulatorConfig.xml"/>
+ </Imports>
+ <Accumulators>
+  <Accumulator signalGroup="3149325216987412893" rising_threshold="2" falling_threshold="0" maximum_accumulation="2" deaccumulateAmountPerSecond="0.2" timeToStartDeaccumulationOnNoSignal="1"/>
+  <Accumulator signalGroup="3473393341384819343" rising_threshold="10" falling_threshold="0" maximum_accumulation="20" deaccumulateAmountPerSecond="1" timeToStartDeaccumulationOnNoSignal="1.0" rising_luaCallbackFunc="" abovethreshold_luaCallbackFunc=""/>
+ </Accumulators>
+</SignalAccumulators>

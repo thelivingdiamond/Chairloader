@@ -1,0 +1,143 @@
+
+<ArkAimAssistConfig Magnetism=".6" Centering=".6" AimAssistDeadZone=".8">
+ <Entities>
+  <ArkAimAssistEntity Name="ArkHuman">
+   <Shape InnerRadius="0.25" OuterRadius="0.1">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkMimic">
+   <Shape InnerRadius="0.5" OuterRadius=".2">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkMimicElite">
+   <Shape InnerRadius="0.5" OuterRadius=".4">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkBeta">
+   <Shape InnerRadius=".5" OuterRadius=".4">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkPhantomVoltaic">
+   <Shape InnerRadius=".5" OuterRadius=".4">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkNightmare">
+   <Shape InnerRadius="0.6" OuterRadius="0.25">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Mid_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkOperator">
+   <Shape InnerRadius="0.85" OuterRadius="0.35">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkOperatorEngineer">
+   <Shape InnerRadius="0.85" OuterRadius="0.35">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkOperatorMedic">
+   <Shape InnerRadius="0.85" OuterRadius="0.35">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkOperatorMilitary">
+   <Shape InnerRadius="0.85" OuterRadius="0.35">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkOperatorScience">
+   <Shape InnerRadius="0.85" OuterRadius="0.35">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkPoltergeist">
+   <Shape InnerRadius=".5" OuterRadius=".4">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkTechnopath">
+   <Shape InnerRadius="0.6" OuterRadius="0.25">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkTelepath">
+   <Shape InnerRadius="0.6" OuterRadius="0.25">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkWeaver">
+   <Shape InnerRadius="0.6" OuterRadius="0.25">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkTurret">
+   <Shape InnerRadius="0.15" OuterRadius=".45">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Upper_Attachment"/>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Lower_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkAlienJelly">
+   <Shape InnerRadius=".25" OuterRadius=".25">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+  <ArkAimAssistEntity Name="ArkCystoidNest">
+   <Shape InnerRadius=".25" OuterRadius=".25">
+    <Points>
+     <ArkAimAssistPoint AttachmentName="AimAssist_Attachment"/>
+    </Points>
+   </Shape>
+  </ArkAimAssistEntity>
+ </Entities>
+</ArkAimAssistConfig>

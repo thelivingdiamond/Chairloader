@@ -1,0 +1,115 @@
+
+<Dialog>
+ <Dialog id="4349723564913700449" text="We&apos;ve had enemy contact. But the enemy... they&apos;re..." modified="02/24/2016 12:39:26 AM" notes="[Erica Teague] " facefx="2"/>
+ <Dialog id="4349723564913700504" text="I couldn&apos;t, Chief, I couldn&apos;t let those people..." modified="02/24/2016 12:39:40 AM" notes="[Erica Teague] " facefx="2"/>
+ <Dialog id="4349723564913700546" text="Negative... the escape pods are malfunctioning, it&apos;s like they&apos;re locked in place. Only four of us made it to Life Support..." modified="07/08/2016 11:39:33 PM" notes="[Erica Teague] " facefx="2"/>
+ <Dialog id="4349723564913700566" text="Negative, Remmer - Remmer isn&apos;t Remmer, Chief. These things... Chief, the main lift - it isn&apos;t working - we&apos;re locked out." modified="05/02/2016 03:15:00 AM" notes="[Erica Teague] oh shit" facefx="2"/>
+ <Dialog id="4349723564913700585" text="Oh my god. Remmer. Remmer&apos;s here. Stay away, stay away-" modified="02/24/2016 12:40:57 AM" notes="[Erica Teague] screaming" facefx="2"/>
+ <Dialog id="13680621263370537431" text="Dr. Yu? Morgan? This is Emmanuella. Please... be careful." modified="05/02/2016 03:08:11 AM" notes="(Emmanualla DeSilva)" facefx="2"/>
+ <Dialog id="13680621263370538406" text="No, it&apos;s what it looks like. Frank is a piece of shit. " modified="02/13/2016 04:46:44 PM" notes="(Emmanualla DeSilva) Angry" facefx="2"/>
+ <Dialog id="13680621263370538666" text="Morgan, please. I&apos;m begging you." modified="05/02/2016 03:14:12 AM" notes="(Emmanualla DeSilva)" facefx="2"/>
+ <Dialog id="13680621263370538743" text="Thanks, Morgan. Means a lot to me that you did all that... despite Frank." modified="07/08/2016 11:41:32 PM" notes="(Emmanualla DeSilva)" facefx="2"/>
+ <Dialog id="13680621263370538933" text="Oh, thank God. " modified="02/13/2016 04:49:55 PM" notes="(Emmanualla DeSilva)" facefx="2"/>
+ <Dialog id="13680621263378043925" text="On my way where?" modified="11/19/2015 01:53:14 PM" notes="(Octavia Figgs)" facefx="2"/>
+ <Dialog id="13680621263378044082" text="Listen, it&apos;s really sweet that you&apos;re worried about me, but we&apos;ve had alerts before and I&apos;ve got three more of these glorified vacuum cleaners to fix before my shift is over." modified="11/19/2015 02:07:11 PM" notes="(Octavia Figgs) Been there done that. It&apos;s cute that your worried" facefx="2"/>
+ <Dialog id="13680621263378044911" text="Oh... make that four. Somebody dropped off another. God these things are junk." modified="07/08/2016 11:46:06 PM" notes="(Octavia Figgs) Notices a new one. A weary sigh. Rest is to herself, under breath." facefx="2"/>
+ <Dialog id="13856881013195922903" text="I- I got an SOS from a Kirk Remmer? I was going to route him to security but we got cut off. He said he was at the escape pods in Life Support?" modified="07/08/2016 11:43:55 PM" notes="(Alika James) Trying to be calm and detached, follow protocol. " facefx="2"/>
+ <Dialog id="13856881013195923261" text="You&apos;re his supervisor..." modified="02/08/2016 07:34:30 PM" notes="(Alika James) " facefx="2"/>
+ <Dialog id="13856881013195923437" text="I&apos;m sorry. I don&apos;t know. But I can relay your message to Dr. DeVries and-" modified="07/08/2016 11:34:39 PM" notes="(Alika James) Out of her depth. A tech support person presented with a situation not covered by the script." facefx="2"/>
+ <Dialog id="4349723564923554781" text="Everything go well?" modified="02/10/2016 02:17:41 AM" notes="(Lilly Morris) " facefx="2"/>
+ <Dialog id="4349723564923555072" text="So, it&apos;s off Talos? My clients are eager." modified="02/10/2016 02:09:44 AM" notes="(Lilly Morris) " facefx="2"/>
+ <Dialog id="4349723564923555273" text="Good. I&apos;ll be leaving another package for you after tomorrow&apos;s shift. " modified="02/11/2016 09:40:40 PM" notes="(Lilly Morris) " facefx="2"/>
+ <Dialog id="4349723564923555345" text="The Lobby. Assuming it works?" modified="02/10/2016 02:11:49 AM" notes="(Lilly Morris) Knows it will ruffle him a bit to even ask." facefx="2"/>
+ <Dialog id="844024417293800439" text="(Distressed Breathing Sounds)" modified="07/12/2016 04:28:59 PM" notes="(Emma Beatty) Distressed breathing sounds"/>
+ <Dialog id="844024417293800497" text="Please. Don&apos;t. Come." modified="01/06/2016 10:25:06 PM" notes="(Emma Beatty) Struggling to get each word out."/>
+ <Dialog id="844024417293800791" text="Please. No- Not." modified="07/15/2016 05:45:34 PM" notes="(Emma Beatty) Choking whisper, almost hyperventilating under her breath"/>
+ <Dialog id="844024417293800851" text="Safe." modified="01/06/2016 10:30:43 PM" notes="(Emma Beatty)"/>
+ <Dialog id="844024417293800886" text="It&apos;s - not me. It&apos;s not - I won&apos;t. I won&apos;t do it. You can&apos;t-" modified="07/15/2016 05:45:03 PM" notes="(Emma Beatty) Transmission cuts off."/>
+ <Dialog id="4349723564925967326" text="You&apos;re adorable when you get proud of your gadgets." modified="07/12/2016 06:04:15 PM" notes="(Lilly Morris) Making a dig. " facefx="2"/>
+ <Dialog id="13680621263385484795" text="But please... don&apos;t punish me because of him. I just want to go home. Please, Morgan. " modified="05/02/2016 03:08:23 AM" notes="(Emmanualla DeSilva) Almost teary"/>
+ <Dialog id="13680621263385484922" text="I&apos;m transmitting the location of something that could help... I couldn&apos;t get it off the station, but maybe it can help you." modified="05/09/2016 04:58:35 AM" notes="(Emmanualla DeSilva)" facefx="0"/>
+ <Dialog id="13680621263385484983" text="Morgan, would you please take the hatch off so I can go home?" modified="05/02/2016 03:10:08 AM" notes="(Emmanualla DeSilva) Pleading."/>
+ <Dialog id="4349723564930108041" text="If only I had reached the power supply in time..." modified="02/24/2016 07:54:49 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108054" text="If only I could have put out the fire. It&apos;s contained but... I could have done more." modified="02/24/2016 07:55:02 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108065" text="How did this all happen?" modified="02/24/2016 07:55:13 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108098" text="Morgan, I heard you put out the fire. That was... that was very brave. Thank you, I wish I&apos;d been able to, but those creatures..." modified="05/02/2016 03:13:19 AM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108114" text="The fire kept me from reaching the power supply, but now that you&apos;ve put out the fire, we have a chance. " modified="02/24/2016 07:56:02 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108126" text="You restored the power - I don&apos;t know how you did it, but... " modified="05/02/2016 03:13:29 AM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108140" text="I wish I could have been more help. I tried to restore the power, but the fire was too much before Al - Officer Rose - pulled me out of there." modified="07/08/2016 11:36:32 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930108660" text="Morgan? I thought... I don&apos;t know what I thought. It&apos;s good to see you - is TranStar mounting a rescue operation?" modified="05/02/2016 03:13:50 AM" notes="[Ekaterina Mulsaev] Morgan&apos;s been missing for a while" sync="true"/>
+ <Dialog id="4349723564930108683" text="I was in Fuel Storage when... when the fire broke out and everyone began running. But they weren&apos;t running from the fire, it was... these shapes." modified="07/08/2016 11:35:41 PM" notes="[Ekaterina Mulsaev] " sync="true"/>
+ <Dialog id="4349723564930108694" text="I had contained the fire, and I was trying to reach the power supply when Al... Officer Rose... came and got me out - I&apos;m glad he did, I didn&apos;t know what was going on - or anything about those things." modified="02/24/2016 08:05:42 PM" notes="[Ekaterina Mulsaev] " sync="true"/>
+ <Dialog id="4349723564930108706" text="Everyone I worked with - they&apos;re dead, aren&apos;t they? " modified="02/24/2016 08:05:54 PM" notes="[Ekaterina Mulsaev] " sync="true"/>
+ <Dialog id="4349723564930108715" text="I wonder if one of the creatures caused the explosion in fuel storage - are they intelligent? Did they plan this?" modified="02/24/2016 08:06:03 PM" notes="[Ekaterina Mulsaev] " sync="true"/>
+ <Dialog id="4349723564930108726" text="I heard all the escape pods... malfunctioned? All of them - how is that possible? " modified="02/24/2016 08:06:14 PM" notes="[Ekaterina Mulsaev] " sync="true"/>
+ <Dialog id="4349723564930108977" text="I... I thought we were dead for sure." modified="02/24/2016 08:10:25 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109274" text="I&apos;ll be all right. Just need a moment." modified="05/02/2016 03:14:01 AM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109285" text="Still a bit rattled... but we&apos;re alive, that&apos;s the important thing." modified="02/24/2016 08:15:33 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109344" text="I don&apos;t think this is a good idea." modified="02/24/2016 08:16:32 PM" notes="[Ekaterina Mulsaev] To herself"/>
+ <Dialog id="4349723564930109372" text="There must be some other way. " modified="02/24/2016 08:17:00 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109385" text="We don&apos;t know how many of those things are out there." modified="02/24/2016 08:17:13 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109591" text="Too many people... too much death. How did this all happen?" modified="02/24/2016 08:20:39 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109602" text="No one deserved this. They didn&apos;t deserve this." modified="02/24/2016 08:20:50 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109878" text="Al... he saved my life in Fuel Storage. Without him, I wouldn&apos;t be alive. Now..." modified="02/24/2016 08:25:26 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930109967" text="Is it over? Are there any more? " modified="02/24/2016 08:26:55 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930110102" text="Oh my god! Look out!" modified="02/24/2016 08:29:10 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115162" text="Why would your brother seal the lifts in the first place? To keep us locked down here?" modified="02/24/2016 09:53:30 PM" notes="[Ekaterina Mulsaev] Confused, frustrated"/>
+ <Dialog id="4349723564930115173" text="Maybe there are other survivors. Now that you got the lift working, maybe we can escape. " modified="02/24/2016 09:53:41 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115394" text="They&apos;ve gotten inside!" modified="02/24/2016 09:57:22 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115404" text="It&apos;s one of the Typhon!" modified="02/24/2016 09:57:32 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115415" text="They&apos;ve gotten Dr. Yu!" modified="02/24/2016 09:57:43 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115485" text="TranStar - they sent Dahl to kill us. They want to cover this up." modified="02/24/2016 10:14:25 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115497" text="Why is Commander Dahl after you? Your father... he&apos;s on the TranStar Board of Directors. Why arrest his own children? " modified="02/24/2016 09:59:05 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930115969" text="I heard Commander Dahl&apos;s announcement - why would TranStar send him? Something feels wrong." modified="02/24/2016 10:06:57 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930116435" text="Thank you for saving us, Morgan - I thought the creatures were bad - now I know TranStar&apos;s even worse." modified="05/02/2016 03:14:20 AM" notes="[Ekaterina Mulsaev] "/>
+ <Dialog id="4349723564930116450" text="That coward didn&apos;t even have the balls for a stand-up fight. Excuse my French." modified="02/24/2016 10:14:58 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930118534" text="I&apos;d pay my respects to Commander Dahl, if I had any respect for him in the first place." modified="02/24/2016 10:49:42 PM" notes="[Ekaterina Mulsaev]Cold"/>
+ <Dialog id="4349723564930118668" text="I heard you were able to reach Chief Ilyushin - if anyone can get this station back in order, it&apos;s her. " modified="02/24/2016 10:51:56 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930118740" text="Rani told us what happened in the Arboretum - is anywhere on the station safe?" modified="02/24/2016 10:53:08 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930119561" text="With the escape pods useless... we have to fight." modified="02/24/2016 11:06:49 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930119575" text="If we can&apos;t escape the station, then we need to contain the creatures - somehow." modified="02/24/2016 11:07:03 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930119587" text="The creatures can&apos;t be allowed to leave the station. If they do... the thought of even one of them on Earth - it... we can&apos;t let it happen. " modified="11/16/2016 05:37:40 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930119597" text="If we can&apos;t leave, neither will they. " modified="02/24/2016 11:07:25 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930202974" text="I am, Officer Rose. Thank you. " modified="02/25/2016 10:17:14 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930203010" text="No... you pulled me out just in time... Al." modified="02/25/2016 10:17:38 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930203041" text="I&apos;ll try and let you know before I do it again." modified="07/08/2016 11:35:11 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930203071" text="Thank you, Al." modified="02/25/2016 10:18:39 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930203244" text="The what? I don&apos;t understand." modified="02/25/2016 10:21:32 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930203329" text="Oh. I am, Officer Rose - Al. Thank you." modified="07/08/2016 11:36:46 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564930203471" text="Yes, it feels like years." modified="02/25/2016 10:25:29 PM" notes="[Ekaterina Mulsaev] subtle laugh"/>
+ <Dialog id="4349723564931411135" text="The officers collected those supplies. They&apos;re not for you." modified="07/08/2016 11:38:51 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564931411193" text="That food is being rationed. Who knows how long we will be here?" modified="03/10/2016 09:54:01 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564931411534" text="Other people may be hungry." modified="03/10/2016 09:59:42 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="4349723564931411551" text="Are you going to take everything?" modified="03/10/2016 09:59:59 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="13680621263388256318" text="Hello, Volunteer. My name is Bianca Goodwin. I&apos;m the Volunteer and Guest Liaison aboard Talos I." modified="07/12/2016 05:52:02 PM" notes="(Bianca Goodwin) Smiling, face of the company. Reassuring." facefx="2"/>
+ <Dialog id="13680621263388256379" text="I wanted to be the first person to congratulate you when you woke." modified="07/12/2016 05:52:01 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263388256386" text="On behalf of everyone at TranStar, well done and thank you." modified="07/12/2016 05:52:00 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263388256410" text="I&apos;m sure you feel disoriented." modified="07/12/2016 05:52:03 PM" notes="(Bianca Goodwin) Empathetic." facefx="2"/>
+ <Dialog id="13680621263388256419" text="This is because you&apos;ve just experienced a medical procedure known as Apto-Regressive Neurotomy." modified="07/12/2016 05:52:06 PM" notes="(Bianca Goodwin) Slow, deliberate on the medical term." facefx="2"/>
+ <Dialog id="13680621263388256436" text="For the next few hours you might have trouble with fine motor skills or recalling details." modified="07/12/2016 05:52:07 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263388256477" text="More importantly, your memory of the tests is completely gone." modified="03/16/2016 06:52:28 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263388256543" text="But, don&apos;t worry. I want you to know your willing participation was a big success." modified="07/12/2016 05:52:10 PM" notes="(Bianca Goodwin) Smiling again. Yay! You did it." facefx="2"/>
+ <Dialog id="13680621263388256559" text="It&apos;s already yielding valuable information for our scientists and engineers." modified="03/16/2016 06:54:11 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263388257253" text="So, please, rest easy for now. Once you feel well enough, I&apos;ll come by to conduct your exit interview." modified="03/16/2016 06:57:48 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263388257432" text="See you soon." modified="03/16/2016 06:57:28 PM" notes="(Bianca Goodwin)" facefx="2"/>
+ <Dialog id="13680621263389040406" text="Your shift isn&apos;t for another two hours, but I need you to come in now." modified="05/08/2016 11:55:33 PM" notes="[Captain Jada Marks] Cool" facefx="2"/>
+ <Dialog id="13680621263389040503" text="No. It&apos;s not. " modified="03/25/2016 08:28:39 PM" notes="[Captain Jada Marks]" facefx="2"/>
+ <Dialog id="13680621263389040521" text="Stop by my cabin first. Bring the gun from my safe. Transmitting the keycode. " modified="03/25/2016 08:28:57 PM" notes="[Captain Jada Marks]" facefx="2"/>
+ <Dialog id="13680621263389040667" text="This is Captain Jada Marks." modified="03/25/2016 08:31:23 PM" notes="(Captain Jada Marks) Really burdened. Stressed." facefx="2"/>
+ <Dialog id="13680621263389040695" text="I&apos;m setting down, for posterity, my deliberation over the fate of the shuttle Advent. " modified="03/25/2016 08:31:51 PM" notes="(Captain Jada Marks) " facefx="2"/>
+ <Dialog id="13680621263389040705" text="I&apos;m unable to determine with confidence if the Advent departed before being contaminated by the life forms presently overwhelming Talos I.  " modified="03/25/2016 08:32:01 PM" notes="(Captain Jada Marks) " facefx="2"/>
+ <Dialog id="13680621263389040714" text="Best guess based on telemetry data - Advent departed approximately thirty minutes prior to the first incident report logged by security." modified="07/08/2016 11:34:43 PM" notes="(Captain Jada Marks) " facefx="2"/>
+ <Dialog id="13680621263389040724" text="Thirty minutes. It is within that narrow gap of uncertainty I must decide whether or not to remote detonate the shuttle and its five passengers.   " modified="03/25/2016 08:32:20 PM" notes="(Captain Jada Marks) " facefx="2"/>
+ <Dialog id="13680621263389040732" text="They may very well be flying a cargo hold full of... mimics to an unsuspecting Earth. They may not." modified="07/08/2016 11:47:52 PM" notes="(Captain Jada Marks) " facefx="2"/>
+ <Dialog id="13680621263389040766" text="I don&apos;t- (Mimic Sounds)" modified="07/08/2016 11:34:36 PM" notes="(Captain Jada Marks) Cuts off." facefx="2"/>
+ <Dialog id="13680621263389041057" text="Alex, This is Captain Marks. I&apos;m calling to let you know I&apos;ve authorized a full evacuation of Talos I." modified="10/05/2016 08:57:57 PM" notes="[Captain Jada Marks] Grim." facefx="2"/>
+ <Dialog id="13680621263389041202" text="I&apos;ve tried to issue a mayday to earthside operations, but our external communication systems are malfunctioning." modified="03/25/2016 08:42:12 PM" notes="[Captain Jada Marks] Grim." facefx="2"/>
+ <Dialog id="13680621263389041389" text="If you&apos;re still with us... we&apos;re keeping our posts until the last pods are safely away." modified="03/25/2016 08:43:25 PM" notes="[Captain Jada Marks] Grim." facefx="2"/>
+ <Dialog id="13680621263389041398" text="Marks out." modified="03/25/2016 08:43:34 PM" notes="[Captain Jada Marks] Grim." facefx="2"/>
+ <Dialog id="4349723564941760024" text="The Medical Operator was able to heal me, but the others fighting the fire were already... dead." modified="07/11/2016 10:46:54 PM" notes="[Ekaterina Mulsaev]"/>
+ <Dialog id="13680621263399403878" text="I don&apos;t mean to be a nuisance, but when do you think you&apos;ll get to that breach?" modified="07/23/2016 07:11:34 PM" notes="(Kristine Loyd)"/>
+ <Dialog id="13680621263399403947" text="What do you think happened?" modified="07/23/2016 07:12:43 PM" notes="(Kristine Loyd)"/>
+ <Dialog id="13680621263399403965" text="Okay. Good. Hopefully it&apos;s just that." modified="07/23/2016 07:13:01 PM" notes="(Kristine Loyd) And not something more terrible that I&apos;m thinking of."/>
+ <Dialog id="13680621263399403986" text="No, of course not. It&apos;s just, that storage room has classified, exotic materials. We really can&apos;t have it be inaccessible." modified="07/23/2016 07:14:10 PM" notes="(Kristine Loyd) Covering her ass."/>
+ <Dialog id="13680621263399404069" text="Plus... it makes me nervous when we can&apos;t get to the medical operator." modified="07/23/2016 07:14:45 PM" notes="(Kristine Loyd)"/>
+</Dialog>

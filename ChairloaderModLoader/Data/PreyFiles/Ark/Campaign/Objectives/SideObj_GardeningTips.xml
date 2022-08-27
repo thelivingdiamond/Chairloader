@@ -1,0 +1,28 @@
+
+<Objectives>
+ <Objective id="14667999412530993572" title="@loc_15373294129891632299" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="14667999412530993573" displayName="FoundSprinklerOnly" text="@loc_15373294129891632300"/>
+   <Desc id="14667999412548016533" displayName="FoundBodyOnly" text="@loc_15373294129891632301"/>
+   <Desc id="14667999412548016536" displayName="FoundSprinklerAndBody" text="@loc_15373294129891632302"/>
+   <Desc id="14667999412548016615" displayName="Complete" text="@loc_15373294129891632303"/>
+   <Desc id="14667999412548016617" displayName="Find Dr. Howard[DEPRECATED]" text="@loc_15373294129891632304"/>
+   <Desc id="14667999412548016619" displayName="Create Growth Pellet[DEPRECATED]" text="@loc_15373294129891632305"/>
+   <Desc id="14667999412548016629" displayName="GrowthCycle[DEPRECATED]" text="@loc_15373294129891632306"/>
+   <Desc id="14667999412548016630" displayName="Search Body[DEPRECATED]" text="@loc_15373294129891632307"/>
+   <Desc id="14667999412548016633" displayName="Activate Sprinkler[DEPRECATED]" text="@loc_15373294129891632308"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="14667999412531003984" displayName="1. Find Dr.Howard" optional="true" text="@loc_15373294129891632310" Location="1713490239386284818"/>
+   <Task id="14667999412531951965" displayName="2. Create Growth Pellet" optional="false" text="@loc_15373294129891632313"/>
+   <Task id="14667999412530994732" displayName="3. Use formula" optional="false" text="@loc_15373294129891632312" Location="1713490239386284818" markerLabel="@loc_13680621263421533067"/>
+   <Task id="14667999412547668477" displayName="4. Activate Sprinkler" optional="false" text="@loc_15373294129891632314" Location="1713490239386284818" markerLabel="@loc_13680621263421533273"/>
+   <Task id="14667999412545603479" displayName="5. Come back later" optional="false" text="@loc_15373294129891632315" Location="1713490239386284818" markerLabel="@loc_844024417316344918"/>
+   <Task id="14667999412566071534" displayName="6. Get Fruit" optional="false" text="@loc_15373294129891632318" markerLabel="@loc_15373294129891632317" Location="1713490239386284818" timerLabel="@loc_13680621263408026014"/>
+   <Task id="14667999412547666823" displayName="Search body[DEPRECATED]" optional="false" text="@loc_15373294129891632311" Location="1713490239386284818"/>
+   <Task id="14667999412530994011" displayName="Find growth formula [DEPRECATED]" optional="false" text="@loc_15373294129891632309"/>
+   <Task id="14667999412530994801" displayName="Return to Arboretum [DEPRECATED]" optional="false" text="@loc_15373294129891632316"/>
+  </Tasks>
+ </Objective>
+</Objectives>

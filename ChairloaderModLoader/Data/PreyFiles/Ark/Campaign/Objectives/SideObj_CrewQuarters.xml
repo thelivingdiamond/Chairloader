@@ -1,0 +1,32 @@
+
+<Objectives>
+ <Objective id="844024417275569870" title="@loc_15373294129891632096" optional="true">
+  <Clues/>
+  <Descriptions>
+   <Desc id="844024417275571546" displayName="InvestigateSurvivor" text="@loc_15373294129891632097"/>
+   <Desc id="12889009725031925704" displayName="SecureCafeteria" text="@loc_15373294129891632098"/>
+   <Desc id="12889009725031931447" displayName="TalkToCook" text="@loc_15373294129891632099"/>
+   <Desc id="844024417275569871" displayName="ProveYoureHuman" text="@loc_15373294129891632100"/>
+   <Desc id="12889009725034515235" displayName="EnterKitchen" text="@loc_15373294129891632101"/>
+   <Desc id="844024417275719903" displayName="DeliverTheProof" text="@loc_15373294129891632102"/>
+   <Desc id="844024417276246104" displayName="RepairReplaceRegulator" text="@loc_15373294129891632103"/>
+   <Desc id="12889009725034684854" displayName="EscapeTheFreezer" text="@loc_15373294129891632104"/>
+   <Desc id="844024417316182772" displayName="Complete_CookAlive" text="@loc_844024417316182773"/>
+   <Desc id="844024417316184057" displayName="Complete_CookDead" text="@loc_844024417316184058"/>
+   <Desc id="844024417316184235" displayName="Complete_CookStunned" text="@loc_844024417316184236"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="844024417275571584" displayName="HeadToServing" optional="false" text="@loc_15373294129891632106" markerLabel="@loc_15373294129891632105" Location="844024417252490146" description="844024417275571546"/>
+   <Task id="12889009725031925670" displayName="SecureCafeteria" optional="false" text="@loc_15373294129891632107" description="12889009725031925704" Location="844024417252490146"/>
+   <Task id="12889009725031931472" displayName="TalkToCook" optional="false" text="@loc_15373294129891632109" markerLabel="@loc_15373294129891632108" Location="844024417252490146" description="12889009725031925704"/>
+   <Task id="844024417275571221" displayName="FetchCook&apos;sBunkThing" optional="false" text="@loc_15373294129891632111" markerLabel="@loc_15373294129891632110" Location="844024417252490146" description="844024417275569871"/>
+   <Task id="12889009725025348424" displayName="GiveCookItem" optional="false" text="@loc_15373294129891632113" Location="844024417252490146" markerLabel="@loc_15373294129891632112" description="844024417275569871"/>
+   <Task id="12889009725034515129" displayName="EnterKitchen" optional="false" text="@loc_15373294129891632115" markerLabel="@loc_15373294129891632114" Location="844024417252490146" description="844024417275569871"/>
+   <Task id="844024417276246077" displayName="FetchFromHydro" optional="true" text="@loc_15373294129891632117" markerLabel="@loc_15373294129891632116" Location="1713490239386284818" description="844024417276246104"/>
+   <Task id="844024417276408230" displayName="ReturnFromHydro" optional="false" text="@loc_15373294129891632119" Location="844024417252490146" markerLabel="@loc_15373294129891632118" description="844024417276246104"/>
+   <Task id="12889009725028455841" displayName="RepairRegulator" optional="true" text="@loc_15373294129891632121" markerLabel="@loc_15373294129891632120" Location="844024417252490146" description="844024417276246104"/>
+   <Task id="844024417276408262" displayName="SearchTheFreezer" optional="false" text="@loc_15373294129891632123" markerLabel="@loc_15373294129891632122" description="844024417276246104" Location="844024417252490146"/>
+   <Task id="844024417276408388" displayName="EscapeTheFreezer" optional="true" text="@loc_15373294129891632124" Location="844024417252490146" description="12889009725034684854"/>
+  </Tasks>
+ </Objective>
+</Objectives>

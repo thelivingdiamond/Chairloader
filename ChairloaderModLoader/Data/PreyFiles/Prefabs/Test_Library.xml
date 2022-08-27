@@ -1,0 +1,31 @@
+
+<PrefabsLibrary Name="Test Library">
+ <Prefab Name="TestGroup.TestName" Id="{945D014C-9F06-4C04-969C-C1F21660223A}" Library="Test Library">
+  <Objects>
+   <Object Type="SoundEventSpot" Layer="Main" Id="{AFF067E5-A24A-48A5-A458-BCD2BE9364AF}" Name="SoundEventSpot1" Pos="2,1,1" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" EntityClass="SoundEventSpot">
+    <Properties bEnabled="1" bIgnoreCulling="0" bIgnoreObstruction="0" nMaxWaitTime="5" nMinWaitTime="2" soundName="Sounds/dialog:dialog:phone_booth" bOnce="0" bPlay="0" bPlayOnX="1" bPlayOnY="1" bPlayOnZ="1" bPlayRandom="0" nRadius="10"/>
+   </Object>
+   <Object Type="Entity" Layer="Main" Id="{BFDD34FB-CDD9-4B5C-9573-9157A15009F9}" Name="ProximityTrigger1" Pos="2,2,2" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" EntityClass="ProximityTrigger">
+    <Properties bActivateWithUseButton="0" DimX="5" DimY="5" DimZ="5" bEnabled="1" EnterDelay="0" ExitDelay="0" esFactionFilter="" bInVehicleOnly="0" bKillOnTrigger="0" bOnlyAI="0" bOnlyMyPlayer="0" bOnlyOneEntity="0" bOnlyPlayer="1" OnlySelectedEntity="None" bOnlySpecialAI="0" PlaySequence="" ScriptCommand="" bTriggerOnce="0" UsableMessage="">
+     <MultiplayerOptions bNetworked="0" bPerPlayer="0"/>
+    </Properties>
+    <FlowGraph Description="" Group="gunshot" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="2" Class="entity:ProximityTrigger" pos="-190,-190,0" flags="0" GraphEntity="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="8" Class="entity:SoundEventSpot" pos="149,-195,0" flags="0" EntityGUID="{AFF067E5-A24A-48A5-A458-BCD2BE9364AF}" EntityGUID_64="48A5A24AAFF067E5">
+       <Inputs entityId="0" Disable="0" Enable="0" Once="1" Play="0" Stop="0"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="8" nodeOut="2" portIn="Play" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="8" nodeOut="2" portIn="Disable" portOut="Leave" enabled="1"/>
+      <Edge nodeIn="8" nodeOut="2" portIn="Stop" portOut="Leave" enabled="1"/>
+     </Edges>
+     <GraphTokens/>
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+</PrefabsLibrary>

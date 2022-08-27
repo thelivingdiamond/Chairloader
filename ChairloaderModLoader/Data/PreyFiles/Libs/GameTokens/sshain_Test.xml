@@ -1,0 +1,12 @@
+
+<GameTokensLibrary Name="sshain_Test">
+ <GameToken Id="1620638925" Name="JellyFishPrototype.MaxHomingRange" Type="Float" Value="55.000000"/>
+ <GameToken Id="2073873809" Name="JellyFishPrototype.AttackProximity" Type="Float" Value="4.000000"/>
+ <GameToken Id="1521868503" Name="JellyFishPrototype.HomingSpeedScale" Type="Float" Value="1.000000"/>
+ <GameToken Id="447313960" Name="JellyFishPrototype.UpdateRate" Type="Float" Value="0.750000"/>
+ <GameToken Id="331650725" Name="JellyFishPrototype.BlockLogs" Type="Bool" Value="true"/>
+ <GameToken Id="1505650620" Name="JellyFishPrototype.MinHomingRange" Type="Float" Value="8.000000"/>
+ <GameToken Id="152559841" Name="JellyFishPrototype.MinUpdateRate" Type="Float" Value="0.500000"/>
+ <GameToken Id="2073588572" Name="JellyFishPrototype.AttackDelay" Type="Float" Value="1000000.000000"/>
+ <GameToken Id="375683017" Name="ScheduleSystem.Day" Type="Int" Value="0"/>
+</GameTokensLibrary>

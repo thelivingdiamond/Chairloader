@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12345</WindowHeight>
+  <WindowWidth>20295</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="30" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="231"/>
+   <Column ss:AutoFitWidth="0" ss:Width="154.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="176.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="166.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_15659330456357135940</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Arboretum</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Arboretum</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216729865</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Shuttle Bay</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Shuttle Bay</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216729868</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Psychotronics</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Psychotronics</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216729870</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Power Plant</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Power Plant</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216729873</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Hardware Labs</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Hardware Labs</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730215</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Hardware Labs (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Hardware Labs (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730233</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Power Plant (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Power Plant (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730252</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Psychotronics (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Psychotronics (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730271</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Shuttle Bay (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Shuttle Bay (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730287</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Arboretum (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">Airlock - Arboretum (Locked)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730418</Data></Cell>
+    <Cell><Data ss:Type="String">Derelict Shuttle</Data></Cell>
+    <Cell><Data ss:Type="String">Derelict Shuttle</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730526</Data></Cell>
+    <Cell><Data ss:Type="String">Oxygen Refill Station</Data></Cell>
+    <Cell><Data ss:Type="String">Oxygen Refill Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216730637</Data></Cell>
+    <Cell><Data ss:Type="String">Human Corpse</Data></Cell>
+    <Cell><Data ss:Type="String">Human Corpse</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216735785</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Cargo Bay</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Cargo Bay</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216735951</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Hardware Labs</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Hardware Labs</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216735969</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Power Plant</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Power Plant</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216735986</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Crew Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Crew Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13856881013216736016</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Crew Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">Hull Breach - Crew Quarters</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047996836362</Data></Cell>
+    <Cell><Data ss:Type="String">Magnetosphere Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">Magnetosphere Control Room</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997184321</Data></Cell>
+    <Cell><Data ss:Type="String">Workstation</Data></Cell>
+    <Cell><Data ss:Type="String">Workstation</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997184997</Data></Cell>
+    <Cell><Data ss:Type="String">Power Station</Data></Cell>
+    <Cell><Data ss:Type="String">Power Station</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997186278</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Debris</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Debris</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997186484</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Processing</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Processing</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997186504</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay</Data></Cell>
+    <Cell><Data ss:Type="String">Cargo Bay</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997186519</Data></Cell>
+    <Cell><Data ss:Type="String">Arboretum</Data></Cell>
+    <Cell><Data ss:Type="String">Arboretum</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997186592</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle Bay</Data></Cell>
+    <Cell><Data ss:Type="String">Shuttle Bay</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_761057047997187195</Data></Cell>
+    <Cell><Data ss:Type="String">Debris</Data></Cell>
+    <Cell><Data ss:Type="String">Debris</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_Arb_SprinklerSystem</Data></Cell>
+    <Cell><Data ss:Type="String">Sprinkler system</Data></Cell>
+    <Cell><Data ss:Type="String">Sprinkler system</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_HumanCorpseFound</Data></Cell>
+    <Cell><Data ss:Type="String">Human Corpse (found)</Data></Cell>
+    <Cell><Data ss:Type="String">Human Corpse (found)</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>2</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

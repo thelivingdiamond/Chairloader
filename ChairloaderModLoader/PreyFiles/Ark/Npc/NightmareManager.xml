@@ -1,7 +1,0 @@
-
-<NightmareManager NightmareArchetypePath="ArkNpcs.ArkNightmare" NightmareHeatSpawnThreshold="3.0" NightmareHeatLeakPerMinute="0.0" NightmareSpawnDelayTimer="3.0" NightmarePostSpawnFxDelayTimer="3.0" NightmareSpawnSfx="Play_Nightmare_Announce_Stinger" NightmareRoarSfx="Play_Nightmare_Vox_Announce_01" CameraShakeSfx="Play_Nightmare_Steps_Rumble_Distant" RespawnCooldownOnSpawnInMinutes="20.0" RespawnCooldownOnDeathInMinutes="30.0" PassiveCooldownInitialCooldownOnEnableMinutes="30.0" PassiveCooldownOnCombatInMinutes="30.0" PassiveCooldownOnPassiveSpawnMinutes="60.0" OffscreenTimeRequiredToSpawn="3.0" ShakeRangeMin="0.0" ShakeRangeMax="30.0" ShakeDistance="0.0" ShakeAngle="0.7, 0.7, 0.7" ShakeShift="0.01, 0.01, 0.01" ShakeDuration="3.0" ShakeSpeed="0.5" ShakeFrequency="12.0" ShakeRandomness="1.0" etherFormLeaveTimer="0.0" etherFormLeaveAfterPlayerDamageTimer="10.0" etherFormTrackWindowTime="40.0" etherFormTrackDurationMin="10.0" etherFormTrackDurationMax="20.0" etherFormCoolDownMin="10.0" etherFormCoolDownMax="25.0">
- <NoSpawningInLevels>
-  <Level name="Exterior"/>
-  <Level name="ZeroG_UtilityTunnels"/>
- </NoSpawningInLevels>
-</NightmareManager>

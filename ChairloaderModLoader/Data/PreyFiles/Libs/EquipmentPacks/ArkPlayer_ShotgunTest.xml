@@ -1,0 +1,7 @@
+
+<EquipPack name="ArkPlayer_ShotgunTest" primary="ArkWeaponShotgun">
+ <Items>
+  <ArkWeaponShotgun type="" archetype="ArkPickups.Weapons.Shotgun" count="1"/>
+  <ArkAmmoPickupShells type="" archetype="ArkPickups.Ammo.ShotgunShells" count="25"/>
+ </Items>
+</EquipPack>

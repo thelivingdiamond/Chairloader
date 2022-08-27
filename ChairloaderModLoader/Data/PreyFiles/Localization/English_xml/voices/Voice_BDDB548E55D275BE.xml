@@ -1,0 +1,905 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">KEY</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">ORIGINAL TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TRANSLATED TEXT</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">CHARACTER LIMIT</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D276B0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Server not responding. Please contact Engineering Support in Deep Storage.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Error. Server not responding. Please contact Engineering Support in Deep Storage.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D39EC7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Initiating reactor shutdown sequence.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Initiating reactor shutdown sequence.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55391</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Substation power grid... offline.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Substation power grid... offline.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D5541A</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere... offline.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere... offline.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55490</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Photovoltaic rings... offline.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Photovoltaic rings... offline.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D5549B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Life support... offline.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Life support... offline.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D554AD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity... offline</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity... offline</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D554CB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Main reactor cold shutdown in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Main reactor cold shutdown in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D554CF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Three...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Three...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D554D3</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Two...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Two...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D554D7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">One...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">One...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D554E0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reactor successfully shut down.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reactor successfully shut down.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55AA6</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Initiating main reactor ignition sequence in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Initiating main reactor ignition sequence in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55C24</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sustained fusion... online.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sustained fusion... online.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55C39</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity... online.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity... online.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55C4B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Life support... online.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Life support... online.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55C93</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55CCC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning... reactor initialization interrupted. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Warning... reactor initialization interrupted. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55CF0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Routing auxillary power.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Routing auxillary power.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55D30</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Resuming reactor initialization.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Resuming reactor initialization.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55D38</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere... online.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Magnetosphere... online.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55D47</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Substation power grids... online.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Substation power grids... online.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55D55D80</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reactor initializtion complete. Systems restored. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Reactor initializtion complete. Systems restored. </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB5186</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Escape Pod Launch in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Escape Pod Launch in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB518F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ten...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ten...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB5193</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nine...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nine...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB5198</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Eight...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Eight...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB519C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seven...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Seven...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB51A1</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Six...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Six...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB51A5</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Five...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Five...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB51A9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Four...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Four...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB51DE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Launch.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Launch.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E55DB5231</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Launch aborted.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Launch aborted.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">A419427655DCC802</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Three...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Three...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E562668B2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Life Support air quality ratio below standard operating levels. Atmospheric contaminant flush recommended.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Life Support air quality ratio below standard operating levels. Atmospheric contaminant flush recommended.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5626691F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Atmospheric decontamination procedure initiated. Oxygen flush commencing in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Atmospheric decontamination procedure initiated. Oxygen flush commencing in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56266A69</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Decontamination completed successfully. Stand by for oxygenation.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Decontamination completed successfully. Stand by for oxygenation.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56266A79</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen levels normal.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Oxygen levels normal.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E569008B8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Data Vault DVM-3 airlock sealed. Pressure nominal.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Data Vault DVM-3 airlock sealed. Pressure nominal.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56900BD4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Emergency seal engaged.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Emergency seal engaged.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56900C11</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">DVM undocking procedure initiated.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">DVM undocking procedure initiated.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56900CB2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Module release in...</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Module release in...</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56B4CAA9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Requesting new operator.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Requesting new operator.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56B4CAD7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">N-CN9 Blackbox Operator ready to deploy.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">N-CN9 Blackbox Operator ready to deploy.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56B4CB2B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please stand clear of aperture.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please stand clear of aperture.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BDD29C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Voice identification required.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Voice identification required.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56BDD2D9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please repeat the following words:</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please repeat the following words:</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CC8810</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar "Kobold" 410 engineering class operator ready to deploy.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar "Kobold" 410 engineering class operator ready to deploy.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CC881F</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar "Sybil" 495 science class operator ready to deploy.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar "Sybil" 495 science class operator ready to deploy.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CC88E7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar "Pyramid" 490 medical class operator ready to deploy.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">TranStar "Pyramid" 490 medical class operator ready to deploy.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CC8DFD</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Alarm Beep) Obstruction detected. Please clear aperture of debris.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">(Alarm Beep) Obstruction detected. Please clear aperture of debris.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CC8E17</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Aperture cleared. Operator deployment resuming.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Aperture cleared. Operator deployment resuming.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCC072</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope user mismatch. Please calibrate your scope before entering examination area.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope user mismatch. Please calibrate your scope before entering examination area.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E56CCC07B</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope error. Please recalibrate before entering examination area.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psychoscope error. Please recalibrate before entering examination area.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D8E0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Voice recognized. Access granted.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Voice recognized. Access granted.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5722D8F0</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Access denied. Voice not recognized.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Access denied. Voice not recognized.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E5727EA3C</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sealing control room.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Sealing control room.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57290478</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Director level override. Lockdown engaged.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Director level override. Lockdown engaged.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E577BCED7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Artax propulsion system required for EVA.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Artax propulsion system required for EVA.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E577BCEDF</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please contact engineering in the Hardware Labs.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Please contact engineering in the Hardware Labs.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBB73</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Harmonica.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Harmonica.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBB97</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Gravity.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBBAA</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Chameleon.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Chameleon.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBBC4</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Bovine.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Bovine.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBBD2</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Perspective.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Perspective.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBBEB</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Chasm.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Chasm.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBBFC</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Fortitude.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Fortitude.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC0E</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Doctrine.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Doctrine.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC21</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Corkscrew.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Corkscrew.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC2D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Auspicious.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Auspicious.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC3D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Rendezvous.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Rendezvous.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC50</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Laconic.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Laconic.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC80</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Entropy.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Entropy.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC8D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Antipathy.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Antipathy.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBC9D</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Proclivity.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Proclivity.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBCAE</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Pencil.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Pencil.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBCC9</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mauve.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Mauve.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBCD8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Erroneous.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Erroneous.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBCE8</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Malicious.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Malicious.</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">BDDB548E57BCBCF7</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Speculation.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Speculation.</Data>
+        </Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

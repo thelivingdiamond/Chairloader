@@ -1,0 +1,26 @@
+
+<extensionsSerializationOrder>
+ <Inventory/>
+ <Interactor/>
+ <Player/>
+ <AnimatedCharacter/>
+ <ArkTurret/>
+ <ArkHealthExtension/>
+ <ArkBeta/>
+ <ArkPhantomVoltaic/>
+ <ArkHuman/>
+ <ArkMimic/>
+ <ArkMimicElite/>
+ <ArkNightmare/>
+ <ArkOperator/>
+ <ArkOperatorMilitary/>
+ <ArkOperatorMedic/>
+ <ArkOperatorScience/>
+ <ArkOperatorEngineer/>
+ <ArkPoltergeist/>
+ <ArkTelepath/>
+ <ArkTechnopath/>
+ <ArkTrackviewDumbyPlayer/>
+ <ArkWeaver/>
+ <ArkNpc/>
+</extensionsSerializationOrder>

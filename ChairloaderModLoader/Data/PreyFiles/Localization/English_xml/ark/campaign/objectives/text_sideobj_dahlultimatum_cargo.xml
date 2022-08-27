@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG />
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11205</WindowHeight>
+  <WindowWidth>28245</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1 />
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders />
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior />
+   <NumberFormat />
+   <Protection />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row>
+    <Cell>
+     <Data ss:Type="String">KEY</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">ORIGINAL TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">TRANSLATED TEXT</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">CHARACTER LIMIT</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632125</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Dahl Ultimatum - Cargo Bay</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Dahl Ultimatum - Cargo Bay</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632126</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Commander Dahl is threatening to suffocate everyone in the Cargo Bay. I may be able to restore oxygen via the Oxygen Control regulators in Life Support, but Dahl will likely be waiting for me.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Commander Dahl is threatening to suffocate everyone in the Cargo Bay. I may be able to restore oxygen via the Oxygen Control regulators in Life Support, but Dahl will likely be waiting for me.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632127</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Commander Dahl was threatening to suffocate everyone in the Cargo Bay. I stopped his plan, saving the crew members in the process.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Commander Dahl was threatening to suffocate everyone in the Cargo Bay. I stopped his plan, saving the crew members in the process.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632128</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Commander Dahl was threatening to suffocate everyone in the Cargo Bay. I didn&apos;t stop his plan, and everyone in Cargo Bay died as a result.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Commander Dahl was threatening to suffocate everyone in the Cargo Bay. I didn&apos;t stop his plan, and everyone in Cargo Bay died as a result.</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632129</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find where Dahl is disrupting the Cargo Bay 02</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find where Dahl is disrupting the Cargo Bay 02</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632130</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Oxygen Flow Control Room</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Oxygen Flow Control Room</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_15373294129891632131</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find a way to restore oxygen to Cargo Bay</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Find a way to restore oxygen to Cargo Bay</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+   <Row>
+    <Cell>
+     <Data ss:Type="String">loc_13856881013223934908</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Dahl Ultimatum</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">Dahl Ultimatum</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String">LOCKED</Data>
+    </Cell>
+    <Cell>
+     <Data ss:Type="String"/>
+    </Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected />
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>1</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+     <RangeSelection>R2C4:R8C4</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook />
+</Workbook>

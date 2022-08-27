@@ -1,0 +1,55 @@
+
+<UIElements name="DanielleDialog">
+ <UIElement name="DanielleDialog" mouseevents="1" keyevents="1" cursor="1" events_exclusive="1" render_over_binks="1" use_steam_menu="1">
+  <GFx file="GFX/danielle_dialog.GFX" layer="25">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="1" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="format" funcname="dialog.format">
+    <param name="animate" type="bool"/>
+   </function>
+   <function name="setContents" funcname="dialog.setContents">
+    <param name="label" type="string"/>
+    <param name="contents" type="string"/>
+   </function>
+   <function name="clearButtons" funcname="dialog.clearButtons"/>
+   <function name="addButton" funcname="dialog.addButton">
+    <param name="label" type="string"/>
+    <param name="icon" type="string"/>
+   </function>
+   <function name="clear" funcname="dialog.clear"/>
+   <function name="setControlScheme" funcname="setControlScheme">
+    <param name="controlScheme" type="int"/>
+   </function>
+   <function name="highlightButton" funcname="dialog.highlightIndex">
+    <param name="index" type="int"/>
+   </function>
+   <function name="onPressLeft" funcname="dialog.HLLeft"/>
+   <function name="onPressRight" funcname="dialog.HLRight"/>
+   <function name="pressEnter" funcname="dialog.pressEnter"/>
+   <function name="updateTimer" funcname="dialog.updateTimer">
+    <param name="Value" type="int"/>
+   </function>
+   <function name="showProcessing" funcname="dialog.showProcessing">
+    <param name="isVis" type="bool"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="OnButtonPress" fscommand="onButtonPress">
+    <param name="id" type="int"/>
+   </event>
+   <event name="OnShow" fscommand="onShow"/>
+   <event name="OnHide" fscommand="onHide"/>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+ </UIElement>
+</UIElements>

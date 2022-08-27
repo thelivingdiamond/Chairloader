@@ -6,16 +6,131 @@
 #include <Windows.h>
 #include <sstream>
 #include "ModLoader.h"
-
+#include "UI.h"
+#include "GamePathDialog.h"
+#include "GameVersion.h"
+#include "PathUtils.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
 static bool showDemo = false;
 
+static const char* MAIN_WINDOW_NAME = "Chairloader Mod Manager";
+
 void ModLoader::Draw() {
-    if(ImGui::BeginMenuBar()){
-        if(ImGui::BeginMenu("Files", true)){
-            if(ImGui::MenuItem("Install Mod")){
+    bool bDraw = true;
+    
+    switch (m_State)
+    {
+    case State::LocateGameDir:
+        DrawGamePathSelectionDialog(&bDraw);
+        break;
+    case State::MainWindow:
+        DrawMainWindow(&bDraw);
+        break;
+    default:
+        assert(!("Invalid UI state"));
+        std::abort();
+        break;
+    }
+
+    if (!bDraw)
+        UI::RequestExit();
+}
+
+
+void ModLoader::LoadModLoaderConfig()
+{
+    if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())) {
+        if (ChairloaderModLoaderConfigFile.first_child().child("PreyPath")) {
+            fs::path path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string());
+
+            if (PathUtils::ValidateGamePath(path))
+            {
+                SetGamePath(path);
+            }
+        }
+    }
+    else {
+        log(severityLevel::error, "ChairloaderModLoader config file not found, creating new");
+        ChairloaderModLoaderConfigFile.reset();
+        ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
+        ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
+        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+    }
+    log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
+}
+
+void ModLoader::SetGamePath(const fs::path& path)
+{
+    assert(path.empty() || PathUtils::ValidateGamePath(path));
+
+    PreyPath = path;
+    m_PreyPathString = path.u8string();
+    pugi::xml_node cfg = ChairloaderModLoaderConfigFile.first_child();
+
+    if (!path.empty())
+    {
+        if (cfg.child("PreyPath"))
+            cfg.child("PreyPath").text().set(path.u8string().c_str());
+        else
+            cfg.append_child("PreyPath").text().set(path.u8string().c_str());
+    }
+    else
+    {
+        cfg.remove_child("PreyPath");
+    }
+}
+
+void ModLoader::SwitchToGameSelectionDialog(const fs::path& gamePath)
+{
+    m_State = State::LocateGameDir;
+    m_pGamePathDialog = std::make_unique<GamePathDialog>();
+    m_pGamePathDialog->SetGamePath(gamePath.empty() ? gamePath : (gamePath / PathUtils::GAME_EXE_PATH));
+}
+
+void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
+{
+    GamePathDialog::Result result = m_pGamePathDialog->ShowDialog(MAIN_WINDOW_NAME, pbIsOpen);
+
+    if (result == GamePathDialog::Result::Ok)
+    {
+        log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
+        SetGamePath(m_pGamePathDialog->GetGamePath());
+        saveModLoaderConfigFile();
+        m_State = State::MainWindow;
+        m_pGamePathDialog.reset();
+    }
+    else if (result == GamePathDialog::Result::Cancel)
+    {
+        *pbIsOpen = false;
+        m_pGamePathDialog.reset();
+    }
+}
+
+void ModLoader::DrawMainWindow(bool* pbIsOpen)
+{
+    m_pGameVersion->Update();
+
+    ImGuiWindowFlags windowFlags =
+        ImGuiWindowFlags_NoSavedSettings |
+        ImGuiWindowFlags_NoCollapse |
+        ImGuiWindowFlags_NoScrollbar |
+        ImGuiWindowFlags_NoResize |
+        ImGuiWindowFlags_MenuBar;
+
+    ImGui::SetNextWindowSize({ 800, 500 });
+    ImGui::SetNextWindowBgAlpha(1.0f);
+    // ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(5, 5));
+    if (!ImGui::Begin(MAIN_WINDOW_NAME, pbIsOpen, windowFlags))
+    {
+        ImGui::End();
+    }
+
+    if (ImGui::BeginMenuBar()) {
+        if (ImGui::BeginMenu("Files", true)) {
+            if (ImGui::MenuItem("Install Mod")) {
                 ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.string(), 1, nullptr);
             }
 #ifdef _DEBUG
@@ -25,13 +140,13 @@ void ModLoader::Draw() {
 #endif
         }
         //Create a menu for mod list
-        if(ImGui::BeginMenu("Mods", true)) {
+        if (ImGui::BeginMenu("Mods", true)) {
             //Load Mod List
-            if(ImGui::MenuItem("Load Mod List")){
+            if (ImGui::MenuItem("Load Mod List")) {
                 loadModInfoFiles();
             }
             // Save Config
-            if(ImGui::MenuItem("Save Config")){
+            if (ImGui::MenuItem("Save Config")) {
                 overlayLog(severityLevel::info, "Mod list saved");
                 saveChairloaderConfigFile();
             }
@@ -39,17 +154,17 @@ void ModLoader::Draw() {
         }
         // Print test overlay log messages for each severity level
 #ifdef _DEBUG
-        if(ImGui::BeginMenu("Log", true)){
-            if(ImGui::MenuItem("Info")){
+        if (ImGui::BeginMenu("Log", true)) {
+            if (ImGui::MenuItem("Info")) {
                 overlayLog(severityLevel::info, "Info");
             }
-            if(ImGui::MenuItem("Warning")){
+            if (ImGui::MenuItem("Warning")) {
                 overlayLog(severityLevel::warning, "Warning");
             }
-            if(ImGui::MenuItem("Error")){
+            if (ImGui::MenuItem("Error")) {
                 overlayLog(severityLevel::error, "Error");
             }
-            if(ImGui::MenuItem("Trace")){
+            if (ImGui::MenuItem("Trace")) {
                 overlayLog(severityLevel::trace, "Trace");
             }
             ImGui::EndMenu();
@@ -58,7 +173,7 @@ void ModLoader::Draw() {
         ImGui::EndMenuBar();
 
     }
-    if(ImGui::BeginTabBar("##Mod Tab Bar")) {
+    if (ImGui::BeginTabBar("##Mod Tab Bar")) {
         DrawModList();
         //TODO: figure out if these will do anything
 //        DrawDeploySettings();
@@ -67,25 +182,26 @@ void ModLoader::Draw() {
         DrawLog();
         DrawDLLSettings();
         ImGui::EndTabBar();
-        if(showErrorPopup) {
+        if (showErrorPopup) {
             ImGui::OpenPopup("Error");
             showErrorPopup = false;
         }
         if (ImGui::BeginPopupModal("Error", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize)) {
             ImGui::Text("%s", ErrorMessage.c_str());
-            if(ImGui::Button("Close")){
+            if (ImGui::Button("Close")) {
                 ImGui::CloseCurrentPopup();
             }
             ImGui::EndPopup();
         }
     }
     DrawOverlayLog();
-    if(showDemo){
+    if (showDemo) {
         ImGui::ShowDemoWindow(&showDemo);
     }
     std::sort(ModList.begin(), ModList.end());
-}
 
+    ImGui::End();
+}
 
 void ModLoader::DrawModList() {
     static std::string selectedMod;
@@ -414,25 +530,18 @@ void ModLoader::DrawModList() {
 }
 
 void ModLoader::DrawDLLSettings() {
-    static std::string preyPathString = PreyPath.string();
     if(ImGui::BeginTabItem("Settings")){
-        if(ImGui::InputText("Prey Path", &preyPathString, ImGuiInputTextFlags_EnterReturnsTrue)){
-            PreyPath = fs::path(preyPathString);
-            if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
-                log(severityLevel::trace, "Prey Path set to %s", PreyPath.string());
-                ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().set(PreyPath.string().c_str());
-                saveModLoaderConfigFile();
-            } else {
-                ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
-                saveModLoaderConfigFile();
-            }
+        ImGui::InputText("Prey Path", &m_PreyPathString, ImGuiInputTextFlags_ReadOnly);
+
+        if(ImGui::Button("Change Path")){
+            SwitchToGameSelectionDialog(PreyPath);
+            PreyPath.clear();
         }
-        if(ImGui::Button("Reset Path")){
-            PreyPath = DefaultPreyPath;
-            preyPathString = DefaultPreyPath.string();
-            ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().set(PreyPath.string().c_str());
-            saveModLoaderConfigFile();
-        }
+
+        ImGui::PushID("GameVersion");
+        m_pGameVersion->ShowInstalledVersion();
+        ImGui::PopID();
+
         ImGui::EndTabItem();
     }
 }
@@ -684,22 +793,17 @@ void ModLoader::loadModInfoFiles() {
 }
 
 ModLoader::ModLoader() {
-    if(ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())){
-        if(ChairloaderModLoaderConfigFile.first_child().child("PreyPath")){
-            PreyPath = ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string();
-        } else {
-            log(severityLevel::warning, "Prey Path not found in ChairloaderModLoader config file, appending default");
-            ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
-        }
-    } else {
-        log(severityLevel::error, "ChairloaderModLoader config file not found, creating new");
-        ChairloaderModLoaderConfigFile.reset();
-        ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
-        ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
-        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
-    }
-    log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
-    if(!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())){
+    assert(!m_spInstance);
+    m_spInstance = this;
+
+    LoadModLoaderConfig();
+
+    if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
+        SwitchToGameSelectionDialog(PreyPath);
+    else
+        m_State = State::MainWindow;
+
+    if (!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())) {
         log(severityLevel::fatal, "Chairloader config file not found");
         MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
         exit(-1);
@@ -714,8 +818,17 @@ ModLoader::ModLoader() {
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();
+
+    m_pGameVersion = std::make_unique<GameVersion>();
 }
 
+ModLoader::~ModLoader() {
+    flushFileQueue();
+    saveModLoaderConfigFile();
+
+    assert(m_spInstance == this);
+    m_spInstance = nullptr;
+}
 
 
 void ModLoader::FindMod(Mod* modEntry) {
@@ -859,11 +972,6 @@ void ModLoader::Update() {
         time(&lastFileTime);
         flushFileQueue();
     }
-}
-
-ModLoader::~ModLoader() {
-    flushFileQueue();
-    saveModLoaderConfigFile();
 }
 
 bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {

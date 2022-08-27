@@ -1,0 +1,32 @@
+
+<ArkGameNoises>
+ <Types>
+  <ArkGameNoiseType ID="5345056487431534087" Name="Footfall"/>
+  <ArkGameNoiseType ID="9469288860501649125" Name="Danger"/>
+  <ArkGameNoiseType ID="9469288860501998057" Name="Anomaly"/>
+  <ArkGameNoiseType ID="10850392949532183295" Name="CallForHelp"/>
+  <ArkGameNoiseType ID="10850392949532183298" Name="Searching"/>
+  <ArkGameNoiseType ID="10850392949532183299" Name="Surprised"/>
+  <ArkGameNoiseType ID="9469288860548594864" Name="Bodyfall"/>
+ </Types>
+ <Loudnesses>
+  <ArkGameNoiseLoudness ID="9469288860501649167" Name="02m" Radius="2"/>
+  <ArkGameNoiseLoudness ID="9469288860501649175" Name="03m" Radius="3"/>
+  <ArkGameNoiseLoudness ID="9469288860501649183" Name="04m" Radius="4"/>
+  <ArkGameNoiseLoudness ID="9469288860501649190" Name="05m" Radius="5"/>
+  <ArkGameNoiseLoudness ID="9469288860501649195" Name="07m" Radius="7"/>
+  <ArkGameNoiseLoudness ID="9469288860501649202" Name="09m" Radius="9"/>
+  <ArkGameNoiseLoudness ID="9469288860501649210" Name="12m" Radius="12"/>
+  <ArkGameNoiseLoudness ID="9469288860501649219" Name="15m" Radius="15"/>
+  <ArkGameNoiseLoudness ID="9469288860501649225" Name="18m" Radius="18"/>
+  <ArkGameNoiseLoudness ID="10850392949532183296" Name="20m" Radius="20"/>
+  <ArkGameNoiseLoudness ID="5345056487431534109" Name="21m" Radius="21"/>
+  <ArkGameNoiseLoudness ID="9469288860501649232" Name="25m" Radius="25"/>
+  <ArkGameNoiseLoudness ID="9469288860501649261" Name="30m" Radius="30"/>
+  <ArkGameNoiseLoudness ID="9469288860501649278" Name="35m" Radius="35"/>
+  <ArkGameNoiseLoudness ID="9469288860501649283" Name="40m" Radius="40"/>
+  <ArkGameNoiseLoudness ID="9469288860501649291" Name="45m" Radius="45"/>
+  <ArkGameNoiseLoudness ID="9469288860501649298" Name="50m" Radius="50"/>
+  <ArkGameNoiseLoudness ID="10850392949532183297" Name="99m" Radius="99"/>
+ </Loudnesses>
+</ArkGameNoises>

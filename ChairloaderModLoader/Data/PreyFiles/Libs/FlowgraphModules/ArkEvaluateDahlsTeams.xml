@@ -1,0 +1,146 @@
+
+<Graph isModule="1" moduleName="ArkEvaluateDahlsTeams" isObjectList="0" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="RedSqaudKilled" Type="-1" Input="1"/>
+  <Port Name="GreenSquadKilled" Type="-1" Input="1"/>
+  <Port Name="YellowSquadKilled" Type="-1" Input="1"/>
+  <Port Name="Evaluate" Type="-1" Input="1"/>
+  <Port Name="OrangeSquadKilled" Type="-1" Input="1"/>
+  <Port Name="BlueSquadKilled" Type="-1" Input="1"/>
+  <Port Name="TeamsNeutralized" Type="6" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_ArkEvaluateDahlsTeams" pos="-1780,-30,0"/>
+  <Node Id="2" Class="Module:End_ArkEvaluateDahlsTeams" pos="2510,-70,0">
+   <Inputs TeamsNeutralized="0"/>
+  </Node>
+  <Node Id="3" Class="Mission:GameTokenCheck" pos="1100,-130,0">
+   <Inputs gametokenid_Token="857818615" CheckValue="true"/>
+  </Node>
+  <Node Id="5" Class="Mission:GameTokenSet" pos="-1280,-180,0">
+   <Inputs gametokenid_Token="857818615" Value="true"/>
+  </Node>
+  <Node Id="6" Class="Mission:GameTokenSet" pos="-1280,-60,0">
+   <Inputs gametokenid_Token="1419223286" Value="true"/>
+  </Node>
+  <Node Id="7" Class="Mission:GameTokenSet" pos="-1290,40,0">
+   <Inputs gametokenid_Token="1461992527" Value="true"/>
+  </Node>
+  <Node Id="9" Class="Logic:All" pos="1700,-30,0">
+   <Inputs/>
+  </Node>
+  <Node Id="10" Class="Mission:GameTokenCheck" pos="1100,0,0">
+   <Inputs gametokenid_Token="1419223286" CheckValue="true"/>
+  </Node>
+  <Node Id="11" Class="Mission:GameTokenCheck" pos="1100,120,0">
+   <Inputs gametokenid_Token="1461992527" CheckValue="true"/>
+  </Node>
+  <Node Id="12" Class="Ark:Objectives:TaskState" pos="2180,-230,0">
+   <Inputs task_Task="1713490239370915022" ShowOnHUD="1" Timer="0" ShowTimerOnHUD="0"/>
+  </Node>
+  <Node Id="13" Class="Ark:Objectives:GetTaskState" pos="1870,-30,0">
+   <Inputs task_Task="1713490239370915022"/>
+  </Node>
+  <Node Id="18" Class="Math:Add" pos="170,90,0">
+   <Inputs A="0" B="-1"/>
+  </Node>
+  <Node Id="20" Class="Mission:GameTokenGet" pos="-280,90,0">
+   <Inputs gametokenid_Token="661194859"/>
+  </Node>
+  <Node Id="21" Class="Mission:GameTokenSet" pos="470,-30,0">
+   <Inputs gametokenid_Token="661194859" Value=""/>
+  </Node>
+  <Node Id="22" Class="Time:FrameDelay" pos="260,-30,0">
+   <Inputs/>
+  </Node>
+  <Node Id="35" Class="Math:EqualCheck" pos="1170,-500,0">
+   <Inputs A="0" B="3"/>
+  </Node>
+  <Node Id="37" Class="Math:EqualCheck" pos="1170,-390,0">
+   <Inputs A="0" B="2"/>
+  </Node>
+  <Node Id="38" Class="Math:EqualCheck" pos="1160,-270,0">
+   <Inputs A="0" B="1"/>
+  </Node>
+  <Node Id="39" Class="Logic:Gate" pos="-660,30,0">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="40" Class="Time:FrameDelay" pos="-200,-30,0">
+   <Inputs/>
+  </Node>
+  <Node Id="41" Class="Time:FrameDelay" pos="50,-30,0">
+   <Inputs/>
+  </Node>
+  <Node Id="42" Class="Mission:GameTokenSet" pos="-1280,150,0">
+   <Inputs gametokenid_Token="2090061693" Value="true"/>
+  </Node>
+  <Node Id="43" Class="Mission:GameTokenSet" pos="-1270,270,0">
+   <Inputs gametokenid_Token="1026895232" Value="true"/>
+  </Node>
+  <Node Id="44" Class="Mission:GameTokenCheck" pos="1100,260,0">
+   <Inputs gametokenid_Token="2090061693" CheckValue="true"/>
+  </Node>
+  <Node Id="45" Class="Mission:GameTokenCheck" pos="1100,390,0">
+   <Inputs gametokenid_Token="1026895232" CheckValue="true"/>
+  </Node>
+  <Node Id="46" Class="Math:EqualCheck" pos="1170,-620,0">
+   <Inputs A="0" B="4"/>
+  </Node>
+  <Node Id="47" Class="Math:EqualCheck" pos="1170,-730,0">
+   <Inputs A="0" B="5"/>
+  </Node>
+  <Node Id="50" Class="Ark:Debug:ConsoleEvent" pos="-660,190,0">
+   <Inputs Command="snuff"/>
+  </Node>
+  <Node Id="51" Class="Game:Start" pos="-1680.9102,-514.78857,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="5" nodeOut="1" portIn="Trigger" portOut="RedSqaudKilled" enabled="1"/>
+  <Edge nodeIn="6" nodeOut="1" portIn="Trigger" portOut="GreenSquadKilled" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="1" portIn="Trigger" portOut="YellowSquadKilled" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="1" portIn="In" portOut="Evaluate" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="1" portIn="In" portOut="Start" enabled="1"/>
+  <Edge nodeIn="42" nodeOut="1" portIn="Trigger" portOut="OrangeSquadKilled" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="1" portIn="Trigger" portOut="BlueSquadKilled" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="3" portIn="in1" portOut="True" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="5" portIn="In" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="6" portIn="In" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="7" portIn="In" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="9" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="10" portIn="in2" portOut="True" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="11" portIn="in3" portOut="True" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="12" portIn="TeamsNeutralized" portOut="Completed" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="12" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="13" portIn="Complete" portOut="Active" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="18" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="20" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="3" nodeOut="21" portIn="Trigger" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="21" portIn="Trigger" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="21" portIn="Trigger" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="35" nodeOut="21" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="35" nodeOut="21" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="21" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="21" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="21" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="21" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="44" nodeOut="21" portIn="Trigger" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="21" portIn="Trigger" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="46" nodeOut="21" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="46" nodeOut="21" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="47" nodeOut="21" portIn="A" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="47" nodeOut="21" portIn="Check" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="21" nodeOut="22" portIn="Trigger" portOut="out" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="39" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="40" nodeOut="39" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="41" nodeOut="40" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="41" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="42" portIn="In" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="43" portIn="In" portOut="OutValue" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="44" portIn="in4" portOut="True" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="45" portIn="in5" portOut="True" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="50" portIn="Trigger" portOut="Triggered" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

@@ -1,0 +1,81 @@
+
+<AITargetStimulusConfig version="1">
+ <Config name="empty">
+  <Stimuli/>
+ </Config>
+ <Config name="default">
+  <Stimuli>
+   <Stimulus name="VisualPrimary" hostileOnly="1" peak="5.0" attack="2.0" decay="3.0" sustain="0.2" release="5.0">
+    <Modifiers>
+     <Distance limit="200" value="50"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="VisualSecondary" hostileOnly="1" peak="3.0" attack="2.0" decay="3.0" sustain="0.2" release="5.0">
+    <Modifiers>
+     <Distance limit="200" value="50"/>
+    </Modifiers>
+   </Stimulus>
+  </Stimuli>
+ </Config>
+ <Config name="Human">
+  <Stimuli>
+   <Stimulus name="SoundMovement" hostileOnly="1" peak="1.0" sustain="1.0" release="30.0">
+    <Modifiers>
+     <Distance limit="50" value="6"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="SoundMovementLoud" hostileOnly="1" peak="1.0" sustain="1.0" release="30.0">
+    <Modifiers>
+     <Distance limit="50" value="6"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="SoundCollision" hostileOnly="1" peak="30.0" sustain="1.0" release="45.0">
+    <Modifiers>
+     <Distance limit="60" value="1"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="SoundCollisionLoud" hostileOnly="1" peak="50.0" sustain="1.0" release="45.0">
+    <Modifiers>
+     <Distance limit="60" value="1"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="SoundWeapon" hostileOnly="1" peak="3.0" attack="0.15" decay="5.0" sustain="0.33" release="30.0">
+    <Modifiers>
+     <Distance limit="150" value="6"/>
+     <ClassThreat value="1.0"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="SoundExplosion" hostileOnly="1" peak="500.0" attack="0.15" decay="3.0" sustain="1.0"/>
+   <Stimulus name="VisualPrimary" hostileOnly="1" ignore="1.0" peak="5.0" sustain="1.0" release="30.0">
+    <Modifiers>
+     <Distance limit="200" value="50"/>
+     <DistanceIgnore limit="10" value="1"/>
+     <ClassThreat value="1.0"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="VisualSecondary" hostileOnly="1" ignore="1.0" peak="3.0" sustain="1.0" release="30.0">
+    <Modifiers>
+     <Distance limit="200" value="50"/>
+     <DistanceIgnore limit="20" value="1"/>
+     <ClassThreat value="1.0"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="BulletRain" hostileOnly="1" peak="1000.0" sustain="1.0" release="5.0">
+    <Modifiers>
+     <Distance limit="200" value="1"/>
+     <ClassThreat value="1.0"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="MeleeHit" hostileOnly="1" peak="1000.0" sustain="1.0" release="30.0">
+    <Modifiers>
+     <ClassThreat value="1.0"/>
+    </Modifiers>
+   </Stimulus>
+   <Stimulus name="MeleeHitNear" hostileOnly="1" peak="500.0" sustain="1.0" release="30.0">
+    <Modifiers>
+     <ClassThreat value="1.0"/>
+    </Modifiers>
+   </Stimulus>
+  </Stimuli>
+ </Config>
+</AITargetStimulusConfig>

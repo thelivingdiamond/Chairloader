@@ -1,0 +1,80 @@
+
+<ATLConfig atl_name="Creature_Telepath">
+ <AudioTriggers>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Cast">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Cast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Turn_Big">
+   <WwiseEvent wwise_name="Play_Telepath_Turn_Big"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Cast_Corruption">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Cast_Corruption"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Death">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Death"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_DeathStinger">
+   <WwiseEvent wwise_name="Play_Telepath_DeathStinger"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Exist_LP">
+   <WwiseEvent wwise_name="Play_Telepath_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Damage">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Damage"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Cast">
+   <WwiseEvent wwise_name="Play_Telepath_Cast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Telepath_Exist_LP">
+   <WwiseEvent wwise_name="Stop_Telepath_Exist_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Psychoshock_Blast">
+   <WwiseEvent wwise_name="Play_Telepath_Psychoshock_Blast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Psychoshock_Build">
+   <WwiseEvent wwise_name="Play_Telepath_Psychoshock_Build"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Psychoshock_BuildRumble">
+   <WwiseEvent wwise_name="Play_Telepath_Psychoshock_BuildRumble"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Idle_State">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Idle_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Notice">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Notice"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Searching_LP">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Searching_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Combat_State">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Combat_State"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Shock">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Shock"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Vox_Psi_Attack">
+   <WwiseEvent wwise_name="Play_Telepath_Vox_Psi_Attack"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Repel">
+   <WwiseEvent wwise_name="Play_Telepath_Repel"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Psychoshock_Aftermath">
+   <WwiseEvent wwise_name="Play_Telepath_Psychoshock_Aftermath"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Projectile_KineticBlast_Fire">
+   <WwiseEvent wwise_name="Play_Telepath_Projectile_KineticBlast_Fire"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Projectile_KineticBlast_End">
+   <WwiseEvent wwise_name="Play_Telepath_Projectile_KineticBlast_End"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Stop_Telepath_Projectile_Travel_LP">
+   <WwiseEvent wwise_name="Stop_Telepath_Projectile_Travel_LP"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Telepath_Repel_Cast">
+   <WwiseEvent wwise_name="Play_Telepath_Repel_Cast"/>
+  </ATLTrigger>
+  <ATLTrigger atl_name="Play_Overseer_Turn">
+   <WwiseEvent wwise_name="Play_Overseer_Turn"/>
+  </ATLTrigger>
+ </AudioTriggers>
+</ATLConfig>

@@ -1,0 +1,30 @@
+
+<Objectives>
+ <Objective id="844024417256800376" title="@loc_15373294129891630476" optional="false">
+  <Descriptions>
+   <Desc id="4349723564879890144" displayName="Get The Keys" text="@loc_15373294129891630477"/>
+   <Desc id="844024417275826400" displayName="Get The Keys - Dahl" text="@loc_15373294129891630480"/>
+   <Desc id="844024417286443424" displayName="Get last key - errands" text="@loc_15373294129891630483"/>
+   <Desc id="844024417276162342" displayName="Get last key: Alex - Waiting" text="@loc_15373294129891630486"/>
+   <Desc id="844024417276162402" displayName="Get last key: Alex - Dead" text="@loc_15373294129891630487"/>
+   <Desc id="14667999412530307565" displayName="Get last key: Alex - Danger" text="@loc_15373294129891630490"/>
+   <Desc id="844024417256800377" displayName="Completed" text="@loc_15373294129891630489"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="11824555372626133325" displayName="Make your self-destruct key" optional="false" text="@loc_15373294129891630493" markerLabel="@loc_15373294129891630492"/>
+   <Task id="1713490239370915176" displayName="Get Alex&apos;s Key" optional="false" text="@loc_15373294129891630495" Location="1713490239386284818" markerLabel="@loc_15373294129891630494" description="4349723564879890144"/>
+   <Task id="844024417284033794" displayName="Get Alex&apos;s Key - Invitation" optional="false" text="@loc_15373294129891630497" markerLabel="@loc_15373294129891630496" Location="1713490239386284818" description="844024417276162342"/>
+   <Task id="844024417286532599" displayName="Get Alex&apos;s Key - Errands" optional="false" text="@loc_15373294129891630498" description="844024417286443424"/>
+   <Task id="844024417275827455" displayName="DealWithDahl" optional="false" text="@loc_15373294129891630499" description="844024417275826400"/>
+   <Task id="1713490239370915090" displayName="Meet Alex (not used)" optional="false" text="@loc_15373294129891630500" Location="1713490239386284818" description="844024417276162342"/>
+   <Task id="14667999412527807954" displayName="Alex Ready" optional="false" text="@loc_15373294129891630502" markerLabel="@loc_15373294129891630501" Location="1713490239386284818" description="844024417276162342"/>
+   <Task id="844024417276162358" displayName="AlexDead" optional="false" text="@loc_15373294129891630504" markerLabel="@loc_15373294129891630503" Location="1713490239386284818" description="844024417276162402"/>
+   <Task id="14667999412530302904" displayName="Alex in danger" optional="false" text="@loc_15373294129891630505" Location="1713490239386284818" description="14667999412530307565"/>
+   <Task id="14667999412567285827" displayName="StopDahl" optional="false" text="@loc_15373294129891630507" markerLabel="@loc_15373294129891630506" Location="1713490239386284818" description="14667999412530307565" timerLabel="@loc_13680621263408025953"/>
+  </Tasks>
+  <Clues>
+   <Clue id="844024417275826329" displayName="AlexLocation" text="@loc_15373294129891630508"/>
+   <Clue id="844024417328378001" displayName="KeysHaveFabPlans2" text="@loc_844024417328378002"/>
+  </Clues>
+ </Objective>
+</Objectives>

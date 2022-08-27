@@ -1,0 +1,109 @@
+
+<Game>
+ <Collision defaultDamagePackage="3149325216931792051" noDamagePackage="3149325216948552760" psiLiftNpcHeadBumpDamagePackageId="5310807215636213141" speedThreshold="10" playerThrownSpeedThreshold="10" speedPercentage="0.5" selfDamagingSpeedThreshold="12" timeBeforeAllowingSameCollision="0.2">
+  <Leverages>
+   <Archetype name="Player">
+    <Leverage package="3149325216962190073"/>
+    <Leverage package="3149325216962190798"/>
+    <Leverage package="3149325216962190800"/>
+    <Leverage package="3149325216962190801"/>
+   </Archetype>
+   <Archetype name="ArkNpcs.ArkPoltergeist">
+    <Leverage package="3149325216962551627"/>
+    <Leverage package="3149325216962551599"/>
+    <Leverage package="3149325216962551572"/>
+    <Leverage package="3149325216962551505"/>
+   </Archetype>
+  </Leverages>
+  <SelfDamagingClasses>
+   <Class name="ArkBreakable"/>
+   <Class name="ArkScalableBreakable"/>
+   <Class name="ArkExplosiveTank"/>
+  </SelfDamagingClasses>
+ </Collision>
+ <ArkDifficultyLevels>
+  <Levels>
+   <Level Level="0" VisualAttentionScalar="1.0">
+    <Modifiers>
+     <SignalModifier ModifierId="3149325216951320767" IsInbound="true"/>
+     <SignalModifier ModifierId="3149325216985438765" IsInbound="false"/>
+    </Modifiers>
+   </Level>
+   <Level Level="1" VisualAttentionScalar="1.5">
+    <Modifiers>
+     <SignalModifier ModifierId="3149325216955206813" IsInbound="true"/>
+    </Modifiers>
+   </Level>
+   <Level Level="2" VisualAttentionScalar="2.25">
+    <Modifiers>
+     <SignalModifier ModifierId="3149325216951328068" IsInbound="true"/>
+    </Modifiers>
+   </Level>
+   <Level Level="3" VisualAttentionScalar="2.75">
+    <Modifiers>
+     <SignalModifier ModifierId="3149325216951327986" IsInbound="true"/>
+     <SignalModifier ModifierId="3149325216989857139" IsInbound="false"/>
+    </Modifiers>
+   </Level>
+  </Levels>
+ </ArkDifficultyLevels>
+ <GlassBreakingClasses>
+  <Class name="ArkProjectileNpcPistolBullet"/>
+  <Class name="ArkProjectilePistolBullet"/>
+  <Class name="ArkProjectileShotgunShell"/>
+  <Class name="ArkProjectileShotgunBlast"/>
+  <Class name="ArkWeaponWrench"/>
+  <Class name="ArkWeaponDoubleWrench"/>
+  <Class name="ArkProjectileHomingPsiBlast"/>
+  <Class name="ArkProjectileTurretBullet"/>
+  <Class name="ArkProjectileLureGrenade"/>
+  <Class name="ArkProjectileNullwaveTransmitter"/>
+  <Class name="ArkProjectileRecyclerGrenade"/>
+  <Class name="ArkProjectileEMPGrenade"/>
+  <Class name="ArkApexTentacleHead"/>
+ </GlassBreakingClasses>
+ <NonGlassBreakingClasses>
+  <Class name="ArkProjectileToyGun"/>
+ </NonGlassBreakingClasses>
+ <GlassBreakingAudio>
+  <Entry controlId="Play_GlassShatter_Small" sizeThreshold="1"/>
+  <Entry controlId="Play_GlassShatter_Med" sizeThreshold="2"/>
+  <Entry controlId="Play_GlassShatter_Large" sizeThreshold="3"/>
+ </GlassBreakingAudio>
+ <LevelIntro blackDuration="1" fadeOutDuration="1"/>
+ <QuickLoad blackDuration="1" fadeOutDuration="1"/>
+ <CaptureVolumeWhiteList>
+  <Archetype name="ArkPhysicsProps.Tech.LookingGlass_Hanging_Part_B1"/>
+  <Archetype name="ArkGameplayArchitecture.Containers/Misc.Trash_Can_Small"/>
+  <Archetype name="ArkGameplayArchitecture.ExplosiveTanks.OxygenBottle"/>
+  <Archetype name="ArkPhysicsProps.Kitchen.Cup"/>
+  <Archetype name="ArkPhysicsProps.Chairs.Chair_Lab_A"/>
+  <Archetype name="ArkPhysicsProps.Chairs.Stool_Lab_A"/>
+  <Archetype name="ArkPhysicsProps.Tech.Reployer"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Crate_B"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Crate_B"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Crate_B"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Cargo_A_Large"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Cargo_A_Small"/>
+  <Archetype name="ArkPhysicsProps.Science.ScrewBin"/>
+  <Archetype name="ArkPhysicsProps.Tech.LookingGlass_Hanging_Part_B3"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Box_Folders_Closed"/>
+  <Archetype name="ArkPhysicsProps.Office.Whiteboard"/>
+  <Archetype name="ArkGameplayArchitecture.Containers/Lab.Shelf_Lab"/>
+  <Archetype name="ArkGameplayArchitecture.Containers/Misc.OperatorChassis_Engineer"/>
+  <Archetype name="ArkPhysicsProps.Science.Lab_Magnifier"/>
+  <Archetype name="ArkPhysicsProps.Boxes-Crates.Cardboard_Box_80x80x80"/>
+  <Archetype name="ArkPhysicsProps.Tech.Reel_Rack"/>
+  <Archetype name="ArkGameplayArchitecture.ExplosiveTanks.ExplosiveTank_Dynamic"/>
+  <Archetype name="ArkPhysicsProps.Science.Soldering_Iron"/>
+  <Archetype name="ArkPhysicsProps.Chairs.Chair_Office_A"/>
+  <Archetype name="ArkPhysicsProps.Misc.Pipe_Chunk_Large_A"/>
+  <Archetype name="ArkPhysicsProps.Misc.Pipe_Chunk_Large_A2"/>
+  <Archetype name="ArkPickups.Ammo.ShotgunShells"/>
+  <Archetype name="ArkPickups.Misc.SpareParts"/>
+  <Archetype name="ArkPickups.Medical.PsiHypo"/>
+  <Archetype name="ArkPickups.Ammo.EMPGrenades"/>
+  <Archetype name="ArkPickups.Data.Keycard"/>
+  <Archetype name="ArkPickups.Data.TranScribe"/>
+ </CaptureVolumeWhiteList>
+</Game>

@@ -1,0 +1,127 @@
+<LevelData SandboxVersion="3.7.0.179">
+ <LevelInfo CreationDate="08/01/18" Name="Lobby" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
+ <SurfaceTypes>
+  <SurfaceType Name="Materials/material_terrain_default" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/material_terrain_default" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
+ </SurfaceTypes>
+ <CollisionClasses>
+  <CollisionClass type="0" ignore="0"/>
+  <CollisionClass type="0" ignore="32768"/>
+  <CollisionClass type="8192" ignore="0"/>
+  <CollisionClass type="1024" ignore="0"/>
+  <CollisionClass type="0" ignore="65536"/>
+  <CollisionClass type="1024" ignore="65536"/>
+  <CollisionClass type="0" ignore="81920"/>
+  <CollisionClass type="0" ignore="16384"/>
+  <CollisionClass type="0" ignore="384"/>
+  <CollisionClass type="4194304" ignore="0"/>
+  <CollisionClass type="32768" ignore="32768"/>
+  <CollisionClass type="0" ignore="121823"/>
+  <CollisionClass type="8192" ignore="8192"/>
+  <CollisionClass type="0" ignore="8192"/>
+  <CollisionClass type="2097152" ignore="0"/>
+ </CollisionClasses>
+ <Layers>
+  <Layer Name="Lobby_Geo" Parent="" Id="1" Specs="-1"/>
+  <Layer Name="Lobby_Security_Geo" Parent="Lobby_Geo" Id="2" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Scripting" Parent="" Id="3" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_TraumaTransition" Parent="" Id="4" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Main" Parent="" Id="5" Specs="-1"/>
+  <Layer Name="Lobby_Floor3AInt_Geo" Parent="Lobby_Geo" Id="6" Specs="-1"/>
+  <Layer Name="Lobby_Lighting_Backup" Parent="" Id="7" Specs="-1"/>
+  <Layer Name="Lobby_SimulationTransition" Parent="" Id="8" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_PsychCodeQuest" Parent="" Id="9" Specs="-1"/>
+  <Layer Name="Lobby_Animation_Elevator_Doors" Parent="" Id="10" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Map" Parent="" Id="11" Specs="-1"/>
+  <Layer Name="Lobby_MorganOffice_Geo" Parent="Lobby_Geo" Id="12" Specs="-1"/>
+  <Layer Name="Lobby_ApexPhase2" Parent="" Id="13" Specs="-1" LoadTokenId="386172703" LoadTokenValue="1"/>
+  <Layer Name="Lobby_ShuttlebayTransition" Parent="" Id="14" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Audio_Trauma" Parent="Lobby_AudioVolumes" Id="15" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_ElevatorGeo" Parent="" Id="16" Specs="-1"/>
+  <Layer Name="Ark_MetricCameras" Parent="" Id="17" Specs="-1"/>
+  <Layer Name="Lobby_Tutorials" Parent="" Id="18" Specs="-1"/>
+  <Layer Name="Lobby_Scripting_SQ_RunawayOperator" Parent="" Id="19" Specs="-1"/>
+  <Layer Name="Lobby_GEO_AudioLog_Trackview" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="Lobby_Lighting_Final" Parent="" Id="21" Specs="-1"/>
+  <Layer Name="Lobby_GEO_MorganLookingGlassTrackview" Parent="Lobby_Geo" Id="22" Specs="-1"/>
+  <Layer Name="Lobby_Floor2BInt_Geo" Parent="Lobby_Geo" Id="23" Specs="-1"/>
+  <Layer Name="Lobby_GEO_Teleconference" Parent="Lobby_Geo" Id="24" Specs="-1"/>
+  <Layer Name="Lobby_PsychotronicsFoyer_Geo" Parent="Lobby_Geo" Id="25" Specs="-1"/>
+  <Layer Name="Lobby_GEO_MorganLookingGlassDiagnostic" Parent="Lobby_Geo" Id="26" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_AnimationJanuaryOffice" Parent="" Id="27" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_SimulationFoyer_Geo" Parent="Lobby_Geo" Id="28" Specs="-1"/>
+  <Layer Name="Lobby_Trauma_Scripting" Parent="" Id="29" Specs="-1"/>
+  <Layer Name="Lobby_ApexScripting" Parent="" Id="30" Specs="-1" DefaultLoaded="1" LoadTokenId="659909599" LoadTokenValue="1"/>
+  <Layer Name="Lobby_Scripting_OfficeConvos" Parent="" Id="31" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_TraumaFoyer_Geo" Parent="Lobby_Geo" Id="32" Specs="-1"/>
+  <Layer Name="Lobby_GEO_MorganLookingGlassLoadScreen" Parent="Lobby_Geo" Id="33" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Breadcrumbing" Parent="" Id="34" Specs="-1"/>
+  <Layer Name="Lobby_MorganLookingGlassScene_Geo" Parent="Lobby_Geo" Id="35" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Lighting_ShadowShell" Parent="Lobby_Geo" Id="36" Specs="-1"/>
+  <Layer Name="Lobby_FX" Parent="" Id="37" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_FakeElevator" Parent="" Id="38" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_CoralPhase4" Parent="" Id="39" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="4"/>
+  <Layer Name="Lobby_animation_sq_06_spacereveal" Parent="" Id="40" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Guts_Dahl_Elevator" Parent="" Id="41" Specs="-1"/>
+  <Layer Name="Lobby_Floor3CInt_Geo" Parent="Lobby_Geo" Id="42" Specs="-1"/>
+  <Layer Name="Lobby_Exterior" Parent="Lobby_Geo" Id="43" Specs="-1"/>
+  <Layer Name="Lobby_Bathrooms_Geo" Parent="Lobby_Geo" Id="44" Specs="-1"/>
+  <Layer Name="Lobby_StairwellA_Geo" Parent="Lobby_Geo" Id="45" Specs="-1"/>
+  <Layer Name="Lobby_Floor1BInt_Geo" Parent="Lobby_Geo" Id="46" Specs="-1"/>
+  <Layer Name="Lobby_Scripting_DoNoHarmQuest" Parent="" Id="47" Specs="-1"/>
+  <Layer Name="Lobby_animation_sq_06_spacereveal_F" Parent="" Id="48" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_CoralPhase5" Parent="" Id="49" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="5"/>
+  <Layer Name="Lobby_Sound" Parent="" Id="50" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_CoralPhase3" Parent="" Id="51" Specs="-1" DefaultLoaded="1" LoadTokenId="1570678163" LoadTokenValue="3"/>
+  <Layer Name="Lobby_Distractions" Parent="" Id="52" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_AnimationNightmareWindow" Parent="" Id="53" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Nightmare" Parent="" Id="54" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Scripting_Dahl" Parent="" Id="55" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Scripting_SmugglerSideQuest" Parent="" Id="56" Specs="-1"/>
+  <Layer Name="Temp Hidden" Parent="" Id="57" Specs="-1" Physics="0" DefaultLoaded="1"/>
+  <Layer Name="Lobby_ElevatorTest" Parent="" Id="58" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_VisAreas" Parent="" Id="59" Specs="-1"/>
+  <Layer Name="Lobby_QuakeCon" Parent="" Id="60" Specs="-1" LoadTokenId="629336681" LoadTokenValue="1"/>
+  <Layer Name="Lobby_PsychotronicsTransition" Parent="" Id="61" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Vista" Parent="" Id="62" Specs="-1"/>
+  <Layer Name="Lobby_AnimationNightmareDescent" Parent="" Id="63" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Floor3BInt_Geo" Parent="Lobby_Geo" Id="64" Specs="-1"/>
+  <Layer Name="Lobby_Trauma_Geo" Parent="Lobby_Geo" Id="65" Specs="-1"/>
+  <Layer Name="Lobby_MorganReception_Geo" Parent="Lobby_Geo" Id="66" Specs="-1"/>
+  <Layer Name="Lobby_Floor2DInt_Geo" Parent="Lobby_Geo" Id="67" Specs="-1"/>
+  <Layer Name="Lobby_animation_sq_07_explosion" Parent="" Id="68" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Floor1AInt_Geo" Parent="Lobby_Geo" Id="69" Specs="-1"/>
+  <Layer Name="Lobby_CoralPhase2" Parent="" Id="70" Specs="-1" DefaultLoaded="1" LoadTokenId="1570678163" LoadTokenValue="2"/>
+  <Layer Name="Lobby_PrototypingFoyer_Geo" Parent="Lobby_Geo" Id="71" Specs="-1"/>
+  <Layer Name="Lobby_sq02_LookingGlassVideo_Female" Parent="" Id="72" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Floor2CInt_Geo" Parent="Lobby_Geo" Id="73" Specs="-1"/>
+  <Layer Name="Lobby_HardwareTransition" Parent="" Id="74" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Tutorial" Parent="" Id="75" Specs="-1"/>
+  <Layer Name="Lobby_Lighting_Vsitas" Parent="" Id="76" Specs="-1"/>
+  <Layer Name="Lobby_Scripting_DahlAmbush" Parent="" Id="77" Specs="-1"/>
+  <Layer Name="Lobby_AudioVolumes" Parent="" Id="78" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_SolarStorms" Parent="" Id="79" Specs="-1" DefaultLoaded="1"/>
+  <Layer Name="Lobby_Floor2AInt_Geo" Parent="Lobby_Geo" Id="80" Specs="-1"/>
+  <Layer Name="Lobby_MaintenanceHall" Parent="Lobby_Geo" Id="81" Specs="-1"/>
+ </Layers>
+ <Vegetation />
+ <MaterialsLibrary>
+  <Library Name="Level"/>
+ </MaterialsLibrary>
+ <ParticlesLibrary>
+  <Library Name="LevelShared"/>
+  <Library Name="Characters"/>
+  <Library Name="LevelSpecific"/>
+  <Library Name="FogCards"/>
+  <Library Name="Interactables"/>
+  <Library Name="MaterialEffects"/>
+  <Library Name="Player"/>
+  <Library Name="PlayerWeapons"/>
+  <Library Name="Screen"/>
+ </ParticlesLibrary>
+ <GameTokensLibraryReferences>
+  <Library Name="GT_Global"/>
+  <Library Name="GT_GameTime"/>
+  <Library Name="GT_GlobalStrings"/>
+  <Library Name="sshain_Test"/>
+ </GameTokensLibraryReferences>
+</LevelData>

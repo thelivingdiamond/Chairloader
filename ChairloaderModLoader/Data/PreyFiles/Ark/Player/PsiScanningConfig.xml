@@ -1,0 +1,9 @@
+
+<ArkScanning EventBonusSec="0" LockonTimeSec="4" LockonTimeoutSec="5.0" LockonTimeoutFlashingStart="3.0" LockonTimeoutFlashingFreq="0.3" MaxDistanceScanRateMultiplier="0.5" AutoUnequipTimeoutSec="3.0" ScanCompleteLockonTimeoutSec="1.0" PostProcessEffect="9805661808542490179" LockonAttachment="PsiTarget_Attachment" EnableAutoUnequip="false" ScanFirstTargetOnEquip="true" FanfareZoomHFOV="15" FanfareZoomDuration="0.5" FanfareZoomOutDuration="0.1" FanfareCameraSpeed="3" ErrorMessageDuration="2.0" ReticleLerpSpeed="560" LightArchetype="ArkLights.Player.Psychoscope" LightAttachment="psychoscope_light" ResearchRtpc="Psi_Scanning_Value" PauseResearchAudioTrigger="Pause_Psi_Scanning_Research_LP" ResumeResearchAudioTrigger="Resume_Psi_Scanning_Research_LP" ReminderUIDelay="1.0" PsychoscopeHideTime="0.3">
+ <FanfareInputLegend ActionMap="psi_scanning_fanfare">
+  <Items>
+   <ArkInputLegendItem Action="scanner_exit_fanfare" Label="@ui_Back"/>
+   <ArkInputLegendItem Action="toggle_scope" Label="@ui_CloseScope"/>
+  </Items>
+ </FanfareInputLegend>
+</ArkScanning>

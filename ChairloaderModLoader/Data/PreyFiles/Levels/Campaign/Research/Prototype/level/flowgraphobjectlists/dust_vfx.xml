@@ -1,0 +1,57 @@
+<Graph isModule="1" moduleName="Dust_VFX" isObjectList="1" objectListClass="ParticleEffect" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="14" Class="entity:ParticleEffect" pos="-210,-310,0" EntityGUID="{FF1E5164-AC37-4DF8-B906-1D601EF3A461}" EntityGUID_64="4DF8AC37FF1E5164">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="16" Class="entity:ParticleEffect" pos="-210,-180,0" EntityGUID="{9DBC7D78-CA0C-43D9-BB23-AED8AA7B1D42}" EntityGUID_64="43D9CA0C9DBC7D78">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="18" Class="entity:ParticleEffect" pos="-210,-50,0" EntityGUID="{9AB6FE82-8DE7-4FC2-8034-4B1402401183}" EntityGUID_64="4FC28DE79AB6FE82">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="20" Class="entity:ParticleEffect" pos="-210,80,0" EntityGUID="{34446206-6032-4F83-BD24-E429EE9583D2}" EntityGUID_64="4F83603234446206">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="22" Class="entity:ParticleEffect" pos="-210,210,0" EntityGUID="{AE8BAC84-2271-4205-9214-DA142DF4E3A5}" EntityGUID_64="42052271AE8BAC84">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="24" Class="entity:ParticleEffect" pos="60,-310,0" EntityGUID="{9FF83D7B-14FB-46FC-A449-B617DCF2D577}" EntityGUID_64="46FC14FB9FF83D7B">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="26" Class="entity:ParticleEffect" pos="70,-170,0" EntityGUID="{960348EE-6B2E-4173-A8E1-28BD6B59EFE5}" EntityGUID_64="41736B2E960348EE">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="28" Class="entity:ParticleEffect" pos="70,-30,0" EntityGUID="{0106A632-3883-44AF-A045-2383271F4C13}" EntityGUID_64="44AF38830106A632">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="30" Class="entity:ParticleEffect" pos="70,100,0" EntityGUID="{33101104-A043-453C-A3D5-8F02A6A8370B}" EntityGUID_64="453CA04333101104">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="32" Class="entity:ParticleEffect" pos="70,230,0" EntityGUID="{9F890009-0FCA-4F87-9B32-CBD6192C4256}" EntityGUID_64="4F870FCA9F890009">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="34" Class="entity:ParticleEffect" pos="330,-310,0" EntityGUID="{60163F01-4BF6-4549-9356-25B88702E1C4}" EntityGUID_64="45494BF660163F01">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="36" Class="entity:ParticleEffect" pos="330,-170,0" EntityGUID="{EF7CFD01-3B26-4905-9037-52B48BAD2DE2}" EntityGUID_64="49053B26EF7CFD01">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="38" Class="entity:ParticleEffect" pos="330,-30,0" EntityGUID="{64E18313-2D62-4416-818F-B03F00817E3B}" EntityGUID_64="44162D6264E18313">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="40" Class="entity:ParticleEffect" pos="330,100,0" EntityGUID="{87FD5737-068F-4E67-97D1-E027B6080676}" EntityGUID_64="4E67068F87FD5737">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="44" Class="entity:ParticleEffect" pos="-210,340,0" EntityGUID="{A6B5ADB9-02A1-43B2-97BC-BCCE427116C4}" EntityGUID_64="43B202A1A6B5ADB9">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="46" Class="entity:ParticleEffect" pos="70,360,0" EntityGUID="{A3FC380D-C1D0-4D6B-A1F5-20B87A472E95}" EntityGUID_64="4D6BC1D0A3FC380D">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+  <Node Id="48" Class="entity:ParticleEffect" pos="330,360,0" EntityGUID="{D214F382-9050-4772-9D16-E0E11A1C6F2C}" EntityGUID_64="47729050D214F382">
+   <Inputs entityId="0" Disable="0" Enable="0" Kill="0" Restart="0" Spawn="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

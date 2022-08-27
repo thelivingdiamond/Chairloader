@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11205</WindowHeight>
+  <WindowWidth>28245</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="22" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row>
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632782</Data></Cell>
+    <Cell><Data ss:Type="String">Test #6458</Data></Cell>
+    <Cell><Data ss:Type="String">Test #6458</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632783</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe's files are on a console in the test preparation room of Simulation Lab A. Get into the preparation room and download the files.</Data></Cell>
+    <Cell><Data ss:Type="String">Dr. Igwe's files are on a console in the test preparation room of Simulation Lab A. Get into the preparation room and download the files.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632784</Data></Cell>
+    <Cell><Data ss:Type="String">Prep Chamber</Data></Cell>
+    <Cell><Data ss:Type="String">Prep Chamber</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632785</Data></Cell>
+    <Cell><Data ss:Type="String">Get Into the Test Preparation Chamber</Data></Cell>
+    <Cell><Data ss:Type="String">Get Into the Test Preparation Chamber</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632786</Data></Cell>
+    <Cell><Data ss:Type="String">Console</Data></Cell>
+    <Cell><Data ss:Type="String">Console</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632787</Data></Cell>
+    <Cell><Data ss:Type="String">Download Dr. Igwe's Files</Data></Cell>
+    <Cell><Data ss:Type="String">Download Dr. Igwe's Files</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632788</Data></Cell>
+    <Cell><Data ss:Type="String">Everything You Know is About to Change</Data></Cell>
+    <Cell><Data ss:Type="String">Everything You Know is About to Change</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632789</Data></Cell>
+    <Cell><Data ss:Type="String">January contacted me again as I reached the foyer of the Neuromod Division. An actual Neuromod was placed where the display model used to be. Installing it will help me survive against the Typhon organisms.</Data></Cell>
+    <Cell><Data ss:Type="String">January contacted me again as I reached the foyer of the Neuromod Division. An actual Neuromod was placed where the display model used to be. Installing it will help me survive against the Typhon organisms.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632790</Data></Cell>
+    <Cell><Data ss:Type="String">January contacted me again as I reached the foyer of the Neuromod Division. An actual Neuromod was placed where the display model used to be. I picked it up in hopes of gaining some sort of edge over the Typhon organisms.</Data></Cell>
+    <Cell><Data ss:Type="String">January contacted me again as I reached the foyer of the Neuromod Division. An actual Neuromod was placed where the display model used to be. I picked it up in hopes of gaining some sort of edge over the Typhon organisms.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632791</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632792</Data></Cell>
+    <Cell><Data ss:Type="String">Pick up the Neuromod</Data></Cell>
+    <Cell><Data ss:Type="String">Pick up the Neuromod</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632793</Data></Cell>
+    <Cell><Data ss:Type="String">Copy Protection</Data></Cell>
+    <Cell><Data ss:Type="String">Copy Protection</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632794</Data></Cell>
+    <Cell><Data ss:Type="String">Lead Neuromod Engineer Halden Graves revoked all Neuromod fabrication licenses. I need to find his office and figure out how to reset the licenses if I ever want to make another Neuromod.</Data></Cell>
+    <Cell><Data ss:Type="String">Lead Neuromod Engineer Halden Graves revoked all Neuromod fabrication licenses. I need to find his office and figure out how to reset the licenses if I ever want to make another Neuromod.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632795</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Lead Engineer Halden Graves was onto something regarding the effects the Typhon were having on random systems. I should see if he's got any files in his office. </Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Lead Engineer Halden Graves was onto something regarding the effects the Typhon were having on random systems. I should see if he's got any files in his office. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632796</Data></Cell>
+    <Cell><Data ss:Type="String">Lead Neuromod Engineer Halden Graves revoked all Neuromod fabrication licenses. I got into his office and figured out how to reset the license so I can make Neuromods again.</Data></Cell>
+    <Cell><Data ss:Type="String">Lead Neuromod Engineer Halden Graves revoked all Neuromod fabrication licenses. I got into his office and figured out how to reset the license so I can make Neuromods again.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632797</Data></Cell>
+    <Cell><Data ss:Type="String">Find Halden Graves' Office</Data></Cell>
+    <Cell><Data ss:Type="String">Find Halden Graves' Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632798</Data></Cell>
+    <Cell><Data ss:Type="String">Get into Halden Graves' Office</Data></Cell>
+    <Cell><Data ss:Type="String">Get into Halden Graves' Office</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632799</Data></Cell>
+    <Cell><Data ss:Type="String">Reset the licenses for the Neuromod Fabrication Plans</Data></Cell>
+    <Cell><Data ss:Type="String">Reset the licenses for the Neuromod Fabrication Plans</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632800</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricate a Neuromod</Data></Cell>
+    <Cell><Data ss:Type="String">Fabricate a Neuromod</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632801</Data></Cell>
+    <Cell><Data ss:Type="String">A security officer with a keycard to Graves' office attempted to reach him. If I can find the security officer I might be able to find the keycard. </Data></Cell>
+    <Cell><Data ss:Type="String">A security officer with a keycard to Graves' office attempted to reach him. If I can find the security officer I might be able to find the keycard. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">loc_15373294129891632802</Data></Cell>
+    <Cell><Data ss:Type="String">An engineer managed to escape from fabrication by sneaking through a tunnel into the volunteer quarters. </Data></Cell>
+    <Cell><Data ss:Type="String">An engineer managed to escape from fabrication by sneaking through a tunnel into the volunteer quarters. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>15</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+     <RangeSelection>R1:R1048576</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

@@ -1,0 +1,75 @@
+
+<Definition root="VehicleDamagesTemplates">
+ <Property name="name" type="string"/>
+ <Array name="DamagesGroups" elementName="DamagesGroup" optional="1">
+  <Property name="name" type="string" optional="0"/>
+  <Property name="useTemplate" type="string" optional="1"/>
+  <Array name="DamagesSubGroups" elementName="DamagesSubGroup" optional="1">
+   <Property name="delay" type="float"/>
+   <Property name="randomness" type="float"/>
+   <Array name="DamageBehaviors" elementName="DamageBehavior" extendable="1" id="idDamageBehaviors">
+    <Property name="class" type="string"/>
+    <Property name="damageRatioMin" type="float" optional="1"/>
+    <Property name="damageRatioMax" type="float" optional="1"/>
+    <Property name="ignoreVehicleDestruction" type="bool" optional="1"/>
+    <Table name="AISignal" id="idAISignal" optional="1">
+     <Property name="signalId" type="int" optional="0"/>
+     <Property name="signalText" type="string" optional="0"/>
+    </Table>
+    <Table name="Burn" id="idExplosion" optional="1">
+     <Property name="helper" type="string"/>
+     <Property name="damage" type="float"/>
+     <Property name="selfDamage" type="float"/>
+     <Property name="radius" type="float"/>
+     <Property name="interval" type="float"/>
+    </Table>
+    <Table name="Destroy" id="idDestroy" optional="1">
+     <Property name="placeholder" type="bool" optional="1"/>
+    </Table>
+    <Table name="Effect" id="idEffect" optional="1">
+     <Property name="effect" type="string"/>
+     <Property name="disableAfterExplosion" type="bool" optional="1"/>
+    </Table>
+    <Table name="Explosion" id="idExplosion" optional="1">
+     <Property name="helper" type="string"/>
+     <Property name="damage" type="float"/>
+     <Property name="radius" type="float"/>
+     <Property name="pressure" type="float"/>
+    </Table>
+    <Table name="Group" id="idGroup" optional="1">
+     <Property name="name" type="string"/>
+    </Table>
+    <Table name="Impulse" id="idImpulse" optional="1">
+     <Property name="forceMin" type="float"/>
+     <Property name="forceMax" type="float"/>
+     <Property name="direction" type="Vec3"/>
+     <Property name="momentum" type="Vec3" optional="1"/>
+     <Property name="helper" type="Vec3" optional="1"/>
+    </Table>
+    <Table name="MovementNotification" id="idMovementNotification" optional="1">
+     <Property name="isSteering" type="float" optional="1"/>
+     <Property name="isFatal" type="bool" optional="1"/>
+    </Table>
+    <Table name="DetachPart" id="idDetachPart" optional="1">
+     <Property name="part" type="string"/>
+     <Property name="baseForce" type="Vec3" optional="1"/>
+    </Table>
+    <Table name="BlowTire" id="idBlowTire" optional="1"/>
+    <Table name="Indicator" id="idIndicator" optional="1">
+     <Table name="Light">
+      <Property name="material" type="string"/>
+      <Property name="sound" type="string" optional="1"/>
+      <Property name="soundRatioMin" type="float" optional="1"/>
+      <Property name="helper" type="string" optional="1"/>
+     </Table>
+    </Table>
+    <Table name="AudioFeedback" id="idAudioFeedback" optional="1">
+     <Table name="Sound">
+      <Property name="firstPersonSignal" type="string"/>
+      <Property name="thirdPersonSignal" type="string"/>
+     </Table>
+    </Table>
+   </Array>
+  </Array>
+ </Array>
+</Definition>

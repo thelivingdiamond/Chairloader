@@ -1,0 +1,13 @@
+
+<LiftPowerProperties>
+ <Common DisplayName="@rpg_LiftName" PsiCost="15" Description="@rpg_LiftShort" NoiseId="10850392949532183299" LoudnessId="9469288860501649202" PickerLabel="Lift" PersistentPostProcessVFX="" InterruptsMimicGrabSequence="false" CostReductionStat="psiCostScaleKineticEnergy" TargetHighlightColor="0.05,0.25,0.25" TargetHighlightColorAlpha="1.0" ExecutionPlayerEffect="Player.Powers.Lift.Lift_CastPV" ExecutionAudioTrigger="Play_Power_Lift_Start"/>
+ <Unique MinHeight="2" MaxRange="20.0" MaxRangeZeroG="3.0" Radius="1.5" Gravity="0.5" InwardLiftForce="2.0" UpwardLiftForce="6.0" LiftForceZeroG="10.0" HoverVelocityDamping="0.4" HoverVelocityFalloff="0.01" HoverFalloffDistance="1.5" ParticleEffect="Player.Powers.Lift.Lift_Hold" TargetingParticleEffect="Player.Powers.Lift.Lift_Targeting" TargetingParticleEffectLight="Player.Powers.Lift.Lift_Targeting_Light" PlayerPostEffectId="2428940965260274608" PlayerExitAudioTrigger="Stop_Power_Lift_LiftZone_LP" EnterLiftSignalPackageId="3149325216985619361" PlayerEnterAudioTrigger="Play_Power_Lift_LiftZone_LP"/>
+ <Levels>
+  <ArkPsiPowerLiftLevelProperties DisplayName="@rpg_LiftName" Description="@rpg_Lift1" CooldownDurationSec="15">
+   <LiftProperties DurationSec="15" MaxHeight="7.0"/>
+  </ArkPsiPowerLiftLevelProperties>
+  <ArkPsiPowerLiftLevelProperties DisplayName="@rpg_LiftName2" Description="@rpg_Lift2" CooldownDurationSec="15">
+   <LiftProperties DurationSec="15" MaxHeight="12.0"/>
+  </ArkPsiPowerLiftLevelProperties>
+ </Levels>
+</LiftPowerProperties>

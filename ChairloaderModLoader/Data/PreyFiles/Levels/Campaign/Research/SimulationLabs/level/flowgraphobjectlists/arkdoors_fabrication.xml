@@ -1,0 +1,21 @@
+<Graph isModule="1" moduleName="ArkDoors_Fabrication" isObjectList="1" objectListClass="ArkDoor" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="2" Class="entity:ArkDoor" pos="89,41,0" EntityGUID="{A3076FC5-F444-497C-A978-F66F04D40D5F}" EntityGUID_64="497CF444A3076FC5">
+   <Inputs entityId="0" Close="0" Hide="0" Lock="0" Open="0" PowerOff="0" PowerOn="0" UnHide="0" Unlock="0"/>
+  </Node>
+  <Node Id="6" Class="entity:ArkDoor" pos="-260,-210,0" EntityGUID="{D1B54936-5CB1-4AE9-93EB-993534729F25}" EntityGUID_64="4AE95CB1D1B54936">
+   <Inputs entityId="0" Close="0" Hide="0" Lock="0" Open="0" PowerOff="0" PowerOn="0" UnHide="0" Unlock="0"/>
+  </Node>
+  <Node Id="10" Class="entity:ArkDoor" pos="-90,180,0" EntityGUID="{B16101B5-EA61-434A-8A84-5C1847BD9F80}" EntityGUID_64="434AEA61B16101B5">
+   <Inputs entityId="0" Close="0" Hide="0" Lock="0" Open="0" PowerOff="0" PowerOn="0" UnHide="0" Unlock="0"/>
+  </Node>
+  <Node Id="12" Class="entity:ArkDoor" pos="60,360,0" EntityGUID="{1BAFC1B8-B198-41E0-9E35-6F06D086E68B}" EntityGUID_64="41E0B1981BAFC1B8">
+   <Inputs entityId="0" Close="0" Hide="0" Lock="0" Open="0" PowerOff="0" PowerOn="0" UnHide="0" Unlock="0"/>
+  </Node>
+  <Node Id="13" Class="entity:ArkDoor" pos="-349,266,0" EntityGUID="{96184010-9033-4C3F-862F-59A94CCE7E18}" EntityGUID_64="4C3F903396184010">
+   <Inputs entityId="0" Close="0" Hide="0" Lock="0" Open="0" PowerOff="0" PowerOn="0" UnHide="0" Unlock="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

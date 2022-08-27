@@ -1,0 +1,9 @@
+
+<ShiftPowerProperties>
+ <Common DisplayName="@rpg_ShiftName" PsiCost="10" Description="@rpg_ShiftDesc" PickerLabel="Shift" InterruptsMimicGrabSequence="true" PersistentPostProcessVFX="" PostProcessVFX="2428940965260270471" ExecutionAudioTrigger="Play_Power_Shift_Core" NoiseId="10850392949532183299" LoudnessId="9469288860501649190" ExecutionPlayerEffect="Player.Powers.Shift.ShiftPower_Cast" CostReductionStat="psiCostScaleEtherMorph"/>
+ <Unique SpawnDuplicateParticleEffect="Player.Powers.Shift.ShiftDouble_SpawnIn" DestroyDuplicateParticleEffect="Player.Powers.Shift.ShiftDouble_Despawn"/>
+ <Levels>
+  <ArkPsiPowerShiftLevelProperties DisplayName="@rpg_ShiftName1" Description="@rpg_ShiftDesc1" CooldownDurationSec="0.75" ShiftDistance="6" ShiftDelaySec="0.1" DuplicateDurationSec="4.5" OmniDirectional="true"/>
+  <ArkPsiPowerShiftLevelProperties DisplayName="@rpg_ShiftName2" Description="@rpg_ShiftDesc2" CooldownDurationSec="0.75" ShiftDistance="12" ShiftDelaySec="0.1" DuplicateDurationSec="8" OmniDirectional="true"/>
+ </Levels>
+</ShiftPowerProperties>

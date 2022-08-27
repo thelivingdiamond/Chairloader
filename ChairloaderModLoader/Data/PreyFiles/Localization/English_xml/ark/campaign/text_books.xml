@@ -1,0 +1,921 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Quin Matteson</LastAuthor>
+  <LastSaved>2016-11-28T23:36:28Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13200</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="LocStuff">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="125" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:Width="131.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="812.25"/>
+   <Column ss:Width="1342.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">KEY</Data></Cell>
+    <Cell><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485985884</Data></Cell>
+    <Cell><Data ss:Type="String">Encyclopedia of Food Science and Cooking</Data></Cell>
+    <Cell><Data ss:Type="String">Encyclopedia of Food Science and Cooking</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485985885</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an entry in the Encyclopedia of Food Science and Cooking, 2033 Edition by Elliot N. Shaw]&lt;br&gt;&lt;br&gt;Transglutaminase (TG or TGase):&lt;/b&gt; A naturally occurring enzyme found in plants, animals, and bacteria. TG is often used to bond protein-containing foods together and in the production of foods such as imitation crab meat and fish balls. Known colloquially by chefs as 'meat glue'.&lt;br&gt;&lt;br&gt;&lt;i&gt;Chef Shaw's Tip: Gluing chicken skin to salmon will actually protect the outside of the salmon from overcooking.&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an entry in the Encyclopedia of Food Science and Cooking, 2033 Edition by Elliot N. Shaw]&lt;br&gt;&lt;br&gt;Transglutaminase (TG or TGase):&lt;/b&gt; A naturally occurring enzyme found in plants, animals, and bacteria. TG is often used to bond protein-containing foods together and in the production of foods such as imitation crab meat and fish balls. Known colloquially by chefs as 'meat glue'.&lt;br&gt;&lt;br&gt;&lt;i&gt;Chef Shaw's Tip: Gluing chicken skin to salmon will actually protect the outside of the salmon from overcooking.&lt;/i&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485986121</Data></Cell>
+    <Cell><Data ss:Type="String">Heart of the Wok</Data></Cell>
+    <Cell><Data ss:Type="String">Heart of the Wok</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485986122</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 5 of Heart of the Wok by P. Sue Do]&lt;br&gt;&lt;br&gt;Cooking with a well-seasoned wok can be a sublime, almost spiritual experience. The many layers of the blackened surface are like stored memories of all the meals that have gone in and out of the carbon steel bowl before - now imparting echoes of their rich flavor to every new meal it is tasked to cook.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 5 of Heart of the Wok by P. Sue Do]&lt;br&gt;&lt;br&gt;Cooking with a well-seasoned wok can be a sublime, almost spiritual experience. The many layers of the blackened surface are like stored memories of all the meals that have gone in and out of the carbon steel bowl before - now imparting echoes of their rich flavor to every new meal it is tasked to cook.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485986446</Data></Cell>
+    <Cell><Data ss:Type="String">Engineering Control Systems</Data></Cell>
+    <Cell><Data ss:Type="String">Engineering Control Systems</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485986447</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the afterword of Engineering Control Systems, by Sven Shird]&lt;br&gt;&lt;br&gt;There's a metaphor here, you know. Typically, the objective of control theory is to monitor the output of a system and compare it with the desired output (the reference signal). The difference between the actual and the desired outputs (the error signal) is applied as feedback to the input of the system, to bring the actual output closer to the reference. Good control systems - and good engineers - learn from the past.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the afterword of Engineering Control Systems, by Sven Shird]&lt;br&gt;&lt;br&gt;There's a metaphor here, you know. Typically, the objective of control theory is to monitor the output of a system and compare it with the desired output (the reference signal). The difference between the actual and the desired outputs (the error signal) is applied as feedback to the input of the system, to bring the actual output closer to the reference. Good control systems - and good engineers - learn from the past.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987652</Data></Cell>
+    <Cell><Data ss:Type="String">Speech Synthesis And Natural Language Generation</Data></Cell>
+    <Cell><Data ss:Type="String">Speech Synthesis And Natural Language Generation</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987653</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 3 of Speech Synthesis And Natural Language Generation, by Sebastian Smythe]&lt;br&gt;&lt;br&gt;Voice conversion technology enables synthesis systems to generate speech patterns based on their source or entirely new voices, without the need for exhaustive recordings and pre-processing. The quality of the resulting voice depends on the training data as well as the precision of the conversion function and limitations in processing power.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 3 of Speech Synthesis And Natural Language Generation, by Sebastian Smythe]&lt;br&gt;&lt;br&gt;Voice conversion technology enables synthesis systems to generate speech patterns based on their source or entirely new voices, without the need for exhaustive recordings and pre-processing. The quality of the resulting voice depends on the training data as well as the precision of the conversion function and limitations in processing power.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987692</Data></Cell>
+    <Cell><Data ss:Type="String">Hands-On Electronics</Data></Cell>
+    <Cell><Data ss:Type="String">Hands-On Electronics</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987693</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the preface to Hands-On Electronics, by Antoinette Sokol]&lt;br&gt;&lt;br&gt;By working through a series of practical experiments, this humble manual will introduce you to the fundamentals of modern analog and digital electronics. By the end you will be able to construct any simple circuit. As Thomas Edison once said, &quot;To invent, you need a good imagination and a pile of junk.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the preface to Hands-On Electronics, by Antoinette Sokol]&lt;br&gt;&lt;br&gt;By working through a series of practical experiments, this humble manual will introduce you to the fundamentals of modern analog and digital electronics. By the end you will be able to construct any simple circuit. As Thomas Edison once said, &quot;To invent, you need a good imagination and a pile of junk.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987713</Data></Cell>
+    <Cell><Data ss:Type="String">Introduction to Survey of Parapsychological Meta-Analysis</Data></Cell>
+    <Cell><Data ss:Type="String">Introduction to Survey of Parapsychological Meta-Analysis</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987714</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Introduction to Survey of Parapsychological Meta-Analysis by Dr. Dayo Igwe]&lt;br&gt;&lt;br&gt;For example, conducting a meta-analysis of over 2000 ganzfeld trials - wherein participants are subjected to mild sensory deprivation in order to test for telepathy - reveals a hit rate of 39%. These results are statistically significant, meaning that the success rate is above what could be explained by chance alone. There is no denying it. Something spooky is going on.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Introduction to Survey of Parapsychological Meta-Analysis by Dr. Dayo Igwe]&lt;br&gt;&lt;br&gt;For example, conducting a meta-analysis of over 2000 ganzfeld trials - wherein participants are subjected to mild sensory deprivation in order to test for telepathy - reveals a hit rate of 39%. These results are statistically significant, meaning that the success rate is above what could be explained by chance alone. There is no denying it. Something spooky is going on.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987737</Data></Cell>
+    <Cell><Data ss:Type="String">Consciousness: The Fire in the Equations</Data></Cell>
+    <Cell><Data ss:Type="String">Consciousness: The Fire in the Equations</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987738</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 1, Consciousness: The Fire in the Equations, by Dr. Stuart Penrose]&lt;br&gt;&lt;br&gt;The nature of consciousness remains deeply mysterious. How can the subjective nature of experience - my inner life - be explained in scientific terms? Does consciousness emerge from complex computations among brain neurons? Or is it a fundamental and irreducible property woven into the fabric of the universe?</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 1, Consciousness: The Fire in the Equations, by Dr. Stuart Penrose]&lt;br&gt;&lt;br&gt;The nature of consciousness remains deeply mysterious. How can the subjective nature of experience - my inner life - be explained in scientific terms? Does consciousness emerge from complex computations among brain neurons? Or is it a fundamental and irreducible property woven into the fabric of the universe?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987795</Data></Cell>
+    <Cell><Data ss:Type="String">Principles of Neuroscience, 10th Edition</Data></Cell>
+    <Cell><Data ss:Type="String">Principles of Neuroscience, 10th Edition</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987796</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Principles of Neuroscience, 10th Edition]&lt;br&gt;&lt;br&gt;...the brain was once considered too &quot;warm, wet, and noisy&quot; for seemingly delicate quantum processes. However, the discovery of quantum coherence in biological processes such as plant photosynthesis, avian navigation, and our own sense of smell, paved the way for the eventual discovery of quantum vibrations inside the microtubules of neurons.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Principles of Neuroscience, 10th Edition]&lt;br&gt;&lt;br&gt;...the brain was once considered too &quot;warm, wet, and noisy&quot; for seemingly delicate quantum processes. However, the discovery of quantum coherence in biological processes such as plant photosynthesis, avian navigation, and our own sense of smell, paved the way for the eventual discovery of quantum vibrations inside the microtubules of neurons.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987917</Data></Cell>
+    <Cell><Data ss:Type="String">Midnight Songs, A Classic Anthology of T'ang Dynasty Verse</Data></Cell>
+    <Cell><Data ss:Type="String">Midnight Songs, A Classic Anthology of T'ang Dynasty Verse</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485987918</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an anthology of T'ang poetry]&lt;br&gt;&lt;b&gt;On the Stork Tower&lt;/b&gt;&lt;br&gt;&lt;i&gt;By Wang Zhihuan&lt;/i&gt;&lt;br&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an anthology of T'ang poetry]&lt;br&gt;&lt;b&gt;On the Stork Tower&lt;/b&gt;&lt;br&gt;&lt;i&gt;By Wang Zhihuan&lt;/i&gt;&lt;br&gt;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485988846</Data></Cell>
+    <Cell><Data ss:Type="String">An Account of Fermi's Question</Data></Cell>
+    <Cell><Data ss:Type="String">An Account of Fermi's Question</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485988847</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on the existence of extraterrestrial intelligence, by Dr. Robert James III]&lt;br&gt;&lt;br&gt;Consider that there are billions of stars in the galaxy like our sun, many of them far older. Some of these stars will have Earth-like planets. Some of these planets may have developed intelligent life. Some intelligent life may develop interstellar travel.&lt;br&gt;&lt;br&gt;If a civilization began before ours, it seems possible - even probable - that even at the speed of currently envisioned interstellar travel, they could already have the entire galaxy colonized.&lt;br&gt;&lt;br&gt;The problem is, we haven't detected any such civilizations. Nor have any contacted us. &lt;br&gt;&lt;br&gt;Why?</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on the existence of extraterrestrial intelligence, by Dr. Robert James III]&lt;br&gt;&lt;br&gt;Consider that there are billions of stars in the galaxy like our sun, many of them far older. Some of these stars will have Earth-like planets. Some of these planets may have developed intelligent life. Some intelligent life may develop interstellar travel.&lt;br&gt;&lt;br&gt;If a civilization began before ours, it seems possible - even probable - that even at the speed of currently envisioned interstellar travel, they could already have the entire galaxy colonized.&lt;br&gt;&lt;br&gt;The problem is, we haven't detected any such civilizations. Nor have any contacted us. &lt;br&gt;&lt;br&gt;Why?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485989229</Data></Cell>
+    <Cell><Data ss:Type="String">The Noetic Field</Data></Cell>
+    <Cell><Data ss:Type="String">The Noetic Field</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485989230</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from &quot;The Noetic Field&quot; Chapter 1, By Dr. Dayo Igwe] &lt;br&gt;&lt;br&gt;Noetic research, like all bold new ideas, has undergone a predictable pattern in the scientific community. First, skeptics ridicule the idea since it violates conventional wisdom and the Laws of Science. Second, skeptics grudgingly concede the idea might be possible in some circumstances, but the evidence is weak. Third, the idea catches the attention of mainstream researchers and, more importantly, the public. Finally, the same skeptics who once laughed at the idea now claim that they thought of it first.  </Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from &quot;The Noetic Field&quot; Chapter 1, By Dr. Dayo Igwe] &lt;br&gt;&lt;br&gt;Noetic research, like all bold new ideas, has undergone a predictable pattern in the scientific community. First, skeptics ridicule the idea since it violates conventional wisdom and the Laws of Science. Second, skeptics grudgingly concede the idea might be possible in some circumstances, but the evidence is weak. Third, the idea catches the attention of mainstream researchers and, more importantly, the public. Finally, the same skeptics who once laughed at the idea now claim that they thought of it first.  </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485989454</Data></Cell>
+    <Cell><Data ss:Type="String">The Method.Sci</Data></Cell>
+    <Cell><Data ss:Type="String">The Method.Sci</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485989455</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from &quot;Architects of the Neurological Revolution.&quot;] &lt;br&gt;&lt;br&gt;&quot;What if I told you I could turn you into a mathematician on the level of Einstein in under 10 minutes?&quot;&lt;br&gt;I'd say you're full of it. That's the first thought that crosses my mind, but it withers in the face of Alex Yu's conviction. Despite myself, I'm riveted. He's not bullshitting me. Himself? Maybe. Me? No.&lt;br&gt;Alex leans back in his chair. &quot;Welcome to the age of the Neuromod.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from &quot;Architects of the Neurological Revolution.&quot;] &lt;br&gt;&lt;br&gt;&quot;What if I told you I could turn you into a mathematician on the level of Einstein in under 10 minutes?&quot;&lt;br&gt;I'd say you're full of it. That's the first thought that crosses my mind, but it withers in the face of Alex Yu's conviction. Despite myself, I'm riveted. He's not bullshitting me. Himself? Maybe. Me? No.&lt;br&gt;Alex leans back in his chair. &quot;Welcome to the age of the Neuromod.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485994168</Data></Cell>
+    <Cell><Data ss:Type="String">Program Requirements Document</Data></Cell>
+    <Cell><Data ss:Type="String">Program Requirements Document</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515485994169</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a TranStar work manual]&lt;br&gt;&lt;br&gt;&lt;b&gt;6.3.3 - Psychological Risk &lt;br&gt;&lt;br&gt;Studies show that there is a significant likelihood of behavioral conditions and psychiatric disorders emerging among the population of crew stationed for longer than three months. Impacts of behavioral issues are minimized with appropriate tools for monitoring mood and predicting risk, while including as many earth-like amenities and recreations as possible.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a TranStar work manual]&lt;br&gt;&lt;br&gt;&lt;b&gt;6.3.3 - Psychological Risk &lt;br&gt;&lt;br&gt;Studies show that there is a significant likelihood of behavioral conditions and psychiatric disorders emerging among the population of crew stationed for longer than three months. Impacts of behavioral issues are minimized with appropriate tools for monitoring mood and predicting risk, while including as many earth-like amenities and recreations as possible.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515486085256</Data></Cell>
+    <Cell><Data ss:Type="String">Fatal Fortress Game Master's Tome, 6th ed.</Data></Cell>
+    <Cell><Data ss:Type="String">Fatal Fortress Game Master's Tome, 6th ed.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515486085257</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the 6th edition Fatal Fortress Rule Book]&lt;br&gt;&lt;br&gt;Greetings, Game Master!&lt;br&gt;&lt;br&gt;Fatal Fortress is a world deprived of sunlight. As Game Master, you will guide a troop of stalwart adventurers through glittering caves crawling with Ratmen, into battles against horrors that have slept for centuries, and deep into the secret heart of the Fatal Fortress itself.&lt;br&gt;&lt;br&gt;Unlike other games, Fatal Fortress has no set character classes, instead encouraging players to play their own way by mixing and matching abilities as they are faced with new challenges. This game also features a dramatic magic system where players create their own spells by drawing and combining runes.&lt;br&gt;&lt;br&gt;Each player will need a character record sheet, a miniature to represent their character on the combat map, a full set of polyhedral dice, and a thirst for danger!</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the 6th edition Fatal Fortress Rule Book]&lt;br&gt;&lt;br&gt;Greetings, Game Master!&lt;br&gt;&lt;br&gt;Fatal Fortress is a world deprived of sunlight. As Game Master, you will guide a troop of stalwart adventurers through glittering caves crawling with Ratmen, into battles against horrors that have slept for centuries, and deep into the secret heart of the Fatal Fortress itself.&lt;br&gt;&lt;br&gt;Unlike other games, Fatal Fortress has no set character classes, instead encouraging players to play their own way by mixing and matching abilities as they are faced with new challenges. This game also features a dramatic magic system where players create their own spells by drawing and combining runes.&lt;br&gt;&lt;br&gt;Each player will need a character record sheet, a miniature to represent their character on the combat map, a full set of polyhedral dice, and a thirst for danger!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515486086242</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Application Instructions</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Application Instructions</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515486086243</Data></Cell>
+    <Cell><Data ss:Type="String">Warning: Neuromods should only be administered by certified TranStar technicians under controlled conditions. Subject may experience slight discomfort, swelling, or redness of the eye shortly afterward. &lt;br&gt;&lt;br&gt;1. Remove Neuromod from vacuum sealed container. &lt;br&gt;2. Press rubberized eyecup firmly against bony orbit of eye socket. &lt;br&gt;3. Keep eye OPEN. &lt;br&gt;4. Depress orange release trigger AND continue to hold Neuromod against eye for 5 minutes. &lt;br&gt;5. Dispose of used Neuromod in provided biohazard bag.</Data></Cell>
+    <Cell><Data ss:Type="String">Warning: Neuromods should only be administered by certified TranStar technicians under controlled conditions. Subject may experience slight discomfort, swelling, or redness of the eye shortly afterward. &lt;br&gt;&lt;br&gt;1. Remove Neuromod from vacuum sealed container. &lt;br&gt;2. Press rubberized eyecup firmly against bony orbit of eye socket. &lt;br&gt;3. Keep eye OPEN. &lt;br&gt;4. Depress orange release trigger AND continue to hold Neuromod against eye for 5 minutes. &lt;br&gt;5. Dispose of used Neuromod in provided biohazard bag.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515486086277</Data></Cell>
+    <Cell><Data ss:Type="String">The Fly</Data></Cell>
+    <Cell><Data ss:Type="String">The Fly</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_418270515486086278</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book of poems by William Blake]&lt;br&gt;&lt;br&gt;Little Fly&lt;br&gt;Thy summer's play,&lt;br&gt;My thoughtless hand&lt;br&gt;Has brush'd away.&lt;br&gt;&lt;br&gt;Am not I&lt;br&gt;A fly like thee?&lt;br&gt;Or art not thou&lt;br&gt;A man like me?&lt;br&gt;&lt;br&gt;For I dance&lt;br&gt;And drink &amp; sing;&lt;br&gt;Till some blind hand&lt;br&gt;Shall brush my wing.&lt;br&gt;&lt;br&gt;If thought is life&lt;br&gt;And strength &amp; breath;&lt;br&gt;And the want&lt;br&gt;Of thought is death;&lt;br&gt;&lt;br&gt;Then am I&lt;br&gt;A happy fly,&lt;br&gt;If I live,&lt;br&gt;Or if I die.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book of poems by William Blake]&lt;br&gt;&lt;br&gt;Little Fly&lt;br&gt;Thy summer's play,&lt;br&gt;My thoughtless hand&lt;br&gt;Has brush'd away.&lt;br&gt;&lt;br&gt;Am not I&lt;br&gt;A fly like thee?&lt;br&gt;Or art not thou&lt;br&gt;A man like me?&lt;br&gt;&lt;br&gt;For I dance&lt;br&gt;And drink &amp; sing;&lt;br&gt;Till some blind hand&lt;br&gt;Shall brush my wing.&lt;br&gt;&lt;br&gt;If thought is life&lt;br&gt;And strength &amp; breath;&lt;br&gt;And the want&lt;br&gt;Of thought is death;&lt;br&gt;&lt;br&gt;Then am I&lt;br&gt;A happy fly,&lt;br&gt;If I live,&lt;br&gt;Or if I die.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291224755174</Data></Cell>
+    <Cell><Data ss:Type="String">Exotic Material Extraction Manual</Data></Cell>
+    <Cell><Data ss:Type="String">Exotic Material Extraction Manual</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291224755175</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a manual detailing procedures in the Extraction Lab]&lt;br&gt;&lt;br&gt;Using the extraction workstation, complete the following steps in listed order while a Volunteer test subject is present in the extraction chamber: &lt;br&gt;&lt;br&gt;(1) Extract Mimic from containment.&lt;br&gt;(2) Release Mimic into material extraction chamber. &lt;br&gt;(3) When multiplication process is complete, extract exotic material. &lt;br&gt;(4) Process material and collect from dispenser tray. &lt;br&gt;(5) Immediately transport remains to the morgue.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a manual detailing procedures in the Extraction Lab]&lt;br&gt;&lt;br&gt;Using the extraction workstation, complete the following steps in listed order while a Volunteer test subject is present in the extraction chamber: &lt;br&gt;&lt;br&gt;(1) Extract Mimic from containment.&lt;br&gt;(2) Release Mimic into material extraction chamber. &lt;br&gt;(3) When multiplication process is complete, extract exotic material. &lt;br&gt;(4) Process material and collect from dispenser tray. &lt;br&gt;(5) Immediately transport remains to the morgue.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564945769433</Data></Cell>
+    <Cell><Data ss:Type="String">The Orit</Data></Cell>
+    <Cell><Data ss:Type="String">The Orit</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564945769434</Data></Cell>
+    <Cell><Data ss:Type="String">[A highlighted excerpt from The Song of Deborah in the sacred texts of Beta Israel]&lt;br&gt;&lt;br&gt;&lt;b&gt;Judges 5:26&lt;/b&gt;&lt;br&gt;&lt;br&gt;Her hand she put to the tent-peg, and her right hand to the workmen's hammer; and with the hammer she smote Sisera, she smote through his head, yea, she pierced and struck through his temples.</Data></Cell>
+    <Cell><Data ss:Type="String">[A highlighted excerpt from The Song of Deborah in the sacred texts of Beta Israel]&lt;br&gt;&lt;br&gt;&lt;b&gt;Judges 5:26&lt;/b&gt;&lt;br&gt;&lt;br&gt;Her hand she put to the tent-peg, and her right hand to the workmen's hammer; and with the hammer she smote Sisera, she smote through his head, yea, she pierced and struck through his temples.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564945769784</Data></Cell>
+    <Cell><Data ss:Type="String">Survivor's Account of &quot;The Evacuation&quot; Day 3</Data></Cell>
+    <Cell><Data ss:Type="String">Survivor's Account of &quot;The Evacuation&quot; Day 3</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564945769785</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;DAY 3:&lt;/b&gt; We had driven far enough that our fuel ran out. More jets flew over, headed toward the city. One circled back and made several passes over us but did not shoot. &lt;br&gt;&lt;br&gt;That night in the desert we sat by the empty truck and listened to the booming of artillery. Flashes of bombs and lightning covered the horizon. In the morning our city was lost in what appeared to be shimmering heat waves. High overhead there were brilliant flashes of light. Some said it was an atomic bomb, and others said it was God's wrath. Today I know it was just an accident. Scientists that thought they knew everything. But they did not. &lt;br&gt;&lt;br&gt;There were so many people lost that day. So many that I can barely comprehend it. But it was Aleeza that hurt my heart. I know she was just a dog and I am ashamed of my feelings. But she did not make this world we live in. She was mine to protect and I failed.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;DAY 3:&lt;/b&gt; We had driven far enough that our fuel ran out. More jets flew over, headed toward the city. One circled back and made several passes over us but did not shoot. &lt;br&gt;&lt;br&gt;That night in the desert we sat by the empty truck and listened to the booming of artillery. Flashes of bombs and lightning covered the horizon. In the morning our city was lost in what appeared to be shimmering heat waves. High overhead there were brilliant flashes of light. Some said it was an atomic bomb, and others said it was God's wrath. Today I know it was just an accident. Scientists that thought they knew everything. But they did not. &lt;br&gt;&lt;br&gt;There were so many people lost that day. So many that I can barely comprehend it. But it was Aleeza that hurt my heart. I know she was just a dog and I am ashamed of my feelings. But she did not make this world we live in. She was mine to protect and I failed.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564945770255</Data></Cell>
+    <Cell><Data ss:Type="String">Good Cop / Good Cop</Data></Cell>
+    <Cell><Data ss:Type="String">Good Cop / Good Cop</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564945770256</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on interrogation techniques by Dr. Avalon Bayer]&lt;br&gt;&lt;br&gt;The typical interrogation suspect portrayed by entertainment media is stubborn, clever or even arrogant, entering into a verbal sparring match with the interrogating officer. While this makes for good drama, it's a poor representation of actual cases.&lt;br&gt;&lt;br&gt;It is important to note that the majority of suspects &lt;i&gt;want&lt;/i&gt; to talk. Let them. Provide some prompts, but only to keep the words flowing. Do not attempt to direct them, but just keep them talking. My experience - and case-studies back this - has been that most people will move toward the information you want to know if you just listen to them and reaffirm their assumptions when they need it.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on interrogation techniques by Dr. Avalon Bayer]&lt;br&gt;&lt;br&gt;The typical interrogation suspect portrayed by entertainment media is stubborn, clever or even arrogant, entering into a verbal sparring match with the interrogating officer. While this makes for good drama, it's a poor representation of actual cases.&lt;br&gt;&lt;br&gt;It is important to note that the majority of suspects &lt;i&gt;want&lt;/i&gt; to talk. Let them. Provide some prompts, but only to keep the words flowing. Do not attempt to direct them, but just keep them talking. My experience - and case-studies back this - has been that most people will move toward the information you want to know if you just listen to them and reaffirm their assumptions when they need it.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291226918091</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Emergency Procedures</Data></Cell>
+    <Cell><Data ss:Type="String">Reactor Emergency Procedures</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_6732635291226918092</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from manual of emergency procedures for the SFR2029-03 SuperForge Reactor]&lt;br&gt;&lt;br&gt;&lt;b&gt;10 - 16 - 76 Reboot Initialization: Safety Switches&lt;/b&gt;&lt;br&gt;&lt;br&gt;Safety control switches for all main utilities must be placed in the OFF position in the following order before initializing reactor shutdown:&lt;br&gt;&lt;br&gt; (1) Magnetosphere&lt;br&gt; (2) Substation Power Grid&lt;br&gt; (3) Photovoltaic Rings&lt;br&gt; (4) Gravity&lt;br&gt; (5) Life Support&lt;br&gt; (6) Main Reactor</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from manual of emergency procedures for the SFR2029-03 SuperForge Reactor]&lt;br&gt;&lt;br&gt;&lt;b&gt;10 - 16 - 76 Reboot Initialization: Safety Switches&lt;/b&gt;&lt;br&gt;&lt;br&gt;Safety control switches for all main utilities must be placed in the OFF position in the following order before initializing reactor shutdown:&lt;br&gt;&lt;br&gt; (1) Magnetosphere&lt;br&gt; (2) Substation Power Grid&lt;br&gt; (3) Photovoltaic Rings&lt;br&gt; (4) Gravity&lt;br&gt; (5) Life Support&lt;br&gt; (6) Main Reactor</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947498605</Data></Cell>
+    <Cell><Data ss:Type="String">Grainger's Memoirs</Data></Cell>
+    <Cell><Data ss:Type="String">Grainger's Memoires</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947498606</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a journal written by Harley Grainger]&lt;br&gt;&lt;br&gt;9/27/2034&lt;br&gt;&lt;br&gt;I should still be down there playing. My guys needed me, and my shoulder just couldn't deliver. I couldn't deliver. I brought a lot of autographed gloves with me and passed them out like candy at Halloween, but it turns out a lot of these test-tubers don't follow sports at all, much less know about my career, short as it was. &lt;br&gt;&lt;br&gt;What are the chances Mr. Yu could set me up with the Neuromods I'd need to put me back in the game? Hell, he could buy a franchise and stock it with the greatest players that ever lived. &lt;br&gt;&lt;br&gt;If I got a Neuromod would it be me playing? The league would never let modded players in. But how would they know?</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a journal written by Harley Grainger]&lt;br&gt;&lt;br&gt;9/27/2034&lt;br&gt;&lt;br&gt;I should still be down there playing. My guys needed me, and my shoulder just couldn't deliver. I couldn't deliver. I brought a lot of autographed gloves with me and passed them out like candy at Halloween, but it turns out a lot of these test-tubers don't follow sports at all, much less know about my career, short as it was. &lt;br&gt;&lt;br&gt;What are the chances Mr. Yu could set me up with the Neuromods I'd need to put me back in the game? Hell, he could buy a franchise and stock it with the greatest players that ever lived. &lt;br&gt;&lt;br&gt;If I got a Neuromod would it be me playing? The league would never let modded players in. But how would they know?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499632</Data></Cell>
+    <Cell><Data ss:Type="String">The Space Elevator</Data></Cell>
+    <Cell><Data ss:Type="String">The Space Elevator</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499633</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from article, &quot;Stairways to Heaven&quot; by Dr. Angelina M. Allen] &lt;br&gt;&lt;br&gt;Early United States dominance of the first operational space elevator - the White Stork Tower - has allowed them to control almost all orbital activities and commerce.  &lt;br&gt;&lt;br&gt;Now the rest of the world is playing catch-up. The World Union of Space Industry (WUSI) has calculated that using the Stork facility to aid in construction of a second space elevator would result in construction costs that are one-quarter of the original.  &lt;br&gt;&lt;br&gt;Understandably, US officials have balked at the idea of helping competitors build a cheaper platform that could give them a competitive advantage. Stork representatives maintain that the sizable investment risks for the original platform justify the protection of this economic space.  &lt;br&gt;&lt;br&gt;In the meantime, WUSI has aggressively moved to purchase ideal sites for future space elevators. Essentially space-age squatting.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from article, &quot;Stairways to Heaven&quot; by Dr. Angelina M. Allen] &lt;br&gt;&lt;br&gt;Early United States dominance of the first operational space elevator - the White Stork Tower - has allowed them to control almost all orbital activities and commerce. &lt;br&gt;&lt;br&gt;Now the rest of the world is playing catch-up. The World Union of Space Industry (WUSI) has calculated that using the Stork facility to aid in construction of a second space elevator would result in construction costs that are one-quarter of the original.&lt;br&gt;&lt;br&gt;Understandably, US officials have balked at the idea of helping competitors build a cheaper platform that could give them a competitive advantage. Stork representatives maintain that the sizable investment risks for the original platform justify the protection of this economic space.&lt;br&gt;&lt;br&gt;In the meantime, WUSI has aggressively moved to purchase ideal sites for future space elevators. Essentially space-age squatting.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499640</Data></Cell>
+    <Cell><Data ss:Type="String">Rising Stars</Data></Cell>
+    <Cell><Data ss:Type="String">Rising Stars</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499641</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">[Excerpt from article, &quot;Sizzle Report&quot; by Layla Sky] &lt;br&gt;&lt;br&gt;Antonio Frolca, star of the summer blockbuster &quot;Transgressions&quot; did all of his own death-defying stunts in the film. This eccentric A-lister has played the action star in a dozen films and now, after a long hiatus, has returned in better form than ever.  &lt;br&gt;&lt;br&gt;Witness Frolca swinging from a crane in our exclusive teaser clips online! Frolca has been seen cavorting with the stunning Cindy Sinclair. &lt;br&gt;&lt;br&gt; More in this edition: &lt;br&gt;10 Celebs That Defy Aging! &lt;br&gt;Vacation in Space! &lt;br&gt;2031 Reel Awards Nominees.  &lt;br&gt;Gary Lee Snubbed? &lt;br&gt;Rising Stars Interviews &quot;Transgressions&quot; Newcomer, Will Richson</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from article, &quot;Sizzle Report&quot; by Layla Sky] &lt;br&gt;&lt;br&gt;Antonio Frolca, star of the summer blockbuster &quot;Transgressions&quot; did all of his own death-defying stunts in the film. This eccentric A-lister has played the action star in a dozen films and now, after a long hiatus, has returned in better form than ever.  &lt;br&gt;&lt;br&gt;Witness Frolca swinging from a crane in our exclusive teaser clips online! Frolca has been seen cavorting with the stunning Cindy Sinclair. &lt;br&gt;&lt;br&gt; More in this edition: &lt;br&gt;10 Celebs That Defy Aging! &lt;br&gt;Vacation in Space! &lt;br&gt;2031 Reel Awards Nominees.  &lt;br&gt;Gary Lee Snubbed? &lt;br&gt;Rising Stars Interviews &quot;Transgressions&quot; Newcomer, Will Richson</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499643</Data></Cell>
+    <Cell><Data ss:Type="String">Global Unity Games</Data></Cell>
+    <Cell><Data ss:Type="String">Global Unity Games</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499644</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a gaming magazine article, &quot;Altered Humans&quot; by Halo Michaelson] &lt;br&gt;&lt;br&gt;The Global Unity Games have come to a close, but final medal totals for the participating nations are in limbo amid allegations of neural enhancements and next-generation pharmaceutical use. Every year these games see previous records shattered, and the latest is no exception. By a stunning margin.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a gaming magazine article, &quot;Altered Humans&quot; by Halo Michaelson] &lt;br&gt;&lt;br&gt;The Global Unity Games have come to a close, but final medal totals for the participating nations are in limbo amid allegations of neural enhancements and next-generation pharmaceutical use. Every year these games see previous records shattered, and the latest is no exception. By a stunning margin.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499646</Data></Cell>
+    <Cell><Data ss:Type="String">Terraforming Mars</Data></Cell>
+    <Cell><Data ss:Type="String">Terraforming Mars</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499647</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an article on the colonization of Mars, by Dan Ousley] &lt;br&gt;&lt;br&gt;...but the costs of these Mars installations and their continued maintenance is staggering - and their spartan shells are a far cry from the idyllic colonies pictured by turn of the century inspirational space tourism posters.  &lt;br&gt;&lt;br&gt;All that might be about to change. In a rare interview, TranStar president Alex Yu reveals his vision of a Mars where families in short sleeves can picnic in a grassy field, then pick out the point of light that is Earth after the sun sets.  &lt;br&gt;&lt;br&gt;Enabling this vision requires terraforming Mars, the most challenging engineering problem the Human race has ever faced. &lt;br&gt;&lt;br&gt;Yu presents an innocuous gray moss to me. An extremophile organism designed specifically for that purpose. Dubbed &lt;i&gt;Takakia Catherine&lt;/i&gt;, the simple looking plant is actually a fantastically efficient organic machine that, given enough centuries, will convert the Martian atmosphere into something that very much resembles our own.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an article on the colonization of Mars, by Dan Ousley] &lt;br&gt;&lt;br&gt;...but the costs of these Mars installations and their continued maintenance is staggering - and their spartan shells are a far cry from the idyllic colonies pictured by turn of the century inspirational space tourism posters.  &lt;br&gt;&lt;br&gt;All that might be about to change. In a rare interview, TranStar president Alex Yu reveals his vision of a Mars where families in short sleeves can picnic in a grassy field, then pick out the point of light that is Earth after the sun sets.  &lt;br&gt;&lt;br&gt;Enabling this vision requires terraforming Mars, the most challenging engineering problem the Human race has ever faced. &lt;br&gt;&lt;br&gt;Yu presents an innocuous gray moss to me. An extremophile organism designed specifically for that purpose. Dubbed &lt;i&gt;Takakia Catherine&lt;/i&gt;, the simple looking plant is actually a fantastically efficient organic machine that, given enough centuries, will convert the Martian atmosphere into something that very much resembles our own.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499649</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar Life - Employee Profile</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar Life - Employee Profile</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947499650</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from quarterly employee newsletter, TranStar Life] &lt;br&gt;&lt;br&gt;In this edition of TranStar Life's &quot;Rising Star&quot; segment, we profile Harley Grainger, a member of the Neuromod Sales Team who is currently stationed aboard Talos I! Some of you might recognize Harley's name from his professional baseball days, when he played second base and wore number 66 for the Tornadoes.  &lt;br&gt;&lt;br&gt;Harley was assigned to Talos I two years ago and has made the journey into orbit and back over fifty times. Not bad for someone who is afraid of flying!  &lt;br&gt;&lt;br&gt;&quot;My time playing baseball forced me to deal with that fear,&quot; he said. &quot;Believe it or not, a shuttle flight to Talos I is far easier than a cross country airliner trip.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from quarterly employee newsletter, TranStar Life] &lt;br&gt;&lt;br&gt;In this edition of TranStar Life's &quot;Rising Star&quot; segment, we profile Harley Grainger, a member of the Neuromod Sales Team who is currently stationed aboard Talos I! Some of you might recognize Harley's name from his professional baseball days, when he played second base and wore number 66 for the Tornadoes.  &lt;br&gt;&lt;br&gt;Harley was assigned to Talos I two years ago and has made the journey into orbit and back over fifty times. Not bad for someone who is afraid of flying!  &lt;br&gt;&lt;br&gt;&quot;My time playing baseball forced me to deal with that fear,&quot; he said. &quot;Believe it or not, a shuttle flight to Talos I is far easier than a cross country airliner trip.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721390</Data></Cell>
+    <Cell><Data ss:Type="String">Survivor's Account of &quot;The Evacuation&quot; Day 2</Data></Cell>
+    <Cell><Data ss:Type="String">Survivor's Account of &quot;The Evacuation&quot; Day 2</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721391</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;DAY 2:&lt;/b&gt; I woke up, still in the street. An M35 truck was stopped near me and the driver was yelling at me to get in. There were several people in the back already - four or five soldiers and about a dozen civilians including children. I got in the truck and someone gave me a bottle of water. &lt;br&gt;&lt;br&gt;I asked what was happening and a solder just shrugged. I told him I had driven the M35 during my service. People in the truck were crying and I looked back. The pink smoke was now mixed with gray and swirled high into the sky. There was so much of it and it seemed to cover the entire city. We kept picking up people until the truck was full. &lt;br&gt;&lt;br&gt;Before we got to the highway we heard shooting. The soldiers climbed down and readied their weapons. The commander told me to drive the truck as far as possible to the west, then they ran toward the shooting.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;DAY 2:&lt;/b&gt; I woke up, still in the street. An M35 truck was stopped near me and the driver was yelling at me to get in. There were several people in the back already - four or five soldiers and about a dozen civilians including children. I got in the truck and someone gave me a bottle of water. &lt;br&gt;&lt;br&gt;I asked what was happening and a solder just shrugged. I told him I had driven the M35 during my service. People in the truck were crying and I looked back. The pink smoke was now mixed with gray and swirled high into the sky. There was so much of it and it seemed to cover the entire city. We kept picking up people until the truck was full. &lt;br&gt;&lt;br&gt;Before we got to the highway we heard shooting. The soldiers climbed down and readied their weapons. The commander told me to drive the truck as far as possible to the west, then they ran toward the shooting.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721393</Data></Cell>
+    <Cell><Data ss:Type="String">Survivor's Account of &quot;The Evacuation&quot; Day 1</Data></Cell>
+    <Cell><Data ss:Type="String">Survivor's Account of &quot;The Evacuation&quot; Day 1</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721394</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;DAY 1:&lt;/b&gt; I had dropped off my dog at the groomer. Her name was Aleeza. It means Joy. I said goodbye and walked a few blocks to get some cafe botz near the park. &lt;br&gt;&lt;br&gt;Some jets flew over, very low, and the sound was so loud it made me jump. I don't know where they were from but they were bristling with bombs and rockets. Everyone was looking up and the sound of the jets was echoing off the buildings but we could not see them anymore. &lt;br&gt;&lt;br&gt;The sky was clear and I could see pink smoke rising from the direction of the stadium. Then the sirens started. I had not heard them since my childhood. Some people stood confused but my instinct told me to run. Run away from the stadium. Run away from Aleeza. &lt;br&gt;&lt;br&gt;Some people were running with me, but we didn't know where to go. I saw a policeman directing people into a basement restaurant. I think it was an old bomb shelter. I looked up at the sky again and saw an airliner. It was not military, I am certain. I think it was going to the airport. While I watched, it turned into glitter without a sound. It was just gone. A man near me began to curse. I fell down and hit my head on the street.</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;DAY 1:&lt;/b&gt; I had dropped off my dog at the groomer. Her name was Aleeza. It means Joy. I said goodbye and walked a few blocks to get some cafe botz near the park. &lt;br&gt;&lt;br&gt;Some jets flew over, very low, and the sound was so loud it made me jump. I don't know where they were from but they were bristling with bombs and rockets. Everyone was looking up and the sound of the jets was echoing off the buildings but we could not see them anymore. &lt;br&gt;&lt;br&gt;The sky was clear and I could see pink smoke rising from the direction of the stadium. Then the sirens started. I had not heard them since my childhood. Some people stood confused but my instinct told me to run. Run away from the stadium. Run away from Aleeza. &lt;br&gt;&lt;br&gt;Some people were running with me, but we didn't know where to go. I saw a policeman directing people into a basement restaurant. I think it was an old bomb shelter. I looked up at the sky again and saw an airliner. It was not military, I am certain. I think it was going to the airport. While I watched, it turned into glitter without a sound. It was just gone. A man near me began to curse. I fell down and hit my head on the street.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721841</Data></Cell>
+    <Cell><Data ss:Type="String">Flight Log: Scott Parker</Data></Cell>
+    <Cell><Data ss:Type="String">Flight Log: Scott Parker</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721842</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;Flight Log: Flight 071631B Shuttle &quot;Advent&quot;&lt;/b&gt;&lt;br&gt;&lt;br&gt;Prepared by: Scott Parker - Flight Engineer - Talos I. &lt;br&gt;Departure Point: TranStar Seattle Facility &lt;br&gt;Destination: Talos I&lt;br&gt;Captain: Tom Cooper&lt;br&gt;&lt;br&gt;Earth liftoff was at 0900. Conditions nominal. Pre-check certified. 4 executive passengers. Mail cargo.&lt;br&gt;&lt;br&gt;Flight was uneventful until 1133 when radar detected an unidentified shuttle approximately thirty degrees off our flight path at 9,000km. Its drift and rotation indicated malfunctioning maneuvering thrusters. There was no answer to radio calls. Captain Cooper ordered a course adjustment to bring us alongside. &lt;br&gt;&lt;br&gt;As we maneuvered to within 60km, a second shuttle appeared on radar in the vicinity of the drifting vessel. Transponders identified it as a military vessel. We received a radio message to resume our original heading immediately. Captain Cooper asked if assistance was required and the order from the military shuttle was repeated.&lt;br&gt;&lt;br&gt;All highly unusual, but then it got really strange. The captain spotted it first. There was a facility out there and it was running absolutely dark. No lights. Radar transparent. We were too far to see any details, but it was big. Cooper snapped into action, punched in a course to Talos and fired the engines. We moved out as quickly as possible.&lt;br&gt;&lt;br&gt;Our passengers were clueless to the entire encounter. Our arrival at Talos went by smoothly and the passengers and cargo were delivered safely. </Data></Cell>
+    <Cell><Data ss:Type="String">&lt;b&gt;Flight Log: Flight 071631B Shuttle &quot;Advent&quot;&lt;/b&gt;&lt;br&gt;&lt;br&gt;Prepared by: Scott Parker - Flight Engineer - Talos I. &lt;br&gt;Departure Point: TranStar Seattle Facility &lt;br&gt;Destination: Talos I&lt;br&gt;Captain: Tom Cooper&lt;br&gt;&lt;br&gt;Earth liftoff was at 0900. Conditions nominal. Pre-check certified. 4 executive passengers. Mail cargo.&lt;br&gt;&lt;br&gt;Flight was uneventful until 1133 when radar detected an unidentified shuttle approximately thirty degrees off our flight path at 9,000km. Its drift and rotation indicated malfunctioning maneuvering thrusters. There was no answer to radio calls. Captain Cooper ordered a course adjustment to bring us alongside. &lt;br&gt;&lt;br&gt;As we maneuvered to within 60km, a second shuttle appeared on radar in the vicinity of the drifting vessel. Transponders identified it as a military vessel. We received a radio message to resume our original heading immediately. Captain Cooper asked if assistance was required and the order from the military shuttle was repeated.&lt;br&gt;&lt;br&gt;All highly unusual, but then it got really strange. The captain spotted it first. There was a facility out there and it was running absolutely dark. No lights. Radar transparent. We were too far to see any details, but it was big. Cooper snapped into action, punched in a course to Talos and fired the engines. We moved out as quickly as possible.&lt;br&gt;&lt;br&gt;Our passengers were clueless to the entire encounter. Our arrival at Talos went by smoothly and the passengers and cargo were delivered safely. </Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721851</Data></Cell>
+    <Cell><Data ss:Type="String">Pioneers of Space Industry</Data></Cell>
+    <Cell><Data ss:Type="String">Pioneers of Space Industry</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947721852</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 11 of Pioneers of Space Industry, by Thaylen Cross]&lt;br&gt;&lt;br&gt;Working aboard a space station like Talos is comparable to working on Earth. Employees tend to forget that they are in space and adapt very well.  &lt;br&gt;&lt;br&gt;By contrast, a trove of psychological and behavioral data has been compiled by a decade-long study of Pytheas employees. The Pytheas facility sits deep in a crater on the Lunar pole, permanently shadowed and surrounded by kilometers of ice. Beneath Pytheas is a vast network of cramped tunnels where helium-3, hydrogen and platinum are mined.&lt;br&gt;&lt;br&gt;This is a dark, cold, and often terrifying workplace, cut off from the warm glow of Earth, which extracts a heavy and often fatal toll on the crew.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Chapter 11 of Pioneers of Space Industry, by Thaylen Cross]&lt;br&gt;&lt;br&gt;Working aboard a space station like Talos is comparable to working on Earth. Employees tend to forget that they are in space and adapt very well.  &lt;br&gt;&lt;br&gt;By contrast, a trove of psychological and behavioral data has been compiled by a decade-long study of Pytheas employees. The Pytheas facility sits deep in a crater on the Lunar pole, permanently shadowed and surrounded by kilometers of ice. Beneath Pytheas is a vast network of cramped tunnels where helium-3, hydrogen and platinum are mined.&lt;br&gt;&lt;br&gt;This is a dark, cold, and often terrifying workplace, cut off from the warm glow of Earth, which extracts a heavy and often fatal toll on the crew.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729069</Data></Cell>
+    <Cell><Data ss:Type="String">MAL Championship</Data></Cell>
+    <Cell><Data ss:Type="String">MAL Championship</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729070</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from article &quot;2031 Championship Series&quot; by Nicolette Dossey] &lt;br&gt;&lt;br&gt;The Mechanized Athlete League (MAL) 2031 championship series has come to an exciting close in TranStar's Combat Park, Nevada.  &lt;br&gt;&lt;br&gt;The Japanese team operating Lightning Kaiju pulled out a stunning victory over the heavily favored Crimson Mace from Norway.&lt;br&gt;Crimson Mace had the match firmly in hand from the start. While lacking in maneuverability, its capacitors absorbed wild amounts of energy from its opponent and used them to power magnetic shields, creating a feedback loop that Kaiju struggled to counter. &lt;br&gt;&lt;br&gt;Solid blows landed at the 2 minute and 3:30 minute mark by Crimson sent the Japanese machine into a tailspin each time.  &lt;br&gt;&lt;br&gt;Coverage of the event was briefly interrupted when a surprise electromagnetic pulse by Lightning Kaiju disrupted cameras while also blinding its opponent. Kaiju then finished a helpless Crimson Mace with its signature KillStroke plasma beam.  &lt;br&gt;&lt;br&gt;The finals were viewed in almost 90 million households worldwide, making it the most watched event in MAL history.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from article &quot;2031 Championship Series&quot; by Nicolette Dossey] &lt;br&gt;&lt;br&gt;The Mechanized Athlete League (MAL) 2031 championship series has come to an exciting close in TranStar's Combat Park, Nevada.  &lt;br&gt;&lt;br&gt;The Japanese team operating Lightning Kaiju pulled out a stunning victory over the heavily favored Crimson Mace from Norway.&lt;br&gt;Crimson Mace had the match firmly in hand from the start. While lacking in maneuverability, its capacitors absorbed wild amounts of energy from its opponent and used them to power magnetic shields, creating a feedback loop that Kaiju struggled to counter. &lt;br&gt;&lt;br&gt;Solid blows landed at the 2 minute and 3:30 minute mark by Crimson sent the Japanese machine into a tailspin each time.  &lt;br&gt;&lt;br&gt;Coverage of the event was briefly interrupted when a surprise electromagnetic pulse by Lightning Kaiju disrupted cameras while also blinding its opponent. Kaiju then finished a helpless Crimson Mace with its signature KillStroke plasma beam.  &lt;br&gt;&lt;br&gt;The finals were viewed in almost 90 million households worldwide, making it the most watched event in MAL history.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729139</Data></Cell>
+    <Cell><Data ss:Type="String">International Art: Talos Edition</Data></Cell>
+    <Cell><Data ss:Type="String">International Art: Talos Edition</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729140</Data></Cell>
+    <Cell><Data ss:Type="String">The TranStar Corporation commissioned several high profile artists to create works exclusively for Talos I, the orbital research and development facility that has brought us the Neuromod and many other technological wonders.&lt;br&gt;&lt;br&gt;Renowned Belgian sculptor Fredrick Smaart sculpted the work &quot;Smoke Signals&quot; which forms the centerpiece of the employee dining hall. &lt;br&gt;&lt;br&gt;The installation artist simply known as &quot;Jessie&quot; constructed the chain of marbled glass panels which soar gracefully overhead in the Talos I Lobby.&lt;br&gt;And former street artist Patryk O. designed a series of exclusive posters for TranStar featuring impressions of orbit, eclipse and other celestial themes in his signature geometric style. He also developed the Neuromod promotional image featuring the likeness of actor Daisy Prince.&lt;br&gt;&lt;br&gt; TranStar President Alex Yu, commented, &quot;Art inspires, fires our creativity, makes us look beyond our present circumstances to what might be possible.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">The TranStar Corporation commissioned several high profile artists to create works exclusively for Talos I, the orbital research and development facility that has brought us the Neuromod and many other technological wonders.&lt;br&gt;&lt;br&gt;Renowned Belgian sculptor Fredrick Smaart sculpted the work &quot;Smoke Signals&quot; which forms the centerpiece of the employee dining hall. &lt;br&gt;&lt;br&gt;The installation artist simply known as &quot;Jessie&quot; constructed the chain of marbled glass panels which soar gracefully overhead in the Talos I Lobby.&lt;br&gt;And former street artist Patryk O. designed a series of exclusive posters for TranStar featuring impressions of orbit, eclipse and other celestial themes in his signature geometric style. He also developed the Neuromod promotional image featuring the likeness of actor Daisy Prince.&lt;br&gt;&lt;br&gt; TranStar President Alex Yu, commented, &quot;Art inspires, fires our creativity, makes us look beyond our present circumstances to what might be possible.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729670</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar Uniform Guide</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar Uniform Guide</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729671</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from TranStar new hires materials]&lt;br&gt;&lt;br&gt;&lt;b&gt;Section 11.2.53 TranStar Uniforms&lt;/b&gt;&lt;br&gt;&lt;br&gt;Your TranStar uniform has been designed for your safety, comfort, and to facilitate your work. The uniform must be worn at all times while on board the station. While every effort has been made to make Talos a comfortable and safe place to work, there is always the chance of an accident or hazard. Departmental assignments can be determined by uniform style and color:&lt;br&gt;&lt;br&gt;(1) Brown &amp; Black - Corporate &amp; Administrative&lt;br&gt;(2) Green &amp; White - Science &amp; Technology&lt;br&gt;(3) Orange - Engineering &amp; Maintenance&lt;br&gt;(4) Blue &amp; Black - Security</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from TranStar new hires materials]&lt;br&gt;&lt;br&gt;&lt;b&gt;Section 11.2.53 TranStar Uniforms&lt;/b&gt;&lt;br&gt;&lt;br&gt;Your TranStar uniform has been designed for your safety, comfort, and to facilitate your work. The uniform must be worn at all times while on board the station. While every effort has been made to make Talos a comfortable and safe place to work, there is always the chance of an accident or hazard. Departmental assignments can be determined by uniform style and color:&lt;br&gt;&lt;br&gt;(1) Brown &amp; Black - Corporate &amp; Administrative&lt;br&gt;(2) Green &amp; White - Science &amp; Technology&lt;br&gt;(3) Orange - Engineering &amp; Maintenance&lt;br&gt;(4) Blue &amp; Black - Security</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729776</Data></Cell>
+    <Cell><Data ss:Type="String">Cooking with Cauliflower</Data></Cell>
+    <Cell><Data ss:Type="String">Cooking with Cauliflower</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947729777</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on healthy cooking, by Catalina Leigh] &lt;br&gt;&lt;br&gt; Renowned for its versatility and lush aroma, cauliflower can be substituted in many traditional recipes to boost their nutrient payload without compromising on flavor - faux mashed potatoes, pizza crust, cauli-fried rice pellets and more. But if you're looking to maximize the health benefits of this dimpled delicacy, then steaming is your best bet. Go for the purple variety if you really want to add a blast of color to your plate.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on healthy cooking, by Catalina Leigh] &lt;br&gt;&lt;br&gt; Renowned for its versatility and lush aroma, cauliflower can be substituted in many traditional recipes to boost their nutrient payload without compromising on flavor - faux mashed potatoes, pizza crust, cauli-fried rice pellets and more. But if you're looking to maximize the health benefits of this dimpled delicacy, then steaming is your best bet. Go for the purple variety if you really want to add a blast of color to your plate.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947730187</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Mimesis Part III</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Mimesis Part III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947730188</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from lab notes maintained by Rory Manion &amp; Kristine Lloyd]&lt;br&gt;&lt;br&gt;...may explain how mimics arrived here and how at least one survived in the vacuum inside the Kletka for so long. They can move to an adjacent 'dimensional bubble' where time passes much more slowly, shifting back with the appropriate stimulus (e.g. prey). From the mimic's perspective, a six million year journey to our solar system (in the form of an iron meteor) might only take a few seconds. These things are the ultimate trap door spiders.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from lab notes maintained by Rory Manion &amp; Kristine Lloyd]&lt;br&gt;&lt;br&gt;...may explain how mimics arrived here and how at least one survived in the vacuum inside the Kletka for so long. They can move to an adjacent 'dimensional bubble' where time passes much more slowly, shifting back with the appropriate stimulus (e.g. prey). From the mimic's perspective, a six million year journey to our solar system (in the form of an iron meteor) might only take a few seconds. These things are the ultimate trap door spiders.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947730190</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Mimesis Part II</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Mimesis Part II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947730191</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from lab notes maintained by Rory Manion &amp; Kristine Lloyd]&lt;br&gt;&lt;br&gt;Earlier models postulated that the Mimic reformed its molecular structure, actually replicating the atomic makeup of target object. We now hypothesize that Mimics are not changing shape at all. When they &quot;mimic&quot; an object, the mimic is no longer objectively present in this universe. The mimic 'swaps' with an object in a parallel reality, but maintains a conscious link (a kind of paradimensional entanglement?) to the object in our universe.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from lab notes maintained by Rory Manion &amp; Kristine Lloyd]&lt;br&gt;&lt;br&gt;Earlier models postulated that the Mimic reformed its molecular structure, actually replicating the atomic makeup of target object. We now hypothesize that Mimics are not changing shape at all. When they &quot;mimic&quot; an object, the mimic is no longer objectively present in this universe. The mimic 'swaps' with an object in a parallel reality, but maintains a conscious link (a kind of paradimensional entanglement?) to the object in our universe.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947730193</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Mimesis Part I</Data></Cell>
+    <Cell><Data ss:Type="String">Typhon Mimesis Part I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_4349723564947730194</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from lab notes maintained by Rory Manion &amp; Kristine Lloyd]&lt;br&gt;&lt;br&gt;Using Mossbauer spectroscopy, we track hyperfine splitting of an isotope embedded in the target object (in this case a standard TranStar coffee mug - the creatures seem to have a weird affinity for them). If the mimic actually altered its atomic structures to duplicate the target object then we would expect the reading to be consistent in the duplicated object. &lt;br&gt;&lt;br&gt;When the alteration occurred, the reading was present, but the frequency had changed. The new object was on a different time scale than the original!</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from lab notes maintained by Rory Manion &amp; Kristine Lloyd]&lt;br&gt;&lt;br&gt;Using Mossbauer spectroscopy, we track hyperfine splitting of an isotope embedded in the target object (in this case a standard TranStar coffee mug - the creatures seem to have a weird affinity for them). If the mimic actually altered its atomic structures to duplicate the target object then we would expect the reading to be consistent in the duplicated object. &lt;br&gt;&lt;br&gt;When the alteration occurred, the reading was present, but the frequency had changed. The new object was on a different time scale than the original!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995564</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 1: The Darkstar Anomaly</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 1: The Darkstar Anomaly</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995565</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">[Excerpt from Book 1 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;Empress Tourmaline gazed past her stern reflection, into the inky black, her angular features circumscribed by the prime viewing dome of the capital ship, Shatterthrax. &lt;br&gt;&lt;br&gt;The Royal Astronomer cleared his throat.&lt;br&gt;&lt;br&gt;&quot;Furthermore, your majesty, the Darkstar Anomaly will gain momentum once it begins devouring systems. Within a matter of months the entire galaxy will be consumed. From that point, it will have enough mass to pull other galaxies into its maw.&quot;&lt;br&gt;&lt;br&gt;&quot;I suppose you want me to fund an expedition to find this... Starbender Prism. The way you prattle on about the thing - if it exists - it might be the key to saving our galaxy.&quot;&lt;br&gt;&lt;br&gt;&quot;Your majesty...&quot;&lt;br&gt;&lt;br&gt;&quot;There's only one man I know mad enough to take this on.&quot;&lt;br&gt;&lt;br&gt;&quot;You can't mean...&quot;&lt;br&gt;&lt;br&gt;&quot;Trevor Pulsar.&quot;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">[Excerpt from Book 1 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;Empress Tourmaline gazed past her stern reflection, into the inky black, her angular features circumscribed by the prime viewing dome of the capital ship, Shatterthrax. &lt;br&gt;&lt;br&gt;The Royal Astronomer cleared his throat.&lt;br&gt;&lt;br&gt;&quot;Furthermore, your majesty, the Darkstar Anomaly will gain momentum once it begins devouring systems. Within a matter of months the entire galaxy will be consumed. From that point, it will have enough mass to pull other galaxies into its maw.&quot;&lt;br&gt;&lt;br&gt;&quot;I suppose you want me to fund an expedition to find this... Starbender Prism. The way you prattle on about the thing - if it exists - it might be the key to saving our galaxy.&quot;&lt;br&gt;&lt;br&gt;&quot;Your majesty...&quot;&lt;br&gt;&lt;br&gt;&quot;There's only one man I know mad enough to take this on.&quot;&lt;br&gt;&lt;br&gt;&quot;You can't mean...&quot;&lt;br&gt;&lt;br&gt;&quot;Trevor Pulsar.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995648</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 5: Crown of Tumbleweed</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 5: Crown of Tumbleweed</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995649</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 5 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;&quot;Trevor. Get up.&quot;&lt;br&gt;&lt;br&gt;Trevor lifted his head to find the source of the voice. His brain was foggy, and he hadn't heard his old name in what felt like ages. Here, he was Ka'Oli, and the diminutive cliff-dwellers of Dranthor called him king. Rolling out of his royal cot, he allowed his eyes to focus on the figure silhouetted in the doorway to his royal cave.  &lt;br&gt;&lt;br&gt;He knew that uniform. He knew that stance and disapproving glare. &lt;br&gt;&lt;br&gt;&quot;Empress Tourmaline? How did you find me here?&quot;&lt;br&gt;&lt;br&gt;&quot;The subdermal vacuum-adapteron we had you install came with a beacon. I tracked it here after beating Mercy to death and taking back the Prism. I still need a crack pilot I can trust. Assuming you're through playing royalty with these timid rock-humpers, that is.&quot;&lt;br&gt;&lt;br&gt;Trevor untangled the tumbleweed crown from his matted hair and reflected on his responsibilities to his meek and bethreatened followers. &lt;br&gt;&lt;br&gt;&quot;Just one thing before I go.&quot; Trevor picked up his ceremonial Ch'Walla stick and strode out into the light.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 5 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;&quot;Trevor. Get up.&quot;&lt;br&gt;&lt;br&gt;Trevor lifted his head to find the source of the voice. His brain was foggy, and he hadn't heard his old name in what felt like ages. Here, he was Ka'Oli, and the diminutive cliff-dwellers of Dranthor called him king. Rolling out of his royal cot, he allowed his eyes to focus on the figure silhouetted in the doorway to his royal cave.  &lt;br&gt;&lt;br&gt;He knew that uniform. He knew that stance and disapproving glare. &lt;br&gt;&lt;br&gt;&quot;Empress Tourmaline? How did you find me here?&quot;&lt;br&gt;&lt;br&gt;&quot;The subdermal vacuum-adapteron we had you install came with a beacon. I tracked it here after beating Mercy to death and taking back the Prism. I still need a crack pilot I can trust. Assuming you're through playing royalty with these timid rock-humpers, that is.&quot;&lt;br&gt;&lt;br&gt;Trevor untangled the tumbleweed crown from his matted hair and reflected on his responsibilities to his meek and bethreatened followers. &lt;br&gt;&lt;br&gt;&quot;Just one thing before I go.&quot; Trevor picked up his ceremonial Ch'Walla stick and strode out into the light.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995651</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 4: Backstabbed in the Face</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 4: Backstabbed in the Face</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995652</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 4 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;Trevor's breath fogged up the glass of the airlock door, obscuring the faces of the Royal Astronomer and Mercy, smirking her signature smirk at him from the other side. &lt;br&gt;&lt;br&gt;&quot;Breathe shallow, Pulsar,&quot; the Astronomer menaced, &quot;for these breaths be your last breaths. Now that I have the Prism, the Darkstar Anomaly is under my control and all the galaxy shall...&quot;&lt;br&gt;&lt;br&gt;The Astronomer didn't finish because he was interrupted by his head being exploded by a blast from Mercy's phase pistol, his remaining words replaced by the muted clattering of his teeth against the other side of the airlock door. White breath fog mingled with red mist on the airlock glass, casting Trevor in a pink glow. &lt;br&gt;&lt;br&gt;&quot;Nothing personal, Trevor,&quot; Mercy said. &quot;I'm sure this thing will fetch a nice price on the Thraxian Black Market.&quot;&lt;br&gt;&lt;br&gt;And with that she kicked the airlock button, sending Trevor tumbling out into the unloving black of space.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 4 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;Trevor's breath fogged up the glass of the airlock door, obscuring the faces of the Royal Astronomer and Mercy, smirking her signature smirk at him from the other side. &lt;br&gt;&lt;br&gt;&quot;Breathe shallow, Pulsar,&quot; the Astronomer menaced, &quot;for these breaths be your last breaths. Now that I have the Prism, the Darkstar Anomaly is under my control and all the galaxy shall...&quot;&lt;br&gt;&lt;br&gt;The Astronomer didn't finish because he was interrupted by his head being exploded by a blast from Mercy's phase pistol, his remaining words replaced by the muted clattering of his teeth against the other side of the airlock door. White breath fog mingled with red mist on the airlock glass, casting Trevor in a pink glow. &lt;br&gt;&lt;br&gt;&quot;Nothing personal, Trevor,&quot; Mercy said. &quot;I'm sure this thing will fetch a nice price on the Thraxian Black Market.&quot;&lt;br&gt;&lt;br&gt;And with that she kicked the airlock button, sending Trevor tumbling out into the unloving black of space.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995654</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 3: Spatial Delivery</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 3: Spatial Delivery</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995655</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 3 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;Trevor Pulsar slammed the Talon's engine into overdrive, praying to Z'loar he'd make the gap in the asteroid field before the Mordrax raiders caught up to him. He was on urgent business for Empress Tourmaline, and rotting in a Mordrax kill-prison wouldn't do. &lt;br&gt;&lt;br&gt;&quot;JT-88!&quot; Trevor barked. &quot;Patch me through to the nearest Royal Fleet outpost.&quot;&lt;br&gt;&lt;br&gt;Moments later a scrambled hypersignal could be heard in the cockpit, resolving from static to discordant tones and finally a voice. &lt;br&gt;&lt;br&gt;&quot;Trevor, is that you? This is outpost Lambda. Where in Z'loar's name have you been?&quot;&lt;br&gt;&lt;br&gt;Trevor replied, cool as a cucumber, &quot;Saving all of your asses. I found the Starbender Prism and I'm coming in hot.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 3 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;Trevor Pulsar slammed the Talon's engine into overdrive, praying to Z'loar he'd make the gap in the asteroid field before the Mordrax raiders caught up to him. He was on urgent business for Empress Tourmaline, and rotting in a Mordrax kill-prison wouldn't do. &lt;br&gt;&lt;br&gt;&quot;JT-88!&quot; Trevor barked. &quot;Patch me through to the nearest Royal Fleet outpost.&quot;&lt;br&gt;&lt;br&gt;Moments later a scrambled hypersignal could be heard in the cockpit, resolving from static to discordant tones and finally a voice. &lt;br&gt;&lt;br&gt;&quot;Trevor, is that you? This is outpost Lambda. Where in Z'loar's name have you been?&quot;&lt;br&gt;&lt;br&gt;Trevor replied, cool as a cucumber, &quot;Saving all of your asses. I found the Starbender Prism and I'm coming in hot.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995657</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 2: My Enemy's Enemy's Enemy</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 2: My Enemy's Enemy's Enemy</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995658</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 2 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;As the Mordrax scream-flayer crumpled to the ground in front of her, Mercy flexed her fingers. They ached from all the choking.  &lt;br&gt;&lt;br&gt;Trevor rounded the corner behind her, phase pistol still smoking, the cries of the Mordrax hot on his heels. &lt;br&gt;&lt;br&gt;Mercy grunted, &quot;I don't get it Trevor. Why did you spring me from this kill-prison? I've tried to off you, like, seven times.&quot;&lt;br&gt;&lt;br&gt;Trevor replied between blasts of his pistol, &quot;Because you're the only one who's come close to killing me.&quot; Another blast. &quot;And you're the only one I can trust. We're going to steal the Starbender Prism out from under Prince Argon's nose.&quot;&lt;br&gt;&lt;br&gt;Mercy could only smirk. Her fingers were feeling better already.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 2 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;As the Mordrax scream-flayer crumpled to the ground in front of her, Mercy flexed her fingers. They ached from all the choking.  &lt;br&gt;&lt;br&gt;Trevor rounded the corner behind her, phase pistol still smoking, the cries of the Mordrax hot on his heels. &lt;br&gt;&lt;br&gt;Mercy grunted, &quot;I don't get it Trevor. Why did you spring me from this kill-prison? I've tried to off you, like, seven times.&quot;&lt;br&gt;&lt;br&gt;Trevor replied between blasts of his pistol, &quot;Because you're the only one who's come close to killing me.&quot; Another blast. &quot;And you're the only one I can trust. We're going to steal the Starbender Prism out from under Prince Argon's nose.&quot;&lt;br&gt;&lt;br&gt;Mercy could only smirk. Her fingers were feeling better already.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995948</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 6: Darkstar Rising</Data></Cell>
+    <Cell><Data ss:Type="String">The Starbender Cycle: Book 6: Darkstar Rising</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417315995949</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 6 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;The three suns of Bel-Kellar were melting into one another in the sky, twisted in their death throes as the Darkstar Anomaly devoured them with disconcerting alacrity. &lt;br&gt;&lt;br&gt;Trevor had managed to navigate the deadly debris whirling around the Anomaly and crash-land Empress Tourmaline's Royal RaptorCruiser at the base of Mount Mhuul, the synthetic geopyramid which they were now surmounting. They stood panting beside a synthstone altar, its receptacle pulsing with crimson light. &lt;br&gt;&lt;br&gt;&quot;One minor detail I left out, Trevor,&quot; the empress said between labored breaths. &lt;br&gt;&lt;br&gt;&quot;We put this into the altar and it devours the anomaly, taking us with it in the process,&quot; Trevor replied, a wink in his grim smile. &lt;br&gt;&lt;br&gt;&quot;You knew the whole time?&quot;&lt;br&gt;&lt;br&gt;Trevor wrapped his fingers around hers, both of them now holding the Starbender Prism. &quot;I was born for this,&quot; Trevor replied, and he pushed the prism into the altar.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Book 6 of The Starbender Cycle, by Fetcher McMarvin] &lt;br&gt;&lt;br&gt;The three suns of Bel-Kellar were melting into one another in the sky, twisted in their death throes as the Darkstar Anomaly devoured them with disconcerting alacrity. &lt;br&gt;&lt;br&gt;Trevor had managed to navigate the deadly debris whirling around the Anomaly and crash-land Empress Tourmaline's Royal RaptorCruiser at the base of Mount Mhuul, the synthetic geopyramid which they were now surmounting. They stood panting beside a synthstone altar, its receptacle pulsing with crimson light. &lt;br&gt;&lt;br&gt;&quot;One minor detail I left out, Trevor,&quot; the empress said between labored breaths. &lt;br&gt;&lt;br&gt;&quot;We put this into the altar and it devours the anomaly, taking us with it in the process,&quot; Trevor replied, a wink in his grim smile. &lt;br&gt;&lt;br&gt;&quot;You knew the whole time?&quot;&lt;br&gt;&lt;br&gt;Trevor wrapped his fingers around hers, both of them now holding the Starbender Prism. &quot;I was born for this,&quot; Trevor replied, and he pushed the prism into the altar.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404488063</Data></Cell>
+    <Cell><Data ss:Type="String">After the Space Race</Data></Cell>
+    <Cell><Data ss:Type="String">After the Space Race</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404488064</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the Chapter, &quot;The End of the Space Race: The 90s&quot; Dr. Dennis Huld]&lt;br&gt;&lt;br&gt;...now that space travel was a reality the new challenges became (1) how to recoup beyond &quot;simple&quot; military and science gains and (2) fighting the argument that both groups were ill-equipped to do so. For corporations, the value of space travel was in the acquisition of real estate in what amounted to &quot;international waters,&quot; esp. what laws governed such territorial claims. This allowed for an ethical &quot;loosening of constraints&quot; as well as added security in both containing accidents and the messaging of accidents on space station laboratories.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the Chapter, &quot;The End of the Space Race: The 90s&quot; Dr. Dennis Huld]&lt;br&gt;&lt;br&gt;...now that space travel was a reality the new challenges became (1) how to recoup beyond &quot;simple&quot; military and science gains and (2) fighting the argument that both groups were ill-equipped to do so. For corporations, the value of space travel was in the acquisition of real estate in what amounted to &quot;international waters,&quot; esp. what laws governed such territorial claims. This allowed for an ethical &quot;loosening of constraints&quot; as well as added security in both containing accidents and the messaging of accidents on space station laboratories.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489127</Data></Cell>
+    <Cell><Data ss:Type="String">The Neural Horizon I</Data></Cell>
+    <Cell><Data ss:Type="String">The Neural Horizon I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489128</Data></Cell>
+    <Cell><Data ss:Type="String">[1st Excerpt from &quot;Brandy's Story,&quot; case studies of Neuromod donors and recipients]&lt;br&gt;&lt;br&gt;...&quot;the process doesn't hurt, not at all.&quot; Brandy Grace speaks happily, enthusiastically. Her smile is radiant, her eyes bright. There is no hint of the Paraplexis eating at her nerve endings. The Olympic medals lie in their glass cases, facing her like an audience. &quot;Yet I still had my love of skating - but the skill felt... trapped inside my head. The mods...&quot; She corrects: &quot;...the Neuromods allowed that skill to be shared with others. A gift.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">[1st Excerpt from &quot;Brandy's Story,&quot; case studies of Neuromod donors and recipients]&lt;br&gt;&lt;br&gt;...&quot;the process doesn't hurt, not at all.&quot; Brandy Grace speaks happily, enthusiastically. Her smile is radiant, her eyes bright. There is no hint of the Paraplexis eating at her nerve endings. The Olympic medals lie in their glass cases, facing her like an audience. &quot;Yet I still had my love of skating - but the skill felt... trapped inside my head. The mods...&quot; She corrects: &quot;...the Neuromods allowed that skill to be shared with others. A gift.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489314</Data></Cell>
+    <Cell><Data ss:Type="String">The Neural Horizon II</Data></Cell>
+    <Cell><Data ss:Type="String">The Neural Horizon II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489315</Data></Cell>
+    <Cell><Data ss:Type="String">[2nd Excerpt from &quot;Brandy's Story,&quot; case studies of Neuromod donors and recipients]&lt;br&gt;&lt;br&gt;...I asked Brandy if she felt betrayed by her Paraplexis. She nodded, not in agreement, but understanding my point. &quot;Because they discovered they could map my brain but I can't accept a Neuromod myself?&quot; Her smile became firmer. &quot;I think that makes the gift more meaningful.&quot;&lt;br&gt;&lt;br&gt;It would be a year before it was (quietly) decided by TranStar to receive no further neural maps - connectomes - from Paraplexis patients, citing unspecified risks.</Data></Cell>
+    <Cell><Data ss:Type="String">[2nd Excerpt from &quot;Brandy's Story,&quot; case studies of Neuromod donors and recipients]&lt;br&gt;&lt;br&gt;...I asked Brandy if she felt betrayed by her Paraplexis. She nodded, not in agreement, but understanding my point. &quot;Because they discovered they could map my brain but I can't accept a Neuromod myself?&quot; Her smile became firmer. &quot;I think that makes the gift more meaningful.&quot;&lt;br&gt;&lt;br&gt;It would be a year before it was (quietly) decided by TranStar to receive no further neural maps - connectomes - from Paraplexis patients, citing unspecified risks.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489348</Data></Cell>
+    <Cell><Data ss:Type="String">The Neural Horizon III</Data></Cell>
+    <Cell><Data ss:Type="String">The Neural Horizon III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489349</Data></Cell>
+    <Cell><Data ss:Type="String">[Epilogue of &quot;Brandy's Story,&quot; case studies of Neuromod donors and recipients]&lt;br&gt;&lt;br&gt;I went to visit the Graces. Brandy had passed from her Paraplexis, and the connectome of her ability to skate still remains unused in TranStar databanks. Her parents declined to be interviewed, citing the interviews with Brandy had done more harm than good - rather than raising awareness of the condition, it had shown the division. Brandy had been one of the first to discover her new &quot;handicap.&quot;&lt;br&gt;&lt;br&gt;But if Neuromods are the future, what happens to those unable to use them - or afford them?</Data></Cell>
+    <Cell><Data ss:Type="String">[Epilogue of &quot;Brandy's Story,&quot; case studies of Neuromod donors and recipients]&lt;br&gt;&lt;br&gt;I went to visit the Graces. Brandy had passed from her Paraplexis, and the connectome of her ability to skate still remains unused in TranStar databanks. Her parents declined to be interviewed, citing the interviews with Brandy had done more harm than good - rather than raising awareness of the condition, it had shown the division. Brandy had been one of the first to discover her new &quot;handicap.&quot;&lt;br&gt;&lt;br&gt;But if Neuromods are the future, what happens to those unable to use them - or afford them?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489848</Data></Cell>
+    <Cell><Data ss:Type="String">Cellular Society</Data></Cell>
+    <Cell><Data ss:Type="String">Cellular Society</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404489849</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from Cellular Society: The Social Repercussions of Medical Technologies, Dr. Evan Harding]&lt;br&gt;&lt;br&gt;...yet the effects of medical technology on society's norms can be more pronounced. To cite a &quot;recent&quot; example, one only has to recall cigarette use was often frowned upon as a habit until advances in the food industry that allowed for consumable microspheres that captured and expelled cancer cells from the body. Simultaneously, both the fear of cancer and the stigma attached to smoking vanished within a generation - now smoking is perceived as no more harmful than drinking a soda.</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">[Excerpt from Cellular Society: The Social Repercussions of Medical Technologies, Dr. Evan Harding]&lt;br&gt;&lt;br&gt;...yet the effects of medical technology on society's norms can be more pronounced. To cite a &quot;recent&quot; example, one only has to recall cigarette use was often frowned upon as a habit until advances in the food industry that allowed for consumable microspheres that captured and expelled cancer cells from the body. Simultaneously, both the fear of cancer and the stigma attached to smoking vanished within a generation - now smoking is perceived as no more harmful than drinking a soda.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490197</Data></Cell>
+    <Cell><Data ss:Type="String">Too Far, Too Fast I</Data></Cell>
+    <Cell><Data ss:Type="String">Too Far, Too Fast I</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490198</Data></Cell>
+    <Cell><Data ss:Type="String">[1st excerpt from Commercialization of the Space Program, J.V. Edwards, PhD]&lt;br&gt;&lt;br&gt;...in Kennedy's second term, the Space Race reached new heights and without his support may have sputtered completely. A succession of moon launches heralded the coming of an accelerated, energetic space program both within the halls of government and in the public eye. Unusual at the time (esp. in contrast to Kennedy's 1st term), rather than being simply a race between two powers, the Soviets and the United States seemed to be reaching out to space together.</Data></Cell>
+    <Cell><Data ss:Type="String">[1st excerpt from Commercialization of the Space Program, J.V. Edwards, PhD]&lt;br&gt;&lt;br&gt;...in Kennedy's second term, the Space Race reached new heights and without his support may have sputtered completely. A succession of moon launches heralded the coming of an accelerated, energetic space program both within the halls of government and in the public eye. Unusual at the time (esp. in contrast to Kennedy's 1st term), rather than being simply a race between two powers, the Soviets and the United States seemed to be reaching out to space together.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490314</Data></Cell>
+    <Cell><Data ss:Type="String">Too Far, Too Fast II</Data></Cell>
+    <Cell><Data ss:Type="String">Too Far, Too Fast II</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490315</Data></Cell>
+    <Cell><Data ss:Type="String">[2nd excerpt from Commercialization of the Space Program, J.V. Edwards, PhD]&lt;br&gt;&lt;br&gt;...and Johnson's term came to an end, paving the way for President Reagan. Even then, the space race was showing signs of faltering, the eager push from previous decades being dulled by the lack of advancement that space had seemed to promise. The Soviet Union had already suffered economic collapse through similar space focus. Many in Washington and the Pentagon found further spending on the space program unpopular, giving rise to a wave of politicians (many of whom had also successfully prevented U.S. involvement in Vietnam) that focused on &quot;solving problems at home.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">[2nd excerpt from Commercialization of the Space Program, J.V. Edwards, PhD]&lt;br&gt;&lt;br&gt;...and Johnson's term came to an end, paving the way for President Reagan. Even then, the space race was showing signs of faltering, the eager push from previous decades being dulled by the lack of advancement that space had seemed to promise. The Soviet Union had already suffered economic collapse through similar space focus. Many in Washington and the Pentagon found further spending on the space program unpopular, giving rise to a wave of politicians (many of whom had also successfully prevented U.S. involvement in Vietnam) that focused on &quot;solving problems at home.&quot;</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490686</Data></Cell>
+    <Cell><Data ss:Type="String">Too Far, Too Fast III</Data></Cell>
+    <Cell><Data ss:Type="String">Too Far, Too Fast III</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490687</Data></Cell>
+    <Cell><Data ss:Type="String">[3rd excerpt from Commercialization of the Space Program, J.V. Edwards, PhD]&lt;br&gt;&lt;br&gt;The Reagan Era signaled the end of government's strong support for the Space Race. Space now belonged to only the interested few - those who could afford it. Historians argued that had Reagan pushed for a military justification (and with the right marketing), then perhaps the space program might have survived. However, without a significant threat to the U.S., there seemed little incentive. Our only other competitor, the Soviet Union, had already showed the danger of reaching too far, too fast.</Data></Cell>
+    <Cell><Data ss:Type="String">[3rd excerpt from Commercialization of the Space Program, J.V. Edwards, PhD]&lt;br&gt;&lt;br&gt;The Reagan Era signaled the end of government's strong support for the Space Race. Space now belonged to only the interested few - those who could afford it. Historians argued that had Reagan pushed for a military justification (and with the right marketing), then perhaps the space program might have survived. However, without a significant threat to the U.S., there seemed little incentive. Our only other competitor, the Soviet Union, had already showed the danger of reaching too far, too fast.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490904</Data></Cell>
+    <Cell><Data ss:Type="String">White Noise</Data></Cell>
+    <Cell><Data ss:Type="String">White Noise</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263404490905</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from &quot;White Noise: Perceptions of Imperceptions,&quot; Herndon Rigo]&lt;br&gt;&lt;br&gt;...more often called &quot;White Noise&quot; due to the telltale spots (said to be like static) in the victim's eyes, &quot;White Noise&quot; isn't just a medical condition. And it's more than the wild, almost witch doctor-like claims of psychic ability (&quot;Doctor&quot; Dayo Igwe, anyone?). It's disenfranchisement. It says the victim can NEVER have a Neuromod, nor can their brain be mapped... it's the end of everything that IS about a person. Who is TranStar to decide? Will we let them add a biological caste system to the human race?</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from &quot;White Noise: Perceptions of Imperceptions,&quot; Herndon Rigo]&lt;br&gt;&lt;br&gt;...more often called &quot;White Noise&quot; due to the telltale spots (said to be like static) in the victim's eyes, &quot;White Noise&quot; isn't just a medical condition. And it's more than the wild, almost witch doctor-like claims of psychic ability (&quot;Doctor&quot; Dayo Igwe, anyone?). It's disenfranchisement. It says the victim can NEVER have a neuromod, nor can their brain be mapped... it's the end of everything that IS about a person. Who is TranStar to decide? Will we let them add a biological caste system to the human race?</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417316085698</Data></Cell>
+    <Cell><Data ss:Type="String">And The West Stood Tall</Data></Cell>
+    <Cell><Data ss:Type="String">And The West Stood Tall</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417316085699</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the back cover synopsis of an alternate history novel, by Lance B. Jenkins] &lt;br&gt;&lt;br&gt;In 1964, President Kennedy turned his back on American interventionism. But what if America had stood up for its allies in Vietnam? Would Communism still reign in the East? Would the Iron Curtain have fallen? Renowned political commentator Lance B. Jenkins, weaves a gripping alternate account of the days following the Gulf of Tonkin incident and what might have been if America had gone to war in 1964. &lt;br&gt;&lt;br&gt;&quot;Jenkin's historical imagination is meticulous, majestic, poignant. 10/10&quot; - The Liberty Herald</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from the back cover synopsis of an alternate history novel, by Lance B. Jenkins] &lt;br&gt;&lt;br&gt;In 1964, President Kennedy turned his back on American interventionism. But what if America had stood up for its allies in Vietnam? Would Communism still reign in the East? Would the Iron Curtain have fallen? Renowned political commentator Lance B. Jenkins, weaves a gripping alternate account of the days following the Gulf of Tonkin incident and what might have been if America had gone to war in 1964. &lt;br&gt;&lt;br&gt;&quot;Jenkin's historical imagination is meticulous, majestic, poignant. 10/10&quot; - The Liberty Herald</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405378236</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar Rewards Program</Data></Cell>
+    <Cell><Data ss:Type="String">TranStar Rewards Program</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405378237</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from TranStar policy handbooks] &lt;br&gt;&lt;br&gt;&lt;b&gt;Section 8.30.76 Neuromods &amp; Bonuses&lt;/b&gt;&lt;br&gt;&lt;br&gt;At TranStar, we believe in rewarding employees who perform at exemplary levels. Through our Recognition program, employees who are recommended for promotion or commendation are also eligible to receive Neuromods* from the list found in Appendix 4.C.  &lt;br&gt;&lt;br&gt;*Please note: these incentives are subject to the limitations outlined in Section 13 and may be revoked or removed at TranStar's discretion, especially in cases involving employee termination, disciplinary action, or emergency protocols.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from TranStar policy handbook] &lt;br&gt;&lt;br&gt;&lt;b&gt;Section 8.30.76 Neuromods &amp; Bonuses&lt;/b&gt;&lt;br&gt;&lt;br&gt;At TranStar, we believe in rewarding employees who perform at exemplary levels. Through our Recognition program, employees who are recommended for promotion or commendation are also eligible to receive Neuromods* from the list found in Appendix 4.C.  &lt;br&gt;&lt;br&gt;*Please note: these incentives are subject to the limitations outlined in Section 13 and may be revoked or removed at TranStar's discretion, especially in cases involving employee termination, disciplinary action, or emergency protocols.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405391839</Data></Cell>
+    <Cell><Data ss:Type="String">Proxies, Agents, and Personhood</Data></Cell>
+    <Cell><Data ss:Type="String">Proxies, Agents, and Personhood</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405391840</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on emulated entities and synthetic intelligence, by Carter Billingsley] &lt;br&gt;&lt;br&gt;The supreme court is set to weigh in on what could be a groundbreaking decision this term: can an Emulated Entity be granted Power of Attorney?  &lt;br&gt;&lt;br&gt;Over the last few decades the public has become increasingly familiar with artificial helpers - from the personal assistants on their wrist-watches to the smart home systems that remind you where you put your keys. But more recent advances in hybrotic tech and the genius of connectomics - the ability to map the myriad neuronal connections inside a person's brain - have thrust digital doppelgangers squarely into the legal arena.  &lt;br&gt;&lt;br&gt;Recently, billionaire Roark Wallace granted Power of Attorney, not to one of his many estranged family members, but to a robotic facsimile of himself named Ransom. Ransom emulates Mr. Wallace's own reasoning, interests, and to some extent personality quirks to the point where the two are nearly indistinguishable - at least over the phone. In person, Ransom's molded ceramic and carbon body - while beautiful - make his true nature unmistakable.  &lt;br&gt;&lt;br&gt;Needless to say, Mr. Wallace's family is not amused, especially concerning Ransom's decision for how to execute Mr. Wallace's will.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a book on emulated entities and synthetic intelligence, by Carter Billingsley] &lt;br&gt;&lt;br&gt;The supreme court is set to weigh in on what could be a groundbreaking decision this term: can an Emulated Entity be granted Power of Attorney?  &lt;br&gt;&lt;br&gt;Over the last few decades the public has become increasingly familiar with artificial helpers - from the personal assistants on their wrist-watches to the smart home systems that remind you where you put your keys. But more recent advances in hybrotic tech and the genius of connectomics - the ability to map the myriad neuronal connections inside a person's brain - have thrust digital doppelgangers squarely into the legal arena.  &lt;br&gt;&lt;br&gt;Recently, billionaire Roark Wallace granted Power of Attorney, not to one of his many estranged family members, but to a robotic facsimile of himself named Ransom. Ransom emulates Mr. Wallace's own reasoning, interests, and to some extent personality quirks to the point where the two are nearly indistinguishable - at least over the phone. In person, Ransom's molded ceramic and carbon body - while beautiful - make his true nature unmistakable.  &lt;br&gt;&lt;br&gt;Needless to say, Mr. Wallace's family is not amused, especially concerning Ransom's decision for how to execute Mr. Wallace's will.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405393884</Data></Cell>
+    <Cell><Data ss:Type="String">I Volunteered</Data></Cell>
+    <Cell><Data ss:Type="String">I Volunteered</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405393885</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an interview with a TranStar Volunteer] &lt;br&gt;&lt;br&gt;&quot;I am not the same man I was two years ago.&quot; Alexei Petrov told me. &quot;Talos I has a way of changing you. Rebuilding you into a better person.&quot;&lt;br&gt;&lt;br&gt;Petrov, along with three other members of the Menshevik movement, were arrested and convicted of the 2029 Red Square attacks which killed 32 people. All four men were sentenced to death. &lt;br&gt;&lt;br&gt;However, just two weeks from his execution, Petrov was approached by tech giant TranStar. The company offered him a second chance. As part of a new program called the TranStar Volunteer Initiative, Petrov was given the opportunity to work as a human test subject in exchange for a commuted sentence. &lt;br&gt;&lt;br&gt;&quot;They tell me, 'Come up to our space station. Work with us on top secret science projects. Give back to the world from which you have taken so much.' So I did,&quot; Petrov said. &quot;I'm glad I did.&quot;&lt;br&gt;&lt;br&gt;Petrov isn't allowed to talk about the work he did on Talos I, but there's no denying he's a changed man. The former secondary school dropout is now working on doctorate in astrophysics and says he hopes to work for TranStar one day.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from an interview with a TranStar Volunteer] &lt;br&gt;&lt;br&gt;&quot;I am not the same man I was two years ago.&quot; Alexei Petrov told me. &quot;Talos I has a way of changing you. Rebuilding you into a better person.&quot;&lt;br&gt;&lt;br&gt;Petrov, along with three other members of the Menshevik movement, were arrested and convicted of the 2029 Red Square attacks which killed 32 people. All four men were sentenced to death. &lt;br&gt;&lt;br&gt;However, just two weeks from his execution, Petrov was approached by tech giant TranStar. The company offered him a second chance. As part of a new program called the TranStar Volunteer Initiative, Petrov was given the opportunity to work as a human test subject in exchange for a commuted sentence. &lt;br&gt;&lt;br&gt;&quot;They tell me, 'Come up to our space station. Work with us on top secret science projects. Give back to the world from which you have taken so much.' So I did,&quot; Petrov said. &quot;I'm glad I did.&quot;&lt;br&gt;&lt;br&gt;Petrov isn't allowed to talk about the work he did on Talos I, but there's no denying he's a changed man. The former secondary school dropout is now working on doctorate in astrophysics and says he hopes to work for TranStar one day.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405394441</Data></Cell>
+    <Cell><Data ss:Type="String">Sales Folder</Data></Cell>
+    <Cell><Data ss:Type="String">Sales Folder</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405394442</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a TranStar Sales and Marketing internal memo, by Peter Laney] &lt;br&gt;&lt;br&gt;I don't think we have to worry too much about the side-effects. From what I gathered, it's just a little pinprick near the eye, right? I mean, it looks scary, but I think if we can get advertising to push some of the more appealing pros of NMs, we can shift public attention from that.  &lt;br&gt;&lt;br&gt;I'm not too worried about the red-eye stuff, either. I don't think any one person in the public sector is gonna manage to get their hands on that many NMs at one time. Not at these prices. &lt;br&gt;&lt;br&gt;What I find far more worrying, though, are these reports of memory loss during NM removal. I mean, amnesia? Seriously? We can rewire a person's brain, give them any skill we want, but we can't avoid resetting their head back to the moment they got that shit installed if we decide to take it out? &lt;br&gt;&lt;br&gt;If this leaks, it'll kill NM sales. Doesn't matter if you need specialized equipment and training to take one out. No one wants to risk losing years of their life just for the ability to speak French. This can't even go in the fine print. As far as the customer is concerned, NMs are permanent.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a TranStar Sales and Marketing internal memo, by Peter Laney] &lt;br&gt;&lt;br&gt;I don't think we have to worry too much about the side-effects. From what I gathered, it's just a little pinprick near the eye, right? I mean, it looks scary, but I think if we can get advertising to push some of the more appealing pros of NMs, we can shift public attention from that.  &lt;br&gt;&lt;br&gt;I'm not too worried about the red-eye stuff, either. I don't think any one person in the public sector is gonna manage to get their hands on that many NMs at one time. Not at these prices. &lt;br&gt;&lt;br&gt;What I find far more worrying, though, are these reports of memory loss during NM removal. I mean, amnesia? Seriously? We can rewire a person's brain, give them any skill we want, but we can't avoid resetting their head back to the moment they got that shit installed if we decide to take it out? &lt;br&gt;&lt;br&gt;If this leaks, it'll kill NM sales. Doesn't matter if you need specialized equipment and training to take one out. No one wants to risk losing years of their life just for the ability to speak French. This can't even go in the fine print. As far as the customer is concerned, NMs are permanent.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405394640</Data></Cell>
+    <Cell><Data ss:Type="String">Behind the Iron Curtain</Data></Cell>
+    <Cell><Data ss:Type="String">Behind the Iron Curtain</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405394641</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a historical account of the civil unrest within the Soviet Union, by Dr. Luke Manor Banda] &lt;br&gt;&lt;br&gt;Although the relationship between the USSR and the United States had warmed in the past few decades, there was little doubt that vestiges of the Iron Curtain still hung icily between the two countries. Indeed, more than a century since its inception, Vladimir Lenin's Communist vision still found itself alive and well within the oft-expanded boundaries of Mother Russia. But with each new Soviet annexation, the USSR began to find that the public outcry no longer came from just the Americans but from amongst its own citizens.  &lt;br&gt;&lt;br&gt;The Mensheviks, as they came to be known, opposed the aggressive Soviet expansion doctrine. While at first only a minority, the Menshevik movement continued to grow rapidly. Events would ultimately culminate following the Soviet-Indian Intervention with the outbreak of civil unrest led by the Mensheviks and the beginning of the Second Purge.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from a historical account of the civil unrest within the Soviet Union, by Dr. Luke Manor Banda] &lt;br&gt;&lt;br&gt;Although the relationship between the USSR and the United States had warmed in the past few decades, there was little doubt that vestiges of the Iron Curtain still hung icily between the two countries. Indeed, more than a century since its inception, Vladimir Lenin's Communist vision still found itself alive and well within the oft-expanded boundaries of Mother Russia. But with each new Soviet annexation, the USSR began to find that the public outcry no longer came from just the Americans but from amongst its own citizens.  &lt;br&gt;&lt;br&gt;The Mensheviks, as they came to be known, opposed the aggressive Soviet expansion doctrine. While at first only a minority, the Menshevik movement continued to grow rapidly. Events would ultimately culminate following the Soviet-Indian Intervention with the outbreak of civil unrest led by the Mensheviks and the beginning of the Second Purge.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405395592</Data></Cell>
+    <Cell><Data ss:Type="String">Engineering Workbook</Data></Cell>
+    <Cell><Data ss:Type="String">Engineering Workbook</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263405395593</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from engineer Clive Lawrence's work journal] &lt;br&gt;&lt;br&gt;&lt;b&gt;Entry 4:&lt;/b&gt; Preliminary tests with an increased spring constant are proving promising, but it's tricky getting fabricators to make them stiff enough but not brittle. Another option is scavenging cargo brought up from earth. Thorstein's assistant has an eagle eye, though. &lt;br&gt;&lt;br&gt;&lt;b&gt;Entry 4, supplemental:&lt;/b&gt; Dear Clive's diary, he's just trying to impress Mary by coming up with an improvement to her toy gun design. Even if he was smart enough to improve on her work, she'd never give him the time of day. &lt;br&gt;&lt;br&gt;&lt;b&gt;Entry 4, supplemental supplemental:&lt;/b&gt; I'm well on my way to figuring out how to increase the range and stay the HELL out of my journal Franklin!</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from engineer Clive Lawrence's work journal] &lt;br&gt;&lt;br&gt;&lt;b&gt;Entry 4:&lt;/b&gt; Preliminary tests with an increased spring constant are proving promising, but it's tricky getting fabricators to make them stiff enough but not brittle. Another option is scavenging cargo brought up from earth. Thorstein's assistant has an eagle eye, though. &lt;br&gt;&lt;br&gt;&lt;b&gt;Entry 4, supplemental:&lt;/b&gt; Dear Clive's diary, he's just trying to impress Mary by coming up with an improvement to her toy gun design. Even if he was smart enough to improve on her work, she'd never give him the time of day. &lt;br&gt;&lt;br&gt;&lt;b&gt;Entry 4, supplemental supplemental:&lt;/b&gt; I'm well on my way to figuring out how to increase the range and stay the HELL out of my journal Franklin!</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417317220178</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Enhanced Yoga: A Beginner's Guide</Data></Cell>
+    <Cell><Data ss:Type="String">Neuromod Enhanced Yoga: A Beginner's Guide</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_844024417317220179</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from pamphlet on neuromod-enhanced Yoga, by Emma Beatty]&lt;br&gt;&lt;br&gt;Yoga is an excellent way for those with the physical series of Neuromod enhancements to grow more in tune with their new capabilities. This is not only enriching, but provides a measure of safety, preventing you from hurting yourself or others.&lt;br&gt;&lt;br&gt;&lt;b&gt;The Javelin Asana&lt;/b&gt;&lt;br&gt;This pose is a good starting place for testing your new extended limits, combining strength with balance. The pose begins with a basic handstand and will end with your body completely inverted, all of your weight supported by three fingers on your right hand.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from pamphlet on neuromod-enhanced Yoga, by Emma Beatty]&lt;br&gt;&lt;br&gt;Yoga is an excellent way for those with the physical series of Neuromod enhancements to grow more in tune with their new capabilities. This is not only enriching, but provides a measure of safety, preventing you from hurting yourself or others.&lt;br&gt;&lt;br&gt;&lt;b&gt;The Javelin Asana&lt;/b&gt;&lt;br&gt;This pose is a good starting place for testing your new extended limits, combining strength with balance. The pose begins with a basic handstand and will end with your body completely inverted, all of your weight supported by three fingers on your right hand.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263410469655</Data></Cell>
+    <Cell><Data ss:Type="String">Beyond the Stars, an Unofficial TranStar History</Data></Cell>
+    <Cell><Data ss:Type="String">Beyond the Stars, an Unofficial TranStar History</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">loc_13680621263410469656</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from chapter three of Beyond the Stars, by Samuel Rocher]&lt;br&gt;&lt;br&gt;Dubbed the &quot;Reyes Field Theory,&quot; this discovery proved to be the jumping-off point for a string of scientific miracles TranStar began churning out less than a year later. Take for example the now ubiquitous Operators, which take advatage of a localized levitation effect derived from the theory's gravitational outworkings. Indeed, from the matter-stripping field interactions inside the bowels of Recyclers to the artificial gravity that keeps boots firmly planted on the Italian marble of the Talos I lobby, the impact of Dr. Reyes's theory is undeniable.</Data></Cell>
+    <Cell><Data ss:Type="String">[Excerpt from chapter three of Beyond the Stars, by Samuel Rocher]&lt;br&gt;&lt;br&gt;Dubbed the &quot;Reyes Field Theory,&quot; this discovery proved to be the jumping-off point for a string of scientific miracles TranStar began churning out less than a year later. Take for example the now ubiquitous Operators, which take advatage of a localized levitation effect derived from the theory's gravitational outworkings. Indeed, from the matter-stripping field interactions inside the bowels of Recyclers to the artificial gravity that keeps boots firmly planted on the Italian marble of the Talos I lobby, the impact of Dr. Reyes's theory is undeniable.</Data></Cell>
+    <Cell><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Selected/>
+   <LeftColumnVisible>2</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>2</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <x:ExcelWorkbook/>
+</Workbook>

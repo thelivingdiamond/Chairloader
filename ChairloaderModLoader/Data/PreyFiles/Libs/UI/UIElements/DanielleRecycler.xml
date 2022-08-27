@@ -1,0 +1,71 @@
+
+<UIElements name="DanielleRecycler">
+ <UIElement name="DanielleRecycler" render_lockless="1">
+  <WorldUI enable="1" distance="3" cursorEvents="true" poolSize="1"/>
+  <GFx file="GFX/danielle_recycler.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="0" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="powerOn" funcname="recycle.powerOn"/>
+   <function name="powerOff" funcname="recycle.powerOff"/>
+   <function name="wakeUp" funcname="recycle.wakeUp"/>
+   <function name="recyclerInit" funcname="recycle.initOn">
+    <param name="OnOff" desc="true=On, false=Off" type="bool"/>
+   </function>
+   <function name="setBrokenIcon" funcname="recycle.setBrokenIcon">
+    <param name="isBroken" desc="true=Broken, false=Powered Off" type="bool"/>
+   </function>
+   <function name="recyclerGotoDropScreen" funcname="recycle.gotoDropScreen">
+    <param name="animateTo" desc="" type="bool"/>
+   </function>
+   <function name="recyclerGotoMainScreen" funcname="recycle.gotoMainScreen">
+    <param name="animateTo" desc="" type="bool"/>
+   </function>
+   <function name="recyclerGotoBusyScreen" funcname="recycle.gotoBusyScreen">
+    <param name="animateTo" desc="" type="bool"/>
+   </function>
+   <function name="recyclerBusyTimer" funcname="recycle.startBusyTimer">
+    <param name="BuildTime" desc="defines the progress meter duration" type="float"/>
+   </function>
+   <function name="recyclerGotoPickupScreen" funcname="recycle.gotoPickupScreen">
+    <param name="animateTo" desc="" type="bool"/>
+   </function>
+   <function name="recyclerInteract" funcname="recycle.Interact"/>
+   <function name="recyclerUpdateMaterials" funcname="recycle.updateMaterials">
+    <param name="OrganicString" desc="" type="string"/>
+    <param name="MineralString" desc="" type="string"/>
+    <param name="SyntheticString" desc="" type="string"/>
+    <param name="ExoticString" desc="" type="string"/>
+   </function>
+   <function name="recyclerErrorOpen" funcname="reycle.errorOpen">
+    <param name="Header" desc="&apos;ERROR&apos; typically" type="string"/>
+    <param name="BodyHTML" desc="html formatted text" type="string"/>
+   </function>
+   <function name="recyclerErrorClose" funcname="recycle.errorClose"/>
+   <function name="setClock" funcname="recycle.setClock">
+    <param name="time" desc="" type="string"/>
+   </function>
+   <function name="pauseUI" funcname="util.pauseUI">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="recyclerBtnPress" fscommand="recyclerBtnPress" desc="">
+    <param name="Button" desc="Button Name" type="string"/>
+   </event>
+   <event name="recyclerReady" fscommand="recyclerReady" desc=""/>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

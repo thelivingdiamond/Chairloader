@@ -1,0 +1,11 @@
+
+<EquipPack name="ArkPlayer_PSIentistLoadout" primary="ArkWeaponGooGun">
+ <Items>
+  <ArkWeaponGooGun type="" archetype="ArkPickups.Weapons.GooGun" count="1"/>
+  <ArkWeaponRecyclerGrenade type="" archetype="ArkPickups.Weapons.RecyclerGrenade" count="1"/>
+  <ArkAmmoPickupGooGun type="" archetype="ArkPickups.Ammo.GooGun" count="500"/>
+  <ArkAmmoPickupRecyclerGrenades type="" archetype="ArkPickups.Ammo.RecyclerGrenades" count="5"/>
+  <ArkHypo type="" archetype="ArkPickups.Medical.PsiHypo" count="2"/>
+  <ArkPharma type="" archetype="ArkPickups.Medical.Pharma" count="2"/>
+ </Items>
+</EquipPack>

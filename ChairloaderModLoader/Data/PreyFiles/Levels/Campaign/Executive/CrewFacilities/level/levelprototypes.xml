@@ -1,0 +1,143 @@
+<EntityPrototypeLibrary Name="Level">
+ <EntityPrototype Name="Notes.CharacterSheet1" Id="{237E1D04-88AA-4943-A7E0-75D5DBF017F0}" Library="Level" Class="ArkPages" Description="" ArchetypeId="12889009725038845285">
+  <Properties metaTags_ArkMetaTags="" bAvailableForRandom="1" bCanBeFavorited="0" bCanTriggerAreas="0" bConsumable="0" bDeprecated="0" textDescription="" bDisallowGrenades="1" iDismantleCount="0" textDisplayName="@i_note" fDropDistance="2" fDropHeightOffset="0" bDroppable="1" fDropRotationMax="15" fDropRotationMin="1" object_GeometryFP="" object_GeometryTP="objects/user/rwilson/rw_charactersheet.cgf" glintconfig_GlintConfig="16934642289625103724" bGooCannotAttachInGravity="0" sHUDIcon="" bImportant="0" bIsMimicable="1" bIsPlotCritical="0" bIsRandom="0" bIsTrash="0" fLerpSpeed="18" material_MaterialFP="0,0,1.25" material_MaterialTP="" gameMetric_MetricPickedUp="" sStylizedIcon="" bSurvivalMode="0" sType="" bUniqueRandom="0" bUsable="0">
+   <Inventory bAddToInventory="0" iHeight="1" sIcon="" ei_ItemCategory="0" iWidth="1"/>
+   <Physics Density="100" Mass="-1" bPhysicalize="1" bPushableByAI="1" bPushableByPlayers="1" bResting="1" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+   <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+   <Sound audioTrigger_InventorySFX="TEMP_UI_00" audioTrigger_PickupSFX="Play_Pickup_Note"/>
+   <Stacks iCount="1" iDropIncrement="1" iFabricationCount="0" iMaxCount="10" bRandomizeCount="0" iRandomMax="10" iRandomMin="1" bStackable="0"/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="255" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="BrokenTranscribe" Id="{E813E9EA-F8D4-481B-ABA4-1276C45CE238}" Library="Level" Class="ArkRepairableObject" Description="" ArchetypeId="12889009725038845287">
+  <Properties material_Broken="" particleeffect_BrokenVFX="LevelShared.Sparks.ElectricalBox03" vector_BrokenVFXOffset="0,0,0" nBrokenVFXRate="5000" nBrokenVFXRateVariation="100" fBrokenVFXScale="0.05" bCanTriggerAreas="0" carryForwardOffset="0" carryHeightOffset="0" tutorial_ContextualTutorial="" vector_InteractionOffset="0,0,0" bIsCarryable="0" object_Model="objects/accessories/transcribe/transcribebrokenpickup.cgf" object_ModelBroken="objects/accessories/transcribe/transcribebrokenpickup.cgf" ei_TransparencyMode="0" bUseSafeCarry="0">
+   <carryDirection x="0" y="0" z="0"/>
+   <Physics Density="-1" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <Repair textDisplayName="@i_transcribe" textDisplayNameBroken="@i_transcribebroken" nHoldToUseDuration="1000" textPromptItemRequired="@i_spareparts" fRepairIconRange="10" archetype_RepairItem="ArkPickups.Misc.SpareParts" ability_RepairRequirement="3149325216929347163" nSparePartsRequired="3"/>
+   <Sound audioTrigger_Break="" audioTrigger_BrokenLoop="" audioTrigger_Carry="" audioTrigger_Repaired="" audioTrigger_RepairLoop="" audioTrigger_RepairStop=""/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="CafeteriaShutters" Id="{B0307FA3-4021-4E90-9A61-6C53F807F9FC}" Library="Level" Class="ArkInteractiveObject" Description="" ArchetypeId="12889009725038845289">
+  <Properties textActiveUseMessage="" carryForwardOffset="0" carryHeightOffset="0" ability_CarryRequirement="" bCollisionInteraction="0" material_DisabledMaterial="" bDisableOnUse="0" bDisallowGrenades="0" textDisplayName="" fDuration="-1" material_EnabledMaterial="" glintconfig_GlintConfig="13856881013222815427" bInteractLOSToParent="1" bIsMimicable="0" object_Model="objects/environment/props/universal/shutters_interior_a/shutters_interior_a_crew_kitchen.cga" textUseMessage="" bUseSafeCarry="0" sVfxBoneName="" vector_vfxDirInDegrees="0,0,0" vector_vfxOffset="0,0,0" fVfxPulsePeriod="1" fVfxScale="1">
+   <Animation anim_Activated="interior_a_crew_kitchen_open" anim_Deactivated="interior_a_crew_kitchen_close"/>
+   <Disrupt disruptionProfile_Profile="3149325216974041255" audioTrigger_SparkSFX="" particleeffect_SparkVFX=""/>
+   <Effects particleeffect_Activated=""/>
+   <GameNoise gameNoiseLoudness_GameNoiseLoudness="" gameNoiseType_GameNoiseType=""/>
+   <Glow color_DisabledColor="1,1,1" fDisabledGlowAmount="0" color_EnabledColor="1,0,0" fEnabledGlowAmount="50" nGlowSubmatIdA="0" sSkinAttachmentName="" bUseGlow="0"/>
+   <MissionReward signalPackage_HealthOnUse="" gametokenid_IsPsiAddedToWater="" bIsWaterSource="0" signalPackage_PsiRewardOnUse=""/>
+   <Physics Density="-1" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="1" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="1" bT_gcc_permeable_to_AOE="1" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+   <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+   <Sound audioTrigger_Carry="" audioTrigger_HoldCarryCancel="" audioTrigger_HoldCarryStart="" audioTrigger_Start="Play_Door_MaintenancePanel_Start" audioTrigger_Stop="null"/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="1" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="20" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="Systems.Speaker_OctoberChassis1" Id="{5AE4B2C6-663D-438C-8E9F-3847B0D3F16C}" Library="Level" Class="ArkPASpeaker" Description="" ArchetypeId="12889009725045330470">
+  <Properties vector_audioOffset="-0.25,0.75,0" nChannelId="0" object_Model="Objects/Environment/Props/Apartment/Operator_Parts/operator_chassis.cgf">
+   <Physics Density="-1" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="2" CastSunShadowMinSpec="3" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="40" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="GiveAwardUsePrompt" Id="{C9844784-7FDE-415A-8E5D-ABF97405E2E3}" Library="Level" Class="ArkInteractiveObject" Description="" ArchetypeId="12889009725045897039">
+  <Properties textActiveUseMessage="" carryForwardOffset="0" carryHeightOffset="0" ability_CarryRequirement="" bCollisionInteraction="0" material_DisabledMaterial="" bDisableOnUse="1" bDisallowGrenades="0" textDisplayName="" fDuration="1" material_EnabledMaterial="" glintconfig_GlintConfig="13856881013222815427" bInteractLOSToParent="1" bIsMimicable="0" object_Model="Objects/Environment/Props/Apartment/Helicopter_Sim_A/Helicopter_Sim_A_Door.cgf" textUseMessage="@i_givereward" bUseSafeCarry="0" sVfxBoneName="" vector_vfxDirInDegrees="0,0,0" vector_vfxOffset="0,0,0" fVfxPulsePeriod="1" fVfxScale="1">
+   <Animation anim_Activated="" anim_Deactivated=""/>
+   <Disrupt disruptionProfile_Profile="10739735956140212131" audioTrigger_SparkSFX="" particleeffect_SparkVFX=""/>
+   <Effects particleeffect_Activated=""/>
+   <GameNoise gameNoiseLoudness_GameNoiseLoudness="" gameNoiseType_GameNoiseType=""/>
+   <Glow color_DisabledColor="1,1,1" fDisabledGlowAmount="0" color_EnabledColor="1,0,0" fEnabledGlowAmount="50" nGlowSubmatIdA="0" sSkinAttachmentName="" bUseGlow="0"/>
+   <MissionReward signalPackage_HealthOnUse="" gametokenid_IsPsiAddedToWater="" bIsWaterSource="0" signalPackage_PsiRewardOnUse=""/>
+   <Physics Density="-1" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="1" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="1" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="1" bT_gcc_ragdoll="1" bT_gcc_rigid="1" bT_gcc_smokeform="1" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="1" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="1" bT_gcc_permeable_to_AOE="1" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="1" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+   <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+   <Sound audioTrigger_Carry="" audioTrigger_HoldCarryCancel="" audioTrigger_HoldCarryStart="" audioTrigger_Start="" audioTrigger_Stop=""/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="ChipsetScrambler" Id="{EF650A6B-26A7-4A5A-A862-B32CF380A7C7}" Library="Level" Class="ArkContainer" Description="" ArchetypeId="844024417318077775">
+  <Properties bCanTriggerAreas="0" carryForwardOffset="0" carryHeightOffset="0" ability_CarryRequirement="" textDisplayName="@FG_LOC_CQ_ChipsetReceptacle" textDisplayText="@use_search" bIsMimicable="0" fLookAtDelay="0.3" object_Model="Objects/Environment/Props/Apartment/Test_Sim_Box_A/Test_Sim_Box_A.cgf" sPlayerMimicSurrogate="" vector_ThrowAngularImpulse="-10,0,0" ei_TransparencyMode="0" bUseSafeCarry="0">
+   <AI bUsedAsDynamicObstacle="1"/>
+   <carryDirection x="0" y="0" z="0"/>
+   <ContainerInfo es_ContainerSize="TINY" bPreventStorage="0">
+    <Animation anim_close="" anim_open=""/>
+    <Sound audioTrigger_Close="" audioTrigger_Open=""/>
+   </ContainerInfo>
+   <Physics Density="10" Mass="-1" bPhysicalize="1" bPushableByAI="0" bPushableByPlayers="0" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+   <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+   <Sound audioTrigger_Carry="" audioTrigger_HoldCarryCancel="" audioTrigger_HoldCarryStart=""/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="0" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="100" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="Notes.Invitation" Id="{10B11A91-FCDE-4A07-B9DB-687DE36CED90}" Library="Level" Class="ArkPages" Description="" ArchetypeId="12889009725047801684">
+  <Properties metaTags_ArkMetaTags="" bAvailableForRandom="1" bCanBeFavorited="0" bCanTriggerAreas="0" bConsumable="0" bDeprecated="0" textDescription="" bDisallowGrenades="1" iDismantleCount="0" textDisplayName="@i_note" fDropDistance="2" fDropHeightOffset="0" bDroppable="1" fDropRotationMax="15" fDropRotationMin="1" object_GeometryFP="" object_GeometryTP="Objects/Environment/Props/Universal/Card_Invite_A/Card_Invite_A.cgf" glintconfig_GlintConfig="16934642289625103724" bGooCannotAttachInGravity="1" sHUDIcon="ui_icon_inv_data_clipboard" bImportant="0" bIsMimicable="1" bIsPlotCritical="0" bIsRandom="0" bIsTrash="0" fLerpSpeed="18" material_MaterialFP="0,0,1.25" material_MaterialTP="" gameMetric_MetricPickedUp="" sStylizedIcon="" bSurvivalMode="0" sType="" bUniqueRandom="0" bUsable="0">
+   <Inventory bAddToInventory="0" iHeight="1" sIcon="ui_icon_inv_data_clipboard" ei_ItemCategory="0" iWidth="1"/>
+   <Physics Density="100" Mass="-1" bPhysicalize="1" bPushableByAI="1" bPushableByPlayers="1" bResting="1" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="1" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+   <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+   <Sound audioTrigger_InventorySFX="TEMP_UI_00" audioTrigger_PickupSFX="Pickup"/>
+   <Stacks iCount="1" iDropIncrement="1" iFabricationCount="0" iMaxCount="10" bRandomizeCount="0" iRandomMax="10" iRandomMin="1" bStackable="0"/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="2" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="255" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+ <EntityPrototype Name="Notes.CalvinosReminder" Id="{DD277C8F-6888-4765-A54D-220CD1AF0D8F}" Library="Level" Class="ArkPages" Description="" ArchetypeId="12889009725055582252">
+  <Properties metaTags_ArkMetaTags="" bAvailableForRandom="1" bCanBeFavorited="0" bCanTriggerAreas="0" bConsumable="0" bDeprecated="0" textDescription="" bDisallowGrenades="1" iDismantleCount="0" textDisplayName="@i_note" fDropDistance="2" fDropHeightOffset="0" bDroppable="1" fDropRotationMax="15" fDropRotationMin="1" object_GeometryFP="" object_GeometryTP="Objects/Environment/Props/Universal/Paper_Calvino_Anniversary_A/paper_calvino_anniversary_a.cgf" glintconfig_GlintConfig="16934642289625103724" bGooCannotAttachInGravity="1" sHUDIcon="ui_icon_inv_data_clipboard" bImportant="0" bIsMimicable="1" bIsPlotCritical="0" bIsRandom="0" bIsTrash="0" fLerpSpeed="18" material_MaterialFP="0,0,1.25" material_MaterialTP="" gameMetric_MetricPickedUp="" sStylizedIcon="" bSurvivalMode="0" sType="" bUniqueRandom="0" bUsable="0">
+   <Inventory bAddToInventory="0" iHeight="1" sIcon="ui_icon_inv_data_clipboard" ei_ItemCategory="0" iWidth="1"/>
+   <Physics Density="100" Mass="-1" bPhysicalize="1" bPushableByAI="1" bPushableByPlayers="1" bResting="1" bRigidBody="0">
+    <CollisionFiltering>
+     <collisionIgnore bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="0" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+     <collisionType bT_collision_class_articulated="0" bT_collision_class_living="0" bT_collision_class_particle="0" bT_collision_class_soft="0" bT_collision_class_terrain="0" bT_collision_class_wheeled="0" bT_gcc_ai="0" bT_gcc_breakable="0" bT_gcc_coral="0" bT_gcc_goo="0" bT_gcc_permeable="0" bT_gcc_permeable_to_AOE="1" bT_gcc_player_body="0" bT_gcc_player_capsule="0" bT_gcc_projectile="0" bT_gcc_ragdoll="0" bT_gcc_rigid="0" bT_gcc_smokeform="0" bT_gcc_transparent="0" bT_gcc_unclimbable="0" bT_gcc_vehicle="0"/>
+    </CollisionFiltering>
+   </Physics>
+   <RecycleData exotic="0" mineral="0" organic="0" synthetic="0"/>
+   <Silhouette fAlpha="0.25" color_RGB="1,1,1"/>
+   <Sound audioTrigger_InventorySFX="TEMP_UI_00" audioTrigger_PickupSFX="Pickup"/>
+   <Stacks iCount="1" iDropIncrement="1" iFabricationCount="0" iMaxCount="10" bRandomizeCount="0" iRandomMax="10" iRandomMin="1" bStackable="0"/>
+   <AdditionalArchetypeProperties PrototypeMaterial=""/>
+  </Properties>
+  <ObjectVars OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" ShadowCasterType="2" CastSunShadowMinSpec="8" LodRatio="100" ViewDistRatio="255" CastShadowViewDistRatio="0" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0"/>
+ </EntityPrototype>
+</EntityPrototypeLibrary>

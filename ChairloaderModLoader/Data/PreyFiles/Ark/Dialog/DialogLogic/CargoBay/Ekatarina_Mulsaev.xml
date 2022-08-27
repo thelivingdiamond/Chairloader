@@ -1,0 +1,380 @@
+
+<ResponseRules description="Ekaterina explains some of what has transpired in Engineering Level">
+ <ResponseRule id="4349723564930107842" name="Ekaterina: Loiter, No Fire - No Power" cooldown="0" oneshot="0" conversation="1" response="4349723564930108099" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked." priority="3">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915765040" keyType="task" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930107833" name="Ekaterina: Loiter, Fire - Power On" cooldown="0" oneshot="0" conversation="1" response="4349723564930108127" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked." priority="3">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915765040" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930107808" name="Ekaterina: Loiter, Fire - No Power" cooldown="0" oneshot="0" conversation="1" response="4349723564930108042" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked." priority="3">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915765040" keyType="task" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930108895" name="Ekaterina: Approach, Aliens Dead" cooldown="0" oneshot="0" conversation="1" response="4349723564930108978" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930109855" name="Ekaterina: Loiter, Mourning Alfred" cooldown="0" oneshot="0" conversation="1" response="4349723564930109879" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="131197146" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930109949" name="Ekaterina: Loiter, Mourning Deaths" cooldown="0" oneshot="0" conversation="1" response="4349723564930109968" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="131197146" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930115144" name="Ekaterina: Loiter, Lift Operational" cooldown="0" oneshot="0" conversation="1" response="4349723564930115163" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="1105212212" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930115455" name="Ekaterina: Loiter, Dahl Attack Fails" cooldown="0" oneshot="0" conversation="1" response="4349723564930115486" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="844024417287653148" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930115616" name="Ekaterina: Loiter, Dahl Attacks" cooldown="0" oneshot="0" conversation="1" response="4349723564930115970" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="1990946021" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930118519" name="Ekaterina: Loiter, Dahl Killed" cooldown="0" oneshot="0" conversation="1" response="4349723564930118535" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930119469" name="Ekaterina: Loiter, Waiting to Die" cooldown="0" oneshot="0" conversation="1" response="4349723564930119562" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="1777863651" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930108613" name="Ekaterina: OnUsed, Background Story" cooldown="0" oneshot="1" conversation="1" response="4349723564930108661" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <WritebackKeys/>
+ <ResponseSet id="4349723564930108042">
+  <Response dialog="4349723564930108041" id="4349723564930108043" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" entityOneshot="false"/>
+  <Response dialog="4349723564930108054" id="4349723564930108055" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930108065" id="4349723564930108066" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930108099">
+  <Response dialog="4349723564930108098" id="4349723564930108100" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930108114" id="4349723564930108115" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930108127">
+  <Response dialog="4349723564930108126" id="4349723564930108128" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930108140" id="4349723564930108141" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930108661">
+  <Response dialog="4349723564930108660" id="4349723564930108662" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930108684" name="" cooldown="" response="4349723564930108685">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930108662" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911798464" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930108685">
+  <Response dialog="4349723564930108683" id="4349723564930108686" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="0" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930108695" name="" cooldown="" response="4349723564930108696">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930108686" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911798464" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930108696">
+  <Response dialog="4349723564930108694" id="4349723564930108697" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930108707" name="" cooldown="" response="4349723564930108708">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930108697" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911798464" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930108708">
+  <Response dialog="4349723564930108706" id="4349723564930108709" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930108716" name="" cooldown="" response="4349723564930108717">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930108709" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911798464" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930108717">
+  <Response dialog="4349723564930108715" id="4349723564930108718" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="0" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930108727" name="" cooldown="" response="4349723564930108728">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930108718" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564911798464" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930108728">
+  <Response dialog="4349723564930108726" id="4349723564930108729" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930108978">
+  <Response dialog="4349723564930108977" id="4349723564930108979" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930109275">
+  <Response dialog="4349723564930109274" id="4349723564930109276" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930109285" id="4349723564930109286" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930109315" name="Ekaterina: OnUse, Ready For Combat" cooldown="0" oneshot="0" conversation="1" response="4349723564930109345" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930109345">
+  <Response dialog="4349723564930109344" id="4349723564930109346" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930109372" id="4349723564930109373" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564930109385" id="4349723564930109386" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930109556" name="Ekaterina: OnUsed, Mourning Deaths" cooldown="0" oneshot="0" conversation="1" response="4349723564930109592" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="131197146" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930109225" name="Ekaterina: OnUsed, Aliens Dead" cooldown="0" oneshot="0" conversation="1" response="4349723564930109275" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930109592">
+  <Response dialog="4349723564930109591" id="4349723564930109593" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930109602" id="4349723564930109603" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930109879">
+  <Response dialog="4349723564930109878" id="4349723564930109880" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564941760024" id="4349723564941760025" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930109968">
+  <Response dialog="4349723564930109967" id="4349723564930109969" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930110103">
+  <Response dialog="4349723564930110102" id="4349723564930110104" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930115163">
+  <Response dialog="4349723564930115162" id="4349723564930115164" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930115173" id="4349723564930115174" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930115395">
+  <Response dialog="4349723564930115394" id="4349723564930115396" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930115415" id="4349723564930115416" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930115486">
+  <Response dialog="4349723564930115485" id="4349723564930115487" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930116435" id="4349723564930116436" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564930116450" id="4349723564930116451" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930115970">
+  <Response dialog="4349723564930115969" id="4349723564930115971" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930115497" id="4349723564930116491" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930118535">
+  <Response dialog="4349723564930118534" id="4349723564930118536" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930118604" name="Ekaterina: OnUse, Mika Located" cooldown="0" oneshot="0" conversation="1" response="4349723564930118669" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="377478512" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930118669">
+  <Response dialog="4349723564930118668" id="4349723564930118670" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930118709" name="Ekaterina: OnUse, Rani Rescued" cooldown="0" oneshot="0" conversation="1" response="4349723564930118741" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="14667999412548025540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="490977406" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="15659330456340490449" type="default" keyType="default" value="3"/>
+   <Criterion comparison="0" passIfMissing="false" id="1018317790" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930110048" name="Ekaterina: Player Attacks Guards" cooldown="0" oneshot="0" conversation="1" response="4349723564930110103" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onOuchBig" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930115339" name="Ekaterina: Player Uses alien Power" cooldown="0" oneshot="0" conversation="1" response="4349723564930115395" description="An engineer assigned to the Cargo Bay that remained behind when the others fled as aliens overran Talos. Ekaterina was intent on controlling a raging fire in the fuel stroage room to keep it from spreading to the remainder of the deck. She was moderately successful and managed to contain it, but with no help it still burns. She is in shock after hearing of all the deaths and seeing aliens arive in the compartment where she worked.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsePower" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="3" passIfMissing="false" id="5310807215636213148" type="default" keyType="default" value="2"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930118741">
+  <Response dialog="4349723564930118740" id="4349723564930118742" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930119562">
+  <Response dialog="4349723564930119561" id="4349723564930119563" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="0" targetTrackMethod="0"/>
+  <Response dialog="4349723564930119575" id="4349723564930119576" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564930119587" id="4349723564930119588" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564930119597" id="4349723564930119598" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564931411039" name="Ekaterina: Player Steals Food 1" cooldown="0" oneshot="0" conversation="1" response="4349723564931411136" description="She judges when the player picks up food from the provisions table">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564931411136">
+  <Response dialog="4349723564931411135" id="4349723564931411137" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564931414320" name="Ekaterina: Player Steals Food 2" cooldown="0" oneshot="0" conversation="1" response="4349723564931414366" description="She judges when the player picks up food from the provisions table">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564931414330" name="Ekaterina: Player Steals Food 3" cooldown="0" oneshot="0" conversation="1" response="4349723564931414384" description="She judges when the player picks up food from the provisions table">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564931414332" name="Ekaterina: Player Steals Food 4" cooldown="0" oneshot="0" conversation="1" response="4349723564931414401" description="She judges when the player picks up food from the provisions table">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="4349723564911543122" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564911798464"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564931414366">
+  <Response dialog="4349723564931411193" id="4349723564931414367" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564931414384">
+  <Response dialog="4349723564931411534" id="4349723564931414385" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564931414401">
+  <Response dialog="4349723564931411551" id="4349723564931414402" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+</ResponseRules>

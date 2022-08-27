@@ -1,0 +1,39 @@
+
+<Dialog>
+ <Dialog id="13680621263400262480" text="Where are you?" modified="08/02/2016 05:41:36 PM"/>
+ <Dialog id="13680621263400262522" text="...what is going on?" modified="08/02/2016 05:42:18 PM"/>
+ <Dialog id="13680621263400262534" text="What was that?" modified="08/02/2016 05:42:30 PM"/>
+ <Dialog id="13680621263400262547" text="Come out." modified="08/02/2016 05:42:43 PM"/>
+ <Dialog id="13680621263400262560" text="...vanished." modified="08/02/2016 05:42:56 PM"/>
+ <Dialog id="13680621263400262575" text="This is some kind of bad dream..." modified="08/02/2016 05:43:11 PM"/>
+ <Dialog id="13680621263400262587" text="What do you see in the glass?" modified="08/02/2016 05:43:23 PM"/>
+ <Dialog id="13680621263400262640" text="Shhh... there&apos;s something." modified="08/02/2016 05:44:28 PM"/>
+ <Dialog id="13680621263400262676" text="...there better not be anything..." modified="08/02/2016 05:44:52 PM"/>
+ <Dialog id="13680621263400262687" text="I didn&apos;t find anything..." modified="08/02/2016 05:45:03 PM"/>
+ <Dialog id="13680621263400262700" text="Are you alone?" modified="08/02/2016 05:45:16 PM"/>
+ <Dialog id="13680621263400262712" text="What does it look like? The shape in the glass..." modified="10/05/2016 08:27:10 PM"/>
+ <Dialog id="13680621263400262721" text="(breathing)" modified="08/02/2016 05:45:37 PM" notes="Alt1"/>
+ <Dialog id="13680621263400262743" text="There&apos;s something over there." modified="08/02/2016 05:45:59 PM"/>
+ <Dialog id="13680621263400262753" text="Nothing..." modified="08/02/2016 05:46:09 PM"/>
+ <Dialog id="13680621263400262776" text="I must be losing my mind." modified="08/02/2016 05:46:32 PM"/>
+ <Dialog id="13680621263400262785" text="It was just here." modified="08/02/2016 05:46:41 PM"/>
+ <Dialog id="13680621263400262802" text="you ever been half awake..." modified="12/07/2016 12:40:21 AM"/>
+ <Dialog id="13680621263400262857" text="That&apos;s what it was like... terrifying." modified="08/02/2016 05:47:53 PM"/>
+ <Dialog id="13680621263400262879" text="Where did something like that even come from?" modified="08/02/2016 05:48:21 PM"/>
+ <Dialog id="13680621263400262920" text="Did we make that in one of the labs?" modified="10/13/2016 04:17:48 PM"/>
+ <Dialog id="13680621263400262946" text="(breathing)" modified="08/02/2016 05:49:22 PM" notes="Alt2"/>
+ <Dialog id="13680621263400262969" text="You seem... frustrated." modified="08/02/2016 05:49:45 PM"/>
+ <Dialog id="13680621263400262977" text="Morgan..." modified="08/02/2016 05:49:53 PM"/>
+ <Dialog id="13680621263400262987" text="Are you... angry?" modified="08/02/2016 05:50:03 PM"/>
+ <Dialog id="13680621263402857309" text="They want to live inside us. Like a disease." modified="09/01/2016 06:28:45 PM"/>
+ <Dialog id="13680621263402857360" text="They could be anything... anyone." modified="09/01/2016 06:29:36 PM"/>
+ <Dialog id="13680621263402857393" text="Even if we&apos;re dead... it won&apos;t be over." modified="09/01/2016 06:30:09 PM"/>
+ <Dialog id="13680621263402857430" text="I used to wish we weren&apos;t alone in the universe." modified="09/01/2016 06:30:46 PM"/>
+ <Dialog id="13680621263402857460" text="Where do you suppose they came from?" modified="09/01/2016 06:31:16 PM"/>
+ <Dialog id="13680621263402857482" text="Was that really you?" modified="09/01/2016 06:31:38 PM"/>
+ <Dialog id="13680621263402857510" text="Shhh... hang on. Someone&apos;s coming." modified="09/01/2016 06:32:06 PM"/>
+ <Dialog id="13680621263404499136" facefx="0" sync="0" notes="" text="I&apos;ve been watching them for hours... and I still don&apos;t know how many of them are out there." modified="09/20/2016 06:32:46 PM"/>
+ <Dialog id="13680621263409622253" text="(Roar)" modified="11/19/2016 01:37:49 AM" notes="Roar variant 1."/>
+ <Dialog id="13680621263409622308" text="(Roar)" modified="11/19/2016 01:38:44 AM" notes="roar variant 2"/>
+ <Dialog id="13680621263409622319" text="(Roar)" modified="11/19/2016 01:38:55 AM" notes="roar variant 3"/>
+</Dialog>

@@ -1,0 +1,79 @@
+
+<UIElements name="DanielleKeyPad">
+ <UIElement name="DanielleKeyPad" render_lockless="1">
+  <WorldUI enable="1" distance="3" cursorEvents="true" poolSize="1"/>
+  <GFx file="GFX/danielle_keypad.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="0" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="keypadInit" funcname="key.initKeyPad">
+    <param name="isSimple" desc="trur if is simple keypad, defaults to false" type="bool"/>
+   </function>
+   <function name="keypadIsInteractable" funcname="key.keypadInteractState">
+    <param name="State" desc="true=Interactable, false=Passive" type="bool"/>
+   </function>
+   <function name="keypadSuccessMessage" funcname="key.keypadSuccessMessage">
+    <param name="State" desc="true=On, false=Off" type="bool"/>
+   </function>
+   <function name="keypadFailMessage" funcname="key.keypadFailMessage">
+    <param name="State" desc="true=On, false=Off" type="bool"/>
+   </function>
+   <function name="keypadProcessing" funcname="key.keypadProcessing">
+    <param name="State" desc="true=On, false=Off" type="bool"/>
+   </function>
+   <function name="keypadReset" funcname="key.keypadReset"/>
+   <function name="keypadAddEntry" funcname="key.addEntry">
+    <param name="DigitPlace" desc="0,1,2,3" type="int"/>
+    <param name="Number" desc="0-9" type="int"/>
+   </function>
+   <function name="keypadInteract" funcname="key.keypadInteract"/>
+   <function name="keypadBack" funcname="key.keypadBack"/>
+   <function name="powerOn" funcname="key.powerOn">
+    <param name="animate" type="bool"/>
+   </function>
+   <function name="powerOff" funcname="key.powerOff">
+    <param name="animate" type="bool"/>
+   </function>
+   <function name="pauseUI" funcname="togglePause">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+   <function name="cursorEnable" funcname="mouseEnable">
+    <param name="Cursor" desc="Shows Mouse Cursor" type="bool"/>
+   </function>
+   <function name="keypadSetName" funcname="key.keypadSetName">
+    <param name="doorName" type="string"/>
+   </function>
+   <function name="setHackingLevel" funcname="key.setHackingLevel">
+    <param name="hackingLevel" type="int"/>
+    <param name="skillLevel" type="int"/>
+    <param name="hackableOnly" type="bool"/>
+   </function>
+   <function name="debugText" funcname="key.debugText">
+    <param name="Text" desc="Display text for debugging" type="string"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="keypadBtnPress" fscommand="keypadBtnPress" desc="&apos;Admin&apos;, &apos;Lock&apos;, &apos;Backspace&apos; or &apos;Digits&apos;">
+    <param name="Button" desc="Button Name" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+   <event name="btnRollOver" fscommand="btnRollOver">
+    <param name="whatButton" type="string"/>
+   </event>
+   <event name="btnRollOut" fscommand="btnRollOut">
+    <param name="whatButton" type="string"/>
+   </event>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

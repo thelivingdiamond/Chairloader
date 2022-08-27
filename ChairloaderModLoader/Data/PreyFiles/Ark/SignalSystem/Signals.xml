@@ -1,0 +1,108 @@
+
+<signals>
+ <signal name="absorbed health" id="3149325216929787165" notes=""/>
+ <signal name="absorbed psi" id="3149325216929787188" notes=""/>
+ <signal name="alcohol" id="3149325216943890277" notes=""/>
+ <signal name="alien" id="9469288860522565432" notes="Descriptive tag for catching alien sources."/>
+ <signal name="AoE" id="9469288860522565404" notes="Descriptive tag for catching AOE sources."/>
+ <signal name="antidote" id="3149325216915549039" notes=""/>
+ <signal name="anti-rad" id="3149325216914689753" notes=""/>
+ <signal name="apex" id="3149325216954240791" notes=""/>
+ <signal name="apex wall" id="3149325216988040674" notes="Used specifically for Apex Wall"/>
+ <signal name="backlash" id="10850392949541090582" notes=""/>
+ <signal name="bot control" id="3149325216915549106" notes=""/>
+ <signal name="break gloo" id="3149325216915549018" notes=""/>
+ <signal name="break mimic mimicry" id="9469288860541043048" notes="If a mimic ever receives this and is mimicked, it should break out."/>
+ <signal name="break mind control" id="3149325216986048958" notes="Need to break this out of nullwave because there&apos;s no way to handle a 0 value so they effectively would free each other."/>
+ <signal name="break player mimicry" id="3149325216985458135" notes="Player specific signal for NPCs to use to break player out of mimicry."/>
+ <signal name="bullet" id="3149325216914689581" notes=""/>
+ <signal name="bump" id="9469288860524730735" notes="Some objects will &quot;bump&quot; the NPC but cause no damage"/>
+ <signal name="collision" id="10850392949542894854" notes=""/>
+ <signal name="concussive" id="3149325216947006941" notes=""/>
+ <signal name="coral" id="3149325216975843628"/>
+ <signal name="corrosive" id="3149325216913727213" notes="Damages suit integrity."/>
+ <signal name="critical" id="3149325216930480877" notes=""/>
+ <signal name="crush" id="3149325216911145914" notes="Slower more inevitable collision like getting squished under an elevator, recycler, and self-damage from collisions. Also mimic grab attack."/>
+ <signal name="cystoid" id="3149325216937655757" notes=""/>
+ <signal name="disrepair" id="3149325216976385394" notes="Damages weapons."/>
+ <signal name="drain psi" id="3149325216915549133" notes=""/>
+ <signal name="electric" id="3149325216913727228" notes=""/>
+ <signal name="emp" id="3149325216914689627" notes=""/>
+ <signal name="ether" id="3149325216938445621" notes=""/>
+ <signal name="explosion" id="3149325216913726733" notes=""/>
+ <signal name="exterior" id="3149325216983792551" notes="Used by the boundary enforcing package to prevent the player from escaping into space even when in mimic form (caught by the modiifer)."/>
+ <signal name="fear" id="3149325216914689729" notes=""/>
+ <signal name="fire" id="7745561656291547931" notes=""/>
+ <signal name="flame retardant" id="3149325216915549066" notes=""/>
+ <signal name="flash" id="3149325216914689666" notes=""/>
+ <signal name="gloo" id="3149325216915549017" notes=""/>
+ <signal name="grenade" id="3149325216963998992" notes="Just a tag used for determining if signal source is a charge"/>
+ <signal name="grenadeattached" id="10641886185832736815" notes=""/>
+ <signal name="impact" id="3149325216915554009" notes="Fast moving collisions that generate damage: projectiles, thrown objects."/>
+ <signal name="interference" id="3149325216943882667" notes=""/>
+ <signal name="hackdamage" id="10641886185862287736"/>
+ <signal name="hazard" id="3149325216989680495" notes="Need a flag to filter hazard signals on voltaic phantom."/>
+ <signal name="hobbling" id="3149325216947007897" notes=""/>
+ <signal name="humanHeadTrigger" id="3149325216987245288" notes="Used in psychoshock player to make human heads explode instantly."/>
+ <signal name="knockdown" id="3149325216954857347" notes=""/>
+ <signal name="leverage" id="3149325216962190937" notes="Just a tag for flagging package as a leverage source."/>
+ <signal name="lifesteal" id="3149325216915549119" notes=""/>
+ <signal name="lift" id="3149325216985619399" notes="Used by player lift power."/>
+ <signal name="lure" id="10641886185830929654" notes=""/>
+ <signal name="medical" id="7745561656291547932" notes=""/>
+ <signal name="medical operator" id="12348086275137379944" notes=""/>
+ <signal name="NPC" id="9469288860534058129" notes="Descriptive tag for catching NPC sources."/>
+ <signal name="NPC pistol" id="3149325216987513644" notes="Used in NPC bullet packages to be caught in their Disposition Factors to minimize them shooting each other in the back."/>
+ <signal name="laser" id="3149325216973146201" notes="This is comes from the military operator weapon. Typically pure damage."/>
+ <signal name="medical operator, super" id="10641886185833267603" notes=""/>
+ <signal name="melee" id="3149325216914689654" notes=""/>
+ <signal name="mimic grab" id="5310807215636213132" notes=""/>
+ <signal name="ministun" id="3149325216954346631" notes=""/>
+ <signal name="mind control" id="3149325216915549079" notes=""/>
+ <signal name="nullwave" id="3149325216915549045" notes=""/>
+ <signal name="nutrition" id="3149325216915549059" notes=""/>
+ <signal name="operator aid" id="3149325216983016860" notes="Just a tag to know the operators are being helpful and healing/repairing player."/>
+ <signal name="oxygen" id="10739735956147535099"/>
+ <signal name="pistol" id="3149325216939211670" notes=""/>
+ <signal name="player" id="3149325216954694561" notes=""/>
+ <signal name="player power" id="3149325216955628299" notes=""/>
+ <signal name="pointblank blast" id="3149325216958565328" notes=""/>
+ <signal name="projectile" id="3149325216929612871" notes=""/>
+ <signal name="psi points" id="12348086275117776764" notes=""/>
+ <signal name="psychic" id="3149325216914689633" notes=""/>
+ <signal name="qbeam" id="3149325216914689683" notes="Player&apos;s Qbeam weapon, digdug all or nothing kill, not typically direct damage."/>
+ <signal name="radiation" id="3149325216914689641" notes=""/>
+ <signal name="recycle finish" id="3149325216914689612" notes=""/>
+ <signal name="recycle explosion" id="10641886185820022055" notes=""/>
+ <signal name="remote manipulation" id="9469288860526959409"/>
+ <signal name="remove all traumas" id="10641886185827731695" notes=""/>
+ <signal name="remove bleed status" id="10641886185827734578" notes=""/>
+ <signal name="remove burns status" id="10641886185827734586" notes=""/>
+ <signal name="remove concussion status" id="10641886185827734593" notes=""/>
+ <signal name="remove fear status" id="3149325216964453143"/>
+ <signal name="remove hobble status" id="10641886185827734563" notes=""/>
+ <signal name="remove radiation status" id="10641886185827733598" notes=""/>
+ <signal name="repair suit integrity" id="3149325216951319156" notes=""/>
+ <signal name="robot" id="9469288860534058121" notes="Descriptive tag for catching robot sources."/>
+ <signal name="scripted npc damage" id="3149325216985620954" notes="Used by LDs only as a tag so that NPCs to take damage, but the player can aviod it."/>
+ <signal name="scripted player damage" id="3149325216985714803" notes="Kill the player with no fanfare or feedback."/>
+ <signal name="self-damage" id="9469288860544424650" notes="Means that this signal package is allowed to damage the source sending off the package."/>
+ <signal name="self-immolation" id="9469288860524043070" notes=""/>
+ <signal name="sharp" id="7745561652447168043" notes=""/>
+ <signal name="shatter" id="3149325216966700921" notes="Breakables listen to this as a cue to break without any better reason."/>
+ <signal name="shotgun" id="3149325216939210401" notes=""/>
+ <signal name="sleep/stun" id="3149325216915549026" notes=""/>
+ <signal name="slowAttack" id="3149325216971884872"/>
+ <signal name="small hit" id="9469288860523156056" notes=""/>
+ <signal name="stagger" id="3149325216954857386" notes=""/>
+ <signal name="stungun" id="3149325216945625551" notes=""/>
+ <signal name="threat" id="3149325216985116127" notes="used to tell an NPC to turn hostile to the instigator"/>
+ <signal name="technopath" id="3149325216954609926" notes=""/>
+ <signal name="telepath" id="3149325216974304965"/>
+ <signal name="toy gun" id="3149325216950002086" notes=""/>
+ <signal name="turret" id="3149325216939211715" notes=""/>
+ <signal name="unbreathable" id="3149325216914689676" notes=""/>
+ <signal name="wont kill player" id="10739735956146929246" notes="If this signal is in a player-damaging package then the player will not be killed by the damage."/>
+ <signal name="wrench" id="3149325216939210391" notes=""/>
+ <signal name="ZeroG" id="10641886185854080993"/>
+</signals>

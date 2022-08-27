@@ -1,0 +1,42 @@
+<Graph isModule="1" moduleName="Mag_Lightning" isObjectList="1" objectListClass="LightningArc" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="20" Class="entity:LightningArc" pos="-25,-319,0" EntityGUID="{C64FCC27-EE17-43D5-B23E-2D594E3AF709}" EntityGUID_64="43D5EE17C64FCC27">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="22" Class="entity:LightningArc" pos="-25,-294,0" EntityGUID="{CF86684C-B8C6-449B-A482-847DCA713F98}" EntityGUID_64="449BB8C6CF86684C">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="24" Class="entity:LightningArc" pos="-25,-269,0" EntityGUID="{3297BFBF-40AA-4841-A443-E3F7922C3E9E}" EntityGUID_64="484140AA3297BFBF">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="26" Class="entity:LightningArc" pos="-25,-244,0" EntityGUID="{8474ED50-58EE-4DE8-949C-40384190BD12}" EntityGUID_64="4DE858EE8474ED50">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="30" Class="entity:LightningArc" pos="-25,-194,0" EntityGUID="{22DED295-DA22-43F5-AC71-6CD1606F8009}" EntityGUID_64="43F5DA2222DED295">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="32" Class="entity:LightningArc" pos="-25,-169,0" EntityGUID="{69A98FFE-056D-4D90-B516-60F164A7D2ED}" EntityGUID_64="4D90056D69A98FFE">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="34" Class="entity:LightningArc" pos="-25,-144,0" EntityGUID="{413B07A4-8DFD-46B4-8CA6-95E7FECC4CF3}" EntityGUID_64="46B48DFD413B07A4">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="38" Class="entity:LightningArc" pos="-25,-94,0" EntityGUID="{E1DCB758-78A9-4DD8-A8B9-E6F3986AFFD8}" EntityGUID_64="4DD878A9E1DCB758">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="42" Class="entity:LightningArc" pos="-25,-44,0" EntityGUID="{DA1F02F1-3F8B-4FD9-90F8-2C63003BA9DA}" EntityGUID_64="4FD93F8BDA1F02F1">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="44" Class="entity:LightningArc" pos="-25,-19,0" EntityGUID="{1BB18BD5-7794-4466-A098-9A8310DCC3AD}" EntityGUID_64="446677941BB18BD5">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="48" Class="entity:LightningArc" pos="-25,31,0" EntityGUID="{7EB4DEAE-E00B-4358-9C18-217C3BC3F426}" EntityGUID_64="4358E00B7EB4DEAE">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+  <Node Id="50" Class="entity:LightningArc" pos="-25,56,0" EntityGUID="{61F920A4-1182-4054-ABC7-2B425B8478A0}" EntityGUID_64="4054118261F920A4">
+   <Inputs entityId="0" Disable="0" Enable="0" Strike="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

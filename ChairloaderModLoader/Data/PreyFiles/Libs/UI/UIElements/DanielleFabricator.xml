@@ -1,0 +1,99 @@
+
+<UIElements name="DanielleFabricator">
+ <UIElement name="DanielleFabricator" render_lockless="1">
+  <WorldUI enable="1" distance="3" cursorEvents="true" poolSize="1"/>
+  <GFx file="GFX/danielle_fabricator.gfx" layer="0">
+   <Constraints>
+    <Align mode="dynamic" valign="center" halign="center" scale="0" max="0"/>
+   </Constraints>
+  </GFx>
+  <functions>
+   <function name="fabAddRecipe" funcname="fab.fabricatorAddRecipes">
+    <param name="ID" desc="" type="string"/>
+    <param name="Name" desc="Item Name" type="string"/>
+    <param name="isEnabled" desc="" type="bool"/>
+    <param name="isNew" desc="" type="bool"/>
+    <param name="Icon" desc="use the 1x1 version" type="string"/>
+   </function>
+   <function name="fabAddRecipesComplete" funcname="fab.fabricatorAddRecipesComplete">
+    <param name="ID" desc="" type="string"/>
+   </function>
+   <function name="fabDescriptionUpdate" funcname="fab.updateDescription">
+    <param name="ID" desc="" type="string"/>
+    <param name="Name" desc="" type="string"/>
+    <param name="Description" desc="" type="string"/>
+    <param name="Licenses" desc="" type="int"/>
+    <param name="Organic" desc="" type="int"/>
+    <param name="Mineral" desc="" type="int"/>
+    <param name="Synthetic" desc="" type="int"/>
+    <param name="Exotic" desc="" type="int"/>
+    <param name="heldInInventory" desc="" type="int"/>
+    <param name="Icon" desc="use the 1x1 version" type="string"/>
+   </function>
+   <function name="fabricatorRecipeClear" funcname="fab.fabricatorRecipeClear"/>
+   <function name="fabricatorOpen" funcname="fab.fabricatorActivate"/>
+   <function name="fabricatorClose" funcname="fab.fabricatorExit"/>
+   <function name="fabricatorFabricating" funcname="fab.fabricatorBusyStart">
+    <param name="BuildTime" desc="defines the progress meter duration" type="float"/>
+   </function>
+   <function name="fabricatorItemReady" funcname="fab.fabricatorItemReady"/>
+   <function name="fabricatorItemPickedUp" funcname="fab.fabricatorItemPickedUp"/>
+   <function name="pauseUI" funcname="util.pauseUI">
+    <param name="PauseBoolean" desc="true=pause, false=play" type="bool"/>
+   </function>
+   <function name="fabricatorInteract" funcname="fab.fabricatorInteract"/>
+   <function name="fabInventoryUpdate" funcname="fab.updateMaterials">
+    <param name="Organic" desc="" type="int"/>
+    <param name="Mineral" desc="" type="int"/>
+    <param name="Synthetic" desc="" type="int"/>
+    <param name="Exotic" desc="" type="int"/>
+   </function>
+   <function name="fabMaterialsUpdate" funcname="fab.updateTray">
+    <param name="Organic" desc="" type="int"/>
+    <param name="Mineral" desc="" type="int"/>
+    <param name="Synthetic" desc="" type="int"/>
+    <param name="Exotic" desc="" type="int"/>
+   </function>
+   <function name="fabCreateEnabled" funcname="fab.enableCreateBtn">
+    <param name="isEnabled" desc="" type="bool"/>
+   </function>
+   <function name="fabricatorPowerOn" funcname="fab.powerOn"/>
+   <function name="fabricatorPowerOff" funcname="fab.powerOff"/>
+   <function name="wakeUp" funcname="fab.wakeUp"/>
+   <function name="fabricatorInit" funcname="fab.initOn">
+    <param name="OnOff" desc="true=On, false=Off" type="bool"/>
+   </function>
+   <function name="setBrokenIcon" funcname="fab.setBrokenIcon">
+    <param name="isBroken" desc="true=Broken, false=Powered Off" type="bool"/>
+   </function>
+   <function name="fabricatorErrorOpen" funcname="fab.errorOpen">
+    <param name="Header" desc="&apos;ERROR&apos; typically" type="string"/>
+    <param name="BodyHTML" desc="html formatted text" type="string"/>
+   </function>
+   <function name="fabricatorErrorClose" funcname="fab.errorClose"/>
+   <function name="setClock" funcname="fab.setClock">
+    <param name="time" desc="" type="string"/>
+   </function>
+  </functions>
+  <Events>
+   <event name="fabricatorBtnPress" fscommand="FabricatorBtnPress" desc="Start/Prev/Next/Create">
+    <param name="Button" desc="Button Name" type="string"/>
+   </event>
+   <event name="UISoundManager" fscommand="UISoundPlay" desc="Sound.########">
+    <param name="SoundEvent" desc="Sound Path" type="string"/>
+   </event>
+   <event name="PlayForceFeedback" fscommand="playForceFeedback">
+    <param name="ID" type="string"/>
+    <param name="intensity" type="float"/>
+    <param name="delay" type="float"/>
+   </event>
+   <event name="ItemRecipe" fscommand="FabricatorRecipeSelected" desc="">
+    <param name="uniqueID" desc="uniqueID" type="string"/>
+   </event>
+   <event name="ItemCreate" fscommand="ItemCreate" desc=""/>
+   <event name="PlaceIngredients" fscommand="PlaceIngredients" desc=""/>
+  </Events>
+  <Arrays/>
+  <variables/>
+ </UIElement>
+</UIElements>

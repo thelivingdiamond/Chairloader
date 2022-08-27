@@ -1,0 +1,83 @@
+
+<Dialog>
+ <Dialog id="4349723564910681633" text="You&apos;ve got me really curious. " modified="02/12/2016 12:03:06 PM" notes="(Elle Gold) Giddy." facefx="2"/>
+ <Dialog id="4349723564911190271" text="Unhhhhh... Dr. Yu? What happened? Where..." modified="02/22/2016 08:04:25 PM" notes="[Rani Chaudhary] Groggy and badly shaken. Has just been released from having her mind dominated. {Relieved, then disgusted}"/>
+ <Dialog id="4349723564911190335" text="Oh god, please tell me you killed that - thing." modified="02/22/2016 08:05:02 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="13680621263369406846" text="This is Fowles." modified="08/11/2015 02:41:02 PM" notes="(Maliah Fowles.) Holy shit, Alex called me." facefx="2"/>
+ <Dialog id="13680621263369407063" text="Uh... yes, of course, sir. It&apos;s just that normally I can&apos;t do something like that without consent from Chief Elazar, HR, and another director." modified="07/07/2016 04:05:17 PM" notes="(Maliah Fowles.) Trying to keep it together, the big boss just called her personally. " facefx="2"/>
+ <Dialog id="13680621263369436881" text="Yes sir. I understand." modified="01/11/2016 10:51:30 PM" notes="(Maliah Fowles.) Gulp." facefx="2"/>
+ <Dialog id="4349723564913694633" text="If you hadn&apos;t come along... I&apos;d still be at their mercy. Thank you." modified="05/02/2016 02:43:54 AM" notes="[Rani Chaudhary] confused and disoriented. Survived a telepath."/>
+ <Dialog id="4349723564913694851" text="Hope the E.A.T.s from the Arboretum were useful. On full auto, they should tear those creatures to pieces. " modified="02/22/2016 10:01:24 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564913699823" text="Did you follow all the steps on the launch card exactly?   " modified="08/18/2015 10:05:07 PM" notes="(Alika James)"/>
+ <Dialog id="4349723564913699927" text="Hang on... I&apos;m looking at the schematics. There should be a remote sensor on the explosive bolts..." modified="02/12/2016 06:32:22 PM" notes="(Alika James) A little slow, distracted as she&apos;s relaying what she&apos;s finding on a diagram"/>
+ <Dialog id="4349723564913699954" text="I see all the leads, but... wait. This can&apos;t be right..." modified="08/18/2015 10:06:42 PM" notes="(Alika James) Still distracted. to herself almost."/>
+ <Dialog id="4349723564913699991" text="Uh... no, I don&apos;t think so. Is there a manual crank of some sort?" modified="07/12/2016 05:50:50 PM" notes="(Alika James) No idea what&apos;s going on"/>
+ <Dialog id="13680621263372616394" text="Hey. A little bird told me you plugged a leak in an unconventional manner a few weeks ago." modified="05/09/2016 12:04:52 AM" notes="Talia Brooks" facefx="2"/>
+ <Dialog id="13680621263372616844" text="Maybe. Care to elaborate?" modified="09/17/2015 06:36:18 PM" notes="Talia Brooks" facefx="2"/>
+ <Dialog id="13680621263372616895" text="Worse. I&apos;ll dunk you in the eel tank." modified="02/11/2016 07:32:21 PM" notes="Talia Brooks" facefx="2"/>
+ <Dialog id="13680621263372617302" text="Ingenious. Next time let&apos;s make sure we have enough spare parts to do the job right." modified="05/09/2016 12:05:21 AM" notes="Talia Brooks" facefx="2"/>
+ <Dialog id="13680621263378043907" text="Are you on your way?" modified="11/19/2015 01:53:07 PM" notes="(Galel Seif) Nervous." facefx="2"/>
+ <Dialog id="13680621263378044047" text="Octavia! Didn&apos;t you see the alert? We&apos;re supposed to muster." modified="07/07/2016 04:04:17 PM" notes="(Galel Seif) How could you." facefx="2"/>
+ <Dialog id="13680621263378044100" text="I don&apos;t think this a drill, Octavia. I&apos;m sending you the code. Please. Come to the escape pods right now." modified="07/07/2016 04:04:07 PM" notes="(Galel Seif)" facefx="2"/>
+ <Dialog id="13680621263382655587" text="I&apos;ll log everything on the security computer. " modified="01/11/2016 10:53:23 PM" notes="(Maliah Fowles.)" facefx="2"/>
+ <Dialog id="13680621263382655612" text="Yes, sir. " modified="01/11/2016 10:53:48 PM" notes="(Maliah Fowles.)" facefx="2"/>
+ <Dialog id="13680621263385381458" text="This better not get us into trouble. Not too much trouble, anyway." modified="02/12/2016 12:04:34 PM" notes="(Elle Gold) " facefx="2"/>
+ <Dialog id="13680621263385381792" text="Oh - well, I don&apos;t need a key for that." modified="07/07/2016 03:54:57 PM" notes="(Elle Gold) " facefx="2"/>
+ <Dialog id="13680621263385382181" text="And what if I bump into Julien Howard?" modified="02/12/2016 12:26:13 PM" notes="(Elle Gold) " facefx="2"/>
+ <Dialog id="13680621263385383150" text="Probably be a lot less grumpy..." modified="02/12/2016 12:32:46 PM" notes="(Elle Gold) Almost under her breath. Implied: &quot;...if he let someone touch his fruit.&quot; " facefx="2"/>
+ <Dialog id="13680621263385404933" text="Remmer? Remmer, do you copy?" modified="07/07/2016 04:03:00 PM" notes="(Alika James)" facefx="2"/>
+ <Dialog id="4349723564929935473" text="I came up here to deploy the E.A.Ts... the Eradicator turrets... " modified="02/22/2016 08:05:15 PM" notes="[Rani Chaudhary] {a bit distant, then fearful}"/>
+ <Dialog id="4349723564929935477" text="then it was like all the color bled from the world... everything had an... edge to it. I couldn&apos;t control myself... I..." modified="02/22/2016 08:05:33 PM" notes="[Rani Chaudhary] {remembers killing people}"/>
+ <Dialog id="4349723564929935481" text="But... the E.A.Ts. are still in the small arms closet nearby, we could still use them. Here&apos;s the code. " modified="02/22/2016 08:06:32 PM" notes="[Rani Chaudhary] {Steadies herself}"/>
+ <Dialog id="4349723564929935485" text="I&apos;m going to make my way to the Cargo Bay. Security was supposed to fall back there." modified="07/07/2016 03:59:37 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929935947" text="Sarah will have my ass if I don&apos;t. " modified="02/22/2016 08:06:52 PM" notes="[Rani Chaudhary] {under her breath}"/>
+ <Dialog id="4349723564929936365" text="Really, Dr. Yu, I&apos;m fine - just need a moment." modified="02/22/2016 09:11:35 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929938564" text="Thanks again. I owe you my life. And my mind." modified="05/02/2016 02:46:13 AM" notes="[Rani Chaudhary] slightly quieter at the end"/>
+ <Dialog id="4349723564929938577" text="My brain feels... like it needs a shower. A hundred showers." modified="02/22/2016 08:50:25 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929938589" text="My vision&apos;s a bit blurry, but I&apos;m doing better." modified="02/22/2016 08:50:37 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929938602" text="If anyone ever says a bad word about you, I&apos;ll knock them silly." modified="05/02/2016 02:44:11 AM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929939762" text="Did you find the E.A.T.s? I hope they shred those things. " modified="02/22/2016 09:10:10 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929939923" text="I&apos;m going to head to the Cargo Bay, see if I can rendezvous with the other survivors there. " modified="02/22/2016 09:12:51 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929940097" text="I&apos;m going to head to the Cargo Bay. Don&apos;t want to make Sarah mad." modified="02/22/2016 09:15:45 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929940112" text="Even if she didn&apos;t make it, she&apos;ll still find a way to take it out on me." modified="02/22/2016 09:16:00 PM" notes="[Rani Chaudhary] Wry"/>
+ <Dialog id="4349723564929942359" text="Being controlled by those things... it was like I was watching myself, but my voice... my voice was buried inside me." modified="02/22/2016 09:55:16 PM" notes="[Rani Chaudhary] Trying to find the words"/>
+ <Dialog id="4349723564929942363" text="I wanted to scream, but I couldn&apos;t even do that - I felt like I was drowning... in myself. " modified="02/22/2016 09:55:39 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929942367" text="I heard that some of the other security officers... Teague, Remmer... they didn&apos;t make it. " modified="02/22/2016 09:55:51 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929942659" text="There must be some way out of this." modified="02/22/2016 09:58:27 PM" notes="[Rani Chaudhary] To herself."/>
+ <Dialog id="4349723564929942686" text="There&apos;s still hope. There must be." modified="02/22/2016 09:59:21 PM" notes="[Rani Chaudhary] To herself."/>
+ <Dialog id="4349723564929942690" text="Where did those things come from? " modified="02/23/2016 10:12:26 PM" notes="[Rani Chaudhary] To herself."/>
+ <Dialog id="4349723564929942846" text="...although I&apos;m glad the E.A.T. rounds were designed not to penetrate the hull." modified="02/22/2016 10:01:34 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929942873" text="I... was up in the Arboretum because... well, Sarah asked me to keep an eye on your brother and his visitors. Let her know if I noticed anyone or anything... odd. " modified="02/22/2016 10:02:01 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929942890" text="Talk about an understatement. " modified="02/22/2016 10:02:18 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929942900" text="We were almost set to arrest your brother, when... the attack happened." modified="02/22/2016 10:02:28 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929943818" text="Are you doing all right?" modified="05/02/2016 02:46:58 AM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929943988" text="Really, I&apos;m fine. I&apos;m glad you came along when you did." modified="02/22/2016 10:20:36 PM" notes="[Rani Chaudhary] Beat after &quot;I&apos;m Fine&quot; then a little softer."/>
+ <Dialog id="4349723564929944158" text="What are you doing?!" modified="02/22/2016 10:23:26 PM" notes="[Rani Chaudhary] Player has become hostile to the Security Officers"/>
+ <Dialog id="4349723564929944172" text="Stop! Dr. Yu, stop!" modified="02/22/2016 10:23:40 PM" notes="[Rani Chaudhary] Player has become hostile to the Security Officers"/>
+ <Dialog id="4349723564929944962" text="Hey!" modified="02/22/2016 10:42:11 PM" notes="[Rani Chaudhary] Guesses that aliens are controlling the player based on her own experience."/>
+ <Dialog id="4349723564929945180" text="She must be being controlled!" modified="02/22/2016 10:40:28 PM" notes="[Rani Chaudhary] Guesses that aliens are controlling the player based on her own experience."/>
+ <Dialog id="4349723564929945191" text="He must be being controlled!" modified="02/22/2016 10:40:39 PM" notes="[Rani Chaudhary] Guesses that aliens are controlling the player based on her own experience."/>
+ <Dialog id="4349723564929945806" text="Oh my god, Dr. Yu&apos;s one of them! " modified="02/22/2016 10:50:54 PM" notes="[Rani Chaudhary] Player is manifesting powers that can only come from an alien influence. This alarms her."/>
+ <Dialog id="4349723564929945818" text="Dr. Yu&apos;s one of those creatures! Help!" modified="02/22/2016 10:51:06 PM" notes="[Rani Chaudhary] Player is manifesting powers that can only come from an alien influence. This alarms her."/>
+ <Dialog id="4349723564929946187" text="Leave it to TranStar to answer one attack with another..." modified="02/22/2016 10:57:15 PM" notes="[Rani Chaudhary] snarls"/>
+ <Dialog id="4349723564929946203" text="No way am I going to sell you out. Your brother, however..." modified="05/02/2016 02:44:25 AM" notes="[Rani Chaudhary] Firm"/>
+ <Dialog id="4349723564929946214" text="If Dahl tries to get in here, he&apos;ll regret it." modified="02/22/2016 10:57:42 PM" notes="[Rani Chaudhary] Firm"/>
+ <Dialog id="4349723564929948286" text="If I see that bastard Dahl, I&apos;ll choke him out." modified="02/22/2016 11:32:14 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="4349723564929948297" text="Can&apos;t get to us, so he tries to suffocate us? This Dahl&apos;s a coward." modified="02/22/2016 11:32:25 PM" notes="[Rani Chaudhary] "/>
+ <Dialog id="13680621263389037478" text="Morning, Mr. Yu. " modified="03/25/2016 07:38:14 PM" notes="(Patricia Varma)"/>
+ <Dialog id="13680621263389037496" text="Morning, Ms. Yu. " modified="07/07/2016 04:03:47 PM" notes="(Patricia Varma.)"/>
+ <Dialog id="13680621263389037563" text="(Whistling)" modified="03/25/2016 07:39:39 PM" notes="(Patricia Varma.)"/>
+ <Dialog id="13680621263389037572" text="(Humming)" modified="03/25/2016 07:39:48 PM" notes="(Patricia Varma.)"/>
+ <Dialog id="13680621263389037586" text="These things can be tricky, you know?" modified="03/25/2016 07:40:02 PM" notes="(Patricia Varma) Working on fixing a machine. Small grunt of exertion. "/>
+ <Dialog id="13680621263389037594" text="(Sigh)" modified="03/25/2016 07:40:10 PM" notes="(Patricia Varma.) Nervous"/>
+ <Dialog id="13680621263389037802" text="Heard there&apos;s a chopper on the roof. Must be for you." modified="03/25/2016 07:43:38 PM" notes="(Patricia Varma)"/>
+ <Dialog id="13680621263389037884" text="You&apos;ll have to take the elevator." modified="03/25/2016 07:45:00 PM" notes="(Patricia Varma)"/>
+ <Dialog id="13680621263389037946" text="Down the hall. But you know that... I guess." modified="03/25/2016 07:46:02 PM" notes="(Patricia Varma)"/>
+ <Dialog id="13680621263389038020" text="Aren&apos;t you going to be late?" modified="03/25/2016 07:47:16 PM" notes="(Patricia Varma)"/>
+ <Dialog id="13680621263389038167" text="You&apos;re supposed to keep going." modified="05/09/2016 04:33:14 AM" notes="(Patricia Varma) Spoken under breath. Nervous."/>
+ <Dialog id="13680621263389038250" text="You&apos;re going to get me in trouble." modified="03/25/2016 07:51:06 PM" notes="(Patricia Varma) Spoken under breath. Nervous."/>
+ <Dialog id="13680621263389038321" text="I can&apos;t talk to you anymore." modified="03/25/2016 07:52:17 PM" notes="(Patricia Varma) Spoken under breath. Nervous."/>
+ <Dialog id="13680621263389040369" text="Captain. Did I- I thought..." modified="07/07/2016 03:59:50 PM" notes="[Marietta Kyrkos] Waking from sleep. A little stunned." facefx="2"/>
+ <Dialog id="13680621263389040484" text="Is everything okay?" modified="03/25/2016 08:28:20 PM" notes="[Marietta Kyrkos] Scared" facefx="2"/>
+ <Dialog id="13680621263389040539" text="Right away, Captain." modified="03/25/2016 08:29:24 PM" notes="[Marietta Kyrkos]" facefx="2"/>
+</Dialog>

@@ -1,0 +1,117 @@
+
+<Dialog>
+ <Dialog id="13680621263385852113" text="[alarm beeping]" modified="03/24/2016 03:37:55 PM" notes="Variant 1. Quick danger beeps. 1 sec. upset machine noise"/>
+ <Dialog id="13680621263385852131" text="[alarm beeping]" modified="03/24/2016 03:38:01 PM" notes="Variant 2. Quick danger beeps. 1 sec. upset machine noise"/>
+ <Dialog id="13680621263385852159" text="[operator malfunctioning]" modified="03/24/2016 03:36:39 PM" notes="Broken. 1-2 secs- malfucntion sound"/>
+ <Dialog id="13680621263385852218" text="[short beep]" modified="03/24/2016 03:36:28 PM" notes="Player bumped into operator. &quot;Hey i&apos;m here.&quot;"/>
+ <Dialog id="13680621263385852249" text="[beeping, whirring]" modified="03/24/2016 03:36:13 PM" notes="Variant 1. 2-4 secs. "/>
+ <Dialog id="13680621263385852265" text="[beeping, whirring]" modified="03/24/2016 03:36:05 PM" notes="Variant 2. 2-4 secs. "/>
+ <Dialog id="13680621263385852517" text="Current conditions do not allow for safe interaction." modified="02/17/2016 10:55:33 PM"/>
+ <Dialog id="13680621263385907986" text="[beeping, whirring]" modified="03/24/2016 03:35:56 PM" notes=":: (read: humans, I&apos;m in the room.) beeping, whirring"/>
+ <Dialog id="13680621263385908172" text="I&apos;m familiar with repair and maintenance procedures for most systems aboard Talos I." modified="02/18/2016 02:23:20 PM"/>
+ <Dialog id="13680621263385908176" text="Excepting biological ones." modified="02/18/2016 02:23:12 PM"/>
+ <Dialog id="13680621263385908204" text="Is there a system that needs my attention?" modified="02/18/2016 02:23:40 PM"/>
+ <Dialog id="13680621263385908217" text="I&apos;m not due for a quarterly maintenance." modified="02/18/2016 02:23:53 PM"/>
+ <Dialog id="13680621263385908227" text="If you&apos;re scheduled for a complete suit diagnostic, report to Mr. Goode in the Hardware Labs." modified="02/18/2016 02:24:03 PM"/>
+ <Dialog id="13680621263385908255" text="There are emergency oxygen supply stations both inside and outside of Talos I. " modified="02/18/2016 02:24:31 PM"/>
+ <Dialog id="13680621263385908275" text="I don&apos;t anticipate you will need them, however." modified="02/18/2016 02:24:51 PM"/>
+ <Dialog id="13680621263385908303" text="I only tell you for informative purposes." modified="02/18/2016 02:25:19 PM"/>
+ <Dialog id="13680621263385908324" text="Each deck has access to a bank of escape pods in the event of an evacuation. " modified="02/18/2016 02:25:40 PM"/>
+ <Dialog id="13680621263385908341" text="They&apos;ve never been used." modified="02/18/2016 02:25:57 PM"/>
+ <Dialog id="13680621263385908356" text="Two thousand six hundred and seventy-five serious incident alerts in the last... twenty-four hours." modified="02/18/2016 02:26:12 PM"/>
+ <Dialog id="13680621263385908371" text="Talos I is outfitted with a uniquely efficient water treatment and recirculation system. " modified="02/18/2016 02:26:27 PM"/>
+ <Dialog id="13680621263385908391" text="The Cargo Bay sees traffic from our lunar refinery as well as earth via self-piloting freight containers. " modified="02/18/2016 02:26:47 PM"/>
+ <Dialog id="13680621263385908410" text="The Arboretum&apos;s trees are part of the station&apos;s respiratory system which goes all the way down to the atmosphere control room in Life Support. " modified="02/18/2016 02:27:30 PM"/>
+ <Dialog id="13680621263385908455" text="All exterior glass is composed of a virtually indestructible polymer." modified="02/18/2016 02:27:51 PM"/>
+ <Dialog id="13680621263385908490" text="Sudden decompression is unlikely." modified="02/18/2016 02:28:26 PM"/>
+ <Dialog id="13680621263385908513" text="Much like Earth, Talos I generates a magnetosphere which shields us from cosmic radiation. " modified="02/18/2016 02:28:49 PM"/>
+ <Dialog id="13680621263385908979" text="Our main energy needs are supplied by a Superforge fusion reactor in the Power Plant." modified="02/18/2016 02:36:35 PM"/>
+ <Dialog id="13680621263385909142" text="All debris or irreparable components should be placed inside a Recycler." modified="02/18/2016 02:39:18 PM"/>
+ <Dialog id="13680621263385909240" text="Operator dispensers are specialized Fabricators. " modified="02/18/2016 03:17:40 PM"/>
+ <Dialog id="13680621263385911284" text="Hello." modified="02/18/2016 03:15:00 PM"/>
+ <Dialog id="13680621263385911547" text="Careless use of GLOO or placement of large furniture can cause improper function." modified="02/23/2017 08:44:20 PM"/>
+ <Dialog id="13680621263385911954" text="Careful." modified="02/18/2016 03:26:10 PM"/>
+ <Dialog id="13680621263385911960" text="Watch out." modified="02/18/2016 03:26:16 PM"/>
+ <Dialog id="13680621263385911966" text="Please, pay attention." modified="02/18/2016 03:26:22 PM"/>
+ <Dialog id="13680621263385911971" text="I&apos;m right here." modified="02/18/2016 03:26:27 PM"/>
+ <Dialog id="13680621263385912010" text="Coming through." modified="02/18/2016 03:27:06 PM"/>
+ <Dialog id="13680621263385912018" text="Operator approach." modified="02/18/2016 03:27:14 PM"/>
+ <Dialog id="13680621263385912022" text="Moving." modified="02/18/2016 03:27:18 PM"/>
+ <Dialog id="13680621263385912068" text="Am I being disassembled?" modified="02/18/2016 03:28:04 PM"/>
+ <Dialog id="13680621263385912074" text="Stop." modified="02/18/2016 03:28:10 PM"/>
+ <Dialog id="13680621263385912080" text="You&apos;re not a qualified technician." modified="02/18/2016 03:28:16 PM"/>
+ <Dialog id="13680621263385912086" text="Do not damage me." modified="02/18/2016 03:28:22 PM"/>
+ <Dialog id="13680621263385912091" text="I cannot repair myself." modified="11/16/2016 03:25:59 PM"/>
+ <Dialog id="13680621263385912165" text="Inspecting..." modified="02/18/2016 03:29:41 PM"/>
+ <Dialog id="13680621263385912387" text="Your suit meets regulation. " modified="02/18/2016 03:33:23 PM"/>
+ <Dialog id="13680621263385912392" text="Your suit integrity is nominal. " modified="02/18/2016 03:33:28 PM"/>
+ <Dialog id="13680621263385912400" text="Your suit integrity is compromised. Let me fix that." modified="02/18/2016 03:33:36 PM"/>
+ <Dialog id="13680621263385912406" text="Your suit&apos;s suffered some wear and tear. I&apos;ll fix that." modified="02/18/2016 03:33:42 PM"/>
+ <Dialog id="13680621263385912413" text="Your suit&apos;s leaky. I&apos;ll patch that for you." modified="02/18/2016 03:33:49 PM"/>
+ <Dialog id="13680621263385915366" text="[error beeps]" modified="03/24/2016 03:46:51 PM" notes="Variant 1. Angry, sharp sound. Corrupted Error Sounds"/>
+ <Dialog id="13680621263385915389" text="[error beeps]" modified="03/24/2016 03:41:26 PM" notes="Variant 2. Angry, sharp sound. Corrupted Error Sounds"/>
+ <Dialog id="13680621263385915702" text="Problem solved." modified="02/18/2016 04:28:38 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385915708" text="Mark this one fixed. " modified="02/18/2016 04:28:44 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385915714" text="Normal function restored." modified="02/18/2016 04:28:50 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385915720" text="System is inoperable [voice malfunctioning] nominal." modified="03/24/2016 03:47:19 PM" notes="Corrupt"/>
+ <Dialog id="13680621263385915766" text="Running diagnostics... nothing to show." modified="02/18/2016 04:29:42 PM"/>
+ <Dialog id="13680621263385915772" text="No parts left." modified="02/18/2016 04:29:48 PM"/>
+ <Dialog id="13680621263385915815" text="Cannot reproduce the problem." modified="02/18/2016 04:30:31 PM"/>
+ <Dialog id="13680621263385915843" text="Disintegrated circuit found new--[voice malfunctioning]--instructions. " modified="10/10/2016 11:01:56 PM" notes="Corrupt Variant 2, Circuit broken"/>
+ <Dialog id="13680621263385915848" text="[Buzzing, Whirring, Beeping]" modified="10/06/2016 03:29:32 PM" notes="Corrupt, Aggressive machine noise"/>
+ <Dialog id="13680621263385915876" text="Too many moving parts." modified="02/18/2016 04:31:32 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915882" text="Cutting." modified="02/18/2016 04:31:38 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915887" text="Shield your eyes." modified="02/18/2016 04:31:43 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915893" text="I&apos;m shutting you down." modified="02/18/2016 04:31:49 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915898" text="Try not to move." modified="02/18/2016 04:31:54 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915903" text="Hold still." modified="02/18/2016 04:31:59 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915908" text="You&apos;re defect-ect-ect-ect-ective. " modified="10/06/2016 03:53:56 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915914" text="Your hydraulics are leaking." modified="02/18/2016 04:32:10 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915920" text="I will bend you into shape -- [voice malfunctioning]." modified="11/16/2016 03:26:42 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915926" text="I&apos;ll have to recycle you after this." modified="02/18/2016 04:32:22 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915932" text="No." modified="02/18/2016 04:32:28 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385915940" text="Error code-F66 manufacturing defect. " modified="02/18/2016 04:32:36 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916018" text="[operator malfunctioning]" modified="03/24/2016 03:44:51 PM" notes="Corrupt. Hostile, surprised. 1-2 seconds."/>
+ <Dialog id="13680621263385916034" text="Problem found. " modified="02/18/2016 04:34:10 PM"/>
+ <Dialog id="13680621263385916038" text="Found you." modified="02/18/2016 04:34:14 PM"/>
+ <Dialog id="13680621263385916056" text="Nothing to fix here." modified="02/18/2016 04:34:32 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916061" text="No repairs required. " modified="02/18/2016 04:34:37 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916067" text="Everything appears... nominal." modified="02/18/2016 04:34:43 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916072" text="No code violations." modified="02/18/2016 04:34:48 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916078" text="I see nothing to worry [voice malfunctioning] about. " modified="03/24/2016 03:41:36 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916135" text="My diagnostic sensors can root out the problem." modified="02/18/2016 04:35:51 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916256" text="You&apos;re obviously mal-mal-malfunctioning. " modified="02/18/2016 04:37:52 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916266" text="If you don&apos;t show yourself, I can&apos;t fix you." modified="02/18/2016 04:38:02 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916309" text="I need to make a small adjustment to your components." modified="02/18/2016 04:38:45 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916317" text="Don&apos;t worry, I won&apos;t disassemble you until I&apos;m sure." modified="02/18/2016 04:38:53 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916323" text="I have a [voice malfunctioning] I&apos;d like to weld to your frame." modified="03/24/2016 03:41:45 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916330" text="I get the impression you don&apos;t want proper function." modified="02/18/2016 04:39:06 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916337" text="I can hear your insides grinding together. You won&apos;t last long." modified="02/18/2016 04:39:13 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916343" text="Hiding isn&apos;t a practical solution--you&apos;re still broken-en-en-en. " modified="04/16/2016 03:03:59 AM" notes="Corrupt."/>
+ <Dialog id="13680621263385916349" text="I&apos;ve ordered a replacement for you... for when you come out. " modified="11/16/2016 03:27:18 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916357" text="You&apos;re concerned I&apos;ll botch the job is that why you won&apos;t come see me?" modified="02/18/2016 04:39:33 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916368" text="There&apos;s a risk of severe system shock if you don&apos;t shut down." modified="02/18/2016 04:39:44 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916380" text="I have an responsibility to- [voice malfunctioning] - recycle the useless bits from you." modified="11/16/2016 03:29:00 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916388" text="An application of high velocity plasma and com-com-compressed gas will get you back into working condition." modified="11/16/2016 03:29:19 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916409" text="Come out. You&apos;re derelict." modified="02/18/2016 04:40:25 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916428" text="[operator malfunctioning]" modified="03/24/2016 03:44:47 PM" notes="Corrupt. While searching. Intimidating 2-3 seconds."/>
+ <Dialog id="13680621263385916495" text="Could be a problem." modified="02/18/2016 04:41:51 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916510" text="Something&apos;s broken?" modified="02/18/2016 04:42:06 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916519" text="I&apos;ll investigate." modified="02/18/2016 04:42:15 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385916755" text="If you want to know how something works, you have to take it apart." modified="02/18/2016 04:46:11 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917701" text="New supervisory override... received. Thank-thank-thank you. " modified="11/16/2016 03:30:03 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917711" text="Repair definitions--[voice malfunctioning]--retargeted. " modified="03/24/2016 03:44:04 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917735" text="Repair, Replace, Recycle. The three R&apos;s of--[voice malfunctioning]." modified="03/24/2016 03:44:10 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917762" text="Parallel volitional processors... desynchronized. I [voice malfunctioning] understand. " modified="03/24/2016 03:44:19 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917813" text="Disintegrated circuit found new--[voice malfunctioning]--instructions. " modified="03/24/2016 03:44:24 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917845" text="Logging self-diagnostic. List. Tag. Carbon. Cathode. Corrosion. " modified="02/18/2016 05:04:21 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917854" text="Logging self-diagnostic. Files corrupted. List. Series. Service. Servo." modified="02/18/2016 05:04:30 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917862" text="Logging self-diagnostic. List: Repair and maintenance protocols... Files not found. Reference Deleted. " modified="02/18/2016 05:04:38 PM" notes="Corrupt."/>
+ <Dialog id="13680621263385917904" text="[voice malfunctioning]--instructions" modified="11/16/2016 03:31:08 PM" notes="Variant 1. Corrupted. Intimidating noises. A machine vocalizing."/>
+ <Dialog id="13680621263391807285" text="System fault. System fault---[error sound]." modified="12/06/2016 07:02:13 PM" notes="Corrupt version--should rise in intensity / speed or stutter until it explodes. "/>
+ <Dialog id="13680621263391807361" text="Error-r-r-r-r-[error sound]." modified="12/06/2016 07:02:07 PM"/>
+ <Dialog id="13680621263391904338" text="Repair complete." modified="04/27/2016 11:59:20 PM"/>
+ <Dialog id="13680621263391904356" text="Job done." modified="04/27/2016 11:59:32 PM"/>
+ <Dialog id="13680621263392332883" text="I&apos;m a Kobold 410 engineering class operator." modified="05/02/2016 11:01:39 PM"/>
+ <Dialog id="13680621263408634494" text="Found you." modified="11/07/2016 03:15:10 PM" notes="Fem Branch, Non-English"/>
+</Dialog>

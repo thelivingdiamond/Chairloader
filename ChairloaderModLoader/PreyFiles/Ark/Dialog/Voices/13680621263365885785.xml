@@ -1,8 +1,0 @@
-
-<Dialog>
- <Dialog id="13680621263365885943" text="This is a placeholder conversation. Replace me." modified="07/01/2015 08:39:19 PM"/>
- <Dialog id="13680621263379630747" facefx="0" sync="0" notes="Say it with more oomph." text="This is a test line to see if wwise is working. Yo." modified="12/07/2015 10:44:40 PM"/>
- <Dialog id="14538910657198852752" text="This is where you would enter placeholder text." modified="07/04/2016 04:10:56 PM"/>
- <Dialog id="14538910657198853052" text="Yes indeed." modified="07/04/2016 04:15:56 PM"/>
- <Dialog id="14538910657198853097" text="Yes indeed." modified="07/04/2016 04:16:41 PM"/>
-</Dialog>

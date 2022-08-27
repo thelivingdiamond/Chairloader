@@ -1,7 +1,0 @@
-
-<EquipPack name="Empty" primary="NoWeapon">
- <Items>
-  <NoWeapon type="ItemGivable" setup="" archetype=""/>
- </Items>
- <Ammos/>
-</EquipPack>

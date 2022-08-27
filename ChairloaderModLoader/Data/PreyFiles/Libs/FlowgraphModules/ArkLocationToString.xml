@@ -1,0 +1,188 @@
+
+<Graph isModule="1" moduleName="ArkLocationToString" isObjectList="0" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <ModuleInputsOutputs>
+  <Port Name="Check" Type="-1" Input="1"/>
+  <Port Name="LocationString" Type="5" Input="0"/>
+ </ModuleInputsOutputs>
+ <Nodes>
+  <Node Id="1" Class="Module:Start_ArkLocationToString" pos="-230,160,0"/>
+  <Node Id="2" Class="Module:End_ArkLocationToString" pos="1580,-70,0">
+   <Inputs LocationString=""/>
+  </Node>
+  <Node Id="6" Class="Ark:Locations:CheckLocation" pos="560,-360,0">
+   <Inputs location_Location="1713490239386284818"/>
+  </Node>
+  <Node Id="7" Class="Ark:Locations:CheckLocation" pos="560,-260,0">
+   <Inputs location_Location="1713490239377738413"/>
+  </Node>
+  <Node Id="8" Class="Ark:Locations:CheckLocation" pos="560,-160,0">
+   <Inputs location_Location="844024417252490146"/>
+  </Node>
+  <Node Id="9" Class="Ark:Locations:CheckLocation" pos="560,-60,0">
+   <Inputs location_Location="844024417275035158"/>
+  </Node>
+  <Node Id="10" Class="Ark:Locations:CheckLocation" pos="560,100,0">
+   <Inputs location_Location="4349723564886052417"/>
+  </Node>
+  <Node Id="11" Class="Ark:Locations:CheckLocation" pos="570,340,0">
+   <Inputs location_Location="12889009724983807463"/>
+  </Node>
+  <Node Id="12" Class="Ark:Locations:CheckLocation" pos="570,440,0">
+   <Inputs location_Location="11824555372632688907"/>
+  </Node>
+  <Node Id="13" Class="Ark:Locations:CheckLocation" pos="570,550,0">
+   <Inputs location_Location="12889009724980689392"/>
+  </Node>
+  <Node Id="14" Class="Ark:Locations:CheckLocation" pos="570,650,0">
+   <Inputs location_Location="1713490239377285936"/>
+  </Node>
+  <Node Id="15" Class="Ark:Locations:CheckLocation" pos="570,760,0">
+   <Inputs location_Location="844024417263019221"/>
+  </Node>
+  <Node Id="16" Class="Ark:Locations:CheckLocation" pos="570,870,0">
+   <Inputs location_Location="1713490239386284988"/>
+  </Node>
+  <Node Id="17" Class="Ark:Locations:CheckLocation" pos="560,200,0">
+   <Inputs location_Location="1713490239386284337"/>
+  </Node>
+  <Node Id="18" Class="Ark:Locations:CheckLocation" pos="570,1100,0">
+   <Inputs location_Location="6732635291182790112"/>
+  </Node>
+  <Node Id="19" Class="Ark:Locations:CheckLocation" pos="570,1210,0">
+   <Inputs location_Location="4349723564895209499"/>
+  </Node>
+  <Node Id="20" Class="Ark:Locations:CheckLocation" pos="570,1330,0">
+   <Inputs location_Location="15659330456296333985"/>
+  </Node>
+  <Node Id="22" Class="String:SetString" pos="820,-360,0">
+   <Inputs In="arboretum"/>
+  </Node>
+  <Node Id="33" Class="String:SetString" pos="837.62988,-251.44043,0">
+   <Inputs In="deepStorage"/>
+  </Node>
+  <Node Id="34" Class="String:SetString" pos="852.77686,-152.98483,0">
+   <Inputs In="crewQuarters"/>
+  </Node>
+  <Node Id="35" Class="String:SetString" pos="869.4386,-43.926331,0">
+   <Inputs In="bridge"/>
+  </Node>
+  <Node Id="36" Class="String:SetString" pos="878.52679,93.911499,0">
+   <Inputs In="GUTs"/>
+  </Node>
+  <Node Id="37" Class="String:SetString" pos="886.10028,204.48468,0">
+   <Inputs In="exterior"/>
+  </Node>
+  <Node Id="38" Class="String:SetString" pos="895.18854,340.8078,0">
+   <Inputs In="neuromodDivision"/>
+  </Node>
+  <Node Id="39" Class="String:SetString" pos="886.10028,451.38098,0">
+   <Inputs In="psychotronics"/>
+  </Node>
+  <Node Id="40" Class="String:SetString" pos="889.1297,566.49829,0">
+   <Inputs In="traumaCenter"/>
+  </Node>
+  <Node Id="41" Class="String:SetString" pos="890,660,0">
+   <Inputs In="lobby"/>
+  </Node>
+  <Node Id="42" Class="String:SetString" pos="880,770,0">
+   <Inputs In="hardwareLabs"/>
+  </Node>
+  <Node Id="43" Class="String:SetString" pos="880,880,0">
+   <Inputs In="shuttleBay"/>
+  </Node>
+  <Node Id="44" Class="String:SetString" pos="850,1110,0">
+   <Inputs In="powerPlant"/>
+  </Node>
+  <Node Id="45" Class="String:SetString" pos="840,1230,0">
+   <Inputs In="lifeSupport"/>
+  </Node>
+  <Node Id="46" Class="String:SetString" pos="840,1340,0">
+   <Inputs In="cargoBay"/>
+  </Node>
+  <Node Id="47" Class="String:SetString" pos="1640,320,0">
+   <Inputs In="nowhere"/>
+  </Node>
+  <Node Id="49" Class="Logic:All" pos="1490,320,0">
+   <Inputs/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="6" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="7" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="11" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="12" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="13" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="14" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="15" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="16" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="17" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="1" portIn="Trigger" portOut="Start" enabled="1"/>
+  <Edge nodeIn="22" nodeOut="6" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="6" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="33" nodeOut="7" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="7" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="34" nodeOut="8" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="8" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="35" nodeOut="9" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="9" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="10" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="10" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="38" nodeOut="11" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="11" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="39" nodeOut="12" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="12" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="40" nodeOut="13" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="13" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="41" nodeOut="14" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="14" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="42" nodeOut="15" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="15" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="43" nodeOut="16" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="16" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="37" nodeOut="17" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="17" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="44" nodeOut="18" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="18" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="45" nodeOut="19" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="19" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="46" nodeOut="20" portIn="Set" portOut="True" enabled="1"/>
+  <Edge nodeIn="49" nodeOut="20" portIn="in1" portOut="False" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="22" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="22" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="33" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="33" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="34" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="34" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="35" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="35" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="36" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="36" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="37" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="37" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="38" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="38" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="39" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="39" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="40" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="40" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="41" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="41" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="42" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="42" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="43" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="43" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="44" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="44" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="45" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="45" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="46" portIn="LocationString" portOut="Out" enabled="1"/>
+  <Edge nodeIn="2" nodeOut="46" portIn="Success" portOut="Out" enabled="1"/>
+  <Edge nodeIn="47" nodeOut="49" portIn="Set" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

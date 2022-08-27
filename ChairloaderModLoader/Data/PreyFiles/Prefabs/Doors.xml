@@ -1,0 +1,54 @@
+
+<PrefabsLibrary Name="Doors">
+ <Prefab Name="Doors.Door_Basic_Sliding" Id="{257EA036-2FDE-4B1F-9C2B-5460DB508031}" Library="Doors">
+  <Objects>
+   <Object Type="Entity" Layer="ShuttleBay_Geo" LayerGUID="{2CE9FA90-55BE-48FA-91D1-00D466F76FC5}" Id="{7819D4F6-D27C-49F7-8D19-46D6021BD77B}" Name="Door2" Pos="2.8000488,1.5999756,3.8999939" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" HiddenInProbes="0" EntityClass="Door">
+    <Properties bActivatePortal="0" bLocked="0" fileModel="objects/user/jmagill/sliding_door/sliding_door_right.cgf" soclasses_SmartObjectClass="Door" bSquashPlayers="0" bUsable="0" fUseDistance="2.5" UseMessage="@use_door">
+     <Rotation fAcceleration="500" sAxis="z" sFrontAxis="y" fRange="90" bRelativeToUser="1" fSpeed="0" fStopTime="0.125"/>
+     <Slide fAcceleration="3" sAxis="x" fRange="1" fSpeed="2" fStopTime="0.5"/>
+     <Sounds fRange="50" soundSoundOnMove="" soundSoundOnStop="" soundSoundOnStopClosed="" fVolume="200"/>
+    </Properties>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Doors.Door_Basic_Sliding_Glass" Id="{0F78DFB0-17C9-4573-9770-F982E79C89DE}" Library="Doors">
+  <Objects>
+   <Object Prototype="{4EF6C757-3046-4427-BEA0-6DC322499D8C}" Type="EntityArchetype" Layer="Arboretum_Scripting" Id="{CBE57B3B-0C75-4796-B3D3-02F10A2F47EB}" Name="Door.DoorSlidingGlassLeft1" Pos="1.1999512,2,1.4000092" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0"/>
+   <Object Prototype="{3ECFB950-3993-4FB6-AC98-FAD8B6320899}" Type="EntityArchetype" Layer="Arboretum_Scripting" Id="{BEA9837D-946F-4A7A-99D6-6A8EB86280FB}" Name="Door.DoorSlidingGlassRight1" Pos="2.7999268,2,1.4000092" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0"/>
+   <Object Type="GeomEntity" Layer="Arboretum_Scripting" Id="{C3D275D1-65E5-4405-9F94-1FC45A873F57}" Name="GeomEntity8" Pos="2,2,0" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" Geometry="Objects/User/jmagill/Sliding_Door/sliding_door_frame.cgf" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" EntityClass="GeomEntity">
+    <Properties esFaction="">
+     <Health bInvulnerable="0" MaxHealth="500" bOnlyEnemyFire="1"/>
+     <RenderProxyOptions bAnimateOffScreenShadow="0"/>
+    </Properties>
+   </Object>
+   <Object Type="Entity" Layer="Arboretum_Scripting" Id="{550876E6-5B3C-4978-9F89-E23C6FF3AB7A}" Name="ProximityTrigger5" Pos="2.0499268,1.9499512,1.5" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" GlobalInSegmentedWorld="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" CreatedThroughPool="0" SceneIndex="0" EntityClass="ProximityTrigger">
+    <Properties bActivateWithUseButton="0" DimX="3" DimY="4" DimZ="3" bEnabled="1" EnterDelay="0" ExitDelay="0" esFactionFilter="" bInVehicleOnly="0" bKillOnTrigger="0" bOnlyAI="0" bOnlyMyPlayer="0" bOnlyOneEntity="0" bOnlyPlayer="1" OnlySelectedEntity="None" bOnlySpecialAI="0" PlaySequence="" ScriptCommand="" bTriggerOnce="0" UsableMessage="">
+     <MultiplayerOptions bNetworked="0" bPerPlayer="0"/>
+    </Properties>
+    <FlowGraph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="2" Class="entity:ProximityTrigger" pos="-246,-77,0" flags="0" GraphEntity="0">
+       <Inputs entityId="0" Disable="0" Enable="0" Enter="0" Leave="0"/>
+      </Node>
+      <Node Id="4" Class="entity:Door" pos="0,-160,0" flags="1" EntityGUID="{BEA9837D-946F-4A7A-99D6-6A8EB86280FB}" EntityGUID_64="4A7A946FBEA9837D">
+       <Inputs entityId="0" Close="0" Lock="0" Open="0" UnLock="0"/>
+      </Node>
+      <Node Id="6" Class="entity:Door" pos="10,20,0" flags="0" EntityGUID="{CBE57B3B-0C75-4796-B3D3-02F10A2F47EB}" EntityGUID_64="47960C75CBE57B3B">
+       <Inputs entityId="0" Close="0" Lock="0" Open="0" UnLock="0"/>
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="4" nodeOut="2" portIn="Open" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="4" nodeOut="2" portIn="Close" portOut="Leave" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="2" portIn="Open" portOut="Enter" enabled="1"/>
+      <Edge nodeIn="6" nodeOut="2" portIn="Close" portOut="Leave" enabled="1"/>
+     </Edges>
+     <GraphTokens/>
+    </FlowGraph>
+   </Object>
+  </Objects>
+ </Prefab>
+ <Prefab Name="Doors.Door_Basic_Sliding_Keypad" Id="{EDCBAB61-7B2D-4836-A06C-26FB802FB6C4}" Library="Doors">
+  <Objects/>
+ </Prefab>
+</PrefabsLibrary>

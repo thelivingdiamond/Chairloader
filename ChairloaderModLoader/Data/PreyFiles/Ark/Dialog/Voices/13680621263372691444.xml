@@ -1,0 +1,102 @@
+
+<Dialog>
+ <Dialog id="13680621263372692427" text="Warning: Dangerous level of explosive gas detected. Please evacuate and avoid all open flames or sparks until repairs can be made." modified="02/11/2016 06:40:29 PM" notes="PA Announcement"/>
+ <Dialog id="13680621263372703345" text="Tank integrity restored. Hydrogen loss reduced by 33 per cent." modified="09/21/2015 09:05:18 PM" notes="PA Announcement"/>
+ <Dialog id="13680621263372703571" text="Tank integrity restored. Hydrogen loss reduced by 66 per cent." modified="09/21/2015 09:05:23 PM" notes="PA Announcement"/>
+ <Dialog id="13680621263372703682" text="Tank integrity restored. Hydrogen loss reduced by 99.79 per cent." modified="09/21/2015 09:05:28 PM" notes="PA Announcement"/>
+ <Dialog id="13680621263372703732" text="Threat of explosive gas minimal. Normal operations may resume pending supervisor approval." modified="09/21/2015 09:05:32 PM" notes="PA Announcement"/>
+ <Dialog id="13680621263375452817" text="Live exam procedure in progress. Local lockdown in effect until procedure terminates." modified="10/20/2015 02:07:13 PM"/>
+ <Dialog id="13680621263375452904" text="Live specimen detected in examination theater." modified="10/20/2015 02:15:06 PM"/>
+ <Dialog id="13680621263375453192" text="Warning. Examination theater compromised. " modified="10/20/2015 02:28:20 PM"/>
+ <Dialog id="13680621263375453236" text="Live exam terminated. Lifting local lockdown. " modified="10/20/2015 02:14:12 PM"/>
+ <Dialog id="13680621263375454141" text="Please activate psychoscopes before opening containment screens." modified="10/20/2015 04:05:58 PM"/>
+ <Dialog id="13680621263375454299" text="Personel active in the containment area must have psychoscopes equiped at all times." modified="10/20/2015 02:32:15 PM"/>
+ <Dialog id="13680621263375459370" text="Psychoscope required beyond this point." modified="10/20/2015 03:56:26 PM"/>
+ <Dialog id="13680621263375468887" text="Warning: plasma shockwave imminent. " modified="10/05/2016 08:32:18 PM"/>
+ <Dialog id="13680621263375469073" text="Warning. Seek shelter. Plasma shockwave in..." modified="10/20/2015 06:38:09 PM"/>
+ <Dialog id="13680621263375469092" text="Five..." modified="10/20/2015 06:38:28 PM"/>
+ <Dialog id="13680621263375469098" text="Four..." modified="10/20/2015 06:38:34 PM"/>
+ <Dialog id="13680621263375469105" text="Three..." modified="10/20/2015 06:38:41 PM"/>
+ <Dialog id="13680621263375469109" text="Two..." modified="10/20/2015 06:38:44 PM"/>
+ <Dialog id="13680621263375469113" text="One..." modified="10/20/2015 06:38:49 PM"/>
+ <Dialog id="13680621263375469796" text="Warning: Magnetosphere deactived." modified="10/20/2015 06:50:12 PM"/>
+ <Dialog id="13680621263375469905" text="Solar radiation exposure at maximum." modified="11/11/2016 02:59:06 PM"/>
+ <Dialog id="13680621263375470044" text="Magnetosphere activated." modified="10/20/2015 06:54:20 PM"/>
+ <Dialog id="13680621263375540016" text="We&apos;d like to remind all TranStar personnel to please be respectful of the privacy of our special guests. This will ensure their stay aboard our facility is as pleasant as possible. Thank you." modified="10/21/2015 02:20:32 PM"/>
+ <Dialog id="13680621263383601730" text="Solar particle event will result in lethal radiation across Talos I in approximately 60 minutes. " modified="01/22/2016 09:54:39 PM"/>
+ <Dialog id="13680621263383601764" text="Seek shelter. Magnetosphere shielding is down. " modified="01/22/2016 09:55:56 PM"/>
+ <Dialog id="13680621263383602377" text="Attention. This is a station-wide emergency." modified="01/22/2016 09:55:19 PM"/>
+ <Dialog id="13680621263383602604" text="Solar particle event will result in lethal radiation across Talos I in approximately 30 minutes. " modified="01/22/2016 09:57:00 PM"/>
+ <Dialog id="13680621263383602644" text="Solar particle event will result in lethal radiation across Talos I in approximately 15 minutes. " modified="01/22/2016 09:57:40 PM"/>
+ <Dialog id="13680621263383602851" text="10 minutes to solar particle event." modified="01/22/2016 10:01:07 PM"/>
+ <Dialog id="13680621263383602881" text="5 minutes to solar particle event." modified="01/22/2016 10:01:37 PM"/>
+ <Dialog id="13680621263383602954" text="Solar particle event is now." modified="01/22/2016 10:02:50 PM"/>
+ <Dialog id="13680621263383602982" text="Seek shelter from ionizing radiation." modified="01/22/2016 10:03:18 PM"/>
+ <Dialog id="16807384143800447820" facefx="0" sync="0" notes="" text="Good morning. The time is now 7:00 AM." modified="02/15/2016 08:25:55 PM"/>
+ <Dialog id="16807384143800447822" facefx="0" sync="0" notes="" text="Standard work hours begin in thirty minutes. We hope you have a productive shift aboard Talos I." modified="02/15/2016 08:26:21 PM"/>
+ <Dialog id="16807384143800447823" facefx="0" sync="0" notes="" text="All personnel should report to their workstations for the day. If you expect to be absent for any reason, please inform your immediate supervisor." modified="02/15/2016 08:26:32 PM"/>
+ <Dialog id="16807384143800447824" facefx="0" sync="0" notes="" text="Breakfast is served in the cafeteria until 9:00 AM." modified="02/15/2016 08:26:38 PM"/>
+ <Dialog id="16807384143800447826" facefx="0" sync="0" notes="" text="Good afternoon, Talos. The time is now 12:00 PM." modified="02/15/2016 08:26:42 PM"/>
+ <Dialog id="16807384143800447827" facefx="0" sync="0" notes="" text="Safety aboard Talos I is everyone&apos;s responsibility. Send all help requests or concerns to security at transtar dot talos." modified="02/15/2016 08:26:48 PM"/>
+ <Dialog id="16807384143800447828" facefx="0" sync="0" notes="" text="Join us in congratulating Dr. Lorenzo Calvino, winner of the employee innovation award this quarter." modified="02/15/2016 08:26:55 PM"/>
+ <Dialog id="16807384143800447829" facefx="0" sync="0" notes="" text="Lunch is served in the cafeteria from 12 to 2 PM. Please refer to the Weekly Upgrade for today&apos;s menu." modified="02/15/2016 08:27:01 PM"/>
+ <Dialog id="16807384143800447830" facefx="0" sync="0" notes="" text="Good evening. The time is now 7:00 PM." modified="02/15/2016 08:27:09 PM"/>
+ <Dialog id="16807384143800447831" facefx="0" sync="0" notes="" text="Standard work hours are now ending. Second shift begins in thirty minutes." modified="02/15/2016 08:27:16 PM"/>
+ <Dialog id="16807384143800447875" facefx="0" sync="0" notes="" text="Dinner is served in the cafeteria from 6 to 8 PM." modified="02/15/2016 08:27:21 PM"/>
+ <Dialog id="16807384143800447876" facefx="0" sync="0" notes="" text="We&apos;d like to remind you that company policy requires you to log any voluntary extension of your work hours with the station counselor. " modified="04/25/2016 10:05:44 PM"/>
+ <Dialog id="16807384143800447877" facefx="0" sync="0" notes="" text="As a reminder, all personnel must complete monthly physicals during their stay aboard Talos I. Dr. De Vries promises to make them as quick and painless as possible." modified="02/15/2016 08:27:31 PM"/>
+ <Dialog id="16807384143800447878" facefx="0" sync="0" notes="" text="This is a reminder that the identity of guests visiting Talos is strictly confidential." modified="02/15/2016 08:27:37 PM"/>
+ <Dialog id="16807384143800447879" facefx="0" sync="0" notes="" text="Mr. Tucker from HR would like to remind you that if your personal data has changed since the previous pay cycle please contact him immediately. Mr. Tucker&apos;s office is on the second floor of the Lobby." modified="02/15/2016 08:27:45 PM"/>
+ <Dialog id="16807384143800447880" facefx="0" sync="0" notes="" text="A word from our security chief, Ms. Elazar. To protect your coworker&apos;s privacy, security terminals are reserved for authorized uses only." modified="10/14/2016 02:34:08 PM"/>
+ <Dialog id="16807384143800448054" facefx="0" sync="0" notes="" text="Registration for the Talos Employees Talent Show is now open. See Galen in the crew quarters front desk to reserve a slot." modified="02/15/2016 08:27:56 PM"/>
+ <Dialog id="16807384143800448055" facefx="0" sync="0" notes="" text="Dr. Hadley Dalton will deliver a supplemental seminar on neural connectomes in the lobby training center later this week. Sounds exciting. Space is limited so reserve your seat by emailing Dr. Dalton." modified="02/15/2016 08:28:01 PM"/>
+ <Dialog id="16807384143800448056" facefx="0" sync="0" notes="" text="Don&apos;t forget that Transtar safety standards call for a weekly inspection of your uniform. Report to the Hardware Labs for a diagnostic." modified="02/15/2016 08:28:08 PM"/>
+ <Dialog id="16807384143800448057" facefx="0" sync="0" notes="" text="Security reminder. Sticky notes--even well hidden ones--are not a secure means of storing your work station password." modified="02/15/2016 08:28:13 PM"/>
+ <Dialog id="16807384143800448058" facefx="0" sync="0" notes="" text="Our resident counselor, Dr.Khol, would like to encourage anyone experiencing symptoms of disturbed sleep, chronic stress, or anxiety to schedule an appointment in the Trauma Center." modified="02/15/2016 08:28:17 PM"/>
+ <Dialog id="16807384143800448060" facefx="0" sync="0" notes="" text="Warning. Tampering with administrative controls on workstations or keypads may result in electric shock. If you&apos;re having trouble accessing a system, please send a help alert to security." modified="02/15/2016 08:28:23 PM"/>
+ <Dialog id="16807384143800448061" facefx="0" sync="0" notes="" text="In the event of a loss of atmosphere, gravity, or other serious emergency, please report to the nearest muster station." modified="02/15/2016 08:28:28 PM"/>
+ <Dialog id="16807384143800448062" facefx="0" sync="0" notes="" text="Attention. Station leadership has issued an alert. All personnel should report to muster stations immediately and await further instructions." modified="02/15/2016 08:28:34 PM"/>
+ <Dialog id="16807384143800448063" facefx="0" sync="0" notes="" text="If you cannot reach a muster station file a help request with security and someone will assist you as soon as possible." modified="02/15/2016 08:28:39 PM"/>
+ <Dialog id="16807384143800448064" facefx="0" sync="0" notes="" text="This is a pre-recorded message." modified="02/15/2016 08:28:49 PM"/>
+ <Dialog id="16807384143800448065" facefx="0" sync="0" notes="" text="Warning: Rain system activating in 5 seconds." modified="02/15/2016 08:28:54 PM"/>
+ <Dialog id="16807384143800448066" facefx="0" sync="0" notes="" text="Attention. Due to a catastrophic breach in Cargo Bay One, all personnel are to avoid the area until repairs have been completed and safety checks confirmed." modified="04/25/2016 10:16:10 PM"/>
+ <Dialog id="16807384143800448067" facefx="0" sync="0" notes="" text="Attention. Incoming shipments from Earth have been temporarily delayed. Personnel are directed to clear up backlog deliveries until notified by a supervisor." modified="04/25/2016 10:17:39 PM"/>
+ <Dialog id="16807384143800448068" facefx="0" sync="0" notes="" text="This is a reminder that all cargo must be scanned and cleared by authorized personnel." modified="04/25/2016 10:19:48 PM"/>
+ <Dialog id="16807384143800448069" facefx="0" sync="0" notes="" text="Warning: Oxygen levels critical. Please seek a breathing apparatus immediately." modified="02/15/2016 08:29:13 PM"/>
+ <Dialog id="16807384143800448070" facefx="0" sync="0" notes="" text="Warning: Air supply system malfunction. Please evacuate until repairs can be made by an Engineer or an Operator." modified="02/15/2016 08:29:21 PM"/>
+ <Dialog id="16807384143800448071" facefx="0" sync="0" notes="" text="Air Supply System Repaired. Stand by for Oxygenation." modified="02/15/2016 08:29:32 PM"/>
+ <Dialog id="16807384143800448072" facefx="0" sync="0" notes="" text="Oxygen restored to twenty percent. You may breathe freely." modified="02/15/2016 08:29:39 PM"/>
+ <Dialog id="16807384143800448073" facefx="0" sync="0" notes="" text="This escape pod is currently experiencing a malfunction. Engineering has been notified. Please use another." modified="02/15/2016 08:29:46 PM"/>
+ <Dialog id="16807384143800448074" facefx="0" sync="0" notes="" text="Warning. Reactor detonation imminent." modified="10/05/2016 08:32:23 PM"/>
+ <Dialog id="13680621263386368166" text="Warning. Gravity shifting to 1G. Please move to a safety platform." modified="02/23/2016 10:09:51 PM"/>
+ <Dialog id="13680621263386368196" text="Gravitational shift in..." modified="02/23/2016 10:10:40 PM"/>
+ <Dialog id="13680621263386368255" text="Gravity is now set to 1G." modified="02/23/2016 10:11:11 PM"/>
+ <Dialog id="13680621263386368381" text="Warning. Microgravity condition imminent. Please stand by." modified="02/23/2016 10:20:16 PM"/>
+ <Dialog id="13680621263386368547" text="Microgravity engaged." modified="02/23/2016 10:16:03 PM"/>
+ <Dialog id="13680621263391723468" facefx="0" sync="0" notes="" text="Good morning, Talos." modified="04/25/2016 09:44:53 PM"/>
+ <Dialog id="13680621263391723957" facefx="0" sync="0" notes="" text="Good afternoon, Talos." modified="04/25/2016 09:53:04 PM"/>
+ <Dialog id="13680621263391724661" facefx="0" sync="0" notes="" text="Good evening, Talos." modified="04/25/2016 10:04:45 PM"/>
+ <Dialog id="13680621263391724731" text="We know the projects aboard Talos I are exciting, but even the brightest minds need adequate rest." modified="04/25/2016 10:05:47 PM"/>
+ <Dialog id="13680621263391724804" text=" If you&apos;re not wearing a blue uniform, you&apos;re probably not authorized." modified="04/25/2016 10:07:00 PM"/>
+ <Dialog id="13680621263391725365" text="Affected personnel will be contacted for temporary reassignment." modified="04/25/2016 10:16:21 PM"/>
+ <Dialog id="13680621263391725579" text=" You are the first line of defense against unsanctioned materials entering Talos I. " modified="04/25/2016 10:19:55 PM"/>
+ <Dialog id="13680621263391725583" text="Report shipping anomalies immediately." modified="04/25/2016 10:19:58 PM"/>
+ <Dialog id="13680621263391728534" text="Please evacuate Talos I." modified="04/25/2016 11:09:10 PM"/>
+ <Dialog id="13680621263391728841" facefx="0" sync="0" notes="" text="Warning. Reactor detonation in T minus 20 minutes." modified="04/25/2016 11:14:47 PM"/>
+ <Dialog id="13680621263391728876" facefx="0" sync="0" notes="" text="Warning. Reactor detonation in T minus 15 minutes." modified="04/25/2016 11:15:00 PM"/>
+ <Dialog id="13680621263391728892" facefx="0" sync="0" notes="" text="Warning. Reactor detonation in T minus 10 minutes." modified="04/25/2016 11:15:17 PM"/>
+ <Dialog id="13680621263391728903" facefx="0" sync="0" notes="" text="Warning. Reactor detonation in T minus 5 minutes." modified="04/25/2016 11:15:27 PM"/>
+ <Dialog id="13680621263391728927" facefx="0" sync="0" notes="" text="Warning. Reactor detonation in T minus 25 minutes." modified="04/25/2016 11:15:53 PM"/>
+ <Dialog id="13680621263391728938" facefx="0" sync="0" notes="" text="Warning. Reactor detonation in T minus 30 minutes." modified="04/25/2016 11:16:00 PM"/>
+ <Dialog id="13680621263391730361" facefx="0" sync="0" notes="Elevator" text="Welcome, Morgan Yu." modified="04/25/2016 11:39:49 PM"/>
+ <Dialog id="13680621263391730379" facefx="0" sync="0" notes="Alt take w/ automated voice hitching on the time lookup" text="You have a...9 A.M. appointment in the testing facility." modified="12/22/2016 09:59:16 PM"/>
+ <Dialog id="13680621263391730394" facefx="0" sync="0" notes="" text="Please confirm." modified="04/25/2016 11:40:12 PM"/>
+ <Dialog id="13680621263392002680" facefx="0" sync="0" notes="" text="1963: A top secret Cold War negotiation culminates with Americans and Soviets working together on a research facility named Kletka. Kletka, Russian for Cage, produces the skeleton and core emergency systems of what will one day become Talos I." modified="11/18/2016 09:11:22 PM"/>
+ <Dialog id="13680621263392002696" facefx="0" sync="0" notes="DNR" text="Kletka, Russian for Cage, produces the skeleton and core emergency systems of what will one day become Talos I." modified="04/29/2016 03:33:49 AM"/>
+ <Dialog id="13680621263392002709" facefx="0" sync="0" notes="" text="1964: After the attemped assassination of Kennedy&apos;s and Krushchev&apos;s departure, the US pays for the rights to use Kletka as a testing facility. This period, known as Project Axiom, leads to many advancements in next generation materials and bio-science fundamental to neural modification." modified="11/18/2016 09:11:41 PM"/>
+ <Dialog id="13680621263392002717" facefx="0" sync="0" notes="DNR" text="This period, known as Project Axiom, leads to many advancements in next generation materials and bio-science fundamental to neural modification." modified="04/29/2016 03:18:55 AM"/>
+ <Dialog id="13680621263392002729" facefx="0" sync="0" notes="" text="1980 - 1994: Geopolitical developments result in a temporary hold on Project Axiom. After the unfortunate Pobeg Incident, in which two research scientists lose their lives, the Kletka facility is decommissioned and cleaned." modified="11/18/2016 09:11:59 PM"/>
+ <Dialog id="13680621263392002746" facefx="0" sync="0" notes="DNR" text="After the unfortunate Pobeg Incident, in which two research scientists lose their lives, the Kletka facility is decommissioned and cleaned." modified="04/29/2016 03:19:25 AM"/>
+ <Dialog id="13680621263392002759" facefx="0" sync="0" notes="" text="2025: The TranStar board of directors is established.  TranStar purchases and privatizes the Kletka facility with a focus on safety and state of the art upgrades." modified="12/22/2016 10:07:13 PM"/>
+ <Dialog id="13680621263392002768" facefx="0" sync="0" notes="" text="2030: Talos I becomes fully operational, representing a monument of private space industry.  The first Neuromod is released, allowing for dramatic enhancement to the human mind and body." modified="11/18/2016 09:12:31 PM"/>
+</Dialog>

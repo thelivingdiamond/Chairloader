@@ -1,0 +1,25 @@
+
+<Objectives>
+ <Objective id="4349723564877481579" title="@loc_15373294129891630207" optional="false">
+  <Descriptions>
+   <Desc id="4349723564877481580" displayName="FirstDay1" text="@loc_15373294129891630208"/>
+   <Desc id="4349723564877482129" displayName="BeginTraining" text="@loc_15373294129891630209"/>
+   <Desc id="12889009725000632272" displayName="Completed" text="@loc_15373294129891630210"/>
+  </Descriptions>
+  <Tasks>
+   <Task id="4349723564878009169" displayName="GetTranScribe" text="@loc_15373294129891630212" markerLabel="@loc_15373294129891630211" optional="false" Location="12889009724983807463"/>
+   <Task id="4349723564877482686" displayName="Uniform1" text="@loc_15373294129891630214" optional="false" markerLabel="@loc_15373294129891630213" Location="12889009724983807463"/>
+   <Task id="4349723564877482688" displayName="RoofTop1" text="@loc_15373294129891630216" optional="false" markerLabel="@loc_15373294129891630215" Location="12889009724983807463"/>
+   <Task id="4349723564877482690" displayName="Helicopter" text="@loc_15373294129891630218" optional="false" markerLabel="@loc_15373294129891630217" Location="12889009724983807463"/>
+   <Task id="4349723564877482691" displayName="Flight" text="@loc_15373294129891630220" optional="false" markerLabel="@loc_15373294129891630219" Location="12889009724983807463"/>
+   <Task id="4349723564877482692" displayName="Elevator" text="@loc_15373294129891630222" optional="false" markerLabel="@loc_15373294129891630221" Location="844024417275036975"/>
+   <Task id="4349723564877482693" displayName="Briefing" text="@loc_15373294129891630224" optional="false" markerLabel="@loc_15373294129891630223" Location="844024417275036975"/>
+   <Task id="4349723564877482694" displayName="CompleteTests" text="@loc_15373294129891630226" optional="false" markerLabel="@loc_15373294129891630225" Location="844024417275036975"/>
+   <Task id="4349723564877482695" displayName="TrainingKineticBlast" text="@loc_15373294129891630228" optional="false" markerLabel="@loc_15373294129891630227" Location="844024417275036975"/>
+   <Task id="4349723564878009335" displayName="TrainingHide" text="@loc_15373294129891630230" markerLabel="@loc_15373294129891630229" optional="false" Location="844024417275036975"/>
+   <Task id="4349723564877482697" displayName="FlipTheSwitch" text="@loc_15373294129891630232" optional="false" markerLabel="@loc_15373294129891630231" Location="844024417275036975"/>
+   <Task id="12889009725000632720" displayName="TakeTheTest" optional="false" text="@loc_15373294129891630233" Location="844024417275036975"/>
+  </Tasks>
+  <Clues/>
+ </Objective>
+</Objectives>

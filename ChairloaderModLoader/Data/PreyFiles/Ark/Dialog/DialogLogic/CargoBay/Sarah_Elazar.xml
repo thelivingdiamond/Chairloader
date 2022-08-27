@@ -1,0 +1,1339 @@
+
+<ResponseRules description="Sarah Elazar provides all the challenges for progressing through the Cargo Bay.">
+ <WritebackKeys>
+  <WritebackKey id="4349723564908841234" name="GreetedMorgan"/>
+  <WritebackKey id="4349723564913611452" name="PlayerPlacedTurrets"/>
+ </WritebackKeys>
+ <ResponseRule id="4349723564913593756" name="Sarah: Waiting on Turrets" cooldown="30" response="4349723564913606233" conversation="1" oneshot="0" description="Sarah has tasked Morgan with making turrets to defend her men from aliens that will surely flood the compartment and attack them the instant the door is opened. Morgan has gone back to her before completing the job and she reaffirms that the turret task needs to be completed before anything else.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915764486" keyType="objective" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564958703933" name="Sarah: Waiting on Turrets (have plan and power)" cooldown="30" response="4349723564958704088" conversation="1" oneshot="0" description="Sarah has tasked Morgan with making turrets to defend her men from aliens that will surely flood the compartment and attack them the instant the door is opened. Morgan has gone back to her before completing the job and she reaffirms that the turret task needs to be completed before anything else.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915764486" keyType="objective" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="1487819434" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="515039660" keyType="gameToken" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930623215" name="Sarah: Counting Turrets 1" cooldown="" response="4349723564930623327" conversation="1" oneshot="1" description="Sarah has tasked Morgan with making turrets to defend her men from aliens that will surely flood the compartment and attack them the instant the door is opened. Morgan has gone back to her before completing the job and she reaffirms that the turret task needs to be completed before anything else.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="1" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930623298" name="Sarah: Counting Turrets 2" cooldown="" response="4349723564930623335" conversation="1" oneshot="1" description="Sarah has tasked Morgan with making turrets to defend her men from aliens that will surely flood the compartment and attack them the instant the door is opened. Morgan has gone back to her before completing the job and she reaffirms that the turret task needs to be completed before anything else.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="2" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564913608667" name="Sarah: Admonishes Turret Waster" cooldown="" conversation="1" response="4349723564913608675" description="Sarah tasked Morgan with making turrets to help defend her and her men from aliens int he Cargo Bay. He followed through and made them and placed them in defensive positions, but then inexplicably took them away again. She refuses to open the door and let the battle start until he puts them back.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1469750507" keyType="gameToken" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913606233">
+  <Response dialog="4349723564913606232" id="4349723564913606234" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930623180" id="4349723564930623181" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913606341" name="Sarah: Gives door code" cooldown="" conversation="1" response="4349723564913608529" oneshot="1" description="Defensive turrets are set and ready. Sarah has some trepidation about opening the door that is holding back a swam of aliens, but part of her wants to slaughter aliens as revenge for what happened to the crew. Morgan has done his part in providing her with tuerrets to aid in the battle." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564958537919" keyType="conversation"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+  </Criteria>
+  <Writeback>
+   <Fact id="4349723564913611452" value="1" time="0"/>
+  </Writeback>
+ </ResponseRule>
+ <ResponseRule id="4349723564958537919" name="Sarah: Gives door code (EARLY)" cooldown="" conversation="1" response="4349723564958537999" oneshot="1" description="This only plays if the player sets up the turrets early, before ever talking to Sarah. Speedruns and second playthroughs." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564878623606" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913608529">
+  <Response dialog="4349723564913608528" id="4349723564913608530" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564913608675">
+  <Response dialog="4349723564913608674" id="4349723564913608676" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930622691" id="4349723564930622692" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0"/>
+  <Response dialog="4349723564930622702" id="4349723564930622703" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913611071" name="Sarah: Invites Other Survivors" cooldown="" conversation="1" response="4349723564913611133" description="Sarah talks to Morgan before he proceeds deeper intot he alien infested station. She says that they can hold out now with the help from these turrets that Morgan provided, and they offer refuge to any survivors that he might encounter." oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproach" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913611133">
+  <Response dialog="4349723564913611132" id="4349723564913611134" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423989"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913611217" name="Sarah: Likes Morgan" cooldown="" conversation="1" response="4349723564913611242" description="Sarah has not trusted Morgan for some time, suspecting that he was complicit in shady dealings that could be putting people in grave danger, or worse. But now he has arrived and completed extroidinary accomplishmentsto keep her and her officers alive. Her opinion if him is changing. ">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913611242">
+  <Response dialog="4349723564913611241" id="4349723564913611243" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423989"/>
+  <Response dialog="4349723564930555653" id="4349723564930555654" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+  <Response dialog="4349723564930555669" id="4349723564930555670" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564913611735" name="Sarah: Survived Dahl 02 Trap" cooldown="" conversation="1" response="4349723564913611848" description="A sabotuer named Dahl tried to barricade Sarah and her men into Cargo Bay and cut off the oxygen and murder them. Morgan (one way or another) put a stop to Dahl&apos;s plan and restored airflow to the Cargo Bay. He has rescued Sarah and her men a second time." oneshot="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="844024417287653148" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239386284988"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564913611848">
+  <Response dialog="4349723564913611847" id="4349723564913611849" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318076"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564917924635">
+  <Response dialog="4349723564917924634" id="4349723564917924636" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263384014886">
+  <Response dialog="13680621263384014885" id="13680621263384014887" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787"/>
+  <Response dialog="4349723564930629252" id="4349723564930629253" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564930629276" id="4349723564930629277" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564930629297" id="4349723564930629298" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318026"/>
+  <Response dialog="4349723564930629311" id="4349723564930629312" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346424008"/>
+  <Response dialog="4349723564930629321" id="4349723564930629322" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930629331" id="4349723564930629332" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318026"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263384097250">
+  <Response dialog="13680621263384097249" id="13680621263384097251" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384097271" name="" cooldown="" response="13680621263384097272">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384097251" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384097272">
+  <Response dialog="13680621263384097270" id="13680621263384097273" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384097812" name="" cooldown="" response="13680621263384097813">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384097273" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384097813">
+  <Response dialog="13680621263384097811" id="13680621263384097814" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384097884" name="" cooldown="" response="13680621263384097885">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263365953228" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384097814" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564907034854"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384097885">
+  <Response dialog="13680621263384542939" id="13680621263384097886" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="4349723564897456793" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384098471" name="" cooldown="" response="13680621263384098472">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384097886" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384098472">
+  <Response dialog="13680621263384098470" id="13680621263384098473" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="4349723564907034688" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384098496" name="" cooldown="" response="13680621263384098497">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384098473" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384098497">
+  <Response dialog="13680621263384098495" id="13680621263384098498" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="4349723564907034688" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384098522" name="" cooldown="" response="13680621263384098523">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384098498" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384098523">
+  <Response dialog="13680621263384098521" id="13680621263384098524" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="4349723564907034688" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384098570" name="" cooldown="" response="13680621263384098571">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384098524" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384098571">
+  <Response dialog="13680621263384098569" id="13680621263384098572" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="2" targetId="4349723564907034688" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384098576" name="" cooldown="" response="13680621263384098577">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263384098572" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263384098577">
+  <Response dialog="13680621263384098575" id="13680621263384098578" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetType="2" targetId="4349723564907034688" speakerTrackMethod="1" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930555579" name="" cooldown="" response="4349723564930555580">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913611849" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930555580">
+  <Response dialog="4349723564930555578" id="4349723564930555581" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930555636" name="" cooldown="" response="4349723564930555637">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564913611243" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930555637">
+  <Response dialog="4349723564930555635" id="4349723564930555638" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423989"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930555682" name="" cooldown="" response="4349723564930555683">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930555670" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930555683">
+  <Response dialog="4349723564930555681" id="4349723564930555684" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930618854" name="Sarah: Player Attacks Guards" cooldown="" response="4349723564930618920" conversation="1" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAttack" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="13680621263410569670" value="1" keyType="metatag"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930618920">
+  <Response dialog="4349723564930618919" id="4349723564930618921" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930618928" id="4349723564930618929" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930618944" id="4349723564930618945" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930619108" id="4349723564930619109" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930619122" id="4349723564930619123" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930618946" name="(Player Male)" cooldown="" response="4349723564930619074">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930618945" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930618947" name="(Player Female)" cooldown="" response="4349723564930619082">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930618945" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="211598630" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619074">
+  <Response dialog="4349723564930619073" id="4349723564930619075" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930619082">
+  <Response dialog="4349723564930619081" id="4349723564930619083" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619197" name="Sarah: Loiter, Ready for Combat" cooldown="" response="4349723564930619262" conversation="1" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915765026" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1730830942" keyType="gameToken" value="3" type="default"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619262">
+  <Response dialog="4349723564930619261" id="4349723564930619263" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930619270" id="4349723564930619271" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930619284" id="4349723564930619285" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930619296" id="4349723564930619297" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619317" name="Sarah: OnUsed, Mourns Alfred" cooldown="" response="4349723564930619485" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1413129895" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619485">
+  <Response dialog="4349723564930619484" id="4349723564930619486" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="4349723564907034758" targetType="2" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619496" name="Sarah: OnUsed, Mourns Austin" cooldown="" response="4349723564930619515" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="651297438" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619515">
+  <Response dialog="4349723564930619514" id="4349723564930619516" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="4349723564907034688" targetType="2" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619517" name="Sarah: OnUsed, Mourns Kevin" cooldown="" response="4349723564930619541" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1074463772" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619541">
+  <Response dialog="4349723564930619540" id="4349723564930619542" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318046" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619548" name="Sarah: OnUsed, Mourns Sam" cooldown="" response="4349723564930619577" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="749395434" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619577">
+  <Response dialog="4349723564930619576" id="4349723564930619578" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619629" name="Sarah: OnUsed, Mourns Tamiko" cooldown="" response="4349723564930619654" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="773972724" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619654">
+  <Response dialog="4349723564930619653" id="4349723564930619655" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318046" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619658" name="Sarah: OnUsed, Mourns Maddox" cooldown="" response="4349723564930619683" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="164725461" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619683">
+  <Response dialog="4349723564930619682" id="4349723564930619684" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318026" targetId="4349723564907034797" targetType="2" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619721" name="Sarah: Player Futzes with door" cooldown="" response="4349723564930619744" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930619744">
+  <Response dialog="4349723564930619743" id="4349723564930619745" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930619971" name="Sarah: OnUsed, Elevator Power Restored" cooldown="30" response="4349723564930620050" conversation="1" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1105212212" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930621086" name="Sarah: OnUsed, Aliens dead" cooldown="" response="4349723564930622316" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620050">
+  <Response dialog="4349723564930620049" id="4349723564930620051" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423989"/>
+  <Response dialog="4349723564930620080" id="4349723564930620081" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+  <Response dialog="4349723564930620091" id="4349723564930620092" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620061" name="" cooldown="" response="4349723564930620062">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930620051" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620062">
+  <Response dialog="4349723564930620060" id="4349723564930620063" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620104" name="Sarah: Player Uses Alien Power" cooldown="" response="4349723564930620121" conversation="1" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerUsePower" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="3" passIfMissing="false" id="5310807215636213148" type="default" keyType="default" value="2"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620121">
+  <Response dialog="4349723564930620120" id="4349723564930620122" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+  <Response dialog="4349723564930620133" id="4349723564930620134" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620299" name="Sarah: Loiter, Player Opened Door Early" cooldown="" response="4349723564930620408" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="436835719" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620408">
+  <Response dialog="4349723564930620407" id="4349723564930620409" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930620417" id="4349723564930620418" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930620426" id="4349723564930620427" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620458" name="Sarah: No Hope" cooldown="" response="4349723564930620478" conversation="1" oneshot="1" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620478">
+  <Response dialog="4349723564930620477" id="4349723564930620479" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620512" name="(Hates Player)" cooldown="" response="4349723564930620573">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930620479" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930620514" name="(Likes PLayer)" cooldown="" response="4349723564930620583">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930620479" fromResponse="1" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620573">
+  <Response dialog="4349723564930620572" id="4349723564930620574" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930620583">
+  <Response dialog="4349723564930620582" id="4349723564930620584" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620615" name="Sarah: Apex Arrived" cooldown="" response="4349723564930620635" conversation="1" oneshot="0" description="">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="659909599" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="5" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="1713490239386284988"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620635">
+  <Response dialog="4349723564930620634" id="4349723564930620636" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564930620650" id="4349723564930620651" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564930620661" id="4349723564930620662" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748318076"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930620672" name="" cooldown="" response="4349723564930620673">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930620662" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930620673">
+  <Response dialog="4349723564930620671" id="4349723564930620674" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263384014864" name="Sarah: Loiter Lines" cooldown="" oneshot="1" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="13680621263384014886">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930622316">
+  <Response dialog="4349723564930622315" id="4349723564930622317" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="15659330456346423989"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930622357" name="(Rescued Mika)" cooldown="" response="4349723564930622558">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930622317" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="11824555372643594633" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930622359" name="(Rescued Igwe)" cooldown="" response="4349723564930622579">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930622317" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564883707540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930622360" name="(Rescued Rani)" cooldown="" response="4349723564930622598">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930622317" fromResponse="1" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="14667999412548025540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930622558">
+  <Response dialog="4349723564930622557" id="4349723564930622559" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930622579">
+  <Response dialog="4349723564930622578" id="4349723564930622580" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930622598">
+  <Response dialog="4349723564930622597" id="4349723564930622599" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930623327">
+  <Response dialog="4349723564930623326" id="4349723564930623328" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930623335">
+  <Response dialog="4349723564930623334" id="4349723564930623336" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930623425" name="Sarah: Loiter Lines (Waiting for Turrets)" cooldown="30" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930623556">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915764486" keyType="objective" value="1"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930623446" name="Sarah: Loiter Lines (Battle Over)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930623599">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930623459" name="Sarah: Loiter Lines (Igwe Rescued)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930623664">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564883707540" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930623556">
+  <Response dialog="4349723564930623555" id="4349723564930623557" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346424008"/>
+  <Response dialog="4349723564930623563" id="4349723564930623564" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930623572" id="4349723564930623573" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930623582" id="4349723564930623583" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318026"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930623599">
+  <Response dialog="4349723564930623598" id="4349723564930623600" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930623611" id="4349723564930623612" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787"/>
+  <Response dialog="4349723564930623621" id="4349723564930623622" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346424008"/>
+  <Response dialog="4349723564930623638" id="4349723564930623639" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318026"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930623664">
+  <Response dialog="4349723564930623663" id="4349723564930623665" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564930623675" id="4349723564930623676" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748318076"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930627719" name="Sarah: Loiter Lines (No Mika Yet)" cooldown="" oneshot="1" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930627827">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="377478512" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="11824555372643593857" keyType="task"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930627827">
+  <Response dialog="4349723564930627826" id="4349723564930627828" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="3152439162748317984"/>
+  <Response dialog="4349723564930627834" id="4349723564930627835" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930627847" id="4349723564930627848" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930627904" name="Sarah: Loiter Lines (Mika Saved - No Elevator)" cooldown="" oneshot="1" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930627960">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="377478512" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="1105212212" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1008825921" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930627960">
+  <Response dialog="4349723564930627959" id="4349723564930627961" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0" emotion="15659330456346423989"/>
+  <Response dialog="4349723564930627969" id="4349723564930627970" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930627980" name="" cooldown="" response="4349723564930627981">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930627970" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930627981">
+  <Response dialog="4349723564930627979" id="4349723564930627982" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930628005" name="Sarah: Loiter Lines (Mika Saved - Elevator On)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930628041">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="377478512" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="1105212212" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1008825921" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930628041">
+  <Response dialog="4349723564930627959" id="4349723564930628042" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930628065" id="4349723564930628066" cooldown="0" weight="1" oneshot="true" completeConversation="0" delay="0" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930628103" name="" cooldown="" response="4349723564930628104">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930628066" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930628104">
+  <Response dialog="4349723564930628102" id="4349723564930628105" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" emotion="3152439162748318076" targetId="140720308486144" targetType="0" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930628111" name="" cooldown="" response="4349723564930628112">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930628105" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930628112">
+  <Response dialog="4349723564930628110" id="4349723564930628113" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="1" emotion="3152439162748318026"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930628803" name="Sarah: Loiter Lines (Dahl Arrived)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930628877">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1990946021" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930628877">
+  <Response dialog="4349723564930628876" id="4349723564930628878" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076"/>
+  <Response dialog="4349723564930628894" id="4349723564930628895" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930628931" id="4349723564930628932" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318066"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930628944" name="Sarah: Loiter Lines (Dahl Defeated)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930628976">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="844024417287653148" keyType="task" value="2"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930628976">
+  <Response dialog="4349723564930628975" id="4349723564930628977" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930628986" id="4349723564930628987" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977"/>
+  <Response dialog="4349723564930628997" id="4349723564930628998" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423989" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930629009" name="Sarah: Loiter Lines (Dahl Dead)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930629063">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="417275679" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930629063">
+  <Response dialog="4349723564930629062" id="4349723564930629064" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318060" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930629073" id="4349723564930629074" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318076" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930629086" id="4349723564930629087" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930629095" id="4349723564930629096" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930629100" name="Sarah: Loiter Lines (Dahl Brainwashed)" cooldown="" oneshot="0" conversation="1" description="Batch of lines for when the player is loitering around or clicking on her. Flavor background stuff about the sation and herself, what happened. Variations for different phases: while hunting for turrets, after alien battle, after rescue from Dahl. " response="4349723564930629158">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerLoiter" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="361175835" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930629158">
+  <Response dialog="4349723564930629157" id="4349723564930629159" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748317787" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930629169" id="4349723564930629170" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="3152439162748318066" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+  <Response dialog="4349723564930629179" id="4349723564930629180" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="3" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630316" name="" cooldown="" response="4349723564930630317">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564917924636" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630317">
+  <Response dialog="4349723564930630315" id="4349723564930630318" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318066"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630325" name="" cooldown="" response="4349723564930630326">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630318" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630326">
+  <Response dialog="4349723564930630324" id="4349723564930630327" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318076"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630345" name="" cooldown="" response="4349723564930630346">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630327" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630346">
+  <Response dialog="4349723564930630344" id="4349723564930630347" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318026"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630355" name="" cooldown="" response="4349723564930630356">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630347" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630356">
+  <Response dialog="4349723564930630354" id="4349723564930630357" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630441" name="" cooldown="" response="4349723564930630442">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630357" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630442">
+  <Response dialog="4349723564930630440" id="4349723564930630443" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630454" name="" cooldown="" response="4349723564930630455">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630443" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630455">
+  <Response dialog="4349723564930630453" id="4349723564930630456" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630464" name="" cooldown="" response="4349723564930630465">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630456" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630465">
+  <Response dialog="4349723564930630463" id="4349723564930630466" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930630474" name="" cooldown="" response="4349723564930630475">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630466" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930630475">
+  <Response dialog="4349723564930630473" id="4349723564930630476" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930631738" name="Sarah: Turret Reminder - No Fabricator or Schematic" cooldown="" response="4349723564930632292" oneshot="1" conversation="1" description="The sealed door is all that keeps out a flood of aliens that killed everyone else on the engineering level. Morgan needs to go through, but Sarah will not give him the code unless he provides defensive turrets that she cannot find or build herself." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onConversationTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1487819434" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="515039660" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="true" id="4349723564908841234" type="default" keyType="writeback" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564917924503" name="Sarah: Greets Player - No Fabricator No Schematic" cooldown="" oneshot="1" conversation="1" description="First greeting of Morgan Karl when he/she arrives in Cargo Bay&quot; This is a simple hello as Morgan approaches the first time. Probably a little icy. She is not a huge fan of the Yu family. " response="4349723564917924635" priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1487819434" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="515039660" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="84866046" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930631746" name="Sarah: Greets Player - Yes Fabricator Yes Schematic" cooldown="" response="4349723564930632648" oneshot="1" conversation="1" description="Morgan has been a badass and done all the stuff he needed to to make turrets, without being told. This impresses Sarah. The sealed door is all that keeps out a flood of aliens that killed everyone else on the engineering level. Morgan needs to go through, but Sarah will not give him the code unless he provides defensive turrets that she cannot find or build herself." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1487819434" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="515039660" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="84866046" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930631741" name="Sarah: Greets Player - No Fabricator Yes Schematic" cooldown="" response="4349723564930633790" oneshot="1" conversation="1" description="Variant: Morgan already founs the Turret schematic, now all he needs is fabricator power. The sealed door is all that keeps out a flood of aliens that killed everyone else on the engineering level. Morgan needs to go through, but Sarah will not give him the code unless he provides defensive turrets that she cannot find or build herself." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1487819434" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="515039660" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="84866046" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="4349723564930631743" name="Sarah: Greets Player - Yes Fabricator No Schematic" cooldown="" response="4349723564930633977" oneshot="1" conversation="1" description="Variant: Morgan has restored power and the fabricator is active. Now he must fetch the schematic to make turrets. The sealed door is all that keeps out a flood of aliens that killed everyone else on the engineering level. Morgan needs to go through, but Sarah will not give him the code unless he provides defensive turrets that she cannot find or build herself." priority="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onPlayerApproachNear" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1487819434" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="515039660" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="84866046" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183301" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="845010755" keyType="gameToken" value="0"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930632292">
+  <Response dialog="4349723564913606232" id="4349723564930632293" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" emotion="15659330456346423977" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930632375" name="" cooldown="" response="4349723564930632376">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930632293" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930632376">
+  <Response dialog="4349723564909119270" id="4349723564930632377" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930632405" name="" cooldown="" response="4349723564930632406">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930632377" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930632406">
+  <Response dialog="4349723564909119342" id="4349723564930632407" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930632426" name="" cooldown="" response="4349723564930632427">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930632407" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930632427">
+  <Response dialog="4349723564912141364" id="4349723564930632428" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930632648">
+  <Response dialog="4349723564909117406" id="4349723564930632649" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633389" name="" cooldown="" response="4349723564930633390">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930632649" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633390">
+  <Response dialog="4349723564909119255" id="4349723564930633391" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633453" name="" cooldown="" response="4349723564930633454">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633391" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633454">
+  <Response dialog="4349723564912141212" id="4349723564930633455" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633635" name="" cooldown="" response="4349723564930633636">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633455" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633636">
+  <Response dialog="4349723564930631519" id="4349723564930633637" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633662" name="" cooldown="" response="4349723564930633663">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633637" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633663">
+  <Response dialog="4349723564930633661" id="4349723564930633664" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318060"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633672" name="" cooldown="" response="4349723564930633673">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633664" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633673">
+  <Response dialog="4349723564930633671" id="4349723564930633674" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633711" name="" cooldown="" response="4349723564930633712">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633674" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633712">
+  <Response dialog="4349723564930631568" id="4349723564930633713" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930633790">
+  <Response dialog="4349723564909117406" id="4349723564930633791" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633808" name="" cooldown="" response="4349723564930633809">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633791" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633809">
+  <Response dialog="4349723564909119255" id="4349723564930633810" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633832" name="" cooldown="" response="4349723564930633833">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633810" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633833">
+  <Response dialog="4349723564912141212" id="4349723564930633834" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633862" name="" cooldown="" response="4349723564930633863">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633834" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633863">
+  <Response dialog="4349723564930631519" id="4349723564930633864" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346424008"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633906" name="" cooldown="" response="4349723564930633907">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633864" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633907">
+  <Response dialog="4349723564930633905" id="4349723564930633908" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633932" name="" cooldown="" response="4349723564930633933">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633908" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633933">
+  <Response dialog="4349723564930633931" id="4349723564930633934" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930633944" name="" cooldown="" response="4349723564930633945">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633934" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930633945">
+  <Response dialog="4349723564930633943" id="4349723564930633946" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317984"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564930633977">
+  <Response dialog="4349723564909117406" id="4349723564930633978" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930634013" name="" cooldown="" response="4349723564930634014">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633978" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930634014">
+  <Response dialog="4349723564909119255" id="4349723564930634015" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930634034" name="" cooldown="" response="4349723564930634035">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930634015" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930634035">
+  <Response dialog="4349723564912141212" id="4349723564930634036" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930634077" name="" cooldown="" response="4349723564930634078">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930634036" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930634078">
+  <Response dialog="4349723564930633661" id="4349723564930634079" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318076"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930634104" name="" cooldown="" response="4349723564930634105">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930634079" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930634105">
+  <Response dialog="4349723564930633671" id="4349723564930634106" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930634115" name="" cooldown="" response="4349723564930634116">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930634106" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930634116">
+  <Response dialog="4349723564930634114" id="4349723564930634117" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564930634139" name="" cooldown="" response="4349723564930634140">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930634117" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564930634140">
+  <Response dialog="4349723564930634138" id="4349723564930634141" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317984"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564941761192" name="Sarah: Medical Operator - Already Know" cooldown="" response="4349723564941761273" conversation="1" oneshot="1" description="Sarah responding to Medical Operator use (likely based on health/Operator trigger).">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915764486" keyType="objective" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1199690352" keyType="gameToken" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263410573281" name="Sarah: Medical Operator" cooldown="" response="13680621263410573294" conversation="1" oneshot="1" description="Sarah responding to Medical Operator use (likely based on health/Operator trigger).">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onUsed" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+   <Criterion comparison="0" passIfMissing="false" id="1965443384" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="4349723564915764486" keyType="objective" value="1"/>
+   <Criterion comparison="0" passIfMissing="false" id="10739735956111935346" type="guid" keyType="default" value="15659330456296333985"/>
+   <Criterion comparison="0" passIfMissing="false" id="10850392949532183294" type="default" keyType="default" value=""/>
+   <Criterion comparison="0" passIfMissing="false" id="5310807215636213157" type="default" keyType="default" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="1199690352" keyType="gameToken" value="0"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456340490455" type="default" keyType="default" value=""/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseRule id="13680621263384097071" name="Sarah: PA About Elevators" cooldown="" description="This is a PA to play before player reaches Cargo Bay. Sara has patched into the PA system. " response="13680621263384097250" priority="0">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564941761273">
+  <Response dialog="4349723564942128414" id="4349723564942128415" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0" emotion="3152439162748317787"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263399217304" name="Sarah: PA About Cargo Bay Explosion" cooldown="" description="Sarah announces on PA there&apos;s been an explosion in Cargo Bay. Intended to let the player know the Cargo Bay is now open. " response="13680621263399217383" priority="0" conversation="1">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="onAnnouncementTrigger" fromResponse="0" type="default"/>
+   <Criterion comparison="0" passIfMissing="false" id="15659330456318451477" type="guid" keyType="default" value="4349723564897456793"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263399217383">
+  <Response dialog="13680621263399217382" id="13680621263399217384" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400106282" name="" cooldown="" response="13680621263400106283">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263399217384" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400106283">
+  <Response dialog="13680621263400106281" id="13680621263400106284" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400106298" name="" cooldown="" response="13680621263400106299">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400106284" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400106299">
+  <Response dialog="13680621263400106297" id="13680621263400106300" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400106338" name="" cooldown="" response="13680621263400106339">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400106300" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400106339">
+  <Response dialog="13680621263400106337" id="13680621263400106340" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400106427" name="" cooldown="" response="13680621263400106428">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="13680621263400106340" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400106428">
+  <Response dialog="13680621263400106426" id="13680621263400106429" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400162882" name="" cooldown="" response="13680621263400162883">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930630476" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400162883">
+  <Response dialog="13680621263400162798" id="13680621263400162884" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400163116" name="" cooldown="" response="13680621263400163117">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930633946" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400163117">
+  <Response dialog="13680621263400162798" id="13680621263400163118" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseRule id="13680621263400163144" name="" cooldown="" response="13680621263400163145">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564930634141" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="13680621263400163145">
+  <Response dialog="13680621263400162798" id="13680621263400163146" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="15659330456346423977"/>
+ </ResponseSet>
+ <ResponseSet id="13680621263410573294">
+  <Response dialog="4349723564942128444" id="13680621263410573295" cooldown="0" weight="1" oneshot="true" completeConversation="1" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="2" targetTrackMethod="0"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564958537999">
+  <Response dialog="4349723564930633671" id="4349723564958538000" cooldown="0" weight="1" oneshot="0" completeConversation="0" delay="0" cutoff="0" targetId="0" targetType="1" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748317984"/>
+ </ResponseSet>
+ <ResponseRule id="4349723564958538048" name="" cooldown="" response="4349723564958538049" description="This only plays if the player sets up the turrets early, before ever talking to Sarah. Speedruns and second playthroughs.">
+  <Criteria>
+   <Criterion id="15659330456318451386" value="13680621263361472472" comparison="0" type="guid"/>
+   <Criterion id="15659330456318451410" comparison="0" value="4349723564958538000" fromResponse="1" type="guid"/>
+   <Criterion id="15659330456318451477" value="4349723564897456793" comparison="0" type="guid"/>
+  </Criteria>
+ </ResponseRule>
+ <ResponseSet id="4349723564958538049">
+  <Response dialog="4349723564913608528" id="4349723564958538050" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0" targetType="1" targetId="0" speakerTrackMethod="1" targetTrackMethod="0" emotion="3152439162748318087"/>
+ </ResponseSet>
+ <ResponseSet id="4349723564958704088">
+  <Response dialog="4349723564909119270" id="4349723564958704089" cooldown="0" weight="1" oneshot="0" completeConversation="1" delay="0" cutoff="0"/>
+ </ResponseSet>
+</ResponseRules>

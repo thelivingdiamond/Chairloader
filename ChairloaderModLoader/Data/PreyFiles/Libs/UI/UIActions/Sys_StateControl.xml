@@ -1,0 +1,355 @@
+
+<Graph Description="" Group="Menus" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="3" Name="Display_MainMenu_on_SystemStart,_LoadingError_or_Level_unload" Class="_commentbox" pos="-430,-287,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="722.8927" Height="232.22461"/>
+  </Node>
+  <Node Id="6" Class="UI:Events:System:OnLoadingStart" pos="-380,70,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="14" Class="UI:Events:System:OnLoadingError" pos="-420,-160,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="18" Class="Logic:Any" pos="-110,-250,0">
+   <Inputs/>
+  </Node>
+  <Node Id="19" Class="UI:Display:Display" pos="90,1320,0">
+   <Inputs uiElements_Element="DaniellePauseMenu" instanceID="-1"/>
+  </Node>
+  <Node Id="20" Class="UI:Action:Control" pos="120,830,0">
+   <Inputs uiActions_UIAction="MM_DisplayIngameMenu" Strict="1" Args=""/>
+  </Node>
+  <Node Id="24" Class="Logic:Any" pos="-100,620,0" InHideMask="1023" OutHideMask="1">
+   <Inputs/>
+  </Node>
+  <Node Id="25" Class="Game:Start" pos="-360,500,0">
+   <Inputs InGame="1" InEditor="1" InEditorPlayFromHere="1"/>
+  </Node>
+  <Node Id="34" Class="UI:Events:MenuEvents:OnStartIngameMenu" pos="-360,810,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="35" Class="UI:Events:MenuEvents:OnStopIngameMenu" pos="-360,870,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="36" Class="UI:Util:ToArray" pos="40,200,0">
+   <Inputs Count="4"/>
+  </Node>
+  <Node Id="60" Class="UI:Events:System:OnGameplayStarted" pos="-360,430,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="63" Name="Unload_the_MainMenu_and_display_a_loadingscreen_on_level_loading" Class="_commentbox" pos="-423,30,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="2250" Height="330"/>
+  </Node>
+  <Node Id="64" Name="Unload_Loadingscreen_und_start_HUD_UIAction_on_Start_Gameplay" Class="_commentbox" pos="-380,397,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1070" Height="330"/>
+  </Node>
+  <Node Id="65" Name="Display/Hide_ingame_menu_-_Controlled_via_UIMenuEvents" Class="_commentbox" pos="-380,786,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="840" Height="730"/>
+  </Node>
+  <Node Id="66" Class="UI:Events:System:OnUnloadStart" pos="-360,1660,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="68" Name="Display_unloading_screen" Class="_commentbox" pos="-370,1577,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1043.5016" Height="252.91431"/>
+  </Node>
+  <Node Id="69" Class="UI:Action:Control" pos="360,1720,0">
+   <Inputs uiActions_UIAction="HUD_Unloading" Strict="1" Args=""/>
+  </Node>
+  <Node Id="71" Class="UI:Util:ToArray" pos="150,1640,0">
+   <Inputs Count="4"/>
+  </Node>
+  <Node Id="73" Class="String:SetString" pos="-90,1640,0">
+   <Inputs In="@ui_unloading"/>
+  </Node>
+  <Node Id="75" Class="String:SetString" pos="-230,270,0">
+   <Inputs In="@ui_Loading"/>
+  </Node>
+  <Node Id="76" Class="String:SetString" pos="-90,1730,0">
+   <Inputs In="@ui_UnloadingSpinner"/>
+  </Node>
+  <Node Id="102" Class="UI:Events:System:OnReload" pos="-1550,440,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="106" Class="UI:Action:Control" pos="-990,790,0">
+   <Inputs uiActions_UIAction="MM_DisplayIngameMenu" Strict="0" Args="MM_IngameMenu"/>
+  </Node>
+  <Node Id="126" Class="UI:Util:ToArray" pos="-1260,870,0" InHideMask="63" OutHideMask="3">
+   <Inputs Count="2"/>
+  </Node>
+  <Node Id="151" Class="Audio:Trigger" pos="530,1170,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_Pause_In" audioTrigger_StopTrigger="Play_Pause_Out" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="155" Name="Reload_screen" Class="_commentbox" pos="-2109,409,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1489.4846" Height="548.59943"/>
+  </Node>
+  <Node Id="161" Class="UI:Events:System:OnLoadingComplete" pos="-1770,510,0" InHideMask="3" OutHideMask="3">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="165" Class="UI:Events:System:OnUnloadComplete" pos="-1770,590,0" InHideMask="3" OutHideMask="1">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="211" Class="Math:BooleanTo" pos="-1410,510,0">
+   <Inputs/>
+  </Node>
+  <Node Id="281" Class="String:SetString" pos="-1770,690,0">
+   <Inputs In="MM_Main"/>
+  </Node>
+  <Node Id="282" Class="UI:Util:ToArray" pos="-1260,690,0" InHideMask="63" OutHideMask="3">
+   <Inputs Count="2"/>
+  </Node>
+  <Node Id="283" Class="UI:Events:System:OnSystemStarted" pos="-2080,550,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="285" Class="Logic:Any" pos="-1520,550,0" InHideMask="63" OutHideMask="1">
+   <Inputs/>
+  </Node>
+  <Node Id="291" Class="Math:BooleanFrom" pos="-1100,510,0">
+   <Inputs Value="0"/>
+  </Node>
+  <Node Id="294" Class="UI:Display:Display" pos="1280,440,0" InHideMask="1023" OutHideMask="255">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1"/>
+  </Node>
+  <Node Id="299" Class="Math:SetNumber" pos="-1250,510,0">
+   <Inputs in="0"/>
+  </Node>
+  <Node Id="302" Name="Show_main_menu" Class="_comment" pos="-930,480,0"/>
+  <Node Id="303" Name="Show_in-game_menu" Class="_comment" pos="-990,760,0"/>
+  <Node Id="305" Class="Logic:Any" pos="-1510,800,0" InHideMask="63" OutHideMask="1">
+   <Inputs/>
+  </Node>
+  <Node Id="333" Class="Math:BooleanTo" pos="150,1140,0">
+   <Inputs/>
+  </Node>
+  <Node Id="339" Class="UI:Action:Control" pos="140,-320,0">
+   <Inputs uiActions_UIAction="Ark_Launcher_Menu" Strict="1" Args=""/>
+  </Node>
+  <Node Id="342" Class="UI:Action:Control" pos="-930,520,0">
+   <Inputs uiActions_UIAction="Ark_Launcher_Menu" Strict="1" Args=""/>
+  </Node>
+  <Node Id="343" Class="UI:Display:Display" pos="250,90,0">
+   <Inputs uiElements_Element="DanielleLoadingScreen" instanceID="-1"/>
+  </Node>
+  <Node Id="344" Class="UI:Functions:DanielleLoadingScreen:loadingStart" pos="970,80,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="345" Class="UI:Display:Display" pos="10,430,0">
+   <Inputs uiElements_Element="DanielleLoadingScreen" instanceID="-1"/>
+  </Node>
+  <Node Id="346" Class="UI:Display:Display" pos="680,1400,0">
+   <Inputs uiElements_Element="DanielleLoadingScreen" instanceID="-1"/>
+  </Node>
+  <Node Id="347" Class="UI:Functions:DanielleLoadingScreen:loadingStart" pos="1100,1400,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="348" Class="UI:Functions:DanielleLoadingScreen:setText" pos="1140,230,0">
+   <Inputs instanceID="-1" ZoneName="TALOS 1" tip="" Image=""/>
+  </Node>
+  <Node Id="536" Class="UI:Functions:DanielleHUD:pauseUI" pos="1660,890,0">
+   <Inputs instanceID="-1" PauseBoolean="1"/>
+  </Node>
+  <Node Id="537" Class="UI:Functions:DanielleHUD:pauseUI" pos="1650,1220,0">
+   <Inputs instanceID="-1" PauseBoolean="0"/>
+  </Node>
+  <Node Id="538" Class="UI:Functions:DanielleHUD:HUDAlpha" pos="1660,800,0">
+   <Inputs instanceID="-1" Alpha="15"/>
+  </Node>
+  <Node Id="539" Class="UI:Functions:DanielleHUD:HUDAlpha" pos="1650,1310,0">
+   <Inputs instanceID="-1" Alpha="100"/>
+  </Node>
+  <Node Id="583" Class="UI:Functions:DanielleMarkers:objectivesAlpha" pos="1660,620,0">
+   <Inputs instanceID="-1" alpha="15"/>
+  </Node>
+  <Node Id="584" Class="UI:Functions:DanielleMarkers:scanTargetsAlpha" pos="1660,710,0">
+   <Inputs instanceID="-1" alpha="15"/>
+  </Node>
+  <Node Id="585" Class="UI:Functions:DanielleMarkers:targetsAlpha" pos="1660,530,0">
+   <Inputs instanceID="-1" alpha="15"/>
+  </Node>
+  <Node Id="588" Class="UI:Functions:DanielleMarkers:objectivesAlpha" pos="1650,1490,0">
+   <Inputs instanceID="-1" alpha="100"/>
+  </Node>
+  <Node Id="589" Class="UI:Functions:DanielleMarkers:scanTargetsAlpha" pos="1650,1580,0">
+   <Inputs instanceID="-1" alpha="100"/>
+  </Node>
+  <Node Id="590" Class="UI:Functions:DanielleMarkers:targetsAlpha" pos="1650,1400,0">
+   <Inputs instanceID="-1" alpha="100"/>
+  </Node>
+  <Node Id="591" Class="Logic:Gate" pos="720,1050,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="599" Class="UI:Functions:DanielleMarkers:pauseMarkers" pos="1660,970,0">
+   <Inputs instanceID="-1" PauseBoolean="1"/>
+  </Node>
+  <Node Id="600" Class="UI:Functions:DanielleMarkers:pauseMarkers" pos="1650,1130,0">
+   <Inputs instanceID="-1" PauseBoolean="0"/>
+  </Node>
+  <Node Id="601" Class="UI:Functions:DanielleMarkers:scanningAlpha" pos="1660,440,0">
+   <Inputs instanceID="-1" Percent="15"/>
+  </Node>
+  <Node Id="602" Class="UI:Functions:DanielleMarkers:scanningAlpha" pos="1650,1670,0">
+   <Inputs instanceID="-1" Percent="100"/>
+  </Node>
+  <Node Id="603" Class="Logic:Gate" pos="740,700,0" InHideMask="63" OutHideMask="31">
+   <Inputs SetClosed="0" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="604" Class="Ark:PostEffect" pos="120,970,0">
+   <Inputs posteffect_PostEffect="9805661808544907835"/>
+  </Node>
+  <Node Id="609" Class="UI:Events:System:OnLoadingArkSetLocation" pos="717.05347,240.6823,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="610" Class="UI:Functions:DanielleSubtitles:HUDAlpha" pos="1670,350,0">
+   <Inputs instanceID="-1" Alpha="15"/>
+  </Node>
+  <Node Id="611" Class="UI:Functions:DanielleSubtitles:HUDAlpha" pos="1650,1760,0">
+   <Inputs instanceID="-1" Alpha="100"/>
+  </Node>
+  <Node Id="614" Class="UI:Events:System:OnSystemStarted" pos="-420,-240,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="630" Class="UI:Display:Display" pos="1280,530,0" InHideMask="1023" OutHideMask="255">
+   <Inputs uiElements_Element="DanielleMarkers" instanceID="-1"/>
+  </Node>
+  <Node Id="641" Class="Audio:Trigger" pos="820,-390,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Play_MX_Core_MainMenu" audioTrigger_StopTrigger="Stop_MX_Core_MainMenu" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="644" Class="UI:Display:Display" pos="1280,1030,0" InHideMask="1023" OutHideMask="255">
+   <Inputs uiElements_Element="DanielleHUD" instanceID="-1"/>
+  </Node>
+  <Node Id="645" Class="UI:Display:Display" pos="1280,1110,0" InHideMask="1023" OutHideMask="255">
+   <Inputs uiElements_Element="DanielleMarkers" instanceID="-1"/>
+  </Node>
+  <Node Id="649" Class="UI:Events:System:OnDisconnect" pos="-460,-90,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="680" Class="Ark:Locations:CheckLocation" pos="880,1040,0">
+   <Inputs location_Location="13680621263401479941"/>
+  </Node>
+  <Node Id="681" Class="Ark:Locations:CheckLocation" pos="910,610,0">
+   <Inputs location_Location="13680621263401479941"/>
+  </Node>
+  <Node Id="685" Class="UI:Functions:DanielleSubtitles:subtitlesVisibility" pos="950,760,0">
+   <Inputs instanceID="-1" isVisible="0"/>
+  </Node>
+  <Node Id="686" Class="UI:Functions:DanielleSubtitles:subtitlesVisibility" pos="960,1220,0">
+   <Inputs instanceID="-1" isVisible="1"/>
+  </Node>
+  <Node Id="689" Class="Audio:Trigger" pos="820,-240,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="Stop_Amb_2D_Main" audioTrigger_StopTrigger="" ForceStopOnTriggerChange="1"/>
+  </Node>
+  <Node Id="690" Class="Audio:Switch" pos="700,1620,0">
+   <Inputs entityId="0" audioSwitch_SwitchName="MusicState" audioSwitchState_SwitchStateName1="Silence" audioSwitchState_SwitchStateName2="" audioSwitchState_SwitchStateName3="" audioSwitchState_SwitchStateName4=""/>
+  </Node>
+  <Node Id="15213" Class="Logic:Gate" pos="190,1970,0">
+   <Inputs SetClosed="1" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15214" Class="Logic:Gate" pos="190,2140,0">
+   <Inputs SetClosed="1" AutoCloseCount="0" Reset="0"/>
+  </Node>
+  <Node Id="15218" Class="UI:Display:Display" pos="500,2020,0">
+   <Inputs uiElements_Element="DanielleEndGameChoice" instanceID="-1"/>
+  </Node>
+  <Node Id="15219" Class="UI:Events:MenuEvents:OnStartIngameMenu" pos="-160,2260,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="15220" Class="UI:Events:MenuEvents:OnStopIngameMenu" pos="-150,1960,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="15222" Class="UI:Events:DanielleEndGameChoice:closeCompleted" pos="-200,2160,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="15225" Class="Ark:RemoteEvent" pos="-210,2070,0">
+   <Inputs remoteEvent_Event="3149325216986925542"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="36" nodeOut="6" portIn="Val3" portOut="Image" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Val1" portOut="Level" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Val2" portOut="Video" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="6" portIn="Set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="75" nodeOut="6" portIn="Set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="641" nodeOut="6" portIn="Stop" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="14" portIn="in2" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="339" nodeOut="18" portIn="Start" portOut="out" enabled="1"/>
+  <Edge nodeIn="641" nodeOut="18" portIn="Play" portOut="out" enabled="1"/>
+  <Edge nodeIn="345" nodeOut="24" portIn="unload" portOut="out" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="25" portIn="in2" portOut="output" enabled="1"/>
+  <Edge nodeIn="20" nodeOut="34" portIn="Start" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="151" nodeOut="34" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="333" nodeOut="34" portIn="true" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="603" nodeOut="34" portIn="In" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="604" nodeOut="34" portIn="Enable" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="19" nodeOut="35" portIn="unload" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="151" nodeOut="35" portIn="Stop" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="333" nodeOut="35" portIn="false" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="591" nodeOut="35" portIn="In" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="604" nodeOut="35" portIn="Disable" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="343" nodeOut="36" portIn="show" portOut="OnSet" enabled="1"/>
+  <Edge nodeIn="24" nodeOut="60" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="66" portIn="Val3" portOut="Image" enabled="1"/>
+  <Edge nodeIn="73" nodeOut="66" portIn="Set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="76" nodeOut="66" portIn="Set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="69" nodeOut="71" portIn="Start" portOut="OnSet" enabled="1"/>
+  <Edge nodeIn="346" nodeOut="71" portIn="show" portOut="OnSet" enabled="1"/>
+  <Edge nodeIn="690" nodeOut="71" portIn="audioSwitchState_SetState1" portOut="OnSet" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="73" portIn="Set" portOut="Out" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="73" portIn="Val1" portOut="Out" enabled="1"/>
+  <Edge nodeIn="36" nodeOut="75" portIn="Val4" portOut="Out" enabled="1"/>
+  <Edge nodeIn="71" nodeOut="76" portIn="Val4" portOut="Out" enabled="1"/>
+  <Edge nodeIn="299" nodeOut="102" portIn="set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="106" nodeOut="126" portIn="Args" portOut="Array" enabled="1"/>
+  <Edge nodeIn="211" nodeOut="161" portIn="true" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="285" nodeOut="165" portIn="in2" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="299" nodeOut="211" portIn="in" portOut="out" enabled="1"/>
+  <Edge nodeIn="282" nodeOut="281" portIn="Val2" portOut="Out" enabled="1"/>
+  <Edge nodeIn="281" nodeOut="283" portIn="Set" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="285" nodeOut="283" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="211" nodeOut="285" portIn="false" portOut="out" enabled="1"/>
+  <Edge nodeIn="106" nodeOut="291" portIn="Start" portOut="True" enabled="1"/>
+  <Edge nodeIn="342" nodeOut="291" portIn="Start" portOut="False" enabled="1"/>
+  <Edge nodeIn="291" nodeOut="299" portIn="Value" portOut="out" enabled="1"/>
+  <Edge nodeIn="126" nodeOut="305" portIn="Set" portOut="out" enabled="1"/>
+  <Edge nodeIn="282" nodeOut="305" portIn="Set" portOut="out" enabled="1"/>
+  <Edge nodeIn="344" nodeOut="343" portIn="Call" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="347" nodeOut="346" portIn="Call" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="680" nodeOut="591" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="686" nodeOut="591" portIn="Call" portOut="Out" enabled="1"/>
+  <Edge nodeIn="681" nodeOut="603" portIn="Trigger" portOut="Out" enabled="1"/>
+  <Edge nodeIn="685" nodeOut="603" portIn="Call" portOut="Out" enabled="1"/>
+  <Edge nodeIn="348" nodeOut="609" portIn="ZoneName" portOut="Level" enabled="1"/>
+  <Edge nodeIn="348" nodeOut="609" portIn="tip" portOut="Tip" enabled="1"/>
+  <Edge nodeIn="348" nodeOut="609" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="614" portIn="in1" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="18" nodeOut="649" portIn="in3" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="641" nodeOut="649" portIn="Stop" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="689" nodeOut="649" portIn="Play" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="537" nodeOut="680" portIn="Call" portOut="False" enabled="1"/>
+  <Edge nodeIn="600" nodeOut="680" portIn="Call" portOut="False" enabled="1"/>
+  <Edge nodeIn="644" nodeOut="680" portIn="show" portOut="False" enabled="1"/>
+  <Edge nodeIn="644" nodeOut="680" portIn="unload" portOut="True" enabled="1"/>
+  <Edge nodeIn="645" nodeOut="680" portIn="show" portOut="False" enabled="1"/>
+  <Edge nodeIn="645" nodeOut="680" portIn="unload" portOut="True" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="681" portIn="hide" portOut="False" enabled="1"/>
+  <Edge nodeIn="294" nodeOut="681" portIn="unload" portOut="True" enabled="1"/>
+  <Edge nodeIn="536" nodeOut="681" portIn="Call" portOut="False" enabled="1"/>
+  <Edge nodeIn="599" nodeOut="681" portIn="Call" portOut="False" enabled="1"/>
+  <Edge nodeIn="630" nodeOut="681" portIn="hide" portOut="False" enabled="1"/>
+  <Edge nodeIn="630" nodeOut="681" portIn="unload" portOut="True" enabled="1"/>
+  <Edge nodeIn="15218" nodeOut="15213" portIn="show" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15218" nodeOut="15214" portIn="hide" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15214" nodeOut="15219" portIn="In" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="15213" nodeOut="15220" portIn="In" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="15213" nodeOut="15222" portIn="Close" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="15214" nodeOut="15222" portIn="Close" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="15218" nodeOut="15222" portIn="unload" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="15213" nodeOut="15225" portIn="Open" portOut="Out" enabled="1"/>
+  <Edge nodeIn="15214" nodeOut="15225" portIn="Open" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

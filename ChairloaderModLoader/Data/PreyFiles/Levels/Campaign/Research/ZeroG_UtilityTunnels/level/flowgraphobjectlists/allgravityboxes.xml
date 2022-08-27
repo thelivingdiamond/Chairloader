@@ -1,0 +1,30 @@
+<Graph isModule="1" moduleName="AllGravityBoxes" isObjectList="1" objectListClass="GravityBox" Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="4" Class="entity:GravityBox" pos="-260,-60,0" EntityGUID="{C6200517-7911-4EAF-8B0E-312DFC931CFF}" EntityGUID_64="4EAF7911C6200517">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="10" Class="entity:GravityBox" pos="-260,20,0" EntityGUID="{96606A29-7ADF-495D-9170-DDC50744E7D3}" EntityGUID_64="495D7ADF96606A29">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="18" Class="entity:GravityBox" pos="-260,-140,0" EntityGUID="{08495F3E-673E-4B51-BB2E-AF126C00DEB2}" EntityGUID_64="4B51673E08495F3E">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="20" Class="entity:GravityBox" pos="-260,180,0" EntityGUID="{2DC9B8B2-B4E3-4FC2-AE09-62E25E10E081}" EntityGUID_64="4FC2B4E32DC9B8B2">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="24" Class="entity:GravityBox" pos="-260,-310,0" EntityGUID="{7E9591E2-FD92-4338-B344-FD7E12EDF87F}" EntityGUID_64="4338FD927E9591E2">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="26" Class="entity:GravityBox" pos="-260,100,0" EntityGUID="{69546B21-160C-40B4-B5AE-E1EE444F6241}" EntityGUID_64="40B4160C69546B21">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="28" Class="entity:GravityBox" pos="-260,-220,0" EntityGUID="{B4EFEA8B-C158-4597-BED2-329E8FDBC166}" EntityGUID_64="4597C158B4EFEA8B">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+  <Node Id="30" Class="entity:GravityBox" pos="-260,-390,0" EntityGUID="{8FEA4692-956F-4A91-8790-0FD520C309F1}" EntityGUID_64="4A91956F8FEA4692">
+   <Inputs entityId="0" Activate="0" Deactivate="0"/>
+  </Node>
+ </Nodes>
+ <Edges />
+ <GraphTokens />
+</Graph>

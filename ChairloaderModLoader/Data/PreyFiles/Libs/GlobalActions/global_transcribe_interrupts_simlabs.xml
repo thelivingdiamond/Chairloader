@@ -1,0 +1,25 @@
+
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="8" Class="Ark:Dialog:PlayTranscribeMessage" pos="92,-45,0">
+   <Inputs dialogRule_Conversation="13680621263386965795" Queue="1" MinTimeSinceLastCall="0"/>
+  </Node>
+  <Node Id="1196" Class="Ark:Player:LearnNameForResearchTopic" pos="622,-5,0">
+   <Inputs researchTopic_ResearchTopic="3149325216938881385"/>
+  </Node>
+  <Node Id="1202" Class="Ark:RemoteEvent" pos="-228,-45,0">
+   <Inputs remoteEvent_Event="12889009725045832451"/>
+  </Node>
+  <Node Id="1203" Name="Typhon_Description" Class="_commentbox" pos="-250,-77,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <CommentBox Width="1200" Height="170"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="1196" nodeOut="8" portIn="Trigger" portOut="OnComplete" enabled="1"/>
+  <Edge nodeIn="1196" nodeOut="8" portIn="Trigger" portOut="OnFail" enabled="1"/>
+  <Edge nodeIn="1196" nodeOut="8" portIn="Trigger" portOut="OnInterrupt" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="1202" portIn="Trigger" portOut="Out" enabled="1"/>
+ </Edges>
+ <GraphTokens/>
+</Graph>

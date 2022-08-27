@@ -1,0 +1,83 @@
+
+<Dialog>
+ <Dialog id="13680621263369959088" text="Error. Server not responding. Please contact Engineering Support in Deep Storage." modified="08/21/2015 11:17:03 PM"/>
+ <Dialog id="13680621263370034887" text="Initiating reactor shutdown sequence." modified="07/07/2016 03:34:41 PM"/>
+ <Dialog id="13680621263370146705" text="Substation power grid... offline." modified="08/20/2015 04:28:13 AM"/>
+ <Dialog id="13680621263370146842" text="Magnetosphere... offline." modified="08/20/2015 04:26:37 AM"/>
+ <Dialog id="13680621263370146960" text="Photovoltaic rings... offline." modified="08/20/2015 04:27:15 AM"/>
+ <Dialog id="13680621263370146971" text="Life support... offline." modified="08/20/2015 04:27:48 AM" notes="(Power Plant)"/>
+ <Dialog id="13680621263370146989" text="Gravity... offline" modified="08/20/2015 04:28:02 AM" notes="(power plant)"/>
+ <Dialog id="13680621263370147019" text="Main reactor cold shutdown in..." modified="08/20/2015 04:33:56 AM" notes="(power plant)"/>
+ <Dialog id="13680621263370147023" text="Three..." modified="08/20/2015 04:38:43 AM"/>
+ <Dialog id="13680621263370147027" text="Two..." modified="08/20/2015 04:38:39 AM"/>
+ <Dialog id="13680621263370147031" text="One..." modified="08/20/2015 04:38:35 AM"/>
+ <Dialog id="13680621263370147040" text="Reactor successfully shut down." modified="07/07/2016 03:33:55 PM"/>
+ <Dialog id="13680621263370148518" text="Initiating main reactor ignition sequence in..." modified="07/07/2016 03:33:48 PM"/>
+ <Dialog id="13680621263370148900" text="Sustained fusion... online." modified="08/20/2015 04:49:21 AM"/>
+ <Dialog id="13680621263370148921" text="Gravity... online." modified="08/20/2015 04:48:57 AM" notes="(power plant)"/>
+ <Dialog id="13680621263370148939" text="Life support... online." modified="08/20/2015 04:49:15 AM" notes="(Power Plant)"/>
+ <Dialog id="13680621263370149011" text="Magnetosphere..." modified="08/20/2015 04:50:27 AM"/>
+ <Dialog id="13680621263370149068" text="Warning... reactor initialization interrupted. " modified="08/20/2015 04:55:03 AM"/>
+ <Dialog id="13680621263370149104" text="Routing auxillary power." modified="08/20/2015 04:52:00 AM"/>
+ <Dialog id="13680621263370149168" text="Resuming reactor initialization." modified="04/27/2016 03:15:58 AM"/>
+ <Dialog id="13680621263370149176" text="Magnetosphere... online." modified="07/07/2016 03:33:23 PM"/>
+ <Dialog id="13680621263370149191" text="Substation power grids... online." modified="08/20/2015 04:53:43 AM"/>
+ <Dialog id="13680621263370149248" text="Reactor initializtion complete. Systems restored. " modified="08/20/2015 04:54:24 AM"/>
+ <Dialog id="13680621263370539398" text="Escape Pod Launch in..." modified="08/24/2015 05:16:54 PM"/>
+ <Dialog id="13680621263370539407" text="Ten..." modified="08/24/2015 05:17:03 PM"/>
+ <Dialog id="13680621263370539411" text="Nine..." modified="08/24/2015 05:17:07 PM"/>
+ <Dialog id="13680621263370539416" text="Eight..." modified="08/24/2015 05:17:12 PM"/>
+ <Dialog id="13680621263370539420" text="Seven..." modified="08/24/2015 05:17:16 PM"/>
+ <Dialog id="13680621263370539425" text="Six..." modified="08/24/2015 05:17:21 PM"/>
+ <Dialog id="13680621263370539429" text="Five..." modified="08/24/2015 05:17:25 PM"/>
+ <Dialog id="13680621263370539433" text="Four..." modified="08/24/2015 05:17:29 PM"/>
+ <Dialog id="13680621263370539486" text="Launch." modified="08/24/2015 05:18:22 PM"/>
+ <Dialog id="13680621263370539569" text="Launch aborted." modified="08/24/2015 05:19:45 PM"/>
+ <Dialog id="11824555372652054530" text="Three..." modified="08/25/2015 07:54:42 PM"/>
+ <Dialog id="13680621263375460530" text="Life Support air quality ratio below standard operating levels. Atmospheric contaminant flush recommended." modified="04/27/2016 03:30:36 AM"/>
+ <Dialog id="13680621263375460639" text="Atmospheric decontamination procedure initiated. Oxygen flush commencing in..." modified="10/20/2015 04:21:27 PM"/>
+ <Dialog id="13680621263375460969" text="Decontamination completed successfully. Stand by for oxygenation." modified="10/21/2016 07:31:12 PM"/>
+ <Dialog id="13680621263375460985" text="Oxygen levels normal." modified="10/20/2015 04:23:21 PM"/>
+ <Dialog id="13680621263382382776" text="Data Vault DVM-3 airlock sealed. Pressure nominal." modified="01/08/2016 07:20:20 PM"/>
+ <Dialog id="13680621263382383572" text="Emergency seal engaged." modified="01/08/2016 07:19:48 PM"/>
+ <Dialog id="13680621263382383633" text="DVM undocking procedure initiated." modified="01/08/2016 07:23:57 PM"/>
+ <Dialog id="13680621263382383794" text="Module release in..." modified="01/08/2016 07:23:30 PM"/>
+ <Dialog id="13680621263384791721" text="Requesting new operator." modified="02/23/2016 04:22:32 PM"/>
+ <Dialog id="13680621263384791767" text="N-CN9 Blackbox Operator ready to deploy." modified="02/23/2016 04:50:16 PM"/>
+ <Dialog id="13680621263384791851" text="Please stand clear of aperture." modified="02/05/2016 04:18:12 PM"/>
+ <Dialog id="13680621263385383580" text="Voice identification required." modified="02/12/2016 12:43:50 PM" sync="false"/>
+ <Dialog id="13680621263385383641" text="Please repeat the following words:" modified="02/12/2016 12:43:11 PM"/>
+ <Dialog id="13680621263386347536" text="TranStar &quot;Kobold&quot; 410 engineering class operator ready to deploy." modified="02/23/2016 04:48:57 PM"/>
+ <Dialog id="13680621263386347551" text="TranStar &quot;Sybil&quot; 495 science class operator ready to deploy." modified="02/23/2016 04:49:39 PM"/>
+ <Dialog id="13680621263386347751" text="TranStar &quot;Pyramid&quot; 490 medical class operator ready to deploy." modified="02/23/2016 04:49:57 PM"/>
+ <Dialog id="13680621263386349053" text="(Alarm Beep) Obstruction detected. Please clear aperture of debris." modified="02/23/2016 04:51:09 PM"/>
+ <Dialog id="13680621263386349079" text="Aperture cleared. Operator deployment resuming." modified="02/23/2016 04:51:35 PM"/>
+ <Dialog id="13680621263386361970" text="Psychoscope user mismatch. Please calibrate your scope before entering examination area." modified="02/23/2016 08:26:26 PM"/>
+ <Dialog id="13680621263386361979" text="Psychoscope error. Please recalibrate before entering examination area." modified="02/23/2016 08:26:35 PM"/>
+ <Dialog id="13680621263392004320" facefx="0" sync="0" notes="Biometric Lock to Deep Storage" text="Voice recognized. Access granted." modified="04/29/2016 03:45:40 AM"/>
+ <Dialog id="13680621263392004336" facefx="0" sync="0" notes="" text="Access denied. Voice not recognized." modified="04/29/2016 03:46:03 AM"/>
+ <Dialog id="13680621263392336444" text="Sealing control room." modified="05/03/2016 12:01:00 AM"/>
+ <Dialog id="13680621263392408696" text="Director level override. Lockdown engaged." modified="07/05/2016 03:13:10 PM"/>
+ <Dialog id="13680621263397834455" text="Artax propulsion system required for EVA." modified="07/05/2016 03:14:31 PM"/>
+ <Dialog id="13680621263397834463" text="Please contact engineering in the Hardware Labs." modified="07/05/2016 03:14:39 PM"/>
+ <Dialog id="13680621263402089331" text="Harmonica." modified="08/23/2016 09:09:07 PM"/>
+ <Dialog id="13680621263402089367" text="Gravity." modified="08/23/2016 09:09:43 PM"/>
+ <Dialog id="13680621263402089386" text="Chameleon." modified="08/23/2016 09:10:02 PM"/>
+ <Dialog id="13680621263402089412" text="Bovine." modified="08/23/2016 09:10:28 PM"/>
+ <Dialog id="13680621263402089426" text="Perspective." modified="08/23/2016 09:10:42 PM"/>
+ <Dialog id="13680621263402089451" text="Chasm." modified="08/23/2016 09:11:07 PM"/>
+ <Dialog id="13680621263402089468" text="Fortitude." modified="08/23/2016 09:11:24 PM"/>
+ <Dialog id="13680621263402089486" text="Doctrine." modified="08/23/2016 09:11:42 PM"/>
+ <Dialog id="13680621263402089505" text="Corkscrew." modified="08/23/2016 09:12:01 PM"/>
+ <Dialog id="13680621263402089517" text="Auspicious." modified="08/23/2016 09:12:13 PM"/>
+ <Dialog id="13680621263402089533" text="Rendezvous." modified="08/23/2016 09:12:29 PM"/>
+ <Dialog id="13680621263402089552" text="Laconic." modified="08/23/2016 09:12:48 PM"/>
+ <Dialog id="13680621263402089600" text="Entropy." modified="08/23/2016 09:13:36 PM"/>
+ <Dialog id="13680621263402089613" text="Antipathy." modified="08/23/2016 09:13:49 PM"/>
+ <Dialog id="13680621263402089629" text="Proclivity." modified="08/23/2016 09:14:05 PM"/>
+ <Dialog id="13680621263402089646" text="Pencil." modified="08/23/2016 09:14:22 PM"/>
+ <Dialog id="13680621263402089673" text="Mauve." modified="08/23/2016 09:14:49 PM"/>
+ <Dialog id="13680621263402089688" text="Erroneous." modified="08/23/2016 09:15:04 PM"/>
+ <Dialog id="13680621263402089704" text="Malicious." modified="08/23/2016 09:15:20 PM"/>
+ <Dialog id="13680621263402089719" text="Speculation." modified="08/23/2016 09:15:35 PM"/>
+</Dialog>

@@ -17,6 +17,7 @@ private:
 	static ID3D11DeviceContext* pd3dDeviceContext;
 	static IDXGISwapChain* pSwapChain;
 	static ID3D11RenderTargetView* pMainRenderTargetView;
+	static bool bIsRunning;
 
 	static bool CreateDeviceD3D(HWND hWnd);
 	static void CleanupDeviceD3D();
@@ -25,7 +26,9 @@ private:
 	static LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 public:
+	static void Setup();
 	static void Render();
+	static void RequestExit();
 
 };
 
