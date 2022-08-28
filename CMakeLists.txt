@@ -83,7 +83,7 @@ unset(EXAMPLE_MOD_DLL_PATH CACHE)
 set(CHAIRLOADER_COMMON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Common" CACHE PATH "")
 
 if(PREY_PATH)
-	set(EXAMPLE_MOD_DLL_PATH "${PREY_PATH}/Mods/ExampleMod" CACHE PATH "")
+	set(EXAMPLE_MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
 endif()
 
 add_subdirectory(ExampleMod)
