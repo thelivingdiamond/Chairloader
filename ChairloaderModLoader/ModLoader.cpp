@@ -187,6 +187,9 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
                 overlayLog(severityLevel::info, "Mod list saved");
                 saveChairloaderConfigFile();
             }
+            if(ImGui::MenuItem("Deploy Mods")){
+                RunAsyncDeploy();
+            }
             ImGui::EndMenu();
         }
         // Print test overlay log messages for each severity level
@@ -207,6 +210,18 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
             ImGui::EndMenu();
         }
 #endif
+        if(ImGui::BeginMenu("Help")){
+            // Legacy Mods
+            ImGui::Text("Legacy Mods");
+            ImGui::SameLine();
+            ImGuiUtils::HelpMarker("Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
+            //Load Order
+            ImGui::Text("Load Order");
+            ImGui::SameLine();
+            ImGuiUtils::HelpMarker("The load order is the order in which the mods are loaded and their assets are merged. This means that mods with a higher load order will overwrite mods with a lower load order.");
+            
+            ImGui::EndMenu();
+        }
         ImGui::EndMenuBar();
 
     }
@@ -477,10 +492,12 @@ void ModLoader::DrawModList() {
         ImGui::EndChild();
         ImGui::SameLine();
         if (ImGui::BeginChild("Controls")) {
-            if (ImGui::Button("Load Mod List")) {
+            if (ImGui::Button("Refresh Mod List")) {
                 loadModInfoFiles();
                 selectedMod.clear();
             }
+            ImGui::SameLine();
+            ImGuiUtils::HelpMarker("Loads mod list from the Chairloader config file. Also discovers new mods in the Mods/ folder.");
             ImGui::SameLine();
             if(ImGui::Button("Enable All")){
                 for(auto& mod : ModList){
@@ -528,6 +545,8 @@ void ModLoader::DrawModList() {
                         if (ImGui::Button("Install")) {
                             InstallMod(ModSelect->modName);
                         }
+                        ImGui::SameLine();
+                        ImGuiUtils::HelpMarker("This will save the mod to the Mod List, meaning it will be remembered in the future, and can actually be loaded.");
                     }
                 }
             }
@@ -540,9 +559,7 @@ void ModLoader::DrawModList() {
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Save the mod list to the chairloader.xml config file");
             if(ImGui::Button("Deploy Mods")){
-                SwitchToDeployScreen();
-                m_DeployTaskFuture = std::async(std::launch::async,  [&]() {DeployMods();});
-//                if(DeployMods())
+                RunAsyncDeploy();
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
@@ -1213,6 +1230,7 @@ bool ModLoader::DeployMods() {
             m_DeployLogMutex.lock();
             m_DeployState = DeployState::Done;
             m_DeployLogMutex.unlock();
+            overlayLog(severityLevel::info, "Mods Deployed");
 //            m_State = State::MainWindow;
             return true;
         }
@@ -1864,9 +1882,18 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
     if(IsFutureReady(m_DeployTaskFuture)){
         m_DeployTaskFuture.get();
         m_State = State::MainWindow;
-        overlayLog(severityLevel::info, "Mods Deployed");
+        m_DeployState = DeployState::Invalid;
         ImGui::CloseCurrentPopup();
         return;
+    }
+}
+
+void ModLoader::RunAsyncDeploy() {
+    if(m_DeployState <= DeployState::Invalid) {
+        SwitchToDeployScreen();
+        m_DeployTaskFuture = std::async(std::launch::async, [&]() { DeployMods(); });
+    } else {
+        overlayLog(severityLevel::error, "Mods are already being deployed");
     }
 }
 

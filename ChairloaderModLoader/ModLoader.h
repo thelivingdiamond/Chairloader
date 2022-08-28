@@ -197,6 +197,7 @@ private:
 
     //Deploy
     bool DeployMods();
+    void RunAsyncDeploy();
 
     /* XML MERGING */
     pugi::xml_document
