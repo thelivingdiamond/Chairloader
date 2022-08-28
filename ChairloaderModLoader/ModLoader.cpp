@@ -9,6 +9,7 @@
 #include "GamePathDialog.h"
 #include "GameVersion.h"
 #include "PathUtils.h"
+#include "ChairInstallWizard.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -28,6 +29,9 @@ void ModLoader::Draw() {
         if(!initialized)
             Init();
         DrawMainWindow(&bDraw);
+        break;
+    case State::InstallWizard:
+        DrawInstallWizard(&bDraw);
         break;
     default:
         assert(!("Invalid UI state"));
@@ -99,13 +103,40 @@ void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
         log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
         SetGamePath(m_pGamePathDialog->GetGamePath());
         saveModLoaderConfigFile();
-        m_State = State::MainWindow;
         m_pGamePathDialog.reset();
+        SwitchToInstallWizard();
     }
     else if (result == GamePathDialog::Result::Cancel)
     {
         *pbIsOpen = false;
         m_pGamePathDialog.reset();
+    }
+}
+
+void ModLoader::SwitchToInstallWizard()
+{
+    if (!verifyChairloaderInstalled())
+    {
+        log(severityLevel::info, "Chairloader not found, starting the wizard");
+        m_State = State::InstallWizard;
+    }
+    else
+    {
+        m_State = State::MainWindow;
+    }
+}
+
+void ModLoader::DrawInstallWizard(bool* pbIsOpen)
+{
+    if (!m_pInstallWizard)
+    {
+        m_pInstallWizard = std::make_unique<ChairInstallWizard>();
+    }
+
+    if (m_pInstallWizard->Show("Chairloader Installer", pbIsOpen))
+    {
+        m_pInstallWizard.reset();
+        m_State = State::MainWindow;
     }
 }
 
@@ -846,12 +877,7 @@ ModLoader::ModLoader() {
     if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
         SwitchToGameSelectionDialog(PreyPath);
     else
-        m_State = State::MainWindow;
-
-    if(m_State == State::MainWindow) {
-        Init();
-    }
-
+        SwitchToInstallWizard();
 }
 
 ModLoader::~ModLoader() {
@@ -1605,52 +1631,40 @@ void ModLoader::createChairloaderConfigFile() {
 
 bool ModLoader::verifyChairloaderInstalled() {
     try{
-        // Files we care about: chairloder.xml, Chairloader.dll, mswsock.dll
-        if(fs::exists(PreyPath.string() + "/Binaries/Danielle/x64/Release/Chairloader.dll")
-        && fs::exists(PreyPath.string() + "/Binaries/Danielle/x64/Release/mswsock.dll"))
+        for (const char* fileName : PathUtils::REQUIRED_CHAIRLOADER_BINARIES)
         {
-            return true;
-        } else {
-            return false;
+            if (!fs::exists(PreyPath / PathUtils::GAME_BIN_DIR / fileName))
+                return false;
         }
+
+        return true;
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while verifying chairloader: %s", exception.what());
         return false;
-    }
-    return false;
-}
-
-void ModLoader::installChairloaderDLLs() {
-    // copy everything from ./Release/ to the Prey directory
-    try {
-        fs::copy("./Release/", PreyPath.string() + "/Binaries/Danielle/x64/Release", fs::copy_options::overwrite_existing | fs::copy_options::recursive);
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while installing chairloader dlls: %s", exception.what());
     }
 }
 
 bool ModLoader::verifyDefaultFileStructure() {
     try {
-        if(fs::exists(PreyPath.string() + "/Mods/")
-        && fs::exists(PreyPath.string() + "/Mods/config/")
-        && fs::exists(PreyPath.string() + "/Mods/Legacy/"))
+        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
         {
-            return true;
-        } else {
-            return false;
+            if (!fs::is_directory(PreyPath / dirName))
+                return false;
         }
+
+        return true;
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while verifying default file structure: %s", exception.what());
         return false;
     }
-    return false;
 }
 
 void ModLoader::createDefaultFileStructure() {
     try {
-        fs::create_directories(PreyPath.string() + "/Mods/");
-        fs::create_directories(PreyPath.string() + "/Mods/config/");
-        fs::create_directories(PreyPath.string() + "/Mods/Legacy/");
+        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
+        {
+            fs::create_directories(PreyPath / dirName);
+        }
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while creating default file structure: %s", exception.what());
     }

@@ -18,6 +18,7 @@
 
 class GamePathDialog;
 class GameVersion;
+class ChairInstallWizard;
 
 namespace fs = std::filesystem;
 class ModLoader {
@@ -84,6 +85,7 @@ private:
     {
         Invalid,
         LocateGameDir,
+        InstallWizard,
         MainWindow,
     };
 
@@ -106,6 +108,11 @@ private:
     std::unique_ptr<GamePathDialog> m_pGamePathDialog;
     void SwitchToGameSelectionDialog(const fs::path& gamePath);
     void DrawGamePathSelectionDialog(bool* pbIsOpen);
+
+    /* InstallWizard */
+    std::unique_ptr<ChairInstallWizard> m_pInstallWizard;
+    void SwitchToInstallWizard();
+    void DrawInstallWizard(bool* pbIsOpen);
 
     /* Draw Functions */
     std::unique_ptr<GameVersion> m_pGameVersion;
@@ -232,8 +239,6 @@ private:
     void createChairloaderConfigFile();
     // Verify chairloader is installed
     bool verifyChairloaderInstalled();
-    // install DLL's
-    void installChairloaderDLLs();
     // Verify default file structure
     bool verifyDefaultFileStructure();
     // Create default file structure

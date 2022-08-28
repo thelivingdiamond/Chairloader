@@ -12,7 +12,7 @@
   --
   -- Format:
   --   SHA256: hash of the DLL file
-  --   ReleaseDate: when it was released in YYYY-MM-DD format or 0000-00-00 if unknown.
+  --   ReleaseDate: when it was released in YYYY-MM-DD format or 0000-00-00 if unknown. Look for "BuildTime: " in the binary.
   --   Type: which online store it is distibuted in (Steam, GOG, EGS)
   --   SteamManifest: (optional) Manifest ID in Steam. Can be used to download a specific version of the game.
   --   IsSupported: (optional) whether the version is supported by Chairloader.
@@ -30,7 +30,7 @@
 	<!-- This is the only supported version -->
 	<Version>
 		<SHA256>0485c85bb741d6d2e5af69114bae54c521540d5868aac476a8d9fbd1899f0a63</SHA256>
-		<ReleaseDate>0000-00-00</ReleaseDate>
+		<ReleaseDate>2021-08-18</ReleaseDate>
 		<Type>EGS</Type>
 		<IsSupported>True</IsSupported>
 	</Version>

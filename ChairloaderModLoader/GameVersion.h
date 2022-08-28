@@ -9,11 +9,22 @@ public:
 	static constexpr char XML_NAME[] = "Versions.xml";
 	static constexpr char DIFF_EXT[] = ".diff.gz";
 
+	enum class Result
+	{
+		Loading,
+		Supported,
+		Patchable,
+		NotSupported,
+		Error,
+	};
+
 	GameVersion();
 	~GameVersion();
 
 	void Update();
-	void ShowInstalledVersion();
+	Result ShowInstalledVersion(bool showBtns = true);
+	const std::string& GetErrorText() { return m_ErrorText; }
+	void PatchTheGame() const;
 
 private:
 	enum class State
@@ -50,7 +61,6 @@ private:
 	void LoadKnownVersions();
 	void StartAsyncTasks();
 	void ShowModals();
-	void PatchTheGame();
 	void RestoreBackup();
 
 	//! Async task to hash the game.

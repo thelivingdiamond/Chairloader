@@ -27,6 +27,8 @@ set(SOURCE_FILES
         UI.cpp
         UI.h
         #ModLoader
+        ChairInstallWizard.cpp
+        ChairInstallWizard.h
         ModLoader.cpp
         ModLoader.h
         PathUtils.cpp

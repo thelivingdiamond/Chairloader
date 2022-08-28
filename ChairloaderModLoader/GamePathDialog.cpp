@@ -93,7 +93,7 @@ GamePathDialog::Result GamePathDialog::ShowContents()
 
 void GamePathDialog::SetGamePath(const fs::path& path)
 {
-    fs::path exePath = path / PathUtils::GAME_EXE_PATH;
+    fs::path exePath = !path.empty() ? path / PathUtils::GAME_EXE_PATH : path;
     exePath = exePath.lexically_normal();
     std::string pathStr = exePath.u8string();
     snprintf(m_PathInput, sizeof(m_PathInput), "%s", pathStr.c_str());

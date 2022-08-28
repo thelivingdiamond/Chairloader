@@ -98,11 +98,6 @@ std::vector<uint8_t> ReadFile(const fs::path& path)
 	return data;
 }
 
-template <typename R>
-inline bool IsFutureReady(const std::future<R>& f)
-{
-	return f.valid() && f.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
-}
 }
 
 GameVersion::GameVersion()
@@ -140,20 +135,24 @@ void GameVersion::Update()
 	}
 }
 
-void GameVersion::ShowInstalledVersion()
+GameVersion::Result GameVersion::ShowInstalledVersion(bool showBtns)
 {
+	Result result = Result::Loading;
+
 	if (m_State == State::Error)
 	{
+		result = Result::Error;
 		ImGui::TextColored(ImColor(255, 0, 0), "Error: %s", m_ErrorText.c_str());
 		ShowModals();
-		return;
+		return result;
 	}
 
 	if (m_State == State::WaitTasks)
 	{
+		result = Result::Loading;
 		ImGui::Text("Loading...");
 		ShowModals();
-		return;
+		return result;
 	}
 
 	if (m_pInstalledVersion)
@@ -161,29 +160,41 @@ void GameVersion::ShowInstalledVersion()
 		std::string ver = m_pInstalledVersion->type + "-" + m_pInstalledVersion->releaseDate;
 		ImGui::Text("Game Version: %s", ver.c_str());
 		if (m_pInstalledVersion->isSupported)
+		{
+			result = Result::Supported;
 			ImGui::Text("This version is supported by Chairloader");
+		}
 		else
+		{
+			result = Result::Patchable;
 			ImGui::TextColored(ImColor(255, 255, 0), "This version needs to be patched for Chairloader to work");
+		}
 	}
 	else
 	{
+		result = Result::NotSupported;
 		ImGui::Text("Game Version: Unknown");
 		ImGui::TextColored(ImColor(255, 0, 0), "This version is not supported");
 	}
 
-	ImGui::BeginDisabled(m_pInstalledVersion == nullptr || m_pInstalledVersion->isSupported);
-	if (ImGui::Button("Patch game"))
-		ImGui::OpenPopup("Confirm Game Patch");
-	ImGui::EndDisabled();
+	if (showBtns)
+	{
+		ImGui::BeginDisabled(m_pInstalledVersion == nullptr || m_pInstalledVersion->isSupported);
+		if (ImGui::Button("Patch game"))
+			ImGui::OpenPopup("Confirm Game Patch");
+		ImGui::EndDisabled();
 
-	ImGui::SameLine();
+		ImGui::SameLine();
 
-	ImGui::BeginDisabled(!m_bHasBackup);
-	if (ImGui::Button("Restore original version"))
-		RestoreBackup();
-	ImGui::EndDisabled();
+		ImGui::BeginDisabled(!m_bHasBackup);
+		if (ImGui::Button("Restore original version"))
+			RestoreBackup();
+		ImGui::EndDisabled();
 
-	ShowModals();
+		ShowModals();
+	}
+
+	return result;
 }
 
 void GameVersion::LoadKnownVersions()
@@ -271,52 +282,53 @@ void GameVersion::ShowModals()
 	}
 
 	if (patchGame)
-		PatchTheGame();
+	{
+		try
+		{
+			PatchTheGame();
+			StartAsyncTasks();
+			ImGui::OpenPopup("Game Patch Succeded");
+		}
+		catch (const std::exception& e)
+		{
+			ImGui::OpenPopup("Error Occured");
+			m_ModalErrorText = e.what();
+		}
+	}
 }
 
-void GameVersion::PatchTheGame()
+void GameVersion::PatchTheGame() const
 {
 	assert(m_pInstalledVersion);
 
-	try
-	{
-		// See if diff file exists
-		std::string diffFileName = SHA256::toString(m_pInstalledVersion->sha256.data()).substr(0, 16) + DIFF_EXT;
-		fs::path diffPath = fs::current_path() / VERSIONS_PATH / diffFileName;
-		if (!fs::exists(diffPath))
-			throw std::runtime_error("Diff file \"" + diffFileName + "\" not found");
+	// See if diff file exists
+	std::string diffFileName = SHA256::toString(m_pInstalledVersion->sha256.data()).substr(0, 16) + DIFF_EXT;
+	fs::path diffPath = fs::current_path() / VERSIONS_PATH / diffFileName;
+	if (!fs::exists(diffPath))
+		throw std::runtime_error("Diff file \"" + diffFileName + "\" not found");
 
-		// Make a backup of PreyDll.dll
-		fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
-		fs::path backupFilePath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
-		fs::copy_file(dllPath, backupFilePath, fs::copy_options::overwrite_existing);
+	// Make a backup of PreyDll.dll
+	fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
+	fs::path backupFilePath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
+	fs::copy_file(dllPath, backupFilePath, fs::copy_options::overwrite_existing);
 
-		// Decompress diff file
-		std::vector<uint8_t> diffFile = DecompressGZipFile(diffPath);
+	// Decompress diff file
+	std::vector<uint8_t> diffFile = DecompressGZipFile(diffPath);
 
-		// Apply diff
-		SHA256::Digest diffOrigFileHash;
-		std::vector<uint8_t> origFile = ReadFile(dllPath);
-		std::vector<uint8_t> patchedFile = BinDiff::ApplyDiff(origFile, diffFile, diffOrigFileHash);
+	// Apply diff
+	SHA256::Digest diffOrigFileHash;
+	std::vector<uint8_t> origFile = ReadFile(dllPath);
+	std::vector<uint8_t> patchedFile = BinDiff::ApplyDiff(origFile, diffFile, diffOrigFileHash);
 
-		if (diffOrigFileHash != m_pInstalledVersion->sha256)
-			throw std::runtime_error("Diff file \"" + diffFileName + "\" is created for a different source file. Diff hash is " +
-				SHA256::toString(diffOrigFileHash.data()));
+	if (diffOrigFileHash != m_pInstalledVersion->sha256)
+		throw std::runtime_error("Diff file \"" + diffFileName + "\" is created for a different source file. Diff hash is " +
+			SHA256::toString(diffOrigFileHash.data()));
 
-		// Write the file
-		std::ofstream outDllFile;
-		outDllFile.exceptions(std::ios::failbit | std::ios::badbit);
-		outDllFile.open(dllPath, std::ios::binary);
-		outDllFile.write((char*)patchedFile.data(), patchedFile.size());
-
-		StartAsyncTasks();
-		ImGui::OpenPopup("Game Patch Succeded");
-	}
-	catch (const std::exception& e)
-	{
-		ImGui::OpenPopup("Error Occured");
-		m_ModalErrorText = e.what();
-	}
+	// Write the file
+	std::ofstream outDllFile;
+	outDllFile.exceptions(std::ios::failbit | std::ios::badbit);
+	outDllFile.open(dllPath, std::ios::binary);
+	outDllFile.write((char*)patchedFile.data(), patchedFile.size());
 }
 
 void GameVersion::RestoreBackup()
