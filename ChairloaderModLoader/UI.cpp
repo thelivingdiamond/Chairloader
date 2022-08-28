@@ -184,7 +184,7 @@ void UI::Render()
 //         cfg.SizePixels = 16 * fScale;
 //         ImGui::GetIO().Fonts->AddFontDefault(&cfg);
         //FONT FIXED
-        ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", 18);
+        ImGui::GetIO().Fonts->AddFontFromFileTTF("./Data/Montserrat-Regular.ttf", 18);
         // io.FontGlobalScale = 1.5f;
     // }
 

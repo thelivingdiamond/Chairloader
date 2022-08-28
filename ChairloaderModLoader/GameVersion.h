@@ -5,7 +5,7 @@
 class GameVersion
 {
 public:
-	static constexpr char VERSIONS_PATH[] = "Versions";
+	static constexpr char VERSIONS_PATH[] = "./Data/Versions";
 	static constexpr char XML_NAME[] = "Versions.xml";
 	static constexpr char DIFF_EXT[] = ".diff.gz";
 

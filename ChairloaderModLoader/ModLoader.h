@@ -98,6 +98,8 @@ private:
     /* Init */
     void LoadModLoaderConfig();
     void SetGamePath(const fs::path& path);
+    void Init();
+    bool initialized = false;
 
     /* LocateGameDir */
     std::unique_ptr<GamePathDialog> m_pGamePathDialog;

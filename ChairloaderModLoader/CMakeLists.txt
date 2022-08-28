@@ -39,7 +39,7 @@ set(SOURCE_FILES
         main.cpp
         #Miscellaneous
         zipconf.h
-        Montserrat-Regular.ttf
+        ./Data/Montserrat-Regular.ttf
         appicon.rc
         )
 
