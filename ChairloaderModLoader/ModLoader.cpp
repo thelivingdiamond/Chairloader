@@ -438,6 +438,9 @@ void ModLoader::DrawModList() {
                 }
                 if (!LegacyModList.empty()) {
                     if(ImGui::BeginTabItem("Legacy Mods")) {
+                        ImGui::TextDisabled("What's a legacy mod");
+                        ImGui::SameLine();
+                        ImGuiUtils::HelpMarker("Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
                         if (ImGui::BeginTable("Legacy Mod List", 2,
                                               ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
                                               ImGuiTableFlags_NoBordersInBody)) {
@@ -1792,6 +1795,7 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
             ImGuiWindowFlags_NoSavedSettings |
             ImGuiWindowFlags_NoCollapse |
             ImGuiWindowFlags_NoScrollbar |
+            ImGuiWindowFlags_NoMove |
             ImGuiWindowFlags_NoResize;
 
     ImGui::SetNextWindowSize({ 500, 300 });
