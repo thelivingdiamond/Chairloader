@@ -11,6 +11,8 @@ public:
 	};
 
 	Result ShowDialog(const char* name, bool* pbIsOpen);
+	Result ShowModal(const char* name);
+	Result ShowContents();
 	const fs::path& GetGamePath() { return m_Path; }
 	void SetGamePath(const fs::path& path);
 

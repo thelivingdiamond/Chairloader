@@ -88,7 +88,7 @@ void ModLoader::SwitchToGameSelectionDialog(const fs::path& gamePath)
 {
     m_State = State::LocateGameDir;
     m_pGamePathDialog = std::make_unique<GamePathDialog>();
-    m_pGamePathDialog->SetGamePath(gamePath.empty() ? gamePath : (gamePath / PathUtils::GAME_EXE_PATH));
+    m_pGamePathDialog->SetGamePath(gamePath);
 }
 
 void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
@@ -105,10 +105,7 @@ void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
     }
     else if (result == GamePathDialog::Result::Cancel)
     {
-        *pbIsOpen = initialized;
-        if(initialized)
-            SetGamePath(m_pGamePathDialog->GetGamePath());
-            m_State = State::MainWindow;
+        *pbIsOpen = false;
         m_pGamePathDialog.reset();
     }
 }
@@ -539,13 +536,32 @@ void ModLoader::DrawDLLSettings() {
         ImGui::InputText("Prey Path", &m_PreyPathString, ImGuiInputTextFlags_ReadOnly);
 
         if(ImGui::Button("Change Path")){
-            SwitchToGameSelectionDialog(PreyPath);
-            PreyPath.clear();
+            m_pGamePathDialog = std::make_unique<GamePathDialog>();
+            m_pGamePathDialog->SetGamePath(PreyPath);
+            ImGui::OpenPopup("Change Game Path");
         }
 
         ImGui::PushID("GameVersion");
         m_pGameVersion->ShowInstalledVersion();
         ImGui::PopID();
+
+        if (m_pGamePathDialog)
+        {
+            GamePathDialog::Result result = m_pGamePathDialog->ShowModal("Change Game Path");
+
+            if (result == GamePathDialog::Result::Ok)
+            {
+                log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
+                SetGamePath(m_pGamePathDialog->GetGamePath());
+                saveModLoaderConfigFile();
+                m_pGamePathDialog.reset();
+                Init();
+            }
+            else if (result == GamePathDialog::Result::Cancel)
+            {
+                m_pGamePathDialog.reset();
+            }
+        }
 
         ImGui::EndTabItem();
     }
@@ -1590,6 +1606,7 @@ void ModLoader::createDefaultFileStructure() {
 }
 
 void ModLoader::Init() {
+    // Note: This method may be called mutiple times (e.g. after game path change)
     if (!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())) {
         log(severityLevel::fatal, "Chairloader config file not found");
         MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
