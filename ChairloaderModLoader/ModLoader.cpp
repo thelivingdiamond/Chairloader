@@ -1671,11 +1671,17 @@ void ModLoader::createDefaultFileStructure() {
 
 void ModLoader::Init() {
     // Note: This method may be called mutiple times (e.g. after game path change)
-    if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").wstring().c_str())) {
-        log(severityLevel::fatal, "Chairloader config file not found");
-        MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
-        exit(-1);
+    if (!verifyChairloaderConfigFile())
+    {
+        log(severityLevel::info, "Chairloader config file not found, creating default");
+        createChairloaderConfigFile();
     }
+    createDefaultFileStructure();
+
+    if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").c_str())) {
+        throw std::runtime_error("Chairloader config file is corrupted.");
+    }
+
     log(severityLevel::info, "Chairloader Config File Loaded");
     ModListNode = ChairloaderConfigFile.child("Chairloader").child("ModList");
     std::string foundMods = "Previously Loaded Mods Found:";
