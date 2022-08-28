@@ -46,7 +46,7 @@ void ModLoader::Draw() {
 
 void ModLoader::LoadModLoaderConfig()
 {
-    if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.string().c_str())) {
+    if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.wstring().c_str())) {
         if (ChairloaderModLoaderConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string());
 
@@ -60,8 +60,8 @@ void ModLoader::LoadModLoaderConfig()
         log(severityLevel::error, "ChairloaderModLoader config file not found, creating new");
         ChairloaderModLoaderConfigFile.reset();
         ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
-        ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.string().c_str());
-        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+        ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
+        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.wstring().c_str());
     }
     log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
 }
@@ -163,7 +163,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("Files", true)) {
             if (ImGui::MenuItem("Install Mod")) {
-                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.string(), 1, nullptr);
+                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.u8string(), 1, nullptr);
             }
 #ifdef _DEBUG
             ImGui::Separator();
@@ -383,9 +383,9 @@ void ModLoader::DrawModList() {
                                             ModEntry.modName.c_str());
                                 if (ImGui::Button("Delete")) {
                                     if (!ModEntry.modName.empty()) {
-                                        log(severityLevel::info, "Deleting %s/Mods/%s/", PreyPath.string(),
+                                        log(severityLevel::info, "Deleting %s/Mods/%s/", PreyPath.u8string(),
                                             ModEntry.modName);
-                                        fs::remove_all(PreyPath.string() + "/Mods/" + ModEntry.modName + "/");
+                                        fs::remove_all(PreyPath / "/Mods/" / ModEntry.modName / "/");
                                         ModList.erase(std::find(ModList.begin(), ModList.end(), ModEntry.modName));
 
                                     }
@@ -534,7 +534,7 @@ void ModLoader::DrawModList() {
             }
             ImGui::Separator();
             if(ImGui::Button("Install Mod")){
-                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.string(), 1, nullptr);
+                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.u8string(), 1, nullptr);
             }
         }
         ImGui::EndChild();
@@ -548,8 +548,8 @@ void ModLoader::DrawModList() {
                 try {
                     modToLoadPath = ImGuiFileDialog::Instance()->GetCurrentPath();
                     fileToLoad = ImGuiFileDialog::Instance()->GetFilePathName();
-                    log(severityLevel::trace, "File To Load: %s", modToLoadPath.string() + fileToLoad);
-                    if (!(modToLoadPath.string() + fileToLoad).empty()) {
+                    log(severityLevel::trace, "File To Load: %s", modToLoadPath.u8string() + fileToLoad);
+                    if (!(modToLoadPath / fileToLoad).empty()) {
                         fs::remove_all("temp");
                         InstallModFromFile(modToLoadPath, fileToLoad);
                     }
@@ -604,10 +604,10 @@ void ModLoader::DrawXMLSettings() {
     if(ImGui::BeginTabItem("Asset View")){
         if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), true)) {
             for (auto &mod: ModList)
-                TreeNodeWalkDirectory(fs::path(PreyPath.string() + "/Mods/" + mod.modName), mod.modName);
+                TreeNodeWalkDirectory(fs::path(PreyPath / "/Mods/" / mod.modName), mod.modName);
 //                if (ImGui::TreeNode(mod.modName.c_str())) {
 //                    ImGui::Text("Version: %s", mod.version.c_str());
-//                    TreeNodeWalkDirectory(fs::path(PreyPath.string() + "/Mods/" + mod.modName + "/Data"), mod.modName);
+//                    TreeNodeWalkDirectory(fs::path(PreyPath.u8string() + "/Mods/" + mod.modName + "/Data"), mod.modName);
 //                    ImGui::TreePop();
 //                }
         }
@@ -618,7 +618,7 @@ void ModLoader::DrawXMLSettings() {
                 selectedFile.clear();
             }
             if(!selectedFile.empty()){
-                ImGui::Text("%s", selectedFile.filename().string().c_str());
+                ImGui::Text("%s", selectedFile.filename().u8string().c_str());
             }
         }
         ImGui::EndChild();
@@ -746,16 +746,16 @@ void ModLoader::DrawLog() {
 
 
 fs::path ModLoader::getConfigPath(std::string &modName) {
-    return fs::path{ (PreyPath.string() + "/Mods/config/" + modName + ".xml").c_str() };
+    return fs::path{ (PreyPath / "/Mods/config/" / modName / ".xml").c_str() };
 }
 
 fs::path ModLoader::getDefaultConfigPath(std::string &modName) {
-    return fs::path{ (PreyPath.string() + "/Mods/" + modName + "/" + modName + "_default.xml").c_str() };
+    return fs::path{ (PreyPath / "/Mods/" / modName / "/" / modName / "_default.xml").c_str() };
 }
 bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
     pugi::xml_document result;
-    auto loadResult  = result.load_file((directory.string() + "/ModInfo.xml").c_str());
-    log(severityLevel::debug, "%s/ModInfo.xml", directory.string().c_str());
+    auto loadResult  = result.load_file((directory / "ModInfo.xml").wstring().c_str());
+    log(severityLevel::debug, "%s/ModInfo.xml", directory.u8string().c_str());
     if(loadResult){
         std::string modName = result.child("Mod").attribute("modName").as_string();
         if(!modName.empty()) {
@@ -768,7 +768,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
                     c == '.';
                 if (!validChar)
                 {
-                    log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Illegal chars in mod name'", directory.string());
+                    log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Illegal chars in mod name'", directory.u8string());
                     return false;
                 }
             }
@@ -793,18 +793,18 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
             return true;
         }
         else {
-            log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Could not read Mod Name'", directory.string());
+            log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Could not read Mod Name'", directory.u8string());
 
         }
     } else {
-        log(severityLevel::warning, "ModInfo.xml failed to load in %s - Reason: %s", directory.string(), loadResult.description());
+        log(severityLevel::warning, "ModInfo.xml failed to load in %s - Reason: %s", directory.u8string(), loadResult.description());
     }
     return false;
 }
 
 void ModLoader::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
-        fs::path modPath = PreyPath.string() + "/Mods/" + PrevMod.name();
+        fs::path modPath = PreyPath / "/Mods/" / PrevMod.name();
         Mod mod;
         if(LoadModInfoFile(modPath, &mod)) {
             FindMod(&mod);
@@ -821,8 +821,8 @@ void ModLoader::LoadModsFromConfig() {
     serializeLoadOrder();
 }
 void ModLoader::DetectNewMods() {
-    for(auto &directory : fs::directory_iterator(fs::path(PreyPath.string() + "/Mods/"))){
-        if(directory.path().string() != PreyPath.string() + "/Mods/config" && directory.path().string() != PreyPath.string() + "/Mods/Legacy") {
+    for(auto &directory : fs::directory_iterator(fs::path(PreyPath.u8string() + "/Mods/"))){
+        if(directory.path() != PreyPath / "/Mods/config" && directory.path() != PreyPath / "/Mods/Legacy") {
             Mod mod;
             if(LoadModInfoFile(directory.path(), &mod)) {
                 if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
@@ -848,9 +848,9 @@ void ModLoader::loadModInfoFiles() {
     //TODO: Handle dependencies
 //    serializeLoadOrder();
     try {
-        for (auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")) {
+        for (auto &directory: fs::directory_iterator(PreyPath / "Mods/Legacy")) {
             if (directory.is_directory()) {
-                LegacyModList.emplace_back(directory.path().filename().string());
+                LegacyModList.emplace_back(directory.path().filename().u8string());
             }
         }
         if(LegacyModList.size() > 0) {
@@ -1034,7 +1034,7 @@ void ModLoader::Update() {
 
 bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
     if(is_directory(path)){
-        if(ImGui::TreeNode(path.string().c_str(), "%s", path.filename().string().c_str())){
+        if(ImGui::TreeNode(path.u8string().c_str(), "%s", path.filename().u8string().c_str())){
             for(auto&childPath: fs::directory_iterator(path)) {
                 TreeNodeWalkDirectory(childPath.path(), modName);
             }
@@ -1042,8 +1042,8 @@ bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
             return false;
         }
     } else if(is_regular_file(path)){
-        ImGui::PushID(path.string().c_str());
-        if(ImGui::Selectable(path.filename().string().c_str(), path == selectedFile)){
+        ImGui::PushID(path.u8string().c_str());
+        if(ImGui::Selectable(path.filename().u8string().c_str(), path == selectedFile)){
             selectedFile = path;
         }
         ImGui::PopID();
@@ -1124,11 +1124,11 @@ void ModLoader::UninstallMod(std::string &modName) {
 void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
     char shortPath[MAX_PATH];
     GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
-    std::string commandArgs = ".\\7za.exe x ";
-    commandArgs +=  shortPath;
-    commandArgs += " -otemp";
+    fs::path commandArgs = ".\\7za.exe x ";
+    commandArgs /=  shortPath;
+    commandArgs /= " -otemp";
     log(severityLevel::trace, "%s", commandArgs);
-    STARTUPINFO si = {sizeof(STARTUPINFO)};
+    STARTUPINFOW si = {sizeof(STARTUPINFO)};
     PROCESS_INFORMATION pi;
     //DONE: move to CreateProcessA instead of system()
 //    auto si = new STARTUPINFOA;
@@ -1136,8 +1136,8 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
 //    LPSTR cmdList[] = {TEXT("x"), TEXT((char*)fileName.c_str()), TEXT("-otemp")};
 //    if(CreateProcessA(nullptr, args, nullptr, nullptr, true, 0, nullptr, nullptr, si, pi))
 //        WaitForSingleObject(pi->hProcess, INFINITE);
-
-    if(CreateProcess(nullptr, &commandArgs[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
+    commandArgs.wstring().resize(MAX_PATH);
+    if(CreateProcessW(nullptr, &commandArgs.wstring()[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
         log(severityLevel::debug, "7Zip operation successful");
         WaitForSingleObject(pi.hProcess, INFINITE);
         CloseHandle(pi.hProcess);
@@ -1153,7 +1153,7 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
             auto mod = new Mod;
             if(LoadModInfoFile(fs::path("./temp"), mod)){
                 try {
-                    fs::copy("./temp/", PreyPath.string() + "/Mods/" + mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    fs::copy("./temp/", PreyPath / "/Mods/" / mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
                     InstallMod(mod->modName);
@@ -1194,9 +1194,9 @@ ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path o
     pugi::xml_document modFile;
     pugi::xml_document originalFile;
     pugi::xml_document outputFile;
-    auto modResult = modFile.load_file(overridePath.string().c_str());
-    auto originalResult = originalFile.load_file(originalPath.string().c_str());
-    auto outputResult = outputFile.load_file(basePath.string().c_str());
+    auto modResult = modFile.load_file(overridePath.wstring().c_str());
+    auto originalResult = originalFile.load_file(originalPath.wstring().c_str());
+    auto outputResult = outputFile.load_file(basePath.wstring().c_str());
     auto baseRootNode = outputFile.first_child();
     auto overrideRootNode = modFile.first_child();
     auto originalRootNode = originalFile.first_child();
@@ -1212,7 +1212,7 @@ ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path o
             }
         }
     }
-    outputFile.save_file(basePath.string().c_str());
+    outputFile.save_file(basePath.wstring().c_str());
     return {};
 }
 
@@ -1265,10 +1265,10 @@ void ModLoader::mergeXMLFiles() {
         return;
     }
     //legacy mods
-    for(auto &directory: fs::directory_iterator(PreyPath.string() + "/Mods/Legacy")) {
+    for(auto &directory: fs::directory_iterator(PreyPath / "/Mods/Legacy")) {
         if(fs::is_directory(directory)) {
-            log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().string().c_str());
-            mergeDirectory("", directory.path().filename().string(), true);
+            log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
+            mergeDirectory("", directory.path().filename().u8string(), true);
         }
     }
     //registered mods
@@ -1393,36 +1393,36 @@ void ModLoader::OverlayLogElement(LogEntry entry) {
 void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
     fs::path modPath;
     if(legacyMod) {
-        modPath = PreyPath.string() + "/Mods/Legacy/" + modName + path.string();
+        modPath = PreyPath / "/Mods/Legacy/" / modName / path;
     } else {
-        modPath = PreyPath.string() + "/Mods/" + modName + "/Data" + path.string();
+        modPath = PreyPath / "/Mods/" / modName / "/Data" / path.u8string();
     }
-    fs::path originalPath = "./PreyFiles" + path.string();
-    fs::path outputPath = "./Output" + path.string();
+    fs::path originalPath = "./PreyFiles" / path;
+    fs::path outputPath = "./Output" / path;
     try {
         // merge level files anyway
-        if (is_directory(modPath)/* && modPath != PreyPath.string() + "/Mods/" + modName + "/Data/Levels"*/) {
-            log(severityLevel::trace, "Exploring directory %s", modPath.string().c_str());
+        if (is_directory(modPath)/* && modPath != PreyPath.u8string() + "/Mods/" + modName + "/Data/Levels"*/) {
+            log(severityLevel::trace, "Exploring directory %s", modPath.u8string().c_str());
             if(!fs::exists(outputPath)) {
                 fs::create_directories(outputPath);
             }
             for (auto directory: fs::directory_iterator(modPath)) {
-                mergeDirectory(path.string() + "/" + directory.path().filename().string(), modName, legacyMod);
+                mergeDirectory(path / "/" / directory.path().filename(), modName, legacyMod);
             }
         } else if (is_regular_file(modPath)) {
             if(modPath.extension() == ".xml") {
                 if (!fs::exists(outputPath) && fs::exists(originalPath)) {
                     fs::copy_file(originalPath, outputPath);
                 }
-                log(severityLevel::trace, "Merging %s", modPath.string().c_str());
+                log(severityLevel::trace, "Merging %s", modPath.u8string().c_str());
                 mergeXMLDocument(outputPath, modPath, originalPath, modName);
             } else {
-                log(severityLevel::trace, "Copying %s", modPath.string().c_str());
+                log(severityLevel::trace, "Copying %s", modPath.u8string().c_str());
                 fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
             }
         }
     } catch (std::exception & exception){
-        log(severityLevel::error, "Exception while merging %s: %s", modPath.string().c_str(), exception.what());
+        log(severityLevel::error, "Exception while merging %s: %s", modPath.u8string().c_str(), exception.what());
     }
 }
 
@@ -1463,15 +1463,15 @@ bool ModLoader::packChairloaderPatch() {
 
     try {
         for (auto &levelDirectory: levelDirectories) {
-            fs::path basePath = levelDirectory.string().substr(std::string("./Output/").size(), levelDirectory.string().size() - 1);
-            log(severityLevel::trace, "Packing level %s", levelDirectory.string().c_str());
-            if(fs::exists("./LevelOutput/" + basePath.string() + "/level.pak")) {
-                fs::remove_all("./LevelOutput/" + basePath.string() + "/level/");
-                log(severityLevel::trace, "Removing level directory %s", "./LevelOutput/" + basePath.string() + "/level/");
-                fs::copy("./LevelOutput/" + basePath.string(), PreyPath.string() + "/GameSDK/" + basePath.string(), fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.string(), PreyPath.string() + "/GameSDK/" + basePath.string());
+            fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
+            log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
+            if(fs::exists("./LevelOutput/" / basePath / "/level.pak")) {
+                fs::remove_all("./LevelOutput/" / basePath / "/level/");
+                log(severityLevel::trace, "Removing level directory %s", "./LevelOutput/" / basePath / "/level/");
+                fs::copy("./LevelOutput/" / basePath, PreyPath / "/GameSDK/" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), PreyPath.u8string() + "/GameSDK/" + basePath.u8string());
             } else {
-                log(severityLevel::error, "Level %s not packed", basePath.string().c_str());
+                log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
             }
         }
         fs::remove_all("./Output/Levels");
@@ -1479,12 +1479,12 @@ bool ModLoader::packChairloaderPatch() {
         overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
         return false;
     }
-    STARTUPINFO LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
+    STARTUPINFOW LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
     PROCESS_INFORMATION LocalizationProcessInfo;
     log(severityLevel::trace, "Packing localization patch");
-    LPSTR command = R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)";
-
-    if(CreateProcessA(nullptr, command, nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &LocalizationStartupInfo, &LocalizationProcessInfo)){
+    auto command = fs::path(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)").wstring();
+    command.resize(MAX_PATH);
+    if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &LocalizationStartupInfo, &LocalizationProcessInfo)){
         WaitForSingleObject(LocalizationProcessInfo.hProcess, INFINITE);
         CloseHandle(LocalizationProcessInfo.hProcess);
         CloseHandle(LocalizationProcessInfo.hThread);
@@ -1499,7 +1499,7 @@ bool ModLoader::packChairloaderPatch() {
     } else {
         try {
             fs::remove_all("./Output/Localization/");
-            fs::copy_file("./English_xml_patch.pak", PreyPath.string() + "/Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
+            fs::copy_file("./English_xml_patch.pak", PreyPath / "/Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
         } catch (std::exception &exception) {
             overlayLog(severityLevel::error, "Error removing localization patch files: %s", exception.what());
             return false;
@@ -1507,10 +1507,11 @@ bool ModLoader::packChairloaderPatch() {
     }
 
     // pack chairloader patch
-    STARTUPINFO ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
+    STARTUPINFOW ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
     PROCESS_INFORMATION ChairloaderProcessInfo;
-    LPSTR commandChairloader = R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)";
-    if(CreateProcessA(nullptr, commandChairloader, nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &ChairloaderStartupInfo, &ChairloaderProcessInfo)){
+    auto commandChairloader = fs::path(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)").wstring();
+    commandChairloader.resize(MAX_PATH);
+    if(CreateProcessW(nullptr, &commandChairloader[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &ChairloaderStartupInfo, &ChairloaderProcessInfo)){
         WaitForSingleObject(ChairloaderProcessInfo.hProcess, INFINITE);
         CloseHandle(ChairloaderProcessInfo.hProcess);
         CloseHandle(ChairloaderProcessInfo.hThread);
@@ -1530,7 +1531,7 @@ bool ModLoader::packChairloaderPatch() {
 
 bool ModLoader::copyChairloaderPatch() {
     try {
-        fs::copy("patch_chairloader.pak", PreyPath.string() + "/GameSDK/Precache",
+        fs::copy("patch_chairloader.pak", PreyPath / "/GameSDK/Precache",
                  fs::copy_options::overwrite_existing);
         return true;
     } catch (std::exception & exception){
@@ -1542,8 +1543,8 @@ bool ModLoader::copyChairloaderPatch() {
 std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
     std::vector<fs::path> levelPaths;
     for(auto &directory: fs::directory_iterator(pathToExplore)) {
-        if(fs::exists(directory.path().string() + "/level/")){
-            levelPaths.emplace_back(directory.path().string());
+        if(fs::exists(directory.path() / "/level/")){
+            levelPaths.emplace_back(directory.path());
         } else {
             auto childrenPaths = exploreLevelDirectory(directory.path());
             for(auto &childPath: childrenPaths) {
@@ -1556,24 +1557,22 @@ std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
 
 PROCESS_INFORMATION ModLoader::packLevel(fs::path path) {
     try {
-        STARTUPINFO startupInfo = {sizeof(startupInfo)};
+        STARTUPINFOW startupInfo = {sizeof(startupInfo)};
         PROCESS_INFORMATION processInfo;
-        fs::path basePath = path.string().substr(std::string("./Output/").size(), path.string().size() - 1);
-        std::string tempPath = basePath.string();
-        std::replace(tempPath.begin(), tempPath.end(), '/', '\\');
-//        log(severityLevel::debug, "Base level path: %s", basePath.string().c_str());
-        auto command = std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*";
-        if(CreateProcess(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
-            log(severityLevel::trace, "Packed level %s", basePath.string().c_str());
+        fs::path basePath = path.wstring().substr(std::string(".\\Output\\").size(), path.wstring().size() - 1);
+//        fs::path tempPath = basePath;
+//        std::replace(tempPath.wstring().begin(), tempPath.wstring().end(), '/', '\\');
+        auto command = (R"(.\7za.exe a .\LevelOutput\)" /  basePath / "\\level.pak -tzip " / path / "\\level\\*").wstring();
+        command.resize(MAX_PATH);
+        if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
+            log(severityLevel::trace, "Packed level %s", basePath.u8string().c_str());
             return processInfo;
         } else {
-            log(severityLevel::error, "Failed to pack level %s", basePath.string().c_str());
+            log(severityLevel::error, "Failed to pack level %s", basePath.u8string().c_str());
             return {};
         }
-//        system((std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*").c_str());
-//        return true;
     } catch (std::exception & exception){
-        log(severityLevel::error, "Exception while packing level %s: %s", path.string().c_str(), exception.what());
+        log(severityLevel::error, "Exception while packing level %s: %s", path.u8string().c_str(), exception.what());
         return {};
     }
     return {};
@@ -1615,7 +1614,7 @@ bool ModLoader::copyLocalizationPatch() {
 }
 bool ModLoader::verifyChairloaderConfigFile() {
     try {
-        return fs::exists(PreyPath.string() + "/Mods/config/chairloader.xml");
+        return fs::exists(PreyPath / "/Mods/config/chairloader.xml");
     } catch (std::exception &exception) {
         overlayLog(severityLevel::error, "Exception while verifying chairloader.xml: %s", exception.what());
         return false;
@@ -1623,7 +1622,7 @@ bool ModLoader::verifyChairloaderConfigFile() {
 }
 void ModLoader::createChairloaderConfigFile() {
     try {
-        fs::copy("chairloader_default.xml", PreyPath.string() + "/Mods/config/chairloader.xml", fs::copy_options::overwrite_existing);
+        fs::copy("chairloader_default.xml", PreyPath / "/Mods/config/chairloader.xml", fs::copy_options::overwrite_existing);
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while creating chairloader config file: %s", exception.what());
     }
@@ -1672,7 +1671,7 @@ void ModLoader::createDefaultFileStructure() {
 
 void ModLoader::Init() {
     // Note: This method may be called mutiple times (e.g. after game path change)
-    if (!ChairloaderConfigFile.load_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str())) {
+    if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").wstring().c_str())) {
         log(severityLevel::fatal, "Chairloader config file not found");
         MessageBoxA(nullptr,"Chairloader config file not found:\nPlease verify the Chairloader installation", "Error", MB_OK);
         exit(-1);
@@ -1695,14 +1694,15 @@ void ModLoader::Init() {
 void ModLoader::DrawDebug() {
     if(ImGui::BeginTabItem("DEBUG")) {
         if (ImGui::Button("Test create process")) {
-            STARTUPINFO info={sizeof(info)};
+            STARTUPINFOW info={sizeof(info)};
             PROCESS_INFORMATION processInfo;
             LPSTR currentDir = new char[MAX_PATH];
             GetCurrentDirectory(MAX_PATH, currentDir);
             log(severityLevel::debug, "Current directory: %s", currentDir);
-            LPTSTR command = R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)";
+            auto command = fs::path(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)").wstring();
+            command.resize(MAX_PATH);
 //            auto command = const_cast<LPTSTR>(commandArgs.c_str());
-            if (CreateProcess(nullptr, command, nullptr, nullptr, true, CREATE_NO_WINDOW, nullptr, nullptr, &info, &processInfo)) {
+            if (CreateProcessW(nullptr, &command[0], nullptr, nullptr, true, CREATE_NO_WINDOW, nullptr, nullptr, &info, &processInfo)) {
                 overlayLog(severityLevel::debug, "CREATE PROCESS SUCCESS");
                 WaitForSingleObject(processInfo.hProcess, INFINITE);
                 CloseHandle(processInfo.hProcess);
