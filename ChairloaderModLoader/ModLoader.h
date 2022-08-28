@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <fstream>
 #include <chrono>
+#include <Windows.h>
 
 #include <boost/format.hpp>
 
@@ -114,6 +115,8 @@ private:
     void DrawXMLSettings();
     void DrawDeploySettings();
     void DrawLog();
+    // temporary tab
+    void DrawDebug();
 
     float OverlayWidth = 20.0f;
     float OverlayHeight = 60.0f;
@@ -171,7 +174,7 @@ private:
 
 
     std::vector<fs::path> exploreLevelDirectory(fs::path);
-    bool packLevel(fs::path);
+    PROCESS_INFORMATION packLevel(fs::path path);
     bool packChairloaderPatch();
     bool copyChairloaderPatch();
     bool copyLocalizationPatch();
@@ -198,6 +201,8 @@ private:
 
     ImColor errorColor = {255,70,70};
     ImColor warningColor = {255, 190, 70};
+    // light green
+    ImColor debugColor = {70,255,70};
 
     #ifdef _DEBUG
         severityLevel filterLevel = severityLevel::trace;

@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <Windows.h>
 #include <sstream>
 #include "ModLoader.h"
 #include "UI.h"
@@ -183,6 +182,9 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         DrawXMLSettings();
         DrawLog();
         DrawDLLSettings();
+#ifdef _DEBUG
+        DrawDebug();
+#endif
         ImGui::EndTabBar();
         if (showErrorPopup) {
             ImGui::OpenPopup("Error");
@@ -608,15 +610,15 @@ void ModLoader::DrawDeploySettings() {
             auto baseResult = BaseDoc.load_file(BasePath.c_str());
             auto overrideResult = OverrideDoc.load_file(OverridePath.c_str());
             auto originalResult = OriginalDoc.load_file(OriginalPath.c_str());
-            log(severityLevel::debug, "base: %s", baseResult.description());
-            log(severityLevel::debug, "override: %s", overrideResult.description());
-            log(severityLevel::debug, "original: %s", originalResult.description());
+//            log(severityLevel::debug, "base: %s", baseResult.description());
+//            log(severityLevel::debug, "override: %s", overrideResult.description());
+//            log(severityLevel::debug, "original: %s", originalResult.description());
         }
         if(ImGui::Button("Test Merge")) {
             mergeXMLDocument(BasePath, OverridePath, OriginalPath, std::string());
         }
         if(ImGui::Button("Save Copy")){
-            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
+//            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
         }
         ImGui::EndTabItem();
         if(ImGui::Button("Merge XML Files")){
@@ -676,7 +678,7 @@ void ModLoader::DrawLog() {
                                 break;
                             case severityLevel::debug:
                                 level = "debug";
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(200, 200, 200).operator ImU32());
+                                ImGui::PushStyleColor(ImGuiCol_Text, debugColor.operator ImU32());
                                 break;
                             default:
                             case severityLevel::info:
@@ -1100,35 +1102,43 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
     commandArgs +=  shortPath;
     commandArgs += " -otemp";
     log(severityLevel::trace, "%s", commandArgs);
-    //TODO: move to CreateProcessA instead of system()
+    STARTUPINFO si = {sizeof(STARTUPINFO)};
+    PROCESS_INFORMATION pi;
+    //DONE: move to CreateProcessA instead of system()
 //    auto si = new STARTUPINFOA;
 //    auto pi = new PROCESS_INFORMATION;
 //    LPSTR cmdList[] = {TEXT("x"), TEXT((char*)fileName.c_str()), TEXT("-otemp")};
 //    if(CreateProcessA(nullptr, args, nullptr, nullptr, true, 0, nullptr, nullptr, si, pi))
 //        WaitForSingleObject(pi->hProcess, INFINITE);
 
-    if(system(commandArgs.c_str())) {
+    if(CreateProcess(nullptr, &commandArgs[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
+        log(severityLevel::debug, "7Zip operation successful");
+        WaitForSingleObject(pi.hProcess, INFINITE);
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    } else {
+
         log(severityLevel::error, "Mod Installation Failed: could not decompress %s", fileName);
         return;
-    } else
-        log(severityLevel::debug, "7Zip operation successful");
-//        log(severityLevel::error, "Error, 7za.exe failed to execute %i", GetLastError());
-    if(exists(fs::path("./temp/ModInfo.xml"))){
-        auto mod = new Mod;
-        if(LoadModInfoFile(fs::path("./temp"), mod)){
-            try {
-                fs::copy("./temp/", PreyPath.string() + "/Mods/" + mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
-                DetectNewMods();
-                InstallMod(mod->modName);
-            } catch (std::exception &exc){
-                std::cerr << exc.what() << std::endl;
-                log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
-            }
-        }
-    } else {
-        log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
     }
+
+        log(severityLevel::error, "Error, 7za.exe failed to execute %i", GetLastError());
+        if(exists(fs::path("./temp/ModInfo.xml"))){
+            auto mod = new Mod;
+            if(LoadModInfoFile(fs::path("./temp"), mod)){
+                try {
+                    fs::copy("./temp/", PreyPath.string() + "/Mods/" + mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
+                    DetectNewMods();
+                    InstallMod(mod->modName);
+                } catch (std::exception &exc){
+                    std::cerr << exc.what() << std::endl;
+                    log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
+                }
+            }
+        } else {
+            log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
+        }
     fs::remove_all("./temp/");
 }
 
@@ -1165,7 +1175,7 @@ ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path o
     auto overrideRootNode = modFile.first_child();
     auto originalRootNode = originalFile.first_child();
     baseRootNode.append_child(pugi::node_comment).set_value(("Mod: " + modName).c_str());
-    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
+//    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
     if(overrideRootNode) {
         for (auto &overrideNode: overrideRootNode) {
             //Case: Overwrite
@@ -1318,7 +1328,7 @@ void ModLoader::OverlayLogElement(LogEntry entry) {
                 ImGui::PushStyleColor(ImGuiCol_Text, ImColor(150, 150, 150).operator ImU32());
                 break;
             case severityLevel::debug:
-                ImGui::PushStyleColor(ImGuiCol_Text, ImColor(200, 200, 200).operator ImU32());
+                ImGui::PushStyleColor(ImGuiCol_Text, debugColor.operator ImU32());
                 break;
             default:
             case severityLevel::info:
@@ -1411,22 +1421,31 @@ bool ModLoader::packChairloaderPatch() {
         overlayLog(severityLevel::error, "Error Copying level directory: %s", exception.what());
         return false;
     }
+    std::vector<PROCESS_INFORMATION> processes;
+    processes.clear();
+    for(auto &levelDirectory: levelDirectories){
+        auto processInfo = packLevel(levelDirectory);
+        if(processInfo.hProcess != nullptr) {
+            processes.push_back(processInfo);
+        }
+    }
+    for(auto & processInfo: processes){
+        WaitForSingleObject(processInfo.hProcess, INFINITE);
+        CloseHandle(processInfo.hProcess);
+        CloseHandle(processInfo.hThread);
+    }
+
     try {
         for (auto &levelDirectory: levelDirectories) {
-            fs::path basePath = levelDirectory.string().substr(std::string("./Output/").size(),
-                                                               levelDirectory.string().size() - 1);
+            fs::path basePath = levelDirectory.string().substr(std::string("./Output/").size(), levelDirectory.string().size() - 1);
             log(severityLevel::trace, "Packing level %s", levelDirectory.string().c_str());
-            if (packLevel(levelDirectory)) {
+            if(fs::exists("./LevelOutput/" + basePath.string() + "/level.pak")) {
                 fs::remove_all("./LevelOutput/" + basePath.string() + "/level/");
-                log(severityLevel::trace, "Removing level directory %s",
-                    "./LevelOutput/" + basePath.string() + "/level/");
-//            log(severityLevel::trace, "Removing output level directory %s", "./Output/" + basePath.string() + "/level/");
-                fs::copy("./LevelOutput/" + basePath.string(),
-                         PreyPath.string() + "/GameSDK/" + basePath.string(),
-                         fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::trace, "Copying Level files from %s to %s",
-                    "./LevelOutput/" + basePath.string(),
-                    PreyPath.string() + "/GameSDK/" + basePath.string());
+                log(severityLevel::trace, "Removing level directory %s", "./LevelOutput/" + basePath.string() + "/level/");
+                fs::copy("./LevelOutput/" + basePath.string(), PreyPath.string() + "/GameSDK/" + basePath.string(), fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.string(), PreyPath.string() + "/GameSDK/" + basePath.string());
+            } else {
+                log(severityLevel::error, "Level %s not packed", basePath.string().c_str());
             }
         }
         fs::remove_all("./Output/Levels");
@@ -1434,9 +1453,20 @@ bool ModLoader::packChairloaderPatch() {
         overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
         return false;
     }
+    STARTUPINFO LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
+    PROCESS_INFORMATION LocalizationProcessInfo;
     log(severityLevel::trace, "Packing localization patch");
-    // pack localization patch
-    system(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)");
+    LPSTR command = R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)";
+
+    if(CreateProcessA(nullptr, command, nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &LocalizationStartupInfo, &LocalizationProcessInfo)){
+        WaitForSingleObject(LocalizationProcessInfo.hProcess, INFINITE);
+        CloseHandle(LocalizationProcessInfo.hProcess);
+        CloseHandle(LocalizationProcessInfo.hThread);
+    } else {
+        log(severityLevel::error, "Error packing localization patch: %d", GetLastError());
+        return false;
+    }
+
     if(!fs::exists("./English_xml_patch.pak")) {
         overlayLog(severityLevel::error, "Error packing localization patch");
         return false;
@@ -1451,7 +1481,18 @@ bool ModLoader::packChairloaderPatch() {
     }
 
     // pack chairloader patch
-    system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
+    STARTUPINFO ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
+    PROCESS_INFORMATION ChairloaderProcessInfo;
+    LPSTR commandChairloader = R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)";
+    if(CreateProcessA(nullptr, commandChairloader, nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &ChairloaderStartupInfo, &ChairloaderProcessInfo)){
+        WaitForSingleObject(ChairloaderProcessInfo.hProcess, INFINITE);
+        CloseHandle(ChairloaderProcessInfo.hProcess);
+        CloseHandle(ChairloaderProcessInfo.hThread);
+    } else {
+        log(severityLevel::error, "Error packing chairloader patch: %d", GetLastError());
+        return false;
+    }
+//    system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
     if(!fs::exists("patch_chairloader.pak")) {
         overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
         return false;
@@ -1487,19 +1528,29 @@ std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
     return levelPaths;
 }
 
-bool ModLoader::packLevel(fs::path path) {
+PROCESS_INFORMATION ModLoader::packLevel(fs::path path) {
     try {
+        STARTUPINFO startupInfo = {sizeof(startupInfo)};
+        PROCESS_INFORMATION processInfo;
         fs::path basePath = path.string().substr(std::string("./Output/").size(), path.string().size() - 1);
         std::string tempPath = basePath.string();
         std::replace(tempPath.begin(), tempPath.end(), '/', '\\');
-        log(severityLevel::debug, "Base level path: %s", basePath.string().c_str());
-        system((std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*").c_str());
-        return true;
+//        log(severityLevel::debug, "Base level path: %s", basePath.string().c_str());
+        auto command = std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*";
+        if(CreateProcess(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
+            log(severityLevel::trace, "Packed level %s", basePath.string().c_str());
+            return processInfo;
+        } else {
+            log(severityLevel::error, "Failed to pack level %s", basePath.string().c_str());
+            return {};
+        }
+//        system((std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*").c_str());
+//        return true;
     } catch (std::exception & exception){
         log(severityLevel::error, "Exception while packing level %s: %s", path.string().c_str(), exception.what());
-        return false;
+        return {};
     }
-    return false;
+    return {};
 }
 
 bool ModLoader::verifyDependencies(std::string modName) {
@@ -1625,6 +1676,30 @@ void ModLoader::Init() {
 
     m_pGameVersion = std::make_unique<GameVersion>();
     initialized = true;
+}
+
+void ModLoader::DrawDebug() {
+    if(ImGui::BeginTabItem("DEBUG")) {
+        if (ImGui::Button("Test create process")) {
+            STARTUPINFO info={sizeof(info)};
+            PROCESS_INFORMATION processInfo;
+            LPSTR currentDir = new char[MAX_PATH];
+            GetCurrentDirectory(MAX_PATH, currentDir);
+            log(severityLevel::debug, "Current directory: %s", currentDir);
+            LPTSTR command = R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)";
+//            auto command = const_cast<LPTSTR>(commandArgs.c_str());
+            if (CreateProcess(nullptr, command, nullptr, nullptr, true, CREATE_NO_WINDOW, nullptr, nullptr, &info, &processInfo)) {
+                overlayLog(severityLevel::debug, "CREATE PROCESS SUCCESS");
+                WaitForSingleObject(processInfo.hProcess, INFINITE);
+                CloseHandle(processInfo.hProcess);
+                CloseHandle(processInfo.hThread);
+            } else {
+                overlayLog(severityLevel::error, "CREATE PROCESS FAILED: %d", GetLastError());
+            }
+
+        }
+        ImGui::EndTabItem();
+    }
 }
 
 
