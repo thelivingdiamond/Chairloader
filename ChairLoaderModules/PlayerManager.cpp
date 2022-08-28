@@ -8,6 +8,7 @@
 #include "Prey/CrySystem/Profiling.h"
 #include "../ChairLoader/GUIUtils.h"
 #include <Prey/CrySystem/IConsole.h>
+#include <Prey/CryString/UnicodeFunctions.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/GameDll/ark/player/ArkPlayerStatusComponent.h>
 #include <Prey/GameDll/ark/player/arkpsicomponent.h>
@@ -433,18 +434,19 @@ void PlayerManager::drawInventoryTab() {
 				                   ImColor(255, 255, 255, 80));
 			}
 			for (auto& item : inventoryItems) {
-				std::wstring name;
-				wstring localizedName;
+				wstring localizedWideName;
 				std::string stringname = "";
 				IArkItem* itemObj = itemSystem->GetItem(item.first);
 				if (itemObj != nullptr) {
-					gEnv->pSystem->GetLocalizationManager()->LocalizeString(itemObj->GetName(), localizedName);
+					gEnv->pSystem->GetLocalizationManager()->LocalizeString(itemObj->GetName(), localizedWideName);
 				}
-				name = localizedName.c_str();
-				std::string name_string = std::string(name.begin(), name.end());
+				
+				std::string localizedName;
+				Unicode::Convert(localizedName, localizedWideName);
+
 				ImGui::SetCursorPos(ImVec2(windowPos.x + (item.second.m_x - 1) * size,
 				                           windowPos.y + (item.second.m_y - 1) * size));
-				ImGuiUtils::textRectangle(name_string, item.second.m_width * size, item.second.m_height * size,
+				ImGuiUtils::textRectangle(localizedName, item.second.m_width * size, item.second.m_height * size,
 				                          ImColor(255, 255, 255, 255), ImColor(20, 20, 20, 255));
 
 				ImGui::SetCursorPos(ImVec2(windowPos.x + (item.second.m_x - 1) * size,
