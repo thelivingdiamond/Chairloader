@@ -59,7 +59,7 @@ public:
 	bool setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type) override;
 
 	// Returns the xml node <modName>. Use for custom parsing on the entire config file if needed. 
-	pugi::xml_node* getConfigNode(std::string modName) override;
+	pugi::xml_node getConfigNode(std::string modName) override;
 
 	/**
 	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file. 

@@ -27,7 +27,7 @@ struct IChairloaderConfigManager {
 	virtual bool setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type) = 0;
 
 	// Returns the xml node <modName>. Use for custom parsing on the entire config file if needed. 
-	virtual pugi::xml_node* getConfigNode(std::string modName) = 0;
+	virtual pugi::xml_node getConfigNode(std::string modName) = 0;
 
 	/**
 	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file.

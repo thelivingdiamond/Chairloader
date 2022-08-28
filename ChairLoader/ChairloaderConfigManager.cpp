@@ -288,14 +288,14 @@ bool ChairloaderConfigManager::setConfigValue(std::string modName, std::string p
 	return false;
 }
 
-pugi::xml_node* ChairloaderConfigManager::getConfigNode(std::string modName) {
+pugi::xml_node ChairloaderConfigManager::getConfigNode(std::string modName) {
 	if (modConfigs.find(modName) != modConfigs.end()) {
 		auto configFile = modConfigs.find(modName)->second;
 		auto node = configFile->child(modName.c_str());
-		return &node;
+		return node;
 	}
 	CryError("%s: config not found", modName.c_str());
-	return nullptr;
+	return pugi::xml_node();
 }
 
 ChairloaderConfigManager::ConfigParameter ChairloaderConfigManager::getNodeConfigValue(pugi::xml_node node, std::string parameterName) {
