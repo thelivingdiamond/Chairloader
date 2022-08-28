@@ -31,6 +31,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <thread>
+#include <future>
 
 // File system
 #include <filesystem>
@@ -44,3 +45,9 @@ namespace fs = std::filesystem;
 #include <boost/bimap.hpp>
 #include <pugixml.hpp>
 #include "imgui/imgui.h"
+
+template <typename R>
+inline bool IsFutureReady(const std::future<R>& f)
+{
+	return f.valid() && f.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
+}
