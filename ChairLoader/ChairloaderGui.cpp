@@ -2,6 +2,7 @@
 #include "Prey/CryGame/IGameFramework.h"
 #include "Prey/GameDll/ark/ArkGame.h"
 #include "Prey/GameDll/ark/ArkLocationManager.h"
+#include <Prey/CrySystem/XConsole.h>
 ChairloaderGui *gui = nullptr;
 
 ChairloaderGui::ChairloaderGui(ChairloaderGlobalEnvironment* env) :
@@ -20,6 +21,7 @@ void ChairloaderGui::logItem(std::string msg, const std::string modName, logLeve
 void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
     log.logItem(message, displayToScreen);
 }
+
 
 void ChairloaderGui::draw(bool* bShow) {
     if (*bShow) {
@@ -90,6 +92,12 @@ void ChairloaderGui::draw(bool* bShow) {
                         }
                     }
                     ImGui::Separator();
+                    if (ImGui::MenuItem("Dump Commands to console")){
+                        auto xConsole = (CXConsole*)gEnv->pConsole;
+                        for(auto & command : xConsole->m_mapCommands){
+                            CryLog("%s: %s", command.second.m_sName.c_str(),  command.second.m_sHelp.c_str());
+                        }
+                    }
                     if(ImGui::MenuItem("Dump CVars to file")){
                         gEnv->pConsole->DumpCVarsToFile("cvar_dump.txt");
                     }
