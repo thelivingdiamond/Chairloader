@@ -34,6 +34,9 @@ void ModLoader::Draw() {
     case State::InstallWizard:
         DrawInstallWizard(&bDraw);
         break;
+    case State::Deploying:
+        DrawDeployScreen(&bDraw);
+        break;
     default:
         assert(!("Invalid UI state"));
         std::abort();
@@ -532,8 +535,9 @@ void ModLoader::DrawModList() {
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Save the mod list to the chairloader.xml config file");
             if(ImGui::Button("Deploy Mods")){
-                if(DeployMods())
-                    overlayLog(severityLevel::info, "Mods deployed");
+                SwitchToDeployScreen();
+                m_DeployTaskFuture = std::async(std::launch::async,  [&]() {DeployMods();});
+//                if(DeployMods())
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
@@ -1186,9 +1190,14 @@ bool ModLoader::DeployMods() {
     saveChairloaderConfigFile();
     if(packChairloaderPatch()){
         if(copyChairloaderPatch()){
+            m_DeployLogMutex.lock();
+            m_DeployState = DeployState::Done;
+            m_DeployLogMutex.unlock();
+//            m_State = State::MainWindow;
             return true;
         }
     }
+//    m_State = State::MainWindow;
     return false;
 }
 
@@ -1250,8 +1259,17 @@ bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideN
 }
 
 void ModLoader::mergeXMLFiles() {
+    // Remove old output files
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::RemovingOldOutput;
+    m_DeployLogMutex.unlock();
     fs::remove_all("./Output/");
     fs::create_directory("./Output/");
+
+    // Copy Base Files
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::CopyingBaseFiles;
+    m_DeployLogMutex.unlock();
     try {
         fs::copy("./PreyFiles/Levels", "./Output/Levels",
                  fs::copy_options::recursive | fs::copy_options::overwrite_existing);
@@ -1269,7 +1287,10 @@ void ModLoader::mergeXMLFiles() {
         overlayLog(severityLevel::error, "Could not copy Localization folder: %s", exc.what());
         return;
     }
-    //legacy mods
+    //merge legacy mods
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::MergingLegacyMods;
+    m_DeployLogMutex.unlock();
     for(auto &directory: fs::directory_iterator(PreyPath / "Mods/Legacy")) {
         if(fs::is_directory(directory)) {
             log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
@@ -1277,6 +1298,9 @@ void ModLoader::mergeXMLFiles() {
         }
     }
     //registered mods
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::MergingMods;
+    m_DeployLogMutex.unlock();
     for(auto &mod : ModList) {
         if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
             mergeDirectory("", mod.modName);
@@ -1435,6 +1459,10 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
 
 
 bool ModLoader::packChairloaderPatch() {
+    // Remove Old Patches
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::RemovingOldPatches;
+    m_DeployLogMutex.unlock();
     try {
         fs::remove("patch_chairloader.pak");
         fs::remove_all("./LevelOutput");
@@ -1444,6 +1472,9 @@ bool ModLoader::packChairloaderPatch() {
         return false;
     }
     // packing level files
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::PackingLevelFiles;
+    m_DeployLogMutex.unlock();
     auto levelDirectories = exploreLevelDirectory("./Output/Levels");
     try {
         fs::create_directories("./LevelOutput/Levels");
@@ -1465,7 +1496,10 @@ bool ModLoader::packChairloaderPatch() {
         CloseHandle(processInfo.hProcess);
         CloseHandle(processInfo.hThread);
     }
-
+    // Copying Level Files
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::CopyingLevelFiles;
+    m_DeployLogMutex.unlock();
     try {
         for (auto &levelDirectory: levelDirectories) {
             fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
@@ -1484,6 +1518,12 @@ bool ModLoader::packChairloaderPatch() {
         overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
         return false;
     }
+
+    // Pack Localization Patch
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::PackingLocalization;
+    m_DeployLogMutex.unlock();
+
     STARTUPINFOW LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
     PROCESS_INFORMATION LocalizationProcessInfo;
     log(severityLevel::trace, "Packing localization patch");
@@ -1512,6 +1552,9 @@ bool ModLoader::packChairloaderPatch() {
     }
 
     // pack chairloader patch
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::PackingMainPatch;
+    m_DeployLogMutex.unlock();
     STARTUPINFOW ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
     PROCESS_INFORMATION ChairloaderProcessInfo;
     auto commandChairloader = fs::path(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)").wstring();
@@ -1535,6 +1578,10 @@ bool ModLoader::packChairloaderPatch() {
 }
 
 bool ModLoader::copyChairloaderPatch() {
+    // copy chairloader patch
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::CopyingMainPatch;
+    m_DeployLogMutex.unlock();
     try {
         fs::copy("patch_chairloader.pak", PreyPath / "GameSDK/Precache",
                  fs::copy_options::overwrite_existing);
@@ -1724,6 +1771,69 @@ void ModLoader::DrawDebug() {
 
         }
         ImGui::EndTabItem();
+    }
+}
+
+void ModLoader::SwitchToDeployScreen() {
+    m_State = State::Deploying;
+}
+
+void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
+    ImGuiWindowFlags windowFlags =
+            ImGuiWindowFlags_NoSavedSettings |
+            ImGuiWindowFlags_NoCollapse |
+            ImGuiWindowFlags_NoScrollbar |
+            ImGuiWindowFlags_NoResize;
+
+    ImGui::SetNextWindowSize({ 500, 500 });
+    ImGui::SetNextWindowBgAlpha(1.0f);
+    if(ImGui::Begin("Deploying Mods", nullptr, windowFlags)) {
+        m_DeployLogMutex.lock();
+        // RemovingOldOutput, CopyingBaseFiles, MergingLegacyMods, MergingMods, RemovingOldPatches, PackingLevelFiles, CopyingLevelFiles, PackingLocalization, PackingMainPatch, CopyingMainPatch, Done, Invalid
+        ImGui::Text("Deploying Mods, Please Wait:");
+        ImGui::Separator();
+        if(m_DeployState >= DeployState::RemovingOldOutput){
+            ImGui::Text("Removing old merge output files...");
+        }
+        if(m_DeployState >= DeployState::CopyingBaseFiles){
+            ImGui::Text("Copying base files...");
+        }
+        if(m_DeployState >= DeployState::MergingLegacyMods){
+            ImGui::Text("Merging legacy mods...");
+        }
+        if(m_DeployState >= DeployState::MergingMods){
+            ImGui::Text("Merging registered mods...");
+        }
+        if(m_DeployState >= DeployState::RemovingOldPatches){
+            ImGui::Text("Removing old patch files...");
+        }
+        if(m_DeployState >= DeployState::PackingLevelFiles){
+            ImGui::Text("Packing level files...");
+        }
+        if(m_DeployState >= DeployState::CopyingLevelFiles){
+            ImGui::Text("Copying level files...");
+        }
+        if(m_DeployState >= DeployState::PackingLocalization){
+            ImGui::Text("Packing localization...");
+        }
+        if(m_DeployState >= DeployState::PackingMainPatch){
+            ImGui::Text("Packing patch_chairloader.pak...");
+        }
+        if(m_DeployState >= DeployState::CopyingMainPatch){
+            ImGui::Text("Copying patch_chairloader.pak...");
+        }
+        if(m_DeployState >= DeployState::Done){
+            ImGui::Text("Done!");
+        }
+        m_DeployLogMutex.unlock();
+//        ImGui::Text("Deploying Mods, Please Hold");
+    }
+    ImGui::End();
+    if(IsFutureReady(m_DeployTaskFuture)){
+        m_DeployTaskFuture.get();
+        m_State = State::MainWindow;
+        overlayLog(severityLevel::info, "Mods Deployed");
+        return;
     }
 }
 

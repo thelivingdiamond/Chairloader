@@ -86,6 +86,7 @@ private:
         Invalid,
         LocateGameDir,
         InstallWizard,
+        Deploying,
         MainWindow,
     };
 
@@ -113,6 +114,28 @@ private:
     std::unique_ptr<ChairInstallWizard> m_pInstallWizard;
     void SwitchToInstallWizard();
     void DrawInstallWizard(bool* pbIsOpen);
+
+    /* Deploy Screen */
+    enum class DeployState
+    {
+        Invalid,
+        RemovingOldOutput,
+        CopyingBaseFiles,
+        MergingLegacyMods,
+        MergingMods,
+        RemovingOldPatches,
+        PackingLevelFiles,
+        CopyingLevelFiles,
+        PackingLocalization,
+        PackingMainPatch,
+        CopyingMainPatch,
+        Done
+    };
+    DeployState m_DeployState = DeployState::Invalid;
+    std::mutex m_DeployLogMutex;
+    void SwitchToDeployScreen();
+    void DrawDeployScreen(bool* pbIsOpen);
+    std::future<void> m_DeployTaskFuture;
 
     /* Draw Functions */
     std::unique_ptr<GameVersion> m_pGameVersion;
