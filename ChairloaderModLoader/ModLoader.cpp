@@ -1195,7 +1195,7 @@ void ModLoader::mergeXMLFiles() {
     fs::remove_all("./Output/");
     fs::create_directory("./Output/");
     try {
-        fs::copy("./Data/PreyFiles/Levels", "./Output/Levels",
+        fs::copy("./PreyFiles/Levels", "./Output/Levels",
                  fs::copy_options::recursive | fs::copy_options::overwrite_existing);
     } catch (std::exception &exc){
         std::cerr << exc.what() << std::endl;
@@ -1204,7 +1204,7 @@ void ModLoader::mergeXMLFiles() {
     }
     try{
         fs::create_directories("./Output/Localization/English_xml");
-        fs::copy("./Data/PreyFiles/Localization/English_xml_patch/", "./Output/Localization/English_xml/",
+        fs::copy("./PreyFiles/Localization/English_xml_patch/", "./Output/Localization/English_xml/",
                  fs::copy_options::recursive | fs::copy_options::overwrite_existing);
     } catch (std::exception &exc){
         std::cerr << exc.what() << std::endl;
@@ -1344,7 +1344,7 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
     } else {
         modPath = PreyPath.string() + "/Mods/" + modName + "/Data" + path.string();
     }
-    fs::path originalPath = "./Data/PreyFiles" + path.string();
+    fs::path originalPath = "./PreyFiles" + path.string();
     fs::path outputPath = "./Output" + path.string();
     try {
         // merge level files anyway
