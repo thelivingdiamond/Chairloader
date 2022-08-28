@@ -1567,13 +1567,13 @@ PROCESS_INFORMATION ModLoader::packLevel(fs::path path) {
         fs::path basePath = path.wstring().substr(std::string(".\\Output\\").size(), path.wstring().size() - 1);
 //        fs::path tempPath = basePath;
 //        std::replace(tempPath.wstring().begin(), tempPath.wstring().end(), '/', '\\');
-        auto command = (R"(.\7za.exe a .\LevelOutput\)" /  basePath / "\\level.pak -tzip " / path / "\\level\\*").wstring();
+        auto command = (R"(.\7za.exe a .\LevelOutput)" /  basePath / "level.pak -tzip " / path / "level\\*").wstring();
         command.resize(MAX_PATH);
         if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
             log(severityLevel::trace, "Packed level %s", basePath.u8string().c_str());
             return processInfo;
         } else {
-            log(severityLevel::error, "Failed to pack level %s", basePath.u8string().c_str());
+            log(severityLevel::error, "Failed to pack level %s: %d", basePath.u8string().c_str(), GetLastError());
             return {};
         }
     } catch (std::exception & exception){
