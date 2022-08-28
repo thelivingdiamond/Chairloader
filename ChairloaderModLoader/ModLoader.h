@@ -241,7 +241,7 @@ private:
     #ifdef _DEBUG
         severityLevel filterLevel = severityLevel::trace;
     #else
-        severityLevel filterlevel = severityLevel::info
+        severityLevel filterLevel = severityLevel::info;
     #endif
     //Logging function
     template<typename...Args>
