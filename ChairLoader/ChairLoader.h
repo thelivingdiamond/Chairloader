@@ -90,7 +90,7 @@ private:
 	std::vector<ModEntry> modList;
 
 	//! intermediate structure to keep track of mod load order before the mods are registered
-	std::map<std::string, int> modLoadOrder;
+	std::map<std::string, pugi::xml_node> modLoadOrder;
 
 	//! reads the config file to obtain the mod load order
 	void ReadModList();

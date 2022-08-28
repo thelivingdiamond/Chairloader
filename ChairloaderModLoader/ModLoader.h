@@ -53,6 +53,7 @@ public:
         std::string displayName;
         std::string version;
         std::string author;
+        std::string dllName;
         int loadOrder = -1;
         pugi::xml_node infoFile;
         pugi::xml_node configFile;
@@ -63,8 +64,7 @@ public:
         bool installed = false,
              enabled = false,
              deployed = false,
-             hasXML,
-             hasDLL;
+             hasXML;
         bool operator<( Mod& b ) const {
             return this->loadOrder < b.loadOrder;
         }

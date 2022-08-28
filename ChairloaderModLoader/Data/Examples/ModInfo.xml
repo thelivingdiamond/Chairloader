@@ -2,7 +2,7 @@
 	modName="TheChair.ExampleMod"
 	displayName="Example Mod"
 	version="1.0"
-	hasDLL="false"
+	dllName="ExampleMod.dll"
 	hasXML="true"
 	author="The Chair">
     <ArchetypeLibraries>

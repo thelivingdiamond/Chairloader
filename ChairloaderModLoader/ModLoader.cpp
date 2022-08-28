@@ -351,7 +351,8 @@ void ModLoader::DrawModList() {
                             if (ImGui::BeginPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str())) {
                                 ImGui::Text("%s:", ModEntry.displayName.c_str());
                                 ImGui::BeginDisabled();
-                                ImGui::Checkbox("Has DLL", &ModEntry.hasDLL);
+                                bool hasDll = !ModEntry.dllName.empty();
+                                ImGui::Checkbox("Has DLL", &hasDll);
                                 ImGui::SameLine();
                                 ImGui::Checkbox("Has XML", &ModEntry.hasXML);
                                 ImGui::EndDisabled();
@@ -809,7 +810,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
             mod->version = result.child("Mod").attribute("version").as_string();
             mod->author = result.child("Mod").attribute("author").as_string();
             mod->infoFile = result.child("Mod");
-            mod->hasDLL = result.child("Mod").attribute("hasDLL").as_bool();
+            mod->dllName = result.child("Mod").attribute("dllName").as_string();
             mod->hasXML = result.child("Mod").attribute("hasXML").as_bool();
             for(auto & dependency : result.child("Mod").child("Dependencies")){
                 mod->dependencies.emplace_back(dependency.text().get());
@@ -992,10 +993,13 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
         node.append_attribute("type").set_value("string");
         node.text().set(modEntry->version.c_str());
         saveChairloaderConfigFile();
-        //hasDLL
-        node = modNode.append_child("hasDLL");
-        node.append_attribute("type").set_value("string");
-        node.text().set(modEntry->hasDLL);
+        //dllName
+        if (!modEntry->dllName.empty())
+        {
+            node = modNode.append_child("dllName");
+            node.append_attribute("type").set_value("string");
+            node.text().set(modEntry->dllName.c_str());
+        }
         saveChairloaderConfigFile();
         //hasXML
         node = modNode.append_child("hasXML");

@@ -382,8 +382,10 @@ void ChairLoader::initializeMods() {
 	for(auto &mod: modLoadOrder) {
 		ModEntry entry;
 		std::string modName = mod.first;
+		std::string dllName = mod.second.child("dllName").text().as_string();
+		fs::path dllPath = fs::current_path() / "Mods" / fs::u8path(modName) / fs::u8path(dllName);
 		entry.modName = modName;
-		entry.hModule = LoadLibraryA((".\\Mods\\" + modName + "\\" + modName + ".dll").c_str());
+		entry.hModule = LoadLibraryW(dllPath.c_str());
 
 		if (!entry.hModule)
 			CryFatalError("%s: DLL Failed to load", modName.c_str());
@@ -434,9 +436,9 @@ void ChairLoader::ReadModList() {
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for(auto &mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-        if(mod.child("enabled").text().as_bool() && mod.child("hasDLL").text().as_bool()) {
+        if(mod.child("enabled").text().as_bool() && mod.child("dllName")) {
             auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
-            modLoadOrder.insert(std::pair(modName, loadOrder));
+            modLoadOrder.insert(std::pair(modName, mod));
             CryLog("Load order found: %s %i", modName.c_str(), loadOrder);
         } 
 	}
