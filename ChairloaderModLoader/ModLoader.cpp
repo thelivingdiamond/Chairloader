@@ -1080,7 +1080,7 @@ void ModLoader::UninstallMod(std::string &modName) {
 void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
     char shortPath[MAX_PATH];
     GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
-    std::string commandArgs = ".\\Data\\7za.exe x ";
+    std::string commandArgs = ".\\7za.exe x ";
     commandArgs +=  shortPath;
     commandArgs += " -otemp";
     log(severityLevel::trace, "%s", commandArgs);
@@ -1090,6 +1090,7 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
 //    LPSTR cmdList[] = {TEXT("x"), TEXT((char*)fileName.c_str()), TEXT("-otemp")};
 //    if(CreateProcessA(nullptr, args, nullptr, nullptr, true, 0, nullptr, nullptr, si, pi))
 //        WaitForSingleObject(pi->hProcess, INFINITE);
+
     if(system(commandArgs.c_str())) {
         log(severityLevel::error, "Mod Installation Failed: could not decompress %s", fileName);
         return;
@@ -1419,7 +1420,7 @@ bool ModLoader::packChairloaderPatch() {
     }
     log(severityLevel::trace, "Packing localization patch");
     // pack localization patch
-    system(R"(.\Data\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)");
+    system(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)");
     if(!fs::exists("./English_xml_patch.pak")) {
         overlayLog(severityLevel::error, "Error packing localization patch");
         return false;
@@ -1434,7 +1435,7 @@ bool ModLoader::packChairloaderPatch() {
     }
 
     // pack chairloader patch
-    system(R"(.\Data\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
+    system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
     if(!fs::exists("patch_chairloader.pak")) {
         overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
         return false;
@@ -1476,7 +1477,7 @@ bool ModLoader::packLevel(fs::path path) {
         std::string tempPath = basePath.string();
         std::replace(tempPath.begin(), tempPath.end(), '/', '\\');
         log(severityLevel::debug, "Base level path: %s", basePath.string().c_str());
-        system((std::string(".\\Data\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*").c_str());
+        system((std::string(".\\7za.exe a .\\LevelOutput\\") + basePath.string() + "\\level.pak -tzip " + path.string() + "\\level\\*").c_str());
         return true;
     } catch (std::exception & exception){
         log(severityLevel::error, "Exception while packing level %s: %s", path.string().c_str(), exception.what());
