@@ -768,6 +768,7 @@ fs::path ModLoader::getDefaultConfigPath(std::string &modName) {
     return fs::path{ (PreyPath / "Mods" / modName / modName / "_default.xml").c_str() };
 }
 bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
+    std::string directoryName = directory.filename().u8string();
     pugi::xml_document result;
     auto loadResult  = result.load_file((directory / "ModInfo.xml").wstring().c_str());
     log(severityLevel::debug, "%s/ModInfo.xml", directory.u8string().c_str());
@@ -780,12 +781,20 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
                 bool validChar = (c >= 'a' && c <= 'z') ||
                     (c >= 'A' && c <= 'Z') ||
                     (c >= '0' && c <= '9') ||
-                    c == '.';
+                    c == '.' || c == '_' || c == '-';
                 if (!validChar)
                 {
-                    log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Illegal chars in mod name'", directory.u8string());
+                    log(severityLevel::error, "%s: Invalid ModInfo.xml: Illegal chars in mod name '%s'", directoryName, modName);
                     return false;
                 }
+            }
+
+            // Mod name must match its directory
+            if (directoryName != modName)
+            {
+                log(severityLevel::error, "%s: Mod name '%s' doesn't match directory name '%s'",
+                    directoryName, modName, directoryName);
+                return false;
             }
 
             mod->modName = modName;
@@ -808,11 +817,11 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
             return true;
         }
         else {
-            log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Could not read Mod Name'", directory.u8string());
+            log(severityLevel::error, "%s: - 'Invalid ModInfo.xml: Could not read Mod Name'", directoryName);
 
         }
     } else {
-        log(severityLevel::warning, "ModInfo.xml failed to load in %s - Reason: %s", directory.u8string(), loadResult.description());
+        log(severityLevel::warning, "ModInfo.xml failed to load in %s - Reason: %s", directoryName, loadResult.description());
     }
     return false;
 }
