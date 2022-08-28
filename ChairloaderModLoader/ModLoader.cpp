@@ -173,8 +173,8 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
 #ifdef _DEBUG
             ImGui::Separator();
             ImGui::MenuItem("Show Demo Window", nullptr, &showDemo);
-            ImGui::EndMenu();
 #endif
+            ImGui::EndMenu();
         }
         //Create a menu for mod list
         if (ImGui::BeginMenu("Mods", true)) {
@@ -1715,7 +1715,7 @@ bool ModLoader::copyLocalizationPatch() {
 }
 bool ModLoader::verifyChairloaderConfigFile() {
     try {
-        return fs::exists(PreyPath / "Mods/config/chairloader.xml");
+        return fs::exists(PreyPath / "Mods/config/Chairloader.xml");
     } catch (std::exception &exception) {
         overlayLog(severityLevel::error, "Exception while verifying chairloader.xml: %s", exception.what());
         return false;
@@ -1723,7 +1723,7 @@ bool ModLoader::verifyChairloaderConfigFile() {
 }
 void ModLoader::createChairloaderConfigFile() {
     try {
-        fs::copy("chairloader_default.xml", PreyPath / "Mods/config/chairloader.xml", fs::copy_options::overwrite_existing);
+        fs::copy("chairloader_default.xml", PreyPath / "Mods/config/Chairloader.xml", fs::copy_options::overwrite_existing);
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while creating chairloader config file: %s", exception.what());
     }
@@ -1771,13 +1771,14 @@ void ModLoader::createDefaultFileStructure() {
 }
 
 void ModLoader::Init() {
+    createDefaultFileStructure();
     // Note: This method may be called mutiple times (e.g. after game path change)
     if (!verifyChairloaderConfigFile())
     {
         log(severityLevel::info, "Chairloader config file not found, creating default");
         createChairloaderConfigFile();
     }
-    createDefaultFileStructure();
+
 
     if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").c_str())) {
         throw std::runtime_error("Chairloader config file is corrupted.");

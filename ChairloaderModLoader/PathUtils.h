@@ -29,7 +29,7 @@ constexpr const char* REQUIRED_CHAIRLOADER_BINARIES[] = {
 
 //! Required directories in the game dir for Chairloader to work
 constexpr const char* REQUIRED_CHAIRLOADER_DIRS[] = {
-    "Mods/Config",
+    "Mods/config",
     "Mods/Legacy",
 };
 
