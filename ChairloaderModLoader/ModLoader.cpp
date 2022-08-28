@@ -219,7 +219,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
             ImGui::Text("Load Order");
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("The load order is the order in which the mods are loaded and their assets are merged. This means that mods with a higher load order will overwrite mods with a lower load order.");
-            
+
             ImGui::EndMenu();
         }
         ImGui::EndMenuBar();
@@ -511,7 +511,7 @@ void ModLoader::DrawModList() {
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
                         ImGui::BeginDisabled();
-                    ImGui::Text("%s", ModSelect->displayName.c_str());
+                    ImGui::TextWrapped("%s", ModSelect->displayName.c_str());
                     ImGui::Text("By: %s", ModSelect->author.c_str());
                     if(!ModSelect->dependencies.empty()){
                         ImGui::Separator();
