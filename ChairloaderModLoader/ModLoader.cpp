@@ -36,6 +36,7 @@ void ModLoader::Draw() {
         break;
     case State::Deploying:
         DrawDeployScreen(&bDraw);
+        DrawMainWindow(&bDraw);
         break;
     default:
         assert(!("Invalid UI state"));
@@ -674,6 +675,7 @@ void ModLoader::DrawDeploySettings() {
 }
 
 void ModLoader::DrawLog() {
+    logMutex.lock();
     if(ImGui::BeginTabItem("Log")){
         static std::vector<std::string> filterNames = {"trace", "debug", "info", "warning", "error", "fatal"};
         if(ImGui::BeginCombo("Filter Level", filterNames.at((int)filterLevel).c_str())){
@@ -750,6 +752,7 @@ void ModLoader::DrawLog() {
         ImGui::EndChild();
         ImGui::EndTabItem();
     }
+    logMutex.unlock();
 }
 
 
@@ -996,6 +999,7 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
 
 
 void ModLoader::flushFileQueue() {
+    logMutex.lock();
     std::ofstream fileStream;
     fileStream.open("ChairloaderModLoader.log", std::ios_base::app);
     if(fileStream.is_open()){
@@ -1030,7 +1034,7 @@ void ModLoader::flushFileQueue() {
     } else {
         log(severityLevel::error, "Error, could not open ChairloaderModLoader.log");
     }
-
+    logMutex.unlock();
 }
 
 void ModLoader::Update() {
@@ -1314,6 +1318,7 @@ float overlayLogPadding = 2.0f;
 static std::string logEntryToDelete;
 static float accumulatedHeight = 0.0f;
 void ModLoader::DrawOverlayLog(){
+    logMutex.lock();
     accumulatedHeight = 0.0f;
 //    tm nowTime;
     time_t now = time(nullptr);
@@ -1369,6 +1374,7 @@ void ModLoader::DrawOverlayLog(){
     ImGui::PopClipRect();
     ImGui::PopStyleColor();
     ImGui::PopStyleVar();
+    logMutex.unlock();
 }
 
 auto logElementFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse;
@@ -1775,6 +1781,9 @@ void ModLoader::DrawDebug() {
 }
 
 void ModLoader::SwitchToDeployScreen() {
+    modalInitPos = ImGui::GetWindowPos();
+    modalInitPos.x -= (ImGui::GetWindowWidth() + 125);
+    initPosSet = false;
     m_State = State::Deploying;
 }
 
@@ -1785,9 +1794,13 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
             ImGuiWindowFlags_NoScrollbar |
             ImGuiWindowFlags_NoResize;
 
-    ImGui::SetNextWindowSize({ 500, 500 });
+    ImGui::SetNextWindowSize({ 500, 300 });
     ImGui::SetNextWindowBgAlpha(1.0f);
-    if(ImGui::Begin("Deploying Mods", nullptr, windowFlags)) {
+//    ImGui::SetNextWindowPos({ (float) (GetSystemMetrics(SM_CXSCREEN) / 2 - 250), (float) (GetSystemMetrics(SM_CYSCREEN) / 2 - 150) });
+    if(!initPosSet) {
+        ImGui::SetNextWindowPos(modalInitPos);
+    }
+    if(ImGui::BeginPopupModal("Deploying Mods", nullptr, windowFlags)) {
         m_DeployLogMutex.lock();
         // RemovingOldOutput, CopyingBaseFiles, MergingLegacyMods, MergingMods, RemovingOldPatches, PackingLevelFiles, CopyingLevelFiles, PackingLocalization, PackingMainPatch, CopyingMainPatch, Done, Invalid
         ImGui::Text("Deploying Mods, Please Wait:");
@@ -1827,12 +1840,15 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
         }
         m_DeployLogMutex.unlock();
 //        ImGui::Text("Deploying Mods, Please Hold");
+        ImGui::EndPopup();
+        initPosSet = true;
     }
-    ImGui::End();
+    ImGui::OpenPopup("Deploying Mods");
     if(IsFutureReady(m_DeployTaskFuture)){
         m_DeployTaskFuture.get();
         m_State = State::MainWindow;
         overlayLog(severityLevel::info, "Mods Deployed");
+        ImGui::CloseCurrentPopup();
         return;
     }
 }

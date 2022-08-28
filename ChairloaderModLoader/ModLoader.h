@@ -136,6 +136,8 @@ private:
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
     std::future<void> m_DeployTaskFuture;
+    ImVec2 modalInitPos {0,0};
+    bool initPosSet = false;
 
     /* Draw Functions */
     std::unique_ptr<GameVersion> m_pGameVersion;
@@ -145,7 +147,8 @@ private:
     void DrawXMLSettings();
     void DrawDeploySettings();
     void DrawLog();
-    // temporary tab
+
+    // _DEBUG only tab
     void DrawDebug();
 
     float OverlayWidth = 20.0f;
@@ -228,6 +231,7 @@ private:
     std::vector<LogEntry> logRecord;
     std::vector<LogEntry> fileQueue;
     std::vector<LogEntry> overlayQueue;
+    std::mutex logMutex;
 
     ImColor errorColor = {255,70,70};
     ImColor warningColor = {255, 190, 70};
@@ -242,16 +246,20 @@ private:
     //Logging function
     template<typename...Args>
     inline void log(severityLevel level, const char* format, const Args&...args){
+        logMutex.lock();
         auto message = boost::str((boost::format(format) % ... % args));
         logRecord.emplace_back(LogEntry(message, level));
         fileQueue.emplace_back(LogEntry(message, level));
+        logMutex.unlock();
     }
     template<typename...Args>
     inline void overlayLog(severityLevel level, const char* format, const Args&...args){
+        logMutex.lock();
         auto message = boost::str((boost::format(format) % ... % args));
         logRecord.emplace_back(LogEntry(message, level));
         fileQueue.emplace_back(LogEntry(message, level));
         overlayQueue.emplace_back(LogEntry(message, level));
+        logMutex.unlock();
     }
 
     //! Install Functions
