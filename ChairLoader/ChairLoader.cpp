@@ -8,6 +8,7 @@
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <ChairLoader/PreyFunction.h>
+#include <mem.h>
 #include "ChairLoader.h"
 #include "EntityUtils.h"
 #include "ChairloaderGui.h"
@@ -176,6 +177,15 @@ ChairLoader::ChairLoader() {
 	ChairLoaderImGui::InitHooks();
 	InitRenderAuxGeomPatchHooks();
 	RenderDll::DebugMarkers::InitHooks();
+
+	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
+	// Allows graphics debuggers to be attached
+	{
+		uint8_t bytes[] = { 0x00, 0x08 };
+		uint8_t* base = (uint8_t*)GetModuleBase();
+		mem::Patch(base + 0xF240CD, bytes + 0, 1);
+		mem::Patch(base + 0xF240E0, bytes + 1, 1);
+	}
 
 	// Install all hooks
 	PreyFunctionSystem::Init(m_ModuleBase);
