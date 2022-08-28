@@ -209,7 +209,7 @@ private:
     ImColor errorColor = {255,70,70};
     ImColor warningColor = {255, 190, 70};
     // light green
-    ImColor debugColor = {70,255,70};
+    ImColor debugColor = {120,200,120};
 
     #ifdef _DEBUG
         severityLevel filterLevel = severityLevel::trace;

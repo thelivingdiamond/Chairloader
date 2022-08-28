@@ -10,6 +10,7 @@
 #include "GameVersion.h"
 #include "PathUtils.h"
 #include "ChairInstallWizard.h"
+#include "../ChairLoader/GUIUtils.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -385,7 +386,7 @@ void ModLoader::DrawModList() {
                                     if (!ModEntry.modName.empty()) {
                                         log(severityLevel::info, "Deleting %s/Mods/%s/", PreyPath.u8string(),
                                             ModEntry.modName);
-                                        fs::remove_all(PreyPath / "/Mods/" / ModEntry.modName / "/");
+                                        fs::remove_all(PreyPath / "Mods" / ModEntry.modName);
                                         ModList.erase(std::find(ModList.begin(), ModList.end(), ModEntry.modName));
 
                                     }
@@ -528,12 +529,16 @@ void ModLoader::DrawModList() {
                 SaveAllMods();
                 overlayLog(severityLevel::info, "Mod list saved");
             }
+            ImGui::SameLine();
+            ImGuiUtils::HelpMarker("Save the mod list to the chairloader.xml config file");
             if(ImGui::Button("Deploy Mods")){
                 if(DeployMods())
                     overlayLog(severityLevel::info, "Mods deployed");
             }
+            ImGui::SameLine();
+            ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
             ImGui::Separator();
-            if(ImGui::Button("Install Mod")){
+            if(ImGui::Button("Install Mod From File")){
                 ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.u8string(), 1, nullptr);
             }
         }
@@ -604,7 +609,7 @@ void ModLoader::DrawXMLSettings() {
     if(ImGui::BeginTabItem("Asset View")){
         if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), true)) {
             for (auto &mod: ModList)
-                TreeNodeWalkDirectory(fs::path(PreyPath / "/Mods/" / mod.modName), mod.modName);
+                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / mod.modName), mod.modName);
 //                if (ImGui::TreeNode(mod.modName.c_str())) {
 //                    ImGui::Text("Version: %s", mod.version.c_str());
 //                    TreeNodeWalkDirectory(fs::path(PreyPath.u8string() + "/Mods/" + mod.modName + "/Data"), mod.modName);
@@ -746,11 +751,11 @@ void ModLoader::DrawLog() {
 
 
 fs::path ModLoader::getConfigPath(std::string &modName) {
-    return fs::path{ (PreyPath / "/Mods/config/" / modName / ".xml").c_str() };
+    return fs::path{ (PreyPath / "Mods/config" / modName / ".xml").c_str() };
 }
 
 fs::path ModLoader::getDefaultConfigPath(std::string &modName) {
-    return fs::path{ (PreyPath / "/Mods/" / modName / "/" / modName / "_default.xml").c_str() };
+    return fs::path{ (PreyPath / "Mods" / modName / modName / "_default.xml").c_str() };
 }
 bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
     pugi::xml_document result;
@@ -804,7 +809,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
 
 void ModLoader::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
-        fs::path modPath = PreyPath / "/Mods/" / PrevMod.name();
+        fs::path modPath = PreyPath / "Mods" / PrevMod.name();
         Mod mod;
         if(LoadModInfoFile(modPath, &mod)) {
             FindMod(&mod);
@@ -822,7 +827,7 @@ void ModLoader::LoadModsFromConfig() {
 }
 void ModLoader::DetectNewMods() {
     for(auto &directory : fs::directory_iterator(fs::path(PreyPath.u8string() + "/Mods/"))){
-        if(directory.path() != PreyPath / "/Mods/config" && directory.path() != PreyPath / "/Mods/Legacy") {
+        if(directory.path() != PreyPath / "Mods/config" && directory.path() != PreyPath / "Mods/Legacy") {
             Mod mod;
             if(LoadModInfoFile(directory.path(), &mod)) {
                 if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
@@ -1153,7 +1158,7 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
             auto mod = new Mod;
             if(LoadModInfoFile(fs::path("./temp"), mod)){
                 try {
-                    fs::copy("./temp/", PreyPath / "/Mods/" / mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    fs::copy("./temp/", PreyPath / "Mods" / mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
                     InstallMod(mod->modName);
@@ -1265,7 +1270,7 @@ void ModLoader::mergeXMLFiles() {
         return;
     }
     //legacy mods
-    for(auto &directory: fs::directory_iterator(PreyPath / "/Mods/Legacy")) {
+    for(auto &directory: fs::directory_iterator(PreyPath / "Mods/Legacy")) {
         if(fs::is_directory(directory)) {
             log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
             mergeDirectory("", directory.path().filename().u8string(), true);
@@ -1393,9 +1398,9 @@ void ModLoader::OverlayLogElement(LogEntry entry) {
 void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
     fs::path modPath;
     if(legacyMod) {
-        modPath = PreyPath / "/Mods/Legacy/" / modName / path;
+        modPath = PreyPath / "Mods/Legacy" / modName / path;
     } else {
-        modPath = PreyPath / "/Mods/" / modName / "/Data" / path.u8string();
+        modPath = PreyPath / "Mods" / modName / "Data" / path.u8string();
     }
     fs::path originalPath = "./PreyFiles" / path;
     fs::path outputPath = "./Output" / path;
@@ -1407,7 +1412,7 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
                 fs::create_directories(outputPath);
             }
             for (auto directory: fs::directory_iterator(modPath)) {
-                mergeDirectory(path / "/" / directory.path().filename(), modName, legacyMod);
+                mergeDirectory(path / directory.path().filename(), modName, legacyMod);
             }
         } else if (is_regular_file(modPath)) {
             if(modPath.extension() == ".xml") {
@@ -1465,10 +1470,10 @@ bool ModLoader::packChairloaderPatch() {
         for (auto &levelDirectory: levelDirectories) {
             fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
             log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
-            if(fs::exists("./LevelOutput/" / basePath / "/level.pak")) {
-                fs::remove_all("./LevelOutput/" / basePath / "/level/");
-                log(severityLevel::trace, "Removing level directory %s", "./LevelOutput/" / basePath / "/level/");
-                fs::copy("./LevelOutput/" / basePath, PreyPath / "/GameSDK/" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+            if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
+                fs::remove_all("./LevelOutput" / basePath / "level/");
+                log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
+                fs::copy("./LevelOutput" / basePath, PreyPath / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), PreyPath.u8string() + "/GameSDK/" + basePath.u8string());
             } else {
                 log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
@@ -1499,7 +1504,7 @@ bool ModLoader::packChairloaderPatch() {
     } else {
         try {
             fs::remove_all("./Output/Localization/");
-            fs::copy_file("./English_xml_patch.pak", PreyPath / "/Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
+            fs::copy_file("./English_xml_patch.pak", PreyPath / "Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
         } catch (std::exception &exception) {
             overlayLog(severityLevel::error, "Error removing localization patch files: %s", exception.what());
             return false;
@@ -1531,7 +1536,7 @@ bool ModLoader::packChairloaderPatch() {
 
 bool ModLoader::copyChairloaderPatch() {
     try {
-        fs::copy("patch_chairloader.pak", PreyPath / "/GameSDK/Precache",
+        fs::copy("patch_chairloader.pak", PreyPath / "GameSDK/Precache",
                  fs::copy_options::overwrite_existing);
         return true;
     } catch (std::exception & exception){
@@ -1543,7 +1548,7 @@ bool ModLoader::copyChairloaderPatch() {
 std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
     std::vector<fs::path> levelPaths;
     for(auto &directory: fs::directory_iterator(pathToExplore)) {
-        if(fs::exists(directory.path() / "/level/")){
+        if(fs::exists(directory.path() / "level/")){
             levelPaths.emplace_back(directory.path());
         } else {
             auto childrenPaths = exploreLevelDirectory(directory.path());
@@ -1614,7 +1619,7 @@ bool ModLoader::copyLocalizationPatch() {
 }
 bool ModLoader::verifyChairloaderConfigFile() {
     try {
-        return fs::exists(PreyPath / "/Mods/config/chairloader.xml");
+        return fs::exists(PreyPath / "Mods/config/chairloader.xml");
     } catch (std::exception &exception) {
         overlayLog(severityLevel::error, "Exception while verifying chairloader.xml: %s", exception.what());
         return false;
@@ -1622,7 +1627,7 @@ bool ModLoader::verifyChairloaderConfigFile() {
 }
 void ModLoader::createChairloaderConfigFile() {
     try {
-        fs::copy("chairloader_default.xml", PreyPath / "/Mods/config/chairloader.xml", fs::copy_options::overwrite_existing);
+        fs::copy("chairloader_default.xml", PreyPath / "Mods/config/chairloader.xml", fs::copy_options::overwrite_existing);
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while creating chairloader config file: %s", exception.what());
     }
