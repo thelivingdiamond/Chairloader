@@ -1309,7 +1309,7 @@ void ModLoader::mergeXMLFiles() {
     m_DeployState = DeployState::CopyingBaseFiles;
     m_DeployLogMutex.unlock();
     try {
-        fs::copy("./PreyFiles/Levels", "./Output/Levels",
+        fs::copy(".\\PreyFiles\\Levels", ".\\Output\\Levels",
                  fs::copy_options::recursive | fs::copy_options::overwrite_existing);
     } catch (std::exception &exc){
         std::cerr << exc.what() << std::endl;
@@ -1325,6 +1325,15 @@ void ModLoader::mergeXMLFiles() {
         overlayLog(severityLevel::error, "Could not copy Localization folder: %s", exc.what());
         return;
     }
+    //Chairloader Patch
+    try{
+        fs::copy("./ChairloaderPatch/", "./Output/", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+    } catch(std::exception &exc) {
+        std::cerr << exc.what() << std::endl;
+        overlayLog(severityLevel::error, "Error copying base files: %s", exc.what());
+        return;
+    }
+
     //merge legacy mods
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::MergingLegacyMods;
@@ -1515,7 +1524,7 @@ bool ModLoader::packChairloaderPatch() {
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::PackingLevelFiles;
     m_DeployLogMutex.unlock();
-    auto levelDirectories = exploreLevelDirectory("./Output/Levels");
+    auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
     try {
         fs::create_directories("./LevelOutput/Levels");
         fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
@@ -1654,7 +1663,7 @@ PROCESS_INFORMATION ModLoader::packLevel(fs::path path) {
         fs::path basePath = path.wstring().substr(std::string(".\\Output\\").size(), path.wstring().size() - 1);
 //        fs::path tempPath = basePath;
 //        std::replace(tempPath.wstring().begin(), tempPath.wstring().end(), '/', '\\');
-        auto command = (R"(.\7za.exe a .\LevelOutput)" /  basePath / "level.pak -tzip " / path / "level\\*").wstring();
+        auto command = (R"(.\7za.exe a .\LevelOutput)" /  basePath / "level.pak -tzip ").wstring() + (path / "level\\*").wstring();
         command.resize(MAX_PATH);
         if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
             log(severityLevel::trace, "Packed level %s", basePath.u8string().c_str());
