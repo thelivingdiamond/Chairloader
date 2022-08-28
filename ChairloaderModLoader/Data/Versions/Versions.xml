@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
-  -- This file contains all known PreyDll.dll version to Chairloader.
+  -- This file contains all known PreyDll.dll versions to Chairloader.
   -- Currently Chairloader only works with one specific version of Prey
   -- that was released along with PDB files for it.
   -- Other versions must be converted into that version.
   --
   -- To convert between versions the mod loader uses custom diff files.
-  -- They describe how to assemble one file using the contents of the other.
+  -- They describe how to assemble one file using the contents of another.
   -- No game binaries are distributed along with Chairloader.
-  -- The name of diff file is "[first 16 chars of installed version SHA256].diff.gz".
+  -- The name of the diff file is "[first 16 chars of installed version SHA256].diff.gz".
   --
   -- Format:
   --   SHA256: hash of the DLL file
