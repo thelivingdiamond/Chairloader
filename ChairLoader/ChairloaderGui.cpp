@@ -26,7 +26,7 @@ void ChairloaderGui::draw(bool* bShow) {
         drawHandleMutex.lock();
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
-                ImGui::MenuItem("Hide All", gCLEnv->cl->getKeyBind("HideGUIKey").c_str(), &control.hideAll);
+                ImGui::MenuItem("Show GUI", gCLEnv->cl->getKeyBind("HideGUIKey").c_str(), bShow);
                 ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
                 ImGui::Separator();
