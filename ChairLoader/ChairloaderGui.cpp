@@ -26,7 +26,7 @@ void ChairloaderGui::draw(bool* bShow) {
         drawHandleMutex.lock();
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
-                ImGui::MenuItem("Hide All", NULL, &control.hideAll);
+                ImGui::MenuItem("Hide All", gCLEnv->cl->getKeyBind("HideGUIKey").c_str(), &control.hideAll);
                 ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
                 ImGui::Separator();
@@ -65,7 +65,7 @@ void ChairloaderGui::draw(bool* bShow) {
                         ((CSystem*)gEnv->pSystem)->SetDevMode(inDevMode);
                     }
                     ImGui::Separator();
-                    if(ImGui::MenuItem("Enable Free Cam", nullptr, control.freeCam)){
+                    if(ImGui::MenuItem("Enable Free Cam", gCLEnv->cl->getKeyBind("ToggleFreecamKey").c_str(), control.freeCam)){
                         control.freeCam = !control.freeCam;
                         if (control.freeCam) {
                             control.devMode = true;

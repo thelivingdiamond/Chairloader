@@ -17,4 +17,5 @@ struct IChairloader {
     using KeyNameMap = boost::bimap<EKeyId, std::string>;
     using KeyNamePair = boost::bimap<EKeyId, std::string>::value_type;
     virtual const KeyNameMap &GetKeyNames() const = 0;
+    virtual std::string getKeyBind(std::string action) = 0;
 };

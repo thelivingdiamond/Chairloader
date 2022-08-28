@@ -666,3 +666,14 @@ void ChairLoader::loadConfigParameters() {
         gConf->setConfigValue(chairloaderModName, "ToggleFreecamKey", m_KeyNames.left.at(m_toggleFreecamKey), IChairloaderConfigManager::parameterType::String);
     }
 }
+
+std::string ChairLoader::getKeyBind(std::string action) {
+    if(action == "HideGUIKey"){
+        return m_KeyNames.left.at(m_hideGuiKey);
+    } else if(action == "ToggleFreecamKey"){
+        return m_KeyNames.left.at(m_toggleFreecamKey);
+    } else {
+        return "";
+    }
+    return std::string();
+}

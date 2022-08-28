@@ -135,6 +135,7 @@ public:
     //! get key names map. Useful for config purposes
     const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
+    std::string getKeyBind(std::string action) override;
 };
 
 extern ChairLoader *gCL;
