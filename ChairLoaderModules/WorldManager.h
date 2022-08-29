@@ -78,11 +78,12 @@ private:
     const std::string ModuleName = "WorldManager";
 
     void DrawLevelManagerWindow();
-    void DrawKeycardManagerWindow();
     void DrawStationAccessManagerWindow();
-    void DrawKeycodeManagerWindow();
-    void DrawPasswordManagerWindow();
+    void DrawKeycardManagerTab();
+    void DrawKeycodeManagerTab();
+    void DrawPasswordManagerTab();
     void DrawCharacterManagerWindow();
+    void DrawPathAirlockManagerTab();
 
     void loadStationAccessLibrary();
     void loadLocationLibrary();
