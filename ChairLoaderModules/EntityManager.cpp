@@ -30,7 +30,7 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
         if (ImGui::Begin("Entity Spawner", bShow, ImGuiWindowFlags_NoNavInputs)) {
             ImGui::TextColored(color, statusMessage.c_str());
 
-            if (archetypeToSpawn == 0) {
+            if (archetypeToSpawn == 0 || gEnv->pEntitySystem->GetEntityArchetype(archetypeToSpawn) == nullptr) {
                 ImGui::Text("Entity Archetype Name: ");
                 ImGui::Text("Archetype ID: ");
             } else {
@@ -123,35 +123,26 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
                 auto itr = archetypeFilteredList.begin();
                 for (int clip = 0; clip < 500 && itr != archetypeFilteredList.end(); clip++, ++itr) {
                     IEntityArchetype *archetype = gEnv->pEntitySystem->GetEntityArchetype(*itr);
-                    ImGui::TableNextRow();
-                    //Yeah boi
-                    ImGui::TableSetColumnIndex(0);
-                    if(archetype != nullptr) {
-                        if (ImGui::Selectable(archetype->GetName(), archetypeToSpawn == archetype->GetId(),
-                                              ImGuiSelectableFlags_SpanAllColumns)) {
-                            archetypeToSpawn = archetype->GetId();
+                    if(archetype) {
+                        ImGui::TableNextRow();
+                        //Yeah boi
+                        ImGui::TableSetColumnIndex(0);
+                        if (archetype != nullptr) {
+                            if (ImGui::Selectable(archetype->GetName(), archetypeToSpawn == archetype->GetId(),
+                                                  ImGuiSelectableFlags_SpanAllColumns)) {
+                                archetypeToSpawn = archetype->GetId();
+                            }
                         }
+                        ImGui::TableSetColumnIndex(1);
+                        ImGui::Text("%llu", archetype->GetId());
                     }
-
-                    // if (ImGui::BeginPopupContextItem(NULL, ImGuiPopupFlags_MouseButtonLeft)) // <-- use last item id as popup id
-                    // {
-                    //     ImGui::Text("Display information about the archetype here");
-                    //     if (ImGui::Button("Choose"))
-                    //         archetypeToSpawn = archetype;
-                    //     if (ImGui::Button("Close"))
-                    //         ImGui::CloseCurrentPopup();
-                    //     ImGui::EndPopup();
-                    // }
-
-                    ImGui::TableSetColumnIndex(1);
-                    ImGui::Text("%llu", archetype->GetId());
                 }
 
-                if (time(NULL) > statusTimer + 3)
+                if (time(nullptr) > statusTimer + 3)
                     statusMessage = "";
                 ImGui::EndTable();
             }
-            CRY_ASSERT(gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.ArkNightmare) != nullptr);
+//            CRY_ASSERT(gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkNpcs.ArkNightmare) != nullptr);
     //        ImGui::Text("%s", gEnv->pEntitySystem->GetEntityArchetype(entityArchetypeLibrary.ArkGameplayObjects.GravShaft.GravShaft_Coil)->GetName());
         }
         ImGui::End();
@@ -326,7 +317,9 @@ void EntityManager::drawEntityList(bool* bShow) {
                                 entity->SetPos(newPos, 0, true, true);
                             }
                             if (ImGui::Button("Set to player pos")) {
-                                entity->SetPos(gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
+                                if(gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
+                                    entity->SetPos(gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
+                                }
                             }
 
                             ImGui::Text("Rotation: ");
@@ -1681,72 +1674,78 @@ void EntityManager::spawnEntity() {
     try {
         if (archetypeToSpawn != 0) {
             static Vec3 pos;
-            static Quat rot = Quat{ 0,0,0,1 };
+            static Quat rot = Quat{0, 0, 0, 1};
             archetypeToSpawn;
             usePlayerPos;
             offsetFromPlayer;
             if (usePlayerPos) {
-                pos = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
-                if (offsetFromPlayer) {
-                    pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
-                    pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
-                    pos.z += offsetDistance[2];
-                }
-            }
-            else {
-                pos = Vec3{ spawnX, spawnY, spawnZ };
-            }
-            auto archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeToSpawn);
-            std::string archetypeName = archetype->GetName();
-            // if an npc use npc spawning
-            auto entityClass = archetype->GetClass();
-            if(entityClass != nullptr) {
+                if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
+                    pos = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+                    if (offsetFromPlayer) {
+                        pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
+                        pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
+                        pos.z += offsetDistance[2];
 
-                if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkHuman) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkHumanTest) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacle) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacleHead) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkBeta) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherDuplicate) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherForm) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkEthericDoppelganger) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkMimic) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkMimicElite) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkNpcPlayer) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperator) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorEngineer) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMedic) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorScience) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMilitary) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkPlayer) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkPoltergeist) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkPhantomVoltaic) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkTelepath) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkTentacle) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkWeaver) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkTechnopath) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkCystoidNest))
-                // TODO: ADD ability for mods to define what their archetypes are
-                // TODO: add cystoid support
-                {
-                    auto entity = gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
-                    if(entity != nullptr){
-                        if(selectedSpawnerFaction != 0){
-                            static_cast<ArkFactionManager*>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(entity->GetId(), gEnv->pGame->GetIArkFactionManager()->GetFactionIndex(selectedSpawnerFaction));
-                        }
+                    } else {
+                        throw ("Ark Player not found");
                     }
                 } else {
-                    gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                    pos = Vec3{spawnX, spawnY, spawnZ};
                 }
+                auto archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeToSpawn);
+                std::string archetypeName = archetype->GetName();
+                // if an npc use npc spawning
+                auto entityClass = archetype->GetClass();
+                if (entityClass != nullptr) {
+
+                    if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkHuman) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkHumanTest) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacle) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacleHead) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkBeta) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkEtherDuplicate) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkEtherForm) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkEthericDoppelganger) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkMimic) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkMimicElite) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkNpcPlayer) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkOperator) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkOperatorEngineer) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMedic) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkOperatorScience) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMilitary) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkPlayer) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkPoltergeist) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkPhantomVoltaic) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkTelepath) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkTentacle) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkWeaver) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkTechnopath) ||
+                        entityClass->GetName() == std::string(gClassLibrary.ArkCystoidNest))
+                        // TODO: ADD ability for mods to define what their archetypes are
+                        // TODO: add cystoid support
+                    {
+                        auto entity = gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
+                                                                 spawnCount);
+                        if (entity != nullptr) {
+                            if (selectedSpawnerFaction != 0) {
+                                static_cast<ArkFactionManager *>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(
+                                        entity->GetId(),
+                                        gEnv->pGame->GetIArkFactionManager()->GetFactionIndex(selectedSpawnerFaction));
+                            }
+                        }
+                    } else {
+                        gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                    }
+                }
+                // done
+                color = {1, 1, 1, 1};
+                statusMessage = "spawned an entity: " + inputName;
+                time(&statusTimer);
+            } else {
+                throw ("Error, no archetype selected");
             }
-            // done
-            color = { 1,1,1,1 };
-            statusMessage = "spawned an entity: " + inputName;
-            time(&statusTimer);
-        }
-        else {
-            throw("Error, no archetype selected");
         }
     }
     catch (const char* c) {
