@@ -103,6 +103,8 @@ void WorldManager::DrawKeycardManagerTab() {
         if(ImGui::Button("Load Keycard Library")){
             loadKeycardLibrary();
         }
+        static ImGuiTextFilter filter;
+        filter.Draw();
         if(ImGui::BeginTable("Keycard", 1, ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY, ImVec2{0,ImGui::GetContentRegionAvail().y - 60.0f})){
 //                ArkPlayerComponent component;
 
@@ -112,15 +114,19 @@ void WorldManager::DrawKeycardManagerTab() {
             for(auto& keycard : ArkKeycardNames){
                 auto keycardID = keycard.second;
                 if(gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
-                    if (gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pKeyCardComponent->HasKeyCard(keycardID)) {
-                        ImGui::TableNextRow();
-                        ImGui::TableNextColumn();
-                        ImGui::TextDisabled("%s", keycard.first.c_str());
-                    } else {
-                        ImGui::TableNextRow();
-                        ImGui::TableNextColumn();
-                        if (ImGui::Selectable(keycard.first.c_str())) {
-                            gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pKeyCardComponent->Collect(keycard.second);
+                    if(filter.PassFilter(keycard.first.c_str())) {
+                        if (gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pKeyCardComponent->HasKeyCard(
+                                keycardID)) {
+                            ImGui::TableNextRow();
+                            ImGui::TableNextColumn();
+                            ImGui::TextDisabled("%s", keycard.first.c_str());
+                        } else {
+                            ImGui::TableNextRow();
+                            ImGui::TableNextColumn();
+                            if (ImGui::Selectable(keycard.first.c_str())) {
+                                gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pKeyCardComponent->Collect(
+                                        keycard.second);
+                            }
                         }
                     }
                 }
@@ -353,6 +359,8 @@ void WorldManager::DrawKeycodeManagerTab() {
         if (ImGui::Button("Load Keycode Library")) {
             loadKeycodeLibrary();
         }
+        static ImGuiTextFilter filter;
+        filter.Draw();
         auto player = gCLEnv->entUtils->ArkPlayerPtr();
         if (ImGui::BeginTable("Keycodes", 1, ImGuiTableFlags_ScrollY,
                               ImVec2(0, ImGui::GetContentRegionAvail().y - 60.0f))) {
@@ -361,13 +369,15 @@ void WorldManager::DrawKeycodeManagerTab() {
             ImGui::TableHeadersRow();
             for (auto &keycode: ArkKeycodes) {
                 if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
-                    ImGui::TableNextRow();
-                    ImGui::TableNextColumn();
-                    if (player->m_playerComponent.GetKeyCodeComponent().GetEntry(keycode.first)->m_bCollected) {
-                        ImGui::TextDisabled("%s", keycode.second.Name.c_str());
-                    } else {
-                        if (ImGui::Selectable(keycode.second.Name.c_str())) {
-                            player->m_playerComponent.GetKeyCodeComponent().Collect(keycode.first);
+                    if(filter.PassFilter(keycode.second.Name.c_str())) {
+                        ImGui::TableNextRow();
+                        ImGui::TableNextColumn();
+                        if (player->m_playerComponent.GetKeyCodeComponent().GetEntry(keycode.first)->m_bCollected) {
+                            ImGui::TextDisabled("%s", keycode.second.Name.c_str());
+                        } else {
+                            if (ImGui::Selectable(keycode.second.Name.c_str())) {
+                                player->m_playerComponent.GetKeyCodeComponent().Collect(keycode.first);
+                            }
                         }
                     }
                 }
@@ -392,6 +402,8 @@ void WorldManager::DrawPasswordManagerTab() {
         if(ImGui::Button("Load Character Library")) {
             loadCharacterLibrary();
         }
+        static ImGuiTextFilter filter;
+        filter.Draw();
         if(ImGui::BeginTable("Passwords", 2, ImGuiTableFlags_ScrollY, ImVec2(0, ImGui::GetContentRegionAvail().y - 60.0f))) {
             ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
             ImGui::TableSetupColumn("Password", ImGuiTableColumnFlags_WidthFixed);
@@ -401,21 +413,24 @@ void WorldManager::DrawPasswordManagerTab() {
                 auto player = gCLEnv->entUtils->ArkPlayerPtr();
                 for (auto &character: ArkCharacters) {
                     if(!character.second.Password.empty()) {
-                        if(!player->m_playerComponent.GetRosterComponent().HasPassword(character.second.ID)) {
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            if (ImGui::Selectable(character.second.Name.c_str(), false,
-                                                  ImGuiSelectableFlags_SpanAllColumns)) {
-                                player->m_playerComponent.GetRosterComponent().GivePassword(character.second.ID, true);
+                        if(filter.PassFilter(character.second.Name.c_str())) {
+                            if (!player->m_playerComponent.GetRosterComponent().HasPassword(character.second.ID)) {
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                if (ImGui::Selectable(character.second.Name.c_str(), false,
+                                                      ImGuiSelectableFlags_SpanAllColumns)) {
+                                    player->m_playerComponent.GetRosterComponent().GivePassword(character.second.ID,
+                                                                                                true);
+                                }
+                                ImGui::TableNextColumn();
+                                ImGui::Text("%s", character.second.Password.c_str());
+                            } else {
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                ImGui::TextDisabled("%s", character.second.Name.c_str());
+                                ImGui::TableNextColumn();
+                                ImGui::TextDisabled("%s", character.second.Password.c_str());
                             }
-                            ImGui::TableNextColumn();
-                            ImGui::Text("%s", character.second.Password.c_str());
-                        } else {
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            ImGui::TextDisabled("%s", character.second.Name.c_str());
-                            ImGui::TableNextColumn();
-                            ImGui::TextDisabled("%s", character.second.Password.c_str());
                         }
                     }
                 }

@@ -211,8 +211,10 @@ void PlayerManager::drawHealthTab() {
 
 void PlayerManager::drawAbilitiesTab() {
 	if (ImGui::BeginTabItem("Abilities")) {
-		refreshAbilityList = ImGui::Button("Refresh");
+//		refreshAbilityList = ImGui::Button("Refresh");
+        static ImGuiTextFilter filter;
 		if (ImGui::BeginChild("AbilityList", ImGui::GetContentRegionAvail(), false, ImGuiWindowFlags_HorizontalScrollbar)) {
+            filter.Draw();
 			for (auto &ability : gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->m_abilities) {
                 std::string name;
                 if(arkAbilityMap.find(ability.m_id) != arkAbilityMap.end()) {
@@ -220,17 +222,18 @@ void PlayerManager::drawAbilitiesTab() {
                 } else {
                     name = ToString(ability.m_id);
                 }
-				if (!ability.m_bAcquired) {
-
-					if (ImGui::Selectable(name.c_str())) {
-						if(!gCLEnv->entUtils->ArkPlayerPtr()->HasAbility(ability.m_id)){
-                            gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(ability.m_id);
+                if(filter.PassFilter(name.c_str()) || strlen(filter.InputBuf) == 0) {
+                    if (!ability.m_bAcquired) {
+                        if (ImGui::Selectable(name.c_str())) {
+                            if (!gCLEnv->entUtils->ArkPlayerPtr()->HasAbility(ability.m_id)) {
+                                gCLEnv->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(
+                                        ability.m_id);
+                            }
                         }
-					}
-				}
-				else {
-					ImGui::TextColored(ImVec4{1.0f, 1.0f, 1.0f, 0.7f}, "%s - acquired", name.c_str());
-				}
+                    } else {
+                        ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s - acquired", name.c_str());
+                    }
+                }
 			}
 			ImGui::EndChild();
 		}
