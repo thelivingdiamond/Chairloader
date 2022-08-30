@@ -1728,12 +1728,9 @@ void EntityManager::spawnEntity() {
                         // TODO: add cystoid support
                     {
                         auto entity = gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
-                                                                 spawnCount);
+                                                                 spawnCount, selectedSpawnerFaction);
                         if (entity != nullptr) {
                             if (selectedSpawnerFaction != 0) {
-                                static_cast<ArkFactionManager *>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(
-                                        entity->GetId(),
-                                        gEnv->pGame->GetIArkFactionManager()->GetFactionIndex(selectedSpawnerFaction));
                                 gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
                             } else {
                                 gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());

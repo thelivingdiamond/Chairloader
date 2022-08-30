@@ -4,17 +4,23 @@
 #include "EntityUtils.h"
 #include <Prey/ArkEntityClassLibrary.h>
 #include <Prey/GameDll/ark/npc/ArkNpc.h>
+#include <Prey/GameDll/ark/ArkFactionManager.h>
 
 EntityUtils *gEntUtils = nullptr;
 
 
-IEntity* EntityUtils::spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount) {
+IEntity* EntityUtils::spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount, uint64_t faction) {
 	IEntity* latestEntity = nullptr;
 	static ArkNpcSpawnedState_Alert alert;
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
 	for (int i = 1; i <= spawnCount; i++) {
         if(gEnv->pEntitySystem->GetEntityArchetype(archetypeId)) {
             latestEntity = ArkNpcSpawnManager::CreateNpc(*gEnv->pEntitySystem->GetEntityArchetype(archetypeId), pos, rot, 0, state);
+            if(faction != 0){
+                static_cast<ArkFactionManager *>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(
+                        latestEntity->GetId(),
+                        gEnv->pGame->GetIArkFactionManager()->GetFactionIndex(faction));
+            }
         } else {
             return nullptr;
         }
