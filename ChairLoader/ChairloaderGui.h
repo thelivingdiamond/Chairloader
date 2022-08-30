@@ -50,7 +50,9 @@ private:
     };
     const std::string modName = "ChairloaderGUI";
     //TODO: rethink the control variable
-    
+
+    bool persistentLogOverlay = true;
+
     bool g_PresentHooked;
     bool g_ShowMenu;
     bool g_bInitialised;

@@ -11,6 +11,7 @@ ChairloaderGui::ChairloaderGui(ChairloaderGlobalEnvironment* env) :
     worldManager(env){
     gCLEnv = env;
     GUILog = &log;
+    ImGui::GetStyle().Alpha = 0.8f;
 }
 
 
@@ -24,11 +25,19 @@ void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
 
 
 void ChairloaderGui::draw(bool* bShow) {
+    if(*bShow || persistentLogOverlay){
+        log.drawDisplay();
+    }
     if (*bShow) {
         drawHandleMutex.lock();
+        auto bgColor = ImGui::GetStyleColorVec4(ImGuiCol_PopupBg);
+        bgColor.w = 1.0f;
+        ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
+        ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
                 ImGui::MenuItem("Show GUI", gCLEnv->cl->getKeyBind("HideGUIKey").c_str(), bShow);
+                ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
                 ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
                 ImGui::Separator();
@@ -46,11 +55,11 @@ void ChairloaderGui::draw(bool* bShow) {
                     // ImGui::ShowStyleEditor();
                     if (ImGui::MenuItem("Test Log Message")) {
                         // std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG";
-                        std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too! ";
-                        log.logItem(testMsg, modName);
+                        std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too!";
+                        overlayLog(modName, "%s", testMsg.c_str());
                     }
                     if (ImGui::MenuItem("Test Error Message")) {
-                        log.logItem("Welcome to funland sonic", modName, logLevel::error);
+                        overlayError(modName, "Welcome to funland sonic");
                     }
                     ImGui::EndMenu();
                 }
@@ -59,70 +68,76 @@ void ChairloaderGui::draw(bool* bShow) {
 //            playerManager.drawMenuBar();
             ImGui::EndMainMenuBar();
         }
+        ImGui::PopStyleColor();
+        ImGui::PopStyleVar();
         if (!control.hideAll) {
+//            auto bgColor = ImGui::GetStyleColorVec4(ImGuiCol_PopupBg);
+//            bgColor.w = 1.0f;
+            ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
+            ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
             if (ImGui::BeginMainMenuBar()) {
-                if (ImGui::BeginMenu("Console")) {
-                    auto inDevMode = gEnv->pSystem->IsDevMode();
-                    if(ImGui::Checkbox("Dev Mode", &inDevMode)){
-                        ((CSystem*)gEnv->pSystem)->SetDevMode(inDevMode);
-                    }
-                    ImGui::Separator();
-                    if(ImGui::MenuItem("Enable Free Cam", gCLEnv->cl->getKeyBind("ToggleFreecamKey").c_str(), control.freeCam)){
-                        control.freeCam = !control.freeCam;
-                        if (control.freeCam) {
-                            control.devMode = true;
-                            ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
-                            gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
+                    if (ImGui::BeginMenu("Console")) {
+                        auto inDevMode = gEnv->pSystem->IsDevMode();
+                        if (ImGui::Checkbox("Dev Mode", &inDevMode)) {
+                            ((CSystem *) gEnv->pSystem)->SetDevMode(inDevMode);
                         }
-                        else {
-                            ((CSystem*)gEnv->pSystem)->SetDevMode(true);
-                            gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
-                            ((CSystem*)gEnv->pSystem)->SetDevMode(control.devMode);
-                        }
-                    }
-                    if(control.freeCam) {
-                        if (ImGui::MenuItem("Freeze Free Cam", nullptr,
-                                            gEnv->pConsole->GetCVar("g_moveDetachedCamera")->GetIVal() == 0)) {
-                            auto moveDetachedCamera = gEnv->pConsole->GetCVar("g_moveDetachedCamera");
-                            if (moveDetachedCamera->GetIVal() == 0) {
-                                moveDetachedCamera->Set(1);
+                        ImGui::Separator();
+                        if (ImGui::MenuItem("Enable Free Cam", gCLEnv->cl->getKeyBind("ToggleFreecamKey").c_str(),
+                                            control.freeCam)) {
+                            control.freeCam = !control.freeCam;
+                            if (control.freeCam) {
+                                control.devMode = true;
+                                ((CSystem *) gEnv->pSystem)->SetDevMode(control.devMode);
+                                gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
                             } else {
-                                moveDetachedCamera->Set(0);
+                                ((CSystem *) gEnv->pSystem)->SetDevMode(true);
+                                gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
+                                ((CSystem *) gEnv->pSystem)->SetDevMode(control.devMode);
                             }
                         }
-                    }
-                    ImGui::Separator();
-                    if (ImGui::MenuItem("Dump Commands to console")){
-                        auto xConsole = (CXConsole*)gEnv->pConsole;
-                        for(auto & command : xConsole->m_mapCommands){
-                            CryLog("%s: %s", command.second.m_sName.c_str(),  command.second.m_sHelp.c_str());
+                        if (control.freeCam) {
+                            if (ImGui::MenuItem("Freeze Free Cam", nullptr,
+                                                gEnv->pConsole->GetCVar("g_moveDetachedCamera")->GetIVal() == 0)) {
+                                auto moveDetachedCamera = gEnv->pConsole->GetCVar("g_moveDetachedCamera");
+                                if (moveDetachedCamera->GetIVal() == 0) {
+                                    moveDetachedCamera->Set(1);
+                                } else {
+                                    moveDetachedCamera->Set(0);
+                                }
+                            }
                         }
-                    }
-                    if(ImGui::MenuItem("Dump CVars to file")){
-                        gEnv->pConsole->DumpCVarsToFile("cvar_dump.txt");
-                    }
+                        ImGui::Separator();
+                        if (ImGui::MenuItem("Dump Commands to console")) {
+                            auto xConsole = (CXConsole *) gEnv->pConsole;
+                            for (auto &command: xConsole->m_mapCommands) {
+                                CryLog("%s: %s", command.second.m_sName.c_str(), command.second.m_sHelp.c_str());
+                            }
+                        }
+                        if (ImGui::MenuItem("Dump CVars to file")) {
+                            gEnv->pConsole->DumpCVarsToFile("cvar_dump.txt");
+                        }
 //                    if (ImGui::Button("Toggle Free Cam")) {
 //
 //                    }
-                    ImGui::EndMenu();
-                    // }
+                        ImGui::EndMenu();
+                        // }
+                    }
+                    ImGui::EndMainMenuBar();
                 }
-                ImGui::EndMainMenuBar();
-            }
+            ImGui::PopStyleColor();
+            ImGui::PopStyleVar();
             ImGui::SetNextWindowPos(ImVec2(0, 0));
             ImGui::SetNextWindowBgAlpha(0.0);
             ImGui::SetNextWindowSize(ImGui::GetWindowViewport()->Size);
             ImGui::Begin("Main Dockspace Window", 0, ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
             ImGui::DockSpace(ImGui::GetID("Main Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoDockingInCentralNode);
             ImGui::End();
-            ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.8f);
             if (control.showDemoWindow)
                 ImGui::ShowDemoWindow(&control.showDemoWindow);
             if (control.showStyleManager)
                 ImGui::ShowStyleEditor();
             if (control.showLogHistory)
                 log.drawHistory(&control.showLogHistory);
-            log.drawDisplay();
             entityManager.Draw();
             playerManager.draw();
             worldManager.Draw();
@@ -135,8 +150,7 @@ void ChairloaderGui::draw(bool* bShow) {
             }
             if (control.showConfigMenu)
                 gConf->Draw(&control.showConfigMenu);
-            log.drawDisplay();
-            ImGui::PopStyleVar();
+//            log.drawDisplay();
         }
         drawHandleMutex.unlock();
     }

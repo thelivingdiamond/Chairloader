@@ -9,8 +9,18 @@ enum class logLevel {
 struct logMessage {
     std::string message;
     std::string modName;
-    time_t time;
+    uint64_t time;
     logLevel level;
+
+    logMessage(){
+
+    }
+
+    logMessage(const std::string &message, const std::string &modName, logLevel level) : message(message),
+                                                                                         modName(modName),
+                                                                                         level(level) {
+        time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    }
 
     bool empty() {
         return message.empty();

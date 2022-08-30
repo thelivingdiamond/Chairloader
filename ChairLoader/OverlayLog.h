@@ -20,7 +20,7 @@ private:
     const std::string modName = "OverlayLog";
     std::vector<logMessage> archiveLogQueue;
     std::vector<logMessage> displayLogQueue;
-    time_t MessageTimeoutTime = 10;
+    uint64_t MessageTimeoutTime = 10000;
 };
 
 extern ChairloaderGUILog* GUILog;
