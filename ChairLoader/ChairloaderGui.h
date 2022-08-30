@@ -26,6 +26,12 @@ public:
     void draw(bool* bShow);
     void update();
 
+    void overlayLog(std::string modName, const char *format, ...) override;
+
+    void overlaywarning(std::string modName, const char *format, ...) override;
+
+    void overlayError(std::string modName, const char *format, ...) override;
+
 private:
     ChairloaderGlobalEnvironment* gCLEnv;
     struct chairloaderGuiControl {

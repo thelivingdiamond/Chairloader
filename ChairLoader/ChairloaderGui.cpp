@@ -161,3 +161,33 @@ void ChairloaderGui::update() {
     
 }
 
+void ChairloaderGui::overlayLog(std::string modName, const char *format, ...) {
+    char buffer[8192];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    log.logItem(buffer, modName);
+    CryLog("%s", buffer);
+}
+
+void ChairloaderGui::overlaywarning(std::string modName, const char *format, ...) {
+    char buffer[8192];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    log.logItem(buffer, modName, logLevel::warning);
+    CryWarning("%s", buffer);
+}
+
+void ChairloaderGui::overlayError(std::string modName, const char *format, ...) {
+    char buffer[8192];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    log.logItem(buffer, modName, logLevel::error);
+    CryError("%s", buffer);
+}
+
