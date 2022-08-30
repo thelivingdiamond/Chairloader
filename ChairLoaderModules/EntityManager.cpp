@@ -78,13 +78,13 @@ void EntityManager::drawEntitySpawner(bool* bShow) {
             }
             ImGui::Text("Filter:");
             static bool initializedList = false;
-            static std::string archetypeLoadString;
-            ImGui::InputText("Archetype Library to Load", &archetypeLoadString, ImGuiInputTextFlags_None);
-            if (ImGui::Button("Load Archetype Library")) {
-                auto archetypeLibrary = string(archetypeLoadString.c_str());
-                gEnv->pEntitySystem->LoadArchetypeLibrary(&archetypeLibrary);
-    //            GetEntitySystem()->m_pEntityArchetypeManager->LoadLibrary(archetypeLoadString.c_str());
-            }
+//            static std::string archetypeLoadString;
+//            ImGui::InputText("Archetype Library to Load", &archetypeLoadString, ImGuiInputTextFlags_None);
+//            if (ImGui::Button("Load Archetype Library")) {
+//                auto archetypeLibrary = string(archetypeLoadString.c_str());
+//                gEnv->pEntitySystem->LoadArchetypeLibrary(&archetypeLibrary);
+//    //            GetEntitySystem()->m_pEntityArchetypeManager->LoadLibrary(archetypeLoadString.c_str());
+//            }
             if (ImGui::InputText("##filter text", &archetypeFilterText) || !initializedList) {
                 oldArchetypeFilterText = archetypeFilterText;
                 initializedList = true;
@@ -441,7 +441,8 @@ void EntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Relation to selected entity: %s", getDispositionStr(IfactionManager->GetEffectiveFactionDispositionToEntity(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction))).c_str());
                             if(ImGui::Button("Set Entity to Selected Faction")){
                                 factionmanager->SetEntityFaction(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction));
-                                gCLEnv->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
+                                gCLEnv->gui->overlayLog(GetModuleName(), "Set Entity %s to Selected Faction %s", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
+//                                gCLEnv->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
                             }
                             ImGui::EndTabItem();
                         }
@@ -1733,10 +1734,14 @@ void EntityManager::spawnEntity() {
                                 static_cast<ArkFactionManager *>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(
                                         entity->GetId(),
                                         gEnv->pGame->GetIArkFactionManager()->GetFactionIndex(selectedSpawnerFaction));
+                                gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
+                            } else {
+                                gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                             }
                         }
                     } else {
                         gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                        gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                     }
                 }
                 // done
