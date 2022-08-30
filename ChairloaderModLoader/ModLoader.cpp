@@ -785,7 +785,7 @@ fs::path ModLoader::getConfigPath(std::string &modName) {
 fs::path ModLoader::getDefaultConfigPath(std::string &modName) {
     return fs::path{ (PreyPath / "Mods" / modName / modName / "_default.xml").c_str() };
 }
-bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
+bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
     std::string directoryName = directory.filename().u8string();
     pugi::xml_document result;
     auto loadResult  = result.load_file((directory / "ModInfo.xml").wstring().c_str());
@@ -808,7 +808,8 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod) {
             }
 
             // Mod name must match its directory
-            if (directoryName != modName)
+            //! allowDifferentDirectory is only used for the install mod from file function
+            if (directoryName != modName && !allowDifferentDirectory)
             {
                 log(severityLevel::error, "%s: Mod name '%s' doesn't match directory name '%s'",
                     directoryName, modName, directoryName);
@@ -848,7 +849,7 @@ void ModLoader::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
         fs::path modPath = PreyPath / "Mods" / PrevMod.name();
         Mod mod;
-        if(LoadModInfoFile(modPath, &mod)) {
+        if(LoadModInfoFile(modPath, &mod, false)) {
             FindMod(&mod);
             log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
             log(severityLevel::info, "ModInfo.xml Loaded: '%s'", mod.modName.c_str());
@@ -866,7 +867,7 @@ void ModLoader::DetectNewMods() {
     for(auto &directory : fs::directory_iterator(fs::path(PreyPath.u8string() + "/Mods/"))){
         if(directory.path() != PreyPath / "Mods/config" && directory.path() != PreyPath / "Mods/Legacy") {
             Mod mod;
-            if(LoadModInfoFile(directory.path(), &mod)) {
+            if(LoadModInfoFile(directory.path(), &mod, false)) {
                 if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
                     FindMod(&mod);
                     log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
@@ -1167,13 +1168,15 @@ void ModLoader::UninstallMod(std::string &modName) {
 
 }
 
-void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
-    char shortPath[MAX_PATH];
-    GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
-    fs::path commandArgs = ".\\7za.exe x ";
-    commandArgs /=  shortPath;
-    commandArgs /= " -otemp";
-    log(severityLevel::trace, "%s", commandArgs);
+void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
+//    char shortPath[MAX_PATH];
+//    GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
+    std::wstring commandArgs = L".\\7za.exe x ";
+//    commandArgs +=  path.wstring();
+//    commandArgs += L"\\";
+    commandArgs += fileName.wstring();
+    commandArgs += L" -otemp";
+    log(severityLevel::trace, "Command args: %ls", commandArgs.c_str());
     STARTUPINFOW si = {sizeof(STARTUPINFO)};
     PROCESS_INFORMATION pi;
     //DONE: move to CreateProcessA instead of system()
@@ -1182,35 +1185,35 @@ void ModLoader::InstallModFromFile(fs::path path, std::string fileName) {
 //    LPSTR cmdList[] = {TEXT("x"), TEXT((char*)fileName.c_str()), TEXT("-otemp")};
 //    if(CreateProcessA(nullptr, args, nullptr, nullptr, true, 0, nullptr, nullptr, si, pi))
 //        WaitForSingleObject(pi->hProcess, INFINITE);
-    commandArgs.wstring().resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &commandArgs.wstring()[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
+    commandArgs.resize(MAX_PATH);
+    if(CreateProcessW(nullptr, &commandArgs[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
         log(severityLevel::debug, "7Zip operation successful");
         WaitForSingleObject(pi.hProcess, INFINITE);
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
     } else {
-
-        log(severityLevel::error, "Mod Installation Failed: could not decompress %s", fileName);
+        log(severityLevel::error, "Error, 7za.exe failed to execute %i", GetLastError());
+        overlayLog(severityLevel::error, "Mod Installation Failed: could not decompress %s", fileName);
         return;
     }
 
-        log(severityLevel::error, "Error, 7za.exe failed to execute %i", GetLastError());
-        if(exists(fs::path("./temp/ModInfo.xml"))){
-            auto mod = new Mod;
-            if(LoadModInfoFile(fs::path("./temp"), mod)){
-                try {
-                    fs::copy("./temp/", PreyPath / "Mods" / mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                    log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
-                    DetectNewMods();
-                    InstallMod(mod->modName);
-                } catch (std::exception &exc){
-                    std::cerr << exc.what() << std::endl;
-                    log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
-                }
+
+    if(exists(fs::path("./temp/ModInfo.xml"))){
+        auto mod = new Mod;
+        if(LoadModInfoFile(fs::path("./temp"), mod, true)){
+            try {
+                fs::copy("./temp/", PreyPath / "Mods" / mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
+                DetectNewMods();
+                InstallMod(mod->modName);
+            } catch (std::exception &exc){
+                std::cerr << exc.what() << std::endl;
+                log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
             }
-        } else {
-            log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
         }
+    } else {
+        log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
+    }
     fs::remove_all("./temp/");
 }
 

@@ -177,7 +177,7 @@ private:
     bool TreeNodeWalkDirectory(fs::path path, std::string modName);
 
     /* Mod List Functions */
-    bool LoadModInfoFile(fs::path directory, Mod *mod);
+    bool LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory = false);
     void LoadModsFromConfig();
     void DetectNewMods();
     void loadModInfoFiles();
@@ -190,7 +190,7 @@ private:
     //Install
     void InstallMod(std::string &modName);
     void UninstallMod(std::string &modName);
-    void InstallModFromFile(fs::path path, std::string fileName);
+    void InstallModFromFile(fs::path path, fs::path fileName);
 
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
