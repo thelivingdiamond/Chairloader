@@ -13,7 +13,11 @@ IEntity* EntityUtils::spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 ar
 	static ArkNpcSpawnedState_Alert alert;
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
 	for (int i = 1; i <= spawnCount; i++) {
-		latestEntity = ArkNpcSpawnManager::CreateNpc(*gEnv->pEntitySystem->GetEntityArchetype(archetypeId), pos, rot, 0, state);
+        if(gEnv->pEntitySystem->GetEntityArchetype(archetypeId)) {
+            latestEntity = ArkNpcSpawnManager::CreateNpc(*gEnv->pEntitySystem->GetEntityArchetype(archetypeId), pos, rot, 0, state);
+        } else {
+            return nullptr;
+        }
 	}
 	return latestEntity;
 }
@@ -23,7 +27,11 @@ IEntity* EntityUtils::spawnEntity(const char* name, Vec3 pos, Quat rot, uint64 a
 	for (int i = 1; i <= spawnCount; i++) {
 		SEntitySpawnParams params;
 		CreateEntitySpawnParameters(name, pos, rot, &params);
-		latestEntity = gEnv->pEntitySystem->SpawnEntityFromArchetype(gEnv->pEntitySystem->GetEntityArchetype(archetypeId), params);
+        if(gEnv->pEntitySystem->GetEntityArchetype(archetypeId)) {
+            latestEntity = gEnv->pEntitySystem->SpawnEntityFromArchetype(gEnv->pEntitySystem->GetEntityArchetype(archetypeId), params);
+        } else {
+            return nullptr;
+        }
 	}
 	return latestEntity;
 }
