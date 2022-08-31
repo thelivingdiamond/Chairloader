@@ -52,7 +52,6 @@ add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 target_link_libraries(ChairloaderModLoader
         CommonModLoader
         D3D11.lib
-        pugixml::pugixml
         libzip::zip
         ZLIB::ZLIB
         ${Boost_LIBRARIES}

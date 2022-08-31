@@ -8,14 +8,18 @@ set(SOURCE_FILES
 
 add_library(CommonModLoader STATIC
 	${SOURCE_FILES}
+	../Common/pugixml/pugixml.hpp
+	../Common/pugixml/pugiconfig.hpp
+	../Common/pugixml/pugixml.cpp
 )
 
 target_include_directories(CommonModLoader PUBLIC
 	.
+	../Common/pugixml
 )
 
 target_link_libraries(CommonModLoader PUBLIC
-	pugixml::pugixml
+	
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

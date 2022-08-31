@@ -12,11 +12,11 @@ add_library(Common STATIC
 target_include_directories(Common PUBLIC
 	.
 	ImGui # FIXME: Remove from include path
+	pugixml
 	${Boost_INCLUDE_DIRS}
 )
 
 target_link_libraries(Common PUBLIC
-	pugixml::pugixml
 	Detours::Detours
 )
 

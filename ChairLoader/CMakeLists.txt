@@ -39,10 +39,7 @@ set(SOURCE_FILES
 	PerfOverlay.h
 	Profiler.cpp
 	Profiler.h
-	pugiconfig.hpp
-	pugixml.cpp
-	pugixml.hpp
-        )
+)
 
 if(RENDERDLL_DEBUG_MARKERS)
 	set(RENDERDLL_DEBUG_MARKERS_DEFS RENDERDLL_DEBUG_MARKERS)

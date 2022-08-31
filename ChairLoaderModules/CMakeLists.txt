@@ -21,8 +21,6 @@ target_include_directories(ChairloaderModules PUBLIC
 
 target_link_libraries(ChairloaderModules PUBLIC
         Common
-        pugixml::pugixml
-        Detours::Detours
         )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

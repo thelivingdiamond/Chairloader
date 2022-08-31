@@ -45,7 +45,6 @@ target_include_directories(CommonMod PUBLIC
 )
 
 target_link_libraries(CommonMod PUBLIC
-	pugixml::pugixml
 	Detours::Detours
 )
 
