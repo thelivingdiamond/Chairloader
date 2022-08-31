@@ -4,7 +4,7 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. Fi
 
 *Licensed under GNU GPLv3*
 
-Click on the headers to learn more about each!
+Click on the headers to learn more about each feature!
 ## [Mod Manager](ChairloaderModLoader/README.md)
 - Easy installation of Chairloader
 - Control load order and state of mods
