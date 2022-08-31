@@ -1,6 +1,6 @@
 # Chairloader
 #### *By thelivingdiamond & tmp64*
-Chairloader is a modding framework built for Prey (2017) developed by Arkane. First and foremost chairloader is designed to enable modders to make mods for Prey on a scale never before seen. With realtime DLL injection modders are now given the ability to change not just the assets, but the code at the core of the game. There is a GUI built in with several functions to aid in modding (or messing around). Learn more below
+Chairloader is a modding framework built for Prey (2017) developed by Arkane. First and foremost chairloader is designed to enable modders to make mods for Prey on a scale never before seen. With realtime mod DLL loading modders are now given the ability to change not just the assets, but the code at the core of the game. There is a GUI built in with several functions to aid in modding (or messing around). Learn more below
 
 *Licensed under GNU GPLv3*
 
@@ -36,7 +36,7 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. Fi
 
 
 ## API Functionality:
-- Automatic injection of external DLL mods (when enabled in mod loader)
+- Automatic loading of mod DLLs (when enabled in mod loader)
 - Full game header decompilation
 - Example mod code
 - Wiki documentation (coming soon)
