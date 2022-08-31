@@ -5,6 +5,7 @@
 #include "ChairUninstallWizard.h"
 #include "PathUtils.h"
 #include "ModLoader.h"
+#include "GameVersion.h"
 
 static const ImVec2 WINDOW_SIZE = { 600, 400 };
 
@@ -82,6 +83,18 @@ void ChairUninstallWizard::ShowConfirmPage() {
 
 void ChairUninstallWizard::ShowFinishPage() {
     ImGui::TextWrapped("Chairloader has been successfully uninstalled.");
+    ImGui::NewLine();
+    if(m_patched){
+        // Green Text
+        ImGui::TextColored(ImVec4(0.2f, 1.0f, 0.2f, 1.0f), "DLL Restored: " );
+    } else {
+        // Yellow Text
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.2f, 1.0f), "DLL Not Restored: " );
+    }
+    ImGui::TextWrapped("%s", m_patchMessage.c_str());
+    ImGui::NewLine();
+    ImGui::NewLine();
+    ImGui::Text("Thank you for using Chairloader!");
     ShowBottomBtns(BtnCallback(), [&]() { m_SuccessFinish = true; }, BtnCallback(), true);
 }
 
@@ -100,6 +113,21 @@ void ChairUninstallWizard::StartUninstall() {
         if(m_bDeleteModFolder){
             fs::remove_all(ModLoader::Get().GetGamePath() / "Mods");
         }
+        // create a game version instance
+        auto m_pGameVersion = std::make_unique<GameVersion>();
+
+        //Restore Patch
+        fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
+        fs::path backupFilePath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
+        if (fs::exists(backupFilePath)) {
+            fs::copy_file(backupFilePath, dllPath, fs::copy_options::overwrite_existing);
+            m_patched = true;
+            m_patchMessage = "The Game DLL was successfully restored. This means that if you are on Steam/GOG the integration is now working again.";
+        } else {
+            m_patched = false;
+            m_patchMessage = "The Game DLL was not restored. If you are on the Epic Games version then this is normal. If you are on Steam/GOG then you will need to verify file integrity to restore the proper DLL";
+        }
+
     } catch (const std::exception& e) {
         SetError(e.what());
         return;

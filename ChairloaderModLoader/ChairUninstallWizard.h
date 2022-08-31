@@ -33,6 +33,10 @@ private:
     // State::Confirm
     bool m_bDeleteModFolder = false;
 
+    // State::Finish
+    bool m_patched;
+    std::string m_patchMessage;
+
 
     void ShowErrorPage();
     void ShowWelcomePage();
