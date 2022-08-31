@@ -13,7 +13,7 @@ Click on the headers to learn more about each!
 - Works for all XML assets in the game
 
 
-## [Chairloader Modules](ChairloaderModules/README.md)
+## [Chairloader Modules](ChairLoaderModules/README.md)
 #### Built in trainer-like functions:
 - Entity Manager
 - Player Manager
