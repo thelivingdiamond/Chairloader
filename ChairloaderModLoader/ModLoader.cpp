@@ -1089,6 +1089,16 @@ void ModLoader::Update() {
     }
 }
 
+void ModLoader::DeployForInstallWizard()
+{
+    mergeXMLFiles(true);
+
+    if (!packChairloaderPatch())
+        throw std::runtime_error("Failed to pack patch_chairloader.pak");
+    if (!copyChairloaderPatch())
+        throw std::runtime_error("Failed to copy patch_chairloader.pak");
+}
+
 bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
     if(is_directory(path)){
         if(ImGui::TreeNode(path.u8string().c_str(), "%s", path.filename().u8string().c_str())){
@@ -1309,7 +1319,7 @@ bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideN
     return true;
 }
 
-void ModLoader::mergeXMLFiles() {
+void ModLoader::mergeXMLFiles(bool onlyChairPatch) {
     // Remove old output files
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::RemovingOldOutput;
@@ -1347,27 +1357,29 @@ void ModLoader::mergeXMLFiles() {
         return;
     }
 
-    //merge legacy mods
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::MergingLegacyMods;
-    m_DeployLogMutex.unlock();
-    for(auto &directory: fs::directory_iterator(PreyPath / "Mods/Legacy")) {
-        if(fs::is_directory(directory)) {
-            log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
-            mergeDirectory("", directory.path().filename().u8string(), true);
+    if (!onlyChairPatch)
+    {
+        //merge legacy mods
+        m_DeployLogMutex.lock();
+        m_DeployState = DeployState::MergingLegacyMods;
+        m_DeployLogMutex.unlock();
+        for (auto& directory : fs::directory_iterator(PreyPath / "Mods/Legacy")) {
+            if (fs::is_directory(directory)) {
+                log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
+                mergeDirectory("", directory.path().filename().u8string(), true);
+            }
+        }
+        //registered mods
+        m_DeployLogMutex.lock();
+        m_DeployState = DeployState::MergingMods;
+        m_DeployLogMutex.unlock();
+        for (auto& mod : ModList) {
+            if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
+                mergeDirectory("", mod.modName);
+                ModListNode.child(mod.modName.c_str()).child("deployed").text().set(true);
+            }
         }
     }
-    //registered mods
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::MergingMods;
-    m_DeployLogMutex.unlock();
-    for(auto &mod : ModList) {
-        if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
-            mergeDirectory("", mod.modName);
-            ModListNode.child(mod.modName.c_str()).child("deployed").text().set(true);
-        }
-    }
-
 }
 
 float overlayLogPadding = 2.0f;

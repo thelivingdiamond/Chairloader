@@ -305,8 +305,11 @@ void ChairInstallWizard::InstallAsyncTask() const
 		printlog("DLL patch skipped");
 	}
 
-	printlog("Copying files...");
+	printlog("Copying binaries...");
 	fs::copy(srcBinPath / ".", dstBinPath, fs::copy_options::overwrite_existing | fs::copy_options::recursive);
+
+	printlog("Deploying Chairloader files...");
+	ModLoader::Get().DeployForInstallWizard();
 
 	printlog("Finished!");
 }

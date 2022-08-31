@@ -80,6 +80,7 @@ public:
     void Update();
 
     const fs::path& GetGamePath() { return PreyPath; }
+    void DeployForInstallWizard();
 private:
     //! Current UI state
     enum class State
@@ -212,7 +213,7 @@ private:
     mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName);
     bool mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode = {});
     void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
-    void mergeXMLFiles();
+    void mergeXMLFiles(bool onlyChairPatch = false);
 
 
     std::vector<fs::path> exploreLevelDirectory(fs::path);
