@@ -13,8 +13,8 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. Fi
 #### To Install Mods:
   - Use the install mod from file button to install a mod from .7z or .zip. This will only work for mods that have a ModInfo.xml
   - Manual method:
-    - Place any mod with a ModInfo.xml file into the Mods/ folder
-    - For any mods made before Chairloader, or those without a ModInfo.xml place the mod folder inside Mods/Legacy
+    - Place any mod folder with a ModInfo.xml file into the Mods/ folder in your Prey game directory
+    - For any mods made before Chairloader, or those without a ModInfo.xml place the mod folder inside Mods/Legacy/
 
 
 ## [Mod Manager](ChairloaderModLoader/README.md)
