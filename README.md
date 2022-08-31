@@ -7,7 +7,7 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. Fi
 ## Installation
 - Download the latest Release
 - Run ChairloaderModLoader.exe
-  - The mod manager will automatically install the DLL's and patch the game DLL if needed
+  - The mod manager will automatically install the DLLs and patch the game DLL if needed
  
  
 #### To Install Mods:
@@ -58,4 +58,4 @@ For information on how to set up and develop mods for Chairloader please see the
 https://github.com/thelivingdiamond/ChairLoader/wiki
 
 You can see the github.io website for a mod list and examples (WIP):
-https://thelivingdiamond.github.io/ChairLoader/
+https://thelivingdiamond.github.io/Chairloader/
