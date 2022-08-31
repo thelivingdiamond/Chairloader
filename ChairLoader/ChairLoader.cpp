@@ -19,6 +19,7 @@
 #include "RenderDll/RenderAuxGeomPatch.h"
 #include "RenderDll/DebugMarkers.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include "Editor/Editor.h"
 
 ChairLoader *gCL = nullptr;
 static bool smokeFormExited = false;
@@ -95,6 +96,7 @@ void CSystem_Shutdown_Hook(CSystem* _this)
 
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 {
+	g_pGame = _this;
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
@@ -177,6 +179,7 @@ ChairLoader::ChairLoader() {
 	ChairLoaderImGui::InitHooks();
 	InitRenderAuxGeomPatchHooks();
 	RenderDll::DebugMarkers::InitHooks();
+	Editor::InitHooks();
 
 	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
 	// Allows graphics debuggers to be attached
@@ -250,6 +253,7 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
 	gui = new ChairloaderGui(&s_CLEnv);
 	g_pProfiler = new Profiler();
+	m_pEditor = std::make_unique<Editor>();
 
 	s_CLEnv.cl = this;
 	s_CLEnv.pImGui = m_ImGui.get();
@@ -325,6 +329,7 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	SmokeFormExit();
 	gui->update();
 	gConf->Update();
+	m_pEditor->Update();
 
 	// pre update all mods
 	for (auto& mod : modList) {
@@ -378,6 +383,10 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
         }
         return true;
     }
+
+	if (m_pEditor && m_pEditor->HandleKeyPress(event))
+		return true;
+
 	return false;
 }
 

@@ -199,6 +199,7 @@ public:
 	virtual void UnregisterConsoleCommands() = 0;
 	virtual void RegisterGameObjectEvents() = 0;
 
+	CUIManager* GetUI() { return m_pUIManager; }
 
 	CGame::SPlatformInfo m_platformInfo;
 	CGameCache* m_pGameCache;
@@ -352,3 +353,5 @@ public:
 	std::unique_ptr<ArkActiveUserManagerBase> m_pActiveUserManager;
 };
 static_assert(sizeof(CGame) == 0x450);
+
+inline CGame* g_pGame = nullptr;

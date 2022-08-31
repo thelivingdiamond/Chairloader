@@ -121,7 +121,7 @@ struct IGameFramework // Id=8001CF0 Size=8
     virtual bool PreUpdate(bool arg0, unsigned arg1) = 0;
     virtual void PostUpdate(bool arg0, unsigned arg1) = 0;
     virtual void Reset(bool arg0) = 0;
-    virtual void PauseGame(bool arg0, bool arg1, unsigned arg2, bool arg3) = 0;
+    virtual void PauseGame(bool pause, bool force, unsigned nFadeOutMS, bool bPauseAudio) = 0;
     virtual bool IsGamePaused() = 0;
     virtual bool IsGameStarted() = 0;
     virtual bool IsLevelPrecachingDone() const = 0;

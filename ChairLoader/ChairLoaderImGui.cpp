@@ -807,6 +807,10 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 			break;
 		}
 		}
+
+		if (gCL->HandleKeyPress(event)) {
+			return;
+		}
 	}
 
 	if (event.deviceType == eIDT_Keyboard && io.WantTextInput)

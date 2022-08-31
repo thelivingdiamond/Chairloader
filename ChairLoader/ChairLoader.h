@@ -15,6 +15,7 @@
 struct SInputEvent;
 struct IGameFramework;
 class CSystem;
+class Editor;
 
 class ChairLoader : public IChairloader {
 public:
@@ -111,6 +112,7 @@ private:
 	uintptr_t m_ModuleBase = 0;
 	IGameFramework* m_pFramework = nullptr;
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
+	std::unique_ptr<Editor> m_pEditor;
 	FILE *m_pConsoleFile = nullptr;
 	std::thread::id m_MainThreadId;
 
