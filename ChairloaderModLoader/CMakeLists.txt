@@ -43,7 +43,7 @@ set(SOURCE_FILES
         zipconf.h
         ./Data/Montserrat-Regular.ttf
         appicon.rc
-        )
+        ChairUninstallWizard.cpp ChairUninstallWizard.h)
 
 set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
 

@@ -33,6 +33,10 @@ constexpr const char* REQUIRED_CHAIRLOADER_DIRS[] = {
     "Mods/Legacy",
 };
 
+//! Path to the Chairloader patch file
+constexpr char CHAIRLOADER_PATCH_PATH[] = "GameSDK/Precache/patch_chairloader.pak";
+
+
 //! Checks if supplied path is a valid Prey path.
 //! In particular, checks if all files in REQUIRED_GAME_FILES exist.
 //! @param  path    The path in question

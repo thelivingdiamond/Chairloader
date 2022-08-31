@@ -19,6 +19,7 @@
 class GamePathDialog;
 class GameVersion;
 class ChairInstallWizard;
+class ChairUninstallWizard;
 
 namespace fs = std::filesystem;
 class ModLoader {
@@ -87,6 +88,7 @@ private:
         LocateGameDir,
         InstallWizard,
         Deploying,
+        UninstallWizard,
         MainWindow,
     };
 
@@ -114,6 +116,12 @@ private:
     std::unique_ptr<ChairInstallWizard> m_pInstallWizard;
     void SwitchToInstallWizard();
     void DrawInstallWizard(bool* pbIsOpen);
+
+    /* UninstallWizard */
+    std::unique_ptr<ChairUninstallWizard> m_pUninstallWizard;
+    void SwitchToUninstallWizard();
+    void DrawUninstallWizard(bool* pbIsOpen);
+    bool m_bShowUninstallWizard = false;
 
     /* Deploy Screen */
     enum class DeployState

@@ -10,6 +10,7 @@
 #include "GameVersion.h"
 #include "PathUtils.h"
 #include "ChairInstallWizard.h"
+#include "ChairUninstallWizard.h"
 #include "../ChairLoader/GUIUtils.h"
 
 static std::string ErrorMessage;
@@ -33,6 +34,11 @@ void ModLoader::Draw() {
         break;
     case State::InstallWizard:
         DrawInstallWizard(&bDraw);
+        break;
+    case State::UninstallWizard:
+        DrawUninstallWizard(&m_bShowUninstallWizard);
+        if(!m_bShowUninstallWizard)
+            m_State = State::MainWindow;
         break;
     case State::Deploying:
         DrawDeployScreen(&bDraw);
@@ -169,6 +175,10 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         if (ImGui::BeginMenu("Files", true)) {
             if (ImGui::MenuItem("Install Mod")) {
                 ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.u8string(), 1, nullptr);
+            }
+            ImGui::Separator();
+            if(ImGui::MenuItem("Uninstall Chairloader")){
+                SwitchToUninstallWizard();
             }
 #ifdef _DEBUG
             ImGui::Separator();
@@ -1908,6 +1918,25 @@ void ModLoader::RunAsyncDeploy() {
     } else {
         overlayLog(severityLevel::error, "Mods are already being deployed");
     }
+}
+
+void ModLoader::SwitchToUninstallWizard() {
+    log(severityLevel::info, "Switching to uninstall wizard");
+    m_State = State::UninstallWizard;
+}
+
+void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
+    if (!m_pUninstallWizard)
+    {
+        m_pUninstallWizard = std::make_unique<ChairUninstallWizard>();
+    }
+    if (m_pUninstallWizard->Show("Chairloader Uninstaller", pbIsOpen))
+    {
+        m_pUninstallWizard.reset();
+        m_State = State::MainWindow;
+        std::exit(0);
+    }
+
 }
 
 
