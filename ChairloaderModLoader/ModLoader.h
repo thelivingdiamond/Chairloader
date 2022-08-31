@@ -65,7 +65,8 @@ public:
         bool installed = false,
              enabled = false,
              deployed = false,
-             hasXML;
+             hasXML = false,
+             hasLevelXML = false;
         bool operator<( Mod& b ) const {
             return this->loadOrder < b.loadOrder;
         }

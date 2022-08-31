@@ -840,6 +840,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferen
             mod->infoFile = result.child("Mod");
             mod->dllName = result.child("Mod").attribute("dllName").as_string();
             mod->hasXML = result.child("Mod").attribute("hasXML").as_bool();
+            mod->hasLevelXML = result.child("Mod").attribute("hasLevelXML").as_bool();
             for(auto & dependency : result.child("Mod").child("Dependencies")){
                 mod->dependencies.emplace_back(dependency.text().get());
             }
@@ -1091,12 +1092,17 @@ void ModLoader::Update() {
 
 void ModLoader::DeployForInstallWizard()
 {
+    assert(m_DeployState == DeployState::Invalid);
     mergeXMLFiles(true);
 
     if (!packChairloaderPatch())
         throw std::runtime_error("Failed to pack patch_chairloader.pak");
     if (!copyChairloaderPatch())
         throw std::runtime_error("Failed to copy patch_chairloader.pak");
+
+    m_DeployLogMutex.lock();
+    m_DeployState = DeployState::Invalid;
+    m_DeployLogMutex.unlock();
 }
 
 bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
@@ -1545,52 +1551,66 @@ bool ModLoader::packChairloaderPatch() {
         overlayLog(severityLevel::error, "Error: %s", exception.what());
         return false;
     }
-    // packing level files
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::PackingLevelFiles;
-    m_DeployLogMutex.unlock();
-    auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
-    try {
-        fs::create_directories("./LevelOutput/Levels");
-        fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
-    } catch (std::exception & exception) {
-        overlayLog(severityLevel::error, "Error Copying level directory: %s", exception.what());
-        return false;
-    }
-    std::vector<PROCESS_INFORMATION> processes;
-    processes.clear();
-    for(auto &levelDirectory: levelDirectories){
-        auto processInfo = packLevel(levelDirectory);
-        if(processInfo.hProcess != nullptr) {
-            processes.push_back(processInfo);
+
+    // See if any mods have level patches
+    bool doLevelPatches = false;
+    for (Mod& mod : ModList) {
+        if (mod.enabled && mod.hasLevelXML)
+        {
+            doLevelPatches = true;
+            break;
         }
     }
-    for(auto & processInfo: processes){
-        WaitForSingleObject(processInfo.hProcess, INFINITE);
-        CloseHandle(processInfo.hProcess);
-        CloseHandle(processInfo.hThread);
-    }
-    // Copying Level Files
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::CopyingLevelFiles;
-    m_DeployLogMutex.unlock();
-    try {
-        for (auto &levelDirectory: levelDirectories) {
-            fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
-            log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
-            if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
-                fs::remove_all("./LevelOutput" / basePath / "level/");
-                log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
-                fs::copy("./LevelOutput" / basePath, PreyPath / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), PreyPath.u8string() + "/GameSDK/" + basePath.u8string());
-            } else {
-                log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
+
+    if (doLevelPatches)
+    {
+        // packing level files
+        m_DeployLogMutex.lock();
+        m_DeployState = DeployState::PackingLevelFiles;
+        m_DeployLogMutex.unlock();
+        auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
+        try {
+            fs::create_directories("./LevelOutput/Levels");
+            fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
+        } catch (std::exception & exception) {
+            overlayLog(severityLevel::error, "Error Copying level directory: %s", exception.what());
+            return false;
+        }
+        std::vector<PROCESS_INFORMATION> processes;
+        processes.clear();
+        for(auto &levelDirectory: levelDirectories){
+            auto processInfo = packLevel(levelDirectory);
+            if(processInfo.hProcess != nullptr) {
+                processes.push_back(processInfo);
             }
         }
-        fs::remove_all("./Output/Levels");
-    } catch (std::exception & exception) {
-        overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
-        return false;
+        for(auto & processInfo: processes){
+            WaitForSingleObject(processInfo.hProcess, INFINITE);
+            CloseHandle(processInfo.hProcess);
+            CloseHandle(processInfo.hThread);
+        }
+        // Copying Level Files
+        m_DeployLogMutex.lock();
+        m_DeployState = DeployState::CopyingLevelFiles;
+        m_DeployLogMutex.unlock();
+        try {
+            for (auto &levelDirectory: levelDirectories) {
+                fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
+                log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
+                if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
+                    fs::remove_all("./LevelOutput" / basePath / "level/");
+                    log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
+                    fs::copy("./LevelOutput" / basePath, PreyPath / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), PreyPath.u8string() + "/GameSDK/" + basePath.u8string());
+                } else {
+                    log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
+                }
+            }
+            fs::remove_all("./Output/Levels");
+        } catch (std::exception & exception) {
+            overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
+            return false;
+        }
     }
 
     // Pack Localization Patch

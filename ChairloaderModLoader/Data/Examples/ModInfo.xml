@@ -4,6 +4,7 @@
 	version="1.0"
 	dllName="ExampleMod.dll"
 	hasXML="true"
+	hasLevelXML="false"
 	author="The Chair">
     <ArchetypeLibraries>
         <ArchetypeLibrary>ArkNpcs.xml</ArchetypeLibrary>
