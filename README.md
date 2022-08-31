@@ -11,7 +11,7 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. Fi
  
  
 #### To Install Mods:
-  - Use the install mod from file button to install a mod from .7z or .zip. This will only work for mods that have a ModInfo.xml
+  - Use the `install mod from file` button to install a mod from .7z or .zip. This will only work for mods that have a ModInfo.xml
   - Manual method:
     - Place any mod folder with a ModInfo.xml file into the Mods/ folder in your Prey game directory
     - For any mods made before Chairloader, or those without a ModInfo.xml place the mod folder inside Mods/Legacy/
@@ -54,7 +54,7 @@ The Gui functionality is achieved via DX11 hooking and uses Dear ImGui.
 - ImGui File Dialog: https://github.com/aiekick/ImGuiFileDialog
 - 7Zip: https://www.7-zip.org/ 
 
-For information on how to setup and develop mods for Chairloader please see the wiki (WIP):
+For information on how to set up and develop mods for Chairloader please see the wiki (WIP):
 https://github.com/thelivingdiamond/ChairLoader/wiki
 
 You can see the github.io website for a mod list and examples (WIP):
