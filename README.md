@@ -18,6 +18,9 @@ Click on the headers to learn more about each!
 - Entity Manager
 - Player Manager
 - World Manager
+- Full in-game console reimplemented
+- Performance evaluation
+- Full mod config manager
 
 
 ## API Functionality:
