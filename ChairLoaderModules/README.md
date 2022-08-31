@@ -1,39 +1,43 @@
 # Chairloader Modules
 **These are internal modules that provide an array of useful functions in game. They possess many trainer-like features, including entity, player, and world manipulation. They are a statically linked library that is compiled into the main chairloader DLL.**
 
-### Entity Manager
+## Entity Manager
 There are two primary functions in this module: the entity spawner and the entity list. 
-- The entity spawner is used to spawn entities. It can spawn any archetype that is loaded into the game, and can specify a position, faction, quantity, etc..
+
+
+**The entity spawner is used to spawn entities. It can spawn any archetype that is loaded into the game, and can specify a position, faction, quantity, etc..**
 
 
 ![EntitySpawner+List](https://user-images.githubusercontent.com/11778849/187589738-08152882-abf2-415b-9bf0-3dc7fcca95a2.png)
 
 
-- The entity list is a list of all entities in the game. It can be used to select entities and change their position, faction, and orientation. Additionally, for NPC's there are more options available.
+**The entity list is a list of all entities in the game. It can be used to select entities and change their position, faction, and orientation. Additionally, for NPC's there are more options available.**
 
 
 ![EntityList3](https://user-images.githubusercontent.com/11778849/187589776-f35d08bf-2f6f-4e75-905f-c19b4ee6598c.png)
 
-### Player Manager
-- Position Setting and save/load
+## Player Manager
+
+
+### Position Setting and save/load
 
 
 ![PlayerPos](https://user-images.githubusercontent.com/11778849/187589906-8fccbb22-ab73-4ee1-a9d4-1b4ed41afac2.png)
 
 
-- Health, armor, psi, stamina, and status manipulation
+### Health, armor, psi, stamina, and status manipulation
 
 
 ![PlayerHealth](https://user-images.githubusercontent.com/11778849/187589961-955b7767-6077-47b2-9f36-dfe7200a33e7.png)
 
 
-- Menu for granting any neuromod in the game
+### Menu for granting any neuromod in the game
 
 
 ![AbilityList](https://user-images.githubusercontent.com/11778849/187590013-1358ff00-4a12-46ec-a67d-a35bd683161a.png)
 
 
-- Inventory manipulation
+### Inventory manipulation
 
 
 ![PlayerInventory](https://user-images.githubusercontent.com/11778849/187590052-1531ddcb-f53d-4979-9359-23dc07b94d3b.png)
