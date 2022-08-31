@@ -1,7 +1,7 @@
 # Chairloader Mod Manager
-### **A mod Manager and merger for Prey (2017) Mods**
+#### **A mod Manager and merger for Prey (2017) Mods**
 
-## Key Features
+### Key Features
 
 - Install mods from .zip or .7z file
 - Enable and disable mods from loading through Chairloader
