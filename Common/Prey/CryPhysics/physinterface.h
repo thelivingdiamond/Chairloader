@@ -709,6 +709,20 @@ enum phentity_flags
 	pef_log_poststep              = 0x8000000,                                                 //!< entity will log EventPhysPostStep events
 };
 
+enum ark_phentity_flags
+{
+	ark_pef_pushable_by_ai = 0x1,
+	ark_pef_no_impulse_on_collision = 0x2,
+	ark_pef_bounce_straight = 0x4,
+	ark_pef_leverage1 = 0x8,
+	ark_pef_leverage2 = 0x10,
+	ark_pef_leverage3 = 0x20,
+	ark_pef_push_leverage1 = 0x40,
+	ark_pef_push_leverage2 = 0x80,
+	ark_pef_push_leverage3 = 0x100,
+	ark_pef_hits_articulated = 0x200,
+};
+
 struct pe_params_flags : pe_params
 {
 	enum entype { type_id = ePE_params_flags };
@@ -2628,9 +2642,9 @@ struct IPhysicalEntity
 	virtual int GetStatus(pe_status* status) const = 0;      //!< generally returns >0 if successful, but some pe_status'es have special meaning
 	virtual int Action(pe_action*, int bThreadSafe = 0) = 0; //!< like SetParams, can get queued
 
-	virtual bool GetGeomFlags(int, unsigned int *, unsigned int *) = 0;
-	virtual bool DoesLeverageAllowImpulse(bool, unsigned int) = 0;
-	virtual int InitializeGravityParam(float, pe_params_buoyancy *, int) = 0;
+	virtual bool GetGeomFlags(int partId, unsigned int &flags, unsigned int &flagsCollider) = 0;
+	virtual bool DoesLeverageAllowImpulse(bool bIsPlayer, unsigned int npcArkFlags) = 0;
+	virtual int InitializeGravityParam(float time_interval, pe_params_buoyancy *pb, int nMaxBuoys) = 0;
 
 	//! AddGeometry - add a new entity part, containing pgeom; request can get queued
 	//! params can be specialized depending on the entity type
@@ -2645,11 +2659,11 @@ struct IPhysicalEntity
 	virtual int          GetStateSnapshot(class CStream& stm, float time_back = 0, int flags = 0) = 0; //!< obsolete, was used in Far Cry
 	virtual int          GetStateSnapshot(TSerialize ser, float time_back = 0, int flags = 0) = 0;
 	virtual int          SetStateFromSnapshot(class CStream& stm, int flags = 0) = 0;    //!< obsolete
+	virtual int          SetStateFromSnapshot(TSerialize ser, int flags = 0) = 0;
 	virtual int          PostSetStateFromSnapshot() = 0;                                 //!< obsolete
 	virtual unsigned int GetStateChecksum() = 0;                                         //!< obsolete
 	virtual void         SetNetworkAuthority(int authoritive = -1, int paused = -1) = 0; //!< -1 dont change, 0 - set to false, 1 - set to true
 
-	virtual int          SetStateFromSnapshot(TSerialize ser, int flags = 0) = 0;
 	virtual int          SetStateFromTypedSnapshot(TSerialize ser, int type, int flags = 0) = 0;
 	virtual int          GetStateSnapshotTxt(char* txtbuf, int szbuf, float time_back = 0) = 0; //!< packs state into ASCII text
 	virtual void         SetStateFromSnapshotTxt(const char* txtbuf, int szbuf) = 0;
@@ -3315,9 +3329,9 @@ struct IPhysicalWorld
 	//! CreatePhysicalEntity - creates an entity with specified type, sets foreign data and optionally initializes if some pe_params
 	//! if id is left <0, the physics will assign one (note: internally there's a id->ptr array map, so keep ids wihin some sane range)
 	//! returns a valid entity pointer even if the physics thread is busy during the call
-	virtual IPhysicalEntity* CreatePhysicalEntity(pe_type type, pe_params* params = 0, void* pforeigndata = 0, int iforeigndata = 0, int id = -1, IGeneralMemoryHeap* pHeap = NULL) = 0;
+	virtual IPhysicalEntity* CreatePhysicalEntity(pe_type type, pe_params* params, void* pForeignData, int iForeignData, int id, IGeneralMemoryHeap* pHeap, SCollisionClass* pCollisionClass, pe_params* _pParams2) = 0;
 	//! CreatePhysicalEntity - this version is used when creating an a temporary entity (lifeTime) on demand for a placeholder
-	virtual IPhysicalEntity* CreatePhysicalEntity(pe_type type, float lifeTime, pe_params* params = 0, void* pForeignData = 0, int iForeignData = 0, int id = -1, IPhysicalEntity* pHostPlaceholder = 0, IGeneralMemoryHeap* pHeap = NULL) = 0;
+	virtual IPhysicalEntity* CreatePhysicalEntity(pe_type type, float lifeTime, pe_params* params, void* pForeignData, int iForeignData, int id, IPhysicalEntity* pHostPlaceholder, IGeneralMemoryHeap* pHeap, SCollisionClass* pCollisionClass, pe_params* _pParams2) = 0;
 	//! CreatePhysicalPlaceholder - placeholder is a lightweight structure that requests creation of a full entity
 	//! when needed via IPhysicsStreamer->CreatePhysicalEntity
 	virtual IPhysicalEntity* CreatePhysicalPlaceholder(pe_type type, pe_params* params = 0, void* pForeignData = 0, int iForeignData = 0, int id = -1) = 0;
@@ -3360,7 +3374,7 @@ struct IPhysicalWorld
 	virtual int GetEntitiesInBox(Vec3 ptmin, Vec3 ptmax, IPhysicalEntity**& pList, int objtypes, int szListPrealloc = 0) = 0;
 
 	virtual int RayWorldIntersection(const SRWIParams& rp, const char* pNameTag = RWI_NAME_TAG, int iCaller = MAX_PHYS_THREADS) = 0;
-	virtual int RayWorldIntersectionEditor(const IPhysicalWorld::SRWIParams *) = 0;
+	virtual int RayWorldIntersectionEditor(const IPhysicalWorld::SRWIParams&) = 0;
 	//! Traces ray requests (rwi calls with rwi_queue set); logs and calls EventPhysRWIResult for each
 	//! returns the number of rays traced
 	virtual int  TracePendingRays(int bDoActualTracing = 1) = 0;
@@ -3378,7 +3392,7 @@ struct IPhysicalWorld
 	virtual IPhysicalEntityIt* GetEntitiesIterator() = 0;
 
 	virtual void               SimulateExplosion(pe_explosion* pexpl, IPhysicalEntity** pSkipEnts = 0, int nSkipEnts = 0, int iTypes = ent_rigid | ent_sleeping_rigid | ent_living | ent_independent, int iCaller = MAX_PHYS_THREADS) = 0;
-	virtual void SimulateExplosionFast(pe_explosion *, IPhysicalEntity **, int, int, bool, bool, void(std::vector<IPhysicalEntity *> *), int) = 0;
+	virtual void SimulateExplosionFast(pe_explosion *pexpl, IPhysicalEntity **pSckipEnts, int nSkipEnts, int iTypes, bool bCheckLOS, bool bBreaksGlass, void(*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity *> &), int iCaller) = 0;
 
 	virtual int GetNumExplosionVictims() = 0;
 	virtual IPhysicalEntity *GetExplosionVictim(int) = 0;
@@ -3473,9 +3487,9 @@ struct IPhysicalWorld
 
 	virtual EventPhys*       AddDeferredEvent(int type, EventPhys* event) = 0;
 
-	virtual void AddPhysicalEntityToPlayerTimeScale(IPhysicalEntity *) = 0;
-	virtual bool IsEntityUsingPlayerTimeScale(IPhysicalEntity *) = 0;
-	virtual void SetWorldTimeScale(float) = 0;
+	virtual void AddPhysicalEntityToPlayerTimeScale(IPhysicalEntity* rEnt) = 0;
+	virtual bool IsEntityUsingPlayerTimeScale(IPhysicalEntity* rEnt) = 0;
+	virtual void SetWorldTimeScale(float fScale) = 0;
 	// </interfuscator:shuffle>
 
 	inline int RayWorldIntersection(const Vec3& org, const Vec3& dir, int objtypes, unsigned int flags, ray_hit* hits, int nMaxHits,

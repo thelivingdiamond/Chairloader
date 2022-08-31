@@ -20,11 +20,11 @@ class EnumDescription;
 namespace Serialization
 {
 using yasli::ClassFactory;
-typedef yasli::Archive    IArchive;
-typedef yasli::BlackBox   SBlackBox;
-typedef yasli::Context    SContext;
-typedef yasli::Context    SContextLink;
-typedef yasli::Serializer SStruct;
+class IArchive;
+struct SBlackBox;
+struct SContext;
+struct SContextLink;
+struct SStruct;
 using yasli::TypeID;
 using yasli::StringList;
 using yasli::StringListValue;
