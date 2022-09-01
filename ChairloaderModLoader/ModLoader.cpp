@@ -1337,19 +1337,29 @@ void ModLoader::mergeXMLFiles(bool onlyChairPatch) {
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::CopyingBaseFiles;
     m_DeployLogMutex.unlock();
-    try {
-        fs::copy(".\\PreyFiles\\Levels", ".\\Output\\Levels",
-                 fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-    } catch (std::exception &exc){
-        std::cerr << exc.what() << std::endl;
-        overlayLog(severityLevel::error, "Could not copy Levels folder: %s", exc.what());
-        return;
+
+    bool doLevelPatches = false;
+    for (Mod& mod : ModList) {
+        if (mod.enabled && mod.hasLevelXML)
+        {
+            doLevelPatches = true;
+            break;
+        }
     }
-    try{
+    if (doLevelPatches) {
+        try {
+            fs::copy(".\\PreyFiles\\Levels", ".\\Output\\Levels", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+        } catch (std::exception &exc) {
+            std::cerr << exc.what() << std::endl;
+            overlayLog(severityLevel::error, "Could not copy Levels folder: %s", exc.what());
+            return;
+        }
+    }
+    try {
         fs::create_directories("./Output/Localization/English_xml");
         fs::copy("./PreyFiles/Localization/English_xml_patch/", "./Output/Localization/English_xml/",
                  fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-    } catch (std::exception &exc){
+    } catch (std::exception &exc) {
         std::cerr << exc.what() << std::endl;
         overlayLog(severityLevel::error, "Could not copy Localization folder: %s", exc.what());
         return;
