@@ -194,13 +194,14 @@ private:
     void FindMod(Mod* modEntry);
     bool verifyDependencies(std::string modName);
     bool verifyDependenciesEnabled(std::string modName);
-    std::string fileToLoad;
+    fs::path fileToLoad;
     fs::path modToLoadPath;
 
     //Install
     void InstallMod(std::string &modName);
     void UninstallMod(std::string &modName);
     void InstallModFromFile(fs::path path, fs::path fileName);
+    bool m_bInstallLegacyMod;
 
     //Enable
     void EnableMod(std::string modName, bool enabled = true);

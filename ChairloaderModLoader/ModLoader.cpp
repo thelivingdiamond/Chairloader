@@ -264,7 +264,6 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         ImGui::ShowDemoWindow(&showDemo);
     }
     std::sort(ModList.begin(), ModList.end());
-
     ImGui::End();
 }
 
@@ -575,8 +574,27 @@ void ModLoader::DrawModList() {
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
             ImGui::Separator();
             if(ImGui::Button("Install Mod From File")){
-                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.u8string(), 1, nullptr);
+               ImGui::OpenPopup("Install Mod From File");
             }
+        }
+        if(ImGui::BeginPopupModal("Install Mod From File", nullptr, ImGuiWindowFlags_AlwaysAutoResize)){
+            static int installType = 0;
+            ImGui::RadioButton("Chairloader Mod (.zip, .7z)", &installType, 0);
+            ImGui::RadioButton("Legacy Mod (.pak)", &installType, 1);
+            if(ImGui::Button("Cancel")){
+                ImGui::CloseCurrentPopup();
+                installType = 0;
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Install")){
+                m_bInstallLegacyMod = installType == 1;
+                if(!m_bInstallLegacyMod)
+                    ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", fileToLoad.u8string(), 1, nullptr);
+                else
+                    ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Legacy Mod File", "Legacy Mod File (*.pak){.pak}", fileToLoad.u8string(), 1, nullptr);
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
         }
         ImGui::EndChild();
         //TODO: get display size (currently broken)
@@ -589,8 +607,8 @@ void ModLoader::DrawModList() {
                 try {
                     modToLoadPath = ImGuiFileDialog::Instance()->GetCurrentPath();
                     fileToLoad = ImGuiFileDialog::Instance()->GetFilePathName();
-                    log(severityLevel::trace, "File To Load: %s", modToLoadPath.u8string() + fileToLoad);
-                    if (!(modToLoadPath / fileToLoad).empty()) {
+                    log(severityLevel::trace, "File To Load: %s", fileToLoad.u8string());
+                    if (!(fileToLoad).empty()) {
                         fs::remove_all("temp");
                         InstallModFromFile(modToLoadPath, fileToLoad);
                     }
@@ -799,7 +817,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferen
     std::string directoryName = directory.filename().u8string();
     pugi::xml_document result;
     auto loadResult  = result.load_file((directory / "ModInfo.xml").wstring().c_str());
-    log(severityLevel::debug, "%s/ModInfo.xml", directory.u8string().c_str());
+    log(severityLevel::trace, "Mod Info File location: %s/ModInfo.xml", directory.u8string().c_str());
     if(loadResult){
         std::string modName = result.child("Mod").attribute("modName").as_string();
         if(!modName.empty()) {
@@ -1197,12 +1215,13 @@ void ModLoader::UninstallMod(std::string &modName) {
 void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
 //    char shortPath[MAX_PATH];
 //    GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
-    std::wstring commandArgs = L".\\7za.exe x ";
+    std::wstring commandArgs = L".\\7za.exe x \"";
 //    commandArgs +=  path.wstring();
 //    commandArgs += L"\\";
     commandArgs += fileName.wstring();
-    commandArgs += L" -otemp";
-    log(severityLevel::trace, "Command args: %ls", commandArgs.c_str());
+    commandArgs += L"\" -otemp";
+//    log(severityLevel::trace, "Command args: %s", commandArgs.c_str());
+//    printf("Command args: %ls", commandArgs.c_str());
     STARTUPINFOW si = {sizeof(STARTUPINFO)};
     PROCESS_INFORMATION pi;
     //DONE: move to CreateProcessA instead of system()
@@ -1213,8 +1232,12 @@ void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
 //        WaitForSingleObject(pi->hProcess, INFINITE);
     commandArgs.resize(MAX_PATH);
     if(CreateProcessW(nullptr, &commandArgs[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
-        log(severityLevel::debug, "7Zip operation successful");
+        log(severityLevel::debug, "7Zip operation started");
         WaitForSingleObject(pi.hProcess, INFINITE);
+        log(severityLevel::debug, "7Zip process finished");
+        LPDWORD exitCode = new DWORD;
+        GetExitCodeProcess(pi.hProcess, exitCode);
+        log(severityLevel::trace, "7Zip exit code: %i", *exitCode);
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
     } else {
@@ -1223,22 +1246,40 @@ void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
         return;
     }
 
-
-    if(exists(fs::path("./temp/ModInfo.xml"))){
-        auto mod = new Mod;
-        if(LoadModInfoFile(fs::path("./temp"), mod, true)){
+    if(!m_bInstallLegacyMod) {
+        if (exists(fs::path("./temp/ModInfo.xml"))) {
+            auto mod = new Mod;
+            if (LoadModInfoFile(fs::path("./temp"), mod, true)) {
+                try {
+                    fs::copy("./temp/", PreyPath / "Mods" / mod->modName,
+                             fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
+                    DetectNewMods();
+                    InstallMod(mod->modName);
+                } catch (std::exception &exc) {
+                    std::cerr << exc.what() << std::endl;
+                    log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
+                }
+            }
+        } else {
+            log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
+        }
+    } else {
+        if (exists(fs::path("./temp/"))) {
             try {
-                fs::copy("./temp/", PreyPath / "Mods" / mod->modName, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
-                DetectNewMods();
-                InstallMod(mod->modName);
-            } catch (std::exception &exc){
+                auto BaseModFolder = fileName.filename().replace_extension("");
+                log(severityLevel::info, "Installing Legacy Mod: %s", BaseModFolder.u8string().c_str());
+                fs::copy("./temp/", PreyPath / "Mods" / "Legacy" / BaseModFolder,
+                         fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                log(severityLevel::info, "Mod Installation Succeeded: %s loaded", BaseModFolder.u8string().c_str());
+                loadModInfoFiles();
+            } catch (std::exception &exc) {
                 std::cerr << exc.what() << std::endl;
                 log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
             }
+        } else {
+            log(severityLevel::error, "Mod Installation Failed: file not extracted");
         }
-    } else {
-        log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
     }
     fs::remove_all("./temp/");
 }
@@ -1889,6 +1930,12 @@ void ModLoader::DrawDebug() {
                 overlayLog(severityLevel::error, "CREATE PROCESS FAILED: %d", GetLastError());
             }
 
+        }
+        if (ImGui::Button("Test Filename extension removal")){
+            auto BaseModFolder = modToLoadPath.filename().wstring();
+            auto filenamePosition = BaseModFolder.find_last_of(L'.');
+            auto modFolder = BaseModFolder.substr(0, filenamePosition-1);
+            overlayLog(severityLevel::debug, "Mod folder: %ls", modFolder.c_str());
         }
         ImGui::EndTabItem();
     }
