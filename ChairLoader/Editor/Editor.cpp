@@ -298,6 +298,7 @@ void Editor::SetInEditor(bool state)
 		pPlayerEnt->SetSlotFlags(0, slotFlags & (~ENTITY_SLOT_RENDER_NEAREST));
 	else
 		pPlayerEnt->SetSlotFlags(0, slotFlags | ENTITY_SLOT_RENDER_NEAREST);
+	ArkPlayer::GetInstance().ShowThirdPerson(state);
 }
 
 void Editor::SetEditorCameraControl(bool state)
