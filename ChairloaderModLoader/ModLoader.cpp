@@ -1282,7 +1282,9 @@ ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path o
     auto overrideRootNode = modFile.first_child();
     auto originalRootNode = originalFile.first_child();
     baseRootNode.append_child(pugi::node_comment).set_value(("Mod: " + modName).c_str());
-//    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
+#ifdef _DEBUG
+    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
+#endif
     if(overrideRootNode) {
         for (auto &overrideNode: overrideRootNode) {
             //Case: Overwrite
@@ -1311,11 +1313,24 @@ bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideN
             } else {
                 log(severityLevel::trace, "Node %s is different from Ark Original", overrideNode.attribute("Name").value());
                 baseNode.text().set(overrideNode.text().get());
+                for(auto & attribute : overrideNode.attributes()){
+                    log(severityLevel::trace, "Overwriting attribute %s", attribute.name());
+                    if(baseNode.attribute(attribute.name()))
+                        baseNode.attribute(attribute.name()).set_value(attribute.value());
+                    else
+                        baseNode.append_attribute(attribute.name()).set_value(attribute.value());
+                }
             }
         // default overwrite
         } else {
             log(severityLevel::trace, "Overwriting original node %s", overrideNode.attribute("Name").value());
             baseNode.text().set(overrideNode.text().get());
+            for(auto & attribute : overrideNode){
+                if(baseNode.attribute(attribute.name()))
+                    baseNode.attribute(attribute.name()).set_value(attribute.value());
+                else
+                    baseNode.append_attribute(attribute.name()).set_value(attribute.value());
+            }
         }
     } else {
         //Case: Add
