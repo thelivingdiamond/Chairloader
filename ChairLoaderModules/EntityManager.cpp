@@ -171,61 +171,13 @@ void EntityManager::drawEntityList(bool* bShow) {
             {
                 static bool filterByNpcs = false;
                 ImGui::BeginChild("left pane", ImVec2(250, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
-                ImGui::InputText("##input", &filterText);
-                if (oldFilterText != filterText) {
-                    oldFilterText = filterText;
-                    refreshDisplayList = true;
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Refresh")) {
-                    refreshDisplayList = true;
-                }
-                if(ImGui::Checkbox("Filter By NPCs", &filterByNpcs))
-                    refreshDisplayList = true;
-                if (refreshDisplayList) {
-                    refreshDisplayList = false;
-                    entityDisplayList.clear();
-                    selectedEntity = 0;
-                    for (auto itr = GetEntitySystem()->m_EntityArray.begin();
-                         itr != GetEntitySystem()->m_EntityArray.end(); ++itr) {
-                        if (*itr != nullptr) {
-                            if (!(*itr)->m_szName.empty()) {
-                                std::string name = (*itr)->m_szName.c_str();
-                                std::string newFilterText = filterText;
-                                std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
-                                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                                if (name.find(newFilterText) != std::string::npos || filterText.empty()) {
-                                    if(filterByNpcs) {
-                                        if(gCLEnv->entUtils->GetArkNpc(*itr) != nullptr) {
-                                            entityDisplayList.emplace_back((*itr)->GetId());
-                                        }
-                                    } else {
-                                        entityDisplayList.emplace_back((*itr)->GetId());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                auto itr = entityDisplayList.begin();
-                for (int i = 0; itr != entityDisplayList.end() && i < 500; i++, ++itr) {
-                    std::string label;
-                    if(gEnv->pEntitySystem->GetEntity(*itr) != nullptr) {
-                        if (!string(gEnv->pEntitySystem->GetEntity(*itr)->GetName()).empty()) {
-                            label = gEnv->pEntitySystem->GetEntity(*itr)->GetName();
-                        } else {
-                            label = "invalid name";
-                        }
-                        // sprintf_s(label, "Entity: %d", i);
-                        if (ImGui::Selectable(label.c_str(), selectedEntity == *itr))
-                            selectedEntity = *itr;
-                    }
-                }
+                hierarchy.ShowContents();
                 ImGui::EndChild();
             }
             ImGui::SameLine();
             // Right
             {
+                EntityId selectedEntity = hierarchy.GetSelectedEntity();
                 ImGui::BeginGroup();
                 ImGui::BeginChild("entity view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
                 if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {

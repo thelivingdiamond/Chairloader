@@ -6,6 +6,8 @@ set(SOURCE_FILES
 	    Editor/EditorView.cpp
 	    Editor/EditorView.h
 
+        EntityHierarchy.cpp
+        EntityHierarchy.h
         EntityManager.cpp
         EntityManager.h
         PlayerManager.cpp

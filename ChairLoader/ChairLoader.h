@@ -8,7 +8,6 @@
 #include "Logging.h"
 #include "ChairLoader/IChairloaderMod.h"
 #include <boost/assign.hpp>
-#include "EntityManager.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 

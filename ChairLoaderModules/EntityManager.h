@@ -1,7 +1,6 @@
 #pragma once
-#include "../Common/ChairLoader/pch.h"
-
 #include "EntityUtils.h"
+#include "EntityHierarchy.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "../ChairLoader/GUIUtils.h"
 #include "ChairLoader/IChairloader.h"
@@ -28,10 +27,7 @@ private:
 
     const std::string moduleName = "EntityManager";
 
-    bool refreshDisplayList = true;
-    std::string filterText, oldFilterText;
-
-    uint64_t selectedEntity = 0;
+    EntityHierarchy hierarchy;
 
     uint64_t archetypeToSpawn = 0;
 
