@@ -43,9 +43,18 @@ set(SOURCE_FILES
         zipconf.h
         ./Data/Montserrat-Regular.ttf
         appicon.rc
-        ChairUninstallWizard.cpp ChairUninstallWizard.h)
+        version.rc.in
+        version.rc
+        ChairUninstallWizard.cpp
+        ChairUninstallWizard.h
+        )
 
 set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
+
+configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
+        ${CMAKE_CURRENT_SOURCE_DIR}/version.rc
+        @ONLY)
 
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 

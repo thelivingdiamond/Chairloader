@@ -39,7 +39,14 @@ set(SOURCE_FILES
 	PerfOverlay.h
 	Profiler.cpp
 	Profiler.h
+	version.rc.in
+	version.rc
 )
+
+configure_file(
+		${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
+		${CMAKE_CURRENT_SOURCE_DIR}/version.rc
+		@ONLY)
 
 if(RENDERDLL_DEBUG_MARKERS)
 	set(RENDERDLL_DEBUG_MARKERS_DEFS RENDERDLL_DEBUG_MARKERS)

@@ -415,3 +415,5 @@ ChairloaderModLoader/English_xml_patch.pak
 /ChairloaderModLoader/Output/
 ChairloaderModLoader/ChairloaderModLoaderConfig.xml
 ChairloaderModLoader/patch_chairloader.pak
+ChairloaderModLoader/version.rc
+ChairLoader/version.rc
