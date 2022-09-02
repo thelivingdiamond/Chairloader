@@ -598,9 +598,8 @@ void ModLoader::DrawModList() {
             ImGui::EndPopup();
         }
         ImGui::EndChild();
-        //TODO: get display size (currently broken)
-        ImVec2 maxSize = {1920, 1080};
-        ImVec2 minSize = {maxSize.x * 0.5f, maxSize.y * 0.5f};
+        ImVec2 maxSize = {(float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN)};
+        ImVec2 minSize = {maxSize.x * 0.3f, maxSize.y * 0.3f};
         if(ImGuiFileDialog::Instance()->Display("ChooseModFile", ImGuiWindowFlags_None, minSize, maxSize)){
             // action if OK
             if (ImGuiFileDialog::Instance()->IsOk())
@@ -704,6 +703,7 @@ void ModLoader::DrawAssetView() {
         }
         ImGui::EndChild();
         ImGui::SameLine();
+        //TODO: figure out more things to do with selected files
         if(ImGui::BeginChild("Selected File Window")){
             if(ImGui::Button("Deselect")){
                 selectedFile.clear();
