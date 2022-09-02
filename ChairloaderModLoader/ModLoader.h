@@ -154,7 +154,7 @@ private:
     void DrawMainWindow(bool* pbIsOpen);
     void DrawModList();
     void DrawDLLSettings();
-    void DrawXMLSettings();
+    void DrawAssetView();
     void DrawDeploySettings();
     void DrawLog();
 

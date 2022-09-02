@@ -240,7 +240,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         //TODO: figure out if these will do anything
 //        DrawDeploySettings();
 //        DrawDLLSettings();
-        DrawXMLSettings();
+        DrawAssetView();
         DrawLog();
         DrawDLLSettings();
 #ifdef _DEBUG
@@ -581,18 +581,19 @@ void ModLoader::DrawModList() {
             static int installType = 0;
             ImGui::RadioButton("Chairloader Mod (.zip, .7z)", &installType, 0);
             ImGui::RadioButton("Legacy Mod (.pak)", &installType, 1);
-            if(ImGui::Button("Cancel")){
-                ImGui::CloseCurrentPopup();
-                installType = 0;
-            }
-            ImGui::SameLine();
-            if(ImGui::Button("Install")){
+
+            if(ImGui::Button("Select File")){
                 m_bInstallLegacyMod = installType == 1;
                 if(!m_bInstallLegacyMod)
                     ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", fileToLoad.u8string(), 1, nullptr);
                 else
                     ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Legacy Mod File", "Legacy Mod File (*.pak){.pak}", fileToLoad.u8string(), 1, nullptr);
                 ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Cancel")){
+                ImGui::CloseCurrentPopup();
+                installType = 0;
             }
             ImGui::EndPopup();
         }
@@ -659,16 +660,47 @@ void ModLoader::DrawDLLSettings() {
     }
 }
 
-void ModLoader::DrawXMLSettings() {
+void ModLoader::DrawAssetView() {
     if(ImGui::BeginTabItem("Asset View")){
-        if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), true)) {
-            for (auto &mod: ModList)
-                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / mod.modName), mod.modName);
-//                if (ImGui::TreeNode(mod.modName.c_str())) {
-//                    ImGui::Text("Version: %s", mod.version.c_str());
-//                    TreeNodeWalkDirectory(fs::path(PreyPath.u8string() + "/Mods/" + mod.modName + "/Data"), mod.modName);
-//                    ImGui::TreePop();
+        if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), false)) {
+            if(ImGui::BeginTabBar("Mod Asset View")) {
+                if(ImGui::BeginTabItem("Registered Mods")) {
+                    if (ImGui::BeginChild("Registered Mods", ImVec2(0, 0), true)) {
+                    ImGui::Text("Registered Mods");
+                    ImGui::Separator();
+                        if (ImGui::BeginTable("Registered Mod Tree Nodes", 1,
+                                              ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY)) {
+                            for (auto &mod: ModList) {
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / mod.modName), mod.modName);
+                            }
 //                }
+                            ImGui::EndTable();
+                        }
+                    }
+                    ImGui::EndChild();
+                    ImGui::EndTabItem();
+                }
+                // Legacy Mods
+                if(ImGui::BeginTabItem("Legacy Mods")) {
+                    if (ImGui::BeginChild("Legacy Mods", ImVec2(0, 0), true)) {
+                        ImGui::Text("Legacy Mods");
+                        ImGui::Separator();
+                        if(ImGui::BeginTable("Legacy Mod Tree Nodes", 1, ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY)) {
+                            for (auto &mod: LegacyModList) {
+                                ImGui::TableNextRow();
+                                ImGui::TableNextColumn();
+                                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / "Legacy" / mod), mod);
+                            }
+                            ImGui::EndTable();
+                        }
+                    }
+                    ImGui::EndChild();
+                    ImGui::EndTabItem();
+                }
+                ImGui::EndTabBar();
+            }
         }
         ImGui::EndChild();
         ImGui::SameLine();
@@ -1219,7 +1251,7 @@ void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
 //    commandArgs +=  path.wstring();
 //    commandArgs += L"\\";
     commandArgs += fileName.wstring();
-    commandArgs += L"\" -otemp";
+    commandArgs += L"\" -otemp -spe";
 //    log(severityLevel::trace, "Command args: %s", commandArgs.c_str());
 //    printf("Command args: %ls", commandArgs.c_str());
     STARTUPINFOW si = {sizeof(STARTUPINFO)};
