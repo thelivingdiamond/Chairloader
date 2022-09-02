@@ -117,7 +117,7 @@ class ArkActiveUserManagerBase;
 // 	static inline auto FShutdown = PreyFunction<void(CGame* _this)>(0x16D6150);
 // };
 
-class CGame : IGame, IGameFrameworkListener, IPlatformOS::IPlatformListener, IInputEventListener, ISystemEventListener, IArkActiveUserManagerListener
+class CGame : public IGame, IGameFrameworkListener, IPlatformOS::IPlatformListener, IInputEventListener, ISystemEventListener, IArkActiveUserManagerListener
 {
 public:
 	static inline auto FInit = PreyFunction<bool(CGame* _this, IGameFramework* pFramework)>(0x16D0A90);

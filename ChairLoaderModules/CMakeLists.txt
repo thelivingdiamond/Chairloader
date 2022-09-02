@@ -1,5 +1,11 @@
 set(SOURCE_FILES
         CMakeLists.txt
+
+        Editor/Editor.cpp
+	    Editor/Editor.h
+	    Editor/EditorView.cpp
+	    Editor/EditorView.h
+
         EntityManager.cpp
         EntityManager.h
         PlayerManager.cpp

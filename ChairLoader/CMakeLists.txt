@@ -1,10 +1,5 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	
-	Editor/Editor.cpp
-	Editor/Editor.h
-	Editor/EditorView.cpp
-	Editor/EditorView.h
 
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h

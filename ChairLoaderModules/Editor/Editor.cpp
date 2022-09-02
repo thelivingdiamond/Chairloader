@@ -9,7 +9,6 @@
 #include <Prey/GameDll/ark/player/ArkPlayerInput.h>
 #include "Editor.h"
 #include "EditorView.h"
-#include "../ChairLoader.h"
 
 namespace
 {
@@ -99,7 +98,7 @@ void Editor::Update()
 
 	if (ImGui::Begin("Editor Debug"))
 	{
-		auto pgfw = gCL->GetFramework();
+		auto pgfw = g_pGame->GetIGameFramework();
 		ArkGame* pGame = g_pGame->m_pArkGame.get();
 		ImGui::Text("IsGameStarted: %d", pgfw->IsGameStarted());
 		ImGui::Text("IsGamePaused: %d", pgfw->IsGamePaused());
@@ -169,7 +168,7 @@ bool Editor::HandleEditorKeyPress(const SInputEvent& event)
 
 void Editor::SwitchStates()
 {
-	auto pGameFw = gCL->GetFramework();
+	auto pGameFw = g_pGame->GetIGameFramework();
 	ESystemGlobalState globalState = gEnv->pSystem->GetSystemGlobalState();
 	State newState = m_State;
 
@@ -227,7 +226,7 @@ void Editor::UpdateLoading()
 
 void Editor::UpdateRunning()
 {
-	auto pGameFw = gCL->GetFramework();
+	auto pGameFw = g_pGame->GetIGameFramework();
 	auto pPauseMenu = UIEvents::Get<ArkPauseMenu>();
 	if (pPauseMenu->m_mode == ArkPauseMenu::EArkPauseMode::continuePrompt)
 		pPauseMenu->CloseContinuePrompt();
@@ -276,7 +275,7 @@ void Editor::UpdateInEditor()
 
 void Editor::SetGamePaused(bool state)
 {
-	auto pGameFw = gCL->GetFramework();
+	auto pGameFw = g_pGame->GetIGameFramework();
 	m_bIsGamePaused = state;
 	if (state != pGameFw->IsGamePaused())
 		pGameFw->PauseGame(state, true, 0, state);
