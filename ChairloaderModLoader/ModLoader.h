@@ -13,6 +13,7 @@
 #include <fstream>
 #include <chrono>
 #include <Windows.h>
+#include "BinaryVersionCheck.h"
 
 #include <boost/format.hpp>
 
@@ -93,7 +94,6 @@ private:
         UninstallWizard,
         MainWindow,
     };
-
     State m_State = State::Invalid;
 
     /* Globals */
@@ -287,4 +287,8 @@ private:
     // Create default file structure
     void createDefaultFileStructure();
     static inline ModLoader* m_spInstance = nullptr;
+
+    //! Chairloader version checking
+    VersionCheck::DLLVersion packagedChairloaderVersion;
+    VersionCheck::DLLVersion installedChairloaderVersion;
 };

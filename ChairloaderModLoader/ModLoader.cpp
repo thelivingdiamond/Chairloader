@@ -9,9 +9,11 @@
 #include "GamePathDialog.h"
 #include "GameVersion.h"
 #include "PathUtils.h"
+#include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"
 #include "../ChairLoader/GUIUtils.h"
+#include "BinaryVersionCheck.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -131,8 +133,17 @@ void ModLoader::SwitchToInstallWizard()
         log(severityLevel::info, "Chairloader not found, starting the wizard");
         m_State = State::InstallWizard;
     }
+#ifndef _DEBUG
+    else if(VersionCheck::getInstalledChairloaderVersion() < VersionCheck::getPackagedChairloaderVersion()) {
+        log(severityLevel::info, "Chairloader version mismatch, running install wizard");
+        m_State = State::InstallWizard;
+    }
+#endif
     else
     {
+        log(severityLevel::info, "Chairloader version %s found, %s is packaged with this installer",
+            VersionCheck::getInstalledChairloaderVersion().String().c_str(),
+            VersionCheck::getPackagedChairloaderVersion().String().c_str());
         m_State = State::MainWindow;
     }
 }
@@ -153,6 +164,7 @@ void ModLoader::DrawInstallWizard(bool* pbIsOpen)
 
 void ModLoader::DrawMainWindow(bool* pbIsOpen)
 {
+    static bool m_bShowUpdatePopup;
     m_pGameVersion->Update();
 
     ImGuiWindowFlags windowFlags =
@@ -222,18 +234,48 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
 #endif
         if(ImGui::BeginMenu("Help")){
             // Legacy Mods
-            ImGui::Text("Legacy Mods");
-            ImGui::SameLine();
-            ImGuiUtils::HelpMarker("Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
-            //Load Order
-            ImGui::Text("Load Order");
-            ImGui::SameLine();
-            ImGuiUtils::HelpMarker("The load order is the order in which the mods are loaded and their assets are merged. This means that mods with a higher load order will overwrite mods with a lower load order.");
-
+            if(ImGui::BeginMenu("Help Information")) {
+                ImGui::Text("Legacy Mods");
+                ImGui::SameLine();
+                ImGuiUtils::HelpMarker(
+                        "Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
+                //Load Order
+                ImGui::Text("Load Order");
+                ImGui::SameLine();
+                ImGuiUtils::HelpMarker(
+                        "The load order is the order in which the mods are loaded and their assets are merged. This means that mods with a higher load order will overwrite mods with a lower load order.");
+                // Version Check
+                ImGui::EndMenu();
+            }
+            ImGui::Separator();
+            if(ImGui::MenuItem("Check for Updates")){
+                m_bShowUpdatePopup = true;
+            }
             ImGui::EndMenu();
         }
         ImGui::EndMenuBar();
-
+    }
+    if(m_bShowUpdatePopup){
+        ImGui::OpenPopup("Check for Updates");
+        m_bShowUpdatePopup = false;
+    }
+    if(ImGui::BeginPopupModal("Check for Updates", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize)){
+        if(VersionCheck::getPackagedChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion()){
+            ImGui::Text("Chairloader is out of date!");
+            ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
+            ImGui::Text("Packaged: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            if(ImGui::Button("Update Chairloader")){
+                SwitchToInstallWizard();
+            }
+        } else {
+            ImGui::Text("Chairloader is up to date!");
+            ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
+            ImGui::Text("Packaged: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+        }
+        if(ImGui::Button("Close")){
+            ImGui::CloseCurrentPopup();
+        }
+        ImGui::EndPopup();
     }
     if (ImGui::BeginTabBar("##Mod Tab Bar")) {
         DrawModList();
@@ -949,7 +991,6 @@ void ModLoader::loadModInfoFiles() {
     LoadModsFromConfig();
     DetectNewMods();
     overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
-    //TODO: Handle dependencies
 //    serializeLoadOrder();
     try {
         for (auto &directory: fs::directory_iterator(PreyPath / "Mods/Legacy")) {
@@ -975,7 +1016,7 @@ void ModLoader::loadModInfoFiles() {
 ModLoader::ModLoader() {
     assert(!m_spInstance);
     m_spInstance = this;
-
+    packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     LoadModLoaderConfig();
 
     if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
@@ -1914,6 +1955,7 @@ void ModLoader::createDefaultFileStructure() {
 }
 
 void ModLoader::Init() {
+    installedChairloaderVersion = VersionCheck::getInstalledChairloaderVersion();
     createDefaultFileStructure();
     // Note: This method may be called mutiple times (e.g. after game path change)
     if (!verifyChairloaderConfigFile())
@@ -1968,6 +2010,9 @@ void ModLoader::DrawDebug() {
             auto filenamePosition = BaseModFolder.find_last_of(L'.');
             auto modFolder = BaseModFolder.substr(0, filenamePosition-1);
             overlayLog(severityLevel::debug, "Mod folder: %ls", modFolder.c_str());
+        }
+        if(ImGui::Button("Check Chairloader dll version")) {
+            overlayLog(severityLevel::info, "%s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
         }
         ImGui::EndTabItem();
     }
@@ -2074,8 +2119,3 @@ void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
     }
 
 }
-
-
-
-
-

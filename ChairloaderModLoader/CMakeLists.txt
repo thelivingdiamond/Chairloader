@@ -47,7 +47,10 @@ set(SOURCE_FILES
         version.rc
         ChairUninstallWizard.cpp
         ChairUninstallWizard.h
-        )
+        BinaryVersionCheck.h
+        BinaryVersionCheck.cpp)
+
+
 
 set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
 
@@ -59,6 +62,7 @@ configure_file(
 add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
 
 target_link_libraries(ChairloaderModLoader
+        version.lib
         CommonModLoader
         D3D11.lib
         libzip::zip

@@ -6,6 +6,15 @@
 #define _PRODUCTVERSION 1,0,1,0
 #define _PRODUCTVERSION_STR "1.0.1.0-Beta"
 
+// Naming
+#define _PRODUCTNAME "Chairloader Library"
+#define _COMPANYNAME "thelivingdiamond"
+#define _FILEDESCRIPTION "A modding framework for prey (2017)"
+#define _INTERNALNAME "Chairloader"
+#define _LEGALCOPYRIGHT "Copyright (C) 2022 thelivingdiamond"
+#define _ORIGINALFILENAME "Chairloader.dll"
+
+
 1 VERSIONINFO
  FILEVERSION _FILEVERSION
  PRODUCTVERSION _PRODUCTVERSION
@@ -23,14 +32,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4"
         BEGIN
-            VALUE "Comments", "Chairloader Library"
-            VALUE "CompanyName", "thelivingdiamond"
-            VALUE "FileDescription", "A modding framework for prey (2017)"
+            VALUE "Comments", _PRODUCTNAME
+            VALUE "CompanyName", _COMPANYNAME
+            VALUE "FileDescription", _FILEDESCRIPTION
             VALUE "FileVersion", _FILEVERSION_STR
-            VALUE "InternalName", "Chairloader"
-            VALUE "LegalCopyright", "Copyright (C) 2022 thelivingdiamond"
-            VALUE "OriginalFilename", "Chairloader.dll"
-            VALUE "ProductName", "Chairloader Library"
+            VALUE "InternalName", _INTERNALNAME
+            VALUE "LegalCopyright", _LEGALCOPYRIGHT
+            VALUE "OriginalFilename", _ORIGINALFILENAME
+            VALUE "ProductName", _PRODUCTNAME
             VALUE "ProductVersion", _PRODUCTVERSION_STR
         END
     END

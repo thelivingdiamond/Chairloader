@@ -2,6 +2,7 @@
 #include "GameVersion.h"
 #include "PathUtils.h"
 #include "ModLoader.h"
+#include "BinaryVersionCheck.h"
 
 static const ImVec2 WINDOW_SIZE = { 600, 400 };
 
@@ -93,15 +94,24 @@ void ChairInstallWizard::ShowErrorPage()
 
 void ChairInstallWizard::ShowWelcomePage()
 {
-	ImGui::TextWrapped("Before using the Mod Loader, the game needs to be modified to add support "
-		"for code mods. It will be done in the following steps.");
-	ImGui::NewLine();
-	ImGui::Text("\t1) Check if your version of the game is supported");
-	ImGui::Text("\t2) Patch the game DLL file for Chairloader");
-	ImGui::Text("\t3) Install Chairloader files");
-	ImGui::NewLine();
-	
-	ShowPatchWarning(false);
+    if(VersionCheck::getInstalledChairloaderVersion().valid() && VersionCheck::getPackagedChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion())
+    {
+        ImGui::TextWrapped("Current Installed Version: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
+        ImGui::TextWrapped("Available Version: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+        ImGui::NewLine();
+        ImGui::TextWrapped("Chairloader has been updated to a new version. The latest version will now be installed.");
+        ImGui::NewLine();
+    } else {
+        ImGui::TextWrapped("Before using the Mod Loader, the game needs to be modified to add support "
+                           "for code mods. It will be done in the following steps.");
+        ImGui::NewLine();
+        ImGui::Text("\t1) Check if your version of the game is supported");
+        ImGui::Text("\t2) Patch the game DLL file for Chairloader");
+        ImGui::Text("\t3) Install Chairloader files");
+        ImGui::NewLine();
+
+        ShowPatchWarning(false);
+    }
 
 	ShowBottomBtns(BtnCallback(), [&]() { ToVersionCheck(); }, [&]() { m_Cancel = true; });
 }
