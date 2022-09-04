@@ -13,6 +13,7 @@ private:
 
 	void OnEntityChanged(EntityId entityId);
 	void InspectTransform(IEntity* pEnt);
+	void InspectSlots(IEntity* pEnt);
 	void InspectEntityScript(IEntity* pEnt);
 	void InspectPhysics(IEntity* pEnt);
 	void InspectTrigger(IEntity* pEnt);

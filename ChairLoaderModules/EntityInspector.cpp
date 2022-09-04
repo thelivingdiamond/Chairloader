@@ -34,6 +34,7 @@ void EntityInspector::ShowContent(EntityId entityId)
 	}
 
 	InspectTransform(pEnt);
+    InspectSlots(pEnt);
 	InspectEntityScript(pEnt);
 	InspectPhysics(pEnt);
 	InspectTrigger(pEnt);
@@ -97,6 +98,71 @@ void EntityInspector::InspectTransform(IEntity* pEnt) {
             pEnt->SetPos(ArkPlayer::GetInstance().GetEntity()->GetPos());
 
         EndInspector();
+    }
+}
+
+void EntityInspector::InspectSlots(IEntity* pEnt)
+{
+    int slotCount = pEnt->GetSlotCount();
+    for (int slotIdx = 0; slotIdx < slotCount; slotIdx++)
+    {
+        if (!pEnt->IsSlotValid(slotIdx))
+            continue;
+
+        char slotName[64];
+        snprintf(slotName, sizeof(slotName), "Slot %d", slotIdx);
+        if (BeginInspector(slotName)) {
+            SEntitySlotInfo slotInfo;
+            pEnt->GetSlotInfo(slotIdx, slotInfo);
+
+            ImGui::Text("Flags: 0x%X", slotInfo.nFlags);
+            ImGui::Text("Parent Slot: %d", slotInfo.nParentSlot);
+
+            if (slotInfo.pStatObj)
+                ImGui::Text("StatObj");
+            if (slotInfo.pCharacter)
+                ImGui::Text("Character");
+            if (slotInfo.pParticleEmitter)
+                ImGui::Text("ParticleEmitter");
+            if (slotInfo.pLight)
+                ImGui::Text("Light");
+            if (slotInfo.pChildRenderNode)
+                ImGui::Text("ChildRenderNode");
+            if (slotInfo.pGeomCacheRenderNode)
+                ImGui::Text("GeomCacheRenderNode");
+            if (slotInfo.pMaterial)
+                ImGui::Text("Custom material is set");
+
+            if (ImGui::TreeNode("Transform"))
+            {
+                Matrix33 rotMat; slotInfo.pLocalTM->GetRotation33(rotMat);
+                Vec3 pos = slotInfo.pLocalTM->GetTranslation();
+                Ang3 rot = Ang3(rotMat);
+                Vec3 scale = slotInfo.pLocalTM->GetScale();
+
+                bool transformChanged = false;
+                transformChanged |= ImGui::InputFloat3("Position", &pos.x);
+                transformChanged |= ImGui::InputFloat3("Rotation (PRY)", &rot.x);
+                transformChanged |= ImGui::InputFloat3("Scale", &scale.x);
+
+                if (transformChanged)
+                {
+                    Matrix34 newTransform;
+                    newTransform = Matrix34::CreateTranslationMat(pos) * Matrix34::CreateRotationXYZ(rot) * Matrix34::CreateScale(scale);
+                    pEnt->SetSlotLocalTM(slotIdx, newTransform);
+                }
+
+                Vec3 cameraSpacePos;
+                pEnt->GetSlotCameraSpacePos(slotIdx, cameraSpacePos);
+                if (ImGui::InputFloat3("Cam-space Pos", &cameraSpacePos.x))
+                {
+                    pEnt->SetSlotCameraSpacePos(slotIdx, cameraSpacePos);
+                }
+
+                ImGui::TreePop();
+            }
+            EndInspector();
+        }
     }
 }
 
