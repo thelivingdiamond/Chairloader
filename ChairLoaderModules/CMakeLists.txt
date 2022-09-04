@@ -8,6 +8,8 @@ set(SOURCE_FILES
 
         EntityHierarchy.cpp
         EntityHierarchy.h
+        EntityInspector.cpp
+        EntityInspector.h
         EntityManager.cpp
         EntityManager.h
         PlayerManager.cpp

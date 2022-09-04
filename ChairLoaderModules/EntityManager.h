@@ -1,12 +1,12 @@
 #pragma once
 #include "EntityUtils.h"
 #include "EntityHierarchy.h"
+#include "EntityInspector.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "../ChairLoader/GUIUtils.h"
 #include "ChairLoader/IChairloader.h"
 #include "ChairLoader/ChairloaderEnv.h"
 #include "Prey/CryEntitySystem/EntitySystem.h"
-
 
 class EntityManager
 {
@@ -28,6 +28,7 @@ private:
     const std::string moduleName = "EntityManager";
 
     EntityHierarchy hierarchy;
+    EntityInspector inspector;
 
     uint64_t archetypeToSpawn = 0;
 

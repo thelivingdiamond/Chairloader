@@ -126,7 +126,7 @@ void EntityHierarchy::ShowEntList(std::vector<HierItem>& list)
 	for (HierItem& item : list)
 	{
 		IEntity* pEnt = gEnv->pEntitySystem->GetEntity(item.id);
-		ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_SpanAvailWidth;
+		ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_SpanFullWidth;
 
 		if (m_SelectedEntity == item.id) {
 			nodeFlags |= ImGuiTreeNodeFlags_Selected;
