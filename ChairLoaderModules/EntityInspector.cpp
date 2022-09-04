@@ -1,6 +1,7 @@
 #include <Prey/CryAction/GameObject.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryGame/Game.h>
+#include <Prey/CryScriptSystem/IScriptSystem.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include "EntityInspector.h"
 
@@ -172,10 +173,132 @@ void EntityInspector::InspectEntityScript(IEntity* pEnt) {
         return;
     }
 
-    if (BeginInspector("Script")) {
+    if (BeginInspector("Lua Script")) {
         ImGui::Text("State: %s [%d]", pProxy->GetState(), pProxy->GetStateId());
+
+        IScriptTable* pScriptTable = pProxy->GetScriptTable();
+
+        if (!pScriptTable)
+        {
+            ImGui::Text("No script table");
+        }
+        else
+        {
+            ImGui::Checkbox("Show Functions", &m_bShowScriptFuncs);
+            ShowScriptTable(pScriptTable);
+        }
+
         EndInspector();
     }
+}
+
+void EntityInspector::ShowScriptTable(IScriptTable* pScriptTable)
+{
+    IScriptTable::Iterator iter = pScriptTable->BeginIteration(true);
+
+    int propIdx = 0;
+
+    while (pScriptTable->MoveNext(iter))
+    {
+        char keyStr[128];
+        if (iter.sKey)
+        {
+            cry_strcpy(keyStr, iter.sKey);
+        }
+        else
+        {
+            if (iter.key.type == ANY_TNUMBER)
+            {
+                int idx = 0;
+                iter.key.CopyTo(idx);
+                snprintf(keyStr, sizeof(keyStr), "[%d]", idx);
+            }
+            else
+            {
+                snprintf(keyStr, sizeof(keyStr), "unk key type %d", iter.nKey);
+            }
+        }
+
+        char propUiTag[32];
+        snprintf(propUiTag, sizeof(propUiTag), "##Prop%d", propIdx);
+
+        if (iter.value.type == ANY_TTABLE)
+        {
+            if (ImGui::TreeNode(keyStr))
+            {
+                IScriptTable* pChildTable = nullptr;
+                iter.value.CopyTo(pChildTable);
+                ShowScriptTable(pChildTable);
+                ImGui::TreePop();
+            }
+        }
+        else if (m_bShowScriptFuncs || iter.value.type != ANY_TFUNCTION)
+        {
+            ImGui::Text("%s = ", keyStr);
+            ImGui::SameLine();
+
+            switch (iter.value.type)
+            {
+            case ANY_TNIL:
+            {
+                ImGui::Text("nil");
+                break;
+            }
+            case ANY_TBOOLEAN:
+            {
+                bool val = false;
+                iter.value.CopyTo(val);
+                if (ImGui::Checkbox(propUiTag, &val))
+                    pScriptTable->SetValue(iter.sKey, val);
+                break;
+            }
+            case ANY_THANDLE:
+            {
+                ScriptHandle handle;
+                iter.value.CopyTo(handle);
+                ImGui::Text("0x%X (handle)", handle.n);
+                break;
+            }
+            case ANY_TNUMBER:
+            {
+                float val = 0;
+                iter.value.CopyTo(val);
+                if (ImGui::InputFloat(propUiTag, &val))
+                    pScriptTable->SetValue(iter.sKey, val);
+                break;
+            }
+            case ANY_TSTRING:
+            {
+                const char* val = nullptr;
+                iter.value.CopyTo(val);
+                ImGui::Text("\"%s\"", val);
+                break;
+            }
+            case ANY_TFUNCTION:
+            {
+                ImGui::Text("function");
+                break;
+            }
+            case ANY_TUSERDATA:
+            {
+                ImGui::Text("user data");
+                break;
+            }
+            case ANY_TVECTOR:
+            {
+                Vec3 val(ZERO);
+                iter.value.CopyTo(val);
+                if (ImGui::InputFloat3(propUiTag, &val.x))
+                    pScriptTable->SetValue(iter.sKey, val);
+                break;
+            }
+            }
+        }
+
+        propIdx++;
+    }
+
+    pScriptTable->EndIteration(iter);
 }
 
 void EntityInspector::InspectPhysics(IEntity* pEnt) {
