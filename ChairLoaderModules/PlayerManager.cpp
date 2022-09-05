@@ -506,6 +506,10 @@ void PlayerManager::drawInventoryTab() {
 					ImGui::Text("Is Trash: %u", selectedItem->IsTrash());
 					ImGui::NextColumn();
 					ImGui::Text("Is Weapon: %u", selectedItem->IsWeapon());
+                    ImGui::NextColumn();
+                    ImGui::Text("Item Type: %s", selectedItem->GetType());
+                    ImGui::NextColumn();
+                    ImGui::Text("Max Stack Size: %u", selectedItem->GetMaxStackSize());
 					ImGui::Columns(1);
 					ImGui::Separator();
 					if (selectedItem->CanUse()) {
