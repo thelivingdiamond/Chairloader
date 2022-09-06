@@ -1,3 +1,4 @@
+#include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/GameDll/ark/player/ArkPlayerCamera.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/CryAction/IViewSystem.h>
@@ -17,6 +18,7 @@ float CV_ed_ViewAccel;
 float CV_ed_ViewDecel;
 float CV_ed_ViewSens;
 float CV_ed_ViewBoostScale;
+float CV_ed_ViewFov;
 
 //! Magic constant to make CV_ed_ViewSens feel like the setting in the options menu
 constexpr float MOUSE_SENS_SCALE = 0.002f / 13;
@@ -47,6 +49,7 @@ EditorView::EditorView()
 	REGISTER_CVAR2("ed_ViewDecel", &CV_ed_ViewDecel, 3, VF_NULL, "Editor: View deceleration");
 	REGISTER_CVAR2("ed_ViewSens", &CV_ed_ViewSens, 13, VF_NULL, "Editor: Mouse sensitivity");
 	REGISTER_CVAR2("ed_ViewBoostScale", &CV_ed_ViewBoostScale, 5, VF_NULL, "Editor: Speed boost on SHIFT");
+	REGISTER_CVAR2("ed_ViewFov", &CV_ed_ViewFov, 90, VF_NULL, "Editor: View Field-of-View (deg)");
 }
 
 EditorView::~EditorView()
@@ -163,10 +166,41 @@ void EditorView::GetViewParams(SViewParams& params)
 	params.position = m_vPos;
 	params.rotation = Quat(m_vRot);
 	params.shakingRatio = 0;
+	params.fov = DEG2RAD(CV_ed_ViewFov);
 }
 
 void EditorView::SetGrabInput(bool state)
 {
 	m_bGrabInput = state;
 	m_Input = InputState();
+}
+
+void EditorView::MoveCameraToPlayer()
+{
+	if (ArkPlayer::GetInstancePtr())
+		m_vPos = ArkPlayer::GetInstance().GetEntity()->GetPos();
+}
+
+Ray EditorView::ViewportPointToRay(Vec2 pixelPos)
+{
+	// TODO: Clip the ray with clipping planes
+	Quat rot(m_vRot);
+	Vec3 forward = rot * Vec3(0, 1, 0);
+	Vec3 right = rot * Vec3(1, 0, 0);
+	Vec3 up = rot * Vec3(0, 0, 1);
+
+	int vpx, vpy, vpw, vph;
+	gEnv->pRenderer->GetViewport(&vpx, &vpy, &vpw, &vph);
+	pixelPos -= Vec2(vpx, vpy);
+	Vec2 viewportSize = Vec2(vpw, vph);
+	Vec2 normPos = pixelPos / viewportSize;
+	normPos = 2.0f * normPos - Vec2(1.0f, 1.0f); // normPos[i] is [-1; 1]
+
+	normPos.x *= viewportSize.x / viewportSize.y;
+	float t = 1.0f / tan(DEG2RAD(CV_ed_ViewFov) / 2.0f);
+
+	Ray ray;
+	ray.origin = m_vPos;
+	ray.direction = (t * forward + normPos.x * right + (-normPos.y) * up).GetNormalized();
+	return ray;
 }

@@ -1,4 +1,6 @@
 #pragma once
+#include "../EntityHierarchy.h"
+#include "../EntityInspector.h"
 
 class EditorView;
 
@@ -44,6 +46,9 @@ private:
 	bool m_bInEditor = false; //!< Controlling the editor
 	MouseGuard m_Mouse;
 
+	EntityHierarchy m_Hierarchy;
+	EntityInspector m_Inspector;
+
 	void SwitchStates();
 	void UpdateUnloaded();
 	void UpdateLoading();
@@ -53,4 +58,6 @@ private:
 	void SetGamePaused(bool state);
 	void SetInEditor(bool state);
 	void SetEditorCameraControl(bool state);
+
+	void SelectEntInViewport(Vec2 pixelPos);
 };

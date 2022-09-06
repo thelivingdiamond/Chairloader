@@ -1,4 +1,5 @@
 #pragma once
+#include <Prey/CryMath/Cry_Geo.h>
 
 struct SViewParams;
 
@@ -12,8 +13,17 @@ public:
 	void Update();
 	bool HandleInput(const SInputEvent& event);
 	void GetViewParams(SViewParams& params);
+
 	void SetGrabInput(bool state);
 	bool IsGrabInput() { return m_bGrabInput; }
+	const Vec3& GetPos() { return m_vPos; }
+
+	void MoveCameraToPlayer();
+
+	//! Coverts a viewport position into a world-space ray.
+	//! @param	pixelPos	On-screen position. (0,0) in top-left corner.
+	//! @returns a ray that originates in camera origin and goes through pixelPos on the screen.
+	Ray ViewportPointToRay(Vec2 pixelPos);
 
 private:
 	struct InputState

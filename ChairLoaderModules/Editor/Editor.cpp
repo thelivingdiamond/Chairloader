@@ -2,6 +2,8 @@
 #include <Prey/CryAction/IViewSystem.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryGame/Game.h>
+#include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include <Prey/CryPhysics/IPhysics.h>
 #include <Prey/GameDll/ui/UIManager.h>
 #include <Prey/GameDll/ark/ArkGame.h>
 #include <Prey/GameDll/ark/ui/ArkPauseMenu.h>
@@ -150,7 +152,16 @@ bool Editor::HandleEditorKeyPress(const SInputEvent& event)
 	}
 	else if (event.deviceType == eIDT_Mouse)
 	{
-		if (event.keyId == eKI_Mouse2)
+		if (event.keyId == eKI_Mouse1 && event.state == eIS_Pressed)
+		{
+			if (!m_pView->IsGrabInput())
+			{
+				Vec2 mousePos;
+				gEnv->pHardwareMouse->GetHardwareMouseClientPosition(mousePos.x, mousePos.y);
+				SelectEntInViewport(mousePos);
+			}
+		}
+		else if (event.keyId == eKI_Mouse2)
 		{
 			if (event.state == eIS_Pressed)
 				SetEditorCameraControl(true);
@@ -240,7 +251,7 @@ void Editor::UpdateRunning()
 	if (m_bInEditor)
 		UpdateInEditor();
 
-	if (ImGui::Begin("Chairloader Editor"))
+	if (ImGui::Begin("Chairloader Editor##EditorRunning"))
 	{
 		{
 			ImGui::Text("Game:");
@@ -259,7 +270,18 @@ void Editor::UpdateRunning()
 			if (ImGui::RadioButton("Game", !m_bInEditor))
 				SetInEditor(false);
 		}
+
+		if (ImGui::Button("Camera To Player"))
+			m_pView->MoveCameraToPlayer();
 	}
+	ImGui::End();
+
+	if (ImGui::Begin("Hierarchy##EditorRunning"))
+		m_Hierarchy.ShowContents();
+	ImGui::End();
+
+	if (ImGui::Begin("Inspector##EditorRunning"))
+		m_Inspector.ShowContents(m_Hierarchy.GetSelectedEntity());
 	ImGui::End();
 }
 
@@ -271,6 +293,19 @@ void Editor::UpdateInEditor()
 	ArkPlayerInput& playerInput = ArkPlayer::GetInstance().m_input;
 	playerInput.m_deltaRotation = Ang3(ZERO);
 	playerInput.m_movement = Vec2(ZERO);
+
+	// Draw selected entity
+	if (m_Hierarchy.GetSelectedEntity() != 0)
+	{
+		IEntity* pEnt = gEnv->pEntitySystem->GetEntity(m_Hierarchy.GetSelectedEntity());
+
+		if (pEnt)
+		{
+			AABB aabb;
+			pEnt->GetLocalBounds(aabb);
+			gEnv->pAuxGeomRenderer->DrawAABB(aabb, pEnt->GetWorldTM(), false, ColorB(255, 255, 0), eBBD_Faceted);
+		}
+	}
 }
 
 void Editor::SetGamePaused(bool state)
@@ -298,12 +333,42 @@ void Editor::SetInEditor(bool state)
 	else
 		pPlayerEnt->SetSlotFlags(0, slotFlags | ENTITY_SLOT_RENDER_NEAREST);
 	ArkPlayer::GetInstance().ShowThirdPerson(state);
+
+	if (state && m_pView->GetPos() == Vec3(ZERO))
+		m_pView->MoveCameraToPlayer();
 }
 
 void Editor::SetEditorCameraControl(bool state)
 {
 	m_pView->SetGrabInput(state);
 	m_Mouse.SetVisible(!state);
+}
+
+void Editor::SelectEntInViewport(Vec2 pixelPos)
+{
+	ray_hit hit;
+	Ray ray = m_pView->ViewportPointToRay(pixelPos);
+	
+	const unsigned rwiFlags = rwi_stop_at_pierceable | rwi_colltype_any;
+	const float hitRange = 2000.f;
+	bool isFound = false;
+
+	if (gEnv->pPhysicalWorld->RayWorldIntersection(ray.origin, ray.direction * hitRange, ent_all, rwiFlags, &hit, 1, nullptr, nullptr))
+	{
+		int type = hit.pCollider->GetiForeignData();
+		if (type == PHYS_FOREIGN_ID_ENTITY)
+		{
+			IEntity* pEntity = (IEntity*)hit.pCollider->GetForeignData(PHYS_FOREIGN_ID_ENTITY);
+			m_Hierarchy.SetSelectedEntity(pEntity->GetId());
+			m_Hierarchy.ScrollToSelectedEntity();
+			isFound = true;
+		}
+	}
+
+	if (!isFound)
+	{
+		m_Hierarchy.SetSelectedEntity(0);
+	}
 }
 
 Editor::MouseGuard::MouseGuard()
