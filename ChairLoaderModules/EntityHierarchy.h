@@ -12,11 +12,11 @@ public:
 private:
 	enum EFilterFlags : uint32_t
 	{
-		FILTER_NONE = 0,
-		FILTER_ALL = 0xFFFF'FFFF,
-		FILTER_GAMEOBJECT = BIT(0),
-		FILTER_ITEM = BIT(1),
-		FILTER_NPC = BIT(2)
+		eFF_None = 0,
+		eFF_All = 0xFFFF'FFFF,
+		eFF_GameObject = BIT(0),
+		eFF_Item = BIT(1),
+		eFF_Npc = BIT(2)
 	};
 
 	struct HierItem {
@@ -25,7 +25,7 @@ private:
 	};
 
 	std::string m_NameFilter;
-	uint32_t m_FilterFlags = FILTER_ALL;
+	uint32_t m_FilterFlags = eFF_All;
 	std::vector<HierItem> m_HierItems;
 
 	EntityId m_SelectedEntity = 0;

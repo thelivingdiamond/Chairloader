@@ -16,13 +16,13 @@ void EntityHierarchy::ShowContents()
 	// Filter by type
 	if (ImGui::TreeNodeEx("Filters", 0))
 	{
-		bool showAll = m_FilterFlags == FILTER_ALL;
+		bool showAll = m_FilterFlags == eFF_All;
 		if (ImGui::Checkbox("All", &showAll))
-			m_FilterFlags = showAll ? FILTER_ALL : FILTER_NONE;
+			m_FilterFlags = showAll ? eFF_All : eFF_None;
 		ImGui::SameLine();
-		ShowFilterCheckbox("GameObjects", FILTER_GAMEOBJECT);
-		ShowFilterCheckbox("Items", FILTER_ITEM); ImGui::SameLine();
-		ShowFilterCheckbox("NPCs", FILTER_NPC);
+		ShowFilterCheckbox("GameObjects", eFF_GameObject);
+		ShowFilterCheckbox("Items", eFF_Item); ImGui::SameLine();
+		ShowFilterCheckbox("NPCs", eFF_Npc);
 		ImGui::TreePop();
 	}
 
@@ -60,17 +60,17 @@ bool EntityHierarchy::DoesEntityPassFilter(IEntity* pEnt)
 			return false;
 	}
 
-	if (m_FilterFlags == FILTER_ALL)
+	if (m_FilterFlags == eFF_All)
 		return true;
 
 	// Check flag filters
-	if ((m_FilterFlags & FILTER_GAMEOBJECT) && pEnt->GetProxy(ENTITY_PROXY_USER))
+	if ((m_FilterFlags & eFF_GameObject) && pEnt->GetProxy(ENTITY_PROXY_USER))
 		return true;
 
-	if ((m_FilterFlags & FILTER_ITEM) && g_pGame->m_pArkGame->GetArkItemSystem().GetItem(pEnt->GetId()))
+	if ((m_FilterFlags & eFF_Item) && g_pGame->m_pArkGame->GetArkItemSystem().GetItem(pEnt->GetId()))
 		return true;
 
-	if ((m_FilterFlags & FILTER_NPC) && gEntUtils->GetArkNpc(pEnt))
+	if ((m_FilterFlags & eFF_Npc) && gEntUtils->GetArkNpc(pEnt))
 		return true;
 
 	return false;
