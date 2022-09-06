@@ -120,8 +120,14 @@ bool Editor::HandleKeyPress(const SInputEvent& event)
 		return false;
 	ReentranceGuard rg(&isEntered);
 
+	ImGuiIO& io = ImGui::GetIO();
+
 	if (event.deviceType == eIDT_Keyboard && event.state == eIS_Pressed)
 	{
+		// No input if focusing ImGui
+		if (io.WantTextInput)
+			return false;
+
 		if (event.keyId == eKI_P)
 		{
 			SetGamePaused(!m_bIsGamePaused);
@@ -133,6 +139,12 @@ bool Editor::HandleKeyPress(const SInputEvent& event)
 			SetInEditor(!m_bInEditor);
 			return true;
 		}
+	}
+	else if (event.deviceType == eIDT_Mouse && event.state == eIS_Pressed)
+	{
+		// No input if focusing ImGui
+		if (io.WantCaptureMouse)
+			return false;
 	}
 
 	if (m_bInEditor && HandleEditorKeyPress(event))
