@@ -14,38 +14,11 @@
 struct SInputEvent;
 struct IGameFramework;
 class CSystem;
+class ModDllManager;
 class Editor;
 
 class ChairLoader : public IChairloader {
 public:
-	class ModEntry {
-	public:
-		int GetLoadOrder() const { return loadOrder; }
-
-		//! unique modName
-		std::string modName = "";
-
-		//! interface for calling guaranteed functions
-		IChairloaderMod* pMod = nullptr;
-
-		//! DLL handle for the mod 
-		HMODULE hModule = nullptr;
-
-		//! Functions exported by the mod
-		//! @{
-		IChairloaderMod::ProcInitialize* pfnInit = nullptr;
-		IChairloaderMod::ProcShutdown* pfnShutdown = nullptr;
-		//! @}
-
-		//! configuration file
-		// pugi::xml_document configFile;
-
-		int loadOrder = -1;
-
-		bool operator<(const ModEntry& rhs) const noexcept { return loadOrder < rhs.loadOrder; }
-		bool operator==(const ModEntry& rhs) const noexcept { return modName == rhs.modName; }
-	};
-
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
 	ChairLoader();
 
@@ -77,38 +50,21 @@ public:
 	//! Process smoke form exit TODO: move this to separate mod
 	void SmokeFormExit();
 
-	//! Register a mod 
-	bool RegisterMod(ModEntry&& mod);
-
 	inline std::thread::id GetMainThreadId() { return m_MainThreadId; }
 	inline std::thread::id GetRenderThreadId() { return m_ImGui->GetRenderThreadId(); }
 	inline uintptr_t GetModuleBase() { return m_ModuleBase; }
 	inline IGameFramework* GetFramework() override { return m_pFramework; }
 
 private:
-	//! The mod list
-	std::vector<ModEntry> modList;
-
-	//! intermediate structure to keep track of mod load order before the mods are registered
-	std::map<std::string, pugi::xml_node> modLoadOrder;
-
-	//! reads the config file to obtain the mod load order
-	void ReadModList();
-
-	//! sorts the modList by load order
-	void sortLoadOrder();
-
-	//! load all mod DLL's from the mod names obtained from the config Mod List
-	void initializeMods();
-
-	//! load all registered mod configs
-	void loadAllConfigs();
+	//! Reads the config file to register mods with ModDllManager
+	void RegisterMods();
 
     //! load config parameters from chairloader config file
     void loadConfigParameters();
 
 	const std::string chairloaderModName = "Chairloader";
 	uintptr_t m_ModuleBase = 0;
+	std::unique_ptr<ModDllManager> m_pModDllManager;
 	IGameFramework* m_pFramework = nullptr;
 	std::unique_ptr<ChairLoaderImGui> m_ImGui;
 	std::unique_ptr<Editor> m_pEditor;

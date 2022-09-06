@@ -18,6 +18,7 @@
 #include "Chairloader/ChairloaderEnv.h"
 #include "RenderDll/RenderAuxGeomPatch.h"
 #include "RenderDll/DebugMarkers.h"
+#include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include "Editor/Editor.h"
 
@@ -231,16 +232,11 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	InitRenderAuxGeomPatch();
 
-	// get list of installed mods and their load order
-	ReadModList();
-	// load the DLLs and register the mods
-	initializeMods();
-	// load the config files into the config manager
-	loadAllConfigs();
-	// run each mod InitSystem()
-	for(auto mod: modList) {
-		mod.pMod->InitSystem(pSystem, GetModuleBase());
-	}
+	// Mod DLL support
+	m_pModDllManager = std::make_unique<ModDllManager>();
+	RegisterMods();
+	m_pModDllManager->LoadModules();	
+	m_pModDllManager->CallInitSystem();
 }
 
 
@@ -260,22 +256,14 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	s_CLEnv.gui = gui;
 	s_CLEnv.entUtils = gEntUtils;
 
-	// run each mod InitGame();
-	for (auto& mod : modList) {
-		mod.pMod->InitGame(pFramework, this);
-	}
+	m_pModDllManager->CallInitGame();
 }
 
 void ChairLoader::ShutdownGame()
 {
 	CryLog("ChairLoader::ShutdownGame");
 
-	// Shutdown all mods in reverse order
-	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
-	{
-		it->pMod->ShutdownGame();
-	}
-
+	m_pModDllManager->CallShutdownGame();
 	m_ImGui = nullptr;
 	m_pFramework = nullptr;
 }
@@ -284,22 +272,8 @@ void ChairLoader::ShutdownSystem()
 {
 	CryLog("ChairLoader::ShutdownSystem");
 	
-	// Shutdown all mods in reverse order
-	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
-	{
-		it->pMod->ShutdownSystem();
-	}
-
-	// Unload mods
-	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
-	{
-		it->pMod = nullptr;
-		it->pfnShutdown();
-		it->pfnShutdown = nullptr;
-		it->pfnInit = nullptr;
-		FreeLibrary(it->hModule);
-		it->hModule = nullptr;
-	}
+	m_pModDllManager->CallShutdownSystem();
+	m_pModDllManager->UnloadModules();
 
 	gEnv = nullptr;
 }
@@ -331,28 +305,15 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	gConf->Update();
 	m_pEditor->Update();
 
-	// pre update all mods
-	for (auto& mod : modList) {
-		mod.pMod->PreUpdate();
-	}
+	m_pModDllManager->CallPreUpdate();
 
 	gui->draw(&m_ShowGui);
-
-	// draw all mods if gui is visible
-    if(m_ShowGui) {
-        for (auto &mod: modList) {
-            mod.pMod->Draw();
-        }
-    }
+	m_pModDllManager->CallDraw();
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
-
-	// post update all mods
-	for (auto& mod : modList) {
-		mod.pMod->PostUpdate();
-	}
+	m_pModDllManager->CallPostUpdate();
 }
 
 bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
@@ -395,76 +356,6 @@ void ChairLoader::SmokeFormExit() {
 		s_CLEnv.entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
-}
-
-void ChairLoader::initializeMods() {
-	for(auto &mod: modLoadOrder) {
-		ModEntry entry;
-		std::string modName = mod.first;
-		std::string dllName = mod.second.child("dllName").text().as_string();
-		fs::path dllPath = fs::current_path() / "Mods" / fs::u8path(modName) / fs::u8path(dllName);
-		entry.modName = modName;
-		entry.hModule = LoadLibraryW(dllPath.c_str());
-
-		if (!entry.hModule)
-			CryFatalError("%s: DLL Failed to load", modName.c_str());
-
-		entry.pfnInit = (IChairloaderMod::ProcInitialize*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_INITIALIZE);
-		entry.pfnShutdown = (IChairloaderMod::ProcShutdown*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_SHUTDOWN);
-
-		if (!entry.pfnInit || !entry.pfnShutdown)
-			CryFatalError("%s: Missing function exports", modName.c_str());
-
-		entry.pMod = entry.pfnInit();
-
-		if (!entry.pMod)
-			CryFatalError("%s: Initialize returned nullptr", modName.c_str());
-
-		bool isRegistered = RegisterMod(std::move(entry));
-		if (!isRegistered)
-			CryFatalError("%s: RegisterMod returned false", modName.c_str());
-	}
-}
-
-void ChairLoader::loadAllConfigs() {
-	for(auto &mod : modList) {
-		gConf->loadModConfigFile(mod.modName);
-	}
-}
-
-//TODO: as mods are registered they must be sorted by load order as specified by the configuration file
-
-
-bool ChairLoader::RegisterMod(ModEntry&& mod) {
-	if (modLoadOrder.find(mod.modName) != modLoadOrder.end()) {
-		CryLog("Mod Registered: %s", mod.modName.c_str());
-		modList.emplace_back(std::move(mod));
-		sortLoadOrder();
-		return true;
-	} 
-	return false;
-}
-
-void ChairLoader::ReadModList() {
-	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
-
-	// FIXED: Magic numbers
-	if (cfgValue.type() != typeid(pugi::xml_node))
-		return;
-
-	auto node = boost::get<pugi::xml_node>(cfgValue);
-	for(auto &mod : node) {
-		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-        if(mod.child("enabled").text().as_bool() && mod.child("dllName")) {
-            auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
-            modLoadOrder.insert(std::pair(modName, mod));
-            CryLog("Load order found: %s %i", modName.c_str(), loadOrder);
-        } 
-	}
-}
-
-void ChairLoader::sortLoadOrder() {
-	std::sort(modList.begin(), modList.end());
 }
 
 void ChairLoader::CreateConsole() {
@@ -627,6 +518,26 @@ void ChairLoader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_Delete, "delete"));
     m_KeyNames.insert(KeyNamePair(eKI_LWin, "lwin"));
     m_KeyNames.insert(KeyNamePair(eKI_RWin, "rwin"));
+}
+
+void ChairLoader::RegisterMods()
+{
+	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
+
+	if (cfgValue.type() != typeid(pugi::xml_node))
+	{
+		CryWarning("ModList is not a node in the config.");
+		return;
+	}
+
+	auto node = boost::get<pugi::xml_node>(cfgValue);
+	for (pugi::xml_node& mod : node) {
+		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
+		if (mod.child("enabled").text().as_bool() && mod.child("dllName")) {
+			CryLog("Found DLL mod: %s", modName.c_str());
+			m_pModDllManager->RegisterModFromXML(mod);
+		}
+	}
 }
 
 void ChairLoader::loadConfigParameters() {
