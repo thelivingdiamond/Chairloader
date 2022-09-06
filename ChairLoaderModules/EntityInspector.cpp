@@ -5,7 +5,7 @@
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include "EntityInspector.h"
 
-void EntityInspector::ShowContent(EntityId entityId)
+void EntityInspector::ShowContents(EntityId entityId)
 {
 	if (m_EntityId != entityId)
 		OnEntityChanged(entityId);

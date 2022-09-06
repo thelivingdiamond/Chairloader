@@ -5,7 +5,7 @@ struct IScriptTable;
 class EntityInspector
 {
 public:
-	void ShowContent(EntityId entityId);
+	void ShowContents(EntityId entityId);
 
 private:
 	EntityId m_EntityId = 0;

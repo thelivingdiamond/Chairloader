@@ -192,7 +192,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                         auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
                         auto npc = gCLEnv->entUtils->GetArkNpc(entity);
                         if (ImGui::BeginTabItem("Entity Details")) {
-                            inspector.ShowContent(selectedEntity);
+                            inspector.ShowContents(selectedEntity);
                             ImGui::EndTabItem();
                         }
                         if(ImGui::BeginTabItem("Physics")){
