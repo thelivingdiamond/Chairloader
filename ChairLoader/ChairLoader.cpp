@@ -324,14 +324,13 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	SmokeFormExit();
 	gui->update();
 	gConf->Update();
-
-	if (m_pEditor)
-		m_pEditor->Update();
-
 	m_pModDllManager->CallPreUpdate();
 
 	gui->draw(&m_ShowGui);
 	m_pModDllManager->CallDraw();
+
+	if (m_pEditor)
+		m_pEditor->Update();
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
