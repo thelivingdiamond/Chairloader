@@ -38,7 +38,7 @@ public:
 	//! Must be called in a Detours transaction.
 	//! @param	origFunc	Function to be hooked.
 	//! @param	hookFunc	Function that will replace the original function.
-	inline void InstallHook(Type* origFunc, Type* hookFunc) { InstallHook(origFunc, hookFunc); }
+	inline void InstallHook(Type* origFunc, Type* hookFunc) { FunctionHookBase::InstallHook(origFunc, hookFunc); }
 
 	//! Calls the original function with specified arguments.
 	inline ReturnType InvokeOrig(ArgumentTypes ... args) {

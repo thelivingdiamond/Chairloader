@@ -57,7 +57,7 @@ public:
 
 ConsoleStdoutSink g_StdoutConsole;
 
-auto g_CSystem_InitializeEngineModule_Hook = CSystem::FInitializeEngineModule.MakeHook();
+FunctionHook<decltype(CSystem::FInitializeEngineModule)::Type> g_CSystem_InitializeEngineModule_Hook;
 auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
 auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
 auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
@@ -159,6 +159,16 @@ ChairLoader::ChairLoader() {
     // insert key name pairs into bimap bc bimaps kinda suck at static initialization
     LoadKeyNames();
 
+	PreyFunctionSystem::Init(m_ModuleBase);
+
+	// Install CSystem manual hook for InitSystem
+	DetourTransactionBegin();
+	g_CSystem_InitializeEngineModule_Hook.InstallHook(CSystem::FInitializeEngineModule.Get(), &CSystem_InitializeEngineModule_Hook);
+	DetourTransactionCommit();
+}
+
+void ChairLoader::InitHooks()
+{
 	// Set up hooks
 	//
 	// Explicit SetHookFunc calls are ugly but I see no other way to do it in C++.
@@ -171,7 +181,6 @@ ChairLoader::ChairLoader() {
 	// the hook function or the PreyFunctionHook object, that implies repetition of
 	// function arguments, which is even more ugly.
 	//
-	g_CSystem_InitializeEngineModule_Hook.SetHookFunc(&CSystem_InitializeEngineModule_Hook);
 	g_CSystem_Shutdown_Hook.SetHookFunc(&CSystem_Shutdown_Hook);
 	g_CGame_Init_Hook.SetHookFunc(&CGame_Init_Hook);
 	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
@@ -192,7 +201,6 @@ ChairLoader::ChairLoader() {
 	}
 
 	// Install all hooks
-	PreyFunctionSystem::Init(m_ModuleBase);
 	InstallHooks();
 }
 
@@ -220,6 +228,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
+	InitHooks();
 	WaitForRenderDoc();
 
 	m_MainThreadId = std::this_thread::get_id();

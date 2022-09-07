@@ -22,6 +22,9 @@ public:
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
 	ChairLoader();
 
+	//! Initializes function hooks and installs them. Called during InitSystem.
+	void InitHooks();
+
 	//! Called during CSystem::Init, before any engine modules.
 	void InitSystem(CSystem* pSystem);
 

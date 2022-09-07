@@ -14,6 +14,8 @@ void SRenderThread_PostHook();
 
 namespace
 {
+bool g_bAuxGeomEnabled = false;
+
 int CV_r_enableauxgeom;
 
 CRenderAuxGeomD3D* s_pRenderAuxGeomD3D = nullptr;
@@ -128,37 +130,26 @@ void CD3D9Renderer_PostLevelUnload(CD3D9Renderer* _this)
 
 void InitRenderAuxGeomPatchHooks()
 {
-	CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);
-	CD3D9Renderer_RT_ShutDown_Hook.SetHookFunc(&CD3D9Renderer_RT_ShutDown);
-	CD3D9Renderer_OnD3D11PostCreateDevice_Hook.SetHookFunc(&CD3D9Renderer_OnD3D11PostCreateDevice);
-	CD3D9Renderer_InitRenderer_Hook.SetHookFunc(&CD3D9Renderer_InitRenderer);
-	CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.SetHookFunc(&CD3D9Renderer_EF_RemoveParticlesFromScene);
-	CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
-	CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
-	CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
-	SRenderThread_InstallCommandHandler();
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
+	{
+		g_bAuxGeomEnabled = true;
+		CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);
+		CD3D9Renderer_RT_ShutDown_Hook.SetHookFunc(&CD3D9Renderer_RT_ShutDown);
+		CD3D9Renderer_OnD3D11PostCreateDevice_Hook.SetHookFunc(&CD3D9Renderer_OnD3D11PostCreateDevice);
+		CD3D9Renderer_InitRenderer_Hook.SetHookFunc(&CD3D9Renderer_InitRenderer);
+		CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.SetHookFunc(&CD3D9Renderer_EF_RemoveParticlesFromScene);
+		CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
+		CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
+		CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
+		SRenderThread_InstallCommandHandler();
+	}
 }
 
 void InitRenderAuxGeomPatch()
 {
-	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
+	if (g_bAuxGeomEnabled)
 	{
 		SRenderThread_PostHook();
 		REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
-	}
-	else
-	{
-		// Remove all hooks
-		DetourTransactionBegin();
-		CD3D9Renderer_FX_PipelineShutdown_Hook.RemoveHook();
-		CD3D9Renderer_RT_ShutDown_Hook.RemoveHook();
-		CD3D9Renderer_OnD3D11PostCreateDevice_Hook.RemoveHook();
-		CD3D9Renderer_InitRenderer_Hook.RemoveHook();
-		CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.RemoveHook();
-		CD3D9Renderer_Set2DMode_Hook.RemoveHook();
-		CD3D9Renderer_GetIRenderAuxGeom_Hook.RemoveHook();
-		CD3D9Renderer_PostLevelUnload_Hook.RemoveHook();
-		SRenderThread_RemoveCommandHandler();
-		DetourTransactionCommit();
 	}
 }
