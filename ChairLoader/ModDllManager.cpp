@@ -12,8 +12,8 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	fs::path dllName = fs::u8path(boost::get<std::string>(gConf->getNodeConfigValue(xmlNode, "dllName")));
 	info.sourceDllPath = fs::current_path() / "Mods" / fs::u8path(info.modName) / dllName;
 
-	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 	gConf->loadModConfigFile(info.modName);
+	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 }
 
 void ModDllManager::LoadModules()
@@ -83,6 +83,7 @@ void ModDllManager::LoadModule(Module& mod)
 {
 	CRY_ASSERT(!mod.hModule);
 	
+	CryLog("ModDllManager: Loading %s", mod.sourceDllPath.u8string().c_str());
 	mod.hModule = ::LoadLibraryW(mod.sourceDllPath.c_str());
 	if (!mod.hModule)
 		CryFatalError("%s\nFailed to load the DLL.\n%s", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
