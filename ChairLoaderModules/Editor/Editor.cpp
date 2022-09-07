@@ -69,6 +69,8 @@ Editor::Editor()
 	assert(!g_pEditor);
 	g_pEditor = this;
 	m_pView = std::make_unique<EditorView>();
+
+	gEnv->pConsole->ExecuteString("g_pauseOnLoseFocus 0");
 }
 
 Editor::~Editor()
