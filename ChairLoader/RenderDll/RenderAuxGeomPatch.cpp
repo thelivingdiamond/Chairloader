@@ -130,7 +130,8 @@ void CD3D9Renderer_PostLevelUnload(CD3D9Renderer* _this)
 
 void InitRenderAuxGeomPatchHooks()
 {
-	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
+	// Editor requires aux geom
+	if (gCL->IsEditorEnabled() || gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
 	{
 		g_bAuxGeomEnabled = true;
 		CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);

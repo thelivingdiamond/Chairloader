@@ -189,7 +189,9 @@ void ChairLoader::InitHooks()
 	ChairLoaderImGui::InitHooks();
 	InitRenderAuxGeomPatchHooks();
 	RenderDll::DebugMarkers::InitHooks();
-	Editor::InitHooks();
+
+	if (m_bEditorEnabled)
+		Editor::InitHooks();
 
 	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
 	// Allows graphics debuggers to be attached
@@ -215,7 +217,15 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
 
-	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
+	// Editor cmd line switch
+	m_bEditorEnabled = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "editor");
+
+	if (m_bEditorEnabled)
+	{
+		// Dev mode is always enabled in Editor.
+		pSystem->SetDevMode(true);
+	}
+	else if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
 	{
 		bool devMode = false;
 #ifdef DEBUG_BUILD
@@ -258,7 +268,9 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
 	gui = new ChairloaderGui(&s_CLEnv);
 	g_pProfiler = new Profiler();
-	m_pEditor = std::make_unique<Editor>();
+
+	if (m_bEditorEnabled)
+		m_pEditor = std::make_unique<Editor>();
 
 	s_CLEnv.cl = this;
 	s_CLEnv.pImGui = m_ImGui.get();
@@ -312,7 +324,9 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	SmokeFormExit();
 	gui->update();
 	gConf->Update();
-	m_pEditor->Update();
+
+	if (m_pEditor)
+		m_pEditor->Update();
 
 	m_pModDllManager->CallPreUpdate();
 
@@ -605,4 +619,9 @@ std::string ChairLoader::getKeyBind(std::string action) {
         return "";
     }
     return std::string();
+}
+
+bool ChairLoader::IsEditorEnabled()
+{
+	return m_bEditorEnabled;
 }

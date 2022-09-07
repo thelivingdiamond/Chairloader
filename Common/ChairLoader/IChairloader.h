@@ -18,4 +18,7 @@ struct IChairloader {
     using KeyNamePair = boost::bimap<EKeyId, std::string>::value_type;
     virtual const KeyNameMap &GetKeyNames() const = 0;
     virtual std::string getKeyBind(std::string action) = 0;
+
+    //! @returns whether editor is currently enabled.
+    virtual bool IsEditorEnabled() = 0;
 };

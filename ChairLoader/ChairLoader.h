@@ -77,6 +77,7 @@ private:
 	bool m_DevMode;
 	bool m_FreeCamEnabled = false;
     bool m_ShowGui = true;
+	bool m_bEditorEnabled = false;
 
     //! key binds
     EKeyId m_hideGuiKey = EKeyId::eKI_F1;
@@ -96,6 +97,7 @@ public:
     const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
     std::string getKeyBind(std::string action) override;
+	bool IsEditorEnabled() override;
 };
 
 extern ChairLoader *gCL;
