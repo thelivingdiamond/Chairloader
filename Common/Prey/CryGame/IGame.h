@@ -27,13 +27,13 @@ struct SActionEvent;
 struct SRenderingPassInfo;
 struct IAntiCheatManager;
 
-enum class ESaveGameMethod {
+enum ESaveGameMethod {
 	eSGM_NoSave = 0,
 	eSGM_QuickSave = 1,
 	eSGM_Save = 2
 };
 
-enum class ESaveGameReason {
+enum ESaveGameReason {
 	eSGR_LevelStart = 0,
 	eSGR_FlowGraph = 1,
 	eSGR_Command = 2,

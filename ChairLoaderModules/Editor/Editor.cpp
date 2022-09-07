@@ -4,6 +4,7 @@
 #include <Prey/CryGame/Game.h>
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include <Prey/CryPhysics/IPhysics.h>
+#include <Prey/CryAction/ark/IArkSaveLoadSystem.h>
 #include <Prey/GameDll/ui/UIManager.h>
 #include <Prey/GameDll/ark/ArkGame.h>
 #include <Prey/GameDll/ark/ui/ArkPauseMenu.h>
@@ -287,6 +288,9 @@ void Editor::UpdateRunning()
 
 		if (ImGui::Button("Camera To Player"))
 			m_pView->MoveCameraToPlayer();
+
+		if (ImGui::Button("Reload Level"))
+			ReloadLevel();
 	}
 	ImGui::End();
 
@@ -382,6 +386,44 @@ void Editor::SelectEntInViewport(Vec2 pixelPos)
 	if (!isFound)
 	{
 		m_Hierarchy.SetSelectedEntity(0);
+	}
+}
+
+void Editor::ReloadLevel()
+{
+	constexpr char SAVE_NAME[] = "chaireditor_save";
+
+	auto pGameFw = g_pGame->GetIGameFramework();
+	if (!pGameFw->IsGameStarted())
+		return;
+
+	if (!pGameFw->CanSave())
+	{
+		CryError("Editor: Can't reload level: can't save at the moment.");
+		return;
+	}
+
+	// Make a save
+	if (!pGameFw->SaveGame(SAVE_NAME, false, true, eSGR_Command, true))
+	{
+		CryError("Editor: SaveGame failed.");
+		return;
+	}
+
+	// Unload the level
+	gEnv->pConsole->ExecuteString("disconnect");
+
+	// Reload the save
+	ELoadGameResult loadResult = pGameFw->LoadGame(SAVE_NAME, false, true);
+
+	// Delete the save that was just made
+	int curSlot = pGameFw->GetArkSaveLoadSystem().GetCampaignSlot();
+	g_pGame->m_pArkGame->DeleteSave(curSlot, SAVE_NAME);
+
+	if (loadResult != eLGR_Ok)
+	{
+		CryError("Editor: LoadGame failed (%d).", loadResult);
+		return;
 	}
 }
 

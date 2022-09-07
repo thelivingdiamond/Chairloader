@@ -60,4 +60,5 @@ private:
 	void SetEditorCameraControl(bool state);
 
 	void SelectEntInViewport(Vec2 pixelPos);
+	void ReloadLevel();
 };
