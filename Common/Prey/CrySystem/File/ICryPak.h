@@ -171,7 +171,7 @@ struct ICryPak // Id=800062E Size=8
     virtual void *PoolMalloc(uint64_t arg0) = 0;
     virtual void PoolFree(void *arg0) = 0;
     virtual IMemoryBlock *PoolAllocMemoryBlock(uint64_t arg0, const char *arg1, uint64_t arg2) = 0;
-    virtual int64_t FindFirst(const char *arg0, _finddata64i32_t *arg1, unsigned arg2, bool arg3) = 0;
+    virtual int64_t FindFirst(const char *pDir, _finddata64i32_t *fd, unsigned nPathFlags, bool bAllowUseFileSystem) = 0;
     virtual int FindNext(int64_t arg0, _finddata64i32_t *arg1) = 0;
     virtual int FindClose(int64_t arg0) = 0;
     virtual uint64_t GetModificationTime(_iobuf *arg0) = 0;
@@ -203,6 +203,14 @@ struct ICryPak // Id=800062E Size=8
     virtual uint64_t GetFileOffsetOnMedia(const char *arg0) = 0;
     virtual EStreamSourceMediaType GetFileMediaType(const char *arg0) = 0;
     virtual void CreatePerfHUDWidget() = 0;
-    virtual void ScanDirectory(const char *arg0, const char *arg1, std::vector<string> &arg2, bool arg3, bool arg4) = 0;
+    virtual void ScanDirectory(const char *_folderPath, const char *_fileFilter, std::vector<string> &_outFiles, bool _recursive, bool _bAllowUseFileSystem) = 0;
 };
 
+struct SDirectoryEnumeratorHelper // Id=8002F48 Size=1
+{
+    void ScanDirectoryRecursive(string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files) { FScanDirectoryRecursive(this,root,pathIn,fileSpec,files); }
+    void ScanDirectoryFiles(string const &root, string const &path, string const &fileSpec, std::vector<string> &files) { FScanDirectoryFiles(this,root,path,fileSpec,files); }
+
+    static inline auto FScanDirectoryRecursive = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files)>(0x24C340);
+    static inline auto FScanDirectoryFiles = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &path, string const &fileSpec, std::vector<string> &files)>(0x24C0E0);
+};

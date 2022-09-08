@@ -5,6 +5,7 @@
 #include "EntityManager.h"
 #include "PlayerManager.h"
 #include "WorldManager.h"
+#include "FileBrowser.h"
 #include "ChairloaderConfigManager.h"
 #include "GUIUtils.h"
 #include "PerfOverlay.h"
@@ -64,6 +65,7 @@ private:
     PlayerManager playerManager;
     EntityManager entityManager;
     WorldManager worldManager;
+    FileBrowser fileBrowser;
     PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
     DevConsoleDialog devConsoleDialog;
