@@ -37,7 +37,7 @@ void ModMain::FillModInfo(ModDllInfo& info)
 {
 	info.thisStructSize = sizeof(ModDllInfo);
 	info.modName = "TheChair.ExampleMod"; // CHANGE ME
-	info.supportsHotReload = false; // TODO: Add comment/wiki link
+	info.supportsHotReload = true; // TODO: Add comment/wiki link
 }
 
 void ModMain::InitHooks()
@@ -70,8 +70,10 @@ void ModMain::Draw()
 	if (ImGui::Begin("Example Mod"))
 	{
 		static bool state = false;
+		static time_t loadTime = std::time(nullptr);
 		const char* text = !state ? "That Heavy is dead!" : "Yes! He died!";
 		ImGui::Text(text);
+		ImGui::Text("Load time: %lld", (long long)loadTime);
 
 		if (ImGui::Button("The Heavy is dead???"))
 		{

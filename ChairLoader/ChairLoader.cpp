@@ -90,9 +90,9 @@ void CSystem_Shutdown_Hook(CSystem* _this)
 	gChair->ShutdownSystem();
 	g_CSystem_Shutdown_Hook.InvokeOrig(_this);
 
-	// Shutdown ChairLoader for good
-	delete gCL;
-	gCL = nullptr;
+	// Shutdown Chairloader for good
+	delete gChair;
+	gChair = nullptr;
 }
 
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
@@ -326,13 +326,15 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	SmokeFormExit();
 	gui->update();
 	gConf->Update();
-	m_pModDllManager->CallPreUpdate();
 
 	gui->draw(&m_ShowGui);
 	m_pModDllManager->CallDraw();
 
+	// Editor update MUST come before mod PreUpdate for proper hot-reloading
 	if (m_pEditor)
 		m_pEditor->Update();
+
+	m_pModDllManager->CallPreUpdate();
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
@@ -630,4 +632,9 @@ std::string ChairLoader::getKeyBind(std::string action) {
 bool ChairLoader::IsEditorEnabled()
 {
 	return m_bEditorEnabled;
+}
+
+void ChairLoader::ReloadModDLLs()
+{
+	m_pModDllManager->ReloadModules();
 }

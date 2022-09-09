@@ -23,7 +23,7 @@ public:
 	//! Unloads all mod DLLs.
 	void UnloadModules();
 
-	//! Reloads DLLs that support hot-reloading.
+	//! Reloads DLLs that support hot-reloading. It must be called after PostUpdate but before PreUpdate of the mods.
 	void ReloadModules();
 
 	//! Calls a function for each mod in the load order or reverse order.

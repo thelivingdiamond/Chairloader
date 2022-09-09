@@ -19,6 +19,8 @@ public:
 	bool HandleEditorKeyPress(const SInputEvent& event);
 
 private:
+	static constexpr char SAVE_NAME[] = "chaireditor_save";
+
 	enum class State
 	{
 		Invalid,
@@ -60,5 +62,8 @@ private:
 	void SetEditorCameraControl(bool state);
 
 	void SelectEntInViewport(Vec2 pixelPos);
-	void ReloadLevel();
+	bool ReloadLevel();
+	bool ReloadMods();
+	bool SaveAndUnloadLevel();
+	bool RestoreSavedLevel();
 };

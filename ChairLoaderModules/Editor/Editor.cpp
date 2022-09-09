@@ -237,6 +237,10 @@ void Editor::UpdateUnloaded()
 			"random crashes, memory corruption, resource leaks, save corruption, stress, frustration, anger, "
 			"physiological and psychological damage, desire to burn your house down with lemons. "
 			"Please, consult a doctor of your choise before use.");
+		ImGui::NewLine();
+
+		if (ImGui::Button("Reload Mods"))
+			ReloadMods();
 	}
 	ImGui::End();
 }
@@ -291,6 +295,9 @@ void Editor::UpdateRunning()
 
 		if (ImGui::Button("Reload Level"))
 			ReloadLevel();
+
+		if (ImGui::Button("Reload Mods"))
+			ReloadMods();
 	}
 	ImGui::End();
 
@@ -389,29 +396,59 @@ void Editor::SelectEntInViewport(Vec2 pixelPos)
 	}
 }
 
-void Editor::ReloadLevel()
+bool Editor::ReloadLevel()
 {
-	constexpr char SAVE_NAME[] = "chaireditor_save";
+	return SaveAndUnloadLevel() && RestoreSavedLevel();
+}
 
+bool Editor::ReloadMods()
+{
+	bool needToRestore = false;
+
+	if (g_pGame->GetIGameFramework()->IsGameStarted())
+	{
+		if (SaveAndUnloadLevel())
+			needToRestore = true;
+		else
+			return false;
+	}
+
+	// ReloadModDLLs can only fail fatally
+	gCL->cl->ReloadModDLLs();
+
+	if (needToRestore && !RestoreSavedLevel())
+		return false;
+
+	return true;
+}
+
+bool Editor::SaveAndUnloadLevel()
+{
 	auto pGameFw = g_pGame->GetIGameFramework();
 	if (!pGameFw->IsGameStarted())
-		return;
+		return false;
 
 	if (!pGameFw->CanSave())
 	{
 		CryError("Editor: Can't reload level: can't save at the moment.");
-		return;
+		return false;
 	}
 
 	// Make a save
 	if (!pGameFw->SaveGame(SAVE_NAME, false, true, eSGR_Command, true))
 	{
 		CryError("Editor: SaveGame failed.");
-		return;
+		return false;
 	}
 
 	// Unload the level
 	gEnv->pConsole->ExecuteString("disconnect");
+	return true;
+}
+
+bool Editor::RestoreSavedLevel()
+{
+	auto pGameFw = g_pGame->GetIGameFramework();
 
 	// Reload the save
 	ELoadGameResult loadResult = pGameFw->LoadGame(SAVE_NAME, false, true);
@@ -423,8 +460,10 @@ void Editor::ReloadLevel()
 	if (loadResult != eLGR_Ok)
 	{
 		CryError("Editor: LoadGame failed (%d).", loadResult);
-		return;
+		return false;
 	}
+
+	return true;
 }
 
 Editor::MouseGuard::MouseGuard()

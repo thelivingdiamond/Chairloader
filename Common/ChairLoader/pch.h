@@ -23,3 +23,4 @@
 #include <Prey/ArkStubs.h>
 #include <ChairLoader/PreyFunction.h>
 #include <ChairLoader/ChairloaderEnv.h>
+#include <ChairLoader/IChairloader.h>

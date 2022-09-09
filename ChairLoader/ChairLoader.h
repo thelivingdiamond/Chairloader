@@ -99,6 +99,7 @@ public:
 	uintptr_t GetPreyDllBase() override;
     std::string getKeyBind(std::string action) override;
 	bool IsEditorEnabled() override;
+	void ReloadModDLLs() override;
 };
 
 extern ChairLoader* gChair;

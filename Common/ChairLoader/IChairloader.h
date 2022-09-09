@@ -25,4 +25,9 @@ struct IChairloader {
 
     //! @returns whether editor is currently enabled.
     virtual bool IsEditorEnabled() = 0;
+
+    //! Reloads all mod DLLs that support hot-reloading.
+    //! Can only be called with specific conditions in mind.
+    //! It's here only for the editor (which is in ChairloaderModules library).
+    virtual void ReloadModDLLs() = 0;
 };
