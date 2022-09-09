@@ -6,7 +6,7 @@ set(SOURCE_FILES
         PlayerManager.h
         WorldManager.cpp
         WorldManager.h
-        )
+        FileBrowser.cpp FileBrowser.h)
 
 # ChairloaderModules static library
 add_library(ChairloaderModules STATIC

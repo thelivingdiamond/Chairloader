@@ -8,7 +8,8 @@ ChairloaderGui *gui = nullptr;
 ChairloaderGui::ChairloaderGui(ChairloaderGlobalEnvironment* env) :
     playerManager(env),
     entityManager(env),
-    worldManager(env){
+    worldManager(env),
+    fileBrowser(env) {
     gCLEnv = env;
     GUILog = &log;
     ImGui::GetStyle().Alpha = 0.8f;
@@ -141,6 +142,7 @@ void ChairloaderGui::draw(bool* bShow) {
             entityManager.Draw();
             playerManager.draw();
             worldManager.Draw();
+            fileBrowser.Draw();
             if (control.showProfilerDialog) {
                 profilerDialog.Show(&control.showProfilerDialog);
             }
