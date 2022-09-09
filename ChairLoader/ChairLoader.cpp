@@ -213,6 +213,8 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	CryLog("ChairLoader::InitSystem");
 	CryLog("ChairLoader: gEnv = 0x%p\n", gEnv);
 
+	s_CLEnv.cl = this;
+
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
@@ -273,7 +275,6 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	if (m_bEditorEnabled)
 		m_pEditor = std::make_unique<Editor>();
 
-	s_CLEnv.cl = this;
 	s_CLEnv.pImGui = m_ImGui.get();
 	s_CLEnv.gui = gui;
 	s_CLEnv.entUtils = gEntUtils;

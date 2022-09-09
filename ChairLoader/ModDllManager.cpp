@@ -1,3 +1,4 @@
+#include <boost/algorithm/string.hpp>
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include "ModDllManager.h"
 #include "ChairloaderConfigManager.h"
@@ -25,6 +26,31 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 
 void ModDllManager::LoadModules()
 {
+	if (m_bHotReload)
+	{
+		try
+		{
+			m_TempDirPath = fs::current_path() / "Mods/.temp";
+			fs::create_directory(m_TempDirPath);
+
+			// Remove old DLLs from the temp dir
+			for (const fs::directory_entry& entry : std::filesystem::directory_iterator(m_TempDirPath))
+			{
+				std::string ext = entry.path().extension().u8string();
+				boost::algorithm::to_lower(ext);
+
+				if (entry.is_regular_file() && ext == ".dll")
+				{
+					fs::remove(entry.path());
+				}
+			}
+		}
+		catch (const std::exception& e)
+		{
+			CryFatalError("Error while creating/clearing mod temp directory:\n%s", e.what());
+		}
+	}
+
 	for (const auto& [loadOrder, infoList] : m_RegisteredMods)
 	{
 		for (const ModuleInfo& info : infoList)
@@ -130,10 +156,35 @@ void ModDllManager::LoadModule(Module& mod)
 {
 	CRY_ASSERT(!mod.hModule);
 	
-	CryLog("[ModDllManager] Loading %s (%s)", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
-	mod.hModule = ::LoadLibraryW(mod.sourceDllPath.c_str());
+	if (m_bHotReload)
+	{
+		// Make a temp copy not to lock the source file.
+		// Allows the compiler to overwrite it.
+		fs::path copyName = fs::u8path(mod.modName + "." + mod.sourceDllPath.filename().u8string());
+		mod.realDllPath = m_TempDirPath / copyName;
+
+		std::error_code copyError;
+		fs::copy(mod.sourceDllPath, mod.realDllPath, fs::copy_options::overwrite_existing, copyError);
+
+		if (copyError.value() != 0)
+		{
+			CryFatalError("%s: Failed to make the DLL copy for hot-reloading.\n"
+				"%s\n"
+				"Source: %s\n"
+				"Destination: %s", mod.modName.c_str(), copyError.message().c_str(),
+				mod.sourceDllPath.u8string().c_str(), mod.realDllPath.u8string().c_str());
+		}
+	}
+	else
+	{
+		// Use the file directly
+		mod.realDllPath = mod.sourceDllPath;
+	}
+
+	CryLog("[ModDllManager] Loading %s (%s)", mod.modName.c_str(), mod.realDllPath.u8string().c_str());
+	mod.hModule = ::LoadLibraryW(mod.realDllPath.c_str());
 	if (!mod.hModule)
-		CryFatalError("%s\nFailed to load the DLL.\n%s", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
+		CryFatalError("%s\nFailed to load the DLL.\n%s", mod.modName.c_str(), mod.realDllPath.u8string().c_str());
 
 	mod.pfnInit = (IChairloaderMod::ProcInitialize*)GetProcAddress(mod.hModule, IChairloaderMod::PROC_INITIALIZE);
 	mod.pfnShutdown = (IChairloaderMod::ProcShutdown*)GetProcAddress(mod.hModule, IChairloaderMod::PROC_SHUTDOWN);
@@ -150,7 +201,7 @@ void ModDllManager::LoadModule(Module& mod)
 void ModDllManager::UnloadModule(Module& mod)
 {
 	CRY_ASSERT(mod.hModule);
-	CryLog("[ModDllManager] Unloading %s (%s)", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
+	CryLog("[ModDllManager] Unloading %s (%s)", mod.modName.c_str(), mod.realDllPath.u8string().c_str());
 	mod.pfnShutdown();
 	FreeLibrary(mod.hModule);
 
@@ -166,7 +217,7 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 	initInfo.pSystem = gEnv->pSystem;
 	initInfo.pChair = gCL;
 	initInfo.modDirPath = mod.modDirPath;
-	initInfo.modDllPath = mod.sourceDllPath;
+	initInfo.modDllPath = mod.realDllPath;
 	initInfo.isHotReloading = isHotReloading;
 
 	mod.dllInfo = IChairloaderMod::ModDllInfo();

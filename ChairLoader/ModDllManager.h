@@ -57,6 +57,9 @@ private:
 	{
 		Module(const ModuleInfo& info) : ModuleInfo(info) {}
 
+		//! Path to the DLL for loading. May be a copy of source DLL when hot reloading.
+		fs::path realDllPath;
+
 		//! Handle of the loaded DLL.
 		HMODULE hModule = nullptr;
 
@@ -76,6 +79,7 @@ private:
 	std::map<int, std::vector<ModuleInfo>> m_RegisteredMods; //!< List of registered mods sorted by load order.
 	std::vector<Module> m_Modules; //!< List of modules.
 	bool m_bHotReload = false; //!< Whether hot reload is enabled.
+	fs::path m_TempDirPath; //!< Temporary diretory used for DLL copies when hot-reloading.
 
 	//! Loads the DLL and gets all functions. Errors in the process will cause a fatal error.
 	void LoadModule(Module& mod);
