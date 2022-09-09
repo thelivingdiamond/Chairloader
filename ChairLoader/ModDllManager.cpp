@@ -3,6 +3,12 @@
 #include "ChairloaderConfigManager.h"
 #include "ChairLoader.h"
 
+void ModDllManager::SetHotReloadEnabled(bool state)
+{
+	CRY_ASSERT(m_RegisteredMods.empty() && m_Modules.empty());
+	m_bHotReload = state;
+}
+
 void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 {
 	ModuleInfo info;
@@ -38,32 +44,56 @@ void ModDllManager::UnloadModules()
 		UnloadModule(*it);
 }
 
+void ModDllManager::ReloadModules()
+{
+	if (!m_bHotReload)
+		CryFatalError("ModDllManager::ReloadModules: hot-reloading not enabled");
+
+	// Collect mods that support hot-reloading
+	std::vector<Module*> modsToReload;
+	for (Module& i : m_Modules)
+	{
+		CRY_ASSERT(i.hModule);
+		if (i.dllInfo.supportsHotReload)
+			modsToReload.push_back(&i);
+	}
+
+	// Unload mods in reverse order
+	CryWarning("[ModDllManager] Hot-unloading mods");
+	for (auto it = modsToReload.rbegin(); it != modsToReload.rend(); ++it)
+	{
+		Module& mod = **it;
+		mod.pModIface->ShutdownGame(true);
+		mod.pModIface->ShutdownSystem(true);
+		UnloadModule(mod);
+	}
+
+	// Reload mods
+	CryWarning("[ModDllManager] Hot-reloading mods");
+	for (auto it = modsToReload.begin(); it != modsToReload.end(); ++it)
+	{
+		Module& mod = **it;
+		LoadModule(mod);
+		InitModule(mod, true);
+		mod.pModIface->InitGame(true);
+
+		if (!mod.dllInfo.supportsHotReload)
+			CryFatalError("Mod %s no longer supports hot-reloading after a hot-reload.", mod.modName.c_str());
+	}
+}
+
 void ModDllManager::CallInitSystem()
 {
-	IChairloaderMod::ModInitInfo initInfo;
-	initInfo.pSystem = gEnv->pSystem;
-	initInfo.pChair = gCL;
-
 	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
 	{
-		initInfo.modDirPath = it->modDirPath;
-		initInfo.modDllPath = it->sourceDllPath;
-
-		it->dllInfo = IChairloaderMod::ModDllInfo();
-		it->pModIface->InitSystem(initInfo, it->dllInfo);
-
-		if (it->dllInfo.thisStructSize == 0)
-			CryFatalError("[ModDllManager] %s: dllInfo is not initialized", it->modName.c_str());
-
-		if (it->modName != it->dllInfo.modName)
-			CryWarning("[ModDllManager] %s: Name mismatch. DLL says \"%s\"", it->modName.c_str(), it->dllInfo.modName);
+		InitModule(*it, false);
 	}
 }
 
 void ModDllManager::CallInitGame()
 {
 	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
-		it->pModIface->InitGame();
+		it->pModIface->InitGame(false);
 }
 
 void ModDllManager::CallPreUpdate()
@@ -87,20 +117,20 @@ void ModDllManager::CallPostUpdate()
 void ModDllManager::CallShutdownGame()
 {
 	for (auto it = m_Modules.rbegin(); it != m_Modules.rend(); ++it)
-		it->pModIface->ShutdownGame();
+		it->pModIface->ShutdownGame(false);
 }
 
 void ModDllManager::CallShutdownSystem()
 {
 	for (auto it = m_Modules.rbegin(); it != m_Modules.rend(); ++it)
-		it->pModIface->ShutdownSystem();
+		it->pModIface->ShutdownSystem(false);
 }
 
 void ModDllManager::LoadModule(Module& mod)
 {
 	CRY_ASSERT(!mod.hModule);
 	
-	CryLog("[ModDllManager] Loading %s", mod.sourceDllPath.u8string().c_str());
+	CryLog("[ModDllManager] Loading %s (%s)", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
 	mod.hModule = ::LoadLibraryW(mod.sourceDllPath.c_str());
 	if (!mod.hModule)
 		CryFatalError("%s\nFailed to load the DLL.\n%s", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
@@ -120,6 +150,7 @@ void ModDllManager::LoadModule(Module& mod)
 void ModDllManager::UnloadModule(Module& mod)
 {
 	CRY_ASSERT(mod.hModule);
+	CryLog("[ModDllManager] Unloading %s (%s)", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());
 	mod.pfnShutdown();
 	FreeLibrary(mod.hModule);
 
@@ -127,4 +158,23 @@ void ModDllManager::UnloadModule(Module& mod)
 	mod.pfnInit = nullptr;
 	mod.pfnShutdown = nullptr;
 	mod.pModIface = nullptr;
+}
+
+void ModDllManager::InitModule(Module& mod, bool isHotReloading)
+{
+	IChairloaderMod::ModInitInfo initInfo;
+	initInfo.pSystem = gEnv->pSystem;
+	initInfo.pChair = gCL;
+	initInfo.modDirPath = mod.modDirPath;
+	initInfo.modDllPath = mod.sourceDllPath;
+	initInfo.isHotReloading = isHotReloading;
+
+	mod.dllInfo = IChairloaderMod::ModDllInfo();
+	mod.pModIface->InitSystem(initInfo, mod.dllInfo);
+
+	if (mod.dllInfo.thisStructSize == 0)
+		CryFatalError("[ModDllManager] %s: dllInfo is not initialized", mod.modName.c_str());
+
+	if (mod.modName != mod.dllInfo.modName)
+		CryWarning("[ModDllManager] %s: Name mismatch. DLL says \"%s\"", mod.modName.c_str(), mod.dllInfo.modName);
 }

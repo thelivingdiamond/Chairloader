@@ -59,9 +59,9 @@ void ModMain::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 	// Your code goes here
 }
 
-void ModMain::InitGame()
+void ModMain::InitGame(bool isHotReloading)
 {
-	BaseClass::InitGame();
+	BaseClass::InitGame(isHotReloading);
 	// Your code goes here
 }
 
@@ -92,16 +92,16 @@ void ModMain::PostUpdate()
 	// Your code goes here
 }
 
-void ModMain::ShutdownGame()
+void ModMain::ShutdownGame(bool isHotUnloading)
 {
 	// Your code goes here
-	BaseClass::ShutdownGame();
+	BaseClass::ShutdownGame(isHotUnloading);
 }
 
-void ModMain::ShutdownSystem()
+void ModMain::ShutdownSystem(bool isHotUnloading)
 {
 	// Your code goes here
-	BaseClass::ShutdownSystem();
+	BaseClass::ShutdownSystem(isHotUnloading);
 }
 
 extern "C" DLL_EXPORT IChairloaderMod* ClMod_Initialize()

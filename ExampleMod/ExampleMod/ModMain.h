@@ -17,7 +17,7 @@ class ModMain : public ChairloaderModBase
 
 	//! Called after CGame::Init
 	//! Call order: TODO
-	virtual void InitGame() override;
+	virtual void InitGame(bool isHotReloading) override;
 
 	//! Called before CGame::Update to handle any GUI elements
 	virtual void Draw() override;
@@ -33,11 +33,11 @@ class ModMain : public ChairloaderModBase
 
 	//! Called before CGame::Shutdown.
 	//! Call order: TODO
-	virtual void ShutdownGame() override;
+	virtual void ShutdownGame(bool isHotUnloading) override;
 
 	//! Called before CSystem::Shutdown.
 	//! Call order: TODO
-	virtual void ShutdownSystem() override;
+	virtual void ShutdownSystem(bool isHotUnloading) override;
 };
 
 extern ModMain* gMod;

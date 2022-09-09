@@ -29,17 +29,17 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 	DetourTransactionCommit();
 }
 
-void ChairloaderModBase::InitGame()
+void ChairloaderModBase::InitGame(bool isHotReloading)
 {
 	InitImGui();
 }
 
-void ChairloaderModBase::ShutdownGame()
+void ChairloaderModBase::ShutdownGame(bool isHotUnloading)
 {
 	ShutdownImGui();
 }
 
-void ChairloaderModBase::ShutdownSystem()
+void ChairloaderModBase::ShutdownSystem(bool isHotUnloading)
 {
 	// Remove all installed hooks
 	DetourTransactionBegin();

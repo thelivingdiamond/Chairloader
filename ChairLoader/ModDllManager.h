@@ -10,6 +10,9 @@
 class ModDllManager
 {
 public:
+	//! Enables hot-reloading. Must be called before first RegisterMod.
+	void SetHotReloadEnabled(bool state);
+
 	//! Adds the mod DLL for a mod as defined in the config.
 	//! Loads the mod's config.
 	void RegisterModFromXML(pugi::xml_node xmlNode);
@@ -19,6 +22,9 @@ public:
 
 	//! Unloads all mod DLLs.
 	void UnloadModules();
+
+	//! Reloads DLLs that support hot-reloading.
+	void ReloadModules();
 
 	//! Calls a function for each mod in the load order or reverse order.
 	//! @{
@@ -67,15 +73,16 @@ private:
 		IChairloaderMod::ModDllInfo dllInfo;
 	};
 
-	//! List of registered mods sorted by load order.
-	std::map<int, std::vector<ModuleInfo>> m_RegisteredMods;
-
-	//! List of modules.
-	std::vector<Module> m_Modules;
+	std::map<int, std::vector<ModuleInfo>> m_RegisteredMods; //!< List of registered mods sorted by load order.
+	std::vector<Module> m_Modules; //!< List of modules.
+	bool m_bHotReload = false; //!< Whether hot reload is enabled.
 
 	//! Loads the DLL and gets all functions. Errors in the process will cause a fatal error.
 	void LoadModule(Module& mod);
 
 	//! Calls Shutdown and unloads the DLL.
 	void UnloadModule(Module& mod);
+
+	//! Calls InitSystem of the mod.
+	void InitModule(Module& mod, bool isHotReloading);
 };

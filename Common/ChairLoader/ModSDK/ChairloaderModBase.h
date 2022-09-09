@@ -24,9 +24,9 @@ public:
 
 	// IChairloaderMod overrides
 	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) override;
-	virtual void InitGame() override;
-	virtual void ShutdownGame() override;
-	virtual void ShutdownSystem() override;
+	virtual void InitGame(bool isHotReloading) override;
+	virtual void ShutdownGame(bool isHotUnloading) override;
+	virtual void ShutdownSystem(bool isHotUnloading) override;
 
 private:
 	uintptr_t m_ModuleBase = 0;

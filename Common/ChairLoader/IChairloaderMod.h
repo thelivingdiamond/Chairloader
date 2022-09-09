@@ -18,6 +18,7 @@ struct IChairloaderMod {
 		IChairloader* pChair = nullptr;
 		fs::path modDirPath; //!< Path to the mod directory in "Mods"
 		fs::path modDllPath; //!< Path to the loaded DLL
+		bool isHotReloading = false; //!< Whether the mod is being hot-reloaded.
 	};
 
 	//! Mod info that depends on the DLL.
@@ -40,7 +41,7 @@ struct IChairloaderMod {
 	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) = 0;
 	
 	//! Called after CGame::Init
-	virtual void InitGame() = 0;
+	virtual void InitGame(bool isHotReloading) = 0;
 
 	//! Called before CGame::Update to handle any GUI elements
 	virtual void Draw() = 0;
@@ -52,12 +53,8 @@ struct IChairloaderMod {
 	virtual void PostUpdate() = 0;
 
 	//! Called before CGame::Shutdown.
-	virtual void ShutdownGame() = 0;
+	virtual void ShutdownGame(bool isHotUnloading) = 0;
 
 	//! Called before CSystem::Shutdown.
-	virtual void ShutdownSystem() = 0;
+	virtual void ShutdownSystem(bool isHotUnloading) = 0;
 };
-
-
-// define this function in the cpp file for your mod
-// EXTERN_C DLL_EXPORT IChairloaderMod* ClMod_Instantiate();

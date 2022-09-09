@@ -253,6 +253,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	// Mod DLL support
 	m_pModDllManager = std::make_unique<ModDllManager>();
+	m_pModDllManager->SetHotReloadEnabled(IsEditorEnabled());
 	RegisterMods();
 	m_pModDllManager->LoadModules();	
 	m_pModDllManager->CallInitSystem();
