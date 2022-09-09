@@ -7,6 +7,7 @@
 #include <Prey/GameDll/ark/player/psipower/ArkPsiPowerSmokeForm.h>
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
+#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <ChairLoader/PreyFunction.h>
 #include <mem.h>
 #include "ChairLoader.h"
@@ -636,5 +637,11 @@ bool ChairLoader::IsEditorEnabled()
 
 void ChairLoader::ReloadModDLLs()
 {
+	// Mods may hook code running in other threads. Make sure as many of them as possible are idle.
+	// Wait for render thread to finish
+	auto rd = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
+	rd->m_pRT->SyncMainWithRender(); // Last frame
+	rd->m_pRT->SyncMainWithRender(); // This frame
+
 	m_pModDllManager->ReloadModules();
 }
