@@ -37,6 +37,4 @@ private:
 	void ShutdownImGui();
 };
 
-extern ChairloaderGlobalEnvironment* gCL;
-
 #endif

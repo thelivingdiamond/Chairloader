@@ -22,11 +22,11 @@
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include "Editor/Editor.h"
 
-ChairLoader *gCL = nullptr;
-static bool smokeFormExited = false;
 static ChairloaderGlobalEnvironment s_CLEnv;
+ChairLoader* gChair = nullptr;
+ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
-
+static bool smokeFormExited = false;
 
 namespace {
 
@@ -79,7 +79,7 @@ bool CSystem_InitializeEngineModule_Hook(
 	if (!isChairloaderInited)
 	{
 		isChairloaderInited = true;
-		gCL->InitSystem(_this);
+		gChair->InitSystem(_this);
 	}
 
 	return g_CSystem_InitializeEngineModule_Hook.InvokeOrig(_this, _initInfo, initParams, bQuitIfNotFound);
@@ -87,7 +87,7 @@ bool CSystem_InitializeEngineModule_Hook(
 
 void CSystem_Shutdown_Hook(CSystem* _this)
 {
-	gCL->ShutdownSystem();
+	gChair->ShutdownSystem();
 	g_CSystem_Shutdown_Hook.InvokeOrig(_this);
 
 	// Shutdown ChairLoader for good
@@ -101,22 +101,22 @@ bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
-		gCL->InitGame(pFramework);
+		gChair->InitGame(pFramework);
 
 	return result;
 }
 
 int CGame_Update_Hook(CGame* _this, bool haveFocus, unsigned int updateFlags)
 {
-	gCL->PreUpdate(haveFocus, updateFlags);
+	gChair->PreUpdate(haveFocus, updateFlags);
 	int result = g_CGame_Update_Hook.InvokeOrig(_this, haveFocus, updateFlags);
-	gCL->PostUpdate(haveFocus, updateFlags);
+	gChair->PostUpdate(haveFocus, updateFlags);
 	return result;
 }
 
 void CGame_Shutdown_Hook(CGame* _this)
 {
-	gCL->ShutdownGame();
+	gChair->ShutdownGame();
 	g_CGame_Shutdown_Hook.InvokeOrig(_this);
 }
 
@@ -213,7 +213,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	CryLog("ChairLoader::InitSystem");
 	CryLog("ChairLoader: gEnv = 0x%p\n", gEnv);
 
-	s_CLEnv.cl = this;
+	gCL->cl = this;
 
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
@@ -245,7 +245,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
-	s_CLEnv.conf = gConf;
+	gCL->conf = gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
 
     // Get config parameters From Config
@@ -269,15 +269,15 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
-	gui = new ChairloaderGui(&s_CLEnv);
+	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
 
 	if (m_bEditorEnabled)
 		m_pEditor = std::make_unique<Editor>();
 
-	s_CLEnv.pImGui = m_ImGui.get();
-	s_CLEnv.gui = gui;
-	s_CLEnv.entUtils = gEntUtils;
+	gCL->pImGui = m_ImGui.get();
+	gCL->gui = gui;
+	gCL->entUtils = gEntUtils;
 
 	m_pModDllManager->CallInitGame();
 }
@@ -377,7 +377,7 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 
 void ChairLoader::SmokeFormExit() {
 	if(smokeFormExited) {
-		s_CLEnv.entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+		gCL->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
 }
@@ -428,7 +428,7 @@ void ChairLoader::WaitForRenderDoc()
 }
 
 ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
-	return &s_CLEnv;
+	return gCL;
 }
 
 uintptr_t ChairLoader::GetPreyDllBase()

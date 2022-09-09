@@ -22,3 +22,4 @@
 #include <Prey/ArkEnums.h>
 #include <Prey/ArkStubs.h>
 #include <ChairLoader/PreyFunction.h>
+#include <ChairLoader/ChairloaderEnv.h>

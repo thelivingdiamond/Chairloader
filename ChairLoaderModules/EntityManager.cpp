@@ -15,8 +15,7 @@
 
 static ClassLibrary gClassLibrary;
 
-EntityManager::EntityManager(ChairloaderGlobalEnvironment* env) {
-    gCLEnv = env;
+EntityManager::EntityManager() {
     oldArchetypeFilterText = " ";
 }
 
@@ -190,7 +189,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                                        ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_TabListPopupButton)) {
                     if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
                         auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
-                        auto npc = gCLEnv->entUtils->GetArkNpc(entity);
+                        auto npc = gCL->entUtils->GetArkNpc(entity);
                         if (ImGui::BeginTabItem("Entity Details")) {
                             inspector.ShowContents(selectedEntity);
                             ImGui::EndTabItem();
@@ -284,8 +283,8 @@ void EntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Relation to selected entity: %s", getDispositionStr(IfactionManager->GetEffectiveFactionDispositionToEntity(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction))).c_str());
                             if(ImGui::Button("Set Entity to Selected Faction")){
                                 factionmanager->SetEntityFaction(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction));
-                                gCLEnv->gui->overlayLog(GetModuleName(), "Set Entity %s to Selected Faction %s", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
-//                                gCLEnv->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
+                                gCL->gui->overlayLog(GetModuleName(), "Set Entity %s to Selected Faction %s", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
+//                                gCL->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
                             }
                             ImGui::EndTabItem();
                         }
@@ -1523,11 +1522,11 @@ void EntityManager::spawnEntity() {
             usePlayerPos;
             offsetFromPlayer;
             if (usePlayerPos) {
-                if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
-                    pos = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+                if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+                    pos = gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
                     if (offsetFromPlayer) {
-                        pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
-                        pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
+                        pos.x += gCL->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
+                        pos.y += gCL->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
                         pos.z += offsetDistance[2];
 
                     } else {
@@ -1570,18 +1569,18 @@ void EntityManager::spawnEntity() {
                         // TODO: ADD ability for mods to define what their archetypes are
                         // TODO: add cystoid support
                     {
-                        auto entity = gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
+                        auto entity = gCL->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
                                                                  spawnCount, selectedSpawnerFaction);
                         if (entity != nullptr) {
                             if (selectedSpawnerFaction != 0) {
-                                gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
+                                gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
                             } else {
-                                gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
+                                gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                             }
                         }
                     } else {
-                        gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
-                        gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
+                        gCL->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                        gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                     }
                 }
                 // done
@@ -1641,21 +1640,21 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
                     // TODO: ADD ability for mods to define what their archetypes are
                     // TODO: add cystoid support
                 {
-                    gCLEnv->entUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
+                    gCL->entUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
                 } else {
-                    gCLEnv->entUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
+                    gCL->entUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
                 }
             } else {
                 throw("Error, no class found");
             }
-            gCLEnv->gui->logItem("spawned an entity: " + inputName, moduleName);
+            gCL->gui->logItem("spawned an entity: " + inputName, moduleName);
         }
         else {
             throw("Error, no archetype found");
         }
     }
     catch (std::string& c) {
-        gCLEnv->gui->logItem(c, moduleName, logLevel::error);
+        gCL->gui->logItem(c, moduleName, logLevel::error);
     }
 }
 

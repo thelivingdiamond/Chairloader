@@ -66,7 +66,7 @@ void CD3D9Renderer_InitRenderer(CD3D9Renderer* _this)
 	if (CV_r_enableauxgeom)
 	{
 		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*_this);
-		gCL->GetChairloaderEnvironment()->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
+		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
 	}
 }
 
@@ -131,7 +131,7 @@ void CD3D9Renderer_PostLevelUnload(CD3D9Renderer* _this)
 void InitRenderAuxGeomPatchHooks()
 {
 	// Editor requires aux geom
-	if (gCL->IsEditorEnabled() || gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
+	if (gChair->IsEditorEnabled() || gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
 	{
 		g_bAuxGeomEnabled = true;
 		CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);

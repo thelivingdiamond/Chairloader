@@ -9,8 +9,7 @@
 //#include <Prey/CrySystem/CryPak.h>
 #include <Prey/CrySystem/XML/IXml.h>
 
-FileBrowser::FileBrowser(ChairloaderGlobalEnvironment *env) {
-    gCLEnv = env;
+FileBrowser::FileBrowser() {
     xmlDepthSpacing = 20.0f;
 }
 
@@ -458,7 +457,7 @@ void FileBrowser::displayXmlNode(XmlNodeRef node, int depth) {
                 ImGui::TextColored(ImColor(221, 146, 33), "%s", attributeValuePtr);
                 if(ImGui::IsItemClicked()){
                     ImGui::SetClipboardText(attributeValuePtr);
-                    gCLEnv->gui->overlayLog(GetModuleName(), "Copied to Clipboard");
+                    gCL->gui->overlayLog(GetModuleName(), "Copied to Clipboard");
                 }
             }
             if(strlen(node->getContent()) != 0) {

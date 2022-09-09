@@ -15,3 +15,5 @@ struct ChairloaderGlobalEnvironment {
 	EntityUtils* entUtils;
 	IRenderAuxGeomEx* pAuxGeomEx;
 };
+
+extern ChairloaderGlobalEnvironment* gCL;

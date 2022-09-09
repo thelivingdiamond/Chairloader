@@ -215,7 +215,7 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 {
 	IChairloaderMod::ModInitInfo initInfo;
 	initInfo.pSystem = gEnv->pSystem;
-	initInfo.pChair = gCL;
+	initInfo.pChair = gChair;
 	initInfo.modDirPath = mod.modDirPath;
 	initInfo.modDllPath = mod.realDllPath;
 	initInfo.isHotReloading = isHotReloading;

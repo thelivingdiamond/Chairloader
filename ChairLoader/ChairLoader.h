@@ -101,5 +101,4 @@ public:
 	bool IsEditorEnabled() override;
 };
 
-extern ChairLoader *gCL;
-extern SSystemGlobalEnvironment *gEnv;
+extern ChairLoader* gChair;

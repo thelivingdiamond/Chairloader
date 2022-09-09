@@ -11,7 +11,7 @@
 class EntityManager
 {
 public:
-    EntityManager(ChairloaderGlobalEnvironment* env);
+    EntityManager();
     ~EntityManager();
     void Draw() ;
     void Update() ;
@@ -21,9 +21,6 @@ private:
     void drawEntityList(bool* bShow);
     void drawMenuBar();
     bool showEntitySpawner = false, showEntityList = false;
-
-    // environment *
-    ChairloaderGlobalEnvironment* gCLEnv = nullptr;
 
     const std::string moduleName = "EntityManager";
 
