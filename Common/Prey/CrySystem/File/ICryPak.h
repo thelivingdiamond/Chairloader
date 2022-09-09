@@ -10,6 +10,177 @@ struct ICryPakFileAcesssSink;
 struct IMemoryBlock;
 struct IResourceList;
 
+struct IResourceList;
+struct _finddata_t;
+struct IMemoryBlock;
+
+//! \cond INTERNAL
+//! This represents one particular archive filcare.
+struct ICryArchive : public _reference_target_t
+{
+    //! Compression methods.
+    enum ECompressionMethods
+    {
+        METHOD_STORE                = 0,
+        METHOD_COMPRESS             = 8,
+        METHOD_DEFLATE              = 8,
+        METHOD_COMPRESS_AND_ENCRYPT = 11
+    };
+
+    //! Compression levels.
+    enum ECompressionLevels
+    {
+        LEVEL_FASTEST = 0,
+        LEVEL_FASTER  = 2,
+        LEVEL_NORMAL  = 8,
+        LEVEL_BETTER  = 8,
+        LEVEL_BEST    = 9,
+        LEVEL_DEFAULT = -1
+    };
+
+    enum EPakFlags : uint32
+    {
+        //! Support for absolute and other complex path specifications.
+        //! All paths will be treated relatively to the current directory (normally MasterCD).
+        FLAGS_ABSOLUTE_PATHS = BIT(0),
+
+        //! If this is set, the object will only understand relative to the zip file paths.
+        //! However, this can give an opportunity to optimize for frequent quick accesses.
+        //! FLAGS_SIMPLE_RELATIVE_PATHS and FLAGS_ABSOLUTE_PATHS are mutually exclusive.
+        FLAGS_RELATIVE_PATHS_ONLY = BIT(1),
+
+        //! If this flag is set, the archive update/remove operations will not work.
+        //! This is useful when you open a read-only or already opened for reading files.
+        //! If FLAGS_OPEN_READ_ONLY | FLAGS_SIMPLE_RELATIVE_PATHS are set, ICryPak
+        //! will try to return an object optimized for memory, with long life cycle.
+        FLAGS_READ_ONLY = BIT(2),
+
+        //! If this flag is set, FLAGS_OPEN_READ_ONLY flags are also implied.
+        //! The returned object will be optimized for quick access and memory footprint.
+        FLAGS_OPTIMIZED_READ_ONLY = BIT(3),
+
+        //! If this is set, the existing file (if any) will be overwritten.
+        FLAGS_CREATE_NEW = BIT(4),
+
+        //! If this flag is set, and the file is opened for writing, and some files were updated
+        //! so that the archive is no more continuous, the archive will nevertheless NOT be compacted
+        //! upon closing the archive file. This can be faster if you open/close the archive for writing
+        //! multiple times.
+        FLAGS_DONT_COMPACT = BIT(5),
+
+        //! Flag is set when complete pak has been loaded into memory.
+        FLAGS_IN_MEMORY      = BIT(6),
+        FLAGS_IN_MEMORY_CPU  = BIT(7),
+        FLAGS_IN_MEMORY_MASK = FLAGS_IN_MEMORY | FLAGS_IN_MEMORY_CPU,
+
+        //! Store all file names as crc32 in a flat directory structure.
+        FLAGS_FILENAMES_AS_CRC32 = BIT(8),
+
+        //! Flag is set when pak is stored on HDD.
+        FLAGS_ON_HDD = BIT(9),
+
+        //! Override pak - paks opened with this flag go at the end of the list and contents will be found before other paks.
+        //! Used for patching.
+        FLAGS_OVERRIDE_PAK = BIT(10),
+
+        //! Disable a pak file without unloading it, this flag is used in combination with patches and multiplayer
+        //! to ensure that specific paks stay in the position(to keep the same priority) but being disabled
+        //! when running multiplayer.
+        FLAGS_DISABLE_PAK = BIT(11),
+    };
+
+    typedef void* Handle;
+
+    // <interfuscator:shuffle>
+    virtual ~ICryArchive(){}
+
+    struct IEnumerateArchiveEntries
+    {
+        virtual bool OnEnumArchiveEntry(const char* pFilename, Handle hEntry, bool bIsFolder, int aSize, int64 aModifiedTime) = 0;
+        virtual ~IEnumerateArchiveEntries(){}
+    };
+
+    //! Enumerate the file entries found in the specified folder.
+    //! \return The number of entries.
+    virtual int EnumEntries(Handle hFolder, IEnumerateArchiveEntries* pEnum) = 0;
+
+    //! Get archive's root folder.
+    virtual Handle GetRootFolderHandle() = 0;
+
+    //! Adds a new file to the zip or update an existing one.
+    //! Adds a directory (creates several nested directories if needed)
+    //! compression methods supported are METHOD_STORE == 0 (store) and
+    //! METHOD_DEFLATE == METHOD_COMPRESS == 8 (deflate) , compression
+    //! level is LEVEL_FASTEST == 0 till LEVEL_BEST == 9 or LEVEL_DEFAULT == -1
+    //! for default (like in zlib)
+    virtual int UpdateFile(const char* szRelativePath, void* pUncompressed, unsigned nSize, unsigned nCompressionMethod = 0, int nCompressionLevel = -1) = 0;
+
+    //! Adds a new file to the zip or update an existing one if it is not compressed - just stored  - start a big file
+    //! ( name might be misleading as if nOverwriteSeekPos is used the update is not continuous )
+    //! First step for the UpdateFileConinouseSegment
+    virtual int StartContinuousFileUpdate(const char* szRelativePath, unsigned nSize) = 0;
+
+    //! Adds a new file to the zip or update an existing's segment if it is not compressed - just stored.
+    //! Adds a directory (creates several nested directories if needed)
+    //! \note The name might be misleading as if nOverwriteSeekPos is used the update is not continuous.
+    //! \param nOverwriteSeekPos 0xffffffff means the seek pos should not be overwritten (then it needs UpdateFileCRC() to update CRC).
+    virtual int UpdateFileContinuousSegment(const char* szRelativePath, unsigned nSize, void* pUncompressed, unsigned nSegmentSize, unsigned nOverwriteSeekPos = 0xffffffff) = 0;
+
+    //! Needed to update CRC if UpdateFileContinuousSegment() was used with nOverwriteSeekPos.
+    virtual int UpdateFileCRC(const char* szRelativePath, const uint32 dwCRC) = 0;
+
+    //! Deletes the file from the archive.
+    virtual int RemoveFile(const char* szRelativePath) = 0;
+
+    //! Deletes the directory, with all its descendants (files and subdirs).
+    virtual int RemoveDir(const char* szRelativePath) = 0;
+
+    //! Deletes all files and directories in the archive.
+    virtual int RemoveAll() = 0;
+
+    //! Finds the file; you don't have to close the returned handle.
+    //! \return NULL if the file doesn't exist
+    virtual Handle FindFile(const char* szPath) = 0;
+
+    //! Get the file size (uncompressed).
+    //! \return The size of the file (unpacked) by the handle
+    virtual unsigned GetFileSize(Handle) = 0;
+
+    //! Reads the file into the preallocated buffer
+    //! \note Must be at least the size returned by GetFileSize.
+    virtual int ReadFile(Handle, void* pBuffer) = 0;
+
+    //! Get the full path to the archive file.
+    virtual const char* GetFullPath() const = 0;
+
+    //! Get the flags of this object.
+    //! The possibles flags are defined in EPakFlags.
+    virtual unsigned GetFlags() const = 0;
+
+    //! Sets the flags of this object.
+    //! The possibles flags are defined in EPakFlags.
+    virtual bool SetFlags(unsigned nFlagsToSet) = 0;
+
+    //! Resets the flags of this object.
+    virtual bool ResetFlags(unsigned nFlagsToSet) = 0;
+
+    //! Control if files in this pack can be accessed
+    //! \return true if archive state was changed
+    virtual bool SetPackAccessible(bool bAccessible) = 0;
+
+    //! Determines if the archive is read only.
+    //! \return true if this archive is read-only
+    inline bool IsReadOnly() const { return (GetFlags() & FLAGS_READ_ONLY) != 0; }
+
+    //! Get the class id.
+    virtual unsigned GetClassId() const = 0;
+
+    //! Collect allocated memory in CrySizer
+    virtual void GetMemoryUsage(ICrySizer* pSizer) const = 0;
+    // </interfuscator:shuffle>
+};
+
+
 // Header: MadeUp
 // _unknown/ICryPak.h
 struct ICryPak // Id=800062E Size=8
@@ -143,8 +314,8 @@ struct ICryPak // Id=800062E Size=8
     virtual void GetCachedPakCDROffsetSize(const char *arg0, unsigned &arg1, unsigned &arg2) = 0;
     virtual ICryPak::PakInfo *GetPakInfo() = 0;
     virtual void FreePakInfo(ICryPak::PakInfo *arg0) = 0;
-    virtual _iobuf *FOpen(const char *arg0, const char *arg1, unsigned arg2) = 0;
-    virtual _iobuf *FOpen(const char *arg0, const char *arg1, char *arg2, int arg3) = 0;
+    virtual FILE* FOpen(const char* pName, const char* mode, unsigned nFlags = 0) = 0;
+    virtual FILE* FOpen(const char* pName, const char* mode, char* szFileGamePath, int nLen) = 0;
     virtual _iobuf *FOpenRaw(const char *arg0, const char *arg1) = 0;
     virtual uint64_t FReadRaw(void *arg0, uint64_t arg1, uint64_t arg2, _iobuf *arg3) = 0;
     virtual uint64_t FReadRawAll(void *arg0, uint64_t arg1, _iobuf *arg2) = 0;
@@ -180,8 +351,14 @@ struct ICryPak // Id=800062E Size=8
     virtual int64_t GetFileSizeOnDisk(const char *arg0) = 0;
     virtual bool IsFileCompressed(const char *arg0) = 0;
     virtual bool MakeDir(const char *arg0, bool arg1) = 0;
-    virtual ICryArchive *OpenArchive(const char *arg0, unsigned arg1, IMemoryBlock *arg2) = 0;
-    virtual const char *GetFileArchivePath(_iobuf *arg0) = 0;
+    //! Open the physical archive file - creates if it doesn't exist.
+    //! nFlags is a combination of flags from EPakFlags enum.
+    //! \return NULL if it's invalid or can't open the file.
+    //! \see EPakFlags
+    virtual ICryArchive* OpenArchive(const char* szPath, unsigned int nFlags = 0, IMemoryBlock* pData = 0) = 0;
+    //! Returns the path to the archive in which the file was opened.
+    //! \return NULL if the file is a physical file, and "" if the path to archive is unknown (shouldn't ever happen).
+    virtual const char* GetFileArchivePath(FILE* f) = 0;;
     virtual int RawCompress(const void *arg0, unsigned long *arg1, void *arg2, unsigned long arg3, int arg4) = 0;
     virtual int RawUncompress(void *arg0, unsigned long *arg1, const void *arg2, unsigned long arg3) = 0;
     virtual void RecordFileOpen(ICryPak::ERecordFileOpenList arg0) = 0;

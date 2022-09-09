@@ -17,7 +17,7 @@ FileBrowser::FileBrowser(ChairloaderGlobalEnvironment *env) {
 void FileBrowser::Draw() {
     drawMenuBar();
     drawFileBrowser();
-    drawFileEditor();
+    drawFileViewer();
     for(int i = 0; i < openFiles.size(); i++) {
         if(!openFiles.at(i).open) {
             openFiles.erase(openFiles.begin() + i);
@@ -76,10 +76,45 @@ void FileBrowser::drawFileBrowser() {
                 }
             }
             auto pakInfo = gEnv->pCryPak->GetPakInfo();
+            ImGui::Text("Pak Open Flags");
+            // ICryArchive::EPakFlags::
+//            FLAGS_ABSOLUTE_PATHS  FLAGS_RELATIVE_PATHS_ONLY  FLAGS_READ_ONLY  FLAGS_OPTIMIZED_READ_ONLY  FLAGS_CREATE_NEW  FLAGS_DONT_COMPACT  FLAGS_IN_MEMORY       FLAGS_IN_MEMORY_CPU   FLAGS_FILENAMES_AS_CRC32  FLAGS_ON_HDD  FLAGS_OVERRIDE_PAK  FLAGS_DISABLE_PAK = BIT(11),
+            static bool FLAGS_ABSOLUTE_PATHS= false, FLAGS_RELATIVE_PATHS_ONLY= false, FLAGS_READ_ONLY= false, FLAGS_OPTIMIZED_READ_ONLY= false, FLAGS_CREATE_NEW= false, FLAGS_DONT_COMPACT= false, FLAGS_IN_MEMORY= false, FLAGS_IN_MEMORY_CPU= false, FLAGS_FILENAMES_AS_CRC32= false, FLAGS_ON_HDD= false, FLAGS_OVERRIDE_PAK= false, FLAGS_DISABLE_PAK;
+            ImGui::Checkbox("FLAGS_ABSOLUTE_PATHS", &FLAGS_ABSOLUTE_PATHS);
+            ImGui::Checkbox("FLAGS_RELATIVE_PATHS_ONLY", &FLAGS_RELATIVE_PATHS_ONLY);
+            ImGui::Checkbox("FLAGS_READ_ONLY", &FLAGS_READ_ONLY);
+            ImGui::Checkbox("FLAGS_OPTIMIZED_READ_ONLY", &FLAGS_OPTIMIZED_READ_ONLY);
+            ImGui::Checkbox("FLAGS_CREATE_NEW", &FLAGS_CREATE_NEW);
+            ImGui::Checkbox("FLAGS_DONT_COMPACT", &FLAGS_DONT_COMPACT);
+            ImGui::Checkbox("FLAGS_IN_MEMORY", &FLAGS_IN_MEMORY);
+            ImGui::Checkbox("FLAGS_IN_MEMORY_CPU", &FLAGS_IN_MEMORY_CPU);
+            ImGui::Checkbox("FLAGS_FILENAMES_AS_CRC32", &FLAGS_FILENAMES_AS_CRC32);
+            ImGui::Checkbox("FLAGS_ON_HDD", &FLAGS_ON_HDD);
+            ImGui::Checkbox("FLAGS_OVERRIDE_PAK", &FLAGS_OVERRIDE_PAK);
+            ImGui::Checkbox("FLAGS_DISABLE_PAK", &FLAGS_DISABLE_PAK);
+            auto archiveFlags =
+                      (FLAGS_ABSOLUTE_PATHS ? ICryArchive::EPakFlags::FLAGS_ABSOLUTE_PATHS : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_RELATIVE_PATHS_ONLY ? ICryArchive::EPakFlags::FLAGS_RELATIVE_PATHS_ONLY : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_READ_ONLY ? ICryArchive::EPakFlags::FLAGS_READ_ONLY : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_OPTIMIZED_READ_ONLY ? ICryArchive::EPakFlags::FLAGS_OPTIMIZED_READ_ONLY : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_CREATE_NEW ? ICryArchive::EPakFlags::FLAGS_CREATE_NEW : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_DONT_COMPACT ? ICryArchive::EPakFlags::FLAGS_DONT_COMPACT : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_IN_MEMORY ? ICryArchive::EPakFlags::FLAGS_IN_MEMORY : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_IN_MEMORY_CPU ? ICryArchive::EPakFlags::FLAGS_IN_MEMORY_CPU : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_FILENAMES_AS_CRC32 ? ICryArchive::EPakFlags::FLAGS_FILENAMES_AS_CRC32 : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_ON_HDD ? ICryArchive::EPakFlags::FLAGS_ON_HDD : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_OVERRIDE_PAK ? ICryArchive::EPakFlags::FLAGS_OVERRIDE_PAK : (ICryArchive::EPakFlags)0)
+                    | (FLAGS_DISABLE_PAK ? ICryArchive::EPakFlags::FLAGS_DISABLE_PAK : (ICryArchive::EPakFlags)0);
             if (ImGui::CollapsingHeader("Paks")) {
                 for (int i = 0; i < pakInfo->numOpenPaks; i++) {
-                    ImGui::Text("%s", pakInfo->arrPaks[i].szFilePath);
-                    ImGui::Text("%s", pakInfo->arrPaks[i].szBindRoot);
+                    auto archive = gEnv->pCryPak->OpenArchive(pakInfo->arrPaks[i].szFilePath, archiveFlags);
+                    if( archive){
+                        ImGui::Text("%s: %d", pakInfo->arrPaks[i].szFilePath, archive->IsReadOnly());
+                    } else {
+                        ImGui::Text("%s: NOT OPENED", pakInfo->arrPaks[i].szFilePath);
+                    }
+
+//                    ImGui::Text("%s", pakInfo->arrPaks[i].szBindRoot);
                 }
                 gEnv->pSystem->GetPerfHUD();
             }
@@ -122,7 +157,7 @@ void FileBrowser::drawFileBrowser() {
                 filePaths.clear();
                 ScanDirectory(currentPath, fileFilter, files, filePaths);
                 for(int i = 0; i < files.size(); i++){
-                    filePairs.push_back(std::make_pair(files[i], filePaths[i]));
+                    filePairs.emplace_back(std::make_pair(files[i], filePaths[i]));
                 }
                 RefreshFileList = false;
             }
@@ -223,7 +258,7 @@ void FileBrowser::drawMenuBar() {
     if(ImGui::BeginMainMenuBar()){
         if(ImGui::BeginMenu("File Browser")) {
             ImGui::MenuItem("Show File Browser", NULL, &showFileBrowser);
-            ImGui::MenuItem("Show File Editor", NULL, &showFileEditor);
+            ImGui::MenuItem("Show File Viewer", NULL, &showFileViewer);
 #ifdef DEBUG_BUILD
     ImGui::MenuItem("Debug", NULL, &showFileBrowserDebug);
 #endif
@@ -336,14 +371,21 @@ void FileBrowser::goUpDirectory() {
     RefreshFileList = true;
 }
 
-void FileBrowser::drawFileEditor() {
-    if(showFileEditor){
+void FileBrowser::drawFileViewer() {
+    if(showFileViewer){
         ImGui::SetNextWindowBgAlpha(1.0f);
-        if(ImGui::Begin("File Editor", &showFileEditor)){
+        if(ImGui::Begin("File Viewer", &showFileViewer, ImGuiWindowFlags_MenuBar)){
+            if(ImGui::BeginMenuBar()){
+                if(ImGui::BeginMenu("File")){
+
+                    ImGui::EndMenu();
+                }
+                ImGui::EndMenuBar();
+            }
             auto barFlags = ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll /*| ImGuiTabBarFlags_AutoSelectNewTabs*/ | ImGuiTabBarFlags_TabListPopupButton;
 //            if(openFiles.size() > 1)
 //                barFlags |= ImGuiTabBarFlags_AutoSelectNewTabs;
-            if(ImGui::BeginTabBar("File Editor Tabs", barFlags )){
+            if(ImGui::BeginTabBar("File Viewer Tabs", barFlags )){
                 for(auto &file : openFiles){
                     displayXmlFile(file);
                 }
@@ -352,7 +394,6 @@ void FileBrowser::drawFileEditor() {
         }
         ImGui::End();
     }
-
 }
 
 void FileBrowser::openFile(std::string path) {
@@ -362,15 +403,16 @@ void FileBrowser::openFile(std::string path) {
             openFiles.emplace_back(openXmlFile{path, xmlFile});
         }
     }
-    if (!showFileEditor) {
-        showFileEditor = true;
+    if (!showFileViewer) {
+        showFileViewer = true;
     }
 }
 
 void FileBrowser::displayXmlFile(openXmlFile& file) {
     bool open = true;
     if(ImGui::BeginTabItem(file.path.c_str(), &open)){
-        if(ImGui::BeginChild("File Editor Child", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar)) {
+        currentViewingFile = file;
+        if(ImGui::BeginChild("File Viewer Child", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar)) {
             if (file.xml) {
                 displayXmlNode(file.xml, 0);
             }

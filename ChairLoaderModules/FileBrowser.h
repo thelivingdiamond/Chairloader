@@ -20,14 +20,14 @@ public:
     std::string GetModuleName() { return moduleName; };
 private:
     void drawFileBrowser();
-    void drawFileEditor();
+    void drawFileViewer();
     void drawMenuBar();
     bool recursiveNodeDisplay(std::string parentPath);
     void goUpDirectory();
     bool RefreshFileList = true;
     bool showFileBrowserDebug = false;
     bool showFileBrowser = false;
-    bool showFileEditor = false;
+    bool showFileViewer = false;
     bool showSideBar = true;
     std::string currentPath;
     std::string fileFilter = "*";
@@ -46,6 +46,7 @@ private:
     float xmlDepthSpacing = 0.0f;
     void displayXmlFile(openXmlFile& file);
     void displayXmlNode(XmlNodeRef node, int depth);
+    openXmlFile currentViewingFile;
     std::vector<openXmlFile> openFiles;
 
 
