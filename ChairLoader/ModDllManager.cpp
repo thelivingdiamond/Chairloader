@@ -8,9 +8,10 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	ModuleInfo info;
 	info.modName = boost::get<std::string>(gConf->getNodeConfigValue(xmlNode, "modName"));
 	info.loadOrder = boost::get<int>(gConf->getNodeConfigValue(xmlNode, "loadOrder"));
+	info.modDirPath = fs::current_path() / "Mods" / fs::u8path(info.modName);
 
 	fs::path dllName = fs::u8path(boost::get<std::string>(gConf->getNodeConfigValue(xmlNode, "dllName")));
-	info.sourceDllPath = fs::current_path() / "Mods" / fs::u8path(info.modName) / dllName;
+	info.sourceDllPath = info.modDirPath / dllName;
 
 	gConf->loadModConfigFile(info.modName);
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
@@ -39,14 +40,30 @@ void ModDllManager::UnloadModules()
 
 void ModDllManager::CallInitSystem()
 {
+	IChairloaderMod::ModInitInfo initInfo;
+	initInfo.pSystem = gEnv->pSystem;
+	initInfo.pChair = gCL;
+
 	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
-		it->pModIface->InitSystem(gEnv->pSystem, gCL->GetModuleBase());
+	{
+		initInfo.modDirPath = it->modDirPath;
+		initInfo.modDllPath = it->sourceDllPath;
+
+		it->dllInfo = IChairloaderMod::ModDllInfo();
+		it->pModIface->InitSystem(initInfo, it->dllInfo);
+
+		if (it->dllInfo.thisStructSize == 0)
+			CryFatalError("[ModDllManager] %s: dllInfo is not initialized", it->modName.c_str());
+
+		if (it->modName != it->dllInfo.modName)
+			CryWarning("[ModDllManager] %s: Name mismatch. DLL says \"%s\"", it->modName.c_str(), it->dllInfo.modName);
+	}
 }
 
 void ModDllManager::CallInitGame()
 {
 	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
-		it->pModIface->InitGame(gCL->GetFramework(), gCL);
+		it->pModIface->InitGame();
 }
 
 void ModDllManager::CallPreUpdate()
@@ -83,7 +100,7 @@ void ModDllManager::LoadModule(Module& mod)
 {
 	CRY_ASSERT(!mod.hModule);
 	
-	CryLog("ModDllManager: Loading %s", mod.sourceDllPath.u8string().c_str());
+	CryLog("[ModDllManager] Loading %s", mod.sourceDllPath.u8string().c_str());
 	mod.hModule = ::LoadLibraryW(mod.sourceDllPath.c_str());
 	if (!mod.hModule)
 		CryFatalError("%s\nFailed to load the DLL.\n%s", mod.modName.c_str(), mod.sourceDllPath.u8string().c_str());

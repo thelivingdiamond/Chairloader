@@ -96,6 +96,7 @@ public:
     //! get key names map. Useful for config purposes
     const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
+	uintptr_t GetPreyDllBase() override;
     std::string getKeyBind(std::string action) override;
 	bool IsEditorEnabled() override;
 };

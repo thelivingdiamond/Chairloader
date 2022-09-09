@@ -40,6 +40,9 @@ private:
 		//! The load order.
 		int loadOrder;
 
+		//! Path to the mod's directory.
+		fs::path modDirPath;
+
 		//! Path to the mod's DLL.
 		fs::path sourceDllPath;
 	};
@@ -59,6 +62,9 @@ private:
 		
 		//! The mod interface.
 		IChairloaderMod* pModIface = nullptr;
+
+		//! Info returned by the DLL
+		IChairloaderMod::ModDllInfo dllInfo;
 	};
 
 	//! List of registered mods sorted by load order.

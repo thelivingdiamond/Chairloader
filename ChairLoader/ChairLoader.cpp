@@ -429,6 +429,11 @@ ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
 	return &s_CLEnv;
 }
 
+uintptr_t ChairLoader::GetPreyDllBase()
+{
+	return GetModuleBase();
+}
+
 //! this function is needed because bimaps don't handle static initialization very well
 void ChairLoader::LoadKeyNames() {
     //eKI_Escape = 0x0, eKI_1 = 0x1, eKI_2 = 0x2, eKI_3 = 0x3, eKI_4 = 0x4, eKI_5 = 0x5, eKI_6 = 0x6, eKI_7 = 0x7, eKI_8 = 0x8, eKI_9 = 0x9, eKI_0 = 0xA, eKI_Minus = 0xB, eKI_Equals = 0xC, eKI_Backspace = 0xD, eKI_Tab = 0xE, eKI_Q = 0xF, eKI_W = 0x10, eKI_E = 0x11, eKI_R = 0x12, eKI_T = 0x13, eKI_Y = 0x14, eKI_U = 0x15, eKI_I = 0x16, eKI_O = 0x17, eKI_P = 0x18, eKI_LBracket = 0x19, eKI_RBracket = 0x1A, eKI_Enter = 0x1B, eKI_LCtrl = 0x1C, eKI_A = 0x1D, eKI_S = 0x1E, eKI_D = 0x1F, eKI_F = 0x20, eKI_G = 0x21, eKI_H = 0x22, eKI_J = 0x23, eKI_K = 0x24, eKI_L = 0x25, eKI_Semicolon = 0x26,

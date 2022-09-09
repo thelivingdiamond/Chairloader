@@ -11,13 +11,36 @@ struct IChairloaderMod {
 	using ProcInitialize = IChairloaderMod* ();
 	using ProcShutdown = void ();
 
+	//! Data needed to initialize mods.
+	struct ModInitInfo
+	{
+		ISystem* pSystem = nullptr;
+		IChairloader* pChair = nullptr;
+		fs::path modDirPath; //!< Path to the mod directory in "Mods"
+		fs::path modDllPath; //!< Path to the loaded DLL
+	};
+
+	//! Mod info that depends on the DLL.
+	struct ModDllInfo
+	{
+		//! The size of this struct. Used for versioning.
+		size_t thisStructSize = 0;
+
+		//! Full name of the mod. Must match the name in the XML. Must be valid for
+		//! the whole duration the mod is loaded.
+		const char* modName = nullptr;
+
+		//! Whether the mod supports hot-reloading. Check the wiki for details.
+		bool supportsHotReload = false;
+	};
+
 	~IChairloaderMod() {}
 
 	//! Called during CSystem::Init, before any engine modules.
-	virtual void InitSystem(ISystem* pSystem, uintptr_t moduleBase) = 0;
+	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) = 0;
 	
 	//! Called after CGame::Init
-	virtual void InitGame(IGameFramework* pFramework, IChairloader* chairloader) = 0;
+	virtual void InitGame() = 0;
 
 	//! Called before CGame::Update to handle any GUI elements
 	virtual void Draw() = 0;
@@ -33,9 +56,6 @@ struct IChairloaderMod {
 
 	//! Called before CSystem::Shutdown.
 	virtual void ShutdownSystem() = 0;
-
-	virtual std::string GetModName() = 0;
-
 };
 
 

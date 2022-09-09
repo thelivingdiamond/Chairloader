@@ -33,9 +33,11 @@ static bool ArkPlayer_HasAbility_Hook(ArkPlayer* _this, uint64_t _abilityID)
 
 #endif
 
-std::string ModMain::GetModName()
+void ModMain::FillModInfo(ModDllInfo& info)
 {
-	return "ExampleMod"; // CHANGE ME
+	info.thisStructSize = sizeof(ModDllInfo);
+	info.modName = "TheChair.ExampleMod"; // CHANGE ME
+	info.supportsHotReload = false; // TODO: Add comment/wiki link
 }
 
 void ModMain::InitHooks()
@@ -51,15 +53,15 @@ void ModMain::InitHooks()
 #endif
 }
 
-void ModMain::InitSystem(ISystem* pSystem, uintptr_t moduleBase)
+void ModMain::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
-	BaseClass::InitSystem(pSystem, moduleBase);
+	BaseClass::InitSystem(initInfo, dllInfo);
 	// Your code goes here
 }
 
-void ModMain::InitGame(IGameFramework* pFramework, IChairloader* chairloader)
+void ModMain::InitGame()
 {
-	BaseClass::InitGame(pFramework, chairloader);
+	BaseClass::InitGame();
 	// Your code goes here
 }
 
@@ -71,7 +73,7 @@ void ModMain::Draw()
 		const char* text = !state ? "That Heavy is dead!" : "Yes! He died!";
 		ImGui::Text(text);
 
-		if (ImGui::Button("The heavy is dead???"))
+		if (ImGui::Button("The Heavy is dead???"))
 		{
 			state = !state;
 		}

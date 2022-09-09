@@ -5,19 +5,19 @@ class ModMain : public ChairloaderModBase
 {
 	using BaseClass = ChairloaderModBase;
 
-	//! @returns the name of the mod
-	virtual std::string GetModName() override;
+	//! Fills in the DLL info during initialization.
+	virtual void FillModInfo(ModDllInfo& info) override;
 
 	//! Initializes function hooks before they are installed.
 	virtual void InitHooks() override;
 
 	//! Called during CSystem::Init, before any engine modules.
 	//! Call order: TODO
-	virtual void InitSystem(ISystem* pSystem, uintptr_t moduleBase) override;
+	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) override;
 
 	//! Called after CGame::Init
 	//! Call order: TODO
-	virtual void InitGame(IGameFramework* pFramework, IChairloader* chairloader) override;
+	virtual void InitGame() override;
 
 	//! Called before CGame::Update to handle any GUI elements
 	virtual void Draw() override;
