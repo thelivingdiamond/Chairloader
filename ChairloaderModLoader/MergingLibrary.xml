@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!--    valid identification policies:-->
+<!--valid identification policies:-->
 <!--    - "ovewrite" (default): will not do any merging, instead overwriting files in the directory-->
 <!--    - "match_attribute": will merge nodes by matching attribute values-->
 <!--         * child attribute node required in order to identify which attribute to match by-->
+<!--         * additional match_all parameter will force nodes to march all given parameters-->
 <!--    - "match_tag": will merge nodes by matching tag values-->
 <!--    - "match_contents": will merge nodes by matching the text contents of a node-->
+
+<!--additional notes:-->
+<!--    merge_attributes will overwrite attributes on any node. This is used if a root node has attributes-->
 <root>
     <mergingPolicy identification_policy="overwrite"/>
     <Ark>
+        <mergingPolicy identification_policy="overwrite"/>
         <AI>
             <AiDistractors>
                 <mergingPolicy identification_policy="match_attribute">
@@ -205,5 +210,453 @@
                 </mergingPolicy>
             </LootTables.xml>
         </Items>
+        <Npc>
+            <mergingPolicy identification_policy="overwrite"/>
+            <NpcAbilities.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcAbilities merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcAbilities.xml>
+            <NpcAbilityContextProfiles.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcAbilityContextProfiles merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcAbilityContextProfiles.xml>
+            <NpcAbilityContexts.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcAbilityContexts merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcAbilityContexts.xml>
+            <NpcGameEffects.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcGameEffects merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcGameEffects.xml>
+        </Npc>
+        <Perception>
+            <mergingPolcy identification_policy="overwrite"/>
+        </Perception>
+        <Player>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+            <AimAssistConfig.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <AimAssistConfig merge_attributes="true">
+                            <Entities merge_children="true"/>
+                        </AimAssistConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AimAssistConfig.xml>
+            <FocusModeProperties.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <ArkFocusModeComponentProperties merge_attributes="true" merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </FocusModeProperties.xml>
+            <playerConfig.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <PlayerConfig merge_attributes="true" merge_children="true">
+                            <Stats merge_children="true" identification_policy="match_attribute">
+                                <attribute name="name" priority="0"/>
+                            </Stats>
+                        </PlayerConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </playerConfig.xml>
+            <playerSignalReceiverConfig.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <attribute name="id" priority="1"/>
+                    <nodeStructure>
+                        <root merge_attributes="true" merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </playerSignalReceiverConfig.xml>
+            <PsiMode.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <Config merge_attributes="true" merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </PsiMode.xml>
+            <PsiScanningConfig>
+                <mergingPolicy identification_policy="overwrite"/>
+            </PsiScanningConfig>
+            <TargetSelectionConfig.xml>
+                <mergingPolicy>
+                    <nodeStructure>
+                        <TargetSelectionConfig>
+                            <InteractionBehavior merge_children="true" identification_policy="match_attribute">
+                                <attribute name="name" priority="0"/>
+                            </InteractionBehavior>
+                            <TargetPriority merge_children="true" identification_policy="match_attribute">
+                                <attribute name="priority" priority="0"/>
+                                <attribute name="value" priority="1"/>
+                            </TargetPriority>
+                        </TargetSelectionConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </TargetSelectionConfig.xml>
+            <Traumas.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <ArkTraumas>
+                            <Traumas merge_children="true"/>
+                        </ArkTraumas>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Traumas.xml>
+        </Player>
+        <SignalSystem>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </SignalSystem>
+        <Vision>
+            <VisionCones.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <VisionCones merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </VisionCones.xml>
+        </Vision>
+        <VisualEffects>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+            <CharacterAttachmentEffects.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Id" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <ArkCharacerEffects>
+                            <Effects merge_children="true"/>
+                        </ArkCharacerEffects>
+                    </nodeStructure>
+                </mergingPolicy>
+            </CharacterAttachmentEffects.xml>
+            <MaterialAnimations.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Id" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <ArkMaterialAnimations>
+                            <Animations merge_children="true"/>
+                        </ArkMaterialAnimations>
+                    </nodeStructure>
+                </mergingPolicy>
+            </MaterialAnimations.xml>
+        </VisualEffects>
+        <WeaponMods>
+            <ArkWeaponMods.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <_wildcard_>
+                            <_wildcard_ merge_children="true"/>
+                        </_wildcard_>
+                    </nodeStructure>
+                </mergingPolicy>
+            </ArkWeaponMods.xml>
+            <Config.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                       <WeaponConfig>
+                           <Weapons merge_children="true"/>
+                           <Stats merge_children="true"/>
+                       </WeaponConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Config.xml>
+        </WeaponMods>
+        <AreaTriggeringClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </AreaTriggeringClasses.xml>
+        <ArkCameraShakes.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <ArkCameraShakeLibrary>
+                        <CameraShakes merge_children="true"/>
+                        <Channels merge_children="true"/>
+                    </ArkCameraShakeLibrary>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkCameraShakes.xml>
+        <ArkEventDrivenAchievementLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkEventDrivenAchievementLibrary.xml>
+        <ArkFactions.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <ArkFactions>
+                        <Factions merge_children="true"/>
+                        <Dispositions merge_children="true" identification_policy="match_attribute" match_all="true">
+                            <attribute name="fromFactionId" priority="0"/>
+                            <attribute name="toFactionId" priority="1"/>
+                        </Dispositions>
+                    </ArkFactions>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkFactions.xml>
+        <ArkInstigationConfig.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="value" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkInstigationConfig.xml>
+        <ArkIronsightsTargetClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkIronsightsTargetClasses.xml>
+        <ArkMetaTags.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkMetaTags.xml>
+        <ArkMetricsGameTokenList.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="Value" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkMetricsGameTokenList.xml>
+        <ArkOverrideRecycleClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkOverrideRecycleClasses.xml>
+        <ArkOverrideTargetClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkOverrideTargetClasses.xml>
+        <ArkProjectilePoolDefinitions.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ArchetypeName" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkProjectilePoolDefinitions.xml>
+        <ArkPropertyProfiles.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <ArkPropertyProfileLibrary>
+                        <DisruptionProfiles merge_children="true"/>
+                        <LightDisruptionProfiles merge_children="true"/>
+                    </ArkPropertyProfileLibrary>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkPropertyProfiles.xml>
+        <ArkRewards.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <ArkRewards>
+                        <Trackables merge_children="true"/>
+                        <Rewards merge_children="true"/>
+                    </ArkRewards>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkRewards.xml>
+        <EmotionLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </EmotionLibrary.xml>
+        <EntitlementLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </EntitlementLibrary.xml>
+        <EntitlementUnlockLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </EntitlementUnlockLibrary.xml>
+        <Game.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <Game>
+                        <Collision merge_attributes="true">
+                            <Leverages merge_children="true"/>
+                            <SelfDamagingClasses merge_children="true"/>
+                        </Collision>
+                        <Levels merge_children="true" identification_policy="match_attribute">
+                            <attribute name="Level" priority="0"/>
+                        </Levels>
+                        <GlassBreakingClasses merge_children="true"/>
+                        <NonGlassBreakingClasses merge_children="true"/>
+                        <GlassBreakingAudio merge_children="true" identification_policy="match_attribute">
+                            <attribute name="controlId" priority="0"/>
+                        </GlassBreakingAudio>
+                        <LevelIntro merge_node="true"/>
+                        <QuickLoad merge_node="true"/>
+                        <CaptureVolumeWhiteList merge_children="true"/>
+                    </Game>
+                </nodeStructure>
+            </mergingPolicy>
+        </Game.xml>
+        <GameNoises.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <ArkGameNoises>
+                        <Types merge_children="true"/>
+                        <Loudnesses merge_children="true"/>
+                    </ArkGameNoises>
+                </nodeStructure>
+            </mergingPolicy>
+        </GameNoises.xml>
+        <Hacking.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <nodeStructure>
+                    <ArkHacking merge_attributes="true">
+                        <HackingAbilities merge_children="true"/>
+                        <DifficultyLevels merge_children="true" identification_policy="overwrite"/>
+                        <ObstacleTypes merge_children="true" identification_policy="overwrite"/>
+                    </ArkHacking>
+                </nodeStructure>
+            </mergingPolicy>
+        </Hacking.xml>
+        <RemoteEventLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </RemoteEventLibrary.xml>
+        <TipLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <ArkTipLibrary>
+                        <Tips merge_children="true"/>
+                        <Locks merge_children="true"/>
+                        <Sequences merge_children="true"/>
+                    </ArkTipLibrary>
+                </nodeStructure>
+            </mergingPolicy>
+        </TipLibrary.xml>
+        <WorldUIInterferenceConfig.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="paramName" priority="0"/>
+                <nodeStructure>
+                    <ArkWorldUIInterferenceConfig>
+                        <StandardInterference merge_children="true"/>
+                        <TranscribeDisruption merge_children="true"/>
+                    </ArkWorldUIInterferenceConfig>
+                </nodeStructure>
+            </mergingPolicy>
+        </WorldUIInterferenceConfig.xml>
     </Ark>
 </root>
