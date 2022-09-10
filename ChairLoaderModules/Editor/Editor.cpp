@@ -133,6 +133,26 @@ void Editor::Update()
 	ImGui::End();
 }
 
+void Editor::ShowUI()
+{
+	switch (m_State)
+	{
+	case State::Unloaded:
+		ShowUnloadedUI();
+		break;
+	case State::Loading:
+		ShowLoadingUI();
+		break;
+	case State::Running:
+		ShowRunningUI();
+		break;
+	default:
+		assert(false);
+		std::abort();
+		break;
+	}
+}
+
 bool Editor::HandleKeyPress(const SInputEvent& event)
 {
 	// Calling DecrementCounter causes stack overflow
@@ -247,39 +267,10 @@ void Editor::SwitchStates()
 
 void Editor::UpdateUnloaded()
 {
-	if (ImGui::Begin("Chairloader Editor"))
-	{
-		ImGui::TextWrapped("Welcome to the Chairloader Editor!");
-		ImGui::TextWrapped("This tool will allow you (at some point) to:");
-		ImGui::TextWrapped("\t- Enter flycam at any point in time");
-		ImGui::TextWrapped("\t- Select entities with the mouse");
-		ImGui::TextWrapped("\t- View and modify entity properties");
-		ImGui::TextWrapped("\t- Hot-reload mod DLLs");
-		ImGui::NewLine();
-
-		ImGui::TextWrapped("Load a save to begin.");
-		ImGui::NewLine();
-
-		ImGui::TextColored(ImColor(255, 255, 0), "Warning!");
-		ImGui::TextWrapped("The editor is highly expreimental. Potential side effects include "
-			"random crashes, memory corruption, resource leaks, save corruption, stress, frustration, anger, "
-			"physiological and psychological damage, desire to burn your house down with lemons. "
-			"Please, consult a doctor of your choise before use.");
-		ImGui::NewLine();
-
-		if (ImGui::Button("Reload Mods"))
-			m_bReloadModsNextFrame = true;
-	}
-	ImGui::End();
 }
 
 void Editor::UpdateLoading()
 {
-	if (ImGui::Begin("Chairloader Editor"))
-	{
-		ImGui::Text("Loading");
-	}
-	ImGui::End();
 }
 
 void Editor::UpdateRunning()
@@ -297,45 +288,6 @@ void Editor::UpdateRunning()
 
 	if (m_bInEditor)
 		UpdateInEditor();
-
-	if (ImGui::Begin("Chairloader Editor##EditorRunning"))
-	{
-		{
-			ImGui::Text("Game:");
-			if (ImGui::RadioButton("Play", !m_bIsGamePaused))
-				SetGamePaused(false);
-			ImGui::SameLine();
-			if (ImGui::RadioButton("Pause", m_bIsGamePaused))
-				SetGamePaused(true);
-		}
-
-		{
-			ImGui::Text("View:");
-			if (ImGui::RadioButton("Editor", m_bInEditor))
-				SetInEditor(true);
-			ImGui::SameLine();
-			if (ImGui::RadioButton("Game", !m_bInEditor))
-				SetInEditor(false);
-		}
-
-		if (ImGui::Button("Camera To Player"))
-			m_pView->MoveCameraToPlayer();
-
-		if (ImGui::Button("Reload Level"))
-			ReloadLevel();
-
-		if (ImGui::Button("Reload Mods"))
-			ReloadMods();
-	}
-	ImGui::End();
-
-	if (ImGui::Begin("Hierarchy##EditorRunning"))
-		m_Hierarchy.ShowContents();
-	ImGui::End();
-
-	if (ImGui::Begin("Inspector##EditorRunning"))
-		m_Inspector.ShowContents(m_Hierarchy.GetSelectedEntity());
-	ImGui::End();
 }
 
 void Editor::UpdateInEditor()
@@ -496,6 +448,109 @@ bool Editor::RestoreSavedLevel()
 	}
 
 	return true;
+}
+
+void Editor::ShowUnloadedUI()
+{
+	ImGui::SetNextWindowSize(ImVec2(344, 360), ImGuiCond_FirstUseEver);
+	if (ImGui::Begin("Chairloader Editor##EditorUnloaded"))
+	{
+		ImGui::TextWrapped("Welcome to the Chairloader Editor!");
+		ImGui::TextWrapped("This tool allows you to:");
+		ImGui::TextWrapped("\t- Enter flycam at any point in time");
+		ImGui::TextWrapped("\t- Select entities with the mouse");
+		ImGui::TextWrapped("\t- View and modify entity properties");
+		ImGui::TextWrapped("\t- Hot-reload mod DLLs");
+		ImGui::NewLine();
+
+		ImGui::TextWrapped("Load a save to begin.");
+		ImGui::TextWrapped("Make sure to check the keymap after loading.");
+		ImGui::NewLine();
+
+		ImGui::TextColored(ImColor(255, 255, 0), "Warning!");
+		ImGui::TextWrapped("The editor is highly expreimental. Potential side effects include "
+			"random crashes, memory corruption, resource leaks, save corruption, stress, frustration, anger, "
+			"physiological and psychological damage, desire to commit arson with combustible fruits. "
+			"Please, consult a doctor of your choise before use.");
+		ImGui::NewLine();
+
+		if (ImGui::Button("Reload Mods"))
+			m_bReloadModsNextFrame = true;
+	}
+	ImGui::End();
+}
+
+void Editor::ShowLoadingUI()
+{
+	if (ImGui::Begin("Chairloader Editor##EditorUnloaded"))
+	{
+		ImGui::Text("Loading...");
+	}
+	ImGui::End();
+}
+
+void Editor::ShowRunningUI()
+{
+	ImGui::SetNextWindowSizeConstraints(ImVec2(210, -1), ImVec2(210, -1));
+	if (ImGui::Begin("Chairloader Editor##EditorRunning", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	{
+		{
+			ImGui::Text("Game:");
+			if (ImGui::RadioButton("Play", !m_bIsGamePaused))
+				SetGamePaused(false);
+			ImGui::SameLine();
+			if (ImGui::RadioButton("Pause", m_bIsGamePaused))
+				SetGamePaused(true);
+		}
+
+		{
+			ImGui::Text("View:");
+			if (ImGui::RadioButton("Editor", m_bInEditor))
+				SetInEditor(true);
+			ImGui::SameLine();
+			if (ImGui::RadioButton("Game", !m_bInEditor))
+				SetInEditor(false);
+		}
+
+		if (ImGui::Button("Camera To Player"))
+			m_pView->MoveCameraToPlayer();
+
+		if (ImGui::Button("Reload Level"))
+			ReloadLevel();
+
+		if (ImGui::Button("Reload Mods"))
+			m_bReloadModsNextFrame = true;
+
+		if (ImGui::TreeNode("Keymap"))
+		{
+			// TODO: Put them into a config
+			ImGui::Text("Any time:");
+			ImGui::Text("F4: Go into Editor View");
+			ImGui::Text("P: Toggle Pause");
+			ImGui::NewLine();
+
+			ImGui::Text("Editor View:");
+			ImGui::Text("LMB: Select an entity");
+			ImGui::Text("RMB: Hold to fly");
+			ImGui::NewLine();
+
+			ImGui::Text("Fly Mode:");
+			ImGui::Text("WASD: Move");
+			ImGui::Text("Q/E: Go up/down");
+			ImGui::Text("Shift: Boost");
+
+			ImGui::TreePop();
+		}
+	}
+	ImGui::End();
+
+	if (ImGui::Begin("Hierarchy##EditorRunning"))
+		m_Hierarchy.ShowContents();
+	ImGui::End();
+
+	if (ImGui::Begin("Inspector##EditorRunning"))
+		m_Inspector.ShowContents(m_Hierarchy.GetSelectedEntity());
+	ImGui::End();
 }
 
 Editor::MouseGuard::MouseGuard()

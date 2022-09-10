@@ -334,7 +334,12 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 
 	// Editor update MUST come before mod PreUpdate for proper hot-reloading
 	if (m_pEditor)
+	{
 		m_pEditor->Update();
+		
+		if (m_ShowGui)
+			m_pEditor->ShowUI();
+	}
 
 	m_pModDllManager->CallPreUpdate();
 }

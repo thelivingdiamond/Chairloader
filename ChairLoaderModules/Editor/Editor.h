@@ -15,6 +15,7 @@ public:
 	bool IsInEditor() { return m_bInEditor; }
 
 	void Update();
+	void ShowUI();
 	bool HandleKeyPress(const SInputEvent& event);
 	bool HandleEditorKeyPress(const SInputEvent& event);
 
@@ -71,4 +72,8 @@ private:
 	bool ReloadMods();
 	bool SaveAndUnloadLevel();
 	bool RestoreSavedLevel();
+
+	void ShowUnloadedUI();
+	void ShowLoadingUI();
+	void ShowRunningUI();
 };
