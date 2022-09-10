@@ -1,0 +1,2750 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--valid identification policies:-->
+<!--    - "ovewrite" (default): will not do any merging, instead overwriting files in the directory-->
+<!--    - "match_attribute": will merge nodes by matching attribute values-->
+<!--         * child attribute node required in order to identify which attribute to match by-->
+<!--         * additional match_all parameter will force nodes to march all given parameters-->
+<!--    - "match_tag": will merge nodes by matching tag values-->
+<!--    - "match_contents": will merge nodes by matching the text contents of a node-->
+<!--    - "match_spreadsheet": a specialized version of merge detection for Excel spreadsheet xml files-->
+
+<!--additional notes:-->
+<!--    merge_attributes: overwrite attributes on any node. This is used if a root node has attributes-->
+<!--    ignore: directory will not be merged-->
+<root>
+    <mergingPolicy identification_policy="overwrite"/>
+    <Ark>
+        <mergingPolicy identification_policy="overwrite"/>
+        <AI>
+            <AiDistractors>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Name" priority="0"/>
+                    <nodeStructure>
+                        <ArkDistractions>
+                            <Distractions merge_children="true"/>
+                        </ArkDistractions>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiDistractors>
+            <AiSignalAccumulatorConfigs>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="signalGroup" priority="0"/>
+                    <nodeStructure>
+                        <SignalAccumulators>
+                            <Imports merge_children="true" identification_policy="match_attribute">
+                                <attribute name="file" priority="0"/>
+                            </Imports>
+                            <Accumulators merge_children="true"/>
+                        </SignalAccumulators>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiSignalAccumulatorConfigs>
+            <AiSignalReceiverConfigs>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <SignalReceivers>
+                            <Imports merge_children="true" identification_policy="match_attribute">
+                                <attribute name="file" priority="0"/>
+                            </Imports>
+                            <SignalData merge_children="true"/>
+                            <PlayerDispositionFactors>
+                                <Friendly merge_children="true"/>
+                                <Neutral merge_children="true"/>
+                                <Hostile merge_children="true"/>
+                                <Enslaved merge_children="true"/>
+                            </PlayerDispositionFactors>
+                            <DispositionFactors>
+                                <Friendly merge_children="true"/>
+                                <Neutral merge_children="true"/>
+                                <Hostile merge_children="true"/>
+                                <Enslaved merge_children="true"/>
+                            </DispositionFactors>
+                            <ShotgunSignalAccumulator merge_node="true"/>
+                        </SignalReceivers>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiSignalReceiverConfigs>
+            <AiTrees>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <ArkAiTree>
+                            <Root>
+                                <ArkAiTreeStackNode>
+                                    <Children merge_children="true"/>
+                                </ArkAiTreeStackNode>
+                            </Root>
+                        </ArkAiTree>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiTrees>
+            <AlienPowers>
+                <mergingPolicy identification_policy="match_tag">
+                    <attribute name="Name" priority="0"/>
+                    <nodeStructure>
+                        <Config merge_node="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AlienPowers>
+            <AiInstigation.xml>
+                <mergingPolicy identification_policy="match_contents">
+                    <nodeStructure>
+                        <TrackableEntityClasses merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiInstigation.xml>
+            <NpcPrecacheList.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="file" priority="0"/>
+                    <nodeStructure>
+                        <NpcPrecacheList>
+                            <SignalReceivers merge_children="true"/>
+                            <SignalAccumulators merge_children="true"/>
+                            <AiTrees merge_children="true"/>
+                        </NpcPrecacheList>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcPrecacheList.xml>
+            <SearchHuntParams.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <SearchHuntParams merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </SearchHuntParams.xml>
+        </AI>
+        <Attention>
+            <ArkAttentionManagerConfig.xml>
+                <mergingPolicy identification_policy="overwrite"/>
+            </ArkAttentionManagerConfig.xml>
+            <AttentionModels.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <attribute name="id" priority="1"/>
+                    <nodeStructure>
+                        <AttentionModels merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AttentionModels.xml>
+            <NoiseAttentionParams.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <NoiseAttentionParams merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NoiseAttentionParams.xml>
+        </Attention>
+        <Campaign>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+            <Objectives>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <Objectives merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Objectives>
+            <AudioLogs.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkAudioLogLibrary>
+                            <AudioLogs merge_children="true"/>
+                            <AudioLogCollections merge_children="true"/>
+                        </ArkAudioLogLibrary>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AudioLogs.xml>
+            <StationAccessLibrary.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkStationAccess>
+                            <Paths merge_children="true"/>
+                            <Airlocks merge_children="true"/>
+                        </ArkStationAccess>
+                    </nodeStructure>
+                </mergingPolicy>
+            </StationAccessLibrary.xml>
+        </Campaign>
+        <Dialog>
+            <mergingPolicy identification_policy="overwrite"/>
+        </Dialog>
+        <HackingPuzzles>
+            <mergingPolicy identification_policy="overwrite"/>
+        </HackingPuzzles>
+        <Items>
+            <ArkItems.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <items merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </ArkItems.xml>
+            <FabricationPlanLibrary.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkFabricationPlans>
+                            <FabricationPlans merge_children="true"/>
+                        </ArkFabricationPlans>
+                    </nodeStructure>
+                </mergingPolicy>
+            </FabricationPlanLibrary.xml>
+            <LootTables.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkLootTables>
+                            <Tables merge_children="true"/>
+                        </ArkLootTables>
+                    </nodeStructure>
+                </mergingPolicy>
+            </LootTables.xml>
+        </Items>
+        <Npc>
+            <mergingPolicy identification_policy="overwrite"/>
+            <NpcAbilities.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcAbilities merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcAbilities.xml>
+            <NpcAbilityContextProfiles.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcAbilityContextProfiles merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcAbilityContextProfiles.xml>
+            <NpcAbilityContexts.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcAbilityContexts merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcAbilityContexts.xml>
+            <NpcGameEffects.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <NpcGameEffects merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcGameEffects.xml>
+        </Npc>
+        <Perception>
+            <mergingPolcy identification_policy="overwrite"/>
+        </Perception>
+        <Player>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+            <PsiPowers>
+                <mergingPolicy identification_policy="overwrite"/>
+            </PsiPowers>
+            <AimAssistConfig.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <AimAssistConfig merge_attributes="true">
+                            <Entities merge_children="true"/>
+                        </AimAssistConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AimAssistConfig.xml>
+            <FocusModeProperties.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <ArkFocusModeComponentProperties merge_attributes="true" merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </FocusModeProperties.xml>
+            <playerConfig.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <PlayerConfig merge_attributes="true" merge_children="true">
+                            <Stats merge_children="true" identification_policy="match_attribute">
+                                <attribute name="name" priority="0"/>
+                            </Stats>
+                        </PlayerConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </playerConfig.xml>
+            <playerSignalReceiverConfig.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <attribute name="id" priority="1"/>
+                    <nodeStructure>
+                        <root merge_attributes="true" merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </playerSignalReceiverConfig.xml>
+            <PsiMode.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <Config merge_attributes="true" merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </PsiMode.xml>
+            <PsiScanningConfig>
+                <mergingPolicy identification_policy="overwrite"/>
+            </PsiScanningConfig>
+            <TargetSelectionConfig.xml>
+                <mergingPolicy>
+                    <nodeStructure>
+                        <TargetSelectionConfig>
+                            <InteractionBehavior merge_children="true" identification_policy="match_attribute">
+                                <attribute name="name" priority="0"/>
+                            </InteractionBehavior>
+                            <TargetPriority merge_children="true" identification_policy="match_attribute">
+                                <attribute name="priority" priority="0"/>
+                                <attribute name="value" priority="1"/>
+                            </TargetPriority>
+                        </TargetSelectionConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </TargetSelectionConfig.xml>
+            <Traumas.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <ArkTraumas>
+                            <Traumas merge_children="true"/>
+                        </ArkTraumas>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Traumas.xml>
+        </Player>
+        <SignalSystem>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </SignalSystem>
+        <Vision>
+            <VisionCones.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <VisionCones merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </VisionCones.xml>
+        </Vision>
+        <VisualEffects>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+            <CharacterAttachmentEffects.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Id" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <ArkCharacerEffects>
+                            <Effects merge_children="true"/>
+                        </ArkCharacerEffects>
+                    </nodeStructure>
+                </mergingPolicy>
+            </CharacterAttachmentEffects.xml>
+            <MaterialAnimations.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Id" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <ArkMaterialAnimations>
+                            <Animations merge_children="true"/>
+                        </ArkMaterialAnimations>
+                    </nodeStructure>
+                </mergingPolicy>
+            </MaterialAnimations.xml>
+        </VisualEffects>
+        <WeaponMods>
+            <ArkWeaponMods.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <attribute name="name" priority="1"/>
+                    <nodeStructure>
+                        <_wildcard_>
+                            <_wildcard_ merge_children="true"/>
+                        </_wildcard_>
+                    </nodeStructure>
+                </mergingPolicy>
+            </ArkWeaponMods.xml>
+            <Config.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                       <WeaponConfig>
+                           <Weapons merge_children="true"/>
+                           <Stats merge_children="true"/>
+                       </WeaponConfig>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Config.xml>
+        </WeaponMods>
+        <AreaTriggeringClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </AreaTriggeringClasses.xml>
+        <ArkCameraShakes.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <ArkCameraShakeLibrary>
+                        <CameraShakes merge_children="true"/>
+                        <Channels merge_children="true"/>
+                    </ArkCameraShakeLibrary>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkCameraShakes.xml>
+        <ArkEventDrivenAchievementLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkEventDrivenAchievementLibrary.xml>
+        <ArkFactions.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <ArkFactions>
+                        <Factions merge_children="true"/>
+                        <Dispositions merge_children="true" identification_policy="match_attribute" match_all="true">
+                            <attribute name="fromFactionId" priority="0"/>
+                            <attribute name="toFactionId" priority="1"/>
+                        </Dispositions>
+                    </ArkFactions>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkFactions.xml>
+        <ArkInstigationConfig.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="value" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkInstigationConfig.xml>
+        <ArkIronsightsTargetClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkIronsightsTargetClasses.xml>
+        <ArkMetaTags.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkMetaTags.xml>
+        <ArkMetricsGameTokenList.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="Value" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkMetricsGameTokenList.xml>
+        <ArkOverrideRecycleClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkOverrideRecycleClasses.xml>
+        <ArkOverrideTargetClasses.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_ merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkOverrideTargetClasses.xml>
+        <ArkProjectilePoolDefinitions.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ArchetypeName" priority="0"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkProjectilePoolDefinitions.xml>
+        <ArkPropertyProfiles.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <ArkPropertyProfileLibrary>
+                        <DisruptionProfiles merge_children="true"/>
+                        <LightDisruptionProfiles merge_children="true"/>
+                    </ArkPropertyProfileLibrary>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkPropertyProfiles.xml>
+        <ArkRewards.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <ArkRewards>
+                        <Trackables merge_children="true"/>
+                        <Rewards merge_children="true"/>
+                    </ArkRewards>
+                </nodeStructure>
+            </mergingPolicy>
+        </ArkRewards.xml>
+        <EmotionLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </EmotionLibrary.xml>
+        <EntitlementLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </EntitlementLibrary.xml>
+        <EntitlementUnlockLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </EntitlementUnlockLibrary.xml>
+        <Game.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <Game>
+                        <Collision merge_attributes="true">
+                            <Leverages merge_children="true"/>
+                            <SelfDamagingClasses merge_children="true"/>
+                        </Collision>
+                        <Levels merge_children="true" identification_policy="match_attribute">
+                            <attribute name="Level" priority="0"/>
+                        </Levels>
+                        <GlassBreakingClasses merge_children="true"/>
+                        <NonGlassBreakingClasses merge_children="true"/>
+                        <GlassBreakingAudio merge_children="true" identification_policy="match_attribute">
+                            <attribute name="controlId" priority="0"/>
+                        </GlassBreakingAudio>
+                        <LevelIntro merge_node="true"/>
+                        <QuickLoad merge_node="true"/>
+                        <CaptureVolumeWhiteList merge_children="true"/>
+                    </Game>
+                </nodeStructure>
+            </mergingPolicy>
+        </Game.xml>
+        <GameNoises.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <ArkGameNoises>
+                        <Types merge_children="true"/>
+                        <Loudnesses merge_children="true"/>
+                    </ArkGameNoises>
+                </nodeStructure>
+            </mergingPolicy>
+        </GameNoises.xml>
+        <Hacking.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <nodeStructure>
+                    <ArkHacking merge_attributes="true">
+                        <HackingAbilities merge_children="true"/>
+                        <DifficultyLevels merge_children="true" identification_policy="overwrite"/>
+                        <ObstacleTypes merge_children="true" identification_policy="overwrite"/>
+                    </ArkHacking>
+                </nodeStructure>
+            </mergingPolicy>
+        </Hacking.xml>
+        <RemoteEventLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+        </RemoteEventLibrary.xml>
+        <TipLibrary.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ID" priority="0"/>
+                <attribute name="Name" priority="1"/>
+                <nodeStructure>
+                    <ArkTipLibrary>
+                        <Tips merge_children="true"/>
+                        <Locks merge_children="true"/>
+                        <Sequences merge_children="true"/>
+                    </ArkTipLibrary>
+                </nodeStructure>
+            </mergingPolicy>
+        </TipLibrary.xml>
+        <WorldUIInterferenceConfig.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="paramName" priority="0"/>
+                <nodeStructure>
+                    <ArkWorldUIInterferenceConfig>
+                        <StandardInterference merge_children="true"/>
+                        <TranscribeDisruption merge_children="true"/>
+                    </ArkWorldUIInterferenceConfig>
+                </nodeStructure>
+            </mergingPolicy>
+        </WorldUIInterferenceConfig.xml>
+    </Ark>
+    <Libs>
+        <BodyDamage>
+            <mergingPolicy identification_policy="overwrite"/>
+        </BodyDamage>
+        <Communication>
+            <Voice>
+                <mergingPolicy identification_policy="match_spreadsheet"/>
+            </Voice>
+        </Communication>
+        <Config>
+            <mergingPolicy identification_policy="overwrite"/>
+        </Config>
+        <Dialogs ignore="true"/>
+        <EntityArchetypes>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="id" priority="1"/>
+                <nodeStructure>
+                    <EntityPrototypeLibrary merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </EntityArchetypes>
+        <EquipmentPacks>
+            <mergingPolicy identification_policy="overwrite"/>
+        </EquipmentPacks>
+        <Flares>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <LensFlareLibrary merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </Flares>
+        <FlowgraphModules>
+            <mergingPolicy identification_policy="overwrite"/>
+        </FlowgraphModules>
+        <FlowNodes>
+            <mergingPolicy identification_policy="overwrite"/>
+        </FlowNodes>
+        <GameAudio>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="atl_name" priority="0"/>
+                <nodeStructure>
+                    <ATLConfig>
+                        <AudioTriggers merge_children="true"/>
+                        <AudioPreloads merge_children="true"/>
+                        <AudioRTPCs merge_children="true"/>
+                        <AudioSwitches merge_children="true"/>
+                    </ATLConfig>
+                </nodeStructure>
+            </mergingPolicy>
+            <config.xml>
+                <mergingPolicy identification_policy="ovewrite"/>
+            </config.xml>
+        </GameAudio>
+        <GameForceFeedback>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <ForceFeedback>
+                        <Patterns merge_children="true"/>
+                        <Envelopes merge_children="true"/>
+                        <Effects merge_children="true"/>
+                    </ForceFeedback>
+                </nodeStructure>
+            </mergingPolicy>
+        </GameForceFeedback>
+        <GameTokens>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <GameTokensLibrary merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </GameTokens>
+        <GlobalActions>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <nodeStructure>
+                    <Graph merge_attributes="true">
+                        <Nodes merge_children="true"/>
+                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                            <attribute name="nodeIn" priority="0"/>
+                            <attribute name="nodeOut" priority="1"/>
+                            <attribute name="portIn" priority="2"/>
+                            <attribute name="portOut" priority="3"/>
+                        </Edges>
+                    </Graph>
+                </nodeStructure>
+            </mergingPolicy>
+        </GlobalActions>
+        <HitDeathReactionsData>
+            <mergingPolicy identification_policy="overwrite"/>
+        </HitDeathReactionsData>
+        <Levels>
+            <leveltypes.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="value" priority="0"/>
+                    <nodeStructure>
+                        <_wildcard_ merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </leveltypes.xml>
+        </Levels>
+        <LightningArc>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <LightningArc merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </LightningArc>
+        <Localization>
+            <mergingPolicy identification_policy="match_contents">
+                <nodeStructure>
+                    <localization>
+                        <init merge_children="true"/>
+                        <singleplayer merge_children="true"/>
+                        <multiplayer merge_children="true"/>
+                        <credits merge_children="true"/>
+                        <patch merge_children="true"/>
+                    </localization>
+                </nodeStructure>
+            </mergingPolicy>
+        </Localization>
+        <MaterialEffects>
+            <FXLibs>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <_wildcard_ merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </FXLibs>
+            <MaterialEffects.xml>
+                <mergingPolicy identification_policy="match_spreadsheet"/>
+            </MaterialEffects.xml>
+            <MergedMeshSurfaceTypes.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <MergedMeshSurfaceTypes merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </MergedMeshSurfaceTypes.xml>
+            <SurfaceTypes.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <SurfaceTypes merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </SurfaceTypes.xml>
+        </MaterialEffects>
+        <MovementTransitions>
+            <mergingPolicy identification_policy="overwrite"/>
+        </MovementTransitions>
+        <Particles>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="Name" priority="0"/>
+                <nodeStructure>
+                    <ParticleLibrary merge_attributes="true" merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </Particles>
+        <Readability>
+            <mergingPolicy identification_policy="match_spreadsheet"/>
+        </Readability>
+        <Sky>
+            <ArkSpaceSettings.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <ArkSpaceSettings merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </ArkSpaceSettings.xml>
+        </Sky>
+        <SmartObjects>
+            <mergingPolicy identification_policy="overwrite"/>
+        </SmartObjects>
+        <Telemetry>
+            <mergingPolicy identification_policy="overwrite"/>
+        </Telemetry>
+        <UI>
+            <UIActions>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <Graph merge_attributes="true">
+                            <Nodes merge_children="true"/>
+                            <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                <attribute name="nodeIn" priority="0"/>
+                                <attribute name="nodeOut" priority="1"/>
+                                <attribute name="portIn" priority="2"/>
+                                <attribute name="portOut" priority="3"/>
+                            </Edges>
+                        </Graph>
+                    </nodeStructure>
+                </mergingPolicy>
+            </UIActions>
+            <UIElements>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <UIElements>
+                            <UIElement merge_attributes="true">
+                                <WorldUI merge_node="true"/>
+                                <GFx merge_node="true"/>
+                                <functions merge_children="true"/>
+                                <events merge_children="true"/>
+                                <Arrays merge_children="true"/>
+                                <variables merge_children="true"/>
+                            </UIElement>
+                        </UIElements>
+                    </nodeStructure>
+                </mergingPolicy>
+            </UIElements>
+            <GlobalEnums.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <_wildcard_ merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </GlobalEnums.xml>
+            <Objectives_new.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <Root>
+                            <Campaign merge_children="true"/>
+                            <VS merge_children="true"/>
+                        </Root>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Objectives_new.xml>
+            <TexturePreload.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="file" priority="0"/>
+                    <attribute name="texture" priority="1"/>
+                    <nodeStructure>
+                        <Preload>
+                            <Global merge_children="true"/>
+                            <NoLevel merge_children="true"/>
+                            <Levels>
+                                <Common merge_children="true"/>
+                            </Levels>
+                            <VS_Incubation_VS_Incubation merge_children="true"/>
+                        </Preload>
+                    </nodeStructure>
+                </mergingPolicy>
+            </TexturePreload.xml>
+        </UI>
+        <AIATargetStimulusConfig.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <nodeStructure>
+                    <AIATargetStimulusConfig merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </AIATargetStimulusConfig.xml>
+        <SmartObjects.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="name" priority="0"/>
+                <attribute name="sName" priority="1"/>
+                <nodeStructure>
+                    <SmartObjects merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </SmartObjects.xml>
+    </Libs>
+    <Localization>
+<!--    this is going to be a mess -->
+        <mergingPolicy identification_policy="match_spreadsheet"/>
+    </Localization>
+    <Prefabs>
+        <mergingPolicy identification_policy="match_attribute">
+            <attribute name="Name" priority="0"/>
+            <nodeStructure>
+                <_wildcard_ merge_children="true"/>
+            </nodeStructure>
+        </mergingPolicy>
+    </Prefabs>
+    <Scripts>
+        <mergingPolicy identification_policy="overwrite"/>
+        <AI>
+            <mergingPolicy identification_policy="overwrite"/>
+        </AI>
+        <DataPatcher>
+            <mergingPolicy identification_policy="overwrite"/>
+        </DataPatcher>
+        <Effects>
+            <mergingPolicy identification_policy="overwrite"/>
+        </Effects>
+        <Entities>
+            <Items>
+                <XML>
+                    <ArkItem.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="name" priority="0"/>
+                            <nodeStructure>
+                                <ArkItem>
+                                    <PickupParams merge_children="true"/>
+                                </ArkItem>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </ArkItem.xml>
+                </XML>
+                <HitTypes.xml>
+                    <mergingPolicy identification_policy="match_attribute">
+                        <attribute name="name" priority="0"/>
+                        <nodeStructure>
+                            <HitTypes merge_children="true"/>
+                        </nodeStructure>
+                    </mergingPolicy>
+                </HitTypes.xml>
+                <ItemPackages.xml>
+                    <mergingPolicy identification_policy="match_attribute">
+                        <attribute name="name" priority="0"/>
+                        <nodeStructure>
+                            <ItemPackages merge_children="true"/>
+                        </nodeStructure>
+                    </mergingPolicy>
+                </ItemPackages.xml>
+            </Items>
+        </Entities>
+        <animPairs.xml>
+            <mergingPolicy identification_policy="match_attribute" match_all="true">
+                <attribute name="FP" priority="0"/>
+                <attribute name="TP" priority="1"/>
+                <nodeStructure>
+                    <Pairs merge_children="true"/>
+                </nodeStructure>
+            </mergingPolicy>
+        </animPairs.xml>
+        <animPrototyping.xml>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="ASSET" priority="0"/>
+                <nodeStructure>
+                    <ANIMPROTO>
+                        <AIMPOSES merge_children="true" identification_policy="match_attribute" match_all="true">
+                            <attribute name="STR_1" priority="0"/>
+                            <attribute name="STR_2" priority="1"/>
+                        </AIMPOSES>
+                        <FOOTPLANT_TABLE merge_children="true" identification_policy="match_attribute">
+                            <attribute name="ASSET" priority="0"/>
+                        </FOOTPLANT_TABLE>
+                        <ALIAS_TABLE merge_children="true" identification_policy="match_attribute">
+                            <attribute name="SYMBOL" priority="0"/>
+                        </ALIAS_TABLE>
+                    </ANIMPROTO>
+                </nodeStructure>
+            </mergingPolicy>
+        </animPrototyping.xml>
+    </Scripts>
+    <Levels>
+        <mergingPolicy identification_policy="ovewrite"/>
+        <Campaign>
+            <EndGame>
+                <level>
+                    <gametokens>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Id" priority="0"/>
+                            <attribute name="Name" priority="1"/>
+                            <nodeStructure>
+                                <GameTokensLibrary merge_children="true"/>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </gametokens>
+                    <serialize.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="id" priority="0"/>
+                            <nodeStructure>
+                                <_wildcard_ merge_children="true"/>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </serialize.xml>
+                    <moviedata.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <MovieData>
+                                    <Mission>
+                                        <SequenceData merge_children="true"/>
+                                    </Mission>
+                                </MovieData>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </moviedata.xml>
+                    <mission_mission0.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <Mission merge_attributes="true">
+                                    <Environment merge_children="true" identification_policy="match_tag"/>
+                                    <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                    <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                    <MiniMap merge_node="true"/>
+                                    <ArkAutoMap merge_node="true"/>
+                                    <Weapons>
+                                        <Used merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="Name" priority="0"/>
+                                        </Used>
+                                        <Ammo merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="Name" priority="0"/>
+                                        </Ammo>
+                                    </Weapons>
+                                    <Objects merge_children="true"/>
+                                    <encounterRoot merge_children="true"/>
+                                </Mission>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </mission_mission0.xml>
+                    <leveldata.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <LevelData>
+                                    <LevelInfo merge_node="true"/>
+                                    <SurfaceTypes merge_children="true"/>
+                                    <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                        <attribute name="type" priority="0"/>
+                                    </CollisionClasses>
+                                    <Layers merge_children="true"/>
+                                    <Vegetation merge_children="true"/>
+                                    <MaterialsLibrary merge_children="true"/>
+                                    <ParticlesLibrary merge_children="true"/>
+                                    <GameTokensLibraryReferences merge_children="true"/>
+                                </LevelData>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </leveldata.xml>
+                    <lensflarelist.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <LensFlareList merge_children="true"/>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </lensflarelist.xml>
+                </level>
+                <filelist.xml>
+                    <mergingPolicy identification_policy="ovewrite"/>
+                </filelist.xml>
+            </EndGame>
+            <Engineering>
+                <CargoBay>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </CargoBay>
+                <LifeSupport>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <FlowgraphModules>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Id" priority="0"/>
+                            <nodeStructure>
+                                <Graph merge_attributes="true">
+                                    <ModulesInputsOutputs merge_children="true"/>
+                                    <Nodes merge_children="true"/>
+                                    <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                        <attribute name="nodeIn" priority="0"/>
+                                        <attribute name="nodeOut" priority="1"/>
+                                        <attribute name="portIn" priority="2"/>
+                                        <attribute name="portOut" priority="3"/>
+                                    </Edges>
+                                </Graph>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </FlowgraphModules>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </LifeSupport>
+                <PowerSource>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </PowerSource>
+            </Engineering>
+            <Executive>
+                <Arboretum>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </Arboretum>
+                <Bridge>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </Bridge>
+                <CorporateIT>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <FlowgraphModules>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Id" priority="0"/>
+                            <nodeStructure>
+                                <Graph merge_attributes="true">
+                                    <ModulesInputsOutputs merge_children="true"/>
+                                    <Nodes merge_children="true"/>
+                                    <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                        <attribute name="nodeIn" priority="0"/>
+                                        <attribute name="nodeOut" priority="1"/>
+                                        <attribute name="portIn" priority="2"/>
+                                        <attribute name="portOut" priority="3"/>
+                                    </Edges>
+                                </Graph>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </FlowgraphModules>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </CorporateIT>
+                <CrewFacilities>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <FlowgraphModules>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Id" priority="0"/>
+                            <nodeStructure>
+                                <Graph merge_attributes="true">
+                                    <ModulesInputsOutputs merge_children="true"/>
+                                    <Nodes merge_children="true"/>
+                                    <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                        <attribute name="nodeIn" priority="0"/>
+                                        <attribute name="nodeOut" priority="1"/>
+                                        <attribute name="portIn" priority="2"/>
+                                        <attribute name="portOut" priority="3"/>
+                                    </Edges>
+                                </Graph>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </FlowgraphModules>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </CrewFacilities>
+            </Executive>
+            <Research>
+                <Lobby>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </Lobby>
+                <Prototype>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </Prototype>
+                <Psychotronics>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </Psychotronics>
+                <ShuttleBay>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </ShuttleBay>
+                <SimulationLabs>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </SimulationLabs>
+                <ZeroG_UtilityTunnels>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </ZeroG_UtilityTunnels>
+            </Research>
+            <Station>
+                <Exterior>
+                    <level>
+                        <gametokens>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <attribute name="Name" priority="1"/>
+                                <nodeStructure>
+                                    <GameTokensLibrary merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </gametokens>
+                        <flowgraphobjectlists>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Id" priority="0"/>
+                                <nodeStructure>
+                                    <Graph merge_attributes="true">
+                                        <Nodes merge_children="true"/>
+                                        <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                            <attribute name="nodeIn" priority="0"/>
+                                            <attribute name="nodeOut" priority="1"/>
+                                            <attribute name="portIn" priority="2"/>
+                                            <attribute name="portOut" priority="3"/>
+                                        </Edges>
+                                    </Graph>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </flowgraphobjectlists>
+                        <serialize.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="id" priority="0"/>
+                                <nodeStructure>
+                                    <_wildcard_ merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </serialize.xml>
+                        <moviedata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <MovieData>
+                                        <Mission>
+                                            <SequenceData merge_children="true"/>
+                                        </Mission>
+                                    </MovieData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </moviedata.xml>
+                        <mission_mission0.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <Mission merge_attributes="true">
+                                        <Environment merge_children="true" identification_policy="match_tag"/>
+                                        <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                        <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                        <MiniMap merge_node="true"/>
+                                        <ArkAutoMap merge_node="true"/>
+                                        <Weapons>
+                                            <Used merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Used>
+                                            <Ammo merge_children="true" identification_policy="match_attribute">
+                                                <attribute name="Name" priority="0"/>
+                                            </Ammo>
+                                        </Weapons>
+                                        <Objects merge_children="true"/>
+                                        <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="encounterProfileName" priority="0"/>
+                                        </encounterRoot>
+                                    </Mission>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LevelData>
+                                        <LevelInfo merge_node="true"/>
+                                        <SurfaceTypes merge_children="true"/>
+                                        <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="type" priority="0"/>
+                                        </CollisionClasses>
+                                        <Layers merge_children="true"/>
+                                        <Vegetation merge_children="true"/>
+                                        <MaterialsLibrary merge_children="true"/>
+                                        <ParticlesLibrary merge_children="true"/>
+                                        <GameTokensLibraryReferences merge_children="true"/>
+                                    </LevelData>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </leveldata.xml>
+                        <lensflarelist.xml>
+                            <mergingPolicy identification_policy="match_attribute">
+                                <attribute name="Name" priority="0"/>
+                                <nodeStructure>
+                                    <LensFlareList merge_children="true"/>
+                                </nodeStructure>
+                            </mergingPolicy>
+                        </lensflarelist.xml>
+                    </level>
+                    <filelist.xml>
+                        <mergingPolicy identification_policy="ovewrite"/>
+                    </filelist.xml>
+                </Exterior>
+            </Station>
+            <PlayerGenderSelect>
+                <level>
+                    <gametokens>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Id" priority="0"/>
+                            <attribute name="Name" priority="1"/>
+                            <nodeStructure>
+                                <GameTokensLibrary merge_children="true"/>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </gametokens>
+                    <flowgraphobjectlists>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Id" priority="0"/>
+                            <nodeStructure>
+                                <Graph merge_attributes="true">
+                                    <Nodes merge_children="true"/>
+                                    <Edges merge_children="true" identification_policy="match_attribute" match_all="true">
+                                        <attribute name="nodeIn" priority="0"/>
+                                        <attribute name="nodeOut" priority="1"/>
+                                        <attribute name="portIn" priority="2"/>
+                                        <attribute name="portOut" priority="3"/>
+                                    </Edges>
+                                </Graph>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </flowgraphobjectlists>
+                    <serialize.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="id" priority="0"/>
+                            <nodeStructure>
+                                <_wildcard_ merge_children="true"/>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </serialize.xml>
+                    <moviedata.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <MovieData>
+                                    <Mission>
+                                        <SequenceData merge_children="true"/>
+                                    </Mission>
+                                </MovieData>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </moviedata.xml>
+                    <mission_mission0.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <Mission merge_attributes="true">
+                                    <Environment merge_children="true" identification_policy="match_tag"/>
+                                    <ArkLevelProperties merge_children="true" identification_policy="match_tag"/>
+                                    <TimeOfDay merge_children="true" merge_attributes="true"/>
+                                    <MiniMap merge_node="true"/>
+                                    <ArkAutoMap merge_node="true"/>
+                                    <Weapons>
+                                        <Used merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="Name" priority="0"/>
+                                        </Used>
+                                        <Ammo merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="Name" priority="0"/>
+                                        </Ammo>
+                                    </Weapons>
+                                    <Objects merge_children="true"/>
+                                    <encounterRoot merge_children="true" identification_policy="match_attribute">
+                                        <attribute name="encounterProfileName" priority="0"/>
+                                    </encounterRoot>
+                                </Mission>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </mission_mission0.xml>
+                    <leveldata.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <LevelData>
+                                    <LevelInfo merge_node="true"/>
+                                    <SurfaceTypes merge_children="true"/>
+                                    <CollisionClasses merge_children="true" identification_policy="match_attribute">
+                                        <attribute name="type" priority="0"/>
+                                    </CollisionClasses>
+                                    <Layers merge_children="true"/>
+                                    <Vegetation merge_children="true"/>
+                                    <MaterialsLibrary merge_children="true"/>
+                                    <ParticlesLibrary merge_children="true"/>
+                                    <GameTokensLibraryReferences merge_children="true"/>
+                                </LevelData>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </leveldata.xml>
+                    <lensflarelist.xml>
+                        <mergingPolicy identification_policy="match_attribute">
+                            <attribute name="Name" priority="0"/>
+                            <nodeStructure>
+                                <LensFlareList merge_children="true"/>
+                            </nodeStructure>
+                        </mergingPolicy>
+                    </lensflarelist.xml>
+                </level>
+                <filelist.xml>
+                    <mergingPolicy identification_policy="ovewrite"/>
+                </filelist.xml>
+            </PlayerGenderSelect>
+        </Campaign>
+    </Levels>
+</root>
