@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--    valid identification policies:-->
+<!--    - "ovewrite" (default): will not do any merging, instead overwriting files in the directory-->
+<!--    - "match_attribute": will merge nodes by matching attribute values-->
+<!--         * child attribute node required in order to identify which attribute to match by-->
+<!--    - "match_tag": will merge nodes by matching tag values-->
+<!--    - "match_contents": will merge nodes by matching the text contents of a node-->
+<root>
+    <mergingPolicy identification_policy="overwrite"/>
+    <Ark>
+        <AI>
+            <AiDistractors>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Name" priority="0"/>
+                    <nodeStructure>
+                        <ArkDistractions>
+                            <Distractions merge_children="true"/>
+                        </ArkDistractions>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiDistractors>
+            <AiSignalAccumulatorConfigs>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="signalGroup" priority="0"/>
+                    <nodeStructure>
+                        <SignalAccumulators>
+                            <Imports merge_children="true" identification_policy="match_attribute">
+                                <attribute name="file" priority="0"/>
+                            </Imports>
+                            <Accumulators merge_children="true"/>
+                        </SignalAccumulators>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiSignalAccumulatorConfigs>
+            <AiSignalReceiverConfigs>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <SignalReceivers>
+                            <Imports merge_children="true" identification_policy="match_attribute">
+                                <attribute name="file" priority="0"/>
+                            </Imports>
+                            <SignalData merge_children="true"/>
+                            <PlayerDispositionFactors>
+                                <Friendly merge_children="true"/>
+                                <Neutral merge_children="true"/>
+                                <Hostile merge_children="true"/>
+                                <Enslaved merge_children="true"/>
+                            </PlayerDispositionFactors>
+                            <DispositionFactors>
+                                <Friendly merge_children="true"/>
+                                <Neutral merge_children="true"/>
+                                <Hostile merge_children="true"/>
+                                <Enslaved merge_children="true"/>
+                            </DispositionFactors>
+                            <ShotgunSignalAccumulator merge_node="true"/>
+                        </SignalReceivers>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiSignalReceiverConfigs>
+            <AiTrees>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <ArkAiTree>
+                            <Root>
+                                <ArkAiTreeStackNode>
+                                    <Children merge_children="true"/>
+                                </ArkAiTreeStackNode>
+                            </Root>
+                        </ArkAiTree>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiTrees>
+            <AlienPowers>
+                <mergingPolicy identification_policy="match_tag">
+                    <attribute name="Name" priority="0"/>
+                    <nodeStructure>
+                        <Config merge_node="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AlienPowers>
+            <AiInstigation.xml>
+                <mergingPolicy identification_policy="match_contents">
+                    <nodeStructure>
+                        <TrackableEntityClasses merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AiInstigation.xml>
+            <NpcPrecacheList.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="file" priority="0"/>
+                    <nodeStructure>
+                        <NpcPrecacheList>
+                            <SignalReceivers merge_children="true"/>
+                            <SignalAccumulators merge_children="true"/>
+                            <AiTrees merge_children="true"/>
+                        </NpcPrecacheList>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NpcPrecacheList.xml>
+            <SearchHuntParams.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <SearchHuntParams merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </SearchHuntParams.xml>
+        </AI>
+        <Attention>
+            <ArkAttentionManagerConfig.xml>
+                <mergingPolicy identification_policy="overwrite"/>
+            </ArkAttentionManagerConfig.xml>
+            <AttentionModels.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <attribute name="id" priority="1"/>
+                    <nodeStructure>
+                        <AttentionModels merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AttentionModels.xml>
+            <NoiseAttentionParams.xml>
+                <mergingPolicy identification_policy="match_tag">
+                    <nodeStructure>
+                        <NoiseAttentionParams merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </NoiseAttentionParams.xml>
+        </Attention>
+        <Campaign>
+            <mergingPolicy identification_policy="match_attribute">
+                <attribute name="id" priority="0"/>
+                <attribute name="name" priority="1"/>
+                <nodeStructure>
+                    <_wildcard_>
+                        <_wildcard_ merge_children="true"/>
+                    </_wildcard_>
+                </nodeStructure>
+            </mergingPolicy>
+            <Objectives>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <Objectives merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Objectives>
+            <AudioLogs.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkAudioLogLibrary>
+                            <AudioLogs merge_children="true"/>
+                            <AudioLogCollections merge_children="true"/>
+                        </ArkAudioLogLibrary>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AudioLogs.xml>
+            <StationAccessLibrary.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkStationAccess>
+                            <Paths merge_children="true"/>
+                            <Airlocks merge_children="true"/>
+                        </ArkStationAccess>
+                    </nodeStructure>
+                </mergingPolicy>
+            </StationAccessLibrary.xml>
+        </Campaign>
+        <Dialog>
+            <mergingPolicy identification_policy="overwrite"/>
+        </Dialog>
+        <HackingPuzzles>
+            <mergingPolicy identification_policy="overwrite"/>
+        </HackingPuzzles>
+        <Items>
+            <ArkItems.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <items merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </ArkItems.xml>
+            <FabricationPlanLibrary.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkFabricationPlans>
+                            <FabricationPlans merge_children="true"/>
+                        </ArkFabricationPlans>
+                    </nodeStructure>
+                </mergingPolicy>
+            </FabricationPlanLibrary.xml>
+            <LootTables.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="id" priority="0"/>
+                    <nodeStructure>
+                        <ArkLootTables>
+                            <Tables merge_children="true"/>
+                        </ArkLootTables>
+                    </nodeStructure>
+                </mergingPolicy>
+            </LootTables.xml>
+        </Items>
+    </Ark>
+</root>
