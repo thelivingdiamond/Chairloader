@@ -108,6 +108,27 @@ void ModDllManager::ReloadModules()
 	}
 }
 
+bool ModDllManager::CheckModulesForChanges()
+{
+	bool foundChanges = false;
+
+	for (Module& mod : m_Modules)
+	{
+		if (!mod.bSourceFileModified && mod.dllInfo.supportsHotReload)
+		{
+			fs::file_time_type modTime = fs::last_write_time(mod.sourceDllPath);
+			if (modTime != mod.sourceModificationTime)
+			{
+				foundChanges = true;
+				mod.bSourceFileModified = true;
+				CryLog("[ModDllManager] Mod %s was changed", mod.modName.c_str());
+			}
+		}
+	}
+
+	return foundChanges;
+}
+
 void ModDllManager::CallInitSystem()
 {
 	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
@@ -158,6 +179,9 @@ void ModDllManager::LoadModule(Module& mod)
 	
 	if (m_bHotReload)
 	{
+		mod.bSourceFileModified = false;
+		mod.sourceModificationTime = fs::last_write_time(mod.sourceDllPath);
+
 		// Make a temp copy not to lock the source file.
 		// Allows the compiler to overwrite it.
 		fs::path copyName = fs::u8path(mod.modName + "." + mod.sourceDllPath.filename().u8string());

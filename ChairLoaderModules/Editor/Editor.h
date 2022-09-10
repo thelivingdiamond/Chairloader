@@ -4,7 +4,7 @@
 
 class EditorView;
 
-class Editor
+class Editor : public ISystemEventListener
 {
 public:
 	static void InitHooks();
@@ -17,6 +17,9 @@ public:
 	void Update();
 	bool HandleKeyPress(const SInputEvent& event);
 	bool HandleEditorKeyPress(const SInputEvent& event);
+
+	// ISystemEventListener
+	void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
 
 private:
 	static constexpr char SAVE_NAME[] = "chaireditor_save";
@@ -43,6 +46,8 @@ private:
 
 	std::unique_ptr<EditorView> m_pView;
 
+	bool m_bGameWindowIsNowActive = false;
+	bool m_bReloadModsNextFrame = false;
 	State m_State = State::Unloaded;
 	bool m_bIsGamePaused = false;
 	bool m_bInEditor = false; //!< Controlling the editor

@@ -288,6 +288,7 @@ void ChairLoader::ShutdownGame()
 	CryLog("ChairLoader::ShutdownGame");
 
 	m_pModDllManager->CallShutdownGame();
+	m_pEditor = nullptr;
 	m_ImGui = nullptr;
 	m_pFramework = nullptr;
 }
@@ -644,4 +645,9 @@ void ChairLoader::ReloadModDLLs()
 	rd->m_pRT->SyncMainWithRender(); // This frame
 
 	m_pModDllManager->ReloadModules();
+}
+
+bool ChairLoader::CheckDLLsForChanges()
+{
+	return m_pModDllManager->CheckModulesForChanges();
 }

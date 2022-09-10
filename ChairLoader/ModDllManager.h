@@ -26,6 +26,10 @@ public:
 	//! Reloads DLLs that support hot-reloading. It must be called after PostUpdate but before PreUpdate of the mods.
 	void ReloadModules();
 
+	//! Checks if any DLLs have been modified since last loading.
+	//! @returns true if changes were detected.
+	bool CheckModulesForChanges();
+
 	//! Calls a function for each mod in the load order or reverse order.
 	//! @{
 	void CallInitSystem();
@@ -59,6 +63,12 @@ private:
 
 		//! Path to the DLL for loading. May be a copy of source DLL when hot reloading.
 		fs::path realDllPath;
+
+		//! Last change time of the source DLL file. Only available when hot-reloading.
+		fs::file_time_type sourceModificationTime;
+		
+		//! Whether CheckModulesForChanges found a change for this mod.
+		bool bSourceFileModified = false;
 
 		//! Handle of the loaded DLL.
 		HMODULE hModule = nullptr;

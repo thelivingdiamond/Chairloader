@@ -100,6 +100,7 @@ public:
     std::string getKeyBind(std::string action) override;
 	bool IsEditorEnabled() override;
 	void ReloadModDLLs() override;
+	bool CheckDLLsForChanges() override;
 };
 
 extern ChairLoader* gChair;

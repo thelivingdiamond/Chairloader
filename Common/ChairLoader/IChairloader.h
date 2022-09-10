@@ -30,4 +30,8 @@ struct IChairloader {
     //! Can only be called with specific conditions in mind.
     //! It's here only for the editor (which is in ChairloaderModules library).
     virtual void ReloadModDLLs() = 0;
+
+    //! Checks if there are any changes to mod DLLs.
+    //! Another editor method that's leaking into the public interface...
+    virtual bool CheckDLLsForChanges() = 0;
 };

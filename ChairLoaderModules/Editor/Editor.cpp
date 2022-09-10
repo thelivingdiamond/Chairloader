@@ -25,6 +25,7 @@ struct ReentranceGuard
 };
 
 Editor* g_pEditor = nullptr;
+int CV_ed_AutoReloadMods = 0;
 
 const char* GetSystemGlobalStateName(const ESystemGlobalState systemGlobalState)
 {
@@ -53,7 +54,7 @@ const char* GetSystemGlobalStateName(const ESystemGlobalState systemGlobalState)
 	return s_systemGlobalStateNames[index];
 }
 
-}
+} // namespace
 
 void Editor::InitHooks()
 {
@@ -72,16 +73,34 @@ Editor::Editor()
 	m_pView = std::make_unique<EditorView>();
 
 	gEnv->pConsole->ExecuteString("g_pauseOnLoseFocus 0");
+	gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this);
+
+	REGISTER_CVAR2("ed_AutoReloadMods", &CV_ed_AutoReloadMods, 1, VF_NULL, "Editor: Automatically reload mods when changes are detected");
 }
 
 Editor::~Editor()
 {
 	assert(g_pEditor == this);
 	g_pEditor = nullptr;
+	gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }
 
 void Editor::Update()
 {
+	if (m_bReloadModsNextFrame)
+	{
+		ReloadMods();
+		m_bReloadModsNextFrame = false;
+	}
+
+	if (CV_ed_AutoReloadMods && m_bGameWindowIsNowActive)
+	{
+		// Game window is now focused, check mods
+		if (gCL->cl->CheckDLLsForChanges())
+			m_bReloadModsNextFrame = true;
+		m_bGameWindowIsNowActive = false;
+	}
+
 	SwitchStates();
 
 	switch (m_State)
@@ -192,6 +211,15 @@ bool Editor::HandleEditorKeyPress(const SInputEvent& event)
 	return false;
 }
 
+void Editor::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
+{
+	if (event == ESYSTEM_EVENT_ACTIVATE)
+	{
+		if (wparam)
+			m_bGameWindowIsNowActive = true;
+	}
+}
+
 void Editor::SwitchStates()
 {
 	auto pGameFw = g_pGame->GetIGameFramework();
@@ -240,7 +268,7 @@ void Editor::UpdateUnloaded()
 		ImGui::NewLine();
 
 		if (ImGui::Button("Reload Mods"))
-			ReloadMods();
+			m_bReloadModsNextFrame = true;
 	}
 	ImGui::End();
 }
@@ -403,6 +431,7 @@ bool Editor::ReloadLevel()
 
 bool Editor::ReloadMods()
 {
+	CTimeValue startTime = gEnv->pTimer->GetAsyncTime();
 	bool needToRestore = false;
 
 	if (g_pGame->GetIGameFramework()->IsGameStarted())
@@ -418,6 +447,9 @@ bool Editor::ReloadMods()
 
 	if (needToRestore && !RestoreSavedLevel())
 		return false;
+
+	CTimeValue endTime = gEnv->pTimer->GetAsyncTime();
+	CryLog("[Editor] Reloaded mods in %.3f s.", endTime.GetDifferenceInSeconds(startTime));
 
 	return true;
 }
