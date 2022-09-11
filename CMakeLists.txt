@@ -91,9 +91,10 @@ add_subdirectory(ExampleMod)
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)
 
-# Targets that don't need to use Prey ABI
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+# Since ModToolKit interfaces with PreyDll.dll, everything must use Release ABI
+# set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
 add_subdirectory(CommonModLoader)
 #add_subdirectory(ChairLoaderXMLLoader)
 add_subdirectory(ChairLoaderModLoader)
 add_subdirectory(BinDiff)
+add_subdirectory(ModToolKit)

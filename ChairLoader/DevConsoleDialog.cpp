@@ -1,7 +1,8 @@
 #include <boost/algorithm/string/find.hpp>
-#include <Prey/CrySystem/System.h>
 #include "DevConsoleDialog.h"
-#include "ChairLoader.h"
+
+#ifndef MODTOOLKIT
+#include <Prey/CrySystem/System.h>
 
 namespace {
 
@@ -14,9 +15,17 @@ public:
 	}
 };
 
+CBetterCVarsWhitelist g_CVarsWhitelist;
+
+} // namespace
+
+#endif
+
+namespace {
+
 struct ParseBuffer {
 	char buf[1024];
-	char *ptr;
+	char* ptr;
 
 	ParseBuffer() {
 		ptr = buf;
@@ -76,8 +85,6 @@ ImVec4 g_ConColors[] = {
 	ImColor(64, 64, 64, 255),	// 9 Grey
 };
 
-CBetterCVarsWhitelist g_CVarsWhitelist;
-
 void Command_Find(IConsoleCmdArgs *args) {
 	if (args->GetArgCount() != 2) {
 		CryLog("Prints all variables matching input text.");
@@ -120,8 +127,10 @@ void Command_Find(IConsoleCmdArgs *args) {
 DevConsoleDialog::DevConsoleDialog() {
 	m_pConsole = gEnv->pConsole;
 
+#ifndef MODTOOLKIT
 	auto pSystem = reinterpret_cast<CSystem *>(gEnv->pSystem);
 	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
+#endif
 
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
 }
