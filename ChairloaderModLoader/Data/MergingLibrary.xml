@@ -622,8 +622,8 @@
                 <nodeStructure>
                     <ArkHacking merge_attributes="true">
                         <HackingAbilities merge_children="true"/>
-                        <DifficultyLevels merge_children="true" identification_policy="overwrite"/>
-                        <ObstacleTypes merge_children="true" identification_policy="overwrite"/>
+                        <DifficultyLevels merge_node="true"/>
+                        <ObstacleTypes merge_node="true"/>
                     </ArkHacking>
                 </nodeStructure>
             </mergingPolicy>
