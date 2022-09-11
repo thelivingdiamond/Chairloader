@@ -1,6 +1,6 @@
 #include "GamePathDialog.h"
 #include "ImGuiFileDialog/ImGuiFileDialog.h"
-#include "PathUtils.h"
+#include <ModLoader/PathUtils.h>
 
 GamePathDialog::Result GamePathDialog::ShowDialog(const char* name, bool* pbIsOpen)
 {

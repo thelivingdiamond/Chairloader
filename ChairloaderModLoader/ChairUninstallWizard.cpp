@@ -3,7 +3,7 @@
 //
 
 #include "ChairUninstallWizard.h"
-#include "PathUtils.h"
+#include <ModLoader/PathUtils.h>
 #include "ModLoader.h"
 #include "GameVersion.h"
 

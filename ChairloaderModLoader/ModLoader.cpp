@@ -8,7 +8,7 @@
 #include "UI.h"
 #include "GamePathDialog.h"
 #include "GameVersion.h"
-#include "PathUtils.h"
+#include <ModLoader/PathUtils.h>
 #include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"

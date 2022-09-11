@@ -1,3 +1,7 @@
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 #include "PathUtils.h"
 
 bool PathUtils::ValidateGamePath(const fs::path& path, std::string* error)

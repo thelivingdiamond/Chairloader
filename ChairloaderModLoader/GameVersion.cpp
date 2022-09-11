@@ -2,7 +2,7 @@
 #include <ModLoader/BinDiff.h>
 #include "GameVersion.h"
 #include "ModLoader.h"
-#include "PathUtils.h"
+#include <ModLoader/PathUtils.h>
 
 namespace
 {

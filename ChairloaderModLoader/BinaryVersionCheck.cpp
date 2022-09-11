@@ -2,7 +2,7 @@
 // Created by theli on 9/2/2022.
 //
 #include "BinaryVersionCheck.h"
-#include "PathUtils.h"
+#include <ModLoader/PathUtils.h>
 #include <Windows.h>
 #include <winver.h>
 #include "ModLoader.h"

@@ -1,6 +1,6 @@
 #include "ChairInstallWizard.h"
 #include "GameVersion.h"
-#include "PathUtils.h"
+#include <ModLoader/PathUtils.h>
 #include "ModLoader.h"
 #include "BinaryVersionCheck.h"
 
