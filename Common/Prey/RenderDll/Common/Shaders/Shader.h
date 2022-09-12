@@ -372,6 +372,75 @@ inline char* sGetFuncName(const char* pFunc)
 	return func;
 }
 
+enum ERenderOrder
+{
+	eRO_PreProcess,
+	eRO_PostProcess,
+	eRO_PreDraw
+};
+
+enum ERTUpdate
+{
+	eRTUpdate_Unknown,
+	eRTUpdate_Always,
+	eRTUpdate_WaterReflect
+};
+
+struct SHRenderTarget : public IRenderTarget
+{
+	int          m_nRefCount;
+	ERenderOrder m_eOrder;
+	int          m_nProcessFlags; // FSPR_ flags
+	string       m_TargetName;
+	int          m_nWidth;
+	int          m_nHeight;
+	ETEX_Format  m_eTF;
+	int          m_nIDInPool;
+	ERTUpdate    m_eUpdateType;
+	CTexture* m_pTarget[2];
+	bool         m_bTempDepth;
+	ColorF       m_ClearColor;
+	float        m_fClearDepth;
+	uint32       m_nFlags;
+	uint32       m_nFilterFlags;
+	int          m_refSamplerID;
+
+	SHRenderTarget()
+	{
+		m_nRefCount = 1;
+		m_eOrder = eRO_PreProcess;
+		m_pTarget[0] = NULL;
+		m_pTarget[1] = NULL;
+		m_bTempDepth = true;
+		m_ClearColor = Col_Black;
+		m_fClearDepth = 1.f;
+		m_nFlags = 0;
+		m_nFilterFlags = 0xffffffff;
+		m_nProcessFlags = 0;
+		m_nIDInPool = -1;
+		m_nWidth = 256;
+		m_nHeight = 256;
+		m_eTF = eTF_R8G8B8A8;
+		m_eUpdateType = eRTUpdate_Unknown;
+		m_refSamplerID = -1;
+	}
+	virtual void Release()
+	{
+		m_nRefCount--;
+		if (m_nRefCount)
+			return;
+		delete this;
+	}
+	virtual void AddRef()
+	{
+		m_nRefCount++;
+	}
+	SEnvTexture* GetEnv2D();
+	SEnvTexture* GetEnvCM();
+
+	void         GetMemoryUsage(ICrySizer* pSizer) const;
+};
+
 //=============================================================================
 // Hardware shaders
 

@@ -3,6 +3,7 @@
 #ifndef _BASERESOURCE_H_
 #define _BASERESOURCE_H_
 
+#include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryThreading/CryAtomics.h>
 #include <Prey/CryThreading/CryThread.h>
 #include <Prey/CryMath/Cry_Math.h>
@@ -310,5 +311,96 @@ enum ERenderPrimitiveType
 };
 
 #define MAX_TMU   64
+
+template<class Container>
+unsigned sizeOfVP(Container& arr)
+{
+	int i;
+	unsigned size = 0;
+	for (i = 0; i < (int)arr.size(); i++)
+	{
+		typename Container::value_type& T = arr[i];
+		size += T->Size();
+
+	}
+	size += (arr.capacity() - arr.size()) * sizeof(typename Container::value_type);
+	return size;
+}
+
+template<class Container>
+unsigned sizeOfV(Container& arr)
+{
+	int i;
+	unsigned size = 0;
+	for (i = 0; i < (int)arr.size(); i++)
+	{
+		typename Container::value_type& T = arr[i];
+		size += T.Size();
+
+	}
+	size += (arr.capacity() - arr.size()) * sizeof(typename Container::value_type);
+	return size;
+}
+template<class Container>
+unsigned sizeOfA(Container& arr)
+{
+	int i;
+	unsigned size = 0;
+	for (i = 0; i < arr.size(); i++)
+	{
+		typename Container::value_type& T = arr[i];
+		size += T.Size();
+
+	}
+	return size;
+}
+template<class Map>
+unsigned sizeOfMap(Map& map)
+{
+	unsigned size = 0;
+	for (typename Map::iterator it = map.begin(); it != map.end(); ++it)
+	{
+		typename Map::mapped_type& T = it->second;
+		size += T.Size();
+	}
+	size += map.size() * sizeof(stl::MapLikeStruct);
+	return size;
+}
+template<class Map>
+unsigned sizeOfMapStr(Map& map)
+{
+	unsigned size = 0;
+	for (typename Map::iterator it = map.begin(); it != map.end(); ++it)
+	{
+		typename Map::mapped_type& T = it->second;
+		size += T.capacity();
+	}
+	size += map.size() * sizeof(stl::MapLikeStruct);
+	return size;
+}
+template<class Map>
+unsigned sizeOfMapP(Map& map)
+{
+	unsigned size = 0;
+	for (typename Map::iterator it = map.begin(); it != map.end(); ++it)
+	{
+		typename Map::mapped_type& T = it->second;
+		size += T->Size();
+	}
+	size += map.size() * sizeof(stl::MapLikeStruct);
+	return size;
+}
+template<class Map>
+unsigned sizeOfMapS(Map& map)
+{
+	unsigned size = 0;
+	for (typename Map::iterator it = map.begin(); it != map.end(); ++it)
+	{
+		typename Map::mapped_type& T = it->second;
+		size += sizeof(T);
+	}
+	size += map.size() * sizeof(stl::MapLikeStruct);
+	return size;
+}
 
 #endif

@@ -418,6 +418,14 @@ namespace gpu_pfx2
 class IManager;
 } // namespace gpu_pfx2
 
+struct SShaderCacheStatistics // Id=8003D26 Size=32
+{
+	uint64_t m_nTotalLevelShaderCacheMisses;
+	uint64_t m_nGlobalShaderCacheMisses;
+	uint64_t m_nNumShaderAsyncCompiles;
+	bool m_bShaderCompileActive;
+};
+
 //! This structure used in DrawText method of renderer.
 //! It provide all necessary information of how to render text on screen.
 struct SDrawTextInfo
