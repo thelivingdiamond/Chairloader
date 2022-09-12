@@ -15,8 +15,7 @@
 
 static ClassLibrary gClassLibrary;
 
-EntityManager::EntityManager(ChairloaderGlobalEnvironment* env) {
-    gCLEnv = env;
+EntityManager::EntityManager() {
     oldArchetypeFilterText = " ";
 }
 
@@ -171,61 +170,13 @@ void EntityManager::drawEntityList(bool* bShow) {
             {
                 static bool filterByNpcs = false;
                 ImGui::BeginChild("left pane", ImVec2(250, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
-                ImGui::InputText("##input", &filterText);
-                if (oldFilterText != filterText) {
-                    oldFilterText = filterText;
-                    refreshDisplayList = true;
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Refresh")) {
-                    refreshDisplayList = true;
-                }
-                if(ImGui::Checkbox("Filter By NPCs", &filterByNpcs))
-                    refreshDisplayList = true;
-                if (refreshDisplayList) {
-                    refreshDisplayList = false;
-                    entityDisplayList.clear();
-                    selectedEntity = 0;
-                    for (auto itr = GetEntitySystem()->m_EntityArray.begin();
-                         itr != GetEntitySystem()->m_EntityArray.end(); ++itr) {
-                        if (*itr != nullptr) {
-                            if (!(*itr)->m_szName.empty()) {
-                                std::string name = (*itr)->m_szName.c_str();
-                                std::string newFilterText = filterText;
-                                std::transform(newFilterText.begin(), newFilterText.end(), newFilterText.begin(), ::tolower);
-                                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                                if (name.find(newFilterText) != std::string::npos || filterText.empty()) {
-                                    if(filterByNpcs) {
-                                        if(gCLEnv->entUtils->GetArkNpc(*itr) != nullptr) {
-                                            entityDisplayList.emplace_back((*itr)->GetId());
-                                        }
-                                    } else {
-                                        entityDisplayList.emplace_back((*itr)->GetId());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                auto itr = entityDisplayList.begin();
-                for (int i = 0; itr != entityDisplayList.end() && i < 500; i++, ++itr) {
-                    std::string label;
-                    if(gEnv->pEntitySystem->GetEntity(*itr) != nullptr) {
-                        if (!string(gEnv->pEntitySystem->GetEntity(*itr)->GetName()).empty()) {
-                            label = gEnv->pEntitySystem->GetEntity(*itr)->GetName();
-                        } else {
-                            label = "invalid name";
-                        }
-                        // sprintf_s(label, "Entity: %d", i);
-                        if (ImGui::Selectable(label.c_str(), selectedEntity == *itr))
-                            selectedEntity = *itr;
-                    }
-                }
+                hierarchy.ShowContents();
                 ImGui::EndChild();
             }
             ImGui::SameLine();
             // Right
             {
+                EntityId selectedEntity = hierarchy.GetSelectedEntity();
                 ImGui::BeginGroup();
                 ImGui::BeginChild("entity view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
                 if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
@@ -238,118 +189,9 @@ void EntityManager::drawEntityList(bool* bShow) {
                                        ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_TabListPopupButton)) {
                     if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
                         auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
-                        auto npc = gCLEnv->entUtils->GetArkNpc(entity);
+                        auto npc = gCL->entUtils->GetArkNpc(entity);
                         if (ImGui::BeginTabItem("Entity Details")) {
-                            // CryLog("at the entity check\n");
-                            if (ImGui::BeginTable("Details", 2, ImGuiTableFlags_NoClip | ImGuiTableFlags_BordersH)) {
-                                // Setup Columns
-                                ImGui::TableSetupColumn(" Item:", ImGuiTableColumnFlags_WidthFixed, 75.0f);
-                                ImGui::TableSetupColumn(" Value:");
-                                // Name
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                ImGuiUtils::RightAlignText("Name:");
-                                ImGui::Text("Name:");
-                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                                ImGui::TableNextColumn();
-                                if (!string(entity->GetName()).empty())
-                                    ImGui::Text("%s", entity->GetName());
-                                else
-                                    ImGui::Text("%s", "--Null Name--");
-                                // ID
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                ImGuiUtils::RightAlignText("ID:");
-                                ImGui::Text("ID:");
-                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                                ImGui::TableNextColumn();
-                                // CryLog("at id\n");
-                                ImGui::Text("%u", entity->GetId());
-                                // GUID
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                // CryLog("at guid\n");
-                                ImGuiUtils::RightAlignText("GUID:");
-                                ImGui::Text("GUID:");
-                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                                ImGui::TableNextColumn();
-                                ImGui::Text("%llu", entity->GetGuid());
-                                // Class
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                // CryLog("at class\n");
-                                ImGuiUtils::RightAlignText("Class:");
-                                ImGui::Text("Class:");
-                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                                ImGui::TableNextColumn();
-                                if (entity->GetClass() != nullptr) {
-                                    if (!string(entity->GetClass()->GetName()).empty())
-                                        ImGui::Text("%s", entity->GetName());
-                                    else
-                                        ImGui::Text("%s", "--Unknown Class--");
-                                } else {
-                                    ImGui::Text("%s", "--Null Class--");
-                                }
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                ImGuiUtils::RightAlignText("Archetype:");
-                                ImGui::Text("Archetype:");
-                                ImGui::SetCursorPosX(ImGui::GetColumnWidth());
-                                ImGui::TableNextColumn();
-                                if (entity->GetArchetype() != nullptr) {
-                                    if (!string(entity->GetArchetype()->GetName()).empty())
-                                        ImGui::Text("%s", entity->GetName());
-                                    else
-                                        ImGui::Text("%s", "--Unknown Archetype--");
-                                } else {
-                                    ImGui::Text("%s", "--Null Archetype--");
-                                }
-
-                                ImGui::EndTable();
-                            }
-                            ImGui::Text("Position: ");
-                            static float position[3];
-                            position[0] = entity->GetPos().x;
-                            position[1] = entity->GetPos().y;
-                            position[2] = entity->GetPos().z;
-                            if (ImGui::InputFloat3("Pos", position, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue)) {
-                                Vec3 newPos = Vec3(position[0], position[1], position[2]);
-                                entity->SetPos(newPos, 0, true, true);
-                            }
-                            if (ImGui::Button("Set to player pos")) {
-                                if(gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
-                                    entity->SetPos(gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
-                                }
-                            }
-
-                            ImGui::Text("Rotation: ");
-                            static float rotation[4];
-                            rotation[0] = entity->GetRotation().v.x;
-                            rotation[1] = entity->GetRotation().v.y;
-                            rotation[2] = entity->GetRotation().v.z;
-                            rotation[3] = entity->GetRotation().w;
-                            if (ImGui::InputFloat4("Rot", rotation, "%.3f", ImGuiInputTextFlags_EnterReturnsTrue)) {
-                                Quat newRot = Quat(rotation[0], rotation[1], rotation[2], rotation[3]);
-                                entity->SetRotation(newRot, 0);
-                            }
-
-                            static float scale;
-                            scale = entity->GetScale().x;
-                            ImGui::Text("Scale: ");
-                            if (ImGui::InputFloat("scale", &scale, 0, 0, "% .1f",
-                                                  ImGuiInputTextFlags_EnterReturnsTrue)) {
-                                Vec3 newScale{scale, scale, scale};
-                                entity->SetScale(newScale, 0);
-                            }
-                            auto npc = gCLEnv->entUtils->GetArkNpc(entity);
-                            if(npc != nullptr){
-                                ImGui::Text("NPC: %p", npc);
-                                if(ImGui::Button("Kill NPC")){
-
-                                }
-                            } else {
-                                ImGui::Text("NPC: null");
-                            }
+                            inspector.ShowContents(selectedEntity);
                             ImGui::EndTabItem();
                         }
                         if(ImGui::BeginTabItem("Physics")){
@@ -441,8 +283,8 @@ void EntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Relation to selected entity: %s", getDispositionStr(IfactionManager->GetEffectiveFactionDispositionToEntity(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction))).c_str());
                             if(ImGui::Button("Set Entity to Selected Faction")){
                                 factionmanager->SetEntityFaction(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction));
-                                gCLEnv->gui->overlayLog(GetModuleName(), "Set Entity %s to Selected Faction %s", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
-//                                gCLEnv->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
+                                gCL->gui->overlayLog(GetModuleName(), "Set Entity %s to Selected Faction %s", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
+//                                gCL->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
                             }
                             ImGui::EndTabItem();
                         }
@@ -1680,11 +1522,11 @@ void EntityManager::spawnEntity() {
             usePlayerPos;
             offsetFromPlayer;
             if (usePlayerPos) {
-                if (gCLEnv->entUtils->ArkPlayerPtr() != nullptr) {
-                    pos = gCLEnv->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+                if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+                    pos = gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
                     if (offsetFromPlayer) {
-                        pos.x += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
-                        pos.y += gCLEnv->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
+                        pos.x += gCL->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
+                        pos.y += gCL->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
                         pos.z += offsetDistance[2];
 
                     } else {
@@ -1727,18 +1569,18 @@ void EntityManager::spawnEntity() {
                         // TODO: ADD ability for mods to define what their archetypes are
                         // TODO: add cystoid support
                     {
-                        auto entity = gCLEnv->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
+                        auto entity = gCL->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
                                                                  spawnCount, selectedSpawnerFaction);
                         if (entity != nullptr) {
                             if (selectedSpawnerFaction != 0) {
-                                gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
+                                gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
                             } else {
-                                gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
+                                gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                             }
                         }
                     } else {
-                        gCLEnv->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
-                        gCLEnv->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
+                        gCL->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                        gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                     }
                 }
                 // done
@@ -1798,21 +1640,21 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
                     // TODO: ADD ability for mods to define what their archetypes are
                     // TODO: add cystoid support
                 {
-                    gCLEnv->entUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
+                    gCL->entUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
                 } else {
-                    gCLEnv->entUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
+                    gCL->entUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
                 }
             } else {
                 throw("Error, no class found");
             }
-            gCLEnv->gui->logItem("spawned an entity: " + inputName, moduleName);
+            gCL->gui->logItem("spawned an entity: " + inputName, moduleName);
         }
         else {
             throw("Error, no archetype found");
         }
     }
     catch (std::string& c) {
-        gCLEnv->gui->logItem(c, moduleName, logLevel::error);
+        gCL->gui->logItem(c, moduleName, logLevel::error);
     }
 }
 

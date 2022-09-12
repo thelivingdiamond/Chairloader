@@ -329,7 +329,8 @@ bool ChairloaderConfigManager::setNodeConfigValue(pugi::xml_node node, std::stri
 }
 
 
-bool ChairloaderConfigManager::loadModConfigFile(std::string modName) { 
+bool ChairloaderConfigManager::loadModConfigFile(std::string modName) {
+	CRY_ASSERT(!modName.empty());
 	fs::path configFilePath = getConfigPath(modName);
 	fs::path defaultFilePath = getDefaultConfigPath(modName);
 

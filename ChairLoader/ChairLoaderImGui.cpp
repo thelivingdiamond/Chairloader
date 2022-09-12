@@ -781,7 +781,7 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 			}
 		}
 
-		if (gCL->HandleKeyPress(event)) {
+		if (gChair->HandleKeyPress(event)) {
 			return;
 		}
 	} else if (event.deviceType == eIDT_Mouse) {
@@ -806,6 +806,10 @@ void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInput
 			io.AddMousePosEvent(x, y);
 			break;
 		}
+		}
+
+		if (gChair->HandleKeyPress(event)) {
+			return;
 		}
 	}
 

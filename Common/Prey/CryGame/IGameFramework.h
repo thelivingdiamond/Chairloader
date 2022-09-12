@@ -121,7 +121,7 @@ struct IGameFramework // Id=8001CF0 Size=8
     virtual bool PreUpdate(bool arg0, unsigned arg1) = 0;
     virtual void PostUpdate(bool arg0, unsigned arg1) = 0;
     virtual void Reset(bool arg0) = 0;
-    virtual void PauseGame(bool arg0, bool arg1, unsigned arg2, bool arg3) = 0;
+    virtual void PauseGame(bool pause, bool force, unsigned nFadeOutMS, bool bPauseAudio) = 0;
     virtual bool IsGamePaused() = 0;
     virtual bool IsGameStarted() = 0;
     virtual bool IsLevelPrecachingDone() const = 0;
@@ -191,8 +191,8 @@ struct IGameFramework // Id=8001CF0 Size=8
     virtual bool GetNetworkSafeClassId(uint16_t &arg0, const char *arg1) = 0;
     virtual bool GetNetworkSafeClassName(char *arg0, uint64_t arg1, uint16_t arg2) = 0;
     virtual IGameObjectExtension *QueryGameObjectExtension(unsigned arg0, const char *arg1) = 0;
-    virtual bool SaveGame(const char *arg0, bool arg1, bool arg2, ESaveGameReason arg3, bool arg4, const char *arg5) = 0;
-    virtual ELoadGameResult LoadGame(const char *arg0, bool arg1, bool arg2) = 0;
+    virtual bool SaveGame(const char* path, bool bQuick = false, bool bForceImmediate = false, ESaveGameReason reason = eSGR_QuickSave, bool ignoreDelay = false, const char* checkPointName = nullptr) = 0;
+    virtual ELoadGameResult LoadGame(const char* path, bool quick = false, bool ignoreDelay = false) = 0;
     virtual void ScheduleEndLevelNow(const char *arg0) = 0;
     virtual void OnEditorSetGameMode(int arg0) = 0;
     virtual bool IsEditing() = 0;

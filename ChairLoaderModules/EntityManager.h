@@ -1,18 +1,17 @@
 #pragma once
-#include "../Common/ChairLoader/pch.h"
-
 #include "EntityUtils.h"
+#include "EntityHierarchy.h"
+#include "EntityInspector.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include "../ChairLoader/GUIUtils.h"
 #include "ChairLoader/IChairloader.h"
 #include "ChairLoader/ChairloaderEnv.h"
 #include "Prey/CryEntitySystem/EntitySystem.h"
 
-
 class EntityManager
 {
 public:
-    EntityManager(ChairloaderGlobalEnvironment* env);
+    EntityManager();
     ~EntityManager();
     void Draw() ;
     void Update() ;
@@ -23,15 +22,10 @@ private:
     void drawMenuBar();
     bool showEntitySpawner = false, showEntityList = false;
 
-    // environment *
-    ChairloaderGlobalEnvironment* gCLEnv = nullptr;
-
     const std::string moduleName = "EntityManager";
 
-    bool refreshDisplayList = true;
-    std::string filterText, oldFilterText;
-
-    uint64_t selectedEntity = 0;
+    EntityHierarchy hierarchy;
+    EntityInspector inspector;
 
     uint64_t archetypeToSpawn = 0;
 

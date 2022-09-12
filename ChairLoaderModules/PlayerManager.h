@@ -28,10 +28,8 @@ public:
 	static bool AbilityEntrySortByName(const abilityEntry& lhs, const abilityEntry& rhs) {
 		return lhs.name < rhs.name;
 	}
-    ChairloaderGlobalEnvironment* gCLEnv;
-	PlayerManager(ChairloaderGlobalEnvironment* env) {
-        gCLEnv = env;
-    }
+
+	PlayerManager() {}
 
     void draw();
 	void drawMenuBar();

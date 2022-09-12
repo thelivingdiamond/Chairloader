@@ -33,9 +33,11 @@ static bool ArkPlayer_HasAbility_Hook(ArkPlayer* _this, uint64_t _abilityID)
 
 #endif
 
-std::string ModMain::GetModName()
+void ModMain::FillModInfo(ModDllInfo& info)
 {
-	return "ExampleMod"; // CHANGE ME
+	info.thisStructSize = sizeof(ModDllInfo);
+	info.modName = "TheChair.ExampleMod"; // CHANGE ME
+	info.supportsHotReload = true; // TODO: Add comment/wiki link
 }
 
 void ModMain::InitHooks()
@@ -51,15 +53,15 @@ void ModMain::InitHooks()
 #endif
 }
 
-void ModMain::InitSystem(ISystem* pSystem, uintptr_t moduleBase)
+void ModMain::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
-	BaseClass::InitSystem(pSystem, moduleBase);
+	BaseClass::InitSystem(initInfo, dllInfo);
 	// Your code goes here
 }
 
-void ModMain::InitGame(IGameFramework* pFramework, IChairloader* chairloader)
+void ModMain::InitGame(bool isHotReloading)
 {
-	BaseClass::InitGame(pFramework, chairloader);
+	BaseClass::InitGame(isHotReloading);
 	// Your code goes here
 }
 
@@ -68,10 +70,12 @@ void ModMain::Draw()
 	if (ImGui::Begin("Example Mod"))
 	{
 		static bool state = false;
+		static time_t loadTime = std::time(nullptr);
 		const char* text = !state ? "That Heavy is dead!" : "Yes! He died!";
 		ImGui::Text(text);
+		ImGui::Text("Load time: %lld", (long long)loadTime);
 
-		if (ImGui::Button("The heavy is dead???"))
+		if (ImGui::Button("The Heavy is dead???"))
 		{
 			state = !state;
 		}
@@ -90,16 +94,16 @@ void ModMain::PostUpdate()
 	// Your code goes here
 }
 
-void ModMain::ShutdownGame()
+void ModMain::ShutdownGame(bool isHotUnloading)
 {
 	// Your code goes here
-	BaseClass::ShutdownGame();
+	BaseClass::ShutdownGame(isHotUnloading);
 }
 
-void ModMain::ShutdownSystem()
+void ModMain::ShutdownSystem(bool isHotUnloading)
 {
 	// Your code goes here
-	BaseClass::ShutdownSystem();
+	BaseClass::ShutdownSystem(isHotUnloading);
 }
 
 extern "C" DLL_EXPORT IChairloaderMod* ClMod_Initialize()

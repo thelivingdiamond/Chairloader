@@ -16,7 +16,7 @@
 
 class ChairloaderGui : public IChairloaderGui {
 public:
-    ChairloaderGui(ChairloaderGlobalEnvironment* env);
+    ChairloaderGui();
 
     bool IsDevConsoleVisible() { return control.showDevConsole; }
     void SetDevConsoleVisible(bool state) { control.showDevConsole = state; }
@@ -34,7 +34,6 @@ public:
     void overlayError(std::string modName, const char *format, ...) override;
 
 private:
-    ChairloaderGlobalEnvironment* gCLEnv;
     struct chairloaderGuiControl {
         bool showPlayerManager = false,
             showEntityList = false,

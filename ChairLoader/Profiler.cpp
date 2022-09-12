@@ -71,9 +71,9 @@ ThreadProfile *GetProfileForThisThread() {
 
 	if (idx == -1) {
 		std::thread::id threadId = std::this_thread::get_id();
-		if (threadId == gCL->GetMainThreadId()) {
+		if (threadId == gChair->GetMainThreadId()) {
 			idx = Profiler::MAIN_THREAD;
-		} else if (threadId == gCL->GetRenderThreadId()) {
+		} else if (threadId == gChair->GetRenderThreadId()) {
 			idx = Profiler::RENDER_THREAD;
 		} else {
 			// Thread is not profiled
@@ -224,7 +224,7 @@ void Profiler::Enable() {
 		return;
 	}
 
-	if (gCL->GetRenderThreadId() == std::thread::id()) {
+	if (gChair->GetRenderThreadId() == std::thread::id()) {
 		CryError("Render thread ID must be set before profiler is enabled");
 		return;
 	}

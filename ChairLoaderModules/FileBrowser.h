@@ -13,7 +13,7 @@
 
 class FileBrowser {
 public:
-    FileBrowser(ChairloaderGlobalEnvironment* env);
+    FileBrowser();
     ~FileBrowser();
     void Draw() ;
     void Update() ;
@@ -48,10 +48,6 @@ private:
     void displayXmlNode(XmlNodeRef node, int depth);
     openXmlFile currentViewingFile;
     std::vector<openXmlFile> openFiles;
-
-
-    // environment *
-    ChairloaderGlobalEnvironment* gCLEnv = nullptr;
 
     const std::string moduleName = "FileBrowser";
     static void ScanDirectory(std::string &directory, std::string &filter, std::vector<std::string> &files, std::vector<std::string> &filePaths);
