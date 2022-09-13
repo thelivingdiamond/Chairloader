@@ -48,7 +48,7 @@ set(SOURCE_FILES
         ChairUninstallWizard.cpp
         ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp)
+        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h)
 
 
 

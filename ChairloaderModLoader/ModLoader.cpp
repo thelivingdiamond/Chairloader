@@ -778,9 +778,9 @@ void ModLoader::DrawDeploySettings() {
 //            log(severityLevel::debug, "override: %s", overrideResult.description());
 //            log(severityLevel::debug, "original: %s", originalResult.description());
         }
-        if(ImGui::Button("Test Merge")) {
-            mergeXMLDocument(BasePath, OverridePath, OriginalPath, std::string());
-        }
+//        if(ImGui::Button("Test Merge")) {
+//            mergeXMLDocument(BasePath, OverridePath, OriginalPath, std::string());
+//        }
         if(ImGui::Button("Save Copy")){
 //            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
         }
@@ -1382,78 +1382,6 @@ bool ModLoader::DeployMods() {
     return false;
 }
 
-
-//FIXME: add support for merging localization files
-pugi::xml_document
-ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName) {
-    pugi::xml_document modFile;
-    pugi::xml_document originalFile;
-    pugi::xml_document outputFile;
-    auto modResult = modFile.load_file(overridePath.wstring().c_str());
-    auto originalResult = originalFile.load_file(originalPath.wstring().c_str());
-    auto outputResult = outputFile.load_file(basePath.wstring().c_str());
-    auto baseRootNode = outputFile.first_child();
-    auto overrideRootNode = modFile.first_child();
-    auto originalRootNode = originalFile.first_child();
-    baseRootNode.append_child(pugi::node_comment).set_value(("Mod: " + modName).c_str());
-#ifdef _DEBUG
-    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
-#endif
-    if(overrideRootNode) {
-        for (auto &overrideNode: overrideRootNode) {
-            //Case: Overwrite
-            auto baseNode = baseRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
-            auto originalNode = originalRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
-            if (!mergeXMLNode(baseNode, overrideNode, originalNode)) {
-                baseRootNode.append_copy(overrideNode);
-            }
-        }
-    }
-    outputFile.save_file(basePath.wstring().c_str());
-    return {};
-}
-
-bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode) {
-    if (baseNode) {
-        //Now compare the content of override against the content of arkOriginal
-        if(originalNode) {
-            std::stringstream originalContent, overrideContent;
-            originalNode.print(originalContent);
-            overrideNode.print(overrideContent);
-            log(severityLevel::debug, "Original Content: %s\nOverride Content: %s", originalContent.str().c_str(), overrideContent.str().c_str());
-            if(std::string(originalContent.str()) == std::string(overrideContent.str())) {
-                log(severityLevel::trace, "Node %s is identical to Ark Original", overrideNode.attribute("Name").value());
-                //DO NOT OVERWRITE
-            } else {
-                log(severityLevel::trace, "Node %s is different from Ark Original", overrideNode.attribute("Name").value());
-                baseNode.text().set(overrideNode.text().get());
-                for(auto & attribute : overrideNode.attributes()){
-                    log(severityLevel::trace, "Overwriting attribute %s", attribute.name());
-                    if(baseNode.attribute(attribute.name()))
-                        baseNode.attribute(attribute.name()).set_value(attribute.value());
-                    else
-                        baseNode.append_attribute(attribute.name()).set_value(attribute.value());
-                }
-            }
-        // default overwrite
-        } else {
-            log(severityLevel::trace, "Overwriting original node %s", overrideNode.attribute("Name").value());
-            baseNode.text().set(overrideNode.text().get());
-            for(auto & attribute : overrideNode){
-                if(baseNode.attribute(attribute.name()))
-                    baseNode.attribute(attribute.name()).set_value(attribute.value());
-                else
-                    baseNode.append_attribute(attribute.name()).set_value(attribute.value());
-            }
-        }
-    } else {
-        //Case: Add
-        log(severityLevel::trace, "Adding node %s", overrideNode.attribute("Name").value());
-        return false;
-    }
-    return true;
-}
-
 void ModLoader::mergeXMLFiles(bool onlyChairPatch) {
     // Remove old output files
     m_DeployLogMutex.lock();
@@ -1654,16 +1582,12 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
             if(!fs::exists(outputPath)) {
                 fs::create_directories(outputPath);
             }
-            for (auto directory: fs::directory_iterator(modPath)) {
+            for (auto &directory: fs::directory_iterator(modPath)) {
                 mergeDirectory(path / directory.path().filename(), modName, legacyMod);
             }
         } else if (is_regular_file(modPath)) {
             if(modPath.extension() == ".xml") {
-                if (!fs::exists(outputPath) && fs::exists(originalPath)) {
-                    fs::copy_file(originalPath, outputPath);
-                }
-                log(severityLevel::trace, "Merging %s", modPath.u8string().c_str());
-                mergeXMLDocument(outputPath, modPath, originalPath, modName);
+                m_XMLMerger.mergeXMLFile(path, modName, legacyMod);
             } else {
                 log(severityLevel::trace, "Copying %s", modPath.u8string().c_str());
                 fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
@@ -1963,7 +1887,7 @@ void ModLoader::Init() {
         log(severityLevel::info, "Chairloader config file not found, creating default");
         createChairloaderConfigFile();
     }
-
+    m_XMLMerger.init();
 
     if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").c_str())) {
         throw std::runtime_error("Chairloader config file is corrupted.");
@@ -1986,7 +1910,7 @@ void ModLoader::Init() {
 
 void ModLoader::DrawDebug() {
     if(ImGui::BeginTabItem("DEBUG")) {
-        if (ImGui::Button("Test create process")) {
+     /*   if (ImGui::Button("Test create process")) {
             STARTUPINFOW info={sizeof(info)};
             PROCESS_INFORMATION processInfo;
             LPSTR currentDir = new char[MAX_PATH];
@@ -2013,8 +1937,43 @@ void ModLoader::DrawDebug() {
         }
         if(ImGui::Button("Check Chairloader dll version")) {
             overlayLog(severityLevel::info, "%s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-        }
-        ImGui::EndTabItem();
+        }*/
+     static std::string filePath, modName = "TestMod";
+     static XMLMerger::mergingPolicy policy;
+     static pugi::xml_document doc;
+     ImGui::InputText("File Path", &filePath);
+        ImGui::InputText("Mod Name", &modName);
+     if(ImGui::Button("Load Xml File")) {
+         doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
+     }
+     ImGui::SameLine();
+     if(ImGui::Button("Clear Xml File")) {
+         doc.reset();
+     }
+     if(ImGui::Button("Resolve Path wildcards")){
+         XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
+     }
+     if(ImGui::Button("Merge Xml File")) {
+         m_XMLMerger.mergeXMLFile(filePath, modName, false);
+     }
+     if(!doc.empty()){
+         ImGui::Text("Loaded Xml File: %s", doc.name());
+         ImGui::Text("Root Node: %s", doc.root().name());
+         ImGui::Text("First Child: %s", doc.root().first_child().name());
+     }
+     if(ImGui::Button("Get Merging Policy")){
+        policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
+     }
+     ImGui::Text("Merging Policy: %d", policy.policy);
+     ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
+     if(!policy.attributeMatches.empty()){
+         for(auto &attributeMatch : policy.attributeMatches){
+             ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
+         }
+     }
+     if(!policy.nodeStructure.empty())
+        displayXmlNode(policy.nodeStructure, 0);
+     ImGui::EndTabItem();
     }
 }
 
@@ -2116,6 +2075,52 @@ void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
         m_pUninstallWizard.reset();
         m_State = State::MainWindow;
         std::exit(0);
+    }
+
+}
+void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
+    static float xmlDepthSpacing = 20.0f;
+    if(node){
+        //TODO: add way to edit style colors
+        ImGui::SetCursorPosX((depth * xmlDepthSpacing) + 10.0f);
+//        ImGui::PushStyleColor(ImGuiCol_Text, ImColor(107, 119, 255).operator ImVec4());
+        bool nodeOpen = false;
+        if(node.attribute("Name")){
+            nodeOpen = ImGui::TreeNode((std::string(node.name()) + node.attribute("Name").as_string() + node.attribute("id").as_string()).c_str(), "<%s - %s>", node.name(), node.attribute("Name").as_string());
+        }
+        else {
+            nodeOpen = ImGui::TreeNode((std::string(node.name()) + node.attribute("Name").as_string() + node.attribute("id").as_string()).c_str(), "<%s>", node.name());
+        }
+//        ImGui::PopStyleColor();
+        if(nodeOpen) {
+            for (auto attribute : node.attributes()) {
+                ImGui::TextColored(ImColor(47, 239, 95), "%s", attribute.name());
+                ImGui::SameLine();
+                ImGui::TextColored(ImColor(255, 255, 255), "=");
+                ImGui::SameLine();
+                ImGui::TextColored(ImColor(221, 146, 33), "%s", attribute.as_string());
+                if(ImGui::IsItemClicked()){
+                    ImGui::SetClipboardText(attribute.as_string());
+                }
+            }
+            if(!node.text().empty())
+                ImGui::Text("%s", node.text().as_string());
+            for(auto child : node.children()){
+                displayXmlNode(child, depth + 1);
+            }
+//            if(strlen() != 0) {
+//                ImGui::Text("%s", node->getContent());
+//                for (int i = 0; i < node->getChildCount(); i++) {
+//                    displayXmlNode(node->getChild(i), depth + 1);
+//                }
+//                ImGui::SetCursorPosX((depth * xmlDepthSpacing));
+//            } else {
+//                for (int i = 0; i < node->getChildCount(); i++) {
+//                    displayXmlNode(node->getChild(i), depth + 1);
+//                }
+//            }
+            ImGui::TreePop();
+        }
     }
 
 }

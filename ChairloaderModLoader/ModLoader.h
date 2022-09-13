@@ -14,6 +14,7 @@
 #include <chrono>
 #include <Windows.h>
 #include "BinaryVersionCheck.h"
+#include "XMLMerger.h"
 
 #include <boost/format.hpp>
 
@@ -185,6 +186,8 @@ private:
     /* XML Functions */
     fs::path selectedFile;
     bool TreeNodeWalkDirectory(fs::path path, std::string modName);
+    void displayXmlNode(pugi::xml_node node, int depth);
+
 
     /* Mod List Functions */
     bool LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory = false);
@@ -211,12 +214,12 @@ private:
     void RunAsyncDeploy();
 
     /* XML MERGING */
-    pugi::xml_document
-    mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName);
-    bool mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode = {});
     void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
     void mergeXMLFiles(bool onlyChairPatch = false);
 
+
+    //! XML MERGING V2
+    XMLMerger m_XMLMerger;
 
     std::vector<fs::path> exploreLevelDirectory(fs::path);
     PROCESS_INFORMATION packLevel(fs::path path);
@@ -256,6 +259,7 @@ private:
         severityLevel filterLevel = severityLevel::info;
     #endif
     //Logging function
+public:
     template<typename...Args>
     inline void log(severityLevel level, const char* format, const Args&...args){
         logMutex.lock();
@@ -263,6 +267,10 @@ private:
         logRecord.emplace_back(LogEntry(message, level));
         fileQueue.emplace_back(LogEntry(message, level));
         logMutex.unlock();
+        if(level == severityLevel::fatal){
+            flushFileQueue();
+            throw std::runtime_error(message);
+        }
     }
     template<typename...Args>
     inline void overlayLog(severityLevel level, const char* format, const Args&...args){
@@ -272,8 +280,12 @@ private:
         fileQueue.emplace_back(LogEntry(message, level));
         overlayQueue.emplace_back(LogEntry(message, level));
         logMutex.unlock();
+        if(level == severityLevel::fatal){
+            flushFileQueue();
+            throw std::runtime_error(message);
+        }
     }
-
+private:
     //! Install Functions
     bool chairloaderInstalled = false;
     // verify config file

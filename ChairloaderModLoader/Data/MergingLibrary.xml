@@ -80,12 +80,7 @@
                 </mergingPolicy>
             </AiTrees>
             <AlienPowers>
-                <mergingPolicy identification_policy="match_tag">
-                    <attribute name="Name" priority="0"/>
-                    <nodeStructure>
-                        <Config merge_node="true"/>
-                    </nodeStructure>
-                </mergingPolicy>
+                <mergingPolicy identification_policy="overwrite"/>
             </AlienPowers>
             <AiInstigation.xml>
                 <mergingPolicy identification_policy="match_contents">
