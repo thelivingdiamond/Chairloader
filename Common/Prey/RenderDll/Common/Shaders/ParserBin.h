@@ -741,13 +741,13 @@ class CParserBin
 	SParserFrame m_Value;
 	SParserFrame m_Data;
 
-	static FXMacroBin m_StaticMacros;
+	static inline auto m_StaticMacros = PreyGlobal<FXMacroBin>(0x2BA7198);
 
 public:
 	CParserBin(SShaderBin* pBin);
 	CParserBin(SShaderBin* pBin, CShader* pSH);
 
-	static FXMacroBin&        GetStaticMacroses() { return m_StaticMacros; }
+	static FXMacroBin&        GetStaticMacroses() { return *m_StaticMacros; }
 	static const char*        GetString(uint32 nToken, FXShaderToken& Table, bool bOnlyKey = false);
 	const char*               GetString(uint32 nToken, bool bOnlyKey = false);
 	string                    GetString(SParserFrame& Frame);
@@ -885,8 +885,8 @@ public:
 	static bool m_bEditable;
 	static uint32 m_nPlatform;
 	static bool m_bEndians;
-	static bool m_bParseFX;
-	static bool m_bShaderCacheGen;
+	static inline auto m_bParseFX = PreyGlobal<bool>(0x2270BF8);
+	static inline auto m_bShaderCacheGen = PreyGlobal<bool>(0x2BA5FE1);
 };
 
 char* fxFillPr(char** buf, char* dst);

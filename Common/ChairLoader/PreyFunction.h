@@ -60,7 +60,7 @@ public:
 	inline T* Get() { return reinterpret_cast<T*>(GetIntPtr()); }
 
 	inline T& operator*() { return *Get(); }
-	inline T& operator->() { return *Get(); }
+	inline T* operator->() { return Get(); }
 };
 
 //------------------------------------------------------------

@@ -501,7 +501,7 @@ struct SSTexSamplerFX
 	int       m_nsNameTexture;
 
 	int       m_eTexType;
-	int       m_nSamplerSlot;
+	//int       m_nSamplerSlot;
 	uint32    m_nFlags;
 	uint32    m_nTexFlags;
 	int       m_nRTIdx;
@@ -532,7 +532,7 @@ struct SSTexSamplerFX
 		sAddData(dst, m_nsName);
 		sAddData(dst, m_nsNameTexture);
 		sAddData(dst, m_eTexType);
-		sAddData(dst, m_nSamplerSlot);
+		//sAddData(dst, m_nSamplerSlot);
 		sAddData(dst, m_nFlags);
 		sAddData(dst, m_nTexFlags);
 		sAddData(dst, m_nRTIdx);

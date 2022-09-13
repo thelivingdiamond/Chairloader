@@ -10,8 +10,11 @@
 
 #ifndef __SHADERCACHE_H__
 #define __SHADERCACHE_H__
+#include <Prey/CrySystem/IStreamEngine.h>
 #include "ShaderResources.h"
 #include "Shader.h"
+
+struct SResStreamInfo;
 
 struct SPreprocessMasks
 {
@@ -212,7 +215,7 @@ struct SShaderCombIdent
 };
 
 //==========================================================================================================================
-/*
+
 class CResStreamDirCallback : public IStreamCallback
 {
 	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
@@ -308,7 +311,7 @@ struct SResStreamInfo
 private:
 	SResStreamInfo(const SResStreamInfo&);
 	SResStreamInfo& operator=(const SResStreamInfo&);
-};*/
+};
 
 struct SShaderDevCache
 {
@@ -333,7 +336,7 @@ struct SShaderDevCache
 	}
 	~SShaderDevCache() {};
 };
-/*
+
 struct SShaderCache
 {
 	volatile int32  m_nRefCount;
@@ -368,7 +371,7 @@ struct SShaderCache
 		return 0;
 	}
 	~SShaderCache();
-};*/
+};
 
 struct SEmptyCombination
 {
@@ -432,7 +435,7 @@ struct SShaderGenComb
 
 	~SShaderGenComb()
 	{
-		//SAFE_RELEASE(pGen);
+		SAFE_RELEASE(pGen);
 	}
 
 	inline SShaderGenComb(const SShaderGenComb& src)

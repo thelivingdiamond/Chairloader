@@ -4,6 +4,7 @@ set(SOURCE_FILES
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h
 	
+	RenderDll/D3DHWShaderCompiling.cpp
 	RenderDll/D3DRenderAuxGeom.cpp
 	RenderDll/D3DRenderAuxGeom.h
 	RenderDll/DebugMarkers.cpp

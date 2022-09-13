@@ -87,6 +87,9 @@ struct ICryArchive : public _reference_target_t
         //! to ensure that specific paks stay in the position(to keep the same priority) but being disabled
         //! when running multiplayer.
         FLAGS_DISABLE_PAK = BIT(11),
+
+        FLAGS_WARN_ON_ACCESS = BIT(12),
+        FLAGS_DISABLE_INVALID_PAK_WARNINGS = BIT(13),
     };
 
     typedef void* Handle;
@@ -261,7 +264,7 @@ struct ICryPak // Id=800062E Size=8
     virtual ~ICryPak();
 
     //! Given the source relative path, constructs the full path to the file according to the flags.
-    virtual const char *AdjustFileName(const char *src, CryPathString & dst, unsigned nFlags) = 0;
+    virtual const char *AdjustFileName(const char* src, char dst[g_nMaxPath], unsigned nFlags) = 0;
 
     virtual bool Init(const char *arg0) = 0;
     virtual void Release() = 0;
@@ -350,7 +353,7 @@ struct ICryPak // Id=800062E Size=8
     virtual bool IsFolder(const char *arg0) = 0;
     virtual int64_t GetFileSizeOnDisk(const char *arg0) = 0;
     virtual bool IsFileCompressed(const char *arg0) = 0;
-    virtual bool MakeDir(const char *arg0, bool arg1) = 0;
+    virtual bool MakeDir(const char* szPath, bool bGamePathMapping = false) = 0;
     //! Open the physical archive file - creates if it doesn't exist.
     //! nFlags is a combination of flags from EPakFlags enum.
     //! \return NULL if it's invalid or can't open the file.
@@ -381,6 +384,13 @@ struct ICryPak // Id=800062E Size=8
     virtual EStreamSourceMediaType GetFileMediaType(const char *arg0) = 0;
     virtual void CreatePerfHUDWidget() = 0;
     virtual void ScanDirectory(const char *_folderPath, const char *_fileFilter, std::vector<string> &_outFiles, bool _recursive, bool _bAllowUseFileSystem) = 0;
+
+    //! Type-independent Write.
+    template<class T>
+    void FWrite(T* data, size_t elems, FILE* handle)
+    {
+        FWrite((void*)data, sizeof(T), elems, handle);
+    }
 };
 
 struct SDirectoryEnumeratorHelper // Id=8002F48 Size=1
@@ -391,3 +401,43 @@ struct SDirectoryEnumeratorHelper // Id=8002F48 Size=1
     static inline auto FScanDirectoryRecursive = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files)>(0x24C340);
     static inline auto FScanDirectoryFiles = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &path, string const &fileSpec, std::vector<string> &files)>(0x24C0E0);
 };
+
+#include <Prey/CryString/CryPath.h>
+
+//! Everybody should use fxopen instead of fopen so it will work both on PC and XBox.
+inline FILE* fxopen(const char* file, const char* mode, bool bGameRelativePath = false)
+{
+    if (gEnv && gEnv->pCryPak)
+    {
+        gEnv->pCryPak->CheckFileAccessDisabled(file, mode);
+    }
+    bool bWriteAccess = false;
+    for (const char* s = mode; *s; s++)
+    {
+        if (*s == 'w' || *s == 'W' || *s == 'a' || *s == 'A' || *s == '+')
+        {
+            bWriteAccess = true;
+            break;
+        }
+        ;
+    }
+
+    // This is on windows/xbox/Linux/Mac
+    if (gEnv && gEnv->pCryPak)
+    {
+        int nAdjustFlags = 0;
+        char path[_MAX_PATH];
+        const char* szAdjustedPath = gEnv->pCryPak->AdjustFileName(file, path, nAdjustFlags);
+
+#if !CRY_PLATFORM_LINUX && !CRY_PLATFORM_ANDROID && !CRY_PLATFORM_APPLE
+        if (bWriteAccess)
+        {
+            // Make sure folder is created.
+            gEnv->pCryPak->MakeDir(PathUtil::GetParentDirectory(szAdjustedPath).c_str());
+        }
+#endif
+        return fopen(szAdjustedPath, mode);
+    }
+    else
+        return 0;
+}

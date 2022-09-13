@@ -113,6 +113,11 @@ const int MAX_GSM_LODS_NUM = 16;
 #define R_CULL_FRONT   1
 #define R_CULL_BACK    2
 
+typedef unsigned char bvec4[4];
+typedef float         vec4_t[4];
+typedef unsigned char byte;
+typedef float         vec2_t[2];
+
 //////////////////////////////////////////////////////////////////////////
 /// CRenderObject::m_ObjFlags: Flags used by shader pipeline
 //////////////////////////////////////////////////////////////////////////

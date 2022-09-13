@@ -373,7 +373,7 @@ public:
 	void mfLoadDefaultSystemShaders() { FmfLoadDefaultSystemShaders(this); }
 	void mfCloseShadersCache(int nID) { FmfCloseShadersCache(this, nID); }
 	void mfInitShadersCacheMissLog() { FmfInitShadersCacheMissLog(this); }
-	void mfInsertNewCombination(SShaderCombIdent& Ident, EHWShaderClass eCL, const char* name, int nID, string* Str, uint8_t bStore) { FmfInsertNewCombination(this, Ident, eCL, name, nID, Str, bStore); }
+	void mfInsertNewCombination(SShaderCombIdent& Ident, EHWShaderClass eCL, const char* name, int nID, string* Str = NULL, byte bStore = 1) { FmfInsertNewCombination(this, Ident, eCL, name, nID, Str, bStore); }
 	bool mfReleasePreactivatedShaderData() { return FmfReleasePreactivatedShaderData(this); }
 	bool mfPreactivateShaders2(const char* szPak, const char* szPath, bool bPersistent, const char* szBindRoot) { return FmfPreactivateShaders2(this, szPak, szPath, bPersistent, szBindRoot); }
 	bool mfPreactivate2(CResFileLookupDataMan& LevelLookup, string szPathPerLevel, string szPathGlobal, bool bVS, bool bPersistent) { return FmfPreactivate2(this, LevelLookup, szPathPerLevel, szPathGlobal, bVS, bPersistent); }

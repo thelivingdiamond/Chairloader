@@ -21,8 +21,8 @@
 
 // bump this value up if you want to invalidate shader cache (e.g. changed some code or .ext file)
 // #### VIP NOTE ####: DON'T USE MORE THAN ONE DECIMAL PLACE!!!! else it doesn't work...
-//#define FX_CACHE_VER     9.5
-//#define FX_SER_CACHE_VER 1.0    // Shader serialization version (FX_CACHE_VER + FX_SER_CACHE_VER)
+#define FX_CACHE_VER     4.6
+#define FX_SER_CACHE_VER 1.0    // Shader serialization version (FX_CACHE_VER + FX_SER_CACHE_VER)
 
 // Maximum 1 digit here
 // The version determines the parse logic in the shader cache gen, these values cannot overlap
@@ -612,8 +612,8 @@ enum EHWSRMaskBit
 extern uint64 g_HWSR_MaskBit[HWSR_MAX];
 
 // HWShader global flags (m_Flags)
-#define HWSG_SUPPORTS_LIGHTING    0x20
-#define HWSG_SUPPORTS_MULTILIGHTS 0x40
+//#define HWSG_SUPPORTS_LIGHTING    0x20
+//#define HWSG_SUPPORTS_MULTILIGHTS 0x40
 #define HWSG_SUPPORTS_MODIF       0x80
 #define HWSG_SUPPORTS_VMODIF      0x100
 #define HWSG_WASGENERATED         0x200
@@ -636,7 +636,7 @@ extern uint64 g_HWSR_MaskBit[HWSR_MAX];
 // Texture transform flag
 #define HWMD_TEXCOORD_MATRIX            0x100
 // Object linear texgen flag
-#define HWMD_TEXCOORD_GEN_OBJECT_LINEAR 0x1000
+//#define HWMD_TEXCOORD_GEN_OBJECT_LINEAR 0x1000
 
 #define HWMD_TEXCOORD_FLAG_MASK         (0xfffff000 | 0xf00)
 
@@ -1181,6 +1181,9 @@ public:
 	static void operator delete(void* arg0);
 	static CCryNameTSCRC mfGetClassName();
 #endif
+
+	// Shader compiling in Chairloader
+	void        mfFlushPendedShaders();
 
 	static inline auto FmfFree = PreyFunction<void(CShader* const _this)>(0x101D850);
 	static inline auto FBitNotCShader = PreyFunction<void(CShader* const _this)>(0x10196C0);

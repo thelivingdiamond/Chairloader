@@ -293,4 +293,22 @@ public:
 	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2B31104);
 };
 
+// Get the sub-string starting at the last . in the string, or NULL if the string contains no dot
+// Note: The returned pointer refers to a location inside the provided string, no allocation is performed
+const char* fpGetExtension(const char* in);
+
+// Remove extension from string, including the .
+// If the string has no extension, the whole string will be copied into the buffer
+// Note: The out buffer must have space to store a copy of the in-string and a null-terminator
+void fpStripExtension(const char* in, char* out, size_t bytes);
+template<size_t bytes>
+void fpStripExtension(const char* in, char(&out)[bytes]) { fpStripExtension(in, out, bytes); }
+
+// Adds an extension to the path, if an extension is already present the function does nothing
+// The extension should include the .
+// Note: The path buffer must have enough unused space to store a copy of the extension string
+void fpAddExtension(char* path, const char* extension, size_t bytes);
+template<size_t bytes>
+void fpAddExtension(char(&path)[bytes], const char* extension) { fpAddExtension(path, extension, bytes); }
+
 #endif //  __RESFILE_H__

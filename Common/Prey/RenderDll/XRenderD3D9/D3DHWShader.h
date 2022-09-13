@@ -667,15 +667,15 @@ public:
 	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
 	static void mfInit() { FmfInit(); }
 	SShaderCacheHeaderItem* mfGetCompressedItem(unsigned nFlags, int& nSize) { return FmfGetCompressedItem(this, nFlags, nSize); }
-	SShaderCacheHeaderItem* mfGetCacheItem(unsigned& nFlags, int& nSize) { return FmfGetCacheItem(this, nFlags, nSize); }
-	bool mfActivateCacheItem(CShader* pSH, SShaderCacheHeaderItem* pItem, unsigned nSize, unsigned nFlags) { return FmfActivateCacheItem(this, pSH, pItem, nSize, nFlags); }
+	//SShaderCacheHeaderItem* mfGetCacheItem(unsigned& nFlags, int& nSize) { return FmfGetCacheItem(this, nFlags, nSize); }
+	//bool mfActivateCacheItem(CShader* pSH, SShaderCacheHeaderItem* pItem, unsigned nSize, unsigned nFlags) { return FmfActivateCacheItem(this, pSH, pItem, nSize, nFlags); }
 	static bool mfCreateCacheItem(CHWShader_D3D::SHWSInstance* pInst, std::vector<SCGBind>& InstBinds, uint8_t* pData, int nLen, CHWShader_D3D* pSH) { return FmfCreateCacheItem(pInst, InstBinds, pData, nLen, pSH); }
-	void mfOutputCompilerError(string& strErr, const char* szSrc) { FmfOutputCompilerError(this, strErr, szSrc); }
+	//void mfOutputCompilerError(string& strErr, const char* szSrc) { FmfOutputCompilerError(this, strErr, szSrc); }
 	static bool mfCreateShaderEnv(int nThread, CHWShader_D3D::SHWSInstance* pInst, ID3D10Blob* pShader, void* pConstantTable, ID3D10Blob* pErrorMsgs, std::vector<SCGBind>& InstBindVars, CHWShader_D3D* pSH, CShader* pFXShader, int nCombination, const char* src) { return FmfCreateShaderEnv(nThread, pInst, pShader, pConstantTable, pErrorMsgs, InstBindVars, pSH, pFXShader, nCombination, src); }
-	void mfPrintCompileInfo(CHWShader_D3D::SHWSInstance* pInst) { FmfPrintCompileInfo(this, pInst); }
-	int mfAsyncCompileReady(CHWShader_D3D::SHWSInstance* pInst) { return FmfAsyncCompileReady(this, pInst); }
-	bool mfUploadHW(CHWShader_D3D::SHWSInstance* pInst, uint8_t* pBuf, unsigned nSize, CShader* pSH, unsigned nFlags) { return FmfUploadHWOv1(this, pInst, pBuf, nSize, pSH, nFlags); }
-	bool mfUploadHW(ID3D10Blob* pShader, CHWShader_D3D::SHWSInstance* pInst, CShader* pSH, unsigned nFlags) { return FmfUploadHWOv0(this, pShader, pInst, pSH, nFlags); }
+	//void mfPrintCompileInfo(CHWShader_D3D::SHWSInstance* pInst) { FmfPrintCompileInfo(this, pInst); }
+	//int mfAsyncCompileReady(CHWShader_D3D::SHWSInstance* pInst) { return FmfAsyncCompileReady(this, pInst); }
+	//bool mfUploadHW(CHWShader_D3D::SHWSInstance* pInst, uint8_t* pBuf, unsigned nSize, CShader* pSH, unsigned nFlags) { return FmfUploadHWOv1(this, pInst, pBuf, nSize, pSH, nFlags); }
+	//bool mfUploadHW(ID3D10Blob* pShader, CHWShader_D3D::SHWSInstance* pInst, CShader* pSH, unsigned nFlags) { return FmfUploadHWOv0(this, pShader, pInst, pSH, nFlags); }
 	ED3DShError mfIsValid_Int(CHWShader_D3D::SHWSInstance*& pInst, bool bFinalise) { return FmfIsValid_Int(this, pInst, bFinalise); }
 	void mfLogShaderCacheMiss(CHWShader_D3D::SHWSInstance* pInst) { FmfLogShaderCacheMiss(this, pInst); }
 	void mfLogShaderRequest(CHWShader_D3D::SHWSInstance* pInst) { FmfLogShaderRequest(this, pInst); }
@@ -704,21 +704,21 @@ public:
 	CHWShader_D3D::SHWSInstance* mfGetInstance(CShader* pSH, SShaderCombIdent& Ident, unsigned nFlags) { return FmfGetInstanceOv1(this, pSH, Ident, nFlags); }
 	CHWShader_D3D::SHWSInstance* mfGetInstance(CShader* pSH, int nHashInstance, SShaderCombIdent& Ident) { return FmfGetInstanceOv0(this, pSH, nHashInstance, Ident); }
 	CHWShader_D3D::SHWSInstance* mfGetHashInst(std::vector<CHWShader_D3D::SHWSInstance*>* pInstCont, unsigned identHash, SShaderCombIdent& Ident, std::_Vector_iterator<std::_Vector_val<std::_Simple_types<CHWShader_D3D::SHWSInstance*> > >& it) { return FmfGetHashInst(this, pInstCont, identHash, Ident, it); }
-	static void mfPrepareShaderDebugInfo(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, const char* szAsm, std::vector<SCGBind>& InstBindVars, void* pConstantTable) { FmfPrepareShaderDebugInfo(pInst, pSH, szAsm, InstBindVars, pConstantTable); }
-	static void mfGetDstFileName(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, char* dstname, int nSize, uint8_t bType) { FmfGetDstFileName(pInst, pSH, dstname, nSize, bType); }
-	bool mfStoreCacheTokenMap(std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData, const char* szName) { return FmfStoreCacheTokenMap(this, Table, pSHData, szName); }
-	void mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData) { FmfGetTokenMap(this, pRes, pDE, Table, pSHData); }
-	void mfSetDefaultRT(uint64_t& nAndMask, uint64_t& nOrMask) { FmfSetDefaultRT(this, nAndMask, nOrMask); }
-	bool mfGetCacheTokenMap(std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData, uint64_t nMaskGenFX) { return FmfGetCacheTokenMap(this, Table, pSHData, nMaskGenFX); }
+	//static void mfPrepareShaderDebugInfo(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, const char* szAsm, std::vector<SCGBind>& InstBindVars, void* pConstantTable) { FmfPrepareShaderDebugInfo(pInst, pSH, szAsm, InstBindVars, pConstantTable); }
+	//static void mfGetDstFileName(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, char* dstname, int nSize, uint8_t bType) { FmfGetDstFileName(pInst, pSH, dstname, nSize, bType); }
+	//bool mfStoreCacheTokenMap(std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData, const char* szName) { return FmfStoreCacheTokenMap(this, Table, pSHData, szName); }
+	//void mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData) { FmfGetTokenMap(this, pRes, pDE, Table, pSHData); }
+	//void mfSetDefaultRT(uint64_t& nAndMask, uint64_t& nOrMask) { FmfSetDefaultRT(this, nAndMask, nOrMask); }
+	//bool mfGetCacheTokenMap(std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData, uint64_t nMaskGenFX) { return FmfGetCacheTokenMap(this, Table, pSHData, nMaskGenFX); }
 	bool mfActivate(CShader* pSH, unsigned nFlags, std::vector<STokenD>* Table, TArray<unsigned int>* pSHData, bool bCompressedOnly) { return FmfActivate(this, pSH, nFlags, Table, pSHData, bCompressedOnly); }
 	uint64_t CheckIfExpr_r(unsigned* pTokens, unsigned& nCur, unsigned nSize) { return FCheckIfExpr_r(this, pTokens, nCur, nSize); }
 	void mfConstructFX_Mask_RT(std::vector<STokenD>* Table, TArray<unsigned int>* pSHData) { FmfConstructFX_Mask_RT(this, Table, pSHData); }
-	static void mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, SCGBind* pBind, CShader* ef, bool bInstParam, EHWShaderClass eSHClass) { FmfAddFXParameterOv1(pInst, OutParams, FXParams, pr, ParamName, pBind, ef, bInstParam, eSHClass); }
-	static bool mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, const char* param, SCGBind* bn, bool bInstParam, EHWShaderClass eSHClass, CShader* pFXShader) { return FmfAddFXParameterOv0(pInst, OutParams, FXParams, param, bn, bInstParam, eSHClass, pFXShader); }
+	//static void mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, SCGBind* pBind, CShader* ef, bool bInstParam, EHWShaderClass eSHClass) { FmfAddFXParameterOv1(pInst, OutParams, FXParams, pr, ParamName, pBind, ef, bInstParam, eSHClass); }
+	//static bool mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, const char* param, SCGBind* bn, bool bInstParam, EHWShaderClass eSHClass, CShader* pFXShader) { return FmfAddFXParameterOv0(pInst, OutParams, FXParams, param, bn, bInstParam, eSHClass, pFXShader); }
 	static void mfGatherFXParameters(CHWShader_D3D::SHWSInstance* pInst, std::vector<SCGBind>* BindVars, std::vector<SCGBind>* InstBindVars, CHWShader_D3D* pSH, CShader* pFXShader) { FmfGatherFXParameters(pInst, BindVars, InstBindVars, pSH, pFXShader); }
-	static void mfCreateBinds(CHWShader_D3D::SHWSInstance* pInst, void* pConstantTable, uint8_t* pShader, int nSize) { FmfCreateBinds(pInst, pConstantTable, pShader, nSize); }
+	//static void mfCreateBinds(CHWShader_D3D::SHWSInstance* pInst, void* pConstantTable, uint8_t* pShader, int nSize) { FmfCreateBinds(pInst, pConstantTable, pShader, nSize); }
 	bool mfUpdateSamplers(CShader* pSH) { return FmfUpdateSamplers(this, pSH); }
-	void mfUpdateFXVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CShader* pSH) { FmfUpdateFXVertexFormat(this, pInst, pSH); }
+	//void mfUpdateFXVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CShader* pSH) { FmfUpdateFXVertexFormat(this, pInst, pSH); }
 	virtual ~CHWShader_D3D();
 	bool mfSetVS(int nFlags) { return FmfSetVS(this, nFlags); }
 	bool mfSetPS(int nFlags) { return FmfSetPS(this, nFlags); }
@@ -735,7 +735,7 @@ public:
 	virtual bool mfFlushCacheFile();
 	virtual bool mfPrecache(SShaderCombination& cmb, bool bForce, bool bCompressedOnly, CShader* pSH, CShaderResources* pRes);
 	virtual EVertexFormat mfVertexFormat(bool& bUseTangents, bool& bUseLM, bool& bUseHWSkin);
-	static EVertexFormat mfVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, ID3D10Blob* pShader) { return FmfVertexFormatOv0(pInst, pSH, pShader); }
+	//static EVertexFormat mfVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, ID3D10Blob* pShader) { return FmfVertexFormatOv0(pInst, pSH, pShader); }
 	virtual const char* mfGetActivatedCombinations(bool bForLevel);
 	static void mfSetGlobalParams() { FmfSetGlobalParams(); }
 	static void mfSetCameraParams() { FmfSetCameraParams(); }
@@ -801,6 +801,52 @@ public:
 	static void* GetVSDataForDecl(D3D11_INPUT_ELEMENT_DESC const* arg0, int arg1, int& arg2);
 	static uint16_t GetDeclaredVertexStreamMask(void* arg0);
 #endif
+
+	// Shader compiling in Chairloader
+	static bool mfAddFXSampler(SHWSInstance* pInst, SShaderFXParams& FXParams, SFXSampler* pr, const char* ParamName, SCGBind* pBind, CShader* ef, EHWShaderClass eSHClass);
+	static bool mfAddFXTexture(SHWSInstance* pInst, SShaderFXParams& FXParams, SFXTexture* pr, const char* ParamName, SCGBind* pBind, CShader* ef, EHWShaderClass eSHClass);
+	static void mfGatherFXParameters(SHWSInstance* pInst, std::vector<SCGBind>* BindVars, std::vector<SCGBind>* InstBindVars, CHWShader_D3D* pSH, int nFlags, CShader* pFXShader);
+	static void mfPostVertexFormat(SHWSInstance* pInst, CHWShader_D3D* pHWSH, bool bCol, byte bNormal, bool bTC0, bool bTC1[2], bool bPSize, bool bTangent[2], bool bBitangent[2], bool bHWSkin, bool bSH[2], bool bMorphTarget, bool bMorph);
+	bool        mfGenerateScript(CShader* pSH, SHWSInstance*& pInst, std::vector<SCGBind>& InstBindVars, uint32 nFlags, FXShaderToken* Table, TArray<uint32>* pSHData, TArray<char>& sNewScr);
+	void          CorrectScriptEnums(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, FXShaderToken* Table);
+	bool          ConvertBinScriptToASCII(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, FXShaderToken* Table, TArray<char>& Scr);
+	void          RemoveUnaffectedParameters_D3D10(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars);
+	void          mfGetSrcFileName(char* srcName, int nSize);
+	static void   mfGetDstFileName(SHWSInstance* pInst, CHWShader_D3D* pSH, char* dstname, int nSize, byte bType);
+	static void   mfGenName(SHWSInstance* pInst, char* dstname, int nSize, byte bType);
+	static bool             mfAddCacheItem(SShaderCache* pCache, SShaderCacheHeaderItem* pItem, const byte* pData, int nLen, bool bFlush, CCryNameTSCRC Name);
+	static byte* mfBindsToCache(SHWSInstance* pInst, std::vector<SCGBind>* Binds, int nParams, byte* pP);
+	byte* mfBindsFromCache(std::vector<SCGBind>*& Binds, int nParams, byte* pP);
+	static bool  mfCreateCacheItem(SHWSInstance* pInst, std::vector<SCGBind>& InstBinds, byte* pData, int nLen, CHWShader_D3D* pSH, bool bShaderThread);
+	void        mfSaveCGFile(const char* scr, const char* path);
+	bool        mfRequestAsync(CShader* pSH, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, const char* prog_text, const char* szProfile, const char* szEntry);
+	void        mfSubmitRequestLine(SHWSInstance* pInst, string* pRequestLine = NULL);
+	bool        mfCompileHLSL_Int(CShader* pSH, char* prog_text, LPD3D10BLOB* ppShader, void** ppConstantTable, LPD3D10BLOB* ppErrorMsgs, string& strErr, std::vector<SCGBind>& InstBindVars);
+	LPD3D10BLOB mfCompileHLSL(CShader* pSH, char* prog_text, void** ppConstantTable, LPD3D10BLOB* ppErrorMsgs, uint32 nFlags, std::vector<SCGBind>& InstBindVars);
+	static bool mfCreateShaderEnv(int nThread, SHWSInstance* pInst, LPD3D10BLOB pShader, void* pConstantTable, LPD3D10BLOB pErrorMsgs, std::vector<SCGBind>& InstBindVars, CHWShader_D3D* pSH, bool bShaderThread, CShader* pFXShader, int nCombination, const char* src = NULL);
+	bool        mfActivate(CShader* pSH, uint32 nFlags, FXShaderToken* Table = NULL, TArray<uint32>* pSHData = NULL);
+	ED3DShError mfIsValid(SHWSInstance*& pInst, bool bFinalise);
+	bool ExportSamplers(SCHWShader& SHW, SShaderSerializeContext& SC);
+	bool ExportParams(SCHWShader& SHW, SShaderSerializeContext& SC);
+	bool        Export(SShaderSerializeContext& SC);
+	static void mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, SCGBind* pBind, CShader* ef, bool bInstParam, EHWShaderClass eSHClass);
+	static bool mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, const char* param, SCGBind* bn, bool bInstParam, EHWShaderClass eSHClass, CShader* pFXShader);
+	static void mfCreateBinds(CHWShader_D3D::SHWSInstance* pInst, void* pConstantTable, uint8_t* pShader, int nSize);
+	void mfUpdateFXVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CShader* pSH);
+	static EVertexFormat mfVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, ID3D10Blob* pShader);
+	void mfSetDefaultRT(uint64_t& nAndMask, uint64_t& nOrMask);
+	bool mfStoreCacheTokenMap(std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData, const char* szName);
+	void mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData);
+	bool mfGetCacheTokenMap(std::vector<STokenD>*& Table, TArray<unsigned int>*& pSHData, uint64_t nMaskGenFX);
+	SShaderCacheHeaderItem* mfGetCacheItem(unsigned& nFlags, int& nSize);
+	bool mfUploadHW(CHWShader_D3D::SHWSInstance* pInst, uint8_t* pBuf, unsigned nSize, CShader* pSH, unsigned nFlags);
+	bool mfUploadHW(ID3D10Blob* pShader, CHWShader_D3D::SHWSInstance* pInst, CShader* pSH, unsigned nFlags);
+	bool mfActivateCacheItem(CShader* pSH, SShaderCacheHeaderItem* pItem, unsigned nSize, unsigned nFlags);
+	void mfOutputCompilerError(string& strErr, const char* szSrc);
+	int mfAsyncCompileReady(CHWShader_D3D::SHWSInstance* pInst);
+	static void mfPrepareShaderDebugInfo(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, const char* szAsm, std::vector<SCGBind>& InstBindVars, void* pConstantTable);
+	void mfPrintCompileInfo(CHWShader_D3D::SHWSInstance* pInst);
+
 
 	static inline auto FSize = PreyFunction<int(CHWShader_D3D* const _this)>(0xEEC3C0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CHWShader_D3D const* const _this, ICrySizer* pSizer)>(0xEEB420);
