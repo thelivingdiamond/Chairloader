@@ -30,7 +30,7 @@ struct SShaderBinHeader
 	uint32 m_nTokens;
 	uint32 m_nSourceCRC32;
 
-	AUTO_STRUCT_INFO;
+	//AUTO_STRUCT_INFO;
 };
 
 struct SShaderBinParamsHeader
@@ -164,7 +164,7 @@ struct SShaderBin
 	inline void Lock()       { m_bLocked = true; }
 	inline void Unlock()     { m_bLocked = false; }
 
-	uint32      ComputeCRC();
+	uint32 ComputeCRC() { return FComputeCRC(this); }
 	void        SetCRC(uint32 nCRC) { m_CRC32 = nCRC; }
 
 	void        CryptData();
@@ -195,6 +195,8 @@ struct SShaderBin
 	{
 		g_shaderBucketAllocator.deallocate(p);
 	}
+
+	static inline auto FComputeCRC = PreyFunction<unsigned(SShaderBin* const _this)>(0x1028E30);
 
 private:
 	SShaderBin(const SShaderBin&);
@@ -245,74 +247,10 @@ typedef FXShaderBinPath::iterator       FXShaderBinPathItor;
 
 class CShaderManBin
 {
+public:
 	friend class CShaderMan;
 
-	SShaderBin*       LoadBinShader(FILE* fpBin, const char* szName, const char* szNameBin, bool bReadParams);
-	SShaderBin*       SaveBinShader(uint32 nSourceCRC32, const char* szName, bool bInclude, FILE* fpSrc);
-	bool              SaveBinShaderLocalInfo(SShaderBin* pBin, uint32 dwName, uint64 nMaskGenFX, TArray<int32>& Funcs, std::vector<SFXParam>& Params, std::vector<SFXSampler>& Samplers, std::vector<SFXTexture>& Textures);
-	SParamCacheInfo*  GetParamInfo(SShaderBin* pBin, uint32 dwName, uint64 nMaskGenFX);
-
-	void              AddGenMacroses(SShaderGen* shG, CParserBin& Parser, uint64 nMaskGen);
-
-	bool              ParseBinFX_Global_Annotations(CParserBin& Parser, SParserFrame& Frame, bool* bPublic, CCryNameR techStart[2]);
-	bool              ParseBinFX_Global(CParserBin& Parser, SParserFrame& Frame, bool* bPublic, CCryNameR techStart[2]);
-	bool              ParseBinFX_Sampler_Annotations_Script(CParserBin& Parser, SParserFrame& Frame, STexSamplerFX* pSampler);
-	bool              ParseBinFX_Sampler_Annotations(CParserBin& Parser, SParserFrame& Frame, STexSamplerFX* pSampler);
-	bool              ParseBinFX_Sampler(CParserBin& Parser, SParserFrame& Data, uint32 dwName, SParserFrame Annotations, EToken samplerType);
-	bool              ParseBinFX_Sampler(CParserBin& Parser, SParserFrame& Data, SFXSampler& Sampl);
-	bool              ParseBinFX_Texture(CParserBin& Parser, SParserFrame& Data, SFXTexture& Sampl);
-
-	void              InitShaderDependenciesList(CParserBin& Parser, SCodeFragment* pFunc, TArray<byte>& bChecked, TArray<int>& AffectedFuncs);
-	void              CheckFragmentsDependencies(CParserBin& Parser, TArray<byte>& bChecked, TArray<int>& AffectedFuncs);
-	void              CheckStructuresDependencies(CParserBin& Parser, SCodeFragment* pFrag, TArray<byte>& bChecked, TArray<int>& AffectedFunc);
-
-	void              AddParameterToScript(CParserBin& Parser, SFXParam* pr, PodArray<uint32>& SHData, EHWShaderClass eSHClass, int nCB);
-	void              AddSamplerToScript(CParserBin& Parser, SFXSampler* pr, PodArray<uint32>& SHData, EHWShaderClass eSHClass);
-	void              AddTextureToScript(CParserBin& Parser, SFXTexture* pr, PodArray<uint32>& SHData, EHWShaderClass eSHClass);
-	void              AddAffectedParameter(CParserBin& Parser, std::vector<SFXParam>& AffectedParams, TArray<int>& AffectedFunc, SFXParam* pParam, EHWShaderClass eSHClass, uint32 dwType, SShaderTechnique* pShTech);
-	void              AddAffectedSampler(CParserBin& Parser, std::vector<SFXSampler>& AffectedSamplers, TArray<int>& AffectedFunc, SFXSampler* pParam, EHWShaderClass eSHClass, uint32 dwType, SShaderTechnique* pShTech);
-	void              AddAffectedTexture(CParserBin& Parser, std::vector<SFXTexture>& AffectedTextures, TArray<int>& AffectedFunc, SFXTexture* pParam, EHWShaderClass eSHClass, uint32 dwType, SShaderTechnique* pShTech);
-	bool              ParseBinFX_Technique_Pass_PackParameters(CParserBin& Parser, std::vector<SFXParam>& AffectedParams, TArray<int>& AffectedFunc, SCodeFragment* pFunc, EHWShaderClass eSHClass, uint32 dwSHName, std::vector<SFXParam>& PackedParams, TArray<SCodeFragment>& Replaces, TArray<uint32>& NewTokens, TArray<byte>& bMerged);
-	bool              ParseBinFX_Technique_Pass_GenerateShaderData(CParserBin& Parser, FXMacroBin& Macros, SShaderFXParams& FXParams, uint32 dwSHName, EHWShaderClass eSHClass, uint64& nGenMask, uint32 dwSHType, PodArray<uint32>& SHData, SShaderTechnique* pShTech);
-	bool              ParseBinFX_Technique_Pass_LoadShader(CParserBin& Parser, FXMacroBin& Macros, SParserFrame& SHFrame, SShaderTechnique* pShTech, SShaderPass* pPass, EHWShaderClass eSHClass, SShaderFXParams& FXParams);
-	bool              ParseBinFX_Technique_Pass(CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pTech);
-	bool              ParseBinFX_Technique_Annotations_String(CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pSHTech, std::vector<SShaderTechParseParams>& techParams, bool* bPublic);
-	bool              ParseBinFX_Technique_Annotations(CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pSHTech, std::vector<SShaderTechParseParams>& techParams, bool* bPublic);
-	bool              ParseBinFX_Technique_CustomRE(CParserBin& Parser, SParserFrame& Frame, SParserFrame& Name, SShaderTechnique* pShTech);
-	SShaderTechnique* ParseBinFX_Technique(CParserBin& Parser, SParserFrame& Data, SParserFrame Annotations, std::vector<SShaderTechParseParams>& techParams, bool* bPublic);
-	bool              ParseBinFX_LightStyle_Val(CParserBin& Parser, SParserFrame& Frame, CLightStyle* ls);
-	bool              ParseBinFX_LightStyle(CParserBin& Parser, SParserFrame& Frame, int nStyle);
-
-	void              MergeTextureSlots(SShaderTexSlots* master, SShaderTexSlots* overlay);
-	SShaderTexSlots*  GetTextureSlots(CParserBin& Parser, SShaderBin* pBin, CShader* ef, int nTech = 0, int nPass = 0);
-
-	SShaderBin*       SearchInCache(const char* szName, bool bInclude);
-	bool              AddToCache(SShaderBin* pSB, bool bInclude);
-	bool              DeleteFromCache(SShaderBin* pSB);
-
-	SFXParam*         mfAddFXParam(SShaderFXParams& FXP, const SFXParam* pParam);
-	SFXParam*         mfAddFXParam(CShader* pSH, const SFXParam* pParam);
-
-	void              mfAddFXSampler(CShader* pSH, const SFXSampler* pParam);
-	void              mfAddFXTexture(CShader* pSH, const SFXTexture* pParam);
-
-	void              mfAddFXSampler(CShader* pSH, const STexSamplerFX* pSamp);
-	void              mfGeneratePublicFXParams(CShader* pSH, CParserBin& Parser);
-
-public:
-	CShaderManBin();
-	SShaderBin*      GetBinShader(const char* szName, bool bInclude, uint32 nRefCRC32, bool* pbChanged = NULL);
-	bool             ParseBinFX(SShaderBin* pBin, CShader* ef, uint64 nMaskGen);
-	bool             ParseBinFX_Dummy(SShaderBin* pBin, std::vector<string>& ShaderNames, const char* szName);
-
-	SShaderFXParams& mfGetFXParams(CShader* pSH);
-	void             mfRemoveFXParams(CShader* pSH);
-	int              mfSizeFXParams(uint32& nCount);
-	void             mfReleaseFXParams();
-
-	void             InvalidateCache(bool bIncludesOnly = false);
-
-	CShaderMan*         m_pCEF;
+	CShaderMan* m_pCEF;
 	FXShaderBinPath     m_BinPaths;
 	FXShaderBinValidCRC m_BinValidCRCs;
 
@@ -322,8 +260,100 @@ public:
 	typedef ShaderFXParams::iterator                 ShaderFXParamsItor;
 	ShaderFXParams m_ShaderFXParams;
 
-	int  Size();
-	void GetMemoryUsage(ICrySizer* pSizer) const;
+	SShaderBin* LoadBinShader(_iobuf* fpBin, const char* szName, const char* szNameBin, bool bReadParams) { return FLoadBinShader(this, fpBin, szName, szNameBin, bReadParams); }
+	bool SaveBinShaderLocalInfo(SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX, TArray<int>& Funcs, std::vector<SFXParam>& Params, std::vector<SFXSampler>& Samplers, std::vector<SFXTexture>& Textures) { return FSaveBinShaderLocalInfo(this, pBin, dwName, nMaskGenFX, Funcs, Params, Samplers, Textures); }
+	SParamCacheInfo* GetParamInfo(SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX) { return FGetParamInfo(this, pBin, dwName, nMaskGenFX); }
+	bool ParseBinFX_Global_Annotations(CParserBin& Parser, SParserFrame& Frame, bool* bPublic, CCryNameR* techStart) { return FParseBinFX_Global_Annotations(this, Parser, Frame, bPublic, techStart); }
+	bool ParseBinFX_Sampler(CParserBin& Parser, SParserFrame& Frame, unsigned dwName, EToken samplerType) { return FParseBinFX_SamplerOv1(this, Parser, Frame, dwName, samplerType); }
+	bool ParseBinFX_Sampler(CParserBin& Parser, SParserFrame& Frame, SFXSampler& Sampl) { return FParseBinFX_SamplerOv0(this, Parser, Frame, Sampl); }
+	bool ParseBinFX_Texture(CParserBin& Parser, SParserFrame& Frame, SFXTexture& Tex) { return FParseBinFX_Texture(this, Parser, Frame, Tex); }
+	void InitShaderDependenciesList(CParserBin& Parser, SCodeFragment* pFunc, TArray<unsigned char>& bChecked, TArray<int>& AffectedFunc) { FInitShaderDependenciesList(this, Parser, pFunc, bChecked, AffectedFunc); }
+	void CheckFragmentsDependencies(CParserBin& Parser, TArray<unsigned char>& bChecked, TArray<int>& AffectedFrags) { FCheckFragmentsDependencies(this, Parser, bChecked, AffectedFrags); }
+	void CheckStructuresDependencies(CParserBin& Parser, SCodeFragment* pFrag, TArray<unsigned char>& bChecked, TArray<int>& AffectedFunc) { FCheckStructuresDependencies(this, Parser, pFrag, bChecked, AffectedFunc); }
+	void AddParameterToScript(CParserBin& Parser, SFXParam* pr, PodArray<unsigned int, 0>& SHData, EHWShaderClass eSHClass, int nCB) { FAddParameterToScript(this, Parser, pr, SHData, eSHClass, nCB); }
+	void AddSamplerToScript(CParserBin& Parser, SFXSampler* pr, PodArray<unsigned int, 0>& SHData, EHWShaderClass eSHClass) { FAddSamplerToScript(this, Parser, pr, SHData, eSHClass); }
+	void AddTextureToScript(CParserBin& Parser, SFXTexture* pr, PodArray<unsigned int, 0>& SHData, EHWShaderClass eSHClass) { FAddTextureToScript(this, Parser, pr, SHData, eSHClass); }
+	bool ParseBinFX_Technique_Pass_PackParameters(CParserBin& Parser, std::vector<SFXParam>& AffectedParams, TArray<int>& AffectedFunc, SCodeFragment* pFunc, EHWShaderClass eSHClass, unsigned dwSHName, std::vector<SFXParam>& PackedParams, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, TArray<unsigned char>& bMerged) { return FParseBinFX_Technique_Pass_PackParameters(this, Parser, AffectedParams, AffectedFunc, pFunc, eSHClass, dwSHName, PackedParams, Replaces, NewTokens, bMerged); }
+	bool ParseBinFX_Technique_Pass_GenerateShaderData(CParserBin& Parser, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macros, SShaderFXParams& FXParams, unsigned dwSHName, EHWShaderClass eSHClass, uint64_t& nAffectMask, unsigned dwSHType, PodArray<unsigned int, 0>& SHData, SShaderTechnique* pShTech) { return FParseBinFX_Technique_Pass_GenerateShaderData(this, Parser, Macros, FXParams, dwSHName, eSHClass, nAffectMask, dwSHType, SHData, pShTech); }
+	bool ParseBinFX_Technique_Pass_LoadShader(CParserBin& Parser, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macros, SParserFrame& SHFrame, SShaderTechnique* pShTech, SShaderPass* pPass, EHWShaderClass eSHClass, SShaderFXParams& FXParams) { return FParseBinFX_Technique_Pass_LoadShader(this, Parser, Macros, SHFrame, pShTech, pPass, eSHClass, FXParams); }
+	bool ParseBinFX_Technique_Pass(CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pShTech) { return FParseBinFX_Technique_Pass(this, Parser, Frame, pShTech); }
+	bool ParseBinFX_Technique_Annotations_String(CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pShTech, std::vector<SShaderTechParseParams>& techParams, bool* bPublic) { return FParseBinFX_Technique_Annotations_String(this, Parser, Frame, pShTech, techParams, bPublic); }
+	SShaderTechnique* ParseBinFX_Technique(CParserBin& Parser, SParserFrame& Frame, SParserFrame Annotations, std::vector<SShaderTechParseParams>& techParams, bool* bPublic) { return FParseBinFX_Technique(this, Parser, Frame, Annotations, techParams, bPublic); }
+	bool ParseBinFX_LightStyle_Val(CParserBin& Parser, SParserFrame& Frame, CLightStyle* ls) { return FParseBinFX_LightStyle_Val(this, Parser, Frame, ls); }
+	bool ParseBinFX_LightStyle(CParserBin& Parser, SParserFrame& Frame, int nStyle) { return FParseBinFX_LightStyle(this, Parser, Frame, nStyle); }
+	SShaderTexSlots* GetTextureSlots(CParserBin& Parser, SShaderBin* pBin, CShader* ef, int nTech, int nPass) { return FGetTextureSlots(this, Parser, pBin, ef, nTech, nPass); }
+	bool DeleteFromCache(SShaderBin* pSB) { return FDeleteFromCache(this, pSB); }
+	SFXParam* mfAddFXParam(SShaderFXParams& FXP, SFXParam const* pParam) { return FmfAddFXParamOv1(this, FXP, pParam); }
+	void mfGeneratePublicFXParams(CShader* pSH, CParserBin& Parser) { FmfGeneratePublicFXParams(this, pSH, Parser); }
+	CShaderManBin();
+	//SShaderBin* GetBinShader(const char* szName, bool bInclude, unsigned nRefCRC, bool* pbChanged = nullptr) { return FGetBinShader(this, szName, bInclude, nRefCRC, pbChanged); }
+	bool ParseBinFX(SShaderBin* pBin, CShader* ef, uint64_t nMaskGen) { return FParseBinFX(this, pBin, ef, nMaskGen); }
+	SShaderFXParams& mfGetFXParams(CShader* pSH) { return FmfGetFXParams(this, pSH); }
+	void mfRemoveFXParams(CShader* pSH) { FmfRemoveFXParams(this, pSH); }
+	void mfReleaseFXParams() { FmfReleaseFXParams(this); }
+	void InvalidateCache(bool bIncludesOnly) { FInvalidateCache(this, bIncludesOnly); }
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+
+#if 0
+	bool ParseBinFX_Technique_Annotations(CParserBin& arg0, SParserFrame& arg1, SShaderTechnique* arg2, std::vector<SShaderTechParseParams>& arg3, bool* arg4);
+	bool ParseBinFX_Technique_CustomRE(CParserBin& arg0, SParserFrame& arg1, SParserFrame& arg2, SShaderTechnique* arg3);
+	void MergeTextureSlots(SShaderTexSlots* arg0, SShaderTexSlots* arg1);
+	bool ParseBinFX_Dummy(SShaderBin* arg0, std::vector<string>& arg1, const char* arg2);
+	void AddGenMacros(SShaderGen* arg0, CParserBin& arg1, uint64_t arg2);
+#endif
+
+	// Shader compiling in Chairloader
+	SShaderBin* SearchInCache(const char* szName, bool bInclude);
+	SShaderBin* SaveBinShader(uint32 nSourceCRC32, const char* szName, bool bInclude, FILE* fpSrc);
+	bool AddToCache(SShaderBin* pSB, bool bInclude);
+	SShaderBin* GetBinShader(const char* szName, bool bInclude, unsigned nRefCRC, bool* pbChanged = nullptr);
+#if 0
+	int Size();
+	int mfSizeFXParams(unsigned& arg0);
+	SFXParam* mfAddFXParam(CShader* arg0, SFXParam const* arg1);
+	void mfAddFXSampler(CShader* arg0, SFXSampler const* arg1);
+	void mfAddFXSampler(CShader* arg0, STexSamplerFX const* arg1);
+	void mfAddFXTexture(CShader* arg0, SFXTexture const* arg1);
+	bool AddToCache(SShaderBin* arg0, bool arg1);
+	void              AddGenMacroses(SShaderGen* shG, CParserBin& Parser, uint64 nMaskGen);
+	bool ParseBinFX_Global(CParserBin& arg0, SParserFrame& arg1, bool* arg2, CCryNameR* arg3);
+	void AddAffectedParameter(CParserBin& arg0, std::vector<SFXParam>& arg1, TArray<int>& arg2, SFXParam* arg3, EHWShaderClass arg4, unsigned arg5, SShaderTechnique* arg6);
+	void AddAffectedSampler(CParserBin& arg0, std::vector<SFXSampler>& arg1, TArray<int>& arg2, SFXSampler* arg3, EHWShaderClass arg4, unsigned arg5, SShaderTechnique* arg6);
+	void AddAffectedTexture(CParserBin& arg0, std::vector<SFXTexture>& arg1, TArray<int>& arg2, SFXTexture* arg3, EHWShaderClass arg4, unsigned arg5, SShaderTechnique* arg6);
+#endif
+
+	static inline auto FLoadBinShader = PreyFunction<SShaderBin* (CShaderManBin* const _this, _iobuf* fpBin, const char* szName, const char* szNameBin, bool bReadParams)>(0x102AC90);
+	static inline auto FSaveBinShaderLocalInfo = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX, TArray<int>& Funcs, std::vector<SFXParam>& Params, std::vector<SFXSampler>& Samplers, std::vector<SFXTexture>& Textures)>(0x1033800);
+	static inline auto FGetParamInfo = PreyFunction<SParamCacheInfo* (CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX)>(0x102A0E0);
+	static inline auto FParseBinFX_Global_Annotations = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, bool* bPublic, CCryNameR* techStart)>(0x102CFF0);
+	static inline auto FParseBinFX_SamplerOv1 = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, unsigned dwName, EToken samplerType)>(0x102EB40);
+	static inline auto FParseBinFX_SamplerOv0 = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SFXSampler& Sampl)>(0x102E400);
+	static inline auto FParseBinFX_Texture = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SFXTexture& Tex)>(0x1033320);
+	static inline auto FInitShaderDependenciesList = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SCodeFragment* pFunc, TArray<unsigned char>& bChecked, TArray<int>& AffectedFunc)>(0x102AA40);
+	static inline auto FCheckFragmentsDependencies = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, TArray<unsigned char>& bChecked, TArray<int>& AffectedFrags)>(0x1028A30);
+	static inline auto FCheckStructuresDependencies = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SCodeFragment* pFrag, TArray<unsigned char>& bChecked, TArray<int>& AffectedFunc)>(0x1028C50);
+	static inline auto FAddParameterToScript = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SFXParam* pr, PodArray<unsigned int, 0>& SHData, EHWShaderClass eSHClass, int nCB)>(0x1027E00);
+	static inline auto FAddSamplerToScript = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SFXSampler* pr, PodArray<unsigned int, 0>& SHData, EHWShaderClass eSHClass)>(0x1028240);
+	static inline auto FAddTextureToScript = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SFXTexture* pr, PodArray<unsigned int, 0>& SHData, EHWShaderClass eSHClass)>(0x1028550);
+	static inline auto FParseBinFX_Technique_Pass_PackParameters = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, std::vector<SFXParam>& AffectedParams, TArray<int>& AffectedFunc, SCodeFragment* pFunc, EHWShaderClass eSHClass, unsigned dwSHName, std::vector<SFXParam>& PackedParams, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, TArray<unsigned char>& bMerged)>(0x10328E0);
+	static inline auto FParseBinFX_Technique_Pass_GenerateShaderData = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macros, SShaderFXParams& FXParams, unsigned dwSHName, EHWShaderClass eSHClass, uint64_t& nAffectMask, unsigned dwSHType, PodArray<unsigned int, 0>& SHData, SShaderTechnique* pShTech)>(0x1030D80);
+	static inline auto FParseBinFX_Technique_Pass_LoadShader = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macros, SParserFrame& SHFrame, SShaderTechnique* pShTech, SShaderPass* pPass, EHWShaderClass eSHClass, SShaderFXParams& FXParams)>(0x1032590);
+	static inline auto FParseBinFX_Technique_Pass = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pShTech)>(0x1030110);
+	static inline auto FParseBinFX_Technique_Annotations_String = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pShTech, std::vector<SShaderTechParseParams>& techParams, bool* bPublic)>(0x102FCE0);
+	static inline auto FParseBinFX_Technique = PreyFunction<SShaderTechnique* (CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SParserFrame Annotations, std::vector<SShaderTechParseParams>& techParams, bool* bPublic)>(0x102F6B0);
+	static inline auto FParseBinFX_LightStyle_Val = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, CLightStyle* ls)>(0x102E0B0);
+	static inline auto FParseBinFX_LightStyle = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, int nStyle)>(0x102DB20);
+	static inline auto FGetTextureSlots = PreyFunction<SShaderTexSlots* (CShaderManBin* const _this, CParserBin& Parser, SShaderBin* pBin, CShader* ef, int nTech, int nPass)>(0x102A160);
+	static inline auto FDeleteFromCache = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pSB)>(0x1028F20);
+	static inline auto FmfAddFXParamOv1 = PreyFunction<SFXParam* (CShaderManBin* const _this, SShaderFXParams& FXP, SFXParam const* pParam)>(0x1034E50);
+	static inline auto FmfGeneratePublicFXParams = PreyFunction<void(CShaderManBin* const _this, CShader* pSH, CParserBin& Parser)>(0x1035030);
+	static inline auto FGetBinShader = PreyFunction<SShaderBin* (CShaderManBin* const _this, const char* szName, bool bInclude, unsigned nRefCRC, bool* pbChanged)>(0x1028F70);
+	static inline auto FParseBinFX = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pBin, CShader* ef, uint64_t nMaskGen)>(0x102B330);
+	static inline auto FmfGetFXParams = PreyFunction<SShaderFXParams& (CShaderManBin* const _this, CShader* pSH)>(0x10354E0);
+	static inline auto FmfRemoveFXParams = PreyFunction<void(CShaderManBin* const _this, CShader* pSH)>(0x1035B30);
+	static inline auto FmfReleaseFXParams = PreyFunction<void(CShaderManBin* const _this)>(0x1035AF0);
+	static inline auto FInvalidateCache = PreyFunction<void(CShaderManBin* const _this, bool bIncludesOnly)>(0x102ABC0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(CShaderManBin const* const _this, ICrySizer* pSizer)>(0x1029B30);
 };
 
 //=====================================================================

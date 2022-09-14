@@ -26,8 +26,8 @@
 
 // Maximum 1 digit here
 // The version determines the parse logic in the shader cache gen, these values cannot overlap
-//#define SHADER_LIST_VER      2
-//#define SHADER_SERIALISE_VER (SHADER_LIST_VER + 1)
+#define SHADER_LIST_VER      5
+#define SHADER_SERIALISE_VER (SHADER_LIST_VER + 1)
 
 //#define SHADER_NO_SOURCES 1 // If this defined all binary shaders (.fxb) should be located in Game folder (not user)
 
@@ -240,11 +240,11 @@ struct SFXParam
 		int nnn = 0;
 	}
 	uint32 GetComponent(EHWShaderClass eSHClass);
-	void   GetParamComp(uint32 nOffset, CryFixedStringT<128>& param);
+	void GetParamComp(uint32 nOffset, CryFixedStringT<128>& param) { FGetParamComp(this, nOffset, param); }
 	uint32 GetParamFlags() { return m_nFlags; }
-	void   GetCompName(uint32 nId, CryFixedStringT<128>& name);
+	void GetCompName(uint32 nId, CryFixedStringT<128>& name) { FGetCompName(this, nId, name); }
 	string GetValueForName(const char* szName, EParamType& eType);
-	void   PostLoad(class CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign);
+	void PostLoad(CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign) { FPostLoadOv1(this, Parser, Name, Annotations, Values, Assign); }
 	void   PostLoad();
 	bool   Export(SShaderSerializeContext& SC);
 	bool   Import(SShaderSerializeContext& SC, SSFXParam* pPR);
@@ -264,6 +264,12 @@ struct SFXParam
 			return true;
 		return false;
 	}
+
+	static inline auto FBitNotSFXParam = PreyFunction<void(SFXParam* const _this)>(0x1027590);
+	static inline auto FGetParamComp = PreyFunction<void(SFXParam* const _this, unsigned nOffset, CryFixedStringT<128>& param)>(0x1029EA0);
+	static inline auto FGetCompName = PreyFunction<void(SFXParam* const _this, unsigned nId, CryFixedStringT<128>& name)>(0x10298C0);
+	static inline auto FGetValueForName = PreyFunction<string*(SFXParam* const _this, string* returnValue, const char* szName, EParamType& eType)>(0x102A740);
+	static inline auto FPostLoadOv1 = PreyFunction<void(SFXParam* const _this, CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign)>(0x1010ED0);
 };
 
 struct STokenD
@@ -462,7 +468,7 @@ struct SShaderCacheHeaderItem
 	{
 		memset(this, 0, sizeof(SShaderCacheHeaderItem));
 	}
-	AUTO_STRUCT_INFO;
+	//AUTO_STRUCT_INFO;
 };
 
 #define MAX_VAR_NAME 512
@@ -609,7 +615,7 @@ enum EHWSRMaskBit
 	HWSR_MAX
 };
 
-extern uint64 g_HWSR_MaskBit[HWSR_MAX];
+inline auto g_HWSR_MaskBit = PreyGlobal<uint64[HWSR_MAX]>(0x2BA71F0);
 
 // HWShader global flags (m_Flags)
 //#define HWSG_SUPPORTS_LIGHTING    0x20
@@ -661,10 +667,10 @@ class CShaderResources;
 
 class CHWShader : public CBaseResource
 {
+public:
 	static inline auto s_sClassNameVS = PreyGlobal<CCryNameTSCRC>(0x2B175A4);
 	static inline auto s_sClassNamePS = PreyGlobal<CCryNameTSCRC>(0x2B175A8);
 
-public:
 	EHWShaderClass            m_eSHClass;
 	//EHWSProfile m_eHWProfile;
 	SShaderCache*             m_pGlobalCache;
@@ -692,61 +698,66 @@ public:
 	uint32                    m_CRC32;
 	uint32                    m_dwShaderType;
 
-public:
-	CHWShader()
-	{
-		m_nFrame = 0;
-		m_nFrameLoad = 0;
-		m_Flags = 0;
-		m_nMaskGenShader = 0;
-		m_nMaskAnd_RT = -1;
-		m_nMaskOr_RT = 0;
-		m_CRC32 = 0;
-		m_nMaskGenFX = 0;
-		m_nMaskSetFX = 0;
-		m_eSHClass = eHWSC_Vertex;
-		m_pGlobalCache = NULL;
-	}
-	virtual ~CHWShader() {}
-
-	//EHWSProfile mfGetHWProfile(uint32 nFlags);
-
-	static CHWShader*  mfForName(const char* name, const char* nameSource, uint32 CRC32, const char* szEntryFunc, EHWShaderClass eClass, TArray<uint32>& SHData, FXShaderToken* pTable, uint32 dwType, CShader* pFX, uint64 nMaskGen = 0, uint64 nMaskGenFX = 0);
-
-	static void        mfReloadScript(const char* szPath, const char* szName, int nFlags, uint64 nMaskGen);
-	static void        mfFlushPendedShadersWait(int nMaxAllowed);
+	static inline auto m_ShaderCacheList = PreyGlobal<FXShaderCacheNames>(0x2B167D8);
+	static inline auto m_ShaderCache = PreyGlobal<FXShaderCache>(0x2B167B8);
+	static inline auto m_ShaderDevCache = PreyGlobal<FXShaderDevCache>(0x2B167C8);
+	//static inline auto m_CompressedShaders = PreyGlobal<std::map<CCryNameTSCRC, SHWActivatedShader*, std::less<CCryNameTSCRC>>>(0x2BA7440);
+	
 	inline const char* GetName()
 	{
 		return m_Name.c_str();
 	}
-	virtual int         Size() = 0;
-	virtual void        GetMemoryUsage(ICrySizer* Sizer) const = 0;
-	virtual void        mfReset(uint32 CRC32) {}
-	virtual bool        mfSetV(int nFlags = 0) = 0;
-	virtual bool        mfAddEmptyCombination(CShader* pSH, uint64 nRT, uint64 nGL, uint32 nLT) = 0;
-	virtual bool        mfStoreEmptyCombination(SEmptyCombination& Comb) = 0;
-	virtual const char* mfGetCurScript() { return NULL; }
+	
+	virtual ~CHWShader();
+	static CHWShader* mfForName(const char* name, const char* nameSource, unsigned CRC32, const char* szEntryFunc, EHWShaderClass eClass, TArray<unsigned int>& SHData, std::vector<STokenD>* pTable, unsigned dwType, CShader* pFX, uint64_t nMaskGen, uint64_t nMaskGenFX) { return FmfForName(name, nameSource, CRC32, szEntryFunc, eClass, SHData, pTable, dwType, pFX, nMaskGen, nMaskGenFX); }
+	//static void mfFlushPendedShadersWait(int nMaxAllowed) { FmfFlushPendedShadersWait(nMaxAllowed); }
+	virtual int Size() = 0;
+	virtual void GetMemoryUsage(ICrySizer* arg0) const = 0;
+	virtual void mfReset(unsigned CRC32);
+	virtual bool mfSetV(int arg0) = 0;
+	virtual bool mfAddEmptyCombination(CShader* arg0, uint64_t arg1, uint64_t arg2, unsigned arg3) = 0;
+	virtual bool mfStoreEmptyCombination(SEmptyCombination& arg0) = 0;
+	virtual const char* mfGetCurScript();
 	virtual const char* mfGetEntryName() = 0;
-	virtual void        mfUpdatePreprocessFlags(SShaderTechnique* pTech) = 0;
-	virtual bool        mfFlushCacheFile() = 0;
-	virtual bool        mfPrecache(SShaderCombination& cmb, bool bForce, bool bFallback, CShader* pSH, CShaderResources* pRes) = 0;
+	virtual bool mfFlushCacheFile() = 0;
+	virtual bool mfPrecache(SShaderCombination& arg0, bool arg1, bool arg2, CShader* arg3, CShaderResources* arg4) = 0;
+	virtual EVertexFormat mfVertexFormat(bool& arg0, bool& arg1, bool& arg2) = 0;
+	virtual const char* mfGetActivatedCombinations(bool arg0) = 0;
+	static const char* mfProfileString(EHWShaderClass eClass) { return FmfProfileString(eClass); }
+	static const char* mfClassString(EHWShaderClass eClass) { return FmfClassString(eClass); }
+	static void mfGenName(uint64_t GLMask, uint64_t RTMask, unsigned LightMask, unsigned MDMask, unsigned MDVMask, uint64_t PSS, EHWShaderClass eClass, char* dstname, int nSize, uint8_t bType) { FmfGenName(GLMask, RTMask, LightMask, MDMask, MDVMask, PSS, eClass, dstname, nSize, bType); }
+	static void mfCleanupCache() { FmfCleanupCache(); }
+	//static SShaderCache* mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync = false) { return FmfInitCache(name, pSH, bCheckValid, CRC32, bReadOnly, bAsync); }
+	//static bool _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly) { return F_OpenCacheFile(fVersion, pCache, pSH, bCheckValid, CRC32, nCache, pRF, bReadOnly); }
+	//static bool mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly) { return FmfOpenCacheFile(szName, fVersion, pCache, pSH, bCheckValid, CRC32, bReadOnly); }
 
-	virtual bool        Export(SShaderSerializeContext& SC) = 0;
-	static CHWShader*   Import(SShaderSerializeContext& SC, int nOffs, uint32 CRC32, CShader* pSH);
+#if 0
+	static void mfReloadScript(const char* arg0, const char* arg1, int arg2, uint64_t arg3);
+	const char* GetName();
+	static EHWShaderClass mfStringProfile(const char* arg0);
+	static EHWShaderClass mfStringClass(const char* arg0);
+	static void mfLazyUnload();
+	static CCryNameTSCRC mfGetClassName(EHWShaderClass arg0);
+	static const char* GetCurrentShaderCombinations(bool arg0);
+	static uint8_t* mfIgnoreRemapsFromCache(int arg0, uint8_t* arg1);
+	static uint8_t* mfIgnoreBindsFromCache(int arg0, uint8_t* arg1);
+	static SShaderDevCache* mfInitDevCache(const char* arg0, CHWShader* arg1);
+	static void mfValidateTokenData(CResFile* arg0);
+#endif
 
-	// Vertex shader specific functions
-	virtual EVertexFormat mfVertexFormat(bool& bUseTangents, bool& bUseLM, bool& bUseHWSkin) = 0;
-
-	virtual const char*   mfGetActivatedCombinations(bool bForLevel) = 0;
-
-	static const char*    mfProfileString(EHWShaderClass eClass);
-	static const char*    mfClassString(EHWShaderClass eClass);
-	static EHWShaderClass mfStringProfile(const char* profile);
-	static EHWShaderClass mfStringClass(const char* szClass);
-	static void           mfGenName(uint64 GLMask, uint64 RTMask, uint32 LightMask, uint32 MDMask, uint32 MDVMask, uint64 PSS, EHWShaderClass eClass, char* dstname, int nSize, byte bType);
-
-	static void           mfLazyUnload();
-	static void           mfCleanupCache();
+	// Shader compiling in Chairloader
+	static void             mfValidateTokenData(CResFile* pRF);
+	static SShaderDevCache* mfInitDevCache(const char* name, CHWShader* pSH);
+	static bool             mfOptimiseCacheFile(SShaderCache* pCache, bool bForce, SOptimiseStats* Stats);
+	static bool _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly);
+	static bool mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly);
+	static SShaderCache* mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync = false);
+	static byte* mfIgnoreBindsFromCache(int nParams, byte* pP);
+	static void mfFlushPendedShadersWait(int nMaxAllowed);
+	static bool ImportSamplers(SShaderSerializeContext& SC, struct SCHWShader* pSHW, byte*& pData, std::vector<STexSamplerRT>& Samplers);
+	static bool ImportParams(SShaderSerializeContext& SC, SCHWShader* pSHW, byte*& pData, std::vector<SFXParam>& Params);
+	static CHWShader* Import(SShaderSerializeContext& SC, int nOffs, uint32 CRC32, CShader* pSH);
+	static const char* GetCurrentShaderCombinations(bool bForLevel);
 
 	static CCryNameTSCRC  mfGetClassName(EHWShaderClass eClass)
 	{
@@ -756,25 +767,39 @@ public:
 			return *s_sClassNamePS;
 	}
 
-	static const char*      GetCurrentShaderCombinations(bool bForLevel);
+	static EHWShaderClass mfStringClass(const char* szClass)
+	{
+		EHWShaderClass Profile = eHWSC_Num;
+		if (!strnicmp(szClass, "VS", 2))
+			Profile = eHWSC_Vertex;
+		else if (!strnicmp(szClass, "PS", 2))
+			Profile = eHWSC_Pixel;
+		else if (!strnicmp(szClass, "GS", 2))
+			Profile = eHWSC_Geometry;
+		else if (!strnicmp(szClass, "HS", 2))
+			Profile = eHWSC_Hull;
+		else if (!strnicmp(szClass, "DS", 2))
+			Profile = eHWSC_Domain;
+		else if (!strnicmp(szClass, "CS", 2))
+			Profile = eHWSC_Compute;
+		else
+			assert(0);
 
-	static byte*            mfIgnoreRemapsFromCache(int nRemaps, byte* pP);
-	static byte*            mfIgnoreBindsFromCache(int nParams, byte* pP);
-#if CRY_PLATFORM_DESKTOP
-	static bool             mfOptimiseCacheFile(SShaderCache* pCache, bool bForce, SOptimiseStats* Stats);
-#endif
-	static SShaderDevCache* mfInitDevCache(const char* name, CHWShader* pSH);
-	static SShaderCache*    mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, uint32 CRC32, bool bReadOnly, bool bAsync = false);
-	static bool             _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, uint32 CRC32, int nCache, CResFile* pRF, bool bReadOnly);
-	static bool             mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, uint32 CRC32, bool bReadOnly);
-	static void             mfValidateTokenData(CResFile* pRF);
-	static FXShaderCacheNames m_ShaderCacheList;
-	static FXShaderCache      m_ShaderCache;
-	static FXShaderDevCache   m_ShaderDevCache;
+		return Profile;
+	}
 
-	// Import/Export
-	static bool ImportSamplers(SShaderSerializeContext& SC, struct SCHWShader* pSHW, byte*& pData, std::vector<STexSamplerRT>& Samplers);
-	static bool ImportParams(SShaderSerializeContext& SC, SCHWShader* pSHW, byte*& pData, std::vector<SFXParam>& Params);
+	static inline auto FBitNotCHWShader = PreyFunction<void(CHWShader* const _this)>(0xEEAC90);
+	static inline auto FmfForName = PreyFunction<CHWShader* (const char* name, const char* nameSource, unsigned CRC32, const char* szEntryFunc, EHWShaderClass eClass, TArray<unsigned int>& SHData, std::vector<STokenD>* pTable, unsigned dwType, CShader* pFX, uint64_t nMaskGen, uint64_t nMaskGenFX)>(0xEED9B0);
+	static inline auto FmfFlushPendedShadersWait = PreyFunction<void(int nMaxAllowed)>(0xEFB300);
+	static inline auto FmfReset = PreyFunction<void(CHWShader* const _this, unsigned CRC32)>(0xA13080);
+	static inline auto FmfGetCurScript = PreyFunction<const char* (CHWShader* const _this)>(0x158AEF0);
+	static inline auto FmfProfileString = PreyFunction<const char* (EHWShaderClass eClass)>(0x1020B30);
+	static inline auto FmfClassString = PreyFunction<const char* (EHWShaderClass eClass)>(0x101CF20);
+	static inline auto FmfGenName = PreyFunction<void(uint64_t GLMask, uint64_t RTMask, unsigned LightMask, unsigned MDMask, unsigned MDVMask, uint64_t PSS, EHWShaderClass eClass, char* dstname, int nSize, uint8_t bType)>(0x1014D50);
+	static inline auto FmfCleanupCache = PreyFunction<void()>(0x101CFA0);
+	static inline auto FmfInitCache = PreyFunction<SShaderCache* (const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync)>(0xEFE160);
+	static inline auto F_OpenCacheFile = PreyFunction<bool(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly)>(0xEF8250);
+	static inline auto FmfOpenCacheFile = PreyFunction<bool(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly)>(0xEFE5C0);
 };
 
 inline void SortLightTypes(int Types[4], int nCount)
@@ -1071,8 +1096,9 @@ enum EShaderDrawType
 // General Shader structure
 class CShader : public IShader, public CBaseResource
 {
-	static CCryNameTSCRC      s_sClassName;
 public:
+	static inline auto s_sClassName = PreyGlobal<CCryNameTSCRC>(0x2B175AC);
+
 	string                    m_NameFile; // } FIXME: This fields order is very important
 	string                    m_NameShader;
 	EShaderDrawType           m_eSHDType; // } Check CShader::operator = in ShaderCore.cpp for more info
@@ -1184,6 +1210,11 @@ public:
 
 	// Shader compiling in Chairloader
 	void        mfFlushPendedShaders();
+
+	static CCryNameTSCRC mfGetClassName()
+	{
+		return *s_sClassName;
+	}
 
 	static inline auto FmfFree = PreyFunction<void(CShader* const _this)>(0x101D850);
 	static inline auto FBitNotCShader = PreyFunction<void(CShader* const _this)>(0x10196C0);

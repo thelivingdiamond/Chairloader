@@ -9,11 +9,18 @@ set(SOURCE_FILES
 	RenderDll/D3DRenderAuxGeom.h
 	RenderDll/DebugMarkers.cpp
 	RenderDll/DebugMarkers.h
+	RenderDll/Parser.cpp
+	RenderDll/ParserBin.cpp
 	RenderDll/RenderAuxGeom.cpp
 	RenderDll/RenderAuxGeomPatch.cpp
 	RenderDll/RenderAuxGeomPatch.h
 	RenderDll/RenderCommandHandler.cpp
 	RenderDll/RenderCommandHook.asm
+	RenderDll/ResFile.cpp
+	RenderDll/ShaderCompilingPatch.cpp
+	RenderDll/ShaderCompilingPatch.h
+	RenderDll/ShaderFXParseBin.cpp
+	RenderDll/ShaderMan.cpp
 	RenderDll/TextMessages.cpp
 	
 	ChairLoader.cpp

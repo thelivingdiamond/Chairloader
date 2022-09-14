@@ -4,6 +4,7 @@
 #include <Prey/CryString/CryFixedString.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include "Prey/CrySystem/IStreamEngineDefs.h"
+#include <Prey/CryCore/CryEndian.h>
 
 struct ICryArchive;
 struct ICryPakFileAcesssSink;
@@ -190,7 +191,7 @@ struct ICryPak // Id=800062E Size=8
 {
     using FileTime = uint64_t;
 
-    enum class EPathResolutionRules
+    enum EPathResolutionRules
     {
         FLAGS_DISABLE_LOCALIZATION = 32768,
         FLAGS_PATH_REAL = 65536,
@@ -208,7 +209,7 @@ struct ICryPak // Id=800062E Size=8
         FLAGS_PAK_IN_MEMORY_CPU = 1073741824,
     };
 
-    enum class EFOpenFlags
+    enum EFOpenFlags
     {
         FOPEN_HINT_DIRECT_OPERATION = 1,
         FOPEN_HINT_QUIET = 2,
@@ -345,7 +346,7 @@ struct ICryPak // Id=800062E Size=8
     virtual void *PoolMalloc(uint64_t arg0) = 0;
     virtual void PoolFree(void *arg0) = 0;
     virtual IMemoryBlock *PoolAllocMemoryBlock(uint64_t arg0, const char *arg1, uint64_t arg2) = 0;
-    virtual int64_t FindFirst(const char *pDir, _finddata64i32_t *fd, unsigned nPathFlags, bool bAllowUseFileSystem) = 0;
+    virtual int64_t FindFirst(const char *pDir, _finddata64i32_t *fd, unsigned nPathFlags = 0, bool bAllowUseFileSystem = false) = 0;
     virtual int FindNext(int64_t arg0, _finddata64i32_t *arg1) = 0;
     virtual int FindClose(int64_t arg0) = 0;
     virtual uint64_t GetModificationTime(_iobuf *arg0) = 0;
@@ -369,7 +370,7 @@ struct ICryPak // Id=800062E Size=8
     virtual IResourceList *GetResourceList(ICryPak::ERecordFileOpenList arg0) = 0;
     virtual void SetResourceList(ICryPak::ERecordFileOpenList arg0, IResourceList *arg1) = 0;
     virtual ICryPak::ERecordFileOpenList GetRecordFileOpenList() = 0;
-    virtual unsigned ComputeCRC(const char *arg0, unsigned arg1) = 0;
+    virtual unsigned ComputeCRC(const char* szPath, uint32 nFileOpenFlags = 0) = 0;
     virtual bool ComputeMD5(const char *arg0, uint8_t *arg1, unsigned arg2) = 0;
     virtual int ComputeCachedPakCDR_CRC(const char *arg0, bool arg1, IMemoryBlock *arg2) = 0;
     virtual void RegisterFileAccessSink(ICryPakFileAcesssSink *arg0) = 0;
@@ -384,6 +385,15 @@ struct ICryPak // Id=800062E Size=8
     virtual EStreamSourceMediaType GetFileMediaType(const char *arg0) = 0;
     virtual void CreatePerfHUDWidget() = 0;
     virtual void ScanDirectory(const char *_folderPath, const char *_fileFilter, std::vector<string> &_outFiles, bool _recursive, bool _bAllowUseFileSystem) = 0;
+
+    //! Type-safe endian conversion read.
+    template<class T>
+    size_t FRead(T* data, size_t elems, FILE* handle, bool bSwapEndian = eLittleEndian)
+    {
+        size_t count = FReadRaw(data, sizeof(T), elems, handle);
+        SwapEndian(data, count, bSwapEndian);
+        return count;
+    }
 
     //! Type-independent Write.
     template<class T>

@@ -946,7 +946,6 @@ struct STexSamplerFX
 
 	uint32 GetTexFlags() { return m_nTexFlags; }
 	void   Update();
-	void   PostLoad();
 	NO_INLINE STexSamplerFX (const STexSamplerFX& src)
 	{
 		//m_pITarget = src.m_pITarget;

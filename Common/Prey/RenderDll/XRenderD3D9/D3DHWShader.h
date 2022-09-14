@@ -423,6 +423,7 @@ private:
 
 class CHWShader_D3D : public CHWShader
 {
+public:
 	friend class CCompiledRenderObject;
 	friend class CD3D9Renderer;
 	friend class CAsyncShaderTask;
@@ -579,8 +580,8 @@ class CHWShader_D3D : public CHWShader
 			m_cacheID[0] = cacheID;
 		}
 #endif
-		void Release(SShaderDevCache* pCache = NULL, bool bReleaseData = true);
-		void GetInstancingAttribInfo(uint8 Attributes[32], int32 & nUsedAttr, int& nInstAttrMask);
+		void Release(SShaderDevCache* pCache = nullptr, bool bReleaseData = false) { FRelease(this, pCache, bReleaseData); }
+		void GetInstancingAttribInfo(uint8 Attributes[32], int32 & nUsedAttr, int& nInstAttrMask) { FGetInstancingAttribInfo(this, Attributes, nUsedAttr, nInstAttrMask); }
 
 		int  Size()
 		{
@@ -591,13 +592,7 @@ class CHWShader_D3D : public CHWShader
 			return nSize;
 		}
 
-		void GetMemoryUsage(ICrySizer* pSizer) const
-		{
-			pSizer->AddObject(m_Handle);
-			pSizer->AddObject(m_pSamplers);
-			pSizer->AddObject(m_pBindVars);
-			pSizer->AddObject(m_pShaderData, m_nDataSize);
-		}
+		void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
 
 		bool IsAsyncCompiling()
 		{
@@ -606,6 +601,10 @@ class CHWShader_D3D : public CHWShader
 
 			return false;
 		}
+
+		static inline auto FRelease = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, SShaderDevCache* pCache, bool bReleaseData)>(0xEEBCB0);
+		static inline auto FGetInstancingAttribInfo = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, uint8_t* Attributes, int& nUsedAttr, int& nInstAttrMask)>(0xEEB350);
+		static inline auto FGetMemoryUsage = PreyFunction<void(CHWShader_D3D::SHWSInstance const* const _this, ICrySizer* pSizer)>(0xEEB4F0);
 	};
 
 	static_assert(sizeof(SHWSInstance) == 256);
@@ -846,7 +845,6 @@ public:
 	int mfAsyncCompileReady(CHWShader_D3D::SHWSInstance* pInst);
 	static void mfPrepareShaderDebugInfo(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, const char* szAsm, std::vector<SCGBind>& InstBindVars, void* pConstantTable);
 	void mfPrintCompileInfo(CHWShader_D3D::SHWSInstance* pInst);
-
 
 	static inline auto FSize = PreyFunction<int(CHWShader_D3D* const _this)>(0xEEC3C0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CHWShader_D3D const* const _this, ICrySizer* pSizer)>(0xEEB420);

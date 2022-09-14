@@ -158,8 +158,6 @@ private:
 	CResFile* m_NextStream;
 	CResFile* m_PrevStream;
 
-	bool mfActivate(bool bFirstTime);
-
 	inline void Relink(CResFile* Before)
 	{
 		if (m_Next && m_Prev)
@@ -172,14 +170,14 @@ private:
 		Before->m_Next         = this;
 		m_Prev                 = Before;
 	}
-	inline void Unlink()
+	/*inline void Unlink()
 	{
 		if (!m_Next || !m_Prev)
 			return;
 		m_Next->m_Prev = m_Prev;
 		m_Prev->m_Next = m_Next;
 		m_Next         = m_Prev = NULL;
-	}
+	}*/
 	inline void Link(CResFile* Before)
 	{
 		if (m_Next || m_Prev)
@@ -217,77 +215,99 @@ public:
 		return m_pLookupDataMan;
 	}
 
-	SResFileLookupData* GetLookupData(bool bCreate, uint32 CRC, float fVersion) const;
-
-	const char* mfGetError(void);
-	void        mfSetError(const char* er, ...);
-	const char* mfGetFileName() const {return m_name.c_str(); }
-	int         mfGetVersion()        { return m_version; }
-	void        mfDeactivate(bool bReleaseDir);
-
-	void mfTickStreaming();
-
-	int  mfOpen(int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo = NULL);
-	bool mfClose();
-	int  mfFlush(bool bCompressDir = false);
-	int  mfFlushDir(long nSeek, bool bOptimise);
-	bool mfPrepareDir();
-	int  mfLoadDir(SResStreamInfo* pStreamInfo);
-	void mfReleaseDir();
-
-	int mfGetNumFiles() { return m_Dir.size(); }
-
-	byte* mfFileReadCompressed(SDirEntry* de, uint32& nSizeDecomp, uint32& nSizeComp);
-
-	int mfFileRead(SDirEntry* de);
-	int mfFileRead(const char* name);
-	int mfFileRead(CCryNameTSCRC name);
-
-	int mfFileWrite(CCryNameTSCRC name, void* data);
-
-	void mfFileRead2(SDirEntry* de, int size, void* buf);
-	void mfFileRead2(CCryNameTSCRC name, int size, void* buf);
-
-	void* mfFileGetBuf(SDirEntry* de);
-	void* mfFileGetBuf(CCryNameTSCRC name);
-
-	int mfFileSeek(SDirEntry* de, int offs, int type);
-	int mfFileSeek(CCryNameTSCRC name, int offs, int type);
-	int mfFileSeek(char* name, int offs, int type);
-
-	int mfFileLength(SDirEntry* de);
-	int mfFileLength(CCryNameTSCRC name);
-	int mfFileLength(char* name);
-
-	int mfFileAdd(SDirEntry* de);
-
-	bool mfIsDirty()        { return m_bDirty; }
-	bool mfIsDirStreaming() { return m_bDirStreaming; }
-
-	//int mfFileDelete(SDirEntry *de);
-	//int mfFileDelete(CCryNameTSCRC name);
-	//int mfFileDelete(char* name);
-
-	bool mfFileExist(CCryNameTSCRC name);
-	bool mfFileExist(const char* name);
-
-	int            mfFileClose(SDirEntry* de);
-	bool           mfCloseEntry(SDirEntry* de, bool bEraseOpenEntry = true);
-	SDirEntryOpen* mfOpenEntry(SDirEntry* de);
-	SDirEntryOpen* mfGetOpenEntry(SDirEntry* de);
-	SDirEntry*     mfGetEntry(CCryNameTSCRC name, bool* bAsync = NULL);
-	ResDir*        mfGetDirectory();
-
 	FILE* mfGetHandle() { return m_handle; }
-	int   mfGetResourceSize();
+	
+	bool mfActivate(bool bFirstTime) { return FmfActivate(this, bFirstTime); }
+	void Unlink() { FUnlink(this); }
+	SResFileLookupData* GetLookupData(bool bCreate, unsigned CRC, float fVersion) const { return FGetLookupData(this, bCreate, CRC, fVersion); }
+	const char* mfGetError() { return FmfGetError(this); }
+	//void mfSetError(const char* er, ... buffer) { FmfSetError(this, er, buffer); }
+	void mfDeactivate(bool bReleaseDir) { FmfDeactivate(this, bReleaseDir); }
+	void mfTickStreaming() { FmfTickStreaming(this); }
+	int mfOpen(int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo = nullptr) { return FmfOpen(this, type, pMan, pStreamInfo); }
+	bool mfClose() { return FmfClose(this); }
+	int mfFlush(bool bOptimise = false) { return FmfFlush(this, bOptimise); }
+	int mfFlushDir(long nOffset, bool bOptimise) { return FmfFlushDir(this, nOffset, bOptimise); }
+	bool mfPrepareDir() { return FmfPrepareDir(this); }
+	int mfLoadDir(SResStreamInfo* pStreamInfo) { return FmfLoadDir(this, pStreamInfo); }
+	void mfReleaseDir() { FmfReleaseDir(this); }
+	uint8_t* mfFileReadCompressed(SDirEntry* de, unsigned& nSizeDecomp, unsigned& nSizeComp) { return FmfFileReadCompressed(this, de, nSizeDecomp, nSizeComp); }
+	int mfFileRead(SDirEntry* de) { return FmfFileReadOv2(this, de); }
+	void* mfFileGetBuf(SDirEntry* de) { return FmfFileGetBufOv1(this, de); }
+	int mfFileAdd(SDirEntry* de) { return FmfFileAdd(this, de); }
+	bool mfFileExist(const char* name) { return FmfFileExistOv0(this, name); }
+	int mfFileClose(SDirEntry* de) { return FmfFileClose(this, de); }
+	bool mfCloseEntry(SDirEntry* de, bool bEraseOpenEntry = false) { return FmfCloseEntry(this, de, bEraseOpenEntry); }
+	SDirEntryOpen* mfOpenEntry(SDirEntry* de) { return FmfOpenEntry(this, de); }
+	SDirEntryOpen* mfGetOpenEntry(SDirEntry* de) { return FmfGetOpenEntry(this, de); }
+	SDirEntry* mfGetEntry(CCryNameTSCRC name, bool* pAsync = nullptr) { return FmfGetEntry(this, name, pAsync); }
+	std::vector<SDirEntry>* mfGetDirectory() { return FmfGetDirectory(this); }
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+	static void Tick() { FTick(); }
 
-	uint64 mfGetModifTime();
-
-	int  Size();
-	void GetMemoryUsage(ICrySizer* pSizer) const;
-
-	static void Tick();
+#if 0
+	void Relink(CResFile* arg0);
+	void Link(CResFile* arg0);
+	void UnlinkStream();
+	void LinkStream(CResFile* arg0);
+	CResFileLookupDataMan* GetLookupMan() const;
+	const char* mfGetFileName() const;
+	int mfGetVersion();
+	int mfGetNumFiles();
+	int mfFileRead(const char* arg0);
+	int mfFileRead(CCryNameTSCRC arg0);
+	int mfFileWrite(CCryNameTSCRC arg0, void* arg1);
+	void mfFileRead2(SDirEntry* arg0, int arg1, void* arg2);
+	void mfFileRead2(CCryNameTSCRC arg0, int arg1, void* arg2);
+	void* mfFileGetBuf(CCryNameTSCRC arg0);
+	int mfFileSeek(SDirEntry* arg0, int arg1, int arg2);
+	int mfFileSeek(CCryNameTSCRC arg0, int arg1, int arg2);
+	int mfFileSeek(char* arg0, int arg1, int arg2);
+	int mfFileLength(SDirEntry* arg0);
+	int mfFileLength(CCryNameTSCRC arg0);
+	int mfFileLength(char* arg0);
+	bool mfFileExist(CCryNameTSCRC arg0);
+	_iobuf* mfGetHandle();
+	int mfGetResourceSize();
+	uint64_t mfGetModifTime();
+	int Size();
 	static bool IsStreaming();
+#endif
+
+	bool mfIsDirty() { return m_bDirty; }
+	bool mfIsDirStreaming() { return m_bDirStreaming; }
+	int  Size() { return 0; }
+	const char* mfGetFileName() const { return m_name.c_str(); }
+	int         mfGetVersion() { return m_version; }
+
+	static inline auto FmfActivate = PreyFunction<bool(CResFile* const _this, bool bFirstTime)>(0xFC53A0);
+	static inline auto FUnlink = PreyFunction<void(CResFile* const _this)>(0xFC4F20);
+	static inline auto FBitNotCResFile = PreyFunction<void(CResFile* const _this)>(0xFC4650);
+	static inline auto FGetLookupData = PreyFunction<SResFileLookupData* (CResFile const* const _this, bool bCreate, unsigned CRC, float fVersion)>(0xFC4800);
+	static inline auto FmfGetError = PreyFunction<const char* (CResFile* const _this)>(0xFC7000);
+	//static inline auto FmfSetError = PreyFunction<void(CResFile* const _this, const char* er, ... buffer)>(0xFC7CB0);
+	static inline auto FmfDeactivate = PreyFunction<void(CResFile* const _this, bool bReleaseDir)>(0xFC5760);
+	static inline auto FmfTickStreaming = PreyFunction<void(CResFile* const _this)>(0xFC7E00);
+	static inline auto FmfOpen = PreyFunction<int(CResFile* const _this, int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo)>(0xFC7490);
+	static inline auto FmfClose = PreyFunction<bool(CResFile* const _this)>(0xFC5560);
+	static inline auto FmfFlush = PreyFunction<int(CResFile* const _this, bool bOptimise)>(0xFC63B0);
+	static inline auto FmfFlushDir = PreyFunction<int(CResFile* const _this, long nOffset, bool bOptimise)>(0xFC6A90);
+	static inline auto FmfPrepareDir = PreyFunction<bool(CResFile* const _this)>(0xFC7990);
+	static inline auto FmfLoadDir = PreyFunction<int(CResFile* const _this, SResStreamInfo* pStreamInfo)>(0xFC70C0);
+	static inline auto FmfReleaseDir = PreyFunction<void(CResFile* const _this)>(0xFC7B50);
+	static inline auto FmfFileReadCompressed = PreyFunction<uint8_t* (CResFile* const _this, SDirEntry* de, unsigned& nSizeDecomp, unsigned& nSizeComp)>(0xFC6090);
+	static inline auto FmfFileReadOv2 = PreyFunction<int(CResFile* const _this, SDirEntry* de)>(0xFC5AC0);
+	static inline auto FmfFileGetBufOv1 = PreyFunction<void* (CResFile* const _this, SDirEntry* de)>(0xFC5AA0);
+	static inline auto FmfFileAdd = PreyFunction<int(CResFile* const _this, SDirEntry* de)>(0xFC5820);
+	static inline auto FmfFileExistOv0 = PreyFunction<bool(CResFile* const _this, const char* name)>(0xFC5A40);
+	static inline auto FmfFileClose = PreyFunction<int(CResFile* const _this, SDirEntry* de)>(0xFC5A20);
+	static inline auto FmfCloseEntry = PreyFunction<bool(CResFile* const _this, SDirEntry* de, bool bEraseOpenEntry)>(0xFC5610);
+	static inline auto FmfOpenEntry = PreyFunction<SDirEntryOpen* (CResFile* const _this, SDirEntry* de)>(0xFC7830);
+	static inline auto FmfGetOpenEntry = PreyFunction<SDirEntryOpen* (CResFile* const _this, SDirEntry* de)>(0xFC7020);
+	static inline auto FmfGetEntry = PreyFunction<SDirEntry* (CResFile* const _this, CCryNameTSCRC name, bool* pAsync)>(0xFC6E30);
+	static inline auto FmfGetDirectory = PreyFunction<std::vector<SDirEntry>* (CResFile* const _this)>(0x12BDA70);
+	static inline auto FGetMemoryUsage = PreyFunction<void(CResFile const* const _this, ICrySizer* pSizer)>(0xFC4900);
+	static inline auto FTick = PreyFunction<void()>(0xFC4DD0);
 
 	static inline auto m_nMaxOpenResFiles = PreyGlobal<unsigned>(0x226FC90);
 	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2B31104);

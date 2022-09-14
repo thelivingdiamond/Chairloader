@@ -4,6 +4,7 @@
 #include <detours/detours.h>
 #include "D3DRenderAuxGeom.h"
 #include "../ChairLoader.h"
+#include "ShaderCompilingHook.h"
 
 static_assert(offsetof(CD3D9Renderer, m_bStopRendererAtFrameEnd) == 96);
 static_assert(offsetof(CD3D9Renderer, m_pRT) == 3472);
@@ -68,6 +69,8 @@ void CD3D9Renderer_InitRenderer(CD3D9Renderer* _this)
 		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*_this);
 		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
 	}
+
+	RenderDll::Shaders::InitRenderer(_this);
 }
 
 void CD3D9Renderer_EF_RemoveParticlesFromScene(CRenderer* _this)
@@ -143,6 +146,7 @@ void InitRenderAuxGeomPatchHooks()
 		CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
 		CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
 		SRenderThread_InstallCommandHandler();
+		RenderDll::Shaders::InitHooks();
 	}
 }
 

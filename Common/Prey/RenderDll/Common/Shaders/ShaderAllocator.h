@@ -11,7 +11,7 @@
 typedef cry_crt_node_allocator ShaderBucketAllocator;
 
 extern ShaderBucketAllocator g_shaderBucketAllocator;
-extern IGeneralMemoryHeap* g_shaderGeneralHeap;
+inline PreyGlobal<IGeneralMemoryHeap*> g_shaderGeneralHeap(0x2BA5FE8);
 
 template<class T>
 class STLShaderAllocator : public stl::SAllocatorConstruct
@@ -58,7 +58,7 @@ public:
 		}
 		else
 		{
-			ret = static_cast<pointer>(g_shaderGeneralHeap->Malloc(sz, NULL));
+			ret = static_cast<pointer>((*g_shaderGeneralHeap)->Malloc(sz, NULL));
 		}
 
 		MEMREPLAY_SCOPE_ALLOC(ret, n * sizeof(T), 0);
@@ -73,7 +73,7 @@ public:
 		(void)n;
 		if (p)
 		{
-			if (!g_shaderGeneralHeap->Free(p))
+			if (!(*g_shaderGeneralHeap)->Free(p))
 				g_shaderBucketAllocator.deallocate(p);
 		}
 

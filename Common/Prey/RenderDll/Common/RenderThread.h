@@ -37,6 +37,7 @@ struct IDynTextureSourceImpl;
 struct SDynTexture;
 struct STexStreamInState;
 class CDeviceResourceSet;
+class CShaderResources;
 
 #if CRY_PLATFORM_ORBIS || CRY_PLATFORM_DURANGO || CRY_PLATFORM_MOBILE
 	#define USE_LOCKS_FOR_FLUSH_SYNC
@@ -292,6 +293,9 @@ struct CRY_ALIGN(128) SRenderThread
 		nIndex += (sizeof(T) + 3) & ~((size_t)3);
 	}
 
+	void RC_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes) { FRC_ParseShader(this, pSH, nMaskGen, flags, pRes); }
+
+	static inline auto FRC_ParseShader = PreyFunction<void(SRenderThread* const _this, CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes)>(0xFC0BB0);
 	static inline auto FSyncMainWithRender = PreyFunction<void(SRenderThread* const _this)>(0xFC2FA0);
 };
 

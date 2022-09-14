@@ -9,6 +9,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 
 #include <Prey/CryRenderer/CryDX.h>
+#include <Prey/CryRenderer/IRenderer.h>
 #include "Defs.h"
 #include <Prey/CryMath/Cry_Color.h>
 #include <Prey/CryMath/Cry_Camera.h>

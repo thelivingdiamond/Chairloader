@@ -18,7 +18,7 @@ struct STokenDesc
 };
 int shGetObject(char** buf, STokenDesc* tokens, char** name, char** data);
 
-//extern const char* kWhiteSpace;
+extern const char* kWhiteSpace;
 //extern FXMacro sStaticMacros;
 
 bool   SkipChar(unsigned int ch);

@@ -239,8 +239,15 @@ struct SParamData
 	{
 		memset(&d, 0, sizeof(UData));
 	}
-	~SParamData();
-	SParamData(const SParamData& sp);
+	~SParamData() {}
+	SParamData(const SParamData& sp)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			m_CompNames[i] = sp.m_CompNames[i];
+			d.nData64[i] = sp.d.nData64[i];
+		}
+	}
 	SParamData& operator=(const SParamData& sp)
 	{
 		this->~SParamData();

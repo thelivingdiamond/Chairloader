@@ -66,6 +66,51 @@ volatile LONG CSpinLock::s_locked = 0L;
 //volatile int SShaderAsyncInfo::s_nPendingAsyncShaders = 0;
 //int SShaderAsyncInfo::s_nPendingAsyncShadersFXC = 0;
 
+// TODO: Move somewhere else, add to CShaderMan::mfInit
+bool CParserBin::m_bEditable;
+
+/*
+
+The list of functions that are also implemented in PreyDll.dll
+
+void CHWShader_D3D::mfGetDstFileName(SHWSInstance* pInst, CHWShader_D3D* pSH, char* dstname, int nSize, byte bType)
+void CHWShader_D3D::mfAddFXParameter(SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, SCGBind* pBind, CShader* ef, bool bInstParam, EHWShaderClass eSHClass)
+bool CHWShader_D3D::mfAddFXParameter(SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, const char* param, SCGBind* bn, bool bInstParam, EHWShaderClass eSHClass, CShader* pFXShader)
+void CHWShader_D3D::mfCreateBinds(SHWSInstance* pInst, void* pConstantTable, byte* pShader, int nSize)
+void CHWShader_D3D::mfUpdateFXVertexFormat(SHWSInstance* pInst, CShader* pSH)
+EVertexFormat CHWShader_D3D::mfVertexFormat(SHWSInstance* pInst, CHWShader_D3D* pSH, LPD3D10BLOB pShader)
+void CHWShader_D3D::mfSetDefaultRT(uint64& nAndMask, uint64& nOrMask)
+bool CHWShader_D3D::mfStoreCacheTokenMap(FXShaderToken*& Table, TArray<uint32>*& pSHData, const char* szName)
+void CHWShader_D3D::mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, FXShaderToken*& Table, TArray<uint32>*& pSHData)
+bool CHWShader_D3D::mfGetCacheTokenMap(FXShaderToken*& Table, TArray<uint32>*& pSHData, uint64 nMaskGenFX)
+SShaderCacheHeaderItem* CHWShader_D3D::mfGetCacheItem(uint32& nFlags, int32& nSize)
+bool CHWShader_D3D::mfUploadHW(SHWSInstance* pInst, byte* pBuf, uint32 nSize, CShader* pSH, uint32 nFlags)
+bool CHWShader_D3D::mfUploadHW(LPD3D10BLOB pShader, SHWSInstance* pInst, CShader* pSH, uint32 nFlags)
+bool CHWShader_D3D::mfActivateCacheItem(CShader* pSH, SShaderCacheHeaderItem* pItem, uint32 nSize, uint32 nFlags)
+void CHWShader_D3D::mfOutputCompilerError(string& strErr, const char* szSrc)
+int CHWShader_D3D::mfAsyncCompileReady(SHWSInstance* pInst)
+void CHWShader_D3D::mfPrepareShaderDebugInfo(SHWSInstance* pInst, CHWShader_D3D* pSH, const char* szAsm, std::vector<SCGBind>& InstBindVars, void* pConstantTable)
+void CHWShader_D3D::mfPrintCompileInfo(SHWSInstance* pInst)
+bool CHWShader::_OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, uint32 CRC32, int nCache, CResFile* pRF, bool bReadOnly)
+bool CHWShader::mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, uint32 CRC32, bool bReadOnly)
+SShaderCache* CHWShader::mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, uint32 CRC32, bool bReadOnly, bool bAsync)
+void CHWShader::mfFlushPendedShadersWait(int nMaxAllowed)
+
+
+*/
+
+//==============================================================================================================
+
+static void sCR(TArray<char>& Text, int nLevel)
+{
+	Text.AddElem('\n');
+	for (int i = 0; i < nLevel; i++)
+	{
+		Text.AddElem(' ');
+		Text.AddElem(' ');
+	}
+}
+
 //==============================================================================================================
 
 ED3DShError CHWShader_D3D::mfIsValid(SHWSInstance*& pInst, bool bFinalise)
@@ -611,7 +656,7 @@ void CHWShader_D3D::mfGatherFXParameters(SHWSInstance* pInst, std::vector<SCGBin
 	assert(pInst->m_nMaxVecs[0] < nMax);
 	assert(pInst->m_nMaxVecs[1] < nMax);
 
-	if ((pInst->m_Ident.m_RTMask & g_HWSR_MaskBit[HWSR_INSTANCING_ATTR]) && pSH->m_eSHClass == eHWSC_Vertex)
+	if ((pInst->m_Ident.m_RTMask & (*g_HWSR_MaskBit)[HWSR_INSTANCING_ATTR]) && pSH->m_eSHClass == eHWSC_Vertex)
 	{
 		int nNumInst = 0;
 		if (InstBindVars)
@@ -816,7 +861,7 @@ EVertexFormat CHWShader_D3D::mfVertexFormat(SHWSInstance* pInst, CHWShader_D3D* 
 			nIndex = IDesc.SemanticIndex;
 			if (nIndex == 0)
 				bTC0 = true;
-			else if (!(pInst->m_Ident.m_RTMask & g_HWSR_MaskBit[HWSR_INSTANCING_ATTR]))
+			else if (!(pInst->m_Ident.m_RTMask & (*g_HWSR_MaskBit)[HWSR_INSTANCING_ATTR]))
 			{
 				if (nIndex == 1)
 				{
@@ -956,7 +1001,7 @@ static bool sGetMask(char* str, SShaderGen* pGen, uint64& nMask)
 
 void CHWShader::mfValidateTokenData(CResFile* pRes)
 {
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 	if (pRes == 0)
 		return;
 
@@ -1007,28 +1052,11 @@ bool CHWShader_D3D::mfStoreCacheTokenMap(FXShaderToken*& Table, TArray<uint32>*&
 
 	FXShaderTokenItor itor;
 	uint32 nSize = pSHData->size();
-	if (CParserBin::m_bEndians)
-	{
-		uint32 nSizeEnd = nSize;
-		SwapEndian(nSizeEnd, eBigEndian);
-		Data.Copy((byte*)&nSizeEnd, sizeof(uint32));
-		for (uint32 i = 0; i < nSize; i++)
-		{
-			uint32 nToken = (*pSHData)[i];
-			SwapEndian(nToken, eBigEndian);
-			Data.Copy((byte*)&nToken, sizeof(uint32));
-		}
-	}
-	else
-	{
-		Data.Copy((byte*)&nSize, sizeof(uint32));
-		Data.Copy((byte*)&(*pSHData)[0], nSize * sizeof(uint32));
-	}
+	Data.Copy((byte*)&nSize, sizeof(uint32));
+	Data.Copy((byte*)&(*pSHData)[0], nSize * sizeof(uint32));
 	for (itor = Table->begin(); itor != Table->end(); itor++)
 	{
 		STokenD T = *itor;
-		if (CParserBin::m_bEndians)
-			SwapEndian(T.Token, eBigEndian);
 		Data.Copy((byte*)&T.Token, sizeof(DWORD));
 		Data.Copy((byte*)T.SToken.c_str(), T.SToken.size() + 1);
 	}
@@ -1060,23 +1088,8 @@ void CHWShader_D3D::mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, FXShaderToken*
 	Table = new FXShaderToken;
 	pSHData = new TArray<uint32>;
 	uint32 nL = *(uint32*)pData;
-	if (CParserBin::m_bEndians)
-		SwapEndian(nL, eBigEndian);
 	pSHData->resize(nL);
-	if (CParserBin::m_bEndians)
-	{
-		uint32* pTokens = (uint32*)&pData[4];
-		for (i = 0; i < nL; i++)
-		{
-			uint32 nToken = pTokens[i];
-			SwapEndian(nToken, eBigEndian);
-			(*pSHData)[i] = nToken;
-		}
-	}
-	else
-	{
-		memcpy(&(*pSHData)[0], &pData[4], nL * sizeof(uint32));
-	}
+	memcpy(&(*pSHData)[0], &pData[4], nL * sizeof(uint32));
 	pData += 4 + nL * sizeof(uint32);
 	nSize -= 4 + nL * sizeof(uint32);
 	int nOffs = 0;
@@ -1086,8 +1099,6 @@ void CHWShader_D3D::mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, FXShaderToken*
 		char* pStr = (char*)&pData[nOffs + sizeof(DWORD)];
 		DWORD nToken;
 		LoadUnaligned(pData + nOffs, nToken);
-		if (CParserBin::m_bEndians)
-			SwapEndian(nToken, eBigEndian);
 		int nLen = strlen(pStr) + 1;
 		STokenD TD;
 		TD.Token = nToken;
@@ -1639,7 +1650,7 @@ void CHWShader_D3D::CorrectScriptEnums(CParserBin& Parser, SHWSInstance* pInst, 
 			n += nArrSize;
 			nCur = nTN + 1;
 
-			if (pInst->m_Ident.m_RTMask & g_HWSR_MaskBit[HWSR_INSTANCING_ATTR])
+			if (pInst->m_Ident.m_RTMask & (*g_HWSR_MaskBit)[HWSR_INSTANCING_ATTR])
 			{
 				const char* szName = Parser.GetString(nTokName, *Table);
 				if (!strnicmp(szName, "Inst", 4))
@@ -1694,16 +1705,6 @@ static int sFetchInst(uint32& nCur, uint32* pTokens, uint32 nT, std::vector<uint
 		nCur += 2;
 	}
 	return nC;
-}
-
-static void sCR(TArray<char>& Text, int nLevel)
-{
-	Text.AddElem('\n');
-	for (int i = 0; i < nLevel; i++)
-	{
-		Text.AddElem(' ');
-		Text.AddElem(' ');
-	}
 }
 
 bool CHWShader_D3D::ConvertBinScriptToASCII(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, FXShaderToken* Table, TArray<char>& Text)
@@ -1795,7 +1796,7 @@ bool CHWShader_D3D::ConvertBinScriptToASCII(CParserBin& Parser, SHWSInstance* pI
 		}
 		else
 		{
-#if defined(_DEBUG) && !CRY_PLATFORM_ORBIS
+#if defined(DEBUG_BUILD) && !CRY_PLATFORM_ORBIS
 			int n = 0;
 			while (szStr[n])
 			{
@@ -1979,7 +1980,7 @@ SShaderCache::~SShaderCache()
 		m_pStreamInfo->AbortJobs();
 	}
 
-	CHWShader::m_ShaderCache.erase(m_Name);
+	CHWShader::m_ShaderCache->erase(m_Name);
 	SAFE_DELETE(m_pRes[CACHE_USER]);
 	SAFE_DELETE(m_pRes[CACHE_READONLY]);
 	SAFE_RELEASE(m_pStreamInfo);
@@ -2034,8 +2035,8 @@ void SShaderDevCache::GetMemoryUsage(ICrySizer* pSizer) const
 SShaderDevCache* CHWShader::mfInitDevCache(const char* name, CHWShader* pSH)
 {
 	SShaderDevCache* pCache = NULL;
-	FXShaderDevCacheItor it = m_ShaderDevCache.find(CCryNameR(name));
-	if (it != m_ShaderDevCache.end())
+	FXShaderDevCacheItor it = m_ShaderDevCache->find(CCryNameR(name));
+	if (it != m_ShaderDevCache->end())
 	{
 		pCache = it->second;
 		pCache->m_nRefCount++;
@@ -2086,8 +2087,6 @@ SShaderCacheHeaderItem* CHWShader_D3D::mfGetCacheItem(uint32& nFlags, int32& nSi
 			byte* pD = new byte[nSize];
 			memcpy(pD, pData, nSize);
 			pIt = (SShaderCacheHeaderItem*)pD;
-			if (CParserBin::m_bEndians)
-				SwapEndian(*pIt, eBigEndian);
 			pInst->m_DeviceObjectID = de->Name.get();
 			rf->mfFileClose(de);
 		}
@@ -2118,14 +2117,7 @@ bool CHWShader_D3D::mfAddCacheItem(SShaderCache* pCache, SShaderCacheHeaderItem*
 	byte* pNew = new byte[sizeof(SShaderCacheHeaderItem) + nLen];
 	SDirEntry de;
 	de.offset = 0;
-	if (CParserBin::m_bEndians)
-	{
-		SShaderCacheHeaderItem IT = *pItem;
-		SwapEndian(IT, eBigEndian);
-		memcpy(pNew, &IT, sizeof(SShaderCacheHeaderItem));
-	}
-	else
-		memcpy(pNew, pItem, sizeof(SShaderCacheHeaderItem));
+	memcpy(pNew, pItem, sizeof(SShaderCacheHeaderItem));
 	memcpy(&pNew[sizeof(SShaderCacheHeaderItem)], pData, nLen);
 	de.Name = Name;
 	de.flags = RF_COMPRESS | RF_TEMPDATA;
@@ -2257,7 +2249,7 @@ bool CHWShader::mfOptimiseCacheFile(SShaderCache* pCache, bool bForce, SOptimise
 	pRes->mfFlush();
 	ResDir* Dir = pRes->mfGetDirectory();
 	uint32 i, j;
-	#ifdef _DEBUG
+	#ifdef DEBUG_BUILD
 	/*for (i=0; i<Dir->size(); i++)
 	   {
 	   SDirEntry *pDE = &(*Dir)[i];
@@ -2447,7 +2439,7 @@ bool CHWShader::mfOptimiseCacheFile(SShaderCache* pCache, bool bForce, SOptimise
 	int nSizeDir = pRes->mfFlush(true);
 	//int nSizeCompr = pRes->mfFlush();
 
-	#ifdef _DEBUG
+	#ifdef DEBUG_BUILD
 	mfValidateTokenData(pRes);
 	#endif
 
@@ -2480,6 +2472,7 @@ int __cdecl sSort(const VOID* arg1, const VOID* arg2)
 	return 1;
 }
 
+#if 1
 bool CHWShader::_OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, uint32 CRC32, int nCache, CResFile* pRF, bool bReadOnly)
 {
 	assert(nCache == CACHE_USER || nCache == CACHE_READONLY);
@@ -2560,13 +2553,15 @@ bool CHWShader::_OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* 
 	pCache->m_pRes[nCache] = pRF;
 	pCache->m_bReadOnly[nCache] = bReadOnly;
 
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 	mfValidateTokenData(pRF);
 #endif
 
 	return bValid;
 }
+#endif
 
+#if 1
 bool CHWShader::mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, uint32 CRC32, bool bReadOnly)
 {
 	bool bValidRO = false;
@@ -2593,7 +2588,9 @@ bool CHWShader::mfOpenCacheFile(const char* szName, float fVersion, SShaderCache
 
 	return (bValidRO || bValidUser);
 }
+#endif
 
+#if 1
 SShaderCache* CHWShader::mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, uint32 CRC32, bool bReadOnly, bool bAsync)
 {
 	//	LOADING_TIME_PROFILE_SECTION(iSystem);
@@ -2617,8 +2614,8 @@ SShaderCache* CHWShader::mfInitCache(const char* name, CHWShader* pSH, bool bChe
 	}
 
 	SShaderCache* pCache = NULL;
-	FXShaderCacheItor it = m_ShaderCache.find(CCryNameR(name));
-	if (it != m_ShaderCache.end())
+	FXShaderCacheItor it = m_ShaderCache->find(CCryNameR(name));
+	if (it != m_ShaderCache->end())
 	{
 		pCache = it->second;
 		pCache->AddRef();
@@ -2672,11 +2669,12 @@ SShaderCache* CHWShader::mfInitCache(const char* name, CHWShader* pSH, bool bChe
 		pCache->m_nPlatform = CParserBin::m_nPlatform;
 		pCache->m_Name = name;
 		mfOpenCacheFile(name, (float)FX_CACHE_VER, pCache, pSH, bCheckValid, CRC32, bReadOnly);
-		m_ShaderCache.insert(FXShaderCacheItor::value_type(CCryNameR(name), pCache));
+		m_ShaderCache->insert(FXShaderCacheItor::value_type(CCryNameR(name), pCache));
 	}
 
 	return pCache;
 }
+#endif
 
 byte* CHWShader_D3D::mfBindsToCache(SHWSInstance* pInst, std::vector<SCGBind>* Binds, int nParams, byte* pP)
 {
@@ -2687,11 +2685,6 @@ byte* CHWShader_D3D::mfBindsToCache(SHWSInstance* pInst, std::vector<SCGBind>* B
 		SShaderCacheHeaderItemVar* pVar = (SShaderCacheHeaderItemVar*)pP;
 		pVar->m_nCount = cgb->m_nParameters;
 		pVar->m_Reg = cgb->m_dwBind;
-		if (CParserBin::m_bEndians)
-		{
-			SwapEndian(pVar->m_nCount, eBigEndian);
-			SwapEndian(pVar->m_Reg, eBigEndian);
-		}
 		int len = strlen(cgb->m_Name.c_str()) + 1;
 		memcpy(pVar->m_Name, cgb->m_Name.c_str(), len);
 		pP += offsetof(SShaderCacheHeaderItemVar, m_Name) + strlen(pVar->m_Name) + 1;
@@ -2710,15 +2703,11 @@ byte* CHWShader_D3D::mfBindsFromCache(std::vector<SCGBind>*& Binds, int nParams,
 		SShaderCacheHeaderItemVar* pVar = (SShaderCacheHeaderItemVar*)pP;
 
 		short nParameters = pVar->m_nCount;
-		if (CParserBin::m_bEndians)
-			SwapEndian(nParameters, eBigEndian);
 		cgb.m_nParameters = nParameters;
 
 		cgb.m_Name = pVar->m_Name;
 
 		int dwBind = pVar->m_Reg;
-		if (CParserBin::m_bEndians)
-			SwapEndian(dwBind, eBigEndian);
 		cgb.m_dwBind = dwBind;
 
 		Binds->push_back(cgb);
@@ -3292,8 +3281,8 @@ int CHWShader_D3D::mfAsyncCompileReady(SHWSInstance* pInst)
 
 	if (bResult)
 	{
-		if (pTech)
-			mfUpdatePreprocessFlags(pTech);
+		/*if (pTech)
+			mfUpdatePreprocessFlags(pTech);*/
 		return 1;
 	}
 	return -1;
@@ -3842,9 +3831,9 @@ bool CHWShader_D3D::mfActivate(CShader* pSH, uint32 nFlags, FXShaderToken* Table
 				mfGetDstFileName(pInst, this, nameCache, 256, 0);
 				fpStripExtension(nameCache, nameCache);
 				fpAddExtension(nameCache, ".fxcb");
-				FXShaderCacheNamesItor it = m_ShaderCacheList.find(nameCache);
-				if (it == m_ShaderCacheList.end())
-					m_ShaderCacheList.insert(FXShaderCacheNamesItor::value_type(nameCache, m_CRC32));
+				FXShaderCacheNamesItor it = m_ShaderCacheList->find(nameCache);
+				if (it == m_ShaderCacheList->end())
+					m_ShaderCacheList->insert(FXShaderCacheNamesItor::value_type(nameCache, m_CRC32));
 			}
 			pCacheItem = mfGetCacheItem(nFlags, nSize);
 		}
@@ -4340,8 +4329,6 @@ bool STexSamplerFX::Import(SShaderSerializeContext& SC, SSTexSamplerFX* pTS)
 		//m_pTarget = pDst;
 	}
 
-	PostLoad();
-
 	return bRes;
 }
 
@@ -4680,12 +4667,6 @@ CHWShader* CHWShader::Import(SShaderSerializeContext& SC, int nOffs, uint32 CRC3
 			uint32 nTokenStrIdx = *(DWORD*)&pData[nOffs];
 			nOffs += sizeof(uint32);
 
-			if (CParserBin::m_bEndians)
-			{
-				SwapEndian(nToken, eBigEndian);
-				SwapEndian(nTokenStrIdx, eBigEndian);
-			}
-
 			STokenD TD;
 			TD.SToken = sString(nTokenStrIdx, SC.Strings);
 
@@ -4819,4 +4800,3 @@ const char* CHWShader::GetCurrentShaderCombinations(bool bForLevel)
 	pPtr[Combinations.Num()] = 0;
 	return pPtr;
 }
-

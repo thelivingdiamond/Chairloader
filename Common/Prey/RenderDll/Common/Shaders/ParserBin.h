@@ -748,35 +748,85 @@ public:
 	CParserBin(SShaderBin* pBin, CShader* pSH);
 
 	static FXMacroBin&        GetStaticMacroses() { return *m_StaticMacros; }
-	static const char*        GetString(uint32 nToken, FXShaderToken& Table, bool bOnlyKey = false);
-	const char*               GetString(uint32 nToken, bool bOnlyKey = false);
-	string                    GetString(SParserFrame& Frame);
-	CCryNameR                 GetNameString(SParserFrame& Frame);
-	void                      BuildSearchInfo();
-	bool                      PreprocessTokens(ShaderTokensVec& Tokens, int nPass, PodArray<uint32>& tokensBuffer);
-	bool                      Preprocess(int nPass, ShaderTokensVec& Tokens, FXShaderToken* pSrcTable);
-	static const SMacroBinFX* FindMacro(uint32 dwName, FXMacroBin& Macro);
-	static bool               AddMacro(uint32 dwToken, const uint32* pMacro, int nMacroTokens, uint64 nMask, FXMacroBin& Macro);
-	static bool               RemoveMacro(uint32 dwToken, FXMacroBin& Macro);
-	static void               CleanPlatformMacros();
-	uint32                    NewUserToken(uint32 nToken, const char* psToken, bool bUseFinalTable);
-	//uint32 NewUserToken(uint32 nToken, const string& sToken, bool bUseFinalTable);
-	void                      MergeTable(SShaderBin* pBin);
-	bool                      CheckIfExpression(const uint32* pTokens, uint32& nT, int nPass, uint64* nMask = 0);
-	bool                      IgnorePreprocessBlock(const uint32* pTokens, uint32& nT, int nMaxTokens, PodArray<uint32>& tokensBuffer, int nPass);
-	static bool               CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<char>& Text);
-	static bool               ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table, TArray<char>& Text, bool bInclSkipTokens = false);
-	bool                      GetBool(SParserFrame& Frame);
-	inline uint32*            GetTokens(int nStart) { return &m_Tokens[nStart]; }
-	inline int                GetNumTokens()        { return m_Tokens.size(); }
-	inline EToken             GetToken()            { return m_eToken; }
+	static const char* GetString(unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey = false) { return FGetStringOv2(nToken, Table, bOnlyKey); }
+	const char* GetString(unsigned nToken, bool bOnlyKey = false) { return FGetStringOv1(this, nToken, bOnlyKey); }
+	string GetString(SParserFrame& Frame) { return FGetStringOv0(this, Frame); }
+	CCryNameR GetNameString(SParserFrame& Frame) { return FGetNameString(this, Frame); }
+	bool PreprocessTokens(TArray<unsigned int>& Tokens, int nPass, PodArray<unsigned int, 0>& tokensBuffer) { return FPreprocessTokens(this, Tokens, nPass, tokensBuffer); }
+	bool Preprocess(int nPass, TArray<unsigned int>& Tokens, std::vector<STokenD>* pSrcTable) { return FPreprocess(this, nPass, Tokens, pSrcTable); }
+	static SMacroBinFX const* FindMacro(unsigned dwName, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro) { return FFindMacro(dwName, Macro); }
+	static bool AddMacro(unsigned dwName, const unsigned* pMacro, int nMacroTokens, uint64_t nMask, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro) { return FAddMacro(dwName, pMacro, nMacroTokens, nMask, Macro); }
+	static void CleanPlatformMacros() { FCleanPlatformMacros(); }
+	unsigned NewUserToken(unsigned nToken, const char* psToken, bool bUseFinalTable) { return FNewUserToken(this, nToken, psToken, bUseFinalTable); }
+	void MergeTable(SShaderBin* pBin) { FMergeTable(this, pBin); }
+	bool CheckIfExpression(const unsigned* pTokens, unsigned& nT, int nPass, uint64_t* nMask) { return FCheckIfExpression(this, pTokens, nT, nPass, nMask); }
+	bool IgnorePreprocessBlock(const unsigned* pTokens, unsigned& nT, int nMaxTokens, PodArray<unsigned int, 0>& tokensBuffer, int nPass) { return FIgnorePreprocessBlock(this, pTokens, nT, nMaxTokens, tokensBuffer, nPass); }
+	bool GetBool(SParserFrame& Frame) { return FGetBool(this, Frame); }
+	int GetInt(unsigned nToken) { return FGetInt(this, nToken); }
+	static unsigned NextToken(char*& buf, char* com, bool& bKey) { return FNextTokenOv0(buf, com, bKey); }
+	SParserFrame BeginFrame(SParserFrame& Frame) { return FBeginFrame(this, Frame); }
+	void EndFrame(SParserFrame& Frame) { FEndFrame(this, Frame); }
+	uint8_t GetCompareFunc(EToken eT) { return FGetCompareFunc(this, eT); }
+	int GetSrcBlend(EToken eT) { return FGetSrcBlend(this, eT); }
+	int GetDstBlend(EToken eT) { return FGetDstBlend(this, eT); }
+	void InsertSkipTokens(const unsigned* pTokens, unsigned nStart, unsigned nTokens, bool bSingle, PodArray<unsigned int, 0>& tokensBuffer) { FInsertSkipTokens(this, pTokens, nStart, nTokens, bSingle, tokensBuffer); }
+	ETokenStorageClass ParseObject(SFXTokenBin* pTokens, int& nIndex) { return FParseObjectOv1(this, pTokens, nIndex); }
+	ETokenStorageClass ParseObject(SFXTokenBin* pTokens) { return FParseObjectOv0(this, pTokens); }
+	int GetNextToken(unsigned& nStart, ETokenStorageClass& nTokenStorageClass) { return FGetNextToken(this, nStart, nTokenStorageClass); }
+	bool GetAssignmentData(SParserFrame& Frame) { return FGetAssignmentData(this, Frame); }
+	bool GetSubData(SParserFrame& Frame, EToken eT1, EToken eT2) { return FGetSubData(this, Frame, eT1, eT2); }
+	static int FindToken(unsigned nStart, unsigned nLast, const unsigned* pTokens, unsigned nToken) { return FFindTokenOv2(nStart, nLast, pTokens, nToken); }
+	int FindToken(unsigned nStart, unsigned nLast, unsigned nToken) { return FFindTokenOv1(this, nStart, nLast, nToken); }
+	int CopyTokens(SParserFrame& Fragment, std::vector<unsigned int>& NewTokens) { return FCopyTokensOv1(this, Fragment, NewTokens); }
+	int CopyTokens(SCodeFragment* pCF, PodArray<unsigned int, 0>& SHData, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, unsigned nID) { return FCopyTokensOv0(this, pCF, SHData, Replaces, NewTokens, nID); }
+	static unsigned fxToken(const char* szToken, bool* bKey) { return FfxToken(szToken, bKey); }
+	static unsigned fxTokenKey(char* szToken, EToken eTC) { return FfxTokenKey(szToken, eTC); }
+	static unsigned GetCRC32(const char* szStr) { return FGetCRC32(szStr); }
+	static void Init() { FInit(); }
+	static void SetupForD3D11() { FSetupForD3D11(); }
+	static void SetupFeatureDefines() { FSetupFeatureDefines(); }
+	static CCryNameTSCRC GetPlatformSpecName(CCryNameTSCRC orgName) { return FGetPlatformSpecName(orgName); }
+	static const char* GetPlatformShaderlistName() { return FGetPlatformShaderlistName(); }
+
+#if 0
+	static std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& GetStaticMacroses();
+	void BuildSearchInfo();
+	static bool RemoveMacro(unsigned arg0, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& arg1);
+	static bool CorrectScript(unsigned* arg0, unsigned& arg1, unsigned arg2, TArray<char>& arg3);
+	static bool ConvertToAscii(unsigned* arg0, unsigned arg1, std::vector<STokenD>& arg2, TArray<char>& arg3, bool arg4);
+	unsigned* GetTokens(int arg0);
+	int GetNumTokens();
+	EToken GetToken();
+	EToken GetToken(SParserFrame& arg0);
+	unsigned FirstToken();
+	float GetFloat(SParserFrame& arg0);
+	static unsigned NextToken(const unsigned* arg0, unsigned& arg1, unsigned arg2);
+	bool FXGetAssignmentData(SParserFrame& arg0);
+	bool FXGetAssignmentData2(SParserFrame& arg0);
+	int FindToken(unsigned arg0, unsigned arg1, const unsigned* arg2);
+	static void AddDefineToken(unsigned arg0, TArray<unsigned int>& arg1);
+	static void AddDefineToken(unsigned arg0, unsigned arg1, TArray<unsigned int>& arg2);
+	bool JumpSemicolumn(unsigned& arg0, unsigned arg1);
+	static void RemovePlatformDefines();
+	static void SetPlatform(unsigned arg0);
+	static unsigned GetPlatform();
+	static bool IsPlatform(unsigned arg0);
+	static bool PlatformSupportsConstantBuffers();
+	static bool PlatformSupportsGeometryShaders();
+	static bool PlatformSupportsHullShaders();
+	static bool PlatformSupportsDomainShaders();
+	static bool PlatformSupportsComputeShaders();
+	static bool PlatformIsConsole();
+	static bool PlatformSupportsMSAA();
+#endif
+
 	inline EToken             GetToken(SParserFrame& Frame)
 	{
 		assert(!Frame.IsEmpty());
 		return (EToken)m_Tokens[Frame.m_nFirstToken];
 	}
 	inline uint32 FirstToken() { return m_nFirstToken; }
-	inline int    GetInt(uint32 nToken)
+	/*inline int    GetInt(uint32 nToken)
 	{
 		const char* szStr = GetString(nToken);
 		if (szStr[0] == '0' && szStr[1] == 'x')
@@ -787,7 +837,7 @@ public:
 			return i;
 		}
 		return atoi(szStr);
-	}
+	}*/
 	inline float GetFloat(SParserFrame& Frame)
 	{
 		return (float)atof(GetString(Frame).c_str());
@@ -817,26 +867,6 @@ public:
 		return 0;
 	}
 
-	SParserFrame       BeginFrame(SParserFrame& Frame);
-	void               EndFrame(SParserFrame& Frame);
-
-	byte               GetCompareFunc(EToken eT);
-	int                GetSrcBlend(EToken eT);
-	int                GetDstBlend(EToken eT);
-
-	void               InsertSkipTokens(const uint32* pTokens, uint32 nStart, uint32 nTokens, bool bSingle, PodArray<uint32>& tokensBuffer);
-	ETokenStorageClass ParseObject(SFXTokenBin* pTokens, int& nIndex);
-	ETokenStorageClass ParseObject(SFXTokenBin* pTokens);
-	int                GetNextToken(uint32& nStart, ETokenStorageClass& nTokenStorageClass);
-	bool               FXGetAssignmentData(SParserFrame& Frame);
-	bool               FXGetAssignmentData2(SParserFrame& Frame);
-	bool               GetAssignmentData(SParserFrame& Frame);
-	bool               GetSubData(SParserFrame& Frame, EToken eT1, EToken eT2);
-	static int32       FindToken(uint32 nStart, uint32 nLast, const uint32* pTokens, uint32 nToken);
-	int32              FindToken(uint32 nStart, uint32 nLast, uint32 nToken);
-	int32              FindToken(uint32 nStart, uint32 nLast, const uint32* pTokens);
-	int                CopyTokens(SParserFrame& Fragment, std::vector<uint32>& NewTokens);
-	int                CopyTokens(SCodeFragment* pCF, PodArray<uint32>& SHData, TArray<SCodeFragment>& Replaces, TArray<uint32>& NewTokens, uint32 nID);
 	static inline void AddDefineToken(uint32 dwToken, ShaderTokensVec& Tokens)
 	{
 		if (dwToken == 611)
@@ -860,21 +890,6 @@ public:
 	}
 	bool                 JumpSemicolumn(uint32& nStart, uint32 nEnd);
 
-	static uint32        fxToken(const char* szToken, bool* bKey = NULL);
-	static uint32        fxTokenKey(char* szToken, EToken eT = eT_unknown);
-	static uint32        GetCRC32(const char* szStr);
-	static uint32        NextToken(char*& buf, char* com, bool& bKey);
-	static void          Init();
-	static void          RemovePlatformDefines();
-	static void          SetupForOrbis();
-	static void          SetupForD3D9();
-	static void          SetupForD3D11();
-	static void          SetupForGL4();
-	static void          SetupForGLES3();
-	static void          SetupForDurango();
-	static void          SetupFeatureDefines();
-	static CCryNameTSCRC GetPlatformSpecName(CCryNameTSCRC orgName);
-	static const char*   GetPlatformShaderlistName();
 	static bool          PlatformSupportsConstantBuffers() { return (CParserBin::m_nPlatform == SF_D3D11 || CParserBin::m_nPlatform == SF_ORBIS || CParserBin::m_nPlatform == SF_DURANGO || CParserBin::m_nPlatform == SF_GL4 || CParserBin::m_nPlatform == SF_GLES3); };
 	static bool          PlatformSupportsGeometryShaders() { return (CParserBin::m_nPlatform == SF_D3D11 || CParserBin::m_nPlatform == SF_ORBIS || CParserBin::m_nPlatform == SF_DURANGO || CParserBin::m_nPlatform == SF_GL4); }
 	static bool          PlatformSupportsHullShaders()     { return (CParserBin::m_nPlatform == SF_D3D11 || CParserBin::m_nPlatform == SF_ORBIS || CParserBin::m_nPlatform == SF_DURANGO || CParserBin::m_nPlatform == SF_GL4); }
@@ -882,11 +897,73 @@ public:
 	static bool          PlatformSupportsComputeShaders()  { return (CParserBin::m_nPlatform == SF_D3D11 || CParserBin::m_nPlatform == SF_ORBIS || CParserBin::m_nPlatform == SF_DURANGO || CParserBin::m_nPlatform == SF_GL4); }
 	static bool          PlatformIsConsole()               { return (CParserBin::m_nPlatform == SF_ORBIS || CParserBin::m_nPlatform == SF_DURANGO); };
 
+	int32 FindToken(uint32 nStart, uint32 nLast, const uint32* pToks)
+	{
+		uint32* pTokens = &m_Tokens[0];
+		while (nStart <= nLast)
+		{
+			int n = 0;
+			uint32 nTok;
+			while (nTok = pToks[n])
+			{
+				if (pTokens[nStart] == nTok)
+					return nStart;
+				n++;
+			}
+			nStart++;
+		}
+		return -1;
+	}
+
+	static bool               CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<char>& Text);
+	static bool               ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table, TArray<char>& Text, bool bInclSkipTokens = false);
+
 	static bool m_bEditable;
-	static uint32 m_nPlatform;
-	static bool m_bEndians;
+	static constexpr uint32 m_nPlatform = SF_D3D11;
+	static constexpr bool m_bEndians = false;
 	static inline auto m_bParseFX = PreyGlobal<bool>(0x2270BF8);
 	static inline auto m_bShaderCacheGen = PreyGlobal<bool>(0x2BA5FE1);
+
+	static inline auto FConstructor = PreyFunction<void (CParserBin* _this, SShaderBin* pBin, CShader* pSH)>(0x100BFA0);
+	static inline auto FGetStringOv2 = PreyFunction<const char* (unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey)>(0x100DDA0);
+	static inline auto FGetStringOv1 = PreyFunction<const char* (CParserBin* const _this, unsigned nToken, bool bOnlyKey)>(0x100DD90);
+	static inline auto FGetStringOv0 = PreyFunction<string(CParserBin* const _this, SParserFrame& Frame)>(0x100DA40);
+	static inline auto FGetNameString = PreyFunction<CCryNameR(CParserBin* const _this, SParserFrame& Frame)>(0x100D080);
+	static inline auto FPreprocessTokens = PreyFunction<bool(CParserBin* const _this, TArray<unsigned int>& Tokens, int nPass, PodArray<unsigned int, 0>& tokensBuffer)>(0x1011F80);
+	static inline auto FPreprocess = PreyFunction<bool(CParserBin* const _this, int nPass, TArray<unsigned int>& Tokens, std::vector<STokenD>* pSrcTable)>(0x1011DB0);
+	static inline auto FFindMacro = PreyFunction<SMacroBinFX const* (unsigned dwName, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro)>(0x100CB50);
+	static inline auto FAddMacro = PreyFunction<bool(unsigned dwName, const unsigned* pMacro, int nMacroTokens, uint64_t nMask, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro)>(0x100C1A0);
+	static inline auto FCleanPlatformMacros = PreyFunction<void()>(0x100C630);
+	static inline auto FNewUserToken = PreyFunction<unsigned(CParserBin* const _this, unsigned nToken, const char* psToken, bool bUseFinalTable)>(0x1010550);
+	static inline auto FMergeTable = PreyFunction<void(CParserBin* const _this, SShaderBin* pBin)>(0x10103D0);
+	static inline auto FCheckIfExpression = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nPass, uint64_t* nMask)>(0x100C300);
+	static inline auto FIgnorePreprocessBlock = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nMaxTokens, PodArray<unsigned int, 0>& tokensBuffer, int nPass)>(0x100DF20);
+	static inline auto FGetBool = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x100CC70);
+	static inline auto FGetInt = PreyFunction<int(CParserBin* const _this, unsigned nToken)>(0x100CFB0);
+	static inline auto FNextTokenOv0 = PreyFunction<unsigned(char*& buf, char* com, bool& bKey)>(0x10106E0);
+	static inline auto FBeginFrame = PreyFunction<SParserFrame(CParserBin* const _this, SParserFrame& Frame)>(0x100C2C0);
+	static inline auto FEndFrame = PreyFunction<void(CParserBin* const _this, SParserFrame& Frame)>(0x706100);
+	static inline auto FGetCompareFunc = PreyFunction<uint8_t(CParserBin* const _this, EToken eT)>(0x100CD00);
+	static inline auto FGetSrcBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x100D8E0);
+	static inline auto FGetDstBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x100CE50);
+	static inline auto FInsertSkipTokens = PreyFunction<void(CParserBin* const _this, const unsigned* pTokens, unsigned nStart, unsigned nTokens, bool bSingle, PodArray<unsigned int, 0>& tokensBuffer)>(0x1010220);
+	static inline auto FParseObjectOv1 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens, int& nIndex)>(0x1010B70);
+	static inline auto FParseObjectOv0 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens)>(0x1010780);
+	static inline auto FGetNextToken = PreyFunction<int(CParserBin* const _this, unsigned& nStart, ETokenStorageClass& nTokenStorageClass)>(0x100D3F0);
+	static inline auto FGetAssignmentData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x100CBE0);
+	static inline auto FGetSubData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame, EToken eT1, EToken eT2)>(0x100DE20);
+	static inline auto FFindTokenOv2 = PreyFunction<int(unsigned nStart, unsigned nLast, const unsigned* pTokens, unsigned nToken)>(0x100CBC0);
+	static inline auto FFindTokenOv1 = PreyFunction<int(CParserBin* const _this, unsigned nStart, unsigned nLast, unsigned nToken)>(0x100CB90);
+	static inline auto FCopyTokensOv1 = PreyFunction<int(CParserBin* const _this, SParserFrame& Fragment, std::vector<unsigned int>& NewTokens)>(0x100C890);
+	static inline auto FCopyTokensOv0 = PreyFunction<int(CParserBin* const _this, SCodeFragment* pCF, PodArray<unsigned int, 0>& SHData, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, unsigned nID)>(0x100C930);
+	static inline auto FfxToken = PreyFunction<unsigned(const char* szToken, bool* bKey)>(0x1013B60);
+	static inline auto FfxTokenKey = PreyFunction<unsigned(char* szToken, EToken eTC)>(0x1013BD0);
+	static inline auto FGetCRC32 = PreyFunction<unsigned(const char* szStr)>(0x100CCB0);
+	static inline auto FInit = PreyFunction<void()>(0x100E0B0);
+	static inline auto FSetupForD3D11 = PreyFunction<void()>(0x1013630);
+	static inline auto FSetupFeatureDefines = PreyFunction<void()>(0x1013310);
+	static inline auto FGetPlatformSpecName = PreyFunction<CCryNameTSCRC(CCryNameTSCRC orgName)>(0x100D8C0);
+	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x100D8B0);
 };
 
 char* fxFillPr(char** buf, char* dst);

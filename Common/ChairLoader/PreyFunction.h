@@ -73,6 +73,7 @@ template <typename ReturnType, typename ... ArgumentTypes>
 class PreyFunction<ReturnType(ArgumentTypes ...)> : public PreyPointer {
 public:
 	using Type = ReturnType(ArgumentTypes ...);
+	using FuncReturnType = ReturnType;
 
 	using PreyPointer::PreyPointer;
 
