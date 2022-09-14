@@ -241,6 +241,10 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
+	// Disabling audio speeds up loading immensely (8 seconds on my hardware)
+	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
+		pSystem->m_sys_audio_disable->Set(1);
+
 	InitHooks();
 	WaitForRenderDoc();
 
