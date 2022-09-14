@@ -306,8 +306,8 @@ bool FileBrowser::recursiveNodeDisplay(std::string parentPath) {
     fhandle = pIPak->FindFirst(findFilter, &fd, 0, false);
     if (fhandle != -1) {
         do {
-//            if (fd.name[0] == '.')
-//                continue;
+            if (!strcmp(fd.name, "."))
+                continue;
             if (fd.attrib & _A_SUBDIR) { // recurse on sub directories.
                 auto node_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
                 if(!CheckForSubDirectories(parentPath + fd.name + "\\")){
