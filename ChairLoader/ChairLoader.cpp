@@ -17,8 +17,7 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 #include "Chairloader/ChairloaderEnv.h"
-#include "RenderDll/AuxGeom/RenderAuxGeomPatch.h"
-#include "RenderDll/DebugMarkers.h"
+#include "RenderDll/RenderDll.h"
 #include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include "Editor/Editor.h"
@@ -188,8 +187,6 @@ void ChairLoader::InitHooks()
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
 	ChairLoaderImGui::InitHooks();
-	InitRenderAuxGeomPatchHooks();
-	RenderDll::DebugMarkers::InitHooks();
 
 	if (m_bEditorEnabled)
 		Editor::InitHooks();
@@ -248,6 +245,11 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	InitHooks();
 	WaitForRenderDoc();
 
+	RenderDll::SRenderDllPatchParams renderDllPatch;
+	renderDllPatch.bEnableAuxGeom = IsEditorEnabled() ||
+		gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"); // Editor requires aux geom
+	RenderDll::InitRenderDllPatches(renderDllPatch);
+
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
 	gCL->conf = gConf;
@@ -255,8 +257,6 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
     // Get config parameters From Config
     loadConfigParameters();
-
-	InitRenderAuxGeomPatch();
 
 	// Mod DLL support
 	m_pModDllManager = std::make_unique<ModDllManager>();

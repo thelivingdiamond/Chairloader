@@ -9,11 +9,9 @@
 static_assert(offsetof(CD3D9Renderer, m_bStopRendererAtFrameEnd) == 96);
 static_assert(offsetof(CD3D9Renderer, m_pRT) == 3472);
 
-void SRenderThread_InstallCommandHandler();
-void SRenderThread_RemoveCommandHandler();
-void SRenderThread_PostHook();
+void SRenderThread_InstallCommandHandler();;
 
-namespace
+namespace RenderDll::AuxGeom
 {
 bool g_bAuxGeomEnabled = false;
 
@@ -133,38 +131,27 @@ void CD3D9Renderer_PostLevelUnload(CD3D9Renderer* _this)
 		s_pRenderAuxGeomD3D->FreeMemory();
 }
 
-}
-
-void InitRenderAuxGeomPatchHooks()
+void InitAuxGeom()
 {
-	// Editor requires aux geom
-	if (gChair->IsEditorEnabled() || gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"))
+	g_bAuxGeomEnabled = true;
+	CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);
+	CD3D9Renderer_RT_ShutDown_Hook.SetHookFunc(&CD3D9Renderer_RT_ShutDown);
+	CD3D9Renderer_OnD3D11PostCreateDevice_Hook.SetHookFunc(&CD3D9Renderer_OnD3D11PostCreateDevice);
+	CD3D9Renderer_InitRenderer_Hook.SetHookFunc(&CD3D9Renderer_InitRenderer);
+	CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.SetHookFunc(&CD3D9Renderer_EF_RemoveParticlesFromScene);
+	CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
+	CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
+	CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
+	SRenderThread_InstallCommandHandler();
+
+	REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
+
+	// TODO: Move somewhere else
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadertest"))
 	{
-		g_bAuxGeomEnabled = true;
-		CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);
-		CD3D9Renderer_RT_ShutDown_Hook.SetHookFunc(&CD3D9Renderer_RT_ShutDown);
-		CD3D9Renderer_OnD3D11PostCreateDevice_Hook.SetHookFunc(&CD3D9Renderer_OnD3D11PostCreateDevice);
-		CD3D9Renderer_InitRenderer_Hook.SetHookFunc(&CD3D9Renderer_InitRenderer);
-		CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.SetHookFunc(&CD3D9Renderer_EF_RemoveParticlesFromScene);
-		CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
-		CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
-		CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
-		SRenderThread_InstallCommandHandler();
-		
-		// TODO: Move somewhere else
-		if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadertest"))
-		{
-			g_bEnableShaderCompiler = true;
-			RenderDll::Shaders::InitHooks();
-		}
+		g_bEnableShaderCompiler = true;
+		RenderDll::Shaders::InitHooks();
 	}
 }
 
-void InitRenderAuxGeomPatch()
-{
-	if (g_bAuxGeomEnabled)
-	{
-		SRenderThread_PostHook();
-		REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
-	}
-}
+} // namespace RenderDll::AuxGeom

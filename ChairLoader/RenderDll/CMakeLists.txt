@@ -22,6 +22,8 @@ set(SOURCE_FILES
 	pch.h
 	RenderCommandHandler.cpp
 	RenderCommandHook.asm
+	RenderDll.cpp
+	RenderDll.h
 )
 
 add_library(CryRenderD3D11 STATIC

@@ -1,4 +1,9 @@
 #pragma once
 
-void InitRenderAuxGeomPatchHooks();
-void InitRenderAuxGeomPatch();
+namespace RenderDll::AuxGeom
+{
+
+void InitAuxGeom();
+
+} // namespace RenderDll::AuxGeom
+
