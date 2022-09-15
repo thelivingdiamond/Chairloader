@@ -19,6 +19,7 @@ set(SOURCE_FILES
 	
 	DebugMarkers.cpp
 	DebugMarkers.h
+	pch.h
 	RenderCommandHandler.cpp
 	RenderCommandHook.asm
 )
@@ -34,5 +35,7 @@ target_include_directories(CryRenderD3D11 PRIVATE
 target_link_libraries(CryRenderD3D11 PUBLIC
 	Common
 )
+
+target_precompile_headers(CryRenderD3D11 PRIVATE pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
