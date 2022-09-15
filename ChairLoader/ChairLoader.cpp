@@ -17,7 +17,7 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 #include "Chairloader/ChairloaderEnv.h"
-#include "RenderDll/RenderAuxGeomPatch.h"
+#include "RenderDll/AuxGeom/RenderAuxGeomPatch.h"
 #include "RenderDll/DebugMarkers.h"
 #include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>

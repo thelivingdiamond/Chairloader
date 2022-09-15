@@ -1,27 +1,10 @@
+add_subdirectory(RenderDll)
+
 set(SOURCE_FILES
 	CMakeLists.txt
 
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h
-	
-	RenderDll/D3DHWShaderCompiling.cpp
-	RenderDll/D3DRenderAuxGeom.cpp
-	RenderDll/D3DRenderAuxGeom.h
-	RenderDll/DebugMarkers.cpp
-	RenderDll/DebugMarkers.h
-	RenderDll/Parser.cpp
-	RenderDll/ParserBin.cpp
-	RenderDll/RenderAuxGeom.cpp
-	RenderDll/RenderAuxGeomPatch.cpp
-	RenderDll/RenderAuxGeomPatch.h
-	RenderDll/RenderCommandHandler.cpp
-	RenderDll/RenderCommandHook.asm
-	RenderDll/ResFile.cpp
-	RenderDll/ShaderCompilingPatch.cpp
-	RenderDll/ShaderCompilingPatch.h
-	RenderDll/ShaderFXParseBin.cpp
-	RenderDll/ShaderMan.cpp
-	RenderDll/TextMessages.cpp
 	
 	ChairLoader.cpp
 	ChairLoader.h
@@ -66,6 +49,7 @@ add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader
 	Common
 	ChairloaderModules
+	CryRenderD3D11
 )
 
 target_compile_definitions(Chairloader PRIVATE

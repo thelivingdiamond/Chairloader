@@ -4,7 +4,7 @@
 #include <detours/detours.h>
 #include "D3DRenderAuxGeom.h"
 #include "../ChairLoader.h"
-#include "ShaderCompilingPatch.h"
+#include "Shaders/ShaderCompilingPatch.h"
 
 static_assert(offsetof(CD3D9Renderer, m_bStopRendererAtFrameEnd) == 96);
 static_assert(offsetof(CD3D9Renderer, m_pRT) == 3472);
