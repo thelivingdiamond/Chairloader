@@ -19,6 +19,8 @@ bool g_bAuxGeomEnabled = false;
 
 int CV_r_enableauxgeom;
 
+bool g_bEnableShaderCompiler = false; // TODO: Move somewhere else
+
 CRenderAuxGeomD3D* s_pRenderAuxGeomD3D = nullptr;
 
 auto CD3D9Renderer_FX_PipelineShutdown_Hook = CD3D9Renderer::FFX_PipelineShutdown.MakeHook();
@@ -70,7 +72,9 @@ void CD3D9Renderer_InitRenderer(CD3D9Renderer* _this)
 		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
 	}
 
-	RenderDll::Shaders::InitRenderer(_this);
+	// TODO: Move somewhere else
+	if (g_bEnableShaderCompiler)
+		RenderDll::Shaders::InitRenderer(_this);
 }
 
 void CD3D9Renderer_EF_RemoveParticlesFromScene(CRenderer* _this)
@@ -146,7 +150,13 @@ void InitRenderAuxGeomPatchHooks()
 		CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
 		CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
 		SRenderThread_InstallCommandHandler();
-		RenderDll::Shaders::InitHooks();
+		
+		// TODO: Move somewhere else
+		if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadertest"))
+		{
+			g_bEnableShaderCompiler = true;
+			RenderDll::Shaders::InitHooks();
+		}
 	}
 }
 
