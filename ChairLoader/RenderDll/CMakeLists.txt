@@ -17,6 +17,8 @@ set(SOURCE_FILES
 	Shaders/ShaderFXParseBin.cpp
 	Shaders/ShaderMan.cpp
 	
+	ChairRender.cpp
+	ChairRender.h
 	DebugMarkers.cpp
 	DebugMarkers.h
 	pch.h
