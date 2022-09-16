@@ -41,19 +41,11 @@ configure_file(
 		${CMAKE_CURRENT_SOURCE_DIR}/version.rc
 		@ONLY)
 
-if(RENDERDLL_DEBUG_MARKERS)
-	set(RENDERDLL_DEBUG_MARKERS_DEFS RENDERDLL_DEBUG_MARKERS)
-endif()
-
 add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader
 	Common
 	ChairloaderModules
 	CryRenderD3D11
-)
-
-target_compile_definitions(Chairloader PRIVATE
-	${RENDERDLL_DEBUG_MARKERS_DEFS}
 )
 
 cl_output_dir(Chairloader "Binaries/Danielle/x64/Release")

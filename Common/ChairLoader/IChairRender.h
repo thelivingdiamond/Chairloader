@@ -5,12 +5,15 @@ class CD3D9Renderer;
 enum EChairRenderFlags
 {
 	eCRF_None = 0,
-	eCRF_InitRenderer	= BIT(0),
-	eCRF_BeginFrame		= BIT(1),
-	eCRF_EndFrame		= BIT(2),
-	eCRF_RT_BeginFrame	= BIT(3),
-	eCRF_RT_EndFrame	= BIT(4),
-	eCRF_RT_Present		= BIT(5),
+	eCRF_InitRenderer		= BIT(0),
+	eCRF_RT_InitRenderer	= BIT(1),
+	eCRF_Shutdown			= BIT(2),
+	eCRF_RT_Shutdown		= BIT(3),
+	eCRF_BeginFrame			= BIT(4),
+	eCRF_EndFrame			= BIT(5),
+	eCRF_RT_BeginFrame		= BIT(6),
+	eCRF_RT_EndFrame		= BIT(7),
+	eCRF_RT_Present			= BIT(8),
 };
 
 struct IChairRenderListener
@@ -19,8 +22,17 @@ struct IChairRenderListener
 	//! @returns which callbacks need to be called for this callback.
 	virtual int GetFlags() = 0;
 
-	//! Called after CD3D9Renderer::InitRenderer.
+	//! Called after CD3D9Renderer::Init.
 	virtual void InitRenderer(CD3D9Renderer* pRenderer) {}
+
+	//! Called after CD3D9Renderer::RT_Init on the render thread.
+	virtual void RT_InitRenderer() {}
+
+	//! Called before CD3D9Renderer::ShutDown.
+	virtual void ShutdownRenderer() {}
+
+	//! Called before CD3D9Renderer::RT_ShutDown on the render thread.
+	virtual void RT_ShutdownRenderer() {}
 
 	//! Called after CD3D9Renderer::BeginFrame on the main thread.
 	virtual void BeginFrame() {}

@@ -16,6 +16,9 @@ public:
 	void Shutdown();
 
 	void InitRenderer(CD3D9Renderer* pRenderer);
+	void RT_InitRenderer();
+	void ShutdownRenderer();
+	void RT_ShutdownRenderer();
 	void BeginFrame();
 	void EndFrame();
 	void RT_BeginFrame();
@@ -31,6 +34,9 @@ private:
 
 	std::vector<TListenerList*> m_AllLists;
 	TListenerList m_InitRenderer;
+	TListenerList m_RT_InitRenderer;
+	TListenerList m_Shutdown;
+	TListenerList m_RT_Shutdown;
 	TListenerList m_BeginFrame;
 	TListenerList m_EndFrame;
 	TListenerList m_RT_BeginFrame;

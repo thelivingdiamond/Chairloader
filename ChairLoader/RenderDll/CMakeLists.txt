@@ -28,8 +28,16 @@ set(SOURCE_FILES
 	RenderDll.h
 )
 
+if(RENDERDLL_DEBUG_MARKERS)
+	set(RENDERDLL_DEBUG_MARKERS_DEFS RENDERDLL_DEBUG_MARKERS)
+endif()
+
 add_library(CryRenderD3D11 STATIC
 	${SOURCE_FILES}
+)
+
+target_compile_definitions(CryRenderD3D11 PRIVATE
+	${RENDERDLL_DEBUG_MARKERS_DEFS}
 )
 
 target_include_directories(CryRenderD3D11 PRIVATE

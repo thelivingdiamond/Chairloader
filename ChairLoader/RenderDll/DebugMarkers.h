@@ -3,5 +3,5 @@
 namespace RenderDll::DebugMarkers
 {
 void InitHooks();
-void InitGame();
+void InitRenderer();
 }

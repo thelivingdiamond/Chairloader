@@ -9,7 +9,6 @@ struct SRenderDllPatchParams
 };
 
 void InitRenderDllPatches(const SRenderDllPatchParams& params);
-void InitRenderDllGame();
 
 } // namespace RenderDll
 

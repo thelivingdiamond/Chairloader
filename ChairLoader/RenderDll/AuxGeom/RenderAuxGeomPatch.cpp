@@ -22,9 +22,7 @@ bool g_bEnableShaderCompiler = false; // TODO: Move somewhere else
 CRenderAuxGeomD3D* s_pRenderAuxGeomD3D = nullptr;
 
 auto CD3D9Renderer_FX_PipelineShutdown_Hook = CD3D9Renderer::FFX_PipelineShutdown.MakeHook();
-auto CD3D9Renderer_RT_ShutDown_Hook = CD3D9Renderer::FRT_ShutDown.MakeHook();
 auto CD3D9Renderer_OnD3D11PostCreateDevice_Hook = CD3D9Renderer::FOnD3D11PostCreateDevice.MakeHook();
-auto CD3D9Renderer_InitRenderer_Hook = CD3D9Renderer::FInitRenderer.MakeHook();
 auto CD3D9Renderer_EF_RemoveParticlesFromScene_Hook = CD3D9Renderer::FEF_RemoveParticlesFromScene.MakeHook();
 auto CD3D9Renderer_Set2DMode_Hook = CD3D9Renderer::FSet2DMode.MakeHook();
 auto CD3D9Renderer_GetIRenderAuxGeom_Hook = CD3D9Renderer::FGetIRenderAuxGeom.MakeHook();
@@ -38,12 +36,6 @@ void CD3D9Renderer_FX_PipelineShutdown(CD3D9Renderer* _this, bool bFastShutdown)
 	CD3D9Renderer_FX_PipelineShutdown_Hook.InvokeOrig(_this, bFastShutdown);
 }
 
-void CD3D9Renderer_RT_ShutDown(CD3D9Renderer* _this, uint32 nFlags)
-{
-	SAFE_DELETE(s_pRenderAuxGeomD3D);
-	CD3D9Renderer_RT_ShutDown_Hook.InvokeOrig(_this, nFlags);
-}
-
 HRESULT CD3D9Renderer_OnD3D11PostCreateDevice(D3DDevice* pd3dDevice)
 {
 	HRESULT hr;
@@ -55,24 +47,6 @@ HRESULT CD3D9Renderer_OnD3D11PostCreateDevice(D3DDevice* pd3dDevice)
 		return hr;
 
 	return S_OK;
-}
-
-void CD3D9Renderer_InitRenderer(CD3D9Renderer* _this)
-{
-	if (!gRenDev)
-		gRenDev = _this;
-
-	CD3D9Renderer_InitRenderer_Hook.InvokeOrig(_this);
-
-	if (CV_r_enableauxgeom)
-	{
-		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*_this);
-		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
-	}
-
-	// TODO: Move somewhere else
-	if (g_bEnableShaderCompiler)
-		RenderDll::Shaders::InitRenderer(_this);
 }
 
 void CD3D9Renderer_EF_RemoveParticlesFromScene(CRenderer* _this)
@@ -135,9 +109,7 @@ void InitAuxGeom()
 {
 	g_bAuxGeomEnabled = true;
 	CD3D9Renderer_FX_PipelineShutdown_Hook.SetHookFunc(&CD3D9Renderer_FX_PipelineShutdown);
-	CD3D9Renderer_RT_ShutDown_Hook.SetHookFunc(&CD3D9Renderer_RT_ShutDown);
 	CD3D9Renderer_OnD3D11PostCreateDevice_Hook.SetHookFunc(&CD3D9Renderer_OnD3D11PostCreateDevice);
-	CD3D9Renderer_InitRenderer_Hook.SetHookFunc(&CD3D9Renderer_InitRenderer);
 	CD3D9Renderer_EF_RemoveParticlesFromScene_Hook.SetHookFunc(&CD3D9Renderer_EF_RemoveParticlesFromScene);
 	CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
 	CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
@@ -152,6 +124,24 @@ void InitAuxGeom()
 		g_bEnableShaderCompiler = true;
 		RenderDll::Shaders::InitHooks();
 	}
+}
+
+void InitRenderer()
+{
+	if (CV_r_enableauxgeom)
+	{
+		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*gcpRendD3D);
+		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
+	}
+
+	// TODO: Move somewhere else
+	if (g_bEnableShaderCompiler)
+		RenderDll::Shaders::InitRenderer(gcpRendD3D);
+}
+
+void RT_Shutdown()
+{
+	SAFE_DELETE(s_pRenderAuxGeomD3D);
 }
 
 } // namespace RenderDll::AuxGeom

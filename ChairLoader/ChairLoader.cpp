@@ -242,13 +242,13 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
 		pSystem->m_sys_audio_disable->Set(1);
 
-	InitHooks();
-	WaitForRenderDoc();
-
 	RenderDll::SRenderDllPatchParams renderDllPatch;
 	renderDllPatch.bEnableAuxGeom = IsEditorEnabled() ||
 		gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"); // Editor requires aux geom
 	RenderDll::InitRenderDllPatches(renderDllPatch);
+
+	InitHooks();
+	WaitForRenderDoc();
 
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
@@ -270,7 +270,6 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 void ChairLoader::InitGame(IGameFramework* pFramework)
 {
 	CryLog("ChairLoader::InitGame");
-	RenderDll::DebugMarkers::InitGame();
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
