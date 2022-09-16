@@ -1,6 +1,11 @@
 #pragma once
+#include <functional>
+#include <Prey/CryCore/AlignmentTools.h>
 
 class CD3D9Renderer;
+
+using RenderCmdId = uint32;
+constexpr RenderCmdId INVALID_RENDER_CMD_ID = -1;
 
 enum EChairRenderFlags
 {
@@ -16,8 +21,63 @@ enum EChairRenderFlags
 	eCRF_RT_Present			= BIT(8),
 };
 
+struct CustomCommandBuffer
+{
+	// Do not change fields - will break mods!
+	byte* pBuffer;
+	byte* pBufferEnd;
+
+	//-------------------------------------------------------------------------------------
+
+	//! Reads a value of type T from the current command buffer.
+	template<class T>
+	inline T ReadCommand()
+	{
+		T Res;
+		LoadUnaligned((uint32*)pBuffer, Res);
+		pBuffer += (sizeof(T) + 3) & ~((size_t)3);
+		return Res;
+	}
+
+	//! Reads a value of type T into an uninitialized storage.
+	template<class T>
+	inline void ReadCommand(SUninitialized<T>& value)
+	{
+		LoadUnaligned((uint32*)pBuffer, value);
+		pBuffer += (sizeof(T) + 3) & ~((size_t)3);
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	inline void AddDWORD(uint32 nVal)
+	{
+		*(uint32*)pBuffer = nVal;
+		pBuffer += sizeof(uint32);
+	}
+
+	inline void AddPointer(const void* pVal)
+	{
+		StoreUnaligned((uint32*)pBuffer, pVal); // uint32 because command list maintains 4-byte alignment
+		pBuffer += sizeof(void*);
+	}
+
+	inline void EndCommand()
+	{
+#if DEBUG_BUILD
+		if (pBuffer != pBufferEnd)
+		{
+			long long delta = pBufferEnd - pBuffer;
+			CryFatalError("Bad render command size - check the parameters and round each up to 4-byte boundaries\n"
+				"Queue is %lld bytes short.", delta);
+		}
+#endif
+	}
+};
+
 struct IChairRenderListener
 {
+	virtual ~IChairRenderListener() {}
+
 	//! Called once when the listener is added. See EChairRenderFlags.
 	//! @returns which callbacks need to be called for this callback.
 	virtual int GetFlags() = 0;
@@ -52,6 +112,13 @@ struct IChairRenderListener
 
 struct IChairRender
 {
+	virtual ~IChairRender() {}
+
+	//! The custom render command handler.
+	//! @param	nCustomCmdId	The id of the current command
+	//! @param	cmdBuf			The command buffer to read from.
+	using CmdHandler = std::function<void(int nCustomCmdId, CustomCommandBuffer& cmdBuf)>;
+
 	//! Adds a listener. Callbacks in listeners are called in the order of AddListener calls.
 	//! Listener must exist for as long as the game does. Call RemoveListener before destruction.
 	virtual void AddListener(IChairRenderListener* listener) = 0;
@@ -60,4 +127,20 @@ struct IChairRender
 	//! for the same listener, RemoveListener must be called the same count of times.
 	//! @returns whether the listener was removed.
 	virtual bool RemoveListener(IChairRenderListener* listener) = 0;
+
+	//! Registers a custom rendering command.
+	//! @param	name	Name of the command (for debugging).
+	//! @param	handler	The command handler.
+	//! @returns the id of the command
+	virtual RenderCmdId RegisterRenderCommand(const char* name, const CmdHandler& handler) = 0;
+
+	//! Unregisters the command.
+	//! @param	nCustomCmdId	The id of the command.
+	//! @returns true if the command was found.
+	virtual bool UnregisterRenderCommand(RenderCmdId nCustomCmdId) = 0;
+
+	//! Queues a new rendering command. Must be called from the main thread.
+	//! @param	nCustomCmdId	The id returned by RegisterRenderCommand.
+	//! @param	nParamBytes		Size of the command data.
+	virtual CustomCommandBuffer QueueCommand(RenderCmdId nCustomCmdId, size_t nParamBytes) = 0;
 };

@@ -9,6 +9,7 @@ namespace RenderDll
 
 auto g_ComputePresentInterval = PreyFunction<uint32(bool vsync, uint32 refreshNumerator, uint32 refreshDenominator)>(0xF4C000);
 
+// Callbacks
 auto g_CD3D9Renderer_InitRenderer_Hook = CD3D9Renderer::FInit.MakeHook();
 auto g_CD3D9Renderer_RT_InitRenderer_Hook = CD3D9Renderer::FRT_Init.MakeHook();
 auto g_CD3D9Renderer_ShutDown_Hook = CD3D9Renderer::FShutDown.MakeHook();
@@ -18,6 +19,9 @@ auto g_CD3D9Renderer_EndFrame_Hook = CD3D9Renderer::FEndFrame.MakeHook();
 auto g_CD3D9Renderer_RT_BeginFrame_Hook = CD3D9Renderer::FRT_BeginFrame.MakeHook();
 auto g_CD3D9Renderer_RT_EndFrame_Hook = CD3D9Renderer::FRT_EndFrame.MakeHook();
 auto g_ComputePresentInterval_Hook = g_ComputePresentInterval.MakeHook();
+
+// Render commands
+auto g_SRenderThread_RC_BinkRender_Hook = SRenderThread::FRC_BinkRender.MakeHook();
 
 void* CD3D9Renderer_InitRenderer_Hook(CD3D9Renderer* const _this, int x, int y, int width, int height, unsigned cbpp, int zbpp, int sbits, EFullscreenMode _fullscreenMode, void* hinst, void* Glhwnd, bool bReInit, SCustomRenderInitArgs const* pCustomArgs, bool bShaderCacheGen)
 {
@@ -74,6 +78,14 @@ uint32 ComputePresentInterval_Hook(bool vsync, uint32 refreshNumerator, uint32 r
 	return g_ComputePresentInterval_Hook.InvokeOrig(vsync, refreshNumerator, refreshDenominator);
 }
 
+void SRenderThread_RC_BinkRender_Hook(SRenderThread* _this, ArkBinkPlayer* _pPlayer, int _frame)
+{
+	// TODO:
+	g_SRenderThread_RC_BinkRender_Hook.InvokeOrig(_this, _pPlayer, _frame);
+}
+
+
+
 } // namespace RenderDll
 
 RenderDll::ChairRender& RenderDll::ChairRender::Get()
@@ -110,6 +122,8 @@ void RenderDll::ChairRender::Init()
 	g_CD3D9Renderer_RT_BeginFrame_Hook.SetHookFunc(&CD3D9Renderer_RT_BeginFrame_Hook);
 	g_CD3D9Renderer_RT_EndFrame_Hook.SetHookFunc(&CD3D9Renderer_RT_EndFrame_Hook);
 	g_ComputePresentInterval_Hook.SetHookFunc(&ComputePresentInterval_Hook);
+
+	g_SRenderThread_RC_BinkRender_Hook.SetHookFunc(&SRenderThread_RC_BinkRender_Hook);
 }
 
 void RenderDll::ChairRender::Shutdown()
@@ -242,4 +256,92 @@ bool RenderDll::ChairRender::RemoveListener(IChairRenderListener* listener)
 	}
 
 	return foundAny;
+}
+
+RenderCmdId RenderDll::ChairRender::RegisterRenderCommand(const char* name, const CmdHandler& handler)
+{
+	if (!m_bCanChangeCmds)
+	{
+		CryFatalError("Can't modify render command handlers at the moment, it requires render thread to be idle");
+		return INVALID_RENDER_CMD_ID;
+	}
+
+	if (!handler)
+	{
+		CRY_ASSERT(false);
+		CryError("RegisterRenderCommand '%s' with empty handler", name);
+		return INVALID_RENDER_CMD_ID;
+	}
+
+	if (m_bHaveUnregisteredCmds)
+	{
+		// Find an empty command
+		auto it = std::find_if(m_CustomCommands.begin(), m_CustomCommands.end(),
+			[](CustomCommand& cmd) { return !cmd.IsRegistered(); });
+
+		if (it != m_CustomCommands.end())
+		{
+			it->Fill(name, handler);
+			return it - m_CustomCommands.begin();
+		}
+	}
+
+	// Not found an empty cmd, emplace_back a new one
+	m_bHaveUnregisteredCmds = false;
+	RenderCmdId id = m_CustomCommands.size();
+	CustomCommand& cmd = m_CustomCommands.emplace_back();
+	cmd.Fill(name, handler);
+	return id;
+}
+
+bool RenderDll::ChairRender::UnregisterRenderCommand(RenderCmdId nCustomCmdId)
+{
+	if (!m_bCanChangeCmds)
+	{
+		CryFatalError("Can't modify render command handlers at the moment, it requires render thread to be idle");
+		return false;
+	}
+
+	if (nCustomCmdId == INVALID_RENDER_CMD_ID)
+		return false;
+
+	CRY_ASSERT(nCustomCmdId < m_CustomCommands.size());
+
+	if (m_CustomCommands[nCustomCmdId].IsRegistered())
+	{
+		m_CustomCommands[nCustomCmdId] = CustomCommand();
+		m_bHaveUnregisteredCmds = true;
+		return true;
+	}
+
+	return false;
+}
+
+CustomCommandBuffer RenderDll::ChairRender::QueueCommand(RenderCmdId nCustomCmdId, size_t nParamBytes)
+{
+	int thread = gRenDev->m_pRT->m_nCurThreadFill;
+	uint32 cmdSize = sizeof(uint32) + nParamBytes; // ID + cmd
+	
+#if DEBUG_BUILD
+	cmdSize += sizeof(uint32); // processed flag
+#endif
+
+	CustomCommandBuffer buf;
+	buf.pBuffer = m_CmdBuffer[thread].Grow(cmdSize);
+	buf.AddDWORD(nCustomCmdId);
+
+#if DEBUG_BUILD
+	buf.AddDWORD(0); // processed flag
+#endif
+
+	buf.pBufferEnd = buf.pBuffer + cmdSize;
+	return buf;
+}
+
+void RenderDll::ChairRender::CustomCommand::Fill(const char* name, const CmdHandler& handler)
+{
+#if DEBUG_BUILD
+	this->name = name;
+#endif
+	this->handler = handler;
 }
