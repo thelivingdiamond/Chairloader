@@ -15,6 +15,7 @@
 #include <Windows.h>
 #include "BinaryVersionCheck.h"
 #include "XMLMerger.h"
+#include "ConfigManager.h"
 
 #include <boost/format.hpp>
 
@@ -83,6 +84,20 @@ public:
     void Update();
 
     const fs::path& GetGamePath() { return PreyPath; }
+    // get mods and get legacy mods
+    const std::vector<Mod>& GetMods() { return ModList; }
+    const std::vector<std::string>& GetLegacyMods() { return LegacyModList; }
+    // get config manager
+    ConfigManager* GetConfigManager() { return &m_ConfigManager; }
+    // is mod enabled
+    bool IsModEnabled(std::string modName){
+        for(auto& mod : ModList){
+            if(mod.modName == modName){
+                return mod.enabled;
+            }
+        }
+        return false;
+    }
     void DeployForInstallWizard();
 private:
     //! Current UI state
@@ -220,6 +235,9 @@ private:
 
     //! XML MERGING V2
     XMLMerger m_XMLMerger;
+
+    //! config manager
+    ConfigManager m_ConfigManager;
 
     std::vector<fs::path> exploreLevelDirectory(fs::path);
     PROCESS_INFORMATION packLevel(fs::path path);

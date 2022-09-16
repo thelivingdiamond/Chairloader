@@ -119,25 +119,48 @@ public:
             return tags;
         }
     };
+    struct attributeWildcard{
+        enum class wildcard_type{
+            none,
+            apply_if,
+            replace,
+        };
+        enum class match_type{
+            none,
+            local,
+            global,
+        };
+        pugi::xml_attribute attribute;
+        std::string mod_name;
+        wildcard_type type = wildcard_type::none;
+        match_type match = match_type::none;
+        std::string match_value;
+        bool has_match_value = false;
+        bool apply_if = false;
+    };
     XMLMerger();
     void init();
     pugi::xml_document mergingLibrary;
     XMLMerger::mergingPolicy getFileMergingPolicy(fs::path filePath, std::string modName);
 
     static void resolvePathWildcards(pugi::xml_node node, pugi::xml_node nodeStructure);
-    static void resolveAttributeWildcards(pugi::xml_node node, pugi::xml_node nodeStructure);
+    static std::vector<pugi::xml_node>
+    resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeStructure, std::string &modName);
+    static void getConfigWildcard(std::string& wildcard, std::string modName);
+
     static bool checkNodeEquality(pugi::xml_node modNode, pugi::xml_node originalNode);
     //! merge one node into another. Copy all attributes and children from the source node into the destination node
     bool mergeXMLFile(fs::path relativeFilePath, std::string modName, bool isLegacyMod);
     static bool mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, mergingPolicy policy);
-    static bool
-    mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
+    static bool mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
     static void mergeByAttribute(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
     static void mergeByTag(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
     static void mergeByContents(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
     static void mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
     static void mergeXMLNodeAttributes(pugi::xml_node &baseNode, pugi::xml_node &modNode);
     static void mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode);
+
+    static std::string getWildcardValue(attributeWildcard &wildcardValue);
 };
 
 pugi::xml_node noCaseChild(pugi::xml_node& node, std::string name);

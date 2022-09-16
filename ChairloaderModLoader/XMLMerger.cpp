@@ -6,6 +6,8 @@
 #include "ModLoader.h"
 #include <boost/algorithm/string.hpp>
 #include <sstream>
+// import regex
+#include <regex>
 
 
 XMLMerger::XMLMerger() {
@@ -24,7 +26,7 @@ XMLMerger::mergingPolicy XMLMerger::getFileMergingPolicy(fs::path filePath, std:
         }
         currentPath /= directory;
         currentNode = noCaseChild(currentNode, directory.u8string());
-        ModLoader::Get().log(ModLoader::severityLevel::debug, "Current Node: %s", currentNode.name());
+//        ModLoader::Get().log(ModLoader::severityLevel::debug, "Current Node: %s", currentNode.name());
         if(!currentNode){
             continue;
         } else {
@@ -130,7 +132,14 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
         }
         resolvePathWildcards(modFile.first_child(), policy.nodeStructure.first_child());
         //TODO: WIP
-        resolveAttributeWildcards(modFile.first_child(), policy.nodeStructure.first_child());
+        auto tempModFirstChild = modFile.first_child();
+        auto tempNodeStructureFirstChild = policy.nodeStructure.first_child();
+        if(!isLegacyMod) {
+            auto nodesToDelete = resolveAttributeWildcards(tempModFirstChild, tempNodeStructureFirstChild, policy.mod_name);
+            for (auto &node : nodesToDelete) {
+                node.parent().remove_child(node);
+            }
+        }
         ModLoader::Get().log(ModLoader::severityLevel::debug, "Merging %s", relativeFilePath.u8string().c_str());
         return mergeXMLDocument(baseFile, modFile, originalFile, policy);
     } else {
@@ -150,7 +159,9 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
     if(policy.policy == mergingPolicy::identification_policy::overwrite){
         // overwrite the base file with the mod file, regardless of original file
         baseDoc.reset(modDoc);
-        baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
+        auto result = baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
+        ModLoader::Get().log(ModLoader::severityLevel::trace, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), result ? "success" : "failure");
+
         return true;
     }
     if(policy.policy == mergingPolicy::identification_policy::match_spreadsheet){
@@ -161,7 +172,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
         mergeBySpreadsheet(baseNode, modNode, originalNode, policy);
         auto result = baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
         bool success = result;
-        ModLoader::Get().log(ModLoader::severityLevel::debug, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), success ? "success" : "failure");
+        ModLoader::Get().log(ModLoader::severityLevel::trace, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), success ? "success" : "failure");
         return true;
     }
     // now we have to merge the node structure of the mod file with the base file
@@ -362,9 +373,9 @@ void
 XMLMerger::mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, XMLMerger::mergingPolicy policy) {
     //TODO: implement
     //- debug the names of the nodes passed in
-    ModLoader::Get().log(ModLoader::severityLevel::debug, "baseNode: %s", baseNode.name());
-    ModLoader::Get().log(ModLoader::severityLevel::debug, "modNode: %s", modNode.name());
-    ModLoader::Get().log(ModLoader::severityLevel::debug, "originalNode: %s", originalNode.name());
+//    ModLoader::Get().log(ModLoader::severityLevel::debug, "baseNode: %s", baseNode.name());
+//    ModLoader::Get().log(ModLoader::severityLevel::debug, "modNode: %s", modNode.name());
+//    ModLoader::Get().log(ModLoader::severityLevel::debug, "originalNode: %s", originalNode.name());
 //    // warn user that this isn't implemented yet
 //    ModLoader::Get().log(ModLoader::severityLevel::warning, "Spreadsheet merging is not yet implemented, skipping");
     auto modTableNode = modNode.child("Worksheet").child("Table");
@@ -437,7 +448,8 @@ void XMLMerger::resolvePathWildcards(pugi::xml_node node, pugi::xml_node nodeStr
     }
 }
 
-void XMLMerger::resolveAttributeWildcards(pugi::xml_node node, pugi::xml_node nodeStructure) {
+std::vector<pugi::xml_node>
+XMLMerger::resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeStructure, std::string &modName) {
     //TODO: allow
     /*
     <X Param="{{ configValue }}" /> <!-- Current mod's config -->
@@ -445,6 +457,37 @@ void XMLMerger::resolveAttributeWildcards(pugi::xml_node node, pugi::xml_node no
     <X chair_apply_if="$.modAuthor.modName.modEnabled" /> <!-- Check if different mod is installed and enabled. Allows for some basic interop between XML mods -->
     <X chair_apply_if="{{ configValue }}"/> <!-- apply if some other config value -->
      */
+//    if(mergingPolicy::getNodeTags(nodeStructure) & mergingPolicy::node_tags::merge_children){
+    std::vector<pugi::xml_node> nodesToDelete;
+    for (auto child: node) {
+//        ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking child %s", child.name());
+        auto childNodesToDelete = resolveAttributeWildcards(child, nodeStructure, modName);
+        // emplace all children nodes to delete in nodesToDelete
+        for(auto &nodeToDelete : childNodesToDelete){
+            nodesToDelete.emplace_back(nodeToDelete);
+        }
+    }
+    for(auto &attribute : node.attributes()){
+        attributeWildcard match;
+        match.attribute = attribute;
+        match.mod_name = modName;
+        getWildcardValue(match);
+        if(match.has_match_value){
+            if(match.type == attributeWildcard::wildcard_type::apply_if){
+                if(match.apply_if){
+                    node.remove_attribute(attribute);
+                    ModLoader::Get().log(ModLoader::severityLevel::debug, "Node %s applied by wildcard", node.name());
+                } else {
+                    nodesToDelete.emplace_back(node);
+                }
+            } else if (match.type == attributeWildcard::wildcard_type::replace) {
+                attribute.set_value(match.match_value.c_str());
+                ModLoader::Get().log(ModLoader::severityLevel::trace, "Attribute %s replaced with %s", attribute.name(), match.match_value);
+            }
+
+        }
+    }
+    return nodesToDelete;
 }
 
 //! check if contents and attributes match
@@ -463,6 +506,75 @@ bool XMLMerger::checkNodeEquality(pugi::xml_node modNode, pugi::xml_node origina
 //    }
 //    return true;
 
+}
+
+std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
+    ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking attribute %s", wildcardValue.attribute.name());
+    if(wildcardValue.attribute.name() == std::string("chair_apply_if")){
+        wildcardValue.type = attributeWildcard::wildcard_type::apply_if;
+    } else {
+        wildcardValue.type = attributeWildcard::wildcard_type::replace;
+    }
+    if(std::string(wildcardValue.attribute.value()).find("{{") != std::string::npos && std::string(wildcardValue.attribute.value()).find("}}") != std::string::npos) {
+        // regex to find the value
+        std::regex re(R"(\{\{(.*)\}\})");
+        std::smatch match;
+        std::string value = wildcardValue.attribute.value();
+        if(std::regex_search(value, match, re)) {
+            if(match.ready()) {
+                auto wildcardName = match[1].str();
+                // remove spaces from wildcardName
+                wildcardName.erase(std::remove_if(wildcardName.begin(), wildcardName.end(), isspace), wildcardName.end());
+                ModLoader::Get().log(ModLoader::severityLevel::debug, "Found match: %s", wildcardName.c_str());
+                if(wildcardName[0] == '$') {
+                    // this means we will be looking for global values from other mods
+                    std::regex localMatch = std::regex(R"((.*).(.*))");
+                    std::smatch localMatchResult;
+                    if(std::regex_search(wildcardName, localMatchResult, localMatch)) {
+                        if(localMatchResult.ready()) {
+                            std::string modName = localMatchResult[1].str();
+                            std::string parameter = localMatchResult[2].str();
+                            ModLoader::Get().log(ModLoader::severityLevel::debug, "Found local match: %s, %s", modName.c_str(), parameter.c_str());
+                            if(parameter == "modEnabled"){
+                                wildcardValue.match_value = ModLoader::Get().IsModEnabled(modName) ? "true" : "false";
+                            } else {
+                                auto modConfig = ModLoader::Get().GetConfigManager()->getModConfig(modName);
+                                wildcardValue.match_value = modConfig.getConfigValue(parameter);
+                                wildcardValue.has_match_value = true;
+                                if(wildcardValue.match_value.empty()) {
+                                    ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: could not find config value %s in mod %s", parameter.c_str(), modName.c_str());
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    // this means we will be looking for values from the current mod
+                    wildcardValue.match_value = ModLoader::Get().GetConfigManager()->getModConfig(wildcardValue.mod_name).getConfigValue(wildcardName);
+                    if(!wildcardValue.match_value.empty()) {
+                        wildcardValue.has_match_value = true;
+                    } else {
+                        ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: could not find config value %s in mod %s", wildcardName.c_str(), wildcardValue.mod_name.c_str());
+                    }
+                }
+
+                if(wildcardValue.type == attributeWildcard::wildcard_type::apply_if){
+                    if(wildcardValue.match_value == "true"){
+                        wildcardValue.apply_if = true;
+                    } else if(wildcardValue.match_value == "false"){
+                        wildcardValue.apply_if = false;
+                    }
+                }
+                return wildcardValue.match_value;
+            }
+        } else {
+            ModLoader::Get().log(ModLoader::severityLevel::warning, "Could not find wildcard value in %s", wildcardValue.attribute.value());
+            wildcardValue.type = attributeWildcard::wildcard_type::none;
+        }
+    } else {
+        wildcardValue.type = attributeWildcard::wildcard_type::none;
+        ModLoader::Get().log(ModLoader::severityLevel::trace, "Not a wildcard value");
+    }
+    return {};
 }
 
 

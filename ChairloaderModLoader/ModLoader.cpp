@@ -546,6 +546,7 @@ void ModLoader::DrawModList() {
             if (ImGui::Button("Refresh Mod List")) {
                 loadModInfoFiles();
                 selectedMod.clear();
+                m_ConfigManager.init();
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Loads mod list from the Chairloader config file. Also discovers new mods in the Mods/ folder.");
@@ -1888,9 +1889,8 @@ void ModLoader::Init() {
         createChairloaderConfigFile();
     }
     m_XMLMerger.init();
-
     if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").c_str())) {
-        throw std::runtime_error("Chairloader config file is corrupted.");
+        throw std::runtime_error("Chairloader config file is corrupted or missing.");
     }
 
     log(severityLevel::info, "Chairloader Config File Loaded");
@@ -1905,6 +1905,7 @@ void ModLoader::Init() {
     loadModInfoFiles();
 
     m_pGameVersion = std::make_unique<GameVersion>();
+    m_ConfigManager.init();
     initialized = true;
 }
 
@@ -1939,40 +1940,53 @@ void ModLoader::DrawDebug() {
             overlayLog(severityLevel::info, "%s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
         }*/
      static std::string filePath, modName = "TestMod";
+     ImGui::InputText("Mod Name", &modName);
      static XMLMerger::mergingPolicy policy;
      static pugi::xml_document doc;
-     ImGui::InputText("File Path", &filePath);
-        ImGui::InputText("Mod Name", &modName);
-     if(ImGui::Button("Load Xml File")) {
-         doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
-     }
-     ImGui::SameLine();
-     if(ImGui::Button("Clear Xml File")) {
-         doc.reset();
-     }
-     if(ImGui::Button("Resolve Path wildcards")){
-         XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
-     }
-     if(ImGui::Button("Merge Xml File")) {
-         m_XMLMerger.mergeXMLFile(filePath, modName, false);
-     }
-     if(!doc.empty()){
-         ImGui::Text("Loaded Xml File: %s", doc.name());
-         ImGui::Text("Root Node: %s", doc.root().name());
-         ImGui::Text("First Child: %s", doc.root().first_child().name());
-     }
-     if(ImGui::Button("Get Merging Policy")){
-        policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
-     }
-     ImGui::Text("Merging Policy: %d", policy.policy);
-     ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
-     if(!policy.attributeMatches.empty()){
-         for(auto &attributeMatch : policy.attributeMatches){
-             ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
+     if(ImGui::CollapsingHeader("File Merging")) {
+         ImGui::InputText("File Path", &filePath);
+         if (ImGui::Button("Load Xml File")) {
+             doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
          }
+         ImGui::SameLine();
+         if (ImGui::Button("Clear Xml File")) {
+             doc.reset();
+         }
+         if (ImGui::Button("Resolve Path wildcards")) {
+             XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
+         }
+         if (ImGui::Button("Merge Xml File")) {
+             m_XMLMerger.mergeXMLFile(filePath, modName, false);
+         }
+         if (!doc.empty()) {
+             ImGui::Text("Loaded Xml File: %s", doc.name());
+             ImGui::Text("Root Node: %s", doc.root().name());
+             ImGui::Text("First Child: %s", doc.root().first_child().name());
+         }
+         if (ImGui::Button("Get Merging Policy")) {
+             policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
+         }
+         ImGui::Text("Merging Policy: %d", policy.policy);
+         ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
+         if (!policy.attributeMatches.empty()) {
+             for (auto &attributeMatch: policy.attributeMatches) {
+                 ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
+             }
+         }
+         if (!policy.nodeStructure.empty())
+             displayXmlNode(policy.nodeStructure, 0);
      }
-     if(!policy.nodeStructure.empty())
-        displayXmlNode(policy.nodeStructure, 0);
+
+     if(ImGui::CollapsingHeader("Config")){
+        if(ImGui::Button("Copy Default Config File")){
+            ConfigManager::copyDefaultConfig(modName);
+        }
+        ImGui::BeginDisabled();
+        static bool configExists;
+        configExists = ConfigManager::isConfigPresent(modName);
+        ImGui::Checkbox("Config File Exists", &configExists);
+        ImGui::EndDisabled();
+     }
      ImGui::EndTabItem();
     }
 }

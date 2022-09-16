@@ -674,8 +674,8 @@
         <Dialogs ignore="true"/>
         <EntityArchetypes>
             <mergingPolicy identification_policy="match_attribute">
-                <attribute name="name" priority="0"/>
-                <attribute name="id" priority="1"/>
+                <attribute name="Name" priority="0"/>
+                <attribute name="ArchetypeId" priority="1"/>
                 <nodeStructure>
                     <EntityPrototypeLibrary merge_children="true"/>
                 </nodeStructure>
