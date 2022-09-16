@@ -15,3 +15,14 @@ void RenderDll::InitRenderDllPatches(const SRenderDllPatchParams& params)
 	//if (params.bEnableShaderTest)
 	//	Shaders::InitHooks();
 }
+
+void RenderDll::ShutdownSystem()
+{
+	AuxGeom::ShutdownSystem();
+	ChairRender::Get().Shutdown();
+}
+
+void RenderDll::SetRenderThreadIsIdle(bool state)
+{
+	ChairRender::Get().SetCanChangeRenderCmds(state);
+}

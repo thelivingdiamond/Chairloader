@@ -16,7 +16,8 @@ public:
 	void Shutdown();
 	void SetCanChangeRenderCmds(bool state) { m_bCanChangeCmds = state; }
 
-	void InitRenderer(CD3D9Renderer* pRenderer);
+	void InitRendererModule(CD3D9Renderer* pRenderer);
+	void InitRenderer();
 	void RT_InitRenderer();
 	void ShutdownRenderer();
 	void RT_ShutdownRenderer();
@@ -26,12 +27,16 @@ public:
 	void RT_EndFrame();
 	void RT_Present();
 
+	void RT_PreProcessCommands();
+	void RT_HandleCustomCommand(RenderCmdId nCmdId);
+	void RT_PostProcessCommands();
+
 	// IChairRender
 	void AddListener(IChairRenderListener* listener) override;
 	bool RemoveListener(IChairRenderListener* listener) override;
 	RenderCmdId RegisterRenderCommand(const char* name, const CmdHandler& handler) override;
 	bool UnregisterRenderCommand(RenderCmdId nCustomCmdId) override;
-	CustomCommandBuffer QueueCommand(RenderCmdId nCustomCmdId, size_t nParamBytes) override;
+	RenderCmdBuf QueueCommand(RenderCmdId nCustomCmdId, size_t nParamBytes) override;
 
 private:
 	using TListenerList = std::vector<IChairRenderListener*>;
@@ -49,6 +54,7 @@ private:
 	};
 
 	std::vector<TListenerList*> m_AllLists;
+	TListenerList m_InitRendererModule;
 	TListenerList m_InitRenderer;
 	TListenerList m_RT_InitRenderer;
 	TListenerList m_Shutdown;
@@ -60,9 +66,14 @@ private:
 	TListenerList m_RT_Present;
 
 	std::vector<CustomCommand> m_CustomCommands;
-	TArray<byte> m_CmdBuffer[RT_COMMAND_BUF_COUNT];
 	bool m_bHaveUnregisteredCmds = false;
 	bool m_bCanChangeCmds = false;
+
+	// RT command handling
+	TArray<byte> m_CmdBuffer[RT_COMMAND_BUF_COUNT];
+	RenderCmdBuf m_ReadBuf;
+
+	void ValidateCanChangeCmds();
 };
 
 } // namespace RenderDll

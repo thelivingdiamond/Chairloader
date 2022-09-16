@@ -22,8 +22,6 @@ set(SOURCE_FILES
 	DebugMarkers.cpp
 	DebugMarkers.h
 	pch.h
-	RenderCommandHandler.cpp
-	RenderCommandHook.asm
 	RenderDll.cpp
 	RenderDll.h
 )

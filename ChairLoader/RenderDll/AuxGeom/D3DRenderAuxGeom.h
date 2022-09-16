@@ -17,6 +17,9 @@ class ICrySizer;
 class CRenderAuxGeomD3D : public IRenderAuxGeomImpl
 {
 public:
+	static void InitCustomCommand();
+	static void ShutdownCustomCommand();
+
 	virtual void Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset = false);
 	virtual void RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset = false);
 

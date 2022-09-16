@@ -92,7 +92,7 @@ enum ERenderCommand
 	eRC_FlashRender = 0x2C,
 	eRC_FlashRenderLockless = 0x2D,
 	eRC_BinkRender = 0x2E,
-	eRC_AuxFlush_DONOTUSE = 0x2F, // eRCC_AuxFlush
+	eRC_AuxFlush_DONOTUSE = 0x2F,
 	eRC_RenderScene = 0x30,
 	eRC_SetCamera = 0x31,
 	eRC_PushProfileMarker = 0x32,
@@ -132,15 +132,6 @@ enum ERenderCommand
 	eRC_ReleaseRemappedBoneIndices = 0x54,
 	eRC_SetRendererCVar = 0x55,
 	eRC_ReleaseGraphicsPipeline = 0x56,
-
-	//! Chairloader: Custom rendering command
-	eRC_Custom = 100,
-};
-
-enum ERenderCommandCustom
-{
-	eRCC_Unknown = 0,
-	eRCC_AuxFlush,
 };
 
 //====================================================================
@@ -209,8 +200,7 @@ struct CRY_ALIGN(128) SRenderThread
 	};
 	EVideoThreadMode m_eVideoThreadMode;
 
-	static CryCriticalSection s_rcLock;
-	static TArray<byte> m_CustomCommands[RT_COMMAND_BUF_COUNT];
+	//static CryCriticalSection s_rcLock;
 
 	SRenderThread();
 	~SRenderThread();
@@ -223,14 +213,12 @@ struct CRY_ALIGN(128) SRenderThread
 	bool IsMultithreaded();
 	int CurThreadFill() const;
 
-	void RC_AuxFlush(IRenderAuxGeomImpl* pAux, SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset);
-
 	inline size_t Align4(size_t value)
 	{
 		return (value + 3) & ~((size_t)3);
 	}
 
-	inline byte* AddCommandTo(ERenderCommandCustom eRC, size_t nParamBytes, TArray<byte>& queue)
+	inline byte* AddCommandTo(ERenderCommand eRC, size_t nParamBytes, TArray<byte>& queue)
 	{
 		uint32 cmdSize = sizeof(uint32) + nParamBytes;
 		byte* ptr = queue.Grow(cmdSize);
@@ -247,17 +235,7 @@ struct CRY_ALIGN(128) SRenderThread
 #ifdef STRIP_RENDER_THREAD
 		return NULL;
 #else
-		return AddCommandTo((ERenderCommandCustom)eRC, nParamBytes, m_Commands[m_nCurThreadFill]);
-#endif
-	}
-
-	inline byte* AddCommand(ERenderCommandCustom eRCC, size_t nParamBytes)
-	{
-#ifdef STRIP_RENDER_THREAD
-		return NULL;
-#else
-		AddCommandTo((ERenderCommandCustom)eRC_Custom, 0, m_Commands[m_nCurThreadFill]);
-		return AddCommandTo(eRCC, nParamBytes, m_CustomCommands[m_nCurThreadFill]);
+		return AddCommandTo(eRC, nParamBytes, m_Commands[m_nCurThreadFill]);
 #endif
 	}
 

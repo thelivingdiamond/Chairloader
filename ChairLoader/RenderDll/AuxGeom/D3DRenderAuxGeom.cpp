@@ -1,6 +1,7 @@
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #include "D3DRenderAuxGeom.h"
+#include <ChairLoader/IChairRender.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Prey/RenderDll/Common/RenderThread.h>
 
@@ -59,23 +60,49 @@ int32 CRenderMesh_m_cSizeVF[eVF_MaxRenderMesh] =
 	sizeof(uint32)
 };
 
-void SRenderThread::RC_AuxFlush(IRenderAuxGeomImpl* pAux, SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset)
+static RenderCmdId g_nAuxFlushId = INVALID_RENDER_CMD_ID;
+
+static void RC_AuxFlush(IRenderAuxGeomImpl* pAux, SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset)
 {
-#if defined(ENABLE_RENDER_AUX_GEOM)
-	if (IsRenderThread())
+	if (gRenDev->m_pRT->IsRenderThread())
 	{
 		pAux->RT_Flush(data, begin, end);
 		return;
 	}
 
-	byte* p = AddCommand(eRCC_AuxFlush, 4 * sizeof(void*) + sizeof(uint32));
-	AddPointer(p, pAux);
-	AddPointer(p, data.m_pData);
-	AddPointer(p, (void*)begin);
-	AddPointer(p, (void*)end);
-	AddDWORD(p, (uint32)reset);
-	EndCommand(p);
-#endif
+
+	RenderCmdBuf cmd = gCL->pRender->QueueCommand(g_nAuxFlushId, 4 * sizeof(void*) + sizeof(uint32));
+	cmd.AddPointer(pAux);
+	cmd.AddPointer(data.m_pData);
+	cmd.AddPointer((void*)begin);
+	cmd.AddPointer((void*)end);
+	cmd.AddDWORD((uint32)reset);
+	cmd.EndCommand();
+}
+
+static void RT_AuxFlush(RenderCmdId, RenderCmdBuf& cmd)
+{
+	IRenderAuxGeomImpl* pAux = cmd.ReadCommand<IRenderAuxGeomImpl*>();
+	CAuxGeomCB::SAuxGeomCBRawData* pData = cmd.ReadCommand<CAuxGeomCB::SAuxGeomCBRawData*>();
+	size_t begin = cmd.ReadCommand<size_t>();
+	size_t end = cmd.ReadCommand<size_t>();
+	bool reset = cmd.ReadCommand<uint32>() != 0;
+
+	if (gRenDev->m_pRT->m_eVideoThreadMode == SRenderThread::eVTM_Disabled)
+	{
+		SAuxGeomCBRawDataPackaged data = SAuxGeomCBRawDataPackaged(pData);
+		pAux->RT_Flush(data, begin, end, reset);
+	}
+}
+
+void CRenderAuxGeomD3D::InitCustomCommand()
+{
+	g_nAuxFlushId = gCL->pRender->RegisterRenderCommand("RC_AuxFlush", RT_AuxFlush);
+}
+
+void CRenderAuxGeomD3D::ShutdownCustomCommand()
+{
+	gCL->pRender->UnregisterRenderCommand(g_nAuxFlushId);
 }
 
 CRenderAuxGeomD3D::CRenderAuxGeomD3D(CD3D9Renderer& renderer)
@@ -1632,7 +1659,7 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 
 void CRenderAuxGeomD3D::Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset)
 {
-	m_renderer.m_pRT->RC_AuxFlush(this, data, begin, end, reset);
+	RC_AuxFlush(this, data, begin, end, reset);
 }
 
 void CRenderAuxGeomD3D::FlushTextMessages(CTextMessages& tMessages, bool reset)

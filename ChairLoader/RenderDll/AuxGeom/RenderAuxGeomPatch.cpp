@@ -5,11 +5,10 @@
 #include "D3DRenderAuxGeom.h"
 #include "../ChairLoader.h"
 #include "Shaders/ShaderCompilingPatch.h"
+#include "RenderAuxGeomPatch.h"
 
 static_assert(offsetof(CD3D9Renderer, m_bStopRendererAtFrameEnd) == 96);
 static_assert(offsetof(CD3D9Renderer, m_pRT) == 3472);
-
-void SRenderThread_InstallCommandHandler();;
 
 namespace RenderDll::AuxGeom
 {
@@ -114,7 +113,8 @@ void InitAuxGeom()
 	CD3D9Renderer_Set2DMode_Hook.SetHookFunc(&CD3D9Renderer_Set2DMode);
 	CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
 	CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
-	SRenderThread_InstallCommandHandler();
+
+	CRenderAuxGeomD3D::InitCustomCommand();
 
 	REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
 
@@ -142,6 +142,11 @@ void InitRenderer()
 void RT_Shutdown()
 {
 	SAFE_DELETE(s_pRenderAuxGeomD3D);
+}
+
+void ShutdownSystem()
+{
+	CRenderAuxGeomD3D::ShutdownCustomCommand();
 }
 
 } // namespace RenderDll::AuxGeom

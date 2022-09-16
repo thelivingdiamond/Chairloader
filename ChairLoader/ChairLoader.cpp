@@ -242,6 +242,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
 		pSystem->m_sys_audio_disable->Set(1);
 
+	RenderDll::SetRenderThreadIsIdle(true);
 	RenderDll::SRenderDllPatchParams renderDllPatch;
 	renderDllPatch.bEnableAuxGeom = IsEditorEnabled() ||
 		gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"); // Editor requires aux geom
@@ -264,6 +265,8 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	RegisterMods();
 	m_pModDllManager->LoadModules();	
 	m_pModDllManager->CallInitSystem();
+
+	RenderDll::SetRenderThreadIsIdle(false);
 }
 
 
@@ -283,7 +286,11 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	gCL->gui = gui;
 	gCL->entUtils = gEntUtils;
 
+	gRenDev->m_pRT->SyncMainWithRender();
+	gRenDev->m_pRT->SyncMainWithRender();
+	RenderDll::SetRenderThreadIsIdle(true);
 	m_pModDllManager->CallInitGame();
+	RenderDll::SetRenderThreadIsIdle(false);
 }
 
 void ChairLoader::ShutdownGame()
@@ -300,8 +307,11 @@ void ChairLoader::ShutdownSystem()
 {
 	CryLog("ChairLoader::ShutdownSystem");
 	
+	RenderDll::SetRenderThreadIsIdle(true);
 	m_pModDllManager->CallShutdownSystem();
 	m_pModDllManager->UnloadModules();
+	RenderDll::ShutdownSystem();
+	RenderDll::SetRenderThreadIsIdle(false);
 
 	gEnv = nullptr;
 }
@@ -651,8 +661,11 @@ void ChairLoader::ReloadModDLLs()
 	auto rd = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
 	rd->m_pRT->SyncMainWithRender(); // Last frame
 	rd->m_pRT->SyncMainWithRender(); // This frame
+	RenderDll::SetRenderThreadIsIdle(true);
 
 	m_pModDllManager->ReloadModules();
+
+	RenderDll::SetRenderThreadIsIdle(false);
 }
 
 bool ChairLoader::CheckDLLsForChanges()
