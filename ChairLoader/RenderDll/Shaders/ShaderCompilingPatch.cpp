@@ -128,9 +128,4 @@ void InitHooks()
 #undef INIT_OVERRIDE
 }
 
-void InitRenderer(CD3D9Renderer* _this)
-{
-	gcpRendD3D = _this;
-}
-
 }

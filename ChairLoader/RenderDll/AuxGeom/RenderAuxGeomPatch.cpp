@@ -16,8 +16,6 @@ bool g_bAuxGeomEnabled = false;
 
 int CV_r_enableauxgeom;
 
-bool g_bEnableShaderCompiler = false; // TODO: Move somewhere else
-
 CRenderAuxGeomD3D* s_pRenderAuxGeomD3D = nullptr;
 
 auto CD3D9Renderer_FX_PipelineShutdown_Hook = CD3D9Renderer::FFX_PipelineShutdown.MakeHook();
@@ -117,13 +115,6 @@ void InitAuxGeom()
 	CRenderAuxGeomD3D::InitCustomCommand();
 
 	REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
-
-	// TODO: Move somewhere else
-	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadertest"))
-	{
-		g_bEnableShaderCompiler = true;
-		RenderDll::Shaders::InitHooks();
-	}
 }
 
 void InitRenderer()
@@ -133,10 +124,6 @@ void InitRenderer()
 		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*gcpRendD3D);
 		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
 	}
-
-	// TODO: Move somewhere else
-	if (g_bEnableShaderCompiler)
-		RenderDll::Shaders::InitRenderer(gcpRendD3D);
 }
 
 void RT_Shutdown()

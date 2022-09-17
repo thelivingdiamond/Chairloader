@@ -12,8 +12,8 @@ void RenderDll::InitRenderDllPatches(const SRenderDllPatchParams& params)
 	if (params.bEnableAuxGeom)
 		AuxGeom::InitAuxGeom();
 
-	//if (params.bEnableShaderTest)
-	//	Shaders::InitHooks();
+	if (params.bEnableShaderTest)
+		Shaders::InitHooks();
 }
 
 void RenderDll::ShutdownSystem()

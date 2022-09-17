@@ -6,6 +6,7 @@ namespace RenderDll
 struct SRenderDllPatchParams
 {
 	bool bEnableAuxGeom = false;
+	bool bEnableShaderTest = false;
 };
 
 void InitRenderDllPatches(const SRenderDllPatchParams& params);
