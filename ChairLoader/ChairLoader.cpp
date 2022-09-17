@@ -244,8 +244,7 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	RenderDll::SetRenderThreadIsIdle(true);
 	RenderDll::SRenderDllPatchParams renderDllPatch;
-	renderDllPatch.bEnableAuxGeom = IsEditorEnabled() ||
-		gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "auxgeom"); // Editor requires aux geom
+	renderDllPatch.bEnableAuxGeom = gEnv->pSystem->IsDevMode();
 	renderDllPatch.bEnableShaderTest = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadertest");
 	RenderDll::InitRenderDllPatches(renderDllPatch);
 
