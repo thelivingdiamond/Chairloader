@@ -174,13 +174,19 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         ImGuiWindowFlags_NoResize |
         ImGuiWindowFlags_MenuBar;
 
-    ImGui::SetNextWindowSize({ 800, 500 });
+    const ImVec2 mainWindowSize = {800, 500};
+    ImGui::SetNextWindowSize({ mainWindowSize.x * dpiScale, mainWindowSize.y * dpiScale});
     ImGui::SetNextWindowBgAlpha(1.0f);
     // ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
     // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(5, 5));
     if (!ImGui::Begin(MAIN_WINDOW_NAME, pbIsOpen, windowFlags))
     {
         ImGui::End();
+    }
+    auto temp = ImGui::GetWindowViewport()->DpiScale;
+    if(ImGui::GetWindowViewport()->DpiScale != dpiScale){
+        dpiScale = ImGui::GetWindowViewport()->DpiScale;
+        updateDPIScaling = true;
     }
 
     if (ImGui::BeginMenuBar()) {
@@ -301,6 +307,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
             ImGui::EndPopup();
         }
     }
+//    m_ConfigManager.draw();
     DrawOverlayLog();
     if (showDemo) {
         ImGui::ShowDemoWindow(&showDemo);
@@ -348,8 +355,8 @@ void ModLoader::DrawModList() {
 
 
 //                    ImGui::PushStyleColor(ImGuiCol_TextSelectedBg, ImColor(0,0,0,0).operator ImU32());
-                            auto storedpos = ImGui::GetCursorPosY() + 4;
-                            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 3.5);
+                            auto storedpos = ImGui::GetCursorPosY() + (4 * dpiScale);
+                            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - (3.5 * dpiScale));
                             if (ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(),
                                                   selectedMod == ModEntry.modName, 0,
                                                   ImVec2{ImGui::GetColumnWidth(), 27.0f}))
@@ -558,13 +565,16 @@ void ModLoader::DrawModList() {
                 }
             }
             ImGui::Separator();
-            if(ImGui::BeginChild("Mod Info", {0, 260})) {
+            if(ImGui::BeginChild("Mod Info", {0, 260 * dpiScale})) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
                         ImGui::BeginDisabled();
                     ImGui::TextWrapped("%s", ModSelect->displayName.c_str());
                     ImGui::Text("By: %s", ModSelect->author.c_str());
+//                    if(ImGui::Button("Config")){
+//                        m_ConfigManager.showConfigPopup(ModSelect->modName);
+//                    }
                     if(!ModSelect->dependencies.empty()){
                         ImGui::Separator();
                         ImGui::Text("Dependencies:");
@@ -643,6 +653,7 @@ void ModLoader::DrawModList() {
         ImGui::EndChild();
         ImVec2 maxSize = {(float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN)};
         ImVec2 minSize = {maxSize.x * 0.3f, maxSize.y * 0.3f};
+        ImGui::SetNextWindowSize({maxSize.x * 0.5f, maxSize.y * 0.5f}, ImGuiCond_FirstUseEver);
         if(ImGuiFileDialog::Instance()->Display("ChooseModFile", ImGuiWindowFlags_None, minSize, maxSize)){
             // action if OK
             if (ImGuiFileDialog::Instance()->IsOk())
@@ -1174,11 +1185,27 @@ void ModLoader::flushFileQueue() {
     logMutex.unlock();
 }
 
+static float oldDpiScaling = 1.0f;
 void ModLoader::Update() {
     static time_t lastFileTime;
     if(time(nullptr) - lastFileTime > 10){
         time(&lastFileTime);
         flushFileQueue();
+    }
+    if(updateDPIScaling){
+        updateDPIScaling = false;
+        ImGui::GetStyle().ScaleAllSizes(dpiScale / oldDpiScaling);
+        OverlayElementWidth = OverlayElementWidth * (dpiScale / oldDpiScaling);
+        OverlayElementHeight = OverlayElementHeight * (dpiScale / oldDpiScaling);
+        oldDpiScaling = dpiScale;
+//        ImGui::GetFont()->Scale *= dpiScale;
+        ImGui::GetIO().Fonts->Clear();
+        ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
+//        ImGui::GetIO().Fonts->
+//        if(!ImGui::GetIO().Fonts->IsBuilt())
+        ImGui::GetIO().Fonts->Build();
+        UI::ResetDX11();
+        log(severityLevel::trace, "DPI Scale Changed to %.2f", dpiScale);
     }
 }
 
@@ -1911,6 +1938,11 @@ void ModLoader::Init() {
 
 void ModLoader::DrawDebug() {
     if(ImGui::BeginTabItem("DEBUG")) {
+        ImGui::Text("%.2f", ImGui::GetWindowViewport()->DpiScale);
+        if(ImGui::Button("Scale 2x")){
+            dpiScale = 2.0f;
+            updateDPIScaling = true;
+        }
      /*   if (ImGui::Button("Test create process")) {
             STARTUPINFOW info={sizeof(info)};
             PROCESS_INFORMATION processInfo;
@@ -2006,7 +2038,8 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
             ImGuiWindowFlags_NoMove |
             ImGuiWindowFlags_NoResize;
 
-    ImGui::SetNextWindowSize({ 500, 300 });
+    const ImVec2 deployScreenSize = {500, 300};
+    ImGui::SetNextWindowSize({ deployScreenSize.x * dpiScale, deployScreenSize.y * dpiScale});
     ImGui::SetNextWindowBgAlpha(1.0f);
 //    ImGui::SetNextWindowPos({ (float) (GetSystemMetrics(SM_CXSCREEN) / 2 - 250), (float) (GetSystemMetrics(SM_CYSCREEN) / 2 - 150) });
     if(!initPosSet) {

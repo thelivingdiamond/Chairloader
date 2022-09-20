@@ -7,7 +7,8 @@
 #include "ModLoader.h"
 #include "GameVersion.h"
 
-static const ImVec2 WINDOW_SIZE = { 600, 400 };
+static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
+static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
 
 bool ChairUninstallWizard::Show(const char *name, bool *pbIsOpen) {
     m_Cancel = false;
@@ -17,9 +18,13 @@ bool ChairUninstallWizard::Show(const char *name, bool *pbIsOpen) {
             ImGuiWindowFlags_NoCollapse |
             ImGuiWindowFlags_NoResize;
 
+    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ModLoader::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ModLoader::Get().GetDPIScale()};
     ImGui::SetNextWindowSize(WINDOW_SIZE);
     if (ImGui::Begin(name, pbIsOpen, windowFlags))
     {
+        if(ImGui::GetWindowViewport()->DpiScale != ModLoader::Get().GetDPIScale()){
+            ModLoader::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
+        }
         switch (m_State)
         {
             case State::Error:

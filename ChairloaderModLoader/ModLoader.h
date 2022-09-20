@@ -98,8 +98,18 @@ public:
         }
         return false;
     }
+    const float GetDPIScale() { return dpiScale; }
+    void updateDPI(float dpiScaleIn){
+        updateDPIScaling = true;
+        dpiScale = dpiScaleIn;
+    }
     void DeployForInstallWizard();
 private:
+    //! DPI
+    bool updateDPIScaling;
+    float dpiScale = 1.0f;
+    const int defaultTextSize = 18;
+
     //! Current UI state
     enum class State
     {

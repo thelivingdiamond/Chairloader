@@ -29,7 +29,7 @@ public:
 	static void Setup();
 	static void Render();
 	static void RequestExit();
-
+    static void ResetDX11();
 };
 
 #endif
