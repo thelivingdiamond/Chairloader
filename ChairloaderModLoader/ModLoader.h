@@ -273,9 +273,9 @@ private:
 
     /* Logging Functions */
     void flushFileQueue();
-    std::vector<LogEntry> logRecord;
-    std::vector<LogEntry> fileQueue;
-    std::vector<LogEntry> overlayQueue;
+    std::list<LogEntry> logRecord;
+    std::list<LogEntry> fileQueue;
+    std::list<LogEntry> overlayQueue;
     std::mutex logMutex;
 
     ImColor errorColor = {255,70,70};
@@ -291,12 +291,14 @@ private:
     //Logging function
 public:
     template<typename...Args>
-    inline void log(severityLevel level, const char* format, const Args&...args){
-        logMutex.lock();
-        auto message = boost::str((boost::format(format) % ... % args));
-        logRecord.emplace_back(LogEntry(message, level));
-        fileQueue.emplace_back(LogEntry(message, level));
-        logMutex.unlock();
+    inline void log(severityLevel level, const char* format, const Args&...args){\
+    auto message = boost::str((boost::format(format) % ... % args));
+        // scope limiting for mutex
+        {
+            std::scoped_lock<std::mutex> lock(logMutex);
+            logRecord.emplace_back(LogEntry(message, level));
+            fileQueue.emplace_back(LogEntry(message, level));
+        }
         if(level == severityLevel::fatal){
             flushFileQueue();
             throw std::runtime_error(message);
@@ -304,12 +306,14 @@ public:
     }
     template<typename...Args>
     inline void overlayLog(severityLevel level, const char* format, const Args&...args){
-        logMutex.lock();
         auto message = boost::str((boost::format(format) % ... % args));
-        logRecord.emplace_back(LogEntry(message, level));
-        fileQueue.emplace_back(LogEntry(message, level));
-        overlayQueue.emplace_back(LogEntry(message, level));
-        logMutex.unlock();
+        // scope limiting for mutex
+        {
+            std::scoped_lock<std::mutex> lock(logMutex);
+            logRecord.emplace_back(LogEntry(message, level));
+            fileQueue.emplace_back(LogEntry(message, level));
+            overlayQueue.emplace_back(LogEntry(message, level));
+        }
         if(level == severityLevel::fatal){
             flushFileQueue();
             throw std::runtime_error(message);

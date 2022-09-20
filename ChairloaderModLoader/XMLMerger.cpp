@@ -134,13 +134,13 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
         //TODO: WIP
         auto tempModFirstChild = modFile.first_child();
         auto tempNodeStructureFirstChild = policy.nodeStructure.first_child();
-        if(!isLegacyMod) {
+//        if(!isLegacyMod) {
             auto nodesToDelete = resolveAttributeWildcards(tempModFirstChild, tempNodeStructureFirstChild, policy.mod_name);
             for (auto &node : nodesToDelete) {
                 node.parent().remove_child(node);
             }
-        }
-        ModLoader::Get().log(ModLoader::severityLevel::debug, "Merging %s", relativeFilePath.u8string().c_str());
+//        }
+//        ModLoader::Get().log(ModLoader::severityLevel::debug, "Merging %s", relativeFilePath.u8string().c_str());
         return mergeXMLDocument(baseFile, modFile, originalFile, policy);
     } else {
         ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to load base file %s: %s", ("Output" / relativeFilePath).u8string().c_str(), baseResult.description());
@@ -160,7 +160,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
         // overwrite the base file with the mod file, regardless of original file
         baseDoc.reset(modDoc);
         auto result = baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
-        ModLoader::Get().log(ModLoader::severityLevel::trace, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), result ? "success" : "failure");
+//        ModLoader::Get().log(ModLoader::severityLevel::trace, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), result ? "success" : "failure");
 
         return true;
     }
@@ -305,14 +305,14 @@ void XMLMerger::mergeByAttribute(pugi::xml_node &baseNode, pugi::xml_node &modNo
         if(overwrite && (matchAll || !policy.match_all_attributes)){
             if(!checkNodeEquality(modChild, originalChild)) {
                 mergeXMLNode(baseChild, modChild);
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s matched by attribute, overwriting", modChild.name());
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s matched by attribute, overwriting", modChild.name());
             } else {
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", modChild.name());
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", modChild.name());
             }
         // no match, so append
         } else {
             baseNode.append_copy(modChild);
-            ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s appended to base %s", modChild.name(), baseNode.name());
+//            ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s appended to base %s", modChild.name(), baseNode.name());
         }
     }
 }
@@ -329,13 +329,13 @@ void XMLMerger::mergeByTag(pugi::xml_node &baseNode, pugi::xml_node &modNode, pu
         if(baseChild){
             if(!checkNodeEquality(child, originalChild)) {
                 mergeXMLNode(baseChild, child);
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s merged into base %s", child.name(), baseNode.name());
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s merged into base %s", child.name(), baseNode.name());
             } else {
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", child.name());
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", child.name());
             }
         } else {
             baseNode.append_copy(child);
-            ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s appended to base %s", child.name(), baseNode.name());
+//            ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s appended to base %s", child.name(), baseNode.name());
         }
    }
 }
@@ -358,13 +358,13 @@ void XMLMerger::mergeByContents(pugi::xml_node &baseNode, pugi::xml_node &modNod
         if(baseChild){
             if(!checkNodeEquality(modChild, originalChild)) {
                 mergeXMLNode(baseChild, modChild);
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s merged into base %s", modChild.name(), baseNode.name());
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s merged into base %s", modChild.name(), baseNode.name());
             } else {
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", modChild.name());
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", modChild.name());
             }
         } else {
             baseNode.append_copy(modChild);
-            ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s appended to base %s", modChild.name(), baseNode.name());
+//            ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s appended to base %s", modChild.name(), baseNode.name());
         }
     }
 }
@@ -409,15 +409,14 @@ XMLMerger::mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode,
                         baseCandidate.append_copy(child);
                     }
 //                mergeXMLNode(baseCandidate, modRow);
-                    ModLoader::Get().log(ModLoader::severityLevel::trace, "Row with key %s merged", key);
+//                    ModLoader::Get().log(ModLoader::severityLevel::trace, "Row with key %s merged", key);
                 } else {
-                    ModLoader::Get().log(ModLoader::severityLevel::trace,
-                                         "Row with key %s is identical to original, skipping", key);
+//                    ModLoader::Get().log(ModLoader::severityLevel::trace, "Row with key %s is identical to original, skipping", key);
                 }
             } else {
                 // append the row
                 baseTableNode.append_copy(modRow);
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Row with key %s appended", key);
+//                ModLoader::Get().log(ModLoader::severityLevel::trace, "Row with key %s appended", key);
             }
         }
     }
@@ -509,7 +508,7 @@ bool XMLMerger::checkNodeEquality(pugi::xml_node modNode, pugi::xml_node origina
 }
 
 std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
-    ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking attribute %s", wildcardValue.attribute.name());
+//    ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking attribute %s", wildcardValue.attribute.name());
     if(wildcardValue.attribute.name() == std::string("chair_apply_if")){
         wildcardValue.type = attributeWildcard::wildcard_type::apply_if;
     } else {
@@ -572,7 +571,7 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
         }
     } else {
         wildcardValue.type = attributeWildcard::wildcard_type::none;
-        ModLoader::Get().log(ModLoader::severityLevel::trace, "Not a wildcard value");
+//        ModLoader::Get().log(ModLoader::severityLevel::trace, "Not a wildcard value");
     }
     return {};
 }

@@ -1147,7 +1147,7 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
 
 
 void ModLoader::flushFileQueue() {
-    logMutex.lock();
+    std::scoped_lock<std::mutex> lock(logMutex);
     std::ofstream fileStream;
     fileStream.open("ChairloaderModLoader.log", std::ios_base::app);
     if(fileStream.is_open()){
@@ -1182,7 +1182,6 @@ void ModLoader::flushFileQueue() {
     } else {
         log(severityLevel::error, "Error, could not open ChairloaderModLoader.log");
     }
-    logMutex.unlock();
 }
 
 static float oldDpiScaling = 1.0f;
@@ -1192,6 +1191,23 @@ void ModLoader::Update() {
         time(&lastFileTime);
         flushFileQueue();
     }
+    //! log oversizing mitigation
+    logMutex.lock();
+    if(logRecord.size() > 2000){
+        std::list<LogEntry> newLogRecord;
+        for(auto& entry: logRecord){
+            if(entry.level == severityLevel::trace || entry.level == severityLevel::debug){
+                continue;
+            }
+            newLogRecord.emplace_back(entry);
+        }
+        if(newLogRecord.size() > 2000){
+            // if you have 2000+ info messages, you're doing something wrong
+            newLogRecord.clear();
+        }
+        logRecord = newLogRecord;
+    }
+    logMutex.unlock();
     m_ConfigManager.saveDirtyConfigs();
     if(updateDPIScaling){
         updateDPIScaling = false;
