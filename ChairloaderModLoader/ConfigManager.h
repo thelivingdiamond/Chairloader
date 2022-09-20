@@ -20,6 +20,7 @@ public:
         pugi::xml_node configNode;
         fs::path configPath;
         std::string modName;
+        std::string displayName;
         bool dirty = false;
         ModConfig() = default;
         ModConfig(const ModConfig& other) {
@@ -45,6 +46,9 @@ public:
         // == operator
         bool operator==(const ModConfig& other) const {
             return modName == other.modName;
+        }
+        bool operator==(const std::string& other) const {
+            return modName == other;
         }
         std::string getConfigValue(std::string name) const {
             return configNode.child(name.c_str()).text().as_string();
@@ -90,17 +94,15 @@ public:
     //! checks if a config file exists in the Config/ directory
     static bool isConfigPresent(std::string modName);
 
+    void setDirty(std::string modName, bool dirty);
 
     void draw();
-    void showConfigPopup(std::string modName);
 private:
     std::vector<ModConfig> m_modConfigs;
-    std::string m_editingModName;
-    bool m_bShowConfigPopup = false;
 
 
     void loadConfig(std::string modName);
     void loadConfigs();
-
+    void drawXMLConfigNode(pugi::xml_node node);
 
 };

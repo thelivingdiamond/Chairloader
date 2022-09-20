@@ -23,7 +23,7 @@ static const char* MAIN_WINDOW_NAME = "Chairloader Mod Manager";
 
 void ModLoader::Draw() {
     bool bDraw = true;
-    
+
     switch (m_State)
     {
     case State::LocateGameDir:
@@ -288,6 +288,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         //TODO: figure out if these will do anything
 //        DrawDeploySettings();
 //        DrawDLLSettings();
+        m_ConfigManager.draw();
         DrawAssetView();
         DrawLog();
         DrawDLLSettings();
@@ -307,7 +308,6 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
             ImGui::EndPopup();
         }
     }
-//    m_ConfigManager.draw();
     DrawOverlayLog();
     if (showDemo) {
         ImGui::ShowDemoWindow(&showDemo);
@@ -1192,6 +1192,7 @@ void ModLoader::Update() {
         time(&lastFileTime);
         flushFileQueue();
     }
+    m_ConfigManager.saveDirtyConfigs();
     if(updateDPIScaling){
         updateDPIScaling = false;
         ImGui::GetStyle().ScaleAllSizes(dpiScale / oldDpiScaling);
@@ -1930,7 +1931,10 @@ void ModLoader::Init() {
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();
-
+    ModNameToDisplayName.clear();
+    for(auto & mod: ModList){
+        ModNameToDisplayName.insert(std::pair(mod.modName, mod.displayName));
+    }
     m_pGameVersion = std::make_unique<GameVersion>();
     m_ConfigManager.init();
     initialized = true;
@@ -2170,4 +2174,9 @@ void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
         }
     }
 
+}
+
+std::string ModLoader::GetDisplayName(std::string modName) {
+    return ModNameToDisplayName.at(modName);
+//    return std::string();
 }

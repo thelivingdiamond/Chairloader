@@ -103,6 +103,7 @@ public:
         updateDPIScaling = true;
         dpiScale = dpiScaleIn;
     }
+    std::string GetDisplayName(std::string modName);
     void DeployForInstallWizard();
 private:
     //! DPI
@@ -127,6 +128,7 @@ private:
     std::string m_PreyPathString; //!< String used to display the path in UI
     fs::path ChairloaderModLoaderConfigPath = R"(.\ChairloaderModLoaderConfig.xml)";
     std::vector<Mod> ModList;
+    std::map<std::string, std::string> ModNameToDisplayName;
     std::vector<std::string> LegacyModList;
 
     /* Init */
