@@ -1,9 +1,27 @@
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Prey/RenderDll/Common/ResFile.h>
 #include <mem.h>
 
 CD3D9Renderer* gcpRendD3D = nullptr;
+
+//-----------------------------------------------------------------------------------
+
+void CShaderMan::mfInitLookups()
+{
+	m_ResLookupDataMan[CACHE_READONLY].Clear();
+	string dirdatafilename(m_ShadersCache);
+	dirdatafilename += "lookupdata.bin";
+	m_ResLookupDataMan[CACHE_READONLY].LoadData(dirdatafilename.c_str(), true);
+
+	m_ResLookupDataMan[CACHE_USER].Clear();
+	dirdatafilename = m_szUserPath + m_ShadersCache;
+	dirdatafilename += "lookupdata.bin";
+	m_ResLookupDataMan[CACHE_USER].LoadData(dirdatafilename.c_str(), false);
+}
+
+//-----------------------------------------------------------------------------------
 
 namespace RenderDll::Shaders
 {
@@ -56,11 +74,11 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 		*CRenderer::CV_r_shadersediting = 1;
 		*CRenderer::CV_r_shadersAllowCompilation = 1;
 
-		if (*CRenderer::CV_r_shadersAllowCompilation)
+		//if (*CRenderer::CV_r_shadersAllowCompilation)
 		{
 			*CRenderer::CV_r_shadersasyncactivation = 0;
 			*CRenderer::CV_r_shadersasynccompiling = 0;
-			*CRenderer::CV_r_shadersdebug = 1;
+			*CRenderer::CV_r_shadersdebug = 4;
 		}
 	}
 
@@ -124,6 +142,9 @@ void InitHooks()
 	INIT_OVERRIDE(CShaderMan, mfForName);
 	INIT_OVERRIDE(CShaderMan, mfCreateShaderGenInfo);
 	INIT_OVERRIDE(CShaderMan, RT_ParseShader);
+	INIT_OVERRIDE(CShaderMan, mfInitLookups);
+
+	INIT_OVERRIDE(CResFile, mfGetEntry);
 
 #undef INIT_OVERRIDE
 }

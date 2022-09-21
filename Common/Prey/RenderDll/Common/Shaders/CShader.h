@@ -346,7 +346,7 @@ public:
 	uint64_t mfGetShaderGlobalMaskGenFromString(const char* szShaderGen) { return FmfGetShaderGlobalMaskGenFromString(this, szShaderGen); }
 	void mfInitGlobal() { FmfInitGlobal(this); }
 	void mfInitLevelPolicies() { FmfInitLevelPolicies(this); }
-	void mfInitLookups() { FmfInitLookups(this); }
+	//void mfInitLookups() { FmfInitLookups(this); }
 	void mfInitCommonGlobalFlags() { FmfInitCommonGlobalFlags(this); }
 	void mfInitCommonGlobalFlagsLegacyFix() { FmfInitCommonGlobalFlagsLegacyFix(this); }
 	bool mfRemapCommonGlobalFlagsWithLegacy() { return FmfRemapCommonGlobalFlagsWithLegacy(this); }
@@ -444,6 +444,7 @@ public:
 	CShader* mfForName(const char* nameSh, int flags, CShaderResources const* Res = nullptr, uint64_t nMaskGen = 0);
 	SShaderGen* mfCreateShaderGenInfo(const char* szName, bool bRuntime);
 	void RT_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes);
+	void mfInitLookups();
 
 	static inline auto FOnSystemEvent = PreyFunction<void(CShaderMan* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xA13080);
 	static inline auto FmfReadTexSequenceOv1 = PreyFunction<STexAnim* (CShaderMan* const _this, const char* na, int Flags, bool bFindOnly)>(0x103C5E0);

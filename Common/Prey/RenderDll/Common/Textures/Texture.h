@@ -448,7 +448,7 @@ public:
 	static inline auto s_ptexSceneMaskDevice = PreyGlobal<CTexture*>(0x2B321F0);
 	static inline auto s_pStreamDeferredCtx = PreyGlobal<ID3D11DeviceContext*>(0x2B321F8);
 
-	static CCryNameTSCRC GenName(const char* name, unsigned nFlags) { return FGenName(name, nFlags); }
+	//static CCryNameTSCRC GenName(const char* name, unsigned nFlags) { return FGenName(name, nFlags); }
 	ETEX_Format FormatFixup(ETEX_Format src) { return FFormatFixupOv1(this, src); }
 	virtual ~CTexture();
 	CTexture(const unsigned nFlags, ColorF const& clearColor, CDeviceTexture* devTexToOwn);
@@ -549,7 +549,7 @@ public:
 	static void StreamState_ReleaseInfo(CTexture* pOwnerTex, STexStreamingInfo* pInfo) { FStreamState_ReleaseInfo(pOwnerTex, pInfo); }
 	void Relink() { FRelink(this); }
 	void Unlink() { FUnlink(this); }
-	static CCryNameTSCRC const& mfGetClassName() { return FmfGetClassName(); }
+	//static CCryNameTSCRC const& mfGetClassName() { return FmfGetClassName(); }
 	static CTexture* GetByID(int nID) { return FGetByID(nID); }
 	static CTexture* GetByName(const char* szName, unsigned flags) { return FGetByName(szName, flags); }
 	static CTexture* ForName(const char* name, unsigned nFlags, ETEX_Format eTFDst) { return FForName(name, nFlags, eTFDst); }

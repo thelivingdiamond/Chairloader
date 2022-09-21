@@ -15,6 +15,8 @@
 	#endif
 #endif
 
+#include <Prey/CryCore/Assert/CryAssert.h>
+
 //#include "../Common/Shaders/RemoteCompiler.h"
 
 #define ASSERT_IN_SHADER(expr) CRY_ASSERT(expr)
@@ -2479,7 +2481,7 @@ bool CHWShader::_OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* 
 
 	bool bValid = true;
 	CHWShader_D3D* pSHHW = (CHWShader_D3D*)pSH;
-	int nRes = pRF->mfOpen(RA_READ | (CParserBin::m_bEndians ? RA_ENDIANS : 0), &gRenDev->m_cEF.m_ResLookupDataMan[nCache], (nCache == CACHE_READONLY && pCache->m_pStreamInfo) ? pCache->m_pStreamInfo : NULL);
+	int nRes = pRF->mfOpen(RA_READ, &gRenDev->m_cEF.m_ResLookupDataMan[nCache], (nCache == CACHE_READONLY && pCache->m_pStreamInfo) ? pCache->m_pStreamInfo : NULL);
 	if (nRes == 0)
 	{
 		pRF->mfClose();
@@ -3357,7 +3359,7 @@ bool CHWShader_D3D::mfRequestAsync(CShader* pSH, SHWSInstance* pInst, std::vecto
 
 void CHWShader_D3D::mfSubmitRequestLine(SHWSInstance* pInst, string* pRequestLine)
 {
-	assert(false); // No shader server
+	//assert(false); // No shader server
 #if 0
 	// Generate request line text.
 	char szShaderGenName[512];

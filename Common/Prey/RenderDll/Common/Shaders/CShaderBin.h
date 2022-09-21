@@ -78,9 +78,9 @@ struct SParamCacheInfo
 struct SShaderBin
 {
 	typedef std::vector<SParamCacheInfo, STLShaderAllocator<SParamCacheInfo>> ParamsCacheVec;
-	static SShaderBin s_Root;
-	static uint32     s_nCache;
-	static uint32     s_nMaxFXBinCache;
+	static inline auto s_Root = PreyGlobal<SShaderBin>(0x2271EA0);
+	static inline auto s_nCache = PreyGlobal<unsigned>(0x2BA7454);
+	static inline auto s_nMaxFXBinCache = PreyGlobal<unsigned>(0x2271E70);
 
 	SShaderBin*       m_Next;
 	SShaderBin*       m_Prev;
@@ -115,10 +115,10 @@ struct SShaderBin
 		, m_nCurCacheParamsID(-1)
 		, m_nCurParamsID(-1)
 	{
-		if (!s_Root.m_Next)
+		if (!s_Root->m_Next)
 		{
-			s_Root.m_Next = &s_Root;
-			s_Root.m_Prev = &s_Root;
+			s_Root->m_Next = s_Root.Get();
+			s_Root->m_Prev = s_Root.Get();
 		}
 	}
 

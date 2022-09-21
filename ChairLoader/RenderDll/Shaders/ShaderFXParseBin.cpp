@@ -16,6 +16,7 @@
 #include <Prey/RenderDll/Common/Shaders/Parser.h>
 #include <Prey/RenderDll/Common/Renderer.h>
 #include <d3d9types.h>
+#include <Prey/CryCore/Assert/CryAssert.h>
 
 static FOURCC FOURCC_SHADERBIN = MAKEFOURCC('F', 'X', 'B', '0');
 
@@ -24,9 +25,9 @@ namespace
 static std::vector<SFXParam> s_tempFXParams;
 }
 
-SShaderBin SShaderBin::s_Root;
-uint32 SShaderBin::s_nCache = 0;
-uint32 SShaderBin::s_nMaxFXBinCache = MAX_FXBIN_CACHE;
+//SShaderBin SShaderBin::s_Root;
+//uint32 SShaderBin::s_nCache = 0;
+//uint32 SShaderBin::s_nMaxFXBinCache = MAX_FXBIN_CACHE;
 
 SShaderBin* CShaderManBin::SearchInCache(const char* szName, bool bInclude)
 {
@@ -37,12 +38,12 @@ SShaderBin* CShaderManBin::SearchInCache(const char* szName, bool bInclude)
 	uint32 dwName = CParserBin::GetCRC32(nameFile);
 
 	SShaderBin* pSB;
-	for (pSB = SShaderBin::s_Root.m_Prev; pSB != &SShaderBin::s_Root; pSB = pSB->m_Prev)
+	for (pSB = SShaderBin::s_Root->m_Prev; pSB != SShaderBin::s_Root.Get(); pSB = pSB->m_Prev)
 	{
 		if (pSB->m_dwName == dwName)
 		{
 			pSB->Unlink();
-			pSB->Link(&SShaderBin::s_Root);
+			pSB->Link(SShaderBin::s_Root.Get());
 			return pSB;
 		}
 	}
@@ -521,10 +522,10 @@ bool CShaderManBin::AddToCache(SShaderBin* pSB, bool bInclude)
 {
 	if (!*CRenderer::CV_r_shadersediting)
 	{
-		if (SShaderBin::s_nCache >= SShaderBin::s_nMaxFXBinCache)
+		if (*SShaderBin::s_nCache >= *SShaderBin::s_nMaxFXBinCache)
 		{
 			SShaderBin* pS;
-			for (pS = SShaderBin::s_Root.m_Prev; pS != &SShaderBin::s_Root; pS = pS->m_Prev)
+			for (pS = SShaderBin::s_Root->m_Prev; pS != SShaderBin::s_Root.Get(); pS = pS->m_Prev)
 			{
 				if (!pS->m_bLocked)
 				{
@@ -533,12 +534,12 @@ bool CShaderManBin::AddToCache(SShaderBin* pSB, bool bInclude)
 				}
 			}
 		}
-		assert(SShaderBin::s_nCache < SShaderBin::s_nMaxFXBinCache);
+		assert(*SShaderBin::s_nCache < *SShaderBin::s_nMaxFXBinCache);
 	}
 
 	pSB->m_bInclude = bInclude;
-	pSB->Link(&SShaderBin::s_Root);
-	SShaderBin::s_nCache++;
+	pSB->Link(SShaderBin::s_Root.Get());
+	(*SShaderBin::s_nCache)++;
 
 	return true;
 }

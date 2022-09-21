@@ -7,6 +7,9 @@ set(SOURCE_FILES
 	AuxGeom/RenderAuxGeomPatch.cpp
 	AuxGeom/RenderAuxGeomPatch.h
 	AuxGeom/TextMessages.cpp
+
+	lzss/lzss.cpp
+	lzss/lzss.h
 	
 	Shaders/D3DHWShaderCompiling.cpp
 	Shaders/Parser.cpp

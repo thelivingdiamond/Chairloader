@@ -82,37 +82,49 @@ struct SVersionInfo
 class CResFileLookupDataMan
 {
 public:
-	CResFileLookupDataMan();
-	~CResFileLookupDataMan();
-
-	void                Clear();
-	void                Flush();
-
-	CCryNameTSCRC       AdjustName(const char* szName);
-	int                 GetResVersion() const { return m_VersionInfo.m_ResVersion; }
-
-	bool                LoadData(const char* acFilename, bool bSwapEndianRead, bool bReadOnly);
-	void                SaveData(const char* acFilename, bool bSwapEndianWrite) const;
-
-	bool                IsReadOnly() { return m_bReadOnly; }
-
-	void                AddData(const CResFile* pResFile, uint32 CRC);
-	void                AddDataCFX(const char* szPath, uint32 CRC);
-	void                RemoveData(uint32 CRC);
-
-	SResFileLookupData* GetData(const CCryNameTSCRC& name);
-	SCFXLookupData*     GetDataCFX(const char* szPath);
-	void                MarkDirty(bool bDirty) { m_bDirty = bDirty; }
-
-protected:
-
 	string             m_Path;
 	SVersionInfo       m_VersionInfo;
 	TFileResDirDataMap m_Data;
 	TFileCFXDataMap    m_CFXData;
 	unsigned int       m_TotalDirStored;
-	byte               m_bDirty    : 1;
+	byte               m_bDirty : 1;
 	byte               m_bReadOnly : 1;
+	
+	CResFileLookupDataMan();
+	~CResFileLookupDataMan();
+
+	void                Clear() { FClear(this); }
+	void                Flush();
+
+	CCryNameTSCRC       AdjustName(const char* szName)
+	{
+		CCryNameTSCRC res;
+		FAdjustName(this, &res, szName);
+		return res;
+	}
+	int                 GetResVersion() const { return m_VersionInfo.m_ResVersion; }
+
+	bool                LoadData(const char* acFilename, bool bReadOnly) { return FLoadData(this, acFilename, bReadOnly); }
+	void                SaveData(const char* acFilename) const { FSaveData(this, acFilename); }
+
+	bool                IsReadOnly() { return m_bReadOnly; }
+
+	void                AddData(const CResFile* pResFile, uint32 CRC) { FAddData(this, pResFile, CRC); }
+	void                AddDataCFX(const char* szPath, uint32 CRC);
+	void                RemoveData(uint32 CRC);
+
+	SResFileLookupData* GetData(const CCryNameTSCRC& name) { return FGetData(this, name); }
+	SCFXLookupData*     GetDataCFX(const char* szPath);
+	void                MarkDirty(bool bDirty) { m_bDirty = bDirty; }
+
+	static inline auto FBitNotCResFileLookupDataMan = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC8BA0);
+	static inline auto FClear = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9200);
+	static inline auto FFlush = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9240);
+	static inline auto FAdjustName = PreyFunction<CCryNameTSCRC* (CResFileLookupDataMan* const _this, CCryNameTSCRC* result, const char* szName)>(0xFC9050);
+	static inline auto FLoadData = PreyFunction<bool(CResFileLookupDataMan* const _this, const char* acFilename, bool bReadOnly)>(0xFC92C0);
+	static inline auto FSaveData = PreyFunction<void(CResFileLookupDataMan const* const _this, const char* acFilename)>(0xFC9700);
+	static inline auto FAddData = PreyFunction<void(CResFileLookupDataMan* const _this, CResFile const* pResFile, unsigned CRC)>(0xFC8C90);
+	static inline auto FGetData = PreyFunction<SResFileLookupData* (CResFileLookupDataMan* const _this, CCryNameTSCRC const& name)>(0xFC9270);
 };
 
 #endif //  __RESFILELOOKUPDATAMAN_H__
