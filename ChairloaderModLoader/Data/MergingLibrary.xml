@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <!--valid identification policies:-->
-<!--    - "ovewrite" (default): will not do any merging, instead overwriting files in the directory-->
+<!--    - "overwrite" (default): will not do any merging, instead overwriting files in the directory-->
 <!--    - "match_attribute": will merge nodes by matching attribute values-->
 <!--         * child attribute node required in order to identify which attribute to match by-->
 <!--         * additional match_all parameter will force nodes to march all given parameters-->
@@ -711,7 +711,7 @@
                 </nodeStructure>
             </mergingPolicy>
             <config.xml>
-                <mergingPolicy identification_policy="ovewrite"/>
+                <mergingPolicy identification_policy="overwrite"/>
             </config.xml>
         </GameAudio>
         <GameForceFeedback>
@@ -1017,7 +1017,7 @@
         </animPrototyping.xml>
     </Scripts>
     <Levels>
-        <mergingPolicy identification_policy="ovewrite"/>
+        <mergingPolicy identification_policy="overwrite"/>
         <Campaign>
             <EndGame>
                 <level>
@@ -1103,7 +1103,7 @@
                     </lensflarelist.xml>
                 </level>
                 <filelist.xml>
-                    <mergingPolicy identification_policy="ovewrite"/>
+                    <mergingPolicy identification_policy="overwrite"/>
                 </filelist.xml>
             </EndGame>
             <Engineering>
@@ -1209,7 +1209,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </CargoBay>
                 <LifeSupport>
@@ -1331,7 +1331,7 @@
                         </mergingPolicy>
                     </FlowgraphModules>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </LifeSupport>
                 <PowerSource>
@@ -1436,7 +1436,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </PowerSource>
             </Engineering>
@@ -1543,7 +1543,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </Arboretum>
                 <Bridge>
@@ -1648,7 +1648,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </Bridge>
                 <CorporateIT>
@@ -1770,7 +1770,7 @@
                         </mergingPolicy>
                     </FlowgraphModules>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </CorporateIT>
                 <CrewFacilities>
@@ -1892,7 +1892,7 @@
                         </mergingPolicy>
                     </FlowgraphModules>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </CrewFacilities>
             </Executive>
@@ -1999,7 +1999,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </Lobby>
                 <Prototype>
@@ -2104,7 +2104,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </Prototype>
                 <Psychotronics>
@@ -2209,7 +2209,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </Psychotronics>
                 <ShuttleBay>
@@ -2314,7 +2314,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </ShuttleBay>
                 <SimulationLabs>
@@ -2419,7 +2419,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </SimulationLabs>
                 <ZeroG_UtilityTunnels>
@@ -2524,7 +2524,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </ZeroG_UtilityTunnels>
             </Research>
@@ -2631,7 +2631,7 @@
                         </lensflarelist.xml>
                     </level>
                     <filelist.xml>
-                        <mergingPolicy identification_policy="ovewrite"/>
+                        <mergingPolicy identification_policy="overwrite"/>
                     </filelist.xml>
                 </Exterior>
             </Station>
@@ -2737,7 +2737,7 @@
                     </lensflarelist.xml>
                 </level>
                 <filelist.xml>
-                    <mergingPolicy identification_policy="ovewrite"/>
+                    <mergingPolicy identification_policy="overwrite"/>
                 </filelist.xml>
             </PlayerGenderSelect>
         </Campaign>
