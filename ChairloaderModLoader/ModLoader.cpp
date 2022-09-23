@@ -715,7 +715,7 @@ void ModLoader::DrawDLLSettings() {
 
 void ModLoader::DrawAssetView() {
     if(ImGui::BeginTabItem("Asset View")){
-        if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), false)) {
+        if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.65f, 0), false)) {
             if(ImGui::BeginTabBar("Mod Asset View")) {
                 if(ImGui::BeginTabItem("Registered Mods")) {
                     if (ImGui::BeginChild("Registered Mods", ImVec2(0, 0), true)) {
@@ -726,7 +726,7 @@ void ModLoader::DrawAssetView() {
                             for (auto &mod: ModList) {
                                 ImGui::TableNextRow();
                                 ImGui::TableNextColumn();
-                                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / mod.modName), mod.modName);
+                                TreeNodeWalkDirectory("", mod.modName, XMLFile::XMLType::Registered);
                             }
 //                }
                             ImGui::EndTable();
@@ -744,10 +744,20 @@ void ModLoader::DrawAssetView() {
                             for (auto &mod: LegacyModList) {
                                 ImGui::TableNextRow();
                                 ImGui::TableNextColumn();
-                                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / "Legacy" / mod), mod);
+                                TreeNodeWalkDirectory("", mod, XMLFile::XMLType::Legacy);
                             }
                             ImGui::EndTable();
                         }
+                    }
+                    ImGui::EndChild();
+                    ImGui::EndTabItem();
+                    // base assets
+                }
+                if(ImGui::BeginTabItem("Base Assets")) {
+                    if (ImGui::BeginChild("Base Assets", ImVec2(0, 0), true)) {
+                        ImGui::Text("Base Assets");
+                        ImGui::Separator();
+                        TreeNodeWalkDirectory("", "Prey Files", XMLFile::XMLType::BaseGame);
                     }
                     ImGui::EndChild();
                     ImGui::EndTabItem();
@@ -760,10 +770,75 @@ void ModLoader::DrawAssetView() {
         //TODO: figure out more things to do with selected files
         if(ImGui::BeginChild("Selected File Window")){
             if(ImGui::Button("Deselect")){
-                selectedFile.clear();
+                selectedFile = {};
             }
             if(!selectedFile.empty()){
-                ImGui::Text("%s", selectedFile.filename().u8string().c_str());
+                ImGui::Text("%s", selectedFile.path.filename().u8string().c_str());
+                if(selectedFile.path.extension() == ".xml"){
+                    if(ImGui::BeginChild("XML File Properties"), ImVec2(ImGui::GetContentRegionAvail().y * 0.5f, 0), true){
+                        ImGui::Text("XML Merging Policy:");
+                        ImGui::Separator();
+//                    ImGui::TextWrapped("%s", selectedFile.path.u8string().c_str());
+                        auto policy = m_XMLMerger.getFileMergingPolicy(selectedFile.relativePath, "PreyFiles");
+                        static pugi::xml_document doc;
+                        pugi::xml_parse_result result = doc.load_file(selectedFile.path.u8string().c_str());
+                        auto firstNode = doc.first_child();
+                        XMLMerger::resolvePathWildcards(firstNode, policy.nodeStructure);
+                        switch (policy.policy) {
+                            case XMLMerger::mergingPolicy::identification_policy::error:
+                                ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Error");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::unknown:
+                                ImGui::Text("Unknown");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file is not registered with the merging library. It will be copied to the output directory as-is. This file cannot be merged with other mods.");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::overwrite:
+                                ImGui::Text("Overwrite");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will overwrite the same file in the output directory. This file cannot be merged with other mods.");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_tag:
+                                ImGui::Text("Match Tag");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will be merged. The merging policy is based on the tag (name) of each node set to be merged");
+                                displayXmlNode(policy.nodeStructure, 0);
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_attribute:
+                                ImGui::Text("Match Attribute");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker("This file will be merged. The merging policy is based on the value of specific attributes of each node set to be merged");
+                                displayXmlNode(policy.nodeStructure, 0);
+                                ImGui::Indent(10.0f);
+                                if(ImGui::TreeNode("Attributes to Match")){
+                                    for(auto &attribute: policy.attributeMatches){
+                                        ImGui::Text("%s: %d", attribute.attribute_name.c_str(), attribute.priority);
+                                    }
+                                    ImGui::TreePop();
+                                }
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_spreadsheet:
+                                ImGui::Text("Match Spreadsheet");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will be merged. This is a special mode for Excel spreadsheet XML Files. They will be matched based on the first column of each row.");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_contents:
+                                ImGui::Text("Match Contents");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will be merged. The merging policy is based on the contents of each node set to be merged");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    ImGui::EndChild();
+//                    ImGui::Text("%d", policy.policy);
+                }
             }
         }
         ImGui::EndChild();
@@ -1241,24 +1316,81 @@ void ModLoader::DeployForInstallWizard()
     m_DeployLogMutex.unlock();
 }
 
-bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
-    if(is_directory(path)){
-        if(ImGui::TreeNode(path.u8string().c_str(), "%s", path.filename().u8string().c_str())){
-            for(auto&childPath: fs::directory_iterator(path)) {
-                TreeNodeWalkDirectory(childPath.path(), modName);
+bool ModLoader::TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type) {
+    fs::path path;
+    ImGuiTreeNodeFlags_ treeFlags = ImGuiTreeNodeFlags_None;
+    switch(type) {
+        case XMLFile::XMLType::Registered:
+            path = PreyPath / "Mods" / modName / relativePath;
+            break;
+        case XMLFile::XMLType::Legacy:
+            path = PreyPath / "Mods" / "Legacy" / modName / relativePath;
+            break;
+        case XMLFile::XMLType::BaseGame:
+            path = fs::path("PreyFiles") / relativePath;
+            break;
+        default:
+            break;
+    }
+    if (is_directory(path)) {
+        std::string nodeName;
+        if(relativePath.empty()){
+            if(type == XMLFile::XMLType::BaseGame){
+                treeFlags = ImGuiTreeNodeFlags_DefaultOpen;
+            }
+            nodeName = modName;
+        } else {
+            nodeName = relativePath.filename().u8string();
+        }
+        if (ImGui::TreeNodeEx(path.u8string().c_str(), treeFlags, "%s", nodeName.c_str())) {
+            for (auto &childPath: fs::directory_iterator(path)) {
+                fs::path childRelativePath;
+                switch(type){
+                    case XMLFile::XMLType::Registered:
+                        childRelativePath = childPath.path().wstring().substr((PreyPath / "Mods" / modName).wstring().length() + 1, childPath.path().wstring().length());
+                        break;
+                    case XMLFile::XMLType::Legacy:
+                        childRelativePath = childPath.path().wstring().substr((PreyPath / "Mods" / "Legacy" / modName).wstring().length() + 1, childPath.path().wstring().length());
+                        break;
+                    case XMLFile::XMLType::BaseGame:
+                        childRelativePath = childPath.path().wstring().substr((fs::path("PreyFiles")).wstring().length() + 1, childPath.path().wstring().length());
+                        break;
+                    default:
+                        break;
+                }
+                TreeNodeWalkDirectory(childRelativePath, modName, type);
             }
             ImGui::TreePop();
             return false;
         }
-    } else if(is_regular_file(path)){
+    } else if (is_regular_file(path)) {
+        fs::path childRelativePath;
+        fs::path rootDirectory;
+        switch(type){
+            case XMLFile::XMLType::Registered:
+                childRelativePath = path.wstring().substr((PreyPath / "Mods" / modName).wstring().length() + 1, path.wstring().length());
+                rootDirectory = *childRelativePath.begin();
+                if(rootDirectory == "Data"){
+                    childRelativePath = childRelativePath.wstring().substr(fs::path("Data/").wstring().length(), path.wstring().length());
+                }
+
+                break;
+            case XMLFile::XMLType::Legacy:
+                childRelativePath = path.wstring().substr((PreyPath / "Mods" / "Legacy" / modName).wstring().length() + 1, path.wstring().length());
+                break;
+            case XMLFile::XMLType::BaseGame:
+                childRelativePath = path.wstring().substr((fs::path("PreyFiles")).wstring().length() + 1, path.wstring().length());
+                break;
+            default:
+                break;
+        }
         ImGui::PushID(path.u8string().c_str());
-        if(ImGui::Selectable(path.filename().u8string().c_str(), path == selectedFile)){
-            selectedFile = path;
+        if (ImGui::Selectable(path.filename().u8string().c_str(), selectedFile == path)) {
+            selectedFile = {path, childRelativePath, type, modName};
         }
         ImGui::PopID();
         return true;
     }
-    return false;
 }
 
 int ModLoader::getNextSafeLoadOrder() {

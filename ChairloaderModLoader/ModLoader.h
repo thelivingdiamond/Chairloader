@@ -211,8 +211,32 @@ private:
     }
 
     /* XML Functions */
-    fs::path selectedFile;
-    bool TreeNodeWalkDirectory(fs::path path, std::string modName);
+    struct XMLFile {
+        enum class XMLType
+        {
+            Registered,
+            Legacy,
+            BaseGame,
+        };
+        fs::path path;
+        fs::path relativePath;
+        XMLType type;
+        std::string modName;
+//        pugi::xml_document doc;
+//        pugi::xml_node root;
+        bool empty() const { return path.empty(); }
+        // == operator
+        bool operator==(const XMLFile& rhs) const {
+            return path == rhs.path;
+        }
+        // == operator with fs::path
+        bool operator==(const fs::path& rhs) const {
+            return path == rhs;
+        }
+    };
+    XMLFile selectedFile;
+    bool TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type);
+
     void displayXmlNode(pugi::xml_node node, int depth);
 
 
