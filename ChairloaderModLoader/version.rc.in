@@ -9,7 +9,7 @@
 // Naming
 #define _PRODUCTNAME "Chairloader Mod Loader"
 #define _COMPANYNAME "thelivingdiamond"
-#define _FILEDESCRIPTION "A mod loader for prey (2017) and the Chairloader framework"
+#define _FILEDESCRIPTION "Chairloader Mod Manager"
 #define _INTERNALNAME "ChairloaderModLoader"
 #define _LEGALCOPYRIGHT "Copyright (C) 2022 thelivingdiamond"
 #define _ORIGINALFILENAME "ChairloaderModLoader.exe"
