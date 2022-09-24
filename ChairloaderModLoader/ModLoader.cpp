@@ -359,7 +359,7 @@ void ModLoader::DrawModList() {
                             ImGui::SetCursorPosY(ImGui::GetCursorPosY() - (3.5 * dpiScale));
                             if (ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(),
                                                   selectedMod == ModEntry.modName, 0,
-                                                  ImVec2{ImGui::GetColumnWidth(), 27.0f}))
+                                                  ImVec2{ImGui::GetColumnWidth(), ImGui::GetFrameHeight() - 2.0f * dpiScale}))
                                 selectedMod = ModEntry.modName;
                             if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
                                 ImGui::OpenPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str());
@@ -565,7 +565,7 @@ void ModLoader::DrawModList() {
                 }
             }
             ImGui::Separator();
-            if(ImGui::BeginChild("Mod Info", {0, 260 * dpiScale})) {
+            if(ImGui::BeginChild("Mod Info", {0, ImGui::GetContentRegionAvail().y * 0.72f})) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
@@ -1259,7 +1259,6 @@ void ModLoader::flushFileQueue() {
     }
 }
 
-static float oldDpiScaling = 1.0f;
 void ModLoader::Update() {
     static time_t lastFileTime;
     if(time(nullptr) - lastFileTime > 10){

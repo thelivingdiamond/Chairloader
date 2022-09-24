@@ -101,6 +101,7 @@ public:
     const float GetDPIScale() { return dpiScale; }
     void updateDPI(float dpiScaleIn){
         updateDPIScaling = true;
+        oldDpiScaling = dpiScale;
         dpiScale = dpiScaleIn;
     }
     std::string GetDisplayName(std::string modName);
@@ -110,7 +111,7 @@ private:
     bool updateDPIScaling;
     float dpiScale = 1.0f;
     const int defaultTextSize = 18;
-
+    float oldDpiScaling = 1.0f;
     //! Current UI state
     enum class State
     {
