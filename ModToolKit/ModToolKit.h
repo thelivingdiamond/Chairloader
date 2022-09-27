@@ -1,6 +1,7 @@
 #include "App/Application.h"
 #include "MainConfig.h"
 #include "GameModule.h"
+#include "FlowgraphEditor.h"
 
 class LoadGameStage;
 class TestStage;
@@ -30,4 +31,6 @@ private:
 	std::unique_ptr<TestStage> m_pTestStage;
 
 	static SystemUserCallback m_SystemUserCallback;
+
+    std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
 };

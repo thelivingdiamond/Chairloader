@@ -7,6 +7,7 @@
 // Dear God, No
 #include "../ChairLoader/DevConsoleDialog.h"
 
+
 class ModToolKit::SystemUserCallback : public ISystemUserCallback
 {
 public:
@@ -79,6 +80,7 @@ void ModToolKit::Update()
 		{
 			m_pLoadGameStage.reset();
 			m_pDevConsole = std::make_unique<DevConsoleDialog>();
+            m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
 			m_pTestStage = std::make_unique<TestStage>();
 		}
 	}
@@ -88,6 +90,9 @@ void ModToolKit::ShowUI()
 {
 	if (m_pDevConsole)
 		m_pDevConsole->Show(nullptr);
+    if(m_pFlowgraphEditor)
+        m_pFlowgraphEditor->Draw(nullptr);
+
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)
