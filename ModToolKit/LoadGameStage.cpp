@@ -3,13 +3,22 @@
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <ModLoader/PathUtils.h>
+#include <Prey/CryGame/IGameStartup.h>
+#include <Prey/CryGame/IGameRef.h>
 #include <mem.h>
 #include <detours/detours.h>
 #include "LoadGameStage.h"
 #include "GameModule.h"
 #include "ModToolKit.h"
+//#include "Prey/GameDll/ark/ArkGame.h"
+#include <Prey/CryAction/CryAction.h>
+#include <Prey/CrySystem/IEngineModule.h>
 
 static auto Prey_CreateSystemInterface = PreyFunction<ISystem* (const SSystemInitParams& startupParams)>(0xDA2010);
+static auto prey_createGameStartup = PreyFunction<IGameStartup*()>(0x16FD6B0);
+static auto prey_createGameFramework = PreyFunction<void()> (0x05CF2A0);
+static auto prey_runGame = PreyFunction<int64_t(const char*)>(0x009D090);
+
 static auto CSystem_CreateSystemVars = PreyFunction<void(CSystem* const _this)>(0xDCF790);
 static FunctionHook<void(CSystem* const _this)> g_CSystem_CreateSystemVars_Hook;
 
@@ -139,6 +148,10 @@ void LoadGameStage::LoadDLL()
 	DetourTransactionCommit();
 }
 
+static auto Prey_CryInitModule_CryScriptSystem = PreyFunction<std::shared_ptr<IEngineModule>&(std::shared_ptr<IEngineModule>&)>(0x0D0C0E0);
+static auto Prey_CryInitModule_CryFont = PreyFunction<std::shared_ptr<IEngineModule>&(std::shared_ptr<IEngineModule>&)>(0x09B3FC0);
+static auto Prey_CryInitMdoule_CryEntitySystem = PreyFunction<std::shared_ptr<IEngineModule>&(std::shared_ptr<IEngineModule>&)>(0x900D50);
+
 void LoadGameStage::InitSystem()
 {
 	UpdateProgressText("Initializing CrySystem...");
@@ -150,15 +163,55 @@ void LoadGameStage::InitSystem()
 	startupParams.sLogFileName = "CrySystem.log";
 	cry_strcpy(startupParams.szSystemCmdLine, GetCommandLineA());
 	cry_strcpy(startupParams.szLanguageName, "english");
-	startupParams.bSkipFont = true;
+//	startupParams.bSkipFont = true;
 	startupParams.bSkipRenderer = true;
 	startupParams.bSkipNetwork = true;
 	startupParams.bSkipWebsocketServer = true;
 	startupParams.bSkipInput = true;
 	startupParams.bShaderCacheGen = true; // Skips some UI code
+//    startupParams.b
+//    startupParams.bTestMode = true; // Skips some UI code
+//    cry_strcpy(startupParams.szUserPath, ModToolKit::Get()->GetConfig().gamePath.u8string().c_str());
 
 	m_pMod->pSystem = Prey_CreateSystemInterface(startupParams);
-
 	if (!m_pMod->pSystem)
 		throw std::runtime_error("CrySystem failed to initialize");
+////    prey_createGameFramework();
+    gEnv->pSystem = m_pMod->pSystem;
+    startupParams.pSystem = m_pMod->pSystem;
+    assert(gEnv->pSystem);
+//    std::shared_ptr<IEngineModule> pScriptSystem;
+//    pScriptSystem = Prey_CryInitModule_CryScriptSystem(pScriptSystem);
+//    if (!pScriptSystem)
+//        throw std::runtime_error("CryScriptSystem failed to initialize");
+//////    SSystemGlobalEnvironment env;
+//    pScriptSystem->Initialize(*gEnv, startupParams);
+//    auto pFlowSystem = gEnv->pSystem->GetIFlowSystem();
+//    gEnv->pScriptSystem = (IScriptSystem*)pScriptSystem.get();
+//    std::shared_ptr<IEngineModule> pFont;
+//    pFont = Prey_CryInitModule_CryFont(pFont);
+//    if (!pFont)
+//        throw std::runtime_error("CryFont failed to initialize");
+//    std::shared_ptr<IEngineModule> pEntitySystem;
+//    pEntitySystem = Prey_CryInitMdoule_CryEntitySystem(pEntitySystem);
+//    if (!pEntitySystem)
+//        throw std::runtime_error("CryEntitySystem failed to initialize");
+//    gEnv->pEntitySystem = (IEntitySystem*)pEntitySystem.get();
+//    pEntitySystem->Initialize(*gEnv, startupParams);
+
+//    pFont->Initialize(*gEnv, startupParams);
+//    gEnv->pCryFont = (ICryFont*)pFont.get();
+//    auto pScriptSystemInterface = (IScriptSystem*)(pScriptSystem.get());
+//    gEnv->pScriptSystem = (IScriptSystem*)(pScriptSystem.get());
+//    static CCryAction* pCryAction = new CCryAction();
+//    pCryAction->Init(startupParams);
+//    prey_createGameFramework();
+//    startupParams.pSystem = m_pMod->pSystem;
+//    auto pGameStartup = (IGameStartup*)prey_createGameStartup();
+////    startupParams.pGameStartup = pGameStartup;
+//    IGameRef ref;
+//    IGameRef pGameRef =  pGameStartup->FInit2(pGameStartup, ref, startupParams);
+//    if (!pGameRef.m_ptr || !*pGameRef.m_ptr)
+//        throw std::runtime_error("CryGame failed to initialize");
+////    gEnv->pGame = *pGameRef.m_ptr;
 }

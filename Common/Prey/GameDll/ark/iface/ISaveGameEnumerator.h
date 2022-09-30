@@ -5,6 +5,7 @@
 
 // Header: Override
 // Prey/GameDll/ark/iface/ISaveGameEnumerator.h
+#include <Prey/ArkStubs.h>
 struct ISaveGameEnumerator // Id=8001FC9 Size=8
 {
 	struct SGameMetaData // Id=8001FCA Size=56

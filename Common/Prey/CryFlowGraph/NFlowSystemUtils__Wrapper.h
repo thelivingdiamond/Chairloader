@@ -9,7 +9,7 @@ namespace NFlowSystemUtils
 // _unknown/NFlowSystemUtils__Wrapper_bool_.h
 template <typename T> struct Wrapper // Id=8000F56 Size=8
 {
-	const bool &T;
+	const T &value;
 };
 
 } // namespace NFlowSystemUtils

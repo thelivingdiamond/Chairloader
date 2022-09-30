@@ -3,7 +3,8 @@
 #pragma once
 #include <Prey/CryExtension/ICryUnknown.h>
 #include <Prey/CryFlowGraph/IFlowGraphDebugger.h>
-#include <_unknown/DynArray_SBreakPoint,int,NArray__SmallDynStorage_NAlloc__AllocCompatible_NAlloc__ModuleAlloc_ _ _.h>
+#include <Prey/CryCore/StdAfx.h>
+#include "IFlowGraph.h"
 
 struct CryGUID;
 struct IFlowGraph;
@@ -11,6 +12,9 @@ struct IFlowGraphDebugListener;
 struct SBreakPoint;
 struct SFlowAddress;
 class TFlowInputData;
+enum EFlowGraphStepMode {
+    none = 0,
+};
 
 // Header: MadeUp
 // _unknown/IFlowGraphDebugger.h

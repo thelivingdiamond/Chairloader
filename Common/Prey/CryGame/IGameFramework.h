@@ -113,7 +113,7 @@ struct IGameFramework // Id=8001CF0 Size=8
     virtual void RegisterFactory(const char *arg0, IGameFramework::IActorCreator *arg1, bool arg2) = 0;
     virtual void RegisterFactory(const char *arg0, IGameFramework::IItemCreator *arg1, bool arg2) = 0;
     virtual void RegisterFactory(const char *arg0, IGameFramework::IGameObjectExtensionCreator *arg1, bool arg2) = 0;
-    virtual ~IGameFramework();
+    virtual ~IGameFramework() = default;
     virtual bool Init(SSystemInitParams &arg0) = 0;
     virtual void InitGameType(bool arg0, bool arg1) = 0;
     virtual bool CompleteInit() = 0;

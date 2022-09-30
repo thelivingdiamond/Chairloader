@@ -2,6 +2,7 @@
 
 #pragma once
 #include <boost/variant.hpp>
+#include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -42,6 +43,11 @@ struct SFlowNodeConfig // Id=8001C3F Size=40
 };
 
 class ICrySizer;
+struct IFlowNode;
+TYPEDEF_AUTOPTR(IFlowNode);
+typedef IFlowNode_AutoPtr IFlowNodePtr;
+
+
 struct IFlowNode
 {
     struct SActivationInfo // Id=8000F62 Size=48

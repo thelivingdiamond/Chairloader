@@ -1,9 +1,12 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryCore/stdafx.h>
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/NFlowSystemUtils__IFlowSystemTyped.h>
+#include "NFlowSystemUtils__IFlowSystemTyped.h"
+#include "IFlowNodeIterator.h"
+#include "IFlowEdgeIterator.h"
 
 class ICrySizer;
 struct ICustomAction;

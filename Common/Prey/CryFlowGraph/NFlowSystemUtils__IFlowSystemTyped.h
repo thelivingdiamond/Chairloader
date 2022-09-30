@@ -1,7 +1,9 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryFlowGraph/NFlowSystemUtils__Wrapper.h>
+#include "SFlowSystemVoid.h"
 
 struct SFlowAddress;
 

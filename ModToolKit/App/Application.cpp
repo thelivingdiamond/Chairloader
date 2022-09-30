@@ -32,8 +32,8 @@ int Application::Run()
 	while (m_bIsRunning)
 	{
 		m_pImGui->BeginFrame();
-
 		Update();
+//        assert(false);
 		m_pCurrentStage->UpdateInternal();
 		ShowUI();
 		m_pCurrentStage->ShowUI();

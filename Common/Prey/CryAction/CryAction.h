@@ -14,6 +14,7 @@
 #include "Prey/CryAudio/IAudioInterfacesCommonData.h"
 #include "Prey/CryAudio/SAudioRequest.h"
 #include "Prey/CryAudio/SAudioManagerRequestData.h"
+#include <Prey/CryAction/actiongame.h>
 
 namespace ArkGameNoise
 {
@@ -294,178 +295,180 @@ public:
 	SAudioRequest m_resumeAudioRequest;
 	SAudioManagerRequestData<16777216> m_pauseAudioRequestData;
 	SAudioManagerRequestData<33554432> m_resumeAudioRequestData;
-	
-	CCryAction();
-	virtual ~CCryAction();
-	virtual void ClearTimers();
-	virtual unsigned AddTimer(CTimeValue interval, bool repeating, Functor2<void *,unsigned int> callback, void *userdata);
-	virtual void *RemoveTimer(unsigned timerID);
-	virtual unsigned GetPreUpdateTicks();
-	virtual void RegisterFactory(const char *name, IGameFramework::IActorCreator *pCreator, bool isAI);
-	virtual void RegisterFactory(const char *name, IGameFramework::IItemCreator *pCreator, bool isAI);
-	virtual void RegisterFactory(const char *name, IGameFramework::IGameObjectExtensionCreator *pCreator, bool isAI);
-	virtual void RegisterFactory(const char *name, ISaveGame *(*func)(), bool __formal);
-	virtual void RegisterFactory(const char *name, ILoadGame *(*func)(), bool __formal);
-	virtual bool Init(SSystemInitParams &startupParams);
-	virtual void InitGameType(bool multiplayer, bool fromInit);
-	virtual bool CompleteInit();
-	virtual void Shutdown();
-	virtual bool PreUpdate(bool haveFocus, unsigned updateFlags);
-	virtual void PostUpdate(bool haveFocus, unsigned updateFlags);
-	virtual void Reset(bool clients);
-	virtual void GetMemoryUsage(ICrySizer *s) const;
-	virtual void PauseGame(bool pause, bool force, unsigned nFadeOutInMS, bool bPauseAudio);
-	virtual bool IsGamePaused();
-	virtual bool IsGameStarted();
-	virtual bool IsInLevelLoad();
-	virtual bool IsLoadingSaveGame();
-	virtual const char *GetLevelName();
-	virtual const char *GetAbsLevelPath(char *const pPath, const unsigned cPathMaxLen);
-	virtual bool IsInTimeDemo();
-	virtual bool IsTimeDemoRecording();
-	virtual bool IsLevelPrecachingDone() const;
-	virtual void SetLevelPrecachingDone(bool bValue);
-	virtual ISystem *GetISystem();
-	virtual ILanQueryListener *GetILanQueryListener();
-	virtual IUIDraw *GetIUIDraw();
-	virtual IMannequin &GetMannequinInterface();
-	virtual ILevelSystem *GetILevelSystem();
-	virtual IActorSystem *GetIActorSystem();
-	virtual IItemSystem *GetIItemSystem();
-	virtual IActionMapManager *GetIActionMapManager();
-	virtual IViewSystem *GetIViewSystem();
-	virtual IGameplayRecorder *GetIGameplayRecorder();
-	virtual IGameRulesSystem *GetIGameRulesSystem();
-	virtual IGameObjectSystem *GetIGameObjectSystem();
-	virtual IFlowSystem *GetIFlowSystem();
-	virtual IGameTokenSystem *GetIGameTokenSystem();
-	virtual IEffectSystem *GetIEffectSystem();
-	virtual IMaterialEffects *GetIMaterialEffects();
-	virtual IPlayerProfileManager *GetIPlayerProfileManager();
-	virtual ISubtitleManager *GetISubtitleManager();
-	virtual IDialogSystem *GetIDialogSystem();
-	virtual ICooperativeAnimationManager *GetICooperativeAnimationManager();
-	virtual ICheckpointSystem *GetICheckpointSystem();
-	virtual IForceFeedbackSystem *GetIForceFeedbackSystem() const;
-	virtual ICustomActionManager *GetICustomActionManager() const;
-	virtual ICustomEventManager *GetICustomEventManager() const;
-	virtual ITweakMenuController *CreateITweakMenuController();
-	virtual bool StartGameContext(SGameStartParams const *pGameStartParams);
-	virtual bool ChangeGameContext(SGameContextParams const *pGameContextParams);
-	virtual void EndGameContext();
-	virtual bool StartedGameContext() const;
-	virtual bool StartingGameContext() const;
-	virtual bool BlockingSpawnPlayer();
-	virtual void ReleaseGameStats();
-	virtual void ResetBrokenGameObjects();
-	virtual IEntityProxy *CreateGameObject(unsigned _entityId);
-	virtual void RegisterProjectileExtension(const char *name);
-	virtual void DeleteAllProjectiles();
-	virtual IArkSaveLoadSystem &GetIArkSaveLoadSystem();
-	virtual void OnGameModeChanged() const;
-	void Serialize(TSerialize ser) { FSerialize(this,ser); }
-	virtual void FlushBreakableObjects();
+    static inline auto CCryActionConstructor = PreyFunction<void(CCryAction*)>(0x05BB970);
+	CCryAction(){
+        CCryActionConstructor(this);
+    }
+	virtual ~CCryAction() = default;
+	virtual void ClearTimers() {FClearTimers(this);};
+	virtual unsigned AddTimer(CTimeValue interval, bool repeating, Functor2<void *,unsigned int> callback, void *userdata) {return FAddTimer(this, interval, repeating, callback, userdata);};
+	virtual void *RemoveTimer(unsigned timerID) {return FRemoveTimer(this, timerID);};
+	virtual unsigned GetPreUpdateTicks() {return FGetPreUpdateTicks(this);};
+	virtual void RegisterFactory(const char *name, IGameFramework::IActorCreator *pCreator, bool isAI) {FRegisterFactoryOv4(this, name, pCreator, isAI);};
+	virtual void RegisterFactory(const char *name, IGameFramework::IItemCreator *pCreator, bool isAI) {FRegisterFactoryOv3(this, name, pCreator, isAI);};
+	virtual void RegisterFactory(const char *name, IGameFramework::IGameObjectExtensionCreator *pCreator, bool isAI) {FRegisterFactoryOv2(this, name, pCreator, isAI);};
+	virtual void RegisterFactory(const char *name, ISaveGame *(*func)(), bool __formal) {FRegisterFactoryOv1(this, name, func, __formal);};
+	virtual void RegisterFactory(const char *name, ILoadGame *(*func)(), bool __formal) {FRegisterFactoryOv0(this, name, func, __formal);};
+	virtual bool Init(SSystemInitParams &startupParams) {return FInit(this, startupParams);};
+	virtual void InitGameType(bool multiplayer, bool fromInit) {FInitGameType(this, multiplayer, fromInit);};
+	virtual bool CompleteInit() { return FCompleteInit(this); };
+	virtual void Shutdown() {FShutdown(this);};
+	virtual bool PreUpdate(bool haveFocus, unsigned updateFlags) {return FPreUpdate(this, haveFocus, updateFlags);};
+	virtual void PostUpdate(bool haveFocus, unsigned updateFlags) {FPostUpdate(this, haveFocus, updateFlags);};
+	virtual void Reset(bool clients) {FReset(this, clients);};
+	virtual void GetMemoryUsage(ICrySizer *s) const {FGetMemoryUsage(this, s);};
+	virtual void PauseGame(bool pause, bool force, unsigned nFadeOutInMS, bool bPauseAudio) {FPauseGame(this, pause, force, nFadeOutInMS, bPauseAudio);};
+	virtual bool IsGamePaused() {return FIsGamePaused(this);};
+	virtual bool IsGameStarted() {return FIsGameStarted(this);};
+	virtual bool IsInLevelLoad() {return FIsInLevelLoad(this);};
+	virtual bool IsLoadingSaveGame() {return FIsLoadingSaveGame(this);};
+	virtual const char *GetLevelName() {return FGetLevelName(this);};
+	virtual const char *GetAbsLevelPath(char *const pPath, const unsigned cPathMaxLen) {return FGetAbsLevelPath(this, pPath, cPathMaxLen);};
+	virtual bool IsInTimeDemo() {return FIsInTimeDemo(this);};
+	virtual bool IsTimeDemoRecording() {return FIsTimeDemoRecording(this);};
+	virtual bool IsLevelPrecachingDone() const {return FIsLevelPrecachingDone(this);};
+	virtual void SetLevelPrecachingDone(bool bValue) {FSetLevelPrecachingDone(this, bValue);};
+	virtual ISystem *GetISystem() {return FGetISystem(this);};
+	virtual ILanQueryListener *GetILanQueryListener() {return FGetILanQueryListener(this);};
+	virtual IUIDraw *GetIUIDraw() {return FGetIUIDraw(this);};
+	virtual IMannequin &GetMannequinInterface() {return FGetMannequinInterface(this);};
+	virtual ILevelSystem *GetILevelSystem() {return FGetILevelSystem(this);};
+	virtual IActorSystem *GetIActorSystem() {return FGetIActorSystem(this);};
+	virtual IItemSystem *GetIItemSystem() {return FGetIItemSystem(this);};
+	virtual IActionMapManager *GetIActionMapManager() {return FGetIActionMapManager(this);};
+	virtual IViewSystem *GetIViewSystem() {return FGetIViewSystem(this);};
+	virtual IGameplayRecorder *GetIGameplayRecorder() {return FGetIGameplayRecorder(this);};
+	virtual IGameRulesSystem *GetIGameRulesSystem() {return FGetIGameRulesSystem(this);};
+	virtual IGameObjectSystem *GetIGameObjectSystem() {return FGetIGameObjectSystem(this);};
+	virtual IFlowSystem *GetIFlowSystem() {return FGetIFlowSystem(this);};
+	virtual IGameTokenSystem *GetIGameTokenSystem() {return FGetIGameTokenSystem(this);};
+	virtual IEffectSystem *GetIEffectSystem() {return FGetIEffectSystem(this);};
+	virtual IMaterialEffects *GetIMaterialEffects() {return FGetIMaterialEffects(this);};
+	virtual IPlayerProfileManager *GetIPlayerProfileManager() {return FGetIPlayerProfileManager(this);};
+	virtual ISubtitleManager *GetISubtitleManager() {return FGetISubtitleManager(this);};
+	virtual IDialogSystem *GetIDialogSystem() {return FGetIDialogSystem(this);};
+	virtual ICooperativeAnimationManager *GetICooperativeAnimationManager() {return FGetICooperativeAnimationManager(this);};
+	virtual ICheckpointSystem *GetICheckpointSystem() {return FGetICheckpointSystem(this);};
+	virtual IForceFeedbackSystem *GetIForceFeedbackSystem() const {return FGetIForceFeedbackSystem(this);};
+	virtual ICustomActionManager *GetICustomActionManager() const {return FGetICustomActionManager(this);};
+	virtual ICustomEventManager *GetICustomEventManager() const {return FGetICustomEventManager(this);};
+	virtual ITweakMenuController *CreateITweakMenuController() {return FCreateITweakMenuController(this);};
+	virtual bool StartGameContext(SGameStartParams const *pGameStartParams) {return FStartGameContext(this, pGameStartParams);};
+	virtual bool ChangeGameContext(SGameContextParams const *pGameContextParams) {return FChangeGameContext(this, pGameContextParams);};
+	virtual void EndGameContext() {FEndGameContext(this);};
+	virtual bool StartedGameContext() const {return FStartedGameContext(this);};
+	virtual bool StartingGameContext() const {return FStartingGameContext(this);};
+	virtual bool BlockingSpawnPlayer() {return FBlockingSpawnPlayer(this);};
+	virtual void ReleaseGameStats() {FReleaseGameStats(this);};
+	virtual void ResetBrokenGameObjects() {FResetBrokenGameObjects(this);};
+	virtual IEntityProxy *CreateGameObject(unsigned _entityId) {return FCreateGameObject(this, _entityId);};
+	virtual void RegisterProjectileExtension(const char *name) {FRegisterProjectileExtension(this, name);};
+	virtual void DeleteAllProjectiles() {FDeleteAllProjectiles(this);};
+	virtual IArkSaveLoadSystem &GetIArkSaveLoadSystem() {return FGetIArkSaveLoadSystem(this);};
+	virtual void OnGameModeChanged() const {FOnGameModeChanged(this);};
+	void Serialize(TSerialize ser) { FSerialize(this,ser); };
+	virtual void FlushBreakableObjects() {FFlushBreakableObjects(this);};
 	void ClearBreakHistory() { FClearBreakHistory(this); }
 	void FullSerialize(TSerialize _ser) { FFullSerialize(this,_ser); }
 	void PostSerialize() { FPostSerialize(this); }
-	virtual void InitEditor(IGameToEditorInterface *pGameToEditor);
-	virtual void SetEditorLevel(const char *levelName, const char *levelFolder);
-	virtual void GetEditorLevel(char **levelName, char **levelFolder);
-	virtual void BeginLanQuery();
-	virtual void EndCurrentQuery();
-	virtual IActor *GetClientActor() const;
-	virtual unsigned GetClientActorId() const;
-	virtual IEntity *GetClientEntity() const;
-	virtual unsigned GetClientEntityId() const;
-	virtual INetChannel *GetClientChannel() const;
-	virtual CTimeValue GetServerTime();
-	virtual uint16_t GetGameChannelId(INetChannel *pNetChannel);
-	virtual INetChannel *GetNetChannel(uint16_t channelId);
-	virtual bool IsChannelOnHold(uint16_t channelId);
-	virtual IGameObject *GetGameObject(unsigned id);
-	virtual bool GetNetworkSafeClassId(uint16_t &id, const char *className);
-	virtual bool GetNetworkSafeClassName(char *className, uint64_t maxn, uint16_t id);
-	virtual IGameObjectExtension *QueryGameObjectExtension(unsigned id, const char *name);
-	virtual void DelegateAuthority(unsigned entityId, uint16_t channelId);
-	virtual INetContext *GetNetContext();
-	virtual bool SaveGame(const char *path, bool bQuick, bool bForceImmediate, ESaveGameReason reason, bool ignoreDelay, const char *checkPointName);
-	virtual ELoadGameResult LoadGame(const char *path, bool quick, bool ignoreDelay);
-	virtual void ScheduleEndLevel(const char *nextLevel);
-	virtual void ScheduleEndLevelNow(const char *nextLevel);
-	virtual void OnEditorSetGameMode(int iMode);
-	virtual bool IsEditing();
-	virtual void OnBreakageSpawnedEntity(IEntity *pEntity, IPhysicalEntity *pPhysEntity, IPhysicalEntity *pSrcPhysEntity);
-	virtual bool IsImmersiveMPEnabled();
-	virtual void AllowSave(bool bAllow);
-	virtual void AllowLoad(bool bAllow);
-	virtual bool CanSave();
-	virtual bool CanLoad();
-	virtual ISerializeHelper *GetSerializeHelper() const;
-	virtual bool CanCheat();
-	virtual INetNub *GetServerNetNub();
-	virtual INetNub *GetClientNetNub();
-	virtual void SetGameGUID(const char *gameGUID);
-	virtual const char *GetGameGUID();
-	virtual bool IsVoiceRecordingEnabled();
-	virtual bool IsGameSession(unsigned sessionHandle);
-	virtual bool ShouldMigrateNub(unsigned sessionHandle);
-	virtual ISharedParamsManager *GetISharedParamsManager();
-	virtual float GetLoadSaveDelay() const;
-	virtual IGameVolumes *GetIGameVolumesManager() const;
-	virtual void PreloadAnimatedCharacter(IScriptTable *pEntityScript);
-	virtual void RegisterExtension(std::shared_ptr<ICryUnknown> pExtension);
-	virtual void ReleaseExtensions();
-	virtual std::shared_ptr<ICryUnknown> QueryExtensionInterfaceById(CryGUID const &interfaceID) const;
-	virtual CGameServerNub *GetGameServerNub();
+	virtual void InitEditor(IGameToEditorInterface *pGameToEditor) {FInitEditor(this, pGameToEditor);};
+	virtual void SetEditorLevel(const char *levelName, const char *levelFolder) {FSetEditorLevel(this, levelName, levelFolder);};
+	virtual void GetEditorLevel(char **levelName, char **levelFolder) {FGetEditorLevel(this, levelName, levelFolder);};
+	virtual void BeginLanQuery() {FBeginLanQuery(this);};
+	virtual void EndCurrentQuery() {FEndCurrentQuery(this);};
+	virtual IActor *GetClientActor() const {return FGetClientActor(this);};
+	virtual unsigned GetClientActorId() const {return FGetClientActorId(this);};
+	virtual IEntity *GetClientEntity() const {return FGetClientEntity(this);};
+	virtual unsigned GetClientEntityId() const {return FGetClientEntityId(this);};
+	virtual INetChannel *GetClientChannel() const {return FGetClientChannel(this);};
+	virtual CTimeValue GetServerTime() {return FGetServerTime(this);};
+	virtual uint16_t GetGameChannelId(INetChannel *pNetChannel) {return FGetGameChannelId(this, pNetChannel);};
+	virtual INetChannel *GetNetChannel(uint16_t channelId) {return FGetNetChannel(this, channelId);};
+	virtual bool IsChannelOnHold(uint16_t channelId) {return FIsChannelOnHold(this, channelId);};
+	virtual IGameObject *GetGameObject(unsigned id) {return FGetGameObject(this, id);};
+	virtual bool GetNetworkSafeClassId(uint16_t &id, const char *className) {return FGetNetworkSafeClassId(this, id, className);};
+	virtual bool GetNetworkSafeClassName(char *className, uint64_t maxn, uint16_t id) {return FGetNetworkSafeClassName(this, className, maxn, id);};
+	virtual IGameObjectExtension *QueryGameObjectExtension(unsigned id, const char *name) {return FQueryGameObjectExtension(this, id, name);};
+	virtual void DelegateAuthority(unsigned entityId, uint16_t channelId) {FDelegateAuthority(this, entityId, channelId);};
+	virtual INetContext *GetNetContext() {return FGetNetContext(this);};
+	virtual bool SaveGame(const char *path, bool bQuick, bool bForceImmediate, ESaveGameReason reason, bool ignoreDelay, const char *checkPointName) {return FSaveGame(this, path, bQuick, bForceImmediate, reason, ignoreDelay, checkPointName);};
+	virtual ELoadGameResult LoadGame(const char *path, bool quick, bool ignoreDelay) {return FLoadGame(this, path, quick, ignoreDelay);};
+	virtual void ScheduleEndLevel(const char *nextLevel) {FScheduleEndLevel(this, nextLevel);};
+	virtual void ScheduleEndLevelNow(const char *nextLevel) {FScheduleEndLevelNow(this, nextLevel);};
+	virtual void OnEditorSetGameMode(int iMode) {FOnEditorSetGameMode(this, iMode);};
+	virtual bool IsEditing() {return FIsEditing(this);};
+	virtual void OnBreakageSpawnedEntity(IEntity *pEntity, IPhysicalEntity *pPhysEntity, IPhysicalEntity *pSrcPhysEntity) {FOnBreakageSpawnedEntity(this, pEntity, pPhysEntity, pSrcPhysEntity);};
+	virtual bool IsImmersiveMPEnabled() {return FIsImmersiveMPEnabled(this);};
+	virtual void AllowSave(bool bAllow) {FAllowSave(this, bAllow);};
+	virtual void AllowLoad(bool bAllow) {FAllowLoad(this, bAllow);};
+	virtual bool CanSave() {return FCanSave(this);};
+	virtual bool CanLoad() {return FCanLoad(this);};
+	virtual ISerializeHelper *GetSerializeHelper() const {return FGetSerializeHelper(this);};
+	virtual bool CanCheat() {return FCanCheat(this);};
+	virtual INetNub *GetServerNetNub() {return FGetServerNetNub(this);};
+	virtual INetNub *GetClientNetNub() {return FGetClientNetNub(this);};
+	virtual void SetGameGUID(const char *gameGUID) {FSetGameGUID(this, gameGUID);};
+	virtual const char *GetGameGUID() {return FGetGameGUID(this);};
+	virtual bool IsVoiceRecordingEnabled() {return FIsVoiceRecordingEnabled(this);};
+	virtual bool IsGameSession(unsigned sessionHandle) {return FIsGameSession(this, sessionHandle);};
+	virtual bool ShouldMigrateNub(unsigned sessionHandle) {return FShouldMigrateNub(this, sessionHandle);};
+	virtual ISharedParamsManager *GetISharedParamsManager() {return FGetISharedParamsManager(this);};
+	virtual float GetLoadSaveDelay() const {return FGetLoadSaveDelay(this);};
+	virtual IGameVolumes *GetIGameVolumesManager() const {return FGetIGameVolumesManager(this);};
+	virtual void PreloadAnimatedCharacter(IScriptTable *pEntityScript) {FPreloadAnimatedCharacter(this, pEntityScript);};
+	virtual void RegisterExtension(std::shared_ptr<ICryUnknown> pExtension) {FRegisterExtension(this, pExtension);};
+	virtual void ReleaseExtensions() {FReleaseExtensions(this);};
+	virtual std::shared_ptr<ICryUnknown> QueryExtensionInterfaceById(CryGUID const &interfaceID) const {return FQueryExtensionInterfaceById(this, interfaceID);};
+	virtual CGameServerNub *GetGameServerNub() {return FGetGameServerNub(this);};
 	CGameClientNub *GetGameClientNub() { return FGetGameClientNub(this); }
 	CGameContext *GetGameContext() { return FGetGameContext(this); }
-	virtual void ReloadArkGameNoises();
-	virtual void EmitArkGameNoise(const unsigned _emitter, Vec3 const &_position, ArkGameNoise::Params const &_params) const;
-	virtual ArkGameNoiseLoudness const *FindArkGameNoiseLoudness(uint64_t _loudnessId) const;
+	virtual void ReloadArkGameNoises() {FReloadArkGameNoises(this);};
+	virtual void EmitArkGameNoise(const unsigned _emitter, Vec3 const &_position, ArkGameNoise::Params const &_params) const {FEmitArkGameNoise(this, _emitter, _position, _params);};
+	virtual ArkGameNoiseLoudness const *FindArkGameNoiseLoudness(uint64_t _loudnessId) const {return FFindArkGameNoiseLoudness(this, _loudnessId);};
 	CSignalTimer *GetSignalTimer() { return FGetSignalTimer(this); }
 	CRangeSignaling *GetRangeSignaling() { return FGetRangeSignaling(this); }
-	virtual IPersistantDebug *GetIPersistantDebug();
-	virtual IGameStatsConfig *GetIGameStatsConfig();
-	virtual IVisualLog *GetIVisualLog();
-	virtual void AddBreakEventListener(IBreakEventListener *pListener);
-	virtual void RemoveBreakEventListener(IBreakEventListener *pListener);
+	virtual IPersistantDebug *GetIPersistantDebug() {return FGetIPersistantDebug(this);};
+	virtual IGameStatsConfig *GetIGameStatsConfig() {return FGetIGameStatsConfig(this);};
+	virtual IVisualLog *GetIVisualLog() {return FGetIVisualLog(this);};
+	virtual void AddBreakEventListener(IBreakEventListener *pListener) {FAddBreakEventListener(this, pListener);};
+	virtual void RemoveBreakEventListener(IBreakEventListener *pListener) {FRemoveBreakEventListener(this, pListener);};
 	void OnBreakEvent(uint16_t uBreakEventIndex) { FOnBreakEvent(this,uBreakEventIndex); }
-	virtual void RegisterListener(IGameFrameworkListener *pGameFrameworkListener, const char *name, EFRAMEWORKLISTENERPRIORITY eFrameworkListenerPriority);
-	virtual void UnregisterListener(IGameFrameworkListener *pGameFrameworkListener);
+	virtual void RegisterListener(IGameFrameworkListener *pGameFrameworkListener, const char *name, EFRAMEWORKLISTENERPRIORITY eFrameworkListenerPriority) {FRegisterListener(this, pGameFrameworkListener, name, eFrameworkListenerPriority);};
+	virtual void UnregisterListener(IGameFrameworkListener *pGameFrameworkListener) {FUnregisterListener(this, pGameFrameworkListener);};
 	CGameStatsConfig *GetGameStatsConfig() { return FGetGameStatsConfig(this); }
-	virtual IGameStatistics *GetIGameStatistics();
-	virtual IGameSessionHandler *GetIGameSessionHandler();
-	virtual void SetGameSessionHandler(IGameSessionHandler *pSessionHandler);
+	virtual IGameStatistics *GetIGameStatistics() {return FGetIGameStatistics(this);};
+	virtual IGameSessionHandler *GetIGameSessionHandler() {return FGetIGameSessionHandler(this);};
+	virtual void SetGameSessionHandler(IGameSessionHandler *pSessionHandler) {FSetGameSessionHandler(this, pSessionHandler);};
 	int NetworkExposeClass(IFunctionHandler *pFH) { return FNetworkExposeClass(this,pFH); }
 	void NotifyGameFrameworkListeners(ISaveGame *pSaveGame) { FNotifyGameFrameworkListenersOv1(this,pSaveGame); }
 	void NotifyGameFrameworkListeners(ILoadGame *pLoadGame) { FNotifyGameFrameworkListenersOv0(this,pLoadGame); }
 	void NotifySavegameFileLoadedToListeners(const char *pLevelName) { FNotifySavegameFileLoadedToListeners(this,pLevelName); }
-	virtual void EnableVoiceRecording(const bool enable);
-	virtual void MutePlayerById(unsigned playerId);
-	virtual IDebugHistoryManager *CreateDebugHistoryManager();
-	virtual void ExecuteCommandNextFrame(const char *cmd);
-	virtual const char *GetNextFrameCommand() const;
-	virtual void ClearNextFrameCommand();
-	virtual void PrefetchLevelAssets(const bool bEnforceAll);
-	virtual void ShowPageInBrowser(const char *URL);
-	virtual bool StartProcess(const char *cmd_line);
-	virtual bool SaveServerConfig(const char *path);
+	virtual void EnableVoiceRecording(const bool enable) {FEnableVoiceRecording(this, enable);};
+	virtual void MutePlayerById(unsigned playerId) {FMutePlayerById(this, playerId);};
+	virtual IDebugHistoryManager *CreateDebugHistoryManager() {return FCreateDebugHistoryManager(this);};
+	virtual void ExecuteCommandNextFrame(const char *cmd) {FExecuteCommandNextFrame(this, cmd);};
+	virtual const char *GetNextFrameCommand() const {return FGetNextFrameCommand(this);};
+	virtual void ClearNextFrameCommand() {FClearNextFrameCommand(this);};
+	virtual void PrefetchLevelAssets(const bool bEnforceAll) {FPrefetchLevelAssets(this, bEnforceAll);};
+	virtual void ShowPageInBrowser(const char *URL) {FShowPageInBrowser(this, URL);};
+	virtual bool StartProcess(const char *cmd_line) {return FStartProcess(this, cmd_line);};
+	virtual bool SaveServerConfig(const char *path) {return FSaveServerConfig(this, path);};
 	void OnActionEvent(SActionEvent const &ev) { FOnActionEvent(this,ev); }
-	virtual void DumpMemInfo(const char *format, ... );
+	virtual void DumpMemInfo(const char *format, ... ) {FDumpMemInfo(this, format);};
 	const char *GetStartLevelSaveGameName() { return FGetStartLevelSaveGameName(this); }
-	virtual IAIActorProxy *GetAIActorProxy(unsigned id) const;
+	virtual IAIActorProxy *GetAIActorProxy(unsigned id) const {return FGetAIActorProxy(this, id);};
 	void CreatePhysicsQueues() { FCreatePhysicsQueues(this); }
 	void ClearPhysicsQueues() { FClearPhysicsQueues(this); }
 	CCryActionPhysicQueues &GetPhysicQueues() { return FGetPhysicQueues(this); }
 	bool IsGameSessionMigrating() { return FIsGameSessionMigrating(this); }
 	void SwitchToLevelHeap(const char *acLevelName) { FSwitchToLevelHeap(this,acLevelName); }
-	virtual void StartNetworkStallTicker(bool includeMinimalUpdate);
-	virtual void StopNetworkStallTicker();
-	virtual ArkSaveLoadSystem &GetArkSaveLoadSystem();
+	virtual void StartNetworkStallTicker(bool includeMinimalUpdate) {FStartNetworkStallTicker(this, includeMinimalUpdate);};
+	virtual void StopNetworkStallTicker() {FStopNetworkStallTicker(this);};
+	virtual ArkSaveLoadSystem &GetArkSaveLoadSystem() {return FGetArkSaveLoadSystem(this);};
 	void GlobalActionsPostSerialize() const { FGlobalActionsPostSerialize(this); }
-	virtual void FinishWritingSave() const;
-	virtual bool IsSavePending() const;
-	virtual bool IsWritingSave() const;
+	virtual void FinishWritingSave() const {FFinishWritingSave(this);};
+	virtual bool IsSavePending() const {return FIsSavePending(this);};
+	virtual bool IsWritingSave() const {return FIsWritingSave(this);};
 	void InitCVars() { FInitCVars(this); }
 	void InitCommands() { FInitCommands(this); }
 	static void OpenLogCmd(IConsoleCmdArgs *args) { FOpenLogCmd(args); }
