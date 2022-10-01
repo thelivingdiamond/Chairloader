@@ -1,5 +1,6 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/System.h>
+#include <Prey/GameDll/GameStartup.h>
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <ModLoader/PathUtils.h>
@@ -20,6 +21,7 @@ static auto prey_createGameFramework = PreyFunction<void()> (0x05CF2A0);
 static auto prey_runGame = PreyFunction<int64_t(const char*)>(0x009D090);
 
 static auto CSystem_CreateSystemVars = PreyFunction<void(CSystem* const _this)>(0xDCF790);
+static auto CreateGameStartup = PreyFunction<CGameStartup*()>(0x16FD6B0);
 static FunctionHook<void(CSystem* const _this)> g_CSystem_CreateSystemVars_Hook;
 
 void CSystem_CreateSystemVars_Hook(CSystem* const _this)
@@ -70,7 +72,7 @@ void LoadGameStage::Start()
 	try
 	{
 		LoadDLL();
-		InitSystem();
+		InitGame();
 		SetStageFinished();
 	}
 	catch (const std::exception& e)
@@ -143,75 +145,67 @@ void LoadGameStage::LoadDLL()
 	// CSystem::Update: nop pRenderer->GetPixelAspectRatio
 	mem::Nop(dllBase + 0xDC8E4A, 0x40);
 
+	// CSystem::Init: Disable CSharedFlashPlayerResources::Init
+	mem::Nop(dllBase + 0xDD3D63, 0x1A);
+
+	// CSystem::Init: Init ScriptSystem without renderer
+	mem::Nop(dllBase + 0xDD4689, 0x1A);
+
+	// CGameStartup::Init: Remove SetWindowLongPtrA call
+	mem::Nop(dllBase + 0x1739C32, 0x1A);
+
+	// OnHFOVChanged: Nop the whole thing until ret
+	mem::Nop(dllBase + 0x16F8CB0, 0x11D);
+
+	// CGame::Init: Skip CUIManager
+	mem::Nop(dllBase + 0x16D0B2A, 0x14);
+	mem::Nop(dllBase + 0x16D0B4B, 0x05);
+
+	// CGame::Init: Skip ArkGame::Init
+	mem::Nop(dllBase + 0x16D0E39, 0x05);
+
+	// CGame::InitGameType: Remove pHardwareMouse calls
+	mem::Nop(dllBase + 0x16D1A0C, 0x16D1A12 - 0x16D1A0C);
+	mem::Nop(dllBase + 0x16D1CB7, 0x16D1CBD - 0x16D1CB7);
+
+	// CGame::InitGameType: Remove p3DEngine call
+	uint8_t opcode_ret = 0xC3;
+	mem::Nop(dllBase + 0x16D1D47, 0x16D1D4A - 0x16D1D47);
+	mem::Patch(dllBase + 0x16D1D54, &opcode_ret, 1);
+
+	// CCryAction::CompleteInit: Don't do anything
+	mem::Patch(dllBase + 0x5BDCE0, &opcode_ret, 1);
+
+	// ArkGame::CompleteInit: Don't do anything
+	mem::Patch(dllBase + 0x116CE30, &opcode_ret, 1);
+
 	DetourTransactionBegin();
 	g_CSystem_CreateSystemVars_Hook.InstallHook(CSystem_CreateSystemVars.Get(), &CSystem_CreateSystemVars_Hook);
 	DetourTransactionCommit();
 }
 
-static auto Prey_CryInitModule_CryScriptSystem = PreyFunction<std::shared_ptr<IEngineModule>&(std::shared_ptr<IEngineModule>&)>(0x0D0C0E0);
-static auto Prey_CryInitModule_CryFont = PreyFunction<std::shared_ptr<IEngineModule>&(std::shared_ptr<IEngineModule>&)>(0x09B3FC0);
-static auto Prey_CryInitMdoule_CryEntitySystem = PreyFunction<std::shared_ptr<IEngineModule>&(std::shared_ptr<IEngineModule>&)>(0x900D50);
-
-void LoadGameStage::InitSystem()
+void LoadGameStage::InitGame()
 {
-	UpdateProgressText("Initializing CrySystem...");
+	UpdateProgressText("Starting the game engine...");
 	ModToolKit::Get()->RefreshUI();
 
 	SSystemInitParams startupParams;
 	startupParams.hInstance = GetModuleHandle(0);
 	startupParams.pUserCallback = m_pSystemUserCallback;
-	startupParams.sLogFileName = "CrySystem.log";
+	startupParams.sLogFileName = "CryEngine.log";
 	cry_strcpy(startupParams.szSystemCmdLine, GetCommandLineA());
 	cry_strcpy(startupParams.szLanguageName, "english");
-//	startupParams.bSkipFont = true;
 	startupParams.bSkipRenderer = true;
-	startupParams.bSkipNetwork = true;
-	startupParams.bSkipWebsocketServer = true;
 	startupParams.bSkipInput = true;
-	startupParams.bShaderCacheGen = true; // Skips some UI code
-//    startupParams.b
-//    startupParams.bTestMode = true; // Skips some UI code
-//    cry_strcpy(startupParams.szUserPath, ModToolKit::Get()->GetConfig().gamePath.u8string().c_str());
+	//startupParams.bEditor = true; // Not sure does anything useful
 
-	m_pMod->pSystem = Prey_CreateSystemInterface(startupParams);
-	if (!m_pMod->pSystem)
-		throw std::runtime_error("CrySystem failed to initialize");
-////    prey_createGameFramework();
-    gEnv->pSystem = m_pMod->pSystem;
-    startupParams.pSystem = m_pMod->pSystem;
-    assert(gEnv->pSystem);
-//    std::shared_ptr<IEngineModule> pScriptSystem;
-//    pScriptSystem = Prey_CryInitModule_CryScriptSystem(pScriptSystem);
-//    if (!pScriptSystem)
-//        throw std::runtime_error("CryScriptSystem failed to initialize");
-//////    SSystemGlobalEnvironment env;
-//    pScriptSystem->Initialize(*gEnv, startupParams);
-//    auto pFlowSystem = gEnv->pSystem->GetIFlowSystem();
-//    gEnv->pScriptSystem = (IScriptSystem*)pScriptSystem.get();
-//    std::shared_ptr<IEngineModule> pFont;
-//    pFont = Prey_CryInitModule_CryFont(pFont);
-//    if (!pFont)
-//        throw std::runtime_error("CryFont failed to initialize");
-//    std::shared_ptr<IEngineModule> pEntitySystem;
-//    pEntitySystem = Prey_CryInitMdoule_CryEntitySystem(pEntitySystem);
-//    if (!pEntitySystem)
-//        throw std::runtime_error("CryEntitySystem failed to initialize");
-//    gEnv->pEntitySystem = (IEntitySystem*)pEntitySystem.get();
-//    pEntitySystem->Initialize(*gEnv, startupParams);
+	CGameStartup* pStartup = CreateGameStartup();
+	if (!pStartup->Init(startupParams))
+	{
+		pStartup->Shutdown();
+		throw std::runtime_error("Engine failed to initialize");
+	}
 
-//    pFont->Initialize(*gEnv, startupParams);
-//    gEnv->pCryFont = (ICryFont*)pFont.get();
-//    auto pScriptSystemInterface = (IScriptSystem*)(pScriptSystem.get());
-//    gEnv->pScriptSystem = (IScriptSystem*)(pScriptSystem.get());
-//    static CCryAction* pCryAction = new CCryAction();
-//    pCryAction->Init(startupParams);
-//    prey_createGameFramework();
-//    startupParams.pSystem = m_pMod->pSystem;
-//    auto pGameStartup = (IGameStartup*)prey_createGameStartup();
-////    startupParams.pGameStartup = pGameStartup;
-//    IGameRef ref;
-//    IGameRef pGameRef =  pGameStartup->FInit2(pGameStartup, ref, startupParams);
-//    if (!pGameRef.m_ptr || !*pGameRef.m_ptr)
-//        throw std::runtime_error("CryGame failed to initialize");
-////    gEnv->pGame = *pGameRef.m_ptr;
+	m_pGameStartup = pStartup;
+	::ShowCursor(1); // CGameStartup::Init calls with 0
 }
