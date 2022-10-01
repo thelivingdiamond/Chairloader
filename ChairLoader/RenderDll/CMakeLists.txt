@@ -19,6 +19,8 @@ set(SOURCE_FILES
 	Shaders/ShaderCompilingPatch.h
 	Shaders/ShaderFXParseBin.cpp
 	Shaders/ShaderMan.cpp
+	Shaders/ShaderPaths.cpp
+	Shaders/ShaderPaths.h
 	
 	ChairRender.cpp
 	ChairRender.h

@@ -18,6 +18,7 @@
 #include <detours/detours.h>
 #include "Chairloader/ChairloaderEnv.h"
 #include "RenderDll/RenderDll.h"
+#include "RenderDll/Shaders/ShaderPaths.h"
 #include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include "Editor/Editor.h"
@@ -584,11 +585,24 @@ void ChairLoader::RegisterMods()
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-		if (mod.child("enabled").text().as_bool() && mod.child("dllName")) {
-			CryLog("Found DLL mod: %s", modName.c_str());
-			m_pModDllManager->RegisterModFromXML(mod);
+		if (mod.child("enabled").text().as_bool()) {
+			if (mod.child("dllName"))
+			{
+				CryLog("Found DLL mod: %s", modName.c_str());
+				m_pModDllManager->RegisterModFromXML(mod);
+			}
+
+			fs::path modDirPath = fs::current_path() / "Mods" / fs::u8path(modName);
+			fs::path shadersPath = modDirPath / "Shaders";
+			if (fs::exists(shadersPath))
+			{
+				CryLog("Found Shader mod: %s", modName.c_str());
+				RenderDll::Shaders::ShaderPaths::Get().AddShadersDir(shadersPath);
+			}
 		}
 	}
+
+	RenderDll::Shaders::ShaderPaths::Get().RefreshFileList();
 }
 
 void ChairLoader::loadConfigParameters() {

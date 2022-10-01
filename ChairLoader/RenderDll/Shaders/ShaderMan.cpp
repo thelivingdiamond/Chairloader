@@ -568,7 +568,8 @@ CShader* CShaderMan::mfForName(const char* nameSh, int flags, const CShaderResou
 		if (pShGen)
 		{
 			efGen = mfNewShader(nameRes);
-			efGen->SetRefCounter(0);      // Hack: to avoid leaks in shader-gen's
+			// This hack causes crashes in Prey
+			//efGen->SetRefCounter(0);      // Hack: to avoid leaks in shader-gen's
 			efGen->m_NameShader = nameRes;
 			efGen->m_ShaderGenParams = pShGen;
 		}

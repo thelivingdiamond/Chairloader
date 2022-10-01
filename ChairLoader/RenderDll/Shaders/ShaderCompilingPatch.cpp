@@ -2,7 +2,9 @@
 #include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Prey/RenderDll/Common/ResFile.h>
+#include <Prey/RenderDll/Common/Shaders/CShaderBin.h>
 #include <mem.h>
+#include "ShaderPaths.h"
 
 CD3D9Renderer* gcpRendD3D = nullptr;
 
@@ -60,6 +62,7 @@ private:
 auto g_CHWShader_D3D_mfActivate_Hook = CHWShader_D3D::FmfActivate.MakeHook();
 auto g_CShaderMan_mfInit_Hook = CShaderMan::FmfInit.MakeHook();
 auto g_CShaderMan_mfReleaseSystemShaders_Hook = CShaderMan::FmfReleaseSystemShaders.MakeHook();
+auto g_CShaderMan_mfReloadAllShaders_Hook = CShaderMan::FmfReloadAllShaders.MakeHook();
 
 bool CHWShader_D3D_mfActivate_Hook(CHWShader_D3D* _this, CShader* pSH, uint32 nFlags, FXShaderToken* Table, TArray<uint32>* pSHData, bool bCompressedOnly)
 {
@@ -87,8 +90,12 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 
 void CShaderMan_mfReleaseSystemShaders_Hook(CShaderMan* _this)
 {
-	if (!_this->m_bInitialized)
+	static bool onlyRunOnceInmfInit = false;
+
+	if (!onlyRunOnceInmfInit)
 	{
+		onlyRunOnceInmfInit = true;
+
 		if (*CRenderer::CV_r_shadersAllowCompilation)
 		{
 			_this->mfInitShadersCache(false, NULL, NULL, 0);
@@ -110,6 +117,13 @@ void CShaderMan_mfReleaseSystemShaders_Hook(CShaderMan* _this)
 	g_CShaderMan_mfReleaseSystemShaders_Hook.InvokeOrig(_this);
 }
 
+bool CShaderMan_mfReloadAllShaders_Hook(CShaderMan* const _this, int nFlags, unsigned nFlagsHW)
+{
+	// Refresh file list on shader reload
+	ShaderPaths::Get().RefreshFileList();
+	return g_CShaderMan_mfReloadAllShaders_Hook.InvokeOrig(_this, nFlags, nFlagsHW);
+}
+
 //-----------------------------------------------------------------------------------
 
 void InitHooks()
@@ -117,6 +131,7 @@ void InitHooks()
 	g_CHWShader_D3D_mfActivate_Hook.SetHookFunc(&CHWShader_D3D_mfActivate_Hook);
 	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
 	g_CShaderMan_mfReleaseSystemShaders_Hook.SetHookFunc(&CShaderMan_mfReleaseSystemShaders_Hook);
+	g_CShaderMan_mfReloadAllShaders_Hook.SetHookFunc(&CShaderMan_mfReloadAllShaders_Hook);
 
 #define INIT_OVERRIDE(className, funcName) PreyFuncOverride<&className::F##funcName, &className::funcName>::Init()
 
@@ -145,8 +160,11 @@ void InitHooks()
 	INIT_OVERRIDE(CShaderMan, mfInitLookups);
 
 	INIT_OVERRIDE(CResFile, mfGetEntry);
+	INIT_OVERRIDE(CShaderManBin, GetBinShader);
 
 #undef INIT_OVERRIDE
+
+	ShaderPaths::Get().Init();
 }
 
 }
