@@ -2,6 +2,7 @@
 #include "MainConfig.h"
 #include "GameModule.h"
 
+struct IGameStartup;
 class LoadGameStage;
 class TestStage;
 class DevConsoleDialog;
@@ -12,6 +13,7 @@ public:
 	static ModToolKit* Get() { return static_cast<ModToolKit*>(Application::Get()); }
 
 	ModToolKit();
+	~ModToolKit();
 
 	MainConfig GetConfig() { return m_Config; }
 
@@ -24,6 +26,7 @@ private:
 
 	MainConfig m_Config;
 	GameModule m_GameModule;
+	IGameStartup* m_pGameStartup = nullptr;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;

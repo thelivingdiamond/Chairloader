@@ -1,5 +1,6 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/System.h>
+#include <Prey/GameDll/GameStartup.h>
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <ModLoader/PathUtils.h>
@@ -11,6 +12,7 @@
 
 static auto Prey_CreateSystemInterface = PreyFunction<ISystem* (const SSystemInitParams& startupParams)>(0xDA2010);
 static auto CSystem_CreateSystemVars = PreyFunction<void(CSystem* const _this)>(0xDCF790);
+static auto CreateGameStartup = PreyFunction<CGameStartup*()>(0x16FD6B0);
 static FunctionHook<void(CSystem* const _this)> g_CSystem_CreateSystemVars_Hook;
 
 void CSystem_CreateSystemVars_Hook(CSystem* const _this)
@@ -61,7 +63,7 @@ void LoadGameStage::Start()
 	try
 	{
 		LoadDLL();
-		InitSystem();
+		InitGame();
 		SetStageFinished();
 	}
 	catch (const std::exception& e)
@@ -134,31 +136,67 @@ void LoadGameStage::LoadDLL()
 	// CSystem::Update: nop pRenderer->GetPixelAspectRatio
 	mem::Nop(dllBase + 0xDC8E4A, 0x40);
 
+	// CSystem::Init: Disable CSharedFlashPlayerResources::Init
+	mem::Nop(dllBase + 0xDD3D63, 0x1A);
+
+	// CSystem::Init: Init ScriptSystem without renderer
+	mem::Nop(dllBase + 0xDD4689, 0x1A);
+
+	// CGameStartup::Init: Remove SetWindowLongPtrA call
+	mem::Nop(dllBase + 0x1739C32, 0x1A);
+
+	// OnHFOVChanged: Nop the whole thing until ret
+	mem::Nop(dllBase + 0x16F8CB0, 0x11D);
+
+	// CGame::Init: Skip CUIManager
+	mem::Nop(dllBase + 0x16D0B2A, 0x14);
+	mem::Nop(dllBase + 0x16D0B4B, 0x05);
+
+	// CGame::Init: Skip ArkGame::Init
+	mem::Nop(dllBase + 0x16D0E39, 0x05);
+
+	// CGame::InitGameType: Remove pHardwareMouse calls
+	mem::Nop(dllBase + 0x16D1A0C, 0x16D1A12 - 0x16D1A0C);
+	mem::Nop(dllBase + 0x16D1CB7, 0x16D1CBD - 0x16D1CB7);
+
+	// CGame::InitGameType: Remove p3DEngine call
+	uint8_t opcode_ret = 0xC3;
+	mem::Nop(dllBase + 0x16D1D47, 0x16D1D4A - 0x16D1D47);
+	mem::Patch(dllBase + 0x16D1D54, &opcode_ret, 1);
+
+	// CCryAction::CompleteInit: Don't do anything
+	mem::Patch(dllBase + 0x5BDCE0, &opcode_ret, 1);
+
+	// ArkGame::CompleteInit: Don't do anything
+	mem::Patch(dllBase + 0x116CE30, &opcode_ret, 1);
+
 	DetourTransactionBegin();
 	g_CSystem_CreateSystemVars_Hook.InstallHook(CSystem_CreateSystemVars.Get(), &CSystem_CreateSystemVars_Hook);
 	DetourTransactionCommit();
 }
 
-void LoadGameStage::InitSystem()
+void LoadGameStage::InitGame()
 {
-	UpdateProgressText("Initializing CrySystem...");
+	UpdateProgressText("Starting the game engine...");
 	ModToolKit::Get()->RefreshUI();
 
 	SSystemInitParams startupParams;
 	startupParams.hInstance = GetModuleHandle(0);
 	startupParams.pUserCallback = m_pSystemUserCallback;
-	startupParams.sLogFileName = "CrySystem.log";
+	startupParams.sLogFileName = "CryEngine.log";
 	cry_strcpy(startupParams.szSystemCmdLine, GetCommandLineA());
 	cry_strcpy(startupParams.szLanguageName, "english");
-	startupParams.bSkipFont = true;
 	startupParams.bSkipRenderer = true;
-	startupParams.bSkipNetwork = true;
-	startupParams.bSkipWebsocketServer = true;
 	startupParams.bSkipInput = true;
-	startupParams.bShaderCacheGen = true; // Skips some UI code
+	//startupParams.bEditor = true; // Not sure does anything useful
 
-	m_pMod->pSystem = Prey_CreateSystemInterface(startupParams);
+	CGameStartup* pStartup = CreateGameStartup();
+	if (!pStartup->Init(startupParams))
+	{
+		pStartup->Shutdown();
+		throw std::runtime_error("Engine failed to initialize");
+	}
 
-	if (!m_pMod->pSystem)
-		throw std::runtime_error("CrySystem failed to initialize");
+	m_pGameStartup = pStartup;
+	::ShowCursor(1); // CGameStartup::Init calls with 0
 }
