@@ -178,6 +178,8 @@ void LoadGameStage::LoadDLL()
 
 	// ArkGame::CompleteInit: Don't do anything
 	mem::Patch(dllBase + 0x116CE30, &opcode_ret, 1);
+    // CLevelSystem::OnLoadingProgress: Don't do anything
+    mem::Patch(dllBase + 0x0356f30, &opcode_ret, 1);
 
 	DetourTransactionBegin();
 	g_CSystem_CreateSystemVars_Hook.InstallHook(CSystem_CreateSystemVars.Get(), &CSystem_CreateSystemVars_Hook);

@@ -20,6 +20,7 @@ static const TFlowNodeTypeId InvalidFlowNodeTypeId = 0; //!< Must be 0 - FlowSys
 static const TFlowGraphId InvalidFlowGraphId = ~TFlowGraphId(0);
 static const TFlowSystemContainerId InvalidContainerId = ~TFlowSystemContainerId(0);
 
+
 struct SInputPortConfig;
 struct SOutputPortConfig;
 
@@ -47,7 +48,7 @@ struct IFlowNode;
 TYPEDEF_AUTOPTR(IFlowNode);
 typedef IFlowNode_AutoPtr IFlowNodePtr;
 
-
+class TFlowInputData;
 struct IFlowNode
 {
     struct SActivationInfo // Id=8000F62 Size=48
@@ -230,6 +231,35 @@ public:
     static inline auto FSetValueWithConversion = PreyFunction<bool(TFlowInputData *const _this, TFlowInputData const &value)>(0x415180);
     static inline auto FSerialize = PreyFunction<void(TFlowInputData *const _this, TSerialize ser)>(0x2AF660);
 };
+
+// Header: MadeUp
+// _unknown/SInputPortConfig.h
+struct SInputPortConfig // Id=8001C40 Size=64
+{
+    const char *name;
+    const char *humanName;
+    const char *description;
+    const char *sUIConfig;
+    TFlowInputData defaultData;
+
+#if 0
+    void GetMemoryUsage(ICrySizer *arg0) const;
+#endif
+};
+
+
+struct SOutputPortConfig // Id=8001C41 Size=32
+{
+    const char *name;
+    const char *humanName;
+    const char *description;
+    int type;
+
+#if 0
+    void GetMemoryUsage(ICrySizer *arg0) const;
+#endif
+};
+
 
 // Header: Exact
 // CryEngine/crycommon/iflowsystem.h
