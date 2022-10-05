@@ -164,11 +164,16 @@ void LoadGameStage::LoadDLL()
 	mem::Nop(dllBase + 0x16D1D47, 0x16D1D4A - 0x16D1D47);
 	mem::Patch(dllBase + 0x16D1D54, &opcode_ret, 1);
 
-	// CCryAction::CompleteInit: Don't do anything
-	mem::Patch(dllBase + 0x5BDCE0, &opcode_ret, 1);
-
 	// ArkGame::CompleteInit: Don't do anything
 	mem::Patch(dllBase + 0x116CE30, &opcode_ret, 1);
+
+	// CLevelSystem::OnLoadingProgress Remove p3DEngine call
+	mem::Nop(dllBase + 0x356F49, 0x356F52 - 0x356F49);
+
+	// CCryAction::CompleteInit
+	mem::Nop(dllBase + 0x5BDEF7, 0x5BDF0B - 0x5BDEF7); // Remove CMaterialEffects
+	mem::Nop(dllBase + 0x5BE020, 0x5BE039 - 0x5BE020); // Remove p3DEngine->GetMaterialManager
+	mem::Nop(dllBase + 0x5BE07C, 0x5BE07E - 0x5BE07C); // Skip a bunch of code
 
 	DetourTransactionBegin();
 	g_CSystem_CreateSystemVars_Hook.InstallHook(CSystem_CreateSystemVars.Get(), &CSystem_CreateSystemVars_Hook);
