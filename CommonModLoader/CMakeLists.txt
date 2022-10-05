@@ -44,7 +44,7 @@ set(SOURCE_FILES
 	NodeEditor/Source/imgui_node_editor_internal.inl
 	NodeEditor/Source/imgui_node_editor.cpp
 	NodeEditor/Support/imgui_node_editor.natvis
-)
+		)
 
 add_library(CommonModLoader STATIC
 	${SOURCE_FILES}

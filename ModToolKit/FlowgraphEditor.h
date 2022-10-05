@@ -10,6 +10,7 @@ struct Node;
 #include "imgui_canvas.h"
 #include <pugixml.hpp>
 #include <Prey/CryFlowGraph/IFlowSystem.h>
+#include <filesystem>
 namespace ed = ax::NodeEditor;
 
 
@@ -22,17 +23,17 @@ static int GetUniqueID() {
     return uniqueID++;
 }
 
-enum class PinKind
-{
-    Output,
-    Input
-};
+//enum class PinKind
+//{
+//    Output,
+//    Input
+//};
 
 struct PrototypePin{
     std::string Name,
                 HumanName,
                 Description;
-    PinKind     Kind = PinKind::Input;
+    ed::PinKind     Kind = ed::PinKind::Input;
     // input pins only
     std::string sUIConfig;
     // inputData struct thing
@@ -41,16 +42,17 @@ struct PrototypePin{
     int         Type = 0;
     PrototypePin() = default;
 };
+struct Node;
 
 struct Pin: public PrototypePin
 {
     ed::PinId   ID = 0;
-    ::Node*     Node = nullptr;
+    Node*     Parent_Node = nullptr;
 
 
     // constructor from prototypePin
     Pin() = default;
-    Pin(PrototypePin pin, ::Node* node)
+    Pin(PrototypePin pin, Node* node)
     {
         Name = pin.Name;
         HumanName = pin.HumanName;
@@ -59,9 +61,10 @@ struct Pin: public PrototypePin
         sUIConfig = pin.sUIConfig;
         Type = pin.Type;
         ID = GetUniqueID();
-        Node = node;
+        Parent_Node = node;
     }
-
+    // an operator that returns true if the id is not zero
+    operator bool() const { return ID.Get() != 0; }
 };
 
 struct PrototypeNode{
@@ -69,6 +72,16 @@ struct PrototypeNode{
     std::vector<PrototypePin> ProtoInputs;
     std::vector<PrototypePin> ProtoOutputs;
     NodeClass Class;
+    // == operator based on Class
+    bool operator==(const PrototypeNode& other) const
+    {
+        return Class == other.Class;
+    }
+    // == operator based on std::string
+    bool operator==(const std::string& other) const
+    {
+        return Class == other;
+    }
 };
 
 struct Node : public PrototypeNode
@@ -83,24 +96,109 @@ struct Node : public PrototypeNode
     std::string State;
     std::string SavedState;
     bool PosSet = false;
+    float outputWidestText = 0.0f;
+    float inputWidestText = 0.0f;
 
+    Node() = default;
     // add a constructor to intialize from a PrototypeNode
     Node( std::string name, PrototypeNode &proto, ImVec2 pos)
             : Name(name), Pos(pos) {
         ID = GetUniqueID();
-        for(auto &pin : proto.ProtoInputs) {
-            Pin newPin(pin, this);
-            Inputs.emplace_back(newPin);
-        }
-        for(auto &pin : proto.ProtoOutputs) {
-            Pin newPin(pin, this);
-            Outputs.emplace_back(newPin);
-        }
 //        Inputs = proto.ProtoInputs;
 //        Outputs = proto.ProtoOutputs;
+        ProtoInputs = proto.ProtoInputs;
+        ProtoOutputs = proto.ProtoOutputs;
         //TODO: initialize inputs and outputs from proto
         Class = proto.Class;
         Description = proto.Description;
+    }
+
+    Node( std::string name, PrototypeNode &proto, ImVec2 pos, ed::NodeId id)
+            : Name(name), Pos(pos) {
+        ID = id;
+//        Inputs = proto.ProtoInputs;
+//        Outputs = proto.ProtoOutputs;
+        ProtoInputs = proto.ProtoInputs;
+        ProtoOutputs = proto.ProtoOutputs;
+        //TODO: initialize inputs and outputs from proto
+        Class = proto.Class;
+        Description = proto.Description;
+    }
+    //! OPERATORS
+    // == operator
+    bool operator==(const Node& other) const
+    {
+        return ID == other.ID;
+    }
+    // != operator
+    bool operator!=(const Node& other) const
+    {
+        return ID != other.ID;
+    }
+    // < operator
+    bool operator<(const Node& other) const
+    {
+        return  ID.Get() < other.ID.Get();
+    }
+    // > operator
+    bool operator>(const Node& other) const
+    {
+        return ID.Get() > other.ID.Get();
+    }
+    // <= operator
+    bool operator<=(const Node& other) const
+    {
+        return ID.Get() <= other.ID.Get();
+    }
+    // >= operator
+    bool operator>=(const Node& other) const
+    {
+        return ID.Get() >= other.ID.Get();
+    }
+    // operator that returns true if the id is not zero
+    operator bool() const { return ID.Get() != 0; }
+
+    void initializePins(){
+        Inputs.clear();
+        Outputs.clear();
+        for(auto &pin : ProtoInputs) {
+            Pin newPin(pin, this);
+            auto textSize = ImGui::CalcTextSize((newPin.Name + " ->").c_str());
+            if(textSize.x > inputWidestText)
+                inputWidestText = textSize.x;
+            Inputs.emplace_back(newPin);
+        }
+        for(auto &pin : ProtoOutputs) {
+            Pin newPin(pin, this);
+            auto textSize = ImGui::CalcTextSize((newPin.Name + " ->").c_str());
+            if(textSize.x > outputWidestText)
+                outputWidestText = textSize.x;
+            Outputs.emplace_back(newPin);
+        }
+    }
+    Pin& getPin(ed::PinId id){
+        static Pin nullPin;
+        for(auto &pin : Inputs){
+            if(pin.ID == id)
+                return pin;
+        }
+        for(auto &pin : Outputs) {
+            if (pin.ID == id)
+                return pin;
+        }
+        return nullPin;
+    }
+    Pin& getPin(std::string name){
+        static Pin nullPin;
+        for(auto &pin : Inputs){
+            if(pin.Name == name)
+                return pin;
+        }
+        for(auto &pin : Outputs){
+            if(pin.Name == name)
+                return pin;
+        }
+        return nullPin;
     }
 };
 
@@ -131,6 +229,13 @@ private:
     void drawNode(Node& node);
     void drawEdge(Edge& edge);
     void handleEdges();
+
+    Node& getNode(ed::NodeId id);
+    Pin& getPin(ed::PinId id);
+    Edge& getEdge(ed::LinkId id);
+
+    // XML Load and save
+    void loadXMLFlowgraph(fs::path path);
 };
 
 

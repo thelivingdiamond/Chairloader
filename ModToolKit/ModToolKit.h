@@ -20,7 +20,7 @@ public:
 
 protected:
 	void Update() override;
-	void ShowUI() override;
+	void ShowUI(bool* bOpen) override;
 
 private:
 	class SystemUserCallback;

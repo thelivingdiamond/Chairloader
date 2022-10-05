@@ -81,7 +81,7 @@ void LoadGameStage::Start()
 	}
 }
 
-void LoadGameStage::ShowUI()
+void LoadGameStage::ShowUI(bool * bOpen)
 {
 	if (m_ErrorText.empty())
 	{

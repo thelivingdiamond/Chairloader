@@ -21,7 +21,7 @@ public:
 	virtual void Update();
 
 	//! Shows the stage's ImGui IU. Called after Update().
-	virtual void ShowUI();
+	virtual void ShowUI(bool *bOpen);
 
 private:
 	bool m_bIsStarted = false;

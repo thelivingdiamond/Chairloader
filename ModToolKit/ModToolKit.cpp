@@ -88,7 +88,7 @@ public:
 
 	}
 
-	void ShowUI() override
+	void ShowUI(bool * bOpen) override
 	{
 		if (ImGui::Begin("Test"))
 		{
@@ -128,13 +128,12 @@ void ModToolKit::Update()
 	}
 }
 
-void ModToolKit::ShowUI()
+void ModToolKit::ShowUI(bool* bOpen)
 {
 	if (m_pDevConsole)
-		m_pDevConsole->Show(nullptr);
+		m_pDevConsole->Show(bOpen);
     if(m_pFlowgraphEditor)
-        m_pFlowgraphEditor->Draw(nullptr);
-
+        m_pFlowgraphEditor->Draw(bOpen);
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

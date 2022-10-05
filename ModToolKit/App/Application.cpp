@@ -35,8 +35,8 @@ int Application::Run()
 		Update();
 //        assert(false);
 		m_pCurrentStage->UpdateInternal();
-		ShowUI();
-		m_pCurrentStage->ShowUI();
+		ShowUI(&m_bIsRunning);
+		m_pCurrentStage->ShowUI(&m_bIsRunning);
 
 		m_pImGui->EndFrame();
 	}
@@ -52,8 +52,8 @@ void Application::SetStage(AppStage* stage)
 
 void Application::RefreshUI()
 {
-	ShowUI();
-	m_pCurrentStage->ShowUI();
+	ShowUI(&m_bIsRunning);
+	m_pCurrentStage->ShowUI(&m_bIsRunning);
 
 	m_pImGui->EndFrame();
 	m_pImGui->BeginFrame();
@@ -63,6 +63,6 @@ void Application::Update()
 {
 }
 
-void Application::ShowUI()
+void Application::ShowUI(bool* bOpen)
 {
 }
