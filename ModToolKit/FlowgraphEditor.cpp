@@ -9,16 +9,10 @@
 #include <Prey/CryAction/flowsystem/flowsystem.h>
 #include "ImGui/imgui_stdlib.h"
 
-static ed::EditorContext* g_Context = nullptr;
 class CGameStartup;
 
 FlowgraphEditor::FlowgraphEditor() {
-    ed::Config config;
-    config.SettingsFile = "Simple.json";
-    config.CanvasSizeMode = ed::CanvasSizeMode::FitHorizontalView;
-    g_Context = ed::CreateEditor(&config);
-//    CAutoRegFlowNodeBase* nodePtr = *CAutoRegFlowNodeBase::m_pFirst.Get();
-    // create an instance of every node and place them in m_FlowNodes
+    ImNodes::CreateContext();
     auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
 
     for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
@@ -51,7 +45,7 @@ FlowgraphEditor::FlowgraphEditor() {
                     newPin.HumanName = inputPort->humanName;
                 if(inputPort->description != nullptr)
                     newPin.Description = inputPort->description;
-                newPin.Kind = ed::PinKind::Input;
+                newPin.Kind = PinKind::Input;
                 if(inputPort->sUIConfig != nullptr)
                     newPin.sUIConfig = inputPort->sUIConfig;
                 newNode.ProtoInputs.emplace_back(newPin);
@@ -69,7 +63,7 @@ FlowgraphEditor::FlowgraphEditor() {
                     newPin.HumanName = outputPort->humanName;
                 if(outputPort->description != nullptr)
                     newPin.Description = outputPort->description;
-                newPin.Kind = ed::PinKind::Output;
+                newPin.Kind = PinKind::Output;
                 newPin.Type = outputPort->type;
                 newNode.ProtoOutputs.emplace_back(newPin);
                 outputPort = &nodeConfig.pOutputPorts[++i];
@@ -157,32 +151,22 @@ void FlowgraphEditor::Draw(bool *bDraw) {
                 ImGui::Text("Node Count: %u", m_PrototypeNodes.size());
                 ImGui::EndTabItem();
             }
-            static Node node("Test Node", m_PrototypeNodes[20], ImVec2(200, 200));
-            static Node node2("Test Node2", m_PrototypeNodes[21], ImVec2(200, 200));
-            static bool nodesAdded;
-            if(!nodesAdded) {
-                node.initializePins();
-                node2.initializePins();
-                m_Nodes.emplace_back(node);
-                m_Nodes.emplace_back(node2);
-                nodesAdded = true;
-            }
             if(ImGui::BeginTabItem("Flow Graph")) {
                 if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0), true)) {
-                    ed::SetCurrentEditor(g_Context);
-                    ed::Begin("My Editor", ImVec2(0.0, 0.0f));
-                    ed::EnableShortcuts(true);
-                    // Start drawing nodes.
-                    for (auto &flowNode: m_Nodes) {
-                        drawNode(flowNode);
+                    static FlowGraph testGraph;
+                    p_CurrentFlowGraph = &testGraph;
+                    static Node node("Test Node", m_PrototypeNodes[20], ImVec2(200, 200));
+                    static Node node2("Test Node2", m_PrototypeNodes[21], ImVec2(200, 200));
+                    static bool nodesAdded;
+                    if(!nodesAdded) {
+                        node.initializePins();
+                        node2.initializePins();
+                        testGraph.m_Nodes.emplace_back(node);
+                        testGraph.m_Nodes.emplace_back(node2);
+                        nodesAdded = true;
                     }
-//                drawNode(node);
-                    for (auto &edge: m_Edges) {
-                        drawEdge(edge);
-                    }
-                    handleEdges();
-                    ed::End();
-                    ed::SetCurrentEditor(nullptr);
+                    testGraph.drawFlowGraph();
+
                 }
                 ImGui::EndChild();
                 ImGui::SameLine();
@@ -201,17 +185,17 @@ void FlowgraphEditor::Draw(bool *bDraw) {
                                 ImGui::TableNextRow();
                                 ImGui::TableNextColumn();
                                 if (ImGui::Selectable(ProtoNode.Class.c_str())) {
-//                                Node newNode();
-                                    m_Nodes.emplace_back(Node{ProtoNode.Class, ProtoNode, ImVec2(0, 0)});
-                                    m_Nodes.back().initializePins();
+                                    if(p_CurrentFlowGraph != nullptr){
+                                        p_CurrentFlowGraph->addNodeFromPrototype(ProtoNode);
+                                    }
                                 }
                             }
                         }
                         ImGui::EndTable();
                     }
                     if(ImGui::Button("Clear Nodes")){
-                        m_Nodes.clear();
-                        m_Edges.clear();
+//                        m_Nodes.clear();
+//                        m_Edges.clear();
                     }
 
                 }
@@ -254,223 +238,25 @@ void FlowgraphEditor::Update() {
 }
 
 void FlowgraphEditor::drawNode(Node& node) {
-    if (!node.PosSet) {
-        ed::SetNodePosition(node.ID, node.Pos);
-        node.PosSet = true;
-    }
-    ed::BeginNode(node.ID);
-    ImGui::Text("%s", node.Name.c_str());
-    ImGui::Text("class: %s", node.Class.c_str());
-    ImGui::NewLine();
-//    ed::SetNodePosition(node.ID, node.Pos);
-//    ImGui::BeginGroup();
-    if(ImGui::BeginTable("Node Pins", 2, ImGuiTableFlags_SizingFixedFit)) {
-        ImGui::TableSetupColumn("Input", ImGuiTableColumnFlags_WidthFixed, max(node.inputWidestText, 0.1f));
-        ImGui::TableSetupColumn("Output", ImGuiTableColumnFlags_WidthFixed, max(0.1f, max(node.outputWidestText, ed::GetNodeSize(node.ID).x - node.inputWidestText - 30.0f)));
-        size_t i = 0;
-        while(true){
-            if(i >= node.Inputs.size() && i >= node.Outputs.size()){
-                break;
-            }
-            if(i < node.Inputs.size()){
-                ImGui::TableNextRow();
-                ImGui::TableNextColumn();
-                ed::BeginPin(node.Inputs[i].ID, ed::PinKind::Input);
-                ed::PinPivotAlignment(ImVec2(0.0f, 0.5f));
-                ed::PinPivotSize(ImVec2(0, 0));
-                ImGui::Text("<- %s", node.Inputs[i].Name.c_str());
-                ed::EndPin();
-            } else {
-                ImGui::TableNextRow();
-                ImGui::TableNextColumn();
-                ImGui::Text(" ");
-            }
-            if(i < node.Outputs.size()){
-                ImGui::TableNextColumn();
-                ed::BeginPin(node.Outputs[i].ID, ed::PinKind::Output);
-                ed::PinPivotAlignment(ImVec2(1.0f, 0.5f));
-                ed::PinPivotSize(ImVec2(0, 0));
-                auto columnWidth = ImGui::GetColumnWidth();
-                auto textSize = ImGui::CalcTextSize((node.Outputs[i].Name + " ->").c_str());
-//                ImGui::Indent((node.outputWidestText - textSize.x));
-//                if(columnWidth - textSize.x > 0){
-//                    ImGui::Indent(columnWidth - textSize.x - 3.0f);
-//                }
-                ImGui::Text("%s ->", node.Outputs[i].Name.c_str());
-//                ImGui::Unindent();
-                ed::EndPin();
-            } else {
-                ImGui::TableNextColumn();
-                ImGui::Text(" ");
-            }
-            i++;
-        }
-//        for (auto &inputPin: node.Inputs) {
-//            ed::BeginPin(inputPin.ID, ed::PinKind::Input);
-//            ed::PinPivotAlignment(ImVec2(0.0f, 0.5f));
-//            ed::PinPivotSize(ImVec2(0, 0));
-//            ImGui::Text("-> %s", inputPin.Name.c_str());
-//            ed::EndPin();
-//        }
-        auto nodeSize = ed::GetNodeSize(node.ID);
-//        for (auto &outputPin: node.Outputs) {
-//            ed::BeginPin(outputPin.ID, ed::PinKind::Output);
-//            ed::PinPivotAlignment(ImVec2(1.0f, 0.5f));
-//            ed::PinPivotSize(ImVec2(0, 0));
-//            // right align text using the nodes outputWidestText and the nodes size and cursor position to right align to the edge
-//    //        auto textSize = ImGui::CalcTextSize((outputPin.Name).c_str());
-//    //        auto cursorPos = ImGui::GetCursorPos().x;
-//    //        auto nodePos = ed::GetNodePosition(node.ID).x;
-//    //        auto offset = cursorPos - nodePos;
-//    //        auto value1 = offset + node.outputWidestText;
-//    //        float cursorOffset = 0.0f;
-//    //        if (value1 + 30.0f < nodeSize.x ) {
-//    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-//    ////            ImGui::SetCursorPosX(ImGui::GetCursorPosX() + nodeSize.x - node.outputWidestText - 30.0f);
-//    //        } else {
-//    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-//    //        }
-//    //        ImGui::Indent((node.outputWidestText - textSize.x) + cursorOffset);
-//            ImGui::Text("%s ->", outputPin.Name.c_str());
-//            ImGui::Unindent();
-//            ImGui::PopStyleColor();
-//            ed::EndPin();
-//        }
-        ImGui::EndTable();
-    }
 
-//    ImGui::EndGroup();
-    ed::EndNode();
 }
 
 void FlowgraphEditor::drawEdge(Edge &edge) {
-    ed::Link(edge.ID, edge.pinOut, edge.pinIn);
+
 }
 
 void FlowgraphEditor::handleEdges() {
-    // Handle creation action, returns true if editor want to create new object (node or link)
-    if (ed::BeginCreate())
-    {
-        ed::PinId inputPinId, outputPinId;
-        if (ed::QueryNewLink(&inputPinId, &outputPinId))
-        {
-            // QueryNewLink returns true if editor want to create new link between pins.
-            //
-            // Link can be created only for two valid pins, it is up to you to
-            // validate if connection make sense. Editor is happy to make any.
-            //
-            // Link always goes from input to output. User may choose to drag
-            // link from output pin or input pin. This determine which pin ids
-            // are valid and which are not:
-            //   * input valid, output invalid - user started to drag new ling from input pin
-            //   * input invalid, output valid - user started to drag new ling from output pin
-            //   * input valid, output valid   - user dragged link over other pin, can be validated
 
-           if(inputPinId && outputPinId){
-               auto inputPin = getPin(inputPinId);
-               auto outputPin = getPin(outputPinId);
-                // ed::AcceptNewItem() return true when user release mouse button.
-               if ((inputPin.ID && outputPin.ID) &&
-                   (inputPin.Kind != outputPin.Kind) &&
-                   (inputPin.Parent_Node->ID != outputPin.Parent_Node->ID)) // both are valid, let's accept link
-               {
-                if (ed::AcceptNewItem()) {
-                        // Since we accepted new link, lets add one to our list of links.
-                        m_Edges.emplace_back(Edge{ed::LinkId(GetUniqueID()), outputPinId, inputPinId});
-//                    // Draw new link.
-//                    ed::Link(m_Links.back().Id, m_Links.back().InputId, m_Links.back().OutputId);
-                }
-               } else {
-                   ed::RejectNewItem(ImVec4(1, 0, 0, 1), 1.0f);
-//                   ImGui::OpenPopup("Error");
-//                   if(ImGui::BeginPopupContextItem("Error")) {
-//                       ImGui::Text("Invalid connection");
-//                       ImGui::EndPopup();
-//                   }
-               }
-                // You may choose to reject connection between these nodes
-                // by calling ed::RejectNewItem(). This will allow editor to give
-                // visual feedback by changing link thickness and color.
-            }
-        }
-    }
-    ed::EndCreate(); // Wraps up object creation action handling.
-
-
-    // Handle deletion action
-    if (ed::BeginDelete())
-    {
-        // There may be many links marked for deletion, let's loop over them.
-        ed::LinkId deletedLinkId;
-        while (ed::QueryDeletedLink(&deletedLinkId))
-        {
-            // If you agree that link can be deleted, accept deletion.
-            if (ed::AcceptDeletedItem())
-            {
-                // Then remove link from your data.
-                int i = 0;
-                for (auto& edge : m_Edges)
-                {
-                    if (edge.ID == deletedLinkId)
-                    {
-                        m_Edges.erase(m_Edges.begin() + i);
-                        break;
-                    }
-                    i++;
-                }
-            }
-
-            // You may reject link deletion by calling:
-            // ed::RejectDeletedItem();
-        }
-    }
-    ed::EndDelete(); // Wrap up deletion action
 
 }
 
-Node &FlowgraphEditor::getNode(ed::NodeId id) {
-    static Node emptyNode;
-    for(auto &node : m_Nodes){
-        if(node.ID == id){
-            return node;
-        }
-    }
-    return emptyNode;
-}
-
-Pin &FlowgraphEditor::getPin(ed::PinId id) {
-    static Pin emptyPin = {};
-    for(auto &node : m_Nodes){
-        for(auto &pin : node.Inputs){
-            if(pin.ID == id){
-                return pin;
-            }
-        }
-        for(auto &pin : node.Outputs){
-            if(pin.ID == id){
-                return pin;
-            }
-        }
-    }
-    return emptyPin;
-}
-
-Edge &FlowgraphEditor::getEdge(ed::LinkId id) {
-    static Edge emptyEdge = {};
-    for(auto &edge : m_Edges){
-        if(edge.ID == id){
-            return edge;
-        }
-    }
-    return emptyEdge;
-}
 
 void FlowgraphEditor::loadXMLFlowgraph(fs::path path) {
     if(!fs::exists(path)){
         return;
     }
-    m_Nodes.clear();
-    m_Edges.clear();
+//    m_Nodes.clear();
+//    m_Edges.clear();
     uniqueID = 1 << 16;
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(path.string().c_str());
@@ -483,7 +269,7 @@ void FlowgraphEditor::loadXMLFlowgraph(fs::path path) {
     }
     for(auto & node: FlowGraph.child("Nodes")){
         std::string nodeClass = node.attribute("Class").as_string();
-        ed::NodeId nodeID = node.attribute("Id").as_int();
+        uint64_t nodeID = node.attribute("Id").as_int();
         std::string position = node.attribute("pos").as_string();
         // position is in format x,y,z
         // we only want x and y
@@ -501,31 +287,208 @@ void FlowgraphEditor::loadXMLFlowgraph(fs::path path) {
         auto &proto = *prototype;
         auto xSubStr = position.substr(0, position.find(","));
         auto ySubStr = position.substr(position.find(",")+1, position.find(","));
-        nodePos.x = std::stof(xSubStr) - 1000.0f;
+        nodePos.x = std::stof(xSubStr);
         nodePos.y = std::stof(ySubStr);
-        if(nodeID.Get() > uniqueID){
-            uniqueID = nodeID.Get();
+        if(nodeID > uniqueID){
+            uniqueID = nodeID;
         }
-        m_Nodes.emplace_back(Node(nodeClass, proto, nodePos, nodeID));
-        ed::SetNodePosition(nodeID, nodePos);
-        m_Nodes.back().initializePins();
+//        m_Nodes.emplace_back(Node(nodeClass, proto, nodePos, nodeID));
+//        m_Nodes.back().initializePins();
         //TODO: parse inputs subnode
     }
     for(auto & edge: FlowGraph.child("Edges")){
-        ed::LinkId edgeID = GetUniqueID();
-        ed::NodeId nodeInID = edge.attribute("nodeIn").as_int();
-        ed::NodeId nodeOutID = edge.attribute("nodeOut").as_int();
+         uint64_t edgeID = GetUniqueID();
+         uint64_t nodeInID = edge.attribute("nodeIn").as_int();
+         uint64_t nodeOutID = edge.attribute("nodeOut").as_int();
         std::string portIn = edge.attribute("portIn").as_string();
         std::string portOut = edge.attribute("portOut").as_string();
         bool enabled = edge.attribute("enabled").as_bool();
-        auto nodeIn = getNode(nodeInID);
-        auto nodeOut = getNode(nodeOutID);
-        if(nodeIn && nodeOut){
-            auto inputPin = nodeIn.getPin(portIn);
-            auto outputPin = nodeOut.getPin(portOut);
-            if(inputPin && outputPin){
-                m_Edges.emplace_back(Edge(edgeID, outputPin.ID, inputPin.ID));
+//        auto nodeIn = getNode(nodeInID);
+//        auto nodeOut = getNode(nodeOutID);
+//        if(nodeIn && nodeOut){
+//            auto inputPin = nodeIn.getPin(portIn);
+//            auto outputPin = nodeOut.getPin(portOut);
+//            if(inputPin && outputPin){
+////                m_Edges.emplace_back(Edge(edgeID, outputPin.ID, inputPin.ID));
+//            }
+//        }
+    }
+}
+
+FlowgraphEditor::~FlowgraphEditor() {
+    ImNodes::DestroyContext();
+
+}
+
+Node &FlowGraph::getNode(uint64_t id) {
+    static Node emptyNode;
+    for(auto &node : m_Nodes){
+        if(node.ID == id){
+            return node;
+        }
+    }
+    return emptyNode;
+}
+
+Pin &FlowGraph::getPin(uint64_t id) {
+    static Pin emptyPin = {};
+    for(auto &node : m_Nodes){
+        for(auto &pin : node.Inputs){
+            if(pin.ID == id){
+                return pin;
+            }
+        }
+        for(auto &pin : node.Outputs){
+            if(pin.ID == id){
+                return pin;
             }
         }
     }
+    return emptyPin;
+}
+
+Edge &FlowGraph::getEdge(uint64_t id) {
+    static Edge emptyEdge = {};
+    for(auto &edge : m_Edges){
+        if(edge.ID == id){
+            return edge;
+        }
+    }
+    return emptyEdge;
+}
+
+void FlowGraph::drawFlowGraph() {
+    ImNodes::BeginNodeEditor();
+    ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
+    for(auto &node : m_Nodes){
+        drawNode(node);
+    }
+    for(auto &edge : m_Edges){
+        drawEdge(edge);
+    }
+    ImNodes::EndNodeEditor();
+    //! handle edge creation
+    {
+        int start_attr, end_attr;
+        if (ImNodes::IsLinkCreated(&start_attr, &end_attr)) {
+            uint64_t edgeID = GetUniqueID();
+            m_Edges.emplace_back(Edge(edgeID, start_attr, end_attr));
+        }
+    }
+    //! handle edge deletion
+    {
+        int link_id;
+        if (ImNodes::IsLinkDestroyed(&link_id)) {
+            for (auto it = m_Edges.begin(); it != m_Edges.end(); it++) {
+                if (it->ID == link_id) {
+                    m_Edges.erase(it);
+                    break;
+                }
+            }
+        }
+    }
+    //! handle edge selection and deletion
+    {
+        const int num_selected = ImNodes::NumSelectedLinks();
+        if (num_selected > 0 && ImGui::IsKeyReleased(ImGuiKey_X)) {
+            static std::vector<int> selected_links;
+            selected_links.resize(static_cast<size_t>(num_selected));
+            ImNodes::GetSelectedLinks(selected_links.data());
+            while (!selected_links.empty()) {
+                int link_id = selected_links.back();
+                for (auto it = m_Edges.begin(); it != m_Edges.end(); it++) {
+                    if (it->ID == link_id) {
+                        m_Edges.erase(it);
+                        break;
+                    }
+                }
+                selected_links.pop_back();
+            }
+        }
+    }
+    //! handle edge hovering and deletion
+    {
+        int link_id;
+        if (ImNodes::IsLinkHovered(&link_id)) {
+            if (ImGui::IsKeyPressed(ImGuiKey_X)) {
+                for (auto it = m_Edges.begin(); it != m_Edges.end(); it++) {
+                    if (it->ID == link_id) {
+                        m_Edges.erase(it);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    //! handle edge tooltips
+    {
+        int node_id;
+        if(ImNodes::IsLinkHovered(&node_id)){
+            ImGui::BeginTooltip();
+            ImGui::Text("Edge ID: %d", node_id);
+            ImGui::Text("X to delete");
+            ImGui::EndTooltip();
+        }
+    }
+
+    //! handle node deletion
+    {
+        const int num_selected = ImNodes::NumSelectedNodes();
+        if (num_selected > 0 && ImGui::IsKeyReleased(ImGuiKey_X)) {
+            static std::vector<int> selected_nodes;
+            selected_nodes.resize(static_cast<size_t>(num_selected));
+            ImNodes::GetSelectedNodes(selected_nodes.data());
+            while (!selected_nodes.empty()) {
+                int node_id = selected_nodes.back();
+                for (auto it = m_Nodes.begin(); it != m_Nodes.end(); it++) {
+                    if (it->ID == node_id) {
+                        m_Nodes.erase(it);
+                        break;
+                    }
+                }
+                selected_nodes.pop_back();
+            }
+        }
+    }
+}
+
+
+void FlowGraph::drawFlowGraphTab() {
+   if(ImGui::BeginTabItem(name.c_str())){
+       drawFlowGraph();
+       ImGui::EndTabItem();
+   }
+}
+
+void FlowGraph::drawNode(Node& node){
+    ImNodes::BeginNode(node.ID);
+    ImNodes::BeginNodeTitleBar();
+    ImGui::Text("%s", node.Class.c_str());
+    ImNodes::EndNodeTitleBar();
+    for(auto &input : node.Inputs){
+        ImNodes::BeginInputAttribute(input.ID);
+        ImGui::Text("%s", input.Name.c_str());
+        ImNodes::EndInputAttribute();
+    }
+    for(auto &output : node.Outputs){
+        ImNodes::BeginOutputAttribute(output.ID);
+        ImGui::Text("%s", output.Name.c_str());
+        ImNodes::EndOutputAttribute();
+    }
+    ImNodes::EndNode();
+}
+void FlowGraph::drawEdge(Edge& edge){
+    ImNodes::Link(edge.ID, edge.pinOut, edge.pinIn);
+}
+
+void FlowGraph::addNodeFromPrototype(PrototypeNode& proto, ImVec2 pos) {
+    Node newNode (proto.Class, proto, pos);
+    m_Nodes.emplace_back(newNode);
+    m_Nodes.back().initializePins();
+}
+
+void FlowGraph::addNodeFromPrototype(PrototypeNode &proto, uint64_t id, ImVec2 pos) {
+    Node newNode (proto.Class, proto, pos, id);
+    m_Nodes.emplace_back(newNode);
+    m_Nodes.back().initializePins();
 }

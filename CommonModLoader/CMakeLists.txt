@@ -29,21 +29,10 @@ set(SOURCE_FILES
 	ModLoader/PathUtils.cpp
 	ModLoader/PathUtils.h
 
-	#ImGui Node Editor
-	NodeEditor/Include/imgui_node_editor.h
-	NodeEditor/Source/crude_json.cpp
-	NodeEditor/Source/crude_json.h
-	NodeEditor/Source/imgui_bezier_math.h
-	NodeEditor/Source/imgui_bezier_math.inl
-	NodeEditor/Source/imgui_canvas.cpp
-	NodeEditor/Source/imgui_canvas.h
-	NodeEditor/Source/imgui_extra_math.h
-	NodeEditor/Source/imgui_extra_math.inl
-	NodeEditor/Source/imgui_node_editor_api.cpp
-	NodeEditor/Source/imgui_node_editor_internal.h
-	NodeEditor/Source/imgui_node_editor_internal.inl
-	NodeEditor/Source/imgui_node_editor.cpp
-	NodeEditor/Support/imgui_node_editor.natvis
+	#imnodes
+	ImNodes/imnodes.h
+	ImNodes/imnodes.cpp
+	ImNodes/imnodes_internal.h
 		)
 
 add_library(CommonModLoader STATIC
@@ -56,8 +45,6 @@ add_library(CommonModLoader STATIC
 target_include_directories(CommonModLoader PUBLIC
 	.
 	../Common/pugixml
-		NodeEditor/Include
-		NodeEditor/Source
 		ImGui/
 )
 
