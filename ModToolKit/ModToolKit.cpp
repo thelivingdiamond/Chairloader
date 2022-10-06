@@ -18,11 +18,15 @@ public:
 
 	void ShowUI(bool * bOpen) override
 	{
-		if (ImGui::Begin("Test"))
+		bool bIsOpen = true;
+		if (ImGui::Begin("Test", &bIsOpen))
 		{
 			ImGui::Text("Test");
 		}
 		ImGui::End();
+
+		if (!bIsOpen)
+			SetStageFinished();
 	}
 };
 
@@ -50,6 +54,10 @@ void ModToolKit::Update()
 			m_pDevConsole = std::make_unique<DevConsoleDialog>();
             m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
 			m_pTestStage = std::make_unique<TestStage>();
+		}
+		else if (m_pTestStage)
+		{
+			QuitApp();
 		}
 	}
 }
