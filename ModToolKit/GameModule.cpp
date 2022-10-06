@@ -244,4 +244,20 @@ void GameModule::InitGame(const ProgressCallback& progressCallback)
 
 void GameModule::Shutdown()
 {
+	if (pGameStartup)
+	{
+		pGameStartup->Shutdown();
+		pGameStartup = nullptr;
+		gEnv = nullptr;
+	}
+
+	if (hModule)
+	{
+		DetourTransactionBegin();
+		g_CSystem_CreateSystemVars_Hook.RemoveHook();
+		DetourTransactionCommit();
+
+		FreeLibrary((HMODULE)hModule);
+		hModule = nullptr;
+	}
 }

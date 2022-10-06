@@ -17,6 +17,9 @@ public:
 	//! @returns exit code
 	int Run();
 
+	//! Requests the app to shut down.
+	void QuitApp();
+
 	//! Sets the current app stage.
 	void SetStage(AppStage* stage);
 	AppStage* GetStage() { return m_pCurrentStage; }

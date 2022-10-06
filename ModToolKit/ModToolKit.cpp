@@ -18,11 +18,15 @@ public:
 
 	void ShowUI() override
 	{
-		if (ImGui::Begin("Test"))
+		bool bIsOpen = true;
+		if (ImGui::Begin("Test", &bIsOpen))
 		{
 			ImGui::Text("Test");
 		}
 		ImGui::End();
+
+		if (!bIsOpen)
+			SetStageFinished();
 	}
 };
 
@@ -49,6 +53,10 @@ void ModToolKit::Update()
 			m_pLoadGameStage.reset();
 			m_pDevConsole = std::make_unique<DevConsoleDialog>();
 			m_pTestStage = std::make_unique<TestStage>();
+		}
+		else if (m_pTestStage)
+		{
+			QuitApp();
 		}
 	}
 }

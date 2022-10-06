@@ -44,6 +44,11 @@ int Application::Run()
 	return 0;
 }
 
+void Application::QuitApp()
+{
+	m_bIsRunning = false;
+}
+
 void Application::SetStage(AppStage* stage)
 {
 	CRY_ASSERT_MESSAGE(!stage || !m_pCurrentStage, "Call SetStage(nullptr) first");
