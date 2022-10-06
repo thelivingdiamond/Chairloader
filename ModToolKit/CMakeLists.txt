@@ -8,6 +8,7 @@ set(SOURCE_FILES
 	App/AppStage.cpp
 	App/AppStage.h
 	
+	GameModule.cpp
 	GameModule.h
 	LoadGameStage.cpp
 	LoadGameStage.h

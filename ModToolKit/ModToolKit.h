@@ -23,17 +23,12 @@ protected:
 	void ShowUI(bool* bOpen) override;
 
 private:
-	class SystemUserCallback;
-
 	MainConfig m_Config;
 	GameModule m_GameModule;
-	IGameStartup* m_pGameStartup = nullptr;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
 	std::unique_ptr<TestStage> m_pTestStage;
-
-	static SystemUserCallback m_SystemUserCallback;
-
+	
     std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
 };
