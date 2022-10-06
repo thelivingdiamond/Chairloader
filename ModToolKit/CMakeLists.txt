@@ -16,7 +16,14 @@ set(SOURCE_FILES
 	ModToolKit.cpp
 	ModToolKit.h
 	pch.h
-        FlowgraphEditor.cpp FlowgraphEditor.h)
+        FlowgraphEditor.cpp
+		FlowgraphEditor.h
+		Flowgraph/Flowgraph.cpp
+		Flowgraph/Flowgraph.h
+		Flowgraph/Pin.h
+		Flowgraph/Node.h
+		Flowgraph/Edge.h
+		Flowgraph/UniqueID.h)
 
 add_executable(ModToolKit WIN32
 	${SOURCE_FILES}
