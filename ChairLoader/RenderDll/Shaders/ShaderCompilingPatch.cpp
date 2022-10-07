@@ -8,43 +8,6 @@
 
 CD3D9Renderer* gcpRendD3D = nullptr;
 
-class CDeviceGraphicsPSODesc;
-class CDeviceGraphicsCommandInterfaceImpl;
-
-class CDeviceGraphicsPSO // Id=80004AA Size=16
-{
-public:
-	bool m_bValid;
-	unsigned m_nUpdateCount;
-
-	virtual bool Init(CDeviceGraphicsPSODesc const& arg0) = 0;
-
-#if 0
-	bool IsValid() const;
-	unsigned GetUpdateCount() const;
-#endif
-};
-
-// Header: FromCpp
-// CryEngine/renderdll/xrenderd3d9/devicemanager/d3d11/deviceobjects_d3d11.h
-class CDeviceGraphicsPSO_DX11 : public CDeviceGraphicsPSO // Id=801110A Size=240
-{
-public:
-	_smart_ptr<ID3D11RasterizerState> m_pRasterizerState;
-	unsigned m_RasterizerStateIndex;
-	_smart_ptr<ID3D11BlendState> m_pBlendState;
-	_smart_ptr<ID3D11DepthStencilState> m_pDepthStencilState;
-	_smart_ptr<ID3D11InputLayout> m_pInputLayout;
-	std::array<void*, 6> m_pDeviceShaders;
-	std::array<enum EShaderStage, 64> m_requestedSrvs;
-	std::array<enum EShaderStage, 64> m_requestedSamplers;
-	D3D_PRIMITIVE_TOPOLOGY m_PrimitiveTopology;
-
-	virtual bool Init(CDeviceGraphicsPSODesc const& psoDesc);
-
-	static inline auto FInit = PreyFunction<bool(CDeviceGraphicsPSO_DX11* const _this, CDeviceGraphicsPSODesc const& psoDesc)>(0xF38F40);
-};
-
 //-----------------------------------------------------------------------------------
 
 void CShaderMan::mfInitLookups()
@@ -161,59 +124,6 @@ bool CShaderMan_mfReloadAllShaders_Hook(CShaderMan* const _this, int nFlags, uns
 	return g_CShaderMan_mfReloadAllShaders_Hook.InvokeOrig(_this, nFlags, nFlagsHW);
 }
 
-auto g_CDeviceGraphicsPSO_DX11_Init = PreyFunction<bool(CDeviceGraphicsPSO_DX11* _this, const CDeviceGraphicsPSODesc& psoDesc)>(0xF38F40);
-auto g_CDeviceGraphicsPSO_DX11_Init_Hook = g_CDeviceGraphicsPSO_DX11_Init.MakeHook();
-
-auto g_CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl = PreyFunction<void(CDeviceGraphicsCommandInterfaceImpl* _this, const CDeviceGraphicsPSO* devicePSO)>(0xF39F80);
-auto g_CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl_Hook = g_CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl.MakeHook();
-
-std::map<CDeviceGraphicsPSO_DX11*, std::array<void*, 6>> g_OldShaders;
-
-bool CDeviceGraphicsPSO_DX11_Init_Hook(CDeviceGraphicsPSO_DX11* _this, const CDeviceGraphicsPSODesc& psoDesc)
-{
-	bool res = g_CDeviceGraphicsPSO_DX11_Init_Hook.InvokeOrig(_this, psoDesc);
-
-	for (int i = 0; i < _this->m_pDeviceShaders.size(); i++)
-	{
-		if (_this->m_pDeviceShaders[i])
-		{
-			ID3D11Resource* hack = (ID3D11Resource*)_this->m_pDeviceShaders[i];
-
-			//int ref = hack->AddRef();
-			//CRY_ASSERT(ref == 2);
-
-			//ref = hack->Release();
-			//CRY_ASSERT(ref == 1);
-
-			void* vtbl = *(void**)_this->m_pDeviceShaders[i];
-			CRY_ASSERT(!IsBadReadPtr(vtbl, 8));
-		}
-	}
-
-	g_OldShaders[_this] = _this->m_pDeviceShaders;
-
-	return res;
-}
-
-void CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl_Hook(CDeviceGraphicsCommandInterfaceImpl* _this, const CDeviceGraphicsPSO* devicePSO)
-{
-	const CDeviceGraphicsPSO_DX11* pDevicePSO = reinterpret_cast<const CDeviceGraphicsPSO_DX11*>(devicePSO);
-	const std::array<void*, eHWSC_Num>& shaders = pDevicePSO->m_pDeviceShaders;
-
-	auto it = g_OldShaders.find(const_cast<CDeviceGraphicsPSO_DX11*>(pDevicePSO));
-
-	for (int i = 0; i < shaders.size(); i++)
-	{
-		if (shaders[i])
-		{
-			void* vtbl = *(void**)shaders[i];
-			CRY_ASSERT(!IsBadReadPtr(vtbl, 8));
-		}
-	}
-
-	g_CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl_Hook.InvokeOrig(_this, devicePSO);
-}
-
 //-----------------------------------------------------------------------------------
 
 void InitHooks()
@@ -222,9 +132,6 @@ void InitHooks()
 	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
 	g_CShaderMan_mfReleaseSystemShaders_Hook.SetHookFunc(&CShaderMan_mfReleaseSystemShaders_Hook);
 	g_CShaderMan_mfReloadAllShaders_Hook.SetHookFunc(&CShaderMan_mfReloadAllShaders_Hook);
-
-	g_CDeviceGraphicsPSO_DX11_Init_Hook.SetHookFunc(CDeviceGraphicsPSO_DX11_Init_Hook);
-	g_CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl_Hook.SetHookFunc(&CDeviceGraphicsCommandInterfaceImpl_SetPipelineStateImpl_Hook);
 
 #define INIT_OVERRIDE(className, funcName) PreyFuncOverride<&className::F##funcName, &className::funcName>::Init()
 
