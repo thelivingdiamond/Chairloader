@@ -12,6 +12,7 @@ static_assert(sizeof(CRenderObjectsPools) == 280);
 
 #include "d3dhwshader.h"
 static_assert(sizeof(CHWShader_D3D) == 176);
+static_assert(sizeof(CHWShader_D3D::SHWSInstance) == 256);
 static_assert(sizeof(SD3DShaderHandle) == 24);
 static_assert(sizeof(CGParamManager) == 1);
 
