@@ -87,7 +87,7 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 
 		//if (*CRenderer::CV_r_shadersAllowCompilation)
 		{
-			*CRenderer::CV_r_shadersasyncactivation = 0;
+			*CRenderer::CV_r_shadersasyncactivation = 1;
 			*CRenderer::CV_r_shadersasynccompiling = 1;
 			*CRenderer::CV_r_shadersdebug = 4;
 		}
