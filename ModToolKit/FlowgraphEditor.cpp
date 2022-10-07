@@ -69,12 +69,14 @@ FlowgraphEditor::FlowgraphEditor() {
                 outputPort = &nodeConfig.pOutputPorts[++i];
             }
         }
-        m_PrototypeNodes.emplace_back(newNode);
+        m_PrototypeNodes.insert(std::pair(newNode.Class, newNode));
         node.ReleaseOwnership();
 //        node->Release();
         delete info;
     }
-
+    static FlowGraph testGraph;
+    testGraph.name = "TestGraph";
+    m_FlowGraphs.emplace_back(testGraph);
 }
 
 void FlowgraphEditor::Draw(bool *bDraw) {
@@ -91,7 +93,80 @@ void FlowgraphEditor::Draw(bool *bDraw) {
             }
             ImGui::EndMenuBar();
         }
-        if(ImGui::BeginTabBar("Editor Tabs")) {
+        ImGui::BeginGroup();
+        if(ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 30))){
+            ImGui::Text("This is a toolbar bitch");
+        }
+        ImGui::EndChild();
+        if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0))) {
+            if(ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton)) {
+                for (auto &flowgraph: m_FlowGraphs) {
+                    flowgraph.drawTab();
+                }
+                ImGui::EndTabBar();
+            }
+        }
+        ImGui::EndChild();
+        ImGui::EndGroup();
+        ImGui::SameLine();
+        if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
+            static std::string path;
+            ImGui::InputText("Path", &path);
+            if (ImGui::Button("Load XML File")) {
+                if (p_CurrentFlowGraph) {
+                    auto success = p_CurrentFlowGraph->loadXML(path);
+                    CRY_ASSERT(success);
+                }
+            }
+            static ImGuiTextFilter filter;
+            filter.Draw();
+            if (ImGui::BeginTable("Nodes", 1, ImGuiTableFlags_ScrollY,
+                                  ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
+                for (auto &ProtoNode: m_PrototypeNodes) {
+                    if (filter.PassFilter(ProtoNode.first.c_str())) {
+                        ImGui::TableNextRow();
+                        ImGui::TableNextColumn();
+                        if (ImGui::Selectable(ProtoNode.second.Class.c_str())) {
+                            if (p_CurrentFlowGraph != nullptr) {
+                                p_CurrentFlowGraph->addNode(ProtoNode.second.Class, ProtoNode.second);
+                            }
+                        }
+                    }
+                }
+                ImGui::EndTable();
+            }
+            if (ImGui::Button("Clear Nodes")) {
+//                        m_Nodes.clear();
+//                        m_Edges.clear();
+            }
+        }
+        ImGui::EndChild();
+//        static bool registerFirstNode = true;
+//        nodePtr = *CAutoRegFlowNodeBase::m_pFirst.Get();
+//        auto baseNodePtr = (CAutoRegFlowNode<bool>*)nodePtr;
+//        if(registerFirstNode){
+////            REGISTER_FLOW_NODE(nodePtr, Flow);
+//            registerFirstNode = false;
+//        }
+//        ImGui::Text("BaseNode: %p", baseNodePtr);
+//        ImGui::Text("BaseNode->instance: %p", baseNodePtr->m_pInstance.get());
+    }
+//    ImGui::Text("%p", CAutoRegFlowNodeBase::m_pFirst.Get());
+    ImGui::End();
+}
+
+void FlowgraphEditor::Update() {
+    for(auto & graph : m_FlowGraphs){
+        graph.update();
+    }
+}
+
+FlowgraphEditor::~FlowgraphEditor() {
+    ImNodes::DestroyContext();
+
+}
+
+/*if(ImGui::BeginTabBar("Editor Tabs")) {
             CAutoRegFlowNodeBase* nodePtr = *CAutoRegFlowNodeBase::m_pFirst.Get();
             if(ImGui::BeginTabItem("Auto Reg Flow Node List")) {
                 int i = 0;
@@ -121,13 +196,13 @@ void FlowgraphEditor::Draw(bool *bDraw) {
                     for(auto &node : m_PrototypeNodes){
                         ImGui::TableNextRow();
                         ImGui::TableNextColumn();
-                        if(ImGui::Selectable(node.Class.c_str())){
+                        if(ImGui::Selectable(node.second.Class.c_str())){
 //                            auto info = new IFlowNode::SActivationInfo();
 //                            auto node = nodePtr->Create(info);
 //                            m_FlowNodes.emplace_back(node);
                         }
                         ImGui::TableNextColumn();
-                        ImGui::TextWrapped("%s", node.Description.c_str());
+                        ImGui::TextWrapped("%s", node.second.Description.c_str());
                     }
                     ImGui::EndTable();
                 }
@@ -135,55 +210,6 @@ void FlowgraphEditor::Draw(bool *bDraw) {
                 ImGui::EndTabItem();
             }
             if(ImGui::BeginTabItem("Flow Graph")) {
-                if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0), true)) {
-                    static FlowGraph testGraph;
-                    p_CurrentFlowGraph = &testGraph;
-                    static Node node("Test Node", m_PrototypeNodes[20], ImVec2(200, 200));
-                    static Node node2("Test Node2", m_PrototypeNodes[21], ImVec2(200, 200));
-                    static bool nodesAdded;
-                    if(!nodesAdded) {
-                        node.initializePins();
-                        node2.initializePins();
-                        testGraph.m_Nodes.emplace_back(node);
-                        testGraph.m_Nodes.emplace_back(node2);
-                        nodesAdded = true;
-                    }
-                    testGraph.draw();
-                    testGraph.update();
-
-                }
-                ImGui::EndChild();
-                ImGui::SameLine();
-                if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
-                    static std::string path;
-                    ImGui::InputText("Path", &path);
-                    if(ImGui::Button("Load XML File")){
-                        if(p_CurrentFlowGraph) {
-                            auto success = p_CurrentFlowGraph->loadXML(path);
-                            CRY_ASSERT(success);
-                        }
-                    }
-                    static ImGuiTextFilter filter;
-                    filter.Draw();
-                    if (ImGui::BeginTable("Nodes", 1, ImGuiTableFlags_ScrollY,
-                                          ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                        for(auto &ProtoNode : m_PrototypeNodes){
-                            if(filter.PassFilter(ProtoNode.Class.c_str())) {
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                if (ImGui::Selectable(ProtoNode.Class.c_str())) {
-                                    if(p_CurrentFlowGraph != nullptr){
-                                        p_CurrentFlowGraph->addNodeFromPrototype(ProtoNode);
-                                    }
-                                }
-                            }
-                        }
-                        ImGui::EndTable();
-                    }
-                    if(ImGui::Button("Clear Nodes")){
-//                        m_Nodes.clear();
-//                        m_Edges.clear();
-                    }
 
                 }
                 ImGui::EndChild();
@@ -205,29 +231,4 @@ void FlowgraphEditor::Draw(bool *bDraw) {
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();
-        }
-//        static bool registerFirstNode = true;
-//        nodePtr = *CAutoRegFlowNodeBase::m_pFirst.Get();
-//        auto baseNodePtr = (CAutoRegFlowNode<bool>*)nodePtr;
-//        if(registerFirstNode){
-////            REGISTER_FLOW_NODE(nodePtr, Flow);
-//            registerFirstNode = false;
-//        }
-//        ImGui::Text("BaseNode: %p", baseNodePtr);
-//        ImGui::Text("BaseNode->instance: %p", baseNodePtr->m_pInstance.get());
-    }
-//    ImGui::Text("%p", CAutoRegFlowNodeBase::m_pFirst.Get());
-    ImGui::End();
-}
-
-void FlowgraphEditor::Update() {
-    for(auto & graph : m_FlowGraphs){
-        graph.update();
-    }
-}
-
-FlowgraphEditor::~FlowgraphEditor() {
-    ImNodes::DestroyContext();
-
-}
-
+        }*/

@@ -67,6 +67,18 @@ struct Node : public PrototypeNode
         Class = proto.Class;
         Description = proto.Description;
     }
+    Node( std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs)
+            : Name(name), Pos(pos) {
+        ID = id;
+//        Inputs = proto.ProtoInputs;
+//        Outputs = proto.ProtoOutputs;
+        ProtoInputs = proto.ProtoInputs;
+        ProtoOutputs = proto.ProtoOutputs;
+        //TODO: initialize inputs and outputs from proto
+        Class = proto.Class;
+        Description = proto.Description;
+        this->defaultInputs = defaultInputs;
+    }
     //! OPERATORS
     // == operator
     bool operator==(const Node& other) const

@@ -24,16 +24,16 @@ public:
     void Draw(bool *bDraw);
     void Update();
     static FlowgraphEditor* getInstance(){ return m_pFlowgraphEditorInstance;}
+    void setCurrentFlowgraph(FlowGraph* flowgraph){ p_CurrentFlowGraph = flowgraph;}
 
-    std::vector<PrototypeNode>& getPrototypes(){ return m_PrototypeNodes; }
+    std::map<PrototypeNode::NodeClass, PrototypeNode>& getPrototypes(){ return m_PrototypeNodes; }
 private:
 //    std::vector<_smart_ptr<IFlowNode>> m_FlowNodes;
-    std::vector<PrototypeNode> m_PrototypeNodes;
+    std::map<PrototypeNode::NodeClass, PrototypeNode> m_PrototypeNodes;
     std::vector<FlowGraph> m_FlowGraphs;
     FlowGraph* p_CurrentFlowGraph = nullptr;
 
     // XML Load and save
-    void loadXMLFlowgraph(fs::path path);
     static inline FlowgraphEditor* m_pFlowgraphEditorInstance = nullptr;
 };
 
