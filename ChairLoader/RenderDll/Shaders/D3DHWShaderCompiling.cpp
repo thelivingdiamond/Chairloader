@@ -3351,8 +3351,8 @@ bool CHWShader_D3D::mfRequestAsync(CShader* pSH, SHWSInstance* pInst, std::vecto
 
 	CAsyncShaderTask::InsertPendingShader(pInst->m_pAsync);
 
-	if (*CRenderer::CV_r_logShaders)
-		gcpRendD3D->LogShv("Async %d: Requested compiling 0x%x '%s' shader\n", gRenDev->GetFrameID(false), pInst, nameSrc);
+	if (*CRenderer::CV_r_shadersdebug >= 2)
+		CryLog("Async %d: Requested compiling 0x%x '%s' shader\n", gRenDev->GetFrameID(false), pInst, nameSrc);
 #endif
 	return false;
 }
@@ -3968,7 +3968,7 @@ void CAsyncShaderTask::InsertPendingShader(SShaderAsyncInfo* pAsync)
 {
 	AUTO_LOCK(g_cAILock);
 	pAsync->Link(&BuildList());
-	CryInterlockedIncrement(&SShaderAsyncInfo::s_nPendingAsyncShaders);
+	CryInterlockedIncrement(SShaderAsyncInfo::s_nPendingAsyncShaders.Get());
 }
 
 void CAsyncShaderTask::FlushPendingShaders()
@@ -4040,7 +4040,7 @@ void CAsyncShaderTask::FlushPendingShaders()
 		if (pAI->m_Text.length() > 0)
 			CompileAsyncShader(pAI);
 
-		CryInterlockedDecrement(&SShaderAsyncInfo::s_nPendingAsyncShaders);
+		CryInterlockedDecrement(SShaderAsyncInfo::s_nPendingAsyncShaders.Get());
 		{
 			AUTO_LOCK(g_cAILock);
 
@@ -4076,6 +4076,7 @@ bool CAsyncShaderTask::PostCompile(SShaderAsyncInfo* pAsync)
 
 void CAsyncShaderTask::SubmitAsyncRequestLine(SShaderAsyncInfo* pAsync)
 {
+#if 0
 	if (*CRenderer::CV_r_shadersremotecompiler)
 	{
 		if (!pAsync->m_shaderList.empty())
@@ -4099,11 +4100,13 @@ void CAsyncShaderTask::SubmitAsyncRequestLine(SShaderAsyncInfo* pAsync)
 			  pAsync->m_RequestLine.c_str());
 		}
 	}
+#endif
 }
 
 bool CAsyncShaderTask::CompileAsyncShader(SShaderAsyncInfo* pAsync)
 {
 	bool bResult = true;
+#if 0 // No remote compiler
 	if (*CRenderer::CV_r_shadersremotecompiler)
 	{
 		string sCompiler = gRenDev->m_cEF.mfGetShaderCompileFlags(pAsync->m_eClass, pAsync->m_pipelineState);
@@ -4175,8 +4178,9 @@ bool CAsyncShaderTask::CompileAsyncShader(SShaderAsyncInfo* pAsync)
 			assert(0);
 		}
 	}
+#endif // No remote compiler
 	#if CRY_PLATFORM_WINDOWS && !defined(OPENGL)
-	else
+	//else
 	{
 		static bool s_logOnce_WrongPlatform = false;
 		#if !defined(_RELEASE)
@@ -4227,8 +4231,10 @@ bool CAsyncShaderTask::CompileAsyncShader(SShaderAsyncInfo* pAsync)
 	return bResult;
 }
 
-void CAsyncShaderTask::CShaderThread::ThreadEntry()
+void CAsyncShaderTask::CShaderThread::Run()
 {
+	SetName(SHADER_THREAD_NAME);
+
 	while (!m_quit)
 	{
 		m_task->FlushPendingShaders();
@@ -4239,7 +4245,7 @@ void CAsyncShaderTask::CShaderThread::ThreadEntry()
 	}
 }
 
-#endif
+#endif // ifdef SHADER_ASYNC_COMPILATION
 
 //===============================================================================================
 // Export/Import

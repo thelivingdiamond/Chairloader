@@ -6,5 +6,6 @@ namespace RenderDll::Shaders
 {
 
 void InitHooks();
+void ShutdownRenderer();
 
 }

@@ -2,6 +2,7 @@
 #include "ChairRender.h"
 #include "DebugMarkers.h"
 #include "AuxGeom/RenderAuxGeomPatch.h"
+#include "Shaders/ShaderCompilingPatch.h"
 
 static RenderDll::ChairRender g_ChairRender;
 
@@ -252,6 +253,8 @@ void RenderDll::ChairRender::ShutdownRenderer()
 {
 	for (auto it = m_EndFrame.rbegin(); it != m_EndFrame.rend(); ++it)
 		(*it)->ShutdownRenderer();
+
+	Shaders::ShutdownRenderer();
 }
 
 void RenderDll::ChairRender::RT_ShutdownRenderer()

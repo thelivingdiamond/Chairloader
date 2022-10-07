@@ -8,4 +8,7 @@
 #include <Prey/CryRenderer/ITexture.h>
 #include <Prey/CryRenderer/Tarray.h>
 
+//! Enable async shader compilation in Chairloader
+#define SHADER_ASYNC_COMPILATION
+
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>

@@ -5,6 +5,7 @@
 #include <Prey/RenderDll/Common/Shaders/CShaderBin.h>
 #include <mem.h>
 #include "ShaderPaths.h"
+#include "ShaderCompilingPatch.h"
 
 CD3D9Renderer* gcpRendD3D = nullptr;
 
@@ -59,10 +60,17 @@ private:
 
 //-----------------------------------------------------------------------------------
 
+#ifdef SHADER_ASYNC_COMPILATION
+std::vector<CAsyncShaderTask*> g_AsyncShaderTasks;
+#endif
+
+//-----------------------------------------------------------------------------------
+
 auto g_CHWShader_D3D_mfActivate_Hook = CHWShader_D3D::FmfActivate.MakeHook();
 auto g_CShaderMan_mfInit_Hook = CShaderMan::FmfInit.MakeHook();
 auto g_CShaderMan_mfReleaseSystemShaders_Hook = CShaderMan::FmfReleaseSystemShaders.MakeHook();
 auto g_CShaderMan_mfReloadAllShaders_Hook = CShaderMan::FmfReloadAllShaders.MakeHook();
+auto g_CD3D9Renderer_SF_CreateResources_Hook = CD3D9Renderer::FSF_CreateResources.MakeHook();
 
 bool CHWShader_D3D_mfActivate_Hook(CHWShader_D3D* _this, CShader* pSH, uint32 nFlags, FXShaderToken* Table, TArray<uint32>* pSHData, bool bCompressedOnly)
 {
@@ -80,7 +88,7 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 		//if (*CRenderer::CV_r_shadersAllowCompilation)
 		{
 			*CRenderer::CV_r_shadersasyncactivation = 0;
-			*CRenderer::CV_r_shadersasynccompiling = 0;
+			*CRenderer::CV_r_shadersasynccompiling = 1;
 			*CRenderer::CV_r_shadersdebug = 4;
 		}
 	}
@@ -124,6 +132,31 @@ bool CShaderMan_mfReloadAllShaders_Hook(CShaderMan* const _this, int nFlags, uns
 	return g_CShaderMan_mfReloadAllShaders_Hook.InvokeOrig(_this, nFlags, nFlagsHW);
 }
 
+#ifdef SHADER_ASYNC_COMPILATION
+void CD3D9Renderer_SF_CreateResources_Hook(CD3D9Renderer* const _this)
+{
+	// Init async compile threads
+	constexpr uint32 MAX_THREADS = 4; // CV_r_shadersasyncmaxthreads; //clamp_tpl(CV_r_shadersasyncmaxthreads, 1, 4);
+	uint32 nThreads = MAX_THREADS;
+
+	uint32 nOldThreads = g_AsyncShaderTasks.size();
+	for (uint32 a = nThreads; a < nOldThreads; a++)
+		delete g_AsyncShaderTasks[a];
+
+	g_AsyncShaderTasks.resize(nThreads);
+
+	for (uint32 a = nOldThreads; a < nThreads; a++)
+		g_AsyncShaderTasks[a] = new CAsyncShaderTask();
+
+	for (int32 i = 0; i < g_AsyncShaderTasks.size(); i++)
+	{
+		g_AsyncShaderTasks[i]->SetThread(i);
+	}
+
+	g_CD3D9Renderer_SF_CreateResources_Hook.InvokeOrig(_this);
+}
+#endif
+
 //-----------------------------------------------------------------------------------
 
 void InitHooks()
@@ -132,6 +165,10 @@ void InitHooks()
 	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
 	g_CShaderMan_mfReleaseSystemShaders_Hook.SetHookFunc(&CShaderMan_mfReleaseSystemShaders_Hook);
 	g_CShaderMan_mfReloadAllShaders_Hook.SetHookFunc(&CShaderMan_mfReloadAllShaders_Hook);
+
+#ifdef SHADER_ASYNC_COMPILATION
+	g_CD3D9Renderer_SF_CreateResources_Hook.SetHookFunc(&CD3D9Renderer_SF_CreateResources_Hook);
+#endif
 
 #define INIT_OVERRIDE(className, funcName) PreyFuncOverride<&className::F##funcName, &className::funcName>::Init()
 
@@ -165,6 +202,14 @@ void InitHooks()
 #undef INIT_OVERRIDE
 
 	ShaderPaths::Get().Init();
+}
+
+void ShutdownRenderer()
+{
+#ifdef SHADER_ASYNC_COMPILATION
+	for (int32 a = 0; a < g_AsyncShaderTasks.size(); a++)
+		delete g_AsyncShaderTasks[a];
+#endif
 }
 
 }

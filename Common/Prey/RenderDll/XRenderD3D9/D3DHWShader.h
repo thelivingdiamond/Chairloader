@@ -343,7 +343,7 @@ struct SShaderAsyncInfo
 
 #ifdef SHADER_ASYNC_COMPILATION
 
-	#include <CryThreading/IThreadManager.h>
+	#include <Prey/CryThreading/CryThread.h>
 	#define SHADER_THREAD_NAME "ShaderCompile"
 
 class CAsyncShaderTask
@@ -380,7 +380,7 @@ private:
 	int                      m_nThread;
 	int                      m_nThreadFXC;
 
-	class CShaderThread : public IThread
+	class CShaderThread : public CrySimpleThread<>
 	{
 	public:
 		CShaderThread(CAsyncShaderTask* task)
@@ -393,21 +393,18 @@ private:
 			task->m_flush_list.m_Next = &task->m_flush_list;
 			task->m_flush_list.m_Prev = &task->m_flush_list;
 
-			if (!gEnv->pThreadManager->SpawnThread(this, SHADER_THREAD_NAME))
-			{
-				CryFatalError("Error spawning \"%s\" thread.", SHADER_THREAD_NAME);
-			}
+			Start();
 		}
 
 		~CShaderThread()
 		{
 			m_quit = true;
-			gEnv->pThreadManager->JoinThread(this, eJM_Join);
+			WaitForThread();
 		}
 
 	private:
 		// Start accepting work on thread
-		virtual void ThreadEntry();
+		virtual void Run() override;
 
 		CAsyncShaderTask* m_task;
 		volatile bool     m_quit;
