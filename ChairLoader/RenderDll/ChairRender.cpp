@@ -333,7 +333,7 @@ void RenderDll::ChairRender::RT_PostProcessCommands()
 
 void RenderDll::ChairRender::AddListener(IChairRenderListener* listener)
 {
-	void ValidateCanChangeCmds();
+	ValidateCanChangeCmds();
 	int flags = listener->GetFlags();
 
 	if (flags == 0)
@@ -363,7 +363,7 @@ void RenderDll::ChairRender::AddListener(IChairRenderListener* listener)
 
 bool RenderDll::ChairRender::RemoveListener(IChairRenderListener* listener)
 {
-	void ValidateCanChangeCmds();
+	ValidateCanChangeCmds();
 	bool foundAny = false;
 
 	for (TListenerList* pList : m_AllLists)
