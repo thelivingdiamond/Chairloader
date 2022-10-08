@@ -1,3 +1,4 @@
+#include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/Common/ArkBinkManager.h>
 #include "ChairRender.h"
 #include "DebugMarkers.h"
@@ -227,6 +228,7 @@ void RenderDll::ChairRender::InitRendererModule(CD3D9Renderer* pRenderer)
 	gRenDev = pRenderer;
 	gcpRendD3D = pRenderer;
 
+	WaitForRenderDoc();
 	AuxGeom::InitRenderer();
 
 	// Call callbacks
@@ -461,6 +463,34 @@ void RenderDll::ChairRender::ValidateCanChangeCmds()
 	if (!m_bCanChangeCmds)
 	{
 		CryFatalError("Can't modify render command handlers at the moment, it requires render thread to be idle");
+	}
+}
+
+void RenderDll::ChairRender::WaitForRenderDoc()
+{
+	constexpr int WAIT_TIME_SEC = 10;
+
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "renderdoc"))
+	{
+		for (int i = 0; i < WAIT_TIME_SEC; i++)
+		{
+			CryLog("Waiting for RenderDoc - %d seconds...", WAIT_TIME_SEC - i);
+
+			for (int j = 0; j < 10; j++)
+			{
+				HMODULE renderdoc = GetModuleHandleA("renderdoc.dll");
+
+				if (renderdoc)
+				{
+					CryLog("RenderDoc found!");
+					return;
+				}
+
+				Sleep(100);
+			}
+		}
+
+		CryLog("RenderDoc not found, continuing loading");
 	}
 }
 

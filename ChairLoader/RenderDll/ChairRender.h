@@ -74,6 +74,7 @@ private:
 	RenderCmdBuf m_ReadBuf;
 
 	void ValidateCanChangeCmds();
+	void WaitForRenderDoc();
 };
 
 } // namespace RenderDll
