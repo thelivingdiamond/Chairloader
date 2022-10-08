@@ -12,7 +12,7 @@ void RenderDll::InitRenderDllPatches(const SRenderDllPatchParams& params)
 	if (params.bEnableAuxGeom)
 		AuxGeom::InitAuxGeom();
 
-	if (params.bEnableShaderTest)
+	if (Shaders::GetShaderModsRegistered())
 		Shaders::InitHooks();
 }
 

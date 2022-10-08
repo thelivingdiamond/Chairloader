@@ -48,6 +48,12 @@ void RenderDll::Shaders::ShaderPaths::Init()
 	g_CCryPak_AdjustFileName_Hook.SetHookFunc(&CCryPak_AdjustFileName_Hook);
 }
 
+bool RenderDll::Shaders::ShaderPaths::HasAnyFiles() const
+{
+	std::shared_lock lock(m_Mutex);
+	return !m_FilePaths.empty();
+}
+
 void RenderDll::Shaders::ShaderPaths::AddShadersDir(const fs::path& path)
 {
 	std::scoped_lock lock(m_Mutex);

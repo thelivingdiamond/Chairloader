@@ -243,13 +243,6 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
 		pSystem->m_sys_audio_disable->Set(1);
 
-	RenderDll::SetRenderThreadIsIdle(true);
-	RenderDll::SRenderDllPatchParams renderDllPatch;
-	renderDllPatch.bEnableAuxGeom = gEnv->pSystem->IsDevMode();
-	renderDllPatch.bEnableShaderTest = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadertest");
-	RenderDll::InitRenderDllPatches(renderDllPatch);
-
-	InitHooks();
 	WaitForRenderDoc();
 
 	m_MainThreadId = std::this_thread::get_id();
@@ -260,10 +253,21 @@ void ChairLoader::InitSystem(CSystem* pSystem)
     // Get config parameters From Config
     loadConfigParameters();
 
-	// Mod DLL support
+	// Register mods
 	m_pModDllManager = std::make_unique<ModDllManager>();
 	m_pModDllManager->SetHotReloadEnabled(IsEditorEnabled());
 	RegisterMods();
+
+	// Init renderer patches. Must be done after shader mods are registered.
+	RenderDll::SetRenderThreadIsIdle(true);
+	RenderDll::SRenderDllPatchParams renderDllPatch;
+	renderDllPatch.bEnableAuxGeom = gEnv->pSystem->IsDevMode();
+	RenderDll::InitRenderDllPatches(renderDllPatch);
+
+	// Install hooks late into init, some SetHookFunc calls depend on cmd line or mods
+	InitHooks();
+
+	// Load DLL mods
 	m_pModDllManager->LoadModules();	
 	m_pModDllManager->CallInitSystem();
 

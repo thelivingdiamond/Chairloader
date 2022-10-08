@@ -11,6 +11,9 @@ public:
 
 	void Init();
 
+	//! @returns whether there are any shader files in mods.
+	bool HasAnyFiles() const;
+
 	//! Adds a directory to the list.
 	//! @param	path	Path to Mods/mod.name/Shaders
 	void AddShadersDir(const fs::path& path);

@@ -1,3 +1,4 @@
+#include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
@@ -84,13 +85,14 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 	{
 		*CRenderer::CV_r_shadersediting = 1;
 		*CRenderer::CV_r_shadersAllowCompilation = 1;
+		*CRenderer::CV_r_shadersasyncactivation = 1;
+		*CRenderer::CV_r_shadersasynccompiling = 1;
 
-		//if (*CRenderer::CV_r_shadersAllowCompilation)
-		{
-			*CRenderer::CV_r_shadersasyncactivation = 1;
-			*CRenderer::CV_r_shadersasynccompiling = 1;
-			*CRenderer::CV_r_shadersdebug = 4;
-		}
+		const ICmdLineArg* shadersdebug = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersdebug");
+		if (shadersdebug)
+			*CRenderer::CV_r_shadersdebug = shadersdebug->GetIValue();
+		else
+			*CRenderer::CV_r_shadersdebug = 0;
 	}
 
 	g_CShaderMan_mfInit_Hook.InvokeOrig(_this);
@@ -158,6 +160,11 @@ void CD3D9Renderer_SF_CreateResources_Hook(CD3D9Renderer* const _this)
 #endif
 
 //-----------------------------------------------------------------------------------
+
+bool GetShaderModsRegistered()
+{
+	return ShaderPaths::Get().HasAnyFiles();
+}
 
 void InitHooks()
 {
