@@ -138,8 +138,14 @@ bool CShaderMan_mfReloadAllShaders_Hook(CShaderMan* const _this, int nFlags, uns
 void CD3D9Renderer_SF_CreateResources_Hook(CD3D9Renderer* const _this)
 {
 	// Init async compile threads
-	constexpr uint32 MAX_THREADS = 4; // CV_r_shadersasyncmaxthreads; //clamp_tpl(CV_r_shadersasyncmaxthreads, 1, 4);
-	uint32 nThreads = MAX_THREADS;
+	// CRYENGINE uses CV_r_shadersasyncmaxthreads = 1
+	uint32 nThreads = std::thread::hardware_concurrency() / 2;
+	nThreads = std::clamp(nThreads, 1u, 4u);
+
+	// Allow the user to override thread count
+	const ICmdLineArg* shaderthreads = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shaderthreads");
+	if (shaderthreads)
+		nThreads = shaderthreads->GetIValue();
 
 	uint32 nOldThreads = g_AsyncShaderTasks.size();
 	for (uint32 a = nThreads; a < nOldThreads; a++)
