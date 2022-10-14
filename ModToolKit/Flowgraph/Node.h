@@ -5,6 +5,45 @@
 #include "ImGui/imgui.h"
 
 struct PrototypeNode{
+    enum class nodeCategory {
+        NONE,
+        AI,
+        ACTOR,
+        ANIMATIONS,
+        ARK,
+        ARK_PLAYER,
+        AUDIO,
+        CAMERA,
+        CUSTOM_ACTION,
+        DEBUG,
+        EFFECTS,
+        ENGINE,
+        ENTITY,
+        ENVIRONMENT,
+        GAME,
+        IMAGE,
+        INPUT,
+        INTERPOL,
+        INVENTORY,
+        LOGIC,
+        MATERIAL,
+        MATERIALFX,
+        MATH,
+        MISSION,
+        MODULE,
+        MOVEMENT,
+        MULTIPLAYER,
+        PHYSICS,
+        PLAYER_PROFILE,
+        PREFAB,
+        STEREO,
+        STRING,
+        TIME,
+        UI,
+        VEC3,
+        VIDEO,
+        XML,
+    };
     using NodeClass = std::string;
     std::string Description;
     std::vector<PrototypePin> ProtoInputs;
