@@ -68,6 +68,7 @@ FlowgraphEditor::FlowgraphEditor() {
                 outputPort = &nodeConfig.pOutputPorts[++i];
             }
         }
+        newNode.setCategory();
         m_PrototypeNodes.insert(std::pair(newNode.Class, newNode));
         node.ReleaseOwnership();
 //        node->Release();

@@ -7,6 +7,7 @@
 struct PrototypeNode{
     enum class nodeCategory {
         NONE,
+        CHAIRLOADER_CUSTOM,
         AI,
         ACTOR,
         ANIMATIONS,
@@ -49,6 +50,7 @@ struct PrototypeNode{
     std::vector<PrototypePin> ProtoInputs;
     std::vector<PrototypePin> ProtoOutputs;
     NodeClass Class;
+    nodeCategory Category = nodeCategory::NONE;
     // == operator based on Class
     bool operator==(const PrototypeNode& other) const
     {
@@ -59,6 +61,7 @@ struct PrototypeNode{
     {
         return Class == other;
     }
+    void setCategory();
 };
 
 struct Node : public PrototypeNode
@@ -80,7 +83,9 @@ struct Node : public PrototypeNode
     std::map<inputName, inputValue> defaultInputs;
     bool isHovered;
 
-
+    ImColor GetCategoryColor() const;
+    void SetCategoryColor();
+    void ClearCategoryColor();
     Node() = default;
     // add a constructor to intialize from a PrototypeNode
     Node( std::string name, PrototypeNode &proto, ImVec2 pos)
@@ -90,8 +95,8 @@ struct Node : public PrototypeNode
 //        Outputs = proto.ProtoOutputs;
         ProtoInputs = proto.ProtoInputs;
         ProtoOutputs = proto.ProtoOutputs;
-        //TODO: initialize inputs and outputs from proto
         Class = proto.Class;
+        Category = proto.Category;
         Description = proto.Description;
     }
 
@@ -102,8 +107,8 @@ struct Node : public PrototypeNode
 //        Outputs = proto.ProtoOutputs;
         ProtoInputs = proto.ProtoInputs;
         ProtoOutputs = proto.ProtoOutputs;
-        //TODO: initialize inputs and outputs from proto
         Class = proto.Class;
+        Category = proto.Category;
         Description = proto.Description;
     }
     Node( std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs)
@@ -113,7 +118,7 @@ struct Node : public PrototypeNode
 //        Outputs = proto.ProtoOutputs;
         ProtoInputs = proto.ProtoInputs;
         ProtoOutputs = proto.ProtoOutputs;
-        //TODO: initialize inputs and outputs from proto
+        Category = proto.Category;
         Class = proto.Class;
         Description = proto.Description;
         this->defaultInputs = defaultInputs;
