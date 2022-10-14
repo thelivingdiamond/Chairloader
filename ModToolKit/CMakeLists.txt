@@ -24,7 +24,7 @@ set(SOURCE_FILES
 		Flowgraph/Pin.h
 		Flowgraph/Node.h
 		Flowgraph/Edge.h
-		Flowgraph/UniqueID.h)
+		Flowgraph/UniqueID.h Flowgraph/Node.cpp)
 
 add_executable(ModToolKit WIN32
 	${SOURCE_FILES}

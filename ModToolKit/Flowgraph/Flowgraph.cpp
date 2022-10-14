@@ -35,7 +35,7 @@ void FlowGraph::draw() {
     ImNodes::BeginNodeEditor();
     ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
     for(auto &node : m_Nodes){
-        drawNode(node.second);
+        node.second.draw();
     }
     for(auto &edge : m_Edges){
         drawEdge(edge.second);
@@ -52,40 +52,6 @@ void FlowGraph::drawTab() {
     }
 }
 
-void FlowGraph::drawNode(Node& node){
-    ImNodes::BeginNode(node.ID);
-    if(!node.PosSet){
-        ImNodes::SetNodeEditorSpacePos(node.ID, node.Pos);
-        node.PosSet = true;
-    }
-    ImNodes::BeginNodeTitleBar();
-    ImGui::Text("%s", node.Class.c_str());
-    ImNodes::EndNodeTitleBar();
-    for(auto &input : node.Inputs){
-        ImNodes::BeginInputAttribute(input.ID);
-        if(input.isLinked()) {
-            ImGui::Text("%s", input.Name.c_str());
-        } else {
-            ImGui::Text("%s", input.Name.c_str());
-            ImGui::SameLine();
-            if(ImNodes::IsNodeSelected(node.ID) || node.isHovered){
-                ImGui::PushStyleColor(ImGuiCol_FrameBg, ImGui::GetStyleColorVec4(ImGuiCol_FrameBgHovered));
-            } else {
-                ImGui::PushStyleColor(ImGuiCol_FrameBg, ImGui::GetStyleColorVec4(ImGuiCol_FrameBg));
-            }
-            ImGui::SetNextItemWidth(120);
-            ImGui::InputText(("##input" + input.Name + std::to_string(input.ID)).c_str(), &input.value);
-            ImGui::PopStyleColor();
-        }
-        ImNodes::EndInputAttribute();
-    }
-    for(auto &output : node.Outputs){
-        ImNodes::BeginOutputAttribute(output.ID);
-        ImGui::Text("%s", output.Name.c_str());
-        ImNodes::EndOutputAttribute();
-    }
-    ImNodes::EndNode();
-}
 void FlowGraph::drawEdge(Edge& edge){
     ImNodes::Link(edge.ID, edge.pinOut, edge.pinIn);
 }
@@ -211,6 +177,7 @@ bool FlowGraph::loadXML(fs::path path) {
 //        PrototypeNode* prototype = nullptr;
         auto prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
         if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()){
+            CryError("Could not find prototype for node %s", nodeClass.c_str());
             continue;
         }
         auto proto = prototype->second;

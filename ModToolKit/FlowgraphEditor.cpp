@@ -14,13 +14,12 @@ FlowgraphEditor::FlowgraphEditor() {
     m_pFlowgraphEditorInstance = this;
     ImNodes::CreateContext();
     auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
-
     for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
         auto info = new IFlowNode::SActivationInfo();
         //TODO: Fix timer nodes
         if(std::string(typeEntry.first.c_str()) == ("Entity:TacticalScan") ||
-        std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") ||
-        std::string(typeEntry.first.c_str()) == ("Game:Start") ||
+        std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") /*||
+        std::string(typeEntry.first.c_str()) == ("Game:Start")*/ ||
         std::string(typeEntry.first.c_str()) == ("Time:Timer")) {
             continue;
         }
