@@ -195,4 +195,14 @@ struct Node : public PrototypeNode
         }
         return nullptr;
     }
+    virtual void draw();
+};
+
+struct commentBox : public Node{
+    std::string comment;
+    float textSize;
+    ImVec4 textColor;
+    commentBox(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::string comment, float textsize = 1, ImVec4 textcolor = {1.0,1.0,1.0,1.0})
+            : Node(name, proto, pos, id), textSize(textsize), textColor(textcolor) {}
+    void draw() override;
 };

@@ -209,6 +209,9 @@ void GameModule::LoadDll()
 	mem::Nop(dllBase + 0x5BE020, 0x5BE039 - 0x5BE020); // Remove p3DEngine->GetMaterialManager
 	mem::Nop(dllBase + 0x5BE07C, 0x5BE07E - 0x5BE07C); // Skip a bunch of code
 
+    mem::Nop(dllBase + 0x49DD5A, 0x49DD5F - 0x49DD5A); // skip game:start node constructor
+    mem::Nop(dllBase + 0x49DD70, 0x49DD79 - 0x49DD70); // skip game:start node constructor
+
 	DetourTransactionBegin();
 	g_CSystem_CreateSystemVars_Hook.InstallHook(CSystem_CreateSystemVars.Get(), &CSystem_CreateSystemVars_Hook);
 	DetourTransactionCommit();
