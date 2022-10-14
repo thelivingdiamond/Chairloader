@@ -4,6 +4,7 @@
 #include "AppImGui.h"
 #include <ImGui/imgui_impl_dx11.h>
 #include <ImGui/imgui_impl_win32.h>
+#include <IconsMaterialDesign.h>
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -137,8 +138,13 @@ void AppImGui::InitImGui()
 		style.WindowRounding = 4.0f;
 		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
+    ImGui::GetIO().Fonts->AddFontDefault();
+    static const ImWchar icons_ranges[] = { ICON_MIN_MD, ICON_MAX_16_MD, 0 };
+    ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.GlyphOffset.y = 5.0f; icons_config.PixelSnapH = true;
+    ImGui::GetIO().Fonts->AddFontFromFileTTF("MaterialIcons-Regular.ttf", 16.0f, &icons_config, icons_ranges);
 
-	ImGui_ImplWin32_Init((HWND)m_hWndVoid);
+
+    ImGui_ImplWin32_Init((HWND)m_hWndVoid);
 	ImGui_ImplDX11_Init(m_pd3dDevice, m_pd3dDeviceContext);
 }
 
