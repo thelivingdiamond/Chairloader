@@ -46,10 +46,12 @@ void AppImGui::BeginFrame()
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
+    ImGui::PushFont(getDefaultFont());
 }
 
 void AppImGui::EndFrame()
 {
+    ImGui::PopFont();
 	ImGui::EndFrame();
 
 	ImGui::Render();
@@ -138,11 +140,12 @@ void AppImGui::InitImGui()
 		style.WindowRounding = 4.0f;
 		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
-    ImGui::GetIO().Fonts->AddFontDefault();
+    ImFontConfig config; config.FontNo = 1;
+    m_pDefaultFont = ImGui::GetIO().Fonts->AddFontDefault();
+    ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", 16.0f);
     static const ImWchar icons_ranges[] = { ICON_MIN_MD, ICON_MAX_16_MD, 0 };
     ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.GlyphOffset.y = 5.0f; icons_config.PixelSnapH = true;
-    ImGui::GetIO().Fonts->AddFontFromFileTTF("MaterialIcons-Regular.ttf", 16.0f, &icons_config, icons_ranges);
-
+    m_pPrettyFont =  ImGui::GetIO().Fonts->AddFontFromFileTTF("MaterialIcons-Regular.ttf", 16.0f, &icons_config, icons_ranges);
 
     ImGui_ImplWin32_Init((HWND)m_hWndVoid);
 	ImGui_ImplDX11_Init(m_pd3dDevice, m_pd3dDeviceContext);

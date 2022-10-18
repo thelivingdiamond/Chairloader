@@ -4,6 +4,25 @@
 #include <IconsMaterialDesign.h>
 
 void Node::draw() {
+    if(Category == nodeCategory::COMMENT){
+        SetCategoryColor();
+        ImNodes::BeginNode(ID);
+        if(!PosSet){
+            ImNodes::SetNodeEditorSpacePos(ID, Pos);
+            PosSet = true;
+        }
+        ImNodes::BeginNodeTitleBar();
+        ImGui::Text("%s %s",CategoryIcons[Category], "Comment Box");
+        ImNodes::EndNodeTitleBar();
+//        ImGui::PushItemWidth(400);
+        ImGui::InputTextMultiline("##Comment", &comment, ImVec2(400, 50), ImGuiInputTextFlags_AllowTabInput);
+        ImNodes::EndNode();
+        ClearCategoryColor();
+        auto nodePos = ImNodes::GetNodeGridSpacePos(ID);
+        Pos = nodePos;
+        return;
+    }
+
     SetCategoryColor();
     ImNodes::BeginNode(ID);
     if(!PosSet){
@@ -11,7 +30,7 @@ void Node::draw() {
         PosSet = true;
     }
     ImNodes::BeginNodeTitleBar();
-    ImGui::Text(ICON_MD_TOC " %s", Class.c_str());
+    ImGui::Text("%s %s",CategoryIcons[Category], Class.c_str());
     ImNodes::EndNodeTitleBar();
     for(auto &input : Inputs){
         ImNodes::BeginInputAttribute(input.ID);
@@ -36,47 +55,29 @@ void Node::draw() {
         ImGui::Text("%s", output.Name.c_str());
         ImNodes::EndOutputAttribute();
     }
+    auto nodePos = ImNodes::GetNodeGridSpacePos(ID);
+    Pos = nodePos;
     ImNodes::EndNode();
     ClearCategoryColor();
 }
 
-ImColor Node::GetCategoryColor() const {
-    switch(Category){
-        case nodeCategory::NONE:
-        default:
-            return ImNodes::GetStyle().Colors[ImNodesCol_TitleBar];
-            break;
-        case nodeCategory::AI:
-            return ImColor(0.8f, 0.2f, 0.2f, 1.0f);
-            break;
-
-    }
-    return ImColor();
-}
 
 void Node::SetCategoryColor() {
-    auto color = GetCategoryColor();
+    auto color = GetCategoryColor(Category);
     ImColor selectedColor = ImVec4(color.Value.x + 0.1f, color.Value.y + 0.1f, color.Value.z + 0.1f, color.Value.w);
-    switch (Category){
-        case nodeCategory::NONE:
-        default:
-            ImNodes::PushColorStyle(ImNodesCol_TitleBar, color);
-            ImNodes::PushColorStyle(ImNodesCol_TitleBarSelected, selectedColor);
-            ImNodes::PushColorStyle(ImNodesCol_TitleBarHovered, selectedColor);
-            break;
-        case nodeCategory::AI:
-            ImNodes::PushColorStyle(ImNodesCol_TitleBar, color);
-            ImNodes::PushColorStyle(ImNodesCol_TitleBarSelected, selectedColor);
-            ImNodes::PushColorStyle(ImNodesCol_TitleBarHovered, selectedColor);
-            break;
-    }
-
+    ImNodes::PushColorStyle(ImNodesCol_TitleBar, color);
+    ImNodes::PushColorStyle(ImNodesCol_TitleBarSelected, selectedColor);
+    ImNodes::PushColorStyle(ImNodesCol_TitleBarHovered, selectedColor);
 }
 
 void Node::ClearCategoryColor() {
     ImNodes::PopColorStyle();
     ImNodes::PopColorStyle();
     ImNodes::PopColorStyle();
+}
+
+ImColor Node::GetCategoryColor(PrototypeNode::nodeCategory category) {
+    return CategoryColors[category];
 }
 
 void commentBox::draw() {
@@ -95,7 +96,7 @@ void commentBox::draw() {
 void PrototypeNode::setCategory() {
     {
         auto categoryPrefix = Class.substr(0, Class.find_first_of(':'));
-        CryLog("Category prefix: %s", categoryPrefix.c_str());
+//        CryLog("Category prefix: %s", categoryPrefix.c_str());
         std::transform(categoryPrefix.begin(), categoryPrefix.end(), categoryPrefix.begin(), ::tolower);
         if(categoryPrefix == "ai"){
             Category = nodeCategory::AI;

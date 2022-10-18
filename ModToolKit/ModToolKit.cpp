@@ -66,8 +66,11 @@ void ModToolKit::ShowUI(bool* bOpen)
 {
 	if (m_pDevConsole)
 		m_pDevConsole->Show(bOpen);
-    if(m_pFlowgraphEditor)
+    if(m_pFlowgraphEditor) {
         m_pFlowgraphEditor->Draw(bOpen);
+        m_pFlowgraphEditor->Update();
+    }
+
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

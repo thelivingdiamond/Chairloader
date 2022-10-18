@@ -9,6 +9,7 @@
 #include <pugixml.hpp>
 #include <filesystem>
 #include "FlowgraphEditor.h"
+#include <boost/algorithm/string.hpp>
 
 Node * FlowGraph::getNode(int64_t id) {
     if (m_Nodes.find(id) != m_Nodes.end()) {
@@ -32,13 +33,72 @@ Edge * FlowGraph::getEdge(int64_t id) {
 }
 
 void FlowGraph::draw() {
+    if(ImGui::BeginChild("Node List", ImVec2(ImGui::GetContentRegionAvail().x * 0.2f, 0), true)) {
+        ImGui::Text("Node List");
+        ImGui::Separator();
+        if(ImGui::BeginTable("Node List", 2, 0, ImGui::GetContentRegionAvail())) {
+            ImGui::TableSetupColumn("ID", ImGuiTableColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
+//            ImGui::TableHeadersRow();
+            for (auto& node : m_Nodes) {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                if(ImGui::Selectable(std::to_string(node.second.ID).c_str(), ImNodes::IsNodeSelected(node.second.ID), ImGuiSelectableFlags_SpanAllColumns)){
+                    if((ImGui::IsKeyDown(ImGui::GetKeyIndex(ImGuiKey_LeftShift)) || ImGui::IsKeyDown(ImGui::GetKeyIndex(ImGuiKey_RightShift)))){
+                        if(ImNodes::IsNodeSelected(node.second.ID)){
+                            const int num_selected = ImNodes::NumSelectedNodes();
+                            if (num_selected > 0) {
+                                static std::vector<int> selected_nodes;
+                                selected_nodes.resize(static_cast<size_t>(num_selected));
+                                ImNodes::GetSelectedNodes(selected_nodes.data());
+                                ImNodes::ClearNodeSelection();
+                                for (int i = 0; i < num_selected; ++i) {
+                                    if(selected_nodes[i] != node.second.ID){
+                                        ImNodes::SelectNode(selected_nodes[i]);
+                                    }
+                                }
+                            }
+                        } else {
+                            ImNodes::SelectNode(node.second.ID);
+                        }
+                    } else {
+                        if(ImNodes::NumSelectedNodes() > 1){
+                            ImNodes::ClearNodeSelection();
+                            ImNodes::SelectNode(node.second.ID);
+                        } else {
+                            if(ImNodes::IsNodeSelected(node.second.ID)){
+                                ImNodes::ClearNodeSelection();
+                            } else {
+                                ImNodes::SelectNode(node.second.ID);
+                            }
+                        }
+                    }
+                }
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("%s", node.second.Name.c_str());
+            }
+            ImGui::EndTable();
+//            if(ImGui::IsMouseClicked(ImGuiMouseButton_Left)){
+//                ImNodes::ClearNodeSelection();
+//            }
+        }
+    }
+    ImGui::EndChild();
+    ImGui::SameLine();
     ImNodes::BeginNodeEditor();
     ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
+    if(m_bResetPan){
+        ImNodes::EditorContextResetPanning(m_ResetPos);
+        m_bResetPan = false;
+    }
     for(auto &node : m_Nodes){
         node.second.draw();
     }
     for(auto &edge : m_Edges){
         drawEdge(edge.second);
+    }
+    if(ImNodes::IsEditorHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right)){
+        FlowgraphEditor::setShowNodePopup(true);
     }
     ImNodes::EndNodeEditor();
 }
@@ -75,7 +135,7 @@ void FlowGraph::update() {
     //! handle edge selection and deletion
     {
         const int num_selected = ImNodes::NumSelectedLinks();
-        if (num_selected > 0 && ImGui::IsKeyReleased(ImGuiKey_X)) {
+        if (num_selected > 0 && ImGui::IsKeyReleased(ImGuiKey_X) && !ImGui::GetIO().WantTextInput) {
             static std::vector<int> selected_links;
             selected_links.resize(static_cast<size_t>(num_selected));
             ImNodes::GetSelectedLinks(selected_links.data());
@@ -90,7 +150,7 @@ void FlowGraph::update() {
     {
         int link_id;
         if (ImNodes::IsLinkHovered(&link_id)) {
-            if (ImGui::IsKeyPressed(ImGuiKey_X)) {
+            if (ImGui::IsKeyPressed(ImGuiKey_X)  && !ImGui::GetIO().WantTextInput) {
                 removeEdge(link_id);
                 ImNodes::ClearNodeSelection();
             }
@@ -106,11 +166,41 @@ void FlowGraph::update() {
             ImGui::EndTooltip();
         }
     }
+    //! handle node hovering (to set flag for color reasons)
+    {
+        static int hovered_node = -1;
+        int node_id = -1;
+        if(ImNodes::IsNodeHovered(&node_id)){
+            if(hovered_node != node_id){
+                if(hovered_node != -1){
+                    if(m_Nodes.find(hovered_node) != m_Nodes.end()){
+                        m_Nodes[hovered_node].isHovered = false;
+                    }
+                }
+                hovered_node = node_id;
+            }
+            auto hoveredNode = getNode(node_id);
+            if(hoveredNode) {
+                hoveredNode->isHovered = true;
+//                ImGui::BeginTooltip();
+//                ImGui::Text("Node ID: %d", node_id);
+//                ImGui::Text("X to delete");
+//                auto node = getNode(node_id);
+//                for (auto &input: node->Inputs) {
+//                    ImGui::Text("Input: %s, %d", input.Name.c_str(), input.numberOfConnections);
+//                }
+//                for (auto &output: node->Outputs) {
+//                    ImGui::Text("Output: %s, %d", output.Name.c_str(), output.numberOfConnections);
+//                }
+//                ImGui::EndTooltip();
+            }
+        }
+    }
 
     //! handle node deletion
     {
         const int num_selected = ImNodes::NumSelectedNodes();
-        if (num_selected > 0 && ImGui::IsKeyReleased(ImGuiKey_X)) {
+        if (num_selected > 0 && ImGui::IsKeyReleased(ImGuiKey_X)  && !ImGui::GetIO().WantTextInput) {
             static std::vector<int> selected_nodes;
             selected_nodes.resize(static_cast<size_t>(num_selected));
             ImNodes::GetSelectedNodes(selected_nodes.data());
@@ -119,34 +209,7 @@ void FlowGraph::update() {
                 removeNode(node_id);
                 selected_nodes.pop_back();
             }
-        }
-    }
-    //! handle node hovering (to set flag for color reasons)
-    {
-        static int hovered_node = -1;
-        int node_id;
-        if(ImNodes::IsNodeHovered(&node_id)){
-            if(hovered_node != node_id){
-                if(hovered_node != -1){
-                    m_Nodes[hovered_node].isHovered = false;
-                }
-                hovered_node = node_id;
-            }
-            auto hoveredNode = getNode(node_id);
-            if(hoveredNode) {
-                hoveredNode->isHovered = true;
-                ImGui::BeginTooltip();
-                ImGui::Text("Node ID: %d", node_id);
-                ImGui::Text("X to delete");
-                auto node = getNode(node_id);
-                for (auto &input: node->Inputs) {
-                    ImGui::Text("Input: %s, %d", input.Name.c_str(), input.numberOfConnections);
-                }
-                for (auto &output: node->Outputs) {
-                    ImGui::Text("Output: %s, %d", output.Name.c_str(), output.numberOfConnections);
-                }
-                ImGui::EndTooltip();
-            }
+            ImNodes::ClearNodeSelection();
         }
     }
 }
@@ -192,7 +255,11 @@ bool FlowGraph::loadXML(fs::path path) {
         for(auto &value : node.child("Inputs").attributes()){
             setValues[value.name()] = value.as_string();
         }
-        addNode(nodeClass, proto, nodePos, nodeID, setValues);
+        if(nodeClass == "_commentbox" || nodeClass == "_comment") {
+            addCommentBox(nodeClass, nodePos, node.attribute("Name").as_string(), nodeID);
+        } else {
+            addNode(nodeClass, proto, nodePos, nodeID, setValues);
+        }
     }
     for(auto & edge: FlowGraph.child("Edges")){
         int64_t edgeID = GetUniqueID();
@@ -283,26 +350,27 @@ bool FlowGraph::removeNode(int64_t id){
                 }
             }
         }
+        // erase the node with id
         m_Nodes.erase(id);
         return true;
     }
+    return false;
 }
 
 bool FlowGraph::addEdge(int64_t startPin, int64_t endPin, int64_t id) {
     if(id < 0){
         id = GetUniqueID();
     }
-    if(m_pPins.find(startPin) != m_pPins.end() && m_pPins.find(endPin) != m_pPins.end()){
-        auto startNode = m_pPins.at(startPin)->Parent_Node;
-        auto endNode = m_pPins.at(endPin)->Parent_Node;
-        //TODO: determine if selfcest is allowed
-        if(startNode && endNode && startNode->ID != endNode->ID){
-            if(m_Edges.insert(std::pair(id, Edge(id, startPin, endPin, startNode->ID, endNode->ID))).second){
-                m_pPins.at(startPin)->addLink();
-                m_pPins.at(endPin)->addLink();
-                return true;
-            }
-        }
+    if(m_pPins.find(startPin) == m_pPins.end() || m_pPins.find(endPin) == m_pPins.end()) return false;
+    auto startNode = m_pPins.at(startPin)->Parent_Node;
+    auto endNode = m_pPins.at(endPin)->Parent_Node;
+    //TODO: determine if selfcest is allowed - yes it is apparently
+    if(!startNode || !endNode) return false;
+//    if (startNode->ID == endNode->ID) return false;
+    if(m_Edges.insert(std::pair(id, Edge(id, startPin, endPin, startNode->ID, endNode->ID))).second){
+        m_pPins.at(startPin)->addLink();
+        m_pPins.at(endPin)->addLink();
+        return true;
     }
     return false;
 }
@@ -316,4 +384,117 @@ bool FlowGraph::removeEdge(int64_t id) {
         return true;
     }
     return false;
+}
+
+void FlowGraph::resetPanning(ImVec2 pos){
+    m_bResetPan = true;
+    m_ResetPos = pos;
+}
+
+
+bool FlowGraph::addCommentBox(std::string name, ImVec2 pos, std::string comment, int64_t id){
+    if(addNode(name, FlowgraphEditor::getInstance()->getPrototypes().at("_commentbox"), pos, id)){
+        auto node = getNode(id);
+        boost::replace_all(comment, "\\n", "\n");
+        boost::replace_all(comment, "_", " ");
+        if(node){
+            node->comment = comment;
+            return true;
+        }
+    }
+    return false;
+}
+
+void FlowGraph::drawSelectedNodeProperties() {
+    const int num_selected = ImNodes::NumSelectedNodes();
+    if (num_selected == 1) {
+        static std::vector<int> selected_nodes;
+        selected_nodes.resize(static_cast<size_t>(num_selected));
+        ImNodes::GetSelectedNodes(selected_nodes.data());
+        auto node = getNode(selected_nodes[0]);
+        if(node){
+            drawNodeProperties(*node);
+            m_nodePropertiesHeight = 0.3f;
+        } else {
+            ImGui::Text("Selected node not found");
+            m_nodePropertiesHeight = 0.2f;
+        }
+    } else if (num_selected > 1) {
+        ImGui::Text("Multiple nodes selected");
+        m_nodePropertiesHeight = 0.2f;
+    } else {
+        ImGui::Text("No node selected");
+        m_nodePropertiesHeight = 0.2f;
+    }
+
+}
+
+
+void FlowGraph::drawNodeProperties(Node& node) {
+    ImGui::Text("Node Properties");
+    ImGui::Separator();
+    if (ImGui::BeginChild("properties", ImVec2(0, ImGui::GetContentRegionAvail().y))) {
+        ImGui::Text("Name: ");
+        ImGui::SameLine();
+        ImGui::InputText("##name", &node.Name);
+        ImGui::Text("Class: %s", node.Class.c_str());
+        ImGui::Text("ID: %lld", node.ID);
+        if(ImGui::InputFloat2("Position (x,y)", &node.Pos.x, "%.1f") && !ImGui::IsItemEdited()){
+            node.PosSet = false;
+        }
+//        ImGui::Text("Position: (%.2f, %.2f)", node.Pos.x, node.Pos.y);
+        ImGui::Separator();
+        if(!node.Inputs.empty()) {
+            if (ImGui::CollapsingHeader("Inputs")) {
+                for (auto &input: node.Inputs) {
+                    ImGui::Text("Name: %s", input.Name.c_str());
+                    if (input.numberOfConnections > 0) {
+                        ImGui::Text("Connected");
+                    } else {
+                        ImGui::InputText(("value##" + input.Name).c_str(), &input.value);
+                    }
+                    ImGui::Text("ID: %lld", input.ID);
+                    ImGui::SameLine();
+                    ImGui::Text("Links: %d", input.numberOfConnections);
+                    ImGui::Separator();
+                }
+            }
+        }
+        if(!node.Outputs.empty()) {
+            if (ImGui::CollapsingHeader("Outputs:")) {
+                for (auto &output: node.Outputs) {
+                    ImGui::Text("Name: %s", output.Name.c_str());
+                    ImGui::Text("ID: %lld", output.ID);
+                    ImGui::SameLine();
+                    ImGui::Text("Links: %d", output.numberOfConnections);
+                    ImGui::Separator();
+                }
+            }
+        }
+    }
+    ImGui::EndChild();
+}
+
+bool FlowGraphXMLFile::loadFromXmlFile(fs::path path) {
+    m_FilePlace = parseFilePlace(path);
+    if(!fs::exists(path)) return false;
+    if(path.filename().extension() != ".xml") return false;
+    m_Path = path;
+    auto result = m_Document.load_file(path.wstring().c_str());
+    if(!result) return false;
+
+    return false;
+}
+
+FilePlace FlowGraphXMLFile::parseFilePlace(fs::path path) {
+    if(path.wstring().find(L"PreyFiles\\Levels") != wstring::npos){
+        return FilePlace::Level;
+    } else if(path.wstring().find(L"PreyFiles\\Ark") != wstring::npos){
+        return FilePlace::Ark;
+    } else if(path.wstring().find(L"PreyFiles\\Libs") != wstring::npos){
+        return FilePlace::Libs;
+    } else if(path.wstring().find(L"PreyFiles\\Prefabs") != wstring::npos){
+        return FilePlace::Prefabs;
+    }
+    return FilePlace::Unknown;
 }

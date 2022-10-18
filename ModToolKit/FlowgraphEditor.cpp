@@ -8,6 +8,51 @@
 #include <Prey/CryAction/flowsystem/Nodes/FlowBaseNode.h>
 #include <Prey/CryAction/flowsystem/flowsystem.h>
 #include "ImGui/imgui_stdlib.h"
+#include "ImGui/imgui_internal.h"
+#include "App/AppImGui.h"
+#include <filesystem>
+
+bool findGraphNodes(pugi::xml_node &node){
+    // recrusively find all nodes with the tag "Graph" in the xml file
+    // when they are found CryLog the path to the node
+    bool graphNodesPresent = false;
+    if(node.name() == std::string("Graph") || node.name() == std::string("FlowGraph")){
+//        CryLog("Found Graph Node: %s", node.path().c_str());
+        graphNodesPresent = true;
+        return graphNodesPresent;
+    }
+    for (auto &child : node.children()){
+        if (std::string(child.name()) == "Graph" || std::string(child.name()) == "FlowGraph" ){
+//            CryLog("Found Graph Node: %s", child.path().c_str());
+            graphNodesPresent = true;
+            continue;
+        }
+
+        graphNodesPresent = graphNodesPresent | findGraphNodes(child);
+    }
+    return graphNodesPresent;
+}
+
+void searchXmlDocuments(fs::path path){
+    // iterate through every file in the directory, if it's a directory, recurse
+    // if it's a .xml file, load it and recursively find all nodes named "Graph
+    if(fs::is_directory(path)){
+        for(auto &p: fs::directory_iterator(path)){
+            searchXmlDocuments(p);
+        }
+    }else if(path.extension() == ".xml"){
+        pugi::xml_document doc;
+        pugi::xml_parse_result result = doc.load_file(path.string().c_str());
+        if(result){
+            pugi::xml_node node = doc.first_child();
+            if(node){
+                if(findGraphNodes(node)){
+                    CryLog("Found Graph Nodes in %s", path.string().c_str());
+                }
+            }
+        }
+    }
+}
 
 
 FlowgraphEditor::FlowgraphEditor() {
@@ -71,88 +116,49 @@ FlowgraphEditor::FlowgraphEditor() {
         newNode.setCategory();
         m_PrototypeNodes.insert(std::pair(newNode.Class, newNode));
         node.ReleaseOwnership();
-//        node->Release();
         delete info;
     }
+    // add comment box classes
+    PrototypeNode commentNode;
+    commentNode.Class = "_commentbox";
+    commentNode.Description = "Comment Box";
+    commentNode.Category = PrototypeNode::nodeCategory::COMMENT;
+
+    m_PrototypeNodes.insert(std::pair(commentNode.Class, commentNode));
+    commentNode.Class = "_comment";
+    m_PrototypeNodes.insert(std::pair(commentNode.Class, commentNode));
     static FlowGraph testGraph;
     testGraph.name = "TestGraph";
     m_FlowGraphs.emplace_back(testGraph);
 }
 
 void FlowgraphEditor::Draw(bool *bDraw) {
-//    ImGui::ShowDemoWindow(bDraw);
+    ImGui::ShowDemoWindow(bDraw);
     gEnv->pFlowSystem;
+    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
+    ImGui::PushFont(AppImGui::getPrettyFont());
     ImGui::SetNextWindowSize(ImVec2(800,500), ImGuiCond_FirstUseEver);
     if(ImGui::Begin("Flowgraph Editor", bDraw, ImGuiWindowFlags_MenuBar)) {
-        if(ImGui::BeginMenuBar()){
-            if(ImGui::BeginMenu("File")){
-                if(ImGui::MenuItem("Load File")){
+        if (ImGui::BeginMenuBar()) {
+            if (ImGui::BeginMenu("File")) {
+                if (ImGui::MenuItem("Load File")) {
 
                 }
                 ImGui::EndMenu();
             }
             ImGui::EndMenuBar();
         }
-        ImGui::BeginGroup();
-        if(ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 30))){
-            ImGui::Text("This is a toolbar bitch");
-        }
-        ImGui::EndChild();
-        if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0))) {
-            if(ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton)) {
-                for (auto &flowgraph: m_FlowGraphs) {
-                    flowgraph.drawTab();
-                }
-                ImGui::EndTabBar();
-            }
-        }
-        ImGui::EndChild();
-        ImGui::EndGroup();
+        ImGui::GetStyle().ScaleAllSizes(STYLE_SCALE);
+
+        DrawNodeEditorTabs();
         ImGui::SameLine();
-        if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
-            static std::string path;
-            ImGui::InputText("Path", &path);
-            if (ImGui::Button("Load XML File")) {
-                if (p_CurrentFlowGraph) {
-                    auto success = p_CurrentFlowGraph->loadXML(path);
-                    CRY_ASSERT(success);
-                }
-            }
-            static ImGuiTextFilter filter;
-            filter.Draw();
-            if (ImGui::BeginTable("Nodes", 1, ImGuiTableFlags_ScrollY,
-                                  ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                for (auto &ProtoNode: m_PrototypeNodes) {
-                    if (filter.PassFilter(ProtoNode.first.c_str())) {
-                        ImGui::TableNextRow();
-                        ImGui::TableNextColumn();
-                        if (ImGui::Selectable(ProtoNode.second.Class.c_str())) {
-                            if (p_CurrentFlowGraph != nullptr) {
-                                p_CurrentFlowGraph->addNode(ProtoNode.second.Class, ProtoNode.second);
-                            }
-                        }
-                    }
-                }
-                ImGui::EndTable();
-            }
-            if (ImGui::Button("Clear Nodes")) {
-//                        m_Nodes.clear();
-//                        m_Edges.clear();
-            }
-        }
-        ImGui::EndChild();
-//        static bool registerFirstNode = true;
-//        nodePtr = *CAutoRegFlowNodeBase::m_pFirst.Get();
-//        auto baseNodePtr = (CAutoRegFlowNode<bool>*)nodePtr;
-//        if(registerFirstNode){
-////            REGISTER_FLOW_NODE(nodePtr, Flow);
-//            registerFirstNode = false;
-//        }
-//        ImGui::Text("BaseNode: %p", baseNodePtr);
-//        ImGui::Text("BaseNode->instance: %p", baseNodePtr->m_pInstance.get());
+        DrawNodeGraphList();
+
+        ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
+        ImGui::End();
     }
-//    ImGui::Text("%p", CAutoRegFlowNodeBase::m_pFirst.Get());
-    ImGui::End();
+    ImGui::PopFont();
+    ImGui::PopStyleVar();
 }
 
 void FlowgraphEditor::Update() {
@@ -166,69 +172,144 @@ FlowgraphEditor::~FlowgraphEditor() {
 
 }
 
-/*if(ImGui::BeginTabBar("Editor Tabs")) {
-            CAutoRegFlowNodeBase* nodePtr = *CAutoRegFlowNodeBase::m_pFirst.Get();
-            if(ImGui::BeginTabItem("Auto Reg Flow Node List")) {
-                int i = 0;
-                if (ImGui::BeginTable("Nodes", 2, ImGuiTableFlags_ScrollY,
-                                      ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                    while (nodePtr != nullptr) {
-                        i++;
-                        ImGui::TableNextRow();
-                        ImGui::TableNextColumn();
-                        ImGui::Text("%p", nodePtr);
-                        ImGui::TableNextColumn();
-                        if(ImGui::Selectable(nodePtr->m_sClassName)){
-//                            auto info = new IFlowNode::SActivationInfo();
-//                            auto node = nodePtr->Create(info);
-//                            m_FlowNodes.emplace_back(node);
-                        }
-                        nodePtr = nodePtr->m_pNext;
-                    }
-                    ImGui::EndTable();
-                }
-                ImGui::Text("Node Count: %d", i);
-                ImGui::EndTabItem();
+void FlowgraphEditor::DrawNodeEditorTabs() {
+    ImGui::BeginGroup();
+    static ImVec2 itemSize = {30, 30};
+    if(ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, itemSize.y))){
+//        ImGui::Text("This is a toolbar bitch");
+        static std::string path = R"(C:\Users\theli\Documents\Prey Modding\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
+        ImGui::InputText("Path", &path);
+        ImGui::SameLine();
+        if(ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)){
+            searchXmlDocuments(path);
+        }
+    }
+    ImGui::EndChild();
+    if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0))) {
+        if(ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton)) {
+            for (auto &flowgraph: m_FlowGraphs) {
+                flowgraph.drawTab();
             }
-            if(ImGui::BeginTabItem("Prototype Node List")) {
-                if (ImGui::BeginTable("Nodes", 2, ImGuiTableFlags_ScrollY,
-                                      ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                    for(auto &node : m_PrototypeNodes){
-                        ImGui::TableNextRow();
-                        ImGui::TableNextColumn();
-                        if(ImGui::Selectable(node.second.Class.c_str())){
-//                            auto info = new IFlowNode::SActivationInfo();
-//                            auto node = nodePtr->Create(info);
-//                            m_FlowNodes.emplace_back(node);
-                        }
-                        ImGui::TableNextColumn();
-                        ImGui::TextWrapped("%s", node.second.Description.c_str());
-                    }
-                    ImGui::EndTable();
-                }
-                ImGui::Text("Node Count: %u", m_PrototypeNodes.size());
-                ImGui::EndTabItem();
+            ImGui::EndTabBar();
+        }
+        if(m_bShowNodePopup){
+            ImGui::OpenPopup("NodeInfo");
+            m_bShowNodePopup = false;
+        }
+        if(ImGui::BeginPopup("NodeInfo")){
+            if(ImGui::MenuItem("Reset Pan")){
+                p_CurrentFlowGraph->resetPanning({0,0});
             }
-            if(ImGui::BeginTabItem("Flow Graph")) {
+            if(ImGui::BeginMenu("Add Nodes")){
+                for(auto & category : Node::CategoryNames){
+                    if(ImGui::BeginMenu(category.second)){
+                        for(auto& prototypeNode: m_PrototypeNodes){
+                            if(prototypeNode.second.Category == category.first){
+                                if(ImGui::MenuItem(("Add " + prototypeNode.second.Class).c_str())){
+                                    p_CurrentFlowGraph->addNode(prototypeNode.first, prototypeNode.second);
+                                }
+                            }
+                        }
+                        ImGui::EndMenu();
+                    }
+                }
+                ImGui::EndMenu();
+            }
+            ImGui::EndPopup();
+        }
+    }
+    ImGui::EndChild();
+    ImGui::EndGroup();
+}
 
-                }
-                ImGui::EndChild();
-                ImGui::EndTabItem();
-            }
-            if(ImGui::BeginTabItem("Type name to id map")){
-                auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
-                if(ImGui::BeginTable("Nodes", 2, ImGuiTableFlags_ScrollY, ImVec2(0, ImGui::GetContentRegionAvail().y * 0.8f))) {
-                    for(auto & entry : flowSystem->m_typeNameToIdMap){
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
-                            ImGui::Text("%s", entry.first.c_str());
-                            ImGui::TableNextColumn();
-                            ImGui::Text("%d", entry.second);
+void FlowgraphEditor::DrawNodeGraphList(){
+    ImGui::BeginGroup();
+    if(p_CurrentFlowGraph != nullptr){
+        if(ImGui::BeginChild("Node Properties", ImVec2(0,ImGui::GetContentRegionAvail().y * p_CurrentFlowGraph->m_nodePropertiesHeight), true)){
+            p_CurrentFlowGraph->drawSelectedNodeProperties();
+        }
+    }
+    ImGui::EndChild();
+    if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
+//        static std::string path;
+//        ImGui::InputText("Path", &path);
+//        if (ImGui::Button("Load XML File")) {
+//            if (p_CurrentFlowGraph) {
+//                auto success = p_CurrentFlowGraph->loadXML(path);
+//                CRY_ASSERT(success);
+//            }
+//        }
+        if (ImGui::BeginTabBar("Node and Graph List")) {
+            if(ImGui::BeginTabItem("Nodes")) {
+                static ImGuiTextFilter filter;
+                filter.Draw("Filter");
+                if (ImGui::BeginTable("Nodes", 1, ImGuiTableFlags_ScrollY,
+                                      ImVec2(0, ImGui::GetContentRegionAvail().y * 0.95f))) {
+                    std::list<PrototypeNode *> filteredNodes;
+                    std::list<Node::nodeCategory> categories;
+                    for (auto &node: m_PrototypeNodes) {
+                        if (filter.PassFilter(node.second.Class.c_str())) {
+                            filteredNodes.emplace_back(&node.second);
+                            if (std::find(categories.begin(), categories.end(), node.second.Category) ==
+                                categories.end()) {
+                                categories.emplace_back(node.second.Category);
+                            }
+                        }
+                    }
+                    /*for (auto &ProtoNode: m_PrototypeNodes) {
+                                if (filter.PassFilter(ProtoNode.first.c_str()) && ProtoNode.second.Category == Category.first) {
+                                    if (ImGui::Selectable(ProtoNode.second.Class.c_str())) {
+                                        if (p_CurrentFlowGraph != nullptr) {
+                                            p_CurrentFlowGraph->addNode(ProtoNode.second.Class, ProtoNode.second);
+                                        }
+                                    }
+                                }
+                            }*/
+                    for (auto &Category: Node::CategoryNames) {
+                        if (std::find(categories.begin(), categories.end(), Category.first) == categories.end()) {
+                            continue;
+                        }
+                        ImGui::TableNextRow();
+                        ImGui::TableNextColumn();
+                        ImGui::PushStyleColor(ImGuiCol_HeaderHovered,
+                                              Node::GetCategoryColor(Category.first).operator ImU32());
+                        ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_CollapsingHeader;
+                        if (categories.size() < (int) Node::nodeCategory::COUNT - 4) {
+                            treeNodeFlags |= ImGuiTreeNodeFlags_DefaultOpen;
+                        }
+                        if (ImGui::TreeNodeEx(Category.second, treeNodeFlags) ||
+                            categories.size() < (int) Node::nodeCategory::COUNT - 4) {
+                            for (auto &ProtoNode: filteredNodes) {
+                                if (ProtoNode->Category == Category.first) {
+                                    if (ImGui::Selectable(ProtoNode->Class.c_str())) {
+                                        if (p_CurrentFlowGraph != nullptr) {
+                                            p_CurrentFlowGraph->addNode(ProtoNode->Class, *ProtoNode);
+                                        }
+                                    }
+                                    if (ImGui::IsItemHovered() && GImGui->HoveredIdTimer > 0.5f) {
+                                        ImGui::BeginTooltip();
+                                        ImGui::Text("%s", ProtoNode->Class.c_str());
+                                        ImGui::EndTooltip();
+                                    }
+                                }
+                            }
+                            ImGui::PopStyleColor();
+                        } else {
+                            ImGui::PopStyleColor();
+                        }
                     }
                     ImGui::EndTable();
                 }
-                ImGui::Text("Node Count: %llu", flowSystem->m_typeNameToIdMap.size());
+                if (ImGui::Button("Clear Nodes")) {
+                }
+                ImGui::EndTabItem();
+            }
+            if(ImGui::BeginTabItem("Graphs")) {
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();
-        }*/
+        }
+    }
+    ImGui::EndChild();
+    ImGui::EndGroup();
+}

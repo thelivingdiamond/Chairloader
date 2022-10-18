@@ -8,6 +8,8 @@
 #include "Node.h"
 #include "Pin.h"
 #include "Edge.h"
+#include <variant>
+#include <pugixml.hpp>
 
 
 struct FlowGraph {
@@ -41,6 +43,10 @@ struct FlowGraph {
     /// \returns true if the node was added successfully, false if the node already exists or other error
     bool addNode(std::string name, PrototypeNode::NodeClass &protoClass, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs);
 
+
+    bool addCommentBox(std::string name, ImVec2 pos, std::string comment, int64_t id = -1);
+
+
     //! remove a node from the graph, will also remove all edges connected to the node
     /// \returns true if the node was removed successfully, false if the node does not exist or other error
     bool removeNode(int64_t id);
@@ -49,7 +55,7 @@ struct FlowGraph {
 
     //! add an edge from a pin id to a pin id
     /// \returns true if the edge was added, false if the edge already exists or the pins are invalid
-    bool addEdge(int64_t startPin, int64_t endPin, int64_t id = 0);
+    bool addEdge(int64_t startPin, int64_t endPin, int64_t id = -1);
 
     //! remove an edge
     /// \returns true if the edge was removed, false if the edge does not exist
@@ -64,7 +70,77 @@ struct FlowGraph {
 
     bool loadXML(fs::path path);
 
+    bool m_bResetPan = false;
+    ImVec2 m_ResetPos = {0, 0};
+    void resetPanning(ImVec2 pos);
+
+    void drawSelectedNodeProperties();
+    void drawNodeProperties(Node& node);
+    float m_nodePropertiesHeight = 0.2f;
 };
 
 
 #endif //CHAIRLOADER_FLOWGRAPH_H
+
+enum class FilePlace {
+    Ark,
+    Level,
+    Libs,
+    Prefabs,
+    Mod,
+    Unknown,
+    COUNT
+};
+
+class FlowGraphFromXML : public FlowGraph {
+public:
+    FilePlace m_FilePlace;
+
+    enum class FlowGraphType{
+        Entity,
+        FlowgraphModule,
+        FlowgraphObjectList,
+        GlobalAction,
+        UIAction,
+        PrefabObject,
+        Unknown,
+        COUNT
+    };
+    struct EntityFileInfo {
+        std::string entityName;
+        uint64_t entityID;
+    };
+    struct FlowgraphModuleFileInfo {
+        std::string moduleName;
+    };
+    struct FlowgraphObjectListFileInfo {
+        std::string objectListName;
+    };
+    struct GlobalActionFileInfo {
+    };
+    struct UIActionFileInfo {
+    };
+    struct PrefabObjectFileInfo {
+        std::string prefabObjectName;
+        uint64_t prefabObjectID;
+    };
+    struct UnknownFileInfo {
+    };
+    std::variant<EntityFileInfo, FlowgraphModuleFileInfo, FlowgraphObjectListFileInfo, GlobalActionFileInfo, UIActionFileInfo, PrefabObjectFileInfo, UnknownFileInfo> m_FileInfo;
+    FlowGraphType m_FlowGraphType;
+    pugi::xml_node m_RootNode;
+    std::string m_FlowGraphName;
+
+};
+
+
+class FlowGraphXMLFile : public FlowGraph {
+public:
+    fs::path m_Path;
+    FilePlace m_FilePlace;
+    std::vector<FlowGraphFromXML> m_FlowGraphs;
+    pugi::xml_document m_Document; // super important document object that all the child flowgraph nodes will use
+    FlowGraphXMLFile() = default;
+    FilePlace parseFilePlace(fs::path path);
+    bool loadFromXmlFile(fs::path path);
+};
