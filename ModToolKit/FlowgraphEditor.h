@@ -32,7 +32,7 @@ public:
 private:
 //    std::vector<_smart_ptr<IFlowNode>> m_FlowNodes;
     std::map<PrototypeNode::NodeClass, PrototypeNode> m_PrototypeNodes;
-    std::vector<FlowGraph> m_FlowGraphs;
+    std::vector<FlowGraph*> m_FlowGraphs;
     FlowGraph* p_CurrentFlowGraph = nullptr;
 
     // XML Load and save

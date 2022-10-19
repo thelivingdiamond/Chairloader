@@ -12,6 +12,8 @@
 #include "App/AppImGui.h"
 #include <filesystem>
 
+static std::vector<std::shared_ptr<FlowGraphXMLFile>> filesWithgraphNodes;
+
 bool findGraphNodes(pugi::xml_node &node){
     // recrusively find all nodes with the tag "Graph" in the xml file
     // when they are found CryLog the path to the node
@@ -47,7 +49,10 @@ void searchXmlDocuments(fs::path path){
             pugi::xml_node node = doc.first_child();
             if(node){
                 if(findGraphNodes(node)){
-                    CryLog("Found Graph Nodes in %s", path.string().c_str());
+//                    CryLog("Found Graph Nodes in %s", path.string().c_str());
+                    filesWithgraphNodes.emplace_back(std::make_shared<FlowGraphXMLFile>(path));
+//                    filesWithgraphNodes.back().m_Path = path;
+//                    filesWithgraphNodes.back().m_FilePlace = filesWithgraphNodes.back().parseFilePlace(filesWithgraphNodes.back().m_Path);
                 }
             }
         }
@@ -63,8 +68,7 @@ FlowgraphEditor::FlowgraphEditor() {
         auto info = new IFlowNode::SActivationInfo();
         //TODO: Fix timer nodes
         if(std::string(typeEntry.first.c_str()) == ("Entity:TacticalScan") ||
-        std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") /*||
-        std::string(typeEntry.first.c_str()) == ("Game:Start")*/ ||
+        std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") ||
         std::string(typeEntry.first.c_str()) == ("Time:Timer")) {
             continue;
         }
@@ -113,6 +117,9 @@ FlowgraphEditor::FlowgraphEditor() {
                 outputPort = &nodeConfig.pOutputPorts[++i];
             }
         }
+        newNode.mFlags = nodeConfig.nFlags;
+//        newNode.m_bEntity_Node = nodeConfig.nFlags & 0x0001;
+//        newNode.m_bDefault_Entity_node = nodeConfig.nFlags & 0x0004;
         newNode.setCategory();
         m_PrototypeNodes.insert(std::pair(newNode.Class, newNode));
         node.ReleaseOwnership();
@@ -128,8 +135,8 @@ FlowgraphEditor::FlowgraphEditor() {
     commentNode.Class = "_comment";
     m_PrototypeNodes.insert(std::pair(commentNode.Class, commentNode));
     static FlowGraph testGraph;
-    testGraph.name = "TestGraph";
-    m_FlowGraphs.emplace_back(testGraph);
+    testGraph.m_Name = "TestGraph";
+    m_FlowGraphs.emplace_back(&testGraph);
 }
 
 void FlowgraphEditor::Draw(bool *bDraw) {
@@ -162,14 +169,10 @@ void FlowgraphEditor::Draw(bool *bDraw) {
 }
 
 void FlowgraphEditor::Update() {
-    for(auto & graph : m_FlowGraphs){
-        graph.update();
-    }
 }
 
 FlowgraphEditor::~FlowgraphEditor() {
     ImNodes::DestroyContext();
-
 }
 
 void FlowgraphEditor::DrawNodeEditorTabs() {
@@ -177,7 +180,7 @@ void FlowgraphEditor::DrawNodeEditorTabs() {
     static ImVec2 itemSize = {30, 30};
     if(ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, itemSize.y))){
 //        ImGui::Text("This is a toolbar bitch");
-        static std::string path = R"(C:\Users\theli\Documents\Prey Modding\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
+        static std::string path = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
         ImGui::InputText("Path", &path);
         ImGui::SameLine();
         if(ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)){
@@ -186,9 +189,9 @@ void FlowgraphEditor::DrawNodeEditorTabs() {
     }
     ImGui::EndChild();
     if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0))) {
-        if(ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton)) {
+        if(ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton | ImGuiTabBarFlags_AutoSelectNewTabs)) {
             for (auto &flowgraph: m_FlowGraphs) {
-                flowgraph.drawTab();
+                flowgraph->drawTab();
             }
             ImGui::EndTabBar();
         }
@@ -228,8 +231,8 @@ void FlowgraphEditor::DrawNodeGraphList(){
         if(ImGui::BeginChild("Node Properties", ImVec2(0,ImGui::GetContentRegionAvail().y * p_CurrentFlowGraph->m_nodePropertiesHeight), true)){
             p_CurrentFlowGraph->drawSelectedNodeProperties();
         }
+        ImGui::EndChild();
     }
-    ImGui::EndChild();
     if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
 //        static std::string path;
 //        ImGui::InputText("Path", &path);
@@ -305,6 +308,88 @@ void FlowgraphEditor::DrawNodeGraphList(){
                 ImGui::EndTabItem();
             }
             if(ImGui::BeginTabItem("Graphs")) {
+                if(ImGui::BeginChild("Graphs", ImVec2(0,0), true, ImGuiWindowFlags_HorizontalScrollbar)){
+                    std::vector<std::shared_ptr<FlowGraphXMLFile>> LevelFlowGraphs, LibsFlowGraphs, PrefabFlowGraphs;
+                    for(auto & file: filesWithgraphNodes){
+                        switch(file->m_FilePlace){
+                            case FilePlace::Ark:
+                                break;
+                            case FilePlace::Level:
+                                LevelFlowGraphs.push_back(file);
+                                break;
+                            case FilePlace::Mod:
+                                break;
+                            case FilePlace::Libs:
+                                LibsFlowGraphs.push_back(file);
+                                break;
+                            case FilePlace::Prefabs:
+                                PrefabFlowGraphs.push_back(file);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    if(ImGui::TreeNode("Level")){
+                        std::vector<std::pair<std::string, std::vector<FlowGraphXMLFile*>>> filesSortedByLevelName;
+                        for(auto & file: LevelFlowGraphs){
+                            bool found = false;
+                            for(auto & fileSorted: filesSortedByLevelName){
+                                if(fileSorted.first == file->m_LevelName){
+                                    fileSorted.second.push_back(file.get());
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if(!found){
+                                std::vector<FlowGraphXMLFile*> files;
+                                files.push_back(file.get());
+                                filesSortedByLevelName.emplace_back(std::pair(file->m_LevelName.u8string(), files));
+//                                    filesSortedByLevelName.emplace_back((std::pair(file->m_LevelName, std::vector<FlowGraphXMLFile*>{file.get()})));
+                            }
+                        }
+                        for(auto & fileSorted: filesSortedByLevelName){
+                            if(ImGui::TreeNode(fileSorted.first.c_str())){
+                                for(auto & file: fileSorted.second) {
+                                    if(ImGui::TreeNode(file->m_RelativeLevelPath.u8string().c_str())){
+                                        for(auto &graph : file->m_FlowGraphs){
+                                            std::string graphIDStr = graph->m_Name + "##";
+                                            if(graph->m_FlowGraphType == FlowGraphFromXML::FlowGraphType::Entity){
+                                                auto entityInfo = std::get<FlowGraphFromXML::EntityFileInfo>(graph->m_FileInfo);
+                                                graphIDStr = graph->m_Name
+                                                        + "##" + entityInfo.entityName + std::to_string(entityInfo.entityID);
+                                            }
+                                            if(ImGui::Selectable(graphIDStr.c_str())){
+                                                m_FlowGraphs.emplace_back(graph.get());
+                                            }
+                                        }
+                                        ImGui::TreePop();
+                                    }
+                                }
+                                ImGui::TreePop();
+                            }
+                        }
+//                            }
+//                            if(ImGui::TreeNode(file->m_Path.u8string().c_str(), "%s %s", file->m_LevelName.u8string().c_str(), file->m_RelativePath.u8string().c_str())){
+//
+//                                ImGui::TreePop();
+//                            }
+
+                        ImGui::TreePop();
+                    }
+                    if(ImGui::TreeNode("Libs")){
+                        for(auto & file: LibsFlowGraphs){
+                            ImGui::Text("%s", file->m_RelativePath.u8string().c_str());
+                        }
+                        ImGui::TreePop();
+                    }
+                    if(ImGui::TreeNode("Prefabs")){
+                        for(auto & file: PrefabFlowGraphs){
+                            ImGui::Text("%s", file->m_RelativePath.u8string().c_str());
+                        }
+                        ImGui::TreePop();
+                    }
+                }
+                ImGui::EndChild();
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();

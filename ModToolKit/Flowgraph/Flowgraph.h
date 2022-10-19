@@ -5,17 +5,23 @@
 #ifndef CHAIRLOADER_FLOWGRAPH_H
 #define CHAIRLOADER_FLOWGRAPH_H
 
+#pragma once
+
 #include "Node.h"
 #include "Pin.h"
 #include "Edge.h"
 #include <variant>
 #include <pugixml.hpp>
+#include "IChairFlowgraph.h"
+#include <ImNodes/ImNodes.h>
 
-
-struct FlowGraph {
+struct FlowGraph : public IChairFlowgraph {
+    FlowGraph();
+    ~FlowGraph();
+    ImNodesEditorContext* m_Context;
     //TODO: add gametokens
-    fs::path path;
-    std::string name;
+    fs::path m_Path;
+    std::string m_Name;
     std::map<int64_t,Node> m_Nodes;
     std::map<int64_t,Edge> m_Edges;
     std::map<int64_t,Pin*> m_pPins;
@@ -23,7 +29,10 @@ struct FlowGraph {
     Node * getNode(int64_t id);
     Pin * getPin(int64_t id);
     Edge * getEdge(int64_t id);
-
+    int64_t uniqueID;
+    int64_t GetUniqueID() override{
+        return uniqueID++;
+    }
 
    /* node adding functions */
 
@@ -94,6 +103,7 @@ enum class FilePlace {
 
 class FlowGraphFromXML : public FlowGraph {
 public:
+    FlowGraphFromXML(pugi::xml_node &node, fs::path path, std::string name);
     FilePlace m_FilePlace;
 
     enum class FlowGraphType{
@@ -131,16 +141,24 @@ public:
     pugi::xml_node m_RootNode;
     std::string m_FlowGraphName;
 
+    bool loadXML(pugi::xml_node &node);
+
 };
 
 
 class FlowGraphXMLFile : public FlowGraph {
 public:
-    fs::path m_Path;
+    fs::path m_RelativePath;
     FilePlace m_FilePlace;
-    std::vector<FlowGraphFromXML> m_FlowGraphs;
+
+    // level files
+    fs::path m_LevelName;
+    fs::path m_RelativeLevelPath;
+
+    std::vector<std::shared_ptr<FlowGraphFromXML>> m_FlowGraphs;
     pugi::xml_document m_Document; // super important document object that all the child flowgraph nodes will use
     FlowGraphXMLFile() = default;
+    FlowGraphXMLFile(fs::path path);
     FilePlace parseFilePlace(fs::path path);
     bool loadFromXmlFile(fs::path path);
 };

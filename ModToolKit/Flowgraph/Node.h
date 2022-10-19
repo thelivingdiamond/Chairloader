@@ -5,6 +5,8 @@
 #include "ImGui/imgui.h"
 #include "ImNodes/imnodes.h"
 #include <IconsMaterialDesign.h>
+#include "IChairFlowgraph.h"
+#include <pugixml.hpp>
 
 struct PrototypeNode{
     enum class nodeCategory {
@@ -55,6 +57,11 @@ struct PrototypeNode{
     std::vector<PrototypePin> ProtoOutputs;
     NodeClass Class;
     nodeCategory Category = nodeCategory::NONE;
+    unsigned mFlags = 0;
+
+    // used to determine if the node has entity inputs
+    bool m_bEntity_Node = false, m_bDefault_Entity_node;
+
     // == operator based on Class
     bool operator==(const PrototypeNode& other) const
     {
@@ -72,23 +79,146 @@ struct Node : public PrototypeNode
 {
     int64_t ID;
     std::string Name;
-    // white
-    ImU32 Color = 0xFFFFFFFF;
+    IChairFlowgraph* ParentFlowgraph;
+
     ImVec2 Pos;
+
     std::vector<Pin> Inputs;
     std::vector<Pin> Outputs;
-    std::string State;
-    std::string SavedState;
+
     std::string comment;
+
     bool PosSet = false;
-    float outputWidestText = 0.0f;
-    float inputWidestText = 0.0f;
+
     using inputName = std::string;
     using inputValue = std::string;
     std::map<inputName, inputValue> defaultInputs;
+    pugi::xml_node xmlNode;
+
     bool isHovered;
 
-    static inline std::map<nodeCategory, ImColor> CategoryColors{
+
+    std::string entityGUID, entityGUID64;
+
+
+    void SetCategoryColor();
+    void ClearCategoryColor();
+    Node() = default;
+    // add a constructor to intialize from a PrototypeNode
+
+    Node(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, IChairFlowgraph* flowgraph)
+            : Name(name), Pos(pos), ParentFlowgraph(flowgraph) {
+        ID = id;
+//        Inputs = proto.ProtoInputs;
+//        Outputs = proto.ProtoOutputs;
+        m_bEntity_Node = proto.m_bEntity_Node;
+        ProtoInputs = proto.ProtoInputs;
+        ProtoOutputs = proto.ProtoOutputs;
+        Class = proto.Class;
+        Category = proto.Category;
+        Description = proto.Description;
+    }
+    Node(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs, IChairFlowgraph* flowgraph)
+            : Name(name), Pos(pos), ParentFlowgraph(flowgraph) {
+        ID = id;
+//        Inputs = proto.ProtoInputs;
+//        Outputs = proto.ProtoOutputs;
+        m_bEntity_Node = proto.m_bEntity_Node;
+        ProtoInputs = proto.ProtoInputs;
+        ProtoOutputs = proto.ProtoOutputs;
+        Category = proto.Category;
+        Class = proto.Class;
+        Description = proto.Description;
+        this->defaultInputs = defaultInputs;
+    }
+    //! OPERATORS
+    // == operator
+    bool operator==(const Node& other) const
+    {
+        return ID == other.ID;
+    }
+    // != operator
+    bool operator!=(const Node& other) const
+    {
+        return ID != other.ID;
+    }
+    // < operator
+    bool operator<(const Node& other) const
+    {
+        return  ID < other.ID;
+    }
+    // > operator
+    bool operator>(const Node& other) const
+    {
+        return ID > other.ID;
+    }
+    // <= operator
+    bool operator<=(const Node& other) const
+    {
+        return ID <= other.ID;
+    }
+    // >= operator
+    bool operator>=(const Node& other) const
+    {
+        return ID >= other.ID;
+    }
+    // operator that returns true if the id is not zero
+    operator bool() const { return ID != 0; }
+
+    void initializePins(){
+        Inputs.clear();
+        Outputs.clear();
+        for(auto &pin : ProtoInputs) {
+            Pin newPin(pin, this, ParentFlowgraph->GetUniqueID());
+            if(defaultInputs.find(newPin.Name) != defaultInputs.end()){
+                newPin.value = defaultInputs[newPin.Name];
+            }
+            Inputs.emplace_back(newPin);
+        }
+        for(auto &pin : ProtoOutputs) {
+            Pin newPin(pin, this, ParentFlowgraph->GetUniqueID());
+            Outputs.emplace_back(newPin);
+        }
+    }
+    Pin* getPin(int64_t id){
+        for(auto &pin : Inputs){
+            if(pin.ID == id)
+                return &pin;
+        }
+        for(auto &pin : Outputs) {
+            if (pin.ID == id)
+                return &pin;
+        }
+        return nullptr;
+    }
+    Pin* getPin(std::string name){
+        for(auto &pin : Inputs){
+            if(pin.Name == name)
+                return &pin;
+        }
+        for(auto &pin : Outputs){
+            if(pin.Name == name)
+                return &pin;
+        }
+        return nullptr;
+    }
+    Pin* getInputPin(std::string name){
+        for(auto &pin : Inputs){
+            if(pin.Name == name)
+                return &pin;
+        }
+        return nullptr;
+    }
+    Pin* getOutputPin(std::string name){
+        for(auto &pin : Outputs){
+            if(pin.Name == name)
+                return &pin;
+        }
+        return nullptr;
+    }
+    virtual void draw();
+
+    static inline std::map<nodeCategory, ImColor> CategoryColors {
             {nodeCategory::CHAIRLOADER_CUSTOM, ImColor::HSV(0.0f,0.9f, 0.6f)},
             {nodeCategory::AI, ImColor::HSV(0.025f,0.9f, 0.6f)},
             {nodeCategory::ACTOR, ImColor::HSV(0.05f,0.9f, 0.6f)},
@@ -213,133 +343,14 @@ struct Node : public PrototypeNode
             {nodeCategory::NONE, "None"},
             {nodeCategory::COMMENT, "Comment"},
     };
-
-
     static ImColor GetCategoryColor(nodeCategory category);
-    void SetCategoryColor();
-    void ClearCategoryColor();
-    Node() = default;
-    // add a constructor to intialize from a PrototypeNode
-    Node( std::string name, PrototypeNode &proto, ImVec2 pos)
-            : Name(name), Pos(pos) {
-        ID = GetUniqueID();
-//        Inputs = proto.ProtoInputs;
-//        Outputs = proto.ProtoOutputs;
-        ProtoInputs = proto.ProtoInputs;
-        ProtoOutputs = proto.ProtoOutputs;
-        Class = proto.Class;
-        Category = proto.Category;
-        Description = proto.Description;
-    }
-
-    Node( std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id)
-            : Name(name), Pos(pos) {
-        ID = id;
-//        Inputs = proto.ProtoInputs;
-//        Outputs = proto.ProtoOutputs;
-        ProtoInputs = proto.ProtoInputs;
-        ProtoOutputs = proto.ProtoOutputs;
-        Class = proto.Class;
-        Category = proto.Category;
-        Description = proto.Description;
-    }
-    Node( std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs)
-            : Name(name), Pos(pos) {
-        ID = id;
-//        Inputs = proto.ProtoInputs;
-//        Outputs = proto.ProtoOutputs;
-        ProtoInputs = proto.ProtoInputs;
-        ProtoOutputs = proto.ProtoOutputs;
-        Category = proto.Category;
-        Class = proto.Class;
-        Description = proto.Description;
-        this->defaultInputs = defaultInputs;
-    }
-    //! OPERATORS
-    // == operator
-    bool operator==(const Node& other) const
-    {
-        return ID == other.ID;
-    }
-    // != operator
-    bool operator!=(const Node& other) const
-    {
-        return ID != other.ID;
-    }
-    // < operator
-    bool operator<(const Node& other) const
-    {
-        return  ID < other.ID;
-    }
-    // > operator
-    bool operator>(const Node& other) const
-    {
-        return ID > other.ID;
-    }
-    // <= operator
-    bool operator<=(const Node& other) const
-    {
-        return ID <= other.ID;
-    }
-    // >= operator
-    bool operator>=(const Node& other) const
-    {
-        return ID >= other.ID;
-    }
-    // operator that returns true if the id is not zero
-    operator bool() const { return ID != 0; }
-
-    void initializePins(){
-        Inputs.clear();
-        Outputs.clear();
-        for(auto &pin : ProtoInputs) {
-            Pin newPin(pin, this);
-            auto textSize = ImGui::CalcTextSize((newPin.Name + " ->").c_str());
-            if(textSize.x > inputWidestText)
-                inputWidestText = textSize.x;
-            if(defaultInputs.find(newPin.Name) != defaultInputs.end()){
-                newPin.value = defaultInputs[newPin.Name];
-            }
-            Inputs.emplace_back(newPin);
-        }
-        for(auto &pin : ProtoOutputs) {
-            Pin newPin(pin, this);
-            auto textSize = ImGui::CalcTextSize((newPin.Name + " ->").c_str());
-            if(textSize.x > outputWidestText)
-                outputWidestText = textSize.x;
-            Outputs.emplace_back(newPin);
-        }
-    }
-    Pin* getPin(int64_t id){
-        for(auto &pin : Inputs){
-            if(pin.ID == id)
-                return &pin;
-        }
-        for(auto &pin : Outputs) {
-            if (pin.ID == id)
-                return &pin;
-        }
-        return nullptr;
-    }
-    Pin* getPin(std::string name){
-        for(auto &pin : Inputs){
-            if(pin.Name == name)
-                return &pin;
-        }
-        for(auto &pin : Outputs){
-            if(pin.Name == name)
-                return &pin;
-        }
-        return nullptr;
-    }
-    virtual void draw();
 };
 
-struct commentBox : public Node{
-    std::string comment;
-    float textSize;
-    ImVec4 textColor;
-    commentBox(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::string comment, float textsize = 1, ImVec4 textcolor = {1.0,1.0,1.0,1.0})
-            : Node(name, proto, pos, id), textSize(textsize), textColor(textcolor) {}
-    void draw() override;
-};
+//struct commentBox : public Node{
+//    std::string comment;
+//    float textSize;
+//    ImVec4 textColor;
+//    commentBox(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::string comment, float textsize = 1, ImVec4 textcolor = {1.0,1.0,1.0,1.0})
+//            : Node(name, proto, pos, id), textSize(textsize), textColor(textcolor) {}
+//    void draw() override;
+//};

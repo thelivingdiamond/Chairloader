@@ -80,18 +80,18 @@ ImColor Node::GetCategoryColor(PrototypeNode::nodeCategory category) {
     return CategoryColors[category];
 }
 
-void commentBox::draw() {
-    ImNodes::BeginNode(ID);
-    if(!PosSet){
-        ImNodes::SetNodeEditorSpacePos(ID, Pos);
-        PosSet = true;
-    }
-    ImNodes::BeginNodeTitleBar();
-    ImGui::Text("%s", Class.c_str());
-    ImNodes::EndNodeTitleBar();
-    ImGui::TextWrapped("%s", Name.c_str());
-    ImNodes::EndNode();
-}
+//void commentBox::draw() {
+//    ImNodes::BeginNode(ID);
+//    if(!PosSet){
+//        ImNodes::SetNodeEditorSpacePos(ID, Pos);
+//        PosSet = true;
+//    }
+//    ImNodes::BeginNodeTitleBar();
+//    ImGui::Text("%s", Class.c_str());
+//    ImNodes::EndNodeTitleBar();
+//    ImGui::TextWrapped("%s", Name.c_str());
+//    ImNodes::EndNode();
+//}
 
 void PrototypeNode::setCategory() {
     {

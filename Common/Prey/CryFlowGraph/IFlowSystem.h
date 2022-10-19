@@ -25,6 +25,19 @@ static const TFlowSystemContainerId InvalidContainerId = ~TFlowSystemContainerId
 struct SInputPortConfig;
 struct SOutputPortConfig;
 
+enum EHyperNodeFlags
+{
+    EHYPER_NODE_ENTITY        = 0x0001,
+    EHYPER_NODE_ENTITY_VALID  = 0x0002,
+    EHYPER_NODE_GRAPH_ENTITY  = 0x0004,    // This node targets graph default entity.
+    EHYPER_NODE_GRAPH_ENTITY2 = 0x0008,    // Second graph default entity.
+    EHYPER_NODE_INSPECTED     = 0x0010,    // Node is being inspected [dynamic, visual-only hint]
+    EHYPER_NODE_HIDE_UI       = 0x0100,    // Not visible in components tree.
+    EHYPER_NODE_CUSTOM_COLOR1 = 0x0200,    // Custom Color1
+    EHYPER_NODE_UNREMOVEABLE  = 0x0400,    // Node cannot be deleted by user
+};
+
+
 // Header: MadeUp
 // _unknown/SFlowNodeConfig.h
 struct SFlowNodeConfig // Id=8001C3F Size=40

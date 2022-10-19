@@ -28,7 +28,7 @@ struct Pin: public PrototypePin
     int numberOfConnections = 0;
     // constructor from prototypePin
     Pin() = default;
-    Pin(PrototypePin pin, Node* node)
+    Pin(PrototypePin pin, Node* node, int64_t id)
     {
         Name = pin.Name;
         HumanName = pin.HumanName;
@@ -36,7 +36,7 @@ struct Pin: public PrototypePin
         Kind = pin.Kind;
         sUIConfig = pin.sUIConfig;
         Type = pin.Type;
-        ID = GetUniqueID();
+        ID = id;
         Parent_Node = node;
     }
     // an operator that returns true if the id is not zero

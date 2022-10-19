@@ -30,6 +30,7 @@ Edge * FlowGraph::getEdge(int64_t id) {
         return &m_Edges[id];
     }
     return nullptr;
+
 }
 
 void FlowGraph::draw() {
@@ -74,6 +75,9 @@ void FlowGraph::draw() {
                         }
                     }
                 }
+                if(ImGui::IsItemClicked(ImGuiMouseButton_Left) && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left)){
+                    ImNodes::EditorContextMoveToNode(node.second.ID);
+                }
                 ImGui::TableSetColumnIndex(1);
                 ImGui::Text("%s", node.second.Name.c_str());
             }
@@ -85,6 +89,7 @@ void FlowGraph::draw() {
     }
     ImGui::EndChild();
     ImGui::SameLine();
+    ImNodes::EditorContextSet(m_Context);
     ImNodes::BeginNodeEditor();
     ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
     if(m_bResetPan){
@@ -101,11 +106,13 @@ void FlowGraph::draw() {
         FlowgraphEditor::setShowNodePopup(true);
     }
     ImNodes::EndNodeEditor();
+//    ImNodes::EditorContextFree(m_Context);
+    update();
 }
 
 
 void FlowGraph::drawTab() {
-    if(ImGui::BeginTabItem(name.c_str())){
+    if(ImGui::BeginTabItem(m_Name.c_str())){
         FlowgraphEditor::getInstance()->setCurrentFlowgraph(this);
         draw();
         ImGui::EndTabItem();
@@ -118,6 +125,7 @@ void FlowGraph::drawEdge(Edge& edge){
 
 
 void FlowGraph::update() {
+    ImNodes::EditorContextSet(m_Context);
     //! handle edge creation
     {
         int start_attr, end_attr;
@@ -285,7 +293,7 @@ bool FlowGraph::addNode(std::string name, PrototypeNode &proto, ImVec2 pos, int6
     if( id < 0){
         id = GetUniqueID();
     }
-    Node newNode (proto.Class, proto, pos, id);
+    Node newNode (proto.Class, proto, pos, id, this);
     if(m_Nodes.insert(std::pair(id, newNode)).second){
         m_Nodes.at(id).initializePins();
         for(auto &input : m_Nodes.at(id).Inputs){
@@ -311,7 +319,7 @@ bool FlowGraph::addNode(std::string name, PrototypeNode &proto, ImVec2 pos, int6
     if( id < 0){
         id = GetUniqueID();
     }
-    Node newNode (proto.Class, proto, pos, id, defaultInputs);
+    Node newNode (proto.Class, proto, pos, id, defaultInputs, this);
     if(m_Nodes.insert(std::pair(id, newNode)).second){
         m_Nodes.at(id).initializePins();
         for(auto &input : m_Nodes.at(id).Inputs){
@@ -439,6 +447,11 @@ void FlowGraph::drawNodeProperties(Node& node) {
         ImGui::InputText("##name", &node.Name);
         ImGui::Text("Class: %s", node.Class.c_str());
         ImGui::Text("ID: %lld", node.ID);
+        ImGui::Text("Entity Node: %d", node.m_bEntity_Node);
+        if(node.m_bEntity_Node){
+            ImGui::InputText("Entity GUID", &node.entityGUID);
+            ImGui::InputText("Entity GUID 64", &node.entityGUID64);
+        }
         if(ImGui::InputFloat2("Position (x,y)", &node.Pos.x, "%.1f") && !ImGui::IsItemEdited()){
             node.PosSet = false;
         }
@@ -471,8 +484,28 @@ void FlowGraph::drawNodeProperties(Node& node) {
                 }
             }
         }
+        if(node.xmlNode){
+            if (ImGui::CollapsingHeader("XML:")) {
+                for(auto& attribute : node.xmlNode.attributes()){
+                    static std::string value;
+                    ImGui::Text("%s:", attribute.name());
+                    ImGui::SameLine();
+                    value = attribute.value();
+                    if(ImGui::InputText(("##" + std::string(attribute.name())).c_str(), &value)){
+                        node.xmlNode.attribute(attribute.name()) = value.c_str();
+                    }
+                }
+            }
+        }
     }
     ImGui::EndChild();
+}
+
+FlowGraph::FlowGraph() {
+    m_Context = ImNodes::EditorContextCreate();
+}
+
+FlowGraph::~FlowGraph() {
 }
 
 bool FlowGraphXMLFile::loadFromXmlFile(fs::path path) {
@@ -497,4 +530,139 @@ FilePlace FlowGraphXMLFile::parseFilePlace(fs::path path) {
         return FilePlace::Prefabs;
     }
     return FilePlace::Unknown;
+}
+
+FlowGraphXMLFile::FlowGraphXMLFile(fs::path path) {
+    m_Path = path;
+    m_FilePlace = parseFilePlace(m_Path);
+    // parse the relative path to be everything after the last instance of PreyFiles
+    m_RelativePath = m_Path.wstring().substr(m_Path.wstring().find(L"PreyFiles") + wstring(L"PreyFiles\\").length());
+    auto result = m_Document.load_file(path.wstring().c_str());
+    if(!result) return;
+    if(m_FilePlace == FilePlace::Level){
+        // determine which level, determine where in levels it is
+        // this must be the mission file
+        auto m_SeekPath = m_Path;
+        auto rootDirectory = m_SeekPath.root_directory();
+        while(m_SeekPath.parent_path() != m_SeekPath){
+            m_SeekPath = m_SeekPath.parent_path();
+            if(m_SeekPath.filename() == "level" || m_SeekPath.filename() == "FlowgraphModules"){
+                m_LevelName = m_SeekPath.parent_path().filename();
+                break;
+            }
+        }
+//        m_RelativeLevelPath = m_SeekPath.wstring().substr(m_SeekPath.wstring().find(m_LevelName) + m_LevelName.wstring().length() + 1);
+        if(m_Path.parent_path().filename() == "level") {
+            auto objects = m_Document.first_child().child("Objects");
+            m_RelativeLevelPath = (L"level" / m_Path.filename());
+            for(auto object: objects.children()){
+                if(object.child("FlowGraph")){
+                    m_FlowGraphs.emplace_back(std::make_shared<FlowGraphFromXML>(object, m_Path, object.attribute("Name").as_string()));
+                    m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::Entity;
+                    m_FlowGraphs.back()->m_FileInfo = FlowGraphFromXML::EntityFileInfo{object.attribute("Name").as_string(), object.attribute("EntityId").as_ullong()};
+                }
+            }
+        } else if (m_Path.parent_path().filename() == "flowgraphobjectlists") {
+            auto graph = m_Document.first_child();
+            m_RelativeLevelPath = (L"flowgraphobjectlists" / m_Path.filename());
+            m_FlowGraphs.emplace_back(std::make_shared<FlowGraphFromXML>(graph, m_Path, graph.attribute("moduleName").as_string()));
+            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::FlowgraphObjectList;
+        } else if (m_Path.parent_path().filename() == "FlowgraphModules") {
+            auto graph = m_Document.first_child();
+            m_RelativeLevelPath = (L"FlowgraphModules" / m_Path.filename());
+            m_FlowGraphs.emplace_back(std::make_shared<FlowGraphFromXML>(graph, m_Path, graph.attribute("moduleName").as_string()));
+            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::FlowgraphModule;
+        }
+    }
+}
+
+FlowGraphFromXML::FlowGraphFromXML(pugi::xml_node &node, fs::path path, std::string name) {
+    m_Name = name;
+    m_Path = path;
+    m_RootNode = node;
+    if(node.name() == std::string("FlowGraph") || node.name() == std::string("Graph")) {
+        loadXML(node);
+    } else {
+        if(node.child("FlowGraph")){
+            auto tempNode = node.child("FlowGraph");
+            loadXML(tempNode);
+        } else if(node.child("Graph")){
+            auto tempNode = node.child("Graph");
+            loadXML(tempNode);
+        } else {
+            CryError("FlowGraphFromXML::FlowGraphFromXML: Could not find FlowGraph or Graph node");
+        }
+    }
+}
+
+bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
+    m_Nodes.clear();
+    m_Edges.clear();
+    uniqueID = 1 << 16;
+    for(auto & node: RootNodeIn.child("Nodes")){
+        std::string nodeClass = node.attribute("Class").as_string();
+        int64_t nodeID = node.attribute("Id").as_int();
+        std::string position = node.attribute("pos").as_string();
+        // position is in format x,y,z
+        // we only want x and y
+        ImVec2 nodePos = {0,0};
+//        PrototypeNode* prototype = nullptr;
+        auto prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
+        if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()){
+            CryError("Could not find prototype for node %s", nodeClass.c_str());
+            continue;
+        }
+        auto proto = prototype->second;
+        auto xSubStr = position.substr(0, position.find(","));
+        position = position.substr(position.find(",") + 1);
+        auto ySubStr = position.substr(0, position.find(","));
+        nodePos.x = std::stof(xSubStr);
+        nodePos.y = std::stof(ySubStr);
+        if(nodeID > uniqueID){
+            uniqueID = nodeID;
+        }
+        std::map<std::string, std::string> setValues;
+//        if(!proto.m_bEntity_Node && node.attribute("EntityGUID")){
+//            CryError("EntityGUID attribute found on non-entity node %s", nodeClass.c_str());
+//        }
+//        if(proto.m_bEntity_Node && !node.attribute("EntityGUID") && !proto.m_bDefault_Entity_node){
+//            CryError("EntityGUID attribute not found on entity node %s", nodeClass.c_str());
+//        }
+        for(auto &value : node.child("Inputs").attributes()){
+            setValues[value.name()] = value.as_string();
+        }
+        if(nodeClass == "_commentbox" || nodeClass == "_comment") {
+            addCommentBox(nodeClass, nodePos, node.attribute("Name").as_string(), nodeID);
+            m_Nodes.at(nodeID).xmlNode = node;
+        } else {
+            addNode(nodeClass, proto, nodePos, nodeID, setValues);
+            m_Nodes.at(nodeID).xmlNode = node;
+            m_Nodes.at(nodeID).entityGUID = node.attribute("EntityGUID").as_string();
+            m_Nodes.at(nodeID).entityGUID64 = node.attribute("EntityGUID_64").as_string();
+        }
+    }
+    for(auto & edge: RootNodeIn.child("Edges")){
+        int64_t edgeID = GetUniqueID();
+        int64_t nodeInID = edge.attribute("nodeIn").as_int();
+        int64_t nodeOutID = edge.attribute("nodeOut").as_int();
+        std::string portIn = edge.attribute("portIn").as_string();
+        std::string portOut = edge.attribute("portOut").as_string();
+        bool enabled = edge.attribute("enabled").as_bool();
+        auto nodeIn = getNode(nodeInID);
+        auto nodeOut = getNode(nodeOutID);
+        if(nodeIn && nodeOut && enabled){
+            auto inputPin = nodeIn->getInputPin(portIn);
+            auto outputPin = nodeOut->getOutputPin(portOut);
+            if(!inputPin){
+                inputPin = nodeIn->getPin(portIn);
+            }
+            if(!outputPin){
+                outputPin = nodeOut->getPin(portOut);
+            }
+            if(inputPin && outputPin){
+                addEdge(inputPin->ID, outputPin->ID, edgeID);
+            }
+        }
+    }
+    return true;
 }
