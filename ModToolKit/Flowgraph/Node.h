@@ -57,7 +57,7 @@ struct PrototypeNode{
     std::vector<PrototypePin> ProtoOutputs;
     NodeClass Class;
     nodeCategory Category = nodeCategory::NONE;
-    unsigned mFlags = 0;
+    unsigned mFlags;
 
     // used to determine if the node has entity inputs
     bool m_bEntity_Node = false, m_bDefault_Entity_node;
@@ -111,6 +111,7 @@ struct Node : public PrototypeNode
         ID = id;
 //        Inputs = proto.ProtoInputs;
 //        Outputs = proto.ProtoOutputs;
+        mFlags = proto.mFlags;
         m_bEntity_Node = proto.m_bEntity_Node;
         ProtoInputs = proto.ProtoInputs;
         ProtoOutputs = proto.ProtoOutputs;
@@ -123,6 +124,7 @@ struct Node : public PrototypeNode
         ID = id;
 //        Inputs = proto.ProtoInputs;
 //        Outputs = proto.ProtoOutputs;
+        mFlags = proto.mFlags;
         m_bEntity_Node = proto.m_bEntity_Node;
         ProtoInputs = proto.ProtoInputs;
         ProtoOutputs = proto.ProtoOutputs;
@@ -168,6 +170,20 @@ struct Node : public PrototypeNode
     void initializePins(){
         Inputs.clear();
         Outputs.clear();
+        if(m_bEntity_Node){
+            Pin entityPin;
+            entityPin.Name = "entityId";
+            entityPin.HumanName = "Entity ID";
+            entityPin.Description = "An inherent entity ID specified by the xml file";
+            entityPin.Kind = PinKind::Input;
+//            entityPin.sUIConfig = "";
+            entityPin.Type = 0;
+            entityPin.ID = ParentFlowgraph->GetUniqueID();
+            entityPin.Parent_Node = this;
+            entityPin.value = entityGUID64;
+            Inputs.emplace_back(entityPin);
+
+        }
         for(auto &pin : ProtoInputs) {
             Pin newPin(pin, this, ParentFlowgraph->GetUniqueID());
             if(defaultInputs.find(newPin.Name) != defaultInputs.end()){

@@ -118,7 +118,7 @@ FlowgraphEditor::FlowgraphEditor() {
             }
         }
         newNode.mFlags = nodeConfig.nFlags;
-//        newNode.m_bEntity_Node = nodeConfig.nFlags & 0x0001;
+        newNode.m_bEntity_Node = nodeConfig.nFlags & EHYPER_NODE_ENTITY;
 //        newNode.m_bDefault_Entity_node = nodeConfig.nFlags & 0x0004;
         newNode.setCategory();
         m_PrototypeNodes.insert(std::pair(newNode.Class, newNode));

@@ -452,6 +452,27 @@ void FlowGraph::drawNodeProperties(Node& node) {
             ImGui::InputText("Entity GUID", &node.entityGUID);
             ImGui::InputText("Entity GUID 64", &node.entityGUID64);
         }
+        if(ImGui::TreeNode("Flags")){
+            /*
+             * EHYPER_NODE_ENTITY        = 0x0001,
+                EHYPER_NODE_ENTITY_VALID  = 0x0002,
+                EHYPER_NODE_GRAPH_ENTITY  = 0x0004,
+                EHYPER_NODE_GRAPH_ENTITY2 = 0x0008,
+                EHYPER_NODE_INSPECTED     = 0x0010,
+                EHYPER_NODE_HIDE_UI       = 0x0100,
+                EHYPER_NODE_CUSTOM_COLOR1 = 0x0200,
+                EHYPER_NODE_UNREMOVEABLE  = 0x0400,
+                */
+            ImGui::Text("%s: %d", "EHYPER_NODE_ENTITY", node.mFlags & EHYPER_NODE_ENTITY);
+            ImGui::Text("%s: %d", "EHYPER_NODE_ENTITY_VALID", node.mFlags & EHYPER_NODE_ENTITY_VALID);
+            ImGui::Text("%s: %d", "EHYPER_NODE_GRAPH_ENTITY", node.mFlags & EHYPER_NODE_GRAPH_ENTITY);
+            ImGui::Text("%s: %d", "EHYPER_NODE_GRAPH_ENTITY2", node.mFlags & EHYPER_NODE_GRAPH_ENTITY2);
+            ImGui::Text("%s: %d", "EHYPER_NODE_INSPECTED", node.mFlags & EHYPER_NODE_INSPECTED);
+            ImGui::Text("%s: %d", "EHYPER_NODE_HIDE_UI", node.mFlags & EHYPER_NODE_HIDE_UI);
+            ImGui::Text("%s: %d", "EHYPER_NODE_CUSTOM_COLOR1", node.mFlags & EHYPER_NODE_CUSTOM_COLOR1);
+            ImGui::Text("%s: %d", "EHYPER_NODE_UNREMOVEABLE", node.mFlags & EHYPER_NODE_UNREMOVEABLE);
+            ImGui::TreePop();
+        }
         if(ImGui::InputFloat2("Position (x,y)", &node.Pos.x, "%.1f") && !ImGui::IsItemEdited()){
             node.PosSet = false;
         }
@@ -639,6 +660,9 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
             m_Nodes.at(nodeID).xmlNode = node;
             m_Nodes.at(nodeID).entityGUID = node.attribute("EntityGUID").as_string();
             m_Nodes.at(nodeID).entityGUID64 = node.attribute("EntityGUID_64").as_string();
+            if(m_Nodes.at(nodeID).m_bEntity_Node){
+                m_Nodes.at(nodeID).getPin("entityId")->value = m_Nodes.at(nodeID).entityGUID64;
+            }
         }
     }
     for(auto & edge: RootNodeIn.child("Edges")){
