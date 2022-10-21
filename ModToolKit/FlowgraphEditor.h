@@ -27,7 +27,7 @@ public:
     static FlowgraphEditor* getInstance(){ return m_pFlowgraphEditorInstance;}
     void setCurrentFlowgraph(FlowGraph* flowgraph){ p_CurrentFlowGraph = flowgraph;}
     static void setShowNodePopup(bool bShow){ m_bShowNodePopup = bShow;}
-
+    static std::string getDockspaceName() { return m_DockspaceName; }
     std::map<PrototypeNode::NodeClass, PrototypeNode>& getPrototypes(){ return m_PrototypeNodes; }
 private:
 //    std::vector<_smart_ptr<IFlowNode>> m_FlowNodes;
@@ -40,6 +40,8 @@ private:
     static inline bool m_bShowNodePopup = false;
     void DrawNodeEditorTabs();
     void DrawNodeGraphList();
+    void DrawNodeProperties();
+    static const inline std::string m_DockspaceName = "FlowgraphEditorDockspace";
 };
 
 

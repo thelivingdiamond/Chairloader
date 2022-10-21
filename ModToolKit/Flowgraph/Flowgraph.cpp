@@ -10,6 +10,7 @@
 #include <filesystem>
 #include "FlowgraphEditor.h"
 #include <boost/algorithm/string.hpp>
+#include <ImGui/imgui_internal.h>
 
 Node * FlowGraph::getNode(int64_t id) {
     if (m_Nodes.find(id) != m_Nodes.end()) {
@@ -112,11 +113,20 @@ void FlowGraph::draw() {
 
 
 void FlowGraph::drawTab() {
-    if(ImGui::BeginTabItem(m_Name.c_str())){
+    if(ImGui::Begin(m_Name.c_str())){
+        if(m_bFirstDraw){
+            m_bFirstDraw = false;
+            auto m_DockspaceID = ImGui::GetID(FlowgraphEditor::getDockspaceName().c_str());
+//        static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoWindowMenuButton;
+            auto mainNode = ImGui::DockBuilderGetNode(m_DockspaceID);
+            ImGui::DockContextQueueDock(ImGui::GetCurrentContext(), mainNode->HostWindow, mainNode->CentralNode, ImGui::GetCurrentWindow(), ImGuiDir_None, 1.0f, false);
+//        ImGui::DockBuilderDockWindow(m_Name.c_str(), mainNode->ID);
+//        ImGui::DockBuilderFinish(m_DockspaceID);
+        }
         FlowgraphEditor::getInstance()->setCurrentFlowgraph(this);
         draw();
-        ImGui::EndTabItem();
     }
+    ImGui::End();
 }
 
 void FlowGraph::drawEdge(Edge& edge){

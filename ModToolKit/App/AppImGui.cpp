@@ -46,12 +46,12 @@ void AppImGui::BeginFrame()
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
-    ImGui::PushFont(getDefaultFont());
+//    ImGui::PushFont(getDefaultFont());
 }
 
 void AppImGui::EndFrame()
 {
-    ImGui::PopFont();
+//    ImGui::PopFont();
 	ImGui::EndFrame();
 
 	ImGui::Render();
@@ -62,6 +62,7 @@ void AppImGui::EndFrame()
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	ImGuiIO& io = ImGui::GetIO();
+
 	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 	{
 		ImGui::UpdatePlatformWindows();
@@ -129,8 +130,10 @@ void AppImGui::InitImGui()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
 
 	ImGui::StyleColorsDark();
 

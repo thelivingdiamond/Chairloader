@@ -62,6 +62,7 @@ void searchXmlDocuments(fs::path path){
 
 FlowgraphEditor::FlowgraphEditor() {
     m_pFlowgraphEditorInstance = this;
+//    m_DockspaceID = ImGui::GetID("FlowgraphEditorDockspace");
     ImNodes::CreateContext();
     auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
     for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
@@ -141,11 +142,22 @@ FlowgraphEditor::FlowgraphEditor() {
 
 void FlowgraphEditor::Draw(bool *bDraw) {
     ImGui::ShowDemoWindow(bDraw);
-    gEnv->pFlowSystem;
     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
     ImGui::PushFont(AppImGui::getPrettyFont());
     ImGui::SetNextWindowSize(ImVec2(800,500), ImGuiCond_FirstUseEver);
-    if(ImGui::Begin("Flowgraph Editor", bDraw, ImGuiWindowFlags_MenuBar)) {
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse;
+
+    static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoWindowMenuButton;
+    static float PercentScreenSize = 0.6f;
+    ImVec2 screenSize = {(float)GetSystemMetrics(SM_CXSCREEN) * PercentScreenSize, (float)GetSystemMetrics(SM_CYSCREEN) * PercentScreenSize};
+//    ImGui::SetNextWindowSize(screenSize, ImGuiCond_Once);
+    // set window pos to center of the screen
+//    ImGui::SetNextWindowPos(ImVec2((float)GetSystemMetrics(SM_CXSCREEN) * 0.5f - screenSize.x * 0.5f, (float)GetSystemMetrics(SM_CYSCREEN) * 0.5f - screenSize.y * 0.5f), ImGuiCond_Once);
+//    ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+    static auto first_time = true;
+    static auto first_finish = true;
+    auto m_DockspaceID = ImGui::GetID(m_DockspaceName.c_str());
+    if(ImGui::Begin("Flowgraph Editor", bDraw, window_flags)) {
         if (ImGui::BeginMenuBar()) {
             if (ImGui::BeginMenu("File")) {
                 if (ImGui::MenuItem("Load File")) {
@@ -155,17 +167,45 @@ void FlowgraphEditor::Draw(bool *bDraw) {
             }
             ImGui::EndMenuBar();
         }
-        ImGui::GetStyle().ScaleAllSizes(STYLE_SCALE);
+        ImGui::DockSpace(m_DockspaceID, ImVec2(0.0f, 0.0f), dockspace_flags);
+        if (first_time)
+        {
+            first_time = false;
 
-        DrawNodeEditorTabs();
-        ImGui::SameLine();
-        DrawNodeGraphList();
+            ImGui::DockBuilderRemoveNode(m_DockspaceID); // clear any previous layout
+            ImGui::DockBuilderAddNode(m_DockspaceID, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
+            ImGui::DockBuilderSetNodeSize(m_DockspaceID, ImGui::GetWindowSize());
 
-        ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
-        ImGui::End();
+            // split the dockspace into 2 nodes -- DockBuilderSplitNode takes in the following args in the following order
+            //   window ID to split, direction, fraction (between 0 and 1), the final two setting let's us choose which id we want (which ever one we DON'T set as NULL, will be returned by the function)
+            //                                                              out_id_at_dir is the id of the node in the direction we specified earlier, out_id_at_opposite_dir is in the opposite direction
+            auto dock_id_right = ImGui::DockBuilderSplitNode(m_DockspaceID, ImGuiDir_Right, 0.2f,  nullptr, &m_DockspaceID);
+            auto dock_id_up = ImGui::DockBuilderSplitNode(dock_id_right, ImGuiDir_Up, 0.3f, nullptr,  &dock_id_right);
+
+            // we now dock our windows into the docking node we made above
+            ImGui::DockBuilderDockWindow("Node Properties", dock_id_up);
+            ImGui::DockBuilderDockWindow("Node Graph List", dock_id_right);
+            ImGui::DockBuilderDockWindow("Node Editor Tabs", m_DockspaceID);
+        }
+
+//        ImGui::SameLine();
+
     }
+
+    ImGui::End();
+    ImGui::GetStyle().ScaleAllSizes(STYLE_SCALE);
+    DrawNodeGraphList();
+    DrawNodeProperties();
+    DrawNodeEditorTabs();//    ImGui::Begin("Test Docking Main Node");
+//    ImGui::End();
+    ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
     ImGui::PopFont();
     ImGui::PopStyleVar();
+    if(first_finish) {
+        first_finish = false;
+        ImGui::DockBuilderFinish(m_DockspaceID);
+    }
+
 }
 
 void FlowgraphEditor::Update() {
@@ -176,64 +216,66 @@ FlowgraphEditor::~FlowgraphEditor() {
 }
 
 void FlowgraphEditor::DrawNodeEditorTabs() {
-    ImGui::BeginGroup();
-    static ImVec2 itemSize = {30, 30};
-    if(ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, itemSize.y))){
-//        ImGui::Text("This is a toolbar bitch");
-        static std::string path = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
-        ImGui::InputText("Path", &path);
-        ImGui::SameLine();
-        if(ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)){
-            searchXmlDocuments(path);
-        }
+    for(auto& graph : m_FlowGraphs) {
+        graph->drawTab();
     }
-    ImGui::EndChild();
-    if(ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f,0))) {
-        if(ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton | ImGuiTabBarFlags_AutoSelectNewTabs)) {
-            for (auto &flowgraph: m_FlowGraphs) {
-                flowgraph->drawTab();
+   /* if(ImGui::Begin("Node Editor Tabs")) {
+        ImGui::BeginGroup();
+        static ImVec2 itemSize = {30, 30};
+        if (ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x, itemSize.y))) {
+//        ImGui::Text("This is a toolbar bitch");
+            static std::string path = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
+            ImGui::InputText("Path", &path);
+            ImGui::SameLine();
+            if (ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)) {
+                searchXmlDocuments(path);
             }
-            ImGui::EndTabBar();
         }
-        if(m_bShowNodePopup){
-            ImGui::OpenPopup("NodeInfo");
-            m_bShowNodePopup = false;
-        }
-        if(ImGui::BeginPopup("NodeInfo")){
-            if(ImGui::MenuItem("Reset Pan")){
-                p_CurrentFlowGraph->resetPanning({0,0});
+        ImGui::EndChild();
+        if (ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+            if (ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton |
+                                                 ImGuiTabBarFlags_AutoSelectNewTabs)) {
+                for (auto &flowgraph: m_FlowGraphs) {
+                    flowgraph->drawTab();
+                }
+                ImGui::EndTabBar();
             }
-            if(ImGui::BeginMenu("Add Nodes")){
-                for(auto & category : Node::CategoryNames){
-                    if(ImGui::BeginMenu(category.second)){
-                        for(auto& prototypeNode: m_PrototypeNodes){
-                            if(prototypeNode.second.Category == category.first){
-                                if(ImGui::MenuItem(("Add " + prototypeNode.second.Class).c_str())){
-                                    p_CurrentFlowGraph->addNode(prototypeNode.first, prototypeNode.second);
+            if (m_bShowNodePopup) {
+                ImGui::OpenPopup("NodeInfo");
+                m_bShowNodePopup = false;
+            }
+            if (ImGui::BeginPopup("NodeInfo")) {
+                if (ImGui::MenuItem("Reset Pan")) {
+                    p_CurrentFlowGraph->resetPanning({0, 0});
+                }
+                if (ImGui::BeginMenu("Add Nodes")) {
+                    for (auto &category: Node::CategoryNames) {
+                        if (ImGui::BeginMenu(category.second)) {
+                            for (auto &prototypeNode: m_PrototypeNodes) {
+                                if (prototypeNode.second.Category == category.first) {
+                                    if (ImGui::MenuItem(("Add " + prototypeNode.second.Class).c_str())) {
+                                        p_CurrentFlowGraph->addNode(prototypeNode.first, prototypeNode.second);
+                                    }
                                 }
                             }
+                            ImGui::EndMenu();
                         }
-                        ImGui::EndMenu();
                     }
+                    ImGui::EndMenu();
                 }
-                ImGui::EndMenu();
+                ImGui::EndPopup();
             }
-            ImGui::EndPopup();
         }
+        ImGui::EndChild();
+        ImGui::EndGroup();
     }
-    ImGui::EndChild();
-    ImGui::EndGroup();
+    ImGui::End();*/
 }
 
 void FlowgraphEditor::DrawNodeGraphList(){
+    if(ImGui::Begin("Node Graph List")){
     ImGui::BeginGroup();
-    if(p_CurrentFlowGraph != nullptr){
-        if(ImGui::BeginChild("Node Properties", ImVec2(0,ImGui::GetContentRegionAvail().y * p_CurrentFlowGraph->m_nodePropertiesHeight), true)){
-            p_CurrentFlowGraph->drawSelectedNodeProperties();
-        }
-        ImGui::EndChild();
-    }
-    if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
+//    if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
 //        static std::string path;
 //        ImGui::InputText("Path", &path);
 //        if (ImGui::Button("Load XML File")) {
@@ -394,7 +436,18 @@ void FlowgraphEditor::DrawNodeGraphList(){
             }
             ImGui::EndTabBar();
         }
-    }
-    ImGui::EndChild();
+//    }
+//    ImGui::EndChild();
     ImGui::EndGroup();
+    }
+    ImGui::End();
+}
+
+void FlowgraphEditor::DrawNodeProperties() {
+    if(ImGui::Begin("Node Properties")){
+        if(p_CurrentFlowGraph != nullptr){
+                p_CurrentFlowGraph->drawSelectedNodeProperties();
+        }
+    }
+    ImGui::End();
 }

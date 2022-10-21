@@ -73,6 +73,7 @@ struct FlowGraph : public IChairFlowgraph {
     void draw();
     void drawTab();
     void update();
+    bool m_bFirstDraw = true;
 
     void drawNode(Node& node);
     void drawEdge(Edge& edge);
