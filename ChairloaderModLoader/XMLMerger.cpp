@@ -70,7 +70,11 @@ void XMLMerger::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode) 
     // copy all attributes from mod node to base node
     mergeXMLNodeAttributes(baseNode, modNode);
     // copy contents
+    baseNode.remove_children();
     baseNode.text().set(modNode.text().get());
+    for(auto &child : modNode.children()){
+        baseNode.append_copy(child);
+    }
 }
 
 
