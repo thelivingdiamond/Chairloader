@@ -19,13 +19,11 @@ bool findGraphNodes(pugi::xml_node &node){
     // when they are found CryLog the path to the node
     bool graphNodesPresent = false;
     if(node.name() == std::string("Graph") || node.name() == std::string("FlowGraph")){
-//        CryLog("Found Graph Node: %s", node.path().c_str());
         graphNodesPresent = true;
         return graphNodesPresent;
     }
     for (auto &child : node.children()){
         if (std::string(child.name()) == "Graph" || std::string(child.name()) == "FlowGraph" ){
-//            CryLog("Found Graph Node: %s", child.path().c_str());
             graphNodesPresent = true;
             continue;
         }
@@ -49,10 +47,7 @@ void searchXmlDocuments(fs::path path){
             pugi::xml_node node = doc.first_child();
             if(node){
                 if(findGraphNodes(node)){
-//                    CryLog("Found Graph Nodes in %s", path.string().c_str());
                     filesWithgraphNodes.emplace_back(std::make_shared<FlowGraphXMLFile>(path));
-//                    filesWithgraphNodes.back().m_Path = path;
-//                    filesWithgraphNodes.back().m_FilePlace = filesWithgraphNodes.back().parseFilePlace(filesWithgraphNodes.back().m_Path);
                 }
             }
         }
@@ -62,7 +57,6 @@ void searchXmlDocuments(fs::path path){
 
 FlowgraphEditor::FlowgraphEditor() {
     m_pFlowgraphEditorInstance = this;
-//    m_DockspaceID = ImGui::GetID("FlowgraphEditorDockspace");
     ImNodes::CreateContext();
     auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
     for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
@@ -141,71 +135,72 @@ FlowgraphEditor::FlowgraphEditor() {
 }
 
 void FlowgraphEditor::Draw(bool *bDraw) {
-    ImGui::ShowDemoWindow(bDraw);
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
-    ImGui::PushFont(AppImGui::getPrettyFont());
-    ImGui::SetNextWindowSize(ImVec2(800,500), ImGuiCond_FirstUseEver);
-    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse;
+    static ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse;
+    static ImGuiDockNodeFlags dockspace_flags = /*ImGuiDockNodeFlags_PassthruCentralNode |*/ ImGuiDockNodeFlags_NoWindowMenuButton;
+    if(m_bDraw) {
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
+        ImGui::PushFont(AppImGui::getPrettyFont());
+        ImGui::SetNextWindowSize(ImVec2(800, 500), ImGuiCond_FirstUseEver);
 
-    static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoWindowMenuButton;
-    static float PercentScreenSize = 0.6f;
-    ImVec2 screenSize = {(float)GetSystemMetrics(SM_CXSCREEN) * PercentScreenSize, (float)GetSystemMetrics(SM_CYSCREEN) * PercentScreenSize};
-//    ImGui::SetNextWindowSize(screenSize, ImGuiCond_Once);
-    // set window pos to center of the screen
-//    ImGui::SetNextWindowPos(ImVec2((float)GetSystemMetrics(SM_CXSCREEN) * 0.5f - screenSize.x * 0.5f, (float)GetSystemMetrics(SM_CYSCREEN) * 0.5f - screenSize.y * 0.5f), ImGuiCond_Once);
-//    ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
-    static auto first_time = true;
-    static auto first_finish = true;
-    auto m_DockspaceID = ImGui::GetID(m_DockspaceName.c_str());
-    if(ImGui::Begin("Flowgraph Editor", bDraw, window_flags)) {
-        if (ImGui::BeginMenuBar()) {
-            if (ImGui::BeginMenu("File")) {
-                if (ImGui::MenuItem("Load File")) {
+        static auto first_time = true;
+        auto m_DockspaceID = ImGui::GetID(m_DockspaceName.c_str());
+        if (ImGui::Begin("Flowgraph Editor", &m_bDraw, window_flags)) {
+            // TODO: Add menu bar
+            if (ImGui::BeginMenuBar()) {
+                if (ImGui::BeginMenu("File")) {
+                    if (ImGui::MenuItem("Load File")) {
 
+                    }
+                    ImGui::EndMenu();
                 }
-                ImGui::EndMenu();
+                ImGui::EndMenuBar();
             }
-            ImGui::EndMenuBar();
+            //TODO: move menu bar to flowgraph
+            static ImVec2 itemSize = {30, 30};
+            if (ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x, itemSize.y))) {
+//        ImGui::Text("This is a toolbar bitch");
+                static std::string path = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
+                ImGui::InputText("Path", &path);
+                ImGui::SameLine();
+                if (ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)) {
+                    searchXmlDocuments(path);
+                }
+            }
+            ImGui::EndChild();
+            ImGui::DockSpace(m_DockspaceID, ImVec2(0.0f, 0.0f), dockspace_flags);
+            if (first_time) {
+                first_time = false;
+
+                ImGui::DockBuilderRemoveNode(m_DockspaceID); // clear any previous layout
+                ImGui::DockBuilderAddNode(m_DockspaceID, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
+                m_DockNode = ImGui::DockBuilderGetNode(m_DockspaceID);
+                ImGui::DockBuilderSetNodeSize(m_DockspaceID, ImGui::GetWindowSize());
+
+                // split the dockspace into 2 nodes -- DockBuilderSplitNode takes in the following args in the following order
+                //   window ID to split, direction, fraction (between 0 and 1), the final two setting let's us choose which id we want (which ever one we DON'T set as NULL, will be returned by the function)
+                //                                                              out_id_at_dir is the id of the node in the direction we specified earlier, out_id_at_opposite_dir is in the opposite direction
+                auto dock_id_right = ImGui::DockBuilderSplitNode(m_DockspaceID, ImGuiDir_Right, 0.2f, nullptr,
+                                                                 &m_DockspaceID);
+                auto dock_id_up = ImGui::DockBuilderSplitNode(dock_id_right, ImGuiDir_Up, 0.3f, nullptr,
+                                                              &dock_id_right);
+
+                // we now dock our windows into the docking node we made above
+                ImGui::DockBuilderDockWindow("Node Properties", dock_id_up);
+                ImGui::DockBuilderDockWindow("Nodes", dock_id_right);
+                ImGui::DockBuilderDockWindow("Graphs", dock_id_right);
+                ImGui::DockBuilderFinish(m_DockspaceID);
+            }
         }
-        ImGui::DockSpace(m_DockspaceID, ImVec2(0.0f, 0.0f), dockspace_flags);
-        if (first_time)
-        {
-            first_time = false;
-
-            ImGui::DockBuilderRemoveNode(m_DockspaceID); // clear any previous layout
-            ImGui::DockBuilderAddNode(m_DockspaceID, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
-            ImGui::DockBuilderSetNodeSize(m_DockspaceID, ImGui::GetWindowSize());
-
-            // split the dockspace into 2 nodes -- DockBuilderSplitNode takes in the following args in the following order
-            //   window ID to split, direction, fraction (between 0 and 1), the final two setting let's us choose which id we want (which ever one we DON'T set as NULL, will be returned by the function)
-            //                                                              out_id_at_dir is the id of the node in the direction we specified earlier, out_id_at_opposite_dir is in the opposite direction
-            auto dock_id_right = ImGui::DockBuilderSplitNode(m_DockspaceID, ImGuiDir_Right, 0.2f,  nullptr, &m_DockspaceID);
-            auto dock_id_up = ImGui::DockBuilderSplitNode(dock_id_right, ImGuiDir_Up, 0.3f, nullptr,  &dock_id_right);
-
-            // we now dock our windows into the docking node we made above
-            ImGui::DockBuilderDockWindow("Node Properties", dock_id_up);
-            ImGui::DockBuilderDockWindow("Node Graph List", dock_id_right);
-            ImGui::DockBuilderDockWindow("Node Editor Tabs", m_DockspaceID);
-        }
-
-//        ImGui::SameLine();
-
+        ImGui::End();
+        //TODO: set the style scales in a better way
+//    ImGui::GetStyle().ScaleAllSizes(STYLE_SCALE);
+        DrawNodeGraphList();
+        DrawNodeProperties();
+        DrawNodeEditorTabs();
+//    ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
+        ImGui::PopFont();
+        ImGui::PopStyleVar();
     }
-
-    ImGui::End();
-    ImGui::GetStyle().ScaleAllSizes(STYLE_SCALE);
-    DrawNodeGraphList();
-    DrawNodeProperties();
-    DrawNodeEditorTabs();//    ImGui::Begin("Test Docking Main Node");
-//    ImGui::End();
-    ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
-    ImGui::PopFont();
-    ImGui::PopStyleVar();
-    if(first_finish) {
-        first_finish = false;
-        ImGui::DockBuilderFinish(m_DockspaceID);
-    }
-
 }
 
 void FlowgraphEditor::Update() {
@@ -219,226 +214,246 @@ void FlowgraphEditor::DrawNodeEditorTabs() {
     for(auto& graph : m_FlowGraphs) {
         graph->drawTab();
     }
-   /* if(ImGui::Begin("Node Editor Tabs")) {
-        ImGui::BeginGroup();
-        static ImVec2 itemSize = {30, 30};
-        if (ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x, itemSize.y))) {
-//        ImGui::Text("This is a toolbar bitch");
-            static std::string path = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
-            ImGui::InputText("Path", &path);
-            ImGui::SameLine();
-            if (ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)) {
-                searchXmlDocuments(path);
-            }
+    if (m_bShowNodePopup) {
+        ImGui::OpenPopup("NodeInfo");
+        m_bShowNodePopup = false;
+    }
+    if (ImGui::BeginPopup("NodeInfo")) {
+        if (ImGui::MenuItem("Reset Pan")) {
+            p_CurrentFlowGraph->resetPanning({0, 0});
         }
-        ImGui::EndChild();
-        if (ImGui::BeginChild("Flow Graph Canvas", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-            if (ImGui::BeginTabBar("Flowgraphs", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_TabListPopupButton |
-                                                 ImGuiTabBarFlags_AutoSelectNewTabs)) {
-                for (auto &flowgraph: m_FlowGraphs) {
-                    flowgraph->drawTab();
-                }
-                ImGui::EndTabBar();
-            }
-            if (m_bShowNodePopup) {
-                ImGui::OpenPopup("NodeInfo");
-                m_bShowNodePopup = false;
-            }
-            if (ImGui::BeginPopup("NodeInfo")) {
-                if (ImGui::MenuItem("Reset Pan")) {
-                    p_CurrentFlowGraph->resetPanning({0, 0});
-                }
-                if (ImGui::BeginMenu("Add Nodes")) {
-                    for (auto &category: Node::CategoryNames) {
-                        if (ImGui::BeginMenu(category.second)) {
-                            for (auto &prototypeNode: m_PrototypeNodes) {
-                                if (prototypeNode.second.Category == category.first) {
-                                    if (ImGui::MenuItem(("Add " + prototypeNode.second.Class).c_str())) {
-                                        p_CurrentFlowGraph->addNode(prototypeNode.first, prototypeNode.second);
-                                    }
-                                }
+        if (ImGui::BeginMenu("Add Nodes")) {
+            for (auto &category: Node::CategoryNames) {
+                if (ImGui::BeginMenu(category.second)) {
+                    for (auto &prototypeNode: m_PrototypeNodes) {
+                        if (prototypeNode.second.Category == category.first) {
+                            if (ImGui::MenuItem(("Add " + prototypeNode.second.Class).c_str())) {
+                                p_CurrentFlowGraph->addNode(prototypeNode.first, prototypeNode.second);
                             }
-                            ImGui::EndMenu();
                         }
                     }
                     ImGui::EndMenu();
                 }
-                ImGui::EndPopup();
             }
+            ImGui::EndMenu();
         }
-        ImGui::EndChild();
-        ImGui::EndGroup();
+        ImGui::EndPopup();
     }
-    ImGui::End();*/
 }
 
-void FlowgraphEditor::DrawNodeGraphList(){
-    if(ImGui::Begin("Node Graph List")){
-    ImGui::BeginGroup();
-//    if(ImGui::BeginChild("Prototype Node Selection List", ImVec2(0,0), true)) {
-//        static std::string path;
-//        ImGui::InputText("Path", &path);
-//        if (ImGui::Button("Load XML File")) {
-//            if (p_CurrentFlowGraph) {
-//                auto success = p_CurrentFlowGraph->loadXML(path);
-//                CRY_ASSERT(success);
-//            }
-//        }
-        if (ImGui::BeginTabBar("Node and Graph List")) {
-            if(ImGui::BeginTabItem("Nodes")) {
-                static ImGuiTextFilter filter;
-                filter.Draw("Filter");
-                if (ImGui::BeginTable("Nodes", 1, ImGuiTableFlags_ScrollY,
-                                      ImVec2(0, ImGui::GetContentRegionAvail().y * 0.95f))) {
-                    std::list<PrototypeNode *> filteredNodes;
-                    std::list<Node::nodeCategory> categories;
-                    for (auto &node: m_PrototypeNodes) {
-                        if (filter.PassFilter(node.second.Class.c_str())) {
-                            filteredNodes.emplace_back(&node.second);
-                            if (std::find(categories.begin(), categories.end(), node.second.Category) ==
-                                categories.end()) {
-                                categories.emplace_back(node.second.Category);
-                            }
-                        }
+void FlowgraphEditor::DrawNodeGraphList() {
+    if (ImGui::Begin("Nodes")) {
+        static ImGuiTextFilter filter;
+        filter.Draw("Filter");
+        if (ImGui::BeginTable("Nodes Table", 1, ImGuiTableFlags_ScrollY,
+                              ImVec2(0, ImGui::GetContentRegionAvail().y * 0.95f))) {
+            std::list<PrototypeNode *> filteredNodes;
+            std::list<Node::nodeCategory> categories;
+            for (auto &node: m_PrototypeNodes) {
+                if (filter.PassFilter(node.second.Class.c_str())) {
+                    filteredNodes.emplace_back(&node.second);
+                    if (std::find(categories.begin(), categories.end(), node.second.Category) ==
+                        categories.end()) {
+                        categories.emplace_back(node.second.Category);
                     }
-                    /*for (auto &ProtoNode: m_PrototypeNodes) {
-                                if (filter.PassFilter(ProtoNode.first.c_str()) && ProtoNode.second.Category == Category.first) {
-                                    if (ImGui::Selectable(ProtoNode.second.Class.c_str())) {
-                                        if (p_CurrentFlowGraph != nullptr) {
-                                            p_CurrentFlowGraph->addNode(ProtoNode.second.Class, ProtoNode.second);
-                                        }
-                                    }
-                                }
-                            }*/
-                    for (auto &Category: Node::CategoryNames) {
-                        if (std::find(categories.begin(), categories.end(), Category.first) == categories.end()) {
-                            continue;
-                        }
-                        ImGui::TableNextRow();
-                        ImGui::TableNextColumn();
-                        ImGui::PushStyleColor(ImGuiCol_HeaderHovered,
-                                              Node::GetCategoryColor(Category.first).operator ImU32());
-                        ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_CollapsingHeader;
-                        if (categories.size() < (int) Node::nodeCategory::COUNT - 4) {
-                            treeNodeFlags |= ImGuiTreeNodeFlags_DefaultOpen;
-                        }
-                        if (ImGui::TreeNodeEx(Category.second, treeNodeFlags) ||
-                            categories.size() < (int) Node::nodeCategory::COUNT - 4) {
-                            for (auto &ProtoNode: filteredNodes) {
-                                if (ProtoNode->Category == Category.first) {
-                                    if (ImGui::Selectable(ProtoNode->Class.c_str())) {
-                                        if (p_CurrentFlowGraph != nullptr) {
-                                            p_CurrentFlowGraph->addNode(ProtoNode->Class, *ProtoNode);
-                                        }
-                                    }
-                                    if (ImGui::IsItemHovered() && GImGui->HoveredIdTimer > 0.5f) {
-                                        ImGui::BeginTooltip();
-                                        ImGui::Text("%s", ProtoNode->Class.c_str());
-                                        ImGui::EndTooltip();
-                                    }
-                                }
-                            }
-                            ImGui::PopStyleColor();
-                        } else {
-                            ImGui::PopStyleColor();
-                        }
-                    }
-                    ImGui::EndTable();
                 }
-                if (ImGui::Button("Clear Nodes")) {
-                }
-                ImGui::EndTabItem();
             }
-            if(ImGui::BeginTabItem("Graphs")) {
-                if(ImGui::BeginChild("Graphs", ImVec2(0,0), true, ImGuiWindowFlags_HorizontalScrollbar)){
-                    std::vector<std::shared_ptr<FlowGraphXMLFile>> LevelFlowGraphs, LibsFlowGraphs, PrefabFlowGraphs;
-                    for(auto & file: filesWithgraphNodes){
-                        switch(file->m_FilePlace){
-                            case FilePlace::Ark:
-                                break;
-                            case FilePlace::Level:
-                                LevelFlowGraphs.push_back(file);
-                                break;
-                            case FilePlace::Mod:
-                                break;
-                            case FilePlace::Libs:
-                                LibsFlowGraphs.push_back(file);
-                                break;
-                            case FilePlace::Prefabs:
-                                PrefabFlowGraphs.push_back(file);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    if(ImGui::TreeNode("Level")){
-                        std::vector<std::pair<std::string, std::vector<FlowGraphXMLFile*>>> filesSortedByLevelName;
-                        for(auto & file: LevelFlowGraphs){
-                            bool found = false;
-                            for(auto & fileSorted: filesSortedByLevelName){
-                                if(fileSorted.first == file->m_LevelName){
-                                    fileSorted.second.push_back(file.get());
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if(!found){
-                                std::vector<FlowGraphXMLFile*> files;
-                                files.push_back(file.get());
-                                filesSortedByLevelName.emplace_back(std::pair(file->m_LevelName.u8string(), files));
-//                                    filesSortedByLevelName.emplace_back((std::pair(file->m_LevelName, std::vector<FlowGraphXMLFile*>{file.get()})));
-                            }
-                        }
-                        for(auto & fileSorted: filesSortedByLevelName){
-                            if(ImGui::TreeNode(fileSorted.first.c_str())){
-                                for(auto & file: fileSorted.second) {
-                                    if(ImGui::TreeNode(file->m_RelativeLevelPath.u8string().c_str())){
-                                        for(auto &graph : file->m_FlowGraphs){
-                                            std::string graphIDStr = graph->m_Name + "##";
-                                            if(graph->m_FlowGraphType == FlowGraphFromXML::FlowGraphType::Entity){
-                                                auto entityInfo = std::get<FlowGraphFromXML::EntityFileInfo>(graph->m_FileInfo);
-                                                graphIDStr = graph->m_Name
-                                                        + "##" + entityInfo.entityName + std::to_string(entityInfo.entityID);
-                                            }
-                                            if(ImGui::Selectable(graphIDStr.c_str())){
-                                                m_FlowGraphs.emplace_back(graph.get());
-                                            }
-                                        }
-                                        ImGui::TreePop();
-                                    }
-                                }
-                                ImGui::TreePop();
-                            }
-                        }
-//                            }
-//                            if(ImGui::TreeNode(file->m_Path.u8string().c_str(), "%s %s", file->m_LevelName.u8string().c_str(), file->m_RelativePath.u8string().c_str())){
-//
-//                                ImGui::TreePop();
-//                            }
-
-                        ImGui::TreePop();
-                    }
-                    if(ImGui::TreeNode("Libs")){
-                        for(auto & file: LibsFlowGraphs){
-                            ImGui::Text("%s", file->m_RelativePath.u8string().c_str());
-                        }
-                        ImGui::TreePop();
-                    }
-                    if(ImGui::TreeNode("Prefabs")){
-                        for(auto & file: PrefabFlowGraphs){
-                            ImGui::Text("%s", file->m_RelativePath.u8string().c_str());
-                        }
-                        ImGui::TreePop();
-                    }
+            for (auto &Category: Node::CategoryNames) {
+                if (std::find(categories.begin(), categories.end(), Category.first) == categories.end()) {
+                    continue;
                 }
-                ImGui::EndChild();
-                ImGui::EndTabItem();
+                ImGui::TableNextRow();
+                ImGui::TableNextColumn();
+                ImGui::PushStyleColor(ImGuiCol_HeaderHovered,
+                                      Node::GetCategoryColor(Category.first).operator ImU32());
+                ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_CollapsingHeader;
+                if (categories.size() < (int) Node::nodeCategory::COUNT - 4) {
+                    treeNodeFlags |= ImGuiTreeNodeFlags_DefaultOpen;
+                }
+                if (ImGui::TreeNodeEx(Category.second, treeNodeFlags) ||
+                    categories.size() < (int) Node::nodeCategory::COUNT - 4) {
+                    for (auto &ProtoNode: filteredNodes) {
+                        if (ProtoNode->Category == Category.first) {
+                            if (ImGui::Selectable(ProtoNode->Class.c_str())) {
+                                if (p_CurrentFlowGraph != nullptr) {
+                                    p_CurrentFlowGraph->addNode(ProtoNode->Class, *ProtoNode);
+                                }
+                            }
+                            if (ImGui::IsItemHovered() && GImGui->HoveredIdTimer > 0.5f) {
+                                ImGui::BeginTooltip();
+                                ImGui::Text("%s", ProtoNode->Class.c_str());
+                                ImGui::EndTooltip();
+                            }
+                        }
+                    }
+                    ImGui::PopStyleColor();
+                } else {
+                    ImGui::PopStyleColor();
+                }
             }
-            ImGui::EndTabBar();
+            ImGui::EndTable();
         }
-//    }
-//    ImGui::EndChild();
-    ImGui::EndGroup();
+    }
+    ImGui::End();
+    if (ImGui::Begin("Graphs")) {
+        std::vector<std::shared_ptr<FlowGraphXMLFile>> LevelFlowGraphs, LibsFlowGraphs, PrefabFlowGraphs;
+        for (auto &file: filesWithgraphNodes) {
+            switch (file->m_FilePlace) {
+                case FilePlace::Ark:
+                    break;
+                case FilePlace::Level:
+                    LevelFlowGraphs.push_back(file);
+                    break;
+                case FilePlace::Mod:
+                    break;
+                case FilePlace::Libs:
+                    LibsFlowGraphs.push_back(file);
+                    break;
+                case FilePlace::Prefabs:
+                    PrefabFlowGraphs.push_back(file);
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (ImGui::TreeNode("Level")) {
+            std::vector<std::pair<std::string, std::vector<FlowGraphXMLFile *>>> filesSortedByLevelName;
+            for (auto &file: LevelFlowGraphs) {
+                bool found = false;
+                for (auto &fileSorted: filesSortedByLevelName) {
+                    if (fileSorted.first == file->m_LevelName) {
+                        fileSorted.second.push_back(file.get());
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    std::vector<FlowGraphXMLFile *> files;
+                    files.push_back(file.get());
+                    filesSortedByLevelName.emplace_back(std::pair(file->m_LevelName.u8string(), files));
+                }
+            }
+            for (auto &fileSorted: filesSortedByLevelName) {
+                if (ImGui::TreeNode(fileSorted.first.c_str())) {
+                    for (auto &file: fileSorted.second) {
+                        if (ImGui::TreeNode(file->m_RelativeLevelPath.u8string().c_str())) {
+                            for (auto &graph: file->m_FlowGraphs) {
+                                std::string graphIDStr = graph->m_Name + "##";
+                                if (graph->m_FlowGraphType == FlowGraphFromXML::FlowGraphType::Entity) {
+                                    auto entityInfo = std::get<FlowGraphFromXML::EntityFileInfo>(graph->m_FileInfo);
+                                    graphIDStr = graph->m_Name
+                                                 + "##" + entityInfo.entityName + std::to_string(entityInfo.entityID);
+                                }
+                                if (ImGui::Selectable(graphIDStr.c_str())) {
+                                    bool alreadyOpen = false;
+                                    for(auto &openGraph: m_FlowGraphs) {
+                                        if(openGraph->m_Path == graph->m_Path) {
+                                            if(openGraph->m_Name == graph->m_Name) {
+                                                alreadyOpen = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if(!alreadyOpen)
+                                        m_FlowGraphs.emplace_back(graph.get());
+                                }
+                            }
+                            ImGui::TreePop();
+                        }
+                    }
+                    ImGui::TreePop();
+                }
+            }
+            ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("Libs")) {
+            static const std::map<FlowGraphFromXML::FlowGraphType, std::string> typeNames = {
+                    {FlowGraphFromXML::FlowGraphType::GlobalAction, "Global Action"},
+                    {FlowGraphFromXML::FlowGraphType::UIAction,  "UI Action"},
+                    {FlowGraphFromXML::FlowGraphType::FlowgraphModule, "Flowgraph Module"},
+                    {FlowGraphFromXML::FlowGraphType::Unknown, "Unknown"},
+            };
+//            for (auto &file: LibsFlowGraphs) {
+                std::vector<std::pair<FlowGraphFromXML::FlowGraphType, std::vector<FlowGraphXMLFile *>>> filesSortedByType;
+                for (auto &file: LibsFlowGraphs) {
+                    bool found = false;
+                    for (auto &fileSorted: filesSortedByType) {
+                        if (fileSorted.first == file->m_FlowGraphs[0]->m_FlowGraphType) {
+                            fileSorted.second.push_back(file.get());
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        std::vector<FlowGraphXMLFile *> files;
+                        files.push_back(file.get());
+                        filesSortedByType.emplace_back(std::pair(file->m_FlowGraphs[0]->m_FlowGraphType, files));
+                    }
+                }
+                for (auto &fileSorted: filesSortedByType) {
+                    if (ImGui::TreeNode(typeNames.at(fileSorted.first).c_str())) {
+                        for (auto &XmlFile: fileSorted.second) {
+                            if (ImGui::Selectable(XmlFile->m_Path.filename().u8string().c_str())) {
+                                auto graph = XmlFile->m_FlowGraphs[0];
+                                bool alreadyOpen = false;
+                                for(auto &openGraph: m_FlowGraphs) {
+                                    if(openGraph->m_Path == graph->m_Path) {
+                                        if(openGraph->m_Name == graph->m_Name) {
+                                            alreadyOpen = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if(!alreadyOpen)
+                                    m_FlowGraphs.emplace_back(graph.get());
+                            }
+                        }
+                        ImGui::TreePop();
+                    }
+                }
+
+//                // remove libs/ from the string before displaying it
+//                std::string selectableName = file->m_RelativePath.u8string().substr(file->m_RelativePath.u8string().find('\\') + 1);
+//                if(ImGui::Selectable(selectableName.c_str())){
+//                    bool alreadyOpen = false;
+//                    for(auto &openGraph: m_FlowGraphs) {
+//                        if(openGraph->m_Path == file->m_Path) {
+//                            if(openGraph->m_Name == file->m_Name) {
+//                                alreadyOpen = true;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if(!alreadyOpen)
+//                        m_FlowGraphs.emplace_back(file->m_FlowGraphs[0].get());
+//                }
+//            }
+            ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("Prefabs")) {
+            for (auto &file: PrefabFlowGraphs) {
+                if(ImGui::TreeNode(file->m_Path.u8string().c_str(), "%s", file->m_Path.filename().u8string().c_str())){
+                    for(auto &graph: file->m_FlowGraphs){
+                        if(ImGui::Selectable(graph->m_Name.c_str())){
+                            bool alreadyOpen = false;
+                            for(auto &openGraph: m_FlowGraphs) {
+                                if(openGraph->m_Path == graph->m_Path) {
+                                    if(openGraph->m_Name == graph->m_Name) {
+                                        alreadyOpen = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(!alreadyOpen)
+                                m_FlowGraphs.emplace_back(graph.get());
+                        }
+                    }
+                    ImGui::TreePop();
+                }
+
+            }
+            ImGui::TreePop();
+        }
     }
     ImGui::End();
 }
@@ -450,4 +465,11 @@ void FlowgraphEditor::DrawNodeProperties() {
         }
     }
     ImGui::End();
+}
+
+void FlowgraphEditor::removeFlowgraph(FlowGraph *flowgraph) {
+    auto it = std::find(m_FlowGraphs.begin(), m_FlowGraphs.end(), flowgraph);
+    if (it != m_FlowGraphs.end()) {
+        m_FlowGraphs.erase(it);
+    }
 }

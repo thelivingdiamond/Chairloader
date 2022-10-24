@@ -11,5 +11,10 @@
 
 
 struct IChairFlowgraph {
+    struct GraphToken {
+        int64_t m_ID;
+        std::string m_Name;
+        int m_Type;
+    };
     virtual int64_t GetUniqueID() = 0;
 };

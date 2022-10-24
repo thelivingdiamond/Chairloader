@@ -14,7 +14,7 @@ struct Node;
 
 #include "Flowgraph/Flowgraph.h"
 
-
+class ImGuiDockNode;
 class IFlowNode;
 
 class FlowgraphEditor {
@@ -29,7 +29,11 @@ public:
     static void setShowNodePopup(bool bShow){ m_bShowNodePopup = bShow;}
     static std::string getDockspaceName() { return m_DockspaceName; }
     std::map<PrototypeNode::NodeClass, PrototypeNode>& getPrototypes(){ return m_PrototypeNodes; }
+    ImGuiDockNode* getDockNode(){ return m_DockNode; }
+    void removeFlowgraph(FlowGraph* flowgraph);
+    bool ShowEditor(bool m_bShow){ m_bDraw = m_bShow; return m_bDraw; }
 private:
+    bool m_bDraw = true;
 //    std::vector<_smart_ptr<IFlowNode>> m_FlowNodes;
     std::map<PrototypeNode::NodeClass, PrototypeNode> m_PrototypeNodes;
     std::vector<FlowGraph*> m_FlowGraphs;
@@ -42,6 +46,7 @@ private:
     void DrawNodeGraphList();
     void DrawNodeProperties();
     static const inline std::string m_DockspaceName = "FlowgraphEditorDockspace";
+    ImGuiDockNode* m_DockNode;
 };
 
 

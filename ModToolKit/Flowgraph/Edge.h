@@ -12,5 +12,8 @@ struct Edge
     ImU32 Color = 0xFFFFFFFF;
     Edge() = default;
     Edge( int64_t id,  int64_t outPin, int64_t inPin, int64_t outNode, int64_t inNode)
-            : ID(id), pinOut(outPin), pinIn(inPin), nodeOut(outNode), nodeIn(inNode) {}
+            : ID(id), pinOut(outPin), pinIn(inPin), nodeOut(outNode), nodeIn(inNode) {};
+    void draw() {
+        ImNodes::Link(ID, pinOut, pinIn);
+    }
 };
