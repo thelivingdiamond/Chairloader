@@ -67,13 +67,18 @@ void XMLMerger::mergeXMLNodeAttributes(pugi::xml_node &baseNode, pugi::xml_node 
 }
 
 void XMLMerger::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode) {
-    // copy all attributes from mod node to base node
-    mergeXMLNodeAttributes(baseNode, modNode);
-    // copy contents
-    baseNode.remove_children();
-    baseNode.text().set(modNode.text().get());
-    for(auto &child : modNode.children()){
-        baseNode.append_copy(child);
+    if(modNode.attribute("chair_remove").as_bool()) {
+        baseNode.parent().remove_child(baseNode);
+        return;
+    } else {
+        // copy all attributes from mod node to base node
+        mergeXMLNodeAttributes(baseNode, modNode);
+        // copy contents
+        baseNode.remove_children();
+        baseNode.text().set(modNode.text().get());
+        for (auto &child: modNode.children()) {
+            baseNode.append_copy(child);
+        }
     }
 }
 

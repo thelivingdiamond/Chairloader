@@ -10,6 +10,7 @@
 <X Param="{{ $.modAuthor.modName.configValue }}"/> <!-- Reference a different mod. modAuthor.modName is actually "modName" from ModInfo.xml. $ is like some global object -->
 <X chair_apply_if="$.modAuthor.modName.modEnabled" /> <!-- Check if different mod is installed and enabled. Allows for some basic interop between XML mods -->
 <X chair_apply_if="{{ configValue }}"/> <!-- apply if some other config value -->
+<X chair_remove /> <!-- Remove this node from the XML -->
  */
 
 //! the purpose of this class is to load, edit, and manage config files for mods
