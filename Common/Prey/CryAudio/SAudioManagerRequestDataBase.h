@@ -41,7 +41,7 @@ struct SAudioManagerRequestDataBase : public SAudioRequestDataBase // Id=8002D38
 {
 	EAudioManagerRequestType eType;
 	
-	virtual ~SAudioManagerRequestDataBase();
+	virtual ~SAudioManagerRequestDataBase() = default;
 	
 #if 0
 	void __dflt_ctor_closure();

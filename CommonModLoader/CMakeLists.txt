@@ -28,7 +28,12 @@ set(SOURCE_FILES
 	ModLoader/SHA256.h
 	ModLoader/PathUtils.cpp
 	ModLoader/PathUtils.h
-)
+
+	#imnodes
+	ImNodes/imnodes.h
+	ImNodes/imnodes.cpp
+	ImNodes/imnodes_internal.h
+		)
 
 add_library(CommonModLoader STATIC
 	${SOURCE_FILES}
@@ -40,6 +45,7 @@ add_library(CommonModLoader STATIC
 target_include_directories(CommonModLoader PUBLIC
 	.
 	../Common/pugixml
+		ImGui/
 )
 
 target_link_libraries(CommonModLoader PUBLIC

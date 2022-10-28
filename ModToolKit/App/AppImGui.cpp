@@ -4,6 +4,7 @@
 #include "AppImGui.h"
 #include <ImGui/imgui_impl_dx11.h>
 #include <ImGui/imgui_impl_win32.h>
+#include <IconsMaterialDesign.h>
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -45,10 +46,12 @@ void AppImGui::BeginFrame()
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
+//    ImGui::PushFont(getDefaultFont());
 }
 
 void AppImGui::EndFrame()
 {
+//    ImGui::PopFont();
 	ImGui::EndFrame();
 
 	ImGui::Render();
@@ -59,6 +62,7 @@ void AppImGui::EndFrame()
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	ImGuiIO& io = ImGui::GetIO();
+
 	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 	{
 		ImGui::UpdatePlatformWindows();
@@ -126,8 +130,10 @@ void AppImGui::InitImGui()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
 
 	ImGui::StyleColorsDark();
 
@@ -137,8 +143,14 @@ void AppImGui::InitImGui()
 		style.WindowRounding = 4.0f;
 		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
+    ImFontConfig config; config.FontNo = 1;
+    m_pDefaultFont = ImGui::GetIO().Fonts->AddFontDefault();
+    ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", 16.0f);
+    static const ImWchar icons_ranges[] = { ICON_MIN_MD, ICON_MAX_16_MD, 0 };
+    ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.GlyphOffset.y = 5.0f; icons_config.PixelSnapH = true;
+    m_pPrettyFont =  ImGui::GetIO().Fonts->AddFontFromFileTTF("MaterialIcons-Regular.ttf", 16.0f, &icons_config, icons_ranges);
 
-	ImGui_ImplWin32_Init((HWND)m_hWndVoid);
+    ImGui_ImplWin32_Init((HWND)m_hWndVoid);
 	ImGui_ImplDX11_Init(m_pd3dDevice, m_pd3dDeviceContext);
 }
 

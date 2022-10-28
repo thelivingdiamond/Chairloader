@@ -19,7 +19,7 @@ void AppStage::Update()
 {
 }
 
-void AppStage::ShowUI()
+void AppStage::ShowUI(bool *bOpen)
 {
 }
 

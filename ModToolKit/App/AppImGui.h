@@ -17,7 +17,8 @@ public:
 
 	void BeginFrame();
 	void EndFrame();
-
+    static ImFont* getPrettyFont() { return m_pPrettyFont; }
+    static ImFont* getDefaultFont() { return m_pDefaultFont; }
 	intptr_t WndProc(void* hWndVoid, unsigned msg, uintptr_t wParam, intptr_t lParam);
 
 private:
@@ -27,6 +28,8 @@ private:
 	IDXGISwapChain* m_pSwapChain;
 	ID3D11RenderTargetView* m_pMainRenderTargetView;
 	bool m_bQuitRequested = false;
+    static inline ImFont* m_pPrettyFont = nullptr;
+    static inline ImFont* m_pDefaultFont = nullptr;
 
 	void InitD3D();
 	void InitImGui();

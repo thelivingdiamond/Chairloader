@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <ChairLoader/pch.h>
+#include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryGame/IGame.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -54,7 +54,7 @@ public:
 	std::vector<CFlowStartNode *> m_startNodes;
 	std::vector<CPlaySequence_Node *> m_trackViewNodes;
 	std::vector<IArkSaveLoadListener *> m_listeners;
-	std::array<std::unordered_map<string,CPlayerProfileManager::SSaveGameMetaData,std::hash<string>,std::equal_to<string>,std::allocator<std::pair<CryStringT<char> const,CPlayerProfileManager::SSaveGameMetaData>>>,3> m_cachedMetadata;
+	std::array<std::unordered_map<std::string,CPlayerProfileManager::SSaveGameMetaData>,3> m_cachedMetadata;
 	
 	struct LevelOriginInfo // Id=8005123 Size=24
 	{
@@ -75,25 +75,25 @@ public:
 	bool m_bNeedToRestoreLevelState;
 	bool m_bRestoringLevelState;
 	
-	ArkSaveLoadSystem();
+	ArkSaveLoadSystem() = default;
 	void RequestLevelStateRestore() { FRequestLevelStateRestore(this); }
 	void LoadCurrentLevelState(CGameSerialize &_gameSerialize) { FLoadCurrentLevelState(this,_gameSerialize); }
-	virtual bool InLevelTransition() const;
-	virtual bool IsRestoringLevelState() const;
+	virtual bool InLevelTransition() const { return FInLevelTransition(this); }
+	virtual bool IsRestoringLevelState() const { return FIsRestoringLevelState(this); }
 	void RegisterStartNode(CFlowStartNode &_node) { FRegisterStartNode(this,_node); }
 	void UnregisterStartNode(CFlowStartNode &_node) { FUnregisterStartNode(this,_node); }
 	void SerializePersistentState(TSerialize _serialize) { FSerializePersistentState(this,_serialize); }
-	virtual void SetCampaignSlot(const int _slot);
-	virtual int GetCampaignSlot() const;
+	virtual void SetCampaignSlot(const int _slot) { FSetCampaignSlot(this,_slot); }
+	virtual int GetCampaignSlot() const { return FGetCampaignSlot(this); }
 	void SaveCurrentLevelState(CGameSerialize &_gameSerialize) { FSaveCurrentLevelState(this,_gameSerialize); }
-	virtual void RegisterListener(IArkSaveLoadListener *_pListener);
-	virtual void UnregisterListener(IArkSaveLoadListener *_pListener);
+	virtual void RegisterListener(IArkSaveLoadListener *_pListener) { FRegisterListener(this,_pListener); }
+	virtual void UnregisterListener(IArkSaveLoadListener *_pListener) { FUnregisterListener(this,_pListener); }
 	void SetMetadata(string const &_saveName, CPlayerProfileManager::SSaveGameMetaData &_data) { FSetMetadata(this,_saveName,_data); }
-	virtual void SaveNewGamePlusData(int _campaignSlot, Functor1<TSerialize> _gameFunction);
-	virtual bool LoadNewGamePlusData(int _campaignSlot, Functor1<TSerialize> _gameFunction);
+	virtual void SaveNewGamePlusData(int _campaignSlot, Functor1<TSerialize> _gameFunction) { FSaveNewGamePlusData(this,_campaignSlot,_gameFunction); }
+	virtual bool LoadNewGamePlusData(int _campaignSlot, Functor1<TSerialize> _gameFunction) { return FLoadNewGamePlusData(this,_campaignSlot,_gameFunction); }
 	void SetLevelOrigin(SBasicEntityData &_bed, IEntity const &_entity) const { FSetLevelOrigin(this,_bed,_entity); }
 	boost::optional<CPlayerProfileManager::SSaveGameMetaData> GetMetadata(string const &_saveName) const { return FGetMetadata(this,_saveName); }
-	virtual void ClearMetadataCache();
+	virtual void ClearMetadataCache() { FClearMetadataCache(this); }
 	
 #if 0
 	int GetNewGameSlot() const;

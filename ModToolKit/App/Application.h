@@ -33,7 +33,7 @@ protected:
 	virtual void Update();
 
 	//! Shows the ImGui IU. Called before the stage ShowUI.
-	virtual void ShowUI();
+	virtual void ShowUI(bool * bOpen);
 
 private:
 	std::unique_ptr<AppImGui> m_pImGui;

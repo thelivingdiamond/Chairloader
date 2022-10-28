@@ -9,7 +9,7 @@ class LoadGameStage : AppStage
 public:
 	LoadGameStage(GameModule* pModule);
 	void Start() override;
-	void ShowUI() override;
+	void ShowUI(bool *bOpen) override;
 	void UpdateProgressText(const std::string& text);
 
 private:

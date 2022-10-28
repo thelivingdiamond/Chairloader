@@ -1,10 +1,15 @@
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <ModLoader/PathUtils.h>
+#include <Prey/CryGame/IGameStartup.h>
+#include <Prey/CryGame/IGameRef.h>
 #include <mem.h>
 #include "LoadGameStage.h"
 #include "GameModule.h"
 #include "ModToolKit.h"
+//#include "Prey/GameDll/ark/ArkGame.h"
+#include <Prey/CryAction/CryAction.h>
+#include <Prey/CrySystem/IEngineModule.h>
 
 LoadGameStage::LoadGameStage(GameModule* pModule)
 {
@@ -29,7 +34,7 @@ void LoadGameStage::Start()
 	}
 }
 
-void LoadGameStage::ShowUI()
+void LoadGameStage::ShowUI(bool * bOpen)
 {
 	if (m_ErrorText.empty())
 	{

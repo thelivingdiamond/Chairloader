@@ -10,7 +10,7 @@ struct SAudioRequestDataBase // Id=80021AB Size=16
 {
 	EAudioRequestType eRequestType;
 	
-	virtual ~SAudioRequestDataBase();
+	virtual ~SAudioRequestDataBase() = default;
 	
 #if 0
 	void __dflt_ctor_closure();

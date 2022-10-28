@@ -16,7 +16,7 @@ public:
 
 	}
 
-	void ShowUI() override
+	void ShowUI(bool * bOpen) override
 	{
 		bool bIsOpen = true;
 		if (ImGui::Begin("Test", &bIsOpen))
@@ -52,6 +52,7 @@ void ModToolKit::Update()
 		{
 			m_pLoadGameStage.reset();
 			m_pDevConsole = std::make_unique<DevConsoleDialog>();
+            m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
 			m_pTestStage = std::make_unique<TestStage>();
 		}
 		else if (m_pTestStage)
@@ -61,10 +62,15 @@ void ModToolKit::Update()
 	}
 }
 
-void ModToolKit::ShowUI()
+void ModToolKit::ShowUI(bool* bOpen)
 {
 	if (m_pDevConsole)
-		m_pDevConsole->Show(nullptr);
+		m_pDevConsole->Show(bOpen);
+    if(m_pFlowgraphEditor) {
+        m_pFlowgraphEditor->Draw(bOpen);
+        m_pFlowgraphEditor->Update();
+    }
+
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

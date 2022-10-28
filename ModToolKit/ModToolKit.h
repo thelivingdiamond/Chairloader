@@ -1,6 +1,7 @@
 #include "App/Application.h"
 #include "MainConfig.h"
 #include "GameModule.h"
+#include "FlowgraphEditor.h"
 
 struct IGameStartup;
 class LoadGameStage;
@@ -19,7 +20,7 @@ public:
 
 protected:
 	void Update() override;
-	void ShowUI() override;
+	void ShowUI(bool* bOpen) override;
 
 private:
 	MainConfig m_Config;
@@ -28,4 +29,6 @@ private:
 
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
 	std::unique_ptr<TestStage> m_pTestStage;
+  
+  std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
 };
