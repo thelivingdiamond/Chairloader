@@ -29,6 +29,6 @@ private:
 
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
 	std::unique_ptr<TestStage> m_pTestStage;
-	
-    std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
+  
+  std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
 };
