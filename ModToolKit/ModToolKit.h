@@ -1,11 +1,13 @@
 #include "App/Application.h"
-#include "MainConfig.h"
+#include "ConfigManager.h"
 #include "GameModule.h"
 #include "FlowgraphEditor.h"
+#include "ProjectManager.h"
+#include "ProjectSelectStage.h"
+#include "ConfigValidationStage.h"
 
 struct IGameStartup;
 class LoadGameStage;
-class TestStage;
 class DevConsoleDialog;
 
 class ModToolKit : public Application
@@ -16,19 +18,18 @@ public:
 	ModToolKit();
 	~ModToolKit();
 
-	MainConfig GetConfig() { return m_Config; }
+	ConfigManager GetConfig() { return m_Config; }
 
 protected:
 	void Update() override;
 	void ShowUI(bool* bOpen) override;
 
 private:
-	MainConfig m_Config;
+	ConfigManager m_Config;
 	GameModule m_GameModule;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 
+    std::unique_ptr<ConfigValidationStage> m_ConfigValidateStage;
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
-	std::unique_ptr<TestStage> m_pTestStage;
-  
-  std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
+    std::unique_ptr<ProjectSelectStage> m_pProjectSelectStage;
 };

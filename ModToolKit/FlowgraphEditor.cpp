@@ -161,12 +161,6 @@ FlowgraphEditor::FlowgraphEditor() {
     newPin.Kind = PinKind::Output;
     TimerNode->ProtoOutputs.emplace_back(newPin);
     m_PrototypeNodes.insert(std::pair(TimerNode->Class, TimerNode));
-
-    // ENTITY:TACTICALSCAN
-
-
-
-
     static FlowGraph testGraph;
     testGraph.m_Name = "TestGraph";
     m_FlowGraphs.emplace_back(&testGraph);

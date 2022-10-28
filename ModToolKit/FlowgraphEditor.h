@@ -31,7 +31,6 @@ public:
     std::map<PrototypeNode::NodeClass,  std::shared_ptr<PrototypeNode>>& getPrototypes(){ return m_PrototypeNodes; }
     void addUnknownPrototype(PrototypeNode::NodeClass nodeClass);
     void addPinToPrototype(PrototypeNode::NodeClass nodeClass, PrototypePin pin);
-    void updateNodeClass(PrototypeNode::NodeClass nodeClass);
     ImGuiDockNode* getDockNode(){ return m_DockNode; }
     void removeFlowgraph(FlowGraph* flowgraph);
     bool ShowEditor(bool m_bShow){ m_bDraw = m_bShow; return m_bDraw; }

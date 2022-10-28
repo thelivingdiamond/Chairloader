@@ -8,32 +8,10 @@
 // Dear God, No
 #include "../ChairLoader/DevConsoleDialog.h"
 
-class TestStage : public AppStage
-{
-public:
-	void Update() override
-	{
-
-	}
-
-	void ShowUI(bool * bOpen) override
-	{
-		bool bIsOpen = true;
-		if (ImGui::Begin("Test", &bIsOpen))
-		{
-			ImGui::Text("Test");
-		}
-		ImGui::End();
-
-		if (!bIsOpen)
-			SetStageFinished();
-	}
-};
-
 ModToolKit::ModToolKit()
 {
-	m_Config.LoadFromXML(""); // TODO:
-	m_pLoadGameStage = std::make_unique<LoadGameStage>(&m_GameModule);
+    m_Config.LoadFromXML(); // TODO:
+    m_ConfigValidateStage = std::make_unique<ConfigValidationStage>();
 }
 
 ModToolKit::~ModToolKit()
@@ -48,29 +26,27 @@ void ModToolKit::Update()
 
 	if (GetStage()->IsStageFinished())
 	{
-		if (m_pLoadGameStage)
-		{
+        if(m_ConfigValidateStage){
+            m_ConfigValidateStage.reset();
+            m_pLoadGameStage = std::make_unique<LoadGameStage>(&m_GameModule);
+        }
+        else if (m_pLoadGameStage) {
 			m_pLoadGameStage.reset();
 			m_pDevConsole = std::make_unique<DevConsoleDialog>();
-            m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
-			m_pTestStage = std::make_unique<TestStage>();
+            m_pProjectSelectStage = std::make_unique<ProjectSelectStage>();
 		}
-		else if (m_pTestStage)
-		{
-			QuitApp();
-		}
+        else if (m_pProjectSelectStage){
+            QuitApp();
+        }
 	}
 }
 
 void ModToolKit::ShowUI(bool* bOpen)
 {
+    if(m_Config.isShown())
+        m_Config.ShowUI();
 	if (m_pDevConsole)
 		m_pDevConsole->Show(bOpen);
-    if(m_pFlowgraphEditor) {
-        m_pFlowgraphEditor->Draw(bOpen);
-        m_pFlowgraphEditor->Update();
-    }
-
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

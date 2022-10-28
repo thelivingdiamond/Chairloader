@@ -96,7 +96,7 @@ FunctionHook<void(CSystem* const _this)> g_CSystem_CreateSystemVars_Hook;
 void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 {
 	g_CSystem_CreateSystemVars_Hook.InvokeOrig(_this);
-	fs::path gameSdkPath = ModToolKit::Get()->GetConfig().gamePath / "GameSDK";
+	fs::path gameSdkPath = ModToolKit::Get()->GetConfig().getGamePath() / "GameSDK";
 	_this->GetIConsole()->GetCVar("sys_game_folder")->Set(gameSdkPath.u8string().c_str());
 
 	// Enable dedicated server mode
@@ -147,11 +147,11 @@ void GameModule::LoadDll()
 	LoadLibraryExA("mswsock.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
 
 	// Add game directory to DLL search path
-	fs::path binDir = ModToolKit::Get()->GetConfig().gamePath / PathUtils::GAME_BIN_DIR;
+	fs::path binDir = ModToolKit::Get()->GetConfig().getGamePath() / PathUtils::GAME_BIN_DIR;
 	AddDllDirectory(binDir.c_str());
 
 	// Load the DLL
-	fs::path dllPath = ModToolKit::Get()->GetConfig().gamePath / PathUtils::GAME_DLL_PATH;
+	fs::path dllPath = ModToolKit::Get()->GetConfig().getGamePath() / PathUtils::GAME_DLL_PATH;
 	hModule = LoadLibraryExW(dllPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
 
 	if (!hModule)
