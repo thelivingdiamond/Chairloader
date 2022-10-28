@@ -17,4 +17,5 @@ struct IChairFlowgraph {
         int m_Type;
     };
     virtual int64_t GetUniqueID() = 0;
+    virtual void AddPin(int64_t id, Pin* pin) = 0;
 };

@@ -41,6 +41,14 @@ struct FlowGraph : public IChairFlowgraph {
         return uniqueID++;
     }
 
+    void AddPin(int64_t id, Pin* pin) override{
+        m_pPins[id] = pin;
+    }
+
+    void refreshUnknownNodes();
+    void refreshNodesOfClass(PrototypeNode::NodeClass nodeClass);
+    bool m_bContainsUnknownNodes = false;
+
     bool m_bFirstDraw = true;
     bool m_bDraw = true;
     bool m_bShowNodeList = true;
@@ -50,13 +58,13 @@ struct FlowGraph : public IChairFlowgraph {
 
     //! add a node from a prototype node
     /// \returns true if the node was added successfully, false if the node already exists or other error
-    bool addNode(std::string name, PrototypeNode &proto, ImVec2 pos = {0,0}, int64_t id = -1);
+    bool addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos = {0,0}, int64_t id = -1);
     //! add a node from a prototype class name
     /// \returns true if the node was added successfully, false if the node already exists or other error
     bool addNode(std::string name, PrototypeNode::NodeClass &protoClass, ImVec2 pos = {0,0}, int64_t id = -1);
     //! add a node from a prototype with default inputs (for XML loading)
     /// \returns true if the node was added successfully, false if the node already exists or other error
-    bool addNode(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs);
+    bool addNode(std::string name, std::shared_ptr<PrototypeNode>, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs);
     //! add a node from a prototype class name with default inputs (for XML loading)
     /// \returns true if the node was added successfully, false if the node already exists or other error
     bool addNode(std::string name, PrototypeNode::NodeClass &protoClass, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs);
@@ -172,7 +180,6 @@ public:
 
     bool loadXML(pugi::xml_node &node);
     bool saveXML() override;
-
 };
 
 

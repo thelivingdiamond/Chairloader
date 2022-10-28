@@ -212,6 +212,10 @@ void GameModule::LoadDll()
     mem::Nop(dllBase + 0x49DD5A, 0x49DD5F - 0x49DD5A); // skip game:start node constructor
     mem::Nop(dllBase + 0x49DD70, 0x49DD79 - 0x49DD70); // skip game:start node constructor
 
+    mem::Nop(dllBase + 0x179447B, 0x1794480 - 0x179447B); // skip CTacticalScanNode Hud Event Register Call
+
+    mem::Nop(dllBase + 0x11C92D1, 0x11C9300 - 0x11C92D1); // skip CArkFlowNodeMimicPlayerEvent UI Calls
+
 	DetourTransactionBegin();
 	g_CSystem_CreateSystemVars_Hook.InstallHook(CSystem_CreateSystemVars.Get(), &CSystem_CreateSystemVars_Hook);
 	DetourTransactionCommit();

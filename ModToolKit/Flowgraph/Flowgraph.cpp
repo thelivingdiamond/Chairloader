@@ -362,9 +362,10 @@ bool FlowGraph::loadXML(fs::path path) {
         ImVec2 nodePos = {0,0};
 //        PrototypeNode* prototype = nullptr;
         auto prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
-        if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()){
-            CryError("Could not find prototype for node %s", nodeClass.c_str());
-            continue;
+        if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()) {
+            CryWarning("Could not find prototype for node %s, adding prototype", nodeClass.c_str());
+            FlowgraphEditor::getInstance()->addUnknownPrototype(nodeClass);
+            prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
         }
         auto proto = prototype->second;
         auto xSubStr = position.substr(0, position.find(","));
@@ -404,11 +405,11 @@ bool FlowGraph::loadXML(fs::path path) {
     return true;
 }
 
-bool FlowGraph::addNode(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id) {
+bool FlowGraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos, int64_t id) {
     if( id < 0){
         id = GetUniqueID();
     }
-    Node newNode (proto.Class, proto, pos, id, this);
+    Node newNode (proto->Class, proto, pos, id, this);
     if(m_Nodes.insert(std::pair(id, newNode)).second){
         m_Nodes.at(id).initializePins();
         for(auto &input : m_Nodes.at(id).Inputs){
@@ -431,11 +432,11 @@ bool FlowGraph::addNode(std::string name, PrototypeNode::NodeClass &protoClass, 
     return false;
 }
 
-bool FlowGraph::addNode(std::string name, PrototypeNode &proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs) {
+bool FlowGraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs) {
     if( id < 0){
         id = GetUniqueID();
     }
-    Node newNode (proto.Class, proto, pos, id, defaultInputs, this);
+    Node newNode (proto->Class, proto, pos, id, defaultInputs, this);
     if(m_Nodes.insert(std::pair(id, newNode)).second){
         m_Nodes.at(id).initializePins();
         for(auto &input : m_Nodes.at(id).Inputs){
@@ -492,6 +493,7 @@ bool FlowGraph::addEdge(int64_t startPin, int64_t endPin, int64_t id) {
     auto endNode = m_pPins.at(endPin)->Parent_Node;
     //TODO: determine if selfcest is allowed - yes it is apparently
     if(!startNode || !endNode) return false;
+    //FIXME: PIN IDS DISAPPEARING WHEN REFRESHED
 //    if (startNode->ID == endNode->ID) return false;
     if(m_Edges.insert(std::pair(id, Edge(id, startPin, endPin, startNode->ID, endNode->ID))).second){
         m_pPins.at(startPin)->addLink();
@@ -566,10 +568,10 @@ void FlowGraph::drawNodeProperties(Node& node) {
         ImGui::Text("Name: ");
         ImGui::SameLine();
         ImGui::InputText("##name", &node.Name);
-        ImGui::Text("Class: %s", node.Class.c_str());
+        ImGui::Text("Class: %s", node.Proto->Class.c_str());
         ImGui::Text("ID: %lld", node.ID);
-        ImGui::Text("Entity Node: %d", node.m_bEntity_Node);
-        if(node.m_bEntity_Node){
+        ImGui::Text("Entity Node: %d", node.Proto->m_bEntity_Node);
+        if(node.Proto->m_bEntity_Node){
             ImGui::InputText("Entity GUID", &node.entityGUID);
             ImGui::InputText("Entity GUID 64", &node.entityGUID64);
         }
@@ -584,14 +586,14 @@ void FlowGraph::drawNodeProperties(Node& node) {
                 EHYPER_NODE_CUSTOM_COLOR1 = 0x0200,
                 EHYPER_NODE_UNREMOVEABLE  = 0x0400,
                 */
-            ImGui::Text("%s: %d", "EHYPER_NODE_ENTITY", node.mFlags & EHYPER_NODE_ENTITY);
-            ImGui::Text("%s: %d", "EHYPER_NODE_ENTITY_VALID", node.mFlags & EHYPER_NODE_ENTITY_VALID);
-            ImGui::Text("%s: %d", "EHYPER_NODE_GRAPH_ENTITY", node.mFlags & EHYPER_NODE_GRAPH_ENTITY);
-            ImGui::Text("%s: %d", "EHYPER_NODE_GRAPH_ENTITY2", node.mFlags & EHYPER_NODE_GRAPH_ENTITY2);
-            ImGui::Text("%s: %d", "EHYPER_NODE_INSPECTED", node.mFlags & EHYPER_NODE_INSPECTED);
-            ImGui::Text("%s: %d", "EHYPER_NODE_HIDE_UI", node.mFlags & EHYPER_NODE_HIDE_UI);
-            ImGui::Text("%s: %d", "EHYPER_NODE_CUSTOM_COLOR1", node.mFlags & EHYPER_NODE_CUSTOM_COLOR1);
-            ImGui::Text("%s: %d", "EHYPER_NODE_UNREMOVEABLE", node.mFlags & EHYPER_NODE_UNREMOVEABLE);
+            ImGui::Text("%s: %d", "EHYPER_NODE_ENTITY", node.Proto->mFlags & EHYPER_NODE_ENTITY);
+            ImGui::Text("%s: %d", "EHYPER_NODE_ENTITY_VALID", node.Proto->mFlags & EHYPER_NODE_ENTITY_VALID);
+            ImGui::Text("%s: %d", "EHYPER_NODE_GRAPH_ENTITY", node.Proto->mFlags & EHYPER_NODE_GRAPH_ENTITY);
+            ImGui::Text("%s: %d", "EHYPER_NODE_GRAPH_ENTITY2", node.Proto->mFlags & EHYPER_NODE_GRAPH_ENTITY2);
+            ImGui::Text("%s: %d", "EHYPER_NODE_INSPECTED", node.Proto->mFlags & EHYPER_NODE_INSPECTED);
+            ImGui::Text("%s: %d", "EHYPER_NODE_HIDE_UI", node.Proto->mFlags & EHYPER_NODE_HIDE_UI);
+            ImGui::Text("%s: %d", "EHYPER_NODE_CUSTOM_COLOR1", node.Proto->mFlags & EHYPER_NODE_CUSTOM_COLOR1);
+            ImGui::Text("%s: %d", "EHYPER_NODE_UNREMOVEABLE", node.Proto->mFlags & EHYPER_NODE_UNREMOVEABLE);
             ImGui::TreePop();
         }
         if(ImGui::InputFloat2("Position (x,y)", &node.Pos.x, "%.1f") && !ImGui::IsItemEdited()){
@@ -805,14 +807,18 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
         ImVec2 nodePos = {0,0};
 //        PrototypeNode* prototype = nullptr;
         auto prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
-        if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()){
-            CryError("Could not find prototype for node %s", nodeClass.c_str());
-            continue;
+        if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()) {
+            CryWarning("Could not find prototype for node %s, adding prototype", nodeClass.c_str());
+            FlowgraphEditor::getInstance()->addUnknownPrototype(nodeClass);
+            if(node.attribute("EntityGUID")){
+                FlowgraphEditor::getInstance()->getPrototypes().at(nodeClass)->m_bEntity_Node = true;
+            }
+            prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
         }
         auto proto = prototype->second;
-        auto xSubStr = position.substr(0, position.find(","));
-        position = position.substr(position.find(",") + 1);
-        auto ySubStr = position.substr(0, position.find(","));
+        auto xSubStr = position.substr(0, position.find(','));
+        position = position.substr(position.find(',') + 1);
+        auto ySubStr = position.substr(0, position.find(','));
         nodePos.x = std::stof(xSubStr);
         nodePos.y = std::stof(ySubStr);
         if(nodeID > uniqueID){
@@ -826,6 +832,21 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
 //            CryError("EntityGUID attribute not found on entity node %s", nodeClass.c_str());
 //        }
         for(auto &value : node.child("Inputs").attributes()){
+            bool found = false;
+            for(auto & input : proto->ProtoInputs){
+                if(input.Name == value.name()){
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                if(value.name() != std::string("entityId")){
+//                    proto->m_bEntity_Node = true;
+                    FlowgraphEditor::getInstance()->addPinToPrototype(proto->Class, {value.name(), "", "", PinKind::Input});
+                } else {
+                    proto->m_bEntity_Node = true;
+                }
+            }
             setValues[value.name()] = value.as_string();
         }
         if(nodeClass == "_commentbox" || nodeClass == "_comment") {
@@ -836,11 +857,12 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
             m_Nodes.at(nodeID).xmlNode = node;
             m_Nodes.at(nodeID).entityGUID = node.attribute("EntityGUID").as_string();
             m_Nodes.at(nodeID).entityGUID64 = node.attribute("EntityGUID_64").as_string();
-            if(m_Nodes.at(nodeID).m_bEntity_Node){
+            if(m_Nodes.at(nodeID).Proto->m_bEntity_Node){
                 m_Nodes.at(nodeID).getPin("entityId")->value = m_Nodes.at(nodeID).entityGUID64;
             }
         }
     }
+    // add any pins that need to be added to custom nodes
     for(auto & edge: RootNodeIn.child("Edges")){
         int64_t edgeID = GetUniqueID();
         int64_t nodeInID = edge.attribute("nodeIn").as_int();
@@ -855,12 +877,56 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
             auto outputPin = nodeOut->getOutputPin(portOut);
             if(!inputPin){
                 inputPin = nodeIn->getPin(portIn);
+                if(!inputPin){
+                    PrototypePin newPin;
+                    newPin.Name = portIn;
+                    newPin.Kind = PinKind::Input;
+                    FlowgraphEditor::getInstance()->addPinToPrototype(nodeIn->Proto->Class, newPin);
+                    refreshNodesOfClass(nodeIn->Proto->Class);
+                    inputPin = nodeIn->getInputPin(portIn);
+                    CryLog("Added new input pin %s to node %s", portIn.c_str(), nodeIn->Proto->Class.c_str());
+                }
             }
             if(!outputPin){
                 outputPin = nodeOut->getPin(portOut);
+                if(!outputPin){
+                    PrototypePin newPin;
+                    newPin.Name = portOut;
+                    newPin.Kind = PinKind::Output;
+                    FlowgraphEditor::getInstance()->addPinToPrototype(nodeOut->Proto->Class, newPin);
+                    refreshNodesOfClass(nodeOut->Proto->Class);
+                    outputPin = nodeOut->getOutputPin(portOut);
+                    CryLog("Added new output pin %s to node %s", portOut.c_str(), nodeOut->Proto->Class.c_str());
+                }
             }
+        }
+    }
+    // refresh m_pPins
+    m_pPins.clear();
+    for(auto & node: m_Nodes){
+        for(auto & pin: node.second.Inputs){
+            m_pPins.insert({pin.ID, &pin});
+        }
+        for(auto & pin: node.second.Outputs){
+            m_pPins.insert({pin.ID, &pin});
+        }
+    }
+    for(auto & edge: RootNodeIn.child("Edges")){
+        int64_t edgeID = GetUniqueID();
+        int64_t nodeInID = edge.attribute("nodeIn").as_int();
+        int64_t nodeOutID = edge.attribute("nodeOut").as_int();
+        std::string portIn = edge.attribute("portIn").as_string();
+        std::string portOut = edge.attribute("portOut").as_string();
+        bool enabled = edge.attribute("enabled").as_bool();
+        auto nodeIn = getNode(nodeInID);
+        auto nodeOut = getNode(nodeOutID);
+        if(nodeIn && nodeOut && enabled){
+            auto inputPin = nodeIn->getInputPin(portIn);
+            auto outputPin = nodeOut->getOutputPin(portOut);
             if(inputPin && outputPin){
                 addEdge(inputPin->ID, outputPin->ID, edgeID);
+            } else {
+                CryError("Could not find input or output pin for edge connecting %s to %s\n with ports %s and %s", nodeIn->Proto->Class.c_str(), nodeOut->Proto->Class.c_str(), portIn.c_str(), portOut.c_str());
             }
         }
     }
@@ -870,6 +936,13 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
         std::string tokenName = token.attribute("Name").as_string();
         int tokenType = token.attribute("Type").as_int();
         m_Tokens.insert({tokenId, {tokenId, tokenName, tokenType}});
+    }
+    // if there are any unknown nodes set m_bContainsUnknownNodes to true
+    for(auto & node: m_Nodes){
+        if(node.second.Proto->Category == PrototypeNode::nodeCategory::UNKNOWN){
+            m_bContainsUnknownNodes = true;
+            break;
+        }
     }
     return true;
 }
@@ -897,13 +970,13 @@ bool FlowGraphFromXML::saveXML() {
     }
     for(auto & node: m_Nodes){
         auto newXMLNode = Nodes.append_child("Node");
-        newXMLNode.append_attribute("Class").set_value(node.second.Class.c_str());
+        newXMLNode.append_attribute("Class").set_value(node.second.Proto->Class.c_str());
         newXMLNode.append_attribute("Id").set_value(node.second.ID);
         newXMLNode.append_attribute("Pos").set_value((std::to_string(node.second.Pos.x) + "," + std::to_string(node.second.Pos.y) + ",0").c_str());
-        if(node.second.Class == "_commentbox" || node.second.Class == "_comment"){
+        if(node.second.Proto->Class == "_commentbox" || node.second.Proto->Class == "_comment"){
             newXMLNode.append_attribute("Name").set_value(node.second.comment.c_str());
         } else {
-            if(node.second.m_bEntity_Node){
+            if(node.second.Proto->m_bEntity_Node){
                 newXMLNode.append_attribute("EntityGUID").set_value(node.second.entityGUID.c_str());
                 newXMLNode.append_attribute("EntityGUID_64").set_value(node.second.entityGUID64.c_str());
             }
@@ -946,6 +1019,29 @@ void FlowGraph::RedoLastCommand(){
 //            m_CommandHistory.at(i)->redo();
             m_CommandHistory.at(i).m_bIsUndone = false;
             return;
+        }
+    }
+}
+
+void FlowGraph::refreshUnknownNodes() {
+    for(auto & node: m_Nodes){
+        if(node.second.Proto->Class == "unknown"){
+            auto protoSearch = FlowgraphEditor::getInstance()->getPrototypes().find(node.second.Proto->Class);
+            if(protoSearch != FlowgraphEditor::getInstance()->getPrototypes().end()){
+                node.second.Proto = protoSearch->second;
+                node.second.refreshPins();
+            }
+        }
+    }
+}
+
+void FlowGraph::refreshNodesOfClass(PrototypeNode::NodeClass nodeClass) {
+    for(auto & node: m_Nodes){
+        if(node.second.Proto->Class == nodeClass){
+            auto protoSearch = FlowgraphEditor::getInstance()->getPrototypes().find(node.second.Proto->Class);
+            if(protoSearch != FlowgraphEditor::getInstance()->getPrototypes().end()){
+                node.second.refreshPins();
+            }
         }
     }
 }

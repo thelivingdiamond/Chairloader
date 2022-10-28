@@ -4,7 +4,7 @@
 #include <IconsMaterialDesign.h>
 
 void Node::draw() {
-    if(Category == nodeCategory::COMMENT){
+    if(Proto->Category == PrototypeNode::nodeCategory::COMMENT){
         SetCategoryColor();
         ImNodes::BeginNode(ID);
         if(!PosSet){
@@ -12,7 +12,7 @@ void Node::draw() {
             PosSet = true;
         }
         ImNodes::BeginNodeTitleBar();
-        ImGui::Text("%s %s",CategoryIcons[Category], "Comment Box");
+        ImGui::Text("%s %s",CategoryIcons[Proto->Category], "Comment Box");
         ImNodes::EndNodeTitleBar();
 //        ImGui::PushItemWidth(400);
         ImGui::InputTextMultiline("##Comment", &comment, ImVec2(400, 50), ImGuiInputTextFlags_AllowTabInput);
@@ -30,7 +30,7 @@ void Node::draw() {
         PosSet = true;
     }
     ImNodes::BeginNodeTitleBar();
-    ImGui::Text("%s %s",CategoryIcons[Category], Class.c_str());
+    ImGui::Text("%s %s",CategoryIcons[Proto->Category], Proto->Class.c_str());
     ImNodes::EndNodeTitleBar();
     for(auto &input : Inputs){
         ImNodes::BeginInputAttribute(input.ID);
@@ -63,7 +63,7 @@ void Node::draw() {
 
 
 void Node::SetCategoryColor() {
-    auto color = GetCategoryColor(Category);
+    auto color = GetCategoryColor(Proto->Category);
     ImColor selectedColor = ImVec4(color.Value.x + 0.1f, color.Value.y + 0.1f, color.Value.z + 0.1f, color.Value.w);
     ImNodes::PushColorStyle(ImNodesCol_TitleBar, color);
     ImNodes::PushColorStyle(ImNodesCol_TitleBarSelected, selectedColor);
