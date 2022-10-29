@@ -2,24 +2,24 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CryGame/IGameStartup.h>
 #include "App/AppStage.h"
-#include "ModToolKit.h"
+#include "Preditor.h"
 #include "LoadGameStage.h"
 
 // Dear God, No
 #include "../ChairLoader/DevConsoleDialog.h"
 
-ModToolKit::ModToolKit()
+Preditor::Preditor()
 {
     m_Config.LoadFromXML(); // TODO:
     m_ConfigValidateStage = std::make_unique<ConfigValidationStage>();
 }
 
-ModToolKit::~ModToolKit()
+Preditor::~Preditor()
 {
 	m_GameModule.Shutdown();
 }
 
-void ModToolKit::Update()
+void Preditor::Update()
 {
 	if (gEnv)
 		gEnv->pSystem->Update();
@@ -41,7 +41,7 @@ void ModToolKit::Update()
 	}
 }
 
-void ModToolKit::ShowUI(bool* bOpen)
+void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
@@ -51,6 +51,6 @@ void ModToolKit::ShowUI(bool* bOpen)
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)
 {
-	auto pApp = std::make_unique<ModToolKit>();
+	auto pApp = std::make_unique<Preditor>();
 	return pApp->Run();
 }

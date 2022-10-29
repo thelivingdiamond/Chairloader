@@ -27,7 +27,7 @@ void ConfigManager::LoadFromXML() {
         showConfigWindow();
     }
 	m_gamePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey)";
-    m_PreyFilesPath = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
+    m_PreyFilesPath = R"(C:\Users\theli\Documents\Prey Modding\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
 }
 
 void ConfigManager::SaveToXML() {
@@ -47,7 +47,7 @@ void ConfigManager::ShowUI() {
 
 void ConfigManager::createConfigFile() {
     if(!fs::exists(m_configFilePath)) {
-        m_configFile.reset();
+        m_configFile->reset();
         m_configFile->append_child("ModToolKitConfig");
         m_configNode = m_configFile->child("ModToolKitConfig");
         if(!m_configFile->save_file(m_configFilePath.c_str())){

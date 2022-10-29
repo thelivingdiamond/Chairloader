@@ -5,14 +5,14 @@
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"
 #include "App/AppImGui.h"
-#include "ModToolKit.h"
+#include "Preditor.h"
 
 void ProjectSelectStage::Update() {
 
 }
 
 void ProjectSelectStage::ShowUI(bool *bOpen) {
-    if(ModToolKit::Get()->GetConfig().isShown()) return;
+    if(Preditor::Get()->GetConfig().isShown()) return;
     ImGui::PushFont(AppImGui::getPrettyFont());
     bool bShow = true;
     ImGui::SetNextWindowSize(ImVec2(800, 600), ImGuiCond_Once);

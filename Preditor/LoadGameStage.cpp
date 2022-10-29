@@ -6,7 +6,7 @@
 #include <mem.h>
 #include "LoadGameStage.h"
 #include "GameModule.h"
-#include "ModToolKit.h"
+#include "Preditor.h"
 //#include "Prey/GameDll/ark/ArkGame.h"
 #include <Prey/CryAction/CryAction.h>
 #include <Prey/CrySystem/IEngineModule.h>
@@ -64,5 +64,5 @@ void LoadGameStage::UpdateProgressText(const std::string& text)
 {
 	m_ProgressText = text;
 	m_ProgressCount++;
-	ModToolKit::Get()->RefreshUI();
+	Preditor::Get()->RefreshUI();
 }

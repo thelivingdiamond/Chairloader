@@ -10,13 +10,13 @@ struct IGameStartup;
 class LoadGameStage;
 class DevConsoleDialog;
 
-class ModToolKit : public Application
+class Preditor : public Application
 {
 public:
-	static ModToolKit* Get() { return static_cast<ModToolKit*>(Application::Get()); }
+	static Preditor* Get() { return static_cast<Preditor*>(Application::Get()); }
 
-	ModToolKit();
-	~ModToolKit();
+	Preditor();
+	~Preditor();
 
 	ConfigManager GetConfig() { return m_Config; }
 

@@ -14,8 +14,8 @@ set(SOURCE_FILES
 	LoadGameStage.h
 		ConfigManager.cpp
 		ConfigManager.h
-	ModToolKit.cpp
-	ModToolKit.h
+		Preditor.cpp
+        Preditor.h
 	pch.h
         FlowgraphEditor.cpp
 		FlowgraphEditor.h
@@ -26,7 +26,7 @@ set(SOURCE_FILES
 		Flowgraph/Edge.h
 		Flowgraph/UniqueID.h Flowgraph/Node.cpp Flowgraph/IChairFlowgraph.h ProjectManager.cpp ProjectManager.h Project.cpp Project.h ProjectSelectStage.cpp ProjectSelectStage.h App/AppModule.cpp App/AppModule.h ConfigValidationStage.cpp ConfigValidationStage.h)
 
-add_executable(ModToolKit WIN32
+add_executable(Preditor WIN32
 	${SOURCE_FILES}
 
 	# Some sources from Common
@@ -40,22 +40,22 @@ add_executable(ModToolKit WIN32
 	../Chairloader/DevConsoleDialog.h
 )
 
-target_include_directories(ModToolKit PRIVATE
+target_include_directories(Preditor PRIVATE
 	.
 	../CommonModLoader # This must go first. Yes, it's all a huge mess.
 	../Common # Can't link with Common since it conflicts with CommonModLoader. We only need the headers anyway.
 )
 
-target_compile_definitions(ModToolKit PRIVATE
-	MODTOOLKIT
+target_compile_definitions(Preditor PRIVATE
+	PREDITOR
 )
 
-target_link_libraries(ModToolKit
+target_link_libraries(Preditor
 	CommonModLoader
 	D3D11.lib
 	Detours::Detours
 )
 
-target_precompile_headers(ModToolKit PRIVATE pch.h)
+target_precompile_headers(Preditor PRIVATE pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
