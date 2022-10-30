@@ -249,6 +249,15 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
             ImGui::EndMenu();
         }
 #endif
+        if(ImGui::BeginMenu("Utils")){
+            if(ImGui::MenuItem("Remove Intro Videos")){
+                removeStartupCinematics();
+            }
+            if(ImGui::MenuItem("Restore Intro Videos")){
+                restoreStartupCinematics();
+            }
+            ImGui::EndMenu();
+        }
         if(ImGui::BeginMenu("Help")){
             // Legacy Mods
             if(ImGui::BeginMenu("Help Information")) {
@@ -2412,4 +2421,41 @@ void ModLoader::launchGame() {
     } else {
         overlayLog(severityLevel::error, "Failed to launch game");
     }
+}
+
+void ModLoader::removeStartupCinematics() {
+    log(severityLevel::info, "Removing startup cinematics");
+    fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
+    try {
+        fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2",
+                   cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup");
+        fs::rename(cinematicsPath / "Bethesda_logo_anim_white.bk2",
+                   cinematicsPath / "Bethesda_logo_anim_white.bk2.backup");
+        fs::rename(cinematicsPath / "LegalScreens.bk2",
+                   cinematicsPath / "LegalScreens.bk2.backup");
+        fs::rename(cinematicsPath / "Ryzen_Bumper.bk2",
+                   cinematicsPath / "Ryzen_Bumper.bk2.backup");
+
+    } catch (fs::filesystem_error &e) {
+        log(severityLevel::error, "Failed to remove startup cinematics: %s", e.what());
+    }
+
+}
+
+void ModLoader::restoreStartupCinematics() {
+    log(severityLevel::info, "Restoring startup cinematics");
+    fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
+    try {
+        fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup",
+                   cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2");
+        fs::rename(cinematicsPath / "Bethesda_logo_anim_white.bk2.backup",
+                     cinematicsPath / "Bethesda_logo_anim_white.bk2");
+        fs::rename(cinematicsPath / "LegalScreens.bk2.backup",
+                        cinematicsPath / "LegalScreens.bk2");
+        fs::rename(cinematicsPath / "Ryzen_Bumper.bk2.backup",
+                        cinematicsPath / "Ryzen_Bumper.bk2");
+    } catch(fs::filesystem_error &e) {
+        log(severityLevel::error, "Failed to restore startup cinematics: %s", e.what());
+    }
+
 }

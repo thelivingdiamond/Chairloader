@@ -372,4 +372,7 @@ private:
         m_bNoRandom = false,
         m_bAuxGeom = false;
     void launchGame();
+
+    void removeStartupCinematics();
+    void restoreStartupCinematics();
 };
