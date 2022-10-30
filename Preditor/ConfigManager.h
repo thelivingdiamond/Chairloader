@@ -21,7 +21,9 @@ public:
 
     void ShowUI() override;
 
-    fs::path getGamePath() { return m_gamePath; }
+    fs::path& getGamePath() { return m_gamePath; }
+    fs::path& getPreyFilesPath() { return m_PreyFilesPath; }
+    pugi::xml_node& getConfigNode() { return m_configNode; }
 
     void showConfigWindow();
 
@@ -39,10 +41,13 @@ protected:
     pugi::xml_node m_configNode;
     void createConfigFile();
 
-    const std::vector<std::string> m_importantNodes = {
+    const std::vector<std::string> m_criticalNodes = {
         "Paths",
         "Paths/GamePath",
         "Paths/PreyFilesPath",
+    };
+    const std::vector<std::string> m_importantNodes = {
+            "Projects",
     };
     bool m_bConfigFileValid = false;
     bool validateConfigFile();

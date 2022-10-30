@@ -37,8 +37,8 @@ private:
     void error(const std::string &error);
 
     ImVec2 WINDOW_SIZE = ImVec2(800, 300);
-    ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize;
-    std::string WINDOW_TITLE = "Mod Tool Kit Configuration";
+    ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking;
+    std::string WINDOW_TITLE = "Preditor Configuration";
 
     void showWelcomeWindow();
 

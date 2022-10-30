@@ -33,6 +33,11 @@ set(SOURCE_FILES
 	ImNodes/imnodes.h
 	ImNodes/imnodes.cpp
 	ImNodes/imnodes_internal.h
+
+	#ImFileDialog
+	ImFileDialog/ImFileDialog.h
+	ImFileDialog/ImFileDialog.cpp
+	ImFileDialog/stb_image.h
 		)
 
 add_library(CommonModLoader STATIC
