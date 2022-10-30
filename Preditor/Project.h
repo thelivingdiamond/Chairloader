@@ -21,6 +21,12 @@ public:
     void Update() override;
 
     void ShowUI(bool *bOpen) override;
+private:
+    fs::path m_ProjectPath;
+
+    ImVec2 WINDOW_SIZE = ImVec2(1500, 750);
+    ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse;
+    std::string WINDOW_TITLE = "Project Window";
 };
 
 

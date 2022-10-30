@@ -27,9 +27,13 @@ protected:
 private:
 	ConfigManager m_Config;
 	GameModule m_GameModule;
+    // MODULES
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
+    std::unique_ptr<ProjectManager> m_pProjectManager;
 
+    // STAGES
     std::unique_ptr<ConfigValidationStage> m_ConfigValidateStage;
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
     std::unique_ptr<ProjectSelectStage> m_pProjectSelectStage;
+    std::unique_ptr<Project> m_pProject;
 };

@@ -15,14 +15,20 @@
 class ProjectManager {
 public:
     ProjectManager();
-    ~ProjectManager();
+    ~ProjectManager() = default;
 
     void Init();
     void Update();
 
+    static ProjectManager* Get();
+    std::vector<fs::path>& getPreviousProjects() { return m_PreviousProjects; }
+    void setProjectDirectory(const fs::path& path);
+    fs::path getProjectDirectory() { return m_ProjectDirectory; }
+    void addPreviousProject(const fs::path& path);
+    void savePreviousProjects();
 private:
-    fs::path ProjectDirectory;
-    std::vector<fs::path> PreviousProjects;
+    fs::path m_ProjectDirectory;
+    std::vector<fs::path> m_PreviousProjects;
 };
 
 
