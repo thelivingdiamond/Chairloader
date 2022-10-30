@@ -34,6 +34,24 @@ std::string GetLastErrorAsString()
 
 void LoadChairLoader()
 {
+    // Parse the console args
+    {
+        int argc = 0;
+        wchar_t** argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+        bool disableChair = false;
+
+        for (int i = 0; i < argc; i++)
+        {
+            if (!_wcsicmp(argv[i], L"-nochair"))
+                disableChair = true;
+        }
+
+        LocalFree(argv);
+
+        if (disableChair)
+            return; // Disabled via cmd line
+    }
+
     HMODULE hPreyDll = GetModuleHandle("PreyDll.dll");
     if (!hPreyDll)
     {
