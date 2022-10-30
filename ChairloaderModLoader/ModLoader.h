@@ -362,4 +362,14 @@ private:
     //! Chairloader version checking
     VersionCheck::DLLVersion packagedChairloaderVersion;
     VersionCheck::DLLVersion installedChairloaderVersion;
+
+    //! Chairloader Launch Options
+    std::wstring m_chairloaderLaunchOptions;
+    std::string m_customArgs;
+    bool m_bLoadChairloader = true,
+        m_bLoadEditor = false,
+        m_bDevMode = true,
+        m_bNoRandom = false,
+        m_bAuxGeom = false;
+    void launchGame();
 };

@@ -62,7 +62,12 @@ void ModLoader::LoadModLoaderConfig()
     if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.wstring().c_str())) {
         if (ChairloaderModLoaderConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string());
-
+            auto launchOptionsNode = ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions");
+            m_bLoadChairloader = launchOptionsNode.attribute("LoadChairloader").as_bool();
+            m_bLoadEditor = launchOptionsNode.attribute("LoadEditor").as_bool();
+            m_bDevMode = launchOptionsNode.attribute("DevMode").as_bool();
+            m_bNoRandom = launchOptionsNode.attribute("NoRandom").as_bool();
+            m_bAuxGeom = launchOptionsNode.attribute("AuxGeom").as_bool();
             if (PathUtils::ValidateGamePath(path))
             {
                 SetGamePath(path);
@@ -74,6 +79,12 @@ void ModLoader::LoadModLoaderConfig()
         ChairloaderModLoaderConfigFile.reset();
         ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
         ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
+        auto launchOptionsNode = ChairloaderModLoaderConfigFile.first_child().append_child("LaunchOptions");
+        launchOptionsNode.append_attribute("LoadChairloader").set_value(true);
+        launchOptionsNode.append_attribute("LoadEditor").set_value(false);
+        launchOptionsNode.append_attribute("DevMode").set_value(true);
+        launchOptionsNode.append_attribute("NoRandom").set_value(false);
+        launchOptionsNode.append_attribute("AugGeom").set_value(false);
         ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.wstring().c_str());
     }
     log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
@@ -565,7 +576,7 @@ void ModLoader::DrawModList() {
                 }
             }
             ImGui::Separator();
-            if(ImGui::BeginChild("Mod Info", {0, ImGui::GetContentRegionAvail().y * 0.72f})) {
+            if(ImGui::BeginChild("Mod Info", {0, ImGui::GetContentRegionAvail().y * 0.61f})) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
@@ -629,6 +640,43 @@ void ModLoader::DrawModList() {
             if(ImGui::Button("Install Mod From File")){
                ImGui::OpenPopup("Install Mod From File");
             }
+            ImGui::Separator();
+            if(ImGui::Button("Options")){
+                ImGui::OpenPopup("Launch Options");
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Launch Prey")){
+                launchGame();
+            }
+        }
+        if(ImGui::BeginPopupContextWindow("Launch Options")){
+            // bool m_bLoadChairloader,
+            //        m_bLoadEditor,
+            //        m_bDevMode,
+            //        m_bNoRandom,
+            //        m_bAuxGeom;
+            if(ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("Load Editor", &m_bLoadEditor)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("LoadEditor").set_value(m_bLoadEditor);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("Dev Mode", &m_bDevMode)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("DevMode").set_value(m_bDevMode);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("No Random", &m_bNoRandom)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("NoRandom").set_value(m_bNoRandom);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("Aux Geometry Renderer", &m_bAuxGeom)) {
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("AuxGeom").set_value(m_bAuxGeom);
+                saveModLoaderConfigFile();
+            }
+            ImGui::InputText("Custom Launch Options", &m_customArgs);
+            ImGui::EndPopup();
         }
         if(ImGui::BeginPopupModal("Install Mod From File", nullptr, ImGuiWindowFlags_AlwaysAutoResize)){
             static int installType = 0;
@@ -2326,4 +2374,42 @@ void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
 std::string ModLoader::GetDisplayName(std::string modName) {
     return ModNameToDisplayName.at(modName);
 //    return std::string();
+}
+
+void ModLoader::launchGame() {
+    log(severityLevel::info, "Launching game");
+    fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH;
+    m_chairloaderLaunchOptions = fs::path(m_customArgs).wstring();
+    // bool m_bLoadChairloader -nochair
+    //        m_bLoadEditor -editor
+    //        m_bDevMode -devmode
+    //        m_bNoRandom -norandom
+    //        m_bAuxGeom -auxgeom
+    if(!m_bLoadChairloader){
+        m_chairloaderLaunchOptions += L" -nochair";
+    }
+    if(m_bLoadEditor){
+        m_chairloaderLaunchOptions += L" -editor";
+    }
+    if(m_bDevMode){
+        m_chairloaderLaunchOptions += L" -devmode";
+    }
+    if(m_bNoRandom){
+        m_chairloaderLaunchOptions += L" -norandom";
+    }
+    if(m_bAuxGeom){
+        m_chairloaderLaunchOptions += L" -auxgeom";
+    }
+    // launch the game
+    fs::path command = exePath.wstring() + m_chairloaderLaunchOptions;
+    log(severityLevel::trace, "Launching game with command: %s", command.u8string().c_str());
+    STARTUPINFOW si = {sizeof(STARTUPINFO)};
+    PROCESS_INFORMATION pi;
+    if(CreateProcessW(nullptr, command.wstring().data(), nullptr, nullptr, false, DETACHED_PROCESS, nullptr, nullptr, &si, &pi)){
+        log(severityLevel::info, "Game launched successfully");
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    } else {
+        overlayLog(severityLevel::error, "Failed to launch game");
+    }
 }
