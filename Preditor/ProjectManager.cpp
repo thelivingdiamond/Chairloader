@@ -40,16 +40,17 @@ ProjectManager *ProjectManager::Get() {
 }
 
 void ProjectManager::addPreviousProject(const fs::path &path) {
+    fs::path absPath = absolute(path);
     if(!ConfigManager::Get()) return;
     //check if previous project already exists, if so delete it and add it to the beginning
     for(auto &project : m_PreviousProjects){
-        if(project == path){
+        if(project == absPath){
             m_PreviousProjects.erase(std::remove(m_PreviousProjects.begin(), m_PreviousProjects.end(), project), m_PreviousProjects.end());
             break;
         }
     }
     //add the new project to the beginning
-    m_PreviousProjects.insert(m_PreviousProjects.begin(), path);
+    m_PreviousProjects.insert(m_PreviousProjects.begin(), absPath);
     savePreviousProjects();
 }
 

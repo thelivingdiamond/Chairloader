@@ -112,7 +112,10 @@ void ProjectSelectStage::Start() {
 }
 
 void ProjectSelectStage::initiateLoadProject(const fs::path &path) {
+    if(!path.is_absolute()){
+        m_loadProjectPath = fs::absolute(path);
+    } else {
+        m_loadProjectPath = path;
+    }
     m_bLoadProject = true;
-    m_loadProjectPath = path;
-
 }
