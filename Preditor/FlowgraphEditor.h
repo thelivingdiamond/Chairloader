@@ -13,17 +13,21 @@ struct Node;
 #include "ImNodes/imnodes.h"
 
 #include "Flowgraph/Flowgraph.h"
+#include "App/AppModule.h"
 
 class ImGuiDockNode;
 class IFlowNode;
 
-class FlowgraphEditor {
+class FlowgraphEditor : public AppModule{
 public:
     const static inline float STYLE_SCALE = 1.5f;
     FlowgraphEditor();
-    ~FlowgraphEditor();
-    void Draw(bool *bDraw);
-    void Update();
+    ~FlowgraphEditor() override;
+
+    void Init() override;
+    void ShowUI() override;
+    void Update() override;
+
     static FlowgraphEditor* getInstance(){ return m_pFlowgraphEditorInstance;}
     void setCurrentFlowgraph(FlowGraph* flowgraph){ p_CurrentFlowGraph = flowgraph;}
     static void setShowNodePopup(bool bShow){ m_bShowNodePopup = bShow;}

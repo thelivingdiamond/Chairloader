@@ -8,7 +8,7 @@
 
 class AppModule {
 public:
-    AppModule() = default;
+    AppModule();
 
     virtual ~AppModule();
 

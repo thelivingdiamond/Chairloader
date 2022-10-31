@@ -11,6 +11,7 @@
 #include "ImGui/imgui_internal.h"
 #include "App/AppImGui.h"
 #include <filesystem>
+#include "ConfigManager.h"
 
 
 bool FlowgraphEditor::findGraphNodes(pugi::xml_node &node){
@@ -57,124 +58,18 @@ void FlowgraphEditor::searchXmlDocuments(fs::path path){
 FlowgraphEditor::FlowgraphEditor() {
     m_pFlowgraphEditorInstance = this;
     ImNodes::CreateContext();
-    auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
-    for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
-        auto info = new IFlowNode::SActivationInfo();
-        //TODO: Fix timer nodes
-        if(/*std::string(typeEntry.first.c_str()) == ("Entity:TacticalScan") ||*/
-        /*std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") ||*/
-        std::string(typeEntry.first.c_str()) == ("Time:Timer")) {
-            continue;
-        }
-        auto newNode = std::make_shared<PrototypeNode>();
-        newNode->Class = typeEntry.first.c_str();
-        auto node = flowSystem->CreateNodeOfType(info, typeEntry.second);
-        SFlowNodeConfig nodeConfig{};
-        if(node.get() == nullptr) {
-            continue;
-        }
-        node->GetConfiguration(nodeConfig);
-        if(nodeConfig.sDescription != nullptr)
-            newNode->Description = nodeConfig.sDescription;
-        int i = 0;
-        auto inputPort = &nodeConfig.pInputPorts[i];
-        if(inputPort != nullptr) {
-            while (inputPort->name != nullptr) {
-                PrototypePin newPin;
-                if(inputPort->name != nullptr)
-                    newPin.Name = inputPort->name;
-                if(inputPort->humanName != nullptr)
-                    newPin.HumanName = inputPort->humanName;
-                if(inputPort->description != nullptr)
-                    newPin.Description = inputPort->description;
-                newPin.Kind = PinKind::Input;
-                if(inputPort->sUIConfig != nullptr)
-                    newPin.sUIConfig = inputPort->sUIConfig;
-                newNode->ProtoInputs.emplace_back(newPin);
-                inputPort = &nodeConfig.pInputPorts[++i];
-            }
-        }
-        i = 0;
-        auto outputPort = &nodeConfig.pOutputPorts[i];
-        if(outputPort != nullptr) {
-            while (outputPort->name != nullptr) {
-                PrototypePin newPin;
-                if(outputPort->name != nullptr)
-                    newPin.Name = outputPort->name;
-                if(outputPort->humanName != nullptr)
-                    newPin.HumanName = outputPort->humanName;
-                if(outputPort->description != nullptr)
-                    newPin.Description = outputPort->description;
-                newPin.Kind = PinKind::Output;
-                newPin.Type = outputPort->type;
-                newNode->ProtoOutputs.emplace_back(newPin);
-                outputPort = &nodeConfig.pOutputPorts[++i];
-            }
-        }
-        newNode->mFlags = nodeConfig.nFlags;
-        newNode->m_bEntity_Node = nodeConfig.nFlags & EHYPER_NODE_ENTITY;
-//        newNode->m_bDefault_Entity_node = nodeConfig.nFlags & 0x0004;
-        newNode->setCategory();
-        m_PrototypeNodes.insert(std::pair(newNode->Class, newNode));
-        node.ReleaseOwnership();
-        delete info;
-    }
-    // add comment box classes
-    auto commentNode = std::make_shared<PrototypeNode>();
-    commentNode->Class = "_commentbox";
-    commentNode->Description = "Comment Box";
-    commentNode->Category = PrototypeNode::nodeCategory::COMMENT;
-
-    m_PrototypeNodes.insert(std::pair(commentNode->Class, commentNode));
-    commentNode = std::make_shared<PrototypeNode>();
-    commentNode->Class = "_comment";
-    commentNode->Description = "Comment Box";
-    commentNode->Category = PrototypeNode::nodeCategory::COMMENT;
-    m_PrototypeNodes.insert(std::pair(commentNode->Class, commentNode));
-
-    // Add nodes that cannot be constructed
-
-    // TIME:TIMER
-    auto TimerNode = std::make_shared<PrototypeNode>();
-    TimerNode->Class = "Time:Timer";
-    TimerNode->Description = "Timer";
-    TimerNode->Category = PrototypeNode::nodeCategory::TIME;
-    // add the inputs period, min, max, paused, timer
-    PrototypePin newPin;
-    newPin.Name = "period";
-    newPin.Kind = PinKind::Input;
-    TimerNode->ProtoInputs.emplace_back(newPin);
-    newPin.Name = "min";
-    newPin.Kind = PinKind::Input;
-    TimerNode->ProtoInputs.emplace_back(newPin);
-    newPin.Name = "max";
-    newPin.Kind = PinKind::Input;
-    TimerNode->ProtoInputs.emplace_back(newPin);
-    newPin.Name = "paused";
-    newPin.Kind = PinKind::Input;
-    TimerNode->ProtoInputs.emplace_back(newPin);
-    newPin.Name = "Timer";
-    newPin.Kind = PinKind::Input;
-    TimerNode->ProtoInputs.emplace_back(newPin);
-    // add the one output out
-    newPin.Name = "out";
-    newPin.Kind = PinKind::Output;
-    TimerNode->ProtoOutputs.emplace_back(newPin);
-    m_PrototypeNodes.insert(std::pair(TimerNode->Class, TimerNode));
-    static FlowGraph testGraph;
-    testGraph.m_Name = "TestGraph";
-    m_FlowGraphs.emplace_back(&testGraph);
 }
 
-void FlowgraphEditor::Draw(bool *bDraw) {
+void FlowgraphEditor::ShowUI() {
     static ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse;
     static ImGuiDockNodeFlags dockspace_flags = /*ImGuiDockNodeFlags_PassthruCentralNode |*/ ImGuiDockNodeFlags_NoWindowMenuButton;
-    if(m_bDraw) {
+    if(isShown()) {
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
         ImGui::PushFont(AppImGui::getPrettyFont());
         ImGui::SetNextWindowSize(ImVec2(800, 500), ImGuiCond_FirstUseEver);
 
         static auto first_time = true;
+        m_bDraw = true;
         auto m_DockspaceID = ImGui::GetID(m_DockspaceName.c_str());
         if (ImGui::Begin("Flowgraph Editor", &m_bDraw, window_flags)) {
             // TODO: Add menu bar
@@ -189,16 +84,6 @@ void FlowgraphEditor::Draw(bool *bDraw) {
             }
             //TODO: move menu bar to flowgraph
             static ImVec2 itemSize = {30, 30};
-            if (ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetContentRegionAvail().x, itemSize.y))) {
-//        ImGui::Text("This is a toolbar bitch");
-                static std::string path = R"(C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairloaderModLoader\Data\PreyFiles)";
-                ImGui::InputText("Path", &path);
-                ImGui::SameLine();
-                if (ImGui::Button(ICON_MD_SEARCH "##Search Button Toolbar", itemSize)) {
-                    searchXmlDocuments(path);
-                }
-            }
-            ImGui::EndChild();
             ImGui::DockSpace(m_DockspaceID, ImVec2(0.0f, 0.0f), dockspace_flags);
             if (first_time) {
                 first_time = false;
@@ -232,6 +117,9 @@ void FlowgraphEditor::Draw(bool *bDraw) {
 //    ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
         ImGui::PopFont();
         ImGui::PopStyleVar();
+        if(!m_bDraw){
+            setShown(false);
+        }
     }
 }
 
@@ -545,4 +433,116 @@ void FlowgraphEditor::addPinToPrototype(PrototypeNode::NodeClass nodeClass, Prot
             graph->refreshNodesOfClass(nodeClass);
         }
     }
+}
+
+void FlowgraphEditor::Init() {
+    auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
+    for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
+        auto info = new IFlowNode::SActivationInfo();
+        //TODO: Fix timer nodes
+        if(/*std::string(typeEntry.first.c_str()) == ("Entity:TacticalScan") ||*/
+            /*std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") ||*/
+                std::string(typeEntry.first.c_str()) == ("Time:Timer")) {
+            continue;
+        }
+        auto newNode = std::make_shared<PrototypeNode>();
+        newNode->Class = typeEntry.first.c_str();
+        auto node = flowSystem->CreateNodeOfType(info, typeEntry.second);
+        SFlowNodeConfig nodeConfig{};
+        if(node.get() == nullptr) {
+            continue;
+        }
+        node->GetConfiguration(nodeConfig);
+        if(nodeConfig.sDescription != nullptr)
+            newNode->Description = nodeConfig.sDescription;
+        int i = 0;
+        auto inputPort = &nodeConfig.pInputPorts[i];
+        if(inputPort != nullptr) {
+            while (inputPort->name != nullptr) {
+                PrototypePin newPin;
+                if(inputPort->name != nullptr)
+                    newPin.Name = inputPort->name;
+                if(inputPort->humanName != nullptr)
+                    newPin.HumanName = inputPort->humanName;
+                if(inputPort->description != nullptr)
+                    newPin.Description = inputPort->description;
+                newPin.Kind = PinKind::Input;
+                if(inputPort->sUIConfig != nullptr)
+                    newPin.sUIConfig = inputPort->sUIConfig;
+                newNode->ProtoInputs.emplace_back(newPin);
+                inputPort = &nodeConfig.pInputPorts[++i];
+            }
+        }
+        i = 0;
+        auto outputPort = &nodeConfig.pOutputPorts[i];
+        if(outputPort != nullptr) {
+            while (outputPort->name != nullptr) {
+                PrototypePin newPin;
+                if(outputPort->name != nullptr)
+                    newPin.Name = outputPort->name;
+                if(outputPort->humanName != nullptr)
+                    newPin.HumanName = outputPort->humanName;
+                if(outputPort->description != nullptr)
+                    newPin.Description = outputPort->description;
+                newPin.Kind = PinKind::Output;
+                newPin.Type = outputPort->type;
+                newNode->ProtoOutputs.emplace_back(newPin);
+                outputPort = &nodeConfig.pOutputPorts[++i];
+            }
+        }
+        newNode->mFlags = nodeConfig.nFlags;
+        newNode->m_bEntity_Node = nodeConfig.nFlags & EHYPER_NODE_ENTITY;
+//        newNode->m_bDefault_Entity_node = nodeConfig.nFlags & 0x0004;
+        newNode->setCategory();
+        m_PrototypeNodes.insert(std::pair(newNode->Class, newNode));
+        node.ReleaseOwnership();
+        delete info;
+    }
+    // add comment box classes
+    auto commentNode = std::make_shared<PrototypeNode>();
+    commentNode->Class = "_commentbox";
+    commentNode->Description = "Comment Box";
+    commentNode->Category = PrototypeNode::nodeCategory::COMMENT;
+
+    m_PrototypeNodes.insert(std::pair(commentNode->Class, commentNode));
+    commentNode = std::make_shared<PrototypeNode>();
+    commentNode->Class = "_comment";
+    commentNode->Description = "Comment Box";
+    commentNode->Category = PrototypeNode::nodeCategory::COMMENT;
+    m_PrototypeNodes.insert(std::pair(commentNode->Class, commentNode));
+
+    // Add nodes that cannot be constructed
+
+    // TIME:TIMER
+    auto TimerNode = std::make_shared<PrototypeNode>();
+    TimerNode->Class = "Time:Timer";
+    TimerNode->Description = "Timer";
+    TimerNode->Category = PrototypeNode::nodeCategory::TIME;
+    // add the inputs period, min, max, paused, timer
+    PrototypePin newPin;
+    newPin.Name = "period";
+    newPin.Kind = PinKind::Input;
+    TimerNode->ProtoInputs.emplace_back(newPin);
+    newPin.Name = "min";
+    newPin.Kind = PinKind::Input;
+    TimerNode->ProtoInputs.emplace_back(newPin);
+    newPin.Name = "max";
+    newPin.Kind = PinKind::Input;
+    TimerNode->ProtoInputs.emplace_back(newPin);
+    newPin.Name = "paused";
+    newPin.Kind = PinKind::Input;
+    TimerNode->ProtoInputs.emplace_back(newPin);
+    newPin.Name = "Timer";
+    newPin.Kind = PinKind::Input;
+    TimerNode->ProtoInputs.emplace_back(newPin);
+    // add the one output out
+    newPin.Name = "out";
+    newPin.Kind = PinKind::Output;
+    TimerNode->ProtoOutputs.emplace_back(newPin);
+    m_PrototypeNodes.insert(std::pair(TimerNode->Class, TimerNode));
+    static FlowGraph testGraph;
+    testGraph.m_Name = "TestGraph";
+    m_FlowGraphs.emplace_back(&testGraph);
+    searchXmlDocuments(ConfigManager::Get()->getPreyFilesPath());
+    AppModule::Init();
 }

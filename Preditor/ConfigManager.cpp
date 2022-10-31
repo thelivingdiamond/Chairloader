@@ -33,7 +33,7 @@ void ConfigManager::SaveToXML() {
 }
 
 void ConfigManager::Init() {
-
+    AppModule::Init();
 }
 
 void ConfigManager::Update() {

@@ -3,12 +3,15 @@
 //
 
 #include "AppModule.h"
+#include "AppStage.h"
+#include "Application.h"
 
 AppModule::~AppModule() {
 
 }
 
 void AppModule::Init() {
+    bIsInitialized = true;
 }
 
 void AppModule::Update() {
@@ -18,10 +21,8 @@ void AppModule::ShowUI() {
 }
 
 void AppModule::updateInternal() {
-    if(!bIsInitialized) {
-        Init();
-        bIsInitialized = true;
-    }
+}
 
-    Update();
+AppModule::AppModule() {
+    updateInternal();
 }

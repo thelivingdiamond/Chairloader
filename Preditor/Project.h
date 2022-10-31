@@ -8,6 +8,7 @@
 #include "pch.h"
 #include "App/AppStage.h"
 #include "ImGui/imgui.h"
+#include "FlowgraphEditor.h"
 
 // this class will be used to store all the data for a project
 // should contain a path to the project, and a list of all the files in the project
@@ -27,6 +28,10 @@ private:
     ImVec2 WINDOW_SIZE = ImVec2(1500, 750);
     ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse;
     std::string WINDOW_TITLE = "Project Window";
+    void drawToolbar();
+
+    std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
+    bool m_bFlowgraphEditorOpen = false;
 };
 
 
