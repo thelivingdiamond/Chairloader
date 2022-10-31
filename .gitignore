@@ -418,3 +418,8 @@ ChairloaderModLoader/patch_chairloader.pak
 ChairloaderModLoader/version.rc
 ChairLoader/version.rc
 Preditor/Data/ModToolKitConfig.xml
+ModToolKit/Data/imgui.ini
+ModToolKit/Data/ModToolKitConfig.xml
+ModToolKit/Data/user/Profiles/default/actionmaps.xml
+ModToolKit/Data/user/Profiles/default/attributes.xml
+ModToolKit/Data/user/Profiles/default/profile.xml
