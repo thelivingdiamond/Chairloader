@@ -47,10 +47,21 @@ void FlowgraphEditor::searchXmlDocuments(fs::path path){
             pugi::xml_node node = doc.first_child();
             if(node){
                 if(findGraphNodes(node)){
-                    filesWithgraphNodes.emplace_back(std::make_shared<FlowGraphXMLFile>(path));
+                    m_BaseGameFlowgraphPaths.emplace_back(path);
                 }
             }
         }
+    }
+}
+
+void FlowgraphEditor::loadXmlDocuments() {
+    for(auto & path : m_BaseGameFlowgraphPaths){
+        {
+            std::scoped_lock lock(m_InitStatusMutex);
+            m_LoadingProgress++;
+            m_CurrentLoadingFile = path.wstring().substr(ConfigManager::Get()->getPreyFilesPath().wstring().length());
+        }
+        m_BaseGameFlowgaphs.emplace_back(std::make_shared<FlowGraphXMLFile>(path));
     }
 }
 
@@ -61,63 +72,83 @@ FlowgraphEditor::FlowgraphEditor() {
 }
 
 void FlowgraphEditor::ShowUI() {
+    std::scoped_lock lock(m_InitStatusMutex);
     static ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse;
     static ImGuiDockNodeFlags dockspace_flags = /*ImGuiDockNodeFlags_PassthruCentralNode |*/ ImGuiDockNodeFlags_NoWindowMenuButton;
     if(isShown()) {
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
         ImGui::PushFont(AppImGui::getPrettyFont());
         ImGui::SetNextWindowSize(ImVec2(800, 500), ImGuiCond_FirstUseEver);
-
         static auto first_time = true;
-        m_bDraw = true;
-        auto m_DockspaceID = ImGui::GetID(m_DockspaceName.c_str());
-        if (ImGui::Begin("Flowgraph Editor", &m_bDraw, window_flags)) {
-            // TODO: Add menu bar
-            if (ImGui::BeginMenuBar()) {
-                if (ImGui::BeginMenu("File")) {
-                    if (ImGui::MenuItem("Load File")) {
+        static ImVec2 itemSize = {30, 30};
+        if(m_UIState == UIState::Editor) {
+            m_bDraw = true;
+            auto m_DockspaceID = ImGui::GetID(m_DockspaceName.c_str());
+            if (ImGui::Begin("Flowgraph Editor", &m_bDraw, window_flags)) {
+                if (ImGui::BeginMenuBar()) {
+                    if (ImGui::BeginMenu("File")) {
+                        if (ImGui::MenuItem("Load File")) {
 
+                        }
+                        ImGui::EndMenu();
                     }
-                    ImGui::EndMenu();
+                    ImGui::EndMenuBar();
                 }
-                ImGui::EndMenuBar();
+                ImGui::DockSpace(m_DockspaceID, ImVec2(0.0f, 0.0f), dockspace_flags);
+                if (first_time) {
+                    first_time = false;
+
+                    ImGui::DockBuilderRemoveNode(m_DockspaceID); // clear any previous layout
+                    ImGui::DockBuilderAddNode(m_DockspaceID, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
+                    m_DockNode = ImGui::DockBuilderGetNode(m_DockspaceID);
+                    ImGui::DockBuilderSetNodeSize(m_DockspaceID, ImGui::GetWindowSize());
+
+                    // split the dockspace into 2 nodes -- DockBuilderSplitNode takes in the following args in the following order
+                    //   window ID to split, direction, fraction (between 0 and 1), the final two setting let's us choose which id we want (which ever one we DON'T set as NULL, will be returned by the function)
+                    //                                                              out_id_at_dir is the id of the node in the direction we specified earlier, out_id_at_opposite_dir is in the opposite direction
+                    auto dock_id_right = ImGui::DockBuilderSplitNode(m_DockspaceID, ImGuiDir_Right, 0.2f, nullptr,
+                                                                     &m_DockspaceID);
+                    auto dock_id_up = ImGui::DockBuilderSplitNode(dock_id_right, ImGuiDir_Up, 0.3f, nullptr,
+                                                                  &dock_id_right);
+
+                    // we now dock our windows into the docking node we made above
+                    ImGui::DockBuilderDockWindow("Node Properties", dock_id_up);
+                    ImGui::DockBuilderDockWindow("Nodes", dock_id_right);
+                    ImGui::DockBuilderDockWindow("Graphs", dock_id_right);
+                    ImGui::DockBuilderFinish(m_DockspaceID);
+                }
             }
-            //TODO: move menu bar to flowgraph
-            static ImVec2 itemSize = {30, 30};
-            ImGui::DockSpace(m_DockspaceID, ImVec2(0.0f, 0.0f), dockspace_flags);
-            if (first_time) {
-                first_time = false;
-
-                ImGui::DockBuilderRemoveNode(m_DockspaceID); // clear any previous layout
-                ImGui::DockBuilderAddNode(m_DockspaceID, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
-                m_DockNode = ImGui::DockBuilderGetNode(m_DockspaceID);
-                ImGui::DockBuilderSetNodeSize(m_DockspaceID, ImGui::GetWindowSize());
-
-                // split the dockspace into 2 nodes -- DockBuilderSplitNode takes in the following args in the following order
-                //   window ID to split, direction, fraction (between 0 and 1), the final two setting let's us choose which id we want (which ever one we DON'T set as NULL, will be returned by the function)
-                //                                                              out_id_at_dir is the id of the node in the direction we specified earlier, out_id_at_opposite_dir is in the opposite direction
-                auto dock_id_right = ImGui::DockBuilderSplitNode(m_DockspaceID, ImGuiDir_Right, 0.2f, nullptr,
-                                                                 &m_DockspaceID);
-                auto dock_id_up = ImGui::DockBuilderSplitNode(dock_id_right, ImGuiDir_Up, 0.3f, nullptr,
-                                                              &dock_id_right);
-
-                // we now dock our windows into the docking node we made above
-                ImGui::DockBuilderDockWindow("Node Properties", dock_id_up);
-                ImGui::DockBuilderDockWindow("Nodes", dock_id_right);
-                ImGui::DockBuilderDockWindow("Graphs", dock_id_right);
-                ImGui::DockBuilderFinish(m_DockspaceID);
+            ImGui::End();
+            DrawNodeGraphList();
+            DrawNodeProperties();
+            DrawNodeEditorTabs();
+        } else if (m_UIState == UIState::Initialization) {
+//            ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
+            if (ImGui::Begin("Loading Flowgraph Editor", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDocking)) {
+                ImGui::Text("Initializing Flowgraph Editor...");
+                //TODO: add status text
+                float m_progress = (float)m_InitState / ((float)InitializationState::COUNT - 1);
+                ImGui::ProgressBar(m_progress, ImVec2(0.0f, 0.0f));
+                ImGui::Text("%s", m_InitStatus.c_str());
+                if(m_InitState == InitializationState::LoadingFlowgraphs){
+                    ImGui::ProgressBar((float)m_LoadingProgress / (float)m_BaseGameFlowgraphPaths.size(), ImVec2(0.0f, 0.0f));
+                    ImGui::PushTextWrapPos();
+                    ImGui::Text("Loading: %s", m_CurrentLoadingFile.u8string().c_str());
+                    ImGui::PopTextWrapPos();
+                }
             }
+            ImGui::End();
+            if(IsFutureReady(m_InitFuture)){
+                m_InitFuture.get();
+                m_UIState = UIState::Editor;
+                m_InitState = InitializationState::COUNT;
+            }
+        } else {
+            // panic
         }
-        ImGui::End();
-        //TODO: set the style scales in a better way
-//    ImGui::GetStyle().ScaleAllSizes(STYLE_SCALE);
-        DrawNodeGraphList();
-        DrawNodeProperties();
-        DrawNodeEditorTabs();
-//    ImGui::GetStyle().ScaleAllSizes(1.0f / STYLE_SCALE);
         ImGui::PopFont();
         ImGui::PopStyleVar();
-        if(!m_bDraw){
+        if (!m_bDraw) {
             setShown(false);
         }
     }
@@ -217,7 +248,7 @@ void FlowgraphEditor::DrawNodeGraphList() {
     ImGui::End();
     if (ImGui::Begin("Graphs")) {
         std::vector<std::shared_ptr<FlowGraphXMLFile>> LevelFlowGraphs, LibsFlowGraphs, PrefabFlowGraphs;
-        for (auto &file: filesWithgraphNodes) {
+        for (auto &file: m_BaseGameFlowgaphs) {
             switch (file->m_FilePlace) {
                 case FilePlace::Ark:
                     break;
@@ -283,6 +314,8 @@ void FlowgraphEditor::DrawNodeGraphList() {
                                 if(graph->m_bContainsUnknownNodes){
                                     ImGui::PopStyleColor();
                                 }
+                                ImGui::SameLine();
+                                ImGui::Text("%d", graph->m_Nodes.size());
                             }
                             ImGui::TreePop();
                         }
@@ -428,7 +461,7 @@ void FlowgraphEditor::addPinToPrototype(PrototypeNode::NodeClass nodeClass, Prot
         else
             node->second->ProtoOutputs.push_back(pin);
     }
-    for(auto &file: filesWithgraphNodes){
+    for(auto &file: m_BaseGameFlowgaphs){
         for(auto &graph: file->m_FlowGraphs){
             graph->refreshNodesOfClass(nodeClass);
         }
@@ -436,6 +469,37 @@ void FlowgraphEditor::addPinToPrototype(PrototypeNode::NodeClass nodeClass, Prot
 }
 
 void FlowgraphEditor::Init() {
+    m_InitFuture = std::async(std::launch::async, [&]() {initAsync();});
+    AppModule::Init();
+}
+
+void FlowgraphEditor::initAsync() {
+    {
+        std::scoped_lock lock(m_InitStatusMutex);
+        m_InitStatus = "Loading Prototype Flowgraph Nodes";
+        m_InitState = InitializationState::LoadingPrototypes;
+    }
+    loadPrototypes();
+    {
+        std::scoped_lock lock(m_InitStatusMutex);
+        m_InitStatus = "Finding Flowgraphs";
+        m_InitState = InitializationState::SearchingDocuments;
+    }
+    searchXmlDocuments(ConfigManager::Get()->getPreyFilesPath());
+    {
+        std::scoped_lock lock(m_InitStatusMutex);
+        m_InitStatus = "Loading Flowgraphs";
+        m_InitState = InitializationState::LoadingFlowgraphs;
+    }
+    loadXmlDocuments();
+    {
+        std::scoped_lock lock(m_InitStatusMutex);
+        m_InitStatus = "Initialization Complete";
+        m_InitState = InitializationState::Done;
+    }
+}
+
+void FlowgraphEditor::loadPrototypes() {
     auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
     for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
         auto info = new IFlowNode::SActivationInfo();
@@ -540,9 +604,7 @@ void FlowgraphEditor::Init() {
     newPin.Kind = PinKind::Output;
     TimerNode->ProtoOutputs.emplace_back(newPin);
     m_PrototypeNodes.insert(std::pair(TimerNode->Class, TimerNode));
-    static FlowGraph testGraph;
-    testGraph.m_Name = "TestGraph";
-    m_FlowGraphs.emplace_back(&testGraph);
-    searchXmlDocuments(ConfigManager::Get()->getPreyFilesPath());
-    AppModule::Init();
 }
+
+
+
