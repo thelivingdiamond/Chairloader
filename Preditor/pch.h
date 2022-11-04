@@ -2,6 +2,7 @@
 #include <Prey/CryCore/StdAfx.h>
 #include "IconsMaterialDesign.h"
 #include <future>
+namespace fs = std::filesystem;
 
 template <typename R>
 inline bool IsFutureReady(const std::future<R>& f)

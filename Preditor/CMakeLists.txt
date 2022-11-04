@@ -24,7 +24,7 @@ set(SOURCE_FILES
 		Flowgraph/Pin.h
 		Flowgraph/Node.h
 		Flowgraph/Edge.h
-		Flowgraph/UniqueID.h Flowgraph/Node.cpp Flowgraph/IChairFlowgraph.h ProjectManager.cpp ProjectManager.h Project.cpp Project.h ProjectSelectStage.cpp ProjectSelectStage.h App/AppModule.cpp App/AppModule.h ConfigValidationStage.cpp ConfigValidationStage.h LookingGlass.cpp LookingGlass.h)
+		Flowgraph/UniqueID.h Flowgraph/Node.cpp Flowgraph/IChairFlowgraph.h ProjectManager.cpp ProjectManager.h Project.cpp Project.h ProjectSelectStage.cpp ProjectSelectStage.h App/AppModule.cpp App/AppModule.h ConfigValidationStage.cpp ConfigValidationStage.h LookingGlass.cpp LookingGlass.h LookingGlass/XMLReference.h)
 
 add_executable(Preditor WIN32
 	${SOURCE_FILES}
