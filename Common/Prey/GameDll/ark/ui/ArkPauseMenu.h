@@ -12,6 +12,7 @@
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>
 #include <Prey/GameDll/ark/ui/arkpausemenu.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/GameDll/ark/ui/IUIModule.h>
 
 class ArkClass;
 class ArkReflectedObject;
@@ -118,8 +119,9 @@ public:
 	void OpenSaveLoadMenu(bool _bSave) { FOpenSaveLoadMenu(this,_bSave); }
 	void UpdateInputPrompts() const { FUpdateInputPrompts(this); }
 	
+	static inline const char* GetTypeNameS() { return "ArkPauseMenu"; }
+
 #if 0
-	static const char *GetTypeNameS();
 	void SetShowContinuePrompt(bool arg0);
 	void SetShowScoreCard();
 	bool IsOpen();

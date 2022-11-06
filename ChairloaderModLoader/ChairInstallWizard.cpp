@@ -4,7 +4,9 @@
 #include "ModLoader.h"
 #include "BinaryVersionCheck.h"
 
-static const ImVec2 WINDOW_SIZE = { 600, 400 };
+static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
+static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
+static bool bDPIUpdated = false;
 
 bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 {
@@ -16,10 +18,17 @@ bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 		ImGuiWindowFlags_NoSavedSettings |
 		ImGuiWindowFlags_NoCollapse |
 		ImGuiWindowFlags_NoResize;
-
-	ImGui::SetNextWindowSize(WINDOW_SIZE);
+//    if(!bDPIUpdated) {
+//        WINDOW_SIZE = {WINDOW_SIZE.x * ImGui::GetWindowDpiScale(), WINDOW_SIZE.y * ImGui::GetWindowDpiScale()};
+//        bDPIUpdated = true;
+//    }
+    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ModLoader::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ModLoader::Get().GetDPIScale()};
+    ImGui::SetNextWindowSize(WINDOW_SIZE);
 	if (ImGui::Begin(name, pbIsOpen, windowFlags))
 	{
+        if(ImGui::GetWindowViewport()->DpiScale != ModLoader::Get().GetDPIScale()){
+            ModLoader::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
+        }
 		switch (m_State)
 		{
 		case State::Error:

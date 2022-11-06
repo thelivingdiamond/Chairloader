@@ -19,3 +19,5 @@ struct IUIGameEventSystem : public IUIPseudoRTTI // Id=8014CC9 Size=8
 	static inline auto FOnUpdate = PreyFunction<void(IUIGameEventSystem *const _this, float fDelta)>(0xA13080);
 };
 
+typedef std::shared_ptr<IUIGameEventSystem> TUIEventSystemPtr;
+

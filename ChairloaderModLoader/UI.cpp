@@ -177,16 +177,14 @@ void UI::Render()
     GetMonitorInfo(monitor, &info);
     const int monitor_height = info.rcMonitor.bottom - info.rcMonitor.top;
 
-    // if (monitor_height > 1080)
-    // {
-//         const float fScale = 1.0f;
-//         ImFontConfig cfg;
-//         cfg.SizePixels = 16 * fScale;
-//         ImGui::GetIO().Fonts->AddFontDefault(&cfg);
-        //FONT FIXED
-        ImGui::GetIO().Fonts->AddFontFromFileTTF("./Montserrat-Regular.ttf", 18);
-        // io.FontGlobalScale = 1.5f;
-    // }
+    //! handle DPI awareness
+    auto dpi = GetDpiForWindow(hwnd);
+    float dpiScale = dpi / 96.0f;
+    const int defaultFontSize = 18;
+    const int fontSize = defaultFontSize * dpiScale;
+    ImGui::GetIO().Fonts->AddFontFromFileTTF("./Montserrat-Regular.ttf", fontSize);
+    ImGui::GetStyle().ScaleAllSizes(dpiScale);
+
 
     ImGui::GetIO().IniFilename = nullptr;
 
@@ -214,12 +212,12 @@ void UI::Render()
         if (!bIsRunning)
             break;
 
+        ModLoader::Get().Update();
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         {
             ModLoader::Get().Draw();
-            ModLoader::Get().Update();
         }
         ImGui::EndFrame();
 
@@ -256,4 +254,9 @@ void UI::Render()
 void UI::RequestExit()
 {
     bIsRunning = false;
+}
+
+void UI::ResetDX11() {
+    ImGui_ImplDX11_InvalidateDeviceObjects();
+    ImGui_ImplDX11_CreateDeviceObjects();
 }

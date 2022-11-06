@@ -13,7 +13,7 @@
   -- Format:
   --   SHA256: hash of the DLL file
   --   ReleaseDate: when it was released in YYYY-MM-DD format or 0000-00-00 if unknown. Look for "BuildTime: " in the binary.
-  --   Type: which online store it is distibuted in (Steam, GOG, EGS)
+  --   Type: which online store it is distibuted in (Steam, GOG, EGS, MS)
   --   SteamManifest: (optional) Manifest ID in Steam. Can be used to download a specific version of the game.
   --   IsSupported: (optional) whether the version is supported by Chairloader.
   -->
@@ -46,4 +46,11 @@
 	<!-- GOG -->
 	
 	<!-- EGS -->
+	
+	<!-- MS Store/Xbox Game Pass -->
+	<Version>
+		<SHA256>934d5cc44a2bafbc1953141d94f88343505d6cb7d97a2ebeb383c410a420a299</SHA256>
+		<ReleaseDate>2019-06-12</ReleaseDate>
+		<Type>MS</Type>
+	</Version>
 </Versions>

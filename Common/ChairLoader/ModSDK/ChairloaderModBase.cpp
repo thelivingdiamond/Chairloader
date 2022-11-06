@@ -7,10 +7,18 @@
 
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
-void ChairloaderModBase::InitSystem(ISystem* pSystem, uintptr_t moduleBase)
+void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
-	ModuleInitISystem(pSystem, GetModName().c_str());
-	m_ModuleBase = moduleBase;
+	FillModInfo(dllInfo);
+
+	// Validate dllInfo
+	CRY_ASSERT(dllInfo.thisStructSize == sizeof(ModDllInfo));
+	CRY_ASSERT(dllInfo.modName != nullptr);
+
+	// Init the DLL
+	ModuleInitISystem(initInfo.pSystem, dllInfo.modName);
+	gCL = initInfo.pChair->GetChairloaderEnvironment();
+	m_ModuleBase = gCL->cl->GetPreyDllBase();
 
 	// Install hooks
 	DetourTransactionBegin();
@@ -21,18 +29,17 @@ void ChairloaderModBase::InitSystem(ISystem* pSystem, uintptr_t moduleBase)
 	DetourTransactionCommit();
 }
 
-void ChairloaderModBase::InitGame(IGameFramework* pFramework, IChairloader* chairloader)
+void ChairloaderModBase::InitGame(bool isHotReloading)
 {
-	gCL = chairloader->GetChairloaderEnvironment();
 	InitImGui();
 }
 
-void ChairloaderModBase::ShutdownGame()
+void ChairloaderModBase::ShutdownGame(bool isHotUnloading)
 {
 	ShutdownImGui();
 }
 
-void ChairloaderModBase::ShutdownSystem()
+void ChairloaderModBase::ShutdownSystem(bool isHotUnloading)
 {
 	// Remove all installed hooks
 	DetourTransactionBegin();
@@ -48,7 +55,7 @@ void ChairloaderModBase::InitImGui()
 		sizeof(ImGuiStyle), sizeof(ImVec2), sizeof(ImVec4), sizeof(ImDrawVert), sizeof(ImDrawIdx));
 
 	if (!isCompat)
-		CryFatalError("%s: Mod's ImGui is incompatible with Chairloader's", GetModName().c_str());
+		CryFatalError("Mod's ImGui is incompatible with Chairloader's");
 
 	// Set pointers
 	ImGuiMemAllocFunc pAllocFunc = nullptr;

@@ -1,6 +1,6 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	
+
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h
 	
@@ -32,6 +32,8 @@ set(SOURCE_FILES
 	Header.h
 	HeaderTestFile.cpp
 	LibD3D11.h
+	ModDllManager.cpp
+	ModDllManager.h
 	OverlayLog.cpp
 	OverlayLog.h
 	pch.cpp

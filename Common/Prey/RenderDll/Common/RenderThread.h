@@ -215,6 +215,7 @@ struct CRY_ALIGN(128) SRenderThread
 
 	static int GetLocalThreadCommandBufferId();
 
+	void SyncMainWithRender() { FSyncMainWithRender(this); }
 	int GetThreadList() const;
 	threadID GetCurrentThreadId(bool bAlwaysCheck = false) const;
 	bool IsRenderThread(bool bAlwaysCheck = false) const;
@@ -290,6 +291,8 @@ struct CRY_ALIGN(128) SRenderThread
 		LoadUnaligned((uint32*)&m_CustomCommands[m_nCurThreadProcess][nIndex], value);
 		nIndex += (sizeof(T) + 3) & ~((size_t)3);
 	}
+
+	static inline auto FSyncMainWithRender = PreyFunction<void(SRenderThread* const _this)>(0xFC2FA0);
 };
 
 static_assert(sizeof(SRenderThread) == 256);

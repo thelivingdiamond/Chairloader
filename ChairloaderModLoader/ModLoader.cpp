@@ -23,7 +23,7 @@ static const char* MAIN_WINDOW_NAME = "Chairloader Mod Manager";
 
 void ModLoader::Draw() {
     bool bDraw = true;
-    
+
     switch (m_State)
     {
     case State::LocateGameDir:
@@ -62,7 +62,12 @@ void ModLoader::LoadModLoaderConfig()
     if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.wstring().c_str())) {
         if (ChairloaderModLoaderConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string());
-
+            auto launchOptionsNode = ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions");
+            m_bLoadChairloader = launchOptionsNode.attribute("LoadChairloader").as_bool();
+            m_bLoadEditor = launchOptionsNode.attribute("LoadEditor").as_bool();
+            m_bDevMode = launchOptionsNode.attribute("DevMode").as_bool();
+            m_bNoRandom = launchOptionsNode.attribute("NoRandom").as_bool();
+            m_bAuxGeom = launchOptionsNode.attribute("AuxGeom").as_bool();
             if (PathUtils::ValidateGamePath(path))
             {
                 SetGamePath(path);
@@ -74,6 +79,12 @@ void ModLoader::LoadModLoaderConfig()
         ChairloaderModLoaderConfigFile.reset();
         ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
         ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
+        auto launchOptionsNode = ChairloaderModLoaderConfigFile.first_child().append_child("LaunchOptions");
+        launchOptionsNode.append_attribute("LoadChairloader").set_value(true);
+        launchOptionsNode.append_attribute("LoadEditor").set_value(false);
+        launchOptionsNode.append_attribute("DevMode").set_value(true);
+        launchOptionsNode.append_attribute("NoRandom").set_value(false);
+        launchOptionsNode.append_attribute("AugGeom").set_value(false);
         ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.wstring().c_str());
     }
     log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
@@ -174,13 +185,19 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         ImGuiWindowFlags_NoResize |
         ImGuiWindowFlags_MenuBar;
 
-    ImGui::SetNextWindowSize({ 800, 500 });
+    const ImVec2 mainWindowSize = {800, 500};
+    ImGui::SetNextWindowSize({ mainWindowSize.x * dpiScale, mainWindowSize.y * dpiScale});
     ImGui::SetNextWindowBgAlpha(1.0f);
     // ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
     // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(5, 5));
     if (!ImGui::Begin(MAIN_WINDOW_NAME, pbIsOpen, windowFlags))
     {
         ImGui::End();
+    }
+    auto temp = ImGui::GetWindowViewport()->DpiScale;
+    if(ImGui::GetWindowViewport()->DpiScale != dpiScale){
+        dpiScale = ImGui::GetWindowViewport()->DpiScale;
+        updateDPIScaling = true;
     }
 
     if (ImGui::BeginMenuBar()) {
@@ -232,6 +249,15 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
             ImGui::EndMenu();
         }
 #endif
+        if(ImGui::BeginMenu("Utils")){
+            if(ImGui::MenuItem("Remove Intro Videos")){
+                removeStartupCinematics();
+            }
+            if(ImGui::MenuItem("Restore Intro Videos")){
+                restoreStartupCinematics();
+            }
+            ImGui::EndMenu();
+        }
         if(ImGui::BeginMenu("Help")){
             // Legacy Mods
             if(ImGui::BeginMenu("Help Information")) {
@@ -282,6 +308,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         //TODO: figure out if these will do anything
 //        DrawDeploySettings();
 //        DrawDLLSettings();
+        m_ConfigManager.draw();
         DrawAssetView();
         DrawLog();
         DrawDLLSettings();
@@ -348,11 +375,11 @@ void ModLoader::DrawModList() {
 
 
 //                    ImGui::PushStyleColor(ImGuiCol_TextSelectedBg, ImColor(0,0,0,0).operator ImU32());
-                            auto storedpos = ImGui::GetCursorPosY() + 4;
-                            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 3.5);
+                            auto storedpos = ImGui::GetCursorPosY() + (4 * dpiScale);
+                            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - (3.5 * dpiScale));
                             if (ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(),
                                                   selectedMod == ModEntry.modName, 0,
-                                                  ImVec2{ImGui::GetColumnWidth(), 27.0f}))
+                                                  ImVec2{ImGui::GetColumnWidth(), ImGui::GetFrameHeight() - 2.0f * dpiScale}))
                                 selectedMod = ModEntry.modName;
                             if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
                                 ImGui::OpenPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str());
@@ -546,6 +573,7 @@ void ModLoader::DrawModList() {
             if (ImGui::Button("Refresh Mod List")) {
                 loadModInfoFiles();
                 selectedMod.clear();
+                m_ConfigManager.init();
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Loads mod list from the Chairloader config file. Also discovers new mods in the Mods/ folder.");
@@ -557,13 +585,16 @@ void ModLoader::DrawModList() {
                 }
             }
             ImGui::Separator();
-            if(ImGui::BeginChild("Mod Info", {0, 260})) {
+            if(ImGui::BeginChild("Mod Info", {0, ImGui::GetContentRegionAvail().y * 0.61f})) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
                     if (!ModSelect->installed)
                         ImGui::BeginDisabled();
                     ImGui::TextWrapped("%s", ModSelect->displayName.c_str());
                     ImGui::Text("By: %s", ModSelect->author.c_str());
+//                    if(ImGui::Button("Config")){
+//                        m_ConfigManager.showConfigPopup(ModSelect->modName);
+//                    }
                     if(!ModSelect->dependencies.empty()){
                         ImGui::Separator();
                         ImGui::Text("Dependencies:");
@@ -618,6 +649,43 @@ void ModLoader::DrawModList() {
             if(ImGui::Button("Install Mod From File")){
                ImGui::OpenPopup("Install Mod From File");
             }
+            ImGui::Separator();
+            if(ImGui::Button("Options")){
+                ImGui::OpenPopup("Launch Options");
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Launch Prey")){
+                launchGame();
+            }
+        }
+        if(ImGui::BeginPopupContextWindow("Launch Options")){
+            // bool m_bLoadChairloader,
+            //        m_bLoadEditor,
+            //        m_bDevMode,
+            //        m_bNoRandom,
+            //        m_bAuxGeom;
+            if(ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("Load Editor", &m_bLoadEditor)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("LoadEditor").set_value(m_bLoadEditor);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("Dev Mode", &m_bDevMode)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("DevMode").set_value(m_bDevMode);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("No Random", &m_bNoRandom)){
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("NoRandom").set_value(m_bNoRandom);
+                saveModLoaderConfigFile();
+            }
+            if(ImGui::Checkbox("Aux Geometry Renderer", &m_bAuxGeom)) {
+                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("AuxGeom").set_value(m_bAuxGeom);
+                saveModLoaderConfigFile();
+            }
+            ImGui::InputText("Custom Launch Options", &m_customArgs);
+            ImGui::EndPopup();
         }
         if(ImGui::BeginPopupModal("Install Mod From File", nullptr, ImGuiWindowFlags_AlwaysAutoResize)){
             static int installType = 0;
@@ -642,6 +710,7 @@ void ModLoader::DrawModList() {
         ImGui::EndChild();
         ImVec2 maxSize = {(float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN)};
         ImVec2 minSize = {maxSize.x * 0.3f, maxSize.y * 0.3f};
+        ImGui::SetNextWindowSize({maxSize.x * 0.5f, maxSize.y * 0.5f}, ImGuiCond_FirstUseEver);
         if(ImGuiFileDialog::Instance()->Display("ChooseModFile", ImGuiWindowFlags_None, minSize, maxSize)){
             // action if OK
             if (ImGuiFileDialog::Instance()->IsOk())
@@ -703,7 +772,7 @@ void ModLoader::DrawDLLSettings() {
 
 void ModLoader::DrawAssetView() {
     if(ImGui::BeginTabItem("Asset View")){
-        if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.8f, 0), false)) {
+        if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.65f, 0), false)) {
             if(ImGui::BeginTabBar("Mod Asset View")) {
                 if(ImGui::BeginTabItem("Registered Mods")) {
                     if (ImGui::BeginChild("Registered Mods", ImVec2(0, 0), true)) {
@@ -714,7 +783,7 @@ void ModLoader::DrawAssetView() {
                             for (auto &mod: ModList) {
                                 ImGui::TableNextRow();
                                 ImGui::TableNextColumn();
-                                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / mod.modName), mod.modName);
+                                TreeNodeWalkDirectory("", mod.modName, XMLFile::XMLType::Registered);
                             }
 //                }
                             ImGui::EndTable();
@@ -732,10 +801,20 @@ void ModLoader::DrawAssetView() {
                             for (auto &mod: LegacyModList) {
                                 ImGui::TableNextRow();
                                 ImGui::TableNextColumn();
-                                TreeNodeWalkDirectory(fs::path(PreyPath / "Mods" / "Legacy" / mod), mod);
+                                TreeNodeWalkDirectory("", mod, XMLFile::XMLType::Legacy);
                             }
                             ImGui::EndTable();
                         }
+                    }
+                    ImGui::EndChild();
+                    ImGui::EndTabItem();
+                    // base assets
+                }
+                if(ImGui::BeginTabItem("Base Assets")) {
+                    if (ImGui::BeginChild("Base Assets", ImVec2(0, 0), true)) {
+                        ImGui::Text("Base Assets");
+                        ImGui::Separator();
+                        TreeNodeWalkDirectory("", "Prey Files", XMLFile::XMLType::BaseGame);
                     }
                     ImGui::EndChild();
                     ImGui::EndTabItem();
@@ -748,10 +827,75 @@ void ModLoader::DrawAssetView() {
         //TODO: figure out more things to do with selected files
         if(ImGui::BeginChild("Selected File Window")){
             if(ImGui::Button("Deselect")){
-                selectedFile.clear();
+                selectedFile = {};
             }
             if(!selectedFile.empty()){
-                ImGui::Text("%s", selectedFile.filename().u8string().c_str());
+                ImGui::Text("%s", selectedFile.path.filename().u8string().c_str());
+                if(selectedFile.path.extension() == ".xml"){
+                    if(ImGui::BeginChild("XML File Properties"), ImVec2(ImGui::GetContentRegionAvail().y * 0.5f, 0), true){
+                        ImGui::Text("XML Merging Policy:");
+                        ImGui::Separator();
+//                    ImGui::TextWrapped("%s", selectedFile.path.u8string().c_str());
+                        auto policy = m_XMLMerger.getFileMergingPolicy(selectedFile.relativePath, "PreyFiles");
+                        static pugi::xml_document doc;
+                        pugi::xml_parse_result result = doc.load_file(selectedFile.path.u8string().c_str());
+                        auto firstNode = doc.first_child();
+                        XMLMerger::resolvePathWildcards(firstNode, policy.nodeStructure);
+                        switch (policy.policy) {
+                            case XMLMerger::mergingPolicy::identification_policy::error:
+                                ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Error");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::unknown:
+                                ImGui::Text("Unknown");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file is not registered with the merging library. It will be copied to the output directory as-is. This file cannot be merged with other mods.");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::overwrite:
+                                ImGui::Text("Overwrite");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will overwrite the same file in the output directory. This file cannot be merged with other mods.");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_tag:
+                                ImGui::Text("Match Tag");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will be merged. The merging policy is based on the tag (name) of each node set to be merged");
+                                displayXmlNode(policy.nodeStructure, 0);
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_attribute:
+                                ImGui::Text("Match Attribute");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker("This file will be merged. The merging policy is based on the value of specific attributes of each node set to be merged");
+                                displayXmlNode(policy.nodeStructure, 0);
+                                ImGui::Indent(10.0f);
+                                if(ImGui::TreeNode("Attributes to Match")){
+                                    for(auto &attribute: policy.attributeMatches){
+                                        ImGui::Text("%s: %d", attribute.attribute_name.c_str(), attribute.priority);
+                                    }
+                                    ImGui::TreePop();
+                                }
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_spreadsheet:
+                                ImGui::Text("Match Spreadsheet");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will be merged. This is a special mode for Excel spreadsheet XML Files. They will be matched based on the first column of each row.");
+                                break;
+                            case XMLMerger::mergingPolicy::identification_policy::match_contents:
+                                ImGui::Text("Match Contents");
+                                ImGui::SameLine();
+                                ImGuiUtils::HelpMarker(
+                                        "This file will be merged. The merging policy is based on the contents of each node set to be merged");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    ImGui::EndChild();
+//                    ImGui::Text("%d", policy.policy);
+                }
             }
         }
         ImGui::EndChild();
@@ -778,9 +922,9 @@ void ModLoader::DrawDeploySettings() {
 //            log(severityLevel::debug, "override: %s", overrideResult.description());
 //            log(severityLevel::debug, "original: %s", originalResult.description());
         }
-        if(ImGui::Button("Test Merge")) {
-            mergeXMLDocument(BasePath, OverridePath, OriginalPath, std::string());
-        }
+//        if(ImGui::Button("Test Merge")) {
+//            mergeXMLDocument(BasePath, OverridePath, OriginalPath, std::string());
+//        }
         if(ImGui::Button("Save Copy")){
 //            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
         }
@@ -1135,7 +1279,7 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
 
 
 void ModLoader::flushFileQueue() {
-    logMutex.lock();
+    std::scoped_lock<std::mutex> lock(logMutex);
     std::ofstream fileStream;
     fileStream.open("ChairloaderModLoader.log", std::ios_base::app);
     if(fileStream.is_open()){
@@ -1170,7 +1314,6 @@ void ModLoader::flushFileQueue() {
     } else {
         log(severityLevel::error, "Error, could not open ChairloaderModLoader.log");
     }
-    logMutex.unlock();
 }
 
 void ModLoader::Update() {
@@ -1178,6 +1321,39 @@ void ModLoader::Update() {
     if(time(nullptr) - lastFileTime > 10){
         time(&lastFileTime);
         flushFileQueue();
+    }
+    //! log oversizing mitigation
+    logMutex.lock();
+    if(logRecord.size() > 2000){
+        std::list<LogEntry> newLogRecord;
+        for(auto& entry: logRecord){
+            if(entry.level == severityLevel::trace || entry.level == severityLevel::debug){
+                continue;
+            }
+            newLogRecord.emplace_back(entry);
+        }
+        if(newLogRecord.size() > 2000){
+            // if you have 2000+ info messages, you're doing something wrong
+            newLogRecord.clear();
+        }
+        logRecord = newLogRecord;
+    }
+    logMutex.unlock();
+    m_ConfigManager.saveDirtyConfigs();
+    if(updateDPIScaling){
+        updateDPIScaling = false;
+        ImGui::GetStyle().ScaleAllSizes(dpiScale / oldDpiScaling);
+        OverlayElementWidth = OverlayElementWidth * (dpiScale / oldDpiScaling);
+        OverlayElementHeight = OverlayElementHeight * (dpiScale / oldDpiScaling);
+        oldDpiScaling = dpiScale;
+//        ImGui::GetFont()->Scale *= dpiScale;
+        ImGui::GetIO().Fonts->Clear();
+        ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
+//        ImGui::GetIO().Fonts->
+//        if(!ImGui::GetIO().Fonts->IsBuilt())
+        ImGui::GetIO().Fonts->Build();
+        UI::ResetDX11();
+        log(severityLevel::trace, "DPI Scale Changed to %.2f", dpiScale);
     }
 }
 
@@ -1196,24 +1372,81 @@ void ModLoader::DeployForInstallWizard()
     m_DeployLogMutex.unlock();
 }
 
-bool ModLoader::TreeNodeWalkDirectory(fs::path path, std::string modName) {
-    if(is_directory(path)){
-        if(ImGui::TreeNode(path.u8string().c_str(), "%s", path.filename().u8string().c_str())){
-            for(auto&childPath: fs::directory_iterator(path)) {
-                TreeNodeWalkDirectory(childPath.path(), modName);
+bool ModLoader::TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type) {
+    fs::path path;
+    ImGuiTreeNodeFlags_ treeFlags = ImGuiTreeNodeFlags_None;
+    switch(type) {
+        case XMLFile::XMLType::Registered:
+            path = PreyPath / "Mods" / modName / relativePath;
+            break;
+        case XMLFile::XMLType::Legacy:
+            path = PreyPath / "Mods" / "Legacy" / modName / relativePath;
+            break;
+        case XMLFile::XMLType::BaseGame:
+            path = fs::path("PreyFiles") / relativePath;
+            break;
+        default:
+            break;
+    }
+    if (is_directory(path)) {
+        std::string nodeName;
+        if(relativePath.empty()){
+            if(type == XMLFile::XMLType::BaseGame){
+                treeFlags = ImGuiTreeNodeFlags_DefaultOpen;
+            }
+            nodeName = modName;
+        } else {
+            nodeName = relativePath.filename().u8string();
+        }
+        if (ImGui::TreeNodeEx(path.u8string().c_str(), treeFlags, "%s", nodeName.c_str())) {
+            for (auto &childPath: fs::directory_iterator(path)) {
+                fs::path childRelativePath;
+                switch(type){
+                    case XMLFile::XMLType::Registered:
+                        childRelativePath = childPath.path().wstring().substr((PreyPath / "Mods" / modName).wstring().length() + 1, childPath.path().wstring().length());
+                        break;
+                    case XMLFile::XMLType::Legacy:
+                        childRelativePath = childPath.path().wstring().substr((PreyPath / "Mods" / "Legacy" / modName).wstring().length() + 1, childPath.path().wstring().length());
+                        break;
+                    case XMLFile::XMLType::BaseGame:
+                        childRelativePath = childPath.path().wstring().substr((fs::path("PreyFiles")).wstring().length() + 1, childPath.path().wstring().length());
+                        break;
+                    default:
+                        break;
+                }
+                TreeNodeWalkDirectory(childRelativePath, modName, type);
             }
             ImGui::TreePop();
             return false;
         }
-    } else if(is_regular_file(path)){
+    } else if (is_regular_file(path)) {
+        fs::path childRelativePath;
+        fs::path rootDirectory;
+        switch(type){
+            case XMLFile::XMLType::Registered:
+                childRelativePath = path.wstring().substr((PreyPath / "Mods" / modName).wstring().length() + 1, path.wstring().length());
+                rootDirectory = *childRelativePath.begin();
+                if(rootDirectory == "Data"){
+                    childRelativePath = childRelativePath.wstring().substr(fs::path("Data/").wstring().length(), path.wstring().length());
+                }
+
+                break;
+            case XMLFile::XMLType::Legacy:
+                childRelativePath = path.wstring().substr((PreyPath / "Mods" / "Legacy" / modName).wstring().length() + 1, path.wstring().length());
+                break;
+            case XMLFile::XMLType::BaseGame:
+                childRelativePath = path.wstring().substr((fs::path("PreyFiles")).wstring().length() + 1, path.wstring().length());
+                break;
+            default:
+                break;
+        }
         ImGui::PushID(path.u8string().c_str());
-        if(ImGui::Selectable(path.filename().u8string().c_str(), path == selectedFile)){
-            selectedFile = path;
+        if (ImGui::Selectable(path.filename().u8string().c_str(), selectedFile == path)) {
+            selectedFile = {path, childRelativePath, type, modName};
         }
         ImGui::PopID();
         return true;
     }
-    return false;
 }
 
 int ModLoader::getNextSafeLoadOrder() {
@@ -1380,78 +1613,6 @@ bool ModLoader::DeployMods() {
     }
 //    m_State = State::MainWindow;
     return false;
-}
-
-
-//FIXME: add support for merging localization files
-pugi::xml_document
-ModLoader::mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName) {
-    pugi::xml_document modFile;
-    pugi::xml_document originalFile;
-    pugi::xml_document outputFile;
-    auto modResult = modFile.load_file(overridePath.wstring().c_str());
-    auto originalResult = originalFile.load_file(originalPath.wstring().c_str());
-    auto outputResult = outputFile.load_file(basePath.wstring().c_str());
-    auto baseRootNode = outputFile.first_child();
-    auto overrideRootNode = modFile.first_child();
-    auto originalRootNode = originalFile.first_child();
-    baseRootNode.append_child(pugi::node_comment).set_value(("Mod: " + modName).c_str());
-#ifdef _DEBUG
-    log(severityLevel::debug, "Library Root Nodes:\nBase Root Node: %s\nOverride Root Node: %s\nOriginal Root Node: %s", baseRootNode.name(), overrideRootNode.name(), originalRootNode.name());
-#endif
-    if(overrideRootNode) {
-        for (auto &overrideNode: overrideRootNode) {
-            //Case: Overwrite
-            auto baseNode = baseRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
-            auto originalNode = originalRootNode.find_child_by_attribute("Name", overrideNode.attribute("Name").value());
-            if (!mergeXMLNode(baseNode, overrideNode, originalNode)) {
-                baseRootNode.append_copy(overrideNode);
-            }
-        }
-    }
-    outputFile.save_file(basePath.wstring().c_str());
-    return {};
-}
-
-bool ModLoader::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode) {
-    if (baseNode) {
-        //Now compare the content of override against the content of arkOriginal
-        if(originalNode) {
-            std::stringstream originalContent, overrideContent;
-            originalNode.print(originalContent);
-            overrideNode.print(overrideContent);
-            log(severityLevel::debug, "Original Content: %s\nOverride Content: %s", originalContent.str().c_str(), overrideContent.str().c_str());
-            if(std::string(originalContent.str()) == std::string(overrideContent.str())) {
-                log(severityLevel::trace, "Node %s is identical to Ark Original", overrideNode.attribute("Name").value());
-                //DO NOT OVERWRITE
-            } else {
-                log(severityLevel::trace, "Node %s is different from Ark Original", overrideNode.attribute("Name").value());
-                baseNode.text().set(overrideNode.text().get());
-                for(auto & attribute : overrideNode.attributes()){
-                    log(severityLevel::trace, "Overwriting attribute %s", attribute.name());
-                    if(baseNode.attribute(attribute.name()))
-                        baseNode.attribute(attribute.name()).set_value(attribute.value());
-                    else
-                        baseNode.append_attribute(attribute.name()).set_value(attribute.value());
-                }
-            }
-        // default overwrite
-        } else {
-            log(severityLevel::trace, "Overwriting original node %s", overrideNode.attribute("Name").value());
-            baseNode.text().set(overrideNode.text().get());
-            for(auto & attribute : overrideNode){
-                if(baseNode.attribute(attribute.name()))
-                    baseNode.attribute(attribute.name()).set_value(attribute.value());
-                else
-                    baseNode.append_attribute(attribute.name()).set_value(attribute.value());
-            }
-        }
-    } else {
-        //Case: Add
-        log(severityLevel::trace, "Adding node %s", overrideNode.attribute("Name").value());
-        return false;
-    }
-    return true;
 }
 
 void ModLoader::mergeXMLFiles(bool onlyChairPatch) {
@@ -1654,16 +1815,12 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
             if(!fs::exists(outputPath)) {
                 fs::create_directories(outputPath);
             }
-            for (auto directory: fs::directory_iterator(modPath)) {
+            for (auto &directory: fs::directory_iterator(modPath)) {
                 mergeDirectory(path / directory.path().filename(), modName, legacyMod);
             }
         } else if (is_regular_file(modPath)) {
             if(modPath.extension() == ".xml") {
-                if (!fs::exists(outputPath) && fs::exists(originalPath)) {
-                    fs::copy_file(originalPath, outputPath);
-                }
-                log(severityLevel::trace, "Merging %s", modPath.u8string().c_str());
-                mergeXMLDocument(outputPath, modPath, originalPath, modName);
+                m_XMLMerger.mergeXMLFile(path, modName, legacyMod);
             } else {
                 log(severityLevel::trace, "Copying %s", modPath.u8string().c_str());
                 fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
@@ -1963,10 +2120,9 @@ void ModLoader::Init() {
         log(severityLevel::info, "Chairloader config file not found, creating default");
         createChairloaderConfigFile();
     }
-
-
+    m_XMLMerger.init();
     if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").c_str())) {
-        throw std::runtime_error("Chairloader config file is corrupted.");
+        throw std::runtime_error("Chairloader config file is corrupted or missing.");
     }
 
     log(severityLevel::info, "Chairloader Config File Loaded");
@@ -1979,14 +2135,23 @@ void ModLoader::Init() {
     std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();
-
+    ModNameToDisplayName.clear();
+    for(auto & mod: ModList){
+        ModNameToDisplayName.insert(std::pair(mod.modName, mod.displayName));
+    }
     m_pGameVersion = std::make_unique<GameVersion>();
+    m_ConfigManager.init();
     initialized = true;
 }
 
 void ModLoader::DrawDebug() {
     if(ImGui::BeginTabItem("DEBUG")) {
-        if (ImGui::Button("Test create process")) {
+        ImGui::Text("%.2f", ImGui::GetWindowViewport()->DpiScale);
+        if(ImGui::Button("Scale 2x")){
+            dpiScale = 2.0f;
+            updateDPIScaling = true;
+        }
+     /*   if (ImGui::Button("Test create process")) {
             STARTUPINFOW info={sizeof(info)};
             PROCESS_INFORMATION processInfo;
             LPSTR currentDir = new char[MAX_PATH];
@@ -2013,8 +2178,56 @@ void ModLoader::DrawDebug() {
         }
         if(ImGui::Button("Check Chairloader dll version")) {
             overlayLog(severityLevel::info, "%s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
+        }*/
+     static std::string filePath, modName = "TestMod";
+     ImGui::InputText("Mod Name", &modName);
+     static XMLMerger::mergingPolicy policy;
+     static pugi::xml_document doc;
+     if(ImGui::CollapsingHeader("File Merging")) {
+         ImGui::InputText("File Path", &filePath);
+         if (ImGui::Button("Load Xml File")) {
+             doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
+         }
+         ImGui::SameLine();
+         if (ImGui::Button("Clear Xml File")) {
+             doc.reset();
+         }
+         if (ImGui::Button("Resolve Path wildcards")) {
+             XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
+         }
+         if (ImGui::Button("Merge Xml File")) {
+             m_XMLMerger.mergeXMLFile(filePath, modName, false);
+         }
+         if (!doc.empty()) {
+             ImGui::Text("Loaded Xml File: %s", doc.name());
+             ImGui::Text("Root Node: %s", doc.root().name());
+             ImGui::Text("First Child: %s", doc.root().first_child().name());
+         }
+         if (ImGui::Button("Get Merging Policy")) {
+             policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
+         }
+         ImGui::Text("Merging Policy: %d", policy.policy);
+         ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
+         if (!policy.attributeMatches.empty()) {
+             for (auto &attributeMatch: policy.attributeMatches) {
+                 ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
+             }
+         }
+         if (!policy.nodeStructure.empty())
+             displayXmlNode(policy.nodeStructure, 0);
+     }
+
+     if(ImGui::CollapsingHeader("Config")){
+        if(ImGui::Button("Copy Default Config File")){
+            ConfigManager::copyDefaultConfig(modName);
         }
-        ImGui::EndTabItem();
+        ImGui::BeginDisabled();
+        static bool configExists;
+        configExists = ConfigManager::isConfigPresent(modName);
+        ImGui::Checkbox("Config File Exists", &configExists);
+        ImGui::EndDisabled();
+     }
+     ImGui::EndTabItem();
     }
 }
 
@@ -2033,7 +2246,8 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
             ImGuiWindowFlags_NoMove |
             ImGuiWindowFlags_NoResize;
 
-    ImGui::SetNextWindowSize({ 500, 300 });
+    const ImVec2 deployScreenSize = {500, 300};
+    ImGui::SetNextWindowSize({ deployScreenSize.x * dpiScale, deployScreenSize.y * dpiScale});
     ImGui::SetNextWindowBgAlpha(1.0f);
 //    ImGui::SetNextWindowPos({ (float) (GetSystemMetrics(SM_CXSCREEN) / 2 - 250), (float) (GetSystemMetrics(SM_CYSCREEN) / 2 - 150) });
     if(!initPosSet) {
@@ -2116,6 +2330,132 @@ void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
         m_pUninstallWizard.reset();
         m_State = State::MainWindow;
         std::exit(0);
+    }
+
+}
+void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
+    static float xmlDepthSpacing = 20.0f;
+    if(node){
+        //TODO: add way to edit style colors
+        ImGui::SetCursorPosX((depth * xmlDepthSpacing) + 10.0f);
+//        ImGui::PushStyleColor(ImGuiCol_Text, ImColor(107, 119, 255).operator ImVec4());
+        bool nodeOpen = false;
+        if(node.attribute("Name")){
+            nodeOpen = ImGui::TreeNode((std::string(node.name()) + node.attribute("Name").as_string() + node.attribute("id").as_string()).c_str(), "<%s - %s>", node.name(), node.attribute("Name").as_string());
+        }
+        else {
+            nodeOpen = ImGui::TreeNode((std::string(node.name()) + node.attribute("Name").as_string() + node.attribute("id").as_string()).c_str(), "<%s>", node.name());
+        }
+//        ImGui::PopStyleColor();
+        if(nodeOpen) {
+            for (auto attribute : node.attributes()) {
+                ImGui::TextColored(ImColor(47, 239, 95), "%s", attribute.name());
+                ImGui::SameLine();
+                ImGui::TextColored(ImColor(255, 255, 255), "=");
+                ImGui::SameLine();
+                ImGui::TextColored(ImColor(221, 146, 33), "%s", attribute.as_string());
+                if(ImGui::IsItemClicked()){
+                    ImGui::SetClipboardText(attribute.as_string());
+                }
+            }
+            if(!node.text().empty())
+                ImGui::Text("%s", node.text().as_string());
+            for(auto child : node.children()){
+                displayXmlNode(child, depth + 1);
+            }
+//            if(strlen() != 0) {
+//                ImGui::Text("%s", node->getContent());
+//                for (int i = 0; i < node->getChildCount(); i++) {
+//                    displayXmlNode(node->getChild(i), depth + 1);
+//                }
+//                ImGui::SetCursorPosX((depth * xmlDepthSpacing));
+//            } else {
+//                for (int i = 0; i < node->getChildCount(); i++) {
+//                    displayXmlNode(node->getChild(i), depth + 1);
+//                }
+//            }
+            ImGui::TreePop();
+        }
+    }
+
+}
+
+std::string ModLoader::GetDisplayName(std::string modName) {
+    return ModNameToDisplayName.at(modName);
+//    return std::string();
+}
+
+void ModLoader::launchGame() {
+    log(severityLevel::info, "Launching game");
+    fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH;
+    m_chairloaderLaunchOptions = fs::path(m_customArgs).wstring();
+    // bool m_bLoadChairloader -nochair
+    //        m_bLoadEditor -editor
+    //        m_bDevMode -devmode
+    //        m_bNoRandom -norandom
+    //        m_bAuxGeom -auxgeom
+    if(!m_bLoadChairloader){
+        m_chairloaderLaunchOptions += L" -nochair";
+    }
+    if(m_bLoadEditor){
+        m_chairloaderLaunchOptions += L" -editor";
+    }
+    if(m_bDevMode){
+        m_chairloaderLaunchOptions += L" -devmode";
+    }
+    if(m_bNoRandom){
+        m_chairloaderLaunchOptions += L" -norandom";
+    }
+    if(m_bAuxGeom){
+        m_chairloaderLaunchOptions += L" -auxgeom";
+    }
+    // launch the game
+    fs::path command = exePath.wstring() + m_chairloaderLaunchOptions;
+    log(severityLevel::trace, "Launching game with command: %s", command.u8string().c_str());
+    STARTUPINFOW si = {sizeof(STARTUPINFO)};
+    PROCESS_INFORMATION pi;
+    if(CreateProcessW(nullptr, command.wstring().data(), nullptr, nullptr, false, DETACHED_PROCESS, nullptr, nullptr, &si, &pi)){
+        log(severityLevel::info, "Game launched successfully");
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    } else {
+        overlayLog(severityLevel::error, "Failed to launch game");
+    }
+}
+
+void ModLoader::removeStartupCinematics() {
+    log(severityLevel::info, "Removing startup cinematics");
+    fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
+    try {
+        fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2",
+                   cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup");
+        fs::rename(cinematicsPath / "Bethesda_logo_anim_white.bk2",
+                   cinematicsPath / "Bethesda_logo_anim_white.bk2.backup");
+        fs::rename(cinematicsPath / "LegalScreens.bk2",
+                   cinematicsPath / "LegalScreens.bk2.backup");
+        fs::rename(cinematicsPath / "Ryzen_Bumper.bk2",
+                   cinematicsPath / "Ryzen_Bumper.bk2.backup");
+
+    } catch (fs::filesystem_error &e) {
+        log(severityLevel::error, "Failed to remove startup cinematics: %s", e.what());
+    }
+
+}
+
+void ModLoader::restoreStartupCinematics() {
+    log(severityLevel::info, "Restoring startup cinematics");
+    fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
+    try {
+        fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup",
+                   cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2");
+        fs::rename(cinematicsPath / "Bethesda_logo_anim_white.bk2.backup",
+                     cinematicsPath / "Bethesda_logo_anim_white.bk2");
+        fs::rename(cinematicsPath / "LegalScreens.bk2.backup",
+                        cinematicsPath / "LegalScreens.bk2");
+        fs::rename(cinematicsPath / "Ryzen_Bumper.bk2.backup",
+                        cinematicsPath / "Ryzen_Bumper.bk2");
+    } catch(fs::filesystem_error &e) {
+        log(severityLevel::error, "Failed to restore startup cinematics: %s", e.what());
     }
 
 }

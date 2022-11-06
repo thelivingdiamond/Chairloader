@@ -34,10 +34,63 @@ std::string GetLastErrorAsString()
 
 void LoadChairLoader()
 {
+    // Parse the console args
+    {
+        int argc = 0;
+        wchar_t** argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+        bool disableChair = false;
+
+        for (int i = 0; i < argc; i++)
+        {
+            if (!_wcsicmp(argv[i], L"-nochair"))
+                disableChair = true;
+        }
+
+        LocalFree(argv);
+
+        if (disableChair)
+            return; // Disabled via cmd line
+    }
+
+    HMODULE hPreyDll = GetModuleHandle("PreyDll.dll");
+    if (!hPreyDll)
+    {
+        MessageBoxA(nullptr, "PreyDll.dll is not loaded.", "Chairloader Loader Error", MB_OK | MB_ICONERROR);
+        std::abort();
+    }
+
+    {
+        // Mooncrash is loaded by the same Prey.exe so it will also load mswsock.dll.
+        // Check if the loaded PreyDll.dll is from Mooncrash.
+        wchar_t* mooncrashPaths[] = {
+            L"Whiplash\\Binaries\\Danielle\\x64\\Release\\PreyDll.dll",
+            L"Whiplash\\Binaries\\Danielle\\x64-Epic\\Release\\PreyDll.dll",
+        };
+        wchar_t preyDllPath[MAX_PATH] = {};
+        int pathLen = GetModuleFileNameW(hPreyDll, preyDllPath, std::size(preyDllPath));
+
+        // Convert slashes to backslashes (just in case)
+        for (wchar_t& c : preyDllPath)
+        {
+            if (c == '/')
+                c = '\\';
+        }
+
+        for (wchar_t* prefix : mooncrashPaths)
+        {
+            int prefixLen = wcslen(prefix);
+            if (pathLen >= prefixLen && !_wcsicmp(prefix, preyDllPath + pathLen - prefixLen))
+            {
+                // Loading Mooncrash, don't load Chairloader
+                return;
+            }
+        }
+    }
+
     g_CLModule = LoadLibraryA("ChairLoader.dll");
     if (!g_CLModule) {
         std::string text = "Failed to load ChairLoader\n" + GetLastErrorAsString();
-        MessageBoxA(nullptr, text.c_str(), "ChairLoader Loader Error", MB_OK | MB_ICONERROR);
+        MessageBoxA(nullptr, text.c_str(), "Chairloader Loader Error", MB_OK | MB_ICONERROR);
         std::abort();
     }
 }

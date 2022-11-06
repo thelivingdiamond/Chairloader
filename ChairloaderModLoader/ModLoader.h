@@ -14,6 +14,8 @@
 #include <chrono>
 #include <Windows.h>
 #include "BinaryVersionCheck.h"
+#include "XMLMerger.h"
+#include "ConfigManager.h"
 
 #include <boost/format.hpp>
 
@@ -82,8 +84,34 @@ public:
     void Update();
 
     const fs::path& GetGamePath() { return PreyPath; }
+    // get mods and get legacy mods
+    const std::vector<Mod>& GetMods() { return ModList; }
+    const std::vector<std::string>& GetLegacyMods() { return LegacyModList; }
+    // get config manager
+    ConfigManager* GetConfigManager() { return &m_ConfigManager; }
+    // is mod enabled
+    bool IsModEnabled(std::string modName){
+        for(auto& mod : ModList){
+            if(mod.modName == modName){
+                return mod.enabled;
+            }
+        }
+        return false;
+    }
+    const float GetDPIScale() { return dpiScale; }
+    void updateDPI(float dpiScaleIn){
+        updateDPIScaling = true;
+        oldDpiScaling = dpiScale;
+        dpiScale = dpiScaleIn;
+    }
+    std::string GetDisplayName(std::string modName);
     void DeployForInstallWizard();
 private:
+    //! DPI
+    bool updateDPIScaling;
+    float dpiScale = 1.0f;
+    const int defaultTextSize = 18;
+    float oldDpiScaling = 1.0f;
     //! Current UI state
     enum class State
     {
@@ -101,6 +129,7 @@ private:
     std::string m_PreyPathString; //!< String used to display the path in UI
     fs::path ChairloaderModLoaderConfigPath = R"(.\ChairloaderModLoaderConfig.xml)";
     std::vector<Mod> ModList;
+    std::map<std::string, std::string> ModNameToDisplayName;
     std::vector<std::string> LegacyModList;
 
     /* Init */
@@ -183,8 +212,34 @@ private:
     }
 
     /* XML Functions */
-    fs::path selectedFile;
-    bool TreeNodeWalkDirectory(fs::path path, std::string modName);
+    struct XMLFile {
+        enum class XMLType
+        {
+            Registered,
+            Legacy,
+            BaseGame,
+        };
+        fs::path path;
+        fs::path relativePath;
+        XMLType type;
+        std::string modName;
+//        pugi::xml_document doc;
+//        pugi::xml_node root;
+        bool empty() const { return path.empty(); }
+        // == operator
+        bool operator==(const XMLFile& rhs) const {
+            return path == rhs.path;
+        }
+        // == operator with fs::path
+        bool operator==(const fs::path& rhs) const {
+            return path == rhs;
+        }
+    };
+    XMLFile selectedFile;
+    bool TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type);
+
+    void displayXmlNode(pugi::xml_node node, int depth);
+
 
     /* Mod List Functions */
     bool LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory = false);
@@ -211,12 +266,15 @@ private:
     void RunAsyncDeploy();
 
     /* XML MERGING */
-    pugi::xml_document
-    mergeXMLDocument(fs::path basePath, fs::path overridePath, fs::path originalPath, std::string modName);
-    bool mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &overrideNode, pugi::xml_node originalNode = {});
     void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
     void mergeXMLFiles(bool onlyChairPatch = false);
 
+
+    //! XML MERGING V2
+    XMLMerger m_XMLMerger;
+
+    //! config manager
+    ConfigManager m_ConfigManager;
 
     std::vector<fs::path> exploreLevelDirectory(fs::path);
     PROCESS_INFORMATION packLevel(fs::path path);
@@ -240,9 +298,9 @@ private:
 
     /* Logging Functions */
     void flushFileQueue();
-    std::vector<LogEntry> logRecord;
-    std::vector<LogEntry> fileQueue;
-    std::vector<LogEntry> overlayQueue;
+    std::list<LogEntry> logRecord;
+    std::list<LogEntry> fileQueue;
+    std::list<LogEntry> overlayQueue;
     std::mutex logMutex;
 
     ImColor errorColor = {255,70,70};
@@ -256,24 +314,37 @@ private:
         severityLevel filterLevel = severityLevel::info;
     #endif
     //Logging function
+public:
     template<typename...Args>
-    inline void log(severityLevel level, const char* format, const Args&...args){
-        logMutex.lock();
-        auto message = boost::str((boost::format(format) % ... % args));
-        logRecord.emplace_back(LogEntry(message, level));
-        fileQueue.emplace_back(LogEntry(message, level));
-        logMutex.unlock();
+    inline void log(severityLevel level, const char* format, const Args&...args){\
+    auto message = boost::str((boost::format(format) % ... % args));
+        // scope limiting for mutex
+        {
+            std::scoped_lock<std::mutex> lock(logMutex);
+            logRecord.emplace_back(LogEntry(message, level));
+            fileQueue.emplace_back(LogEntry(message, level));
+        }
+        if(level == severityLevel::fatal){
+            flushFileQueue();
+            throw std::runtime_error(message);
+        }
     }
     template<typename...Args>
     inline void overlayLog(severityLevel level, const char* format, const Args&...args){
-        logMutex.lock();
         auto message = boost::str((boost::format(format) % ... % args));
-        logRecord.emplace_back(LogEntry(message, level));
-        fileQueue.emplace_back(LogEntry(message, level));
-        overlayQueue.emplace_back(LogEntry(message, level));
-        logMutex.unlock();
+        // scope limiting for mutex
+        {
+            std::scoped_lock<std::mutex> lock(logMutex);
+            logRecord.emplace_back(LogEntry(message, level));
+            fileQueue.emplace_back(LogEntry(message, level));
+            overlayQueue.emplace_back(LogEntry(message, level));
+        }
+        if(level == severityLevel::fatal){
+            flushFileQueue();
+            throw std::runtime_error(message);
+        }
     }
-
+private:
     //! Install Functions
     bool chairloaderInstalled = false;
     // verify config file
@@ -291,4 +362,17 @@ private:
     //! Chairloader version checking
     VersionCheck::DLLVersion packagedChairloaderVersion;
     VersionCheck::DLLVersion installedChairloaderVersion;
+
+    //! Chairloader Launch Options
+    std::wstring m_chairloaderLaunchOptions;
+    std::string m_customArgs;
+    bool m_bLoadChairloader = true,
+        m_bLoadEditor = false,
+        m_bDevMode = true,
+        m_bNoRandom = false,
+        m_bAuxGeom = false;
+    void launchGame();
+
+    void removeStartupCinematics();
+    void restoreStartupCinematics();
 };

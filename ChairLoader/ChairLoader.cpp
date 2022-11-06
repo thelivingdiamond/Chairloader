@@ -7,6 +7,7 @@
 #include <Prey/GameDll/ark/player/psipower/ArkPsiPowerSmokeForm.h>
 #include <Prey/GameDll/ark/player/arkplayermovementstates.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
+#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <ChairLoader/PreyFunction.h>
 #include <mem.h>
 #include "ChairLoader.h"
@@ -18,13 +19,15 @@
 #include "Chairloader/ChairloaderEnv.h"
 #include "RenderDll/RenderAuxGeomPatch.h"
 #include "RenderDll/DebugMarkers.h"
+#include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include "Editor/Editor.h"
 
-ChairLoader *gCL = nullptr;
-static bool smokeFormExited = false;
 static ChairloaderGlobalEnvironment s_CLEnv;
+ChairLoader* gChair = nullptr;
+ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
-
+static bool smokeFormExited = false;
 
 namespace {
 
@@ -55,7 +58,7 @@ public:
 
 ConsoleStdoutSink g_StdoutConsole;
 
-auto g_CSystem_InitializeEngineModule_Hook = CSystem::FInitializeEngineModule.MakeHook();
+FunctionHook<decltype(CSystem::FInitializeEngineModule)::Type> g_CSystem_InitializeEngineModule_Hook;
 auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
 auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
 auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
@@ -77,7 +80,7 @@ bool CSystem_InitializeEngineModule_Hook(
 	if (!isChairloaderInited)
 	{
 		isChairloaderInited = true;
-		gCL->InitSystem(_this);
+		gChair->InitSystem(_this);
 	}
 
 	return g_CSystem_InitializeEngineModule_Hook.InvokeOrig(_this, _initInfo, initParams, bQuitIfNotFound);
@@ -85,35 +88,36 @@ bool CSystem_InitializeEngineModule_Hook(
 
 void CSystem_Shutdown_Hook(CSystem* _this)
 {
-	gCL->ShutdownSystem();
+	gChair->ShutdownSystem();
 	g_CSystem_Shutdown_Hook.InvokeOrig(_this);
 
-	// Shutdown ChairLoader for good
-	delete gCL;
-	gCL = nullptr;
+	// Shutdown Chairloader for good
+	delete gChair;
+	gChair = nullptr;
 }
 
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 {
+	g_pGame = _this;
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
-		gCL->InitGame(pFramework);
+		gChair->InitGame(pFramework);
 
 	return result;
 }
 
 int CGame_Update_Hook(CGame* _this, bool haveFocus, unsigned int updateFlags)
 {
-	gCL->PreUpdate(haveFocus, updateFlags);
+	gChair->PreUpdate(haveFocus, updateFlags);
 	int result = g_CGame_Update_Hook.InvokeOrig(_this, haveFocus, updateFlags);
-	gCL->PostUpdate(haveFocus, updateFlags);
+	gChair->PostUpdate(haveFocus, updateFlags);
 	return result;
 }
 
 void CGame_Shutdown_Hook(CGame* _this)
 {
-	gCL->ShutdownGame();
+	gChair->ShutdownGame();
 	g_CGame_Shutdown_Hook.InvokeOrig(_this);
 }
 
@@ -156,6 +160,16 @@ ChairLoader::ChairLoader() {
     // insert key name pairs into bimap bc bimaps kinda suck at static initialization
     LoadKeyNames();
 
+	PreyFunctionSystem::Init(m_ModuleBase);
+
+	// Install CSystem manual hook for InitSystem
+	DetourTransactionBegin();
+	g_CSystem_InitializeEngineModule_Hook.InstallHook(CSystem::FInitializeEngineModule.Get(), &CSystem_InitializeEngineModule_Hook);
+	DetourTransactionCommit();
+}
+
+void ChairLoader::InitHooks()
+{
 	// Set up hooks
 	//
 	// Explicit SetHookFunc calls are ugly but I see no other way to do it in C++.
@@ -168,7 +182,6 @@ ChairLoader::ChairLoader() {
 	// the hook function or the PreyFunctionHook object, that implies repetition of
 	// function arguments, which is even more ugly.
 	//
-	g_CSystem_InitializeEngineModule_Hook.SetHookFunc(&CSystem_InitializeEngineModule_Hook);
 	g_CSystem_Shutdown_Hook.SetHookFunc(&CSystem_Shutdown_Hook);
 	g_CGame_Init_Hook.SetHookFunc(&CGame_Init_Hook);
 	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
@@ -177,6 +190,9 @@ ChairLoader::ChairLoader() {
 	ChairLoaderImGui::InitHooks();
 	InitRenderAuxGeomPatchHooks();
 	RenderDll::DebugMarkers::InitHooks();
+
+	if (m_bEditorEnabled)
+		Editor::InitHooks();
 
 	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
 	// Allows graphics debuggers to be attached
@@ -188,7 +204,6 @@ ChairLoader::ChairLoader() {
 	}
 
 	// Install all hooks
-	PreyFunctionSystem::Init(m_ModuleBase);
 	InstallHooks();
 }
 
@@ -199,11 +214,21 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 	CryLog("ChairLoader::InitSystem");
 	CryLog("ChairLoader: gEnv = 0x%p\n", gEnv);
 
+	gCL->cl = this;
+
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
 
-	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
+	// Editor cmd line switch
+	m_bEditorEnabled = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "editor");
+
+	if (m_bEditorEnabled)
+	{
+		// Dev mode is always enabled in Editor.
+		pSystem->SetDevMode(true);
+	}
+	else if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
 	{
 		bool devMode = false;
 #ifdef DEBUG_BUILD
@@ -216,11 +241,12 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
+	InitHooks();
 	WaitForRenderDoc();
 
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
-	s_CLEnv.conf = gConf;
+	gCL->conf = gConf;
 	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
 
     // Get config parameters From Config
@@ -228,16 +254,12 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 
 	InitRenderAuxGeomPatch();
 
-	// get list of installed mods and their load order
-	ReadModList();
-	// load the DLLs and register the mods
-	initializeMods();
-	// load the config files into the config manager
-	loadAllConfigs();
-	// run each mod InitSystem()
-	for(auto mod: modList) {
-		mod.pMod->InitSystem(pSystem, GetModuleBase());
-	}
+	// Mod DLL support
+	m_pModDllManager = std::make_unique<ModDllManager>();
+	m_pModDllManager->SetHotReloadEnabled(IsEditorEnabled());
+	RegisterMods();
+	m_pModDllManager->LoadModules();	
+	m_pModDllManager->CallInitSystem();
 }
 
 
@@ -248,30 +270,25 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
-	gui = new ChairloaderGui(&s_CLEnv);
+	gui = new ChairloaderGui();
 	g_pProfiler = new Profiler();
 
-	s_CLEnv.cl = this;
-	s_CLEnv.pImGui = m_ImGui.get();
-	s_CLEnv.gui = gui;
-	s_CLEnv.entUtils = gEntUtils;
+	if (m_bEditorEnabled)
+		m_pEditor = std::make_unique<Editor>();
 
-	// run each mod InitGame();
-	for (auto& mod : modList) {
-		mod.pMod->InitGame(pFramework, this);
-	}
+	gCL->pImGui = m_ImGui.get();
+	gCL->gui = gui;
+	gCL->entUtils = gEntUtils;
+
+	m_pModDllManager->CallInitGame();
 }
 
 void ChairLoader::ShutdownGame()
 {
 	CryLog("ChairLoader::ShutdownGame");
 
-	// Shutdown all mods in reverse order
-	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
-	{
-		it->pMod->ShutdownGame();
-	}
-
+	m_pModDllManager->CallShutdownGame();
+	m_pEditor = nullptr;
 	m_ImGui = nullptr;
 	m_pFramework = nullptr;
 }
@@ -280,22 +297,8 @@ void ChairLoader::ShutdownSystem()
 {
 	CryLog("ChairLoader::ShutdownSystem");
 	
-	// Shutdown all mods in reverse order
-	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
-	{
-		it->pMod->ShutdownSystem();
-	}
-
-	// Unload mods
-	for (auto it = modList.rbegin(); it != modList.rend(); ++it)
-	{
-		it->pMod = nullptr;
-		it->pfnShutdown();
-		it->pfnShutdown = nullptr;
-		it->pfnInit = nullptr;
-		FreeLibrary(it->hModule);
-		it->hModule = nullptr;
-	}
+	m_pModDllManager->CallShutdownSystem();
+	m_pModDllManager->UnloadModules();
 
 	gEnv = nullptr;
 }
@@ -326,28 +329,24 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	gui->update();
 	gConf->Update();
 
-	// pre update all mods
-	for (auto& mod : modList) {
-		mod.pMod->PreUpdate();
+	gui->draw(&m_ShowGui);
+	m_pModDllManager->CallDraw();
+
+	// Editor update MUST come before mod PreUpdate for proper hot-reloading
+	if (m_pEditor)
+	{
+		m_pEditor->Update();
+		
+		if (m_ShowGui)
+			m_pEditor->ShowUI();
 	}
 
-	gui->draw(&m_ShowGui);
-
-	// draw all mods if gui is visible
-    if(m_ShowGui) {
-        for (auto &mod: modList) {
-            mod.pMod->Draw();
-        }
-    }
+	m_pModDllManager->CallPreUpdate();
 }
 
 void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
-
-	// post update all mods
-	for (auto& mod : modList) {
-		mod.pMod->PostUpdate();
-	}
+	m_pModDllManager->CallPostUpdate();
 }
 
 bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
@@ -378,84 +377,18 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
         }
         return true;
     }
+
+	if (m_pEditor && m_pEditor->HandleKeyPress(event))
+		return true;
+
 	return false;
 }
 
 void ChairLoader::SmokeFormExit() {
 	if(smokeFormExited) {
-		s_CLEnv.entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+		gCL->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
-}
-
-void ChairLoader::initializeMods() {
-	for(auto &mod: modLoadOrder) {
-		ModEntry entry;
-		std::string modName = mod.first;
-		std::string dllName = mod.second.child("dllName").text().as_string();
-		fs::path dllPath = fs::current_path() / "Mods" / fs::u8path(modName) / fs::u8path(dllName);
-		entry.modName = modName;
-		entry.hModule = LoadLibraryW(dllPath.c_str());
-
-		if (!entry.hModule)
-			CryFatalError("%s: DLL Failed to load", modName.c_str());
-
-		entry.pfnInit = (IChairloaderMod::ProcInitialize*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_INITIALIZE);
-		entry.pfnShutdown = (IChairloaderMod::ProcShutdown*)GetProcAddress(entry.hModule, IChairloaderMod::PROC_SHUTDOWN);
-
-		if (!entry.pfnInit || !entry.pfnShutdown)
-			CryFatalError("%s: Missing function exports", modName.c_str());
-
-		entry.pMod = entry.pfnInit();
-
-		if (!entry.pMod)
-			CryFatalError("%s: Initialize returned nullptr", modName.c_str());
-
-		bool isRegistered = RegisterMod(std::move(entry));
-		if (!isRegistered)
-			CryFatalError("%s: RegisterMod returned false", modName.c_str());
-	}
-}
-
-void ChairLoader::loadAllConfigs() {
-	for(auto &mod : modList) {
-		gConf->loadModConfigFile(mod.modName);
-	}
-}
-
-//TODO: as mods are registered they must be sorted by load order as specified by the configuration file
-
-
-bool ChairLoader::RegisterMod(ModEntry&& mod) {
-	if (modLoadOrder.find(mod.modName) != modLoadOrder.end()) {
-		CryLog("Mod Registered: %s", mod.modName.c_str());
-		modList.emplace_back(std::move(mod));
-		sortLoadOrder();
-		return true;
-	} 
-	return false;
-}
-
-void ChairLoader::ReadModList() {
-	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
-
-	// FIXED: Magic numbers
-	if (cfgValue.type() != typeid(pugi::xml_node))
-		return;
-
-	auto node = boost::get<pugi::xml_node>(cfgValue);
-	for(auto &mod : node) {
-		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-        if(mod.child("enabled").text().as_bool() && mod.child("dllName")) {
-            auto loadOrder = boost::get<int>(gConf->getNodeConfigValue(mod, "loadOrder"));
-            modLoadOrder.insert(std::pair(modName, mod));
-            CryLog("Load order found: %s %i", modName.c_str(), loadOrder);
-        } 
-	}
-}
-
-void ChairLoader::sortLoadOrder() {
-	std::sort(modList.begin(), modList.end());
 }
 
 void ChairLoader::CreateConsole() {
@@ -504,7 +437,12 @@ void ChairLoader::WaitForRenderDoc()
 }
 
 ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
-	return &s_CLEnv;
+	return gCL;
+}
+
+uintptr_t ChairLoader::GetPreyDllBase()
+{
+	return GetModuleBase();
 }
 
 //! this function is needed because bimaps don't handle static initialization very well
@@ -620,6 +558,26 @@ void ChairLoader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_RWin, "rwin"));
 }
 
+void ChairLoader::RegisterMods()
+{
+	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
+
+	if (cfgValue.type() != typeid(pugi::xml_node))
+	{
+		CryWarning("ModList is not a node in the config.");
+		return;
+	}
+
+	auto node = boost::get<pugi::xml_node>(cfgValue);
+	for (pugi::xml_node& mod : node) {
+		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
+		if (mod.child("enabled").text().as_bool() && mod.child("dllName")) {
+			CryLog("Found DLL mod: %s", modName.c_str());
+			m_pModDllManager->RegisterModFromXML(mod);
+		}
+	}
+}
+
 void ChairLoader::loadConfigParameters() {
     // Hide GUI Key, default = f1
     auto key = gConf->getConfigValue(chairloaderModName, "HideGUIKey");
@@ -676,4 +634,25 @@ std::string ChairLoader::getKeyBind(std::string action) {
         return "";
     }
     return std::string();
+}
+
+bool ChairLoader::IsEditorEnabled()
+{
+	return m_bEditorEnabled;
+}
+
+void ChairLoader::ReloadModDLLs()
+{
+	// Mods may hook code running in other threads. Make sure as many of them as possible are idle.
+	// Wait for render thread to finish
+	auto rd = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
+	rd->m_pRT->SyncMainWithRender(); // Last frame
+	rd->m_pRT->SyncMainWithRender(); // This frame
+
+	m_pModDllManager->ReloadModules();
+}
+
+bool ChairLoader::CheckDLLsForChanges()
+{
+	return m_pModDllManager->CheckModulesForChanges();
 }

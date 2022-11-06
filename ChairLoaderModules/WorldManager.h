@@ -53,7 +53,7 @@ struct characterInfo {
 
 class WorldManager {
 public:
-    WorldManager(ChairloaderGlobalEnvironment* env);
+    WorldManager();
     void Draw();
     std::map<uint64_t, pathEntry> ArkStationPaths;
     std::map<uint64_t, airlockEntry> ArkStationAirlocks;
@@ -74,7 +74,6 @@ private:
     showKeycodeManagerWindow = false,
     showPasswordManagerWindow = false,
     showCharacterManagerWindow = false;
-    ChairloaderGlobalEnvironment* gCLEnv;
     const std::string ModuleName = "WorldManager";
 
     void DrawLevelManagerWindow();
