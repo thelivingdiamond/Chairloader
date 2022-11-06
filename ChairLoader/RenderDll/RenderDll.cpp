@@ -4,6 +4,8 @@
 #include "AuxGeom/RenderAuxGeomPatch.h"
 #include "Shaders/ShaderCompilingPatch.h"
 
+CD3D9Renderer* gcpRendD3D = nullptr;
+
 void RenderDll::InitRenderDllPatches(const SRenderDllPatchParams& params)
 {
 	ChairRender::Get().Init();

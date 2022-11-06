@@ -1,3 +1,4 @@
+#ifdef RENDERDLL_SHADER_COMPILER
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
@@ -7,8 +8,6 @@
 #include <mem.h>
 #include "ShaderPaths.h"
 #include "ShaderCompilingPatch.h"
-
-CD3D9Renderer* gcpRendD3D = nullptr;
 
 //-----------------------------------------------------------------------------------
 
@@ -225,4 +224,28 @@ void ShutdownRenderer()
 #endif
 }
 
+void AddShadersDir(const fs::path& path)
+{
+	ShaderPaths::Get().AddShadersDir(path);
 }
+
+void RefreshShaderFileList()
+{
+	ShaderPaths::Get().RefreshFileList();
+}
+
+}
+#else
+
+namespace RenderDll::Shaders
+{
+bool GetShaderModsRegistered() { return false; }
+void InitHooks() {}
+void ShutdownRenderer() {}
+void AddShadersDir(const fs::path& path) {}
+void RefreshShaderFileList() {}
+}
+
+CShader* CShaderMan::mfForName(const char* nameSh, int flags, CShaderResources const* Res, uint64_t nMaskGen) { return FmfForName(this, nameSh, flags, Res, nMaskGen); }
+
+#endif

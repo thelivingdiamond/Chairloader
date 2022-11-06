@@ -18,7 +18,7 @@
 #include <detours/detours.h>
 #include "Chairloader/ChairloaderEnv.h"
 #include "RenderDll/RenderDll.h"
-#include "RenderDll/Shaders/ShaderPaths.h"
+#include "RenderDll/Shaders/ShaderCompilingPatch.h"
 #include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include "Editor/Editor.h"
@@ -570,12 +570,12 @@ void ChairLoader::RegisterMods()
 			if (fs::exists(shadersPath))
 			{
 				CryLog("Found Shader mod: %s", modName.c_str());
-				RenderDll::Shaders::ShaderPaths::Get().AddShadersDir(shadersPath);
+				RenderDll::Shaders::AddShadersDir(shadersPath);
 			}
 		}
 	}
 
-	RenderDll::Shaders::ShaderPaths::Get().RefreshFileList();
+	RenderDll::Shaders::RefreshShaderFileList();
 }
 
 void ChairLoader::loadConfigParameters() {
