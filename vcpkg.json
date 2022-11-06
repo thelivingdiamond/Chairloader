@@ -1,0 +1,15 @@
+{
+  "name": "chairloader",
+  "version-string": "0.1.0",
+  "description": "An extensible Prey (2017) modding framework",
+  "builtin-baseline": "faed44dfa013088fe1910908a8a65887622f412f",
+  "$deps_": "Please, keep sorted alphabetically",
+  "$boost": "Don't include the whole Boost!",
+  "dependencies": [
+    "boost-filesystem",
+    "boost-log",
+    "detours",
+    "libzip",
+    "pugixml"
+  ]
+}
