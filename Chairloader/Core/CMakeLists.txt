@@ -1,0 +1,24 @@
+set(SOURCE_FILES
+	CMakeLists.txt
+	ChairLoaderImGui.cpp
+	ChairLoaderImGui.h
+	ChairloaderConfigManager.cpp
+	ChairloaderConfigManager.h
+	ChairloaderGui.cpp
+	ChairloaderGui.h
+	ModDllManager.cpp
+	ModDllManager.h
+	OverlayLog.cpp
+	OverlayLog.h
+	Profiler.cpp
+	Profiler.h
+)
+
+add_library(Chairloader.Core STATIC ${SOURCE_FILES})
+target_include_directories(Chairloader.Core PRIVATE .)
+
+target_link_libraries(Chairloader.Core PUBLIC
+	Chairloader.Common
+)
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

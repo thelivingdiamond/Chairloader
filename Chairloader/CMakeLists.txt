@@ -1,51 +1,14 @@
-add_subdirectory(RenderDll)
+# Group projects in VS
+set(CMAKE_FOLDER "Chairloader (Game)")
 
-set(SOURCE_FILES
-	CMakeLists.txt
+# Common code
+add_subdirectory(Common)
 
-	ImGui/imgui_widget_flamegraph.cpp
-	ImGui/imgui_widget_flamegraph.h
-	
-	ChairLoader.cpp
-	ChairLoader.h
-	ChairloaderConfigManager.cpp
-	ChairloaderConfigManager.h
-	ChairloaderGui.cpp
-	ChairloaderGui.h
-	ChairLoaderImGui.cpp
-	ChairLoaderImGui.h
-	DevConsoleDialog.cpp
-	DevConsoleDialog.h
-	dllmain.cpp
-	GUIUtils.h
-	Header.h
-	HeaderTestFile.cpp
-	LibD3D11.h
-	ModDllManager.cpp
-	ModDllManager.h
-	OverlayLog.cpp
-	OverlayLog.h
-	pch.cpp
-	PerfOverlay.cpp
-	PerfOverlay.h
-	Profiler.cpp
-	Profiler.h
-	version.rc.in
-	version.rc
-)
+# Chairloader modules
+add_subdirectory(Core)
+add_subdirectory(CryRender)
+add_subdirectory(Tools)
 
-configure_file(
-		${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
-		${CMAKE_CURRENT_SOURCE_DIR}/version.rc
-		@ONLY)
-
-add_library(Chairloader SHARED ${SOURCE_FILES})
-target_link_libraries(Chairloader
-	Common
-	ChairloaderModules
-	CryRenderD3D11
-)
-
-cl_output_dir(Chairloader "Binaries/Danielle/x64/Release")
-
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
+# Chairloader DLLs
+add_subdirectory(Dll)
+add_subdirectory(Loader)

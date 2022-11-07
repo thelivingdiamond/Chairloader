@@ -19,6 +19,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Enable project folders in VS
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 # Prey was build in Release so mods must match it even in Debug
 set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
 add_compile_definitions(
@@ -65,13 +68,7 @@ find_package(pugixml REQUIRED)
 
 # Project libraries
 add_subdirectory(Common)
-
-# DLLs
-add_subdirectory(ChairLoader)
-add_subdirectory(ChairLoaderLoader)
-
-#static libraries
-add_subdirectory(ChairLoaderModules)
+add_subdirectory(Chairloader)
 
 # Example Mod
 unset(CHAIRLOADER_COMMON_PATH CACHE)

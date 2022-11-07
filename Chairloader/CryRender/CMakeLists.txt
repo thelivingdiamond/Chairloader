@@ -56,22 +56,14 @@ set(SOURCE_FILES
 	RenderDll.h
 )
 
-add_library(CryRenderD3D11 STATIC
-	${SOURCE_FILES}
+add_library(Chairloader.CryRender STATIC ${SOURCE_FILES})
+target_compile_definitions(Chairloader.CryRender PRIVATE ${RENDERDLL_DEFS})
+target_include_directories(Chairloader.CryRender PRIVATE .)
+
+target_link_libraries(Chairloader.CryRender PUBLIC
+	Chairloader.Common
 )
 
-target_compile_definitions(CryRenderD3D11 PRIVATE
-	${RENDERDLL_DEFS}
-)
-
-target_include_directories(CryRenderD3D11 PRIVATE
-	.
-)
-
-target_link_libraries(CryRenderD3D11 PUBLIC
-	Common
-)
-
-target_precompile_headers(CryRenderD3D11 PRIVATE pch.h)
+target_precompile_headers(Chairloader.CryRender PRIVATE pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
