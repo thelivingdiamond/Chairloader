@@ -14,8 +14,6 @@ set(SOURCE_FILES
 	ChairloaderGui.h
 	ChairLoaderImGui.cpp
 	ChairLoaderImGui.h
-	CScriptableBase.h
-	CScriptBind_Ark.h
 	DevConsoleDialog.cpp
 	DevConsoleDialog.h
 	dllmain.cpp
