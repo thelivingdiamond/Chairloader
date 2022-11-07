@@ -16,6 +16,9 @@ enum CryLockType
 
 #define CRYLOCK_HAVE_FASTLOCK 1
 
+void CryThreadSetName(threadID nThreadId, const char* sThreadName);
+const char* CryThreadGetName(threadID nThreadId);
+
 //! Primitive locks and conditions.
 //! Primitive locks are represented by instance of class CryLockT<Type>.
 template<CryLockType Type> class CryLockT
@@ -116,6 +119,88 @@ typedef CryAutoLock<CryCriticalSectionNonRecursive> CryAutoCriticalSectionNoRecu
 #define AUTO_LOCK_T(Type, lock) PREFAST_SUPPRESS_WARNING(6246); CryAutoLock<Type> __AutoLock(lock)
 #define AUTO_LOCK(lock)         AUTO_LOCK_T(CryCriticalSection, lock)
 #define AUTO_LOCK_CS(csLock)    CryAutoCriticalSection __AL__ ## csLock(csLock)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Threads.
+
+// Base class for runnable objects.
+//
+// A runnable is an object with a Run() and a Cancel() method.  The Run()
+// method should perform the runnable's job.  The Cancel() method may be
+// called by another thread requesting early termination of the Run() method.
+// The runnable may ignore the Cancel() call, the default implementation of
+// Cancel() does nothing.
+class CryRunnable
+{
+public:
+	virtual ~CryRunnable() { }
+	virtual void Run() = 0;
+	virtual void Cancel() { }
+};
+
+// Class holding information about a thread.
+//
+// A reference to the thread information can be obtained by calling GetInfo()
+// on the CrySimpleThread (or derived class) instance.
+//
+// NOTE:
+// If the code is compiled with NO_THREADINFO defined, then the GetInfo()
+// method will return a reference to a static dummy instance of this
+// structure.  It is currently undecided if NO_THREADINFO will be defined for
+// release builds!
+//
+// PS3 NOTE: Make sure the same NO_THREADINFO setting is used on SPU and PPU.
+// On SPU the 'm_Name' field is replaced by a dummy field.
+struct CryThreadInfo
+{
+	// The symbolic name of the thread.
+	//
+	// You may set this name directly or through the SetName() method of
+	// CrySimpleThread (or derived class).
+	string m_Name;
+
+	// A thread identification number.
+	// The number is unique but architecture specific.  Do not assume anything
+	// about that number except for being unique.
+	//
+	// This field is filled when the thread is started (i.e. before the Run()
+	// method or thread routine is called).  It is advised that you do not
+	// change this number manually.
+	uint32 m_ID;
+};
+
+// Simple thread class.
+//
+// CrySimpleThread is a simple wrapper around a system thread providing
+// nothing but system-level functionality of a thread.  There are two typical
+// ways to use a simple thread:
+//
+// 1. Derive from the CrySimpleThread class and provide an implementation of
+//    the Run() (and optionally Cancel()) methods.
+// 2. Specify a runnable object when the thread is started.  The default
+//    runnable type is CryRunnable.
+//
+// The Runnable class specfied as the template argument must provide Run()
+// and Cancel() methods compatible with the following signatures:
+//
+//   void Runnable::Run();
+//   void Runnable::Cancel();
+//
+// If the Runnable does not support cancellation, then the Cancel() method
+// should do nothing.
+//
+// The same instance of CrySimpleThread may be used for multiple thread
+// executions /in sequence/, i.e. it is valid to re-start the thread by
+// calling Start() after the thread has been joined by calling WaitForThread().
+template<class Runnable = CryRunnable> class CrySimpleThread;
+
+// Standard thread class.
+//
+// The class provides a lock (mutex) and an associated condition variable.  If
+// you don't need the lock, then you should used CrySimpleThread instead of
+// CryThread.
+template<class Runnable = CryRunnable> class CryThread;
 
 ///////////////////////////////////////////////////////////////////////////////
 //! Base class for lockless Producer/Consumer queue, due platforms specific they are implemented in CryThead_platform.h.

@@ -85,7 +85,6 @@ private:
 
 	void CreateConsole();
 	void InstallHooks();
-	void WaitForRenderDoc();
     KeyNameMap m_KeyNames;
 
     // init m_KeyNames. Call once

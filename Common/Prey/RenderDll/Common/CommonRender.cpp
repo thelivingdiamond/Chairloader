@@ -7,8 +7,8 @@
 //CNameTableR* CCryNameR::ms_table;
 
 // Resource manager internal variables.
-ResourceClassMap CBaseResource::m_sResources;
-CryCriticalSection CBaseResource::s_cResLock;
+//ResourceClassMap CBaseResource::m_sResources;
+//CryCriticalSection CBaseResource::s_cResLock;
 
 // CRenderer pointer
 CRenderer* gRenDev;
@@ -20,15 +20,15 @@ CBaseResource& CBaseResource::operator=(const CBaseResource& Src)
 
 bool CBaseResource::IsValid()
 {
-	AUTO_LOCK(s_cResLock); // Not thread safe without this
+	AUTO_LOCK(*s_cResLock); // Not thread safe without this
 
 	SResourceContainer* pContainer = GetResourcesForClass(m_ClassName);
 	if (!pContainer)
 		return false;
 
-	ResourceClassMapItor itRM = m_sResources.find(m_ClassName);
+	ResourceClassMapItor itRM = m_sResources->find(m_ClassName);
 
-	if (itRM == m_sResources.end())
+	if (itRM == m_sResources->end())
 		return false;
 	if (itRM->second != pContainer)
 		return false;
@@ -43,8 +43,8 @@ bool CBaseResource::IsValid()
 
 SResourceContainer* CBaseResource::GetResourcesForClass(const CCryNameTSCRC& className)
 {
-	ResourceClassMapItor itRM = m_sResources.find(className);
-	if (itRM == m_sResources.end())
+	ResourceClassMapItor itRM = m_sResources->find(className);
+	if (itRM == m_sResources->end())
 		return NULL;
 	return itRM->second;
 }
@@ -52,7 +52,7 @@ SResourceContainer* CBaseResource::GetResourcesForClass(const CCryNameTSCRC& cla
 CBaseResource* CBaseResource::GetResource(const CCryNameTSCRC& className, int nID, bool bAddRef)
 {
 	FUNCTION_PROFILER_RENDER_FLAT
-	  AUTO_LOCK(s_cResLock); // Not thread safe without this
+	  AUTO_LOCK(*s_cResLock); // Not thread safe without this
 
 	SResourceContainer* pRL = GetResourcesForClass(className);
 	if (!pRL)
@@ -76,7 +76,7 @@ CBaseResource* CBaseResource::GetResource(const CCryNameTSCRC& className, int nI
 CBaseResource* CBaseResource::GetResource(const CCryNameTSCRC& className, const CCryNameTSCRC& Name, bool bAddRef)
 {
 	FUNCTION_PROFILER_RENDER_FLAT
-	  AUTO_LOCK(s_cResLock); // Not thread safe without this
+	  AUTO_LOCK(*s_cResLock); // Not thread safe without this
 
 	SResourceContainer* pRL = GetResourcesForClass(className);
 	if (!pRL)
@@ -96,13 +96,13 @@ CBaseResource* CBaseResource::GetResource(const CCryNameTSCRC& className, const 
 
 bool CBaseResource::Register(const CCryNameTSCRC& className, const CCryNameTSCRC& Name)
 {
-	AUTO_LOCK(s_cResLock); // Not thread safe without this
+	AUTO_LOCK(*s_cResLock); // Not thread safe without this
 
 	SResourceContainer* pRL = GetResourcesForClass(className);
 	if (!pRL)
 	{
 		pRL = new SResourceContainer;
-		m_sResources.insert(ResourceClassMapItor::value_type(className, pRL));
+		m_sResources->insert(ResourceClassMapItor::value_type(className, pRL));
 	}
 
 	assert(pRL);
@@ -137,7 +137,7 @@ bool CBaseResource::Register(const CCryNameTSCRC& className, const CCryNameTSCRC
 
 bool CBaseResource::UnRegister()
 {
-	AUTO_LOCK(s_cResLock); // Not thread safe without this
+	AUTO_LOCK(*s_cResLock); // Not thread safe without this
 
 	if (IsValid())
 	{
@@ -184,12 +184,12 @@ void CBaseResource::ShutDown()
 	if (CRenderer::CV_r_releaseallresourcesonexit)
 	{
 		ResourceClassMapItor it;
-		for (it = m_sResources.begin(); it != m_sResources.end(); it++)
+		for (it = m_sResources->begin(); it != m_sResources->end(); it++)
 		{
 			SResourceContainer* pCN = it->second;
 			SAFE_DELETE(pCN);
 		}
-		m_sResources.clear();
+		m_sResources->clear();
 	}
 }
 #endif

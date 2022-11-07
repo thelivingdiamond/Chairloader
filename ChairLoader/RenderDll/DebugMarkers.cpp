@@ -421,7 +421,7 @@ void InitHooks()
 	g_CTexture_CreateRenderTarget_Hook.SetHookFunc(&CTexture_CreateRenderTarget_Hook);
 }
 
-void InitGame()
+void InitRenderer()
 {
 	CD3D9Renderer* rd = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
 	rd->m_DeviceContextWrapper.QueryInterface(__uuidof(ID3DUserDefinedAnnotation), (void**)&g_pAnnot);
@@ -430,7 +430,7 @@ void InitGame()
 #else
 
 void InitHooks() {}
-void InitGame() {}
+void InitRenderer() {}
 
 #endif
 }

@@ -17,8 +17,8 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 #include "Chairloader/ChairloaderEnv.h"
-#include "RenderDll/RenderAuxGeomPatch.h"
-#include "RenderDll/DebugMarkers.h"
+#include "RenderDll/RenderDll.h"
+#include "RenderDll/Shaders/ShaderCompilingPatch.h"
 #include "ModDllManager.h"
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include "Editor/Editor.h"
@@ -188,8 +188,6 @@ void ChairLoader::InitHooks()
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
 	ChairLoaderImGui::InitHooks();
-	InitRenderAuxGeomPatchHooks();
-	RenderDll::DebugMarkers::InitHooks();
 
 	if (m_bEditorEnabled)
 		Editor::InitHooks();
@@ -241,8 +239,9 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 		pSystem->SetDevMode(devMode);
 	}
 
-	InitHooks();
-	WaitForRenderDoc();
+	// Disabling audio speeds up loading immensely (8 seconds on my hardware)
+	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
+		pSystem->m_sys_audio_disable->Set(1);
 
 	m_MainThreadId = std::this_thread::get_id();
 	gConf = new ChairloaderConfigManager();
@@ -252,21 +251,31 @@ void ChairLoader::InitSystem(CSystem* pSystem)
     // Get config parameters From Config
     loadConfigParameters();
 
-	InitRenderAuxGeomPatch();
-
-	// Mod DLL support
+	// Register mods
 	m_pModDllManager = std::make_unique<ModDllManager>();
 	m_pModDllManager->SetHotReloadEnabled(IsEditorEnabled());
 	RegisterMods();
+
+	// Init renderer patches. Must be done after shader mods are registered.
+	RenderDll::SetRenderThreadIsIdle(true);
+	RenderDll::SRenderDllPatchParams renderDllPatch;
+	renderDllPatch.bEnableAuxGeom = gEnv->pSystem->IsDevMode();
+	RenderDll::InitRenderDllPatches(renderDllPatch);
+
+	// Install hooks late into init, some SetHookFunc calls depend on cmd line or mods
+	InitHooks();
+
+	// Load DLL mods
 	m_pModDllManager->LoadModules();	
 	m_pModDllManager->CallInitSystem();
+
+	RenderDll::SetRenderThreadIsIdle(false);
 }
 
 
 void ChairLoader::InitGame(IGameFramework* pFramework)
 {
 	CryLog("ChairLoader::InitGame");
-	RenderDll::DebugMarkers::InitGame();
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
@@ -280,7 +289,11 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	gCL->gui = gui;
 	gCL->entUtils = gEntUtils;
 
+	gRenDev->m_pRT->SyncMainWithRender();
+	gRenDev->m_pRT->SyncMainWithRender();
+	RenderDll::SetRenderThreadIsIdle(true);
 	m_pModDllManager->CallInitGame();
+	RenderDll::SetRenderThreadIsIdle(false);
 }
 
 void ChairLoader::ShutdownGame()
@@ -297,8 +310,11 @@ void ChairLoader::ShutdownSystem()
 {
 	CryLog("ChairLoader::ShutdownSystem");
 	
+	RenderDll::SetRenderThreadIsIdle(true);
 	m_pModDllManager->CallShutdownSystem();
 	m_pModDllManager->UnloadModules();
+	RenderDll::ShutdownSystem();
+	RenderDll::SetRenderThreadIsIdle(false);
 
 	gEnv = nullptr;
 }
@@ -406,35 +422,6 @@ void ChairLoader::InstallHooks()
 }
 
 //TODO: deprecated config system keys
-
-
-void ChairLoader::WaitForRenderDoc()
-{
-	constexpr int WAIT_TIME_SEC = 10;
-
-	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "renderdoc"))
-	{
-		for (int i = 0; i < WAIT_TIME_SEC; i++)
-		{
-			CryLog("Waiting for RenderDoc - %d seconds...", WAIT_TIME_SEC - i);
-
-			for (int j = 0; j < 10; j++)
-			{
-				HMODULE renderdoc = GetModuleHandleA("renderdoc.dll");
-
-				if (renderdoc)
-				{
-					CryLog("RenderDoc found!");
-					return;
-				}
-
-				Sleep(100);
-			}
-		}
-
-		CryLog("RenderDoc not found, continuing loading");
-	}
-}
 
 ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
 	return gCL;
@@ -571,11 +558,24 @@ void ChairLoader::RegisterMods()
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
 		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-		if (mod.child("enabled").text().as_bool() && mod.child("dllName")) {
-			CryLog("Found DLL mod: %s", modName.c_str());
-			m_pModDllManager->RegisterModFromXML(mod);
+		if (mod.child("enabled").text().as_bool()) {
+			if (mod.child("dllName"))
+			{
+				CryLog("Found DLL mod: %s", modName.c_str());
+				m_pModDllManager->RegisterModFromXML(mod);
+			}
+
+			fs::path modDirPath = fs::current_path() / "Mods" / fs::u8path(modName);
+			fs::path shadersPath = modDirPath / "Shaders";
+			if (fs::exists(shadersPath))
+			{
+				CryLog("Found Shader mod: %s", modName.c_str());
+				RenderDll::Shaders::AddShadersDir(shadersPath);
+			}
 		}
 	}
+
+	RenderDll::Shaders::RefreshShaderFileList();
 }
 
 void ChairLoader::loadConfigParameters() {
@@ -648,8 +648,11 @@ void ChairLoader::ReloadModDLLs()
 	auto rd = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
 	rd->m_pRT->SyncMainWithRender(); // Last frame
 	rd->m_pRT->SyncMainWithRender(); // This frame
+	RenderDll::SetRenderThreadIsIdle(true);
 
 	m_pModDllManager->ReloadModules();
+
+	RenderDll::SetRenderThreadIsIdle(false);
 }
 
 bool ChairLoader::CheckDLLsForChanges()

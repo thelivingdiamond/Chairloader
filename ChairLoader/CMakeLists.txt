@@ -1,19 +1,10 @@
+add_subdirectory(RenderDll)
+
 set(SOURCE_FILES
 	CMakeLists.txt
 
 	ImGui/imgui_widget_flamegraph.cpp
 	ImGui/imgui_widget_flamegraph.h
-	
-	RenderDll/D3DRenderAuxGeom.cpp
-	RenderDll/D3DRenderAuxGeom.h
-	RenderDll/DebugMarkers.cpp
-	RenderDll/DebugMarkers.h
-	RenderDll/RenderAuxGeom.cpp
-	RenderDll/RenderAuxGeomPatch.cpp
-	RenderDll/RenderAuxGeomPatch.h
-	RenderDll/RenderCommandHandler.cpp
-	RenderDll/RenderCommandHook.asm
-	RenderDll/TextMessages.cpp
 	
 	ChairLoader.cpp
 	ChairLoader.h
@@ -50,18 +41,11 @@ configure_file(
 		${CMAKE_CURRENT_SOURCE_DIR}/version.rc
 		@ONLY)
 
-if(RENDERDLL_DEBUG_MARKERS)
-	set(RENDERDLL_DEBUG_MARKERS_DEFS RENDERDLL_DEBUG_MARKERS)
-endif()
-
 add_library(Chairloader SHARED ${SOURCE_FILES})
 target_link_libraries(Chairloader
 	Common
 	ChairloaderModules
-)
-
-target_compile_definitions(Chairloader PRIVATE
-	${RENDERDLL_DEBUG_MARKERS_DEFS}
+	CryRenderD3D11
 )
 
 cl_output_dir(Chairloader "Binaries/Danielle/x64/Release")

@@ -60,7 +60,7 @@ public:
 	inline T* Get() { return reinterpret_cast<T*>(GetIntPtr()); }
 
 	inline T& operator*() { return *Get(); }
-	inline T& operator->() { return *Get(); }
+	inline T* operator->() { return Get(); }
 };
 
 //------------------------------------------------------------
@@ -73,6 +73,7 @@ template <typename ReturnType, typename ... ArgumentTypes>
 class PreyFunction<ReturnType(ArgumentTypes ...)> : public PreyPointer {
 public:
 	using Type = ReturnType(ArgumentTypes ...);
+	using FuncReturnType = ReturnType;
 
 	using PreyPointer::PreyPointer;
 

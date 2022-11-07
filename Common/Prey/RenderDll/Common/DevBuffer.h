@@ -1,4 +1,5 @@
 #pragma once
+#include <Prey/CryRenderer/CryDX.h>
 
 typedef uintptr_t buffer_handle_t;
 typedef uint32    item_handle_t;
