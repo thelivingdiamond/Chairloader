@@ -24,7 +24,7 @@
 #include "Editor/Editor.h"
 
 static ChairloaderGlobalEnvironment s_CLEnv;
-ChairLoader* gChair = nullptr;
+Chairloader* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
 static bool smokeFormExited = false;
@@ -140,7 +140,7 @@ void SmokeForm_Exit_Hook(ArkPsiPowerSmokeForm* _this) {
 //}
 }
 
-ChairLoader::ChairLoader() {
+Chairloader::Chairloader() {
 	CreateConsole();
 	printf("ChairLoader Initializing...\n");
 
@@ -168,7 +168,7 @@ ChairLoader::ChairLoader() {
 	DetourTransactionCommit();
 }
 
-void ChairLoader::InitHooks()
+void Chairloader::InitHooks()
 {
 	// Set up hooks
 	//
@@ -205,11 +205,11 @@ void ChairLoader::InitHooks()
 	InstallHooks();
 }
 
-void ChairLoader::InitSystem(CSystem* pSystem)
+void Chairloader::InitSystem(CSystem* pSystem)
 {
 	ModuleInitISystem(pSystem, "ChairLoader");
 	g_StdoutConsole.Init();
-	CryLog("ChairLoader::InitSystem");
+	CryLog("Chairloader::InitSystem");
 	CryLog("ChairLoader: gEnv = 0x%p\n", gEnv);
 
 	gCL->cl = this;
@@ -273,9 +273,9 @@ void ChairLoader::InitSystem(CSystem* pSystem)
 }
 
 
-void ChairLoader::InitGame(IGameFramework* pFramework)
+void Chairloader::InitGame(IGameFramework* pFramework)
 {
-	CryLog("ChairLoader::InitGame");
+	CryLog("Chairloader::InitGame");
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
 	m_ImGui = std::make_unique<ChairLoaderImGui>();
@@ -296,9 +296,9 @@ void ChairLoader::InitGame(IGameFramework* pFramework)
 	RenderDll::SetRenderThreadIsIdle(false);
 }
 
-void ChairLoader::ShutdownGame()
+void Chairloader::ShutdownGame()
 {
-	CryLog("ChairLoader::ShutdownGame");
+	CryLog("Chairloader::ShutdownGame");
 
 	m_pModDllManager->CallShutdownGame();
 	m_pEditor = nullptr;
@@ -306,9 +306,9 @@ void ChairLoader::ShutdownGame()
 	m_pFramework = nullptr;
 }
 
-void ChairLoader::ShutdownSystem()
+void Chairloader::ShutdownSystem()
 {
-	CryLog("ChairLoader::ShutdownSystem");
+	CryLog("Chairloader::ShutdownSystem");
 	
 	RenderDll::SetRenderThreadIsIdle(true);
 	m_pModDllManager->CallShutdownSystem();
@@ -319,7 +319,7 @@ void ChairLoader::ShutdownSystem()
 	gEnv = nullptr;
 }
 
-ChairLoader::~ChairLoader()
+Chairloader::~Chairloader()
 {
 	// Remove all installed hooks
 	DetourTransactionBegin();
@@ -336,7 +336,7 @@ ChairLoader::~ChairLoader()
 	FreeConsole();
 }
 
-void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
+void Chairloader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
     if(gConf->getConfigDirty(chairloaderModName)){
         loadConfigParameters();
     }
@@ -360,12 +360,12 @@ void ChairLoader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_pModDllManager->CallPreUpdate();
 }
 
-void ChairLoader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
+void Chairloader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_ImGui->PostUpdate();
 	m_pModDllManager->CallPostUpdate();
 }
 
-bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
+bool Chairloader::HandleKeyPress(const SInputEvent &event) {
 	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed) {
         if(!m_ShowGui){
             m_ShowGui = true;
@@ -400,20 +400,20 @@ bool ChairLoader::HandleKeyPress(const SInputEvent &event) {
 	return false;
 }
 
-void ChairLoader::SmokeFormExit() {
+void Chairloader::SmokeFormExit() {
 	if(smokeFormExited) {
 		gCL->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
 		smokeFormExited = false;
 	}
 }
 
-void ChairLoader::CreateConsole() {
+void Chairloader::CreateConsole() {
 	AllocConsole();
 	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
 	printf("Welcome to funland sonic\n");
 }
 
-void ChairLoader::InstallHooks()
+void Chairloader::InstallHooks()
 {
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
@@ -423,17 +423,17 @@ void ChairLoader::InstallHooks()
 
 //TODO: deprecated config system keys
 
-ChairloaderGlobalEnvironment* ChairLoader::GetChairloaderEnvironment() {
+ChairloaderGlobalEnvironment* Chairloader::GetChairloaderEnvironment() {
 	return gCL;
 }
 
-uintptr_t ChairLoader::GetPreyDllBase()
+uintptr_t Chairloader::GetPreyDllBase()
 {
 	return GetModuleBase();
 }
 
 //! this function is needed because bimaps don't handle static initialization very well
-void ChairLoader::LoadKeyNames() {
+void Chairloader::LoadKeyNames() {
     //eKI_Escape = 0x0, eKI_1 = 0x1, eKI_2 = 0x2, eKI_3 = 0x3, eKI_4 = 0x4, eKI_5 = 0x5, eKI_6 = 0x6, eKI_7 = 0x7, eKI_8 = 0x8, eKI_9 = 0x9, eKI_0 = 0xA, eKI_Minus = 0xB, eKI_Equals = 0xC, eKI_Backspace = 0xD, eKI_Tab = 0xE, eKI_Q = 0xF, eKI_W = 0x10, eKI_E = 0x11, eKI_R = 0x12, eKI_T = 0x13, eKI_Y = 0x14, eKI_U = 0x15, eKI_I = 0x16, eKI_O = 0x17, eKI_P = 0x18, eKI_LBracket = 0x19, eKI_RBracket = 0x1A, eKI_Enter = 0x1B, eKI_LCtrl = 0x1C, eKI_A = 0x1D, eKI_S = 0x1E, eKI_D = 0x1F, eKI_F = 0x20, eKI_G = 0x21, eKI_H = 0x22, eKI_J = 0x23, eKI_K = 0x24, eKI_L = 0x25, eKI_Semicolon = 0x26,
     m_KeyNames.insert(KeyNamePair(eKI_Escape, "escape"));
     m_KeyNames.insert(KeyNamePair(eKI_1, "1"));
@@ -545,7 +545,7 @@ void ChairLoader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_RWin, "rwin"));
 }
 
-void ChairLoader::RegisterMods()
+void Chairloader::RegisterMods()
 {
 	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
 
@@ -578,7 +578,7 @@ void ChairLoader::RegisterMods()
 	RenderDll::Shaders::RefreshShaderFileList();
 }
 
-void ChairLoader::loadConfigParameters() {
+void Chairloader::loadConfigParameters() {
     // Hide GUI Key, default = f1
     auto key = gConf->getConfigValue(chairloaderModName, "HideGUIKey");
     if(key.type() == typeid(std::string)){
@@ -625,7 +625,7 @@ void ChairLoader::loadConfigParameters() {
     }
 }
 
-std::string ChairLoader::getKeyBind(std::string action) {
+std::string Chairloader::getKeyBind(std::string action) {
     if(action == "HideGUIKey"){
         return m_KeyNames.left.at(m_hideGuiKey);
     } else if(action == "ToggleFreecamKey"){
@@ -636,12 +636,12 @@ std::string ChairLoader::getKeyBind(std::string action) {
     return std::string();
 }
 
-bool ChairLoader::IsEditorEnabled()
+bool Chairloader::IsEditorEnabled()
 {
 	return m_bEditorEnabled;
 }
 
-void ChairLoader::ReloadModDLLs()
+void Chairloader::ReloadModDLLs()
 {
 	// Mods may hook code running in other threads. Make sure as many of them as possible are idle.
 	// Wait for render thread to finish
@@ -655,7 +655,7 @@ void ChairLoader::ReloadModDLLs()
 	RenderDll::SetRenderThreadIsIdle(false);
 }
 
-bool ChairLoader::CheckDLLsForChanges()
+bool Chairloader::CheckDLLsForChanges()
 {
 	return m_pModDllManager->CheckModulesForChanges();
 }

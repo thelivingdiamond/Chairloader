@@ -17,10 +17,10 @@ class CSystem;
 class ModDllManager;
 class Editor;
 
-class ChairLoader : public IChairloader {
+class Chairloader : public IChairloader {
 public:
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
-	ChairLoader();
+	Chairloader();
 
 	//! Initializes function hooks and installs them. Called during InitSystem.
 	void InitHooks();
@@ -38,7 +38,7 @@ public:
 	void ShutdownSystem();
 
 	//! Destroyed after CSystem::Shutdown
-	~ChairLoader();
+	~Chairloader();
 
 	//! Before CGame::Update
 	void PreUpdate(bool haveFocus, unsigned int updateFlags);
@@ -102,4 +102,4 @@ public:
 	bool CheckDLLsForChanges() override;
 };
 
-extern ChairLoader* gChair;
+extern Chairloader* gChair;
