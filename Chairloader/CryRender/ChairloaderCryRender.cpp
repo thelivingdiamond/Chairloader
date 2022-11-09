@@ -23,6 +23,10 @@ void RenderDll::ChairloaderCryRender::InitSystem(const Internal::SCryRenderInitP
 		Shaders::InitHooks();
 }
 
+void RenderDll::ChairloaderCryRender::InitGame()
+{
+}
+
 void RenderDll::ChairloaderCryRender::ShutdownSystem()
 {
 	AuxGeom::ShutdownSystem();

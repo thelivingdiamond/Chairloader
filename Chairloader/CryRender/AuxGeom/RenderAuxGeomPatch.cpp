@@ -3,7 +3,6 @@
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <detours/detours.h>
 #include "D3DRenderAuxGeom.h"
-#include "../ChairLoader.h"
 #include "Shaders/ShaderCompilingPatch.h"
 #include "RenderAuxGeomPatch.h"
 
