@@ -73,5 +73,3 @@ private:
     std::mutex drawHandleMutex;
 
 };
-
-extern ChairloaderGui *gui;

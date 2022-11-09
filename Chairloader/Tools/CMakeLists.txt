@@ -18,6 +18,8 @@ set(SOURCE_FILES
 	Trainer/WorldManager.cpp
 	Trainer/WorldManager.h
 
+	ChairloaderTools.cpp
+	ChairloaderTools.h
 	DevConsoleDialog.cpp
 	DevConsoleDialog.h
 	FileBrowser.cpp

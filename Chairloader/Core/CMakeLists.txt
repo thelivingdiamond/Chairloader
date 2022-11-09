@@ -4,6 +4,8 @@ set(SOURCE_FILES
 	ChairLoaderImGui.h
 	ChairloaderConfigManager.cpp
 	ChairloaderConfigManager.h
+	ChairloaderCore.cpp
+	ChairloaderCore.h
 	ChairloaderGui.cpp
 	ChairloaderGui.h
 	ModDllManager.cpp

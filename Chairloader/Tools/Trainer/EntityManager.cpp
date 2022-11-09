@@ -1665,7 +1665,3 @@ void EntityManager::Draw() {
     drawEntityList(&showEntityList);
     drawEntitySpawner(&showEntitySpawner);
 }
-
-void EntityManager::Update() {
-
-}

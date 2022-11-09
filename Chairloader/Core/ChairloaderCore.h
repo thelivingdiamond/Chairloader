@@ -1,0 +1,46 @@
+#pragma once
+#include <Chairloader/IChairloaderCore.h>
+
+class ModDllManager;
+class ChairLoaderImGui;
+class ChairloaderConfigManager;
+class ChairloaderGui;
+
+class ChairloaderCore : public Internal::IChairloaderCore
+{
+public:
+	//-------------------------------------------
+	// System initialization
+	//-------------------------------------------
+	void InitSystem() override;
+	void ShutdownSystem() override;
+	void RegisterMods() override;
+
+	//-------------------------------------------
+	// Game initialization
+	//-------------------------------------------
+	void InitGame() override;
+	void ShutdownGame() override;
+
+	//-------------------------------------------
+	// Game update
+	//-------------------------------------------
+	void PreUpdate() override;
+	void PostUpdate() override;
+	bool HandleKeyPress(const SInputEvent& event) override;
+
+private:
+	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
+	std::unique_ptr<ModDllManager> m_pModDllManager;
+	std::unique_ptr<ChairLoaderImGui> m_pImGui;
+	std::unique_ptr<ChairloaderGui> m_pGui;
+
+	// Keymap
+	EKeyId m_KeyHideGui = eKI_Unknown;
+	EKeyId m_KeyToggleFreecam = eKI_Unknown;
+
+	bool m_bShowGui = true;
+
+	void LoadConfig();
+	EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown);
+};

@@ -16,7 +16,6 @@ public:
     FileBrowser();
     ~FileBrowser();
     void Draw() ;
-    void Update() ;
     std::string GetModuleName() { return moduleName; };
 private:
     void drawFileBrowser();

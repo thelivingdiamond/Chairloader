@@ -24,10 +24,6 @@ void FileBrowser::Draw() {
     }
 }
 
-void FileBrowser::Update() {
-
-}
-
 FileBrowser::~FileBrowser() {
 
 }

@@ -14,7 +14,6 @@ public:
     EntityManager();
     ~EntityManager();
     void Draw() ;
-    void Update() ;
     std::string GetModuleName() { return moduleName; };
 private:
     void drawEntitySpawner(bool* bShow);

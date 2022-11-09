@@ -61,7 +61,6 @@ public:
     std::map<uint64_t, keycardEntry> ArkKeycards;
     std::map<uint64_t, keycodeEntry> ArkKeycodes;
     std::map<uint64_t, characterInfo> ArkCharacters;
-    void Update();
 
     std::string GetModuleName();
 private:

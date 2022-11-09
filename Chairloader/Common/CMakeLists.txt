@@ -1,5 +1,12 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+
+	Chairloader/IChairloaderCore.h
+	Chairloader/IChairloaderCryRender.h
+	Chairloader/IChairloaderDll.h
+	Chairloader/IChairloaderModule.h
+	Chairloader/IChairloaderTools.h
+
 	GUIUtils.h
 	LibD3D11.h
 	imgui_widget_flamegraph.cpp

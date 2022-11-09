@@ -34,10 +34,6 @@ void WorldManager::Draw() {
     DrawCharacterManagerWindow();
 }
 
-void WorldManager::Update() {
-
-}
-
 std::string WorldManager::GetModuleName() {
     return ModuleName;
 }

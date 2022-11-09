@@ -47,13 +47,13 @@ set(SOURCE_FILES
 	AuxGeom/RenderAuxGeomPatch.h
 	AuxGeom/TextMessages.cpp
 	
+	ChairloaderCryRender.cpp
+	ChairloaderCryRender.h
 	ChairRender.cpp
 	ChairRender.h
 	DebugMarkers.cpp
 	DebugMarkers.h
 	pch.h
-	RenderDll.cpp
-	RenderDll.h
 )
 
 add_library(Chairloader.CryRender STATIC ${SOURCE_FILES})

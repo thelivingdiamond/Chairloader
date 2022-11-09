@@ -3,7 +3,6 @@
 #include "Prey/GameDll/ark/ArkGame.h"
 #include "Prey/GameDll/ark/ArkLocationManager.h"
 #include <Prey/CrySystem/XConsole.h>
-ChairloaderGui *gui = nullptr;
 
 ChairloaderGui::ChairloaderGui() {
     GUILog = &log;
