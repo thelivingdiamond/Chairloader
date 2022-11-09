@@ -1,6 +1,6 @@
 #pragma once
-#include "../EntityHierarchy.h"
-#include "../EntityInspector.h"
+#include "Components/EntityHierarchy.h"
+#include "Components/EntityInspector.h"
 
 class EditorView;
 

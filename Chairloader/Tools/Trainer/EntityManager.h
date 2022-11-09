@@ -1,12 +1,9 @@
 #pragma once
-#include "EntityUtils.h"
-#include "EntityHierarchy.h"
-#include "EntityInspector.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
-#include "../ChairLoader/GUIUtils.h"
-#include "ChairLoader/IChairloader.h"
-#include "ChairLoader/ChairloaderEnv.h"
-#include "Prey/CryEntitySystem/EntitySystem.h"
+#include <Prey/CryEntitySystem/EntitySystem.h>
+#include <EntityUtils.h>
+#include "Components/EntityHierarchy.h"
+#include "Components/EntityInspector.h"
 
 class EntityManager
 {

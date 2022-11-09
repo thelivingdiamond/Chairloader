@@ -1,6 +1,5 @@
 #include <Prey/CrySystem/ITimer.h>
 #include "PerfOverlay.h"
-#include "ChairLoader.h"
 
 PerfOverlay::PerfOverlay() {
 #ifdef DEBUG_BUILD

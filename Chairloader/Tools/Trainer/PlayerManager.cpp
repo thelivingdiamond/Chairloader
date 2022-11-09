@@ -1,12 +1,8 @@
-#include "PlayerManager.h"
-
-#include "Logging.h"
-#include "Prey/CrySystem/ILocalizationManager.h"
-#include "boost/algorithm/string.hpp"
-#include "Prey/CryAction/GameObject.h"
-#include "Prey/CryGame/Game.h"
-#include "Prey/CrySystem/Profiling.h"
-#include "../ChairLoader/GUIUtils.h"
+#include <Prey/CrySystem/ILocalizationManager.h>
+#include <boost/algorithm/string.hpp>
+#include <Prey/CryAction/GameObject.h>
+#include <Prey/CryGame/Game.h>
+#include <Prey/CrySystem/Profiling.h>
 #include <Prey/CrySystem/IConsole.h>
 #include <Prey/CryString/UnicodeFunctions.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
@@ -18,7 +14,9 @@
 #include <Prey/GameDll/ark/ArkItemSystem.h>
 #include <Prey/GameDll/arkitem.h>
 #include <Prey/ArkAbilityLibrary.h>
-#include "Prey/CryEntitySystem/EntitySystem.h"
+#include <Prey/CryEntitySystem/EntitySystem.h>
+#include <GUIUtils.h>
+#include "PlayerManager.h"
 
 // PUBLIC:
 void PlayerManager::draw() {

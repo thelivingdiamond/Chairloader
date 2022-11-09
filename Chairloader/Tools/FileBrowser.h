@@ -2,14 +2,10 @@
 // Created by theli on 9/4/2022.
 //
 
-#include "../Common/ChairLoader/pch.h"
-
-#include "EntityUtils.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
-#include "../ChairLoader/GUIUtils.h"
-#include "ChairLoader/IChairloader.h"
-#include "ChairLoader/ChairloaderEnv.h"
-#include "Prey/CryEntitySystem/EntitySystem.h"
+#include <Prey/CryEntitySystem/EntitySystem.h>
+#include <EntityUtils.h>
+#include <GUIUtils.h>
 
 class FileBrowser {
 public:
