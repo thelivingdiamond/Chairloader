@@ -1,5 +1,4 @@
 #include "OverlayLog.h"
-#include "ChairLoader.h"
 
 ChairloaderGUILog *GUILog = nullptr;
 

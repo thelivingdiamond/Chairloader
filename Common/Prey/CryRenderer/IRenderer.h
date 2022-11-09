@@ -871,7 +871,7 @@ public:
 	virtual bool SetRenderTarget(int arg0) = 0;
 	virtual IOpticsElementBase* CreateOptics(EFlareType arg0) const = 0;
 	virtual ISoftOcclusionQuery* CreateSoftOcclusionQuery() const = 0;
-	virtual void GetThreadIDs(unsigned long& arg0, unsigned long& arg1) const = 0;
+	virtual void GetThreadIDs(threadID& mainThreadID, threadID& renderThreadID) const = 0;
 	virtual bool SF_UpdateTexture(int arg0, int arg1, int arg2, IRenderer::SUpdateRect const* arg3, uint8_t* arg4, uint64_t arg5, uint64_t arg6, ETEX_Format arg7) = 0;
 	virtual void SF_GetMeshMaxSize(int& arg0, int& arg1) const = 0;
 	virtual void SF_ConfigMask(IRenderer::ESFMaskOp arg0, unsigned arg1) = 0;

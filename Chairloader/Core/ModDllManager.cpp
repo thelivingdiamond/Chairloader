@@ -1,8 +1,8 @@
 #include <boost/algorithm/string.hpp>
+#include <Chairloader/IChairloaderDll.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include "ModDllManager.h"
 #include "ChairloaderConfigManager.h"
-#include "ChairLoader.h"
 
 void ModDllManager::SetHotReloadEnabled(bool state)
 {
@@ -13,14 +13,14 @@ void ModDllManager::SetHotReloadEnabled(bool state)
 void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 {
 	ModuleInfo info;
-	info.modName = boost::get<std::string>(gConf->getNodeConfigValue(xmlNode, "modName"));
-	info.loadOrder = boost::get<int>(gConf->getNodeConfigValue(xmlNode, "loadOrder"));
+	info.modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "modName"));
+	info.loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(xmlNode, "loadOrder"));
 	info.modDirPath = fs::current_path() / "Mods" / fs::u8path(info.modName);
 
-	fs::path dllName = fs::u8path(boost::get<std::string>(gConf->getNodeConfigValue(xmlNode, "dllName")));
+	fs::path dllName = fs::u8path(boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "dllName")));
 	info.sourceDllPath = info.modDirPath / dllName;
 
-	gConf->loadModConfigFile(info.modName);
+	gCL->conf->loadModConfigFile(info.modName);
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 }
 

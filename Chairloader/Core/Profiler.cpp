@@ -1,8 +1,10 @@
+#include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryThreading/IJobManager.h>
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/CryRenderer/IRenderer.h>
+#include <Chairloader/IChairloaderDll.h>
+#include "imgui_widget_flamegraph.h"
 #include "Profiler.h"
-#include "ChairLoader.h"
-#include "ImGui/imgui_widget_flamegraph.h"
 
 Profiler *g_pProfiler = nullptr;
 
@@ -70,10 +72,14 @@ ThreadProfile *GetProfileForThisThread() {
 	int idx = g_ProfileIdx;
 
 	if (idx == -1) {
-		std::thread::id threadId = std::this_thread::get_id();
-		if (threadId == gChair->GetMainThreadId()) {
+		static threadID mainThreadId = 0, renderThreadId = 0;
+		if (mainThreadId == 0)
+			gEnv->pRenderer->GetThreadIDs(mainThreadId, renderThreadId);
+		
+		threadID threadId = GetCurrentThreadId();
+		if (threadId == mainThreadId) {
 			idx = Profiler::MAIN_THREAD;
-		} else if (threadId == gChair->GetRenderThreadId()) {
+		} else if (threadId == renderThreadId) {
 			idx = Profiler::RENDER_THREAD;
 		} else {
 			// Thread is not profiled
@@ -224,8 +230,10 @@ void Profiler::Enable() {
 		return;
 	}
 
-	if (gChair->GetRenderThreadId() == std::thread::id()) {
-		CryError("Render thread ID must be set before profiler is enabled");
+	threadID mainThreadId = 0, renderThreadId = 0;
+	gEnv->pRenderer->GetThreadIDs(mainThreadId, renderThreadId);
+	if (mainThreadId == 0 || renderThreadId == 0) {
+		CryError("gEnv->pRenderer->GetThreadIDs returned zeroes");
 		return;
 	}
 

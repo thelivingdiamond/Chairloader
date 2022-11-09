@@ -1,8 +1,10 @@
-#include "ChairloaderGUI.h"
-#include "Prey/CryGame/IGameFramework.h"
-#include "Prey/GameDll/ark/ArkGame.h"
-#include "Prey/GameDll/ark/ArkLocationManager.h"
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/GameDll/ark/ArkGame.h>
+#include <Prey/GameDll/ark/ArkLocationManager.h>
 #include <Prey/CrySystem/XConsole.h>
+#include "ChairloaderGUI.h"
+#include "ChairloaderCore.h"
+#include "ChairloaderConfigManager.h"
 
 ChairloaderGui::ChairloaderGui() {
     GUILog = &log;
@@ -33,7 +35,7 @@ void ChairloaderGui::draw(bool* bShow) {
             if (ImGui::BeginMenu("Chairloader")) {
                 ImGui::MenuItem("Show GUI", gCL->cl->getKeyBind("HideGUIKey").c_str(), bShow);
                 ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
-                ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
+                //ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
                 ImGui::Separator();
                 ImGui::MenuItem("Show Log History", nullptr, &control.showLogHistory);
@@ -41,7 +43,7 @@ void ChairloaderGui::draw(bool* bShow) {
                 if (ImGui::BeginMenu("Performance")) {
                     ImGui::MenuItem("Profiler", nullptr, &control.showProfilerDialog);
                     ImGui::Separator();
-                    perfOverlay.ShowMenu();
+                    //perfOverlay.ShowMenu();
                     ImGui::EndMenu();
                 }
                 if (ImGui::BeginMenu("ImGui Test/Config")) {
@@ -133,19 +135,10 @@ void ChairloaderGui::draw(bool* bShow) {
                 ImGui::ShowStyleEditor();
             if (control.showLogHistory)
                 log.drawHistory(&control.showLogHistory);
-            entityManager.Draw();
-            playerManager.draw();
-            worldManager.Draw();
-            fileBrowser.Draw();
-            if (control.showProfilerDialog) {
+            if (control.showProfilerDialog)
                 profilerDialog.Show(&control.showProfilerDialog);
-            }
-
-            if (control.showDevConsole) {
-                devConsoleDialog.Show(&control.showDevConsole);
-            }
             if (control.showConfigMenu)
-                gConf->Draw(&control.showConfigMenu);
+                ChairloaderCore::Get()->GetConfigManager()->Draw(&control.showConfigMenu);
 //            log.drawDisplay();
         }
         drawHandleMutex.unlock();
@@ -162,12 +155,8 @@ void ChairloaderGui::update() {
     //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
     drawHandleMutex.lock();
-    entityManager.Update();
-    playerManager.update();
-    worldManager.Update();
     drawHandleMutex.unlock();
     //}
-    perfOverlay.Update();
     
 }
 

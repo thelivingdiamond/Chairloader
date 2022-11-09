@@ -1,14 +1,13 @@
-#include "ChairLoaderImGui.h"
-#include "ChairLoader.h"
-#include "mem.h"
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/CryRenderer/Texture.h>
 #include <Prey/CrySystem/Profiling.h>
+#include <LibD3D11.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
-#include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
+#include <Chairloader/IChairloaderDll.h>
+#include "ChairLoaderImGui.h"
 
 class CBasicEventListener;
 
@@ -95,7 +94,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	else if (m_ImGuiUsesMouse && !hasMouseInput)
 	{
 		// Disable cursor
-		::SetCursor(m_hGameCursor);
+		::SetCursor((HCURSOR)m_hGameCursor);
 	}
 
 	if (hasMouseInput)

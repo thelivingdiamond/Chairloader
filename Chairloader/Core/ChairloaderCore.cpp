@@ -14,15 +14,22 @@ std::unique_ptr<Internal::IChairloaderCore> Internal::IChairloaderCore::CreateIn
 	return std::make_unique<ChairloaderCore>();
 }
 
+ChairloaderCore* ChairloaderCore::Get()
+{
+	return static_cast<ChairloaderCore*>(gChair->GetCore());
+}
+
 void ChairloaderCore::InitSystem()
 {
 	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
-	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(CONFIG_NAME));
+	gCL->conf = m_pConfigManager.get();
+	CryLog("Chairloader config loaded: %u", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 }
 
 void ChairloaderCore::ShutdownSystem()
 {
+	gCL->conf = nullptr;
 	m_pConfigManager = nullptr;
 }
 
@@ -31,7 +38,7 @@ void ChairloaderCore::RegisterMods()
     m_pModDllManager = std::make_unique<ModDllManager>();
     m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled());
 
-	auto cfgValue = gConf->getConfigValue(CONFIG_NAME, "ModList");
+	auto cfgValue = gCL->conf->getConfigValue(CONFIG_NAME, "ModList");
 
 	if (cfgValue.type() != typeid(pugi::xml_node))
 	{
@@ -41,7 +48,7 @@ void ChairloaderCore::RegisterMods()
 
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
-		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
+		auto modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
 		if (mod.child("enabled").text().as_bool()) {
 			if (mod.child("dllName"))
 			{
@@ -76,7 +83,7 @@ void ChairloaderCore::ShutdownGame()
 
 void ChairloaderCore::PreUpdate()
 {
-	if (gConf->getConfigDirty(CONFIG_NAME))
+	if (gCL->conf->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
 	m_pImGui->PreUpdate(true);
@@ -114,6 +121,14 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 		}*/
 		return true;
 	}
+
+	return false;
+}
+
+Internal::IModDllManager* ChairloaderCore::GetDllManager()
+{
+	// TODO:
+	return nullptr;
 }
 
 void ChairloaderCore::LoadConfig()
@@ -124,7 +139,7 @@ void ChairloaderCore::LoadConfig()
 
 EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defaultKey)
 {
-    auto key = gConf->getConfigValue(CONFIG_NAME, paramName);
+    auto key = gCL->conf->getConfigValue(CONFIG_NAME, paramName);
     const IChairloader::KeyNameMap& keyNames = gChair->GetKeyNames();
 
     if (key.type() == typeid(std::string)) {
@@ -139,6 +154,6 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     }
 
     // Failed to get from config, restore default
-    gConf->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
+	gCL->conf->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
     return defaultKey;
 }

@@ -1,9 +1,7 @@
 #pragma once
 #include <pugixml.hpp>
 #include <filesystem>
-
-
-#include "ChairLoader/IChairloaderConfigManager.h"
+#include <ChairLoader/IChairloaderConfigManager.h>
 
 class ChairloaderConfigManager : public IChairloaderConfigManager{
 public:
@@ -110,7 +108,4 @@ private:
 	std::map<std::string, bool> modConfigsDirty;
 
 	const std::string modName = "ConfigManager";
-
 };
-
-extern ChairloaderConfigManager* gConf;

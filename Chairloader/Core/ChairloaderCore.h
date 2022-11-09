@@ -9,6 +9,8 @@ class ChairloaderGui;
 class ChairloaderCore : public Internal::IChairloaderCore
 {
 public:
+	static ChairloaderCore* Get();
+
 	//-------------------------------------------
 	// System initialization
 	//-------------------------------------------
@@ -28,6 +30,9 @@ public:
 	void PreUpdate() override;
 	void PostUpdate() override;
 	bool HandleKeyPress(const SInputEvent& event) override;
+
+	Internal::IModDllManager* GetDllManager() override;
+	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
 
 private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;

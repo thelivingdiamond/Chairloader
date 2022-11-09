@@ -3,10 +3,22 @@
 #include <imgui.h>
 #include <Prey/CryInput/BaseInput.h>
 #include <ChairLoader/IChairloaderImGui.h>
-#include "LibD3D11.h"
 
 class ITexture;
 struct ID3DUserDefinedAnnotation;
+struct ID3D11Device;
+struct ID3D11DeviceContext;
+struct IDXGIFactory;
+struct ID3D11Buffer;
+struct ID3D11VertexShader;
+struct ID3D11InputLayout;
+struct ID3D11PixelShader;
+struct ID3D11SamplerState;
+struct ID3D11ShaderResourceView;
+struct ID3D11RasterizerState;
+struct ID3D11BlendState;
+struct ID3D11DepthStencilState;
+struct IDXGISwapChain;
 
 class ChairLoaderImGui : public IChairloaderImGui {
 public:
@@ -25,7 +37,7 @@ private:
 
 	ImGuiContext* m_pMainContext = nullptr;
 	ITexture *m_pFontAtlas = nullptr;
-	HCURSOR m_hGameCursor = nullptr;
+	void* m_hGameCursor = nullptr;
 	std::thread::id m_RenderThreadId;
 	bool m_ImGuiUsesMouse = false;
 	ImGuiMouseCursor m_LastMouseCursor = ImGuiMouseCursor_None;

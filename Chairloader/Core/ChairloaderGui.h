@@ -1,25 +1,17 @@
 #pragma once
+#include <ChairLoader/IChairloaderGui.h>
+#include <ChairLoader/IChairloaderConfigManager.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
+#include <GUIUtils.h>
 #include "OverlayLog.h"
-#include "EntityManager.h"
-#include "PlayerManager.h"
-#include "WorldManager.h"
-#include "FileBrowser.h"
-#include "ChairloaderConfigManager.h"
-#include "GUIUtils.h"
-#include "PerfOverlay.h"
 #include "Profiler.h"
-#include "DevConsoleDialog.h"
-#include "ChairLoader/IChairloaderGui.h"
-// #include <stack>
 
 class ChairloaderGui : public IChairloaderGui {
 public:
     ChairloaderGui();
 
-    bool IsDevConsoleVisible() { return control.showDevConsole; }
-    void SetDevConsoleVisible(bool state) { control.showDevConsole = state; }
+    bool IsEnabled() override;
 
     void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
     void logItem(logMessage message, bool displayToScreen = true) override;
@@ -35,14 +27,12 @@ public:
 
 private:
     struct chairloaderGuiControl {
-        bool showPlayerManager = false,
-            showEntityList = false,
+        bool
             showEntitySpawner = false,
             showLogHistory = false,
             showDemoWindow = false,
             showStyleManager = false,
             showProfilerDialog = false,
-            showDevConsole = false,
 			showConfigMenu = false,
             freeCam = false,
             devMode = false,
@@ -57,17 +47,9 @@ private:
     bool g_ShowMenu;
     bool g_bInitialised;
 
-
-    //TODO: switch to module internal draw booleans
     chairloaderGuiControl control;
     ChairloaderGUILog log;
-    PlayerManager playerManager;
-    EntityManager entityManager;
-    WorldManager worldManager;
-    FileBrowser fileBrowser;
-    PerfOverlay perfOverlay;
     ProfilerDialog profilerDialog;
-    DevConsoleDialog devConsoleDialog;
 
     //TODO: remove mutex bc single thread
     std::mutex drawHandleMutex;

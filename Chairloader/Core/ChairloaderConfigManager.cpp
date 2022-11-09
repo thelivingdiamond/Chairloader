@@ -2,7 +2,6 @@
 #include "ChairloaderConfigManager.h"
 #include "Logging.h"
 
-ChairloaderConfigManager* gConf = nullptr;
 ChairloaderConfigManager::ChairloaderConfigManager() {
 
 	parameterNameMap.insert(ConfigParameterPair(parameterType::String, "string"));
