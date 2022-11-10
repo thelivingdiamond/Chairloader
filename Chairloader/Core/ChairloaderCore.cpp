@@ -92,7 +92,7 @@ void ChairloaderCore::PreUpdate()
 	m_pGui->update();
 	m_pConfigManager->Update();
 
-	m_pGui->draw(&m_bShowGui);
+	m_pGui->draw();
 	m_pModDllManager->CallDraw();
 }
 
@@ -104,7 +104,7 @@ void ChairloaderCore::PostUpdate()
 bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 {
 	if (event.keyId == m_KeyHideGui && event.state == eIS_Pressed) {
-		m_bShowGui = !m_bShowGui;
+		m_pGui->SetEnabled(!m_pGui->IsEnabled());
 		return true;
 	}
 
@@ -130,6 +130,16 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 Internal::IModDllManager* ChairloaderCore::GetDllManager()
 {
 	return m_pModDllManager.get();
+}
+
+const std::string& ChairloaderCore::GetKeyStrHideGui()
+{
+	return gChair->GetKeyNames().left.at(m_KeyHideGui);
+}
+
+const std::string& ChairloaderCore::GetKeyStrToggleFreecam()
+{
+	return gChair->GetKeyNames().left.at(m_KeyToggleFreecam);
 }
 
 void ChairloaderCore::LoadConfig()

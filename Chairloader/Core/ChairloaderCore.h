@@ -34,6 +34,9 @@ public:
 	Internal::IModDllManager* GetDllManager() override;
 	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
 
+	const std::string& GetKeyStrHideGui();
+	const std::string& GetKeyStrToggleFreecam();
+
 private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
 	std::unique_ptr<ModDllManager> m_pModDllManager;
@@ -43,8 +46,6 @@ private:
 	// Keymap
 	EKeyId m_KeyHideGui = eKI_Unknown;
 	EKeyId m_KeyToggleFreecam = eKI_Unknown;
-
-	bool m_bShowGui = true;
 
 	void LoadConfig();
 	EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown);

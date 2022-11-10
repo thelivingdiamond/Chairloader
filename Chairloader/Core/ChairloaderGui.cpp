@@ -22,11 +22,11 @@ void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
 }
 
 
-void ChairloaderGui::draw(bool* bShow) {
-    if(*bShow || persistentLogOverlay){
+void ChairloaderGui::draw() {
+    if(m_bIsEnabled || persistentLogOverlay){
         log.drawDisplay();
     }
-    if (*bShow) {
+    if (m_bIsEnabled) {
         drawHandleMutex.lock();
         auto bgColor = ImGui::GetStyleColorVec4(ImGuiCol_PopupBg);
         bgColor.w = 1.0f;
@@ -34,7 +34,7 @@ void ChairloaderGui::draw(bool* bShow) {
         ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
-                ImGui::MenuItem("Show GUI", /*gCL->cl->getKeyBind("HideGUIKey").c_str()*/ nullptr, bShow);
+                ImGui::MenuItem("Show GUI", ChairloaderCore::Get()->GetKeyStrHideGui().c_str(), &m_bIsEnabled);
                 ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
                 //ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
@@ -80,7 +80,7 @@ void ChairloaderGui::draw(bool* bShow) {
                             ((CSystem *) gEnv->pSystem)->SetDevMode(inDevMode);
                         }
                         ImGui::Separator();
-                        if (ImGui::MenuItem("Enable Free Cam", /*gCL->cl->getKeyBind("ToggleFreecamKey").c_str()*/ nullptr,
+                        if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(),
                                             control.freeCam)) {
                             control.freeCam = !control.freeCam;
                             if (control.freeCam) {

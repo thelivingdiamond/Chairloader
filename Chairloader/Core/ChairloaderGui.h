@@ -11,16 +11,13 @@ class ChairloaderGui : public IChairloaderGui {
 public:
     ChairloaderGui();
 
-    bool IsEnabled() override
-    {
-        // TODO:
-        return true;
-    }
+    void SetEnabled(bool state) { m_bIsEnabled = state; }
+    bool IsEnabled() override { return m_bIsEnabled; }
 
     void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
     void logItem(logMessage message, bool displayToScreen = true) override;
 
-    void draw(bool* bShow);
+    void draw();
     void update();
 
     void overlayLog(std::string modName, const char *format, ...) override;
@@ -45,6 +42,7 @@ private:
     const std::string modName = "ChairloaderGUI";
     //TODO: rethink the control variable
 
+    bool m_bIsEnabled = true;
     bool persistentLogOverlay = true;
 
     bool g_PresentHooked;
