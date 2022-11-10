@@ -27,7 +27,6 @@ void ChairloaderGui::draw() {
         log.drawDisplay();
     }
     if (m_bIsEnabled) {
-        drawHandleMutex.lock();
         auto bgColor = ImGui::GetStyleColorVec4(ImGuiCol_PopupBg);
         bgColor.w = 1.0f;
         ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
@@ -142,7 +141,6 @@ void ChairloaderGui::draw() {
                 ChairloaderCore::Get()->GetConfigManager()->Draw(&control.showConfigMenu);
 //            log.drawDisplay();
         }
-        drawHandleMutex.unlock();
     }
     auto drawList = ImGui::GetBackgroundDrawList();
     auto screenSize = ImGui::GetIO().DisplaySize;
@@ -155,8 +153,6 @@ void ChairloaderGui::update() {
     // FIXME: Add IGameFramework
     //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
-    drawHandleMutex.lock();
-    drawHandleMutex.unlock();
     //}
     
 }

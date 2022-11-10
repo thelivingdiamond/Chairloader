@@ -52,8 +52,4 @@ private:
     chairloaderGuiControl control;
     ChairloaderGUILog log;
     ProfilerDialog profilerDialog;
-
-    //TODO: remove mutex bc single thread
-    std::mutex drawHandleMutex;
-
 };
