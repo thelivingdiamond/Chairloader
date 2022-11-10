@@ -6,6 +6,7 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderDll.h
 	Chairloader/IChairloaderModule.h
 	Chairloader/IChairloaderTools.h
+	Chairloader/IModDllManager.h
 
 	GUIUtils.h
 	LibD3D11.h

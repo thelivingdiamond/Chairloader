@@ -2,12 +2,13 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <pugixml.hpp>
 #include <ChairLoader/IChairloaderMod.h>
+#include <ChairLoader/IModDllManager.h>
 
 //! This class manages DLL loading in call dispatch for mods.
 //! Note:
 //!     "mod" is short for "modification". It's a directory in Mods with ModInfo.xml.
 //!     "module" is a DLL. One mod (in the future) may have multiple DLLs: some hot-reloadable, some not.
-class ModDllManager
+class ModDllManager : public Internal::IModDllManager
 {
 public:
 	//! Enables hot-reloading. Must be called before first RegisterMod.
@@ -18,27 +19,27 @@ public:
 	void RegisterModFromXML(pugi::xml_node xmlNode);
 
 	//! Loads the mod DLLs.
-	void LoadModules();
+	void LoadModules() override;
 
 	//! Unloads all mod DLLs.
-	void UnloadModules();
+	void UnloadModules() override;
 
 	//! Reloads DLLs that support hot-reloading. It must be called after PostUpdate but before PreUpdate of the mods.
-	void ReloadModules();
+	void ReloadModules() override;
 
 	//! Checks if any DLLs have been modified since last loading.
 	//! @returns true if changes were detected.
-	bool CheckModulesForChanges();
+	bool CheckModulesForChanges() override;
 
 	//! Calls a function for each mod in the load order or reverse order.
 	//! @{
-	void CallInitSystem();
-	void CallInitGame();
-	void CallPreUpdate();
-	void CallDraw();
-	void CallPostUpdate();
-	void CallShutdownGame();
-	void CallShutdownSystem();
+	void CallInitSystem() override;
+	void CallInitGame() override;
+	void CallPreUpdate() override;
+	void CallDraw() override;
+	void CallPostUpdate() override;
+	void CallShutdownGame() override;
+	void CallShutdownSystem() override;
 	//! @}
 
 private:

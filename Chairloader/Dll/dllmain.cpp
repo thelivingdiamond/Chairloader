@@ -1,8 +1,6 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
-#include <string>
-#include "mem.h"
-#include "ChairloaderGui.h"
-#include "ChairLoader.h"
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include "Chairloader.h"
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -11,7 +9,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 {
     switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH: {
-        gChair = new Chairloader();
+        Chairloader::CreateInstance();
         break;
     }
     case DLL_THREAD_ATTACH:

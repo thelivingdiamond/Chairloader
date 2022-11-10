@@ -10,6 +10,9 @@
 #include <Prey/GameDll/ark/ui/ArkPauseMenu.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/GameDll/ark/player/ArkPlayerInput.h>
+#include <Chairloader/IChairloaderDll.h>
+#include <Chairloader/IChairloaderCore.h>
+#include <Chairloader/IModDllManager.h>
 #include "Editor.h"
 #include "EditorView.h"
 
@@ -96,7 +99,7 @@ void Editor::Update()
 	if (CV_ed_AutoReloadMods && m_bGameWindowIsNowActive)
 	{
 		// Game window is now focused, check mods
-		if (gCL->cl->CheckDLLsForChanges())
+		if (gChair->GetCore()->GetDllManager()->CheckModulesForChanges())
 			m_bReloadModsNextFrame = true;
 		m_bGameWindowIsNowActive = false;
 	}
@@ -395,7 +398,7 @@ bool Editor::ReloadMods()
 	}
 
 	// ReloadModDLLs can only fail fatally
-	gCL->cl->ReloadModDLLs();
+	gChair->ReloadModDLLs();
 
 	if (needToRestore && !RestoreSavedLevel())
 		return false;

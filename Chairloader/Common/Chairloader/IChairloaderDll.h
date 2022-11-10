@@ -15,6 +15,10 @@ struct IChairloaderDll : public IChairloader
 
 	//! @returns whether it was handled and shouldn't be passed over to the game.
 	virtual bool HandleKeyPress(const SInputEvent& event) = 0;
+
+	//! Reloads all mod DLLs that support hot-reloading.
+	//! Can only be called with specific conditions in mind.
+	virtual void ReloadModDLLs() = 0;
 };
 
 }

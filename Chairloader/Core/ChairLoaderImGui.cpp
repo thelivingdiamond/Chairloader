@@ -46,6 +46,7 @@ void ChairLoaderImGui::InitHooks()
 
 ChairLoaderImGui::ChairLoaderImGui() {
 	m_pInstance = this;
+	gCL->pImGui = this;
 	IMGUI_CHECKVERSION();
 	m_pMainContext = ImGui::CreateContext();
 	ImGuiIO &io = ImGui::GetIO();
@@ -65,6 +66,7 @@ ChairLoaderImGui::ChairLoaderImGui() {
 ChairLoaderImGui::~ChairLoaderImGui() {
 	m_pFontAtlas->Release();
 	m_pFontAtlas = nullptr;
+	gCL->pImGui = nullptr;
 	m_pInstance = nullptr;
 }
 

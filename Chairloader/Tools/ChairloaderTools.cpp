@@ -33,6 +33,9 @@ void ChairloaderTools::InitGame()
 		m_pPlayerManager = std::make_unique<PlayerManager>();
 		m_pWorldManager = std::make_unique<WorldManager>();
 	}
+
+	if (m_bEnableEditor)
+		m_pEditor = std::make_unique<Editor>();
 }
 
 void ChairloaderTools::PreUpdate()

@@ -9,6 +9,7 @@
 ChairloaderGui::ChairloaderGui() {
     GUILog = &log;
     ImGui::GetStyle().Alpha = 0.8f;
+    gCL->gui = this;
 }
 
 
@@ -33,7 +34,7 @@ void ChairloaderGui::draw(bool* bShow) {
         ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
-                ImGui::MenuItem("Show GUI", gCL->cl->getKeyBind("HideGUIKey").c_str(), bShow);
+                ImGui::MenuItem("Show GUI", /*gCL->cl->getKeyBind("HideGUIKey").c_str()*/ nullptr, bShow);
                 ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
                 //ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
@@ -79,7 +80,7 @@ void ChairloaderGui::draw(bool* bShow) {
                             ((CSystem *) gEnv->pSystem)->SetDevMode(inDevMode);
                         }
                         ImGui::Separator();
-                        if (ImGui::MenuItem("Enable Free Cam", gCL->cl->getKeyBind("ToggleFreecamKey").c_str(),
+                        if (ImGui::MenuItem("Enable Free Cam", /*gCL->cl->getKeyBind("ToggleFreecamKey").c_str()*/ nullptr,
                                             control.freeCam)) {
                             control.freeCam = !control.freeCam;
                             if (control.freeCam) {

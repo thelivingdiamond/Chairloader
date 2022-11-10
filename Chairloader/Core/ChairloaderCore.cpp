@@ -25,6 +25,7 @@ void ChairloaderCore::InitSystem()
 	gCL->conf = m_pConfigManager.get();
 	CryLog("Chairloader config loaded: %u", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
+	ChairLoaderImGui::InitHooks();
 }
 
 void ChairloaderCore::ShutdownSystem()
@@ -73,6 +74,7 @@ void ChairloaderCore::InitGame()
 {
 	m_pImGui = std::make_unique<ChairLoaderImGui>();
 	m_pGui = std::make_unique<ChairloaderGui>();
+	g_pProfiler = new Profiler();
 }
 
 void ChairloaderCore::ShutdownGame()
@@ -127,8 +129,7 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 
 Internal::IModDllManager* ChairloaderCore::GetDllManager()
 {
-	// TODO:
-	return nullptr;
+	return m_pModDllManager.get();
 }
 
 void ChairloaderCore::LoadConfig()

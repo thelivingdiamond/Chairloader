@@ -1,33 +1,22 @@
-#include <Prey/CryCore/Platform/platform_impl.inl>
-#include <filesystem>
-#include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/CryGame/Game.h>
-#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerSmokeForm.h>
-#include <Prey/GameDll/ark/player/arkplayermovementstates.h>
-#include <Prey/GameDll/ark/player/ArkPlayer.h>
-#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
+#include <Chairloader/ChairloaderEnv.h>
+#include <Chairloader/IModDllManager.h>
 #include <mem.h>
-#include "ChairLoader.h"
-#include "EntityUtils.h"
-#include "ChairloaderGui.h"
-#include "Profiler.h"
+#include "Chairloader.h"
+
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <Prey/CryCore/Platform/platform_impl.inl>
 #include <detours/detours.h>
-#include "Chairloader/ChairloaderEnv.h"
-#include "RenderDll/RenderDll.h"
-#include "RenderDll/Shaders/ShaderCompilingPatch.h"
-#include "ModDllManager.h"
-#include <Prey/CryRenderer/IRenderAuxGeom.h>
-#include "Editor/Editor.h"
+#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 
 static ChairloaderGlobalEnvironment s_CLEnv;
-Chairloader* gChair = nullptr;
-ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
+static std::unique_ptr<Chairloader> gChairloaderDll;
 
-static bool smokeFormExited = false;
+Internal::IChairloaderDll* gChair = nullptr;
+ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
 namespace {
 
@@ -63,11 +52,6 @@ auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
 auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
 auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
 auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
-auto g_SmokeForm_Exit_hook = ArkPsiPowerSmokeForm::FExit.MakeHook();
-auto g_SmokeForm_TryMorphOut_hook = ArkPsiPowerSmokeForm::FTryMorphOut.MakeHook();
-auto g_SmokeForm_Stop_hook = ArkPsiPowerSmokeForm::FStop.MakeHook();
-
-
 
 bool CSystem_InitializeEngineModule_Hook(
 	CSystem* _this,
@@ -80,7 +64,7 @@ bool CSystem_InitializeEngineModule_Hook(
 	if (!isChairloaderInited)
 	{
 		isChairloaderInited = true;
-		gChair->InitSystem(_this);
+		gChairloaderDll->InitSystem(_this);
 	}
 
 	return g_CSystem_InitializeEngineModule_Hook.InvokeOrig(_this, _initInfo, initParams, bQuitIfNotFound);
@@ -88,12 +72,11 @@ bool CSystem_InitializeEngineModule_Hook(
 
 void CSystem_Shutdown_Hook(CSystem* _this)
 {
-	gChair->ShutdownSystem();
+	gChairloaderDll->ShutdownSystem();
 	g_CSystem_Shutdown_Hook.InvokeOrig(_this);
 
 	// Shutdown Chairloader for good
-	delete gChair;
-	gChair = nullptr;
+	gChairloaderDll = nullptr;
 }
 
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
@@ -102,45 +85,39 @@ bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
-		gChair->InitGame(pFramework);
+		gChairloaderDll->InitGame(pFramework);
 
 	return result;
 }
 
 int CGame_Update_Hook(CGame* _this, bool haveFocus, unsigned int updateFlags)
 {
-	gChair->PreUpdate(haveFocus, updateFlags);
+	gChairloaderDll->PreUpdate(haveFocus, updateFlags);
 	int result = g_CGame_Update_Hook.InvokeOrig(_this, haveFocus, updateFlags);
-	gChair->PostUpdate(haveFocus, updateFlags);
+	gChairloaderDll->PostUpdate(haveFocus, updateFlags);
 	return result;
 }
 
 void CGame_Shutdown_Hook(CGame* _this)
 {
-	gChair->ShutdownGame();
+	gChairloaderDll->ShutdownGame();
 	g_CGame_Shutdown_Hook.InvokeOrig(_this);
 }
 
-void SmokeForm_Exit_Hook(ArkPsiPowerSmokeForm* _this) {
-	smokeFormExited = true;
-	g_SmokeForm_Exit_hook.InvokeOrig(_this);
+} // namespace
+
+void Chairloader::CreateInstance()
+{
+	gChairloaderDll = std::make_unique<Chairloader>();
 }
 
-//char SmokeForm_TryMorphOut_Hook(ArkPsiPowerSmokeForm* _this) {
-//	char retValue = g_SmokeForm_TryMorphOut_hook.InvokeOrig(_this);
-//	ArkPlayerMovementStates::Smoke::Exit();
-//	gCLEnv->entUtils->ArkPlayerPtr()->Physicalize();
-//	return retValue;
-//}
-//
-//char SmokeForm_Stop_Hook(ArkPsiPowerSmokeForm* _this) {
-//	auto retValue = g_SmokeForm_Stop_hook.InvokeOrig(_this);
-//	gCLEnv->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
-//	return retValue;
-//}
+Chairloader* Chairloader::Get()
+{
+	return gChairloaderDll.get();
 }
 
 Chairloader::Chairloader() {
+	gChair = this;
 	CreateConsole();
 	printf("ChairLoader Initializing...\n");
 
@@ -166,51 +143,42 @@ Chairloader::Chairloader() {
 	DetourTransactionBegin();
 	g_CSystem_InitializeEngineModule_Hook.InstallHook(CSystem::FInitializeEngineModule.Get(), &CSystem_InitializeEngineModule_Hook);
 	DetourTransactionCommit();
+
+	// Instantiate modules
+	m_pCore = Internal::IChairloaderCore::CreateInstance();
+	m_pRender = Internal::IChairloaderCryRender::CreateInstance();
+	m_pTools = Internal::IChairloaderTools::CreateInstance();
 }
 
-void Chairloader::InitHooks()
+Chairloader::~Chairloader()
 {
-	// Set up hooks
-	//
-	// Explicit SetHookFunc calls are ugly but I see no other way to do it in C++.
-	// If PreyFunctionHook were to take the func in the contructor, then it'd be possible
-	// to have a .cpp file with just PreyFunctionHook globals. Such file won't have
-	// any symbols referenced and may be removed by the linker, which is an incorrect behaviour.
-	// Explicit SetHookFunc calls from here make sure other files are referenced.
-	// 
-	// Additionally, the contructor approach requires forward declaration of either
-	// the hook function or the PreyFunctionHook object, that implies repetition of
-	// function arguments, which is even more ugly.
-	//
-	g_CSystem_Shutdown_Hook.SetHookFunc(&CSystem_Shutdown_Hook);
-	g_CGame_Init_Hook.SetHookFunc(&CGame_Init_Hook);
-	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
-	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
-	g_SmokeForm_Exit_hook.SetHookFunc(&SmokeForm_Exit_Hook);
-	ChairLoaderImGui::InitHooks();
+	// Free modules
+	m_pTools = nullptr;
+	m_pRender = nullptr;
+	m_pCore = nullptr;
 
-	if (m_bEditorEnabled)
-		Editor::InitHooks();
+	// Remove all installed hooks
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	PreyFunctionSystem::RemoveHooks();
+	DetourTransactionCommit();
 
-	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
-	// Allows graphics debuggers to be attached
-	{
-		uint8_t bytes[] = { 0x00, 0x08 };
-		uint8_t* base = (uint8_t*)GetModuleBase();
-		mem::Patch(base + 0xF240CD, bytes + 0, 1);
-		mem::Patch(base + 0xF240E0, bytes + 1, 1);
+	// Close the console
+	if (m_pConsoleFile) {
+		fclose(m_pConsoleFile);
+		m_pConsoleFile = nullptr;
 	}
 
-	// Install all hooks
-	InstallHooks();
+	FreeConsole();
+	gChair = nullptr;
 }
 
 void Chairloader::InitSystem(CSystem* pSystem)
 {
-	ModuleInitISystem(pSystem, "ChairLoader");
+	ModuleInitISystem(pSystem, "Chairloader");
 	g_StdoutConsole.Init();
 	CryLog("Chairloader::InitSystem");
-	CryLog("ChairLoader: gEnv = 0x%p\n", gEnv);
+	CryLog("Chairloader: gEnv = 0x%p\n", gEnv);
 
 	gCL->cl = this;
 
@@ -243,66 +211,59 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
 		pSystem->m_sys_audio_disable->Set(1);
 
-	m_MainThreadId = std::this_thread::get_id();
-	gConf = new ChairloaderConfigManager();
-	gCL->conf = gConf;
-	CryLog("Chairloader config loaded: %u", gConf->loadModConfigFile(chairloaderModName));
+	// Initialize Core
+	m_pCore->InitSystem();
 
-    // Get config parameters From Config
-    loadConfigParameters();
+	// Initialize Tools
+	Internal::SToolsInitParams toolsParams;
+	toolsParams.bEnableEditor = m_bEditorEnabled;
+	toolsParams.bEnableTrainer = true; // TODO: Only in dev
+	m_pTools->InitSystem(toolsParams);
 
 	// Register mods
-	m_pModDllManager = std::make_unique<ModDllManager>();
-	m_pModDllManager->SetHotReloadEnabled(IsEditorEnabled());
-	RegisterMods();
+	m_pCore->RegisterMods();
 
 	// Init renderer patches. Must be done after shader mods are registered.
-	RenderDll::SetRenderThreadIsIdle(true);
-	RenderDll::SRenderDllPatchParams renderDllPatch;
-	renderDllPatch.bEnableAuxGeom = gEnv->pSystem->IsDevMode();
-	RenderDll::InitRenderDllPatches(renderDllPatch);
+	Internal::SCryRenderInitParams renderParams;
+	renderParams.bEnableAuxGeom = gEnv->pSystem->IsDevMode();
+	m_pRender->SetRenderThreadIsIdle(true);
+	m_pRender->InitSystem(renderParams);
 
 	// Install hooks late into init, some SetHookFunc calls depend on cmd line or mods
 	InitHooks();
+	InstallHooks();
 
 	// Load DLL mods
-	m_pModDllManager->LoadModules();	
-	m_pModDllManager->CallInitSystem();
+	m_pCore->GetDllManager()->LoadModules();
+	m_pCore->GetDllManager()->CallInitSystem();
 
-	RenderDll::SetRenderThreadIsIdle(false);
+	m_pRender->SetRenderThreadIsIdle(false);
 }
-
 
 void Chairloader::InitGame(IGameFramework* pFramework)
 {
 	CryLog("Chairloader::InitGame");
 	m_pFramework = pFramework;
 	gEntUtils = new EntityUtils();
-	m_ImGui = std::make_unique<ChairLoaderImGui>();
-	gui = new ChairloaderGui();
-	g_pProfiler = new Profiler();
-
-	if (m_bEditorEnabled)
-		m_pEditor = std::make_unique<Editor>();
-
-	gCL->pImGui = m_ImGui.get();
-	gCL->gui = gui;
-	gCL->entUtils = gEntUtils;
 
 	gRenDev->m_pRT->SyncMainWithRender();
 	gRenDev->m_pRT->SyncMainWithRender();
-	RenderDll::SetRenderThreadIsIdle(true);
-	m_pModDllManager->CallInitGame();
-	RenderDll::SetRenderThreadIsIdle(false);
+	m_pRender->SetRenderThreadIsIdle(true);
+	m_pCore->InitGame();
+	m_pRender->InitGame();
+	m_pTools->InitGame();
+	m_pCore->GetDllManager()->CallInitGame();
+	m_pRender->SetRenderThreadIsIdle(false);
 }
 
 void Chairloader::ShutdownGame()
 {
 	CryLog("Chairloader::ShutdownGame");
 
-	m_pModDllManager->CallShutdownGame();
-	m_pEditor = nullptr;
-	m_ImGui = nullptr;
+	m_pCore->GetDllManager()->CallShutdownGame();
+	m_pTools->ShutdownGame();
+	m_pRender->ShutdownGame();
+	m_pCore->ShutdownGame();
 	m_pFramework = nullptr;
 }
 
@@ -310,107 +271,69 @@ void Chairloader::ShutdownSystem()
 {
 	CryLog("Chairloader::ShutdownSystem");
 	
-	RenderDll::SetRenderThreadIsIdle(true);
-	m_pModDllManager->CallShutdownSystem();
-	m_pModDllManager->UnloadModules();
-	RenderDll::ShutdownSystem();
-	RenderDll::SetRenderThreadIsIdle(false);
+	m_pRender->SetRenderThreadIsIdle(true);
 
+	m_pCore->GetDllManager()->CallShutdownSystem();
+	m_pCore->GetDllManager()->UnloadModules();
+
+	m_pTools->ShutdownSystem();
+	m_pRender->ShutdownSystem();
+	m_pCore->ShutdownSystem();
+
+	m_pRender->SetRenderThreadIsIdle(false);
 	gEnv = nullptr;
 }
 
-Chairloader::~Chairloader()
-{
-	// Remove all installed hooks
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	PreyFunctionSystem::RemoveHooks();
-	DetourTransactionCommit();
-
-	// Close the console
-	if (m_pConsoleFile) {
-		fclose(m_pConsoleFile);
-		m_pConsoleFile = nullptr;
-	}
-
-	FreeConsole();
-}
-
 void Chairloader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
-    if(gConf->getConfigDirty(chairloaderModName)){
-        loadConfigParameters();
-    }
-	m_ImGui->PreUpdate(haveFocus);
-	SmokeFormExit();
-	gui->update();
-	gConf->Update();
+	m_pCore->PreUpdate();
+	m_pRender->PreUpdate();
+	m_pTools->PreUpdate();
 
-	gui->draw(&m_ShowGui);
-	m_pModDllManager->CallDraw();
-
-	// Editor update MUST come before mod PreUpdate for proper hot-reloading
-	if (m_pEditor)
-	{
-		m_pEditor->Update();
-		
-		if (m_ShowGui)
-			m_pEditor->ShowUI();
-	}
-
-	m_pModDllManager->CallPreUpdate();
+	// Tools update MUST come before mod PreUpdate for proper hot-reloading in the Editor
+	m_pCore->GetDllManager()->CallDraw();
+	m_pCore->GetDllManager()->CallPreUpdate();
 }
 
 void Chairloader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
-	m_ImGui->PostUpdate();
-	m_pModDllManager->CallPostUpdate();
-}
-
-bool Chairloader::HandleKeyPress(const SInputEvent &event) {
-	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed) {
-        if(!m_ShowGui){
-            m_ShowGui = true;
-            gui->SetDevConsoleVisible(true);
-        } else {
-            gui->SetDevConsoleVisible(!gui->IsDevConsoleVisible());
-        }
-		return true;
-	}
-    if(event.keyId == m_hideGuiKey && event.state == eIS_Pressed) {
-        m_ShowGui = !m_ShowGui;
-        return true;
-    }
-    if(event.keyId == m_toggleFreecamKey && event.state == eIS_Pressed) {
-        m_FreeCamEnabled = !m_FreeCamEnabled;
-        CryLog("Freecam state: %u\n", m_FreeCamEnabled);
-        if (m_FreeCamEnabled) {
-            m_DevMode = true;
-            ((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
-            gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
-        }
-        else {
-            ((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
-            gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
-        }
-        return true;
-    }
-
-	if (m_pEditor && m_pEditor->HandleKeyPress(event))
-		return true;
-
-	return false;
-}
-
-void Chairloader::SmokeFormExit() {
-	if(smokeFormExited) {
-		gCL->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
-		smokeFormExited = false;
-	}
+	m_pCore->PostUpdate();
+	m_pRender->PostUpdate();
+	m_pTools->PostUpdate();
+	m_pCore->GetDllManager()->CallPostUpdate();
 }
 
 void Chairloader::CreateConsole() {
 	AllocConsole();
 	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
 	printf("Welcome to funland sonic\n");
+}
+
+void Chairloader::InitHooks()
+{
+	// Set up hooks
+	//
+	// Explicit SetHookFunc calls are ugly but I see no other way to do it in C++.
+	// If PreyFunctionHook were to take the func in the contructor, then it'd be possible
+	// to have a .cpp file with just PreyFunctionHook globals. Such file won't have
+	// any symbols referenced and may be removed by the linker, which is an incorrect behaviour.
+	// Explicit SetHookFunc calls from here make sure other files are referenced.
+	// 
+	// Additionally, the contructor approach requires forward declaration of either
+	// the hook function or the PreyFunctionHook object, that implies repetition of
+	// function arguments, which is even more ugly.
+	//
+	g_CSystem_Shutdown_Hook.SetHookFunc(&CSystem_Shutdown_Hook);
+	g_CGame_Init_Hook.SetHookFunc(&CGame_Init_Hook);
+	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
+	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
+
+	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
+	// Allows graphics debuggers to be attached
+	{
+		uint8_t bytes[] = { 0x00, 0x08 };
+		uint8_t* base = (uint8_t*)GetModuleBase();
+		mem::Patch(base + 0xF240CD, bytes + 0, 1);
+		mem::Patch(base + 0xF240E0, bytes + 1, 1);
+	}
 }
 
 void Chairloader::InstallHooks()
@@ -421,15 +344,14 @@ void Chairloader::InstallHooks()
 	DetourTransactionCommit();
 }
 
-//TODO: deprecated config system keys
-
-ChairloaderGlobalEnvironment* Chairloader::GetChairloaderEnvironment() {
-	return gCL;
-}
-
-uintptr_t Chairloader::GetPreyDllBase()
-{
-	return GetModuleBase();
+bool Chairloader::HandleKeyPress(const SInputEvent &event) {
+	if (m_pCore->HandleKeyPress(event))
+		return true;
+	if (m_pRender->HandleKeyPress(event))
+		return true;
+	if (m_pTools->HandleKeyPress(event))
+		return true;
+	return false;
 }
 
 //! this function is needed because bimaps don't handle static initialization very well
@@ -545,95 +467,13 @@ void Chairloader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_RWin, "rwin"));
 }
 
-void Chairloader::RegisterMods()
+ChairloaderGlobalEnvironment* Chairloader::GetChairloaderEnvironment() {
+	return gCL;
+}
+
+uintptr_t Chairloader::GetPreyDllBase()
 {
-	auto cfgValue = gConf->getConfigValue(chairloaderModName, "ModList");
-
-	if (cfgValue.type() != typeid(pugi::xml_node))
-	{
-		CryWarning("ModList is not a node in the config.");
-		return;
-	}
-
-	auto node = boost::get<pugi::xml_node>(cfgValue);
-	for (pugi::xml_node& mod : node) {
-		auto modName = boost::get<std::string>(gConf->getNodeConfigValue(mod, "modName"));
-		if (mod.child("enabled").text().as_bool()) {
-			if (mod.child("dllName"))
-			{
-				CryLog("Found DLL mod: %s", modName.c_str());
-				m_pModDllManager->RegisterModFromXML(mod);
-			}
-
-			fs::path modDirPath = fs::current_path() / "Mods" / fs::u8path(modName);
-			fs::path shadersPath = modDirPath / "Shaders";
-			if (fs::exists(shadersPath))
-			{
-				CryLog("Found Shader mod: %s", modName.c_str());
-				RenderDll::Shaders::AddShadersDir(shadersPath);
-			}
-		}
-	}
-
-	RenderDll::Shaders::RefreshShaderFileList();
-}
-
-void Chairloader::loadConfigParameters() {
-    // Hide GUI Key, default = f1
-    auto key = gConf->getConfigValue(chairloaderModName, "HideGUIKey");
-    if(key.type() == typeid(std::string)){
-        auto keyName = boost::get<std::string>(key);
-        std::transform(keyName.begin(), keyName.end(), keyName.begin(), ::tolower);
-        if(m_KeyNames.right.find(keyName) != m_KeyNames.right.end()){
-            // Load Key into file
-            auto keyCode = m_KeyNames.right.at(keyName);
-            m_hideGuiKey = keyCode;
-            CryLog("Chairloader: Hide GUI Key set to %s", keyName.c_str());
-        } else {
-            // Key was an invalid string, reset to default
-            CryError("Chairloader: Invalid HideGUIKey string '%s', setting to default", keyName.c_str());
-            m_hideGuiKey = eKI_F1;
-            gConf->setConfigValue(chairloaderModName, "HideGUIKey", m_KeyNames.left.at(m_hideGuiKey), IChairloaderConfigManager::parameterType::String);
-        }
-    } else {
-        // Key config parameter was not found, set to default
-        CryError("Chairloader: HideGUIKey config parameter not found, setting to default");
-        m_hideGuiKey = eKI_F1;
-        gConf->setConfigValue(chairloaderModName, "HideGUIKey", m_KeyNames.left.at(m_hideGuiKey), IChairloaderConfigManager::parameterType::String);
-    }
-    // toggle freecam key, default = f2
-    key = gConf->getConfigValue(chairloaderModName, "ToggleFreecamKey");
-    if(key.type() == typeid(std::string)){
-        auto keyName = boost::get<std::string>(key);
-        std::transform(keyName.begin(), keyName.end(), keyName.begin(), ::tolower);
-        if(m_KeyNames.right.find(keyName) != m_KeyNames.right.end()){
-            // Load Key into file
-            auto keyCode = m_KeyNames.right.at(keyName);
-            m_toggleFreecamKey = keyCode;
-            CryLog("Chairloader: Toggle Freecam Key set to %s", keyName.c_str());
-        } else {
-            // Key was an invalid string, reset to default
-            CryError("Chairloader: Invalid ToggleFreecamKey string '%s', setting to default", keyName.c_str());
-            m_toggleFreecamKey = eKI_F2;
-            gConf->setConfigValue(chairloaderModName, "ToggleFreecamKey", m_KeyNames.left.at(m_toggleFreecamKey), IChairloaderConfigManager::parameterType::String);
-        }
-    } else {
-        // Key config parameter was not found, set to default
-        CryError("Chairloader: ToggleFreecamKey config parameter not found, setting to default");
-        m_toggleFreecamKey = eKI_F2;
-        gConf->setConfigValue(chairloaderModName, "ToggleFreecamKey", m_KeyNames.left.at(m_toggleFreecamKey), IChairloaderConfigManager::parameterType::String);
-    }
-}
-
-std::string Chairloader::getKeyBind(std::string action) {
-    if(action == "HideGUIKey"){
-        return m_KeyNames.left.at(m_hideGuiKey);
-    } else if(action == "ToggleFreecamKey"){
-        return m_KeyNames.left.at(m_toggleFreecamKey);
-    } else {
-        return "";
-    }
-    return std::string();
+	return GetModuleBase();
 }
 
 bool Chairloader::IsEditorEnabled()
@@ -648,14 +488,9 @@ void Chairloader::ReloadModDLLs()
 	auto rd = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
 	rd->m_pRT->SyncMainWithRender(); // Last frame
 	rd->m_pRT->SyncMainWithRender(); // This frame
-	RenderDll::SetRenderThreadIsIdle(true);
+	m_pRender->SetRenderThreadIsIdle(true);
 
-	m_pModDllManager->ReloadModules();
+	m_pCore->GetDllManager()->ReloadModules();
 
-	RenderDll::SetRenderThreadIsIdle(false);
-}
-
-bool Chairloader::CheckDLLsForChanges()
-{
-	return m_pModDllManager->CheckModulesForChanges();
+	m_pRender->SetRenderThreadIsIdle(false);
 }

@@ -11,7 +11,11 @@ class ChairloaderGui : public IChairloaderGui {
 public:
     ChairloaderGui();
 
-    bool IsEnabled() override;
+    bool IsEnabled() override
+    {
+        // TODO:
+        return true;
+    }
 
     void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
     void logItem(logMessage message, bool displayToScreen = true) override;
