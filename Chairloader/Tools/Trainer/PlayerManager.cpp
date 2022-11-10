@@ -574,19 +574,22 @@ void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
 
 void PlayerManager::drawMenuBar() {
     if(ImGui::BeginMainMenuBar()) {
-        if (ImGui::BeginMenu("Player")) {
-            ImGui::MenuItem("Refresh Abilities");
-            if (ImGui::MenuItem("Full Heal")) {
-                if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
-                    gCL->entUtils->ArkPlayerPtr()->SetHealth(gCL->entUtils->ArkPlayerPtr()->GetMaxHealth());
-                }
-            }
-            ImGui::MenuItem("God Mode", NULL, &godMode);
-            ImGui::MenuItem("Show Player Manager", NULL, &showPlayerManager);
-            ImGui::EndMenu();
-            // }
-        }
-        ImGui::EndMainMenuBar();
+		if (ImGui::BeginMenu("Trainer")) {
+			if (ImGui::BeginMenu("Player")) {
+				ImGui::MenuItem("Refresh Abilities");
+				if (ImGui::MenuItem("Full Heal")) {
+					if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+						gCL->entUtils->ArkPlayerPtr()->SetHealth(gCL->entUtils->ArkPlayerPtr()->GetMaxHealth());
+					}
+				}
+				ImGui::MenuItem("God Mode", NULL, &godMode);
+				ImGui::MenuItem("Show Player Manager", NULL, &showPlayerManager);
+				ImGui::EndMenu();
+				// }
+			}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
     }
 }
 

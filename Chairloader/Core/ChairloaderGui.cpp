@@ -2,6 +2,8 @@
 #include <Prey/GameDll/ark/ArkGame.h>
 #include <Prey/GameDll/ark/ArkLocationManager.h>
 #include <Prey/CrySystem/XConsole.h>
+#include <Chairloader/IChairloaderDll.h>
+#include <Chairloader/IChairloaderTools.h>
 #include "ChairloaderGUI.h"
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
@@ -35,15 +37,13 @@ void ChairloaderGui::draw() {
             if (ImGui::BeginMenu("Chairloader")) {
                 ImGui::MenuItem("Show GUI", ChairloaderCore::Get()->GetKeyStrHideGui().c_str(), &m_bIsEnabled);
                 ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
-                //ImGui::MenuItem("Show Console", "~", &control.showDevConsole);
+                gChair->GetTools()->ShowMainMenuItems();
                 ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
                 ImGui::Separator();
                 ImGui::MenuItem("Show Log History", nullptr, &control.showLogHistory);
                 ImGui::Separator();
                 if (ImGui::BeginMenu("Performance")) {
                     ImGui::MenuItem("Profiler", nullptr, &control.showProfilerDialog);
-                    ImGui::Separator();
-                    //perfOverlay.ShowMenu();
                     ImGui::EndMenu();
                 }
                 if (ImGui::BeginMenu("ImGui Test/Config")) {

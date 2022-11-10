@@ -1,13 +1,3 @@
-#include "../Common/ChairLoader/pch.h"
-#if 0
-class PlayerManager {
-public:
-    void draw() {};
-    void drawMenuBar() {};
-    void update() {};
-};
-#endif
-
 #pragma once
 #include <Prey/GameDll/ArkInventory.h>
 #include "EntityUtils.h"

@@ -81,14 +81,16 @@ void WorldManager::DrawLevelManagerWindow() {
 
 void WorldManager::DrawMenuBar() {
     if(ImGui::BeginMainMenuBar()){
-        if(ImGui::BeginMenu("World")){
-            ImGui::MenuItem("Open Level Manager", nullptr, &showLevelManagerWindow);
-            ImGui::MenuItem("Open Station Access Manager", nullptr, &showStationAccessManagerWindow);
-            ImGui::MenuItem("Open Character Manager", nullptr, &showCharacterManagerWindow);
+        if (ImGui::BeginMenu("Trainer")) {
+            if(ImGui::BeginMenu("World")){
+                ImGui::MenuItem("Open Level Manager", nullptr, &showLevelManagerWindow);
+                ImGui::MenuItem("Open Station Access Manager", nullptr, &showStationAccessManagerWindow);
+                ImGui::MenuItem("Open Character Manager", nullptr, &showCharacterManagerWindow);
+                ImGui::EndMenu();
+            }
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
-
     }
 
 }

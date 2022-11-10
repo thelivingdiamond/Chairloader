@@ -1404,108 +1404,111 @@ void EntityManager::drawEntityList(bool* bShow) {
 
 void EntityManager::drawMenuBar() {
     if (ImGui::BeginMainMenuBar()) {
-        if (ImGui::BeginMenu("Entity")) {
-            if (ImGui::BeginMenu("Spawn Entity")) {
-                ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != 0);
+        if (ImGui::BeginMenu("Trainer")) {
+            if (ImGui::BeginMenu("Entity")) {
+                if (ImGui::BeginMenu("Spawn Entity")) {
+                    ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != 0);
+                    ImGui::Separator();
+                    ImGui::TextDisabled("Quick Spawns");
+                    if (ImGui::BeginMenu("Spawn Typhon")) {
+                        if (ImGui::BeginMenu("Mimics")) {
+                            if (ImGui::MenuItem("Mimic"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Mimics.Mimic);
+                            if (ImGui::MenuItem("Greater Mimic"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Mimics.EliteMimic);
+                            ImGui::EndMenu();
+                        }
+                        if (ImGui::BeginMenu("Phantoms")) {
+                            if (ImGui::MenuItem("Normal"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.BasePhantom);
+                            if (ImGui::MenuItem("Thermal"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.ThermalPhantom);
+                            if (ImGui::MenuItem("Etheric"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.EthericPhantom);
+                            if (ImGui::MenuItem("Voltaic"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.VoltaicPhantom);
+                            ImGui::EndMenu();
+                        }
+                        if (ImGui::MenuItem("Nightmare"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.ArkNightmare);
+                        if (ImGui::MenuItem("Poltergeist"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.ArkPoltergeist);
+                        if (ImGui::MenuItem("Telepath"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Overseers.Telepath);
+                        if (ImGui::MenuItem("Technopath"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Overseers.Technopath);
+                        ImGui::EndMenu();
+                    }
+                    if (ImGui::BeginMenu("Spawn Operator")) {
+                        if (ImGui::MenuItem("Medical"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.MedicalOperator);
+                        if (ImGui::MenuItem("Engineering"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.EngineeringOperator);
+                        if (ImGui::MenuItem("Science"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.ScienceOperator);
+                        if (ImGui::MenuItem("Military"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.MilitaryOperator);
+                        ImGui::EndMenu();
+                    }
+                    if (ImGui::BeginMenu("Spawn Turrets")) {
+                        if (ImGui::MenuItem("Turret"))
+                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Turrets.Turret_Default);
+                        ImGui::EndMenu();
+                    }
+                    ImGui::Separator();
+                    if (ImGui::BeginMenu("Spawn Items")) {
+                        if (ImGui::BeginMenu("Weapons")) {
+                            if (ImGui::MenuItem("Wrench"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Wrench);
+                            if (ImGui::MenuItem("Shotgun"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Shotgun);
+                            if (ImGui::MenuItem("Shotgun Ammo"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.ShotgunShells);
+                            if (ImGui::MenuItem("Pistol"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Pistol);
+                            if (ImGui::MenuItem("Pistol Ammo"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.PistolBullets);
+                            if (ImGui::MenuItem("Gloo Gun"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.GooGun);
+                            if (ImGui::MenuItem("Gloo Gun Ammo"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.GooGun);
+                            if (ImGui::MenuItem("Q Beam"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Instalaser);
+                            if (ImGui::MenuItem("Q Beam Ammo"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.InstaLaser);
+                            if (ImGui::MenuItem("Stun Gun"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.StunGun);
+                            if (ImGui::MenuItem("Stun Gun Ammo"))
+                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.StunGunAmmo);
+                            ImGui::EndMenu();
+                        }
+                        ImGui::EndMenu();
+                    }
+                    ImGui::EndMenu();
+                }
+                if (ImGui::MenuItem("List Classes")) {
+                    CEntityClassRegistry* registry = ((CEntityClassRegistry*)gEnv->pEntitySystem->GetClassRegistry());
+                    for (auto& entityClass : registry->m_mapClassName) {
+                        CryLog("%s", entityClass.second->GetName());
+
+                    }
+                    //                for(auto &class = gEnv.pEntitySystem.)
+                }
                 ImGui::Separator();
-                ImGui::TextDisabled("Quick Spawns");
-                if (ImGui::BeginMenu("Spawn Typhon")) {
-                    if (ImGui::BeginMenu("Mimics")) {
-                        if (ImGui::MenuItem("Mimic"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Mimics.Mimic);
-                        if (ImGui::MenuItem("Greater Mimic"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Mimics.EliteMimic);
-                        ImGui::EndMenu();
+                if (ImGui::MenuItem("Toggle All")) {
+                    if (showEntityList && showEntitySpawner) {
+                        showEntityList = false;
+                        showEntitySpawner = false;
                     }
-                    if (ImGui::BeginMenu("Phantoms")) {
-                        if (ImGui::MenuItem("Normal"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.BasePhantom);
-                        if (ImGui::MenuItem("Thermal"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.ThermalPhantom);
-                        if (ImGui::MenuItem("Etheric"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.EthericPhantom);
-                        if (ImGui::MenuItem("Voltaic"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.VoltaicPhantom);
-                        ImGui::EndMenu();
+                    else {
+                        showEntityList = true;
+                        showEntitySpawner = true;
                     }
-                    if (ImGui::MenuItem("Nightmare"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.ArkNightmare);
-                    if (ImGui::MenuItem("Poltergeist"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.ArkPoltergeist);
-                    if (ImGui::MenuItem("Telepath"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Overseers.Telepath);
-                    if (ImGui::MenuItem("Technopath"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Overseers.Technopath);
-                    ImGui::EndMenu();
                 }
-                if (ImGui::BeginMenu("Spawn Operator")) {
-                    if (ImGui::MenuItem("Medical"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.MedicalOperator);
-                    if (ImGui::MenuItem("Engineering"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.EngineeringOperator);
-                    if (ImGui::MenuItem("Science"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.ScienceOperator);
-                    if (ImGui::MenuItem("Military"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.MilitaryOperator);
-                    ImGui::EndMenu();
-                }
-                if (ImGui::BeginMenu("Spawn Turrets")) {
-                    if (ImGui::MenuItem("Turret"))
-                        quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Turrets.Turret_Default);
-                    ImGui::EndMenu();
-                }
-                ImGui::Separator();
-                if (ImGui::BeginMenu("Spawn Items")) {
-                    if (ImGui::BeginMenu("Weapons")) {
-                        if (ImGui::MenuItem("Wrench"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Wrench);
-                        if (ImGui::MenuItem("Shotgun"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Shotgun);
-                        if (ImGui::MenuItem("Shotgun Ammo"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.ShotgunShells);
-                        if (ImGui::MenuItem("Pistol"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Pistol);
-                        if (ImGui::MenuItem("Pistol Ammo"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.PistolBullets);
-                        if (ImGui::MenuItem("Gloo Gun"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.GooGun);
-                        if (ImGui::MenuItem("Gloo Gun Ammo"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.GooGun);
-                        if (ImGui::MenuItem("Q Beam"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Instalaser);
-                        if (ImGui::MenuItem("Q Beam Ammo"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.InstaLaser);
-                        if (ImGui::MenuItem("Stun Gun"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.StunGun);
-                        if (ImGui::MenuItem("Stun Gun Ammo"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.StunGunAmmo);
-                        ImGui::EndMenu();
-                    }
-                    ImGui::EndMenu();
-                }
+                ImGui::MenuItem("Show Entity List", nullptr, &showEntityList);
+                ImGui::MenuItem("Show Entity Spawner", nullptr, &showEntitySpawner);
                 ImGui::EndMenu();
             }
-            if(ImGui::MenuItem("List Classes")){
-               CEntityClassRegistry* registry = ((CEntityClassRegistry*)gEnv->pEntitySystem->GetClassRegistry());
-               for(auto &entityClass : registry->m_mapClassName){
-                    CryLog("%s", entityClass.second->GetName());
-
-               }
-//                for(auto &class = gEnv.pEntitySystem.)
-            }
-            ImGui::Separator();
-            if (ImGui::MenuItem("Toggle All")) {
-                if (showEntityList && showEntitySpawner) {
-                    showEntityList = false;
-                    showEntitySpawner = false;
-                }
-                else {
-                    showEntityList = true;
-                    showEntitySpawner = true;
-                }
-            }
-            ImGui::MenuItem("Show Entity List", nullptr, &showEntityList);
-            ImGui::MenuItem("Show Entity Spawner", nullptr, &showEntitySpawner);
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();

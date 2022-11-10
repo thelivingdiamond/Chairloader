@@ -44,11 +44,12 @@ void ChairloaderTools::PreUpdate()
 		m_pEditor->Update();
 
 	// Perf info is always visible
-	if (m_bDrawPerfOverlay)
-		m_pPerfOverlay->Update();
+	m_pPerfOverlay->Update();
 
 	if (gCL->gui->IsEnabled())
 	{
+		ShowMainMenuBar();
+
 		if (m_bDrawDevConsole)
 			m_pDevConsole->Show(&m_bDrawDevConsole);
 
@@ -57,13 +58,9 @@ void ChairloaderTools::PreUpdate()
 		if (m_bEnableTrainer)
 		{
 			m_pPlayerManager->update();
-
-			if (m_bDrawEntityManager)
-				m_pEntityManager->Draw();
-			if (m_bDrawPlayerManager)
-				m_pPlayerManager->draw();
-			if (m_bDrawWorldManager)
-				m_pWorldManager->Draw();
+			m_pEntityManager->Draw();
+			m_pPlayerManager->draw();
+			m_pWorldManager->Draw();
 		}
 
 		if (m_bEnableEditor)
@@ -78,4 +75,37 @@ bool ChairloaderTools::HandleKeyPress(const SInputEvent& event)
 	if (m_bEnableEditor && m_pEditor->HandleKeyPress(event))
 		return true;
 	return false;
+}
+
+bool ChairloaderTools::IsDevConsoleVisible()
+{
+	return m_bDrawDevConsole;
+}
+
+void ChairloaderTools::SetDevConsoleVisible(bool state)
+{
+	m_bDrawDevConsole = state;
+}
+
+void ChairloaderTools::ShowMainMenuItems()
+{
+	ImGui::MenuItem("Show Console", "~", &m_bDrawDevConsole);
+}
+
+void ChairloaderTools::ShowMainMenuBar()
+{
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Chairloader"))
+		{
+			if (ImGui::BeginMenu("Performance"))
+			{
+				ImGui::Separator();
+				m_pPerfOverlay->ShowMenu();
+				ImGui::EndMenu();
+			}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
 }

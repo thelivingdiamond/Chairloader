@@ -1,5 +1,6 @@
 #include <Prey/CryInput/IInput.h>
 #include <Chairloader/IChairloaderCryRender.h>
+#include <Chairloader/IChairloaderTools.h>
 #include <Chairloader/IChairloaderDll.h>
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
@@ -103,6 +104,21 @@ void ChairloaderCore::PostUpdate()
 
 bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 {
+	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed)
+	{
+		if (!m_pGui->IsEnabled())
+		{
+			m_pGui->SetEnabled(true);
+			gChair->GetTools()->SetDevConsoleVisible(true);
+		}
+		else
+		{
+			gChair->GetTools()->SetDevConsoleVisible(!gChair->GetTools()->IsDevConsoleVisible());
+		}
+
+		return true;
+	}
+
 	if (event.keyId == m_KeyHideGui && event.state == eIS_Pressed) {
 		m_pGui->SetEnabled(!m_pGui->IsEnabled());
 		return true;
