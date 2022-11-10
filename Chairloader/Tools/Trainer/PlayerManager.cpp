@@ -72,13 +72,13 @@ void PlayerManager::drawPositionTab() {
 		for (int i = 0; i < 5; i++) {
 			if (ImGui::Button(("Save Pos " + std::to_string(i+1)).c_str())) {
 				// index = i;
-				savePosition(i, gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
+				savePosition(i, ArkPlayer::GetInstance().GetEntity()->GetPos());
 			}
 			ImGui::SameLine();
 		}
         ImGui::Separator();
         static float position[3];
-        auto player = gCL->entUtils->ArkPlayerPtr();
+        auto player = ArkPlayer::GetInstancePtr();
         if(player != nullptr) {
             ImGui::Text("Player Position:");
             position[0] = player->GetEntity()->GetPos().x;
@@ -96,30 +96,30 @@ void PlayerManager::drawPositionTab() {
 
 void PlayerManager::drawHealthTab() {
 	if (ImGui::BeginTabItem("Health/Statuses")) {
-		if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
-			float currentHealth = gCL->entUtils->ArkPlayerPtr()->GetHealth();
-			float maxHealth = gCL->entUtils->ArkPlayerPtr()->GetMaxHealth();
-			float currentArmor = 100.0f - gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus( EArkPlayerStatus::SuitIntegrity)->m_currentAmount;
+		if (ArkPlayer::GetInstancePtr() != nullptr) {
+			float currentHealth = ArkPlayer::GetInstance().GetHealth();
+			float maxHealth = ArkPlayer::GetInstance().GetMaxHealth();
+			float currentArmor = 100.0f - ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->GetTraumaForStatus( EArkPlayerStatus::SuitIntegrity)->m_currentAmount;
 			float maxArmor = 100.0f;
-			float currentRad = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount;
+			float currentRad = ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount;
 			float maxRad = 100.0f;
-			float currentPsi = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->m_points;
-			float maxPsi = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->m_maxPoints;
-			float currentFatigue = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent->m_fatigue.m_amount;
-			float maxFatigue = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent->m_fatigue.m_maxAmount;
+			float currentPsi = ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent->m_points;
+			float maxPsi = ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent->m_maxPoints;
+			float currentFatigue = ArkPlayer::GetInstance().m_playerComponent.m_pFatigueComponent->m_fatigue.m_amount;
+			float maxFatigue = ArkPlayer::GetInstance().m_playerComponent.m_pFatigueComponent->m_fatigue.m_maxAmount;
 			static float setHealth = 0;
 			static float setPsi = 0;
 			static float setMaxPsi = 0;
 			
-			ImGui::Text("Player Entity Name: %s", gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetName());
-			ImGui::Text("Player Entity ID: %u", gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetId());
+			ImGui::Text("Player Entity Name: %s", ArkPlayer::GetInstance().GetEntity()->GetName());
+			ImGui::Text("Player Entity ID: %u", ArkPlayer::GetInstance().GetEntity()->GetId());
 			ImGui::Text("Health: %.2f / %.2f", currentHealth / 10, maxHealth / 10);
 			ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(209, 37, 43, 255));
 			ImGui::ProgressBar(currentHealth / maxHealth);
 			ImGui::PopStyleColor();
 			if (ImGui::InputFloat("Set Health", &setHealth, 0, 0, "%.2f")) {
-				gCL->entUtils->ArkPlayerPtr()->SetHealth(setHealth * 10);
-				setHealth = gCL->entUtils->ArkPlayerPtr()->GetHealth() / 10;
+				ArkPlayer::GetInstance().SetHealth(setHealth * 10);
+				setHealth = ArkPlayer::GetInstance().GetHealth() / 10;
 			}
 			//TODO: update armor and radiation (apply statuses/
 			//Armor
@@ -127,8 +127,8 @@ void PlayerManager::drawHealthTab() {
 			ImGui::Text("Armor: %.2f / %.2f", currentArmor, maxArmor);
 			ImGui::ProgressBar(currentArmor / maxArmor);
 			if (ImGui::InputFloat("Set Armor", &currentArmor)) {
-				gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::SuitIntegrity)->m_currentAmount = 100.0f - currentArmor;
-				// gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->Update(0.1f);
+				ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::SuitIntegrity)->m_currentAmount = 100.0f - currentArmor;
+				// ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->GetTraumaForStatus(ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::SuitIntegrity)->Update(0.1f);
 			}
 			//Psi
 			ImGui::Text("Psi: %.2f / %.2f", currentPsi, maxPsi);
@@ -136,21 +136,21 @@ void PlayerManager::drawHealthTab() {
 			ImGui::ProgressBar(currentPsi / maxPsi);
 			ImGui::PopStyleColor();
 			if (ImGui::InputFloat("Set Psi", &setPsi, 0, 0, "%.2f")) {
-				gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points = setPsi;
-				setPsi = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_points;
-				gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent->UpdateHUDMarkerElements();
+				ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent.get()->m_points = setPsi;
+				setPsi = ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent.get()->m_points;
+				ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent->UpdateHUDMarkerElements();
 			}
 			//Set Max Psi
 			if (ImGui::InputFloat("Set Max Psi", &setMaxPsi, 0, 0, "%.2f")) {
-				gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints = setMaxPsi;
-				setMaxPsi = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
+				ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent.get()->m_maxPoints = setMaxPsi;
+				setMaxPsi = ArkPlayer::GetInstance().m_playerComponent.m_pPsiComponent.get()->m_maxPoints;
 			}
 			//show fatigue
 			ImGui::Text("Stamina: %.2f / %.2f", maxFatigue - currentFatigue, maxFatigue);
 			ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(150, 150, 150, 255));
 			ImGui::ProgressBar((maxFatigue - currentFatigue) / maxFatigue);
 			ImGui::PopStyleColor();
-			ImGui::Checkbox("Infinite Stamina", (bool*)&gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pFatigueComponent.get()->m_bInfiniteStamina);
+			ImGui::Checkbox("Infinite Stamina", (bool*)&ArkPlayer::GetInstance().m_playerComponent.m_pFatigueComponent.get()->m_bInfiniteStamina);
 			if (currentRad > 0.1f) {
 				ImGui::Text("Radiation: %.2f / %.2f", currentRad, maxRad);
 				ImGui::PushStyleColor(ImGuiCol_PlotHistogram, IM_COL32(16, 147, 18, 255));
@@ -163,27 +163,27 @@ void PlayerManager::drawHealthTab() {
 				ImGui::PopStyleColor();
 			}
 			if (ImGui::InputFloat("Set Radiation", &currentRad)) {
-				gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount = currentRad;
-				// gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->GetTraumaForStatus(gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->Update(0.1f);
+				ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->GetTraumaForStatus(EArkPlayerStatus::Radiation)->m_currentAmount = currentRad;
+				// ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->GetTraumaForStatus(ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent.get(), EArkPlayerStatus::Radiation)->Update(0.1f);
 			}
 			static bool showArmor = true;
 			if(ImGui::Checkbox("Show Armor", &showArmor)) {
-				gCL->entUtils->ArkPlayerPtr()->SetShowArmor(showArmor, true);
+				ArkPlayer::GetInstance().SetShowArmor(showArmor, true);
 			}
 			ImGui::Separator();
 			ImGui::Text("Statuses: ");
 			ImGui::Columns(2);
-			for (auto& status : gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_statuses) {
+			for (auto& status : ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent.get()->m_statuses) {
 				if (ImGui::Selectable(status.get()->m_desc.m_Name.c_str())) {
 					// status->m_desc.m_Duration = 1000.0f;
 					if (status != nullptr) {
 						// int level = status->m_currentLevel;
 						status->Activate(0);
 					}
-					// gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->ForceStatus
+					// ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->ForceStatus
 					// status->UpdateHudIcon(status.get());
 					// status->UpdateVisuals(true, true);
-					// gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent->SetStatus(gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get(), status.get()->m_status, true, false);
+					// ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent->SetStatus(ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent.get(), status.get()->m_status, true, false);
 					// status.get()->UpdateVisuals(true, false);
 				}
 				ImGui::NextColumn();
@@ -197,7 +197,7 @@ void PlayerManager::drawHealthTab() {
 			}
 			ImGui::Columns(1);
 			// if (ImGui::Button("Add Status")) {
-			// 	gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(
+			// 	ArkPlayer::GetInstance().m_playerComponent.m_pStatusComponent.get()->m_activeStatuses.emplace_back(
 			// 		EArkPlayerStatus::Radiation);
 			// }
 			// TODO: figure out armor
@@ -213,7 +213,7 @@ void PlayerManager::drawAbilitiesTab() {
         static ImGuiTextFilter filter;
 		if (ImGui::BeginChild("AbilityList", ImGui::GetContentRegionAvail(), false, ImGuiWindowFlags_HorizontalScrollbar)) {
             filter.Draw();
-			for (auto &ability : gEntUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->m_abilities) {
+			for (auto &ability : ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->m_abilities) {
                 std::string name;
                 if(arkAbilityMap.find(ability.m_id) != arkAbilityMap.end()) {
                     name = arkAbilityMap.find(ability.m_id)->second.c_str();
@@ -223,8 +223,8 @@ void PlayerManager::drawAbilitiesTab() {
                 if(filter.PassFilter(name.c_str()) || strlen(filter.InputBuf) == 0) {
                     if (!ability.m_bAcquired) {
                         if (ImGui::Selectable(name.c_str())) {
-                            if (!gCL->entUtils->ArkPlayerPtr()->HasAbility(ability.m_id)) {
-                                gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(
+                            if (!ArkPlayer::GetInstance().HasAbility(ability.m_id)) {
+                                ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->GrantAbility(
                                         ability.m_id);
                             }
                         }
@@ -236,7 +236,7 @@ void PlayerManager::drawAbilitiesTab() {
 			ImGui::EndChild();
 		}
 		//TODO: figure out how to remove abilities too
-		// std::vector<ArkAbilityData>* abilities = &gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get()->m_abilities;
+		// std::vector<ArkAbilityData>* abilities = &ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent.get()->m_abilities;
 		// if (!abilities->empty()) {
 		//     ImGui::Text("Size: %d\n", abilities->size());
 		//     int clip = 0;
@@ -256,40 +256,40 @@ void PlayerManager::drawAbilitiesTab() {
 	}
     //TODO: clean me up
 	if (ImGui::BeginTabItem("Random fun shit")) {
-		auto abilityComponent = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get();
+		auto abilityComponent = ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent.get();
 		// static auto acquiredAbilities = abilityComponent->GetAcquiredAbilities(abilityComponent);
-		for (auto& power : gCL->entUtils->ArkPlayerPtr()->GetPsiPowerComponent().m_powers) {
+		for (auto& power : ArkPlayer::GetInstance().GetPsiPowerComponent().m_powers) {
 			wstring localizedName;
 			gEnv->pSystem->GetLocalizationManager()->LocalizeString(power->GetDescription(), localizedName);
 			ImGui::Text("%ls", localizedName.c_str());
 		}
-		auto &PsiPowerComponent = gCL->entUtils->ArkPlayerPtr()->GetPsiPowerComponent();
-		ArkPlayerMovementFSM* fsm = &gCL->entUtils->ArkPlayerPtr()->m_movementFSM;
+		auto &PsiPowerComponent = ArkPlayer::GetInstance().GetPsiPowerComponent();
+		ArkPlayerMovementFSM* fsm = &ArkPlayer::GetInstance().m_movementFSM;
 		if (ImGui::Button("Smoke Form"))
 			PsiPowerComponent.UnlockPower(EArkPsiPowers::smokeForm, 1);
 		if (ImGui::Button("Fly Mode Test"))
 			fsm->m_flyMode = ArkPlayerMovementFSM::EArkFlyMode::on;
 		ImGui::Text("Fly Mode: %u", fsm->m_flyMode);
 		ImGui::Text("Current State: %u", fsm->m_currentStateId);
-		ImGui::Text("Stance: %u", gCL->entUtils->ArkPlayerPtr()->GetStance());
+		ImGui::Text("Stance: %u", ArkPlayer::GetInstance().GetStance());
         static Vec3 ptc = {0, 0, 0};
         static Vec3 gravity = {0, 0, 0};
-        ptc = gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetWorldPos();
+        ptc = ArkPlayer::GetInstance().GetEntity()->GetWorldPos();
         pe_params_buoyancy buoyancy;
 //        pe_action action;
         auto impulse = new pe_action_impulse();
         auto randDir = cry_random_unit_vector<Vec3>();
         impulse->impulse = randDir *= 10000;
-        ImGui::Text("Player Physics Type %u", gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPhysics()->GetType());
+        ImGui::Text("Player Physics Type %u", ArkPlayer::GetInstance().GetEntity()->GetPhysics()->GetType());
         if(ImGui::Button("Force Player")) {
-            gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPhysics()->Action(impulse);
+            ArkPlayer::GetInstance().GetEntity()->GetPhysics()->Action(impulse);
 
         }
         if(ImGui::Button("Check Areas")){
-//            gCL->entUtils->ArkPlayerPtr()->SetStance(EStance::STANCE_ZEROG);
+//            ArkPlayer::GetInstance().SetStance(EStance::STANCE_ZEROG);
 
             auto result = ArkPlayer::GetInstancePtr()->GetEntity()->GetPhysics()->GetWorld()->CheckAreas(ptc, gravity, &buoyancy);
-//            gCL->entUtils->ArkPlayerPtr()->m_movementFSM.m_currentStateId = ArkPlayerMovementFSM::EStateId::fly;
+//            ArkPlayer::GetInstance().m_movementFSM.m_currentStateId = ArkPlayerMovementFSM::EStateId::fly;
             CryLog("Result: %d", result);
         }
         static bool katamari;
@@ -315,9 +315,9 @@ void PlayerManager::drawAbilitiesTab() {
         }
         ImGui::Text("ptc: %f %f %f", ptc.x, ptc.y, ptc.z);
         ImGui::Text("gravity: %f %f %f", gravity.x, gravity.y, gravity.z);
-		ImGui::Text("Spectator Mode: %u", gCL->entUtils->ArkPlayerPtr()->GetSpectatorMode());
-		ImGui::Text("Input Disabled Mode: %u", gCL->entUtils->ArkPlayerPtr()->m_input.m_disabledMode);
-		ArkPlayerCamera* camera = &gCL->entUtils->ArkPlayerPtr()->m_camera;
+		ImGui::Text("Spectator Mode: %u", ArkPlayer::GetInstance().GetSpectatorMode());
+		ImGui::Text("Input Disabled Mode: %u", ArkPlayer::GetInstance().m_input.m_disabledMode);
+		ArkPlayerCamera* camera = &ArkPlayer::GetInstance().m_camera;
 		ImGui::Text("Camera Mode: %llu", (uintptr_t)camera->m_customViewFunction.target<void __cdecl(SViewParams&)>());
 		ImGui::Separator();
 #if 0
@@ -339,7 +339,7 @@ void PlayerManager::drawAbilitiesTab() {
 			//fix something later I guess
 		}
 		if (ImGui::Button("Exit Smoke Movement State")) {
-			gCL->entUtils->ArkPlayerPtr()->m_movementFSM.m_smokeState.Exit();
+			ArkPlayer::GetInstance().m_movementFSM.m_smokeState.Exit();
 			//fix something later I guess
 		}
 		ImGui::Separator();
@@ -398,9 +398,9 @@ void PlayerManager::drawAbilitiesTab() {
 }
 
 void PlayerManager::drawInventoryTab() {
-	if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+	if (ArkPlayer::GetInstancePtr() != nullptr) {
 		inventoryItems.clear();
-		for (auto& cell : gCL->entUtils->ArkPlayerPtr()->m_pInventory->m_storedItems) {
+		for (auto& cell : ArkPlayer::GetInstance().m_pInventory->m_storedItems) {
 			std::pair<int, ArkInventory::StorageCell> newItem = {cell.m_entityId, cell};
 			inventoryItems.insert(newItem);
 		}
@@ -408,9 +408,9 @@ void PlayerManager::drawInventoryTab() {
 	if (ImGui::BeginTabItem("Inventory")) {
 		float size = 75.0f;
 		int inventoryWidth = 0, inventoryHeight = 0;
-		if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
-			inventoryHeight = gCL->entUtils->ArkPlayerPtr()->m_pInventory->GetHeight();
-			inventoryWidth = gCL->entUtils->ArkPlayerPtr()->m_pInventory->GetWidth();
+		if (ArkPlayer::GetInstancePtr() != nullptr) {
+			inventoryHeight = ArkPlayer::GetInstance().m_pInventory->GetHeight();
+			inventoryWidth = ArkPlayer::GetInstance().m_pInventory->GetWidth();
 		}
 		else {
 			inventoryWidth = 12;
@@ -542,7 +542,7 @@ void PlayerManager::drawInventoryTab() {
 			}
 		}
 		if (ImGui::Button("Make the game unplayable")) {
-			gCL->entUtils->ArkPlayerPtr()->m_pInventory->m_size = ArkInventory::EArkGridSizes::smallExternal;
+			ArkPlayer::GetInstance().m_pInventory->m_size = ArkInventory::EArkGridSizes::smallExternal;
 		}
 		ImGui::EndChild();
 		//TODO: add items
@@ -551,9 +551,9 @@ void PlayerManager::drawInventoryTab() {
 }
 
 void PlayerManager::loadPosition(int saveSlot) {
-	if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+	if (ArkPlayer::GetInstancePtr() != nullptr) {
 		if (positions[saveSlot] != Vec3_tpl{ 0, 0, 0 }) {
-			gCL->entUtils->ArkPlayerPtr()->GetEntity()->SetPos(positions[saveSlot]);
+			ArkPlayer::GetInstance().GetEntity()->SetPos(positions[saveSlot]);
 			std::string playerMessage = "Player position set to ";
 			gCL->gui->logItem(
 				playerMessage + "Pos "+ std::to_string(saveSlot + 1) + " at " + std::to_string(positions[saveSlot].x) + "," +
@@ -567,7 +567,7 @@ void PlayerManager::loadPosition(int saveSlot) {
 	}
 }
 void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
-	positions[saveSlot] = gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+	positions[saveSlot] = ArkPlayer::GetInstance().GetEntity()->GetPos();
 	gCL->gui->logItem("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
 }
 
@@ -578,8 +578,8 @@ void PlayerManager::drawMenuBar() {
 			if (ImGui::BeginMenu("Player")) {
 				ImGui::MenuItem("Refresh Abilities");
 				if (ImGui::MenuItem("Full Heal")) {
-					if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
-						gCL->entUtils->ArkPlayerPtr()->SetHealth(gCL->entUtils->ArkPlayerPtr()->GetMaxHealth());
+					if (ArkPlayer::GetInstancePtr() != nullptr) {
+						ArkPlayer::GetInstance().SetHealth(ArkPlayer::GetInstance().GetMaxHealth());
 					}
 				}
 				ImGui::MenuItem("God Mode", NULL, &godMode);
@@ -607,7 +607,7 @@ void PlayerManager::update() {
 //				if (GetAsyncKeyState(VK_SHIFT)) {
 //					loadPosition(i - 1);
 //				} else if(GetAsyncKeyState(VK_CONTROL)) {
-//					savePosition(i - 1, gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPos());
+//					savePosition(i - 1, ArkPlayer::GetInstance().GetEntity()->GetPos());
 //				}
 //			}
 //		}
@@ -619,10 +619,10 @@ void PlayerManager::update() {
 #if 0
 void ChairloaderGUIPlayerManager::checkAbilities(ChairloaderGUILog* log) {
 	if (refreshAbilityList) {
-		if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+		if (ArkPlayer::GetInstancePtr() != nullptr) {
 			for (auto itr = abilityDisplayList.begin(); itr != abilityDisplayList.end(); ++itr) {
-				if (gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-					itr->acquired = gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(itr->id);
+				if (ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+					itr->acquired = ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->HasAbility(itr->id);
 				}
 				//abilityDisplayList.emplace_back(entry);
 			}
@@ -640,12 +640,12 @@ void ChairloaderGUIPlayerManager::checkAbilities(ChairloaderGUILog* log) {
 void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) {
 	try {
 		if (!AbilityListInitialized) {
-			if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
+			if (ArkPlayer::GetInstancePtr() != nullptr) {
 				for (auto itr = gCL->entUtils->abilityLibrary.arkAbilityMap.begin(); itr != gCL->entUtils->abilityLibrary.
 				     arkAbilityMap.end(); ++itr) {
 					abilityEntry entry = {itr->first, itr->second, false};
-					if (gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr) {
-						if (gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(itr->first)) {
+					if (ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent.get() != nullptr) {
+						if (ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->HasAbility(itr->first)) {
 							entry.acquired = true;
 						}
 					}
@@ -670,9 +670,9 @@ void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) 
 				}
 				if (entry != nullptr) {
 					if (!entry->acquired) {
-						if (gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent.get() != nullptr && !
-							gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->HasAbility(entry->id)) {
-							gCL->entUtils->ArkPlayerPtr()->m_playerComponent.m_pAbilityComponent->GrantAbility(entry->id);
+						if (ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent.get() != nullptr && !
+							ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->HasAbility(entry->id)) {
+							ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->GrantAbility(entry->id);
 
 							// CryLog("Granted Ability: %s\n", gCL->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
 							entry->acquired = true;

@@ -70,7 +70,7 @@ bool EntityHierarchy::DoesEntityPassFilter(IEntity* pEnt)
 	if ((m_FilterFlags & eFF_Item) && g_pGame->m_pArkGame->GetArkItemSystem().GetItem(pEnt->GetId()))
 		return true;
 
-	if ((m_FilterFlags & eFF_Npc) && gEntUtils->GetArkNpc(pEnt))
+	if ((m_FilterFlags & eFF_Npc) && EntityUtils::GetArkNpc(pEnt))
 		return true;
 
 	return false;

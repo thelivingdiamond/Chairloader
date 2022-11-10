@@ -13,7 +13,6 @@ struct ChairloaderGlobalEnvironment {
 	IChairloaderImGui* pImGui;
 	IChairloaderGui* gui;
 	IChairloaderConfigManager* conf;
-	EntityUtils* entUtils;
 	IRenderAuxGeomEx* pAuxGeomEx;
 	IChairRender* pRender;
 };

@@ -38,7 +38,7 @@ private:
 	std::vector<Vec3_tpl<float>> positions = { {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0} };
 
 
-	bool godMode;
+	bool godMode = false;
 	const std::string modName = "PlayerManager";
 	bool AbilityListInitialized, refreshAbilityList;
 

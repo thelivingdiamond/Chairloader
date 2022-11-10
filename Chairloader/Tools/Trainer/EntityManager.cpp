@@ -189,7 +189,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                                        ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_TabListPopupButton)) {
                     if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
                         auto entity = gEnv->pEntitySystem->GetEntity(selectedEntity);
-                        auto npc = gCL->entUtils->GetArkNpc(entity);
+                        auto npc = EntityUtils::GetArkNpc(entity);
                         if (ImGui::BeginTabItem("Entity Details")) {
                             inspector.ShowContents(selectedEntity);
                             ImGui::EndTabItem();
@@ -1525,11 +1525,11 @@ void EntityManager::spawnEntity() {
             usePlayerPos;
             offsetFromPlayer;
             if (usePlayerPos) {
-                if (gCL->entUtils->ArkPlayerPtr() != nullptr) {
-                    pos = gCL->entUtils->ArkPlayerPtr()->GetEntity()->GetPos();
+                if (ArkPlayer::GetInstancePtr() != nullptr) {
+                    pos = ArkPlayer::GetInstancePtr()->GetEntity()->GetPos();
                     if (offsetFromPlayer) {
-                        pos.x += gCL->entUtils->ArkPlayerPtr()->m_cachedReticleDir.x * offsetDistance[1];
-                        pos.y += gCL->entUtils->ArkPlayerPtr()->m_cachedReticleDir.y * offsetDistance[1];
+                        pos.x += ArkPlayer::GetInstancePtr()->m_cachedReticleDir.x * offsetDistance[1];
+                        pos.y += ArkPlayer::GetInstancePtr()->m_cachedReticleDir.y * offsetDistance[1];
                         pos.z += offsetDistance[2];
 
                     } else {
@@ -1572,7 +1572,7 @@ void EntityManager::spawnEntity() {
                         // TODO: ADD ability for mods to define what their archetypes are
                         // TODO: add cystoid support
                     {
-                        auto entity = gCL->entUtils->spawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
+                        auto entity = EntityUtils::SpawnNpc(inputName.c_str(), pos, rot, archetype->GetId(),
                                                                  spawnCount, selectedSpawnerFaction);
                         if (entity != nullptr) {
                             if (selectedSpawnerFaction != 0) {
@@ -1582,7 +1582,7 @@ void EntityManager::spawnEntity() {
                             }
                         }
                     } else {
-                        gCL->entUtils->spawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
+                        EntityUtils::SpawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
                         gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
                     }
                 }
@@ -1643,9 +1643,9 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
                     // TODO: ADD ability for mods to define what their archetypes are
                     // TODO: add cystoid support
                 {
-                    gCL->entUtils->spawnNpc("", pos, rot, archetypeId, spawnCount);
+                    EntityUtils::SpawnNpc("", pos, rot, archetypeId, spawnCount);
                 } else {
-                    gCL->entUtils->spawnEntity("", pos, rot, archetypeId, spawnCount);
+                    EntityUtils::SpawnEntity("", pos, rot, archetypeId, spawnCount);
                 }
             } else {
                 throw("Error, no class found");

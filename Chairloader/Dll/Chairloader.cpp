@@ -244,7 +244,6 @@ void Chairloader::InitGame(IGameFramework* pFramework)
 {
 	CryLog("Chairloader::InitGame");
 	m_pFramework = pFramework;
-	gEntUtils = new EntityUtils();
 
 	gRenDev->m_pRT->SyncMainWithRender();
 	gRenDev->m_pRT->SyncMainWithRender();
