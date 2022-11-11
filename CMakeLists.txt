@@ -33,6 +33,13 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 # Game path
 set(PREY_PATH "" CACHE PATH "(optional) Path to the game root directory (where Engine and GameSDK are) to automatically install built binaries")
 
+# Chairloader Version
+set(_CHAIRLOADER_VERSION_MAJOR 0)  # Increment when breaking changes are made
+set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
+set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
+set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
+set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alpha")
+
 # Macros and functions
 
 # Sets target's output directory to a path in the game
@@ -61,6 +68,8 @@ find_package(Boost REQUIRED COMPONENTS filesystem log)
 find_package(Detours MODULE REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
+
+find_package(unofficial-curlpp CONFIG REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)
 
 # Project libraries
