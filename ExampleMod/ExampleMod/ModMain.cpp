@@ -33,10 +33,10 @@ static bool ArkPlayer_HasAbility_Hook(ArkPlayer* _this, uint64_t _abilityID)
 
 #endif
 
-void ModMain::FillModInfo(ModDllInfo& info)
+void ModMain::FillModInfo(ModDllInfoEx& info)
 {
-	info.thisStructSize = sizeof(ModDllInfo);
 	info.modName = "TheChair.ExampleMod"; // CHANGE ME
+	info.logTag = "ExampleMod"; // CHANGE ME
 	info.supportsHotReload = true; // TODO: Add comment/wiki link
 }
 

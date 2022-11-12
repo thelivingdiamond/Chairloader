@@ -34,6 +34,8 @@ public:
 	Internal::IModDllManager* GetDllManager() override;
 	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
 
+	std::unique_ptr<IChairLogger> CreateLogger() override;
+
 	const std::string& GetKeyStrHideGui();
 	const std::string& GetKeyStrToggleFreecam();
 

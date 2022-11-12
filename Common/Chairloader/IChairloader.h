@@ -6,6 +6,7 @@
 #include "IChairloaderGui.h"
 
 struct IGameFramework;
+struct IChairLogger;
 
 struct IChairloader {
     //! @returns Pointers to interfaces provided by Chairloader to be used by mods.
@@ -16,6 +17,9 @@ struct IChairloader {
 
     //! @returns the base address of PreyDll.dll.
     virtual uintptr_t GetPreyDllBase() = 0;
+
+    //! Creates a new IChairLogger instance.
+    virtual std::unique_ptr<IChairLogger> CreateLogger() = 0;
 
     //! Key Map Names for key bind purposes
     using KeyNameMap = boost::bimap<EKeyId, std::string>;

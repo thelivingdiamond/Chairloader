@@ -1,6 +1,8 @@
 #pragma once
 #include <Chairloader/IChairloaderModule.h>
 
+struct IChairLogger;
+
 namespace Internal
 {
 
@@ -21,6 +23,9 @@ struct IChairloaderCore : public IChairloaderModule
 
 	//! Game initialization.
 	virtual void InitGame() = 0;
+
+	//! Creates a new IChairLogger instance.
+	virtual std::unique_ptr<IChairLogger> CreateLogger() = 0;
 };
 
 } // namespace Internal

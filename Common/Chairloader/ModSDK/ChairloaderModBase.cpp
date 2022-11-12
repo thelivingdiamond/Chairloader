@@ -9,15 +9,21 @@ ChairloaderGlobalEnvironment* gCL = nullptr;
 
 void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
-	FillModInfo(dllInfo);
+	// Fill dllInfo
+	ModDllInfoEx dllInfoEx;
+	dllInfoEx.thisStructSize = sizeof(ModDllInfo);
+	FillModInfo(dllInfoEx);
 
-	// Validate dllInfo
-	CRY_ASSERT(dllInfo.thisStructSize == sizeof(ModDllInfo));
-	CRY_ASSERT(dllInfo.modName != nullptr);
+	CRY_ASSERT(dllInfoEx.thisStructSize == sizeof(ModDllInfo));
+	CRY_ASSERT(dllInfoEx.modName != nullptr);
+	CRY_ASSERT(dllInfoEx.logTag != nullptr);
+
+	dllInfo = dllInfoEx;
 
 	// Init the DLL
-	ModuleInitISystem(initInfo.pSystem, dllInfo.modName);
+	ModuleInitISystem(initInfo.pSystem, dllInfoEx.modName);
 	gCL = initInfo.pChair->GetChairloaderEnvironment();
+	ModuleInitIChairLogger(dllInfoEx.logTag);
 	m_ModuleBase = gCL->cl->GetPreyDllBase();
 
 	// Install hooks

@@ -8,6 +8,10 @@ set(SOURCE_FILES
 	ChairloaderCore.h
 	ChairloaderGui.cpp
 	ChairloaderGui.h
+	ChairLogger.cpp
+	ChairLogger.h
+	LogManager.cpp
+	LogManager.h
 	ModDllManager.cpp
 	ModDllManager.h
 	OverlayLog.cpp

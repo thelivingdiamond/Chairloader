@@ -176,12 +176,12 @@ Chairloader::~Chairloader()
 
 void Chairloader::InitSystem(CSystem* pSystem)
 {
+	gCL->cl = this;
 	ModuleInitISystem(pSystem, "Chairloader");
+	ModuleInitIChairLogger("Chairloader");
 	g_StdoutConsole.Init();
 	CryLog("Chairloader::InitSystem");
 	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
-
-	gCL->cl = this;
 
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
@@ -474,6 +474,11 @@ ChairloaderGlobalEnvironment* Chairloader::GetChairloaderEnvironment() {
 uintptr_t Chairloader::GetPreyDllBase()
 {
 	return GetModuleBase();
+}
+
+std::unique_ptr<IChairLogger> Chairloader::CreateLogger()
+{
+	return m_pCore->CreateLogger();
 }
 
 bool Chairloader::IsEditorEnabled()

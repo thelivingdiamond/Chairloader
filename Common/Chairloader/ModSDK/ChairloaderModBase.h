@@ -7,6 +7,12 @@
 class ChairloaderModBase : public IChairloaderMod
 {
 public:
+	struct ModDllInfoEx : ModDllInfo
+	{
+		//! Name of the mod without author for the logger.
+		const char* logTag = nullptr;
+	};
+
 	//! @returns base address of PreyDll.dll
 	uintptr_t GetModuleBase() { return m_ModuleBase; }
 
@@ -17,7 +23,7 @@ public:
 	const fs::path& GetModDLLPath() { return m_ModDllPath; }
 
 	//! Fills in the DLL info during initialization.
-	virtual void FillModInfo(ModDllInfo& info) = 0;
+	virtual void FillModInfo(ModDllInfoEx& info) = 0;
 
 	//! Initializes function hooks before they are installed.
 	virtual void InitHooks() = 0;

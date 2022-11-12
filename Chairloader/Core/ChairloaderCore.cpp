@@ -6,6 +6,8 @@
 #include "ChairloaderConfigManager.h"
 #include "ChairloaderGui.h"
 #include "ChairLoaderImGui.h"
+#include "ChairLogger.h"
+#include "LogManager.h"
 #include "ModDllManager.h"
 
 constexpr char CONFIG_NAME[] = "Chairloader";
@@ -23,6 +25,7 @@ ChairloaderCore* ChairloaderCore::Get()
 
 void ChairloaderCore::InitSystem()
 {
+	LogManager::Get().InitSystem();
 	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
 	gCL->conf = m_pConfigManager.get();
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
@@ -87,6 +90,8 @@ void ChairloaderCore::ShutdownGame()
 
 void ChairloaderCore::PreUpdate()
 {
+	LogManager::Get().Update();
+
 	if (gCL->conf->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
@@ -136,6 +141,11 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 Internal::IModDllManager* ChairloaderCore::GetDllManager()
 {
 	return m_pModDllManager.get();
+}
+
+std::unique_ptr<IChairLogger> ChairloaderCore::CreateLogger()
+{
+	return std::make_unique<ChairLogger>();
 }
 
 const std::string& ChairloaderCore::GetKeyStrHideGui()

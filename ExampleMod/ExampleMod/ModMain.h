@@ -6,7 +6,7 @@ class ModMain : public ChairloaderModBase
 	using BaseClass = ChairloaderModBase;
 
 	//! Fills in the DLL info during initialization.
-	virtual void FillModInfo(ModDllInfo& info) override;
+	virtual void FillModInfo(ModDllInfoEx& info) override;
 
 	//! Initializes function hooks before they are installed.
 	virtual void InitHooks() override;
