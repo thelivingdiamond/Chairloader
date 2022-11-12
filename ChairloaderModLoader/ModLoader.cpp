@@ -12,7 +12,7 @@
 #include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"
-#include "../ChairLoader/GUIUtils.h"
+#include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible
 #include "BinaryVersionCheck.h"
 
 static std::string ErrorMessage;
