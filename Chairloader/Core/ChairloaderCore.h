@@ -37,6 +37,10 @@ public:
 	const std::string& GetKeyStrHideGui();
 	const std::string& GetKeyStrToggleFreecam();
 
+	//! Toggles the built-in freecam mode when in dev mode.
+	void ToggleFreecam();
+	bool IsFreecamEnabled();
+
 private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
 	std::unique_ptr<ModDllManager> m_pModDllManager;

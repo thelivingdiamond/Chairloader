@@ -9,6 +9,7 @@
 #include "ModDllManager.h"
 
 constexpr char CONFIG_NAME[] = "Chairloader";
+static PreyGlobal<bool> s_freeCamActive(0x2C09352);
 
 std::unique_ptr<Internal::IChairloaderCore> Internal::IChairloaderCore::CreateInstance()
 {
@@ -125,18 +126,7 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 	}
 
 	if (event.keyId == m_KeyToggleFreecam && event.state == eIS_Pressed) {
-		// TODO:
-		/*m_FreeCamEnabled = !m_FreeCamEnabled;
-		CryLog("Freecam state: %u\n", m_FreeCamEnabled);
-		if (m_FreeCamEnabled) {
-			m_DevMode = true;
-			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
-			gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
-		}
-		else {
-			((CSystem*)gEnv->pSystem)->SetDevMode(m_DevMode);
-			gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
-		}*/
+		ToggleFreecam();
 		return true;
 	}
 
@@ -156,6 +146,21 @@ const std::string& ChairloaderCore::GetKeyStrHideGui()
 const std::string& ChairloaderCore::GetKeyStrToggleFreecam()
 {
 	return gChair->GetKeyNames().left.at(m_KeyToggleFreecam);
+}
+
+void ChairloaderCore::ToggleFreecam()
+{
+	if (!gEnv->pSystem->IsDevMode())
+		CryError("FreeCam requires dev mode to be enabled");
+	else if (*s_freeCamActive)
+		gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
+	else
+		gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
+}
+
+bool ChairloaderCore::IsFreecamEnabled()
+{
+	return *s_freeCamActive;
 }
 
 void ChairloaderCore::LoadConfig()

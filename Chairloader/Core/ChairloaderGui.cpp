@@ -79,27 +79,23 @@ void ChairloaderGui::draw() {
                             ((CSystem *) gEnv->pSystem)->SetDevMode(inDevMode);
                         }
                         ImGui::Separator();
-                        if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(),
-                                            control.freeCam)) {
-                            control.freeCam = !control.freeCam;
-                            if (control.freeCam) {
-                                control.devMode = true;
-                                ((CSystem *) gEnv->pSystem)->SetDevMode(control.devMode);
-                                gEnv->pConsole->ExecuteString("FreeCamEnable", true, false);
-                            } else {
-                                ((CSystem *) gEnv->pSystem)->SetDevMode(true);
-                                gEnv->pConsole->ExecuteString("FreeCamDisable", true, false);
-                                ((CSystem *) gEnv->pSystem)->SetDevMode(control.devMode);
+                        
+                        if (gEnv->pSystem->IsDevMode())
+                        {
+                            bool freeCam = ChairloaderCore::Get()->IsFreecamEnabled();
+                            if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(), freeCam)) {
+                                ChairloaderCore::Get()->ToggleFreecam();
                             }
-                        }
-                        if (control.freeCam) {
-                            if (ImGui::MenuItem("Freeze Free Cam", nullptr,
-                                                gEnv->pConsole->GetCVar("g_moveDetachedCamera")->GetIVal() == 0)) {
-                                auto moveDetachedCamera = gEnv->pConsole->GetCVar("g_moveDetachedCamera");
-                                if (moveDetachedCamera->GetIVal() == 0) {
-                                    moveDetachedCamera->Set(1);
-                                } else {
-                                    moveDetachedCamera->Set(0);
+
+                            if (freeCam) {
+                                ICVar* moveDetachedCamera = gEnv->pConsole->GetCVar("g_moveDetachedCamera");
+                                if (ImGui::MenuItem("Freeze Free Cam", nullptr, moveDetachedCamera->GetIVal() == 0)) {
+                                    if (moveDetachedCamera->GetIVal() == 0) {
+                                        moveDetachedCamera->Set(1);
+                                    }
+                                    else {
+                                        moveDetachedCamera->Set(0);
+                                    }
                                 }
                             }
                         }
