@@ -35,7 +35,7 @@ struct ParseBuffer {
 		}
 
 		ImGui::TextUnformatted(buf);
-		ImGui::SameLine();
+		ImGui::SameLine(0, 0);
 
 		if (color.w != 0) {
 			ImGui::PopStyleColor();
