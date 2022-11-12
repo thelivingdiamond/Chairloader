@@ -121,7 +121,7 @@ bool ModDllManager::CheckModulesForChanges()
 			{
 				foundChanges = true;
 				mod.bSourceFileModified = true;
-				CryLog("[ModDllManager] Mod %s was changed", mod.modName.c_str());
+				CryLog("[ModDllManager] Mod {} was changed", mod.modName);
 			}
 		}
 	}
@@ -205,7 +205,7 @@ void ModDllManager::LoadModule(Module& mod)
 		mod.realDllPath = mod.sourceDllPath;
 	}
 
-	CryLog("[ModDllManager] Loading %s (%s)", mod.modName.c_str(), mod.realDllPath.u8string().c_str());
+	CryLog("[ModDllManager] Loading {} ({})", mod.modName, mod.realDllPath.u8string());
 	mod.hModule = ::LoadLibraryW(mod.realDllPath.c_str());
 	if (!mod.hModule)
 		CryFatalError("%s\nFailed to load the DLL.\n%s", mod.modName.c_str(), mod.realDllPath.u8string().c_str());
@@ -225,7 +225,7 @@ void ModDllManager::LoadModule(Module& mod)
 void ModDllManager::UnloadModule(Module& mod)
 {
 	CRY_ASSERT(mod.hModule);
-	CryLog("[ModDllManager] Unloading %s (%s)", mod.modName.c_str(), mod.realDllPath.u8string().c_str());
+	CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
 	mod.pfnShutdown();
 	FreeLibrary(mod.hModule);
 
@@ -251,5 +251,5 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 		CryFatalError("[ModDllManager] %s: dllInfo is not initialized", mod.modName.c_str());
 
 	if (mod.modName != mod.dllInfo.modName)
-		CryWarning("[ModDllManager] %s: Name mismatch. DLL says \"%s\"", mod.modName.c_str(), mod.dllInfo.modName);
+		CryWarning("[ModDllManager] {}: Name mismatch. DLL says \"{}\"", mod.modName.c_str(), mod.dllInfo.modName);
 }

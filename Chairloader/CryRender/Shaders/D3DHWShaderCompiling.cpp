@@ -1150,7 +1150,7 @@ bool CHWShader_D3D::mfGetCacheTokenMap(FXShaderToken*& Table, TArray<uint32>*& p
 			if (!*CRenderer::CV_r_shadersAllowCompilation)
 				return false;
 
-			//CryLogAlways("Storing MAP entry '%s' in shader cache file '%s'", strName, m_pGlobalCache->m_Name.c_str());
+			//CryLogAlways("Storing MAP entry '{}' in shader cache file '{}'", strName, m_pGlobalCache->m_Name.c_str());
 
 			return mfStoreCacheTokenMap(Table, pSHData, strName);
 		}
@@ -1169,7 +1169,7 @@ bool CHWShader_D3D::mfGetCacheTokenMap(FXShaderToken*& Table, TArray<uint32>*& p
 	}
 	if (!pDE || !pRes)
 	{
-		CryWarning("Couldn't find tokens MAP entry '%s' in shader cache file '%s'", strName, m_pGlobalCache->m_Name.c_str());
+		CryWarning("Couldn't find tokens MAP entry '{}' in shader cache file '{}'", strName, m_pGlobalCache->m_Name.c_str());
 		ASSERT_IN_SHADER(0);
 		return false;
 	}
@@ -1977,7 +1977,7 @@ SShaderCache::~SShaderCache()
 		if (m_pStreamInfo->m_EntriesQueue.size())
 		   bWarn = true;
 		   if (bWarn)
-		   CryWarning("Warning: SShader`Cache::~SShaderCache(): '%s' Streaming tasks is still in progress!: %d", m_Name.c_str(), m_pStreamInfo->m_EntriesQueue.size());
+		   CryWarning("Warning: SShader`Cache::~SShaderCache(): '{}' Streaming tasks is still in progress!: {}", m_Name.c_str(), m_pStreamInfo->m_EntriesQueue.size());
 
 		m_pStreamInfo->AbortJobs();
 	}
@@ -2114,7 +2114,7 @@ bool CHWShader_D3D::mfAddCacheItem(SShaderCache* pCache, SShaderCacheHeaderItem*
 		gEnv->pLog->Log("---Cache: StoredToGlobal %s': 0x%x", pCache->m_pRes[CACHE_USER]->mfGetFileName(), Name.get());
 
 	pItem->m_CRC32 = CCrc32::Compute(pData, nLen);
-	//CryLog("Size: %d: CRC: %x", nLen, pItem->m_CRC32);
+	//CryLog("Size: {}: CRC: {:x}", nLen, pItem->m_CRC32);
 
 	byte* pNew = new byte[sizeof(SShaderCacheHeaderItem) + nLen];
 	SDirEntry de;
@@ -2455,7 +2455,7 @@ bool CHWShader::mfOptimiseCacheFile(SShaderCache* pCache, bool bForce, SOptimise
 	}
 
 	if (pStats)
-		CryLog("  -- Shader cache '%s' stats: Entries: %d, Unique Entries: %d, Size: %.3f Mb, Compressed Size: %.3f Mb, Token data size: %3f Mb, Directory Size: %.3f Mb", pCache->m_Name.c_str(), pStats->nEntries, pStats->nUniqueEntries, pStats->nSizeUncompressed / 1024.0f / 1024.0f, pStats->nSizeCompressed / 1024.0f / 1024.0f, pStats->nTokenDataSize / 1024.0f / 1024.0f, pStats->nDirDataSize / 1024.0f / 1024.0f);
+		CryLog("  -- Shader cache '{}' stats: Entries: {}, Unique Entries: {}, Size: {:.3f} Mb, Compressed Size: {:.3f} Mb, Token data size: {:3f} Mb, Directory Size: {:.3f} Mb", pCache->m_Name.c_str(), pStats->nEntries, pStats->nUniqueEntries, pStats->nSizeUncompressed / 1024.0f / 1024.0f, pStats->nSizeCompressed / 1024.0f / 1024.0f, pStats->nTokenDataSize / 1024.0f / 1024.0f, pStats->nDirDataSize / 1024.0f / 1024.0f);
 
 	return true;
 }
@@ -2500,7 +2500,7 @@ bool CHWShader::_OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* 
 					bValid = false;
 				if (!bValid && (*CRenderer::CV_r_shadersdebug == 2 || nCache == CACHE_READONLY))
 				{
-					CryWarning("WARNING: Shader cache '%s' version mismatch (Cache: %d.%d, Expected: %.1f)", pRF->mfGetFileName(), pLookup->m_CacheMajorVer, pLookup->m_CacheMinorVer, fVersion);
+					CryWarning("WARNING: Shader cache '{}' version mismatch (Cache: {}.{}, Expected: {:.1f})", pRF->mfGetFileName(), pLookup->m_CacheMajorVer, pLookup->m_CacheMinorVer, fVersion);
 				}
 				if (pSH)
 				{
@@ -2509,7 +2509,7 @@ bool CHWShader::_OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* 
 						bValid = false;
 						if (*CRenderer::CV_r_shadersdebug == 2 && (*CRenderer::CV_r_shadersdebug == 2 || nCache == CACHE_READONLY))
 						{
-							CryWarning("WARNING: Shader cache '%s' CRC mismatch", pRF->mfGetFileName());
+							CryWarning("WARNING: Shader cache '{}' CRC mismatch", pRF->mfGetFileName());
 						}
 					}
 				}
@@ -2814,17 +2814,17 @@ bool CHWShader_D3D::mfUploadHW(LPD3D10BLOB pShader, SHWSInstance* pInst, CShader
 		if (!bResult)
 		{
 			if (m_eSHClass == eHWSC_Vertex)
-				CryWarning("CHWShader_D3D::mfUploadHW: Could not create vertex shader '%s'(0x%" PRIx64 ")\n", GetName(), pInst->m_Ident.m_GLMask);
+				CryWarning("CHWShader_D3D::mfUploadHW: Could not create vertex shader '{}'(0x{:x})\n", GetName(), pInst->m_Ident.m_GLMask);
 			else if (m_eSHClass == eHWSC_Pixel)
-				CryWarning("CHWShader_D3D::mfUploadHW: Could not create pixel shader '%s'(0x%" PRIx64 ")\n", GetName(), pInst->m_Ident.m_GLMask);
+				CryWarning("CHWShader_D3D::mfUploadHW: Could not create pixel shader '{}'(0x{:x})\n", GetName(), pInst->m_Ident.m_GLMask);
 			else if (m_eSHClass == eHWSC_Geometry)
-				CryWarning("CHWShader_D3D::mfUploadHW: Could not create geometry shader '%s'(0x%" PRIx64 ")\n", GetName(), pInst->m_Ident.m_GLMask);
+				CryWarning("CHWShader_D3D::mfUploadHW: Could not create geometry shader '{}'(0x{:x})\n", GetName(), pInst->m_Ident.m_GLMask);
 			else if (m_eSHClass == eHWSC_Domain)
-				CryWarning("CHWShader_D3D::mfUploadHW: Could not create domain shader '%s'(0x%" PRIx64 ")\n", GetName(), pInst->m_Ident.m_GLMask);
+				CryWarning("CHWShader_D3D::mfUploadHW: Could not create domain shader '{}'(0x{:x})\n", GetName(), pInst->m_Ident.m_GLMask);
 			else if (m_eSHClass == eHWSC_Hull)
-				CryWarning("CHWShader_D3D::mfUploadHW: Could not create hull shader '%s'(0x%" PRIx64 ")\n", GetName(), pInst->m_Ident.m_GLMask);
+				CryWarning("CHWShader_D3D::mfUploadHW: Could not create hull shader '{}'(0x{:x})\n", GetName(), pInst->m_Ident.m_GLMask);
 			else if (m_eSHClass == eHWSC_Compute)
-				CryWarning("CHWShader_D3D::mfUploadHW: Could not create compute shader '%s'(0x%" PRIx64 ")\n", GetName(), pInst->m_Ident.m_GLMask);
+				CryWarning("CHWShader_D3D::mfUploadHW: Could not create compute shader '{}'(0x{:x})\n", GetName(), pInst->m_Ident.m_GLMask);
 		}
 	}
 	return bResult;
@@ -3214,7 +3214,7 @@ int CHWShader_D3D::mfAsyncCompileReady(SHWSInstance* pInst)
 		if ((pAsync->m_pErrors && !pAsync->m_Errors.empty()) || !pAsync->m_pDevShader)
 		{
 			//if (*CRenderer::CV_r_logShaders)
-				CryWarning("Async %d: **Failed to compile 0x%x '%s' shader\n", gRenDev->GetFrameID(false), pInst, nameSrc);
+				CryWarning("Async {}: **Failed to compile 0x{:x} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
 			string Errors = pAsync->m_Errors;
 			string Text = pAsync->m_Text;
 			CShader* pFXShader = pAsync->m_pFXShader;
@@ -3229,13 +3229,13 @@ int CHWShader_D3D::mfAsyncCompileReady(SHWSInstance* pInst)
 
 			mfOutputCompilerError(Errors, Text.c_str());
 
-			CryWarning("Couldn't compile HW shader '%s'", GetName());
+			CryWarning("Couldn't compile HW shader '{}'", GetName());
 			mfSaveCGFile(Text.c_str(), NULL);
 
 			bResult = false;
 		}
 		else //if (*CRenderer::CV_r_logShaders)
-			CryLog("Async %d: Finished compiling 0x%x '%s' shader\n", gRenDev->GetFrameID(false), pInst, nameSrc);
+			CryLog("Async {}: Finished compiling 0x{:x} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
 		pShader = pAsync->m_pDevShader;
 		pErrorMsgs = pAsync->m_pErrors;
 		pConstantTable = pAsync->m_pConstants;
@@ -3352,7 +3352,7 @@ bool CHWShader_D3D::mfRequestAsync(CShader* pSH, SHWSInstance* pInst, std::vecto
 	CAsyncShaderTask::InsertPendingShader(pInst->m_pAsync);
 
 	if (*CRenderer::CV_r_shadersdebug >= 2)
-		CryLog("Async %d: Requested compiling 0x%x '%s' shader\n", gRenDev->GetFrameID(false), pInst, nameSrc);
+		CryLog("Async {}: Requested compiling 0x{:x} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
 #endif
 	return false;
 }
@@ -3575,7 +3575,7 @@ LPD3D10BLOB CHWShader_D3D::mfCompileHLSL(CShader* pSH, char* prog_text, void** p
 			{
 				mfOutputCompilerError(strErr, prog_text);
 
-				CryWarning("Couldn't compile HW shader '%s'", GetName());
+				CryWarning("Couldn't compile HW shader '{}'", GetName());
 				mfSaveCGFile(prog_text, NULL);
 			}
 		}
@@ -3659,16 +3659,16 @@ void CHWShader_D3D::mfPrintCompileInfo(SHWSInstance* pInst)
 		string pName;
 		SShaderCombIdent Ident(m_nMaskGenFX, pInst->m_Ident);
 		gRenDev->m_cEF.mfInsertNewCombination(Ident, pInst->m_eClass, szGenName, 0, &pName, false);
-		CryLog(" Compile %s (%d instructions, %d tempregs, %d/%d constants) ... ", pName.c_str(), pInst->m_nInstructions, pInst->m_nTempRegs, nParams, nConsts);
+		CryLog(" Compile {} ({} instructions, {} tempregs, {}/{} constants) ... ", pName.c_str(), pInst->m_nInstructions, pInst->m_nTempRegs, nParams, nConsts);
 		int nSize = strlen(szGenName);
 		mfGenName(pInst, &szGenName[nSize], 512 - nSize, 1);
-		CryLog("           --- Cache entry: %s", szGenName);
+		CryLog("           --- Cache entry: {}", szGenName);
 	}
 	else
 	{
 		int nSize = strlen(szGenName);
 		mfGenName(pInst, &szGenName[nSize], 512 - nSize, 1);
-		CryLog(" Compile %s (%d instructions, %d tempregs, %d/%d constants) ... ", szGenName, pInst->m_nInstructions, pInst->m_nTempRegs, nParams, nConsts);
+		CryLog(" Compile {} ({} instructions, {} tempregs, {}/{} constants) ... ", szGenName, pInst->m_nInstructions, pInst->m_nTempRegs, nParams, nConsts);
 	}
 
 	if (gRenDev->m_cEF.m_bActivated && *CRenderer::CV_r_shadersdebug > 0)
@@ -3744,13 +3744,13 @@ bool CHWShader_D3D::mfCreateShaderEnv(int nThread, SHWSInstance* pInst, LPD3D10B
 			//if (!(gRenDev->m_cEF.m_nCombination & 0xff))
 			if (!CParserBin::m_nPlatform)
 			{
-				CryLog("%d: Compile %s %s (%d out of %d) - (%d/%d constants) ... ", nThread,
+				CryLog("{}: Compile {} {} ({} out of {}) - ({}/{} constants) ... ", nThread,
 				       mfProfileString(pInst->m_eClass), pSH->GetName(), nCombination, gRenDev->m_cEF.m_nCombinationsProcessOverall,
 				       nParams, nConsts);
 			}
 			else
 			{
-				CryLog("%d: Compile %s %s (%d out of %d) ... ", nThread,
+				CryLog("{}: Compile {} {} ({} out of {}) ... ", nThread,
 				       mfProfileString(pInst->m_eClass), pSH->GetName(), nCombination, gRenDev->m_cEF.m_nCombinationsProcessOverall);
 			}
 		}
@@ -3913,11 +3913,7 @@ bool CHWShader_D3D::mfActivate(CShader* pSH, uint32 nFlags, FXShaderToken* Table
 		{
 			if (!pInst->m_bAsyncActivating)
 			{
-#ifdef __GNUC__
-				CryWarning("Warning: Shader %s(%llx)(%x)(%x)(%x)(%llx)(%s) is not existing in the cache\n",
-#else
-				CryWarning("Warning: Shader %s(%I64x)(%x)(%x)(%x)(%llx)(%s) is not existing in the cache\n",
-#endif
+				CryWarning("Warning: Shader {}({:x})({:x})({:x})({:x})({:x})({}) is not existing in the cache\n",
 				        GetName(), pInst->m_Ident.m_RTMask, pInst->m_Ident.m_LightMask, pInst->m_Ident.m_MDMask, pInst->m_Ident.m_MDVMask, pInst->m_Ident.m_pipelineState.opaque, mfProfileString(pInst->m_eClass));
 			}
 			return false;

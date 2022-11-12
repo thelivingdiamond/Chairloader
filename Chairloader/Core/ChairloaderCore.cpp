@@ -25,7 +25,7 @@ void ChairloaderCore::InitSystem()
 {
 	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
 	gCL->conf = m_pConfigManager.get();
-	CryLog("Chairloader config loaded: %u", gCL->conf->loadModConfigFile(CONFIG_NAME));
+	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 	ChairLoaderImGui::InitHooks();
 }
@@ -55,7 +55,7 @@ void ChairloaderCore::RegisterMods()
 		if (mod.child("enabled").text().as_bool()) {
 			if (mod.child("dllName"))
 			{
-				CryLog("Found DLL mod: %s", modName.c_str());
+				CryLog("Found DLL mod: {}", modName);
 				m_pModDllManager->RegisterModFromXML(mod);
 			}
 
@@ -63,7 +63,7 @@ void ChairloaderCore::RegisterMods()
 			fs::path shadersPath = modDirPath / "Shaders";
 			if (fs::exists(shadersPath))
 			{
-				CryLog("Found Shader mod: %s", modName.c_str());
+				CryLog("Found Shader mod: {}", modName);
 				gChair->GetCryRender()->AddShadersDir(shadersPath);
 			}
 		}
@@ -182,7 +182,7 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
         if (it != keyNames.right.end())
             return it->second;
         else
-            CryError("Chairloader: Invalid key name '%s' for '%s', setting to default", keyName.c_str(), paramName.c_str());
+            CryError("Chairloader: Invalid key name '{}' for '{}', setting to default", keyName, paramName);
     }
 
     // Failed to get from config, restore default

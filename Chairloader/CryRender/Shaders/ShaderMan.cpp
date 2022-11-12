@@ -227,7 +227,7 @@ bool CShaderMan::CheckAllFilesAreWritable(const char* szDir) const
 		gEnv->pLog->LogToFile("Shader cache directory '%s' was successfully tested for being writable", szDir);
 	}
 	else
-		CryLog("Shader cache directory '%s' does not exist", szDir);
+		CryLog("Shader cache directory '{}' does not exist", szDir);
 
 #endif
 
@@ -691,7 +691,7 @@ void CShaderMan::RT_ParseShader(CShader* pSH, uint64 nMaskGen, uint32 flags, CSh
 				{
 					stack_string flagString;
 					CreateShaderMaskGenString(pSH, flagString);
-					CryLog("[CShaderSerialize] Failed to import shader %s (0x%p) flags: 0x%llx 0x%x (%s)\n", pSH->GetName(), pSH, pSH->m_nMaskGenFX, pSH->m_nMDV, flagString.empty() ? "0" : flagString.c_str());
+					CryLog("[CShaderSerialize] Failed to import shader {} (0x{:p}) flags: 0x{:x} 0x{:x} ({})\n", pSH->GetName(), pSH, pSH->m_nMaskGenFX, pSH->m_nMDV, flagString.empty() ? "0" : flagString.c_str());
 				}
 
 				pSH->m_Flags |= EF_FAILED_IMPORT;
@@ -751,7 +751,7 @@ void CShaderMan::RT_ParseShader(CShader* pSH, uint64 nMaskGen, uint32 flags, CSh
 		}
 		else
 		{
-			CryWarning("[SHADERS] Failed to load shader '%s'!", pSH->m_NameShader.c_str());
+			CryWarning("[SHADERS] Failed to load shader '{}'!", pSH->m_NameShader.c_str());
 			pSH->m_Flags |= EF_NOTFOUND;
 		}
 	}

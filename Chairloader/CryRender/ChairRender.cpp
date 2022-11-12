@@ -387,7 +387,7 @@ RenderCmdId RenderDll::ChairRender::RegisterRenderCommand(const char* name, cons
 	if (!handler)
 	{
 		CRY_ASSERT(false);
-		CryError("RegisterRenderCommand '%s' with empty handler", name);
+		CryError("RegisterRenderCommand '{}' with empty handler", name);
 		return INVALID_RENDER_CMD_ID;
 	}
 
@@ -474,7 +474,7 @@ void RenderDll::ChairRender::WaitForRenderDoc()
 	{
 		for (int i = 0; i < WAIT_TIME_SEC; i++)
 		{
-			CryLog("Waiting for RenderDoc - %d seconds...", WAIT_TIME_SEC - i);
+			CryLog("Waiting for RenderDoc - {} seconds...", WAIT_TIME_SEC - i);
 
 			for (int j = 0; j < 10; j++)
 			{

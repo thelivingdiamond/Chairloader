@@ -1,7 +1,6 @@
 #include "ChairLoader/pch.h"
 #include "EntityManager.h"
 
-#include "Logging.h"
 #include "Prey/Cry3DEngine/I3DEngine.h"
 #include "Prey/CryEntitySystem/EntityArchetype.h"
 #include "Prey/CryEntitySystem/EntitySystem.h"
@@ -1489,7 +1488,7 @@ void EntityManager::drawMenuBar() {
                 if (ImGui::MenuItem("List Classes")) {
                     CEntityClassRegistry* registry = ((CEntityClassRegistry*)gEnv->pEntitySystem->GetClassRegistry());
                     for (auto& entityClass : registry->m_mapClassName) {
-                        CryLog("%s", entityClass.second->GetName());
+                        CryLog("{}", entityClass.second->GetName());
 
                     }
                     //                for(auto &class = gEnv.pEntitySystem.)

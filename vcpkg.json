@@ -9,6 +9,7 @@
     "boost-filesystem",
     "boost-log",
     "detours",
+    "fmt",
     "libzip",
     "pugixml"
   ]

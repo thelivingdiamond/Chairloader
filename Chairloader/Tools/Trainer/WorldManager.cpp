@@ -50,7 +50,7 @@ void WorldManager::DrawLevelManagerWindow() {
                 ImGui::Text("Current Map: %ls", currentLocation.c_str());
                 std::string mapId = std::to_string(locationManager.GetCurrentLocation());
                 if (ImGui::Selectable(mapId.c_str())) {
-                    CryLog("%s", mapId.c_str());
+                    CryLog("{}", mapId);
                 }
             }
             if(ImGui::BeginTable("Map List", 1, ImGuiTableFlags_ScrollY, ImVec2(0, ImGui::GetContentRegionAvail().y - 60.0f))) {
@@ -654,7 +654,7 @@ void WorldManager::DrawPathAirlockManagerTab() {
                         ImGui::Text("%llu", lockedPath);
                     }
                     if (ImGui::IsItemClicked()) {
-                        CryLog("Locked Path %llu clicked", lockedPath);
+                        CryLog("Locked Path {} clicked", lockedPath);
                     }
                 }
                 ImGui::EndTable();
@@ -675,13 +675,13 @@ void WorldManager::DrawPathAirlockManagerTab() {
                         } else {
                             ImGui::Text("Location: %llu", airlock.Location);
                             if (ImGui::IsItemClicked()) {
-                                CryLog("Location %llu clicked", airlock.Location);
+                                CryLog("Location {} clicked", airlock.Location);
                             }
                         }
                     } else {
                         ImGui::Text("%llu", lockedAirlock);
                         if (ImGui::IsItemClicked()) {
-                            CryLog("Locked Airlock %llu clicked", lockedAirlock);
+                            CryLog("Locked Airlock {} clicked", lockedAirlock);
                         }
                     }
 
@@ -699,7 +699,7 @@ void WorldManager::DrawPathAirlockManagerTab() {
                     ImGui::TableNextColumn();
                     ImGui::Text("%llu", hiddenAirlock);
                     if (ImGui::IsItemClicked()) {
-                        CryLog("Hidden Airlock %llu clicked", hiddenAirlock);
+                        CryLog("Hidden Airlock {} clicked", hiddenAirlock);
                     }
                 }
                 ImGui::EndTable();

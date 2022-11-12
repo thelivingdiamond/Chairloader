@@ -1,3 +1,4 @@
+#include <fmt/format.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/CryGame/Game.h>
@@ -178,7 +179,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	ModuleInitISystem(pSystem, "Chairloader");
 	g_StdoutConsole.Init();
 	CryLog("Chairloader::InitSystem");
-	CryLog("Chairloader: gEnv = 0x%p\n", gEnv);
+	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
 
 	gCL->cl = this;
 

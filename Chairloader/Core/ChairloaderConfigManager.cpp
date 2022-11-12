@@ -1,6 +1,5 @@
 #pragma once
 #include "ChairloaderConfigManager.h"
-#include "Logging.h"
 
 ChairloaderConfigManager::ChairloaderConfigManager() {
 
@@ -283,7 +282,7 @@ bool ChairloaderConfigManager::setConfigValue(std::string modName, std::string p
 		auto modNode = configFile->child(modName.c_str());
 		return setNodeConfigValue(modNode, parameterName, value, type);
 	}
-	CryError("%s: config not found", modName.c_str());
+	CryError("{}: config not found", modName);
 	return false;
 }
 
@@ -293,7 +292,7 @@ pugi::xml_node ChairloaderConfigManager::getConfigNode(std::string modName) {
 		auto node = configFile->child(modName.c_str());
 		return node;
 	}
-	CryError("%s: config not found", modName.c_str());
+	CryError("{}: config not found", modName);
 	return pugi::xml_node();
 }
 
@@ -351,24 +350,24 @@ bool ChairloaderConfigManager::loadModConfigFile(std::string modName) {
 	} else { // check for default config
 		if(fs::exists(defaultFilePath)) {
 			if (!copyDefaultModConfigFile(modName)) {
-				CryError("%s: copying default mod config failed", modName.c_str());
+				CryError("{}: copying default mod config failed", modName);
 				return false;
 			}
 		} else {
 			// someone just gets the default config good luck and hope they handled null return values if they try and load
 			if (!createDefaultModConfig(modName)) {
-				CryError("%s: creating default mod config failed", modName.c_str());
+				CryError("{}: creating default mod config failed", modName);
 				return false;
 			}
 		}
 	}
 	auto result = configFile->load_file(configFilePath.string().c_str());
 	if (result.status == pugi::xml_parse_status::status_ok) {
-		CryLog("%s: Config Loaded", modName.c_str());
+		CryLog("{}: Config Loaded", modName);
 		return true;
 	}
 	else {
-		CryError("%s: Config Loading Failed, could not find config file at %s because %s", modName.c_str(), configFilePath.string().c_str(), result.description());
+		CryError("{}: Config Loading Failed, could not find config file at {} because {}", modName, configFilePath.string(), result.description());
 		return false;
 	}
 }
@@ -378,21 +377,21 @@ bool ChairloaderConfigManager::saveModConfigFile(std::string modName) {
 		modConfigsDirty.find(modName)->second = false;
 		bool saved = modConfigs.find(modName)->second->save_file(getConfigPath(modName).string().c_str());
 		if (saved)
-			CryLog("%s: Config Saved", modName.c_str());
+			CryLog("{}: Config Saved", modName);
 		else
-			CryError("%s: Config Saving Failed", modName.c_str());
+			CryError("{}: Config Saving Failed", modName);
 		return saved;
 	}
 	return false;
 }
 
 bool ChairloaderConfigManager::copyDefaultModConfigFile(std::string modName) {
-	CryLog("%s: copying default mod config", modName.c_str());
+	CryLog("{}: copying default mod config", modName);
 	return fs::copy_file(getDefaultConfigPath(modName), getConfigPath(modName));
 }
 
 bool ChairloaderConfigManager::createDefaultModConfig(std::string modName) {
-	CryWarning("%s: default not found, creating mod config", modName.c_str());
+	CryWarning("{}: default not found, creating mod config", modName);
 	pugi::xml_document newDocument;
 	newDocument.append_child(modName.c_str());
 	return newDocument.save_file(getConfigPath(modName).string().c_str());

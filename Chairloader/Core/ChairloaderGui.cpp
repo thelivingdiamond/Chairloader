@@ -103,7 +103,7 @@ void ChairloaderGui::draw() {
                         if (ImGui::MenuItem("Dump Commands to console")) {
                             auto xConsole = (CXConsole *) gEnv->pConsole;
                             for (auto &command: xConsole->m_mapCommands) {
-                                CryLog("%s: %s", command.second.m_sName.c_str(), command.second.m_sHelp.c_str());
+                                CryLog("{}: {}", command.second.m_sName, command.second.m_sHelp);
                             }
                         }
                         if (ImGui::MenuItem("Dump CVars to file")) {
@@ -160,7 +160,7 @@ void ChairloaderGui::overlayLog(std::string modName, const char *format, ...) {
     vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
     log.logItem(buffer, modName);
-    CryLog("%s", buffer);
+    CryLog("{}", buffer);
 }
 
 void ChairloaderGui::overlaywarning(std::string modName, const char *format, ...) {
@@ -170,7 +170,7 @@ void ChairloaderGui::overlaywarning(std::string modName, const char *format, ...
     vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
     log.logItem(buffer, modName, logLevel::warning);
-    CryWarning("%s", buffer);
+    CryWarning("{}", buffer);
 }
 
 void ChairloaderGui::overlayError(std::string modName, const char *format, ...) {
@@ -180,6 +180,6 @@ void ChairloaderGui::overlayError(std::string modName, const char *format, ...) 
     vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
     log.logItem(buffer, modName, logLevel::error);
-    CryError("%s", buffer);
+    CryError("{}", buffer);
 }
 

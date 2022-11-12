@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
+
 project(Chairloader C CXX ASM_MASM)
 set(CHAIRLOADER TRUE)
 
@@ -62,6 +63,7 @@ endfunction()
 # Third-party libraries
 find_package(Boost REQUIRED COMPONENTS filesystem log)
 find_package(Detours MODULE REQUIRED)
+find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)

@@ -113,7 +113,7 @@ void RenderDll::Shaders::ShaderPaths::TraverseDir(const fs::path& dir, const std
 		}
 		else
 		{
-			CryWarning("ShaderPaths: unknown file type at path %s", entry.path().u8string().c_str());
+			CryWarning("ShaderPaths: unknown file type at path {}", entry.path().u8string());
 		}
 	}
 }

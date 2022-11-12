@@ -290,7 +290,7 @@ void PlayerManager::drawAbilitiesTab() {
 
             auto result = ArkPlayer::GetInstancePtr()->GetEntity()->GetPhysics()->GetWorld()->CheckAreas(ptc, gravity, &buoyancy);
 //            ArkPlayer::GetInstance().m_movementFSM.m_currentStateId = ArkPlayerMovementFSM::EStateId::fly;
-            CryLog("Result: %d", result);
+            CryLog("Result: {}", result);
         }
         static bool katamari;
         ImGui::Checkbox("Katamari", &katamari);
@@ -674,7 +674,7 @@ void ChairloaderGUIPlayerManager::abilityRequestHandler(ChairloaderGUILog* log) 
 							ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->HasAbility(entry->id)) {
 							ArkPlayer::GetInstance().m_playerComponent.m_pAbilityComponent->GrantAbility(entry->id);
 
-							// CryLog("Granted Ability: %s\n", gCL->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
+							// CryLog("Granted Ability: {}\n", gCL->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second.c_str());
 							entry->acquired = true;
 							// std::string msg = "Granted Ability: " + gCL->entUtils->abilityLibrary.arkAbilityMap.find(entry->id)->second + "\n";
 							log->logItem(

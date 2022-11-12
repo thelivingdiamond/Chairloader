@@ -168,7 +168,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 
 			if (bValid)
 			{
-				CryWarning("%s", acTemp);
+				CryWarning("{}", acTemp);
 			}
 
 			if (fpDst)
@@ -287,14 +287,14 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 	else
 	{
 		if (fpDst)
-			CryWarning("Error: Failed to get binary shader '%s'", nameFile);
+			CryWarning("Error: Failed to get binary shader '{}'", nameFile);
 		else
 		{
 			cry_sprintf(nameFile, "%s.%s", szName, bInclude ? "cfi" : "cfx");
 			const char* matName = 0;
 			if (m_pCEF && m_pCEF->m_pCurInputResources)
 				matName = m_pCEF->m_pCurInputResources->m_szMaterialName;
-			CryWarning("Error: Shader \"%s\" doesn't exist (used in material \"%s\")", nameFile, matName != 0 ? matName : "$unknown$");
+			CryWarning("Error: Shader \"{}\" doesn't exist (used in material \"{}\")", nameFile, matName != 0 ? matName : "$unknown$");
 		}
 	}
 

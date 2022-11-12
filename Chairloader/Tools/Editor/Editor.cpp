@@ -404,7 +404,7 @@ bool Editor::ReloadMods()
 		return false;
 
 	CTimeValue endTime = gEnv->pTimer->GetAsyncTime();
-	CryLog("[Editor] Reloaded mods in %.3f s.", endTime.GetDifferenceInSeconds(startTime));
+	CryLog("[Editor] Reloaded mods in {:.3f} s.", endTime.GetDifferenceInSeconds(startTime));
 
 	return true;
 }
@@ -446,7 +446,7 @@ bool Editor::RestoreSavedLevel()
 
 	if (loadResult != eLGR_Ok)
 	{
-		CryError("Editor: LoadGame failed (%d).", loadResult);
+		CryError("Editor: LoadGame failed ({}).", loadResult);
 		return false;
 	}
 

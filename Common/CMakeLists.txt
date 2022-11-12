@@ -16,6 +16,8 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderConfigManager.h
 	Chairloader/IChairloaderGui.h
 	Chairloader/IChairloaderImGui.h
+	Chairloader/IChairLogger.cpp
+	Chairloader/IChairLogger.h
 	Chairloader/IChairloaderMod.h
 	Chairloader/IChairRender.h
 	Chairloader/IRenderAuxGeomEx.h
@@ -32,8 +34,6 @@ set(SOURCE_FILES
 
 	EntityUtils.cpp
 	EntityUtils.h
-	Logging.cpp
-	Logging.h
 	VTableHook.cpp
 	VTableHook.h
 	mem.cpp
@@ -53,6 +53,7 @@ target_include_directories(Common PUBLIC
 
 target_link_libraries(Common PUBLIC
 	Detours::Detours
+	fmt::fmt-header-only
 )
 
 target_precompile_headers(Common PUBLIC Chairloader/pch.h)

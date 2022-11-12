@@ -91,7 +91,7 @@ void Command_Find(IConsoleCmdArgs *args) {
 	gEnv->pConsole->DumpCVars(&sink);
 
 	for (ICVar *cvar : sink.cvars) {
-		CryLog("$3%s = $6%s", cvar->GetName(), cvar->GetString());
+		CryLog("$3{} = $6{}", cvar->GetName(), cvar->GetString());
 
 		const char *help = cvar->GetHelp();
 		if (help) {
@@ -100,7 +100,7 @@ void Command_Find(IConsoleCmdArgs *args) {
 
 			for (const char *str = help; *str; str++) {
 				if (*str == '\n') {
-					CryLog("    %s", line.c_str());
+					CryLog("    {}", line);
 					line.clear();
 				} else {
 					line += *str;
@@ -108,7 +108,7 @@ void Command_Find(IConsoleCmdArgs *args) {
 			}
 
 			if (!line.empty()) {
-				CryLog("    %s", line.c_str());
+				CryLog("    {}", line);
 			}
 		}
 	}
@@ -349,7 +349,7 @@ int DevConsoleDialog::TextEditCallback(ImGuiInputTextCallbackData *data) {
 }
 
 void DevConsoleDialog::ExecCommand(const char *cmd) {
-	CryLog("$7> %s", cmd);
+	CryLog("$7> {}", cmd);
 	m_pConsole->AddCommandToHistory(cmd);
 	m_pConsole->ExecuteString(cmd);
 	m_bScrollToBottom = true;

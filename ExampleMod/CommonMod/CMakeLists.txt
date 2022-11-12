@@ -47,6 +47,7 @@ target_include_directories(CommonMod PUBLIC
 
 target_link_libraries(CommonMod PUBLIC
 	Detours::Detours
+	fmt::fmt-header-only
 )
 
 target_precompile_headers(CommonMod PUBLIC CommonModPch.h)
