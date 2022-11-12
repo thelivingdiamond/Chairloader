@@ -19,6 +19,7 @@ target_include_directories(Chairloader.Common PUBLIC .)
 
 target_link_libraries(Chairloader.Common PUBLIC
 	Common
+	Chairloader.ImGui
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

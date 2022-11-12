@@ -16,8 +16,6 @@
 #include <boost/optional.hpp>
 #include <boost/bimap.hpp>
 #include <pugixml.hpp>
-#include <imgui/imgui.h>
-#include <imgui/misc/cpp/imgui_stdlib.h>
 
 #include <Prey/ArkEnums.h>
 #include <Prey/ArkStubs.h>

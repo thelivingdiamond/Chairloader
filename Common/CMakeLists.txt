@@ -1,17 +1,52 @@
-# Grab all files in Common directory
-file(GLOB_RECURSE SOURCE_FILES
+# Grab all files in Common/Prey directory
+file(GLOB_RECURSE PREY_HEADER_FILES
 	LIST_DIRECTORIES false
 	CONFIGURE_DEPENDS
-	*.*
+	Prey/*.*
 )
 
-# CommonMod static library
+set(SOURCE_FILES
+	CMakeLists.txt
+	${PREY_HEADER_FILES}
+
+	Chairloader/ChairloaderEnv.h
+	Chairloader/FunctionHook.cpp
+	Chairloader/FunctionHook.h
+	Chairloader/IChairloader.h
+	Chairloader/IChairloaderConfigManager.h
+	Chairloader/IChairloaderGui.h
+	Chairloader/IChairloaderImGui.h
+	Chairloader/IChairloaderMod.h
+	Chairloader/IChairRender.h
+	Chairloader/IRenderAuxGeomEx.h
+	Chairloader/ModSDK/ChairloaderModBase.cpp
+	Chairloader/ModSDK/ChairloaderModBase.h
+	Chairloader/pch.h
+	Chairloader/PreyFunction.cpp
+	Chairloader/PreyFunction.h
+	Chairloader/ValidateCompiler.h
+
+	pugixml/pugiconfig.hpp
+	pugixml/pugixml.cpp
+	pugixml/pugixml.hpp
+
+	EntityUtils.cpp
+	EntityUtils.h
+	Logging.cpp
+	Logging.h
+	VTableHook.cpp
+	VTableHook.h
+	mem.cpp
+	mem.h
+	proc.cpp
+	proc.h
+)
+
 add_library(Common STATIC
 	${SOURCE_FILES})
 
 target_include_directories(Common PUBLIC
 	.
-	ImGui # FIXME: Remove from include path
 	pugixml
 	${Boost_INCLUDE_DIRS}
 )
@@ -23,3 +58,5 @@ target_link_libraries(Common PUBLIC
 target_precompile_headers(Common PUBLIC Chairloader/pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
+
+add_subdirectory(Chairloader.ImGui)
