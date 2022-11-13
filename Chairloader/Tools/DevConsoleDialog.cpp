@@ -4,38 +4,6 @@
 
 namespace {
 
-struct ParseBuffer {
-	char buf[1024];
-	char *ptr;
-
-	ParseBuffer() {
-		ptr = buf;
-		*ptr = '\0';
-	}
-
-	void ShowText(ImVec4 color) {
-		if (ptr == buf) {
-			return;
-		}
-
-		assert(ptr - buf < sizeof(buf));
-		*ptr = '\0';
-
-		if (color.w != 0) {
-			ImGui::PushStyleColor(ImGuiCol_Text, color);
-		}
-
-		ImGui::TextUnformatted(buf);
-		ImGui::SameLine(0, 0);
-
-		if (color.w != 0) {
-			ImGui::PopStyleColor();
-		}
-
-		ptr = buf;
-	}
-};
-
 struct FindDumpSink : ICVarDumpSink {
 	std::vector<ICVar *> cvars;
 	const char *str = nullptr;
@@ -178,80 +146,7 @@ void DevConsoleDialog::Show(bool *p_open) {
 	for (int i = itemCount - 1; i >= 0; i--) {
 		char item[1024];
 		m_pConsole->GetLineNo(i, item, sizeof(item));
-
-		const char *strIn = item;
-		ParseBuffer buf;
-		bool isEscape = 0;
-		bool isColor = false;
-		ImVec4 color = g_ConColors[0];
-
-		// Based on CryEngine WindowsConsole
-		while (*strIn) {
-			switch (*strIn) {
-			case '$':
-				if (!isEscape) {
-					isColor = true;
-					break;
-				}
-				[[fallthrough]];
-			case '\\':
-				if (isEscape = !isEscape) {
-					break;
-				}
-			case 'n':
-				if (isEscape) {
-				[[fallthrough]];
-			case '\n':
-				buf.ShowText(color);
-				color = g_ConColors[0];
-				isEscape = false;
-				break;
-				}
-				[[fallthrough]];
-			case 'r':
-				if (isEscape) {
-				[[fallthrough]];
-			case '\r':
-				// Not supported
-				//ClearLine(position);
-				isEscape = false;
-				break;
-				}
-				[[fallthrough]];
-			case 't':
-				if (isEscape) {
-				[[fallthrough]];
-			case '\t':
-				*buf.ptr = '\t';
-				buf.ptr++;
-				isEscape = false;
-				break;
-				}
-				[[fallthrough]];
-			default:
-				if (isColor) {
-					if (isdigit(*strIn)) {
-						buf.ShowText(color);
-						color = g_ConColors[*strIn - '0'];
-					}
-
-					isColor = false;
-				} else {
-					if (isEscape && (*strIn != '\\')) {
-						*buf.ptr = '\\';
-						buf.ptr++;
-					}
-					if (*strIn) {
-						*buf.ptr = *strIn;
-						buf.ptr++;
-					}
-				}
-				isEscape = false;
-				break;
-			}
-			strIn++;
-		}
-		buf.ShowText(color);
+		m_Parser.ProcessLine(item);
 		ImGui::NewLine();
 	}
 
@@ -345,4 +240,24 @@ void DevConsoleDialog::Strtrim(char *s) {
 	while (str_end > s && str_end[-1] == ' ')
 		str_end--;
 	*str_end = 0;
+}
+
+void DevConsoleDialog::ConsoleParser::PrintText(const char* text, size_t size, int colorIdx)
+{
+	ImVec4 color = g_ConColors[colorIdx];
+	if (color.w != 0) {
+		ImGui::PushStyleColor(ImGuiCol_Text, color);
+	}
+
+	ImGui::TextUnformatted(text, text + size);
+	ImGui::SameLine(0, 0);
+
+	if (color.w != 0) {
+		ImGui::PopStyleColor();
+	}
+}
+
+void DevConsoleDialog::ConsoleParser::NewLine()
+{
+	ImGui::NewLine();
 }

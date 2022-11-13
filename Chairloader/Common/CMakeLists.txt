@@ -8,6 +8,8 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderTools.h
 	Chairloader/IModDllManager.h
 
+	ConsoleColorParser.cpp
+	ConsoleColorParser.h
 	GUIUtils.h
 	LibD3D11.h
 	imgui_widget_flamegraph.cpp
