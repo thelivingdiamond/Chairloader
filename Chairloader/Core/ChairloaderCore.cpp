@@ -13,6 +13,17 @@
 constexpr char CONFIG_NAME[] = "Chairloader";
 static PreyGlobal<bool> s_freeCamActive(0x2C09352);
 
+class CBetterCVarsWhitelist : public ICVarsWhitelist {
+public:
+	~CBetterCVarsWhitelist() {}
+
+	bool IsWhiteListed(const string&, bool)  override {
+		return true;
+	}
+};
+
+CBetterCVarsWhitelist g_CVarsWhitelist;
+
 std::unique_ptr<Internal::IChairloaderCore> Internal::IChairloaderCore::CreateInstance()
 {
 	return std::make_unique<ChairloaderCore>();
@@ -25,6 +36,10 @@ ChairloaderCore* ChairloaderCore::Get()
 
 void ChairloaderCore::InitSystem()
 {
+	// Unlock console commands
+	auto pSystem = reinterpret_cast<CSystem*>(gEnv->pSystem);
+	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
+
 	LogManager::Get().InitSystem();
 	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
 	gCL->conf = m_pConfigManager.get();

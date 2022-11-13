@@ -118,10 +118,6 @@ void Command_Find(IConsoleCmdArgs *args) {
 
 DevConsoleDialog::DevConsoleDialog() {
 	m_pConsole = gEnv->pConsole;
-
-	auto pSystem = reinterpret_cast<CSystem *>(gEnv->pSystem);
-	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
-
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
 }
 
