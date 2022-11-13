@@ -5,6 +5,8 @@ set(SOURCE_FILES
 	dllmain.cpp
 	version.rc
 	version.rc.in
+	WinConsole.cpp
+	WinConsole.h
 )
 
 configure_file(

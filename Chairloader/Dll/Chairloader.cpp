@@ -19,34 +19,8 @@ static std::unique_ptr<Chairloader> gChairloaderDll;
 Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
-namespace {
-
-class ConsoleStdoutSink : public IOutputPrintSink {
-public:
-	void Init() {
-		gEnv->pConsole->AddOutputPrintSink(this);
-		PrintExistingMessages();
-	}
-
-	void Print(const char *inszText) override {
-		printf("%s\n", inszText);
-	}
-
-	void PrintExistingMessages() {
-		Print(">>>>>>>> Printing console log");
-		int count = gEnv->pConsole->GetLineCount();
-
-		for (int i = count - 1; i >= 0; i--) {
-			char buf[1024];
-			gEnv->pConsole->GetLineNo(i, buf, sizeof(buf));
-			printf("%s\n", buf);
-		}
-
-		Print(">>>>>>>> Finished printing console log");
-	}
-};
-
-ConsoleStdoutSink g_StdoutConsole;
+namespace
+{
 
 FunctionHook<decltype(CSystem::FInitializeEngineModule)::Type> g_CSystem_InitializeEngineModule_Hook;
 auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
@@ -119,7 +93,7 @@ Chairloader* Chairloader::Get()
 
 Chairloader::Chairloader() {
 	gChair = this;
-	CreateConsole();
+	m_WinConsole.InitConsole();
 	printf("ChairLoader Initializing...\n");
 
 	// Get game DLL address
@@ -164,11 +138,7 @@ Chairloader::~Chairloader()
 	PreyFunctionSystem::RemoveHooks();
 	DetourTransactionCommit();
 
-	// Close the console
-	if (m_pConsoleFile) {
-		fclose(m_pConsoleFile);
-		m_pConsoleFile = nullptr;
-	}
+	m_WinConsole.ShutdownConsole();
 
 	FreeConsole();
 	gChair = nullptr;
@@ -179,7 +149,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	gCL->cl = this;
 	ModuleInitISystem(pSystem, "Chairloader");
 	ModuleInitIChairLogger("Chairloader");
-	g_StdoutConsole.Init();
+	m_WinConsole.InitSystem();
 	CryLog("Chairloader::InitSystem");
 	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
 
@@ -299,12 +269,6 @@ void Chairloader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
 	m_pRender->PostUpdate();
 	m_pTools->PostUpdate();
 	m_pCore->GetDllManager()->CallPostUpdate();
-}
-
-void Chairloader::CreateConsole() {
-	AllocConsole();
-	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
-	printf("Welcome to funland sonic\n");
 }
 
 void Chairloader::InitHooks()

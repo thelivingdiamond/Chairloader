@@ -4,6 +4,7 @@
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderDll.h>
 #include <Chairloader/IChairloaderTools.h>
+#include "WinConsole.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 
@@ -42,7 +43,7 @@ public:
 	inline IGameFramework* GetFramework() override { return m_pFramework; }
 
 private:
-	FILE* m_pConsoleFile = nullptr;
+	WinConsole m_WinConsole;
 	uintptr_t m_ModuleBase = 0;
 	bool m_bEditorEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
@@ -52,7 +53,6 @@ private:
 	IGameFramework* m_pFramework = nullptr;
 	KeyNameMap m_KeyNames;
 
-	void CreateConsole();
 	void InitHooks();
 	void InstallHooks();
 
