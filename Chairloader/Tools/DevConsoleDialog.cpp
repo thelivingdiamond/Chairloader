@@ -4,15 +4,6 @@
 
 namespace {
 
-class CBetterCVarsWhitelist : public ICVarsWhitelist {
-public:
-	~CBetterCVarsWhitelist() {}
-
-	bool IsWhiteListed(const string&, bool)  override {
-		return true;
-	}
-};
-
 struct ParseBuffer {
 	char buf[1024];
 	char *ptr;
@@ -74,8 +65,6 @@ ImVec4 g_ConColors[] = {
 	ImColor(192, 64, 0, 255),	// 8 Brown
 	ImColor(64, 64, 64, 255),	// 9 Grey
 };
-
-CBetterCVarsWhitelist g_CVarsWhitelist;
 
 void Command_Find(IConsoleCmdArgs *args) {
 	if (args->GetArgCount() != 2) {
