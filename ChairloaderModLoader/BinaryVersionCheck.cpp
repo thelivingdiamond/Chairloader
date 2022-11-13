@@ -7,7 +7,13 @@
 #include <winver.h>
 #include "ModLoader.h"
 #include <regex>
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
+#include <curlpp/Options.hpp>
+#include <boost/json.hpp>
+#include "UpdateURL.h"
 
+static std::string m_latestVersion;
 
 
 VersionCheck::DLLVersion VersionCheck::getInstalledChairloaderVersion() {
@@ -51,6 +57,33 @@ std::string VersionCheck::getInstalledChairloaderVersionString() {
 std::string VersionCheck::getPackagedChairloaderVersionString() {
     auto szVersionFile = fs::path("Release") / "Chairloader.dll";
     return getBinaryVersionString(szVersionFile);
+}
+
+std::string VersionCheck::getLatestChairloaderVersionString() {
+    return m_latestVersion;
+}
+
+VersionCheck::DLLVersion VersionCheck::getLatestChairloaderVersion() {
+    return DLLVersion(getLatestChairloaderVersionString());
+}
+
+void VersionCheck::fetchLatestVersion() {
+    std::stringstream result;
+    cURLpp::Easy easyhandle;
+    easyhandle.setOpt(cURLpp::Options::Url(UPDATE_URL));
+    easyhandle.setOpt(cURLpp::Options::WriteStream(&result));
+    easyhandle.setOpt(cURLpp::Options::UserAgent("ChairmanagerAutoUpdate"));
+    easyhandle.perform();
+    std:: string tag_name;
+    easyhandle.reset();
+    try {
+        auto json = boost::json::parse(result.str());
+        tag_name = json.at("tag_name").as_string();
+    } catch (std::exception &e) {
+        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
+        return;
+    }
+    m_latestVersion = tag_name;
 }
 
 
