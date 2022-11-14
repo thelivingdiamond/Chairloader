@@ -6,6 +6,7 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderDll.h
 	Chairloader/IChairloaderModule.h
 	Chairloader/IChairloaderTools.h
+	Chairloader/ILogManager.h
 	Chairloader/IModDllManager.h
 
 	ConsoleColorParser.cpp

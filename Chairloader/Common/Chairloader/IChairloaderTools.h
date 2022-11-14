@@ -21,10 +21,6 @@ struct IChairloaderTools : public IChairloaderModule
 	//! Game initialization.
 	virtual void InitGame() = 0;
 
-	//! @returns whether the dev console is visible.
-	virtual bool IsDevConsoleVisible() = 0;
-	virtual void SetDevConsoleVisible(bool state) = 0;
-
 	//! Shows menu items in the "Chairloader" menu on the main menu bar.
 	virtual void ShowMainMenuItems() = 0;
 };

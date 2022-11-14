@@ -31,6 +31,7 @@ public:
 	void PostUpdate() override;
 	bool HandleKeyPress(const SInputEvent& event) override;
 
+	Internal::ILogManager* GetLogManager() override;
 	Internal::IModDllManager* GetDllManager() override;
 	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
 

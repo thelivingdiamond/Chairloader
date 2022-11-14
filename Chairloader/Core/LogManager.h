@@ -1,10 +1,12 @@
 #pragma once
 #include <Prey/CryThreading/CryThread.h>
+#include <Chairloader/ILogManager.h>
 
-class LogManager
+class LogManager : public Internal::ILogManager
 {
 public:
 	static LogManager& Get();
+	LogManager();
 
 	//! Initializes the logger
 	void InitSystem();
@@ -14,6 +16,9 @@ public:
 
 	//! Adds a message to the log buffer.
 	void AddMessage(const char* text, size_t size);
+
+	size_t GetMessageCount() override;
+	void GetMessage(size_t idx, char* buf, size_t bufSize) override;
 
 private:
 	//! Size of the message circular buffer.

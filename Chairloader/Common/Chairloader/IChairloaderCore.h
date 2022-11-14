@@ -6,6 +6,7 @@ struct IChairLogger;
 namespace Internal
 {
 
+struct ILogManager;
 struct IModDllManager;
 
 struct IChairloaderCore : public IChairloaderModule
@@ -13,6 +14,7 @@ struct IChairloaderCore : public IChairloaderModule
 	static std::unique_ptr<IChairloaderCore> CreateInstance();
 	virtual ~IChairloaderCore() {}
 
+	virtual ILogManager* GetLogManager() = 0;
 	virtual IModDllManager* GetDllManager() = 0;
 
 	//! System initialization

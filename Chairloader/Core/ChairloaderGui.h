@@ -11,8 +11,8 @@ class ChairloaderGui : public IChairloaderGui {
 public:
     ChairloaderGui();
 
-    void SetEnabled(bool state) { m_bIsEnabled = state; }
     bool IsEnabled() override { return m_bIsEnabled; }
+    void SetEnabled(bool state) override { m_bIsEnabled = state; }
 
     void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
     void logItem(logMessage message, bool displayToScreen = true) override;

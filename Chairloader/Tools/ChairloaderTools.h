@@ -18,8 +18,6 @@ public:
 	void InitGame() override;
 	void PreUpdate() override;
 	bool HandleKeyPress(const SInputEvent& event) override;
-	bool IsDevConsoleVisible() override;
-	void SetDevConsoleVisible(bool state) override;
 	void ShowMainMenuItems() override;
 
 private:

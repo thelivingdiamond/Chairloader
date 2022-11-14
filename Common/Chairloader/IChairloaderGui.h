@@ -33,6 +33,7 @@ struct IChairloaderGui
 
     //! @returns whether the GUI is currently enabled and being drawn to the screen.
     virtual bool IsEnabled() = 0;
+    virtual void SetEnabled(bool state) = 0;
 
     virtual void overlayLog(std::string modName, const char* format, ...) = 0;
     virtual void overlaywarning(std::string modName, const char* format, ...) = 0;

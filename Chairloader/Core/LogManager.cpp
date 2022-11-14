@@ -7,10 +7,16 @@ LogManager& LogManager::Get()
 	return s_LogManager;
 }
 
+LogManager::LogManager()
+{
+	m_MainThreadId = CryGetCurrentThreadId();
+	m_Messages.reserve(MAX_MSG_COUNT);
+}
+
 void LogManager::InitSystem()
 {
-	m_MainThreadId = gEnv->mMainThreadId;
-	m_Messages.reserve(MAX_MSG_COUNT);
+	if (m_MainThreadId != gEnv->mMainThreadId)
+		CryFatalError("LogManager wasn't constructed on the main thread");
 }
 
 void LogManager::Update()
@@ -39,6 +45,16 @@ void LogManager::AddMessage(const char* text, size_t size)
 		std::scoped_lock lock(m_ThreadQueueMutex);
 		m_ThreadQueue.emplace_back(std::move(msg));
 	}
+}
+
+size_t LogManager::GetMessageCount()
+{
+	return m_Messages.size();
+}
+
+void LogManager::GetMessage(size_t idx, char* buf, size_t bufSize)
+{
+	cry_strcpy(buf, bufSize, m_Messages[idx].text.data(), m_Messages[idx].text.size());
 }
 
 LogManager::Message& LogManager::GetNewMessage()

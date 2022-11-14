@@ -72,19 +72,40 @@ void ChairloaderTools::PreUpdate()
 
 bool ChairloaderTools::HandleKeyPress(const SInputEvent& event)
 {
+	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed)
+	{
+		bool alt = (event.modifiers & eMM_Alt) != 0;
+		auto modLogOnAlt = alt ? DevConsoleDialog::TabRequest::ModLog : DevConsoleDialog::TabRequest::None;
+
+		if (!gCL->gui->IsEnabled())
+		{
+			gCL->gui->SetEnabled(true);
+			m_bDrawDevConsole = true;
+			m_pDevConsole->SetTabRequest(modLogOnAlt);
+		}
+		else
+		{
+			if (!m_bDrawDevConsole)
+			{
+				m_bDrawDevConsole = true;
+				m_pDevConsole->SetTabRequest(modLogOnAlt);
+			}
+			else if (alt)
+			{
+				m_pDevConsole->SetTabRequest(DevConsoleDialog::TabRequest::Toggle);
+			}
+			else
+			{
+				m_bDrawDevConsole = false;
+			}
+		}
+
+		return true;
+	}
+
 	if (m_bEnableEditor && m_pEditor->HandleKeyPress(event))
 		return true;
 	return false;
-}
-
-bool ChairloaderTools::IsDevConsoleVisible()
-{
-	return m_bDrawDevConsole;
-}
-
-void ChairloaderTools::SetDevConsoleVisible(bool state)
-{
-	m_bDrawDevConsole = state;
 }
 
 void ChairloaderTools::ShowMainMenuItems()

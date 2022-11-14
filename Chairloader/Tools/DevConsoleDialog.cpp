@@ -1,5 +1,8 @@
 #include <boost/algorithm/string/find.hpp>
 #include <Prey/CrySystem/System.h>
+#include <Chairloader/ILogManager.h>
+#include <Chairloader/IChairloaderCore.h>
+#include <Chairloader/IChairloaderDll.h>
 #include "DevConsoleDialog.h"
 
 namespace {
@@ -75,6 +78,7 @@ void Command_Find(IConsoleCmdArgs *args) {
 
 DevConsoleDialog::DevConsoleDialog() {
 	m_pConsole = gEnv->pConsole;
+	m_pLogManager = gChair->GetCore()->GetLogManager();
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
 }
 
@@ -107,38 +111,46 @@ void DevConsoleDialog::Show(bool *p_open) {
 	if (ImGui::Button("Clear"))
 		m_pConsole->Clear();
 	
-	ImGui::TextWrapped("'cvar_name ?' for help. '?string' for search. 'find string' for search (variables only) with help.");
+	TabRequest tabRequest = m_TabRequest;
+	m_TabRequest = TabRequest::None;
 
+	if (ImGui::BeginTabBar("MyTabBar", ImGuiTabBarFlags_None))
+	{
+		if (ImGui::BeginTabItem("Console", nullptr, tabRequest == TabRequest::Console ? ImGuiTabItemFlags_SetSelected : 0))
+		{
+			if (tabRequest == TabRequest::Toggle)
+				SetTabRequest(TabRequest::ModLog);
+
+			ShowConsole();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Mod Log", nullptr, tabRequest == TabRequest::ModLog ? ImGuiTabItemFlags_SetSelected : 0))
+		{
+			if (tabRequest == TabRequest::Toggle)
+			{
+				SetTabRequest(TabRequest::Console);
+				m_bFocusTextInput = true;
+			}
+
+			ShowModLog();
+			ImGui::EndTabItem();
+		}
+
+		ImGui::EndTabBar();
+	}
+
+	ImGui::End();
+}
+
+void DevConsoleDialog::ShowConsole()
+{
+	ImGui::TextWrapped("'cvar_name ?' for help. '?string' for search. 'find string' for search (variables only) with help.");
 	ImGui::Separator();
 
 	// Reserve enough left-over height for 1 separator + 1 input text
 	const float footer_height_to_reserve = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
 	ImGui::BeginChild("ScrollingRegion", ImVec2(0, -footer_height_to_reserve), false, ImGuiWindowFlags_HorizontalScrollbar);
-
-	// Display every line as a separate entry so we can change their color or add custom widgets.
-	// If you only want raw text you can use ImGui::TextUnformatted(log.begin(), log.end());
-	// NB- if you have thousands of entries this approach may be too inefficient and may require user-side clipping
-	// to only process visible items. The clipper will automatically measure the height of your first item and then
-	// "seek" to display only items in the visible area.
-	// To use the clipper we can replace your standard loop:
-	//      for (int i = 0; i < Items.Size; i++)
-	//   With:
-	//      ImGuiListClipper clipper;
-	//      clipper.Begin(Items.Size);
-	//      while (clipper.Step())
-	//         for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++)
-	// - That your items are evenly spaced (same height)
-	// - That you have cheap random access to your elements (you can access them given their index,
-	//   without processing all the ones before)
-	// You cannot this code as-is if a filter is active because it breaks the 'cheap random-access' property.
-	// We would need random-access on the post-filtered list.
-	// A typical application wanting coarse clipping and filtering may want to pre-compute an array of indices
-	// or offsets of items that passed the filtering test, recomputing this array when user changes the filter,
-	// and appending newly elements as they are inserted. This is left as a task to the user until we can manage
-	// to improve this example code!
-	// If your items are of variable height:
-	// - Split them into same height items would be simpler and facilitate random-seeking into your list.
-	// - Consider using manual call to IsRectVisible() and skipping extraneous decoration from your items.
 
 	// I'd love to use ImGuiListClipper but text may contain line breaks
 	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
@@ -159,28 +171,55 @@ void DevConsoleDialog::Show(bool *p_open) {
 	ImGui::Separator();
 
 	// Command-line
-	bool reclaim_focus = false;
+	bool reclaim_focus = m_bFocusTextInput;
 	ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue |
 		ImGuiInputTextFlags_CallbackAlways | ImGuiInputTextFlags_CallbackCompletion |
 		ImGuiInputTextFlags_CallbackHistory;
-	if (ImGui::InputText("Input", m_InputBuf, IM_ARRAYSIZE(m_InputBuf), input_text_flags, [](ImGuiInputTextCallbackData *data) {
-			auto console = (DevConsoleDialog *)data->UserData;
-			return console->TextEditCallback(data);
-		}, (void *)this)) {
-		char *s = m_InputBuf;
+	ImGui::PushItemWidth(-0.01f);
+	if (ImGui::InputText("##Input", m_InputBuf, IM_ARRAYSIZE(m_InputBuf), input_text_flags, [](ImGuiInputTextCallbackData* data) {
+		auto console = (DevConsoleDialog*)data->UserData;
+		return console->TextEditCallback(data);
+		}, (void*)this)) {
+		char* s = m_InputBuf;
 		Strtrim(s);
 		if (s[0])
 			ExecCommand(s);
 		s[0] = 0;
-		reclaim_focus = true;
+		reclaim_focus |= true;
 	}
+	ImGui::PopItemWidth();
 
 	// Auto-focus on window apparition
 	ImGui::SetItemDefaultFocus();
 	if (reclaim_focus || ImGui::IsWindowAppearing())
 		ImGui::SetKeyboardFocusHere(-1); // Auto focus previous widget
 
-	ImGui::End();
+	m_bFocusTextInput = false;
+}
+
+void DevConsoleDialog::ShowModLog()
+{
+	ImGui::TextWrapped("Tip: Press Alt+~ to open mod log directly or toggle between console and log.");
+	ImGui::Separator();
+
+	ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
+
+	// I'd love to use ImGuiListClipper but text may contain line breaks
+	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
+	size_t itemCount = m_pLogManager->GetMessageCount();
+	for (size_t i = 0; i < itemCount; i++) {
+		char item[1024];
+		m_pLogManager->GetMessage(i, item, sizeof(item));
+		m_Parser.ProcessLine(item);
+		ImGui::NewLine();
+	}
+
+	if (m_bScrollToBottom || (m_bAutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
+		ImGui::SetScrollHereY(1.0f);
+	m_bScrollToBottom = false;
+
+	ImGui::PopStyleVar();
+	ImGui::EndChild();
 }
 
 int DevConsoleDialog::TextEditCallback(ImGuiInputTextCallbackData *data) {
