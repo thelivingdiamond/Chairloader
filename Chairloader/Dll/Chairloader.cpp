@@ -167,7 +167,6 @@ Chairloader::Chairloader() {
 Chairloader::~Chairloader()
 {
 	// Free modules
-	m_pTools = nullptr;
 	m_pRender = nullptr;
 	m_pCore = nullptr;
 
@@ -276,6 +275,10 @@ void Chairloader::ShutdownGame()
 	m_pCore->GetDllManager()->CallShutdownGame();
 	m_pTools->ShutdownGame();
 	m_pRender->ShutdownGame();
+
+	// Destroy tools before ImGui
+	m_pTools = nullptr;
+
 	m_pCore->ShutdownGame();
 	m_pFramework = nullptr;
 
@@ -291,7 +294,6 @@ void Chairloader::ShutdownSystem()
 	m_pCore->GetDllManager()->CallShutdownSystem();
 	m_pCore->GetDllManager()->UnloadModules();
 
-	m_pTools->ShutdownSystem();
 	m_pRender->ShutdownSystem();
 	m_pCore->ShutdownSystem();
 
