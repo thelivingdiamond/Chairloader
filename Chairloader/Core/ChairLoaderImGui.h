@@ -3,6 +3,7 @@
 #include <imgui.h>
 #include <Prey/CryInput/BaseInput.h>
 #include <ChairLoader/IChairloaderImGui.h>
+#include <ChairLoader/IChairRender.h>
 
 class ITexture;
 struct ID3DUserDefinedAnnotation;
@@ -20,13 +21,12 @@ struct ID3D11BlendState;
 struct ID3D11DepthStencilState;
 struct IDXGISwapChain;
 
-class ChairLoaderImGui : public IChairloaderImGui {
+class ChairLoaderImGui : public IChairloaderImGui, private IChairRenderListener {
 public:
 	static void InitHooks();
 	ChairLoaderImGui();
 	~ChairLoaderImGui();
-	void PreUpdate(bool haveFocus);
-	void PostUpdate();
+	void UpdateBeforeSystem();
 	inline std::thread::id GetRenderThreadId() { return m_RenderThreadId; }
 
 	static bool HasExclusiveMouseInput();
@@ -115,6 +115,10 @@ private:
 	bool RT_Initialize();
 	void RT_Render();
 	void RT_SetupRenderState(RenderLists *list, ID3D11DeviceContext *ctx);
+
+	// Render callbacks
+	int GetFlags() override;
+	void EndFrame() override;
 
 	// Hooks
 	static void CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce);

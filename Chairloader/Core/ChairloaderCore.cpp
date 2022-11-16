@@ -103,24 +103,18 @@ void ChairloaderCore::ShutdownGame()
 	m_pImGui = nullptr;
 }
 
-void ChairloaderCore::PreUpdate()
+void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 {
 	LogManager::Get().Update();
 
 	if (gCL->conf->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
-	m_pImGui->PreUpdate(true);
+	m_pImGui->UpdateBeforeSystem();
 	m_pGui->update();
 	m_pConfigManager->Update();
 
 	m_pGui->draw();
-	m_pModDllManager->CallDraw();
-}
-
-void ChairloaderCore::PostUpdate()
-{
-	m_pImGui->PostUpdate();
 }
 
 bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)

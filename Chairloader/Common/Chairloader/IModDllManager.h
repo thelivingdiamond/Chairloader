@@ -24,11 +24,13 @@ struct IModDllManager
 	//! @{
 	virtual void CallInitSystem() = 0;
 	virtual void CallInitGame() = 0;
-	virtual void CallPreUpdate() = 0;
-	virtual void CallDraw() = 0;
-	virtual void CallPostUpdate() = 0;
 	virtual void CallShutdownGame() = 0;
 	virtual void CallShutdownSystem() = 0;
+	virtual void CallDraw() = 0;
+	virtual void CallUpdateBeforeSystem(unsigned updateFlags) = 0;
+	virtual void CallUpdateBeforePhysics(unsigned updateFlags) = 0;
+	virtual void CallMainUpdate(unsigned updateFlags) = 0;
+	virtual void CallLateUpdate(unsigned updateFlags) = 0;
 	//! @}
 };
 

@@ -52,18 +52,27 @@ struct IChairloaderMod {
 	//! Called after CGame::Init
 	virtual void InitGame(bool isHotReloading) = 0;
 
-	//! Called before CGame::Update to handle any GUI elements
-	virtual void Draw() = 0;
-
-	//! Before CGame::Update
-	virtual void PreUpdate() = 0;
-
-	//! After CGame::Update
-	virtual void PostUpdate() = 0;
-
 	//! Called before CGame::Shutdown.
 	virtual void ShutdownGame(bool isHotUnloading) = 0;
 
 	//! Called before CSystem::Shutdown.
 	virtual void ShutdownSystem(bool isHotUnloading) = 0;
+
+	//! Called just before MainUpdate to draw GUI. Only called when GUI is visible.
+	virtual void Draw() {}
+
+	//! Earliest point of update in a frame, before CGame::Update. The timer still tracks time for the previous frame.
+	virtual void UpdateBeforeSystem(unsigned updateFlags) {}
+
+	//! Called before physics is updated for the new frame, best point for queuing physics jobs.
+	//! This is like FixedUpdate() in Unity (but not FPS-independent). Use gEnv->pTimer->GetFrameTime() for time delta.
+	virtual void UpdateBeforePhysics(unsigned updateFlags) {}
+
+	//! Called after entities have been updated but before FlowSystem and FlashUI.
+	//! This is the main update where most game logic is expected to occur.
+	//! Should be preferred if you don't need any special behavior.
+	virtual void MainUpdate(unsigned updateFlags) {}
+
+	//! Called after most of game logic has been updated, before CCryAction::PostUpdate.
+	virtual void LateUpdate(unsigned updateFlags) {}
 };

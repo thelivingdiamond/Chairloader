@@ -143,24 +143,6 @@ void ModDllManager::CallInitGame()
 		it->pModIface->InitGame(false);
 }
 
-void ModDllManager::CallPreUpdate()
-{
-	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
-		it->pModIface->PreUpdate();
-}
-
-void ModDllManager::CallDraw()
-{
-	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
-		it->pModIface->Draw();
-}
-
-void ModDllManager::CallPostUpdate()
-{
-	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
-		it->pModIface->PostUpdate();
-}
-
 void ModDllManager::CallShutdownGame()
 {
 	for (auto it = m_Modules.rbegin(); it != m_Modules.rend(); ++it)
@@ -171,6 +153,36 @@ void ModDllManager::CallShutdownSystem()
 {
 	for (auto it = m_Modules.rbegin(); it != m_Modules.rend(); ++it)
 		it->pModIface->ShutdownSystem(false);
+}
+
+void ModDllManager::CallDraw()
+{
+	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
+		it->pModIface->Draw();
+}
+
+void ModDllManager::CallUpdateBeforeSystem(unsigned updateFlags)
+{
+	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
+		it->pModIface->UpdateBeforeSystem(updateFlags);
+}
+
+void ModDllManager::CallUpdateBeforePhysics(unsigned updateFlags)
+{
+	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
+		it->pModIface->UpdateBeforePhysics(updateFlags);
+}
+
+void ModDllManager::CallMainUpdate(unsigned updateFlags)
+{
+	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
+		it->pModIface->MainUpdate(updateFlags);
+}
+
+void ModDllManager::CallLateUpdate(unsigned updateFlags)
+{
+	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
+		it->pModIface->LateUpdate(updateFlags);
 }
 
 void ModDllManager::LoadModule(Module& mod)

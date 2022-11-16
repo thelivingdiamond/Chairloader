@@ -16,7 +16,8 @@ class ChairloaderTools : public Internal::IChairloaderTools
 public:
 	void InitSystem(const Internal::SToolsInitParams& params) override;
 	void InitGame() override;
-	void PreUpdate() override;
+	void UpdateBeforeSystem(unsigned updateFlags) override;
+	void MainUpdate(unsigned updateFlags) override;
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ShowMainMenuItems() override;
 

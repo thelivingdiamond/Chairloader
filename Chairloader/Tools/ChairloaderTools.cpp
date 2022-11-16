@@ -38,11 +38,14 @@ void ChairloaderTools::InitGame()
 		m_pEditor = std::make_unique<Editor>();
 }
 
-void ChairloaderTools::PreUpdate()
+void ChairloaderTools::UpdateBeforeSystem(unsigned updateFlags)
 {
 	if (m_bEnableEditor)
-		m_pEditor->Update();
+		m_pEditor->UpdateBeforeSystem();
+}
 
+void ChairloaderTools::MainUpdate(unsigned updateFlags)
+{
 	// Perf info is always visible
 	m_pPerfOverlay->Update();
 

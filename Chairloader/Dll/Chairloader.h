@@ -33,11 +33,11 @@ public:
 	//! Called before CSystem::Shutdown.
 	void ShutdownSystem();
 
-	//! Before CGame::Update
-	void PreUpdate(bool haveFocus, unsigned int updateFlags);
-
-	//! After CGame::Update
-	void PostUpdate(bool haveFocus, unsigned int updateFlags);
+	//! Check IChairloaderMod for when these are called.
+	void UpdateBeforeSystem(unsigned updateFlags);
+	void UpdateBeforePhysics();
+	void MainUpdate(unsigned updateFlags);
+	void LateUpdate(unsigned updateFlags);
 
 	inline uintptr_t GetModuleBase() { return m_ModuleBase; }
 	inline IGameFramework* GetFramework() override { return m_pFramework; }
@@ -49,6 +49,7 @@ private:
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
 	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
 	std::unique_ptr<Internal::IChairloaderTools> m_pTools;
+	unsigned m_SavedUpdateFlags = 0;
 
 	IGameFramework* m_pFramework = nullptr;
 	KeyNameMap m_KeyNames;

@@ -2,6 +2,8 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/CryGame/Game.h>
+#include <Prey/CryEntitySystem/EntitySystem.h>
+#include <Prey/CryAction/CryAction.h>
 #include <Chairloader/PreyFunction.h>
 #include <Chairloader/ChairloaderEnv.h>
 #include <Chairloader/IChairloaderMod.h>
@@ -23,11 +25,12 @@ ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 namespace
 {
 
+//-----------------------------------------------------------------
+// CSystem
+//-----------------------------------------------------------------
 FunctionHook<decltype(CSystem::FInitializeEngineModule)::Type> g_CSystem_InitializeEngineModule_Hook;
 auto g_CSystem_Shutdown_Hook = CSystem::FShutdown.MakeHook();
-auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
-auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
-auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
+auto g_CSystem_Update_Hook = CSystem::FUpdate.MakeHook();
 
 bool CSystem_InitializeEngineModule_Hook(
 	CSystem* _this,
@@ -55,6 +58,20 @@ void CSystem_Shutdown_Hook(CSystem* _this)
 	gChairloaderDll = nullptr;
 }
 
+bool CSystem_Update_Hook(CSystem* const _this, int updateFlags, int nPauseMode)
+{
+	bool result = g_CSystem_Update_Hook.InvokeOrig(_this, updateFlags, nPauseMode);
+	gChairloaderDll->MainUpdate(updateFlags);
+	return result;
+}
+
+//-----------------------------------------------------------------
+// CGame
+//-----------------------------------------------------------------
+auto g_CGame_Init_Hook = CGame::FInit.MakeHook();
+auto g_CGame_Update_Hook = CGame::FUpdate.MakeHook();
+auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
+
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 {
 	g_pGame = _this;
@@ -68,9 +85,8 @@ bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 
 int CGame_Update_Hook(CGame* _this, bool haveFocus, unsigned int updateFlags)
 {
-	gChairloaderDll->PreUpdate(haveFocus, updateFlags);
+	gChairloaderDll->UpdateBeforeSystem(updateFlags);
 	int result = g_CGame_Update_Hook.InvokeOrig(_this, haveFocus, updateFlags);
-	gChairloaderDll->PostUpdate(haveFocus, updateFlags);
 	return result;
 }
 
@@ -78,6 +94,28 @@ void CGame_Shutdown_Hook(CGame* _this)
 {
 	gChairloaderDll->ShutdownGame();
 	g_CGame_Shutdown_Hook.InvokeOrig(_this);
+}
+
+//-----------------------------------------------------------------
+// CEntitySystem
+//-----------------------------------------------------------------
+auto g_CEntitySystem_PrePhysicsUpdate_Hook = CEntitySystem::FPrePhysicsUpdate.MakeHook();
+
+void CEntitySystem_PrePhysicsUpdate_Hook(CEntitySystem* _this)
+{
+	gChairloaderDll->UpdateBeforePhysics();
+	g_CEntitySystem_PrePhysicsUpdate_Hook.InvokeOrig(_this);
+}
+
+//-----------------------------------------------------------------
+// CCryAction
+//-----------------------------------------------------------------
+auto g_CCryAction_FPostUpdate_Hook = CCryAction::FPostUpdate.MakeHook();
+
+void CCryAction_FPostUpdate_Hook(CCryAction* const _this, bool haveFocus, unsigned updateFlags)
+{
+	gChairloaderDll->LateUpdate(updateFlags);
+	g_CCryAction_FPostUpdate_Hook.InvokeOrig(_this, haveFocus, updateFlags);
 }
 
 } // namespace
@@ -231,11 +269,17 @@ void Chairloader::ShutdownGame()
 {
 	CryLog("Chairloader::ShutdownGame");
 
+	gRenDev->m_pRT->SyncMainWithRender();
+	gRenDev->m_pRT->SyncMainWithRender();
+	m_pRender->SetRenderThreadIsIdle(true);
+
 	m_pCore->GetDllManager()->CallShutdownGame();
 	m_pTools->ShutdownGame();
 	m_pRender->ShutdownGame();
 	m_pCore->ShutdownGame();
 	m_pFramework = nullptr;
+
+	m_pRender->SetRenderThreadIsIdle(false);
 }
 
 void Chairloader::ShutdownSystem()
@@ -255,21 +299,44 @@ void Chairloader::ShutdownSystem()
 	gEnv = nullptr;
 }
 
-void Chairloader::PreUpdate(bool haveFocus, unsigned int updateFlags) {
-	m_pCore->PreUpdate();
-	m_pRender->PreUpdate();
-	m_pTools->PreUpdate();
+void Chairloader::UpdateBeforeSystem(unsigned updateFlags)
+{
+	m_SavedUpdateFlags = updateFlags;
+	m_pCore->UpdateBeforeSystem(updateFlags);
+	m_pRender->UpdateBeforeSystem(updateFlags);
+	m_pTools->UpdateBeforeSystem(updateFlags);
 
 	// Tools update MUST come before mod PreUpdate for proper hot-reloading in the Editor
-	m_pCore->GetDllManager()->CallDraw();
-	m_pCore->GetDllManager()->CallPreUpdate();
+	m_pCore->GetDllManager()->CallUpdateBeforeSystem(updateFlags);
 }
 
-void Chairloader::PostUpdate(bool haveFocus, unsigned int updateFlags) {
-	m_pCore->PostUpdate();
-	m_pRender->PostUpdate();
-	m_pTools->PostUpdate();
-	m_pCore->GetDllManager()->CallPostUpdate();
+void Chairloader::UpdateBeforePhysics()
+{
+	unsigned updateFlags = m_SavedUpdateFlags;
+	m_pCore->UpdateBeforePhysics(updateFlags);
+	m_pRender->UpdateBeforePhysics(updateFlags);
+	m_pTools->UpdateBeforePhysics(updateFlags);
+	m_pCore->GetDllManager()->CallUpdateBeforePhysics(updateFlags);
+}
+
+void Chairloader::MainUpdate(unsigned updateFlags)
+{
+	m_pCore->MainUpdate(updateFlags);
+	m_pRender->MainUpdate(updateFlags);
+	m_pTools->MainUpdate(updateFlags);
+
+	if (gCL->gui->IsEnabled())
+		m_pCore->GetDllManager()->CallDraw();
+
+	m_pCore->GetDllManager()->CallMainUpdate(updateFlags);
+}
+
+void Chairloader::LateUpdate(unsigned updateFlags)
+{
+	m_pCore->LateUpdate(updateFlags);
+	m_pRender->LateUpdate(updateFlags);
+	m_pTools->LateUpdate(updateFlags);
+	m_pCore->GetDllManager()->CallLateUpdate(updateFlags);
 }
 
 void Chairloader::InitHooks()
@@ -287,9 +354,12 @@ void Chairloader::InitHooks()
 	// function arguments, which is even more ugly.
 	//
 	g_CSystem_Shutdown_Hook.SetHookFunc(&CSystem_Shutdown_Hook);
+	g_CSystem_Update_Hook.SetHookFunc(&CSystem_Update_Hook);
 	g_CGame_Init_Hook.SetHookFunc(&CGame_Init_Hook);
 	g_CGame_Update_Hook.SetHookFunc(&CGame_Update_Hook);
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
+	g_CEntitySystem_PrePhysicsUpdate_Hook.SetHookFunc(&CEntitySystem_PrePhysicsUpdate_Hook);
+	g_CCryAction_FPostUpdate_Hook.SetHookFunc(&CCryAction_FPostUpdate_Hook);
 
 	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
 	// Allows graphics debuggers to be attached

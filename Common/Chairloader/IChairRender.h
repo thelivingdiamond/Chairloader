@@ -26,8 +26,8 @@ enum EChairRenderFlags
 struct RenderCmdBuf
 {
 	// Do not change fields - will break ABI!
-	byte* pBuffer;
-	byte* pBufferEnd;
+	uint8_t* pBuffer;
+	uint8_t* pBufferEnd;
 
 	//-------------------------------------------------------------------------------------
 

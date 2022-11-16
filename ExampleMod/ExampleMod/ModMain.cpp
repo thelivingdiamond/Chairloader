@@ -65,6 +65,18 @@ void ModMain::InitGame(bool isHotReloading)
 	// Your code goes here
 }
 
+void ModMain::ShutdownGame(bool isHotUnloading)
+{
+	// Your code goes here
+	BaseClass::ShutdownGame(isHotUnloading);
+}
+
+void ModMain::ShutdownSystem(bool isHotUnloading)
+{
+	// Your code goes here
+	BaseClass::ShutdownSystem(isHotUnloading);
+}
+
 void ModMain::Draw()
 {
 	if (ImGui::Begin("Example Mod"))
@@ -84,26 +96,9 @@ void ModMain::Draw()
 	ImGui::End();
 }
 
-void ModMain::PreUpdate()
+void ModMain::MainUpdate(unsigned updateFlags)
 {
 	// Your code goes here
-}
-
-void ModMain::PostUpdate()
-{
-	// Your code goes here
-}
-
-void ModMain::ShutdownGame(bool isHotUnloading)
-{
-	// Your code goes here
-	BaseClass::ShutdownGame(isHotUnloading);
-}
-
-void ModMain::ShutdownSystem(bool isHotUnloading)
-{
-	// Your code goes here
-	BaseClass::ShutdownSystem(isHotUnloading);
 }
 
 extern "C" DLL_EXPORT IChairloaderMod* ClMod_Initialize()

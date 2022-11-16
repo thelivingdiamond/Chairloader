@@ -35,11 +35,13 @@ public:
 	//! @{
 	void CallInitSystem() override;
 	void CallInitGame() override;
-	void CallPreUpdate() override;
-	void CallDraw() override;
-	void CallPostUpdate() override;
 	void CallShutdownGame() override;
 	void CallShutdownSystem() override;
+	void CallDraw() override;
+	void CallUpdateBeforeSystem(unsigned updateFlags) override;
+	void CallUpdateBeforePhysics(unsigned updateFlags) override;
+	void CallMainUpdate(unsigned updateFlags) override;
+	void CallLateUpdate(unsigned updateFlags) override;
 	//! @}
 
 private:

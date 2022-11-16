@@ -27,8 +27,7 @@ public:
 	//-------------------------------------------
 	// Game update
 	//-------------------------------------------
-	void PreUpdate() override;
-	void PostUpdate() override;
+	void UpdateBeforeSystem(unsigned updateFlags) override;
 	bool HandleKeyPress(const SInputEvent& event) override;
 
 	Internal::ILogManager* GetLogManager() override;

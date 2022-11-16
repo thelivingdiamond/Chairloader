@@ -14,7 +14,7 @@ public:
 
 	bool IsInEditor() { return m_bInEditor; }
 
-	void Update();
+	void UpdateBeforeSystem();
 	void ShowUI();
 	bool HandleKeyPress(const SInputEvent& event);
 	bool HandleEditorKeyPress(const SInputEvent& event);

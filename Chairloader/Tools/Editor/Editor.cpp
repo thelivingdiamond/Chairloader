@@ -88,7 +88,7 @@ Editor::~Editor()
 	gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }
 
-void Editor::Update()
+void Editor::UpdateBeforeSystem()
 {
 	if (m_bReloadModsNextFrame)
 	{

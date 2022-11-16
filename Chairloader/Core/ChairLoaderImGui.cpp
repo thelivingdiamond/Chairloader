@@ -61,16 +61,19 @@ ChairLoaderImGui::ChairLoaderImGui() {
 	DetourUpdateThread(GetCurrentThread());
 	HookPresent();
 	DetourTransactionCommit();
+
+	gCL->pRender->AddListener(this);
 }
 
 ChairLoaderImGui::~ChairLoaderImGui() {
+	gCL->pRender->RemoveListener(this);
 	m_pFontAtlas->Release();
 	m_pFontAtlas = nullptr;
 	gCL->pImGui = nullptr;
 	m_pInstance = nullptr;
 }
 
-void ChairLoaderImGui::PreUpdate(bool haveFocus) {
+void ChairLoaderImGui::UpdateBeforeSystem() {
 	CRY_PROFILE_MARKER("ImGui::NewFrame");
 	ImGuiIO &io = ImGui::GetIO();
 
@@ -83,7 +86,7 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	io.DeltaTime = gEnv->pTimer->GetRealFrameTime();
 
 	// Update mouse
-	if (haveFocus && io.WantSetMousePos)
+	if (io.WantSetMousePos)
 		gEnv->pHardwareMouse->SetHardwareMouseClientPosition(io.MousePos.x, io.MousePos.y);
 
 	bool hasMouseInput = HasExclusiveMouseInput();
@@ -112,12 +115,6 @@ void ChairLoaderImGui::PreUpdate(bool haveFocus) {
 	m_ImGuiUsesMouse = hasMouseInput;
 
 	ImGui::NewFrame();
-}
-
-void ChairLoaderImGui::PostUpdate() {
-	CRY_PROFILE_MARKER("ImGui::Render");
-	ImGui::Render();
-	SubmitRenderData();
 }
 
 bool ChairLoaderImGui::HasExclusiveMouseInput()
@@ -751,6 +748,18 @@ void ChairLoaderImGui::RT_SetupRenderState(RenderLists *list, ID3D11DeviceContex
 	ctx->OMSetBlendState(data.pBlendState, blend_factor, 0xffffffff);
 	ctx->OMSetDepthStencilState(data.pDepthStencilState, 0);
 	ctx->RSSetState(data.pRasterizerState);
+}
+
+int ChairLoaderImGui::GetFlags()
+{
+	return eCRF_EndFrame;
+}
+
+void ChairLoaderImGui::EndFrame()
+{
+	CRY_PROFILE_MARKER("ImGui::Render");
+	ImGui::Render();
+	SubmitRenderData();
 }
 
 void ChairLoaderImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce) {

@@ -78,12 +78,12 @@ void CD3D9Renderer_EndFrame_Hook(CD3D9Renderer* _this)
 void CD3D9Renderer_RT_BeginFrame_Hook(CD3D9Renderer* _this)
 {
 	g_CD3D9Renderer_RT_BeginFrame_Hook.InvokeOrig(_this);
-	g_ChairRender.BeginFrame();
+	g_ChairRender.RT_BeginFrame();
 }
 
 void CD3D9Renderer_RT_EndFrame_Hook(CD3D9Renderer* _this)
 {
-	g_ChairRender.EndFrame();
+	g_ChairRender.RT_EndFrame();
 	g_CD3D9Renderer_RT_EndFrame_Hook.InvokeOrig(_this);
 }
 
