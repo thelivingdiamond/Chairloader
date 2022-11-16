@@ -4,6 +4,7 @@
 #include <Prey/CryGame/Game.h>
 #include <Chairloader/PreyFunction.h>
 #include <Chairloader/ChairloaderEnv.h>
+#include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IModDllManager.h>
 #include <mem.h>
 #include "Chairloader.h"
@@ -429,6 +430,13 @@ void Chairloader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_Delete, "delete"));
     m_KeyNames.insert(KeyNamePair(eKI_LWin, "lwin"));
     m_KeyNames.insert(KeyNamePair(eKI_RWin, "rwin"));
+}
+
+void Chairloader::GetModSdkVersion(int& major, int& minor, int& patch)
+{
+	major = MOD_SDK_VERSION_MAJOR;
+	minor = MOD_SDK_VERSION_MINOR;
+	patch = MOD_SDK_VERSION_PATCH;
 }
 
 ChairloaderGlobalEnvironment* Chairloader::GetChairloaderEnvironment() {

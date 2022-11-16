@@ -5,6 +5,12 @@ struct ISystem;
 struct IGameFramework;
 struct ImGuiContext;
 
+//! This is the version of the Mod SDK. It defines compatibility of mods with Chairloader.
+//! It must follow Semantic Versioning 2.0.0 spec.
+constexpr int MOD_SDK_VERSION_MAJOR = 0; //!< Increment when breaking API/ABI.
+constexpr int MOD_SDK_VERSION_MINOR = 1; //!< Increment when adding something new to the API.
+constexpr int MOD_SDK_VERSION_PATCH = 0; //!< Increment on a bug-fix with no API/ABI changes.
+
 struct IChairloaderMod {
 	static constexpr char PROC_INITIALIZE[] = "ClMod_Initialize";
 	static constexpr char PROC_SHUTDOWN[] = "ClMod_Shutdown";
@@ -36,6 +42,9 @@ struct IChairloaderMod {
 	};
 
 	~IChairloaderMod() {}
+
+	//! Gets the Mod SDK version used to build the DLL.
+	virtual void GetModSdkVersion(int& major, int& minor, int& patch) = 0;
 
 	//! Called during CSystem::Init, before any engine modules.
 	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) = 0;

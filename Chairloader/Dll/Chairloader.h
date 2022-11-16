@@ -60,6 +60,7 @@ private:
     void LoadKeyNames();
 public:
 	// IChairloader
+	void GetModSdkVersion(int& major, int& minor, int& patch) override;
     //TODO: reconsider where this map should go
     //! get key names map. Useful for config purposes
     const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }

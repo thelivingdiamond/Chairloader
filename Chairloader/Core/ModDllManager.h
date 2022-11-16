@@ -100,4 +100,7 @@ private:
 
 	//! Calls InitSystem of the mod.
 	void InitModule(Module& mod, bool isHotReloading);
+
+	//! Checks if the mod uses a compatible SDK. Crashes if not.
+	void CheckModSdkVersion(Module& mod);
 };

@@ -7,6 +7,13 @@
 
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
+void ChairloaderModBase::GetModSdkVersion(int& major, int& minor, int& patch)
+{
+	major = MOD_SDK_VERSION_MAJOR;
+	minor = MOD_SDK_VERSION_MINOR;
+	patch = MOD_SDK_VERSION_PATCH;
+}
+
 void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
 	// Fill dllInfo

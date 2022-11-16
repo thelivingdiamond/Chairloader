@@ -9,6 +9,9 @@ struct IGameFramework;
 struct IChairLogger;
 
 struct IChairloader {
+    //! Gets the Mod SDK version used in Chairloader.
+    virtual void GetModSdkVersion(int& major, int& minor, int& patch) = 0;
+
     //! @returns Pointers to interfaces provided by Chairloader to be used by mods.
     virtual ChairloaderGlobalEnvironment *GetChairloaderEnvironment() = 0;
 

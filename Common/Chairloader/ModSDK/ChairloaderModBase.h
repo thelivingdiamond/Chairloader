@@ -29,6 +29,7 @@ public:
 	virtual void InitHooks() = 0;
 
 	// IChairloaderMod overrides
+	virtual void GetModSdkVersion(int& major, int& minor, int& patch) override;
 	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) override;
 	virtual void InitGame(bool isHotReloading) override;
 	virtual void ShutdownGame(bool isHotUnloading) override;

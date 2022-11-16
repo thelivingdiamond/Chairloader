@@ -220,6 +220,8 @@ void ModDllManager::LoadModule(Module& mod)
 
 	if (!mod.pModIface)
 		CryFatalError("%s\nInitialize returned nullptr", mod.modName.c_str());
+
+	CheckModSdkVersion(mod);
 }
 
 void ModDllManager::UnloadModule(Module& mod)
@@ -252,4 +254,43 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 
 	if (mod.modName != mod.dllInfo.modName)
 		CryWarning("[ModDllManager] {}: Name mismatch. DLL says \"{}\"", mod.modName.c_str(), mod.dllInfo.modName);
+}
+
+void ModDllManager::CheckModSdkVersion(Module& mod)
+{
+	bool isValid = false;
+	int major = -1, minor = -1, patch = -1;
+	mod.pModIface->GetModSdkVersion(major, minor, patch);
+
+	if (major >= 0 && minor >= 0 && patch >= 0)
+	{
+		if (MOD_SDK_VERSION_MAJOR == 0)
+		{
+			// Everything must match 1:1
+			isValid = major == MOD_SDK_VERSION_MAJOR && minor == MOD_SDK_VERSION_MINOR && patch == MOD_SDK_VERSION_PATCH;
+		}
+		else
+		{
+			if (MOD_SDK_VERSION_MAJOR == major)
+			{
+				if (MOD_SDK_VERSION_MINOR > minor)
+				{
+					// e.g. 1.2.0 > 1.1.5
+					isValid = true;
+				}
+				else if (MOD_SDK_VERSION_MINOR == minor)
+				{
+					isValid = MOD_SDK_VERSION_PATCH > patch;
+				}
+			}
+		}
+	}
+
+	if (!isValid)
+	{
+		CryFatalError("Mod {} uses a version of Mod SDK that isn't supported by this version of Chairloader\n\n"
+			"Chairloader: {}.{}.{}\n"
+			"Mod: {}.{}.{}", mod.modName, MOD_SDK_VERSION_MAJOR, MOD_SDK_VERSION_MINOR, MOD_SDK_VERSION_PATCH,
+			major, minor, patch);
+	}
 }
