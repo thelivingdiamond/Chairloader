@@ -18,7 +18,8 @@ void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
 	m_bEnableEditor = params.bEnableEditor;
 	m_bEnableTrainer = params.bEnableTrainer;
 
-	Editor::InitHooks();
+	if (m_bEnableEditor)
+		Editor::InitHooks();
 }
 
 void ChairloaderTools::InitGame()
