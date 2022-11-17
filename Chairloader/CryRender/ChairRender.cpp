@@ -334,7 +334,7 @@ void RenderDll::ChairRender::RT_PostProcessCommands()
 void RenderDll::ChairRender::AddListener(IChairRenderListener* listener)
 {
 	ValidateCanChangeCmds();
-	int flags = listener->GetFlags();
+	int flags = listener->GetChairRenderListenerFlags();
 
 	if (flags == 0)
 		CryWarning("IRenderDll::ChairRender::AddListener called with 0 flags. It makes no sense.");

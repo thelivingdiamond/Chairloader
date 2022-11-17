@@ -117,7 +117,7 @@ private:
 	void RT_SetupRenderState(RenderLists *list, ID3D11DeviceContext *ctx);
 
 	// Render callbacks
-	int GetFlags() override;
+	int GetChairRenderListenerFlags() override;
 	void EndFrame() override;
 
 	// Hooks

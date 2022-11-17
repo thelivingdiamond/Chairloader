@@ -131,7 +131,7 @@ struct IChairRenderListener
 
 	//! Called once when the listener is added. See EChairRenderFlags.
 	//! @returns which callbacks need to be called for this callback.
-	virtual int GetFlags() = 0;
+	virtual int GetChairRenderListenerFlags() = 0;
 
 	//! Called after CD3D9Renderer::InitRenderer. This is before D3D is initialized and window is created.
 	virtual void InitRendererModule(CD3D9Renderer* pRenderer) {}

@@ -750,7 +750,7 @@ void ChairLoaderImGui::RT_SetupRenderState(RenderLists *list, ID3D11DeviceContex
 	ctx->RSSetState(data.pRasterizerState);
 }
 
-int ChairLoaderImGui::GetFlags()
+int ChairLoaderImGui::GetChairRenderListenerFlags()
 {
 	return eCRF_EndFrame;
 }
