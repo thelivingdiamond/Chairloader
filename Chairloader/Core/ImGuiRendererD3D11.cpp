@@ -5,7 +5,6 @@
 
 void ImGuiRendererD3D11::RT_Render(ImRendDrawBuffer& buffer, const wchar_t* eventName)
 {
-
 	if (!m_bInitialized)
 	{
 		if (!RT_Initialize())
@@ -294,6 +293,7 @@ bool ImGuiRendererD3D11::RT_Initialize()
 		pd3dDevice.CreateDepthStencilState(&desc, &m_pDepthStencilState);
 	}
 
+	m_bInitialized = true;
 	return true;
 }
 

@@ -354,6 +354,7 @@ void ChairImGui::SyncMainWithRender()
 void ChairImGui::RT_Present()
 {
 	// Render ImGui to the swapchain
+	CRY_PROFILE_MARKER("ChairImGui");
 	int bufIdx = !m_iCurrentFillBuf;
 	m_pRenderer->RT_Render(m_DrawBufs[bufIdx], L"ChairImGui");
 }
