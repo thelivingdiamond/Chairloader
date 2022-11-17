@@ -25,6 +25,7 @@ public:
 	void ShutdownGame();
 	void ShutdownSystem();
 	void UpdateBeforeSystem();
+	void RenderEnd();
 
 	bool HasExclusiveMouseInput();
 
@@ -41,7 +42,7 @@ private:
 	std::unique_ptr<ImGuiRendererD3D11> m_pRenderer;
 	ImRendDrawBuffer m_DrawBufs[2];
 	int m_iCurrentFillBuf = 0;
-	bool m_bIsEndFrame = false;
+	bool m_bSwapOnSync = false;
 
 	void InitBackend();
 	void CreateFontsTexture();
@@ -51,7 +52,6 @@ private:
 
 	// Render callbacks
 	int GetChairRenderListenerFlags() override;
-	void EndFrame() override;
 	void SyncMainWithRender() override;
 	void RT_Present() override;
 

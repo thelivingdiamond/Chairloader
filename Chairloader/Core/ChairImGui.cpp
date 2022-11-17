@@ -2,6 +2,7 @@
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/CryRenderer/ITexture.h>
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/CrySystem/System.h>
 #include <Chairloader/IChairloaderDll.h>
 #include "ChairImGui.h"
 #include "ImGuiRendererD3D11.h"
@@ -13,6 +14,7 @@ static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHoo
 static auto s_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
 static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventListener* const _this, HWND__* hWnd)>(0x1685F90);
 static auto s_CBasicEventListener_OnSetCursor_Hook = s_CBasicEventListener_OnSetCursor.MakeHook();
+static auto s_CSystem_RenderEnd_Hook = CSystem::FRenderEnd.MakeHook();
 
 static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
 {
@@ -33,6 +35,12 @@ static int CBasicEventListener_OnSetCursor_Hook(CBasicEventListener* const _this
 	return s_CBasicEventListener_OnSetCursor_Hook.InvokeOrig(_this, hWnd);
 }
 
+static void CSystem_RenderEnd_Hook(CSystem* const _this, bool bRenderStats)
+{
+	g_ChairImGui.RenderEnd();
+	return s_CSystem_RenderEnd_Hook.InvokeOrig(_this, bRenderStats);
+}
+
 ChairImGui& ChairImGui::Get()
 {
 	return g_ChairImGui;
@@ -51,6 +59,7 @@ void ChairImGui::InitSystem()
 	s_hookCBaseInputPostInputEvent.SetHookFunc(&CBaseInput_PostInputEvent);
 	s_CHardwareMouse_Event_Hook.SetHookFunc(&CHardwareMouse_Event_Hook);
 	s_CBasicEventListener_OnSetCursor_Hook.SetHookFunc(&CBasicEventListener_OnSetCursor_Hook);
+	s_CSystem_RenderEnd_Hook.SetHookFunc(&CSystem_RenderEnd_Hook);
 }
 
 void ChairImGui::InitGame()
@@ -127,6 +136,14 @@ void ChairImGui::UpdateBeforeSystem() {
 	m_ImGuiUsesMouse = hasMouseInput;
 
 	ImGui::NewFrame();
+}
+
+void ChairImGui::RenderEnd()
+{
+	CRY_PROFILE_MARKER("ImGui::Render");
+	ImGui::Render();
+	m_DrawBufs[m_iCurrentFillBuf].FillForCurrentContext();
+	m_bSwapOnSync = true;
 }
 
 bool ChairImGui::HasExclusiveMouseInput()
@@ -321,25 +338,17 @@ ImGuiKey ChairImGui::KeyIdToImGui(EKeyId keyId) {
 
 int ChairImGui::GetChairRenderListenerFlags()
 {
-	return eCRF_EndFrame | eCRF_RT_Present;
-}
-
-void ChairImGui::EndFrame()
-{
-	CRY_PROFILE_MARKER("ImGui::Render");
-	ImGui::Render();
-	m_DrawBufs[m_iCurrentFillBuf].FillForCurrentContext();
-	m_bIsEndFrame = true;
+	return eCRF_RT_Present;
 }
 
 void ChairImGui::SyncMainWithRender()
 {
-	if (!m_bIsEndFrame)
-		return;
-
-	// Swap buffers
-	m_iCurrentFillBuf = !m_iCurrentFillBuf;
-	m_bIsEndFrame = false;
+	if (m_bSwapOnSync)
+	{
+		// Swap buffers
+		m_iCurrentFillBuf = !m_iCurrentFillBuf;
+		m_bSwapOnSync = false;
+	}
 }
 
 void ChairImGui::RT_Present()
