@@ -159,6 +159,7 @@ public:
     static void mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy);
     static void mergeXMLNodeAttributes(pugi::xml_node &baseNode, pugi::xml_node &modNode);
     static void mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode);
+    static void patchXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode);
 
     static std::string getWildcardValue(attributeWildcard &wildcardValue);
 };

@@ -4,18 +4,25 @@
 
 #ifndef CHAIRLOADER_UPDATEHANDLER_H
 #define CHAIRLOADER_UPDATEHANDLER_H
-
+#pragma once
+#include "BinaryVersionCheck.h"
 
 namespace UpdateHandler {
-#define UPDATE_URL "https://api.github.com/repos/thelivingdiamond/Chairloader/releases/latest"
     bool isUpdateAvailable();
     void downloadUpdate();
     void asyncDownloadUpdate();
     void asyncDownloadCheck();
     void installUpdate();
+    void asyncInstallUpdate();
+    void asyncInstallCheck();
     double getProgress();
     double getProgressTotal();
     bool isDownloading();
+    bool isInstalling();
+    std::string getError();
+    bool isErrored();
+
+    void finishUpdate();
 };
 
 

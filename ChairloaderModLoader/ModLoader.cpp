@@ -16,6 +16,7 @@
 #include "../ChairLoader/GUIUtils.h"
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
+#include "ChairUpdateWizard.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -47,6 +48,9 @@ void ModLoader::Draw() {
     case State::Deploying:
         DrawDeployScreen(&bDraw);
         DrawMainWindow(&bDraw);
+        break;
+    case State::UpdateWizard:
+        DrawUpdateWizard(nullptr);
         break;
     default:
         assert(!("Invalid UI state"));
@@ -288,17 +292,19 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         m_bShowUpdatePopup = false;
     }
     if(ImGui::BeginPopupModal("Check for Updates", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize)){
-        if(VersionCheck::getPackagedChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion()){
+        if(VersionCheck::getLatestChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion()){
             ImGui::Text("Chairloader is out of date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Packaged: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
             if(ImGui::Button("Update Chairloader")){
-                SwitchToInstallWizard();
+                SwitchToUpdateWizard();
             }
         } else {
             ImGui::Text("Chairloader is up to date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Packaged: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
         }
         if(ImGui::Button("Close")){
             ImGui::CloseCurrentPopup();
@@ -945,8 +951,10 @@ void ModLoader::DrawDeploySettings() {
 
 void ModLoader::DrawLog() {
     logMutex.lock();
+    static bool m_bAutoScroll = true;
     if(ImGui::BeginTabItem("Log")){
         static std::vector<std::string> filterNames = {"trace", "debug", "info", "warning", "error", "fatal"};
+        ImGui::SetNextItemWidth(ImGui::GetWindowWidth() * 0.25f);
         if(ImGui::BeginCombo("Filter Level", filterNames.at((int)filterLevel).c_str())){
             int i = 0;
             for(auto & filter: filterNames){
@@ -961,6 +969,8 @@ void ModLoader::DrawLog() {
         if(ImGui::Button("Clear Log")){
             logRecord.clear();
         }
+        ImGui::SameLine();
+        ImGui::Checkbox("Auto Scroll", &m_bAutoScroll);
 //        static int count = 0;
 //        if(ImGui::Button("Test Overlay")){
 //            std::string test;
@@ -1015,6 +1025,12 @@ void ModLoader::DrawLog() {
                         ImGui::TableNextRow();
                     }
                 }
+//                if(m_bAutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()){
+//                    ImGui::SetScrollY(ImGui::GetScrollMaxY());
+//                }
+//                ImGui::SetScrollY(ImGui::GetScrollMaxY());
+                if(m_bAutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+                    ImGui::SetScrollHereY(0.0f);
                 ImGui::EndTable();
             }
         }
@@ -1163,6 +1179,7 @@ ModLoader::ModLoader() {
     assert(!m_spInstance);
     m_spInstance = this;
     packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
+    VersionCheck::fetchLatestVersion();
     cURLpp::initialize();
     LoadModLoaderConfig();
 
@@ -1358,7 +1375,6 @@ void ModLoader::Update() {
         UI::ResetDX11();
         log(severityLevel::trace, "DPI Scale Changed to %.2f", dpiScale);
     }
-    UpdateHandler::asyncDownloadCheck();
 }
 
 void ModLoader::DeployForInstallWizard()
@@ -2235,7 +2251,7 @@ void ModLoader::DrawDebug() {
                 ImGui::Text("%.2f KB / %.2f KB", UpdateHandler::getProgress() / 1000.0f, UpdateHandler::getProgressTotal() / 1000.0f);
             }
             if(ImGui::Button("Install Updates")){
-                UpdateHandler::installUpdate();
+                UpdateHandler::asyncInstallUpdate();
             }
             static bool updateAvailable;
             if(ImGui::Button("Check for Updates")){
@@ -2244,6 +2260,10 @@ void ModLoader::DrawDebug() {
             ImGui::BeginDisabled();
             ImGui::Checkbox("Update Available", &updateAvailable);
             ImGui::EndDisabled();
+
+            if(ImGui::Button("Switch to update wizard")){
+                SwitchToUpdateWizard();
+            }
         }
         ImGui::EndTabItem();
     }
@@ -2351,6 +2371,24 @@ void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
     }
 
 }
+
+
+void ModLoader::DrawUpdateWizard(bool *pBoolean) {
+    bool draw = true;
+    if(!m_pUpdateWizard){
+        m_pUpdateWizard = std::make_unique<ChairUpdateWizard>();
+    }
+    if(m_pUpdateWizard->Show("Chairloader Updater", &draw)){
+        m_pUpdateWizard.reset();
+        m_State = State::MainWindow;
+    }
+}
+
+void ModLoader::SwitchToUpdateWizard() {
+    log(severityLevel::info, "Switching to update wizard");
+    m_State = State::UpdateWizard;
+}
+
 void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
     static float xmlDepthSpacing = 20.0f;
     if(node){
@@ -2477,3 +2515,5 @@ void ModLoader::restoreStartupCinematics() {
     }
 
 }
+
+

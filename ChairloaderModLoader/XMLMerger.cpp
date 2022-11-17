@@ -66,11 +66,18 @@ void XMLMerger::mergeXMLNodeAttributes(pugi::xml_node &baseNode, pugi::xml_node 
     }
 }
 
+
+
 void XMLMerger::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode) {
     if(modNode.attribute("chair_remove").as_bool()) {
         baseNode.parent().remove_child(baseNode);
         return;
     } else {
+        if(modNode.attribute("chair_patch_mode").as_bool()) {
+            baseNode.remove_attribute("chair_patch_mode");
+            patchXMLNode(baseNode, modNode);
+            return;
+        }
         // copy all attributes from mod node to base node
         mergeXMLNodeAttributes(baseNode, modNode);
         // copy contents
@@ -583,6 +590,19 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
 //        ModLoader::Get().log(ModLoader::severityLevel::trace, "Not a wildcard value");
     }
     return {};
+}
+
+void XMLMerger::patchXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode) {
+    // recursively go through the mod and mergeXML Attributes
+    mergeXMLNodeAttributes(baseNode, modNode);
+    for(auto &modChild : modNode.children()){
+        // check if the child exists in the base node
+        auto baseChild = baseNode.child(modChild.name());
+        if(baseChild){
+            // if it does, recursively call this function
+            patchXMLNode(baseChild, modChild);
+        }
+    }
 }
 
 
