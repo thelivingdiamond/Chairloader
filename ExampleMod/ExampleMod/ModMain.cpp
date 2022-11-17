@@ -79,6 +79,17 @@ void ModMain::ShutdownSystem(bool isHotUnloading)
 
 void ModMain::Draw()
 {
+	// Modders, please move to a method, it's just an example
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Example Mod"))
+		{
+			ImGui::MenuItem("An example of how to add tabs to the menu bar.");
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+
 	if (ImGui::Begin("Example Mod"))
 	{
 		static bool state = false;
