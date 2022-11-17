@@ -253,7 +253,7 @@ void RenderDll::ChairRender::RT_InitRenderer()
 
 void RenderDll::ChairRender::ShutdownRenderer()
 {
-	for (auto it = m_EndFrame.rbegin(); it != m_EndFrame.rend(); ++it)
+	for (auto it = m_Shutdown.rbegin(); it != m_Shutdown.rend(); ++it)
 		(*it)->ShutdownRenderer();
 
 	Shaders::ShutdownRenderer();
@@ -261,7 +261,7 @@ void RenderDll::ChairRender::ShutdownRenderer()
 
 void RenderDll::ChairRender::RT_ShutdownRenderer()
 {
-	for (auto it = m_EndFrame.rbegin(); it != m_EndFrame.rend(); ++it)
+	for (auto it = m_RT_Shutdown.rbegin(); it != m_RT_Shutdown.rend(); ++it)
 		(*it)->RT_ShutdownRenderer();
 
 	AuxGeom::RT_Shutdown();
@@ -281,19 +281,19 @@ void RenderDll::ChairRender::EndFrame()
 
 void RenderDll::ChairRender::RT_BeginFrame()
 {
-	for (IChairRenderListener* i : m_BeginFrame)
+	for (IChairRenderListener* i : m_RT_BeginFrame)
 		i->RT_BeginFrame();
 }
 
 void RenderDll::ChairRender::RT_EndFrame()
 {
-	for (auto it = m_EndFrame.rbegin(); it != m_EndFrame.rend(); ++it)
+	for (auto it = m_RT_EndFrame.rbegin(); it != m_RT_EndFrame.rend(); ++it)
 		(*it)->RT_EndFrame();
 }
 
 void RenderDll::ChairRender::RT_Present()
 {
-	for (IChairRenderListener* i : m_BeginFrame)
+	for (IChairRenderListener* i : m_RT_Present)
 		i->RT_Present();
 }
 
