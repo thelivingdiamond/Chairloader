@@ -2,7 +2,6 @@
 #include <Chairloader/IChairloaderCore.h>
 
 class ModDllManager;
-class ChairLoaderImGui;
 class ChairloaderConfigManager;
 class ChairloaderGui;
 
@@ -46,7 +45,6 @@ public:
 private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
 	std::unique_ptr<ModDllManager> m_pModDllManager;
-	std::unique_ptr<ChairLoaderImGui> m_pImGui;
 	std::unique_ptr<ChairloaderGui> m_pGui;
 
 	// Keymap

@@ -5,7 +5,7 @@
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
 #include "ChairloaderGui.h"
-#include "ChairLoaderImGui.h"
+#include "ChairImGui.h"
 #include "ChairLogger.h"
 #include "LogManager.h"
 #include "ModDllManager.h"
@@ -45,11 +45,12 @@ void ChairloaderCore::InitSystem()
 	gCL->conf = m_pConfigManager.get();
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
-	ChairLoaderImGui::InitHooks();
+	ChairImGui::Get().InitSystem();
 }
 
 void ChairloaderCore::ShutdownSystem()
 {
+	ChairImGui::Get().ShutdownSystem();
 	gCL->conf = nullptr;
 	m_pConfigManager = nullptr;
 }
@@ -92,7 +93,7 @@ void ChairloaderCore::RegisterMods()
 
 void ChairloaderCore::InitGame()
 {
-	m_pImGui = std::make_unique<ChairLoaderImGui>();
+	ChairImGui::Get().InitGame();
 	m_pGui = std::make_unique<ChairloaderGui>();
 	g_pProfiler = new Profiler();
 }
@@ -100,7 +101,7 @@ void ChairloaderCore::InitGame()
 void ChairloaderCore::ShutdownGame()
 {
 	m_pGui = nullptr;
-	m_pImGui = nullptr;
+	ChairImGui::Get().ShutdownGame();
 }
 
 void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
@@ -110,7 +111,7 @@ void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 	if (gCL->conf->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
-	m_pImGui->UpdateBeforeSystem();
+	ChairImGui::Get().UpdateBeforeSystem();
 	m_pGui->update();
 	m_pConfigManager->Update();
 
