@@ -11,7 +11,7 @@ public:
 	void RemoveHook();
 
 	//! @returns whether a hook is installed.
-	inline bool IsHooked() { return m_pfn != nullptr; }
+	inline bool IsHooked() { return m_pfnHook != nullptr; }
 
 protected:
 	void* m_pfn = nullptr;
