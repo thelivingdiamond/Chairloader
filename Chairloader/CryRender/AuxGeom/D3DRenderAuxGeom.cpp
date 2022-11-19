@@ -1669,8 +1669,16 @@ void CRenderAuxGeomD3D::FlushTextMessages(CTextMessages& tMessages, bool reset)
 
 void CRenderAuxGeomD3D::SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2])
 {
-	std::copy(pTargets, pTargets + 2, m_pEyeTargets);
-	std::copy(pDepthTargets, pDepthTargets + 2, m_pEyeDepthTargets);
+	if (pTargets && pDepthTargets)
+	{
+		std::copy(pTargets, pTargets + 2, m_pEyeTargets);
+		std::copy(pDepthTargets, pDepthTargets + 2, m_pEyeDepthTargets);
+	}
+	else
+	{
+		std::fill(m_pEyeTargets, m_pEyeTargets + 2, nullptr);
+		std::fill(m_pEyeDepthTargets, m_pEyeDepthTargets + 2, nullptr);
+	}
 }
 
 void CRenderAuxGeomD3D::SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj)
