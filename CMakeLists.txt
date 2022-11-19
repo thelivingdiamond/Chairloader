@@ -61,7 +61,7 @@ function(cl_output_dir targetName gamePath)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED COMPONENTS filesystem log)
+find_package(Boost REQUIRED)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
