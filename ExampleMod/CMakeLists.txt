@@ -31,7 +31,6 @@ if(NOT CHAIRLOADER)
 	find_package(Boost REQUIRED)
 	find_package(Detours MODULE REQUIRED)
 	find_package(fmt CONFIG REQUIRED)
-	find_package(pugixml REQUIRED)
 endif()
 
 # Common path
