@@ -32,6 +32,7 @@ public:
 private:
 	static constexpr float MOUSE_WHEEL_DELTA = 120.0f;
 	static constexpr char FONT_CONFIG_PATH[] = "Libs/Chairloader/Fonts/Fonts.xml";
+	static constexpr float DEFAULT_DPI = 96.0f;
 
 	ImGuiContext* m_pMainContext = nullptr;
 	_smart_ptr<ITexture> m_pFontAtlas = nullptr;
@@ -39,6 +40,8 @@ private:
 	void* m_hGameCursor = nullptr;
 	bool m_ImGuiUsesMouse = false;
 	ImGuiMouseCursor m_LastMouseCursor = ImGuiMouseCursor_None;
+	float m_CV_scale = 0.0f;
+	float m_flScale = 0.0f;
 
 	// Double-buffering
 	std::unique_ptr<ImGuiRendererD3D11> m_pRenderer;
@@ -47,6 +50,8 @@ private:
 	bool m_bSwapOnSync = false;
 
 	void InitBackend();
+	void UpdateScale();
+	void ReloadStyle();
 	void ReloadFonts();
 	void SetFont(EFont font, ImFont* fontPtr);
 	void LoadFontConfig();

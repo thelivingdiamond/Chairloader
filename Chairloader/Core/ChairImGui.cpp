@@ -89,6 +89,7 @@ void ChairImGui::ShutdownGame()
 	ImGui::DestroyContext(m_pMainContext);
 	m_pMainContext = nullptr;
 	gCL->pImGui = nullptr;
+	gEnv->pConsole->UnregisterVariable("cl_imgui_scale");
 }
 
 void ChairImGui::ShutdownSystem()
@@ -136,6 +137,7 @@ void ChairImGui::UpdateBeforeSystem() {
 
 	m_ImGuiUsesMouse = hasMouseInput;
 
+	UpdateScale();
 	ImGui::NewFrame();
 }
 
@@ -173,7 +175,31 @@ void ChairImGui::InitBackend() {
 	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
 	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
 
+	// Initialize scale
+	unsigned currentDpi = GetDpiForWindow((HWND)gEnv->pRenderer->GetHWND());
+	float dpiScale = currentDpi / DEFAULT_DPI;
+	CryLog("Window DPI: {}, setting ImGui scale to {}", currentDpi, dpiScale);
+	REGISTER_CVAR2("cl_imgui_scale", &m_CV_scale, dpiScale, VF_NULL, "ImGui scale");
+	UpdateScale();
+}
+
+void ChairImGui::UpdateScale()
+{
+	if (m_pFontAtlas && m_flScale == m_CV_scale)
+		return;
+
+	m_flScale = std::clamp(m_CV_scale, 0.5f, 4.0f); // Clamp to sane values
+	m_CV_scale = m_flScale;
+	ReloadStyle();
 	ReloadFonts();
+}
+
+void ChairImGui::ReloadStyle()
+{
+	ImGuiStyle& style = ImGui::GetStyle();
+	style = ImGuiStyle();
+	ImGui::StyleColorsDark();
+	style.ScaleAllSizes(m_flScale);
 }
 
 void ChairImGui::ReloadFonts() {
@@ -329,7 +355,7 @@ void ChairImGui::LoadFontConfig()
 				config.MergeMode = true; // Merge into the main font
 
 			// Create the font
-			ImFont* ptr = io.Fonts->AddFontFromMemoryTTF(fileData.release(), fileSize, fontSize, &config);
+			ImFont* ptr = io.Fonts->AddFontFromMemoryTTF(fileData.release(), fileSize, std::floor(fontSize * m_flScale), &config);
 			if (!fontPtr)
 				fontPtr = ptr;
 		}
