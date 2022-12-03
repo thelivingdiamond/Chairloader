@@ -6,8 +6,14 @@
 #include <Windows.h>
 #include <winver.h>
 #include "ModLoader.h"
+#include <regex>
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
+#include <curlpp/Options.hpp>
+#include <boost/json.hpp>
+#include "UpdateURL.h"
 
-
+static std::string m_latestVersion;
 
 
 VersionCheck::DLLVersion VersionCheck::getInstalledChairloaderVersion() {
@@ -21,35 +27,95 @@ VersionCheck::DLLVersion VersionCheck::getPackagedChairloaderVersion() {
 }
 
 VersionCheck::DLLVersion VersionCheck::getBinaryVersion(fs::path szVersionFile) {
+    auto strVersion = getBinaryVersionString(szVersionFile);
+    return DLLVersion(strVersion);
+}
+
+std::string VersionCheck::getBinaryVersionString(fs::path szVersionFile) {
     DWORD verHandle = 0;
     UINT size = 0;
     LPBYTE lpBuffer = NULL;
     DWORD verSize = GetFileVersionInfoSizeW(szVersionFile.wstring().data(), &verHandle);
     if (verSize != 0) {
         LPSTR verData = new char[verSize];
-        if(GetFileVersionInfoW(szVersionFile.wstring().data(), verHandle, verSize, verData)){
-            if(VerQueryValueW(verData, L"\\", (VOID FAR* FAR*)&lpBuffer, &size)){
+        if(GetFileVersionInfoW(szVersionFile.wstring().data(), verHandle, verSize, verData)) {
+            if(VerQueryValueA(verData, R"(\StringFileInfo\040904E4\ProductVersion)", (VOID FAR* FAR*)&lpBuffer, &size)) {
                 if (size) {
-                    auto *verInfo = (VS_FIXEDFILEINFO *)lpBuffer;
-                    if (verInfo->dwSignature == 0xfeef04bd) {
-//                        std::string version = boost::str(boost::format("%d.%d.%d.%d")
-//                                                         % ((verInfo->dwFileVersionMS >> 16) & 0xffff)
-//                                                         % ((verInfo->dwFileVersionMS >> 0) & 0xffff)
-//                                                         % ((verInfo->dwFileVersionLS >> 16) & 0xffff)
-//                                                         % ((verInfo->dwFileVersionLS >> 0) & 0xffff));
-                        return {static_cast<uint16_t>(((verInfo->dwFileVersionMS >> 16) & 0xffff)),
-                                static_cast<uint16_t>(((verInfo->dwFileVersionMS >> 0) & 0xffff)),
-                                static_cast<uint16_t>(((verInfo->dwFileVersionLS >> 16) & 0xffff)),
-                                static_cast<uint16_t>(((verInfo->dwFileVersionLS >> 0) & 0xffff))};
-                    }
+                    return {(char*)lpBuffer};
                 }
             }
         }
     }
-    return {0,0,0,0};
+    return {};
+}
+
+std::string VersionCheck::getInstalledChairloaderVersionString() {
+    auto szVersionFile = ModLoader::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
+    return getBinaryVersionString(szVersionFile);
+}
+
+std::string VersionCheck::getPackagedChairloaderVersionString() {
+    auto szVersionFile = fs::path("Release") / "Chairloader.dll";
+    return getBinaryVersionString(szVersionFile);
+}
+
+std::string VersionCheck::getLatestChairloaderVersionString() {
+    return m_latestVersion;
+}
+
+VersionCheck::DLLVersion VersionCheck::getLatestChairloaderVersion() {
+    return DLLVersion(getLatestChairloaderVersionString());
+}
+
+void VersionCheck::fetchLatestVersion() {
+    std::stringstream result;
+    cURLpp::Easy easyhandle;
+    easyhandle.setOpt(cURLpp::Options::Url(UPDATE_URL));
+    easyhandle.setOpt(cURLpp::Options::WriteStream(&result));
+    easyhandle.setOpt(cURLpp::Options::UserAgent("ChairmanagerAutoUpdate"));
+    easyhandle.perform();
+    std:: string tag_name;
+    easyhandle.reset();
+    try {
+        auto json = boost::json::parse(result.str());
+        tag_name = json.at("tag_name").as_string();
+    } catch (std::exception &e) {
+        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
+        return;
+    }
+    m_latestVersion = tag_name;
 }
 
 
 std::string VersionCheck::DLLVersion::String() {
-    return boost::str(boost::format("%d.%d.%d.%d") % major % minor % patch % build);
+    std::string baseVersion = boost::str(boost::format("%d.%d.%d") % m_Major % m_Minor % m_Patch);
+    if(!m_ReleaseType.empty()){
+        baseVersion += "-" + m_ReleaseType;
+    }
+    if(m_Build != 0){
+        baseVersion += "+" + std::to_string(m_Build);
+    }
+    return baseVersion;
+}
+
+VersionCheck::DLLVersion::DLLVersion(std::string versionStr) {
+    // parse the semantic version using regex
+    std::regex versionRegex(R"(^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$)");
+    std::smatch match;
+    if (std::regex_match(versionStr, match, versionRegex)) {
+        m_Major = std::stoi(match[1]);
+        m_Minor = std::stoi(match[2]);
+        m_Patch = std::stoi(match[3]);
+        m_ReleaseType = match[4];
+        try{
+            m_Build = std::stoi(match[5]);
+        } catch (std::invalid_argument& e) {
+            m_Build = 0;
+        } catch (std::out_of_range& e) {
+            m_Build = 0;
+        } catch (std::exception& e) {
+            m_Build = 0;
+        }
+    }
+    m_VersionStr = versionStr;
 }

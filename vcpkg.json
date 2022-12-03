@@ -8,6 +8,9 @@
   "dependencies": [
     "boost-core",
     "boost-format",
+    "boost-bimap",
+    "boost-json",
+    "curlpp",
     "detours",
     "fmt",
     "libzip",

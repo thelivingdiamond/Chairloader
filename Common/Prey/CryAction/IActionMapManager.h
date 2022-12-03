@@ -231,15 +231,15 @@ struct IActionMapPopulateCallBack
 
 struct IActionMapAction
 {
-	virtual ~IActionMapAction(){}
-	virtual void                GetMemoryUsage(ICrySizer*) const = 0;
-	virtual void                Release() = 0;
-	virtual int                 GetNumActionInputs() const = 0;
-	virtual const SActionInput* FindActionInput(const char* szInput) const = 0;
-	virtual const SActionInput* GetActionInput(const int iIndex) const = 0;
-	virtual const SActionInput* GetActionInput(const EActionInputDevice device, const int iIndex) const = 0;
-	virtual const ActionId&     GetActionId() const = 0;
-	virtual const char*         GetTriggeredActionInput() const = 0;
+    virtual ~IActionMapAction();
+    virtual void GetMemoryUsage(ICrySizer *arg0) const = 0;
+    virtual void Release() = 0;
+    virtual int GetNumActionInputs() const = 0;
+    virtual SActionInput const *FindActionInput(const char *arg0) const = 0;
+    virtual SActionInput const *GetActionInput(const int arg0) const = 0;
+    virtual SActionInput const *GetActionInput(EActionInputDevice arg0, const int arg1) const = 0;
+    virtual CCryName const &GetActionId() const = 0;
+    virtual const char *GetTriggeredActionInput() const = 0;
 };
 
 //------------------------------------------------------------------------
@@ -254,36 +254,34 @@ typedef _smart_ptr<IActionMapActionIterator> IActionMapActionIteratorPtr;
 
 struct IActionMap
 {
-	virtual ~IActionMap(){}
-	virtual void                    GetMemoryUsage(ICrySizer*) const = 0;
-	virtual void                    Release() = 0;
-	virtual void                    Clear() = 0;
-	virtual const IActionMapAction* GetAction(const ActionId& actionId) const = 0;
-	virtual IActionMapAction*       GetAction(const ActionId& actionId) = 0;
-	virtual IActionMapAction*       GetAction(int) = 0;
-	virtual const IActionMapAction* GetAction(int) const = 0;
-	virtual bool                    CreateAction(const ActionId& actionId) = 0;
-	virtual bool                    RemoveAction(const ActionId& actionId) = 0;
-	virtual int                     GetActionsCount() const = 0;
-	virtual bool                    AddActionInput(const ActionId& actionId, const SActionInput& actionInput, const int iByDeviceIndex = -1) = 0;
-	virtual bool                    AddAndBindActionInput(const ActionId& actionId, const SActionInput& actionInput) = 0;
-	virtual bool                    RemoveActionInput(const ActionId& actionId, const char* szInput) = 0;
-	virtual bool                    ReBindActionInput(const ActionId& actionId, const char* szCurrentInput, const char* szNewInput) = 0;
-	virtual bool                    ReBindActionInput(const ActionId& actionId,
-	                                                  const char* szNewInput,
-	                                                  const EActionInputDevice device,
-	                                                  const int iByDeviceIndex) = 0;
-	virtual int                         GetNumRebindedInputs() = 0;
-	virtual bool                        Reset() = 0;
-	virtual bool                        LoadFromXML(const XmlNodeRef& actionMapNode) = 0;
-	virtual bool                        LoadRebindingDataFromXML(const XmlNodeRef& actionMapNode) = 0;
-	virtual bool                        SaveRebindingDataToXML(XmlNodeRef& actionMapNode) const = 0;
-	virtual IActionMapActionIteratorPtr CreateActionIterator() = 0;
-	virtual void                        SetActionListener(EntityId id) = 0;
-	virtual EntityId                    GetActionListener() const = 0;
-	virtual const char*                 GetName() = 0;
-	virtual void                        Enable(bool enable) = 0;
-	virtual bool                        Enabled() const = 0;
+    virtual ~IActionMap();
+    virtual void GetMemoryUsage(ICrySizer *arg0) const = 0;
+    virtual void Release() = 0;
+    virtual void Clear() = 0;
+    virtual IActionMapAction const *GetAction(CCryName const &arg0) const = 0;
+    virtual IActionMapAction *GetAction(CCryName const &arg0) = 0;
+    virtual IActionMapAction *GetAction(const int arg0) = 0;
+    virtual IActionMapAction const *GetAction(const int arg0) const = 0;
+    virtual bool CreateAction(CCryName const &arg0) = 0;
+    virtual bool RemoveAction(CCryName const &arg0) = 0;
+    virtual int GetActionsCount() const = 0;
+    virtual bool AddActionInput(CCryName const &arg0, SActionInput const &arg1, const int arg2) = 0;
+    virtual bool AddAndBindActionInput(CCryName const &arg0, SActionInput const &arg1) = 0;
+    virtual bool RemoveActionInput(CCryName const &arg0, const char *arg1) = 0;
+    virtual bool ReBindActionInput(CCryName const &arg0, const char *arg1, const char *arg2) = 0;
+    virtual bool ReBindActionInput(CCryName const &arg0, const char *arg1, EActionInputDevice arg2, const int arg3) = 0;
+    virtual int GetNumRebindedInputs() = 0;
+    virtual bool Reset() = 0;
+    virtual bool ResetBindings() = 0;
+    virtual bool LoadFromXML(XmlNodeRef const &arg0) = 0;
+    virtual bool LoadRebindingDataFromXML(XmlNodeRef const &arg0) = 0;
+    virtual bool SaveRebindingDataToXML(XmlNodeRef &arg0) const = 0;
+    virtual _smart_ptr<IActionMapActionIterator> CreateActionIterator() = 0;
+    virtual void SetActionListener(unsigned arg0) = 0;
+    virtual unsigned GetActionListener() const = 0;
+    virtual const char *GetName() = 0;
+    virtual void Enable(bool arg0) = 0;
+    virtual bool Enabled() const = 0;
 };
 
 //------------------------------------------------------------------------
@@ -351,68 +349,68 @@ struct IActionMapEventListener
 // #if 0
 struct IActionMapManager
 {
-	virtual ~IActionMapManager(){}
-	virtual void                          Update() = 0;
-	virtual void                          Reset() = 0;
-	virtual void                          Clear() = 0;
+    virtual ~IActionMapManager(){}
+    virtual void                          Update() = 0;
+    virtual void                          Reset() = 0;
+    virtual void                          Clear() = 0;
 
-	virtual bool                          InitActionMaps(const char* filename) = 0;
-	virtual void                          SetLoadFromXMLPath(const char* szPath) = 0;
-	virtual const char*                   GetLoadFromXMLPath() const = 0;
-	virtual bool                          LoadFromXML(const XmlNodeRef& node) = 0;
-	virtual bool                          LoadRebindDataFromXML(const XmlNodeRef& node) = 0;
-	virtual bool                          SaveRebindDataToXML(XmlNodeRef& node) = 0;
+    virtual bool                          InitActionMaps(const char* filename) = 0;
+    virtual void                          SetLoadFromXMLPath(const char* szPath) = 0;
+    virtual const char*                   GetLoadFromXMLPath() const = 0;
+    virtual bool                          LoadFromXML(const XmlNodeRef& node) = 0;
+    virtual bool                          LoadRebindDataFromXML(const XmlNodeRef& node) = 0;
+    virtual bool                          SaveRebindDataToXML(XmlNodeRef& node) = 0;
 
-	virtual bool                          AddExtraActionListener(IActionListener* pExtraActionListener, const char* actionMap = NULL) = 0;
-	virtual bool                          RemoveExtraActionListener(IActionListener* pExtraActionListener, const char* actionMap = NULL) = 0;
-	virtual const TActionListeners&       GetExtraActionListeners() const = 0;
+    virtual bool                          AddExtraActionListener(IActionListener* pExtraActionListener, const char* actionMap = NULL) = 0;
+    virtual bool                          RemoveExtraActionListener(IActionListener* pExtraActionListener, const char* actionMap = NULL) = 0;
+    virtual const TActionListeners&       GetExtraActionListeners() const = 0;
 
-	virtual void                          AddAlwaysActionListener(TBlockingActionListener pActionListener) = 0;
-	virtual void                          RemoveAlwaysActionListener(TBlockingActionListener pActionListener) = 0;
-	virtual void                          RemoveAllAlwaysActionListeners() = 0;
+    virtual void                          AddAlwaysActionListener(TBlockingActionListener pActionListener) = 0;
+    virtual void                          RemoveAlwaysActionListener(TBlockingActionListener pActionListener) = 0;
+    virtual void                          RemoveAllAlwaysActionListeners() = 0;
 
-	virtual IActionMap*                   CreateActionMap(const char* name) = 0;
-	virtual bool                          RemoveActionMap(const char* name) = 0;
-	virtual void                          RemoveAllActionMaps() = 0;
-	virtual IActionMap*                   GetActionMap(const char* name) = 0;
-	virtual IActionFilter*                CreateActionFilter(const char* name, EActionFilterType type) = 0;
-	virtual IActionFilter*                GetActionFilter(const char* name) = 0;
-	virtual IActionMapIteratorPtr         CreateActionMapIterator() = 0;
-	virtual IActionFilterIteratorPtr      CreateActionFilterIterator() = 0;
+    virtual IActionMap*                   CreateActionMap(const char* name) = 0;
+    virtual bool                          RemoveActionMap(const char* name) = 0;
+    virtual void                          RemoveAllActionMaps() = 0;
+    virtual IActionMap*                   GetActionMap(const char* name) = 0;
+    virtual IActionFilter*                CreateActionFilter(const char* name, EActionFilterType type) = 0;
+    virtual IActionFilter*                GetActionFilter(const char* name) = 0;
+    virtual IActionMapIteratorPtr         CreateActionMapIterator() = 0;
+    virtual IActionFilterIteratorPtr      CreateActionFilterIterator() = 0;
 
-	virtual const SActionInput*           GetActionInput(const char* actionMapName, const ActionId& actionId, const EActionInputDevice device, const int iByDeviceIndex) const = 0;
+    virtual const SActionInput*           GetActionInput(const char* actionMapName, const ActionId& actionId, const EActionInputDevice device, const int iByDeviceIndex) const = 0;
 
-	virtual void                          Enable(const bool enable, const bool resetStateOnDisable = false) = 0;
-	virtual void                          EnableActionMap(const char* name, bool enable) = 0;
-	virtual void                          EnableFilter(const char* name, bool enable) = 0;
-	virtual bool                          IsFilterEnabled(const char* name) = 0;
-	virtual void                          ReleaseFilteredActions() = 0;
-	virtual void                          ClearStoredCurrentInputData() = 0;
+    virtual void                          Enable(const bool enable, const bool resetStateOnDisable = false) = 0;
+    virtual void                          EnableActionMap(const char* name, bool enable) = 0;
+    virtual void                          EnableFilter(const char* name, bool enable) = 0;
+    virtual bool                          IsFilterEnabled(const char* name) = 0;
+    virtual void                          ReleaseFilteredActions() = 0;
+    virtual void                          ClearStoredCurrentInputData() = 0;
 
-	virtual bool                          ReBindActionInput(const char* actionMapName, const ActionId& actionId, const char* szCurrentInput, const char* szNewInput) = 0;
+    virtual bool                          ReBindActionInput(const char* actionMapName, const ActionId& actionId, const char* szCurrentInput, const char* szNewInput) = 0;
 
-	virtual int                           GetVersion() const = 0;
-	virtual void                          SetVersion(int version) = 0;
+    virtual int                           GetVersion() const = 0;
+    virtual void                          SetVersion(int version) = 0;
 
-	virtual void                          EnumerateActions(IActionMapPopulateCallBack* pCallBack) const = 0;
-	virtual int                           GetActionsCount() const = 0;
-	virtual int                           GetActionMapsCount() const = 0;
+    virtual void                          EnumerateActions(IActionMapPopulateCallBack* pCallBack) const = 0;
+    virtual int                           GetActionsCount() const = 0;
+    virtual int                           GetActionMapsCount() const = 0;
 
-	virtual bool                          AddInputDeviceMapping(const EActionInputDevice deviceType, const char* szDeviceTypeStr) = 0;
-	virtual bool                          RemoveInputDeviceMapping(const EActionInputDevice deviceType) = 0;
-	virtual void                          ClearInputDevicesMappings() = 0;
-	virtual int                           GetNumInputDeviceData() const = 0;
-	virtual const SActionInputDeviceData* GetInputDeviceDataByIndex(const int iIndex) = 0;
-	virtual const SActionInputDeviceData* GetInputDeviceDataByType(const EActionInputDevice deviceType) = 0;
-	virtual const SActionInputDeviceData* GetInputDeviceDataByType(const char* szDeviceType) = 0;
+    virtual bool                          AddInputDeviceMapping(const EActionInputDevice deviceType, const char* szDeviceTypeStr) = 0;
+    virtual bool                          RemoveInputDeviceMapping(const EActionInputDevice deviceType) = 0;
+    virtual void                          ClearInputDevicesMappings() = 0;
+    virtual int                           GetNumInputDeviceData() const = 0;
+    virtual const SActionInputDeviceData* GetInputDeviceDataByIndex(const int iIndex) = 0;
+    virtual const SActionInputDeviceData* GetInputDeviceDataByType(const EActionInputDevice deviceType) = 0;
+    virtual const SActionInputDeviceData* GetInputDeviceDataByType(const char* szDeviceType) = 0;
 
-	virtual void                          RemoveAllRefireData() = 0;
-	virtual bool                          LoadControllerLayoutFile(const char* szLayoutKeyName) = 0;
+    virtual void                          RemoveAllRefireData() = 0;
+    virtual bool                          LoadControllerLayoutFile(const char* szLayoutKeyName) = 0;
 
-	virtual EntityId                      GetDefaultActionEntity() const = 0;
-	virtual void                          SetDefaultActionEntity(EntityId id, bool bUpdateAll = true) = 0;
-	virtual void                          RegisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
-	virtual void                          UnregisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
+    virtual EntityId                      GetDefaultActionEntity() const = 0;
+    virtual void                          SetDefaultActionEntity(EntityId id, bool bUpdateAll = true) = 0;
+    virtual void                          RegisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
+    virtual void                          UnregisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
 };
 // #endif
 

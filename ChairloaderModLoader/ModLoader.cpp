@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <curlpp/cURLpp.hpp>
 #include "ModLoader.h"
 #include "UI.h"
 #include "GamePathDialog.h"
@@ -14,6 +15,8 @@
 #include "ChairUninstallWizard.h"
 #include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible
 #include "BinaryVersionCheck.h"
+#include "UpdateHandler.h"
+#include "ChairUpdateWizard.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -45,6 +48,9 @@ void ModLoader::Draw() {
     case State::Deploying:
         DrawDeployScreen(&bDraw);
         DrawMainWindow(&bDraw);
+        break;
+    case State::UpdateWizard:
+        DrawUpdateWizard(nullptr);
         break;
     default:
         assert(!("Invalid UI state"));
@@ -286,17 +292,19 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
         m_bShowUpdatePopup = false;
     }
     if(ImGui::BeginPopupModal("Check for Updates", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize)){
-        if(VersionCheck::getPackagedChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion()){
+        if(VersionCheck::getLatestChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion()){
             ImGui::Text("Chairloader is out of date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Packaged: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
             if(ImGui::Button("Update Chairloader")){
-                SwitchToInstallWizard();
+                SwitchToUpdateWizard();
             }
         } else {
             ImGui::Text("Chairloader is up to date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Packaged: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
         }
         if(ImGui::Button("Close")){
             ImGui::CloseCurrentPopup();
@@ -943,8 +951,10 @@ void ModLoader::DrawDeploySettings() {
 
 void ModLoader::DrawLog() {
     logMutex.lock();
+    static bool m_bAutoScroll = true;
     if(ImGui::BeginTabItem("Log")){
         static std::vector<std::string> filterNames = {"trace", "debug", "info", "warning", "error", "fatal"};
+        ImGui::SetNextItemWidth(ImGui::GetWindowWidth() * 0.25f);
         if(ImGui::BeginCombo("Filter Level", filterNames.at((int)filterLevel).c_str())){
             int i = 0;
             for(auto & filter: filterNames){
@@ -959,6 +969,8 @@ void ModLoader::DrawLog() {
         if(ImGui::Button("Clear Log")){
             logRecord.clear();
         }
+        ImGui::SameLine();
+        ImGui::Checkbox("Auto Scroll", &m_bAutoScroll);
 //        static int count = 0;
 //        if(ImGui::Button("Test Overlay")){
 //            std::string test;
@@ -1013,6 +1025,12 @@ void ModLoader::DrawLog() {
                         ImGui::TableNextRow();
                     }
                 }
+//                if(m_bAutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()){
+//                    ImGui::SetScrollY(ImGui::GetScrollMaxY());
+//                }
+//                ImGui::SetScrollY(ImGui::GetScrollMaxY());
+                if(m_bAutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+                    ImGui::SetScrollHereY(0.0f);
                 ImGui::EndTable();
             }
         }
@@ -1161,6 +1179,8 @@ ModLoader::ModLoader() {
     assert(!m_spInstance);
     m_spInstance = this;
     packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
+    VersionCheck::fetchLatestVersion();
+    cURLpp::initialize();
     LoadModLoaderConfig();
 
     if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
@@ -2151,83 +2171,101 @@ void ModLoader::DrawDebug() {
             dpiScale = 2.0f;
             updateDPIScaling = true;
         }
-     /*   if (ImGui::Button("Test create process")) {
-            STARTUPINFOW info={sizeof(info)};
-            PROCESS_INFORMATION processInfo;
-            LPSTR currentDir = new char[MAX_PATH];
-            GetCurrentDirectory(MAX_PATH, currentDir);
-            log(severityLevel::debug, "Current directory: %s", currentDir);
-            auto command = fs::path(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)").wstring();
-            command.resize(MAX_PATH);
-//            auto command = const_cast<LPTSTR>(commandArgs.c_str());
-            if (CreateProcessW(nullptr, &command[0], nullptr, nullptr, true, CREATE_NO_WINDOW, nullptr, nullptr, &info, &processInfo)) {
-                overlayLog(severityLevel::debug, "CREATE PROCESS SUCCESS");
-                WaitForSingleObject(processInfo.hProcess, INFINITE);
-                CloseHandle(processInfo.hProcess);
-                CloseHandle(processInfo.hThread);
-            } else {
-                overlayLog(severityLevel::error, "CREATE PROCESS FAILED: %d", GetLastError());
+        static std::string filePath, modName = "TestMod";
+        ImGui::InputText("Mod Name", &modName);
+        static XMLMerger::mergingPolicy policy;
+        static pugi::xml_document doc;
+        if(ImGui::CollapsingHeader("File Merging")) {
+            ImGui::InputText("File Path", &filePath);
+            if (ImGui::Button("Load Xml File")) {
+                doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Clear Xml File")) {
+                doc.reset();
+            }
+            if (ImGui::Button("Resolve Path wildcards")) {
+                XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
+            }
+            if (ImGui::Button("Merge Xml File")) {
+                m_XMLMerger.mergeXMLFile(filePath, modName, false);
+            }
+            if (!doc.empty()) {
+                ImGui::Text("Loaded Xml File: %s", doc.name());
+                ImGui::Text("Root Node: %s", doc.root().name());
+                ImGui::Text("First Child: %s", doc.root().first_child().name());
+            }
+            if (ImGui::Button("Get Merging Policy")) {
+                policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
+            }
+            ImGui::Text("Merging Policy: %d", policy.policy);
+            ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
+            if (!policy.attributeMatches.empty()) {
+                for (auto &attributeMatch: policy.attributeMatches) {
+                    ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
+                }
+            }
+            if (!policy.nodeStructure.empty())
+                displayXmlNode(policy.nodeStructure, 0);
+        }
+
+        if(ImGui::CollapsingHeader("Config")){
+            if(ImGui::Button("Copy Default Config File")){
+                ConfigManager::copyDefaultConfig(modName);
+            }
+            ImGui::BeginDisabled();
+            static bool configExists;
+            configExists = ConfigManager::isConfigPresent(modName);
+            ImGui::Checkbox("Config File Exists", &configExists);
+            ImGui::EndDisabled();
+        }
+        if(ImGui::CollapsingHeader("Version Strings")){
+            static VersionCheck::DLLVersion dllVersion;
+            static std::string version, packagedVersion;
+            if(ImGui::Button("Get Chairloader Version")){
+                // get the version string from the chairloader dll
+                version = VersionCheck::getInstalledChairloaderVersionString();
+                dllVersion = VersionCheck::getInstalledChairloaderVersion();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Chairloader Version: %s", version.c_str());
+            ImGui::Text("Chairloader Version: %s" , dllVersion.String().c_str());
+            if(ImGui::Button("Get Packaged Game Version")){
+                // get the version string from the game exe
+                packagedVersion = VersionCheck::getPackagedChairloaderVersionString();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Packaged Game Version: %s", packagedVersion.c_str());
+        }
+        if(ImGui::CollapsingHeader("Updating")){
+            if(ImGui::Button("Download Updates")){
+                UpdateHandler::asyncDownloadUpdate();
             }
 
-        }
-        if (ImGui::Button("Test Filename extension removal")){
-            auto BaseModFolder = modToLoadPath.filename().wstring();
-            auto filenamePosition = BaseModFolder.find_last_of(L'.');
-            auto modFolder = BaseModFolder.substr(0, filenamePosition-1);
-            overlayLog(severityLevel::debug, "Mod folder: %ls", modFolder.c_str());
-        }
-        if(ImGui::Button("Check Chairloader dll version")) {
-            overlayLog(severityLevel::info, "%s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-        }*/
-     static std::string filePath, modName = "TestMod";
-     ImGui::InputText("Mod Name", &modName);
-     static XMLMerger::mergingPolicy policy;
-     static pugi::xml_document doc;
-     if(ImGui::CollapsingHeader("File Merging")) {
-         ImGui::InputText("File Path", &filePath);
-         if (ImGui::Button("Load Xml File")) {
-             doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
-         }
-         ImGui::SameLine();
-         if (ImGui::Button("Clear Xml File")) {
-             doc.reset();
-         }
-         if (ImGui::Button("Resolve Path wildcards")) {
-             XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
-         }
-         if (ImGui::Button("Merge Xml File")) {
-             m_XMLMerger.mergeXMLFile(filePath, modName, false);
-         }
-         if (!doc.empty()) {
-             ImGui::Text("Loaded Xml File: %s", doc.name());
-             ImGui::Text("Root Node: %s", doc.root().name());
-             ImGui::Text("First Child: %s", doc.root().first_child().name());
-         }
-         if (ImGui::Button("Get Merging Policy")) {
-             policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
-         }
-         ImGui::Text("Merging Policy: %d", policy.policy);
-         ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
-         if (!policy.attributeMatches.empty()) {
-             for (auto &attributeMatch: policy.attributeMatches) {
-                 ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
-             }
-         }
-         if (!policy.nodeStructure.empty())
-             displayXmlNode(policy.nodeStructure, 0);
-     }
+            ImGui::ProgressBar(UpdateHandler::getProgress() / UpdateHandler::getProgressTotal(), ImVec2(0.0f, 0.0f));
+            ImGui::SameLine();
+            // check if the total is MB or KB
+            if(UpdateHandler::getProgressTotal() > 1000000){
+                ImGui::Text("%.2f MB / %.2f MB", UpdateHandler::getProgress() / 1000000.0f, UpdateHandler::getProgressTotal() / 1000000.0f);
+            } else {
+                ImGui::Text("%.2f KB / %.2f KB", UpdateHandler::getProgress() / 1000.0f, UpdateHandler::getProgressTotal() / 1000.0f);
+            }
+            if(ImGui::Button("Install Updates")){
+                UpdateHandler::asyncInstallUpdate();
+            }
+            static bool updateAvailable;
+            if(ImGui::Button("Check for Updates")){
+                updateAvailable = UpdateHandler::isUpdateAvailable();
+            }
+            ImGui::BeginDisabled();
+            ImGui::Checkbox("Update Available", &updateAvailable);
+            ImGui::EndDisabled();
 
-     if(ImGui::CollapsingHeader("Config")){
-        if(ImGui::Button("Copy Default Config File")){
-            ConfigManager::copyDefaultConfig(modName);
+            if(ImGui::Button("Switch to update wizard")){
+                SwitchToUpdateWizard();
+            }
         }
-        ImGui::BeginDisabled();
-        static bool configExists;
-        configExists = ConfigManager::isConfigPresent(modName);
-        ImGui::Checkbox("Config File Exists", &configExists);
-        ImGui::EndDisabled();
-     }
-     ImGui::EndTabItem();
+        ImGui::EndTabItem();
     }
 }
 
@@ -2333,6 +2371,24 @@ void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
     }
 
 }
+
+
+void ModLoader::DrawUpdateWizard(bool *pBoolean) {
+    bool draw = true;
+    if(!m_pUpdateWizard){
+        m_pUpdateWizard = std::make_unique<ChairUpdateWizard>();
+    }
+    if(m_pUpdateWizard->Show("Chairloader Updater", &draw)){
+        m_pUpdateWizard.reset();
+        m_State = State::MainWindow;
+    }
+}
+
+void ModLoader::SwitchToUpdateWizard() {
+    log(severityLevel::info, "Switching to update wizard");
+    m_State = State::UpdateWizard;
+}
+
 void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
     static float xmlDepthSpacing = 20.0f;
     if(node){
@@ -2459,3 +2515,5 @@ void ModLoader::restoreStartupCinematics() {
     }
 
 }
+
+
