@@ -3,6 +3,13 @@
 
 struct IChairloaderImGui
 {
+	enum class EFont
+	{
+		Default,	//!< The font used for UI
+		Monospace,	//!< The monospace font for the console
+		FontCount
+	};
+
 	~IChairloaderImGui() {}
 
 	//! Checks that mod's ImGui is compatible with Chairloader's.
@@ -15,4 +22,7 @@ struct IChairloaderImGui
 
 	//! @returns the main ImGui context used by Chairloader.
 	virtual ImGuiContext* GetContext() = 0;
+
+	//! @returns the font. If the font failed to load, returns the default one. Never returns nullptr.
+	virtual ImFont* GetFont(EFont font) = 0;
 };

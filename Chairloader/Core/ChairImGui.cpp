@@ -1,5 +1,6 @@
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/HardwareMouse.h>
+#include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/CryRenderer/ITexture.h>
 #include <Prey/CrySystem/Profiling.h>
 #include <Prey/CrySystem/System.h>
@@ -172,23 +173,206 @@ void ChairImGui::InitBackend() {
 	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
 	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
 
-	CreateFontsTexture();
+	ReloadFonts();
 }
 
-void ChairImGui::CreateFontsTexture() {
-	assert(!m_pFontAtlas);
+void ChairImGui::ReloadFonts() {
+	ImGuiIO& io = ImGui::GetIO();
+
+	// Clear everything font-related
+	std::fill(std::begin(m_Fonts), std::end(m_Fonts), nullptr);
+	io.Fonts->SetTexID((ImTextureID)nullptr);
+	io.Fonts->Clear();
+	m_pFontAtlas = nullptr;
+
+	// Load fonts from the config
+	LoadFontConfig();
 
 	// Create texture
-	ImGuiIO &io = ImGui::GetIO();
 	unsigned char *pixels;
 	int width, height;
 	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
-	m_pFontAtlas.Assign_NoAddRef(gEnv->pRenderer->CreateTexture(
-		"ImGui Font Atlas", width, height, 1, pixels, eTF_R8G8B8A8, FT_TEX_FONT
-	));
+	
+	if (width > 0 && height > 0)
+	{
+		m_pFontAtlas.Assign_NoAddRef(gEnv->pRenderer->CreateTexture(
+			"ImGui Font Atlas", width, height, 1, pixels, eTF_R8G8B8A8, FT_TEX_FONT
+		));
+	}
+
+	if (!m_pFontAtlas)
+		CryError("Failed to create font texture. Maybe it's too large ({}x{}).", width, height);
+	else
+		CryLog("Font atlas size: {}x{}, {:.1f} MiB", width, height, m_pFontAtlas->GetDataSize() / 1024.0 / 1024.0);
 
 	// Store our identifier
 	io.Fonts->SetTexID((ImTextureID)m_pFontAtlas);
+}
+
+void ChairImGui::SetFont(EFont font, ImFont* fontPtr)
+{
+	m_Fonts[(int)font] = fontPtr;
+}
+
+void ChairImGui::LoadFontConfig()
+{
+	ImGuiIO& io = ImGui::GetIO();
+	XmlNodeRef fonts = gEnv->pSystem->LoadXmlFromFile(FONT_CONFIG_PATH);
+	if (!fonts)
+	{
+		CryError("Failed to open {}. Falling back to embedded font.", FONT_CONFIG_PATH);
+		io.Fonts->AddFontDefault();
+		return;
+	}
+
+	std::map<std::string, ImFont*> fontsByName;
+
+	for (int i = 0; i < fonts->getChildCount(); i++)
+	{
+		XmlNodeRef node = fonts->getChild(i);
+
+		// Read name
+		const char* name = node->getAttr("name");
+		{
+			if (!name)
+			{
+				CryError("Font #{} has no name", i);
+				continue;
+			}
+
+			auto it = fontsByName.find(name);
+			if (it != fontsByName.end())
+			{
+				CryError("Font #{} '{}' is duplicate", i, name);
+				continue;
+			}
+		}
+
+		ImFont* fontPtr = nullptr;
+
+		// Read files
+		XmlNodeRef files = node->findChild("Files");
+		if (!files)
+		{
+			CryError("Font #{}: 'Files' not set", i);
+			continue;
+		}
+
+		for (int j = 0; j < files->getChildCount(); j++)
+		{
+			XmlNodeRef fileNode = files->getChild(j);
+			const char* path = fileNode->getAttr("path");
+			if (!path)
+			{
+				CryError("Font #{}: File #{}: 'path' not set", i, j);
+				continue;
+			}
+
+			float fontSize = 0.0f;
+			if (!fileNode->getAttr("size", fontSize))
+			{
+				CryError("Font #{}: File #{}: 'size' not set", i, j);
+				continue;
+			}
+
+			// Try to load the main font file
+			FILE* f = nullptr;
+			f = gEnv->pCryPak->FOpen(path, "rb");
+			if (!f)
+			{
+				// Try to open the fallback
+				const char* fallbackPath = fileNode->getAttr("fallback");
+				if (fallbackPath)
+				{
+					CryWarning("Font #{}: File #{}: failed to open the main file, falling back", i, j);
+					fileNode->getAttr("fallbackSize", fontSize);
+					f = gEnv->pCryPak->FOpen(fallbackPath, "rb");
+				}
+			}
+
+			if (!f)
+			{
+				CryError("Font #{}: File #{}: failed to open the file", i, j);
+				continue;
+			}
+
+			// Get file size
+			size_t fileSize = gEnv->pCryPak->FGetSize(f);
+			if (!fileSize)
+			{
+				CryError("Font #{}: File #{}: file is empty", i, j);
+				gEnv->pCryPak->FClose(f);
+				continue;
+			}
+
+			// Allocate buffer and read file
+			// ImGui will own the pointer and uses ImGui::MemFree to free it
+			std::unique_ptr<void, decltype(&ImGui::MemFree)> fileData(ImGui::MemAlloc(fileSize), &ImGui::MemFree);
+			if (!gEnv->pCryPak->FReadRaw(fileData.get(), fileSize, 1, f))
+			{
+				CryError("Font #{}: File #{}: read failed", i, j);
+				gEnv->pCryPak->FClose(f);
+				continue;
+			}
+
+			gEnv->pCryPak->FClose(f);
+
+			// Read config from XML
+			ImFontConfig config;
+			fileNode->getAttr("oversampleH", config.OversampleH);
+			fileNode->getAttr("oversampleV", config.OversampleV);
+			fileNode->getAttr("pixelSnapH", config.PixelSnapH);
+			fileNode->getAttr("glyphMinAdvanceX", config.GlyphMinAdvanceX);
+			fileNode->getAttr("glyphMaxAdvanceX", config.GlyphMaxAdvanceX);
+			fileNode->getAttr("rasterizerMultiply", config.RasterizerMultiply);
+			if (fontPtr)
+				config.MergeMode = true; // Merge into the main font
+
+			// Create the font
+			ImFont* ptr = io.Fonts->AddFontFromMemoryTTF(fileData.release(), fileSize, fontSize, &config);
+			if (!fontPtr)
+				fontPtr = ptr;
+		}
+
+		// Save the font
+		if (!fontPtr)
+		{
+			CryError("Font #{}: no files loaded", i);
+			continue;
+		}
+
+		fontsByName[name] = fontPtr;
+	}
+
+	// Find "Default" font
+	{
+		auto it = fontsByName.find("Default");
+		if (it != fontsByName.end())
+		{
+			SetFont(EFont::Default, it->second);
+		}
+		else
+		{
+			CryWarning("Failed to find 'Default' font, falling back to embedded font");
+			SetFont(EFont::Default, io.Fonts->AddFontDefault());
+		}
+	}
+
+	auto fnFindFont = [&](EFont font, const std::string& name)
+	{
+		auto it = fontsByName.find(name);
+		if (it != fontsByName.end())
+		{
+			SetFont(font, it->second);
+		}
+		else
+		{
+			CryWarning("Failed to find '{}' font, falling back to 'Default' font", name);
+			SetFont(font, GetFont(EFont::Default));
+		}
+	};
+
+	fnFindFont(EFont::Monospace, "Monospace");
 }
 
 void ChairImGui::UpdateMouseCursor()
@@ -442,4 +626,9 @@ ImGuiContext* ChairImGui::GetContext()
 void ChairImGui::GetAllocatorFuncs(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data)
 {
 	ImGui::GetAllocatorFunctions(p_alloc_func, p_free_func, p_user_data);
+}
+
+ImFont* ChairImGui::GetFont(EFont font)
+{
+	return m_Fonts[(int)font];
 }

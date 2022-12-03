@@ -1,0 +1,19 @@
+<Fonts>
+	<Font
+		name="Default">
+		<Files>
+			<File size="16" fallbackSize="18"
+				path="Libs/Chairloader/Fonts/Montserrat-Regular.ttf"
+				fallback="C:/Windows/Fonts/segoeui.ttf"
+				rasterizerMultiply="1.8"/>
+		</Files>
+	</Font>
+	<Font
+		name="Monospace">
+		<Files>
+			<File size="15"
+				path="Libs/Chairloader/Fonts/CascadiaMono-Regular.ttf"
+				fallback="C:/Windows/Fonts/consola.ttf"/>
+		</Files>
+	</Font>
+</Fonts>

@@ -31,9 +31,11 @@ public:
 
 private:
 	static constexpr float MOUSE_WHEEL_DELTA = 120.0f;
+	static constexpr char FONT_CONFIG_PATH[] = "Libs/Chairloader/Fonts/Fonts.xml";
 
 	ImGuiContext* m_pMainContext = nullptr;
 	_smart_ptr<ITexture> m_pFontAtlas = nullptr;
+	ImFont* m_Fonts[(int)EFont::FontCount] = {};
 	void* m_hGameCursor = nullptr;
 	bool m_ImGuiUsesMouse = false;
 	ImGuiMouseCursor m_LastMouseCursor = ImGuiMouseCursor_None;
@@ -45,7 +47,9 @@ private:
 	bool m_bSwapOnSync = false;
 
 	void InitBackend();
-	void CreateFontsTexture();
+	void ReloadFonts();
+	void SetFont(EFont font, ImFont* fontPtr);
+	void LoadFontConfig();
 	void UpdateMouseCursor();
 
 	static ImGuiKey KeyIdToImGui(EKeyId keyId);
@@ -64,4 +68,5 @@ public:
 		size_t sz_vec2, size_t sz_vec4, size_t sz_drawvert, size_t sz_drawidx) override;
 	virtual ImGuiContext* GetContext() override;
 	virtual void GetAllocatorFuncs(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data) override;
+	virtual ImFont* GetFont(EFont font) override;
 };
