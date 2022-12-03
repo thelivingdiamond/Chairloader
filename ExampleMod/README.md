@@ -8,8 +8,7 @@ Requirements
 -------------
 
 1. Visual Studio 2017/2019/2022
-2. Chairloader dependencies
-3. A bit of CMake skills
+2. A bit of CMake skills
 
 
 How to use
@@ -20,6 +19,7 @@ How to use
 3. Rename `ExampleMod` directory into `$mod_name`.
 4. Look for `CHANGE ME` comments in the following files. Near them rename `ExampleMod` into `$mod_name`.
    - *CMakeLists.txt*
+   - *vcpkg.json*
    - *$mod_name/CMakeLists.txt*
    - *$mod_name/ModMain.cpp*
 5. Read `Common/README_ModSDK.txt` and choose one of the options.

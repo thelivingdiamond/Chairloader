@@ -17,27 +17,13 @@ class ArkNpc;
 
 class EntityUtils {
 public:
-	void DumpEntity(IEntity* entity, bool dumpProxies);
-	void DumpGameObject(CGameObject* obj);
-//    IEntity* spawnEntity
+	EntityUtils() = delete;
 
-    IEntity* spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned int spawnCount = 1, uint64_t faction = 0);
-    IEntity* spawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned int spawnCount = 1);
-	// entities (WIP)
-	// IEntity* CreateEntity(IEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
-	// IEntity* CreateEntityBasic(IEntitySystem* system, char* name, Vec3_tpl<float>* pos, Quat_tpl<float>* rot, uint64_t archetypeId, PreyFunctions* functions);
-	SEntitySpawnParams* CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnParams* params, IEntityArchetype* entityArchetype = nullptr, IEntityClass* entityClass = nullptr);
-	// Dumping Utilities
+	static void DumpEntity(IEntity* entity, bool dumpProxies);
+	static void DumpGameObject(CGameObject* obj);
 
-public:
-	
-	EntityUtils();
-	ArkPlayer* ArkPlayerPtr();
-    ArkNpc* GetArkNpc(IEntity* entity);
+	static IEntity* SpawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned int spawnCount = 1, uint64_t faction = 0);
+	static IEntity* SpawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned int spawnCount = 1);
 
-	// ArchetypeLibrary entityArchetypeLibrary;
-private:
-
+	static ArkNpc* GetArkNpc(IEntity* entity);
 };
-
-extern EntityUtils *gEntUtils;

@@ -288,7 +288,7 @@ void CryGetExecutableFolder(unsigned int pathSize, char* szPath)
 
 	if (nLen >= CRY_ARRAY_COUNT(filePath))
 	{
-		CryFatalError("The path to the current executable exceeds the expected length. TruncatedPath:%s", filePath);
+		CryFatalError("The path to the current executable exceeds the expected length.");
 	}
 
 	if (nLen <= 0)
@@ -304,7 +304,7 @@ void CryGetExecutableFolder(unsigned int pathSize, char* szPath)
 	size_t requiredLength = Unicode::Convert(szPath, pathSize, filePath);
 	if (requiredLength > pathSize)
 	{
-		CryFatalError("Executable path is to long. MaxPathSize:%u, PathSize:%u, Path:%s", pathSize, (uint)requiredLength, filePath);
+		CryFatalError("Executable path is to long. MaxPathSize:%u, PathSize:%u", pathSize, (uint)requiredLength);
 	}
 }
 

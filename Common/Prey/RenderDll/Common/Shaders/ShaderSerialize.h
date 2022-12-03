@@ -783,7 +783,7 @@ struct SShaderSerializeContext
 	#if 0
 			if (strcmp(&Strings[offset], pStr))
 			{
-				CryLogAlways("Error: %s is not %s\n", pStr, &Strings[offset]);
+				CryLogAlways("Error: {} is not {}\n", pStr, &Strings[offset]);
 			}
 	#endif
 

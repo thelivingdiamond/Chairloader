@@ -1,0 +1,14 @@
+{
+  "name": "example-mod",
+  "version-string": "0.1.0",
+  "description": "An interesting description",
+  "builtin-baseline": "faed44dfa013088fe1910908a8a65887622f412f",
+  "$deps_": "Please, keep sorted alphabetically",
+  "$boost": "Don't include the whole Boost!",
+  "dependencies": [
+    "boost-core",
+    "boost-format",
+    "detours",
+    "fmt"
+  ]
+}

@@ -137,7 +137,7 @@ public:
 		for (it = m_nameMap.begin(); it != m_nameMap.end(); ++it)
 		{
 			SNameEntryR* pNameEntry = it->second;
-			CryLog("[%4d] %s", pNameEntry->nLength, pNameEntry->GetStr());
+			CryLog("[{:4d}] {}", pNameEntry->nLength, pNameEntry->GetStr());
 		}
 	}
 

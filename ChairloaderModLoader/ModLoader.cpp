@@ -13,7 +13,7 @@
 #include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"
-#include "../ChairLoader/GUIUtils.h"
+#include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairUpdateWizard.h"

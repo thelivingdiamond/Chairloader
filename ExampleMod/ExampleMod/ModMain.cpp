@@ -33,10 +33,10 @@ static bool ArkPlayer_HasAbility_Hook(ArkPlayer* _this, uint64_t _abilityID)
 
 #endif
 
-void ModMain::FillModInfo(ModDllInfo& info)
+void ModMain::FillModInfo(ModDllInfoEx& info)
 {
-	info.thisStructSize = sizeof(ModDllInfo);
 	info.modName = "TheChair.ExampleMod"; // CHANGE ME
+	info.logTag = "ExampleMod"; // CHANGE ME
 	info.supportsHotReload = true; // TODO: Add comment/wiki link
 }
 
@@ -65,8 +65,31 @@ void ModMain::InitGame(bool isHotReloading)
 	// Your code goes here
 }
 
+void ModMain::ShutdownGame(bool isHotUnloading)
+{
+	// Your code goes here
+	BaseClass::ShutdownGame(isHotUnloading);
+}
+
+void ModMain::ShutdownSystem(bool isHotUnloading)
+{
+	// Your code goes here
+	BaseClass::ShutdownSystem(isHotUnloading);
+}
+
 void ModMain::Draw()
 {
+	// Modders, please move to a method, it's just an example
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Example Mod"))
+		{
+			ImGui::MenuItem("An example of how to add tabs to the menu bar.");
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+
 	if (ImGui::Begin("Example Mod"))
 	{
 		static bool state = false;
@@ -84,26 +107,9 @@ void ModMain::Draw()
 	ImGui::End();
 }
 
-void ModMain::PreUpdate()
+void ModMain::MainUpdate(unsigned updateFlags)
 {
 	// Your code goes here
-}
-
-void ModMain::PostUpdate()
-{
-	// Your code goes here
-}
-
-void ModMain::ShutdownGame(bool isHotUnloading)
-{
-	// Your code goes here
-	BaseClass::ShutdownGame(isHotUnloading);
-}
-
-void ModMain::ShutdownSystem(bool isHotUnloading)
-{
-	// Your code goes here
-	BaseClass::ShutdownSystem(isHotUnloading);
 }
 
 extern "C" DLL_EXPORT IChairloaderMod* ClMod_Initialize()

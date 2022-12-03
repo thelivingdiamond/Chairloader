@@ -6,12 +6,13 @@
   "$deps_": "Please, keep sorted alphabetically",
   "$boost": "Don't include the whole Boost!",
   "dependencies": [
-    "boost-filesystem",
-    "boost-log",
+    "boost-core",
+    "boost-format",
     "boost-bimap",
     "boost-json",
     "curlpp",
     "detours",
+    "fmt",
     "libzip",
     "pugixml"
   ]

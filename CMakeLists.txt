@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
+
 project(Chairloader C CXX ASM_MASM)
 set(CHAIRLOADER TRUE)
 
@@ -18,6 +19,9 @@ list(APPEND CMAKE_MODULE_PATH
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Enable project folders in VS
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Prey was build in Release so mods must match it even in Debug
 set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
@@ -64,8 +68,9 @@ function(cl_output_dir targetName gamePath)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED COMPONENTS filesystem log)
+find_package(Boost REQUIRED)
 find_package(Detours MODULE REQUIRED)
+find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
 
@@ -74,13 +79,7 @@ find_package(unofficial-curlpp CONFIG REQUIRED)
 
 # Project libraries
 add_subdirectory(Common)
-
-# DLLs
-add_subdirectory(ChairLoader)
-add_subdirectory(ChairLoaderLoader)
-
-#static libraries
-add_subdirectory(ChairLoaderModules)
+add_subdirectory(Chairloader)
 
 # Example Mod
 unset(CHAIRLOADER_COMMON_PATH CACHE)
@@ -92,7 +91,9 @@ if(PREY_PATH)
 	set(EXAMPLE_MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
 endif()
 
+set(CMAKE_FOLDER "Example Mod")
 add_subdirectory(ExampleMod)
+unset(CMAKE_FOLDER)
 
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)
