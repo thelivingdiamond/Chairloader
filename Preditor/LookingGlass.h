@@ -32,7 +32,7 @@ private:
     std::map<std::string, std::shared_ptr<XMLReference>> m_ReferencesByName;
     std::map<int32_t, std::shared_ptr<XMLReference>> m_ReferencesByID32;
     std::map<int64_t, std::shared_ptr<XMLReference>> m_ReferencesByID64;
-    std::map<__int128, std::shared_ptr<XMLReference>> m_ReferencesByID128;
+    //std::map<__int128, std::shared_ptr<XMLReference>> m_ReferencesByID128;
     std::map<fs::path, std::vector<std::shared_ptr<XMLReference>>> m_ReferencesByPath;
 };
 

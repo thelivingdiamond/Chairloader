@@ -34,7 +34,7 @@ void LookingGlass::addXMLReference(XMLReference& reference) {
     m_ReferencesByName[reference.getName()] = m_References.back();
     m_ReferencesByID32[reference.getId32()] = m_References.back();
     m_ReferencesByID64[reference.getGuid64()] = m_References.back();
-    m_ReferencesByID128[reference.getGuid128()] = m_References.back();
+    //m_ReferencesByID128[reference.getGuid128()] = m_References.back();
     m_ReferencesByPath[reference.getPath()].push_back(m_References.back());
 }
 
