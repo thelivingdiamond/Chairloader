@@ -6,7 +6,9 @@
 #include "LoadGameStage.h"
 
 // Dear God, No
-#include "../ChairLoader/DevConsoleDialog.h"
+//#include "../ChairLoader/DevConsoleDialog.h"
+
+ChairloaderGlobalEnvironment* gCL = nullptr;
 
 Preditor::Preditor()
 {
@@ -32,7 +34,7 @@ void Preditor::Update()
         }
         else if (m_pLoadGameStage) {
 			m_pLoadGameStage.reset();
-			m_pDevConsole = std::make_unique<DevConsoleDialog>();
+			//m_pDevConsole = std::make_unique<DevConsoleDialog>();
             m_pProjectManager = std::make_unique<ProjectManager>();
             m_pProjectManager->Init();
             m_pProjectSelectStage = std::make_unique<ProjectSelectStage>();
@@ -50,8 +52,8 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
-	if (m_pDevConsole)
-		m_pDevConsole->Show(bOpen);
+	//if (m_pDevConsole)
+	//	m_pDevConsole->Show(bOpen);
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

@@ -28,7 +28,7 @@ private:
 	ConfigManager m_Config;
 	GameModule m_GameModule;
     // MODULES
-	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
+	//std::unique_ptr<DevConsoleDialog> m_pDevConsole;
     std::unique_ptr<ProjectManager> m_pProjectManager;
 
     // STAGES

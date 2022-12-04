@@ -12,38 +12,44 @@ set(SOURCE_FILES
 	GameModule.h
 	LoadGameStage.cpp
 	LoadGameStage.h
-		ConfigManager.cpp
-		ConfigManager.h
-		Preditor.cpp
-        Preditor.h
+	ConfigManager.cpp
+	ConfigManager.h
+	Preditor.cpp
+	Preditor.h
 	pch.h
-        FlowgraphEditor.cpp
-		FlowgraphEditor.h
-		Flowgraph/Flowgraph.cpp
-		Flowgraph/Flowgraph.h
-		Flowgraph/Pin.h
-		Flowgraph/Node.h
-		Flowgraph/Edge.h
-		Flowgraph/UniqueID.h Flowgraph/Node.cpp Flowgraph/IChairFlowgraph.h ProjectManager.cpp ProjectManager.h Project.cpp Project.h ProjectSelectStage.cpp ProjectSelectStage.h App/AppModule.cpp App/AppModule.h ConfigValidationStage.cpp ConfigValidationStage.h LookingGlass.cpp LookingGlass.h LookingGlass/XMLReference.h)
+	FlowgraphEditor.cpp
+	FlowgraphEditor.h
+	Flowgraph/Flowgraph.cpp
+	Flowgraph/Flowgraph.h
+	Flowgraph/Pin.h
+	Flowgraph/Node.h
+	Flowgraph/Edge.h
+	Flowgraph/UniqueID.h
+	Flowgraph/Node.cpp
+	Flowgraph/IChairFlowgraph.h
+	ProjectManager.cpp
+	ProjectManager.h
+	Project.cpp
+	Project.h
+	ProjectSelectStage.cpp
+	ProjectSelectStage.h
+	App/AppModule.cpp
+	App/AppModule.h
+	ConfigValidationStage.cpp
+	ConfigValidationStage.h
+	LookingGlass.cpp
+	LookingGlass.h
+	LookingGlass/XMLReference.h
+)
 
 add_executable(Preditor WIN32
 	${SOURCE_FILES}
-
-	# Some sources from Common
-	../Common/Chairloader/FunctionHook.cpp
-	../Common/Chairloader/PreyFunction.cpp
-	../Common/Logging.cpp
-	../Common/mem.cpp
-
-	# This is horrible
-	../Chairloader/DevConsoleDialog.cpp
-	../Chairloader/DevConsoleDialog.h
 )
 
 target_include_directories(Preditor PRIVATE
 	.
-	../CommonModLoader # This must go first. Yes, it's all a huge mess.
-	../Common # Can't link with Common since it conflicts with CommonModLoader. We only need the headers anyway.
+	#../CommonModLoader # This must go first. Yes, it's all a huge mess.
+	#../Common # Can't link with Common since it conflicts with CommonModLoader. We only need the headers anyway.
 )
 
 target_compile_definitions(Preditor PRIVATE
@@ -51,9 +57,9 @@ target_compile_definitions(Preditor PRIVATE
 )
 
 target_link_libraries(Preditor
+	Common
 	CommonModLoader
 	D3D11.lib
-	Detours::Detours
 )
 
 target_precompile_headers(Preditor PRIVATE pch.h)
