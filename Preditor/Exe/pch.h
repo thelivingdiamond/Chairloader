@@ -2,6 +2,8 @@
 #include <Prey/CryCore/StdAfx.h>
 #include "IconsMaterialDesign.h"
 #include <future>
+#include "ImGui/imgui.h"
+
 namespace fs = std::filesystem;
 
 template <typename R>

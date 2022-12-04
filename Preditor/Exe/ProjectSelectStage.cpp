@@ -10,17 +10,31 @@
 #include "ImGui/imgui_stdlib.h"
 
 void ProjectSelectStage::Update() {
-    if(m_bLoadProject){
-        ProjectManager::Get()->setProjectDirectory(m_loadProjectPath);
-        SetStageFinished();
-    }
 }
 
 void ProjectSelectStage::ShowUI(bool *bOpen) {
     if(Preditor::Get()->GetConfig().isShown()) return;
     ImGui::PushFont(AppImGui::getPrettyFont());
     bool bShow = true;
-    if(!m_newProjectOpen) {
+
+    if (m_ShowError)
+    {
+        ImGui::SetNextWindowSize(WINDOW_SIZE, ImGuiCond_Once);
+        if (ImGui::Begin(WINDOW_TITLE.c_str(), &bShow, WINDOW_FLAGS)) {
+            ImGui::TextColored(ImColor(255, 0, 0), "Error!");
+            ImGui::NewLine();
+            ImGui::TextWrapped("%s", m_ErrorText.c_str());
+            ImGui::NewLine();
+
+            if (ImGui::Button("Back"))
+            {
+                m_ShowError = false;
+                m_newProjectOpen = false;
+            }
+        }
+        ImGui::End();
+    }
+    else if (!m_newProjectOpen) {
         ImGui::SetNextWindowSize(WINDOW_SIZE, ImGuiCond_Once);
         if (ImGui::Begin(WINDOW_TITLE.c_str(), &bShow, WINDOW_FLAGS)) {
             ImGui::Text("Previous Projects");
@@ -30,7 +44,7 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
                     ImGui::TableNextRow();
                     ImGui::TableNextColumn();
                     if(ImGui::Selectable(project.u8string().c_str())){
-                        initiateLoadProject(project);
+                        initiateLoadOrCreateProject(project, true);
                     }
                 }
                 if (ProjectManager::Get()->getPreviousProjects().empty()) {
@@ -56,15 +70,14 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
             }
             if(ifd::FileDialog::Instance().IsDone("ProjectSelectStage::OpenProject")){
                 if(ifd::FileDialog::Instance().HasResult()){
-                    initiateLoadProject(ifd::FileDialog::Instance().GetResult());
+                    initiateLoadOrCreateProject(ifd::FileDialog::Instance().GetResult(), true);
                 }
                 ifd::FileDialog::Instance().Close();
             }
         }
         ImGui::End();
     }
-
-    if(m_newProjectOpen) {
+    else if(m_newProjectOpen) {
         if (ImGui::Begin("Create New Project", &m_newProjectOpen, ImGuiWindowFlags_AlwaysAutoResize)) {
             ImGui::Text("New Project");
             ImGui::Separator();
@@ -84,7 +97,7 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
                     m_newProjectPath /= m_newProjectName;
                 }
                 fs::create_directories(m_newProjectPath);
-                initiateLoadProject(m_newProjectPath);
+                initiateLoadOrCreateProject(m_newProjectPath, false);
                 m_newProjectOpen = false;
             }
             ImGui::SameLine();
@@ -111,11 +124,26 @@ void ProjectSelectStage::Start() {
 
 }
 
-void ProjectSelectStage::initiateLoadProject(const fs::path &path) {
+void ProjectSelectStage::initiateLoadOrCreateProject(const fs::path& path, bool loadExisting) {
     if(!path.is_absolute()){
         m_loadProjectPath = fs::absolute(path);
     } else {
         m_loadProjectPath = path;
     }
-    m_bLoadProject = true;
+    
+    try
+    {
+        if (loadExisting)
+            ProjectManager::Get()->LoadProject(path);
+        else
+            ProjectManager::Get()->CreateProject(path);
+    }
+    catch (const std::exception& e)
+    {
+        m_ErrorText = e.what();
+        m_ShowError = true;
+        return;
+    }
+
+    SetStageFinished();
 }

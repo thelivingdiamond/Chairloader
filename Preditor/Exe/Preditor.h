@@ -4,6 +4,7 @@
 #include "FlowgraphEditor.h"
 #include "ProjectManager.h"
 #include "ProjectSelectStage.h"
+#include "ProjectStage.h"
 #include "ConfigValidationStage.h"
 
 struct IGameStartup;
@@ -35,5 +36,5 @@ private:
     std::unique_ptr<ConfigValidationStage> m_ConfigValidateStage;
 	std::unique_ptr<ProjectSelectStage> m_pProjectSelectStage;
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
-    std::unique_ptr<Project> m_pProject;
+	std::unique_ptr<ProjectStage> m_pProjectStage;
 };

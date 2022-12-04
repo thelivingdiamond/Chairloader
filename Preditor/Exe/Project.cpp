@@ -1,51 +1,40 @@
+#include "Project.h"
 //
 // Created by theli on 10/28/2022.
 //
 
-#include "Project.h"
-#include "ProjectManager.h"
-#include "App/AppImGui.h"
+Project::Project(const fs::path& path, bool loadExisting)
+{
+	assert(fs::is_directory(path));
+	m_ProjectPath = fs::absolute(path); // Absolute to not cause problems on workdir change
+	m_ProjectName = m_ProjectPath.filename().u8string();
+	ConstructPaths();
 
-void Project::Start() {
-    if(!ProjectManager::Get()) return;
-    m_ProjectPath = ProjectManager::Get()->getProjectDirectory();
-    if(m_ProjectPath.empty()) return;
-    if(!fs::exists(m_ProjectPath)) return;
-    if(!fs::is_directory(m_ProjectPath)) return;
-    m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
+	if (loadExisting)
+	{
+		LoadProject();
+	}
+	else
+	{
+		SaveProject();
+	}
 }
 
-void Project::Update() {
-
+void Project::SaveProject()
+{
+	// TODO: Serialize to XML
+	std::ofstream file(m_ProjectFilePath);
+	file << "lol\n";
 }
 
-void Project::ShowUI(bool *bOpen) {
-    ImGui::PushFont(AppImGui::getPrettyFont());
-    ImGui::SetNextWindowSize(WINDOW_SIZE, ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
-    if(ImGui::Begin(WINDOW_TITLE.c_str(), bOpen, WINDOW_FLAGS)){
-        drawToolbar();
-        ImGui::Text("Project Path: %s", m_ProjectPath.string().c_str());
-    }
-    ImGui::End();
-    ImGui::PopFont();
-
-    if(m_pFlowgraphEditor) {
-        if(m_pFlowgraphEditor->isShown() && !m_pFlowgraphEditor->isInitialized()){
-            m_pFlowgraphEditor->Init();
-        }
-        m_pFlowgraphEditor->ShowUI();
-    }
+void Project::ConstructPaths()
+{
+	m_ProjectFilePath = m_ProjectPath / PROJECT_FILE_NAME;
+	m_ProjectRuntimePath = m_ProjectPath / RUNTIME_PATH;
+	fs::create_directory(m_ProjectRuntimePath);
 }
 
-void Project::drawToolbar() {
-    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(8, 8));
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
-    if(ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetWindowWidth(), ImGui::GetFrameHeightWithSpacing()), false)){
-        if(ImGui::Button(ICON_MD_SHARE "##FLOWGRAPHEDITOR")){
-            m_pFlowgraphEditor->setShown(!m_pFlowgraphEditor->isShown());
-        }
-        ImGui::EndChild();
-    }
-    ImGui::PopStyleVar(2);
+void Project::LoadProject()
+{
+	// TODO: Load from XML
 }

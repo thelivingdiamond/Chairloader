@@ -24,6 +24,8 @@ set(SOURCE_FILES
 	ProjectManager.h
 	Project.cpp
 	Project.h
+	ProjectStage.cpp
+	ProjectStage.h
 	ProjectSelectStage.cpp
 	ProjectSelectStage.h
 	ConfigValidationStage.cpp

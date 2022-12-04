@@ -19,15 +19,16 @@ private:
     ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoBringToFrontOnFocus;
     std::string WINDOW_TITLE = "Project Select";
 
-    bool m_bLoadProject = false;
     fs::path m_loadProjectPath;
-    void initiateLoadProject(const fs::path& path);
+    void initiateLoadOrCreateProject(const fs::path& path, bool loadExisting);
 
     fs::path m_newProjectPath;
     std::string m_newProjectName;
     bool m_createModFolder = true;
 
     bool m_newProjectOpen = false;
+    bool m_ShowError = false;
+    std::string m_ErrorText;
 };
 
 

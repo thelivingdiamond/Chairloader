@@ -1,38 +1,45 @@
 //
 // Created by theli on 10/28/2022.
 //
-
-#ifndef CHAIRLOADER_PROJECT_H
-#define CHAIRLOADER_PROJECT_H
-
-#include "pch.h"
-#include "App/AppStage.h"
-#include "ImGui/imgui.h"
-#include "FlowgraphEditor.h"
+#pragma once
 
 // this class will be used to store all the data for a project
 // should contain a path to the project, and a list of all the files in the project
-// will draw the main window
-// needs to be able to load and hide all the modules like the flowgraph editor
-
-class Project : public AppStage {
+class Project
+{
 public:
-    void Start() override;
+    //! Name of the project file.
+    static constexpr char PROJECT_FILE_NAME[] = ".preditor_project";
 
-    void Update() override;
+    //! @param  path            Path to the directory
+    //! @param  loadExisting    Load existing project instead of creating a new one.
+    Project(const fs::path& path, bool loadExisting);
 
-    void ShowUI(bool *bOpen) override;
+    //! Saves the project data to disk.
+    void SaveProject();
+
+    //! @returns the project name.
+    const std::string& GetName() { return m_ProjectName; }
+
+    //! @returns path to the project directory.
+    const fs::path& GetPath() { return m_ProjectPath; }
+
+    //! @returns the path to the directory with runtime files.
+    const fs::path& GetRuntimePath() { return m_ProjectRuntimePath; }
+
 private:
+    //! Path to runtime-generated data. Can be removed, must not be checked into version control.
+    static constexpr char RUNTIME_PATH[] = "Runtime";
+    
     fs::path m_ProjectPath;
+    fs::path m_ProjectFilePath;
+    fs::path m_ProjectRuntimePath;
 
-    ImVec2 WINDOW_SIZE = ImVec2(1500, 750);
-    ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse;
-    std::string WINDOW_TITLE = "Project Window";
-    void drawToolbar();
+    std::string m_ProjectName; //!< Name of the directory
 
-    std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
-    bool m_bFlowgraphEditorOpen = false;
+    //! Constructs paths from m_ProjectPath. Creates directories.
+    void ConstructPaths();
+
+    //! Loads project data from disk.
+    void LoadProject();
 };
-
-
-#endif //CHAIRLOADER_PROJECT_H

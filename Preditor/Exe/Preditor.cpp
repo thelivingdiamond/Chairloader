@@ -32,7 +32,6 @@ void Preditor::Update()
         {
             m_ConfigValidateStage.reset();
             m_pProjectManager = std::make_unique<ProjectManager>();
-            m_pProjectManager->Init();
             m_pProjectSelectStage = std::make_unique<ProjectSelectStage>();
         }
         else if (m_pProjectSelectStage)
@@ -43,9 +42,9 @@ void Preditor::Update()
         else if (m_pLoadGameStage)
         {
 			m_pLoadGameStage.reset();
-            m_pProject = std::make_unique<Project>();
+            m_pProjectStage = std::make_unique<ProjectStage>();
 		}
-        else if(m_pProject)
+        else if (m_pProjectStage)
         {
             QuitApp();
         }
