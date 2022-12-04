@@ -48,7 +48,7 @@ namespace fs = std::filesystem;
 // Reference additional interface headers your program requires here (not local headers)
 
 // Core
-#include <Logging.h>
+#include <ChairLoader/IChairLogger.h>
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryMath/Random.h>
 #include <Prey/CrySystem/ISystem.h>

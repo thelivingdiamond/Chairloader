@@ -288,7 +288,7 @@ void CryGetExecutableFolder(unsigned int pathSize, char* szPath)
 
 	if (nLen >= CRY_ARRAY_COUNT(filePath))
 	{
-		CryFatalError("The path to the current executable exceeds the expected length. TruncatedPath:%s", filePath);
+		CryFatalError("The path to the current executable exceeds the expected length.");
 	}
 
 	if (nLen <= 0)
@@ -304,7 +304,7 @@ void CryGetExecutableFolder(unsigned int pathSize, char* szPath)
 	size_t requiredLength = Unicode::Convert(szPath, pathSize, filePath);
 	if (requiredLength > pathSize)
 	{
-		CryFatalError("Executable path is to long. MaxPathSize:%u, PathSize:%u, Path:%s", pathSize, (uint)requiredLength, filePath);
+		CryFatalError("Executable path is to long. MaxPathSize:%u, PathSize:%u", pathSize, (uint)requiredLength);
 	}
 }
 
@@ -594,6 +594,11 @@ PreyFunction<void* (size_t size, size_t alignment, int _module, int _type)> g_pf
 PreyFunction<void* (void* ptr, size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleReallocAlign(0xA8DB0);
 PreyFunction<void* (void* ptr)> g_pfnCryModuleMemalignFree(0xA8D20);
 
+
+PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryCrtMalloc(0x99420);
+PreyFunction<size_t (void* p)> g_pfnCryCrtFree(0x99410);
+PreyFunction<size_t(void* p)> g_pfnCryCrtSize(0x99460);
+
 }
 
 extern "C" void* CryModuleMalloc(size_t size) throw()
@@ -624,4 +629,21 @@ extern "C" void* CryModuleReallocAlign(void* memblock, size_t size, size_t align
 extern "C" void  CryModuleMemalignFree(void* memblock)
 {
 	g_pfnCryModuleMemalignFree(memblock);
+}
+
+
+void* CryCrtMalloc(size_t size)
+{
+	return g_pfnCryCrtMalloc(size, eCryM_Launcher, kCryMMIAT_None);
+}
+
+size_t CryCrtFree(void* p)
+{
+	return g_pfnCryCrtFree(p);
+}
+
+//! Wrapper for _msize on PC.
+size_t CryCrtSize(void* p)
+{
+	return g_pfnCryCrtSize(p);
 }

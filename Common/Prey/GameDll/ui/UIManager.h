@@ -135,7 +135,7 @@ namespace UIEvents
 {                                                        \
 	string temp;                                            \
 	temp.Format(__VA_ARGS__);                               \
-	CryLogAlways( "[UI] %s", temp.c_str() );                \
+	CryLogAlways( "[UI] {}", temp );                \
 }
 #else
 #define FE_LOG(...)

@@ -946,7 +946,6 @@ struct STexSamplerFX
 
 	uint32 GetTexFlags() { return m_nTexFlags; }
 	void   Update();
-	void   PostLoad();
 	NO_INLINE STexSamplerFX (const STexSamplerFX& src)
 	{
 		//m_pITarget = src.m_pITarget;
@@ -1407,8 +1406,8 @@ struct IRenderShaderResources
 	virtual void  SetStrengthValue(EMaterialParamFloat arg0, float arg1) = 0;
 
 	// configs
-	virtual const float& GetAlphaRef() const  = 0;
-	virtual void         SetAlphaRef(float v) = 0;
+	virtual float GetAlphaRef() const  = 0;
+	virtual void  SetAlphaRef(float v) = 0;
 
 	virtual int                        GetResFlags() = 0;
 	//virtual void                       SetMtlLayerNoDrawFlags(uint8 nFlags) = 0;

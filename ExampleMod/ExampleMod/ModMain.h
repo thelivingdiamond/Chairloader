@@ -6,7 +6,7 @@ class ModMain : public ChairloaderModBase
 	using BaseClass = ChairloaderModBase;
 
 	//! Fills in the DLL info during initialization.
-	virtual void FillModInfo(ModDllInfo& info) override;
+	virtual void FillModInfo(ModDllInfoEx& info) override;
 
 	//! Initializes function hooks before they are installed.
 	virtual void InitHooks() override;
@@ -19,18 +19,6 @@ class ModMain : public ChairloaderModBase
 	//! Call order: TODO
 	virtual void InitGame(bool isHotReloading) override;
 
-	//! Called before CGame::Update to handle any GUI elements
-	virtual void Draw() override;
-
-	//! Before CGame::Update and before any entity updates
-	//! Call order: TODO
-	virtual void PreUpdate() override;
-
-	//! After CGame::Update, after entities have been updated and after rendering
-	//! commands have been issued. 
-	//! Call order: TODO
-	virtual void PostUpdate() override;
-
 	//! Called before CGame::Shutdown.
 	//! Call order: TODO
 	virtual void ShutdownGame(bool isHotUnloading) override;
@@ -38,6 +26,24 @@ class ModMain : public ChairloaderModBase
 	//! Called before CSystem::Shutdown.
 	//! Call order: TODO
 	virtual void ShutdownSystem(bool isHotUnloading) override;
+
+	//! Called just before MainUpdate to draw GUI. Only called when GUI is visible.
+	virtual void Draw() override;
+
+	//! Earliest point of update in a frame, before CGame::Update. The timer still tracks time for the previous frame.
+	// virtual void UpdateBeforeSystem(unsigned updateFlags) override;
+
+	//! Called before physics is updated for the new frame, best point for queuing physics jobs.
+	//! This is like FixedUpdate() in Unity (but not FPS-independent). Use gEnv->pTimer->GetFrameTime() for time delta.
+	// virtual void UpdateBeforePhysics(unsigned updateFlags) override;
+
+	//! Called after entities have been updated but before FlowSystem and FlashUI.
+	//! This is the main update where most game logic is expected to occur.
+	//! Should be preferred if you don't need any special behavior.
+	virtual void MainUpdate(unsigned updateFlags) override;
+
+	//! Called after most of game logic has been updated, before CCryAction::PostUpdate.
+	// virtual void LateUpdate(unsigned updateFlags) override;
 };
 
 extern ModMain* gMod;

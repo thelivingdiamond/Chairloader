@@ -1088,6 +1088,9 @@ public:
 	ETEX_Format GetPixelOutputFormat() const;
 #endif
 
+	const bool IsEditorMode() const { return false; }
+	const bool IsShaderCacheGenMode() const { return false; }
+
 	static inline auto FBitNotCRenderer = PreyFunction<void(CRenderer* const _this)>(0xFB1860);
 	static inline auto FInitRenderer = PreyFunction<void(CRenderer* const _this)>(0xFB9410);
 	static inline auto FPostInit = PreyFunction<void(CRenderer* const _this)>(0xFBA3C0);

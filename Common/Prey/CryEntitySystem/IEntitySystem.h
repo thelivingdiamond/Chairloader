@@ -42,7 +42,7 @@
 	    {                                                                    \
 	      ICVar* pCvar = gEnv->pConsole->GetCVar("es_debugEntityListeners"); \
 	      if (pCvar && pCvar->GetIVal())                                     \
-	        CryLog("Entity Event listener %s '%p'", __FUNCTION__, this);     \
+	        CryLog("Entity Event listener {} '{:p}'", __FUNCTION__, this);   \
 	    }                                                                    \
 	  }
 
@@ -52,7 +52,7 @@
 	    {                                                                               \
 	      ICVar* pCvar = gEnv->pConsole->GetCVar("es_debugEntityListeners");            \
 	      if (pCvar && pCvar->GetIVal())                                                \
-	        CryLog("Event for entity '%s' pointer '%p'", pEntity->GetName(), pEntity);  \
+	        CryLog("Event for entity '{}' pointer '{:p}'", pEntity->GetName(), pEntity);\
 	    }                                                                               \
 	  }
 
@@ -62,7 +62,7 @@
 	    {                                                                    \
 	      ICVar* pCvar = gEnv->pConsole->GetCVar("es_debugEntityListeners"); \
 	      if (pCvar && pCvar->GetIVal())                                     \
-	        CryLog("Event listener '%p'", pListener);                        \
+	        CryLog("Event listener '{:p}'", pListener);                      \
 	    }                                                                    \
 	  }
 
@@ -72,7 +72,7 @@
 	    {                                                                                                                                   \
 	      ICVar* pCvar = gEnv->pConsole->GetCVar("es_debugEntityListeners");                                                                \
 	      if (pCvar && pCvar->GetIVal())                                                                                                    \
-	        CryLog("Adding Entity Event listener for entity '%s' pointer '%p' for listener '%p'", pEntity->GetName(), pEntity, pListener);  \
+	        CryLog("Adding Entity Event listener for entity '{}' pointer '{:p}' for listener '{:p}'", pEntity->GetName(), pEntity, pListener);  \
 	    }                                                                                                                                   \
 	  }
 
@@ -84,7 +84,7 @@
 	      if (pCvar && pCvar->GetIVal())                                                                                                    \
 	      {                                                                                                                                 \
 	        CEntity* pCEntity = (CEntity*)GetEntity(nEntity);                                                                               \
-	        CryLog("Removing Entity Event listener for entity '%s' for listener '%p'", pCEntity ? pCEntity->GetName() : "null", pListener); \
+	        CryLog("Removing Entity Event listener for entity '{}' for listener '{:p}'", pCEntity ? pCEntity->GetName() : "null", pListener); \
 	      }                                                                                                                                 \
 	    }                                                                                                                                   \
 	  }

@@ -330,5 +330,11 @@ void ChairInstallWizard::InstallAsyncTask() const
 	printlog("Deploying Chairloader files...");
 	ModLoader::Get().DeployForInstallWizard();
 
+    if(fs::exists("ChairloaderModLoader.old.exe"))
+    {
+        printlog("Removing old ChairloaderModLoader.exe...");
+        fs::remove("ChairloaderModLoader.old.exe");
+    }
+
 	printlog("Finished!");
 }

@@ -30,7 +30,7 @@ if(NOT CHAIRLOADER)
 	# vcpkg libraries
 	find_package(Boost REQUIRED)
 	find_package(Detours MODULE REQUIRED)
-	find_package(pugixml REQUIRED)
+	find_package(fmt CONFIG REQUIRED)
 endif()
 
 # Common path

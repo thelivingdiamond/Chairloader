@@ -23,12 +23,13 @@ set(SOURCE_FILES
         ChairUninstallWizard.cpp
         ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h)
+        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairUpdateWizard.cpp ChairUpdateWizard.h UpdateURL.h)
 
 
 
 set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
 
+message(STATUS "Version: ${_CHAIRLOADER_VERSION_STR}")
 configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
         ${CMAKE_CURRENT_SOURCE_DIR}/version.rc
@@ -42,6 +43,7 @@ target_link_libraries(ChairloaderModLoader
         D3D11.lib
         libzip::zip
         ZLIB::ZLIB
+        unofficial::curlpp::curlpp
         ${Boost_LIBRARIES}
         )
 

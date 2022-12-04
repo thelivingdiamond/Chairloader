@@ -113,6 +113,11 @@ const int MAX_GSM_LODS_NUM = 16;
 #define R_CULL_FRONT   1
 #define R_CULL_BACK    2
 
+typedef unsigned char bvec4[4];
+typedef float         vec4_t[4];
+typedef unsigned char byte;
+typedef float         vec2_t[2];
+
 //////////////////////////////////////////////////////////////////////////
 /// CRenderObject::m_ObjFlags: Flags used by shader pipeline
 //////////////////////////////////////////////////////////////////////////
@@ -417,6 +422,14 @@ namespace gpu_pfx2
 {
 class IManager;
 } // namespace gpu_pfx2
+
+struct SShaderCacheStatistics // Id=8003D26 Size=32
+{
+	uint64_t m_nTotalLevelShaderCacheMisses;
+	uint64_t m_nGlobalShaderCacheMisses;
+	uint64_t m_nNumShaderAsyncCompiles;
+	bool m_bShaderCompileActive;
+};
 
 //! This structure used in DrawText method of renderer.
 //! It provide all necessary information of how to render text on screen.
@@ -858,7 +871,7 @@ public:
 	virtual bool SetRenderTarget(int arg0) = 0;
 	virtual IOpticsElementBase* CreateOptics(EFlareType arg0) const = 0;
 	virtual ISoftOcclusionQuery* CreateSoftOcclusionQuery() const = 0;
-	virtual void GetThreadIDs(unsigned long& arg0, unsigned long& arg1) const = 0;
+	virtual void GetThreadIDs(threadID& mainThreadID, threadID& renderThreadID) const = 0;
 	virtual bool SF_UpdateTexture(int arg0, int arg1, int arg2, IRenderer::SUpdateRect const* arg3, uint8_t* arg4, uint64_t arg5, uint64_t arg6, ETEX_Format arg7) = 0;
 	virtual void SF_GetMeshMaxSize(int& arg0, int& arg1) const = 0;
 	virtual void SF_ConfigMask(IRenderer::ESFMaskOp arg0, unsigned arg1) = 0;

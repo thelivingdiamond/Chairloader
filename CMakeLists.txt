@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
+
 project(Chairloader C CXX ASM_MASM)
 set(CHAIRLOADER TRUE)
 
@@ -19,6 +20,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Enable project folders in VS
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 # Prey was build in Release so mods must match it even in Debug
 set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
 add_compile_definitions(
@@ -33,8 +37,12 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 # Game path
 set(PREY_PATH "" CACHE PATH "(optional) Path to the game root directory (where Engine and GameSDK are) to automatically install built binaries")
 
-# Options
-option(RENDERDLL_DEBUG_MARKERS "Enables section markers for GPU profilers like RenderDoc" OFF)
+# Chairloader Version
+set(_CHAIRLOADER_VERSION_MAJOR 0)  # Increment when breaking changes are made
+set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
+set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
+set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
+set(_CHAIRLOADER_VERSION_TYPE "-rc1")  # Indicates a pre-release version (e.g. "-alpha")
 
 # Macros and functions
 
@@ -60,21 +68,18 @@ function(cl_output_dir targetName gamePath)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED COMPONENTS filesystem log)
+find_package(Boost REQUIRED)
 find_package(Detours MODULE REQUIRED)
+find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
+
+find_package(unofficial-curlpp CONFIG REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)
 
 # Project libraries
 add_subdirectory(Common)
-
-# DLLs
-add_subdirectory(ChairLoader)
-add_subdirectory(ChairLoaderLoader)
-
-#static libraries
-add_subdirectory(ChairLoaderModules)
+add_subdirectory(Chairloader)
 
 # Example Mod
 unset(CHAIRLOADER_COMMON_PATH CACHE)
@@ -86,7 +91,9 @@ if(PREY_PATH)
 	set(EXAMPLE_MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
 endif()
 
+set(CMAKE_FOLDER "Example Mod")
 add_subdirectory(ExampleMod)
+unset(CMAKE_FOLDER)
 
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)

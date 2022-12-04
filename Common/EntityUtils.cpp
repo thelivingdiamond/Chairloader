@@ -6,10 +6,7 @@
 #include <Prey/GameDll/ark/npc/ArkNpc.h>
 #include <Prey/GameDll/ark/ArkFactionManager.h>
 
-EntityUtils *gEntUtils = nullptr;
-
-
-IEntity* EntityUtils::spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount, uint64_t faction) {
+IEntity* EntityUtils::SpawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount, uint64_t faction) {
 	IEntity* latestEntity = nullptr;
 	static ArkNpcSpawnedState_Alert alert;
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
@@ -28,11 +25,13 @@ IEntity* EntityUtils::spawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 ar
 	return latestEntity;
 }
 
-IEntity* EntityUtils::spawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned spawnCount) {
+IEntity* EntityUtils::SpawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned spawnCount) {
 	IEntity* latestEntity = nullptr;
 	for (int i = 1; i <= spawnCount; i++) {
 		SEntitySpawnParams params;
-		CreateEntitySpawnParameters(name, pos, rot, &params);
+		params.sName = name;
+		params.vPosition = pos;
+		params.qRotation = rot;
         if(gEnv->pEntitySystem->GetEntityArchetype(archetypeId)) {
             latestEntity = gEnv->pEntitySystem->SpawnEntityFromArchetype(gEnv->pEntitySystem->GetEntityArchetype(archetypeId), params);
         } else {
@@ -40,41 +39,6 @@ IEntity* EntityUtils::spawnEntity(const char* name, Vec3 pos, Quat rot, uint64 a
         }
 	}
 	return latestEntity;
-}
-
-SEntitySpawnParams* EntityUtils::
-CreateEntitySpawnParameters(const char* name, Vec3 pos, Quat rot, SEntitySpawnParams* params,  IEntityArchetype* entityArchetype, IEntityClass* entityClass) {
-	params->vScale.x = 1;
-	params->vScale.y = 1;
-	params->vScale.z = 1;
-	params->vPosition.x = pos.x;
-	params->vPosition.y = pos.y;
-	params->vPosition.z = pos.z;
-	params->qRotation.v.x = rot.v.x;
-	params->qRotation.v.y = rot.v.y;
-	params->qRotation.v.z = rot.v.y;
-	params->qRotation.w = rot.w;
-	params->sLayerName = "";
-	params->pClass = entityClass;
-	if(entityArchetype != nullptr) {
-		params->entityNode = entityArchetype->GetObjectVars();
-	} else {
-		params->entityNode = nullptr;
-	}
-	params->pArchetype = nullptr;
-	params->guid = 0;
-	params->prevGuid = 0;
-	params->prevId = 0;
-	params->bCreatedThroughPool = 0;
-	params->bIgnoreLock = 0;
-	params->bStaticEntityId = 0;
-	params->nFlags = 0;
-	params->nFlagsExtended = 0;
-	params->sName = name;
-	params->shadowCasterType = '\0';
-	params->pUserData = (void*)0x0;
-	params->sceneMask = '\0';
-	return params;
 }
 
 void EntityUtils::DumpEntity(IEntity* entity, bool dumpProxies) {
@@ -143,16 +107,6 @@ void EntityUtils::DumpGameObject(CGameObject* obj) {
 		std::cout << "current scheduling profile:" << obj->m_pActionDelegate << std::endl;
 		std::cout << "cached parent ID:" << obj->m_pActionDelegate << std::endl << std::endl;;
 	}
-}
-
-
-
-EntityUtils::EntityUtils() {
-	
-}
-
-ArkPlayer* EntityUtils::ArkPlayerPtr() {
-	return ArkPlayer::GetInstancePtr();
 }
 
 ArkNpc *EntityUtils::GetArkNpc(IEntity *entity) {

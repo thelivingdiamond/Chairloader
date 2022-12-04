@@ -35,7 +35,7 @@ public:
 
 		if (bMandatory)
 		{
-			CryWarning(VALIDATOR_MODULE_UNKNOWN, VALIDATOR_WARNING, "Unable to get mandatory attribute '%s' of node '%s' at line %d.",
+			CryWarning("Unable to get mandatory attribute '{}' of node '{}' at line {}.",
 			           szAttrName, node->getTag(), node->getLine());
 		}
 

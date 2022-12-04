@@ -416,6 +416,7 @@ ChairloaderModLoader/English_xml_patch.pak
 ChairloaderModLoader/ChairloaderModLoaderConfig.xml
 ChairloaderModLoader/patch_chairloader.pak
 ChairloaderModLoader/version.rc
+ChairloaderModLoader/Data/update.zip
 ChairLoader/version.rc
 Preditor/Data/ModToolKitConfig.xml
 ModToolKit/Data/imgui.ini

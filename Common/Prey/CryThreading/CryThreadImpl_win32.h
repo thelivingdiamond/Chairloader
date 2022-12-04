@@ -14,6 +14,8 @@ struct SThreadNameDesc
 	DWORD  dwFlags;
 };
 
+THREADLOCAL CrySimpleThreadSelf* CrySimpleThreadSelf::m_Self = NULL;
+
 //////////////////////////////////////////////////////////////////////////
 void CryYieldThread()
 {
@@ -357,6 +359,40 @@ bool CryRWLock::TryLock()
 void CryRWLock::Unlock()
 {
 	WUnlock();
+}
+
+//////////////////////////////////////////////////////////////////////////
+CrySimpleThreadSelf::CrySimpleThreadSelf()
+	: m_thread(NULL)
+	, m_threadId(0)
+{
+}
+
+//////////////////////////////////////////////////////////////////////////
+void CrySimpleThreadSelf::WaitForThread()
+{
+	assert(m_thread);
+	if (GetCurrentThreadId() != m_threadId)
+	{
+		WaitForSingleObject((HANDLE)m_thread, INFINITE);
+	}
+}
+
+CrySimpleThreadSelf::~CrySimpleThreadSelf()
+{
+	if (m_thread)
+		CloseHandle(m_thread);
+}
+
+void CrySimpleThreadSelf::StartThread(unsigned(__stdcall* func)(void*), void* argList)
+{
+#ifdef DURANGO
+	m_thread = (void*)CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)func, argList, CREATE_SUSPENDED, (LPDWORD)&m_threadId);
+#else
+	m_thread = (void*)_beginthreadex(NULL, 0, func, argList, CREATE_SUSPENDED, &m_threadId);
+#endif
+	assert(m_thread);
+	ResumeThread((HANDLE)m_thread);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
