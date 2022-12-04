@@ -28,21 +28,25 @@ void Preditor::Update()
 
 	if (GetStage()->IsStageFinished())
 	{
-        if(m_ConfigValidateStage){
+        if(m_ConfigValidateStage)
+        {
             m_ConfigValidateStage.reset();
-            m_pLoadGameStage = std::make_unique<LoadGameStage>(&m_GameModule);
-        }
-        else if (m_pLoadGameStage) {
-			m_pLoadGameStage.reset();
-			//m_pDevConsole = std::make_unique<DevConsoleDialog>();
             m_pProjectManager = std::make_unique<ProjectManager>();
             m_pProjectManager->Init();
             m_pProjectSelectStage = std::make_unique<ProjectSelectStage>();
-		}
-        else if (m_pProjectSelectStage){
+        }
+        else if (m_pProjectSelectStage)
+        {
             m_pProjectSelectStage.reset();
+            m_pLoadGameStage = std::make_unique<LoadGameStage>(&m_GameModule);
+        }
+        else if (m_pLoadGameStage)
+        {
+			m_pLoadGameStage.reset();
             m_pProject = std::make_unique<Project>();
-        } else if(m_pProject) {
+		}
+        else if(m_pProject)
+        {
             QuitApp();
         }
 	}
@@ -52,8 +56,6 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
-	//if (m_pDevConsole)
-	//	m_pDevConsole->Show(bOpen);
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

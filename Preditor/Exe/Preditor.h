@@ -33,7 +33,7 @@ private:
 
     // STAGES
     std::unique_ptr<ConfigValidationStage> m_ConfigValidateStage;
+	std::unique_ptr<ProjectSelectStage> m_pProjectSelectStage;
 	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
-    std::unique_ptr<ProjectSelectStage> m_pProjectSelectStage;
     std::unique_ptr<Project> m_pProject;
 };
