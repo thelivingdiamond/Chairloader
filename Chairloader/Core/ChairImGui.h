@@ -55,6 +55,7 @@ private:
 	void ReloadFonts();
 	void SetFont(EFont font, ImFont* fontPtr);
 	void LoadFontConfig();
+	std::map<std::string, ImFont*> ParseFontConfig();
 	void UpdateMouseCursor();
 
 	static ImGuiKey KeyIdToImGui(EKeyId keyId);

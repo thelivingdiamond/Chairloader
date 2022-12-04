@@ -242,16 +242,38 @@ void ChairImGui::SetFont(EFont font, ImFont* fontPtr)
 
 void ChairImGui::LoadFontConfig()
 {
+	std::map<std::string, ImFont*> fontsByName = ParseFontConfig();
+
+	auto fnFindFont = [&](EFont font, const std::string& name)
+	{
+		auto it = fontsByName.find(name);
+		if (it != fontsByName.end())
+		{
+			SetFont(font, it->second);
+		}
+		else
+		{
+			CryWarning("Failed to find '{}' font, falling back to 'Default' font", name);
+			SetFont(font, GetFont(EFont::Default));
+		}
+	};
+
+	fnFindFont(EFont::Default, "Default"); // Default must exist
+	fnFindFont(EFont::Monospace, "Monospace");
+}
+
+std::map<std::string, ImFont*> ChairImGui::ParseFontConfig()
+{
 	ImGuiIO& io = ImGui::GetIO();
+	std::map<std::string, ImFont*> fontsByName;
 	XmlNodeRef fonts = gEnv->pSystem->LoadXmlFromFile(FONT_CONFIG_PATH);
+
 	if (!fonts)
 	{
 		CryError("Failed to open {}. Falling back to embedded font.", FONT_CONFIG_PATH);
-		io.Fonts->AddFontDefault();
-		return;
+		fontsByName.insert({ "Default", io.Fonts->AddFontDefault() });
+		return fontsByName;
 	}
-
-	std::map<std::string, ImFont*> fontsByName;
 
 	for (int i = 0; i < fonts->getChildCount(); i++)
 	{
@@ -371,34 +393,14 @@ void ChairImGui::LoadFontConfig()
 	}
 
 	// Find "Default" font
+	auto it = fontsByName.find("Default");
+	if (it == fontsByName.end())
 	{
-		auto it = fontsByName.find("Default");
-		if (it != fontsByName.end())
-		{
-			SetFont(EFont::Default, it->second);
-		}
-		else
-		{
-			CryWarning("Failed to find 'Default' font, falling back to embedded font");
-			SetFont(EFont::Default, io.Fonts->AddFontDefault());
-		}
+		CryWarning("Failed to find 'Default' font, falling back to embedded font");
+		fontsByName.insert({ "Default", io.Fonts->AddFontDefault() });
 	}
 
-	auto fnFindFont = [&](EFont font, const std::string& name)
-	{
-		auto it = fontsByName.find(name);
-		if (it != fontsByName.end())
-		{
-			SetFont(font, it->second);
-		}
-		else
-		{
-			CryWarning("Failed to find '{}' font, falling back to 'Default' font", name);
-			SetFont(font, GetFont(EFont::Default));
-		}
-	};
-
-	fnFindFont(EFont::Monospace, "Monospace");
+	return fontsByName;
 }
 
 void ChairImGui::UpdateMouseCursor()
