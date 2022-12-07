@@ -173,7 +173,11 @@ void ChairImGui::InitBackend() {
 
 	// Load game cursor
 	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
-	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
+	if (!m_hGameCursor)
+	{
+		m_hGameCursor = IDC_ARROW;
+		CryWarning("Failed to load game cursor. Invalid .exe?");
+	}
 
 	// Initialize scale
 	unsigned currentDpi = GetDpiForWindow((HWND)gEnv->pRenderer->GetHWND());
