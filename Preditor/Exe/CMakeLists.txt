@@ -1,6 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 	
+	Resources/Preditor.rc
+
 	LoadGameStage.cpp
 	LoadGameStage.h
 	ConfigManager.cpp

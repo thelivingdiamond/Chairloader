@@ -1,6 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 	
+	ArkUglySteamDlcSystem.cpp
+	ArkUglySteamDlcSystem.h
 	DebuggerConsoleOutput.cpp
 	DebuggerConsoleOutput.h
 	pch.h

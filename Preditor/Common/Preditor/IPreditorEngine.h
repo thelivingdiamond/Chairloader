@@ -48,4 +48,7 @@ struct IPreditorEngine
 	//! Unloads the engine.
 	//! Once it was unloaded, it can't be reloaded back until the EXE is restarted.
 	virtual void Shutdown() = 0;
+
+	//! Runs an iteration of the main loop.
+	virtual void Update() = 0;
 };

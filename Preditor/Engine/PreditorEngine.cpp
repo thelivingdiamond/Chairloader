@@ -3,8 +3,10 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/GameDll/GameStartup.h>
+#include <imgui.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
+#include "ArkUglySteamDlcSystem.h"
 
 namespace
 {
@@ -52,9 +54,6 @@ public:
 		gEnv->pLog->SetVerbosity(4);
 		g_DebuggerConsoleOutput.Init();
 
-		// Load files from disk first, then from PAKs
-		gEnv->pConsole->GetCVar("sys_PakPriority")->Set(0);
-
 		if (g_InitParams.minimal)
 		{
 			// Register fake cvars
@@ -88,6 +87,9 @@ void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 {
 	g_CSystem_CreateSystemVars_Hook.InvokeOrig(_this);
 	_this->GetIConsole()->GetCVar("sys_game_folder")->Set(g_InitParams.gameSdkPath.string().c_str());
+
+	// Load files from disk first, then from PAKs
+	gEnv->pConsole->GetCVar("sys_PakPriority")->Set(0);
 
 	if (g_InitParams.minimal)
 	{
@@ -197,9 +199,13 @@ bool PreditorEngine::Start(const InitParams& params)
 	cry_strcpy(startupParams.szSystemCmdLine, GetCommandLineA());
 	cry_strcpy(startupParams.szUserPath, params.userPath.string().c_str());
 	cry_strcpy(startupParams.szLanguageName, "english");
-	startupParams.bSkipRenderer = true;
-	startupParams.bSkipInput = true;
-	//startupParams.bEditor = true; // Not sure does anything useful
+	startupParams.pArkDlcSystem = CArkUglySteamDlcSystem::Instantiate();
+
+	if (params.minimal)
+	{
+		startupParams.bSkipRenderer = true;
+		startupParams.bSkipInput = true;
+	}
 
 	CGameStartup* pStartup = Prey_CreateGameStartup();
 	bool initResult = pStartup->Init(startupParams);
@@ -235,6 +241,42 @@ void PreditorEngine::Shutdown()
 	}
 
 	m_hSystemMSWSock = nullptr;
+}
+
+void PreditorEngine::Update()
+{
+	if (!m_pGameStartup)
+		return;
+
+	if (g_InitParams.minimal)
+	{
+		// Only update the system
+		gEnv->pSystem->Update();
+	}
+	else
+	{
+		static bool gameMode = true;
+		static bool runPhysics = false;
+		if (ImGui::Begin("Engine Test"))
+		{
+			ImGui::Checkbox("Game Mode", &gameMode);
+			ImGui::BeginDisabled(gameMode);
+			ImGui::Checkbox("Run Physics/AI", &runPhysics);
+			ImGui::EndDisabled();
+		}
+		ImGui::End();
+
+		unsigned updateFlags = 0;
+
+		if (!gameMode)
+		{
+			updateFlags |= ESYSUPDATE_EDITOR;
+			if (runPhysics)
+				updateFlags |= ESYSUPDATE_EDITOR_AI_PHYSICS;
+		}
+
+		m_pGameStartup->Update(true, updateFlags);
+	}
 }
 
 void PreditorEngine::ApplyBasePatches()

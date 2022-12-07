@@ -8,6 +8,7 @@ public:
 	void Load(const InitParams& params) override;
 	bool Start(const InitParams& params) override;
 	void Shutdown() override;
+	void Update() override;
 
 private:
 	using DllHandle = std::unique_ptr<std::remove_pointer_t<HMODULE>, BOOL(*)(HMODULE)>;

@@ -25,7 +25,7 @@ void LoadGameStage::Start()
 		params.gameSdkPath = projRuntime / "GameSDK";
 		params.userPath = projRuntime / "User";
 		params.chairloaderConfigPath = projRuntime / "Config";
-		params.minimal = true;
+		params.minimal = false;
 		params.loadGamePaks = true;
 
 		// Create directories

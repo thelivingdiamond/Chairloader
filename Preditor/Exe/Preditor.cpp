@@ -24,8 +24,7 @@ Preditor::~Preditor()
 
 void Preditor::Update()
 {
-	if (gEnv)
-		gEnv->pSystem->Update();
+    IPreditorEngine::Get()->Update();
 
 	if (GetStage()->IsStageFinished())
 	{
