@@ -13,6 +13,9 @@ public:
 	Application();
 	virtual ~Application();
 
+	//! @returns the path to the app directory.
+	const fs::path& GetProgramPath() { return m_ProgramPath; }
+
 	//! Starts the application's event loop until the app finishes.
 	//! @returns exit code
 	int Run();
@@ -36,6 +39,7 @@ protected:
 	virtual void ShowUI(bool * bOpen);
 
 private:
+	fs::path m_ProgramPath;
 	std::unique_ptr<AppImGui> m_pImGui;
 	AppStage* m_pCurrentStage = nullptr;
 	bool m_bIsRunning = false;

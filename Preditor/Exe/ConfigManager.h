@@ -34,8 +34,8 @@ public:
     bool validateConfigPaths(std::string &error);
 
 protected:
+    static constexpr char CONFIG_FILE_NAME[] = "ModToolKitConfig.xml";
     fs::path m_gamePath, m_PreyFilesPath;
-    const fs::path m_configFilePath = "./ModToolKitConfig.xml";
 
     std::shared_ptr<pugi::xml_document> m_configFile;
     pugi::xml_node m_configNode;
@@ -51,6 +51,8 @@ protected:
     };
     bool m_bConfigFileValid = false;
     bool validateConfigFile();
+
+    fs::path GetConfigPath();
 
     friend ConfigValidationStage;
 };

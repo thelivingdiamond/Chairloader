@@ -15,6 +15,7 @@ Application::Application()
 {
 	assert(!g_pApp);
 	g_pApp = this;
+	m_ProgramPath = fs::current_path();
 	m_pImGui = std::make_unique<AppImGui>();
 }
 

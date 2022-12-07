@@ -2,6 +2,7 @@
 #include <d3d11.h>
 #include <tchar.h>
 #include "AppImGui.h"
+#include "App/Application.h"
 #include <ImGui/imgui_impl_dx11.h>
 #include <ImGui/imgui_impl_win32.h>
 #include <IconsMaterialDesign.h>
@@ -135,8 +136,12 @@ void AppImGui::InitImGui()
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
+	// Ini path
+	static char iniPath[512];
+	snprintf(iniPath, sizeof(iniPath), "%s", Application::Get()->GetProgramPath().u8string().c_str());
+	io.IniFilename = iniPath;
 
 	ImGui::StyleColorsDark();
 
