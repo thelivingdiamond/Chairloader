@@ -1,6 +1,7 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CryGame/IGameStartup.h>
+#include <Preditor/IPreditorEngine.h>
 #include "App/AppStage.h"
 #include "Preditor.h"
 #include "LoadGameStage.h"
@@ -18,7 +19,7 @@ Preditor::Preditor()
 
 Preditor::~Preditor()
 {
-	m_GameModule.Shutdown();
+    IPreditorEngine::Get()->Shutdown();
 }
 
 void Preditor::Update()
@@ -37,7 +38,7 @@ void Preditor::Update()
         else if (m_pProjectSelectStage)
         {
             m_pProjectSelectStage.reset();
-            m_pLoadGameStage = std::make_unique<LoadGameStage>(&m_GameModule);
+            m_pLoadGameStage = std::make_unique<LoadGameStage>();
         }
         else if (m_pLoadGameStage)
         {

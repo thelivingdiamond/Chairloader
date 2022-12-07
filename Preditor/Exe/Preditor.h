@@ -1,6 +1,5 @@
 #include "App/Application.h"
 #include "ConfigManager.h"
-#include "GameModule.h"
 #include "FlowgraphEditor.h"
 #include "ProjectManager.h"
 #include "ProjectSelectStage.h"
@@ -27,7 +26,6 @@ protected:
 
 private:
 	ConfigManager m_Config;
-	GameModule m_GameModule;
     // MODULES
 	//std::unique_ptr<DevConsoleDialog> m_pDevConsole;
     std::unique_ptr<ProjectManager> m_pProjectManager;

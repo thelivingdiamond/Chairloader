@@ -5,6 +5,7 @@ set(CMAKE_FOLDER "Preditor")
 add_subdirectory(Common)
 
 # Modules
+add_subdirectory(Engine)
 
 # EXEs and DLLs
 add_subdirectory(Exe)

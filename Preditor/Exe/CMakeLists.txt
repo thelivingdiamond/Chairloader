@@ -1,8 +1,6 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 	
-	GameModule.cpp
-	GameModule.h
 	LoadGameStage.cpp
 	LoadGameStage.h
 	ConfigManager.cpp
@@ -45,6 +43,7 @@ target_include_directories(Preditor.Exe PRIVATE
 
 target_link_libraries(Preditor.Exe
 	Preditor.Common
+	Preditor.Engine
 	D3D11.lib
 )
 

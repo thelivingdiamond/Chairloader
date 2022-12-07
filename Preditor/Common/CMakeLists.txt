@@ -9,6 +9,8 @@ set(SOURCE_FILES
 	App/AppModule.h
 	App/AppStage.cpp
 	App/AppStage.h
+	
+	Preditor/IPreditorEngine.h
 )
 
 add_library(Preditor.Common STATIC ${SOURCE_FILES})

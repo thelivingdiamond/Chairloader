@@ -1,19 +1,14 @@
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <ModLoader/PathUtils.h>
-#include <Prey/CryGame/IGameStartup.h>
-#include <Prey/CryGame/IGameRef.h>
-#include <mem.h>
+#include <Preditor/IPreditorEngine.h>
 #include "LoadGameStage.h"
-#include "GameModule.h"
 #include "Preditor.h"
-//#include "Prey/GameDll/ark/ArkGame.h"
-#include <Prey/CryAction/CryAction.h>
-#include <Prey/CrySystem/IEngineModule.h>
+#include "ConfigManager.h"
+#include "ProjectManager.h"
 
-LoadGameStage::LoadGameStage(GameModule* pModule)
+LoadGameStage::LoadGameStage()
 {
-	m_pMod = pModule;
 }
 
 void LoadGameStage::Start()
@@ -21,10 +16,28 @@ void LoadGameStage::Start()
 	try
 	{
 		UpdateProgressText("Loading PreyDll.dll...");
-		m_pMod->LoadDll();
+
+		fs::path projRuntime = ProjectManager::GetProject()->GetRuntimePath();
+		IPreditorEngine::InitParams params;
+		params.progressCallback = [&](const char* msg) { UpdateProgressText(msg); };
+		params.enginePath = ConfigManager::Get()->getGamePath();
+		params.engineBinariesPath = params.enginePath / PathUtils::GAME_BIN_DIR;
+		params.gameSdkPath = projRuntime / "GameSDK";
+		params.userPath = projRuntime / "User";
+		params.chairloaderConfigPath = projRuntime / "Config";
+		params.minimal = true;
+		params.loadGamePaks = true;
+
+		// Create directories
+		fs::create_directory(params.gameSdkPath);
+		fs::create_directory(params.userPath);
+		fs::create_directory(params.chairloaderConfigPath);
+
+		IPreditorEngine::Get()->Load(params);
 		
 		UpdateProgressText("Starting the game engine...");
-		m_pMod->InitGame([&](const char* msg) { UpdateProgressText(msg); });
+		if (!IPreditorEngine::Get()->Start(params))
+			throw std::runtime_error("Engine failed to start");
 
 		SetStageFinished();
 	}
