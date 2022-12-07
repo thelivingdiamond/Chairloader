@@ -17,8 +17,11 @@ struct IPreditorEngine
 		//! Path to the game binaries directory.
 		fs::path engineBinariesPath;
 
-		//! Path to the GameSDK directory to use. May be different from the game's directory.
+		//! Optional path to the GameSDK directory to use.
 		fs::path gameSdkPath;
+
+		//! Optional path to a mod directory. If set, files from here will override GameSDK files.
+		fs::path modDirPath;
 
 		//! Path to the user directory to store user-specific files.
 		fs::path userPath;
@@ -29,7 +32,7 @@ struct IPreditorEngine
 		//! Initialize bare minimum to get ICryPak.
 		bool minimal = false;
 
-		//! Load PAKs from the original GameSDK.
+		//! Load PAKs from the original GameSDK. Only use if GameSDK path is different.
 		bool loadGamePaks = false;
 	};
 

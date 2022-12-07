@@ -82,11 +82,12 @@ auto Prey_CreateGameStartup = PreyFunction<CGameStartup* ()>(0x16FD6B0);
 //----------------------------------------------------------------------------
 auto g_CSystem_CreateSystemVars_Hook = CSystem::FCreateSystemVars.MakeHook();
 auto g_CSystem_ChangeUserPath_Hook = CSystem::FChangeUserPath.MakeHook();
+auto g_CSystem_LoadConfiguration_Hook = CSystem::FLoadConfiguration.MakeHook();
+auto g_CSystem_OpenBasicPaks_Hook = CSystem::FOpenBasicPaks.MakeHook();
 
 void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 {
 	g_CSystem_CreateSystemVars_Hook.InvokeOrig(_this);
-	_this->GetIConsole()->GetCVar("sys_game_folder")->Set(g_InitParams.gameSdkPath.string().c_str());
 
 	// Load files from disk first, then from PAKs
 	gEnv->pConsole->GetCVar("sys_PakPriority")->Set(0);
@@ -101,8 +102,41 @@ void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 void CSystem_ChangeUserPath_Hook(CSystem* const _this, const char* sUserPath)
 {
 	// Don't use My Games, use the path directly
-	std::string path = g_InitParams.userPath.string();
+	std::string path = g_InitParams.userPath.u8string();
 	_this->m_env->pCryPak->SetAlias("%USER%", path.c_str(), true);
+}
+
+void CSystem_LoadConfiguration_Hook(CSystem* const _this, const char* sFilename, ILoadConfigurationEntrySink* pSink, bool allowMissing)
+{
+	g_CSystem_LoadConfiguration_Hook.InvokeOrig(_this, sFilename, pSink, allowMissing);
+
+	if (!strcmp(sFilename, "system.cfg"))
+	{
+		// Override system.cfg params
+		if (!g_InitParams.gameSdkPath.empty())
+			_this->GetIConsole()->GetCVar("sys_game_folder")->Set(g_InitParams.gameSdkPath.u8string().c_str());
+	}
+}
+
+void CSystem_OpenBasicPaks_Hook(CSystem* const _this)
+{
+	static bool bBasicPaksLoaded = false;
+	if (!bBasicPaksLoaded)
+	{
+		if (!g_InitParams.modDirPath.empty())
+			_this->m_env->pCryPak->AddMod(g_InitParams.modDirPath.u8string().c_str());
+
+		if (g_InitParams.loadGamePaks)
+		{
+			// Load all PAKs from the original GameSDK
+			std::string gameSdkPath = (g_InitParams.enginePath / "GameSDK").u8string();
+			_this->m_env->pCryPak->AddMod(gameSdkPath.c_str());
+			_this->m_env->pCryPak->OpenPacks((gameSdkPath + "/*.pak").c_str(), ICryPak::FLAGS_PATH_REAL, nullptr);
+			_this->m_env->pCryPak->OpenPacks((gameSdkPath + "/Precache/Patch*.pak").c_str(), ICryPak::FLAGS_PATH_REAL, nullptr);
+		}
+	}
+	bBasicPaksLoaded = true;
+	g_CSystem_OpenBasicPaks_Hook.InvokeOrig(_this);
 }
 
 // Returns the last Win32 error, in string format. Returns an empty string if there is no error.
@@ -197,7 +231,7 @@ bool PreditorEngine::Start(const InitParams& params)
 	startupParams.pUserCallback = &g_SystemUserCallback;
 	startupParams.sLogFileName = "PreditorEngine.log";
 	cry_strcpy(startupParams.szSystemCmdLine, GetCommandLineA());
-	cry_strcpy(startupParams.szUserPath, params.userPath.string().c_str());
+	cry_strcpy(startupParams.szUserPath, params.userPath.u8string().c_str());
 	cry_strcpy(startupParams.szLanguageName, "english");
 	startupParams.pArkDlcSystem = CArkUglySteamDlcSystem::Instantiate();
 
@@ -286,6 +320,8 @@ void PreditorEngine::ApplyBasePatches()
 
 	g_CSystem_CreateSystemVars_Hook.SetHookFunc(&CSystem_CreateSystemVars_Hook);
 	g_CSystem_ChangeUserPath_Hook.SetHookFunc(&CSystem_ChangeUserPath_Hook);
+	g_CSystem_LoadConfiguration_Hook.SetHookFunc(&CSystem_LoadConfiguration_Hook);
+	g_CSystem_OpenBasicPaks_Hook.SetHookFunc(&CSystem_OpenBasicPaks_Hook);
 }
 
 void PreditorEngine::ApplyFullPatches()

@@ -22,14 +22,13 @@ void LoadGameStage::Start()
 		params.progressCallback = [&](const char* msg) { UpdateProgressText(msg); };
 		params.enginePath = ConfigManager::Get()->getGamePath();
 		params.engineBinariesPath = params.enginePath / PathUtils::GAME_BIN_DIR;
-		params.gameSdkPath = projRuntime / "GameSDK";
+		params.modDirPath = projRuntime / "GameSDK";
 		params.userPath = projRuntime / "User";
 		params.chairloaderConfigPath = projRuntime / "Config";
 		params.minimal = false;
-		params.loadGamePaks = true;
+		params.loadGamePaks = false;
 
 		// Create directories
-		fs::create_directory(params.gameSdkPath);
 		fs::create_directory(params.userPath);
 		fs::create_directory(params.chairloaderConfigPath);
 

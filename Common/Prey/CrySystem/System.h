@@ -151,6 +151,8 @@ public:
 	static inline auto FRenderEnd = PreyFunction<void(CSystem* const _this, bool bRenderStats)>(0xDDF450);
 	static inline auto FCreateSystemVars = PreyFunction<void(CSystem* const _this)>(0xDCF790);
 	static inline auto FChangeUserPath = PreyFunction<void(CSystem* const _this, const char* sUserPath)>(0xDE0720);
+	static inline auto FLoadConfiguration = PreyFunction<void(CSystem* const _this, const char* sFilename, ILoadConfigurationEntrySink* pSink, bool allowMissing)>(0xDCB5B0);
+	static inline auto FOpenBasicPaks = PreyFunction<void(CSystem* const _this)>(0xDD95F0);
 
 	//! Sets whether dev mode is enabled.
 	inline void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }
