@@ -1,6 +1,7 @@
 #include <detours/detours.h>
 #include <mem.h>
 #include <Prey/CrySystem/System.h>
+#include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/GameDll/GameStartup.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
@@ -51,6 +52,9 @@ public:
 		gEnv->pLog->SetVerbosity(4);
 		g_DebuggerConsoleOutput.Init();
 
+		// Load files from disk first, then from PAKs
+		gEnv->pConsole->GetCVar("sys_PakPriority")->Set(0);
+
 		if (g_InitParams.minimal)
 		{
 			// Register fake cvars
@@ -78,6 +82,7 @@ auto Prey_CreateGameStartup = PreyFunction<CGameStartup* ()>(0x16FD6B0);
 // Hooks
 //----------------------------------------------------------------------------
 auto g_CSystem_CreateSystemVars_Hook = CSystem::FCreateSystemVars.MakeHook();
+auto g_CSystem_ChangeUserPath_Hook = CSystem::FChangeUserPath.MakeHook();
 
 void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 {
@@ -89,6 +94,13 @@ void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 		// Enable dedicated server mode
 		_this->m_bDedicatedServer = true;
 	}
+}
+
+void CSystem_ChangeUserPath_Hook(CSystem* const _this, const char* sUserPath)
+{
+	// Don't use My Games, use the path directly
+	std::string path = g_InitParams.userPath.string();
+	_this->m_env->pCryPak->SetAlias("%USER%", path.c_str(), true);
 }
 
 // Returns the last Win32 error, in string format. Returns an empty string if there is no error.
@@ -183,6 +195,7 @@ bool PreditorEngine::Start(const InitParams& params)
 	startupParams.pUserCallback = &g_SystemUserCallback;
 	startupParams.sLogFileName = "PreditorEngine.log";
 	cry_strcpy(startupParams.szSystemCmdLine, GetCommandLineA());
+	cry_strcpy(startupParams.szUserPath, params.userPath.string().c_str());
 	cry_strcpy(startupParams.szLanguageName, "english");
 	startupParams.bSkipRenderer = true;
 	startupParams.bSkipInput = true;
@@ -230,6 +243,7 @@ void PreditorEngine::ApplyBasePatches()
 	PreyFunctionSystem::Init((uintptr_t)m_hPreyDll.get());
 
 	g_CSystem_CreateSystemVars_Hook.SetHookFunc(&CSystem_CreateSystemVars_Hook);
+	g_CSystem_ChangeUserPath_Hook.SetHookFunc(&CSystem_ChangeUserPath_Hook);
 }
 
 void PreditorEngine::ApplyFullPatches()

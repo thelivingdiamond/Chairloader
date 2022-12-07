@@ -150,6 +150,7 @@ public:
 	static inline auto FUpdate = PreyFunction<bool(CSystem* const _this, int updateFlags, int nPauseMode)>(0xDC8A50);
 	static inline auto FRenderEnd = PreyFunction<void(CSystem* const _this, bool bRenderStats)>(0xDDF450);
 	static inline auto FCreateSystemVars = PreyFunction<void(CSystem* const _this)>(0xDCF790);
+	static inline auto FChangeUserPath = PreyFunction<void(CSystem* const _this, const char* sUserPath)>(0xDE0720);
 
 	//! Sets whether dev mode is enabled.
 	inline void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }
