@@ -17,12 +17,25 @@ set(SOURCE_FILES
 	imgui_widget_flamegraph.h
 )
 
+#-----------------------------------------------------------
+# Chairloader.Common
+#-----------------------------------------------------------
 add_library(Chairloader.Common STATIC ${SOURCE_FILES})
 target_include_directories(Chairloader.Common PUBLIC .)
 
 target_link_libraries(Chairloader.Common PUBLIC
 	Common
 	Chairloader.ImGui
+)
+
+#-----------------------------------------------------------
+# Chairloader.Common.Preditor
+#-----------------------------------------------------------
+add_library(Chairloader.Common.Preditor STATIC ${SOURCE_FILES})
+target_include_directories(Chairloader.Common.Preditor PUBLIC .)
+
+target_link_libraries(Chairloader.Common.Preditor PUBLIC
+	Preditor.Common
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
