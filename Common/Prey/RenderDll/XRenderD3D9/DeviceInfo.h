@@ -110,7 +110,7 @@ struct DeviceInfo
 protected:
 	void ProcessSystemEvent(ESystemEvent event, UINT_PTR wParam, UINT_PTR lParam);
 
-protected:
+public:
 	DXGIFactory*                        m_pFactory;
 	DXGIAdapter*                        m_pAdapter;
 	DXGIOutput*                         m_pOutput;
