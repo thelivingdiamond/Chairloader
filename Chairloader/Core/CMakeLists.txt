@@ -1,7 +1,5 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	BackupDxState.cpp
-	BackupDxState.h
 	ChairImGui.cpp
 	ChairImGui.h
 	ChairloaderConfigManager.cpp
@@ -12,9 +10,6 @@ set(SOURCE_FILES
 	ChairloaderGui.h
 	ChairLogger.cpp
 	ChairLogger.h
-	ImGuiDoubleBuffering.h
-	ImGuiRendererD3D11.cpp
-	ImGuiRendererD3D11.h
 	LogManager.cpp
 	LogManager.h
 	ModDllManager.cpp

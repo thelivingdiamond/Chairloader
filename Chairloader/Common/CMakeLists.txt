@@ -9,12 +9,17 @@ set(SOURCE_FILES
 	Chairloader/ILogManager.h
 	Chairloader/IModDllManager.h
 
+	BackupDxState.cpp
+	BackupDxState.h
 	ConsoleColorParser.cpp
 	ConsoleColorParser.h
 	GUIUtils.h
-	LibD3D11.h
 	imgui_widget_flamegraph.cpp
 	imgui_widget_flamegraph.h
+	ImGuiDoubleBuffering.h
+	ImGuiRendererD3D11.cpp
+	ImGuiRendererD3D11.h
+	LibD3D11.h
 )
 
 #-----------------------------------------------------------
