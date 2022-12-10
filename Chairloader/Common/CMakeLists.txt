@@ -6,8 +6,11 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderDll.h
 	Chairloader/IChairloaderModule.h
 	Chairloader/IChairloaderTools.h
+	Chairloader/IChairToPreditor.h
 	Chairloader/ILogManager.h
 	Chairloader/IModDllManager.h
+	Chairloader/IPreditorToChair.h
+	Chairloader/PreditorAPI.h
 
 	BackupDxState.cpp
 	BackupDxState.h

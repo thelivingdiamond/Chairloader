@@ -3,6 +3,8 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/GameDll/GameStartup.h>
+#include <Chairloader/IChairloaderMod.h>
+#include <Chairloader/IChairToPreditor.h>
 #include <imgui.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
@@ -70,6 +72,49 @@ public:
 };
 
 SystemUserCallback g_SystemUserCallback;
+
+//----------------------------------------------------------------------------
+// SystemUserCallback
+//----------------------------------------------------------------------------
+class PreditorAsMod : public IChairloaderMod
+{
+public:
+	// IChairloaderMod
+	void GetModSdkVersion(int& major, int& minor, int& patch) override
+	{
+		major = MOD_SDK_VERSION_MAJOR;
+		minor = MOD_SDK_VERSION_MINOR;
+		patch = MOD_SDK_VERSION_PATCH;
+	}
+
+	void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) override
+	{
+		assert(!initInfo.isHotReloading);
+		dllInfo.thisStructSize = sizeof(ModDllInfo);
+		dllInfo.modName = "Chairloader.Preditor";
+		dllInfo.supportsHotReload = false;
+
+		gCL = initInfo.pChair->GetChairloaderEnvironment();
+		ModuleInitIChairLogger("Preditor");
+	}
+
+	void InitGame(bool isHotReloading) override
+	{
+		assert(!isHotReloading);
+	}
+
+	void ShutdownGame(bool isHotUnloading) override
+	{
+		assert(!isHotUnloading);
+	}
+
+	void ShutdownSystem(bool isHotUnloading) override
+	{
+		assert(!isHotUnloading);
+	}
+};
+
+PreditorAsMod g_PreditorAsMod;
 
 //----------------------------------------------------------------------------
 // Function pointers
@@ -177,12 +222,8 @@ void PreditorEngine::Load(const InitParams& params)
 	m_hSystemMSWSock = nullptr;
 	g_InitParams = params;
 
-	if (params.minimal)
-	{
-		// Minimal must not load Chairloader
-		// Load system mswsock.dll so ChairloaderLoader doesn't run
-		m_hSystemMSWSock = DllHandle(LoadLibraryExA("mswsock.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32), &FreeLibrary);
-	}
+	// Load system mswsock.dll so Chairloader.Loader doesn't run
+	m_hSystemMSWSock = DllHandle(LoadLibraryExA("mswsock.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32), &FreeLibrary);
 
 	// Change workdir to engine root
 	SetCurrentDirectoryW(params.enginePath.c_str());
@@ -202,10 +243,40 @@ void PreditorEngine::Load(const InitParams& params)
 
 	if (!params.minimal)
 	{
-		// See if Chairloader is loaded
-		HMODULE hChair = GetModuleHandleA("Chairloader.dll");
-		if (!hChair)
-			throw std::runtime_error("Chairloader failed to load");
+		// Load Chairloader
+		fs::path chairPath = params.engineBinariesPath / "Chairloader.dll";
+		DllHandle hChairDll = DllHandle(LoadLibraryExW(chairPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS), &FreeLibrary);
+
+		if (!hChairDll)
+		{
+			std::string err = GetLastErrorAsString();
+			throw std::runtime_error("Failed to load Chairloader.dll\n" + err);
+		}
+
+		// Init Preditor API
+		auto pFunc = reinterpret_cast<Chair_GetPreditorAPI_Func>(GetProcAddress(hChairDll.get(), PREDITOR_API_EXPORT_FUNC_NAME));
+		if (!pFunc)
+			throw std::runtime_error("Chairloader.dll doesn't export " + std::string(PREDITOR_API_EXPORT_FUNC_NAME));
+
+		int chairApiVersion = -1;
+		m_pChair = pFunc(PREDITOR_API_VERSION, &chairApiVersion);
+
+		// Validate version
+		if (!m_pChair)
+		{
+			if (chairApiVersion != PREDITOR_API_VERSION)
+			{
+				throw std::runtime_error(fmt::format("Preditor API version mismatch!\nPreditor: {}\nChairloader: {}",
+					PREDITOR_API_VERSION, chairApiVersion));
+			}
+			else
+			{
+				throw std::runtime_error("Chairloader returned nullptr IChairToPreditor");
+			}
+		}
+
+		m_pChair->SetIPreditorToChair(this);
+		m_hChairDll = std::move(hChairDll);
 	}
 
 	m_hPreyDll = std::move(hPreyDll);
@@ -311,6 +382,11 @@ void PreditorEngine::Update()
 
 		m_pGameStartup->Update(true, updateFlags);
 	}
+}
+
+IChairloaderMod* PreditorEngine::GetMod()
+{
+	return &g_PreditorAsMod;
 }
 
 void PreditorEngine::ApplyBasePatches()

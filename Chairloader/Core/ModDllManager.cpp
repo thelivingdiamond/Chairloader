@@ -24,6 +24,21 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 }
 
+void ModDllManager::RegisterRawMod(const char* name, IChairloaderMod* pMod, bool asFirst)
+{
+	Module* mod;
+	if (asFirst)
+		mod = &(*m_Modules.emplace(m_Modules.begin()));
+	else
+		mod = &m_Modules.emplace_back();
+
+	mod->modName = name;
+	mod->bIsRawMod = true;
+	mod->pModIface = pMod;
+	CheckModSdkVersion(*mod);
+	CryLog("[ModDllManager] Added raw mod {}", name);
+}
+
 void ModDllManager::LoadModules()
 {
 	if (m_bHotReload)
@@ -266,6 +281,9 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 
 	if (mod.modName != mod.dllInfo.modName)
 		CryWarning("[ModDllManager] {}: Name mismatch. DLL says \"{}\"", mod.modName.c_str(), mod.dllInfo.modName);
+
+	if (mod.bIsRawMod && mod.dllInfo.supportsHotReload)
+		mod.dllInfo.supportsHotReload = false;
 }
 
 void ModDllManager::CheckModSdkVersion(Module& mod)

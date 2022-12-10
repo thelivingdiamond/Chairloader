@@ -8,6 +8,7 @@
 #include <Chairloader/ChairloaderEnv.h>
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IModDllManager.h>
+#include <Chairloader/IPreditorToChair.h>
 #include <mem.h>
 #include "Chairloader.h"
 
@@ -191,6 +192,9 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	CryLog("Chairloader::InitSystem");
 	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
 
+	if (m_pPreditorAPI)
+		CryWarning("Chairloader is running in Preditor mode. API: {}", PREDITOR_API_VERSION);
+
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
@@ -198,9 +202,9 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Editor cmd line switch
 	m_bEditorEnabled = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "editor");
 
-	if (m_bEditorEnabled)
+	if (m_bEditorEnabled || m_pPreditorAPI)
 	{
-		// Dev mode is always enabled in Editor.
+		// Dev mode is always enabled in (Pr)Editor.
 		pSystem->SetDevMode(true);
 	}
 	else if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
@@ -231,6 +235,8 @@ void Chairloader::InitSystem(CSystem* pSystem)
 
 	// Register mods
 	m_pCore->RegisterMods();
+	if (m_pPreditorAPI)
+		m_pCore->GetDllManager()->RegisterRawMod("Chairloader.Preditor", m_pPreditorAPI->GetMod(), true);
 
 	// Init renderer patches. Must be done after shader mods are registered.
 	Internal::SCryRenderInitParams renderParams;
@@ -542,4 +548,9 @@ void Chairloader::ReloadModDLLs()
 	m_pCore->GetDllManager()->ReloadModules();
 
 	m_pRender->SetRenderThreadIsIdle(false);
+}
+
+void Chairloader::SetIPreditorToChair(IPreditorToChair* pPreditor)
+{
+	m_pPreditorAPI = pPreditor;
 }

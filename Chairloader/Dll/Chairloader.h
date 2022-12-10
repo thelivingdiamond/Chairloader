@@ -4,13 +4,18 @@
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderDll.h>
 #include <Chairloader/IChairloaderTools.h>
+#include <Chairloader/PreditorAPI.h>
+#include <Chairloader/IChairToPreditor.h>
 #include "WinConsole.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 
 class CSystem;
 
-class Chairloader : public Internal::IChairloaderDll {
+class Chairloader
+	: public Internal::IChairloaderDll
+	, public IChairToPreditor
+{
 public:
 	static void CreateInstance();
 	static Chairloader* Get();
@@ -45,6 +50,7 @@ public:
 private:
 	WinConsole m_WinConsole;
 	uintptr_t m_ModuleBase = 0;
+	IPreditorToChair* m_pPreditorAPI = nullptr;
 	bool m_bEditorEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
 	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
@@ -76,4 +82,7 @@ public:
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;
+
+	// IChairToPreditor
+	void SetIPreditorToChair(IPreditorToChair* pPreditor) override;
 };
