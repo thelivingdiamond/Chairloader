@@ -556,7 +556,7 @@ public:
 	static CTexture* CreateTextureArray(const char* name, ETEX_Type eType, unsigned nWidth, unsigned nHeight, unsigned nArraySize, int nMips, unsigned nFlags, ETEX_Format eTF, int nCustomID, EDeviceMemoryHeap _heapId) { return FCreateTextureArray(name, eType, nWidth, nHeight, nArraySize, nMips, nFlags, eTF, nCustomID, _heapId); }
 	static CTexture* CreateRenderTarget(const char* name, unsigned nWidth, unsigned nHeight, ColorF const& cClear, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID = -1) { return FCreateRenderTargetOv1(name, nWidth, nHeight, cClear, eTT, nFlags, eTF, nCustomID); }
 	bool CreateRenderTarget(ETEX_Format eTF, ColorF const& cClear) { return FCreateRenderTargetOv0(this, eTF, cClear); }
-	static CTexture* CreateTextureObject(const char* name, unsigned nWidth, unsigned nHeight, int nDepth, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID, EDeviceMemoryHeap _heapId) { return FCreateTextureObject(name, nWidth, nHeight, nDepth, eTT, nFlags, eTF, nCustomID, _heapId); }
+	static CTexture* CreateTextureObject(const char* name, unsigned nWidth, unsigned nHeight, int nDepth, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID = -1, EDeviceMemoryHeap _heapId = kDeviceMemoryHeap_Invalid) { return FCreateTextureObject(name, nWidth, nHeight, nDepth, eTT, nFlags, eTF, nCustomID, _heapId); }
 	static CTexture* NewTexture(const char* name, unsigned nFlags, ETEX_Format eTFDst, EDeviceMemoryHeap _heapId, bool& bFound) { return FNewTexture(name, nFlags, eTFDst, _heapId, bFound); }
 	static void InitStreaming() { FInitStreaming(); }
 	static void InitStreamingDev() { FInitStreamingDev(); }

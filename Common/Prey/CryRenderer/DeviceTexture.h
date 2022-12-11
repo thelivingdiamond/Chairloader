@@ -6,16 +6,17 @@
 
 class CDeviceTextureBase
 {
+protected:
 	friend class CDeviceManager;
 
-	D3DBaseTexture *m_pD3DTexture;
+	D3DBaseTexture *m_pD3DTexture = nullptr;
 	// for native hand-made textures
-	size_t          m_nBaseAllocatedSize;
+	size_t          m_nBaseAllocatedSize = 0;
 	D3DResource *m_pStagingResource[2];
 	void *m_pStagingMemory[2];
-	void *m_handleMGPU;
-	bool            m_bNoDelete;
-	bool            m_bCube;
+	void *m_handleMGPU = nullptr;
+	bool            m_bNoDelete = false;
+	bool            m_bCube = false;
 
 public:
 	inline ID3D11Resource *GetBaseTexture() {
@@ -101,6 +102,19 @@ public:
 	static inline auto FCleanup = PreyFunction<int(CDeviceTextureBase* _this)>(0x1054080);
 	using CDeviceTextureBase::CDeviceTextureBase;
 	~CDeviceTexture();
+
+	CDeviceTexture()
+	{
+		m_pStagingResource[0] = m_pStagingResource[1] = nullptr;
+		m_pStagingMemory[0] = m_pStagingMemory[1] = nullptr;
+	}
+
+	CDeviceTexture(D3DCubeTexture* pBaseTexture)
+	{
+		m_pD3DTexture = pBaseTexture;
+		m_pStagingResource[0] = m_pStagingResource[1] = nullptr;
+		m_pStagingMemory[0] = m_pStagingMemory[1] = nullptr;
+	}
 
 	int32 Release();
 	static uint32 TextureDataSize(D3DBaseView *pView);

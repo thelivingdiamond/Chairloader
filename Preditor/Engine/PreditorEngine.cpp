@@ -398,6 +398,15 @@ void PreditorEngine::Update()
 		}
 		ImGui::End();
 
+		if (ImGui::Begin("Viewport Test"))
+		{
+			ImVec2 min = ImGui::GetWindowContentRegionMin();
+			ImVec2 max = ImGui::GetWindowContentRegionMax();
+			ImVec2 size(max.x - min.x, max.y - min.y);
+			ImGui::Image(EngineSwapChainPatch::GetBackbuffer(), size);
+		}
+		ImGui::End();
+
 		unsigned updateFlags = 0;
 
 		if (!gameMode)
