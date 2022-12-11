@@ -25,10 +25,30 @@ class EngineSwapChainPatch::FakeSwapChain : public IDXGISwapChain
 {
 public:
 	IDXGISwapChain* m_pReal = nullptr;
+	Vec2i m_RealSize = Vec2i(ZERO);
 
 	FakeSwapChain(IDXGISwapChain* pRealSwapChain)
 	{
 		m_pReal = pRealSwapChain;
+
+		DXGI_SWAP_CHAIN_DESC desc;
+		ZeroMemory(&desc, sizeof(desc));
+		pRealSwapChain->GetDesc(&desc);
+		m_RealSize = Vec2i(desc.BufferDesc.Width, desc.BufferDesc.Height);
+	}
+
+	bool UpdateSize(int width, int height)
+	{
+		if (m_RealSize.x != width || m_RealSize.y != height)
+		{
+			g_SwapChainPatch.m_pRealRTV = nullptr;
+			m_RealSize = Vec2i(width, height);
+			HRESULT hr = m_pReal->ResizeBuffers(0, (UINT)width, (UINT)height, DXGI_FORMAT_UNKNOWN, 0);
+			assert(hr == S_OK);
+			return true;
+		}
+
+		return false;
 	}
 
 	// Overriden methods
@@ -162,14 +182,32 @@ ITexture* EngineSwapChainPatch::GetBackbuffer()
 	return g_SwapChainPatch.m_pBackbufferRef;
 }
 
+void EngineSwapChainPatch::RT_UpdateSize(int width, int height)
+{
+	if (g_SwapChainPatch.m_pSwapChain->UpdateSize(width, height))
+		g_SwapChainPatch.RT_UpdateRealRTV();
+}
+
 IDXGISwapChain* EngineSwapChainPatch::MakeSwapChain(IDXGISwapChain* pRealSwapChain)
 {
 	m_pSwapChain = std::make_unique<FakeSwapChain>(pRealSwapChain);
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
 	pRealSwapChain->GetDesc(&desc);
+	RT_UpdateRealRTV();
 	RT_ResizeBackbuffer(desc.BufferDesc.Width, desc.BufferDesc.Height, desc.BufferDesc.Format);
 	return m_pSwapChain.get();
+}
+
+void EngineSwapChainPatch::RT_UpdateRealRTV()
+{
+	ID3D11Texture2D* swapTex = nullptr;
+	ID3D11RenderTargetView* swapTexView = nullptr;
+	m_pSwapChain->m_pReal->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&swapTex);
+	gcpRendD3D->GetDevice().CreateRenderTargetView(swapTex, nullptr, &swapTexView);
+	m_pRealRTV = swapTexView;
+	SAFE_RELEASE(swapTex);
+	SAFE_RELEASE(swapTexView);
 }
 
 void EngineSwapChainPatch::RT_ResizeBackbuffer(int width, int height, DXGI_FORMAT dxgiFormat)
@@ -216,19 +254,14 @@ void EngineSwapChainPatch::RT_DrawImGui()
 	if (pImGui && gcpRendD3D && gRenDev)
 	{
 		// Switch to real swap chain
-		// TODO: Cache the view
-		ID3D11Texture2D* swapTex = nullptr;
-		ID3D11RenderTargetView* swapTexView = nullptr;
-		m_pSwapChain->m_pReal->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&swapTex);
-		gcpRendD3D->GetDevice().CreateRenderTargetView(swapTex, nullptr, &swapTexView);
-
-		ID3D11RenderTargetView* views[1] = { swapTexView };
+		ID3D11RenderTargetView* views[1] = { m_pRealRTV.get() };
 		gcpRendD3D->GetDeviceContext().OMSetRenderTargets(1, views, nullptr);
-		float clearColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-		gcpRendD3D->GetDeviceContext().ClearRenderTargetView(swapTexView, clearColor);
-		pImGui->RT_Render();
 
-		SAFE_RELEASE(swapTex);
-		SAFE_RELEASE(swapTexView);
+		// Clear it
+		float clearColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+		gcpRendD3D->GetDeviceContext().ClearRenderTargetView(views[0], clearColor);
+
+		// Draw contents
+		pImGui->RT_Render();
 	}
 }

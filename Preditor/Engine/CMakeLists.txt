@@ -7,6 +7,8 @@ set(SOURCE_FILES
 	DebuggerConsoleOutput.h
 	EngineSwapChainPatch.cpp
 	EngineSwapChainPatch.h
+	MainWindowResizePatch.cpp
+	MainWindowResizePatch.h
 	pch.h
 	PreditorEngine.cpp
 	PreditorEngine.h

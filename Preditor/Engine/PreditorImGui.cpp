@@ -7,6 +7,7 @@
 #include <App/Application.h>
 #include "PreditorImGui.h"
 #include "PreditorImGuiRenderer.h"
+#include "MainWindowResizePatch.h"
 
 // There is no distinct VK_xxx for keypad enter, instead it is VK_RETURN + KF_EXTENDED, we assign it an arbitrary value to make code more readable (VK_ codes go up to 255)
 #define IM_VK_KEYPAD_ENTER      (VK_RETURN + 256)
@@ -257,6 +258,10 @@ int64_t PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int
     case WM_DISPLAYCHANGE:
         m_bWantUpdateMonitors = true;
         return 0;
+    case WM_SIZE:
+        if (wParam != SIZE_MINIMIZED)
+            MainWindowResizePatch::OnWindowResize(LOWORD(lParam), HIWORD(lParam));
+        return 1;
     }
     return 0;
 }

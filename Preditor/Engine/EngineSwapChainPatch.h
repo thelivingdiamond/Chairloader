@@ -2,6 +2,7 @@
 
 enum DXGI_FORMAT;
 struct IDXGISwapChain;
+struct ID3D11RenderTargetView;
 struct ITexture;
 class CTexture;
 
@@ -14,6 +15,7 @@ public:
 	~EngineSwapChainPatch();
 	static void InitHooks();
 	static ITexture* GetBackbuffer();
+	static void RT_UpdateSize(int width, int height);
 
 	IDXGISwapChain* MakeSwapChain(IDXGISwapChain* pRealSwapChain);
 
@@ -33,6 +35,10 @@ private:
 	//! GetBackbuffer() returns this texture.
 	_smart_ptr<CTexture> m_pBackbufferRef;
 
+	//! Real swap chain buffer RTV.
+	_smart_ptr<ID3D11RenderTargetView> m_pRealRTV;
+
+	void RT_UpdateRealRTV();
 	void RT_ResizeBackbuffer(int width, int height, DXGI_FORMAT format);
 	void RT_DrawImGui();
 };

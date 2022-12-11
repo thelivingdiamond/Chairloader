@@ -13,6 +13,7 @@
 
 #include "PreditorImGui.h"
 #include "EngineSwapChainPatch.h"
+#include "MainWindowResizePatch.h"
 #include "RendererGlobals.h"
 
 namespace
@@ -103,6 +104,7 @@ public:
 		ModuleInitIChairLogger("Preditor");
 
 		RendererGlobals::InitSystem();
+		MainWindowResizePatch::InitSystem();
 	}
 
 	void InitGame(bool isHotReloading) override
@@ -120,6 +122,7 @@ public:
 	void ShutdownSystem(bool isHotUnloading) override
 	{
 		assert(!isHotUnloading);
+		MainWindowResizePatch::ShutdownSystem();
 		RendererGlobals::ShutdownSystem();
 	}
 };
@@ -445,6 +448,7 @@ void PreditorEngine::ApplyFullPatches()
 {
 	PreditorImGui::InitHooks();
 	EngineSwapChainPatch::InitHooks();
+	MainWindowResizePatch::InitHooks();
 }
 
 void PreditorEngine::ApplyMinimalPatches()

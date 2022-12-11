@@ -1,0 +1,68 @@
+#include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include "MainWindowResizePatch.h"
+#include "EngineSwapChainPatch.h"
+
+namespace
+{
+MainWindowResizePatch g_MainWindowResizePatch;
+auto g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook = CD3D9Renderer::FHandleDisplayPropertyChanges.MakeHook();
+
+void CD3D9Renderer_HandleDisplayPropertyChanges_Hook(CD3D9Renderer* const _this)
+{
+	g_MainWindowResizePatch.RT_HandleDisplayPropertyChanges();
+	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.InvokeOrig(_this);
+}
+
+}
+
+void MainWindowResizePatch::InitHooks()
+{
+	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.SetHookFunc(&CD3D9Renderer_HandleDisplayPropertyChanges_Hook);
+}
+
+void MainWindowResizePatch::InitSystem()
+{
+	gCL->pRender->AddListener(&g_MainWindowResizePatch);
+}
+
+void MainWindowResizePatch::ShutdownSystem()
+{
+	gCL->pRender->RemoveListener(&g_MainWindowResizePatch);
+}
+
+void MainWindowResizePatch::OnWindowResize(int width, int height)
+{
+	g_MainWindowResizePatch.m_WindowSize.x = width;
+	g_MainWindowResizePatch.m_WindowSize.y = height;
+}
+
+void MainWindowResizePatch::RT_HandleDisplayPropertyChanges()
+{
+	EngineSwapChainPatch::RT_UpdateSize(m_WindowSize.x, m_WindowSize.y);
+}
+
+int MainWindowResizePatch::GetChairRenderListenerFlags()
+{
+	return eCRF_InitRenderer;
+}
+
+void MainWindowResizePatch::InitRenderer()
+{
+	HWND hWnd = (HWND)gcpRendD3D->GetHWND();
+
+	// Make the window resizeable
+	SetWindowLongPtr(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
+
+	LONG_PTR exStyle = GetWindowLongPtr(hWnd, GWL_EXSTYLE);
+	exStyle |= WS_EX_NOREDIRECTIONBITMAP;
+	SetWindowLongPtr(hWnd, GWL_EXSTYLE, exStyle);
+
+	// Change title
+	SetWindowTextA(hWnd, "Preditor");
+
+	// Save original size
+	RECT rect = { 0, 0, 0, 0 };
+	GetClientRect(hWnd, &rect);
+	m_WindowSize.x = rect.right - rect.left;
+	m_WindowSize.y = rect.bottom - rect.top;
+}
