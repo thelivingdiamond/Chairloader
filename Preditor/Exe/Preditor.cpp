@@ -24,8 +24,6 @@ Preditor::~Preditor()
 
 void Preditor::Update()
 {
-    IPreditorEngine::Get()->Update();
-
 	if (GetStage()->IsStageFinished())
 	{
         if(m_ConfigValidateStage)
@@ -42,6 +40,7 @@ void Preditor::Update()
         else if (m_pLoadGameStage)
         {
 			m_pLoadGameStage.reset();
+            IPreditorEngine::Get()->SetAppImGui();
             m_pProjectStage = std::make_unique<ProjectStage>();
 		}
         else if (m_pProjectStage)
@@ -55,6 +54,12 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
+}
+
+void Preditor::PostUpdate()
+{
+    // Engine must be updated at the ent of the tick because it will end the ImGui frame.
+    IPreditorEngine::Get()->Update();
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

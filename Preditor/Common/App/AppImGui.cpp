@@ -33,6 +33,14 @@ AppImGui::AppImGui()
 
 AppImGui::~AppImGui()
 {
+	// TODO: Doesn't free InitD3D
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+	DestroyWindow((HWND)m_hWndVoid);
+	m_hWndVoid = nullptr;
+	m_pPrettyFont = nullptr;
+	m_pDefaultFont = nullptr;
 	g_pAppImGui = nullptr;
 }
 

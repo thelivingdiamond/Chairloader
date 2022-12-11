@@ -52,6 +52,9 @@ struct IPreditorEngine
 	//! Once it was unloaded, it can't be reloaded back until the EXE is restarted.
 	virtual void Shutdown() = 0;
 
+	//! Switches current app ImGui instance to the one running in the engine.
+	virtual void SetAppImGui() = 0;
+
 	//! Runs an iteration of the main loop.
 	virtual void Update() = 0;
 };

@@ -5,9 +5,17 @@ set(SOURCE_FILES
 	ArkUglySteamDlcSystem.h
 	DebuggerConsoleOutput.cpp
 	DebuggerConsoleOutput.h
+	EngineSwapChainPatch.cpp
+	EngineSwapChainPatch.h
 	pch.h
 	PreditorEngine.cpp
 	PreditorEngine.h
+	PreditorImGui.cpp
+	PreditorImGui.h
+	PreditorImGuiRenderer.cpp
+	PreditorImGuiRenderer.h
+	RendererGlobals.cpp
+	RendererGlobals.h
 )
 
 add_library(Preditor.Engine STATIC ${SOURCE_FILES})

@@ -16,7 +16,7 @@ Application::Application()
 	assert(!g_pApp);
 	g_pApp = this;
 	m_ProgramPath = fs::current_path();
-	m_pImGui = std::make_unique<AppImGui>();
+	SetAppImGui(std::make_unique<AppImGui>());
 }
 
 Application::~Application()
@@ -38,6 +38,7 @@ int Application::Run()
 		m_pCurrentStage->UpdateInternal();
 		ShowUI(&m_bIsRunning);
 		m_pCurrentStage->ShowUI(&m_bIsRunning);
+		PostUpdate();
 
 		m_pImGui->EndFrame();
 	}
@@ -65,10 +66,19 @@ void Application::RefreshUI()
 	m_pImGui->BeginFrame();
 }
 
+void Application::SetAppImGui(std::shared_ptr<IAppImGui> ptr)
+{
+	m_pImGui = std::move(ptr);
+}
+
 void Application::Update()
 {
 }
 
 void Application::ShowUI(bool* bOpen)
+{
+}
+
+void Application::PostUpdate()
 {
 }

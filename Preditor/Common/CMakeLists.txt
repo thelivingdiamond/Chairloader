@@ -9,6 +9,7 @@ set(SOURCE_FILES
 	App/AppModule.h
 	App/AppStage.cpp
 	App/AppStage.h
+	App/IAppImGui.h
 	
 	Preditor/IPreditorEngine.h
 )

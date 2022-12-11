@@ -550,6 +550,11 @@ void Chairloader::ReloadModDLLs()
 	m_pRender->SetRenderThreadIsIdle(false);
 }
 
+IPreditorToChair* Chairloader::GetPreditorAPI()
+{
+	return m_pPreditorAPI;
+}
+
 void Chairloader::SetIPreditorToChair(IPreditorToChair* pPreditor)
 {
 	m_pPreditorAPI = pPreditor;

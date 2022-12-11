@@ -1,12 +1,13 @@
 #pragma once
 #include <ImGui/imgui.h>
+#include <App/IAppImGui.h>
 
 struct ID3D11Device;
 struct ID3D11DeviceContext;
 struct IDXGISwapChain;
 struct ID3D11RenderTargetView;
 
-class AppImGui
+class AppImGui : public IAppImGui
 {
 public:
 	AppImGui();
@@ -15,8 +16,8 @@ public:
 	//! @returns whether WM_QUIT message was received.
 	bool IsQuitRequested() { return m_bQuitRequested; }
 
-	void BeginFrame();
-	void EndFrame();
+	void BeginFrame() override;
+	void EndFrame() override;
     static ImFont* getPrettyFont() { return m_pPrettyFont; }
     static ImFont* getDefaultFont() { return m_pDefaultFont; }
 	intptr_t WndProc(void* hWndVoid, unsigned msg, uintptr_t wParam, intptr_t lParam);

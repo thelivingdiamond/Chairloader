@@ -2,7 +2,7 @@
 #include <ImGui/imgui.h>
 
 class AppStage;
-class AppImGui;
+struct IAppImGui;
 
 class Application
 {
@@ -31,6 +31,9 @@ public:
 	//! Can be used inside Update to show progress or something.
 	void RefreshUI();
 
+	//! Sets a new instance of ImGui for the app.
+	void SetAppImGui(std::shared_ptr<IAppImGui> ptr);
+
 protected:
 	//! Updates the app. Called before the stage update.
 	virtual void Update();
@@ -38,9 +41,12 @@ protected:
 	//! Shows the ImGui IU. Called before the stage ShowUI.
 	virtual void ShowUI(bool * bOpen);
 
+	//! Called at the end of the frame.
+	virtual void PostUpdate();
+
 private:
 	fs::path m_ProgramPath;
-	std::unique_ptr<AppImGui> m_pImGui;
+	std::shared_ptr<IAppImGui> m_pImGui;
 	AppStage* m_pCurrentStage = nullptr;
 	bool m_bIsRunning = false;
 };

@@ -5,6 +5,7 @@
 #include <Prey/CrySystem/Profiling.h>
 #include <Prey/CrySystem/System.h>
 #include <Chairloader/IChairloaderDll.h>
+#include <Chairloader/IPreditorToChair.h>
 #include "ChairImGui.h"
 #include "ImGuiRendererD3D11.h"
 
@@ -576,6 +577,10 @@ void ChairImGui::RT_Present()
 }
 
 void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce) {
+	IPreditorToChair* pPreditorAPI = gChair->GetPreditorAPI();
+	if (pPreditorAPI && pPreditorAPI->HandleInputEvent(event))
+		return;
+	
 	if (!g_ChairImGui.m_pMainContext)
 	{
 		s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);

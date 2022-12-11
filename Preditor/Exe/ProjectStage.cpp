@@ -12,7 +12,7 @@ void ProjectStage::Update() {
 }
 
 void ProjectStage::ShowUI(bool* bOpen) {
-    ImGui::PushFont(AppImGui::getPrettyFont());
+    //ImGui::PushFont(AppImGui::getPrettyFont());
     ImGui::SetNextWindowSize(WINDOW_SIZE, ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
     if (ImGui::Begin(WINDOW_TITLE.c_str(), bOpen, WINDOW_FLAGS)) {
@@ -22,7 +22,7 @@ void ProjectStage::ShowUI(bool* bOpen) {
         ImGui::Text("Project Path: %s", pProject->GetPath().u8string().c_str());
     }
     ImGui::End();
-    ImGui::PopFont();
+    //ImGui::PopFont();
 
     if (m_pFlowgraphEditor) {
         if (m_pFlowgraphEditor->isShown() && !m_pFlowgraphEditor->isInitialized()) {
@@ -30,6 +30,8 @@ void ProjectStage::ShowUI(bool* bOpen) {
         }
         m_pFlowgraphEditor->ShowUI();
     }
+
+    ImGui::ShowDemoWindow();
 }
 
 void ProjectStage::DrawToolbar() {

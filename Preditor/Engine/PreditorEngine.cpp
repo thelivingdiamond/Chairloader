@@ -5,10 +5,15 @@
 #include <Prey/GameDll/GameStartup.h>
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IChairToPreditor.h>
+#include <App/Application.h>
 #include <imgui.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
 #include "ArkUglySteamDlcSystem.h"
+
+#include "PreditorImGui.h"
+#include "EngineSwapChainPatch.h"
+#include "RendererGlobals.h"
 
 namespace
 {
@@ -96,21 +101,26 @@ public:
 
 		gCL = initInfo.pChair->GetChairloaderEnvironment();
 		ModuleInitIChairLogger("Preditor");
+
+		RendererGlobals::InitSystem();
 	}
 
 	void InitGame(bool isHotReloading) override
 	{
 		assert(!isHotReloading);
+		g_PreditorEngine.InitGame();
 	}
 
 	void ShutdownGame(bool isHotUnloading) override
 	{
 		assert(!isHotUnloading);
+		g_PreditorEngine.ShutdownGame();
 	}
 
 	void ShutdownSystem(bool isHotUnloading) override
 	{
 		assert(!isHotUnloading);
+		RendererGlobals::ShutdownSystem();
 	}
 };
 
@@ -214,6 +224,17 @@ std::string GetLastErrorAsString()
 } // namespace
 
 IPreditorEngine* IPreditorEngine::Get() { return &g_PreditorEngine; }
+
+void PreditorEngine::InitGame()
+{
+	m_pImGui = std::make_shared<PreditorImGui>();
+}
+
+void PreditorEngine::ShutdownGame()
+{
+	m_pImGui = nullptr;
+	Application::Get()->SetAppImGui(nullptr);
+}
 
 void PreditorEngine::Load(const InitParams& params)
 {
@@ -348,6 +369,12 @@ void PreditorEngine::Shutdown()
 	m_hSystemMSWSock = nullptr;
 }
 
+void PreditorEngine::SetAppImGui()
+{
+	Application::Get()->SetAppImGui(m_pImGui);
+	m_pImGui->BeginFrame();
+}
+
 void PreditorEngine::Update()
 {
 	if (!m_pGameStartup)
@@ -389,6 +416,11 @@ IChairloaderMod* PreditorEngine::GetMod()
 	return &g_PreditorAsMod;
 }
 
+bool PreditorEngine::HandleInputEvent(const SInputEvent& event)
+{
+	return true;
+}
+
 void PreditorEngine::ApplyBasePatches()
 {
 	// Init function system
@@ -402,6 +434,8 @@ void PreditorEngine::ApplyBasePatches()
 
 void PreditorEngine::ApplyFullPatches()
 {
+	PreditorImGui::InitHooks();
+	EngineSwapChainPatch::InitHooks();
 }
 
 void PreditorEngine::ApplyMinimalPatches()

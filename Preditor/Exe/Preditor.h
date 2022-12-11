@@ -23,6 +23,7 @@ public:
 protected:
 	void Update() override;
 	void ShowUI(bool* bOpen) override;
+	void PostUpdate() override;
 
 private:
 	ConfigManager m_Config;
