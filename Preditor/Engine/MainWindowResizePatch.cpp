@@ -6,6 +6,7 @@ namespace
 {
 MainWindowResizePatch g_MainWindowResizePatch;
 auto g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook = CD3D9Renderer::FHandleDisplayPropertyChanges.MakeHook();
+auto g_CD3D9Renderer_AdjustWindowForChange_Hook = CD3D9Renderer::FAdjustWindowForChange.MakeHook();
 
 void CD3D9Renderer_HandleDisplayPropertyChanges_Hook(CD3D9Renderer* const _this)
 {
@@ -13,11 +14,18 @@ void CD3D9Renderer_HandleDisplayPropertyChanges_Hook(CD3D9Renderer* const _this)
 	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.InvokeOrig(_this);
 }
 
+HRESULT CD3D9Renderer_AdjustWindowForChange_Hook(CD3D9Renderer* const _this)
+{
+	// RT_HandleDisplayPropertyChanges will take care of that
+	return S_OK;
+}
+
 }
 
 void MainWindowResizePatch::InitHooks()
 {
 	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.SetHookFunc(&CD3D9Renderer_HandleDisplayPropertyChanges_Hook);
+	g_CD3D9Renderer_AdjustWindowForChange_Hook.SetHookFunc(&CD3D9Renderer_AdjustWindowForChange_Hook);
 }
 
 void MainWindowResizePatch::InitSystem()

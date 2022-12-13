@@ -19,6 +19,7 @@ public:
 	void Shutdown() override;
 	void SetAppImGui() override;
 	void Update() override;
+	ITexture* GetViewportTexture() override;
 
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;

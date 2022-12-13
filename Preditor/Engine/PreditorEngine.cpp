@@ -401,15 +401,6 @@ void PreditorEngine::Update()
 		}
 		ImGui::End();
 
-		if (ImGui::Begin("Viewport Test"))
-		{
-			ImVec2 min = ImGui::GetWindowContentRegionMin();
-			ImVec2 max = ImGui::GetWindowContentRegionMax();
-			ImVec2 size(max.x - min.x, max.y - min.y);
-			ImGui::Image(EngineSwapChainPatch::GetBackbuffer(), size);
-		}
-		ImGui::End();
-
 		unsigned updateFlags = 0;
 
 		if (!gameMode)
@@ -421,6 +412,11 @@ void PreditorEngine::Update()
 
 		m_pGameStartup->Update(true, updateFlags);
 	}
+}
+
+ITexture* PreditorEngine::GetViewportTexture()
+{
+	return EngineSwapChainPatch::GetBackbuffer();
 }
 
 IChairloaderMod* PreditorEngine::GetMod()
@@ -449,6 +445,13 @@ void PreditorEngine::ApplyFullPatches()
 	PreditorImGui::InitHooks();
 	EngineSwapChainPatch::InitHooks();
 	MainWindowResizePatch::InitHooks();
+
+	uint8_t* dllBase = (uint8_t*)m_hPreyDll.get();
+
+	// CD3D9Renderer::ChangeResolution: Remove log when resizing the viewport
+	mem::Nop(dllBase + 0xF2259D, 0xF225A0 - 0xF2259D); // Changing resolution...
+	mem::Nop(dllBase + 0xF22D91, 0xF22D94 - 0xF22D91); // Window resolution: %dx%dx%d (%s)
+	mem::Nop(dllBase + 0xF22DB3, 0xF22DB6 - 0xF22DB3); // Render resolution: %dx%d
 }
 
 void PreditorEngine::ApplyMinimalPatches()

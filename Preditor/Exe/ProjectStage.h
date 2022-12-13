@@ -2,6 +2,8 @@
 #include "App/AppStage.h"
 #include "FlowgraphEditor.h"
 
+class GameViewport;
+
 class ProjectStage : public AppStage
 {
 public:
@@ -17,4 +19,6 @@ private:
 
     std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;
     bool m_bFlowgraphEditorOpen = false;
+
+    std::shared_ptr<GameViewport> m_pGameViewport;
 };

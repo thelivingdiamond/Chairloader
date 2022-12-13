@@ -12,6 +12,8 @@ set(SOURCE_FILES
 	pch.h
 	FlowgraphEditor.cpp
 	FlowgraphEditor.h
+	GameViewport.cpp
+	GameViewport.h
 	Flowgraph/Flowgraph.cpp
 	Flowgraph/Flowgraph.h
 	Flowgraph/Pin.h

@@ -1,10 +1,13 @@
+#include <WindowManager/WindowManager.h>
 #include <App/AppImGui.h>
 #include "ProjectStage.h"
 #include "Project.h"
 #include "ProjectManager.h"
+#include "GameViewport.h"
 
 void ProjectStage::Start() {
     m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
+    m_pGameViewport = WindowManager::Get().Create<GameViewport>();
 }
 
 void ProjectStage::Update() {

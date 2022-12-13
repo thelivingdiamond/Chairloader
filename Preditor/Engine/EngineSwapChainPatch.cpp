@@ -11,11 +11,22 @@ namespace
 EngineSwapChainPatch g_SwapChainPatch;
 auto DeviceInfo_CreateDevice = PreyFunction<bool(DeviceInfo* const _this, bool windowed, int width, int height, int backbufferWidth, int backbufferHeight, EDisplayOutputMode _outputMode, int zbpp, HRESULT(*pCreateDeviceCallback)(ID3D11Device*), HWND__* (*pCreateWindowCallback)())>(0xF23FE0);
 auto DeviceInfo_CreateViews = PreyFunction<bool(DeviceInfo* const _this)>(0xF24650);
+auto g_DeviceInfo_CreateDevice_Hook = DeviceInfo_CreateDevice.MakeHook();
 auto g_DeviceInfo_CreateViews_Hook = DeviceInfo_CreateViews.MakeHook();
+bool g_bInCreateDevice = false;
+
+bool DeviceInfo_CreateDevice_Hook(DeviceInfo* const _this, bool windowed, int width, int height, int backbufferWidth, int backbufferHeight, EDisplayOutputMode _outputMode, int zbpp, HRESULT(*pCreateDeviceCallback)(ID3D11Device*), HWND__* (*pCreateWindowCallback)())
+{
+	g_bInCreateDevice = true;
+	bool result = g_DeviceInfo_CreateDevice_Hook.InvokeOrig(_this, windowed, width, height, backbufferWidth, backbufferHeight, _outputMode, zbpp, pCreateDeviceCallback, pCreateWindowCallback);
+	g_bInCreateDevice = false;
+	return result;
+}
 
 bool DeviceInfo_CreateViews_Hook(DeviceInfo* const _this)
 {
-	_this->m_pSwapChain = g_SwapChainPatch.MakeSwapChain(_this->m_pSwapChain);
+	if (g_bInCreateDevice)
+		_this->m_pSwapChain = g_SwapChainPatch.MakeSwapChain(_this->m_pSwapChain);
 	return g_DeviceInfo_CreateViews_Hook.InvokeOrig(_this);
 }
 
@@ -67,7 +78,23 @@ public:
 		/* [in] */ DXGI_FORMAT NewFormat,
 		/* [in] */ UINT SwapChainFlags)
 	{
+		if (NewFormat == DXGI_FORMAT_UNKNOWN)
+		{
+			DXGI_SWAP_CHAIN_DESC desc;
+			ZeroMemory(&desc, sizeof(desc));
+			m_pReal->GetDesc(&desc);
+			NewFormat = desc.BufferDesc.Format;
+		}
+
 		g_SwapChainPatch.RT_ResizeBackbuffer(Width, Height, NewFormat);
+		return S_OK;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE ResizeTarget(
+		/* [annotation][in] */
+		_In_  const DXGI_MODE_DESC* pNewTargetParameters)
+	{
+		// There is no target to resize
 		return S_OK;
 	}
 
@@ -82,6 +109,21 @@ public:
 		assert(IsEqualGUID(riid, __uuidof(ID3D11Texture2D)));
 		*ppSurface = g_SwapChainPatch.m_pBackbuffer->GetDevTexture()->Get2DTexture();
 		return S_OK;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE GetDesc(
+		/* [annotation][out] */
+		_Out_  DXGI_SWAP_CHAIN_DESC* pDesc)
+	{
+		HRESULT hr = m_pReal->GetDesc(pDesc);
+
+		if (hr == S_OK)
+		{
+			pDesc->BufferDesc.Width = g_SwapChainPatch.m_pBackbuffer->GetWidth();
+			pDesc->BufferDesc.Height = g_SwapChainPatch.m_pBackbuffer->GetHeight();
+		}
+
+		return hr;
 	}
 
 public:
@@ -143,14 +185,6 @@ public:
 		/* [annotation][out] */
 		_COM_Outptr_opt_result_maybenull_  IDXGIOutput** ppTarget) { return m_pReal->GetFullscreenState(pFullscreen, ppTarget); }
 
-	virtual HRESULT STDMETHODCALLTYPE GetDesc(
-		/* [annotation][out] */
-		_Out_  DXGI_SWAP_CHAIN_DESC* pDesc) { return m_pReal->GetDesc(pDesc); }
-
-	virtual HRESULT STDMETHODCALLTYPE ResizeTarget(
-		/* [annotation][in] */
-		_In_  const DXGI_MODE_DESC* pNewTargetParameters) { return m_pReal->ResizeTarget(pNewTargetParameters); }
-
 	virtual HRESULT STDMETHODCALLTYPE GetContainingOutput(
 		/* [annotation][out] */
 		_COM_Outptr_  IDXGIOutput** ppOutput) { return m_pReal->GetContainingOutput(ppOutput); }
@@ -174,6 +208,7 @@ EngineSwapChainPatch::~EngineSwapChainPatch()
 
 void EngineSwapChainPatch::InitHooks()
 {
+	g_DeviceInfo_CreateDevice_Hook.SetHookFunc(&DeviceInfo_CreateDevice_Hook);
 	g_DeviceInfo_CreateViews_Hook.SetHookFunc(&DeviceInfo_CreateViews_Hook);
 }
 
@@ -212,7 +247,7 @@ void EngineSwapChainPatch::RT_UpdateRealRTV()
 
 void EngineSwapChainPatch::RT_ResizeBackbuffer(int width, int height, DXGI_FORMAT dxgiFormat)
 {
-	assert(width != 0 && height != 0);
+	assert(width > 0 && height > 0 && dxgiFormat != DXGI_FORMAT_UNKNOWN);
 	ETEX_Format format = CTexture::TexFormatFromDeviceFormat(dxgiFormat);
 
 	if (!m_pBackbufferRef)

@@ -1,6 +1,7 @@
 #pragma once
 
 struct IGameStartup;
+struct ITexture;
 
 struct IPreditorEngine
 {
@@ -57,4 +58,7 @@ struct IPreditorEngine
 
 	//! Runs an iteration of the main loop.
 	virtual void Update() = 0;
+
+	//! @returns the texture of viewport backbuffer.
+	virtual ITexture* GetViewportTexture() = 0;
 };

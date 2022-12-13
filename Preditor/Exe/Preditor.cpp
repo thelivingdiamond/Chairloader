@@ -1,6 +1,7 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CryGame/IGameStartup.h>
+#include <WindowManager/WindowManager.h>
 #include <Preditor/IPreditorEngine.h>
 #include "App/AppStage.h"
 #include "Preditor.h"
@@ -24,6 +25,8 @@ Preditor::~Preditor()
 
 void Preditor::Update()
 {
+    WindowManager::Get().Update();
+
 	if (GetStage()->IsStageFinished())
 	{
         if(m_ConfigValidateStage)
