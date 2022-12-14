@@ -197,11 +197,11 @@ void Chairloader::InitSystem(CSystem* pSystem)
 
 	// Editor cmd line switch
 	m_bEditorEnabled = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "editor");
-
 	if (m_bEditorEnabled)
 	{
 		// Dev mode is always enabled in Editor.
 		pSystem->SetDevMode(true);
+        m_bTrainerEnabled = true;
 	}
 	else if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nodevmode"))
 	{
@@ -209,9 +209,11 @@ void Chairloader::InitSystem(CSystem* pSystem)
 #ifdef DEBUG_BUILD
 		// Activate dev mode in debug build
 		devMode = true;
+        m_bTrainerEnabled = true;
 #else
 		// Activate dev mode if user requested it
 		devMode = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "devmode") != nullptr;
+        m_bTrainerEnabled = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "trainer");
 #endif
 		pSystem->SetDevMode(devMode);
 	}
@@ -226,7 +228,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Initialize Tools
 	Internal::SToolsInitParams toolsParams;
 	toolsParams.bEnableEditor = m_bEditorEnabled;
-	toolsParams.bEnableTrainer = true; // TODO: Only in dev
+	toolsParams.bEnableTrainer = m_bTrainerEnabled;
 	m_pTools->InitSystem(toolsParams);
 
 	// Register mods
