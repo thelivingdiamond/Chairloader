@@ -42,6 +42,7 @@ public:
 	void ToggleFreecam();
 	bool IsFreecamEnabled();
 
+    EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown) override;
 private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
 	std::unique_ptr<ModDllManager> m_pModDllManager;
@@ -52,5 +53,4 @@ private:
 	EKeyId m_KeyToggleFreecam = eKI_Unknown;
 
 	void LoadConfig();
-	EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown);
 };

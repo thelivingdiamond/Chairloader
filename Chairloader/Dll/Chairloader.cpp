@@ -407,8 +407,8 @@ void Chairloader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_8, "8"));
     m_KeyNames.insert(KeyNamePair(eKI_9, "9"));
     m_KeyNames.insert(KeyNamePair(eKI_0, "0"));
-    m_KeyNames.insert(KeyNamePair(eKI_Minus, "minus"));
-    m_KeyNames.insert(KeyNamePair(eKI_Equals, "equals"));
+    m_KeyNames.insert(KeyNamePair(eKI_Minus, "-"));
+    m_KeyNames.insert(KeyNamePair(eKI_Equals, "="));
     m_KeyNames.insert(KeyNamePair(eKI_Backspace, "backspace"));
     m_KeyNames.insert(KeyNamePair(eKI_Tab, "tab"));
     m_KeyNames.insert(KeyNamePair(eKI_Q, "q"));
@@ -421,8 +421,8 @@ void Chairloader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_I, "i"));
     m_KeyNames.insert(KeyNamePair(eKI_O, "o"));
     m_KeyNames.insert(KeyNamePair(eKI_P, "p"));
-    m_KeyNames.insert(KeyNamePair(eKI_LBracket, "lbracket"));
-    m_KeyNames.insert(KeyNamePair(eKI_RBracket, "rbracket"));
+    m_KeyNames.insert(KeyNamePair(eKI_LBracket, "["));
+    m_KeyNames.insert(KeyNamePair(eKI_RBracket, "]"));
     m_KeyNames.insert(KeyNamePair(eKI_Enter, "enter"));
     m_KeyNames.insert(KeyNamePair(eKI_LCtrl, "lctrl"));
     m_KeyNames.insert(KeyNamePair(eKI_A, "a"));
@@ -434,12 +434,12 @@ void Chairloader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_J, "j"));
     m_KeyNames.insert(KeyNamePair(eKI_K, "k"));
     m_KeyNames.insert(KeyNamePair(eKI_L, "l"));
-    m_KeyNames.insert(KeyNamePair(eKI_Semicolon, "semicolon"));
+    m_KeyNames.insert(KeyNamePair(eKI_Semicolon, ";"));
     // eKI_Apostrophe = 0x27, eKI_Tilde = 0x28, eKI_LShift = 0x29, eKI_Backslash = 0x2A, eKI_Z = 0x2B, eKI_X = 0x2C, eKI_C = 0x2D, eKI_V = 0x2E, eKI_B = 0x2F, eKI_N = 0x30, eKI_M = 0x31, eKI_Comma = 0x32, eKI_Period = 0x33, eKI_Slash = 0x34, eKI_RShift = 0x35, eKI_NP_Multiply = 0x36, eKI_LAlt = 0x37, eKI_Space = 0x38, eKI_CapsLock = 0x39, eKI_F1 = 0x3A, eKI_F2 = 0x3B, eKI_F3 = 0x3C, eKI_F4 = 0x3D, eKI_F5 = 0x3E, eKI_F6 = 0x3F, eKI_F7 = 0x40, eKI_F8 = 0x41, eKI_F9 = 0x42, eKI_F10 = 0x43, eKI_NumLock = 0x44, eKI_ScrollLock = 0x45, eKI_NP_7 = 0x46, eKI_NP_8 = 0x47, eKI_NP_9 = 0x48, eKI_NP_Substract = 0x49, eKI_NP_4 = 0x4A, eKI_NP_5 = 0x4B, eKI_NP_6 = 0x4C, eKI_NP_Add = 0x4D, eKI_NP_1 = 0x4E, eKI_NP_2 = 0x4F, eKI_NP_3 = 0x50, eKI_NP_0 = 0x51, eKI_F11 = 0x52, eKI_F12 = 0x53, eKI_F13 = 0x54, eKI_F14 = 0x55, eKI_F15 = 0x56,
-    m_KeyNames.insert(KeyNamePair(eKI_Apostrophe, "apostrophe"));
-    m_KeyNames.insert(KeyNamePair(eKI_Tilde, "tilde"));
+    m_KeyNames.insert(KeyNamePair(eKI_Apostrophe, "'"));
+    m_KeyNames.insert(KeyNamePair(eKI_Tilde, "~"));
     m_KeyNames.insert(KeyNamePair(eKI_LShift, "lshift"));
-    m_KeyNames.insert(KeyNamePair(eKI_Backslash, "backslash"));
+    m_KeyNames.insert(KeyNamePair(eKI_Backslash, "\\"));
     m_KeyNames.insert(KeyNamePair(eKI_Z, "z"));
     m_KeyNames.insert(KeyNamePair(eKI_X, "x"));
     m_KeyNames.insert(KeyNamePair(eKI_C, "c"));
@@ -447,9 +447,9 @@ void Chairloader::LoadKeyNames() {
     m_KeyNames.insert(KeyNamePair(eKI_B, "b"));
     m_KeyNames.insert(KeyNamePair(eKI_N, "n"));
     m_KeyNames.insert(KeyNamePair(eKI_M, "m"));
-    m_KeyNames.insert(KeyNamePair(eKI_Comma, "comma"));
-    m_KeyNames.insert(KeyNamePair(eKI_Period, "period"));
-    m_KeyNames.insert(KeyNamePair(eKI_Slash, "slash"));
+    m_KeyNames.insert(KeyNamePair(eKI_Comma, ","));
+    m_KeyNames.insert(KeyNamePair(eKI_Period, "."));
+    m_KeyNames.insert(KeyNamePair(eKI_Slash, "/"));
     m_KeyNames.insert(KeyNamePair(eKI_RShift, "rshift"));
     m_KeyNames.insert(KeyNamePair(eKI_NP_Multiply, "np_multiply"));
     m_KeyNames.insert(KeyNamePair(eKI_LAlt, "lalt"));
