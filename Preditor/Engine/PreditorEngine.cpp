@@ -452,6 +452,11 @@ void PreditorEngine::ApplyFullPatches()
 	mem::Nop(dllBase + 0xF2259D, 0xF225A0 - 0xF2259D); // Changing resolution...
 	mem::Nop(dllBase + 0xF22D91, 0xF22D94 - 0xF22D91); // Window resolution: %dx%dx%d (%s)
 	mem::Nop(dllBase + 0xF22DB3, 0xF22DB6 - 0xF22DB3); // Render resolution: %dx%d
+
+	// CSystem::Update: Remove FPS throttling when window is unfocused
+	// jnz loc_7F0000DC8DA1-> jmp loc_7F0000DC8DA1
+	uint8_t throttlePatch[] = { 0xE9, 0xFE, 0x00 };
+	mem::Patch(dllBase + 0xDC8C9E, throttlePatch, 3);
 }
 
 void PreditorEngine::ApplyMinimalPatches()

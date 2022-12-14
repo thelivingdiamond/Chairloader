@@ -29,6 +29,22 @@ bool IsVkDown(int vk)
     return (::GetKeyState(vk) & 0x8000) != 0;
 }
 
+static void GetWin32StyleFromViewportFlags(ImGuiViewportFlags flags, DWORD* out_style, DWORD* out_ex_style)
+{
+    if (flags & ImGuiViewportFlags_NoDecoration)
+        *out_style = WS_POPUP;
+    else
+        *out_style = WS_OVERLAPPEDWINDOW;
+
+    if (flags & ImGuiViewportFlags_NoTaskBarIcon)
+        *out_ex_style = WS_EX_TOOLWINDOW;
+    else
+        *out_ex_style = WS_EX_APPWINDOW;
+
+    if (flags & ImGuiViewportFlags_TopMost)
+        *out_ex_style |= WS_EX_TOPMOST;
+}
+
 } // namespace
 
 void PreditorImGui::InitHooks()
@@ -66,6 +82,15 @@ void PreditorImGui::BeginFrame()
     if (!ImGui::GetCurrentContext())
         ImGui::SetCurrentContext(m_pContext);
     assert(ImGui::GetCurrentContext() == m_pContext);
+
+    // Pump window messages for all windows (including the main one)
+    // Engine pumps messages only for the main window in CSystem::Update
+    MSG msg;
+    while (::PeekMessageA(&msg, nullptr, 0U, 0U, PM_REMOVE))
+    {
+        ::TranslateMessage(&msg);
+        ::DispatchMessageA(&msg);
+    }
 
     ImGuiIO& io = ImGui::GetIO();
 
@@ -259,7 +284,7 @@ int64_t PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int
         m_bWantUpdateMonitors = true;
         return 0;
     case WM_SIZE:
-        if (wParam != SIZE_MINIMIZED)
+        if (hWnd == m_hWnd && wParam != SIZE_MINIMIZED) // Only resize the main window
             MainWindowResizePatch::OnWindowResize(LOWORD(lParam), HIWORD(lParam));
         return 1;
     }
@@ -271,9 +296,9 @@ void PreditorImGui::InitImGui()
     IMGUI_CHECKVERSION();
     m_pContext = ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-    //io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-    //io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     // Ini path
     static char iniPath[512];
@@ -300,7 +325,7 @@ void PreditorImGui::InitBackend()
     io.BackendPlatformName = "Preditor (CRYENGINE)";
     io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;         // We can honor GetMouseCursor() values (optional)
     io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;          // We can honor io.WantSetMousePos requests (optional, rarely used)
-    //io.BackendFlags |= ImGuiBackendFlags_PlatformHasViewports;    // We can create multi-viewports on the Platform side (optional)
+    io.BackendFlags |= ImGuiBackendFlags_PlatformHasViewports;    // We can create multi-viewports on the Platform side (optional)
     io.BackendFlags |= ImGuiBackendFlags_HasMouseHoveredViewport; // We can call io.AddMouseViewportEvent() with correct data (optional)
 
     m_hWnd = (HWND)gEnv->pSystem->GetHWND();
@@ -326,10 +351,55 @@ void PreditorImGui::ShutdownBackend()
 
 void PreditorImGui::InitPlatformInterface()
 {
+    WNDCLASSEX wcex;
+    wcex.cbSize = sizeof(WNDCLASSEX);
+    wcex.style = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc = WndProcHndl_PlatformWindow;
+    wcex.cbClsExtra = 0;
+    wcex.cbWndExtra = 0;
+    wcex.hInstance = ::GetModuleHandle(NULL);
+    wcex.hIcon = NULL;
+    wcex.hCursor = NULL;
+    wcex.hbrBackground = (HBRUSH)(COLOR_BACKGROUND + 1);
+    wcex.lpszMenuName = NULL;
+    wcex.lpszClassName = "Preditor ImGui Platform";
+    wcex.hIconSm = NULL;
+    ::RegisterClassEx(&wcex);
+
+    UpdateMonitors();
+
+    // Register platform interface (will be coupled with a renderer interface)
+    ImGuiPlatformIO& platform_io = ImGui::GetPlatformIO();
+    platform_io.Platform_CreateWindow = Plat_CreateWindow;
+    platform_io.Platform_DestroyWindow = Plat_DestroyWindow;
+    platform_io.Platform_ShowWindow = Plat_ShowWindow;
+    platform_io.Platform_SetWindowPos = Plat_SetWindowPos;
+    platform_io.Platform_GetWindowPos = Plat_GetWindowPos;
+    platform_io.Platform_SetWindowSize = Plat_SetWindowSize;
+    platform_io.Platform_GetWindowSize = Plat_GetWindowSize;
+    platform_io.Platform_SetWindowFocus = Plat_SetWindowFocus;
+    platform_io.Platform_GetWindowFocus = Plat_GetWindowFocus;
+    platform_io.Platform_GetWindowMinimized = Plat_GetWindowMinimized;
+    platform_io.Platform_SetWindowTitle = Plat_SetWindowTitle;
+    platform_io.Platform_SetWindowAlpha = Plat_SetWindowAlpha;
+    platform_io.Platform_UpdateWindow = Plat_UpdateWindow;
+    platform_io.Platform_GetWindowDpiScale = Plat_GetWindowDpiScale; // FIXME-DPI
+    platform_io.Platform_OnChangedViewport = Plat_OnChangedViewport; // FIXME-DPI
+
+    // Register main window handle (which is owned by the main application, not by us)
+    // This is mostly for simplicity and consistency, so that our code (e.g. mouse handling etc.) can use same logic for main and secondary viewports.
+    ImGuiViewport* main_viewport = ImGui::GetMainViewport();
+    ViewportData* vd = IM_NEW(ViewportData)();
+    vd->hWnd = m_hWnd;
+    vd->bhWndOwned = false;
+    main_viewport->PlatformUserData = vd;
+    main_viewport->PlatformHandle = (void*)m_hWnd;
 }
 
 void PreditorImGui::ShutdownPlatformInterface()
 {
+    ::UnregisterClassA("Preditor ImGui Platform", ::GetModuleHandle(NULL));
+    ImGui::DestroyPlatformWindows();
 }
 
 static BOOL CALLBACK PreditorImGui_UpdateMonitors_EnumFunc(HMONITOR monitor, HDC, LPRECT, LPARAM)
@@ -476,6 +546,225 @@ void PreditorImGui::AddKeyEvent(ImGuiKey key, bool down, int native_keycode, int
     ImGuiIO& io = ImGui::GetIO();
     io.AddKeyEvent(key, down);
     io.SetKeyEventNativeData(key, native_keycode, native_scancode); // To support legacy indexing (<1.87 user code)
+}
+
+void PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)
+{
+    ViewportData* vd = IM_NEW(ViewportData)();
+    viewport->PlatformUserData = vd;
+
+    // Select style and parent window
+    GetWin32StyleFromViewportFlags(viewport->Flags, &vd->dwStyle, &vd->dwExStyle);
+    HWND parent_window = NULL;
+    if (viewport->ParentViewportId != 0)
+        if (ImGuiViewport* parent_viewport = ImGui::FindViewportByID(viewport->ParentViewportId))
+            parent_window = (HWND)parent_viewport->PlatformHandle;
+
+    // Create window
+    RECT rect = { (LONG)viewport->Pos.x, (LONG)viewport->Pos.y, (LONG)(viewport->Pos.x + viewport->Size.x), (LONG)(viewport->Pos.y + viewport->Size.y) };
+    ::AdjustWindowRectEx(&rect, vd->dwStyle, FALSE, vd->dwExStyle);
+    vd->hWnd = ::CreateWindowEx(
+        vd->dwExStyle, "Preditor ImGui Platform", "Untitled", vd->dwStyle,   // Style, class name, window name
+        rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,    // Window area
+        parent_window, NULL, ::GetModuleHandle(NULL), NULL);                    // Parent window, Menu, Instance, Param
+    vd->bhWndOwned = true;
+    viewport->PlatformRequestResize = false;
+    viewport->PlatformHandle = viewport->PlatformHandleRaw = vd->hWnd;
+}
+
+void PreditorImGui::Plat_DestroyWindow(ImGuiViewport* viewport)
+{
+    if (ViewportData* vd = (ViewportData*)viewport->PlatformUserData)
+    {
+        if (::GetCapture() == vd->hWnd)
+        {
+            // Transfer capture so if we started dragging from a window that later disappears, we'll still receive the MOUSEUP event.
+            ::ReleaseCapture();
+            ::SetCapture(g_pInstance->m_hWnd);
+        }
+        if (vd->hWnd && vd->bhWndOwned)
+            ::DestroyWindow(vd->hWnd);
+        vd->hWnd = NULL;
+        IM_DELETE(vd);
+    }
+    viewport->PlatformUserData = viewport->PlatformHandle = NULL;
+}
+
+void PreditorImGui::Plat_ShowWindow(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    if (viewport->Flags & ImGuiViewportFlags_NoFocusOnAppearing)
+        ::ShowWindow(vd->hWnd, SW_SHOWNA);
+    else
+        ::ShowWindow(vd->hWnd, SW_SHOW);
+}
+
+void PreditorImGui::Plat_UpdateWindow(ImGuiViewport* viewport)
+{
+    // (Optional) Update Win32 style if it changed _after_ creation.
+    // Generally they won't change unless configuration flags are changed, but advanced uses (such as manually rewriting viewport flags) make this useful.
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    DWORD new_style;
+    DWORD new_ex_style;
+    GetWin32StyleFromViewportFlags(viewport->Flags, &new_style, &new_ex_style);
+
+    // Only reapply the flags that have been changed from our point of view (as other flags are being modified by Windows)
+    if (vd->dwStyle != new_style || vd->dwExStyle != new_ex_style)
+    {
+        // (Optional) Update TopMost state if it changed _after_ creation
+        bool top_most_changed = (vd->dwExStyle & WS_EX_TOPMOST) != (new_ex_style & WS_EX_TOPMOST);
+        HWND insert_after = top_most_changed ? ((viewport->Flags & ImGuiViewportFlags_TopMost) ? HWND_TOPMOST : HWND_NOTOPMOST) : 0;
+        UINT swp_flag = top_most_changed ? 0 : SWP_NOZORDER;
+
+        // Apply flags and position (since it is affected by flags)
+        vd->dwStyle = new_style;
+        vd->dwExStyle = new_ex_style;
+        ::SetWindowLong(vd->hWnd, GWL_STYLE, vd->dwStyle);
+        ::SetWindowLong(vd->hWnd, GWL_EXSTYLE, vd->dwExStyle);
+        RECT rect = { (LONG)viewport->Pos.x, (LONG)viewport->Pos.y, (LONG)(viewport->Pos.x + viewport->Size.x), (LONG)(viewport->Pos.y + viewport->Size.y) };
+        ::AdjustWindowRectEx(&rect, vd->dwStyle, FALSE, vd->dwExStyle); // Client to Screen
+        ::SetWindowPos(vd->hWnd, insert_after, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, swp_flag | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+        ::ShowWindow(vd->hWnd, SW_SHOWNA); // This is necessary when we alter the style
+        viewport->PlatformRequestMove = viewport->PlatformRequestResize = true;
+    }
+}
+
+ImVec2 PreditorImGui::Plat_GetWindowPos(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    POINT pos = { 0, 0 };
+    ::ClientToScreen(vd->hWnd, &pos);
+    return ImVec2((float)pos.x, (float)pos.y);
+}
+
+void PreditorImGui::Plat_SetWindowPos(ImGuiViewport* viewport, ImVec2 pos)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    RECT rect = { (LONG)pos.x, (LONG)pos.y, (LONG)pos.x, (LONG)pos.y };
+    ::AdjustWindowRectEx(&rect, vd->dwStyle, FALSE, vd->dwExStyle);
+    ::SetWindowPos(vd->hWnd, NULL, rect.left, rect.top, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE);
+}
+
+ImVec2 PreditorImGui::Plat_GetWindowSize(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    RECT rect;
+    ::GetClientRect(vd->hWnd, &rect);
+    return ImVec2(float(rect.right - rect.left), float(rect.bottom - rect.top));
+}
+
+void PreditorImGui::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    RECT rect = { 0, 0, (LONG)size.x, (LONG)size.y };
+    ::AdjustWindowRectEx(&rect, vd->dwStyle, FALSE, vd->dwExStyle); // Client to Screen
+    ::SetWindowPos(vd->hWnd, NULL, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOZORDER | SWP_NOMOVE | SWP_NOACTIVATE);
+}
+
+void PreditorImGui::Plat_SetWindowFocus(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    ::BringWindowToTop(vd->hWnd);
+    ::SetForegroundWindow(vd->hWnd);
+    ::SetFocus(vd->hWnd);
+}
+
+bool PreditorImGui::Plat_GetWindowFocus(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    return ::GetForegroundWindow() == vd->hWnd;
+}
+
+bool PreditorImGui::Plat_GetWindowMinimized(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    return ::IsIconic(vd->hWnd) != 0;
+}
+
+void PreditorImGui::Plat_SetWindowTitle(ImGuiViewport* viewport, const char* title)
+{
+    // ::SetWindowTextA() doesn't properly handle UTF-8 so we explicitely convert our string.
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    int n = ::MultiByteToWideChar(CP_UTF8, 0, title, -1, NULL, 0);
+    ImVector<wchar_t> title_w;
+    title_w.resize(n);
+    ::MultiByteToWideChar(CP_UTF8, 0, title, -1, title_w.Data, n);
+    ::SetWindowTextW(vd->hWnd, title_w.Data);
+}
+
+void PreditorImGui::Plat_SetWindowAlpha(ImGuiViewport* viewport, float alpha)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    IM_ASSERT(alpha >= 0.0f && alpha <= 1.0f);
+    if (alpha < 1.0f)
+    {
+        DWORD style = ::GetWindowLongW(vd->hWnd, GWL_EXSTYLE) | WS_EX_LAYERED;
+        ::SetWindowLongW(vd->hWnd, GWL_EXSTYLE, style);
+        ::SetLayeredWindowAttributes(vd->hWnd, 0, (BYTE)(255 * alpha), LWA_ALPHA);
+    }
+    else
+    {
+        DWORD style = ::GetWindowLongW(vd->hWnd, GWL_EXSTYLE) & ~WS_EX_LAYERED;
+        ::SetWindowLongW(vd->hWnd, GWL_EXSTYLE, style);
+    }
+}
+
+float PreditorImGui::Plat_GetWindowDpiScale(ImGuiViewport* viewport)
+{
+    ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
+    IM_ASSERT(vd->hWnd != 0);
+    return ImGui_ImplWin32_GetDpiScaleForHwnd(vd->hWnd);
+}
+
+void PreditorImGui::Plat_OnChangedViewport(ImGuiViewport* viewport)
+{
+}
+
+LRESULT PreditorImGui::WndProcHndl_PlatformWindow(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    if (g_pInstance->WndProcHndl(hWnd, msg, wParam, lParam))
+        return true;
+
+    if (ImGuiViewport* viewport = ImGui::FindViewportByPlatformHandle((void*)hWnd))
+    {
+        switch (msg)
+        {
+        case WM_CLOSE:
+            viewport->PlatformRequestClose = true;
+            return 0;
+        case WM_MOVE:
+            viewport->PlatformRequestMove = true;
+            break;
+        case WM_SIZE:
+            viewport->PlatformRequestResize = true;
+            break;
+        case WM_MOUSEACTIVATE:
+            if (viewport->Flags & ImGuiViewportFlags_NoFocusOnClick)
+                return MA_NOACTIVATE;
+            break;
+        case WM_NCHITTEST:
+            // Let mouse pass-through the window. This will allow the backend to call io.AddMouseViewportEvent() correctly. (which is optional).
+            // The ImGuiViewportFlags_NoInputs flag is set while dragging a viewport, as want to detect the window behind the one we are dragging.
+            // If you cannot easily access those viewport flags from your windowing/event code: you may manually synchronize its state e.g. in
+            // your main loop after calling UpdatePlatformWindows(). Iterate all viewports/platform windows and pass the flag to your windowing system.
+            if (viewport->Flags & ImGuiViewportFlags_NoInputs)
+                return HTTRANSPARENT;
+            break;
+        }
+    }
+
+    return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
 ImGuiKey PreditorImGui::VirtualKeyToImGuiKey(WPARAM wParam)

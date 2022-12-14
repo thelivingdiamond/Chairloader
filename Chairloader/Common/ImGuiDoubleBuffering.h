@@ -24,7 +24,6 @@ struct ImRendDrawBuffer
 	std::vector<ImDrawIdx> idxBuffer;
 	std::vector<ImDrawVert> vtxBuffer;
 	ImDrawData a;
-	std::mutex mutex;
 
 	//! Clears currently stored data.
 	void Clear()
@@ -38,9 +37,13 @@ struct ImRendDrawBuffer
 	//! Copies render data (ImGui::GetDrawData()) for current ImGui context to the buffer
 	void FillForCurrentContext()
 	{
+		FillImDrawData(*ImGui::GetDrawData());
+	}
+
+	void FillImDrawData(const ImDrawData& imDrawData)
+	{
 		Clear();
 
-		const ImDrawData& imDrawData = *ImGui::GetDrawData();
 		displayPos = imDrawData.DisplayPos;
 		displaySize = imDrawData.DisplaySize;
 		framebufferScale = imDrawData.FramebufferScale;
