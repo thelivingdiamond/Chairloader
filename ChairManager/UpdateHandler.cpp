@@ -10,7 +10,7 @@
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 #include <curlpp/Infos.hpp>
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include "UpdateURL.h"
 
 
@@ -28,11 +28,11 @@ void setError(std::string szError) {
 bool UpdateHandler::isUpdateAvailable() {
     auto latestVersion = VersionCheck::getLatestChairloaderVersion();
     auto installedVersion = VersionCheck::getInstalledChairloaderVersion();
-    ModLoader::Get().log(ModLoader::severityLevel::info , "Online Version: %s", latestVersion.String());
-    ModLoader::Get().log(ModLoader::severityLevel::info , "Installed Version: %s", installedVersion.String());
-    ModLoader::Get().log(ModLoader::severityLevel::info , "Update Available: %s", latestVersion > installedVersion ? "true" : "false");
+    ChairManager::Get().log(ChairManager::severityLevel::info , "Online Version: %s", latestVersion.String());
+    ChairManager::Get().log(ChairManager::severityLevel::info , "Installed Version: %s", installedVersion.String());
+    ChairManager::Get().log(ChairManager::severityLevel::info , "Update Available: %s", latestVersion > installedVersion ? "true" : "false");
     if(latestVersion > installedVersion) {
-        ModLoader::Get().overlayLog(ModLoader::severityLevel::info , "Update Available!");
+        ChairManager::Get().overlayLog(ChairManager::severityLevel::info , "Update Available!");
     }
     return latestVersion > installedVersion;
 }
@@ -49,9 +49,9 @@ void UpdateHandler::downloadUpdate() {
         boost::json::value json = boost::json::parse(result.str());
         // get the download url
         downloadUrl = json.at("assets").at(0).at("browser_download_url").as_string();
-        ModLoader::Get().overlayLog(ModLoader::severityLevel::info, "%s", "Downloading update...");
+        ChairManager::Get().overlayLog(ChairManager::severityLevel::info, "%s", "Downloading update...");
     } catch (std::exception &e) {
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Invalid github response: %s", e.what());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Invalid github response: %s", e.what());
         setError(("Invalid github response: " + std::string(e.what())));
         return;
     }
@@ -75,7 +75,7 @@ void UpdateHandler::downloadUpdate() {
         downloadHandle.perform();
         fileStream.close();
     } catch (std::exception &e) {
-        ModLoader::Get().overlayLog(ModLoader::severityLevel::error, "Failed to download update: %s", e.what());
+        ChairManager::Get().overlayLog(ChairManager::severityLevel::error, "Failed to download update: %s", e.what());
         setError(("Failed to download update: " + std::string(e.what())));
         return;
     }
@@ -84,10 +84,10 @@ void UpdateHandler::downloadUpdate() {
 void UpdateHandler::installUpdate() {
     // rename our executable to chairloader.old
     try {
-        fs::rename("ChairloaderModLoader.exe", "ChairloaderModLoader.exe.old");
+        fs::rename("ChairManager.exe", "ChairManager.exe.old");
     } catch (std::exception &e) {
         // not a fatal error
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to rename ChairloaderModLoader.exe: %s", e.what());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to rename ChairManager.exe: %s", e.what());
     }
     // extract the zip file
     std::wstring commandArgs = L".\\7za.exe x update.zip -o.\\ -y";
@@ -103,7 +103,7 @@ void UpdateHandler::installUpdate() {
         fs::remove("update.zip");
     } catch (std::exception &e) {
         // not a fatal error
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to remove update.zip: %s", e.what());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to remove update.zip: %s", e.what());
     }
 }
 
@@ -129,7 +129,7 @@ void UpdateHandler::asyncDownloadCheck() {
     if(!m_bIsDownloading) return;
     if(IsFutureReady(downloadFuture)) {
         downloadFuture.get();
-        ModLoader::Get().overlayLog(ModLoader::severityLevel::info, "Update downloaded successfully!");
+        ChairManager::Get().overlayLog(ChairManager::severityLevel::info, "Update downloaded successfully!");
         m_bIsDownloading = false;
     }
 }
@@ -149,7 +149,7 @@ void UpdateHandler::asyncInstallCheck() {
     if(!m_bIsInstalling) return;
     if(IsFutureReady(installFuture)) {
         installFuture.get();
-        ModLoader::Get().overlayLog(ModLoader::severityLevel::info, "Update installed successfully!");
+        ChairManager::Get().overlayLog(ChairManager::severityLevel::info, "Update installed successfully!");
         m_bIsInstalling = false;
     }
 
@@ -173,7 +173,7 @@ bool UpdateHandler::isInstalling() {
 void UpdateHandler::finishUpdate() {
     STARTUPINFOW si = {sizeof(STARTUPINFO)};
     PROCESS_INFORMATION pi;
-    std::wstring commandArgs = L".\\ChairloaderModLoader.exe";
+    std::wstring commandArgs = L".\\ChairManager.exe";
     commandArgs.resize(MAX_PATH);
     if(CreateProcessW(nullptr, &commandArgs[0], nullptr, nullptr, false, DETACHED_PROCESS, nullptr, nullptr, &si, &pi)) {
         CloseHandle(pi.hProcess);

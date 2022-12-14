@@ -26,11 +26,11 @@ set(SOURCE_FILES
         #ImGuiStandalone
         UI.cpp
         UI.h
-        #ModLoader
+        #ChairManager
         ChairInstallWizard.cpp
         ChairInstallWizard.h
-        ModLoader.cpp
-        ModLoader.h
+        ChairManager.cpp
+        ChairManager.h
         PathUtils.cpp
         PathUtils.h
         GamePathDialog.cpp
@@ -60,11 +60,11 @@ configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/version.rc
         @ONLY)
 
-add_executable(ChairloaderModLoader WIN32 ${SOURCE_FILES})
+add_executable(ChairManager WIN32 ${SOURCE_FILES})
 
-target_link_libraries(ChairloaderModLoader
+target_link_libraries(ChairManager
         version.lib
-        CommonModLoader
+        CommonChairManager
         D3D11.lib
         libzip::zip
         ZLIB::ZLIB
@@ -72,6 +72,6 @@ target_link_libraries(ChairloaderModLoader
         ${Boost_LIBRARIES}
         )
 
-target_precompile_headers(ChairloaderModLoader PRIVATE pch.h)
+target_precompile_headers(ChairManager PRIVATE pch.h)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

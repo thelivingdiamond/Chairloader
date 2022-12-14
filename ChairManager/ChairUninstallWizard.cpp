@@ -4,7 +4,7 @@
 
 #include "ChairUninstallWizard.h"
 #include "PathUtils.h"
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include "GameVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
@@ -18,12 +18,12 @@ bool ChairUninstallWizard::Show(const char *name, bool *pbIsOpen) {
             ImGuiWindowFlags_NoCollapse |
             ImGuiWindowFlags_NoResize;
 
-    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ModLoader::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ModLoader::Get().GetDPIScale()};
+    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ChairManager::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ChairManager::Get().GetDPIScale()};
     ImGui::SetNextWindowSize(WINDOW_SIZE);
     if (ImGui::Begin(name, pbIsOpen, windowFlags))
     {
-        if(ImGui::GetWindowViewport()->DpiScale != ModLoader::Get().GetDPIScale()){
-            ModLoader::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
+        if(ImGui::GetWindowViewport()->DpiScale != ChairManager::Get().GetDPIScale()){
+            ChairManager::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
         }
         switch (m_State)
         {
@@ -104,7 +104,7 @@ void ChairUninstallWizard::ShowFinishPage() {
 }
 
 void ChairUninstallWizard::StartUninstall() {
-    fs::path dstBinPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_BIN_DIR;
+    fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR;
     try{
         // Removing binaries
         for(auto & requiredFile : PathUtils::REQUIRED_CHAIRLOADER_BINARIES){
@@ -112,18 +112,18 @@ void ChairUninstallWizard::StartUninstall() {
         }
 
         // Remove patch file
-        fs::remove(ModLoader::Get().GetGamePath() / PathUtils::CHAIRLOADER_PATCH_PATH);
+        fs::remove(ChairManager::Get().GetGamePath() / PathUtils::CHAIRLOADER_PATCH_PATH);
 
         // remove mods folder
         if(m_bDeleteModFolder){
-            fs::remove_all(ModLoader::Get().GetGamePath() / "Mods");
+            fs::remove_all(ChairManager::Get().GetGamePath() / "Mods");
         }
         // create a game version instance
         auto m_pGameVersion = std::make_unique<GameVersion>();
 
         //Restore Patch
-        fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
-        fs::path backupFilePath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
+        fs::path dllPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
+        fs::path backupFilePath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
         if (fs::exists(backupFilePath)) {
             fs::copy_file(backupFilePath, dllPath, fs::copy_options::overwrite_existing);
             m_patched = true;

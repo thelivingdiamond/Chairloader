@@ -1,7 +1,7 @@
 #include <zlib.h>
-#include <ModLoader/BinDiff.h>
+#include <Manager/BinDiff.h>
 #include "GameVersion.h"
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include "PathUtils.h"
 
 namespace
@@ -104,7 +104,7 @@ GameVersion::GameVersion()
 {
 	LoadKnownVersions();
 	StartAsyncTasks();
-	m_bHasBackup = fs::exists(ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH);
+	m_bHasBackup = fs::exists(ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH);
 }
 
 GameVersion::~GameVersion()
@@ -308,8 +308,8 @@ void GameVersion::PatchTheGame() const
 		throw std::runtime_error("Diff file \"" + diffFileName + "\" not found");
 
 	// Make a backup of PreyDll.dll
-	fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
-	fs::path backupFilePath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
+	fs::path dllPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
+	fs::path backupFilePath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
 	fs::copy_file(dllPath, backupFilePath, fs::copy_options::overwrite_existing);
 
 	// Decompress diff file
@@ -335,8 +335,8 @@ void GameVersion::RestoreBackup()
 {
 	try
 	{
-		fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
-		fs::path backupFilePath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
+		fs::path dllPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
+		fs::path backupFilePath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
 
 		if (!fs::exists(backupFilePath))
 			throw std::runtime_error("Backup file no longer exists");
@@ -356,7 +356,7 @@ GameVersion::HashGameResult GameVersion::HashGameTask()
 	HashGameResult result;
 
 	// Open the game dll
-	fs::path dllPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
+	fs::path dllPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
 
 	if (!fs::exists(dllPath))
 		throw std::runtime_error("PreyDll.dll is missing");

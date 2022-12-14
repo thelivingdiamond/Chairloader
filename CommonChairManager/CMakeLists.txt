@@ -1,24 +1,24 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	ModLoader/BinDiff.cpp
-	ModLoader/BinDiff.h
-	ModLoader/SHA256.cpp
-	ModLoader/SHA256.h
+	Manager/BinDiff.cpp
+	Manager/BinDiff.h
+	Manager/SHA256.cpp
+	Manager/SHA256.h
 )
 
-add_library(CommonModLoader STATIC
+add_library(CommonChairManager STATIC
 	${SOURCE_FILES}
 	../Common/pugixml/pugixml.hpp
 	../Common/pugixml/pugiconfig.hpp
 	../Common/pugixml/pugixml.cpp
 )
 
-target_include_directories(CommonModLoader PUBLIC
+target_include_directories(CommonChairManager PUBLIC
 	.
 	../Common/pugixml
 )
 
-target_link_libraries(CommonModLoader PUBLIC
+target_link_libraries(CommonChairManager PUBLIC
 	
 )
 

@@ -1,7 +1,7 @@
 #include "ChairInstallWizard.h"
 #include "GameVersion.h"
 #include "PathUtils.h"
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include "BinaryVersionCheck.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
@@ -22,12 +22,12 @@ bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 //        WINDOW_SIZE = {WINDOW_SIZE.x * ImGui::GetWindowDpiScale(), WINDOW_SIZE.y * ImGui::GetWindowDpiScale()};
 //        bDPIUpdated = true;
 //    }
-    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ModLoader::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ModLoader::Get().GetDPIScale()};
+    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ChairManager::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ChairManager::Get().GetDPIScale()};
     ImGui::SetNextWindowSize(WINDOW_SIZE);
 	if (ImGui::Begin(name, pbIsOpen, windowFlags))
 	{
-        if(ImGui::GetWindowViewport()->DpiScale != ModLoader::Get().GetDPIScale()){
-            ModLoader::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
+        if(ImGui::GetWindowViewport()->DpiScale != ChairManager::Get().GetDPIScale()){
+            ChairManager::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
         }
 		switch (m_State)
 		{
@@ -111,7 +111,7 @@ void ChairInstallWizard::ShowWelcomePage()
         ImGui::TextWrapped("Chairloader has been updated to a new version. The latest version will now be installed.");
         ImGui::NewLine();
     } else {
-        ImGui::TextWrapped("Before using the Mod Loader, the game needs to be modified to add support "
+        ImGui::TextWrapped("Before using the Mod Manager, the game needs to be modified to add support "
                            "for code mods. It will be done in the following steps.");
         ImGui::NewLine();
         ImGui::Text("\t1) Check if your version of the game is supported");
@@ -219,7 +219,7 @@ void ChairInstallWizard::ShowProgressPage()
 void ChairInstallWizard::ShowFinishPage()
 {
 	ImGui::TextWrapped("Installation has been successfully completed.");
-	ImGui::TextWrapped("You can now use Chairloader Mod Loader.");
+	ImGui::TextWrapped("You can now use ChairManager.");
 	ShowBottomBtns(BtnCallback(), [&]() { m_SuccessFinish = true; }, BtnCallback(), true);
 }
 
@@ -295,7 +295,7 @@ void ChairInstallWizard::InstallAsyncTask() const
 	};
 
 	fs::path srcBinPath = fs::current_path() / PathUtils::CHAIRLOADER_BIN_SRC_PATH;
-	fs::path dstBinPath = ModLoader::Get().GetGamePath() / PathUtils::GAME_BIN_DIR;
+	fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR;
 
 	printlog("Verifying files...");
 	{
@@ -328,12 +328,12 @@ void ChairInstallWizard::InstallAsyncTask() const
 	fs::copy(srcBinPath / ".", dstBinPath, fs::copy_options::overwrite_existing | fs::copy_options::recursive);
 
 	printlog("Deploying Chairloader files...");
-	ModLoader::Get().DeployForInstallWizard();
+	ChairManager::Get().DeployForInstallWizard();
 
-    if(fs::exists("ChairloaderModLoader.old.exe"))
+    if(fs::exists("ChairManager.old.exe"))
     {
-        printlog("Removing old ChairloaderModLoader.exe...");
-        fs::remove("ChairloaderModLoader.old.exe");
+        printlog("Removing old ChairManager.exe...");
+        fs::remove("ChairManager.old.exe");
     }
 
 	printlog("Finished!");

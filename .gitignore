@@ -410,11 +410,12 @@ ChairLoader/PreyDll.dll.gzf
 /.idea/
 
 # Ignore Output Directories and Files
-ChairloaderModLoader/English_xml_patch.pak
-/ChairloaderModLoader/LevelOutput/
-/ChairloaderModLoader/Output/
-ChairloaderModLoader/ChairloaderModLoaderConfig.xml
-ChairloaderModLoader/patch_chairloader.pak
-ChairloaderModLoader/version.rc
+ChairManager/English_xml_patch.pak
+ChairManager/Data/LevelOutput/
+ChairManager/Data/Output/
+ChairManager/Data/ChairManagerConfig.xml
+ChairManager/Data/patch_chairloader.pak
+ChairManager/version.rc
 ChairLoader/version.rc
-ChairloaderModLoader/Data/update.zip
+ChairManager/Data/update.zip
+ChairManager/Data/English_xml_patch.pak

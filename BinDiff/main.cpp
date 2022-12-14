@@ -2,7 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <chrono>
-#include <ModLoader/BinDiff.h>
+#include <Manager/BinDiff.h>
 
 static std::vector<uint8_t> ReadFile(const char* path)
 {

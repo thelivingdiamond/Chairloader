@@ -1,6 +1,6 @@
 #pragma once
 #include <future>
-#include <ModLoader/SHA256.h>
+#include <Manager/SHA256.h>
 
 class GameVersion
 {

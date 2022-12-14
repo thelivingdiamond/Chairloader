@@ -5,7 +5,7 @@
 #include "PathUtils.h"
 #include <Windows.h>
 #include <winver.h>
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include <regex>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
@@ -17,7 +17,7 @@ static std::string m_latestVersion;
 
 
 VersionCheck::DLLVersion VersionCheck::getInstalledChairloaderVersion() {
-    auto szVersionFile = ModLoader::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
     return getBinaryVersion(szVersionFile);
 }
 
@@ -50,7 +50,7 @@ std::string VersionCheck::getBinaryVersionString(fs::path szVersionFile) {
 }
 
 std::string VersionCheck::getInstalledChairloaderVersionString() {
-    auto szVersionFile = ModLoader::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
     return getBinaryVersionString(szVersionFile);
 }
 
@@ -80,7 +80,7 @@ void VersionCheck::fetchLatestVersion() {
         auto json = boost::json::parse(result.str());
         tag_name = json.at("tag_name").as_string();
     } catch (std::exception &e) {
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
         return;
     }
     m_latestVersion = tag_name;

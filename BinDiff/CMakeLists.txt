@@ -6,7 +6,7 @@ set(SOURCE_FILES
 add_executable(BinDiff ${SOURCE_FILES})
 
 target_link_libraries(BinDiff
-	CommonModLoader
+	CommonChairManager
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

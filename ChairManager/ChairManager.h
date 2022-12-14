@@ -26,10 +26,9 @@ class ChairUninstallWizard;
 class ChairUpdateWizard;
 
 namespace fs = std::filesystem;
-class ModLoader {
+class ChairManager {
 public:
-    static ModLoader& Get() { return *m_spInstance; }
-
+    static ChairManager& Get() { return *m_spInstance; }
     enum class severityLevel{
         trace,
         debug,
@@ -79,8 +78,8 @@ public:
         }
     };
 
-    ModLoader();
-    ~ModLoader();
+    ChairManager();
+    ~ChairManager();
     void Draw();
     void Update();
 
@@ -129,13 +128,13 @@ private:
     /* Globals */
     fs::path PreyPath;
     std::string m_PreyPathString; //!< String used to display the path in UI
-    fs::path ChairloaderModLoaderConfigPath = R"(.\ChairloaderModLoaderConfig.xml)";
+    fs::path ChairManagerConfigPath = R"(.\ChairManagerConfig.xml)";
     std::vector<Mod> ModList;
     std::map<std::string, std::string> ModNameToDisplayName;
     std::vector<std::string> LegacyModList;
 
     /* Init */
-    void LoadModLoaderConfig();
+    void LoadModManagerConfig();
     void SetGamePath(const fs::path& path);
     void Init();
     bool initialized = false;
@@ -204,19 +203,19 @@ private:
     float OverlayElementHeight = 150.0f;
 
     void DrawOverlayLog();
-    void ModLoader::OverlayLogElement(LogEntry entry);
+    void ChairManager::OverlayLogElement(LogEntry entry);
 
 
     /* Config Functions */
     fs::path getConfigPath(std::string &modName);
     fs::path getDefaultConfigPath(std::string &modName);
-    pugi::xml_document ChairloaderConfigFile, ChairloaderModLoaderConfigFile;
+    pugi::xml_document ChairloaderConfigFile, ChairManagerConfigFile;
     pugi::xml_node ModListNode;
     inline bool saveChairloaderConfigFile() {
         return ChairloaderConfigFile.save_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str());
     };
-    inline bool saveModLoaderConfigFile(){
-        return ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.string().c_str());
+    inline bool saveModManagerConfigFile(){
+        return ChairManagerConfigFile.save_file(ChairManagerConfigPath.string().c_str());
     }
 
     /* XML Functions */
@@ -365,7 +364,7 @@ private:
     bool verifyDefaultFileStructure();
     // Create default file structure
     void createDefaultFileStructure();
-    static inline ModLoader* m_spInstance = nullptr;
+    static inline ChairManager* m_spInstance = nullptr;
 
     //! Chairloader version checking
     VersionCheck::DLLVersion packagedChairloaderVersion;

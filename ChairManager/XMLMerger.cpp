@@ -3,7 +3,7 @@
 //
 
 #include "XMLMerger.h"
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include <boost/algorithm/string.hpp>
 #include <sstream>
 // import regex
@@ -37,7 +37,7 @@ XMLMerger::mergingPolicy XMLMerger::getFileMergingPolicy(fs::path filePath, std:
     }
     if  (currentPath != filePath){
         // File is not in the library, so it must be novel
-        ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: File %s not found in merging library", filePath.u8string());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "XMLMerger: File %s not found in merging library", filePath.u8string());
         policy.policy = mergingPolicy::identification_policy::unknown;
         policy.attributeMatches.clear();
         policy.nodeStructure = pugi::xml_node();
@@ -50,9 +50,9 @@ XMLMerger::mergingPolicy XMLMerger::getFileMergingPolicy(fs::path filePath, std:
 void XMLMerger::init() {
     auto result = mergingLibrary.load_file("MergingLibrary.xml");
     if(!result) {
-       ModLoader::Get().overlayLog(ModLoader::severityLevel::fatal, "Failed to load MergingLibrary.xml: %s", result.description());
+       ChairManager::Get().overlayLog(ChairManager::severityLevel::fatal, "Failed to load MergingLibrary.xml: %s", result.description());
     } else {
-        ModLoader::Get().log(ModLoader::severityLevel::info, "Merging Library Loaded");
+        ChairManager::Get().log(ChairManager::severityLevel::info, "Merging Library Loaded");
     }
 }
 
@@ -96,14 +96,14 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
     pugi::xml_document originalFile;
     pugi::xml_parse_result modResult;
     if(isLegacyMod) {
-        modResult = modFile.load_file((ModLoader::Get().GetGamePath() / "Mods" / "Legacy" / modName / relativeFilePath).wstring().c_str());
+        modResult = modFile.load_file((ChairManager::Get().GetGamePath() / "Mods" / "Legacy" / modName / relativeFilePath).wstring().c_str());
     } else {
-        modResult = modFile.load_file((ModLoader::Get().GetGamePath() / "Mods" / modName / "Data" / relativeFilePath).wstring().c_str());
+        modResult = modFile.load_file((ChairManager::Get().GetGamePath() / "Mods" / modName / "Data" / relativeFilePath).wstring().c_str());
     }
 
     auto originalResult = originalFile.load_file(("PreyFiles" / relativeFilePath).wstring().c_str());
     if(!modResult){
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to load mod file %s: %s", (ModLoader::Get().GetGamePath() / "Mods" / modName / "Data" / relativeFilePath).u8string().c_str(), modResult.description());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to load mod file %s: %s", (ChairManager::Get().GetGamePath() / "Mods" / modName / "Data" / relativeFilePath).u8string().c_str(), modResult.description());
         return false;
     }
     // this is overwriting the original file, so check if we need to copy to output directory
@@ -116,18 +116,18 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
                               fs::copy_options::overwrite_existing);
             }
         } catch(std::exception &e){
-            ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to copy original file %s: %s", ("PreyFiles" / relativeFilePath).u8string().c_str(), e.what());
+            ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to copy original file %s: %s", ("PreyFiles" / relativeFilePath).u8string().c_str(), e.what());
             return false;
         }
     } else {
         //TODO: allow mods to define merging policies for novel files
         //- original file doesn't exist, so we can't merge. if file exists already we *have* to overwrite
         try {
-            fs::copy_file((ModLoader::Get().GetGamePath() / "Mods" / modName / relativeFilePath),
+            fs::copy_file((ChairManager::Get().GetGamePath() / "Mods" / modName / relativeFilePath),
                           "Output" / relativeFilePath,
                           fs::copy_options::overwrite_existing);
         } catch(std::exception &e){
-            ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to copy mod file %s: %s", (ModLoader::Get().GetGamePath() / "Mods" / modName / relativeFilePath).u8string().c_str(), e.what());
+            ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to copy mod file %s: %s", (ChairManager::Get().GetGamePath() / "Mods" / modName / relativeFilePath).u8string().c_str(), e.what());
             return false;
         }
     }
@@ -137,13 +137,13 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
     if(baseResult) {
         auto policy = getFileMergingPolicy(relativeFilePath, modName);
         if(policy.policy == mergingPolicy::identification_policy::unknown){
-            ModLoader::Get().log(ModLoader::severityLevel::error, "File %s was loaded as default game file but is not in the merging library, and no merging policy was defined for it", relativeFilePath.u8string());
+            ChairManager::Get().log(ChairManager::severityLevel::error, "File %s was loaded as default game file but is not in the merging library, and no merging policy was defined for it", relativeFilePath.u8string());
             return false;
         // if policy is error, error out
         } else if (policy.policy == mergingPolicy::identification_policy::error) {
-            ModLoader::Get().log(ModLoader::severityLevel::error,
-                                 "File %s has an invalid merging policy, and cannot be merged",
-                                 relativeFilePath.u8string());
+            ChairManager::Get().log(ChairManager::severityLevel::error,
+                                    "File %s has an invalid merging policy, and cannot be merged",
+                                    relativeFilePath.u8string());
             return false;
         }
         resolvePathWildcards(modFile.first_child(), policy.nodeStructure.first_child());
@@ -159,7 +159,7 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
 //        ModLoader::Get().log(ModLoader::severityLevel::debug, "Merging %s", relativeFilePath.u8string().c_str());
         return mergeXMLDocument(baseFile, modFile, originalFile, policy);
     } else {
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to load base file %s: %s", ("Output" / relativeFilePath).u8string().c_str(), baseResult.description());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to load base file %s: %s", ("Output" / relativeFilePath).u8string().c_str(), baseResult.description());
         return false;
     }
     return false;
@@ -169,7 +169,7 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
 // at this point we know that we have 3 valid xml files, and that they have a known policy. We must now merge them
 bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, mergingPolicy policy) {
     if(policy.policy == mergingPolicy::identification_policy::unknown || policy.policy == mergingPolicy::identification_policy::overwrite){
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Invalid merging policy for XML file %s", policy.file_path.u8string().c_str());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Invalid merging policy for XML file %s", policy.file_path.u8string().c_str());
         return false;
     }
     if(policy.policy == mergingPolicy::identification_policy::overwrite){
@@ -188,7 +188,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
         mergeBySpreadsheet(baseNode, modNode, originalNode, policy);
         auto result = baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
         bool success = result;
-        ModLoader::Get().log(ModLoader::severityLevel::trace, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), success ? "success" : "failure");
+        ChairManager::Get().log(ChairManager::severityLevel::trace, "Saved file %s: %s", ("Output" / policy.file_path).u8string().c_str(), success ? "success" : "failure");
         return true;
     }
     // now we have to merge the node structure of the mod file with the base file
@@ -201,7 +201,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
         baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
         return true;
     } else {
-        ModLoader::Get().log(ModLoader::severityLevel::error, "Failed to merge node structure for XML file %s", policy.file_path.u8string().c_str());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to merge node structure for XML file %s", policy.file_path.u8string().c_str());
         return false;
     }
 }
@@ -233,7 +233,7 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
 //                ModLoader::Get().log(ModLoader::severityLevel::debug, "Mod file %s has no child node %s", policy.file_path.u8string().c_str(), node.name());
                 continue;
             }
-            ModLoader::Get().log(ModLoader::severityLevel::error, "Node %s does not exist in any of the files", node.name());
+            ChairManager::Get().log(ChairManager::severityLevel::error, "Node %s does not exist in any of the files", node.name());
             break;
         }
 
@@ -263,15 +263,15 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
             switch(localPolicy.policy){
                 //overwrite = identical to merge_node
                 case mergingPolicy::identification_policy::overwrite:
-                    ModLoader::Get().log(ModLoader::severityLevel::warning, "XMLMerger: merge_node should be used instead of merge_children & overwrite policy");
+                    ChairManager::Get().log(ChairManager::severityLevel::warning, "XMLMerger: merge_node should be used instead of merge_children & overwrite policy");
                     break;
                 // unknown should never be passed into a mergeNodeStructure call
                 case mergingPolicy::identification_policy::match_spreadsheet:
-                    ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: match_spreadsheet policy should never be passed into a mergeNodeStructure call");
+                    ChairManager::Get().log(ChairManager::severityLevel::error, "XMLMerger: match_spreadsheet policy should never be passed into a mergeNodeStructure call");
                     break;
                 case mergingPolicy::identification_policy::unknown:
                 case mergingPolicy::identification_policy::error:
-                    ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: Invalid merging policy passed to mergeNodeStructure");
+                    ChairManager::Get().log(ChairManager::severityLevel::error, "XMLMerger: Invalid merging policy passed to mergeNodeStructure");
                     break;
                 case mergingPolicy::identification_policy::match_attribute:
                     mergeByAttribute(baseChild, modChild, originalChild, localPolicy);
@@ -291,7 +291,7 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
             if(!checkNodeEquality(modChild, originalChild)) {
                 mergeXMLNode(baseChild, modChild);
             } else {
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Node %s is identical to original, skipping", node.name());
+                ChairManager::Get().log(ChairManager::severityLevel::trace, "Node %s is identical to original, skipping", node.name());
             }
         }
 
@@ -459,7 +459,7 @@ void XMLMerger::resolvePathWildcards(pugi::xml_node node, pugi::xml_node nodeStr
         if(node.name() != std::string("")) {
             nodeStructure.set_name(node.name());
         } else {
-            ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: cannot replace wildcard node: corresponding node has no name");
+            ChairManager::Get().log(ChairManager::severityLevel::error, "XMLMerger: cannot replace wildcard node: corresponding node has no name");
         }
     }
     // recurse until a leaf node is reached
@@ -496,13 +496,13 @@ XMLMerger::resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeS
             if(match.type == attributeWildcard::wildcard_type::apply_if){
                 if(match.apply_if){
                     node.remove_attribute(attribute);
-                    ModLoader::Get().log(ModLoader::severityLevel::debug, "Node %s applied by wildcard", node.name());
+                    ChairManager::Get().log(ChairManager::severityLevel::debug, "Node %s applied by wildcard", node.name());
                 } else {
                     nodesToDelete.emplace_back(node);
                 }
             } else if (match.type == attributeWildcard::wildcard_type::replace) {
                 attribute.set_value(match.match_value.c_str());
-                ModLoader::Get().log(ModLoader::severityLevel::trace, "Attribute %s replaced with %s", attribute.name(), match.match_value);
+                ChairManager::Get().log(ChairManager::severityLevel::trace, "Attribute %s replaced with %s", attribute.name(), match.match_value);
             }
 
         }
@@ -545,7 +545,7 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
                 auto wildcardName = match[1].str();
                 // remove spaces from wildcardName
                 wildcardName.erase(std::remove_if(wildcardName.begin(), wildcardName.end(), isspace), wildcardName.end());
-                ModLoader::Get().log(ModLoader::severityLevel::debug, "Found match: %s", wildcardName.c_str());
+                ChairManager::Get().log(ChairManager::severityLevel::debug, "Found match: %s", wildcardName.c_str());
                 if(wildcardName[0] == '$') {
                     // this means we will be looking for global values from other mods
                     std::regex localMatch = std::regex(R"((.*).(.*))");
@@ -554,26 +554,26 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
                         if(localMatchResult.ready()) {
                             std::string modName = localMatchResult[1].str();
                             std::string parameter = localMatchResult[2].str();
-                            ModLoader::Get().log(ModLoader::severityLevel::debug, "Found local match: %s, %s", modName.c_str(), parameter.c_str());
+                            ChairManager::Get().log(ChairManager::severityLevel::debug, "Found local match: %s, %s", modName.c_str(), parameter.c_str());
                             if(parameter == "modEnabled"){
-                                wildcardValue.match_value = ModLoader::Get().IsModEnabled(modName) ? "true" : "false";
+                                wildcardValue.match_value = ChairManager::Get().IsModEnabled(modName) ? "true" : "false";
                             } else {
-                                auto modConfig = ModLoader::Get().GetConfigManager()->getModConfig(modName);
+                                auto modConfig = ChairManager::Get().GetConfigManager()->getModConfig(modName);
                                 wildcardValue.match_value = modConfig.getConfigValue(parameter);
                                 wildcardValue.has_match_value = true;
                                 if(wildcardValue.match_value.empty()) {
-                                    ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: could not find config value %s in mod %s", parameter.c_str(), modName.c_str());
+                                    ChairManager::Get().log(ChairManager::severityLevel::error, "XMLMerger: could not find config value %s in mod %s", parameter.c_str(), modName.c_str());
                                 }
                             }
                         }
                     }
                 } else {
                     // this means we will be looking for values from the current mod
-                    wildcardValue.match_value = ModLoader::Get().GetConfigManager()->getModConfig(wildcardValue.mod_name).getConfigValue(wildcardName);
+                    wildcardValue.match_value = ChairManager::Get().GetConfigManager()->getModConfig(wildcardValue.mod_name).getConfigValue(wildcardName);
                     if(!wildcardValue.match_value.empty()) {
                         wildcardValue.has_match_value = true;
                     } else {
-                        ModLoader::Get().log(ModLoader::severityLevel::error, "XMLMerger: could not find config value %s in mod %s", wildcardName.c_str(), wildcardValue.mod_name.c_str());
+                        ChairManager::Get().log(ChairManager::severityLevel::error, "XMLMerger: could not find config value %s in mod %s", wildcardName.c_str(), wildcardValue.mod_name.c_str());
                     }
                 }
 
@@ -587,7 +587,7 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
                 return wildcardValue.match_value;
             }
         } else {
-            ModLoader::Get().log(ModLoader::severityLevel::warning, "Could not find wildcard value in %s", wildcardValue.attribute.value());
+            ChairManager::Get().log(ChairManager::severityLevel::warning, "Could not find wildcard value in %s", wildcardValue.attribute.value());
             wildcardValue.type = attributeWildcard::wildcard_type::none;
         }
     } else {

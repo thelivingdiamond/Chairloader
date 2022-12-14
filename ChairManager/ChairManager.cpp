@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include "UI.h"
 #include "GamePathDialog.h"
 #include "GameVersion.h"
@@ -13,7 +13,7 @@
 #include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"
-#include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible
+#include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible (TRUE LOL)
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairUpdateWizard.h"
@@ -24,7 +24,7 @@ static bool showDemo = false;
 
 static const char* MAIN_WINDOW_NAME = "Chairloader Mod Manager";
 
-void ModLoader::Draw() {
+void ChairManager::Draw() {
     bool bDraw = true;
 
     switch (m_State)
@@ -63,12 +63,12 @@ void ModLoader::Draw() {
 }
 
 
-void ModLoader::LoadModLoaderConfig()
+void ChairManager::LoadModManagerConfig()
 {
-    if (ChairloaderModLoaderConfigFile.load_file(ChairloaderModLoaderConfigPath.wstring().c_str())) {
-        if (ChairloaderModLoaderConfigFile.first_child().child("PreyPath")) {
-            fs::path path(ChairloaderModLoaderConfigFile.first_child().child("PreyPath").text().as_string());
-            auto launchOptionsNode = ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions");
+    if (ChairManagerConfigFile.load_file(ChairManagerConfigPath.wstring().c_str())) {
+        if (ChairManagerConfigFile.first_child().child("PreyPath")) {
+            fs::path path(ChairManagerConfigFile.first_child().child("PreyPath").text().as_string());
+            auto launchOptionsNode = ChairManagerConfigFile.first_child().child("LaunchOptions");
             m_bLoadChairloader = launchOptionsNode.attribute("LoadChairloader").as_bool();
             m_bLoadEditor = launchOptionsNode.attribute("LoadEditor").as_bool();
             m_bDevMode = launchOptionsNode.attribute("DevMode").as_bool();
@@ -81,28 +81,28 @@ void ModLoader::LoadModLoaderConfig()
         }
     }
     else {
-        log(severityLevel::error, "ChairloaderModLoader config file not found, creating new");
-        ChairloaderModLoaderConfigFile.reset();
-        ChairloaderModLoaderConfigFile.append_child("ChairloaderModLoader");
-        ChairloaderModLoaderConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
-        auto launchOptionsNode = ChairloaderModLoaderConfigFile.first_child().append_child("LaunchOptions");
+        log(severityLevel::error, "ChairManager config file not found, creating new");
+        ChairManagerConfigFile.reset();
+        ChairManagerConfigFile.append_child("ChairManager");
+        ChairManagerConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
+        auto launchOptionsNode = ChairManagerConfigFile.first_child().append_child("LaunchOptions");
         launchOptionsNode.append_attribute("LoadChairloader").set_value(true);
         launchOptionsNode.append_attribute("LoadEditor").set_value(false);
         launchOptionsNode.append_attribute("DevMode").set_value(true);
         launchOptionsNode.append_attribute("NoRandom").set_value(false);
         launchOptionsNode.append_attribute("AugGeom").set_value(false);
-        ChairloaderModLoaderConfigFile.save_file(ChairloaderModLoaderConfigPath.wstring().c_str());
+        ChairManagerConfigFile.save_file(ChairManagerConfigPath.wstring().c_str());
     }
-    log(severityLevel::info, "Chairloader Mod Loader Config File Loaded");
+    log(severityLevel::info, "ChairManager Config File Loaded");
 }
 
-void ModLoader::SetGamePath(const fs::path& path)
+void ChairManager::SetGamePath(const fs::path& path)
 {
     assert(path.empty() || PathUtils::ValidateGamePath(path));
 
     PreyPath = path;
     m_PreyPathString = path.u8string();
-    pugi::xml_node cfg = ChairloaderModLoaderConfigFile.first_child();
+    pugi::xml_node cfg = ChairManagerConfigFile.first_child();
 
     if (!path.empty())
     {
@@ -117,14 +117,14 @@ void ModLoader::SetGamePath(const fs::path& path)
     }
 }
 
-void ModLoader::SwitchToGameSelectionDialog(const fs::path& gamePath)
+void ChairManager::SwitchToGameSelectionDialog(const fs::path& gamePath)
 {
     m_State = State::LocateGameDir;
     m_pGamePathDialog = std::make_unique<GamePathDialog>();
     m_pGamePathDialog->SetGamePath(gamePath);
 }
 
-void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
+void ChairManager::DrawGamePathSelectionDialog(bool* pbIsOpen)
 {
     GamePathDialog::Result result = m_pGamePathDialog->ShowDialog(MAIN_WINDOW_NAME, pbIsOpen);
 
@@ -132,7 +132,7 @@ void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
     {
         log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
         SetGamePath(m_pGamePathDialog->GetGamePath());
-        saveModLoaderConfigFile();
+        saveModManagerConfigFile();
         m_pGamePathDialog.reset();
         SwitchToInstallWizard();
     }
@@ -143,7 +143,7 @@ void ModLoader::DrawGamePathSelectionDialog(bool* pbIsOpen)
     }
 }
 
-void ModLoader::SwitchToInstallWizard()
+void ChairManager::SwitchToInstallWizard()
 {
     if (!verifyChairloaderInstalled())
     {
@@ -165,7 +165,7 @@ void ModLoader::SwitchToInstallWizard()
     }
 }
 
-void ModLoader::DrawInstallWizard(bool* pbIsOpen)
+void ChairManager::DrawInstallWizard(bool* pbIsOpen)
 {
     if (!m_pInstallWizard)
     {
@@ -179,7 +179,7 @@ void ModLoader::DrawInstallWizard(bool* pbIsOpen)
     }
 }
 
-void ModLoader::DrawMainWindow(bool* pbIsOpen)
+void ChairManager::DrawMainWindow(bool* pbIsOpen)
 {
     static bool m_bShowUpdatePopup;
     m_pGameVersion->Update();
@@ -344,7 +344,7 @@ void ModLoader::DrawMainWindow(bool* pbIsOpen)
     ImGui::End();
 }
 
-void ModLoader::DrawModList() {
+void ChairManager::DrawModList() {
     static std::string selectedMod;
     static bool showDeleteConfirmation;
     if(ImGui::BeginTabItem("Mod List")) {
@@ -673,24 +673,24 @@ void ModLoader::DrawModList() {
             //        m_bNoRandom,
             //        m_bAuxGeom;
             if(ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)){
-                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
-                saveModLoaderConfigFile();
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
+                saveModManagerConfigFile();
             }
             if(ImGui::Checkbox("Load Editor", &m_bLoadEditor)){
-                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("LoadEditor").set_value(m_bLoadEditor);
-                saveModLoaderConfigFile();
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadEditor").set_value(m_bLoadEditor);
+                saveModManagerConfigFile();
             }
             if(ImGui::Checkbox("Dev Mode", &m_bDevMode)){
-                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("DevMode").set_value(m_bDevMode);
-                saveModLoaderConfigFile();
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("DevMode").set_value(m_bDevMode);
+                saveModManagerConfigFile();
             }
             if(ImGui::Checkbox("No Random", &m_bNoRandom)){
-                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("NoRandom").set_value(m_bNoRandom);
-                saveModLoaderConfigFile();
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("NoRandom").set_value(m_bNoRandom);
+                saveModManagerConfigFile();
             }
             if(ImGui::Checkbox("Aux Geometry Renderer", &m_bAuxGeom)) {
-                ChairloaderModLoaderConfigFile.first_child().child("LaunchOptions").attribute("AuxGeom").set_value(m_bAuxGeom);
-                saveModLoaderConfigFile();
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("AuxGeom").set_value(m_bAuxGeom);
+                saveModManagerConfigFile();
             }
             ImGui::InputText("Custom Launch Options", &m_customArgs);
             ImGui::EndPopup();
@@ -742,7 +742,7 @@ void ModLoader::DrawModList() {
     }
 }
 
-void ModLoader::DrawDLLSettings() {
+void ChairManager::DrawDLLSettings() {
     if(ImGui::BeginTabItem("Settings")){
         ImGui::InputText("Prey Path", &m_PreyPathString, ImGuiInputTextFlags_ReadOnly);
 
@@ -764,7 +764,7 @@ void ModLoader::DrawDLLSettings() {
             {
                 log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
                 SetGamePath(m_pGamePathDialog->GetGamePath());
-                saveModLoaderConfigFile();
+                saveModManagerConfigFile();
                 m_pGamePathDialog.reset();
                 Init();
             }
@@ -778,7 +778,7 @@ void ModLoader::DrawDLLSettings() {
     }
 }
 
-void ModLoader::DrawAssetView() {
+void ChairManager::DrawAssetView() {
     if(ImGui::BeginTabItem("Asset View")){
         if(ImGui::BeginChild("Asset List", ImVec2(ImGui::GetContentRegionAvail().x * 0.65f, 0), false)) {
             if(ImGui::BeginTabBar("Mod Asset View")) {
@@ -911,7 +911,7 @@ void ModLoader::DrawAssetView() {
     }
 }
 
-void ModLoader::DrawDeploySettings() {
+void ChairManager::DrawDeploySettings() {
     if(ImGui::BeginTabItem("Deploy")){
         static std::string BasePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest.xml)";
         static std::string OverridePath = R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTestOverride.xml)";
@@ -949,7 +949,7 @@ void ModLoader::DrawDeploySettings() {
     }
 }
 
-void ModLoader::DrawLog() {
+void ChairManager::DrawLog() {
     logMutex.lock();
     static bool m_bAutoScroll = true;
     if(ImGui::BeginTabItem("Log")){
@@ -1042,14 +1042,14 @@ void ModLoader::DrawLog() {
 
 
 
-fs::path ModLoader::getConfigPath(std::string &modName) {
+fs::path ChairManager::getConfigPath(std::string &modName) {
     return fs::path{ (PreyPath / "Mods/config" / modName / ".xml").c_str() };
 }
 
-fs::path ModLoader::getDefaultConfigPath(std::string &modName) {
+fs::path ChairManager::getDefaultConfigPath(std::string &modName) {
     return fs::path{ (PreyPath / "Mods" / modName / modName / "_default.xml").c_str() };
 }
-bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
+bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
     std::string directoryName = directory.filename().u8string();
     pugi::xml_document result;
     auto loadResult  = result.load_file((directory / "ModInfo.xml").wstring().c_str());
@@ -1110,7 +1110,7 @@ bool ModLoader::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferen
     return false;
 }
 
-void ModLoader::LoadModsFromConfig() {
+void ChairManager::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
         fs::path modPath = PreyPath / "Mods" / PrevMod.name();
         Mod mod;
@@ -1128,7 +1128,7 @@ void ModLoader::LoadModsFromConfig() {
     std::sort(ModList.begin(), ModList.end());
     serializeLoadOrder();
 }
-void ModLoader::DetectNewMods() {
+void ChairManager::DetectNewMods() {
     for(auto &directory : fs::directory_iterator(fs::path(PreyPath.u8string() + "/Mods/"))){
         if(directory.path() != PreyPath / "Mods/config" && directory.path() != PreyPath / "Mods/Legacy") {
             Mod mod;
@@ -1146,7 +1146,7 @@ void ModLoader::DetectNewMods() {
     serializeLoadOrder();
 }
 
-void ModLoader::loadModInfoFiles() {
+void ChairManager::loadModInfoFiles() {
     ModList.clear();
     LegacyModList.clear();
     // load previously loaded (assumedly) valid config
@@ -1175,13 +1175,13 @@ void ModLoader::loadModInfoFiles() {
     }
 }
 
-ModLoader::ModLoader() {
+ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
     packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     VersionCheck::fetchLatestVersion();
     cURLpp::initialize();
-    LoadModLoaderConfig();
+    LoadModManagerConfig();
 
     if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
         SwitchToGameSelectionDialog(PreyPath);
@@ -1189,16 +1189,16 @@ ModLoader::ModLoader() {
         SwitchToInstallWizard();
 }
 
-ModLoader::~ModLoader() {
+ChairManager::~ChairManager() {
     flushFileQueue();
-    saveModLoaderConfigFile();
+    saveModManagerConfigFile();
 
     assert(m_spInstance == this);
     m_spInstance = nullptr;
 }
 
 
-void ModLoader::FindMod(Mod* modEntry) {
+void ChairManager::FindMod(Mod* modEntry) {
     /* Check if mod is in the config list */
     if(std::find(ModList.begin(), ModList.end(),modEntry->modName) == ModList.end()) {
         // -- If in Chairloader.xml --
@@ -1243,7 +1243,7 @@ void ModLoader::FindMod(Mod* modEntry) {
 
 
 
-void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
+void ChairManager::SaveMod(ChairManager::Mod *modEntry) {
     if(modEntry == nullptr) {
         log(severityLevel::error, "Cannot save mod, nullptr was passed");
         return;
@@ -1298,10 +1298,10 @@ void ModLoader::SaveMod(ModLoader::Mod *modEntry) {
 }
 
 
-void ModLoader::flushFileQueue() {
+void ChairManager::flushFileQueue() {
     std::scoped_lock<std::mutex> lock(logMutex);
     std::ofstream fileStream;
-    fileStream.open("ChairloaderModLoader.log", std::ios_base::app);
+    fileStream.open("ChairManager.log", std::ios_base::app);
     if(fileStream.is_open()){
         for(auto & logEntry: fileQueue){
             std::string level;
@@ -1332,11 +1332,11 @@ void ModLoader::flushFileQueue() {
         fileQueue.clear();
         fileStream.close();
     } else {
-        log(severityLevel::error, "Error, could not open ChairloaderModLoader.log");
+        log(severityLevel::error, "Error, could not open ChairManager.log");
     }
 }
 
-void ModLoader::Update() {
+void ChairManager::Update() {
     static time_t lastFileTime;
     if(time(nullptr) - lastFileTime > 10){
         time(&lastFileTime);
@@ -1377,7 +1377,7 @@ void ModLoader::Update() {
     }
 }
 
-void ModLoader::DeployForInstallWizard()
+void ChairManager::DeployForInstallWizard()
 {
     assert(m_DeployState == DeployState::Invalid);
     mergeXMLFiles(true);
@@ -1392,7 +1392,7 @@ void ModLoader::DeployForInstallWizard()
     m_DeployLogMutex.unlock();
 }
 
-bool ModLoader::TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type) {
+bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type) {
     fs::path path;
     ImGuiTreeNodeFlags_ treeFlags = ImGuiTreeNodeFlags_None;
     switch(type) {
@@ -1467,26 +1467,27 @@ bool ModLoader::TreeNodeWalkDirectory(fs::path relativePath, std::string modName
         ImGui::PopID();
         return true;
     }
+    return false;
 }
 
-int ModLoader::getNextSafeLoadOrder() {
+int ChairManager::getNextSafeLoadOrder() {
     nextSafeLoadOrder++;
     int safe = nextSafeLoadOrder;
     log(severityLevel::debug, "Next Safe Load Order: %i", nextSafeLoadOrder);
     return safe;
 }
 
-void ModLoader::incrementNextSafeLoadOrder(int loadOrder) {
+void ChairManager::incrementNextSafeLoadOrder(int loadOrder) {
     if(loadOrder <= nextSafeLoadOrder)
         nextSafeLoadOrder = loadOrder + 1;
     log(severityLevel::debug, "New Safe Load Order: %i", nextSafeLoadOrder);
 }
 
-bool ModLoader::checkSafeLoadOrder(int i) {
+bool ChairManager::checkSafeLoadOrder(int i) {
     return loadOrder.find(i) == loadOrder.end();
 }
 
-void ModLoader::serializeLoadOrder() {
+void ChairManager::serializeLoadOrder() {
     int i = 0;
     for(auto &mod : ModList){
         mod.loadOrder = i;
@@ -1495,7 +1496,7 @@ void ModLoader::serializeLoadOrder() {
     nextSafeLoadOrder = i + 1;
 }
 
-void ModLoader::SaveAllMods() {
+void ChairManager::SaveAllMods() {
     for(auto &mod : ModList){
         if(mod.installed) {
             ModListNode.remove_child(mod.modName.c_str());
@@ -1505,7 +1506,7 @@ void ModLoader::SaveAllMods() {
     saveChairloaderConfigFile();
 }
 
-void ModLoader::InstallMod(std::string &modName) {
+void ChairManager::InstallMod(std::string &modName) {
     auto mod = std::find(ModList.begin(), ModList.end(), modName);
     if(mod != ModList.end()){
         mod->installed = true;
@@ -1518,7 +1519,7 @@ void ModLoader::InstallMod(std::string &modName) {
     }
 }
 
-void ModLoader::UninstallMod(std::string &modName) {
+void ChairManager::UninstallMod(std::string &modName) {
     auto mod = std::find(ModList.begin(), ModList.end(), modName);
     if(mod != ModList.end()){
         mod->installed = false;
@@ -1538,7 +1539,7 @@ void ModLoader::UninstallMod(std::string &modName) {
 
 }
 
-void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
+void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
 //    char shortPath[MAX_PATH];
 //    GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
     std::wstring commandArgs = L".\\7za.exe x \"";
@@ -1610,7 +1611,7 @@ void ModLoader::InstallModFromFile(fs::path path, fs::path fileName) {
     fs::remove_all("./temp/");
 }
 
-void ModLoader::EnableMod(std::string modName, bool enabled) {
+void ChairManager::EnableMod(std::string modName, bool enabled) {
     auto mod = std::find(ModList.begin(), ModList.end(),modName);
     if(mod != ModList.end()) {
         if(mod->installed)
@@ -1618,7 +1619,7 @@ void ModLoader::EnableMod(std::string modName, bool enabled) {
     }
 }
 
-bool ModLoader::DeployMods() {
+bool ChairManager::DeployMods() {
     mergeXMLFiles();
     saveChairloaderConfigFile();
     if(packChairloaderPatch()){
@@ -1635,7 +1636,7 @@ bool ModLoader::DeployMods() {
     return false;
 }
 
-void ModLoader::mergeXMLFiles(bool onlyChairPatch) {
+void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
     // Remove old output files
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::RemovingOldOutput;
@@ -1711,7 +1712,7 @@ void ModLoader::mergeXMLFiles(bool onlyChairPatch) {
 float overlayLogPadding = 2.0f;
 static std::string logEntryToDelete;
 static float accumulatedHeight = 0.0f;
-void ModLoader::DrawOverlayLog(){
+void ChairManager::DrawOverlayLog(){
     logMutex.lock();
     accumulatedHeight = 0.0f;
 //    tm nowTime;
@@ -1773,7 +1774,7 @@ void ModLoader::DrawOverlayLog(){
 
 auto logElementFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse;
 
-void ModLoader::OverlayLogElement(LogEntry entry) {
+void ChairManager::OverlayLogElement(LogEntry entry) {
 //    log(level, "%s", message);
     auto level = entry.level;
     auto message = entry.message;
@@ -1819,7 +1820,7 @@ void ModLoader::OverlayLogElement(LogEntry entry) {
         ImGui::EndChild();
 }
 
-void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
+void ChairManager::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
     fs::path modPath;
     if(legacyMod) {
         modPath = PreyPath / "Mods/Legacy" / modName / path;
@@ -1854,7 +1855,7 @@ void ModLoader::mergeDirectory(fs::path path, std::string modName, bool legacyMo
 
 
 
-bool ModLoader::packChairloaderPatch() {
+bool ChairManager::packChairloaderPatch() {
     // Remove Old Patches
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::RemovingOldPatches;
@@ -1987,7 +1988,7 @@ bool ModLoader::packChairloaderPatch() {
     }
 }
 
-bool ModLoader::copyChairloaderPatch() {
+bool ChairManager::copyChairloaderPatch() {
     // copy chairloader patch
     m_DeployLogMutex.lock();
     m_DeployState = DeployState::CopyingMainPatch;
@@ -2002,7 +2003,7 @@ bool ModLoader::copyChairloaderPatch() {
     }
 }
 
-std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
+std::vector<fs::path> ChairManager::exploreLevelDirectory(fs::path pathToExplore) {
     std::vector<fs::path> levelPaths;
     for(auto &directory: fs::directory_iterator(pathToExplore)) {
         if(fs::exists(directory.path() / "level/")){
@@ -2017,7 +2018,7 @@ std::vector<fs::path> ModLoader::exploreLevelDirectory(fs::path pathToExplore) {
     return levelPaths;
 }
 
-PROCESS_INFORMATION ModLoader::packLevel(fs::path path) {
+PROCESS_INFORMATION ChairManager::packLevel(fs::path path) {
     try {
         STARTUPINFOW startupInfo = {sizeof(startupInfo)};
         PROCESS_INFORMATION processInfo;
@@ -2040,7 +2041,7 @@ PROCESS_INFORMATION ModLoader::packLevel(fs::path path) {
     return {};
 }
 
-bool ModLoader::verifyDependencies(std::string modName) {
+bool ChairManager::verifyDependencies(std::string modName) {
     auto mod = std::find(ModList.begin(), ModList.end(),modName);
     if(mod != ModList.end()){
         for(auto& dependency: mod->dependencies){
@@ -2054,7 +2055,7 @@ bool ModLoader::verifyDependencies(std::string modName) {
     return false;
 }
 
-bool ModLoader::verifyDependenciesEnabled(std::string modName) {
+bool ChairManager::verifyDependenciesEnabled(std::string modName) {
     auto mod = std::find(ModList.begin(), ModList.end(),modName);
     if(mod != ModList.end()){
         for(auto& dependency: mod->dependencies){
@@ -2071,10 +2072,10 @@ bool ModLoader::verifyDependenciesEnabled(std::string modName) {
     return false;
 }
 
-bool ModLoader::copyLocalizationPatch() {
+bool ChairManager::copyLocalizationPatch() {
     return false;
 }
-bool ModLoader::verifyChairloaderConfigFile() {
+bool ChairManager::verifyChairloaderConfigFile() {
     try {
         return fs::exists(PreyPath / "Mods/config/Chairloader.xml");
     } catch (std::exception &exception) {
@@ -2082,7 +2083,7 @@ bool ModLoader::verifyChairloaderConfigFile() {
         return false;
     }
 }
-void ModLoader::createChairloaderConfigFile() {
+void ChairManager::createChairloaderConfigFile() {
     try {
         fs::copy("chairloader_default.xml", PreyPath / "Mods/config/Chairloader.xml", fs::copy_options::overwrite_existing);
     } catch (std::exception & exception){
@@ -2090,7 +2091,7 @@ void ModLoader::createChairloaderConfigFile() {
     }
 }
 
-bool ModLoader::verifyChairloaderInstalled() {
+bool ChairManager::verifyChairloaderInstalled() {
     try{
         for (const char* fileName : PathUtils::REQUIRED_CHAIRLOADER_BINARIES)
         {
@@ -2105,7 +2106,7 @@ bool ModLoader::verifyChairloaderInstalled() {
     }
 }
 
-bool ModLoader::verifyDefaultFileStructure() {
+bool ChairManager::verifyDefaultFileStructure() {
     try {
         for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
         {
@@ -2120,7 +2121,7 @@ bool ModLoader::verifyDefaultFileStructure() {
     }
 }
 
-void ModLoader::createDefaultFileStructure() {
+void ChairManager::createDefaultFileStructure() {
     try {
         for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
         {
@@ -2131,7 +2132,7 @@ void ModLoader::createDefaultFileStructure() {
     }
 }
 
-void ModLoader::Init() {
+void ChairManager::Init() {
     installedChairloaderVersion = VersionCheck::getInstalledChairloaderVersion();
     createDefaultFileStructure();
     // Note: This method may be called mutiple times (e.g. after game path change)
@@ -2152,7 +2153,7 @@ void ModLoader::Init() {
         foundMods += std::string(" ") + foundMod.name() + ",";
     }
     log(severityLevel::info, "%s", foundMods);
-    std::ofstream ofs("ChairloaderModLoader.log", std::fstream::out | std::fstream::trunc);
+    std::ofstream ofs("ChairManager.log", std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();
     ModNameToDisplayName.clear();
@@ -2164,7 +2165,7 @@ void ModLoader::Init() {
     initialized = true;
 }
 
-void ModLoader::DrawDebug() {
+void ChairManager::DrawDebug() {
     if(ImGui::BeginTabItem("DEBUG")) {
         ImGui::Text("%.2f", ImGui::GetWindowViewport()->DpiScale);
         if(ImGui::Button("Scale 2x")){
@@ -2269,14 +2270,14 @@ void ModLoader::DrawDebug() {
     }
 }
 
-void ModLoader::SwitchToDeployScreen() {
+void ChairManager::SwitchToDeployScreen() {
     modalInitPos = ImGui::GetWindowPos();
     modalInitPos.x -= (ImGui::GetWindowWidth() + 125);
     initPosSet = false;
     m_State = State::Deploying;
 }
 
-void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
+void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     ImGuiWindowFlags windowFlags =
             ImGuiWindowFlags_NoSavedSettings |
             ImGuiWindowFlags_NoCollapse |
@@ -2344,7 +2345,7 @@ void ModLoader::DrawDeployScreen(bool *pbIsOpen) {
     }
 }
 
-void ModLoader::RunAsyncDeploy() {
+void ChairManager::RunAsyncDeploy() {
     if(m_DeployState <= DeployState::Invalid) {
         SwitchToDeployScreen();
         m_DeployTaskFuture = std::async(std::launch::async, [&]() { DeployMods(); });
@@ -2353,12 +2354,12 @@ void ModLoader::RunAsyncDeploy() {
     }
 }
 
-void ModLoader::SwitchToUninstallWizard() {
+void ChairManager::SwitchToUninstallWizard() {
     log(severityLevel::info, "Switching to uninstall wizard");
     m_State = State::UninstallWizard;
 }
 
-void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
+void ChairManager::DrawUninstallWizard(bool *pbIsOpen) {
     if (!m_pUninstallWizard)
     {
         m_pUninstallWizard = std::make_unique<ChairUninstallWizard>();
@@ -2373,7 +2374,7 @@ void ModLoader::DrawUninstallWizard(bool *pbIsOpen) {
 }
 
 
-void ModLoader::DrawUpdateWizard(bool *pBoolean) {
+void ChairManager::DrawUpdateWizard(bool *pBoolean) {
     bool draw = true;
     if(!m_pUpdateWizard){
         m_pUpdateWizard = std::make_unique<ChairUpdateWizard>();
@@ -2384,12 +2385,12 @@ void ModLoader::DrawUpdateWizard(bool *pBoolean) {
     }
 }
 
-void ModLoader::SwitchToUpdateWizard() {
+void ChairManager::SwitchToUpdateWizard() {
     log(severityLevel::info, "Switching to update wizard");
     m_State = State::UpdateWizard;
 }
 
-void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
+void ChairManager::displayXmlNode(pugi::xml_node node, int depth) {
     static float xmlDepthSpacing = 20.0f;
     if(node){
         //TODO: add way to edit style colors
@@ -2436,12 +2437,12 @@ void ModLoader::displayXmlNode(pugi::xml_node node, int depth) {
 
 }
 
-std::string ModLoader::GetDisplayName(std::string modName) {
+std::string ChairManager::GetDisplayName(std::string modName) {
     return ModNameToDisplayName.at(modName);
 //    return std::string();
 }
 
-void ModLoader::launchGame() {
+void ChairManager::launchGame() {
     log(severityLevel::info, "Launching game");
     fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH;
     m_chairloaderLaunchOptions = fs::path(m_customArgs + " ").wstring();
@@ -2479,7 +2480,7 @@ void ModLoader::launchGame() {
     }
 }
 
-void ModLoader::removeStartupCinematics() {
+void ChairManager::removeStartupCinematics() {
     log(severityLevel::info, "Removing startup cinematics");
     fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
     try {
@@ -2498,7 +2499,7 @@ void ModLoader::removeStartupCinematics() {
 
 }
 
-void ModLoader::restoreStartupCinematics() {
+void ChairManager::restoreStartupCinematics() {
     log(severityLevel::info, "Restoring startup cinematics");
     fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
     try {

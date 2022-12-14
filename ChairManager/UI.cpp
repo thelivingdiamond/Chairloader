@@ -1,6 +1,6 @@
 #include <memory>
 #include "UI.h"
-#include "ModLoader.h"
+#include "ChairManager.h"
 
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
@@ -195,7 +195,7 @@ void UI::Render()
 
     Setup();
 
-    auto pModLoader = std::make_unique<ModLoader>();
+    auto pModManager = std::make_unique<ChairManager>();
     bIsRunning = true;
 
     while (bIsRunning)
@@ -212,12 +212,12 @@ void UI::Render()
         if (!bIsRunning)
             break;
 
-        ModLoader::Get().Update();
+        ChairManager::Get().Update();
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         {
-            ModLoader::Get().Draw();
+            ChairManager::Get().Draw();
         }
         ImGui::EndFrame();
 
@@ -236,7 +236,7 @@ void UI::Render()
         pSwapChain->Present(1, 0);
     }
 
-    pModLoader.reset();
+    pModManager.reset();
 
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();

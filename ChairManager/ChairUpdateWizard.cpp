@@ -4,7 +4,7 @@
 #pragma once
 
 #include "ChairUpdateWizard.h"
-#include "ModLoader.h"
+#include "ChairManager.h"
 #include "UpdateHandler.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
@@ -18,12 +18,12 @@ bool ChairUpdateWizard::Show(const char *name, bool *pbIsOpen) {
             ImGuiWindowFlags_NoCollapse |
             ImGuiWindowFlags_NoResize;
 
-    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ModLoader::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ModLoader::Get().GetDPIScale()};
+    WINDOW_SIZE = {DEFAULT_WINDOW_SIZE.x * ChairManager::Get().GetDPIScale(), DEFAULT_WINDOW_SIZE.y * ChairManager::Get().GetDPIScale()};
     ImGui::SetNextWindowSize(WINDOW_SIZE);
     if (ImGui::Begin(name, pbIsOpen, windowFlags))
     {
-        if(ImGui::GetWindowViewport()->DpiScale != ModLoader::Get().GetDPIScale()){
-            ModLoader::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
+        if(ImGui::GetWindowViewport()->DpiScale != ChairManager::Get().GetDPIScale()){
+            ChairManager::Get().updateDPI(ImGui::GetWindowViewport()->DpiScale);
         }
         switch (m_State)
         {
