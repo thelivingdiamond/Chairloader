@@ -209,7 +209,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
 
 // at this point we have 3 nodes with valid paths and valid wildcards, a policy, and no need to overwrite. We must now recursively merge the nodes and determine policies for each node if necessary
 bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy) {
-    for(auto & node: policy.nodeStructure){
+    for(auto & node: policy.nodeStructure.children()){
         // children = nodes on our way to merge the actual content nodes
         pugi::xml_node baseChild, modChild, originalChild;
         if(std::string(baseNode.name()) == node.name()){
@@ -229,6 +229,10 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
         }
         if(!baseChild || !modChild || !originalChild){
             // no children exist, which is an error
+            if(!modChild && baseChild && originalChild){
+//                ModLoader::Get().log(ModLoader::severityLevel::debug, "Mod file %s has no child node %s", policy.file_path.u8string().c_str(), node.name());
+                continue;
+            }
             ModLoader::Get().log(ModLoader::severityLevel::error, "Node %s does not exist in any of the files", node.name());
             break;
         }
@@ -256,7 +260,7 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
 
         // merge children is a leaf node tag, so it must end the recursion
         if(nodeTags & mergingPolicy::node_tags::merge_children) {
-            switch(policy.policy){
+            switch(localPolicy.policy){
                 //overwrite = identical to merge_node
                 case mergingPolicy::identification_policy::overwrite:
                     ModLoader::Get().log(ModLoader::severityLevel::warning, "XMLMerger: merge_node should be used instead of merge_children & overwrite policy");
@@ -292,7 +296,8 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
         }
 
         // if we haven't reached a leaf node, we must recurse a level down
-        mergeNodeStructure(baseChild, modChild, originalChild, localPolicy);
+        if(!node.children().empty())
+            mergeNodeStructure(baseChild, modChild, originalChild, localPolicy);
     }
     return true;
 }

@@ -2444,7 +2444,7 @@ std::string ModLoader::GetDisplayName(std::string modName) {
 void ModLoader::launchGame() {
     log(severityLevel::info, "Launching game");
     fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH;
-    m_chairloaderLaunchOptions = fs::path(m_customArgs).wstring();
+    m_chairloaderLaunchOptions = fs::path(m_customArgs + " ").wstring();
     // bool m_bLoadChairloader -nochair
     //        m_bLoadEditor -editor
     //        m_bDevMode -devmode

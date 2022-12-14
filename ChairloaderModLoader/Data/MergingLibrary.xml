@@ -281,12 +281,37 @@
             </FocusModeProperties.xml>
             <playerConfig.xml>
                 <mergingPolicy identification_policy="match_tag">
-                    <attribute name="name" priority="0"/>
                     <nodeStructure>
-                        <PlayerConfig merge_attributes="true" merge_children="true">
+                        <PlayerConfig merge_attributes="true">
+                            <CQC merge_node="true"/>
+                            <Helmet merge_node="true"/>
+                            <Audio merge_node="true"/>
+                            <Health merge_node="true"/>
+                            <Pharma merge_node="true"/>
+                            <Radiation merge_node="true"/>
+                            <Status merge_node="true"/>
+                            <Ability merge_node="true"/>
+                            <Fatigue merge_node="true"/>
+                            <LearnedNames merge_node="true"/>
+                            <Awareness merge_node="true"/>
+                            <MarkedEnemies merge_node="true"/>
+                            <ArkPlayerScopeComponent merge_node="true"/>
+                            <Flashlight merge_node="true"/>
+                            <Movement merge_children="true" identification_policy="match_tag"/>
+                            <AutoSave merge_node="true"/>
+                            <NPCTargeting merge_node="true"/>
+                            <Weapon merge_node="true"/>
+                            <Input merge_node="true"/>
+                            <Camera merge_node="true"/>
+                            <ImpendingDanger merge_node="true"/>
+                            <Propulsion merge_node="true"/>
+                            <Examination merge_node="true"/>
+                            <Carry merge_node="true"/>
                             <Stats merge_children="true" identification_policy="match_attribute">
                                 <attribute name="name" priority="0"/>
                             </Stats>
+                            <ArkLiveTranscribeComponent merge_node="true"/>
+                            <ArkAudioLogComponent merge_node="true"/>
                         </PlayerConfig>
                     </nodeStructure>
                 </mergingPolicy>
