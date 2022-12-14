@@ -38,18 +38,18 @@ void ChairloaderGui::draw() {
                 ImGui::MenuItem("Show GUI", ChairloaderCore::Get()->GetKeyStrHideGui().c_str(), &m_bIsEnabled);
                 ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
                 gChair->GetTools()->ShowMainMenuItems();
-                ImGui::MenuItem("Show Config Menu", NULL, &control.showConfigMenu);
                 ImGui::Separator();
-                ImGui::MenuItem("Show Log History", nullptr, &control.showLogHistory);
+                ImGui::MenuItem("Config Menu", NULL, &control.showConfigMenu);
+//                ImGui::MenuItem("Show Log History", nullptr, &control.showLogHistory);
                 ImGui::Separator();
                 if (ImGui::BeginMenu("Performance")) {
                     ImGui::MenuItem("Profiler", nullptr, &control.showProfilerDialog);
                     ImGui::EndMenu();
                 }
-                if (ImGui::BeginMenu("ImGui Test/Config")) {
-                    ImGui::MenuItem("Show ImGui Demo", NULL, &control.showDemoWindow);
+                if (ImGui::BeginMenu("GUI")) {
                     ImGui::MenuItem("Show Style Editor", NULL, &control.showStyleManager);
-                    // ImGui::ShowStyleEditor();
+#ifdef DEBUG_BUILD
+                    ImGui::MenuItem("Show ImGui Demo", NULL, &control.showDemoWindow);
                     if (ImGui::MenuItem("Test Log Message")) {
                         // std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG";
                         std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too!";
@@ -58,6 +58,7 @@ void ChairloaderGui::draw() {
                     if (ImGui::MenuItem("Test Error Message")) {
                         overlayError(modName, "Welcome to funland sonic");
                     }
+#endif
                     ImGui::EndMenu();
                 }
                 ImGui::EndMenu();
@@ -68,38 +69,28 @@ void ChairloaderGui::draw() {
         ImGui::PopStyleColor();
         ImGui::PopStyleVar();
         if (!control.hideAll) {
-//            auto bgColor = ImGui::GetStyleColorVec4(ImGuiCol_PopupBg);
-//            bgColor.w = 1.0f;
             ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
             ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
             if (ImGui::BeginMainMenuBar()) {
+                if (gEnv->pSystem->IsDevMode())
+                {
                     if (ImGui::BeginMenu("Console")) {
-                        auto inDevMode = gEnv->pSystem->IsDevMode();
-                        if (ImGui::Checkbox("Dev Mode", &inDevMode)) {
-                            ((CSystem *) gEnv->pSystem)->SetDevMode(inDevMode);
+                        bool freeCam = ChairloaderCore::Get()->IsFreecamEnabled();
+                        if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(), freeCam)) {
+                            ChairloaderCore::Get()->ToggleFreecam();
                         }
-                        ImGui::Separator();
-                        
-                        if (gEnv->pSystem->IsDevMode())
-                        {
-                            bool freeCam = ChairloaderCore::Get()->IsFreecamEnabled();
-                            if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(), freeCam)) {
-                                ChairloaderCore::Get()->ToggleFreecam();
-                            }
 
-                            if (freeCam) {
-                                ICVar* moveDetachedCamera = gEnv->pConsole->GetCVar("g_moveDetachedCamera");
-                                if (ImGui::MenuItem("Freeze Free Cam", nullptr, moveDetachedCamera->GetIVal() == 0)) {
-                                    if (moveDetachedCamera->GetIVal() == 0) {
-                                        moveDetachedCamera->Set(1);
-                                    }
-                                    else {
-                                        moveDetachedCamera->Set(0);
-                                    }
+                        if (freeCam) {
+                            ICVar* moveDetachedCamera = gEnv->pConsole->GetCVar("g_moveDetachedCamera");
+                            if (ImGui::MenuItem("Freeze Free Cam", nullptr, moveDetachedCamera->GetIVal() == 0)) {
+                                if (moveDetachedCamera->GetIVal() == 0) {
+                                    moveDetachedCamera->Set(1);
+                                }
+                                else {
+                                    moveDetachedCamera->Set(0);
                                 }
                             }
                         }
-                        ImGui::Separator();
                         if (ImGui::MenuItem("Dump Commands to console")) {
                             auto xConsole = (CXConsole *) gEnv->pConsole;
                             for (auto &command: xConsole->m_mapCommands) {
@@ -109,14 +100,11 @@ void ChairloaderGui::draw() {
                         if (ImGui::MenuItem("Dump CVars to file")) {
                             gEnv->pConsole->DumpCVarsToFile("cvar_dump.txt");
                         }
-//                    if (ImGui::Button("Toggle Free Cam")) {
-//
-//                    }
-                        ImGui::EndMenu();
-                        // }
                     }
-                    ImGui::EndMainMenuBar();
+                    ImGui::EndMenu();
                 }
+                ImGui::EndMainMenuBar();
+            }
             ImGui::PopStyleColor();
             ImGui::PopStyleVar();
             ImGui::SetNextWindowPos(ImVec2(0, 0));
