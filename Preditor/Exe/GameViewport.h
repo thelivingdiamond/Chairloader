@@ -6,9 +6,17 @@ struct ITexture;
 class GameViewport : public ManagedWindow
 {
 public:
+	enum class ViewportMode
+	{
+		Scene,
+		Game,
+	};
+
 	GameViewport();
 
 protected:
+	void PreUpdate() override;
+	void Update(bool isVisible) override;
 	void ShowContents() override;
 
 private:
@@ -22,4 +30,13 @@ private:
 	ITexture* m_pViewportTexture = nullptr;
 	ICVar* m_pCVarWidth = nullptr;
 	ICVar* m_pCVarHeight = nullptr;
+
+	ViewportMode m_ViewportMode = ViewportMode::Game;
+	bool m_bEnableInput = false;
+	bool m_bLockMouse = false;
+
+	void ShowTopControls();
+	void ShowGameModeControls();
+	void SetInputEnabled(bool state);
+	void SetMouseLocked(bool state);
 };

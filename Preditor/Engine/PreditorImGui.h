@@ -8,6 +8,10 @@ class PreditorImGui : public IAppImGui
 {
 public:
 	static void InitHooks();
+
+	//! @returns the window handle for viewport.
+	static HWND GetHWNDForViewport(ImGuiID viewportId);
+
 	PreditorImGui();
 	~PreditorImGui();
 
@@ -18,6 +22,8 @@ public:
 	void ReloadFonts();
 
 	ImGuiContext* GetContext() { return m_pContext; }
+	bool IsGameInputEnabled() { return m_bEnableGameInput; }
+	void SetGameInputEnabled(bool state) { m_bEnableGameInput = state; }
 
 	int64_t WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam);
 
@@ -40,6 +46,7 @@ private:
 	HWND m_hMouseWnd = nullptr;
 	int m_MouseButtonsDown = 0;
 	bool m_bIsInFrame = false;
+	bool m_bEnableGameInput = false;
 	std::unique_ptr<PreditorImGuiRenderer> m_pRenderer;
 
 	void InitImGui();

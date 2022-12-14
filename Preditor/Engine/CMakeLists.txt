@@ -7,6 +7,8 @@ set(SOURCE_FILES
 	DebuggerConsoleOutput.h
 	EngineSwapChainPatch.cpp
 	EngineSwapChainPatch.h
+	HardwareMousePatch.cpp
+	HardwareMousePatch.h
 	MainWindowResizePatch.cpp
 	MainWindowResizePatch.h
 	pch.h

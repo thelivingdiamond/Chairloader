@@ -8,6 +8,8 @@
 #include "PreditorImGui.h"
 #include "PreditorImGuiRenderer.h"
 #include "MainWindowResizePatch.h"
+#include "PreditorEngine.h"
+#include "HardwareMousePatch.h"
 
 // There is no distinct VK_xxx for keypad enter, instead it is VK_RETURN + KF_EXTENDED, we assign it an arbitrary value to make code more readable (VK_ codes go up to 255)
 #define IM_VK_KEYPAD_ENTER      (VK_RETURN + 256)
@@ -19,8 +21,20 @@ auto g_CGameStartup_WndProcHndl_Hook = CGameStartup::FWndProcHndl.MakeHook();
 
 int64_t CGameStartup_WndProcHndl_Hook(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
 {
-    if (g_pInstance && g_pInstance->WndProcHndl(hWnd, msg, wParam, lParam))
-        return 1;
+    if (g_pInstance)
+    {
+        if (g_pInstance->IsGameInputEnabled() && PreditorEngine::HandleKeyboardMessage(hWnd, msg, wParam, lParam))
+            return 1;
+
+        bool handledMouse = HardwareMousePatch::HandleMouseMessage(hWnd, msg, wParam, lParam);
+
+        if (g_pInstance->WndProcHndl(hWnd, msg, wParam, lParam))
+            return 1;
+
+        if (handledMouse)
+            return 1;
+    }
+
     return g_CGameStartup_WndProcHndl_Hook.InvokeOrig(hWnd, msg, wParam, lParam);
 }
 
@@ -51,6 +65,15 @@ void PreditorImGui::InitHooks()
 {
     g_CGameStartup_WndProcHndl_Hook.SetHookFunc(&CGameStartup_WndProcHndl_Hook);
     PreditorImGuiRenderer::InitHooks();
+}
+
+HWND PreditorImGui::GetHWNDForViewport(ImGuiID viewportId)
+{
+    ImGuiViewport* vp = ImGui::FindViewportByID(viewportId);
+    if (vp)
+        return (HWND)vp->PlatformHandle;
+    else
+        return nullptr;
 }
 
 PreditorImGui::PreditorImGui()
@@ -733,7 +756,15 @@ void PreditorImGui::Plat_OnChangedViewport(ImGuiViewport* viewport)
 
 LRESULT PreditorImGui::WndProcHndl_PlatformWindow(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    if (g_pInstance->m_bEnableGameInput && PreditorEngine::HandleKeyboardMessage(hWnd, msg, wParam, lParam))
+        return 1;
+
+    bool handledMouse = HardwareMousePatch::HandleMouseMessage(hWnd, msg, wParam, lParam);
+
     if (g_pInstance->WndProcHndl(hWnd, msg, wParam, lParam))
+        return true;
+
+    if (handledMouse)
         return true;
 
     if (ImGuiViewport* viewport = ImGui::FindViewportByPlatformHandle((void*)hWnd))

@@ -13,6 +13,10 @@ public:
 	void InitGame();
 	void ShutdownGame();
 
+	//! Processes keyboard events.
+	//! @returns true if it was processed and doesn't need to be passed to the game.
+	static bool HandleKeyboardMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam);
+
 	// IPreditorEngine
 	void Load(const InitParams& params) override;
 	bool Start(const InitParams& params) override;
@@ -20,6 +24,8 @@ public:
 	void SetAppImGui() override;
 	void Update() override;
 	ITexture* GetViewportTexture() override;
+	void SetGameInputEnabled(bool state) override;
+	void SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
 
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;
@@ -36,6 +42,7 @@ private:
 	bool m_bWasEverStarted = false;
 
 	std::shared_ptr<PreditorImGui> m_pImGui;
+	bool m_bGameInput = false;
 
 	void ApplyBasePatches();	//!< Applies patches used by both full and minimal engine.
 	void ApplyFullPatches();	//!< Applies patches used by the full engine.

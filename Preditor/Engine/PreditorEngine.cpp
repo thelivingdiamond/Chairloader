@@ -3,6 +3,7 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/GameDll/GameStartup.h>
+#include <Prey/GameDll/basiceventlistener.h>
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IChairToPreditor.h>
 #include <App/Application.h>
@@ -14,6 +15,7 @@
 #include "PreditorImGui.h"
 #include "EngineSwapChainPatch.h"
 #include "MainWindowResizePatch.h"
+#include "HardwareMousePatch.h"
 #include "RendererGlobals.h"
 
 namespace
@@ -239,6 +241,30 @@ void PreditorEngine::ShutdownGame()
 	Application::Get()->SetAppImGui(nullptr);
 }
 
+bool PreditorEngine::HandleKeyboardMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
+{
+	HWND hMainWnd = (HWND)gEnv->pSystem->GetHWND();
+	IBasicEventListener* pBasicEventListener = &static_cast<CGameStartup*>(g_PreditorEngine.m_pGameStartup)->m_basicEventListener;
+
+	switch (msg)
+	{
+	case WM_SYSKEYDOWN:
+		pBasicEventListener->OnSysKeyDown(hMainWnd, wParam, lParam);
+		return true;
+	case WM_SYSCHAR:
+		pBasicEventListener->OnSycChar(hMainWnd);
+		return true;
+	case WM_SYSCOMMAND:
+		pBasicEventListener->OnSysCommand(hMainWnd, wParam);
+		return true;
+	case WM_HOTKEY:
+		pBasicEventListener->OnHotKey(hMainWnd);
+		return true;
+	}
+
+	return false;
+}
+
 void PreditorEngine::Load(const InitParams& params)
 {
 	if (m_hPreyDll)
@@ -337,6 +363,7 @@ bool PreditorEngine::Start(const InitParams& params)
 	}
 
 	CGameStartup* pStartup = Prey_CreateGameStartup();
+	HardwareMousePatch::SetIBasicEventListener(&pStartup->m_basicEventListener);
 	bool initResult = pStartup->Init(startupParams);
 	g_ProgressCallback = ProgressCallback();
 
@@ -419,6 +446,18 @@ ITexture* PreditorEngine::GetViewportTexture()
 	return EngineSwapChainPatch::GetBackbuffer();
 }
 
+void PreditorEngine::SetGameInputEnabled(bool state)
+{
+	m_bGameInput = state;
+	m_pImGui->SetGameInputEnabled(state);
+	HardwareMousePatch::SetWindowFocused(state);
+}
+
+void PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
+{
+	HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);
+}
+
 IChairloaderMod* PreditorEngine::GetMod()
 {
 	return &g_PreditorAsMod;
@@ -426,7 +465,16 @@ IChairloaderMod* PreditorEngine::GetMod()
 
 bool PreditorEngine::HandleInputEvent(const SInputEvent& event)
 {
-	return true;
+	if (m_bGameInput)
+	{
+		// The game can process it
+		return false;
+	}
+	else
+	{
+		// No input to the game
+		return true;
+	}
 }
 
 void PreditorEngine::ApplyBasePatches()
@@ -445,6 +493,7 @@ void PreditorEngine::ApplyFullPatches()
 	PreditorImGui::InitHooks();
 	EngineSwapChainPatch::InitHooks();
 	MainWindowResizePatch::InitHooks();
+	HardwareMousePatch::InitHooks();
 
 	uint8_t* dllBase = (uint8_t*)m_hPreyDll.get();
 

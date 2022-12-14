@@ -61,4 +61,10 @@ struct IPreditorEngine
 
 	//! @returns the texture of viewport backbuffer.
 	virtual ITexture* GetViewportTexture() = 0;
+
+	//! Enables/disable keyboard and mouse input to the game.
+	virtual void SetGameInputEnabled(bool state) = 0;
+
+	//! Sets the bounds of the game viewport in screen coordinates.
+	virtual void SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) = 0;
 };
