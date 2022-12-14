@@ -55,9 +55,12 @@ public:
 	bool UpdateWindow() final override;
 
 protected:
+	//! Called before ImGui::Begin only when visible.
+	virtual void PreUpdate();
+
 	//! Called just after ImGui::Begin when visible.
 	//! Called every WindowManager frame if not visible.
-	virtual void Update();
+	virtual void Update(bool isVisible);
 
 	//! Shows the contents of the window. This is only called if ImGui::Begin returned true.
 	virtual void ShowContents() = 0;

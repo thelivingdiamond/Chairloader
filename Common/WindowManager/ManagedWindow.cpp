@@ -46,8 +46,9 @@ bool ManagedWindow::UpdateWindow()
 
 		if (m_bVisible)
 		{
+			PreUpdate();
 			bool isVisible = ImGui::Begin(m_FullTitle.c_str(), m_bCloseable ? &m_bOpen : nullptr, m_Flags);
-			Update();
+			Update(isVisible);
 			if (isVisible)
 				ShowContents();
 			ImGui::End();
@@ -55,14 +56,19 @@ bool ManagedWindow::UpdateWindow()
 		else
 		{
 			// Only update when invisible.
-			Update();
+			Update(false);
 		}
 	}
 
 	return m_bOpen;
 }
 
-void ManagedWindow::Update()
+void ManagedWindow::PreUpdate()
+{
+
+}
+
+void ManagedWindow::Update(bool isVisible)
 {
 
 }
