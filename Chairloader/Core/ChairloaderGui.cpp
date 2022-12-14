@@ -9,24 +9,23 @@
 #include "ChairloaderConfigManager.h"
 
 ChairloaderGui::ChairloaderGui() {
-    GUILog = &log;
     ImGui::GetStyle().Alpha = 0.8f;
     gCL->gui = this;
 }
 
 
-void ChairloaderGui::logItem(std::string msg, const std::string modName, logLevel level, bool displayToScreen) {
-    log.logItem(msg, modName, level, displayToScreen);
-}
-
-void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
-    log.logItem(message, displayToScreen);
-}
+//void ChairloaderGui::logItem(std::string msg, const std::string modName, logLevel level, bool displayToScreen) {
+//    log.logItem(msg, modName, level, displayToScreen);
+//}
+//
+//void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
+//    log.logItem(message, displayToScreen);
+//}
 
 
 void ChairloaderGui::draw() {
     if(m_bIsEnabled || persistentLogOverlay){
-        log.drawDisplay();
+        overlayLogManager.draw();
     }
     if (m_bIsEnabled) {
         auto bgColor = ImGui::GetStyleColorVec4(ImGuiCol_PopupBg);
@@ -53,10 +52,10 @@ void ChairloaderGui::draw() {
                     if (ImGui::MenuItem("Test Log Message")) {
                         // std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG";
                         std::string testMsg = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too!";
-                        overlayLog(modName, "%s", testMsg.c_str());
+                        OverlayLog("{}", testMsg.c_str());
                     }
                     if (ImGui::MenuItem("Test Error Message")) {
-                        overlayError(modName, "Welcome to funland sonic");
+                        OverlayError("Welcome to funland sonic");
                     }
 #endif
                     ImGui::EndMenu();
@@ -72,8 +71,7 @@ void ChairloaderGui::draw() {
             ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
             ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
             if (ImGui::BeginMainMenuBar()) {
-                if (gEnv->pSystem->IsDevMode())
-                {
+                if (gEnv->pSystem->IsDevMode()) {
                     if (ImGui::BeginMenu("Console")) {
                         bool freeCam = ChairloaderCore::Get()->IsFreecamEnabled();
                         if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(), freeCam)) {
@@ -100,8 +98,8 @@ void ChairloaderGui::draw() {
                         if (ImGui::MenuItem("Dump CVars to file")) {
                             gEnv->pConsole->DumpCVarsToFile("cvar_dump.txt");
                         }
+                        ImGui::EndMenu();
                     }
-                    ImGui::EndMenu();
                 }
                 ImGui::EndMainMenuBar();
             }
@@ -117,8 +115,6 @@ void ChairloaderGui::draw() {
                 ImGui::ShowDemoWindow(&control.showDemoWindow);
             if (control.showStyleManager)
                 ImGui::ShowStyleEditor();
-            if (control.showLogHistory)
-                log.drawHistory(&control.showLogHistory);
             if (control.showProfilerDialog)
                 profilerDialog.Show(&control.showProfilerDialog);
             if (control.showConfigMenu)
@@ -138,36 +134,35 @@ void ChairloaderGui::update() {
     //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
     //}
-    
 }
 
-void ChairloaderGui::overlayLog(std::string modName, const char *format, ...) {
-    char buffer[8192];
-    va_list args;
-    va_start(args, format);
-    vsnprintf(buffer, sizeof(buffer), format, args);
-    va_end(args);
-    log.logItem(buffer, modName);
-    CryLog("{}", buffer);
-}
-
-void ChairloaderGui::overlaywarning(std::string modName, const char *format, ...) {
-    char buffer[8192];
-    va_list args;
-    va_start(args, format);
-    vsnprintf(buffer, sizeof(buffer), format, args);
-    va_end(args);
-    log.logItem(buffer, modName, logLevel::warning);
-    CryWarning("{}", buffer);
-}
-
-void ChairloaderGui::overlayError(std::string modName, const char *format, ...) {
-    char buffer[8192];
-    va_list args;
-    va_start(args, format);
-    vsnprintf(buffer, sizeof(buffer), format, args);
-    va_end(args);
-    log.logItem(buffer, modName, logLevel::error);
-    CryError("{}", buffer);
-}
+//void ChairloaderGui::overlayLog(std::string modName, const char *format, ...) {
+//    char buffer[8192];
+//    va_list args;
+//    va_start(args, format);
+//    vsnprintf(buffer, sizeof(buffer), format, args);
+//    va_end(args);
+//    log.logItem(buffer, modName);
+//    CryLog("{}", buffer);
+//}
+//
+//void ChairloaderGui::overlaywarning(std::string modName, const char *format, ...) {
+//    char buffer[8192];
+//    va_list args;
+//    va_start(args, format);
+//    vsnprintf(buffer, sizeof(buffer), format, args);
+//    va_end(args);
+//    log.logItem(buffer, modName, logLevel::warning);
+//    CryWarning("{}", buffer);
+//}
+//
+//void ChairloaderGui::overlayError(std::string modName, const char *format, ...) {
+//    char buffer[8192];
+//    va_list args;
+//    va_start(args, format);
+//    vsnprintf(buffer, sizeof(buffer), format, args);
+//    va_end(args);
+//    log.logItem(buffer, modName, logLevel::error);
+//    CryError("{}", buffer);
+//}
 

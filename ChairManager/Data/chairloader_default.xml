@@ -2,6 +2,7 @@
 <Chairloader version="">
     <HideGUIKey type="string">f1</HideGUIKey>
     <ToggleFreecamKey type="string">f2</ToggleFreecamKey>
+    <ToggleFreecamKey type="string">~</ToggleFreecamKey>
     <Modules type="xmlnode">
         <ChairloaderGUI type="xmlnode">
             <Enable type="bool">1</Enable>

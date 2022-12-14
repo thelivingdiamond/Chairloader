@@ -7,6 +7,7 @@
 #include "DevConsoleDialog.h"
 #include "FileBrowser.h"
 #include "PerfOverlay.h"
+#include <Chairloader/IChairloaderCore.h>
 
 std::unique_ptr<Internal::IChairloaderTools> Internal::IChairloaderTools::CreateInstance()
 {
@@ -24,6 +25,7 @@ void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
 
 void ChairloaderTools::InitGame()
 {
+    m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
 	m_pDevConsole = std::make_unique<DevConsoleDialog>();
 	m_pFileBrowser = std::make_unique<FileBrowser>();
 	m_pPerfOverlay = std::make_unique<PerfOverlay>();
@@ -49,7 +51,10 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 {
 	// Perf info is always visible
 	m_pPerfOverlay->Update();
-
+    if(gChair->GetChairloaderEnvironment()->conf->getConfigDirty("Chairloader"))
+    {
+        m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
+    }
 	if (gCL->gui->IsEnabled())
 	{
 		ShowMainMenuBar();
@@ -76,7 +81,7 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 
 bool ChairloaderTools::HandleKeyPress(const SInputEvent& event)
 {
-	if (event.keyId == eKI_Tilde && event.state == eIS_Pressed)
+	if (event.keyId == m_KeyToggleConsole && event.state == eIS_Pressed)
 	{
 		bool alt = (event.modifiers & eMM_Alt) != 0;
 		auto modLogOnAlt = alt ? DevConsoleDialog::TabRequest::ModLog : DevConsoleDialog::TabRequest::None;
@@ -114,7 +119,8 @@ bool ChairloaderTools::HandleKeyPress(const SInputEvent& event)
 
 void ChairloaderTools::ShowMainMenuItems()
 {
-	ImGui::MenuItem("Show Console", "~", &m_bDrawDevConsole);
+    auto keyName = gChair->GetKeyNames().left.at(m_KeyToggleConsole);
+	ImGui::MenuItem("Show Console", keyName.c_str(), &m_bDrawDevConsole);
 }
 
 void ChairloaderTools::ShowMainMenuBar()

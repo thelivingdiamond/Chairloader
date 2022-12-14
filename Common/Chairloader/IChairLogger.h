@@ -26,6 +26,12 @@ struct IChairLogger
 	//! @param	size	Message length
 	virtual void Log(EChairLogType type, const char* msg, size_t size) = 0;
 
+    //! Logs the message to the overlay.
+    //! @param	type	Message type
+    //! @param	msg		Message text
+    //! @param	size	Message length
+    virtual void OverlayLog(EChairLogType type, const char* msg, size_t size) = 0;
+
 	//! Causes a fatal error with specified reason.
 	//! @param	msg		Message text
 	virtual void FatalError(const char* msg) = 0;
@@ -63,3 +69,19 @@ inline void CryError(std::string_view format, const Args &...args) { VCryLog(ECh
 //! Displays error message, logs it to console and file and error message box, then terminates execution.
 template <typename... Args>
 inline void CryFatalError(std::string_view format, const Args &...args) { VCryFatalError(format, fmt::make_format_args(args...)); }
+
+
+//! Logging Function that will display the message in the console and in the log file, but also in the overlay.
+void VCryOverlayLog(EChairLogType type, std::string_view format, fmt::format_args args);
+
+//! Simple logs of data with low verbosity, but also in the overlay.
+template <typename... Args>
+inline void OverlayLog(std::string_view format, const Args &...args) { VCryOverlayLog(EChairLogType::Message, format, fmt::make_format_args(args...)); }
+
+//! OverlayLog but in yellow and with [Warning] prefix. Different from Engine's CryWarning, but also in the overlay.
+template <typename... Args>
+inline void OverlayWarning(std::string_view format, const Args &...args) { VCryOverlayLog(EChairLogType::Warning, format, fmt::make_format_args(args...)); }
+
+//! OverlayLog but in red and with [Error] prefix. Also in the overlay.
+template <typename... Args>
+inline void OverlayError(std::string_view format, const Args &...args) { VCryOverlayLog(EChairLogType::Error, format, fmt::make_format_args(args...)); }

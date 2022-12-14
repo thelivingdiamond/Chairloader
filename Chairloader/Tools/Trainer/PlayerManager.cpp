@@ -555,20 +555,20 @@ void PlayerManager::loadPosition(int saveSlot) {
 		if (positions[saveSlot] != Vec3_tpl{ 0, 0, 0 }) {
 			ArkPlayer::GetInstance().GetEntity()->SetPos(positions[saveSlot]);
 			std::string playerMessage = "Player position set to ";
-			gCL->gui->logItem(
+            OverlayLog(
 				playerMessage + "Pos "+ std::to_string(saveSlot + 1) + " at " + std::to_string(positions[saveSlot].x) + "," +
-				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
 		}
 		else {
-			gCL->gui->logItem(
+            OverlayLog(
 				std::string("Invalid Saved Position: ") + std::to_string(positions[saveSlot].x) + "," +
-				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
 		}
 	}
 }
 void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
 	positions[saveSlot] = ArkPlayer::GetInstance().GetEntity()->GetPos();
-	gCL->gui->logItem("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+    OverlayLog("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
 }
 
 

@@ -1,5 +1,6 @@
 #include "ChairLogger.h"
 #include "LogManager.h"
+#include "OverlayLog.h"
 
 static void CryLogf(const char* format, ...)
 {
@@ -73,4 +74,42 @@ const char* ChairLogger::GetName()
 void ChairLogger::SetName(const char* name)
 {
 	m_Name = name;
+}
+
+void ChairLogger::OverlayLog(EChairLogType type, const char *msg, size_t size) {
+    CryStackStringT<char, PRINT_MSG_BUF_SIZE> buf;
+
+    // Mod name
+    buf.append("[$3");
+    buf.append(m_Name.c_str(), m_Name.size());
+    buf.append("$0] ");
+
+    // Prefix
+    const char* prefix = nullptr;
+    switch (type)
+    {
+        case EChairLogType::Message:
+            // None
+            break;
+        case EChairLogType::Warning:
+            prefix = "$6[Warning] ";
+            break;
+        case EChairLogType::Error:
+            prefix = "$4[Error] ";
+            break;
+        default:
+            CryFatalError("[ChairLogger::Log][{}] Unknown log type", m_Name);
+            break;
+    }
+
+    if (prefix)
+        buf.append(prefix);
+
+    buf.append(msg, size);
+
+    // Log to the engine logger
+    CryLogf("%s", buf.c_str());
+
+    // Log to the log manager with overlay
+    LogManager::Get().AddMessage(buf.c_str(), buf.size(), true);
 }

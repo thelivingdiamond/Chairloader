@@ -14,17 +14,17 @@ public:
     bool IsEnabled() override { return m_bIsEnabled; }
     void SetEnabled(bool state) override { m_bIsEnabled = state; }
 
-    void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
-    void logItem(logMessage message, bool displayToScreen = true) override;
+//    void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
+//    void logItem(logMessage message, bool displayToScreen = true) override;
 
     void draw();
     void update();
 
-    void overlayLog(std::string modName, const char *format, ...) override;
-
-    void overlaywarning(std::string modName, const char *format, ...) override;
-
-    void overlayError(std::string modName, const char *format, ...) override;
+//    void overlayLog(std::string modName, const char *format, ...) override;
+//
+//    void overlaywarning(std::string modName, const char *format, ...) override;
+//
+//    void overlayError(std::string modName, const char *format, ...) override;
 
 private:
     struct chairloaderGuiControl {
@@ -50,6 +50,6 @@ private:
     bool g_bInitialised;
 
     chairloaderGuiControl control;
-    ChairloaderGUILog log;
     ProfilerDialog profilerDialog;
+    OverlayLogManager overlayLogManager;
 };

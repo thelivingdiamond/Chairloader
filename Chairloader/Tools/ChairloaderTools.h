@@ -24,6 +24,7 @@ public:
 private:
 	// Dev tools
 	bool m_bDrawDevConsole = false;
+    EKeyId m_KeyToggleConsole = eKI_Unknown;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 	std::unique_ptr<FileBrowser> m_pFileBrowser;
 	std::unique_ptr<PerfOverlay> m_pPerfOverlay;

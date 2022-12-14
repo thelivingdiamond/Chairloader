@@ -282,14 +282,14 @@ void EntityManager::drawEntityList(bool* bShow) {
                             ImGui::Text("Relation to selected entity: %s", getDispositionStr(IfactionManager->GetEffectiveFactionDispositionToEntity(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction))).c_str());
                             if(ImGui::Button("Set Entity to Selected Faction")){
                                 factionmanager->SetEntityFaction(entity->GetId(), IfactionManager->GetFactionIndex(selectedFaction));
-                                gCL->gui->overlayLog(GetModuleName(), "Set Entity %s to Selected Faction %s", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
+                                OverlayLog("Set Entity {} to Selected Faction {}", entity->GetName(), IfactionManager->GetFactionName(selectedFaction).c_str());
 //                                gCL->gui->logItem(std::string("Set Entity ") + entity->GetName() + " to Faction " + IfactionManager->GetFactionName(selectedFaction).c_str(), GetModuleName());
                             }
                             ImGui::EndTabItem();
                         }
                         if (ImGui::BeginTabItem("Actions:")) {
                             // Entity Actions here
-                            ImGui::Text("Hidden: %s", entity->IsHidden() ? "true" : "false");
+                            ImGui::Text("Hidden: {}", entity->IsHidden() ? "true" : "false");
                             if(ImGui::Button("Toggle Hidden")){
                                 entity->Hide(!entity->IsHidden());
                             }
@@ -297,7 +297,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                             nameSet = entity->GetName();
                             if(ImGui::InputText("Name", &nameSet))
                                 entity->SetName(nameSet.c_str());
-                            ImGui::Text("Invisible: %s", entity->IsInvisible() ? "true" : "false");
+                            ImGui::Text("Invisible: {}", entity->IsInvisible() ? "true" : "false");
                             if(ImGui::Button("Toggle Invisible")){
                                 entity->Invisible(!entity->IsInvisible());
                             }
@@ -1575,14 +1575,14 @@ void EntityManager::spawnEntity() {
                                                                  spawnCount, selectedSpawnerFaction);
                         if (entity != nullptr) {
                             if (selectedSpawnerFaction != 0) {
-                                gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s in faction %s", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
+                                OverlayLog("Spawned {} {} in faction {}", spawnCount, archetype->GetName(), gEnv->pGame->GetIArkFactionManager()->GetFactionName(selectedSpawnerFaction).c_str());
                             } else {
-                                gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
+                                OverlayLog("Spawned {} {}", spawnCount, archetype->GetName());
                             }
                         }
                     } else {
                         EntityUtils::SpawnEntity(inputName.c_str(), pos, rot, archetype->GetId(), spawnCount);
-                        gCL->gui->overlayLog(GetModuleName(), "Spawned %i %s", spawnCount, archetype->GetName());
+                        OverlayLog("Spawned {} {}", spawnCount, archetype->GetName());
                     }
                 }
                 // done
@@ -1649,14 +1649,14 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
             } else {
                 throw("Error, no class found");
             }
-            gCL->gui->logItem("spawned an entity: " + inputName, moduleName);
+            OverlayLog("spawned an entity: %s", inputName);
         }
         else {
             throw("Error, no archetype found");
         }
     }
     catch (std::string& c) {
-        gCL->gui->logItem(c, moduleName, logLevel::error);
+        OverlayLog("%s", c.c_str());
     }
 }
 

@@ -29,13 +29,18 @@ void LogManager::Update()
 	}
 }
 
-void LogManager::AddMessage(const char* text, size_t size)
+void LogManager::AddMessage(const char* text, size_t size, bool inOverlay)
 {
 	if (m_MainThreadId == CryGetCurrentThreadId())
 	{
 		// Add to the buffer
 		Message& msg = GetNewMessage();
 		msg.text = std::string(text, size);
+        if(inOverlay)
+        {
+            msg.time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+            m_OverlayMessages.emplace_back(msg);
+        }
 	}
 	else
 	{
@@ -44,6 +49,11 @@ void LogManager::AddMessage(const char* text, size_t size)
 		msg.text = std::string(text, size);
 		std::scoped_lock lock(m_ThreadQueueMutex);
 		m_ThreadQueue.emplace_back(std::move(msg));
+        if(inOverlay)
+        {
+            msg.time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+            m_OverlayThreadQueue.emplace_back(std::move(msg));
+        }
 	}
 }
 
@@ -79,4 +89,24 @@ std::vector<LogManager::Message> LogManager::GetQueuedMessages()
 	std::scoped_lock lock(m_ThreadQueueMutex);
 	m_ThreadQueue.swap(result);
 	return result;
+}
+
+void LogManager::GetOverlayMessage(size_t idx, char *buf, size_t bufSize, uint64_t *time) {
+    cry_strcpy(buf, bufSize, m_OverlayMessages[idx].text.data(), m_OverlayMessages[idx].text.size());
+    *time = m_OverlayMessages[idx].time;
+}
+
+size_t LogManager::GetOverlayMessageCount() {
+    return m_OverlayMessages.size();
+}
+
+std::vector<LogManager::Message> LogManager::GetOverlayQueuedMessages() {
+    std::vector<Message> result;
+    std::scoped_lock lock(m_ThreadQueueMutex);
+    m_OverlayThreadQueue.swap(result);
+    return result;
+}
+
+void LogManager::RemoveOverlayMessage(size_t idx) {
+    m_OverlayMessages.erase(m_OverlayMessages.begin() + idx);
 }
