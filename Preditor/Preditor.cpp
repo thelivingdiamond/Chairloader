@@ -36,7 +36,9 @@ void Preditor::Update()
 			m_pLoadGameStage.reset();
 			//m_pDevConsole = std::make_unique<DevConsoleDialog>();
             m_pProjectManager = std::make_unique<ProjectManager>();
+            m_pLookingGlass = std::make_unique<LookingGlass>();
             m_pProjectManager->Init();
+            m_pLookingGlass->Init();
             m_pProjectSelectStage = std::make_unique<ProjectSelectStage>();
 		}
         else if (m_pProjectSelectStage){
@@ -52,8 +54,10 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
-	//if (m_pDevConsole)
-	//	m_pDevConsole->Show(bOpen);
+	// if (m_pDevConsole)
+	// 	m_pDevConsole->Show(bOpen);
+    if(m_pLookingGlass)
+        m_pLookingGlass->ShowUI();
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

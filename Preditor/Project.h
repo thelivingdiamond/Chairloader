@@ -4,6 +4,7 @@
 
 #ifndef CHAIRLOADER_PROJECT_H
 #define CHAIRLOADER_PROJECT_H
+#pragma once
 
 #include "pch.h"
 #include "App/AppStage.h"

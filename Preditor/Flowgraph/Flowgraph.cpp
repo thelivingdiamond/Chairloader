@@ -12,6 +12,7 @@
 #include <boost/algorithm/string.hpp>
 #include <ImGui/imgui_internal.h>
 #include <Windows.h>
+#include "../LookingGlass.h"
 
 Node * FlowGraph::getNode(int64_t id) {
     if (m_Nodes.find(id) != m_Nodes.end()) {
@@ -999,6 +1000,19 @@ bool FlowGraphFromXML::saveXML() {
     }
     m_pParent->exportXmlFile();
     return true;
+}
+
+void FlowGraphFromXML::draw() {
+    if(m_FlowGraphType== FlowGraphType::Entity) {
+        LookingGlass::Get()->setContext(LookingGlass::LookingGlassContext::Level);
+        LookingGlass::Get()->setContextPath(m_pParent->m_RelativePath);
+    } else if (m_FlowGraphType == FlowGraphType::GlobalAction || m_FlowGraphType == FlowGraphType::UIAction) {
+        LookingGlass::Get()->setContext(LookingGlass::LookingGlassContext::Global);
+    } else {
+        LookingGlass::Get()->setContext(LookingGlass::LookingGlassContext::None);
+    }
+
+    FlowGraph::draw();
 }
 
 

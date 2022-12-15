@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--A list of all the locations where relevant ids/names/guids are listed for proper matching into the looking glass system-->
+<root>
+    <Ark>
+        <AI>
+            <AiDistractors>
+                <ArkDistractors.xml>
+                    <nodeStructure>
+                        <ArkDistractions>
+                            <Distractions match_children="true">
+                                <ID32 attribute="ID"/>
+                                <Name attribute="Name"/>
+                            </Distractions>
+                        </ArkDistractions>
+                    </nodeStructure>
+                </ArkDistractors.xml>
+                <ArkAutomaticDistractors.xml>
+                    <nodeStructure>
+                        <AutoDistractions>
+                            <Archetypes match_children="true" >
+                                <ID32 attribute="DistractionID"/>
+                                <Name attribute="Name" not_unique="true"/>
+                            </Archetypes>
+                            <EntityClasses>
+                                <EntityClass match_children="true">
+                                    <ID32 attribute="DistractionID"/>
+                                    <Name attribute="Name" not_unique="true"/>
+                                </EntityClass>
+                            </EntityClasses>
+                            <MetaTags>
+                                <MetaTag match_children="true">
+                                    <ID32 attribute="DistractionID"/>
+                                    <Name attribute="Name" not_unique="true"/>
+                                </MetaTag>
+                            </MetaTags>
+                            <_MimicDistraction match_node="true">
+                                <ID32 attribute="DistractionID"/>
+                            </_MimicDistraction>
+                        </AutoDistractions>
+                    </nodeStructure>
+                </ArkAutomaticDistractors.xml>
+            </AiDistractors>
+        </AI>
+        <Campaign>
+            <Objectives>
+                <nodeStructure>
+                    <Objectives match_children="true" continue="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="title"/>
+                        <Children>
+                            <Descriptions match_children="true">
+                                <ID32 attribute="id"/>
+                                <Name attribute="displayName"/>
+                            </Descriptions>
+                            <Tasks match_children="true">
+                                <ID32 attribute="id"/>
+                                <Name attribute="displayName"/>
+                            </Tasks>
+                            <Clues match_children="true">
+                                <ID32 attribute="id"/>
+                                <Name attribute="displayName"/>
+                            </Clues>
+                        </Children>
+                    </Objectives>
+                </nodeStructure>
+            </Objectives>
+            <AudioLogs.xml>
+                <nodeStructure>
+                    <ArkAudioLogLibrary>
+                        <AudioLogs match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </AudioLogs>
+                        <AudioLogCollections match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </AudioLogCollections>
+                    </ArkAudioLogLibrary>
+                </nodeStructure>
+            </AudioLogs.xml>
+            <Books.xml>
+                <nodeStructure>
+                    <ArkNotes>
+                        <Notes match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Notes>
+                    </ArkNotes>
+                </nodeStructure>
+            </Books.xml>
+            <CharacterLibrary.xml>
+                <nodeStructure>
+                    <ArkCharacters>
+                        <Characters match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Characters>
+                    </ArkCharacters>
+                </nodeStructure>
+            </CharacterLibrary.xml>
+            <EmailLibrary.xml>
+                <nodeStructure>
+                    <ArkEmails>
+                        <Emails match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Emails>
+                    </ArkEmails>
+                </nodeStructure>
+            </EmailLibrary.xml>
+            <GameStateConditionLibary.xml>
+                <nodeStructure>
+                    <ArkGameStateConditionLibrary>
+                        <GameStateConditions match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </GameStateConditions>
+                    </ArkGameStateConditionLibrary>
+                </nodeStructure>
+            </GameStateConditionLibary.xml>
+            <GroupLibrary.xml>
+                <nodeStructure>
+                    <ArkCharacterGroups>
+                        <Groups match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Groups>
+                    </ArkCharacterGroups>
+                </nodeStructure>
+            </GroupLibrary.xml>
+            <KeycardLibrary.xml>
+                <nodeStructure>
+                    <ArkKeyCards>
+                        <KeyCards match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </KeyCards>
+                    </ArkKeyCards>
+                </nodeStructure>
+            </KeycardLibrary.xml>
+            <KeyCodeLibary.xml>
+                <nodeStructure>
+                    <ArkKeyCodes>
+                        <KeyCodes match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </KeyCodes>
+                    </ArkKeyCodes>
+                </nodeStructure>
+            </KeyCodeLibary.xml>
+            <Locations.xml>
+                <nodeStructure>
+                    <ArkLocations>
+                        <Locations match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Locations>
+                    </ArkLocations>
+                </nodeStructure>
+            </Locations.xml>
+            <LoreLibrary.xml>
+                <nodeStructure>
+                    <ArkLoreLibrary>
+                        <Entries match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Entries>
+                    </ArkLoreLibrary>
+                </nodeStructure>
+            </LoreLibrary.xml>
+            <Notes.xml>
+                <nodeStructure>
+                    <ArkNotes>
+                        <Notes match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Notes>
+                    </ArkNotes>
+                </nodeStructure>
+            </Notes.xml>
+            <POILibrary.xml>
+                <nodeStructure>
+                    <ArkPOILibrary>
+                        <POIs match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </POIs>
+                    </ArkPOILibrary>
+                </nodeStructure>
+            </POILibrary.xml>
+            <SecurityStationLibrary.xml>
+                <nodeStructure>
+                    <ArkSecurityStations>
+                        <SecurityStations match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </SecurityStations>
+                    </ArkSecurityStations>
+                </nodeStructure>
+            </SecurityStationLibrary.xml>
+            <StationAccessLibrary.xml>
+               <nodeStructure>
+                    <ArkStationAccessLibrary>
+                        <Paths match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Paths>
+                        <Airlocks match_children="true">
+                            <ID32 attribute="ID"/>
+                        </Airlocks>
+                    </ArkStationAccessLibrary>
+                </nodeStructure>
+            </StationAccessLibrary.xml>
+            <TutorialLibrary.xml>
+                <nodeStructure>
+                    <ArkTutorialLibrary>
+                        <Tutorials match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Tutorials>
+                    </ArkTutorialLibrary>
+                </nodeStructure>
+            </TutorialLibrary.xml>
+            <WorkstationLibrary.xml>
+                <nodeStructure>
+                    <ArkWorkstations>
+                        <Workstations match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Workstations>
+                    </ArkWorkstations>
+                </nodeStructure>
+            </WorkstationLibrary.xml>
+        </Campaign>
+        <Dialog>
+<!--            TODO: more dialog support-->
+            <VoiceLibrary.xml>
+                <nodeStructure>
+                    <ArkDialogVoices>
+                        <Voices match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Voices>
+                    </ArkDialogVoices>
+                </nodeStructure>
+            </VoiceLibrary.xml>
+        </Dialog>
+        <Items>
+            <ArkItems.xml>
+               <nodeStructure>
+                    <items match_children="true">
+                        <Name attribute="name"/>
+                    </items>
+                </nodeStructure>
+            </ArkItems.xml>
+            <FabricationPlanLibrary.xml>
+                <nodeStructure>
+                    <ArkFabricationPlans>
+                        <FabricationPlans match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </FabricationPlans>
+                    </ArkFabricationPlans>
+                </nodeStructure>
+            </FabricationPlanLibrary.xml>
+            <LootTables.xml>
+                <nodeStructure>
+                    <ArkLootTables>
+                        <LootTables match_children="true">
+                            <Name attribute="Name"/>
+                        </LootTables>
+                    </ArkLootTables>
+                </nodeStructure>
+            </LootTables.xml>
+        </Items>
+        <Npc>
+            <NpcAbilities.xml>
+                <nodeStructure>
+                    <NpcAbilities match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </NpcAbilities>
+                </nodeStructure>
+            </NpcAbilities.xml>
+<!--            <NpcGameEffects.xml>-->
+<!--                <nodeStructure>-->
+<!--                    <NpcGameEffects match_children="true">-->
+<!--                        <ID32 attribute="id"/>-->
+<!--                        <Name attribute="name"/>-->
+<!--                    </NpcGameEffects>-->
+<!--                </nodeStructure>-->
+<!--            </NpcGameEffects.xml>-->
+        </Npc>
+        <Player>
+            <Abilities.xml>
+                <nodeStructure>
+                    <ArkAbilities>
+                        <Abilities match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Label"/>
+                        </Abilities>
+                    </ArkAbilities>
+                </nodeStructure>
+            </Abilities.xml>
+            <GameMetrics.xml>
+                <nodeStructure>
+                    <ArkGameMetricLibrary>
+                        <Metrics match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Metrics>
+                    </ArkGameMetricLibrary>
+                </nodeStructure>
+            </GameMetrics.xml>
+            <ResearchTopics.xml>
+                <nodeStructure>
+                    <ArkResearchTopics>
+                        <Topics match_children="true">
+                            <ID32 attribute="id"/>
+                            <Name attribute="name"/>
+                        </Topics>
+                    </ArkResearchTopics>
+                </nodeStructure>
+            </ResearchTopics.xml>
+            <SignalFXLibrary.xml>
+                <nodeStructure>
+                    <ArkSignalFXLibrary>
+                        <FX match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </FX>
+                    </ArkSignalFXLibrary>
+                </nodeStructure>
+            </SignalFXLibrary.xml>
+            <StatPackages.xml>
+                <nodeStructure>
+                    <ArkStatModifierPackages>
+                        <Packages match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Packages>
+                    </ArkStatModifierPackages>
+                </nodeStructure>
+            </StatPackages.xml>
+            <Traumas.xml>
+                <nodeStructure>
+                    <ArkTraumas>
+                        <Traumas match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </Traumas>
+                    </ArkTraumas>
+                </nodeStructure>
+            </Traumas.xml>
+        </Player>
+        <SignalSystem>
+            <Modifiers.xml>
+                <nodeStructure>
+                    <modifiers match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </modifiers>
+                </nodeStructure>
+            </Modifiers.xml>
+            <Packages.xml>
+                <nodeStructure>
+                    <packages match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </packages>
+                </nodeStructure>
+            </Packages.xml>
+            <SignalGroups.xml>
+                <nodeStructure>
+                    <SignalGroups match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </SignalGroups>
+                </nodeStructure>
+            </SignalGroups.xml>
+            <Signals.xml>
+                <nodeStructure>
+                    <signals match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </signals>
+                </nodeStructure>
+            </Signals.xml>
+        </SignalSystem>
+        <VisualEffects>
+            <ArkPostEffects.xml>
+                <nodeStructure>
+                        <ArkPostEffects match_children="true">
+                            <ID32 attribute="Id"/>
+                            <Name attribute="Name"/>
+                        </ArkPostEffects>
+                </nodeStructure>
+            </ArkPostEffects.xml>
+            <MaterialAnimations.xml>
+                <nodeStructure>
+                    <ArkMaterialAnimations>
+                        <Animations match_children="true">
+                            <ID32 attribute="Id"/>
+                            <Name attribute="Name"/>
+                        </Animations>
+                    </ArkMaterialAnimations>
+                </nodeStructure>
+            </MaterialAnimations.xml>
+        </VisualEffects>
+        <WeaponMods>
+            <ArkWeaponMods.xml>
+                <nodeStructure>
+                    <ArkWeaponMods>
+                        <WeaponModifiers match_children="true">
+                            <ID32 attribute="ID"/>
+                            <Name attribute="Name"/>
+                        </WeaponModifiers>
+                    </ArkWeaponMods>
+                </nodeStructure>
+            </ArkWeaponMods.xml>
+        </WeaponMods>
+        <ArkCameraShakes.xml>
+            <nodeStructure>
+                <ArkCameraShakes>
+                    <CameraShakes match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </CameraShakes>
+                </ArkCameraShakes>
+            </nodeStructure>
+        </ArkCameraShakes.xml>
+        <ArkEventDrivenAchievementLibrary.xml>
+            <nodeStructure>
+                <ArkEventDrivenAchievementLibrary>
+                    <EventDrivenAchievements match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </EventDrivenAchievements>
+                </ArkEventDrivenAchievementLibrary>
+            </nodeStructure>
+        </ArkEventDrivenAchievementLibrary.xml>
+        <ArkFactions.xml>
+           <nodeStructure>
+                <ArkFactions>
+                    <Factions match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </Factions>
+                </ArkFactions>
+            </nodeStructure>
+        </ArkFactions.xml>
+        <ArkMetaTags.xml>
+            <nodeStructure>
+                <ArkMetaTags>
+                    <MetaTags match_children="true">
+                        <ID32 attribute="id"/>
+                        <Name attribute="name"/>
+                    </MetaTags>
+                </ArkMetaTags>
+            </nodeStructure>
+        </ArkMetaTags.xml>
+        <ArkPropertyProfiles.xml>
+            <nodeStructure>
+                <ArkPropertyProfileLibrary>
+                    <DisruptionProfiles match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </DisruptionProfiles>
+                    <LightDisruptionProfiles match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </LightDisruptionProfiles>
+                </ArkPropertyProfileLibrary>
+            </nodeStructure>
+        </ArkPropertyProfiles.xml>
+        <EmotionLibrary.xml>
+            <nodeStructure>
+                <ArkEmotions>
+                    <Emotions match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </Emotions>
+                </ArkEmotions>
+            </nodeStructure>
+        </EmotionLibrary.xml>
+        <EntitlementLibrary.xml>
+            <nodeStructure>
+                <ArkEntitlementLibrary>
+                    <Entitlements match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </Entitlements>
+                </ArkEntitlementLibrary>
+            </nodeStructure>
+        </EntitlementLibrary.xml>
+        <EntitlementUnlockLibrary.xml>
+            <nodeStructure>
+                <ArkEntitlementUnlockLibrary>
+                    <EntitlementUnlocks match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </EntitlementUnlocks>
+                </ArkEntitlementUnlockLibrary>
+            </nodeStructure>
+        </EntitlementUnlockLibrary.xml>
+        <GameNoises.xml>
+            <nodeStructure>
+                <ArkGameNoises>
+                    <Types match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </Types>
+                    <Loudnesses match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </Loudnesses>
+                </ArkGameNoises>
+            </nodeStructure>
+        </GameNoises.xml>
+        <RemoteEventLibrary.xml>
+           <nodeStructure>
+                <ArkRemoteEvents>
+                    <RemoteEvents match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </RemoteEvents>
+                </ArkRemoteEvents>
+            </nodeStructure>
+        </RemoteEventLibrary.xml>
+        <TipLibrary.xml>
+            <nodeStructure>
+                <ArkTipLibrary>
+                    <Tips match_children="true">
+                        <ID32 attribute="ID"/>
+                        <Name attribute="Name"/>
+                    </Tips>
+                </ArkTipLibrary>
+            </nodeStructure>
+        </TipLibrary.xml>
+    </Ark>
+    <Libs>
+        <EntityArchetypes>
+           <nodeStructure>
+                <EntityPrototypeLibrary match_children="true">
+                    <ID32 attribute="ArchetypeID"/>
+                    <GUID128 attribute="Id"/>
+                    <Name attribute="Name"/>
+                </EntityPrototypeLibrary>
+            </nodeStructure>
+        </EntityArchetypes>
+        <Flares>
+            <nodeStructure>
+                <LensFlareLibrary match_children="true">
+                    <Name attribute="Name"/>
+                    <GUID128 attribute="Id"/>
+                </LensFlareLibrary>
+            </nodeStructure>
+        </Flares>
+        <GameTokens>
+            <nodeStructure>
+                <GameTokensLibrary match_children="true">
+                    <ID32 attribute="Id"/>
+                    <Name attribute="Name"/>
+                </GameTokensLibrary>
+            </nodeStructure>
+        </GameTokens>
+    </Libs>
+    <Prefabs>
+        <nodeStructure>
+            <PrefabsLibrary match_children="true">
+                <Name attribute="Name"/>
+                <GUID128 attribute="Id"/>
+            </PrefabsLibrary>
+        </nodeStructure>
+    </Prefabs>
+    <Levels>
+        <Campaign>
+            <EndGame>
+                <level>
+                    <gametokens>
+                        <levelgametokens.xml>
+                            <nodeStructure>
+                                <GameTokensLibrary match_children="true">
+                                    <ID32 attribute="Id"/>
+                                    <Name attribute="Name"/>
+                                </GameTokensLibrary>
+                            </nodeStructure>
+                        </levelgametokens.xml>
+                    </gametokens>
+                    <mission_mission0.xml>
+                        <nodeStructure>
+                            <Mission>
+                                <Objects match_children="true">
+                                    <ID32 attribute="EntityId"/>
+                                    <Name attribute="Name"/>
+                                    <GUID64 attribute="EntityGuid"/>
+                                </Objects>
+                            </Mission>
+                        </nodeStructure>
+                    </mission_mission0.xml>
+                    <leveldata.xml>
+                        <nodeStructure>
+                            <LevelData>
+                                <Layers>
+                                    <Layer match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </Layer>
+                                </Layers>
+                            </LevelData>
+                        </nodeStructure>
+                    </leveldata.xml>
+                </level>
+            </EndGame>
+            <Engineering>
+                <CargoBay>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </CargoBay>
+                <LifeSupport>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </LifeSupport>
+                <PowerSource>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </PowerSource>
+            </Engineering>
+            <Executive>
+                <Arboretum>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </Arboretum>
+                <Bridge>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </Bridge>
+                <CorporateIT>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </CorporateIT>
+                <CrewFacilities>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </CrewFacilities>
+            </Executive>
+            <Research>
+                <Lobby>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </Lobby>
+                <Prototype>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </Prototype>
+                <Psychotronics>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </Psychotronics>
+                <ShuttleBay>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </ShuttleBay>
+                <SimulationLabs>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </SimulationLabs>
+                <ZeroG_UtilityTunnels>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </ZeroG_UtilityTunnels>
+            </Research>
+            <Station>
+                <Exterior>
+                    <level>
+                        <gametokens>
+                            <levelgametokens.xml>
+                                <nodeStructure>
+                                    <GameTokensLibrary match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </GameTokensLibrary>
+                                </nodeStructure>
+                            </levelgametokens.xml>
+                        </gametokens>
+                        <mission_mission0.xml>
+                            <nodeStructure>
+                                <Mission>
+                                    <Objects match_children="true">
+                                        <ID32 attribute="EntityId"/>
+                                        <Name attribute="Name"/>
+                                        <GUID64 attribute="EntityGuid"/>
+                                    </Objects>
+                                </Mission>
+                            </nodeStructure>
+                        </mission_mission0.xml>
+                        <leveldata.xml>
+                            <nodeStructure>
+                                <LevelData>
+                                    <Layers>
+                                        <Layer match_children="true">
+                                            <ID32 attribute="Id"/>
+                                            <Name attribute="Name"/>
+                                        </Layer>
+                                    </Layers>
+                                </LevelData>
+                            </nodeStructure>
+                        </leveldata.xml>
+                    </level>
+                </Exterior>
+            </Station>
+            <PlayerGenderSelect>
+                <level>
+                    <gametokens>
+                        <levelgametokens.xml>
+                            <nodeStructure>
+                                <GameTokensLibrary match_children="true">
+                                    <ID32 attribute="Id"/>
+                                    <Name attribute="Name"/>
+                                </GameTokensLibrary>
+                            </nodeStructure>
+                        </levelgametokens.xml>
+                    </gametokens>
+                    <mission_mission0.xml>
+                        <nodeStructure>
+                            <Mission>
+                                <Objects match_children="true">
+                                    <ID32 attribute="EntityId"/>
+                                    <Name attribute="Name"/>
+                                    <GUID64 attribute="EntityGuid"/>
+                                </Objects>
+                            </Mission>
+                        </nodeStructure>
+                    </mission_mission0.xml>
+                    <leveldata.xml>
+                        <nodeStructure>
+                            <LevelData>
+                                <Layers>
+                                    <Layer match_children="true">
+                                        <ID32 attribute="Id"/>
+                                        <Name attribute="Name"/>
+                                    </Layer>
+                                </Layers>
+                            </LevelData>
+                        </nodeStructure>
+                    </leveldata.xml>
+                </level>
+            </PlayerGenderSelect>
+        </Campaign>
+    </Levels>
+</root>
