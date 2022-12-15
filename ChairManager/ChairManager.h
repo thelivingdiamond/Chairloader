@@ -106,6 +106,30 @@ public:
     }
     std::string GetDisplayName(std::string modName);
     void DeployForInstallWizard();
+
+    std::string getETag() {
+        return m_githubETag;
+    }
+    void setETag(std::string eTag) {
+        m_githubETag = eTag;
+        if(!ChairManagerConfigFile.first_child().child("ETag"))
+            ChairManagerConfigFile.first_child().append_child("ETag");
+        ChairManagerConfigFile.first_child().child("ETag").text().set(eTag.c_str());
+        saveModManagerConfigFile();
+    }
+
+    std::string getCachedLatestVersion() {
+        auto versionNode = ChairManagerConfigFile.first_child().child("LatestVersion");
+        if(versionNode)
+            return versionNode.text().as_string();
+        return "";
+    }
+    void setCachedLatestVersion(std::string version) {
+        if(!ChairManagerConfigFile.first_child().child("LatestVersion"))
+            ChairManagerConfigFile.first_child().append_child("LatestVersion");
+        ChairManagerConfigFile.first_child().child("LatestVersion").text().set(version.c_str());
+        saveModManagerConfigFile();
+    }
 private:
     //! DPI
     bool updateDPIScaling;
@@ -369,6 +393,7 @@ private:
     //! Chairloader version checking
     VersionCheck::DLLVersion packagedChairloaderVersion;
     VersionCheck::DLLVersion installedChairloaderVersion;
+    std::string m_githubETag;
 
     //! Chairloader Launch Options
     std::wstring m_chairloaderLaunchOptions;

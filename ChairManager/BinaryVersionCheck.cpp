@@ -11,6 +11,8 @@
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 #include <boost/json.hpp>
+#include <curlpp/Info.hpp>
+#include <curlpp/Infos.hpp>
 #include "UpdateURL.h"
 
 static std::string m_latestVersion;
@@ -67,23 +69,46 @@ VersionCheck::DLLVersion VersionCheck::getLatestChairloaderVersion() {
     return DLLVersion(getLatestChairloaderVersionString());
 }
 
-void VersionCheck::fetchLatestVersion() {
+void VersionCheck::fetchLatestVersion(bool bForce) {
     std::stringstream result;
     cURLpp::Easy easyhandle;
     easyhandle.setOpt(cURLpp::Options::Url(UPDATE_URL));
     easyhandle.setOpt(cURLpp::Options::WriteStream(&result));
     easyhandle.setOpt(cURLpp::Options::UserAgent("ChairmanagerAutoUpdate"));
+    if(!bForce)
+        easyhandle.setOpt(cURLpp::Options::HttpHeader({"If-None-Match: " + ChairManager::Get().getETag()}));
+    easyhandle.setOpt(cURLpp::Options::HeaderFunction([&](char* data, size_t size, size_t nmemb) -> size_t {
+        std::string header(data, size * nmemb);
+        // example Etag Header response: ETag: W/"5be34ecc3f6c8c84a1ac3fe6441ab4b36a86c5141eb77e8737cc036198ec9820"\r\n
+        // remove the ETag: W/ and the \r\n
+        if (header.find("ETag: ") == 0) {
+            auto etag = header.substr(8, header.size() - 10);
+            ChairManager::Get().setETag(etag);
+        }
+        return size * nmemb;
+    }));
     easyhandle.perform();
+    // get the response code
+    long http_code = curlpp::infos::ResponseCode::get(easyhandle);
+    ChairManager::Get().log(ChairManager::severityLevel::debug, "HTTP Response Code: %ld", http_code);
+    if(http_code == 304) {
+        // no update available, use the cached version
+        m_latestVersion = ChairManager::Get().getCachedLatestVersion();
+        return;
+    }
     std:: string tag_name;
     easyhandle.reset();
     try {
         auto json = boost::json::parse(result.str());
         tag_name = json.at("tag_name").as_string();
+        // get the etag
+//        auto etag = curlpp::infos::ResponseCode::G
     } catch (std::exception &e) {
         ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
         return;
     }
     m_latestVersion = tag_name;
+    ChairManager::Get().setCachedLatestVersion(tag_name);
 }
 
 

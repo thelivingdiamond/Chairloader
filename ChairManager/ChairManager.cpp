@@ -79,12 +79,14 @@ void ChairManager::LoadModManagerConfig()
                 SetGamePath(path);
             }
         }
+        m_githubETag = ChairManagerConfigFile.first_child().child("ETag").text().as_string();
     }
     else {
         log(severityLevel::error, "ChairManager config file not found, creating new");
         ChairManagerConfigFile.reset();
         ChairManagerConfigFile.append_child("ChairManager");
         ChairManagerConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
+        ChairManagerConfigFile.first_child().append_child("ETag").text().set(m_githubETag.c_str());
         auto launchOptionsNode = ChairManagerConfigFile.first_child().append_child("LaunchOptions");
         launchOptionsNode.append_attribute("LoadChairloader").set_value(true);
         launchOptionsNode.append_attribute("LoadEditor").set_value(false);
@@ -158,9 +160,10 @@ void ChairManager::SwitchToInstallWizard()
 #endif
     else
     {
-        log(severityLevel::info, "Chairloader version %s found, %s is packaged with this installer",
+        log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer, %s is the latest version on github",
             VersionCheck::getInstalledChairloaderVersion().String().c_str(),
-            VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            VersionCheck::getPackagedChairloaderVersion().String().c_str(),
+            VersionCheck::getLatestChairloaderVersion().String().c_str());
         m_State = State::MainWindow;
     }
 }
@@ -1179,9 +1182,9 @@ ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
     packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
-    VersionCheck::fetchLatestVersion();
     cURLpp::initialize();
     LoadModManagerConfig();
+    VersionCheck::fetchLatestVersion();
 
     if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
         SwitchToGameSelectionDialog(PreyPath);
@@ -2264,6 +2267,13 @@ void ChairManager::DrawDebug() {
 
             if(ImGui::Button("Switch to update wizard")){
                 SwitchToUpdateWizard();
+            }
+            ImGui::Text("ETAG:");
+            ImGui::Text("%s", m_githubETag.c_str());
+            static std::string newETag;
+            ImGui::InputText("New ETAG", &newETag);
+            if(ImGui::Button("Set ETAG")){
+                setETag(newETag);
             }
         }
         ImGui::EndTabItem();

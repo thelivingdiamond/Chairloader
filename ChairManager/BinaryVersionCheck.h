@@ -52,7 +52,7 @@ namespace VersionCheck {
     };
     DLLVersion getBinaryVersion(fs::path szVersionFile);
     std::string getBinaryVersionString(fs::path szVersionFile);
-    void fetchLatestVersion();
+    void fetchLatestVersion(bool bForce = false);
 
     DLLVersion getInstalledChairloaderVersion();
     std::string getInstalledChairloaderVersionString();
