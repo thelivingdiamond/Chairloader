@@ -308,6 +308,9 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
             ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
             ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+            if(ImGui::Button("Force Check For Update")){
+                VersionCheck::fetchLatestVersion(true);
+            }
         }
         if(ImGui::Button("Close")){
             ImGui::CloseCurrentPopup();
