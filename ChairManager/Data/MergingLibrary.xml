@@ -427,10 +427,10 @@
                 <mergingPolicy identification_policy="match_attribute">
                     <attribute name="name" priority="0"/>
                     <nodeStructure>
-                       <WeaponConfig>
-                           <Weapons merge_children="true"/>
-                           <Stats merge_children="true"/>
-                       </WeaponConfig>
+                        <WeaponConfig>
+                            <Weapons merge_children="true"/>
+                            <Stats merge_children="true"/>
+                        </WeaponConfig>
                     </nodeStructure>
                 </mergingPolicy>
             </Config.xml>
@@ -958,7 +958,7 @@
         </SmartObjects.xml>
     </Libs>
     <Localization>
-<!--    this is going to be a mess -->
+        <!--    this is going to be a mess -->
         <mergingPolicy identification_policy="match_spreadsheet"/>
     </Localization>
     <Prefabs>
@@ -1197,7 +1197,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1302,7 +1306,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1424,7 +1432,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1531,7 +1543,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1636,7 +1652,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1741,7 +1761,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1863,7 +1887,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -1987,7 +2015,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2092,7 +2124,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2197,7 +2233,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2302,7 +2342,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2407,7 +2451,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2512,7 +2560,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2619,7 +2671,11 @@
                                                 <attribute name="Name" priority="0"/>
                                             </Ammo>
                                         </Weapons>
-                                        <Objects merge_children="true"/>
+                                        <Objects merge_children="true" identification_policy="match_attribute">
+                                            <attribute name="EntityGuid" priority="0"/>
+                                            <attribute name="EntityId" priority="1"/>
+                                            <attribute name="Name" priority="2"/>
+                                        </Objects>
                                         <encounterRoot merge_children="true" identification_policy="match_attribute">
                                             <attribute name="encounterProfileName" priority="0"/>
                                         </encounterRoot>
@@ -2725,7 +2781,11 @@
                                             <attribute name="Name" priority="0"/>
                                         </Ammo>
                                     </Weapons>
-                                    <Objects merge_children="true"/>
+                                    <Objects merge_children="true" identification_policy="match_attribute">
+                                        <attribute name="EntityGuid" priority="0"/>
+                                        <attribute name="EntityId" priority="1"/>
+                                        <attribute name="Name" priority="2"/>
+                                    </Objects>
                                     <encounterRoot merge_children="true" identification_policy="match_attribute">
                                         <attribute name="encounterProfileName" priority="0"/>
                                     </encounterRoot>
