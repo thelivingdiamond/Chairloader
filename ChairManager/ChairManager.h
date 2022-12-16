@@ -401,6 +401,7 @@ private:
     bool m_bLoadChairloader = true,
         m_bLoadEditor = false,
         m_bDevMode = true,
+        m_bTrainer = true,
         m_bNoRandom = false,
         m_bAuxGeom = false;
     void launchGame();

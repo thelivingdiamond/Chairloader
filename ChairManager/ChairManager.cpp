@@ -68,18 +68,39 @@ void ChairManager::LoadModManagerConfig()
     if (ChairManagerConfigFile.load_file(ChairManagerConfigPath.wstring().c_str())) {
         if (ChairManagerConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairManagerConfigFile.first_child().child("PreyPath").text().as_string());
-            auto launchOptionsNode = ChairManagerConfigFile.first_child().child("LaunchOptions");
-            m_bLoadChairloader = launchOptionsNode.attribute("LoadChairloader").as_bool();
-            m_bLoadEditor = launchOptionsNode.attribute("LoadEditor").as_bool();
-            m_bDevMode = launchOptionsNode.attribute("DevMode").as_bool();
-            m_bNoRandom = launchOptionsNode.attribute("NoRandom").as_bool();
-            m_bAuxGeom = launchOptionsNode.attribute("AuxGeom").as_bool();
             if (PathUtils::ValidateGamePath(path))
             {
                 SetGamePath(path);
             }
         }
         m_githubETag = ChairManagerConfigFile.first_child().child("ETag").text().as_string();
+        if(!ChairManagerConfigFile.first_child().child("LaunchOptions"))
+            ChairManagerConfigFile.first_child().append_child("LaunchOptions");
+        auto launchOptionsNode = ChairManagerConfigFile.first_child().child("LaunchOptions");
+        //LoadChairloader
+        if(!launchOptionsNode.attribute("LoadChairloader"))
+            launchOptionsNode.append_attribute("LoadChairloader").set_value(true);
+        m_bLoadChairloader = launchOptionsNode.attribute("LoadChairloader").as_bool();
+        //LoadEditor
+        if(!launchOptionsNode.attribute("LoadEditor"))
+            launchOptionsNode.append_attribute("LoadEditor").set_value(false);
+        m_bLoadEditor = launchOptionsNode.attribute("LoadEditor").as_bool();
+        //DevMode
+        if(!launchOptionsNode.attribute("DevMode"))
+            launchOptionsNode.append_attribute("DevMode").set_value(false);
+        m_bDevMode = launchOptionsNode.attribute("DevMode").as_bool();
+        //NoRandom
+        if(!launchOptionsNode.attribute("NoRandom"))
+            launchOptionsNode.append_attribute("NoRandom").set_value(false);
+        m_bNoRandom = launchOptionsNode.attribute("NoRandom").as_bool();
+        //AuxGeom
+        if(!launchOptionsNode.attribute("AuxGeom"))
+            launchOptionsNode.append_attribute("AuxGeom").set_value(false);
+        m_bAuxGeom = launchOptionsNode.attribute("AuxGeom").as_bool();
+        //Trainer
+        if(!launchOptionsNode.attribute("Trainer"))
+            launchOptionsNode.append_attribute("Trainer").set_value(false);
+        m_bTrainer = launchOptionsNode.attribute("Trainer").as_bool();
     }
     else {
         log(severityLevel::error, "ChairManager config file not found, creating new");
@@ -93,6 +114,7 @@ void ChairManager::LoadModManagerConfig()
         launchOptionsNode.append_attribute("DevMode").set_value(true);
         launchOptionsNode.append_attribute("NoRandom").set_value(false);
         launchOptionsNode.append_attribute("AugGeom").set_value(false);
+        launchOptionsNode.append_attribute("Trainer").set_value(false);
         ChairManagerConfigFile.save_file(ChairManagerConfigPath.wstring().c_str());
     }
     log(severityLevel::info, "ChairManager Config File Loaded");
@@ -680,6 +702,10 @@ void ChairManager::DrawModList() {
             //        m_bAuxGeom;
             if(ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)){
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
+                saveModManagerConfigFile();
+            }
+            if(ImGui::Checkbox("Load Trainers", &m_bTrainer)) {
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("Trainer").set_value(m_bTrainer);
                 saveModManagerConfigFile();
             }
             if(ImGui::Checkbox("Load Editor", &m_bLoadEditor)){
@@ -2478,6 +2504,9 @@ void ChairManager::launchGame() {
     }
     if(m_bAuxGeom){
         m_chairloaderLaunchOptions += L" -auxgeom";
+    }
+    if(m_bTrainer){
+        m_chairloaderLaunchOptions += L" -trainer";
     }
     // launch the game
     fs::path command = exePath.wstring() + m_chairloaderLaunchOptions;
