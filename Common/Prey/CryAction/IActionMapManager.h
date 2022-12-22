@@ -112,11 +112,12 @@ enum EActionFilterType
 
 enum EActionInputDevice
 {
-	eAID_Unknown       = 0,
-	eAID_KeyboardMouse = BIT(0),
-	eAID_XboxPad       = BIT(1),
-	eAID_PS4Pad        = BIT(2),
-	eAID_OculusTouch   = BIT(3),
+    eAID_Unknown = 0,
+    eAID_KeyboardMouse = 1,
+    eAID_XboxPad = 2,
+    eAID_PS4Pad = 4,
+    eAID_SteamController = 8,
+    eAID_All = 15,
 };
 
 struct SActionInputDeviceData
