@@ -34,6 +34,7 @@ public:
 	//! Calls a function for each mod in the load order or reverse order.
 	//! @{
 	void CallInitSystem() override;
+    void CallConnect() override;
 	void CallInitGame() override;
 	void CallShutdownGame() override;
 	void CallShutdownSystem() override;

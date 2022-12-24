@@ -247,6 +247,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Load DLL mods
 	m_pCore->GetDllManager()->LoadModules();
 	m_pCore->GetDllManager()->CallInitSystem();
+    m_pCore->GetDllManager()->CallConnect();
 
 	m_pRender->SetRenderThreadIsIdle(false);
 }

@@ -23,6 +23,7 @@ struct IModDllManager
 	//! Calls a function for each mod in the load order or reverse order.
 	//! @{
 	virtual void CallInitSystem() = 0;
+    virtual void CallConnect() = 0;
 	virtual void CallInitGame() = 0;
 	virtual void CallShutdownGame() = 0;
 	virtual void CallShutdownSystem() = 0;

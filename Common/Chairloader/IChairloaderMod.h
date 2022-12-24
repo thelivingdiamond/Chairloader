@@ -46,8 +46,14 @@ struct IChairloaderMod {
 	//! Gets the Mod SDK version used to build the DLL.
 	virtual void GetModSdkVersion(int& major, int& minor, int& patch) = 0;
 
+    //! Retrieves a mod interface.
+    virtual void* QueryInterface(const char* ifaceName) = 0;
+
 	//! Called during CSystem::Init, before any engine modules.
 	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) = 0;
+
+    //! Called after CSystem::Init, after all engine modules and mods are initialized. Provides mod interfaces to other mods.
+    virtual void Connect(const std::vector<IChairloaderMod*>& mods) = 0;
 	
 	//! Called after CGame::Init
 	virtual void InitGame(bool isHotReloading) = 0;
