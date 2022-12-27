@@ -7,7 +7,10 @@
 #include "DevConsoleDialog.h"
 #include "FileBrowser.h"
 #include "PerfOverlay.h"
+#include "LocalizationUtil.h"
 #include <Chairloader/IChairloaderCore.h>
+#include <Prey/CrySystem/ILocalizationManager.h>
+#include <Prey/CrySystem/LocalizedStringManager.h>
 
 std::unique_ptr<Internal::IChairloaderTools> Internal::IChairloaderTools::CreateInstance()
 {
@@ -29,6 +32,7 @@ void ChairloaderTools::InitGame()
 	m_pDevConsole = std::make_unique<DevConsoleDialog>();
 	m_pFileBrowser = std::make_unique<FileBrowser>();
 	m_pPerfOverlay = std::make_unique<PerfOverlay>();
+    m_pLocalizationUtil = std::make_unique<LocalizationUtil>();
 
 	if (m_bEnableTrainer)
 	{
@@ -76,6 +80,8 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 		{
 			m_pEditor->ShowUI();
 		}
+
+        m_pLocalizationUtil->draw();
 	}
 }
 
@@ -135,6 +141,7 @@ void ChairloaderTools::ShowMainMenuBar()
 				m_pPerfOverlay->ShowMenu();
 				ImGui::EndMenu();
 			}
+            m_pLocalizationUtil->drawMenu();
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

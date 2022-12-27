@@ -4,6 +4,7 @@
 class DevConsoleDialog;
 class FileBrowser;
 class PerfOverlay;
+class LocalizationUtil;
 
 class EntityManager;
 class PlayerManager;
@@ -38,6 +39,9 @@ private:
 	// Editor
 	bool m_bEnableEditor = false;
 	std::unique_ptr<Editor> m_pEditor;
+
+    // Localization
+    std::unique_ptr<LocalizationUtil> m_pLocalizationUtil;
 
 	void ShowMainMenuBar();
 };

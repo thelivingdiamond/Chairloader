@@ -28,7 +28,7 @@ set(SOURCE_FILES
 	PerfOverlay.cpp
 	PerfOverlay.h
 	README.md
-)
+		LocalizationUtil.cpp LocalizationUtil.h)
 
 add_library(Chairloader.Tools STATIC ${SOURCE_FILES})
 target_include_directories(Chairloader.Tools PRIVATE .)
