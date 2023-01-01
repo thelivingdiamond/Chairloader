@@ -297,14 +297,106 @@ public:
 class ITouchEventListener;
 class IKinectInput;
 class INaturalPointInput;
-struct IFFParams;
-struct STouchEvent;
+enum EFFEffectId
+{
+    eFF_Rumble_Basic = 0,
+    eFF_Rumble_Frame
+};
+struct SFFTriggerOutputData
+{
+    struct Initial
+    {
+        enum Value
+        {
+            ZeroIt = 0,
+            Default
+        };
+    };
+
+    struct Flags
+    {
+        enum Value
+        {
+            LeftTouchToActivate  = 1 << 0,
+            RightTouchToActivate = 1 << 1,
+        };
+    };
+
+    float  leftGain, rightGain;
+    float  leftStrength, rightStrength;
+    uint16 leftEnv, rightEnv;
+    uint32 flags;
+
+    SFFTriggerOutputData()  { Init(Initial::ZeroIt); }
+    SFFTriggerOutputData(Initial::Value v)  { Init(v); }
+    SFFTriggerOutputData(bool leftTouchToActivate, bool rightTouchToActivate, float lTrigger, float rTrigger, float lStrength, float rStrength, uint16 lTriggerEnv, uint16 rTriggerEnv) :
+            leftGain(lTrigger), rightGain(rTrigger), leftStrength(lStrength), rightStrength(rStrength), leftEnv(lTriggerEnv), rightEnv(rTriggerEnv)
+    {
+        SetFlag(Flags::LeftTouchToActivate, leftTouchToActivate);
+        SetFlag(Flags::RightTouchToActivate, rightTouchToActivate);
+    }
+
+    void Init(Initial::Value v)
+    {
+        if (v == Initial::ZeroIt)
+        {
+            flags = 0;
+            leftGain = rightGain = 0.0f;
+            leftStrength = rightStrength = 0.0f;
+            leftEnv = rightEnv = 0;
+        }
+        else if (v == Initial::Default)
+        {
+            flags = 0;
+            leftGain = rightGain = 1.0f;
+            leftStrength = rightStrength = 0.0f;
+            leftEnv = rightEnv = 4;
+        }
+    }
+
+    void operator+=(const SFFTriggerOutputData& operand2)
+    {
+        leftGain += operand2.leftGain;
+        rightGain += operand2.rightGain;
+        // DARIO_TODO: check what to do with envelopes in this case
+        leftEnv = max(leftEnv, operand2.leftEnv);
+        rightEnv = max(rightEnv, operand2.rightEnv);
+        // DARIO_TODO: check what to do with the touch required in this case
+        SetFlag(Flags::LeftTouchToActivate, IsFlagEnabled(Flags::LeftTouchToActivate) || operand2.IsFlagEnabled(Flags::LeftTouchToActivate));
+        SetFlag(Flags::RightTouchToActivate, IsFlagEnabled(Flags::RightTouchToActivate) || operand2.IsFlagEnabled(Flags::RightTouchToActivate));
+    }
+
+    ILINE float GetClampedLeftGain() const          { return clamp_tpl(leftGain, 0.0f, 1.0f); }
+    ILINE float GetClampedRightGain() const         { return clamp_tpl(rightGain, 0.0f, 1.0f); }
+
+    bool        IsFlagEnabled(Flags::Value f) const { return (flags & f) != 0; }
+
+private:
+    void EnableFlag(Flags::Value f)      { flags |= f; }
+    void DisableFlag(Flags::Value f)     { flags &= ~f; }
+    void SetFlag(Flags::Value f, bool b) { if (b) EnableFlag(f); else DisableFlag(f); }
+
+};
+struct IFFParams
+{
+    EInputDeviceType     deviceType;
+    EFFEffectId          effectId;
+    float                strengthA, strengthB;
+    float                timeInSeconds;
+    SFFTriggerOutputData triggerData;
+
+    IFFParams() : strengthA(0), strengthB(0), timeInSeconds(0), triggerData(SFFTriggerOutputData::Initial::ZeroIt)
+    {
+        effectId = eFF_Rumble_Basic;
+        deviceType = eIDT_Unknown;
+    }
+};struct STouchEvent;
 struct SFFOutputEvent;
 
 class IInputDevice
 {
 public:
-	virtual ~IInputDevice() = 0;
+	virtual ~IInputDevice() {};
 	virtual const char *GetDeviceName() = 0;
 	virtual EInputDeviceType GetDeviceType() = 0;
 	virtual unsigned __int64 GetDeviceId() = 0;
