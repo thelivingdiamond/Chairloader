@@ -409,8 +409,8 @@ public:
 	virtual bool SetExclusiveMode(bool) = 0;
 	virtual void ClearKeyState() = 0;
 	virtual void ClearAnalogKeyState(std::vector<SInputSymbol *> *) = 0;
-	virtual const char *GetKeyName(const EKeyId) = 0;
 	virtual const char *GetKeyName(const SInputEvent *) = 0;
+    virtual const char *GetKeyName(const EKeyId) = 0;
 	virtual char GetInputCharAscii(const SInputEvent *) = 0;
 	virtual const wchar_t *GetOSKeyName(const SInputEvent *) = 0;
 	virtual SInputSymbol *LookupSymbol(EKeyId) = 0;
@@ -457,8 +457,8 @@ public:
 	virtual void ShutDown() = 0;
 	virtual void SetExclusiveMode(EInputDeviceType, bool, void *) = 0;
 	virtual bool InputState(const TKeyName *, EInputState) = 0;
-	virtual const char *GetKeyName(EKeyId) = 0;
 	virtual const char *GetKeyName(const SInputEvent *) = 0;
+    virtual const char *GetKeyName(EKeyId) = 0;
 	virtual char GetInputCharAscii(const SInputEvent *) = 0;
 	virtual SInputSymbol *LookupSymbol(EInputDeviceType, int, EKeyId) = 0;
 	virtual const SInputSymbol *LookupSymbolByName(EInputDeviceType, int, const char *) = 0;
