@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryAction/ScriptBind_ItemSystem.h>
-#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#include <Prey/CryScriptSystem/IScriptSystem.h>
 
 class ArkItemSystem;
 class ICrySizer;

@@ -1,442 +1,213 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/GameDll/ark/player/psipower/arkpsipowertargetingcomponent.h>
-#include <Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h>
-#include <Prey/GameDll/ark/psicommon/arkpsifearblast.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerTargetingComponent.h>
+#include <Prey/GameDll/ark/psicommon/ArkPsiKineticBlast.h>
 
 class ArkClass;
+class IArkValueBase;
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
-class ArkPsiPowerElectrostaticBurstProperties : public ArkReflectedObject // Id=801C117 Size=248
-{
+// ArkPsiPowerKineticBlastProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+class ArkPsiPowerKineticBlastProperties : public ArkReflectedObject
+{ // Size=248 (0xF8)
 public:
-	class ArkDisplayNameProperty : public ArkProperty // Id=801C118 Size=32
-	{
+	// ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkDisplayNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisplayNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty s_ArkDisplayNameProperty;
+	// ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkCooldownDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCooldownDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkBlastTypePropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkBlastTypePropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14686C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	// ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkTargetingPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTargetingPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1466C00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1468700);
+	};
+
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty>(0x2BF0070);
 	string m_DisplayName;
-	
-	class ArkDescriptionProperty : public ArkProperty // Id=801C119 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty s_ArkDescriptionProperty;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty>(0x2BF0090);
 	string m_Description;
-	
-	class ArkCooldownDurationSecProperty : public ArkProperty // Id=801C11A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty s_ArkCooldownDurationSecProperty;
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty>(0x2BF00B0);
 	float m_CooldownDurationSec;
-	
-	class ArkBlastTypePropertiesProperty : public ArkProperty // Id=801C11B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x14686C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty s_ArkBlastTypePropertiesProperty;
-	ArkPsiElectrostaticBurstProperties m_BlastTypeProperties;
-	
-	class ArkTargetingPropertiesProperty : public ArkProperty // Id=801C11C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1466C00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1468700);
-	};
-
-	static ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty s_ArkTargetingPropertiesProperty;
-	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetDisplayName(string arg0);
-	string const &GetDisplayName() const;
-	void SetDescription(string arg0);
-	string const &GetDescription() const;
-	void SetCooldownDurationSec(float arg0);
-	const float &GetCooldownDurationSec() const;
-	void SetBlastTypeProperties(ArkPsiElectrostaticBurstProperties arg0);
-	ArkPsiElectrostaticBurstProperties const &GetBlastTypeProperties() const;
-	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties arg0);
-	ArkPsiPowerTargetingComponentProperties const &GetTargetingProperties() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x146D680);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x14676B0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
-class ArkPsiPowerKineticBlastProperties : public ArkReflectedObject // Id=801C14E Size=248
-{
-public:
-	class ArkDisplayNameProperty : public ArkProperty // Id=801C14F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty s_ArkDisplayNameProperty;
-	string m_DisplayName;
-	
-	class ArkDescriptionProperty : public ArkProperty // Id=801C150 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty s_ArkDescriptionProperty;
-	string m_Description;
-	
-	class ArkCooldownDurationSecProperty : public ArkProperty // Id=801C151 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty s_ArkCooldownDurationSecProperty;
-	float m_CooldownDurationSec;
-	
-	class ArkBlastTypePropertiesProperty : public ArkProperty // Id=801C152 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x14686C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty s_ArkBlastTypePropertiesProperty;
+	static inline auto s_ArkBlastTypePropertiesProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty>(0x2BF00D0);
 	ArkPsiKineticBlastProperties m_BlastTypeProperties;
-	
-	class ArkTargetingPropertiesProperty : public ArkProperty // Id=801C153 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1466C00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1468700);
-	};
-
-	static ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty s_ArkTargetingPropertiesProperty;
+	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty>(0x2BF00F0);
 	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
 #if 0
-	void SetDisplayName(string arg0);
-	string const &GetDisplayName() const;
-	void SetDescription(string arg0);
-	string const &GetDescription() const;
-	void SetCooldownDurationSec(float arg0);
-	const float &GetCooldownDurationSec() const;
-	void SetBlastTypeProperties(ArkPsiKineticBlastProperties arg0);
-	ArkPsiKineticBlastProperties const &GetBlastTypeProperties() const;
-	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties arg0);
-	ArkPsiPowerTargetingComponentProperties const &GetTargetingProperties() const;
+	void SetDisplayName(string _arg0_);
+	const string& GetDisplayName() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetCooldownDurationSec(float _arg0_);
+	const float& GetCooldownDurationSec() const;
+	void SetBlastTypeProperties(ArkPsiKineticBlastProperties _arg0_);
+	const ArkPsiKineticBlastProperties& GetBlastTypeProperties() const;
+	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties _arg0_);
+	const ArkPsiPowerTargetingComponentProperties& GetTargetingProperties() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x146D680);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1468D70);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x146D680);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1468D70);
 };
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
-class KineticBlastPowerProperties : public ArkReflectedLibrary // Id=801C155 Size=248
-{
+// KineticBlastPowerProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+class KineticBlastPowerProperties : public ArkReflectedLibrary
+{ // Size=248 (0xF8)
 public:
+	// KineticBlastPowerProperties::ArkCommonProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkCommonProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCommonProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1591940);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+	};
+
+	// KineticBlastPowerProperties::ArkUniqueProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkUniqueProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUniqueProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1468710);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+	};
+
+	// KineticBlastPowerProperties::ArkLevelsProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
+	class ArkLevelsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkLevelsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1468730);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x1468830);
+		static inline auto FIsArray = PreyFunction<bool(const KineticBlastPowerProperties::ArkLevelsProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x1466DB0);
+	};
+
 	using LevelProperties = ArkPsiPowerKineticBlastProperties;
 	using UniqueProperties = bool;
-	
-	class ArkCommonProperty : public ArkProperty // Id=801C156 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(KineticBlastPowerProperties::ArkCommonProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1591940);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(KineticBlastPowerProperties::ArkCommonProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10660A0);
-	};
 
-	static KineticBlastPowerProperties::ArkCommonProperty s_ArkCommonProperty;
+	static inline auto s_ArkCommonProperty = PreyGlobal<KineticBlastPowerProperties::ArkCommonProperty>(0x2BF0110);
 	ArkPsiPowerCommonProperties m_Common;
-	
-	class ArkUniqueProperty : public ArkProperty // Id=801C157 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(KineticBlastPowerProperties::ArkUniqueProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1468710);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(KineticBlastPowerProperties::ArkUniqueProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466C40);
-	};
-
-	static KineticBlastPowerProperties::ArkUniqueProperty s_ArkUniqueProperty;
+	static inline auto s_ArkUniqueProperty = PreyGlobal<KineticBlastPowerProperties::ArkUniqueProperty>(0x2BF0130);
 	bool m_Unique;
-	
-	class ArkLevelsProperty : public ArkProperty // Id=801C158 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(KineticBlastPowerProperties::ArkLevelsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1468730);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(KineticBlastPowerProperties::ArkLevelsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1468830);
-		static inline auto FIsArray = PreyFunction<bool(KineticBlastPowerProperties::ArkLevelsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(KineticBlastPowerProperties::ArkLevelsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1466DB0);
-	};
-
-	static KineticBlastPowerProperties::ArkLevelsProperty s_ArkLevelsProperty;
+	static inline auto s_ArkLevelsProperty = PreyGlobal<KineticBlastPowerProperties::ArkLevelsProperty>(0x2BF0150);
 	std::vector<ArkPsiPowerKineticBlastProperties> m_Levels;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
 	virtual bool Init();
-	virtual ~KineticBlastPowerProperties();
-	
+
 #if 0
-	void SetCommon(ArkPsiPowerCommonProperties arg0);
-	ArkPsiPowerCommonProperties const &GetCommon() const;
-	void SetUnique(bool arg0);
-	const bool &GetUnique() const;
-	std::vector<ArkPsiPowerKineticBlastProperties> &GetLevels();
-	std::vector<ArkPsiPowerKineticBlastProperties> const &GetLevels() const;
+	void SetCommon(ArkPsiPowerCommonProperties _arg0_);
+	const ArkPsiPowerCommonProperties& GetCommon() const;
+	void SetUnique(bool _arg0_);
+	const bool& GetUnique() const;
+	std::vector<ArkPsiPowerKineticBlastProperties>& GetLevels();
+	const std::vector<ArkPsiPowerKineticBlastProperties>& GetLevels() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1468CF0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1468E10);
-	static inline auto FInit = PreyFunction<bool(KineticBlastPowerProperties *const _this)>(0x1468F00);
-};
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
-class ArkPsiPowerThermalBlastProperties : public ArkReflectedObject // Id=801C16D Size=248
-{
-public:
-	class ArkDisplayNameProperty : public ArkProperty // Id=801C16E Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerThermalBlastProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerThermalBlastProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiPowerThermalBlastProperties::ArkDisplayNameProperty s_ArkDisplayNameProperty;
-	string m_DisplayName;
-	
-	class ArkDescriptionProperty : public ArkProperty // Id=801C16F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerThermalBlastProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerThermalBlastProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiPowerThermalBlastProperties::ArkDescriptionProperty s_ArkDescriptionProperty;
-	string m_Description;
-	
-	class ArkCooldownDurationSecProperty : public ArkProperty // Id=801C170 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerThermalBlastProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerThermalBlastProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiPowerThermalBlastProperties::ArkCooldownDurationSecProperty s_ArkCooldownDurationSecProperty;
-	float m_CooldownDurationSec;
-	
-	class ArkBlastTypePropertiesProperty : public ArkProperty // Id=801C171 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerThermalBlastProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x14686C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerThermalBlastProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiPowerThermalBlastProperties::ArkBlastTypePropertiesProperty s_ArkBlastTypePropertiesProperty;
-	ArkPsiThermalBlastProperties m_BlastTypeProperties;
-	
-	class ArkTargetingPropertiesProperty : public ArkProperty // Id=801C172 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerThermalBlastProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1466C00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerThermalBlastProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1468700);
-	};
-
-	static ArkPsiPowerThermalBlastProperties::ArkTargetingPropertiesProperty s_ArkTargetingPropertiesProperty;
-	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetDisplayName(string arg0);
-	string const &GetDisplayName() const;
-	void SetDescription(string arg0);
-	string const &GetDescription() const;
-	void SetCooldownDurationSec(float arg0);
-	const float &GetCooldownDurationSec() const;
-	void SetBlastTypeProperties(ArkPsiThermalBlastProperties arg0);
-	ArkPsiThermalBlastProperties const &GetBlastTypeProperties() const;
-	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties arg0);
-	ArkPsiPowerTargetingComponentProperties const &GetTargetingProperties() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x146D680);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x146D7C0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerkineticblast.h
-class ArkPsiPowerFearProperties : public ArkReflectedObject // Id=801C885 Size=248
-{
-public:
-	class ArkDisplayNameProperty : public ArkProperty // Id=801C886 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerFearProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerFearProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiPowerFearProperties::ArkDisplayNameProperty s_ArkDisplayNameProperty;
-	string m_DisplayName;
-	
-	class ArkDescriptionProperty : public ArkProperty // Id=801C887 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerFearProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerFearProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiPowerFearProperties::ArkDescriptionProperty s_ArkDescriptionProperty;
-	string m_Description;
-	
-	class ArkCooldownDurationSecProperty : public ArkProperty // Id=801C888 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerFearProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerFearProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiPowerFearProperties::ArkCooldownDurationSecProperty s_ArkCooldownDurationSecProperty;
-	float m_CooldownDurationSec;
-	
-	class ArkBlastTypePropertiesProperty : public ArkProperty // Id=801C889 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerFearProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x14686C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerFearProperties::ArkBlastTypePropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiPowerFearProperties::ArkBlastTypePropertiesProperty s_ArkBlastTypePropertiesProperty;
-	ArkPsiFearBlastProperties m_BlastTypeProperties;
-	
-	class ArkTargetingPropertiesProperty : public ArkProperty // Id=801C88A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerFearProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1466C00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerFearProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1468700);
-	};
-
-	static ArkPsiPowerFearProperties::ArkTargetingPropertiesProperty s_ArkTargetingPropertiesProperty;
-	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetDisplayName(string arg0);
-	string const &GetDisplayName() const;
-	void SetDescription(string arg0);
-	string const &GetDescription() const;
-	void SetCooldownDurationSec(float arg0);
-	const float &GetCooldownDurationSec() const;
-	void SetBlastTypeProperties(ArkPsiFearBlastProperties arg0);
-	ArkPsiFearBlastProperties const &GetBlastTypeProperties() const;
-	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties arg0);
-	ArkPsiPowerTargetingComponentProperties const &GetTargetingProperties() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x146D680);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1584910);
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1468CF0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1468E10);
+	static inline auto FInit = PreyFunction<bool(KineticBlastPowerProperties* const _this)>(0x1468F00);
 };
 

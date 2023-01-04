@@ -1,12 +1,13 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: Override
-// Prey/GameDll/ark/player/IArkPsiPowerListener.h
-class IArkPsiPowerListener // Id=80155D5 Size=8
-{
+enum class EArkPsiPowers;
+
+// IArkPsiPowerListener
+// Header:  Prey/GameDll/ark/player/IArkPsiPowerListener.h
+class IArkPsiPowerListener
+{ // Size=8 (0x8)
 public:
-	virtual void OnPowerAcquired(EArkPsiPowers arg0) = 0;
+	virtual void OnPowerAcquired(EArkPsiPowers _power) = 0;
 };
 

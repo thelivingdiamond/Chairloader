@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryAction/ScriptBind_Inventory.h>
-#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#include <Prey/CryScriptSystem/IScriptSystem.h>
 #include <Prey/GameDll/ark/ScriptHandle.h>
 
 class ArkInventory;

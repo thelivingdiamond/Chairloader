@@ -1,4 +1,4 @@
-// Header test file for path Prey/GameDll/ark/player/trauma/ArkStatusGoodDrunk.h
+// Header test file for path Prey/GameDll/ark/player/trauma/
 #include "ArkStatusGoodDrunk.h"
 static_assert(sizeof(ArkStatusGoodDrunk) == 304);
 
@@ -37,3 +37,4 @@ static_assert(sizeof(ArkTraumaRadiation) == 296);
 
 #include "ArkTraumaSuitIntegrity.h"
 static_assert(sizeof(ArkTraumaSuitIntegrity) == 304);
+

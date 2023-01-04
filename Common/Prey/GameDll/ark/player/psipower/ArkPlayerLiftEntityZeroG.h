@@ -1,44 +1,45 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolumeEntity.h>
-#include <Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntityZeroG.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolume.h>
 
 class ArkPsiLift;
 struct IEntity;
 
-// Header: FromCpp
-// Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntityZeroG.h
-class ArkPlayerLiftEntityZeroG // Id=8017575 Size=12
-{
+// ArkPlayerLiftEntityZeroG
+// Header:  Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntityZeroG.h
+class ArkPlayerLiftEntityZeroG
+{ // Size=12 (0xC)
 public:
 	ArkSimpleTimer m_destroyGooTimer;
 	float m_speed;
-	
+
 	ArkPlayerLiftEntityZeroG();
-	void ExitLiftVolume(IEntity const &_entity) const { FExitLiftVolume(this,_entity); }
-	void Update(IEntity const &_entity, ArkPsiLift const &_lift, const float _frameTime) const { FUpdate(this,_entity,_lift,_frameTime); }
-	
+	void ExitLiftVolume(const IEntity& _entity) const { FExitLiftVolume(this, _entity); }
+	void Update(const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime) const { FUpdate(this, _entity, _lift, _frameTime); }
+
 #if 0
-	void EnterLiftVolume(IEntity const &arg0) const;
-	void PostSerialize(IEntity const &arg0) const;
+	ArkPlayerLiftEntityZeroG(const float _arg0_);
+	void EnterLiftVolume(const IEntity& _arg0_) const;
+	void PostSerialize(const IEntity& _arg0_) const;
 #endif
-	
-	static inline auto FExitLiftVolume = PreyFunction<void(ArkPlayerLiftEntityZeroG const *const _this, IEntity const &_entity)>(0x130F090);
-	static inline auto FUpdate = PreyFunction<void(ArkPlayerLiftEntityZeroG const *const _this, IEntity const &_entity, ArkPsiLift const &_lift, const float _frameTime)>(0x130F1A0);
+
+	static inline auto FArkPlayerLiftEntityZeroGOv1 = PreyFunction<void(ArkPlayerLiftEntityZeroG* const _this)>(0x130F030);
+	static inline auto FExitLiftVolume = PreyFunction<void(const ArkPlayerLiftEntityZeroG* const _this, const IEntity& _entity)>(0x130F090);
+	static inline auto FUpdate = PreyFunction<void(const ArkPlayerLiftEntityZeroG* const _this, const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime)>(0x130F1A0);
 };
 
-// Header: FromCpp
-// Prey/GameDll/ark/player/psipower/arkplayerliftentityzerog.h
-class ArkPlayerLiftEntityZeroGSpawner // Id=801B7AD Size=4
-{
+// ArkPlayerLiftEntityZeroGSpawner
+// Header:  Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntityZeroG.h
+class ArkPlayerLiftEntityZeroGSpawner
+{ // Size=4 (0x4)
 public:
 	float m_speed;
-	
+
 	ArkPlayerLiftEntityZeroGSpawner();
-	ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG> Spawn(const unsigned _entityId) const { return FSpawn(this,_entityId); }
-	
-	static inline auto FSpawn = PreyFunction<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>(ArkPlayerLiftEntityZeroGSpawner const *const _this, const unsigned _entityId)>(0x130F0E0);
+	ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG> Spawn(const unsigned _entityId) const { alignas(ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>) std::byte _return_buf_[sizeof(ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>)]; return *FSpawn(this, reinterpret_cast<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>*>(_return_buf_), _entityId); }
+
+	static inline auto FArkPlayerLiftEntityZeroGSpawner = PreyFunction<void(ArkPlayerLiftEntityZeroGSpawner* const _this)>(0x130F050);
+	static inline auto FSpawn = PreyFunction<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>*(const ArkPlayerLiftEntityZeroGSpawner* const _this, ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>* _return_value_, const unsigned _entityId)>(0x130F0E0);
 };
 

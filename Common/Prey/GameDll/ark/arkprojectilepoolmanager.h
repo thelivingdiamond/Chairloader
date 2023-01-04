@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/VectorMap.h>
+#include <Prey/CryCore/Containers/VectorMap.h>
 
 class CArkProjectile;
 class CArkProjectileGoo;

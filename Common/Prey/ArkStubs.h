@@ -87,13 +87,6 @@ public:
 	void* pad[9];
 };
 
-// Header: Exact
-// CryEngine/cryanimation/facialanimation/faceeffector.h
-class ArkPlayerAttentionObject // Id=8016E5B Size=48
-{
-	void* pad[6];
-};
-
 // Header: MadeUp
 // _unknown/ArkMaterialParamOverride.h
 class ArkMaterialParamOverride // Id=8015FEF Size=16

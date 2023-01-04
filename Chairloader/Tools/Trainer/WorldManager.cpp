@@ -15,6 +15,9 @@
 #include "Prey/GameDll/ark/player/ArkUtilityComponent.h"
 #include "Prey/GameDll/ark/player/ArkPlayerUIComponent.h"
 #include "Prey/GameDll/ark/player/ArkStationAccessComponent.h"
+#include "Prey/GameDll/ark/player/pda/ArkKeyCardComponent.h"
+#include "Prey/GameDll/ark/player/pda/ArkKeyCodeComponent.h"
+#include "Prey/GameDll/ark/player/pda/ArkRosterComponent.h"
 #include "Prey/CrySystem/File/CryFile.h"
 #include "Prey/CrySystem/File/ICryPak.h"
 WorldManager::WorldManager() {

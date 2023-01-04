@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#include <Prey/CryScriptSystem/IScriptSystem.h>
 
 struct IEntity;
 struct IFunctionHandler;
