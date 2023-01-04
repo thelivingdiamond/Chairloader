@@ -99,7 +99,7 @@ void CHardwareMouse_ConfineCursor_Hook(IHardwareMouse* const _ithis, bool confin
 	}
 }
 
-void CHardwareMouse_OnSystemEvent_Hook(CHardwareMouse* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)
+void CHardwareMouse_OnSystemEvent_Hook(ISystemEventListener* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)
 {
 	if (event == ESYSTEM_EVENT_ACTIVATE || event == ESYSTEM_EVENT_CHANGE_FOCUS)
 		return;

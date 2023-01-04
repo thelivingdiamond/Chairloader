@@ -18,7 +18,7 @@ static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventList
 static auto s_CBasicEventListener_OnSetCursor_Hook = s_CBasicEventListener_OnSetCursor.MakeHook();
 static auto s_CSystem_RenderEnd_Hook = CSystem::FRenderEnd.MakeHook();
 
-static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
+static void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
 {
 	// Exclusive ImGui mouse input
 	// Don't pass mouse events to the game and FlashUI
