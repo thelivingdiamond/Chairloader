@@ -440,15 +440,15 @@ void PreditorEngine::SetAppImGui()
 	m_pImGui->BeginFrame();
 }
 
-void PreditorEngine::Update()
+bool PreditorEngine::Update()
 {
 	if (!m_pGameStartup)
-		return;
+		return true;
 
 	if (g_InitParams.minimal)
 	{
 		// Only update the system
-		gEnv->pSystem->Update();
+		return gEnv->pSystem->Update();
 	}
 	else
 	{
@@ -472,7 +472,7 @@ void PreditorEngine::Update()
 				updateFlags |= ESYSUPDATE_EDITOR_AI_PHYSICS;
 		}
 
-		m_pGameStartup->Update(true, updateFlags);
+		return m_pGameStartup->Update(true, updateFlags);
 	}
 }
 

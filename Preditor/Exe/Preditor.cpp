@@ -62,7 +62,8 @@ void Preditor::ShowUI(bool* bOpen)
 void Preditor::PostUpdate()
 {
     // Engine must be updated at the ent of the tick because it will end the ImGui frame.
-    IPreditorEngine::Get()->Update();
+    if (!IPreditorEngine::Get()->Update())
+        QuitApp();
 }
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)

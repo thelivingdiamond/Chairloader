@@ -22,7 +22,7 @@ public:
 	bool Start(const InitParams& params) override;
 	void Shutdown() override;
 	void SetAppImGui() override;
-	void Update() override;
+	bool Update() override;
 	ITexture* GetViewportTexture() override;
 	void SetGameInputEnabled(bool state) override;
 	bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;

@@ -136,7 +136,7 @@ public:
 	}
 
 	virtual ULONG STDMETHODCALLTYPE AddRef(void) { return m_pReal->AddRef(); }
-	virtual ULONG STDMETHODCALLTYPE Release(void) { return m_pReal->AddRef(); }
+	virtual ULONG STDMETHODCALLTYPE Release(void) { return m_pReal->Release(); }
 
 	// IDXGIObject
 	virtual HRESULT STDMETHODCALLTYPE SetPrivateData(
@@ -204,6 +204,10 @@ EngineSwapChainPatch::EngineSwapChainPatch()
 
 EngineSwapChainPatch::~EngineSwapChainPatch()
 {
+	m_pRealRTV.ReleaseOwnership();
+	m_pRealRTV.ReleaseOwnership();
+	m_pBackbuffer.ReleaseOwnership();
+	m_pBackbufferRef.ReleaseOwnership();
 }
 
 void EngineSwapChainPatch::InitHooks()

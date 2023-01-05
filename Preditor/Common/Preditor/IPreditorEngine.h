@@ -57,7 +57,8 @@ struct IPreditorEngine
 	virtual void SetAppImGui() = 0;
 
 	//! Runs an iteration of the main loop.
-	virtual void Update() = 0;
+	//! @returns whether to continue running, exit on false.
+	virtual bool Update() = 0;
 
 	//! @returns the texture of viewport backbuffer.
 	virtual ITexture* GetViewportTexture() = 0;
