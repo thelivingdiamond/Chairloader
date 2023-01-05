@@ -266,15 +266,18 @@ void ModDllManager::LoadModule(Module& mod)
 
 void ModDllManager::UnloadModule(Module& mod)
 {
-	CRY_ASSERT(mod.hModule);
-	CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
-	mod.pfnShutdown();
-	FreeLibrary(mod.hModule);
+	if (!mod.bIsRawMod)
+	{
+		CRY_ASSERT(mod.hModule);
+		CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
+		mod.pfnShutdown();
+		FreeLibrary(mod.hModule);
 
-	mod.hModule = nullptr;
-	mod.pfnInit = nullptr;
-	mod.pfnShutdown = nullptr;
-	mod.pModIface = nullptr;
+		mod.hModule = nullptr;
+		mod.pfnInit = nullptr;
+		mod.pfnShutdown = nullptr;
+		mod.pModIface = nullptr;
+	}
 }
 
 void ModDllManager::InitModule(Module& mod, bool isHotReloading)
