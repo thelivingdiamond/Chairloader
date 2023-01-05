@@ -92,7 +92,7 @@ void ConfigValidationStage::showGamePathsWindow() {
         }
         ImGui::SameLine();
         if(ImGui::Button(ICON_MD_MORE_HORIZ "##GAMEPATHSELECTION")){
-            //ifd::FileDialog::Instance().Open("SelectGamePathDialog", "Select Game Directory", "");
+            ImGuiFileDialog::Instance()->OpenModal("SelectGamePathDialog", "Select Game Directory", nullptr, ".");
         }
         ImGui::NewLine();
         ImGui::NewLine();
@@ -105,7 +105,7 @@ void ConfigValidationStage::showGamePathsWindow() {
         }
         ImGui::SameLine();
         if(ImGui::Button(ICON_MD_MORE_HORIZ "##PREYFILESSELECTION")){
-            //ifd::FileDialog::Instance().Open("SelectPreyFilesPathDialog", "Select Prey Files Directory", "", false, "");
+            ImGuiFileDialog::Instance()->OpenModal("SelectPreyFilesPathDialog", "Select Prey Files Directory", nullptr, ".");
         }
         ImGui::NewLine();
         if(ImGui::Button("Continue")){
@@ -118,20 +118,22 @@ void ConfigValidationStage::showGamePathsWindow() {
         }
     }
     ImGui::End();
+
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos()), ImGuiCond_Appearing);
-    /*if (ifd::FileDialog::Instance().IsDone("SelectGamePathDialog")) {
-        if (ifd::FileDialog::Instance().HasResult()) {
-            ConfigManager::Get()->m_gamePath = ifd::FileDialog::Instance().GetResult();
+    if (ImGuiFileDialog::Instance()->Display("SelectGamePathDialog")) {
+        if (ImGuiFileDialog::Instance()->IsOk()) {
+            ConfigManager::Get()->m_gamePath = fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath());
         }
-        ifd::FileDialog::Instance().Close();
+        ImGuiFileDialog::Instance()->Close();
     }
+
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos()), ImGuiCond_Appearing);
-    if (ifd::FileDialog::Instance().IsDone("SelectPreyFilesPathDialog")) {
-        if (ifd::FileDialog::Instance().HasResult()) {
-            ConfigManager::Get()->m_PreyFilesPath = ifd::FileDialog::Instance().GetResult();
+    if (ImGuiFileDialog::Instance()->Display("SelectPreyFilesPathDialog")) {
+        if (ImGuiFileDialog::Instance()->IsOk()) {
+            ConfigManager::Get()->m_PreyFilesPath = fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath());
         }
-        ifd::FileDialog::Instance().Close();
-    }*/
+        ImGuiFileDialog::Instance()->Close();
+    }
 }
 
 void ConfigValidationStage::showErrorWindow() {

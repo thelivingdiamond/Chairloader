@@ -61,19 +61,24 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
                 m_newProjectOpen = true;
             }
             ImGui::SameLine();
-            /*if (ImGui::Button("Open Project")) {
-                ifd::FileDialog::Instance().Open("ProjectSelectStage::OpenProject", "Select Project Directory", "", ".");
+            if (ImGui::Button("Open Project")) {
+                ImGuiFileDialog::Instance()->OpenModal(
+                    "ProjectSelectStage::OpenProject",
+                    "Select Project Directory", nullptr, ".");
             }
             ImGui::SameLine();
+
             if (ImGui::Button("Quit")) {
                 Preditor::Get()->QuitApp();
             }
-            if(ifd::FileDialog::Instance().IsDone("ProjectSelectStage::OpenProject")){
-                if(ifd::FileDialog::Instance().HasResult()){
-                    initiateLoadOrCreateProject(ifd::FileDialog::Instance().GetResult(), true);
+
+            if(ImGuiFileDialog::Instance()->Display("ProjectSelectStage::OpenProject")){
+                if(ImGuiFileDialog::Instance()->IsOk()){
+                    initiateLoadOrCreateProject(fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath()), true);
                 }
-                ifd::FileDialog::Instance().Close();
-            }*/
+
+                ImGuiFileDialog::Instance()->Close();
+            }
         }
         ImGui::End();
     }
@@ -89,7 +94,7 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
             }
             ImGui::SameLine();
             if (ImGui::Button(ICON_MD_MORE_HORIZ "##Browse")) {
-                //ifd::FileDialog::Instance().Open("ProjectSelectStage::NewProject", "Select Project Directory", "", ".");
+                ImGuiFileDialog::Instance()->OpenModal("ProjectSelectStage::NewProject", "Select Project Directory", nullptr, ".");
             }
             ImGui::Checkbox("Create Project Folder", &m_createModFolder);
             if (ImGui::Button("Create")) {
@@ -106,12 +111,12 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
             }
         }
         ImGui::End();
-        /*if (ifd::FileDialog::Instance().IsDone("ProjectSelectStage::NewProject")) {
-            if (ifd::FileDialog::Instance().HasResult()) {
-                m_newProjectPath = ifd::FileDialog::Instance().GetResult();
+        if (ImGuiFileDialog::Instance()->Display("ProjectSelectStage::NewProject")) {
+            if (ImGuiFileDialog::Instance()->IsOk()) {
+                m_newProjectPath = fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath());
             }
-            ifd::FileDialog::Instance().Close();
-        }*/
+            ImGuiFileDialog::Instance()->Close();
+        }
     }
 
     ImGui::PopFont();
