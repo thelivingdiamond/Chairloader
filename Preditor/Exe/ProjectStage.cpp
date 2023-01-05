@@ -26,7 +26,9 @@ void ProjectStage::Update() {
 
 void ProjectStage::ShowUI(bool* bOpen) {
     DrawMainMenuBar();
+    ImGui::DockSpaceOverViewport();
 
+    WindowManager::Get().Update();
     m_pChairTools->Update();
 
     //ImGui::PushFont(AppImGui::getPrettyFont());

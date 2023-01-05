@@ -25,8 +25,6 @@ Preditor::~Preditor()
 
 void Preditor::Update()
 {
-    WindowManager::Get().Update();
-
 	if (GetStage()->IsStageFinished())
 	{
         if(m_ConfigValidateStage)

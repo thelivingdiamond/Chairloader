@@ -14,7 +14,7 @@ public:
 	void ShowWindowMenu() override;
 
 private:
-	bool m_bDrawDevConsole = false;
+	bool m_bDrawDevConsole = true;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 	std::unique_ptr<FileBrowser> m_pFileBrowser;
 };
