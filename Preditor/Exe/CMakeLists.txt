@@ -46,6 +46,7 @@ target_include_directories(Preditor.Exe PRIVATE
 )
 
 target_link_libraries(Preditor.Exe
+	Chairloader.Tools.Preditor
 	Preditor.Common
 	Preditor.Engine
 	D3D11.lib

@@ -2,6 +2,7 @@
 
 struct IGameStartup;
 struct ITexture;
+struct IChairToPreditor;
 
 struct IPreditorEngine
 {
@@ -62,6 +63,9 @@ struct IPreditorEngine
 
 	//! @returns the texture of viewport backbuffer.
 	virtual ITexture* GetViewportTexture() = 0;
+
+	//! @returns IChairToPreditor instance.
+	virtual IChairToPreditor* GetIChairToPreditor() = 0;
 
 	//! Enables/disable keyboard and mouse input to the game.
 	virtual void SetGameInputEnabled(bool state) = 0;

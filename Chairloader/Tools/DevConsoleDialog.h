@@ -2,12 +2,12 @@
 #include <imgui.h>
 #include <ConsoleColorParser.h>
 
-struct IConsole;
-
 namespace Internal
 {
 struct ILogManager;
 }
+
+struct IConsole;
 
 class DevConsoleDialog {
 public:

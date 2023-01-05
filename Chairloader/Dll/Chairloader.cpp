@@ -563,3 +563,8 @@ void Chairloader::SetIPreditorToChair(IPreditorToChair* pPreditor)
 {
 	m_pPreditorAPI = pPreditor;
 }
+
+Internal::IChairloaderDll* Chairloader::GetIChairloaderDll()
+{
+	return this;
+}

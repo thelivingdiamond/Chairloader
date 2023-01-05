@@ -24,6 +24,7 @@ public:
 	void SetAppImGui() override;
 	bool Update() override;
 	ITexture* GetViewportTexture() override;
+	IChairToPreditor* GetIChairToPreditor() override;
 	void SetGameInputEnabled(bool state) override;
 	bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
 

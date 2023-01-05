@@ -55,10 +55,12 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 {
 	// Perf info is always visible
 	m_pPerfOverlay->Update();
+
     if(gChair->GetChairloaderEnvironment()->conf->getConfigDirty("Chairloader"))
     {
         m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
     }
+
 	if (gCL->gui->IsEnabled())
 	{
 		ShowMainMenuBar();

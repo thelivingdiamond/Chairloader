@@ -481,6 +481,11 @@ ITexture* PreditorEngine::GetViewportTexture()
 	return EngineSwapChainPatch::GetBackbuffer();
 }
 
+IChairToPreditor* PreditorEngine::GetIChairToPreditor()
+{
+	return m_pChair;
+}
+
 void PreditorEngine::SetGameInputEnabled(bool state)
 {
 	m_bGameInput = state;

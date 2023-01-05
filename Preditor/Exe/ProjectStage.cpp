@@ -1,11 +1,22 @@
 #include <WindowManager/WindowManager.h>
 #include <App/AppImGui.h>
 #include <Preditor/Project/ProjectManager.h>
+#include <Preditor/IChairloaderToolsPreditor.h>
+#include <Preditor/IPreditorEngine.h>
 #include "ProjectStage.h"
 #include "GameViewport.h"
 
+ProjectStage::ProjectStage()
+{
+}
+
+ProjectStage::~ProjectStage()
+{
+}
+
 void ProjectStage::Start() {
     m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
+    m_pChairTools = IChairloaderToolsPreditor::CreateInstance(IPreditorEngine::Get()->GetIChairToPreditor());
     m_pGameViewport = WindowManager::Get().Create<GameViewport>();
 }
 
@@ -14,9 +25,11 @@ void ProjectStage::Update() {
 }
 
 void ProjectStage::ShowUI(bool* bOpen) {
+    DrawMainMenuBar();
+
+    m_pChairTools->Update();
+
     //ImGui::PushFont(AppImGui::getPrettyFont());
-    ImGui::SetNextWindowSize(WINDOW_SIZE, ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
     if (ImGui::Begin(WINDOW_TITLE.c_str(), bOpen, WINDOW_FLAGS)) {
         DrawToolbar();
         Project* pProject = ProjectManager::GetProject();
@@ -46,4 +59,25 @@ void ProjectStage::DrawToolbar() {
         ImGui::EndChild();
     }
     ImGui::PopStyleVar(2);
+}
+
+void ProjectStage::DrawMainMenuBar()
+{
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("File"))
+        {
+            if (ImGui::MenuItem("Quit"))
+                gEnv->pSystem->Quit();
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Window"))
+        {
+            m_pChairTools->ShowWindowMenu();
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMainMenuBar();
+    }
 }

@@ -87,4 +87,5 @@ public:
 
 	// IChairToPreditor
 	void SetIPreditorToChair(IPreditorToChair* pPreditor) override;
+	Internal::IChairloaderDll* GetIChairloaderDll() override;
 };

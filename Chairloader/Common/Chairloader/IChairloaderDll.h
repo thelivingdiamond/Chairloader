@@ -30,4 +30,6 @@ struct IChairloaderDll : public IChairloader
 
 }
 
+#ifndef PREDITOR
 extern Internal::IChairloaderDll* gChair;
+#endif

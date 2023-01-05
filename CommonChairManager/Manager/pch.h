@@ -45,6 +45,7 @@ namespace fs = std::filesystem;
 #include <boost/bimap.hpp>
 #include <pugixml.hpp>
 #include <imgui.h>
+#include <imgui_stdlib.h>
 
 template <typename R>
 inline bool IsFutureReady(const std::future<R>& f)
