@@ -13,6 +13,7 @@ set(SOURCE_FILES
 	
 	Preditor/Project/Project.h
 	Preditor/Project/ProjectManager.h
+	Preditor/Project/UserProjectSettings.h
 
 	Preditor/IPreditorEngine.h
 )

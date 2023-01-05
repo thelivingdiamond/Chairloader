@@ -63,6 +63,8 @@ private:
 	void UpdateKeyModifiers();
 	void AddKeyEvent(ImGuiKey key, bool down, int native_keycode, int native_scancode = -1);
 
+	void SaveMainWindowSizeAndPos();
+
 	// Platform interface for multiple viewports
 	static void Plat_CreateWindow(ImGuiViewport* viewport);
 	static void Plat_DestroyWindow(ImGuiViewport* viewport);

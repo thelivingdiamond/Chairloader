@@ -4,7 +4,8 @@
 
 #ifndef CHAIRLOADER_PROJECTMANAGER_H
 #define CHAIRLOADER_PROJECTMANAGER_H
-#include "Project.h"
+#include <Preditor/Project/Project.h>
+#include <Preditor/Project/UserProjectSettings.h>
 
 //! PROJECT MANAGER
 //! this class will keep track of projects, and will be able to create new ones, and load existing ones
@@ -22,6 +23,9 @@ public:
     //! @returns the currently loaded project.
     static Project* GetProject() { return Get()->m_pProject.get(); }
 
+    //! @returns the user settings for current project..
+    static UserProjectSettings* GetUserSettings() { return Get()->m_pUserSettings.get(); }
+
     //! Loads an existing project.
     //! @param  path    Path to the directory
     void LoadProject(const fs::path& path);
@@ -37,6 +41,7 @@ public:
 private:
     std::vector<fs::path> m_PreviousProjects;
     std::unique_ptr<Project> m_pProject;
+    std::unique_ptr<UserProjectSettings> m_pUserSettings;
 
     //! Validates whether the path to project dir is valid.
     void ValidatePathOrThrow(const fs::path& path);

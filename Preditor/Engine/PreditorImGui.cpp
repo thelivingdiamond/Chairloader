@@ -6,6 +6,7 @@
 #include <imgui_internal.h>
 #include <imgui_impl_win32.h>
 #include <App/Application.h>
+#include <Preditor/Project/ProjectManager.h>
 #include "PreditorImGui.h"
 #include "PreditorImGuiRenderer.h"
 #include "MainWindowResizePatch.h"
@@ -309,8 +310,21 @@ int64_t PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int
         return 0;
     case WM_SIZE:
         if (hWnd == m_hWnd && wParam != SIZE_MINIMIZED) // Only resize the main window
+        {
             MainWindowResizePatch::OnWindowResize(LOWORD(lParam), HIWORD(lParam));
+            SaveMainWindowSizeAndPos();
+
+            if (wParam == SIZE_MAXIMIZED)
+                ProjectManager::GetUserSettings()->SetWindowMaximized(true);
+        }
         return 1;
+    case WM_MOVE:
+        if (hWnd == m_hWnd)
+        {
+            SaveMainWindowSizeAndPos();
+            return 1;
+        }
+        break;
     }
     return 0;
 }
@@ -579,6 +593,19 @@ void PreditorImGui::AddKeyEvent(ImGuiKey key, bool down, int native_keycode, int
     ImGuiIO& io = ImGui::GetIO();
     io.AddKeyEvent(key, down);
     io.SetKeyEventNativeData(key, native_keycode, native_scancode); // To support legacy indexing (<1.87 user code)
+}
+
+void PreditorImGui::SaveMainWindowSizeAndPos()
+{
+    WINDOWPLACEMENT wnpl;
+    wnpl.length = sizeof(WINDOWPLACEMENT);
+    if (!GetWindowPlacement(m_hWnd, &wnpl))
+        return;
+
+    Vec2i restPos(wnpl.rcNormalPosition.left, wnpl.rcNormalPosition.top);
+    Vec2i restSize = Vec2i(wnpl.rcNormalPosition.right, wnpl.rcNormalPosition.bottom) - restPos;
+    ProjectManager::GetUserSettings()->SetWindowRestoredPos(restPos);
+    ProjectManager::GetUserSettings()->SetWindowRestoredSize(restSize);
 }
 
 void PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)

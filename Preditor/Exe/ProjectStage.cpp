@@ -10,7 +10,7 @@ void ProjectStage::Start() {
 }
 
 void ProjectStage::Update() {
-
+    ProjectManager::GetUserSettings()->Update();
 }
 
 void ProjectStage::ShowUI(bool* bOpen) {

@@ -90,4 +90,5 @@ void ProjectManager::CreateOrLoadProject(const fs::path& path, bool loadExisting
     }
 
     m_pProject = std::make_unique<Project>(path, loadExisting);
+    m_pUserSettings = std::make_unique<UserProjectSettings>(m_pProject->GetRuntimePath() / UserProjectSettings::FILE_NAME);
 }

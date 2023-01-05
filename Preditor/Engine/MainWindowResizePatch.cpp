@@ -1,4 +1,5 @@
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Preditor/Project/ProjectManager.h>
 #include "MainWindowResizePatch.h"
 #include "EngineSwapChainPatch.h"
 
@@ -66,9 +67,19 @@ void MainWindowResizePatch::InitRenderer()
 	SetWindowLongPtr(hWnd, GWL_EXSTYLE, exStyle);
 
 	// Change title
-	SetWindowTextA(hWnd, "Preditor");
+	cry_strcpy(gcpRendD3D->m_WinTitle, "Preditor");
+	SetWindowTextA(hWnd, gcpRendD3D->m_WinTitle);
 
-	// Save original size
+	// Apply size from config
+	UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
+	Vec2i pos = pSettings->GetWindowRestoredPos();
+	Vec2i size = pSettings->GetWindowRestoredSize();
+	MoveWindow(hWnd, pos.x, pos.y, size.x, size.y, false);
+
+	if (pSettings->IsWindowMaximized())
+		ShowWindow(hWnd, SW_SHOWMAXIMIZED);
+
+	// Save size
 	RECT rect = { 0, 0, 0, 0 };
 	GetClientRect(hWnd, &rect);
 	m_WindowSize.x = rect.right - rect.left;

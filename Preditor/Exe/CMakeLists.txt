@@ -3,6 +3,7 @@ set(SOURCE_FILES
 	
 	Project/Project.cpp
 	Project/ProjectManager.cpp
+	Project/UserProjectSettings.cpp
 
 	Resources/Preditor.rc
 
