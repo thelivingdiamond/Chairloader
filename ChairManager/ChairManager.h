@@ -25,7 +25,6 @@ class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
 
-namespace fs = std::filesystem;
 class ChairManager {
 public:
     static ChairManager& Get() { return *m_spInstance; }

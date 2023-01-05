@@ -1,8 +1,8 @@
 #include <zlib.h>
 #include <Manager/BinDiff.h>
+#include <Manager/PathUtils.h>
 #include "GameVersion.h"
 #include "ChairManager.h"
-#include "PathUtils.h"
 
 namespace
 {
