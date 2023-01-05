@@ -1,13 +1,5 @@
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
-#include "IconsMaterialDesign.h"
-#include <future>
-#include "ImGui/imgui.h"
+#include <imgui.h>
+#include <Manager/IconsMaterialDesign.h>
 
-namespace fs = std::filesystem;
-
-template <typename R>
-inline bool IsFutureReady(const std::future<R>& f)
-{
-    return f.valid() && f.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
-}

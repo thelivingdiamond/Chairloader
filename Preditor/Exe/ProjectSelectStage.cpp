@@ -2,11 +2,11 @@
 // Created by theli on 10/28/2022.
 //
 
+#include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"
 #include "App/AppImGui.h"
 #include "Preditor.h"
-#include "ImFileDialog/ImFileDialog.h"
 #include "ImGui/imgui_stdlib.h"
 
 void ProjectSelectStage::Update() {
@@ -61,7 +61,7 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
                 m_newProjectOpen = true;
             }
             ImGui::SameLine();
-            if (ImGui::Button("Open Project")) {
+            /*if (ImGui::Button("Open Project")) {
                 ifd::FileDialog::Instance().Open("ProjectSelectStage::OpenProject", "Select Project Directory", "", ".");
             }
             ImGui::SameLine();
@@ -73,7 +73,7 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
                     initiateLoadOrCreateProject(ifd::FileDialog::Instance().GetResult(), true);
                 }
                 ifd::FileDialog::Instance().Close();
-            }
+            }*/
         }
         ImGui::End();
     }
@@ -89,7 +89,7 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
             }
             ImGui::SameLine();
             if (ImGui::Button(ICON_MD_MORE_HORIZ "##Browse")) {
-                ifd::FileDialog::Instance().Open("ProjectSelectStage::NewProject", "Select Project Directory", "", ".");
+                //ifd::FileDialog::Instance().Open("ProjectSelectStage::NewProject", "Select Project Directory", "", ".");
             }
             ImGui::Checkbox("Create Project Folder", &m_createModFolder);
             if (ImGui::Button("Create")) {
@@ -106,12 +106,12 @@ void ProjectSelectStage::ShowUI(bool *bOpen) {
             }
         }
         ImGui::End();
-        if (ifd::FileDialog::Instance().IsDone("ProjectSelectStage::NewProject")) {
+        /*if (ifd::FileDialog::Instance().IsDone("ProjectSelectStage::NewProject")) {
             if (ifd::FileDialog::Instance().HasResult()) {
                 m_newProjectPath = ifd::FileDialog::Instance().GetResult();
             }
             ifd::FileDialog::Instance().Close();
-        }
+        }*/
     }
 
     ImGui::PopFont();

@@ -1,7 +1,6 @@
 #include "Node.h"
 #include "ImNodes/imnodes.h"
 #include "ImGui/imgui_stdlib.h"
-#include <IconsMaterialDesign.h>
 
 void Node::draw() {
     if(Proto->Category == PrototypeNode::nodeCategory::COMMENT){

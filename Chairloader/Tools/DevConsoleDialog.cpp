@@ -202,7 +202,7 @@ void DevConsoleDialog::ShowConsole()
 
 void DevConsoleDialog::ShowModLog()
 {
-	ImGui::TextWrapped("Tip: Press Alt+~ to open mod log directly or toggle between console and log.");
+	ImGui::TextWrapped("Tip: Press Alt+ConsoleKey to open mod log directly or toggle between console and log.");
 	ImGui::Separator();
 
 	ImGui::PushFont(gCL->pImGui->GetFont(IChairloaderImGui::EFont::Monospace));

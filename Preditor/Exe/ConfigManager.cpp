@@ -1,7 +1,7 @@
 #include "ConfigManager.h"
 #include "ImGui/imgui_stdlib.h"
 #include "App/AppImGui.h"
-#include "ModLoader/PathUtils.h"
+#include "Manager/PathUtils.h"
 #include "Preditor.h"
 
 static ConfigManager* g_pApp;

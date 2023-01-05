@@ -28,6 +28,8 @@ struct IChairloaderCore : public IChairloaderModule
 
 	//! Creates a new IChairLogger instance.
 	virtual std::unique_ptr<IChairLogger> CreateLogger() = 0;
+
+    virtual EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown) = 0;
 };
 
 } // namespace Internal

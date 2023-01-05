@@ -72,7 +72,8 @@ private:
     showStationAccessManagerWindow = false,
     showKeycodeManagerWindow = false,
     showPasswordManagerWindow = false,
-    showCharacterManagerWindow = false;
+    showCharacterManagerWindow = false,
+    showGameTokenWindow = false;
     const std::string ModuleName = "WorldManager";
 
     void DrawLevelManagerWindow();
@@ -82,6 +83,7 @@ private:
     void DrawPasswordManagerTab();
     void DrawCharacterManagerWindow();
     void DrawPathAirlockManagerTab();
+    void DrawGameTokenManagerWindow();
 
     void loadStationAccessLibrary();
     void loadLocationLibrary();

@@ -4,38 +4,11 @@
 #include <Prey/Ark/arkaudioutil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h>
 #include <Prey/GameDll/ark/psicommon/arkpsifearblast.h>
 #include <Prey/GameDll/ark/perception/ArkGameNoise.h>
 
 class ArkPsiPowerTargetingComponent;
 struct IEntity;
-
-// Header: Exact
-// Prey/GameDll/ark/psicommon/arkpsiblast.h
-template <typename T>
-class CArkPsiBlastProperties // Id=801C114 Size=128
-{
-public:
-	using Data = T;
-	
-	ArkGameNoise::Params m_noiseParams;
-	_smart_ptr<IParticleEffect> m_pPreExplosionParticleEffect;
-	ArkFireAndForgetEffect m_explosionParticleEffect;
-	ArkAudioTrigger m_onStartDelayAudioTrigger;
-	ArkAudioTrigger m_onStopDelayAudioTrigger;
-	ArkAudioTrigger m_onExplosionAudioTrigger;
-	ArkAudioTrigger m_onStartPersistentAudioTrigger;
-	ArkAudioTrigger m_onStopPersistentAudioTrigger;
-	T const *m_pData;
-	ArkPsiPowerTargetingComponent const *m_pTargetingComponent;
-	
-#if 0
-	void SetData(T const &_data, ArkPsiPowerTargetingComponent const &_targetingComponent);
-	T const &GetData() const;
-	ArkPsiPowerTargetingComponent const *GetTargetingComponent() const;
-#endif
-};
 
 // Header: Exact
 // Prey/GameDll/ark/psicommon/arkpsiblast.h

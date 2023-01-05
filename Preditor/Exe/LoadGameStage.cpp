@@ -1,6 +1,6 @@
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
-#include <ModLoader/PathUtils.h>
+#include <Manager/PathUtils.h>
 #include <Preditor/IPreditorEngine.h>
 #include "LoadGameStage.h"
 #include "Preditor.h"

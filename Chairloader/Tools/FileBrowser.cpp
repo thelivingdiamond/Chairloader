@@ -453,7 +453,7 @@ void FileBrowser::displayXmlNode(XmlNodeRef node, int depth) {
                 ImGui::TextColored(ImColor(221, 146, 33), "%s", attributeValuePtr);
                 if(ImGui::IsItemClicked()){
                     ImGui::SetClipboardText(attributeValuePtr);
-                    gCL->gui->overlayLog(GetModuleName(), "Copied to Clipboard");
+                    OverlayLog("Copied to clipboard");
                 }
             }
             if(strlen(node->getContent()) != 0) {

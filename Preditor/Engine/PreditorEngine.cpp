@@ -95,6 +95,11 @@ public:
 		patch = MOD_SDK_VERSION_PATCH;
 	}
 
+	void* QueryInterface(const char* ifaceName) override
+	{
+		return nullptr;
+	}
+
 	void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) override
 	{
 		assert(!initInfo.isHotReloading);
@@ -108,6 +113,8 @@ public:
 		RendererGlobals::InitSystem();
 		MainWindowResizePatch::InitSystem();
 	}
+
+	void Connect(const std::vector<IChairloaderMod*>& mods) override {}
 
 	void InitGame(bool isHotReloading) override
 	{

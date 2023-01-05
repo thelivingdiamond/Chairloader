@@ -21,7 +21,7 @@ class IHardwareMouseEventListener
 {
 public:
 	virtual ~IHardwareMouseEventListener() = 0;
-	virtual void OnHardwareMouseEvent(int, int, EHARDWAREMOUSEEVENT, int) = 0;
+	virtual void OnHardwareMouseEvent(int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta = 0) = 0;
 };
 
 struct IHardwareMouse
@@ -31,7 +31,7 @@ public:
 	virtual void Release() = 0;
 	virtual void OnPreInitRenderer() = 0;
 	virtual void OnPostInitInput() = 0;
-	virtual void Event(int, int, EHARDWAREMOUSEEVENT, int) = 0;
+	virtual void Event(int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta = 0) = 0;
 	virtual void AddListener(IHardwareMouseEventListener *) = 0;
 	virtual void RemoveListener(IHardwareMouseEventListener *) = 0;
 	virtual void SetMouseGameMode(bool) = 0;

@@ -35,6 +35,7 @@ public:
 	virtual void ShutdownGame(bool isHotUnloading) override;
 	virtual void ShutdownSystem(bool isHotUnloading) override;
 
+
 private:
 	uintptr_t m_ModuleBase = 0;
 	fs::path m_ModDirPath;

@@ -52,6 +52,7 @@ private:
 	uintptr_t m_ModuleBase = 0;
 	IPreditorToChair* m_pPreditorAPI = nullptr;
 	bool m_bEditorEnabled = false;
+    bool m_bTrainerEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
 	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
 	std::unique_ptr<Internal::IChairloaderTools> m_pTools;

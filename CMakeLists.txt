@@ -42,7 +42,7 @@ set(_CHAIRLOADER_VERSION_MAJOR 0)  # Increment when breaking changes are made
 set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
 set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
 set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
-set(_CHAIRLOADER_VERSION_TYPE "-rc1")  # Indicates a pre-release version (e.g. "-alpha")
+set(_CHAIRLOADER_VERSION_TYPE "-rc2")  # Indicates a pre-release version (e.g. "-alpha")
 
 # Macros and functions
 
@@ -100,8 +100,8 @@ unset(EXAMPLE_MOD_DLL_PATH CACHE)
 
 # Since ModToolKit interfaces with PreyDll.dll, everything must use Release ABI
 # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-add_subdirectory(CommonModLoader)
+add_subdirectory(CommonChairManager)
 #add_subdirectory(ChairLoaderXMLLoader)
-add_subdirectory(ChairLoaderModLoader)
+add_subdirectory(ChairManager)
 add_subdirectory(BinDiff)
 add_subdirectory(Preditor)

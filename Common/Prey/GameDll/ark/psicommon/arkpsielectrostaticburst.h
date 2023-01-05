@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/ArkPsiBlastProperties.h>
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/GameDll/ark/psicommon/arkpsiblast.h>
 
@@ -53,84 +53,6 @@ public:
 	static inline auto FoperatorEq = PreyFunction<CArkPsiElectrostaticBurst &(CArkPsiElectrostaticBurst *const _this, CArkPsiElectrostaticBurst *_blast)>(0x15811B0);
 	static inline auto FGetPower = PreyFunction<EArkPsiPowers(CArkPsiElectrostaticBurst const *const _this)>(0x158AEF0);
 	static inline auto FUpdateEffect = PreyFunction<void(CArkPsiElectrostaticBurst const *const _this, std::vector<IEntity *> _entities)>(0x1581230);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h
-class ArkPsiKineticBlastProperties : public ArkReflectedObject // Id=801C149 Size=144
-{
-public:
-	class ArkBlastPropertiesProperty : public ArkProperty // Id=801C14A Size=32
-	{
-	public:
-		ArkBlastPropertiesProperty();
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1580AE0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty s_ArkBlastPropertiesProperty;
-	ArkPsiBlastProperties m_BlastProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
-#if 0
-	static ArkClass *GetClass();
-	void SetBlastProperties(ArkPsiBlastProperties arg0);
-	ArkPsiBlastProperties const &GetBlastProperties() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x15811D0);
-};
-
-// Header: FromCpp
-// Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h
-class CArkPsiKineticBlast : public CArkPsiBlast<CArkPsiKineticBlast,CArkPsiBlastProperties<ArkPsiKineticBlastProperties> > // Id=801C14C Size=80
-{
-public:
-	using BaseType = CArkPsiBlast<CArkPsiKineticBlast,CArkPsiBlastProperties<ArkPsiKineticBlastProperties> >;
-	using BlastProperties = CArkPsiBlastProperties<ArkPsiKineticBlastProperties>;
-	
-	CArkPsiKineticBlast(Vec3 const &_pos, CArkPsiBlastProperties<ArkPsiKineticBlastProperties> const *_pProperties);
-	CArkPsiKineticBlast &operator=(CArkPsiKineticBlast *_blast) { return FoperatorEq(this,_blast); }
-	EArkPsiPowers GetPower() const { return FGetPower(this); }
-	void UpdateEffect(std::vector<IEntity *> _entities) const { FUpdateEffect(this,_entities); }
-	
-	static inline auto FoperatorEq = PreyFunction<CArkPsiKineticBlast &(CArkPsiKineticBlast *const _this, CArkPsiKineticBlast *_blast)>(0x15811B0);
-	static inline auto FGetPower = PreyFunction<EArkPsiPowers(CArkPsiKineticBlast const *const _this)>(0xC36440);
-	static inline auto FUpdateEffect = PreyFunction<void(CArkPsiKineticBlast const *const _this, std::vector<IEntity *> _entities)>(0x15820D0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h
-class ArkPsiThermalBlastProperties : public ArkReflectedObject // Id=801C16A Size=144
-{
-public:
-	class ArkBlastPropertiesProperty : public ArkProperty // Id=801C16B Size=32
-	{
-	public:
-		ArkBlastPropertiesProperty();
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiThermalBlastProperties::ArkBlastPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1580AE0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiThermalBlastProperties::ArkBlastPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiThermalBlastProperties::ArkBlastPropertiesProperty s_ArkBlastPropertiesProperty;
-	ArkPsiBlastProperties m_BlastProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
-#if 0
-	static ArkClass *GetClass();
-	void SetBlastProperties(ArkPsiBlastProperties arg0);
-	ArkPsiBlastProperties const &GetBlastProperties() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x15811D0);
 };
 
 // Header: FromCpp

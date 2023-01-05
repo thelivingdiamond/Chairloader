@@ -15,6 +15,9 @@
 #include "Prey/GameDll/ark/player/ArkUtilityComponent.h"
 #include "Prey/GameDll/ark/player/ArkPlayerUIComponent.h"
 #include "Prey/GameDll/ark/player/ArkStationAccessComponent.h"
+#include "Prey/GameDll/ark/player/pda/ArkKeyCardComponent.h"
+#include "Prey/GameDll/ark/player/pda/ArkKeyCodeComponent.h"
+#include "Prey/GameDll/ark/player/pda/ArkRosterComponent.h"
 #include "Prey/CrySystem/File/CryFile.h"
 #include "Prey/CrySystem/File/ICryPak.h"
 WorldManager::WorldManager() {
@@ -32,6 +35,7 @@ void WorldManager::Draw() {
     DrawLevelManagerWindow();
     DrawStationAccessManagerWindow();
     DrawCharacterManagerWindow();
+    DrawGameTokenManagerWindow();
 }
 
 std::string WorldManager::GetModuleName() {
@@ -52,6 +56,7 @@ void WorldManager::DrawLevelManagerWindow() {
                 if (ImGui::Selectable(mapId.c_str())) {
                     CryLog("{}", mapId);
                 }
+                ImGui::Text("Map Scheduled to End: %u", ((CCryAction*)gCL->cl->GetFramework())->m_bScheduleLevelEnd);
             }
             if(ImGui::BeginTable("Map List", 1, ImGuiTableFlags_ScrollY, ImVec2(0, ImGui::GetContentRegionAvail().y - 60.0f))) {
                 ImGui::TableSetupColumn("Map Name");
@@ -86,6 +91,7 @@ void WorldManager::DrawMenuBar() {
                 ImGui::MenuItem("Open Level Manager", nullptr, &showLevelManagerWindow);
                 ImGui::MenuItem("Open Station Access Manager", nullptr, &showStationAccessManagerWindow);
                 ImGui::MenuItem("Open Character Manager", nullptr, &showCharacterManagerWindow);
+                ImGui::MenuItem("Open Game Token Manager", nullptr, &showGameTokenWindow);
                 ImGui::EndMenu();
             }
             ImGui::EndMenu();
@@ -706,5 +712,40 @@ void WorldManager::DrawPathAirlockManagerTab() {
             }
         }
         ImGui::EndTabItem();
+    }
+}
+
+void WorldManager::DrawGameTokenManagerWindow() {
+    if(showGameTokenWindow) {
+        if (ImGui::Begin("Game Token Manager", &showGameTokenWindow)) {
+            static ImGuiTextFilter filter;
+            filter.Draw();
+            if (ImGui::BeginTable("Game Tokens", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY | ImGuiTableFlags_BordersInner,
+                                  ImVec2{0, ImGui::GetContentRegionAvail().y})) {
+                ImGui::TableSetupColumn("Game Token");
+                ImGui::TableSetupColumn("Value");
+                ImGui::TableSetupScrollFreeze(1, 1);
+                ImGui::TableHeadersRow();
+                auto tokenIT = gCL->cl->GetFramework()->GetIGameTokenSystem()->GetGameTokenIterator();
+                auto token = tokenIT->Next();
+                while (token) {
+                    if(filter.PassFilter(token->GetName())) {
+                        ImGui::TableNextRow();
+                        ImGui::TableNextColumn();
+                        ImGui::Text("%s", token->GetName());
+                        ImGui::TableNextColumn();
+                        std::string tokenValue = token->GetValueAsString().c_str();
+                        if(ImGui::InputText((std::string("##") + token->GetName()).c_str(), &tokenValue, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                            token->SetValueAsString(tokenValue.c_str());
+                        }
+                    }
+                    if (tokenIT->IsEnd())
+                        break;
+                    token = tokenIT->Next();
+                }
+                ImGui::EndTable();
+            }
+            ImGui::End();
+        }
     }
 }

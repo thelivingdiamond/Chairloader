@@ -1,13 +1,12 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: Override
-// Prey/GameDll/ark/player/IArkCharacterStatusListener.h
-class IArkCharacterStatusListener // Id=80154D3 Size=8
-{
+// IArkCharacterStatusListener
+// Header:  Prey/GameDll/ark/player/IArkCharacterStatusListener.h
+class IArkCharacterStatusListener
+{ // Size=8 (0x8)
 public:
-	virtual void OnCharacterStatusChanged(const uint64_t arg0) = 0;
-	virtual void OnCharacterDiscovered(const uint64_t arg0, bool arg1) = 0;
+	virtual void OnCharacterStatusChanged(const uint64_t _characterId) = 0;
+	virtual void OnCharacterDiscovered(const uint64_t _characterId, bool _bDiscovered) = 0;
 };
 

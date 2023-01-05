@@ -1,12 +1,11 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <Manager/IconsMaterialDesign.h>
 #include <d3d11.h>
 #include <tchar.h>
 #include "AppImGui.h"
 #include "App/Application.h"
 #include <ImGui/imgui_impl_dx11.h>
 #include <ImGui/imgui_impl_win32.h>
-#include <IconsMaterialDesign.h>
-#include "ImFileDialog/ImFileDialog.h"
 
 static ID3D11Device* g_pd3dDevice = NULL;
 
@@ -170,45 +169,6 @@ void AppImGui::InitImGui()
 	ImGui_ImplDX11_Init(m_pd3dDevice, m_pd3dDeviceContext);
 
     g_pd3dDevice = m_pd3dDevice;
-
-    ifd::FileDialog::Instance().CreateTexture = [](uint8_t* data, int w, int h, char fmt) -> void* {
-        // Create texture
-        D3D11_TEXTURE2D_DESC desc;
-        ZeroMemory(&desc, sizeof(desc));
-        desc.Width = w;
-        desc.Height = h;
-        desc.MipLevels = 1;
-        desc.ArraySize = 1;
-        desc.Format = fmt==0 ? DXGI_FORMAT_B8G8R8A8_UNORM : DXGI_FORMAT_R8G8B8A8_UNORM;
-        desc.SampleDesc.Count = 1;
-        desc.Usage = D3D11_USAGE_DEFAULT;
-        desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-        desc.CPUAccessFlags = 0;
-
-        ID3D11Texture2D* pTexture = NULL;
-        D3D11_SUBRESOURCE_DATA subResource;
-        subResource.pSysMem = data;
-        subResource.SysMemPitch = desc.Width * 4;
-        subResource.SysMemSlicePitch = 0;
-        g_pd3dDevice->CreateTexture2D(&desc, &subResource, &pTexture);
-
-        // Create texture view
-        ID3D11ShaderResourceView* out_srv=NULL;
-        D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
-        ZeroMemory(&srvDesc, sizeof(srvDesc));
-        srvDesc.Format = desc.Format;
-        srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-        srvDesc.Texture2D.MipLevels = desc.MipLevels;
-        srvDesc.Texture2D.MostDetailedMip = 0;
-        g_pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &out_srv);
-        pTexture->Release();
-
-        return (void*)out_srv;
-    };
-
-    ifd::FileDialog::Instance().DeleteTexture = [](void* tex) {
-
-    };
 }
 
 void AppImGui::CreateDeviceD3D()

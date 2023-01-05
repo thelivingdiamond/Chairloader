@@ -42,3 +42,22 @@ void VCryFatalError(std::string_view format, fmt::format_args args)
 
 	std::abort();
 }
+
+void VCryOverlayLog(EChairLogType type, std::string_view format, fmt::format_args args) {
+    char buf[IChairLogger::MSG_BUF_SIZE];
+    size_t requiredSize = fmt::vformat_to_n(buf, sizeof(buf), format, args).size;
+
+    if (requiredSize <= sizeof(buf))
+    {
+        // Message fits into buf
+        g_pChairLogger->OverlayLog(type, buf, requiredSize);
+    }
+    else
+    {
+        // Message was truncated, format again on the heap
+        std::string text = fmt::vformat(format, args);
+        g_pChairLogger->OverlayLog(type, text.c_str(), text.size());
+    }
+
+}
+

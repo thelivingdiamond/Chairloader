@@ -152,6 +152,19 @@ void ModDllManager::CallInitSystem()
 	}
 }
 
+void ModDllManager::CallConnect() {
+    std::vector<IChairloaderMod*> mods;
+    mods.reserve(m_Modules.size());
+    for(auto& mod : m_Modules) {
+        mods.push_back(mod.pModIface);
+    }
+    for (auto& mod : m_Modules) {
+        if (mod.pModIface) {
+            mod.pModIface->Connect(mods);
+        }
+    }
+}
+
 void ModDllManager::CallInitGame()
 {
 	for (auto it = m_Modules.begin(); it != m_Modules.end(); ++it)
@@ -324,3 +337,4 @@ void ModDllManager::CheckModSdkVersion(Module& mod)
 			major, minor, patch);
 	}
 }
+

@@ -2,12 +2,11 @@
 // Created by theli on 10/28/2022.
 //
 
+#include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "ConfigValidationStage.h"
 #include "ConfigManager.h"
 #include "App/AppImGui.h"
-#include "IconsMaterialDesign.h"
 #include "ImGuiFileDialog/ImGuiFileDialog.h"
-#include "ImFileDialog/ImFileDialog.h"
 #include "ImGui/imgui_stdlib.h"
 
 
@@ -93,7 +92,7 @@ void ConfigValidationStage::showGamePathsWindow() {
         }
         ImGui::SameLine();
         if(ImGui::Button(ICON_MD_MORE_HORIZ "##GAMEPATHSELECTION")){
-            ifd::FileDialog::Instance().Open("SelectGamePathDialog", "Select Game Directory", "");
+            //ifd::FileDialog::Instance().Open("SelectGamePathDialog", "Select Game Directory", "");
         }
         ImGui::NewLine();
         ImGui::NewLine();
@@ -106,7 +105,7 @@ void ConfigValidationStage::showGamePathsWindow() {
         }
         ImGui::SameLine();
         if(ImGui::Button(ICON_MD_MORE_HORIZ "##PREYFILESSELECTION")){
-            ifd::FileDialog::Instance().Open("SelectPreyFilesPathDialog", "Select Prey Files Directory", "", false, "");
+            //ifd::FileDialog::Instance().Open("SelectPreyFilesPathDialog", "Select Prey Files Directory", "", false, "");
         }
         ImGui::NewLine();
         if(ImGui::Button("Continue")){
@@ -120,7 +119,7 @@ void ConfigValidationStage::showGamePathsWindow() {
     }
     ImGui::End();
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos()), ImGuiCond_Appearing);
-    if (ifd::FileDialog::Instance().IsDone("SelectGamePathDialog")) {
+    /*if (ifd::FileDialog::Instance().IsDone("SelectGamePathDialog")) {
         if (ifd::FileDialog::Instance().HasResult()) {
             ConfigManager::Get()->m_gamePath = ifd::FileDialog::Instance().GetResult();
         }
@@ -132,7 +131,7 @@ void ConfigValidationStage::showGamePathsWindow() {
             ConfigManager::Get()->m_PreyFilesPath = ifd::FileDialog::Instance().GetResult();
         }
         ifd::FileDialog::Instance().Close();
-    }
+    }*/
 }
 
 void ConfigValidationStage::showErrorWindow() {

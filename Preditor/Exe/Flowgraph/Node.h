@@ -4,7 +4,6 @@
 #include "UniqueID.h"
 #include "ImGui/imgui.h"
 #include "ImNodes/imnodes.h"
-#include <IconsMaterialDesign.h>
 #include "IChairFlowgraph.h"
 #include <pugixml.hpp>
 

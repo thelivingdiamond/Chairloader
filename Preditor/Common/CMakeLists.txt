@@ -23,7 +23,7 @@ target_compile_definitions(Preditor.Common PUBLIC
 
 target_link_libraries(Preditor.Common PUBLIC
 	Common
-	CommonModLoader
+	CommonChairManager
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
