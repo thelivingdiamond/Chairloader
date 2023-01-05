@@ -15,6 +15,9 @@ GameViewport::GameViewport()
 	// Increment counters to disable mouse
 	gEnv->pHardwareMouse->IncrementCounter(); // m_bEnableInput
 	gEnv->pHardwareMouse->IncrementCounter(); // m_bLockMouse
+
+	// Decrement some initial increment by the engine or something
+	gEnv->pHardwareMouse->DecrementCounter();
 }
 
 void GameViewport::PreUpdate()
@@ -36,10 +39,15 @@ void GameViewport::Update(bool isVisible)
 			bFocused = vp->PlatformUserData && ImGui::GetPlatformIO().Platform_GetWindowFocus(vp);
 		}
 		SetInputEnabled(bFocused);
+
+		// Unlock the mouse on focus loss
+		if (!bFocused)
+			SetMouseLocked(false);
 	}
 	else
 	{
 		SetInputEnabled(false);
+		SetMouseLocked(false);
 	}
 }
 

@@ -125,19 +125,25 @@ void HardwareMousePatch::SetIBasicEventListener(IBasicEventListener* ptr)
 
 void HardwareMousePatch::SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max)
 {
-	g_ViewportId = viewportId;
-	g_MinBounds = min;
-	g_MaxBounds = max;
+	if (g_ViewportId != viewportId || g_MinBounds != min || g_MaxBounds != max)
+	{
+		g_ViewportId = viewportId;
+		g_MinBounds = min;
+		g_MaxBounds = max;
 
-	// Update confinement
-	CHardwareMouse* _this = static_cast<CHardwareMouse*>(gEnv->pHardwareMouse);
-	if (_this->m_bFocus)
-		_this->ConfineCursor(_this->m_iReferenceCounter == 0, false);
+		// Update confinement
+		CHardwareMouse* _this = static_cast<CHardwareMouse*>(gEnv->pHardwareMouse);
+		if (_this->m_bFocus)
+			_this->ConfineCursor(_this->m_iReferenceCounter == 0, false);
+	}
 }
 
 void HardwareMousePatch::SetWindowFocused(bool bFocus)
 {
 	CHardwareMouse* _this = static_cast<CHardwareMouse*>(gEnv->pHardwareMouse);
+
+	if (_this->m_bFocus == bFocus)
+		return;
 
 	if (bFocus)
 	{
