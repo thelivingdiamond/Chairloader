@@ -12,6 +12,7 @@
 #include <curlpp/Infos.hpp>
 #include "ChairManager.h"
 #include "UpdateURL.h"
+#include "../Common/Chairloader/SemanticVersion.h"
 
 
 static double progress_dltotal = 0, progress_dlnow = 0;
