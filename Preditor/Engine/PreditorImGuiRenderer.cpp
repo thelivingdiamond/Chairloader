@@ -1,5 +1,6 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Preditor/IPreditorEngine.h>
 #include "PreditorImGuiRenderer.h"
 #include "PreditorImGui.h"
 
@@ -34,6 +35,8 @@ PreditorImGuiRenderer::PreditorImGuiRenderer(PreditorImGui* pBackend)
 	g_pPreditorImGuiRenderer = this;
 	m_pBackend = pBackend;
 	ImGuiIO& io = ImGui::GetIO();
+
+	m_Renderer.pPreditorViewportTexture = IPreditorEngine::Get()->GetViewportTexture();
 
 	io.BackendRendererUserData = (void*)this;
 	io.BackendRendererName = "D3D11 (CRYENGINE)";

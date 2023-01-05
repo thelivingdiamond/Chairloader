@@ -127,7 +127,17 @@ void ImGuiRendererD3D11::RT_Render(ImRendDrawBuffer& buffer, const wchar_t* even
 				CTexture* pTexture = static_cast<CTexture*>(pITexture);
 				ID3D11ShaderResourceView* pView = pTexture->m_pDeviceShaderResource;
 				ctx.PSSetShaderResources(0, 1, &pView);
+
+#ifdef PREDITOR
+				const float blend_factor[4] = { 0.f, 0.f, 0.f, 0.f };
+				if (pITexture == pPreditorViewportTexture)
+					ctx.OMSetBlendState(m_pPreditorBlendState, blend_factor, 0xffffffff);
+#endif
 				ctx.DrawIndexed(cmd.ElemCount, cmd.IdxOffset + drawList.idxOffset, cmd.VtxOffset + drawList.vtxOffset);
+#ifdef PREDITOR
+				if (pITexture == pPreditorViewportTexture)
+					ctx.OMSetBlendState(m_pBlendState, blend_factor, 0xffffffff);
+#endif
 			}
 		}
 	}
@@ -267,6 +277,24 @@ bool ImGuiRendererD3D11::RT_Initialize()
 		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 		pd3dDevice.CreateBlendState(&desc, &m_pBlendState);
 	}
+
+#ifdef PREDITOR
+	// Create the blending setup for Preditor viewport. Ignore alpha because it's wrong there.
+	{
+		D3D11_BLEND_DESC desc;
+		ZeroMemory(&desc, sizeof(desc));
+		desc.AlphaToCoverageEnable = false;
+		desc.RenderTarget[0].BlendEnable = true;
+		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
+		desc.RenderTarget[0].DestBlend = D3D11_BLEND_ZERO;
+		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		pd3dDevice.CreateBlendState(&desc, &m_pPreditorBlendState);
+	}
+#endif
 
 	// Create the rasterizer state
 	{

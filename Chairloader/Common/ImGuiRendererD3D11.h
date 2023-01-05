@@ -2,10 +2,16 @@
 #include <LibD3D11.h>
 #include "ImGuiDoubleBuffering.h"
 
+struct ITexture;
+
 //! An ImGui renderer that uses direct D3D11 calls. Uses CryEngine's ITexture* as ImTextureID.
 class ImGuiRendererD3D11
 {
 public:
+#ifdef PREDITOR
+	ITexture* pPreditorViewportTexture = nullptr;
+#endif
+
 	//! Draws the specified draw buffer into currently attached framebuffer. Must be called on the render thread.
 	void RT_Render(ImRendDrawBuffer& buffer, const wchar_t* eventName);
 
@@ -33,6 +39,10 @@ private:
 	ID3D11DepthStencilState* m_pDepthStencilState = nullptr;
 	int m_VertexBufferSize = BUFFER_SIZE_INCREMENT;
 	int m_IndexBufferSize = BUFFER_SIZE_INCREMENT;
+
+#ifdef PREDITOR
+	ID3D11BlendState* m_pPreditorBlendState = nullptr;
+#endif
 
 	bool RT_Initialize();
 	void RT_SetupRenderState(ImRendDrawBuffer& buffer);
