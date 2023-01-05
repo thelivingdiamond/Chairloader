@@ -11,7 +11,8 @@ public:
 	static void SetIBasicEventListener(IBasicEventListener* ptr);
 
 	//! Sets the screen bounds of the viewport window.
-	static void SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max);
+	//! @returns whether it was changed.
+	static bool SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max);
 
 	//! Sets whether the game viewport is focused.
 	static void SetWindowFocused(bool state);

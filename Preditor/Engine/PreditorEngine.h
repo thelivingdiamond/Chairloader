@@ -25,7 +25,7 @@ public:
 	void Update() override;
 	ITexture* GetViewportTexture() override;
 	void SetGameInputEnabled(bool state) override;
-	void SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
+	bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
 
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;

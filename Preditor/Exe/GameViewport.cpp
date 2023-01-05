@@ -68,6 +68,9 @@ void GameViewport::ShowContents()
 	ImVec2 imageSize(size.x, size.y);
 	ImGui::ImageButton(m_pViewportTexture, imageSize, ImVec2(0, 0), ImVec2(1, 1), 0);
 
+	if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
+		SetMouseLocked(true);
+
 	// Set engine viewport size
 	if (m_pCVarWidth->GetIVal() != size.x)
 		m_pCVarWidth->Set(size.x);
@@ -76,7 +79,14 @@ void GameViewport::ShowContents()
 
 	ImVec2 windowPos = ImGui::GetWindowPos();
 	Vec2i windowPos2(windowPos.x, windowPos.y);
-	IPreditorEngine::Get()->SetGameViewportRect(ImGui::GetWindowViewport()->ID, windowPos2 + Vec2i(min.x, min.y), windowPos2 + Vec2i(max.x, max.y));
+	
+	bool sizeChanged = IPreditorEngine::Get()->SetGameViewportRect(ImGui::GetWindowViewport()->ID, windowPos2 + Vec2i(min.x, min.y), windowPos2 + Vec2i(max.x, max.y));
+	if (sizeChanged)
+	{
+		// FlashUI hides the mouse when changing the resolution.
+		// This causes it to become confined and this messes with resizing.
+		SetMouseLocked(false);
+	}
 }
 
 void GameViewport::ShowTopControls()

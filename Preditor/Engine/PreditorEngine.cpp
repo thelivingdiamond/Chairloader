@@ -2,6 +2,7 @@
 #include <mem.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
+#include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/GameDll/GameStartup.h>
 #include <Prey/GameDll/basiceventlistener.h>
 #include <Chairloader/IChairloaderMod.h>
@@ -252,24 +253,25 @@ bool PreditorEngine::HandleKeyboardMessage(HWND hWnd, unsigned msg, uint64_t wPa
 {
 	HWND hMainWnd = (HWND)gEnv->pSystem->GetHWND();
 	IBasicEventListener* pBasicEventListener = &static_cast<CGameStartup*>(g_PreditorEngine.m_pGameStartup)->m_basicEventListener;
+	IBasicEventListener::EAction result = IBasicEventListener::eA_Default;
 
 	switch (msg)
 	{
 	case WM_SYSKEYDOWN:
-		pBasicEventListener->OnSysKeyDown(hMainWnd, wParam, lParam);
-		return true;
+		result = pBasicEventListener->OnSysKeyDown(hMainWnd, wParam, lParam);
+		break;
 	case WM_SYSCHAR:
-		pBasicEventListener->OnSycChar(hMainWnd);
-		return true;
+		result = pBasicEventListener->OnSycChar(hMainWnd);
+		break;
 	case WM_SYSCOMMAND:
-		pBasicEventListener->OnSysCommand(hMainWnd, wParam);
-		return true;
+		result = pBasicEventListener->OnSysCommand(hMainWnd, wParam);
+		break;
 	case WM_HOTKEY:
-		pBasicEventListener->OnHotKey(hMainWnd);
-		return true;
+		result = pBasicEventListener->OnHotKey(hMainWnd);
+		break;
 	}
 
-	return false;
+	return result != IBasicEventListener::eA_Default;
 }
 
 void PreditorEngine::Load(const InitParams& params)
@@ -460,9 +462,9 @@ void PreditorEngine::SetGameInputEnabled(bool state)
 	HardwareMousePatch::SetWindowFocused(state);
 }
 
-void PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
+bool PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
 {
-	HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);
+	return HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);
 }
 
 IChairloaderMod* PreditorEngine::GetMod()

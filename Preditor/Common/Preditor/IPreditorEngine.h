@@ -66,5 +66,6 @@ struct IPreditorEngine
 	virtual void SetGameInputEnabled(bool state) = 0;
 
 	//! Sets the bounds of the game viewport in screen coordinates.
-	virtual void SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) = 0;
+	//! @returns whether they were changed.
+	virtual bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) = 0;
 };
