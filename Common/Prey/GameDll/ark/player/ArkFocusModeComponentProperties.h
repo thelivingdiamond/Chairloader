@@ -1,302 +1,392 @@
 // Header file automatically created from a PDB.
-
 #pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>
 
 class ArkClass;
 class ArkReflectedObject;
+class IArkValueBase;
 
-// Header: Exact
-// Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
-class ArkFocusModeComponentProperties : public ArkReflectedLibrary // Id=801729E Size=192
-{
+// ArkFocusModeComponentProperties
+// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+class ArkFocusModeComponentProperties : public ArkReflectedLibrary
+{ // Size=192 (0xC0)
 public:
-	class ArkMouseSensitivityProperty : public ArkProperty // Id=801729F Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkMouseSensitivityProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkMouseSensitivityProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkMouseSensitivityProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1068CD0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkMouseSensitivityProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10660A0);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMouseSensitivityProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkMouseSensitivityProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1068CD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkMouseSensitivityProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
 	};
 
-	static ArkFocusModeComponentProperties::ArkMouseSensitivityProperty s_ArkMouseSensitivityProperty;
-	float m_MouseSensitivity;
-	
-	class ArkMouseRotationSpeedProperty : public ArkProperty // Id=80172A0 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkMouseRotationSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1360080);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A6320);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMouseRotationSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1360080);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6320);
 	};
 
-	static ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty s_ArkMouseRotationSpeedProperty;
-	float m_MouseRotationSpeed;
-	
-	class ArkMouseRotationDampingProperty : public ArkProperty // Id=80172A1 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkMouseRotationDampingProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1068E40);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1068E60);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMouseRotationDampingProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1068E40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty* const _this, ArkReflectedObject* const _pObject)>(0x1068E60);
 	};
 
-	static ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty s_ArkMouseRotationDampingProperty;
-	float m_MouseRotationDamping;
-	
-	class ArkControllerAbsoluteDeadzoneProperty : public ArkProperty // Id=80172A2 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkControllerAbsoluteDeadzoneProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221AE0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1221B00);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkControllerAbsoluteDeadzoneProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221AE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221B00);
 	};
 
-	static ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty s_ArkControllerAbsoluteDeadzoneProperty;
-	float m_ControllerAbsoluteDeadzone;
-	
-	class ArkControllerDeltaDeadzoneProperty : public ArkProperty // Id=80172A3 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkControllerDeltaDeadzoneProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x15A6340);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A6360);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkControllerDeltaDeadzoneProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6340);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6360);
 	};
 
-	static ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty s_ArkControllerDeltaDeadzoneProperty;
-	float m_ControllerDeltaDeadzone;
-	
-	class ArkControllerInactiveStickDeadzoneProperty : public ArkProperty // Id=80172A4 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkControllerInactiveStickDeadzoneProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221B20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A6380);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkControllerInactiveStickDeadzoneProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221B20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6380);
 	};
 
-	static ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty s_ArkControllerInactiveStickDeadzoneProperty;
-	float m_ControllerInactiveStickDeadzone;
-	
-	class ArkDefaultPostProcessEffectProperty : public ArkProperty // Id=80172A5 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkDefaultPostProcessEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221B40);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1360170);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultPostProcessEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221B40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1360170);
 	};
 
-	static ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty s_ArkDefaultPostProcessEffectProperty;
-	uint64_t m_DefaultPostProcessEffect;
-	
-	class ArkPsiPostProcessEffectProperty : public ArkProperty // Id=80172A6 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkPsiPostProcessEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1066110);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1221B60);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPsiPostProcessEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1066110);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221B60);
 	};
 
-	static ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty s_ArkPsiPostProcessEffectProperty;
-	uint64_t m_PsiPostProcessEffect;
-	
-	class ArkFocusParticleEffectPathProperty : public ArkProperty // Id=80172A7 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkFocusParticleEffectPathProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221B80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject)>(0x105A980);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkFocusParticleEffectPathProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221B80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject)>(0x105A980);
 	};
 
-	static ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty s_ArkFocusParticleEffectPathProperty;
-	string m_FocusParticleEffectPath;
-	
-	class ArkExitFromFocusParticleEffectPathProperty : public ArkProperty // Id=80172A8 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkExitFromFocusParticleEffectPathProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221BE0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1221C40);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkExitFromFocusParticleEffectPathProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221BE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221C40);
 	};
 
-	static ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty s_ArkExitFromFocusParticleEffectPathProperty;
-	string m_ExitFromFocusParticleEffectPath;
-	
-	class ArkPsiParticleEffectPathProperty : public ArkProperty // Id=80172A9 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkPsiParticleEffectPathProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221C60);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject)>(0x105AA60);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPsiParticleEffectPathProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221C60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject)>(0x105AA60);
 	};
 
-	static ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty s_ArkPsiParticleEffectPathProperty;
-	string m_PsiParticleEffectPath;
-	
-	class ArkExitFromPsiParticleEffectPathProperty : public ArkProperty // Id=80172AA Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkExitFromPsiParticleEffectPathProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221CC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject)>(0x105AA80);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkExitFromPsiParticleEffectPathProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221CC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject)>(0x105AA80);
 	};
 
-	static ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty s_ArkExitFromPsiParticleEffectPathProperty;
-	string m_ExitFromPsiParticleEffectPath;
-	
-	class ArkFocusToPsiParticleEffectPathProperty : public ArkProperty // Id=80172AB Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkFocusToPsiParticleEffectPathProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x105AB00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1221D20);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkFocusToPsiParticleEffectPathProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x105AB00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221D20);
 	};
 
-	static ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty s_ArkFocusToPsiParticleEffectPathProperty;
-	string m_FocusToPsiParticleEffectPath;
-	
-	class ArkPsiToFocusParticleEffectPathProperty : public ArkProperty // Id=80172AC Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkPsiToFocusParticleEffectPathProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221D40);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1221DA0);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPsiToFocusParticleEffectPathProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221D40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221DA0);
 	};
 
-	static ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty s_ArkPsiToFocusParticleEffectPathProperty;
-	string m_PsiToFocusParticleEffectPath;
-	
-	class ArkSelectPowerLegendProperty : public ArkProperty // Id=80172AD Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkSelectPowerLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1066210);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSelectPowerLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x1066210);
 	};
 
-	static ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty s_ArkSelectPowerLegendProperty;
-	ArkInputLegend m_SelectPowerLegend;
-	
-	class ArkSelectWeaponLegendProperty : public ArkProperty // Id=80172AE Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkSelectWeaponLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221E70);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A6230);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSelectWeaponLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221E70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6230);
 	};
 
-	static ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty s_ArkSelectWeaponLegendProperty;
-	ArkInputLegend m_SelectWeaponLegend;
-	
-	class ArkNoPowersAudioTriggerProperty : public ArkProperty // Id=80172AF Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkNoPowersAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221F20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1221F90);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNoPowersAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221F20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221F90);
 	};
 
-	static ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty s_ArkNoPowersAudioTriggerProperty;
-	string m_NoPowersAudioTrigger;
-	
-	class ArkNoPowersStringsProperty : public ArkProperty // Id=80172B0 Size=32
-	{
+	// ArkFocusModeComponentProperties::ArkNoPowersStringsProperty
+	// Header:  Prey/GameDll/ark/player/ArkFocusModeComponentProperties.h
+	class ArkNoPowersStringsProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
 		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkFocusModeComponentProperties::ArkNoPowersStringsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1221FB0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkFocusModeComponentProperties::ArkNoPowersStringsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1222020);
-		static inline auto FIsArray = PreyFunction<bool(ArkFocusModeComponentProperties::ArkNoPowersStringsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkFocusModeComponentProperties::ArkNoPowersStringsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1222070);
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkNoPowersStringsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFocusModeComponentProperties::ArkNoPowersStringsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221FB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFocusModeComponentProperties::ArkNoPowersStringsProperty* const _this, ArkReflectedObject* const _pObject)>(0x1222020);
+		static inline auto FIsArray = PreyFunction<bool(const ArkFocusModeComponentProperties::ArkNoPowersStringsProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const ArkFocusModeComponentProperties::ArkNoPowersStringsProperty* const _this, ArkReflectedObject* _pObject)>(0x1222070);
 	};
 
-	static ArkFocusModeComponentProperties::ArkNoPowersStringsProperty s_ArkNoPowersStringsProperty;
+	static inline auto s_ArkMouseSensitivityProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkMouseSensitivityProperty>(0x2BD3218);
+	float m_MouseSensitivity;
+	static inline auto s_ArkMouseRotationSpeedProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkMouseRotationSpeedProperty>(0x2BD3238);
+	float m_MouseRotationSpeed;
+	static inline auto s_ArkMouseRotationDampingProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkMouseRotationDampingProperty>(0x2BD3258);
+	float m_MouseRotationDamping;
+	static inline auto s_ArkControllerAbsoluteDeadzoneProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkControllerAbsoluteDeadzoneProperty>(0x2BD3278);
+	float m_ControllerAbsoluteDeadzone;
+	static inline auto s_ArkControllerDeltaDeadzoneProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkControllerDeltaDeadzoneProperty>(0x2BD3298);
+	float m_ControllerDeltaDeadzone;
+	static inline auto s_ArkControllerInactiveStickDeadzoneProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkControllerInactiveStickDeadzoneProperty>(0x2BD32B8);
+	float m_ControllerInactiveStickDeadzone;
+	static inline auto s_ArkDefaultPostProcessEffectProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkDefaultPostProcessEffectProperty>(0x2BD32D8);
+	uint64_t m_DefaultPostProcessEffect;
+	static inline auto s_ArkPsiPostProcessEffectProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkPsiPostProcessEffectProperty>(0x2BD32F8);
+	uint64_t m_PsiPostProcessEffect;
+	static inline auto s_ArkFocusParticleEffectPathProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkFocusParticleEffectPathProperty>(0x2BD3318);
+	string m_FocusParticleEffectPath;
+	static inline auto s_ArkExitFromFocusParticleEffectPathProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkExitFromFocusParticleEffectPathProperty>(0x2BD3338);
+	string m_ExitFromFocusParticleEffectPath;
+	static inline auto s_ArkPsiParticleEffectPathProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkPsiParticleEffectPathProperty>(0x2BD3358);
+	string m_PsiParticleEffectPath;
+	static inline auto s_ArkExitFromPsiParticleEffectPathProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkExitFromPsiParticleEffectPathProperty>(0x2BD3378);
+	string m_ExitFromPsiParticleEffectPath;
+	static inline auto s_ArkFocusToPsiParticleEffectPathProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkFocusToPsiParticleEffectPathProperty>(0x2BD3398);
+	string m_FocusToPsiParticleEffectPath;
+	static inline auto s_ArkPsiToFocusParticleEffectPathProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkPsiToFocusParticleEffectPathProperty>(0x2BD33B8);
+	string m_PsiToFocusParticleEffectPath;
+	static inline auto s_ArkSelectPowerLegendProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkSelectPowerLegendProperty>(0x2BD33D8);
+	ArkInputLegend m_SelectPowerLegend;
+	static inline auto s_ArkSelectWeaponLegendProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkSelectWeaponLegendProperty>(0x2BD33F8);
+	ArkInputLegend m_SelectWeaponLegend;
+	static inline auto s_ArkNoPowersAudioTriggerProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkNoPowersAudioTriggerProperty>(0x2BD3418);
+	string m_NoPowersAudioTrigger;
+	static inline auto s_ArkNoPowersStringsProperty = PreyGlobal<ArkFocusModeComponentProperties::ArkNoPowersStringsProperty>(0x2BD3438);
 	std::vector<string> m_NoPowersStrings;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
 	virtual bool Init();
-	virtual ~ArkFocusModeComponentProperties();
-	
+
 #if 0
-	void SetMouseSensitivity(float arg0);
-	const float &GetMouseSensitivity() const;
-	void SetMouseRotationSpeed(float arg0);
-	const float &GetMouseRotationSpeed() const;
-	void SetMouseRotationDamping(float arg0);
-	const float &GetMouseRotationDamping() const;
-	void SetControllerAbsoluteDeadzone(float arg0);
-	const float &GetControllerAbsoluteDeadzone() const;
-	void SetControllerDeltaDeadzone(float arg0);
-	const float &GetControllerDeltaDeadzone() const;
-	void SetControllerInactiveStickDeadzone(float arg0);
-	const float &GetControllerInactiveStickDeadzone() const;
-	void SetDefaultPostProcessEffect(uint64_t arg0);
-	const uint64_t &GetDefaultPostProcessEffect() const;
-	void SetPsiPostProcessEffect(uint64_t arg0);
-	const uint64_t &GetPsiPostProcessEffect() const;
-	void SetFocusParticleEffectPath(string arg0);
-	string const &GetFocusParticleEffectPath() const;
-	void SetExitFromFocusParticleEffectPath(string arg0);
-	string const &GetExitFromFocusParticleEffectPath() const;
-	void SetPsiParticleEffectPath(string arg0);
-	string const &GetPsiParticleEffectPath() const;
-	void SetExitFromPsiParticleEffectPath(string arg0);
-	string const &GetExitFromPsiParticleEffectPath() const;
-	void SetFocusToPsiParticleEffectPath(string arg0);
-	string const &GetFocusToPsiParticleEffectPath() const;
-	void SetPsiToFocusParticleEffectPath(string arg0);
-	string const &GetPsiToFocusParticleEffectPath() const;
-	void SetSelectPowerLegend(ArkInputLegend arg0);
-	ArkInputLegend const &GetSelectPowerLegend() const;
-	void SetSelectWeaponLegend(ArkInputLegend arg0);
-	ArkInputLegend const &GetSelectWeaponLegend() const;
-	void SetNoPowersAudioTrigger(string arg0);
-	string const &GetNoPowersAudioTrigger() const;
-	std::vector<string> &GetNoPowersStrings();
-	std::vector<string> const &GetNoPowersStrings() const;
+	void SetMouseSensitivity(float _arg0_);
+	const float& GetMouseSensitivity() const;
+	void SetMouseRotationSpeed(float _arg0_);
+	const float& GetMouseRotationSpeed() const;
+	void SetMouseRotationDamping(float _arg0_);
+	const float& GetMouseRotationDamping() const;
+	void SetControllerAbsoluteDeadzone(float _arg0_);
+	const float& GetControllerAbsoluteDeadzone() const;
+	void SetControllerDeltaDeadzone(float _arg0_);
+	const float& GetControllerDeltaDeadzone() const;
+	void SetControllerInactiveStickDeadzone(float _arg0_);
+	const float& GetControllerInactiveStickDeadzone() const;
+	void SetDefaultPostProcessEffect(uint64_t _arg0_);
+	const uint64_t& GetDefaultPostProcessEffect() const;
+	void SetPsiPostProcessEffect(uint64_t _arg0_);
+	const uint64_t& GetPsiPostProcessEffect() const;
+	void SetFocusParticleEffectPath(string _arg0_);
+	const string& GetFocusParticleEffectPath() const;
+	void SetExitFromFocusParticleEffectPath(string _arg0_);
+	const string& GetExitFromFocusParticleEffectPath() const;
+	void SetPsiParticleEffectPath(string _arg0_);
+	const string& GetPsiParticleEffectPath() const;
+	void SetExitFromPsiParticleEffectPath(string _arg0_);
+	const string& GetExitFromPsiParticleEffectPath() const;
+	void SetFocusToPsiParticleEffectPath(string _arg0_);
+	const string& GetFocusToPsiParticleEffectPath() const;
+	void SetPsiToFocusParticleEffectPath(string _arg0_);
+	const string& GetPsiToFocusParticleEffectPath() const;
+	void SetSelectPowerLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetSelectPowerLegend() const;
+	void SetSelectWeaponLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetSelectWeaponLegend() const;
+	void SetNoPowersAudioTrigger(string _arg0_);
+	const string& GetNoPowersAudioTrigger() const;
+	std::vector<string>& GetNoPowersStrings();
+	const std::vector<string>& GetNoPowersStrings() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1222DF0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1222EB0);
-	static inline auto FInit = PreyFunction<bool(ArkFocusModeComponentProperties *const _this)>(0x1223000);
-	static inline auto FBitNotArkFocusModeComponentProperties = PreyFunction<void(ArkFocusModeComponentProperties *const _this)>(0x1222BC0);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1222DF0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1222EB0);
+	static inline auto FInit = PreyFunction<bool(ArkFocusModeComponentProperties* const _this)>(0x1223000);
 };
 

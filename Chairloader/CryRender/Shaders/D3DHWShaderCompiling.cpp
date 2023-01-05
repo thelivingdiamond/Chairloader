@@ -3235,7 +3235,7 @@ int CHWShader_D3D::mfAsyncCompileReady(SHWSInstance* pInst)
 			bResult = false;
 		}
 		else //if (*CRenderer::CV_r_logShaders)
-			CryLog("Async {}: Finished compiling 0x{:x} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
+			CryLog("Async {}: Finished compiling 0x{:p} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
 		pShader = pAsync->m_pDevShader;
 		pErrorMsgs = pAsync->m_pErrors;
 		pConstantTable = pAsync->m_pConstants;

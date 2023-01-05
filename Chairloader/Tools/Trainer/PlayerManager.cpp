@@ -10,6 +10,8 @@
 #include <Prey/GameDll/ark/player/arkpsicomponent.h>
 #include <Prey/GameDll/ark/player/ArkPlayerFatigueComponent.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
+#include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
+#include <Prey/GameDll/ark/player/ability/ArkAbilityComponent.h>
 #include <Prey/GameDll/ark/ArkGame.h>
 #include <Prey/GameDll/ark/ArkItemSystem.h>
 #include <Prey/GameDll/arkitem.h>

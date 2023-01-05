@@ -1,1498 +1,2122 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
-#include <Prey/Ark/arkloreentry.h>
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-#include <Prey/GameDll/ark/player/psipower/arkpsipowertargetingcomponent.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerTargetingComponent.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>
-#include <Prey/GameDll/ark/ui/arkinputlegend.h>
 
 class ArkClass;
+class IArkValueBase;
+struct IEntityClass;
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiMimicRigidProperties : public ArkReflectedObject // Id=801944E Size=144
-{
+// ArkPsiMimicEngineeringOperatorProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiMimicEngineeringOperatorProperties : public ArkReflectedObject
+{ // Size=176 (0xB0)
 public:
-	class ArkDamageSignalGroupIdProperty : public ArkProperty // Id=801944F Size=32
-	{
+	// ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMoveSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x106D720);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty s_ArkDamageSignalGroupIdProperty;
-	uint64_t m_DamageSignalGroupId;
-	
-	class ArkJumpHeightProperty : public ArkProperty // Id=8019450 Size=32
-	{
+	// ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSprintSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkJumpHeightProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkJumpHeightProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSprintSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328410);
 	};
 
-	static ArkPsiMimicRigidProperties::ArkJumpHeightProperty s_ArkJumpHeightProperty;
-	float m_JumpHeight;
-	
-	class ArkPenetratingJumpHeightProperty : public ArkProperty // Id=8019451 Size=32
-	{
+	// ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultTurnSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1064F90);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultTurnSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
 	};
 
-	static ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty s_ArkPenetratingJumpHeightProperty;
-	float m_PenetratingJumpHeight;
-	
-	class ArkMoveSpeedProperty : public ArkProperty // Id=8019452 Size=32
-	{
+	// ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackTurnSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackTurnSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
 	};
 
-	static ArkPsiMimicRigidProperties::ArkMoveSpeedProperty s_ArkMoveSpeedProperty;
+	// ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRollSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRollSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackSignalPackageIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackSignalPackageIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1467B60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328420);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraZeroGOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraZeroGOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328680);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328690);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraZeroGOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraZeroGOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13288E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328490);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSafeCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSafeCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13284A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBDE0);
+	};
+
+	// ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSwitchCameraInputLegendItemProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSwitchCameraInputLegendItemProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13284D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty* const _this, ArkReflectedObject* const _pObject)>(0x1086170);
+	};
+
+	static inline auto s_ArkMoveSpeedProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty>(0x2BDAF88);
 	float m_MoveSpeed;
-	
-	class ArkSprintSpeedProperty : public ArkProperty // Id=8019453 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107A830);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A4070);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkSprintSpeedProperty s_ArkSprintSpeedProperty;
+	static inline auto s_ArkSprintSpeedProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty>(0x2BDAFA8);
 	float m_SprintSpeed;
-	
-	class ArkTumbleSpeedProperty : public ArkProperty // Id=8019454 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10629C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty s_ArkTumbleSpeedProperty;
-	float m_TumbleSpeed;
-	
-	class ArkLiftMaxAngularSpeedProperty : public ArkProperty // Id=8019455 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x106D560);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D570);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty s_ArkLiftMaxAngularSpeedProperty;
-	float m_LiftMaxAngularSpeed;
-	
-	class ArkTumbleSpeedLinearThresholdProperty : public ArkProperty // Id=8019456 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4F80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088980);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty s_ArkTumbleSpeedLinearThresholdProperty;
-	float m_TumbleSpeedLinearThreshold;
-	
-	class ArkMoveSpeedZeroGProperty : public ArkProperty // Id=8019457 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DD0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328510);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty s_ArkMoveSpeedZeroGProperty;
-	float m_MoveSpeedZeroG;
-	
-	class ArkSprintSpeedZeroGProperty : public ArkProperty // Id=8019458 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107A600);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088F70);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty s_ArkSprintSpeedZeroGProperty;
-	float m_SprintSpeedZeroG;
-	
-	class ArkRollSpeedZeroGProperty : public ArkProperty // Id=8019459 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10821B0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328680);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty s_ArkRollSpeedZeroGProperty;
-	float m_RollSpeedZeroG;
-	
-	class ArkAirControlScaleProperty : public ArkProperty // Id=801945A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkAirControlScaleProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x12FBD60);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkAirControlScaleProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1056F40);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkAirControlScaleProperty s_ArkAirControlScaleProperty;
-	float m_AirControlScale;
-	
-	class ArkNoiseIdProperty : public ArkProperty // Id=801945B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkNoiseIdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328520);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkNoiseIdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12F3810);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkNoiseIdProperty s_ArkNoiseIdProperty;
-	uint64_t m_NoiseId;
-	
-	class ArkLoudnessIdProperty : public ArkProperty // Id=801945C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkLoudnessIdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x105B9E0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkLoudnessIdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1591850);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkLoudnessIdProperty s_ArkLoudnessIdProperty;
-	uint64_t m_LoudnessId;
-	
-	class ArkNoiseIntervalProperty : public ArkProperty // Id=801945D Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107A670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12FBD70);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty s_ArkNoiseIntervalProperty;
-	float m_NoiseInterval;
-	
-	class ArkModalLegendProperty : public ArkProperty // Id=801945E Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkModalLegendProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328530);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkModalLegendProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12FBDE0);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkModalLegendProperty s_ArkModalLegendProperty;
-	ArkInputLegend m_ModalLegend;
-	
-	class ArkModalLegendZeroGProperty : public ArkProperty // Id=801945F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4FD0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1082260);
-	};
-
-	static ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty s_ArkModalLegendZeroGProperty;
-	ArkInputLegend m_ModalLegendZeroG;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetDamageSignalGroupId(uint64_t arg0);
-	const uint64_t &GetDamageSignalGroupId() const;
-	void SetJumpHeight(float arg0);
-	const float &GetJumpHeight() const;
-	void SetPenetratingJumpHeight(float arg0);
-	const float &GetPenetratingJumpHeight() const;
-	void SetMoveSpeed(float arg0);
-	const float &GetMoveSpeed() const;
-	void SetSprintSpeed(float arg0);
-	const float &GetSprintSpeed() const;
-	void SetTumbleSpeed(float arg0);
-	const float &GetTumbleSpeed() const;
-	void SetLiftMaxAngularSpeed(float arg0);
-	const float &GetLiftMaxAngularSpeed() const;
-	void SetTumbleSpeedLinearThreshold(float arg0);
-	const float &GetTumbleSpeedLinearThreshold() const;
-	void SetMoveSpeedZeroG(float arg0);
-	const float &GetMoveSpeedZeroG() const;
-	void SetSprintSpeedZeroG(float arg0);
-	const float &GetSprintSpeedZeroG() const;
-	void SetRollSpeedZeroG(float arg0);
-	const float &GetRollSpeedZeroG() const;
-	void SetAirControlScale(float arg0);
-	const float &GetAirControlScale() const;
-	void SetNoiseId(uint64_t arg0);
-	const uint64_t &GetNoiseId() const;
-	void SetLoudnessId(uint64_t arg0);
-	const uint64_t &GetLoudnessId() const;
-	void SetNoiseInterval(float arg0);
-	const float &GetNoiseInterval() const;
-	void SetModalLegend(ArkInputLegend arg0);
-	ArkInputLegend const &GetModalLegend() const;
-	void SetModalLegendZeroG(ArkInputLegend arg0);
-	ArkInputLegend const &GetModalLegendZeroG() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A720);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AB80);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiMimicTurretProperties : public ArkReflectedObject // Id=8019460 Size=96
-{
-public:
-	class ArkAimSpeedProperty : public ArkProperty // Id=8019461 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkAimSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkAimSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkAimSpeedProperty s_ArkAimSpeedProperty;
-	float m_AimSpeed;
-	
-	class ArkAimSpeedZeroGProperty : public ArkProperty // Id=8019462 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328410);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty s_ArkAimSpeedZeroGProperty;
-	float m_AimSpeedZeroG;
-	
-	class ArkMoveSpeedZeroGProperty : public ArkProperty // Id=8019463 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty s_ArkMoveSpeedZeroGProperty;
-	float m_MoveSpeedZeroG;
-	
-	class ArkSprintSpeedZeroGProperty : public ArkProperty // Id=8019464 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1064F90);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty s_ArkSprintSpeedZeroGProperty;
-	float m_SprintSpeedZeroG;
-	
-	class ArkRollSpeedZeroGProperty : public ArkProperty // Id=8019465 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty s_ArkRollSpeedZeroGProperty;
-	float m_RollSpeedZeroG;
-	
-	class ArkRecoilForceZeroGProperty : public ArkProperty // Id=8019466 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107A830);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A4070);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty s_ArkRecoilForceZeroGProperty;
-	float m_RecoilForceZeroG;
-	
-	class ArkDefaultCameraOffsetProperty : public ArkProperty // Id=8019467 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328BA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty s_ArkDefaultCameraOffsetProperty;
-	Vec3 m_DefaultCameraOffset;
-	
-	class ArkDefaultCameraOffsetZeroGProperty : public ArkProperty // Id=8019468 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328BD0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328510);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty s_ArkDefaultCameraOffsetZeroGProperty;
-	Vec3 m_DefaultCameraOffsetZeroG;
-	
-	class ArkAttackCameraOffsetProperty : public ArkProperty // Id=8019469 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328C00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1056F40);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty s_ArkAttackCameraOffsetProperty;
-	Vec3 m_AttackCameraOffset;
-	
-	class ArkModalLegendProperty : public ArkProperty // Id=801946A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicTurretProperties::ArkModalLegendProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328C30);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicTurretProperties::ArkModalLegendProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1591850);
-	};
-
-	static ArkPsiMimicTurretProperties::ArkModalLegendProperty s_ArkModalLegendProperty;
-	ArkInputLegend m_ModalLegend;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetAimSpeed(float arg0);
-	const float &GetAimSpeed() const;
-	void SetAimSpeedZeroG(float arg0);
-	const float &GetAimSpeedZeroG() const;
-	void SetMoveSpeedZeroG(float arg0);
-	const float &GetMoveSpeedZeroG() const;
-	void SetSprintSpeedZeroG(float arg0);
-	const float &GetSprintSpeedZeroG() const;
-	void SetRollSpeedZeroG(float arg0);
-	const float &GetRollSpeedZeroG() const;
-	void SetRecoilForceZeroG(float arg0);
-	const float &GetRecoilForceZeroG() const;
-	void SetDefaultCameraOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraOffset() const;
-	void SetDefaultCameraOffsetZeroG(Vec3 arg0);
-	Vec3 const &GetDefaultCameraOffsetZeroG() const;
-	void SetAttackCameraOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraOffset() const;
-	void SetModalLegend(ArkInputLegend arg0);
-	ArkInputLegend const &GetModalLegend() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A7E0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132ACC0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiMimicOperatorProperties : public ArkReflectedObject // Id=801946B Size=64
-{
-public:
-	class ArkModalLegendProperty : public ArkProperty // Id=801946C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicOperatorProperties::ArkModalLegendProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328CD0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicOperatorProperties::ArkModalLegendProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiMimicOperatorProperties::ArkModalLegendProperty s_ArkModalLegendProperty;
-	ArkInputLegend m_ModalLegend;
-	
-	class ArkModalLegendZeroGProperty : public ArkProperty // Id=801946D Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328D70);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088980);
-	};
-
-	static ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty s_ArkModalLegendZeroGProperty;
-	ArkInputLegend m_ModalLegendZeroG;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetModalLegend(ArkInputLegend arg0);
-	ArkInputLegend const &GetModalLegend() const;
-	void SetModalLegendZeroG(ArkInputLegend arg0);
-	ArkInputLegend const &GetModalLegendZeroG() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A6C0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AAE0);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiMimicMilitaryOperatorProperties : public ArkReflectedObject // Id=801946E Size=84
-{
-public:
-	class ArkLaserDamageProperty : public ArkProperty // Id=801946F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty s_ArkLaserDamageProperty;
-	float m_LaserDamage;
-	
-	class ArkMoveSpeedProperty : public ArkProperty // Id=8019470 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328410);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty s_ArkMoveSpeedProperty;
-	float m_MoveSpeed;
-	
-	class ArkSprintSpeedProperty : public ArkProperty // Id=8019471 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty s_ArkSprintSpeedProperty;
-	float m_SprintSpeed;
-	
-	class ArkDefaultTurnSpeedProperty : public ArkProperty // Id=8019472 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1064F90);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty s_ArkDefaultTurnSpeedProperty;
+	static inline auto s_ArkDefaultTurnSpeedProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty>(0x2BDAFC8);
 	float m_DefaultTurnSpeed;
-	
-	class ArkAttackTurnSpeedProperty : public ArkProperty // Id=8019473 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty s_ArkAttackTurnSpeedProperty;
+	static inline auto s_ArkAttackTurnSpeedProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty>(0x2BDAFE8);
 	float m_AttackTurnSpeed;
-	
-	class ArkRollSpeedProperty : public ArkProperty // Id=8019474 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107A830);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A4070);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty s_ArkRollSpeedProperty;
+	static inline auto s_ArkRollSpeedProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty>(0x2BDB008);
 	float m_RollSpeed;
-	
-	class ArkDefaultCameraOffsetProperty : public ArkProperty // Id=8019475 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328BA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty s_ArkDefaultCameraOffsetProperty;
-	Vec3 m_DefaultCameraOffset;
-	
-	class ArkDefaultCameraZeroGOffsetProperty : public ArkProperty // Id=8019476 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328BD0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328510);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty s_ArkDefaultCameraZeroGOffsetProperty;
-	Vec3 m_DefaultCameraZeroGOffset;
-	
-	class ArkAttackCameraOffsetProperty : public ArkProperty // Id=8019477 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328C00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1056F40);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty s_ArkAttackCameraOffsetProperty;
-	Vec3 m_AttackCameraOffset;
-	
-	class ArkAttackCameraZeroGOffsetProperty : public ArkProperty // Id=8019478 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1066410);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328E30);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty s_ArkAttackCameraZeroGOffsetProperty;
-	Vec3 m_AttackCameraZeroGOffset;
-	
-	class ArkSafeCameraOffsetProperty : public ArkProperty // Id=8019479 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328ED0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12FBD70);
-	};
-
-	static ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty s_ArkSafeCameraOffsetProperty;
-	Vec3 m_SafeCameraOffset;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
-#if 0
-	void SetLaserDamage(float arg0);
-	const float &GetLaserDamage() const;
-	void SetMoveSpeed(float arg0);
-	const float &GetMoveSpeed() const;
-	void SetSprintSpeed(float arg0);
-	const float &GetSprintSpeed() const;
-	void SetDefaultTurnSpeed(float arg0);
-	const float &GetDefaultTurnSpeed() const;
-	void SetAttackTurnSpeed(float arg0);
-	const float &GetAttackTurnSpeed() const;
-	void SetRollSpeed(float arg0);
-	const float &GetRollSpeed() const;
-	void SetDefaultCameraOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraOffset() const;
-	void SetDefaultCameraZeroGOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraZeroGOffset() const;
-	void SetAttackCameraOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraOffset() const;
-	void SetAttackCameraZeroGOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraZeroGOffset() const;
-	void SetSafeCameraOffset(Vec3 arg0);
-	Vec3 const &GetSafeCameraOffset() const;
-#endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A680);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AA40);
-};
-
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiMimicEngineeringOperatorProperties : public ArkReflectedObject // Id=801947A Size=176
-{
-public:
-	class ArkMoveSpeedProperty : public ArkProperty // Id=801947B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkMoveSpeedProperty s_ArkMoveSpeedProperty;
-	float m_MoveSpeed;
-	
-	class ArkSprintSpeedProperty : public ArkProperty // Id=801947C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328410);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkSprintSpeedProperty s_ArkSprintSpeedProperty;
-	float m_SprintSpeed;
-	
-	class ArkDefaultTurnSpeedProperty : public ArkProperty // Id=801947D Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkDefaultTurnSpeedProperty s_ArkDefaultTurnSpeedProperty;
-	float m_DefaultTurnSpeed;
-	
-	class ArkAttackTurnSpeedProperty : public ArkProperty // Id=801947E Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1064F90);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkAttackTurnSpeedProperty s_ArkAttackTurnSpeedProperty;
-	float m_AttackTurnSpeed;
-	
-	class ArkRollSpeedProperty : public ArkProperty // Id=801947F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkRollSpeedProperty s_ArkRollSpeedProperty;
-	float m_RollSpeed;
-	
-	class ArkAttackSignalPackageIdProperty : public ArkProperty // Id=8019480 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1467B60);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty s_ArkAttackSignalPackageIdProperty;
+	static inline auto s_ArkAttackSignalPackageIdProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkAttackSignalPackageIdProperty>(0x2BDB028);
 	uint64_t m_AttackSignalPackageId;
-	
-	class ArkDefaultCameraOffsetProperty : public ArkProperty // Id=8019481 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328420);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088980);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty s_ArkDefaultCameraOffsetProperty;
+	static inline auto s_ArkDefaultCameraOffsetProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraOffsetProperty>(0x2BDB048);
 	Vec3 m_DefaultCameraOffset;
-	
-	class ArkDefaultCameraZeroGOffsetProperty : public ArkProperty // Id=8019482 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328450);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328680);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty s_ArkDefaultCameraZeroGOffsetProperty;
+	static inline auto s_ArkDefaultCameraZeroGOffsetProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkDefaultCameraZeroGOffsetProperty>(0x2BDB068);
 	Vec3 m_DefaultCameraZeroGOffset;
-	
-	class ArkAttackCameraOffsetProperty : public ArkProperty // Id=8019483 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328690);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12F3810);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty s_ArkAttackCameraOffsetProperty;
+	static inline auto s_ArkAttackCameraOffsetProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraOffsetProperty>(0x2BDB088);
 	Vec3 m_AttackCameraOffset;
-	
-	class ArkAttackCameraZeroGOffsetProperty : public ArkProperty // Id=8019484 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13288E0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328490);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty s_ArkAttackCameraZeroGOffsetProperty;
+	static inline auto s_ArkAttackCameraZeroGOffsetProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkAttackCameraZeroGOffsetProperty>(0x2BDB0A8);
 	Vec3 m_AttackCameraZeroGOffset;
-	
-	class ArkSafeCameraOffsetProperty : public ArkProperty // Id=8019485 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13284A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12FBDE0);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty s_ArkSafeCameraOffsetProperty;
+	static inline auto s_ArkSafeCameraOffsetProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkSafeCameraOffsetProperty>(0x2BDB0C8);
 	Vec3 m_SafeCameraOffset;
-	
-	class ArkSwitchCameraInputLegendItemProperty : public ArkProperty // Id=8019486 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13284D0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1086170);
-	};
-
-	static ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty s_ArkSwitchCameraInputLegendItemProperty;
+	static inline auto s_ArkSwitchCameraInputLegendItemProperty = PreyGlobal<ArkPsiMimicEngineeringOperatorProperties::ArkSwitchCameraInputLegendItemProperty>(0x2BDB0E8);
 	ArkInputLegendItem m_SwitchCameraInputLegendItem;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
 #if 0
-	void SetMoveSpeed(float arg0);
-	const float &GetMoveSpeed() const;
-	void SetSprintSpeed(float arg0);
-	const float &GetSprintSpeed() const;
-	void SetDefaultTurnSpeed(float arg0);
-	const float &GetDefaultTurnSpeed() const;
-	void SetAttackTurnSpeed(float arg0);
-	const float &GetAttackTurnSpeed() const;
-	void SetRollSpeed(float arg0);
-	const float &GetRollSpeed() const;
-	void SetAttackSignalPackageId(uint64_t arg0);
-	const uint64_t &GetAttackSignalPackageId() const;
-	void SetDefaultCameraOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraOffset() const;
-	void SetDefaultCameraZeroGOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraZeroGOffset() const;
-	void SetAttackCameraOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraOffset() const;
-	void SetAttackCameraZeroGOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraZeroGOffset() const;
-	void SetSafeCameraOffset(Vec3 arg0);
-	Vec3 const &GetSafeCameraOffset() const;
-	void SetSwitchCameraInputLegendItem(ArkInputLegendItem arg0);
-	ArkInputLegendItem const &GetSwitchCameraInputLegendItem() const;
+	void SetMoveSpeed(float _arg0_);
+	const float& GetMoveSpeed() const;
+	void SetSprintSpeed(float _arg0_);
+	const float& GetSprintSpeed() const;
+	void SetDefaultTurnSpeed(float _arg0_);
+	const float& GetDefaultTurnSpeed() const;
+	void SetAttackTurnSpeed(float _arg0_);
+	const float& GetAttackTurnSpeed() const;
+	void SetRollSpeed(float _arg0_);
+	const float& GetRollSpeed() const;
+	void SetAttackSignalPackageId(uint64_t _arg0_);
+	const uint64_t& GetAttackSignalPackageId() const;
+	void SetDefaultCameraOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraOffset() const;
+	void SetDefaultCameraZeroGOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraZeroGOffset() const;
+	void SetAttackCameraOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraOffset() const;
+	void SetAttackCameraZeroGOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraZeroGOffset() const;
+	void SetSafeCameraOffset(Vec3 _arg0_);
+	const Vec3& GetSafeCameraOffset() const;
+	void SetSwitchCameraInputLegendItem(ArkInputLegendItem _arg0_);
+	const ArkInputLegendItem& GetSwitchCameraInputLegendItem() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A5F0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132A9A0);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A5F0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132A9A0);
 };
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiMimicScienceOperatorProperties : public ArkReflectedObject // Id=8019487 Size=176
-{
+// ArkPsiMimicMilitaryOperatorProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiMimicMilitaryOperatorProperties : public ArkReflectedObject
+{ // Size=84 (0x54)
 public:
-	class ArkMoveSpeedProperty : public ArkProperty // Id=8019488 Size=32
-	{
+	// ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkLaserDamageProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLaserDamageProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty s_ArkMoveSpeedProperty;
+	// ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMoveSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328410);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSprintSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSprintSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultTurnSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultTurnSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackTurnSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackTurnSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRollSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRollSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A830);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A4070);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328BA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraZeroGOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraZeroGOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328510);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328C00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraZeroGOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraZeroGOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1066410);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328E30);
+	};
+
+	// ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSafeCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSafeCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328ED0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBD70);
+	};
+
+	static inline auto s_ArkLaserDamageProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkLaserDamageProperty>(0x2BDAE28);
+	float m_LaserDamage;
+	static inline auto s_ArkMoveSpeedProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkMoveSpeedProperty>(0x2BDAE48);
 	float m_MoveSpeed;
-	
-	class ArkSprintSpeedProperty : public ArkProperty // Id=8019489 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328410);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty s_ArkSprintSpeedProperty;
+	static inline auto s_ArkSprintSpeedProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkSprintSpeedProperty>(0x2BDAE68);
 	float m_SprintSpeed;
-	
-	class ArkDefaultTurnSpeedProperty : public ArkProperty // Id=801948A Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty s_ArkDefaultTurnSpeedProperty;
+	static inline auto s_ArkDefaultTurnSpeedProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkDefaultTurnSpeedProperty>(0x2BDAE88);
 	float m_DefaultTurnSpeed;
-	
-	class ArkAttackTurnSpeedProperty : public ArkProperty // Id=801948B Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1064F90);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty s_ArkAttackTurnSpeedProperty;
+	static inline auto s_ArkAttackTurnSpeedProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkAttackTurnSpeedProperty>(0x2BDAEA8);
 	float m_AttackTurnSpeed;
-	
-	class ArkRollSpeedProperty : public ArkProperty // Id=801948C Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty s_ArkRollSpeedProperty;
+	static inline auto s_ArkRollSpeedProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkRollSpeedProperty>(0x2BDAEC8);
 	float m_RollSpeed;
-	
-	class ArkAttackSignalPackageIdProperty : public ArkProperty // Id=801948D Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1467B60);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty s_ArkAttackSignalPackageIdProperty;
-	uint64_t m_AttackSignalPackageId;
-	
-	class ArkDefaultCameraOffsetProperty : public ArkProperty // Id=801948E Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328420);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1088980);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty s_ArkDefaultCameraOffsetProperty;
+	static inline auto s_ArkDefaultCameraOffsetProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraOffsetProperty>(0x2BDAEE8);
 	Vec3 m_DefaultCameraOffset;
-	
-	class ArkDefaultCameraZeroGOffsetProperty : public ArkProperty // Id=801948F Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328450);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328680);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty s_ArkDefaultCameraZeroGOffsetProperty;
+	static inline auto s_ArkDefaultCameraZeroGOffsetProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkDefaultCameraZeroGOffsetProperty>(0x2BDAF08);
 	Vec3 m_DefaultCameraZeroGOffset;
-	
-	class ArkAttackCameraOffsetProperty : public ArkProperty // Id=8019490 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328690);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12F3810);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty s_ArkAttackCameraOffsetProperty;
+	static inline auto s_ArkAttackCameraOffsetProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraOffsetProperty>(0x2BDAF28);
 	Vec3 m_AttackCameraOffset;
-	
-	class ArkAttackCameraZeroGOffsetProperty : public ArkProperty // Id=8019491 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13288E0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328490);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty s_ArkAttackCameraZeroGOffsetProperty;
+	static inline auto s_ArkAttackCameraZeroGOffsetProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkAttackCameraZeroGOffsetProperty>(0x2BDAF48);
 	Vec3 m_AttackCameraZeroGOffset;
-	
-	class ArkSafeCameraOffsetProperty : public ArkProperty // Id=8019492 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13284A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty const *const _this, ArkReflectedObject *const _pObject)>(0x12FBDE0);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty s_ArkSafeCameraOffsetProperty;
+	static inline auto s_ArkSafeCameraOffsetProperty = PreyGlobal<ArkPsiMimicMilitaryOperatorProperties::ArkSafeCameraOffsetProperty>(0x2BDAF68);
 	Vec3 m_SafeCameraOffset;
-	
-	class ArkMaxTargetAngleProperty : public ArkProperty // Id=8019493 Size=32
-	{
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetLaserDamage(float _arg0_);
+	const float& GetLaserDamage() const;
+	void SetMoveSpeed(float _arg0_);
+	const float& GetMoveSpeed() const;
+	void SetSprintSpeed(float _arg0_);
+	const float& GetSprintSpeed() const;
+	void SetDefaultTurnSpeed(float _arg0_);
+	const float& GetDefaultTurnSpeed() const;
+	void SetAttackTurnSpeed(float _arg0_);
+	const float& GetAttackTurnSpeed() const;
+	void SetRollSpeed(float _arg0_);
+	const float& GetRollSpeed() const;
+	void SetDefaultCameraOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraOffset() const;
+	void SetDefaultCameraZeroGOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraZeroGOffset() const;
+	void SetAttackCameraOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraOffset() const;
+	void SetAttackCameraZeroGOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraZeroGOffset() const;
+	void SetSafeCameraOffset(Vec3 _arg0_);
+	const Vec3& GetSafeCameraOffset() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A680);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AA40);
+};
+
+// ArkPsiMimicOperatorProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiMimicOperatorProperties : public ArkReflectedObject
+{ // Size=64 (0x40)
+public:
+	// ArkPsiMimicOperatorProperties::ArkModalLegendProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkModalLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328A80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328A90);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModalLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicOperatorProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328CD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicOperatorProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty s_ArkMaxTargetAngleProperty;
+	// ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkModalLegendZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModalLegendZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328D70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+	};
+
+	static inline auto s_ArkModalLegendProperty = PreyGlobal<ArkPsiMimicOperatorProperties::ArkModalLegendProperty>(0x2BDADE8);
+	ArkInputLegend m_ModalLegend;
+	static inline auto s_ArkModalLegendZeroGProperty = PreyGlobal<ArkPsiMimicOperatorProperties::ArkModalLegendZeroGProperty>(0x2BDAE08);
+	ArkInputLegend m_ModalLegendZeroG;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetModalLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetModalLegend() const;
+	void SetModalLegendZeroG(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetModalLegendZeroG() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A6C0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AAE0);
+};
+
+// ArkPsiMimicRigidProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiMimicRigidProperties : public ArkReflectedObject
+{ // Size=144 (0x90)
+public:
+	// ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDamageSignalGroupIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDamageSignalGroupIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x106D720);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkJumpHeightProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkJumpHeightProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkJumpHeightProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkJumpHeightProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkJumpHeightProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkPenetratingJumpHeightProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPenetratingJumpHeightProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkMoveSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMoveSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkSprintSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSprintSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSprintSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A830);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A4070);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkTumbleSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTumbleSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10629C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkLiftMaxAngularSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLiftMaxAngularSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x106D560);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D570);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkTumbleSpeedLinearThresholdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTumbleSpeedLinearThresholdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4F80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMoveSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328510);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSprintSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSprintSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A600);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088F70);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRollSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRollSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10821B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328680);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkAirControlScaleProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAirControlScaleProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAirControlScaleProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkAirControlScaleProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBD60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkAirControlScaleProperty* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkNoiseIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkNoiseIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNoiseIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkNoiseIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328520);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkNoiseIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkLoudnessIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkLoudnessIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLoudnessIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkLoudnessIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x105B9E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkLoudnessIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1591850);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkNoiseIntervalProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNoiseIntervalProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBD70);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkModalLegendProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkModalLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModalLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328530);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBDE0);
+	};
+
+	// ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkModalLegendZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModalLegendZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4FD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082260);
+	};
+
+	static inline auto s_ArkDamageSignalGroupIdProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkDamageSignalGroupIdProperty>(0x2BDAA88);
+	uint64_t m_DamageSignalGroupId;
+	static inline auto s_ArkJumpHeightProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkJumpHeightProperty>(0x2BDAAA8);
+	float m_JumpHeight;
+	static inline auto s_ArkPenetratingJumpHeightProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkPenetratingJumpHeightProperty>(0x2BDAAC8);
+	float m_PenetratingJumpHeight;
+	static inline auto s_ArkMoveSpeedProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkMoveSpeedProperty>(0x2BDAAE8);
+	float m_MoveSpeed;
+	static inline auto s_ArkSprintSpeedProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkSprintSpeedProperty>(0x2BDAB08);
+	float m_SprintSpeed;
+	static inline auto s_ArkTumbleSpeedProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkTumbleSpeedProperty>(0x2BDAB28);
+	float m_TumbleSpeed;
+	static inline auto s_ArkLiftMaxAngularSpeedProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkLiftMaxAngularSpeedProperty>(0x2BDAB48);
+	float m_LiftMaxAngularSpeed;
+	static inline auto s_ArkTumbleSpeedLinearThresholdProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkTumbleSpeedLinearThresholdProperty>(0x2BDAB68);
+	float m_TumbleSpeedLinearThreshold;
+	static inline auto s_ArkMoveSpeedZeroGProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkMoveSpeedZeroGProperty>(0x2BDAB88);
+	float m_MoveSpeedZeroG;
+	static inline auto s_ArkSprintSpeedZeroGProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkSprintSpeedZeroGProperty>(0x2BDABA8);
+	float m_SprintSpeedZeroG;
+	static inline auto s_ArkRollSpeedZeroGProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkRollSpeedZeroGProperty>(0x2BDABC8);
+	float m_RollSpeedZeroG;
+	static inline auto s_ArkAirControlScaleProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkAirControlScaleProperty>(0x2BDABE8);
+	float m_AirControlScale;
+	static inline auto s_ArkNoiseIdProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkNoiseIdProperty>(0x2BDAC08);
+	uint64_t m_NoiseId;
+	static inline auto s_ArkLoudnessIdProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkLoudnessIdProperty>(0x2BDAC28);
+	uint64_t m_LoudnessId;
+	static inline auto s_ArkNoiseIntervalProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkNoiseIntervalProperty>(0x2BDAC48);
+	float m_NoiseInterval;
+	static inline auto s_ArkModalLegendProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkModalLegendProperty>(0x2BDAC68);
+	ArkInputLegend m_ModalLegend;
+	static inline auto s_ArkModalLegendZeroGProperty = PreyGlobal<ArkPsiMimicRigidProperties::ArkModalLegendZeroGProperty>(0x2BDAC88);
+	ArkInputLegend m_ModalLegendZeroG;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetDamageSignalGroupId(uint64_t _arg0_);
+	const uint64_t& GetDamageSignalGroupId() const;
+	void SetJumpHeight(float _arg0_);
+	const float& GetJumpHeight() const;
+	void SetPenetratingJumpHeight(float _arg0_);
+	const float& GetPenetratingJumpHeight() const;
+	void SetMoveSpeed(float _arg0_);
+	const float& GetMoveSpeed() const;
+	void SetSprintSpeed(float _arg0_);
+	const float& GetSprintSpeed() const;
+	void SetTumbleSpeed(float _arg0_);
+	const float& GetTumbleSpeed() const;
+	void SetLiftMaxAngularSpeed(float _arg0_);
+	const float& GetLiftMaxAngularSpeed() const;
+	void SetTumbleSpeedLinearThreshold(float _arg0_);
+	const float& GetTumbleSpeedLinearThreshold() const;
+	void SetMoveSpeedZeroG(float _arg0_);
+	const float& GetMoveSpeedZeroG() const;
+	void SetSprintSpeedZeroG(float _arg0_);
+	const float& GetSprintSpeedZeroG() const;
+	void SetRollSpeedZeroG(float _arg0_);
+	const float& GetRollSpeedZeroG() const;
+	void SetAirControlScale(float _arg0_);
+	const float& GetAirControlScale() const;
+	void SetNoiseId(uint64_t _arg0_);
+	const uint64_t& GetNoiseId() const;
+	void SetLoudnessId(uint64_t _arg0_);
+	const uint64_t& GetLoudnessId() const;
+	void SetNoiseInterval(float _arg0_);
+	const float& GetNoiseInterval() const;
+	void SetModalLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetModalLegend() const;
+	void SetModalLegendZeroG(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetModalLegendZeroG() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A720);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AB80);
+};
+
+// ArkPsiMimicScienceOperatorProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiMimicScienceOperatorProperties : public ArkReflectedObject
+{ // Size=176 (0xB0)
+public:
+	// ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMoveSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSprintSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSprintSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328410);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultTurnSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultTurnSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackTurnSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackTurnSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRollSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRollSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackSignalPackageIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackSignalPackageIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1467B60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328420);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraZeroGOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraZeroGOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328680);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328690);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraZeroGOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraZeroGOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13288E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328490);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSafeCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSafeCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13284A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBDE0);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMaxTargetAngleProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxTargetAngleProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328A80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328A90);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMaxTargetDistanceProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxTargetDistanceProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328AA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty* const _this, ArkReflectedObject* const _pObject)>(0x1086170);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkValidTargetMetaTagsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkValidTargetMetaTagsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328AB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328AD0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty* const _this, ArkReflectedObject* _pObject)>(0x1328AF0);
+	};
+
+	// ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkValidTargetClassesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkValidTargetClassesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328B00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328B60);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty* const _this, ArkReflectedObject* _pObject)>(0x1328B90);
+	};
+
+	static inline auto s_ArkMoveSpeedProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkMoveSpeedProperty>(0x2BDB108);
+	float m_MoveSpeed;
+	static inline auto s_ArkSprintSpeedProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkSprintSpeedProperty>(0x2BDB128);
+	float m_SprintSpeed;
+	static inline auto s_ArkDefaultTurnSpeedProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkDefaultTurnSpeedProperty>(0x2BDB148);
+	float m_DefaultTurnSpeed;
+	static inline auto s_ArkAttackTurnSpeedProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkAttackTurnSpeedProperty>(0x2BDB168);
+	float m_AttackTurnSpeed;
+	static inline auto s_ArkRollSpeedProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkRollSpeedProperty>(0x2BDB188);
+	float m_RollSpeed;
+	static inline auto s_ArkAttackSignalPackageIdProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkAttackSignalPackageIdProperty>(0x2BDB1A8);
+	uint64_t m_AttackSignalPackageId;
+	static inline auto s_ArkDefaultCameraOffsetProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraOffsetProperty>(0x2BDB1C8);
+	Vec3 m_DefaultCameraOffset;
+	static inline auto s_ArkDefaultCameraZeroGOffsetProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkDefaultCameraZeroGOffsetProperty>(0x2BDB1E8);
+	Vec3 m_DefaultCameraZeroGOffset;
+	static inline auto s_ArkAttackCameraOffsetProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkAttackCameraOffsetProperty>(0x2BDB208);
+	Vec3 m_AttackCameraOffset;
+	static inline auto s_ArkAttackCameraZeroGOffsetProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkAttackCameraZeroGOffsetProperty>(0x2BDB228);
+	Vec3 m_AttackCameraZeroGOffset;
+	static inline auto s_ArkSafeCameraOffsetProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkSafeCameraOffsetProperty>(0x2BDB248);
+	Vec3 m_SafeCameraOffset;
+	static inline auto s_ArkMaxTargetAngleProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkMaxTargetAngleProperty>(0x2BDB268);
 	float m_MaxTargetAngle;
-	
-	class ArkMaxTargetDistanceProperty : public ArkProperty // Id=8019494 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328AA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1086170);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty s_ArkMaxTargetDistanceProperty;
+	static inline auto s_ArkMaxTargetDistanceProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkMaxTargetDistanceProperty>(0x2BDB288);
 	float m_MaxTargetDistance;
-	
-	class ArkValidTargetMetaTagsProperty : public ArkProperty // Id=8019495 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328AB0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328AD0);
-		static inline auto FIsArray = PreyFunction<bool(ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1328AF0);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty s_ArkValidTargetMetaTagsProperty;
-	std::vector<unsigned __int64> m_ValidTargetMetaTags;
-	
-	class ArkValidTargetClassesProperty : public ArkProperty // Id=8019496 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328B00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328B60);
-		static inline auto FIsArray = PreyFunction<bool(ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty const *const _this, ArkReflectedObject *_pObject)>(0x1328B90);
-	};
-
-	static ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty s_ArkValidTargetClassesProperty;
+	static inline auto s_ArkValidTargetMetaTagsProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkValidTargetMetaTagsProperty>(0x2BDB2A8);
+	std::vector<uint64_t> m_ValidTargetMetaTags;
+	static inline auto s_ArkValidTargetClassesProperty = PreyGlobal<ArkPsiMimicScienceOperatorProperties::ArkValidTargetClassesProperty>(0x2BDB2C8);
 	std::vector<string> m_ValidTargetClasses;
-	std::vector<IEntityClass const *> m_loadedClasses;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
+	std::vector<const IEntityClass*> m_loadedClasses;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
 	void InitializeValidTargetClasses() { FInitializeValidTargetClasses(this); }
-	
+
 #if 0
-	void SetMoveSpeed(float arg0);
-	const float &GetMoveSpeed() const;
-	void SetSprintSpeed(float arg0);
-	const float &GetSprintSpeed() const;
-	void SetDefaultTurnSpeed(float arg0);
-	const float &GetDefaultTurnSpeed() const;
-	void SetAttackTurnSpeed(float arg0);
-	const float &GetAttackTurnSpeed() const;
-	void SetRollSpeed(float arg0);
-	const float &GetRollSpeed() const;
-	void SetAttackSignalPackageId(uint64_t arg0);
-	const uint64_t &GetAttackSignalPackageId() const;
-	void SetDefaultCameraOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraOffset() const;
-	void SetDefaultCameraZeroGOffset(Vec3 arg0);
-	Vec3 const &GetDefaultCameraZeroGOffset() const;
-	void SetAttackCameraOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraOffset() const;
-	void SetAttackCameraZeroGOffset(Vec3 arg0);
-	Vec3 const &GetAttackCameraZeroGOffset() const;
-	void SetSafeCameraOffset(Vec3 arg0);
-	Vec3 const &GetSafeCameraOffset() const;
-	void SetMaxTargetAngle(float arg0);
-	const float &GetMaxTargetAngle() const;
-	void SetMaxTargetDistance(float arg0);
-	const float &GetMaxTargetDistance() const;
-	std::vector<unsigned __int64> &GetValidTargetMetaTags();
-	std::vector<unsigned __int64> const &GetValidTargetMetaTags() const;
-	std::vector<string> &GetValidTargetClasses();
-	std::vector<string> const &GetValidTargetClasses() const;
-	std::vector<IEntityClass const *> const &GetValidLoadedTargetClasses() const;
+	void SetMoveSpeed(float _arg0_);
+	const float& GetMoveSpeed() const;
+	void SetSprintSpeed(float _arg0_);
+	const float& GetSprintSpeed() const;
+	void SetDefaultTurnSpeed(float _arg0_);
+	const float& GetDefaultTurnSpeed() const;
+	void SetAttackTurnSpeed(float _arg0_);
+	const float& GetAttackTurnSpeed() const;
+	void SetRollSpeed(float _arg0_);
+	const float& GetRollSpeed() const;
+	void SetAttackSignalPackageId(uint64_t _arg0_);
+	const uint64_t& GetAttackSignalPackageId() const;
+	void SetDefaultCameraOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraOffset() const;
+	void SetDefaultCameraZeroGOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraZeroGOffset() const;
+	void SetAttackCameraOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraOffset() const;
+	void SetAttackCameraZeroGOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraZeroGOffset() const;
+	void SetSafeCameraOffset(Vec3 _arg0_);
+	const Vec3& GetSafeCameraOffset() const;
+	void SetMaxTargetAngle(float _arg0_);
+	const float& GetMaxTargetAngle() const;
+	void SetMaxTargetDistance(float _arg0_);
+	const float& GetMaxTargetDistance() const;
+	std::vector<uint64_t>& GetValidTargetMetaTags();
+	const std::vector<uint64_t>& GetValidTargetMetaTags() const;
+	std::vector<string>& GetValidTargetClasses();
+	const std::vector<string>& GetValidTargetClasses() const;
+	const std::vector<const IEntityClass*>& GetValidLoadedTargetClasses() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A770);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AC20);
-	static inline auto FInitializeValidTargetClasses = PreyFunction<void(ArkPsiMimicScienceOperatorProperties *const _this)>(0x132B210);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A770);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AC20);
+	static inline auto FInitializeValidTargetClasses = PreyFunction<void(ArkPsiMimicScienceOperatorProperties* const _this)>(0x132B210);
 };
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiPowerMimicUniqueProperties : public ArkReflectedObject // Id=80194A0 Size=872
-{
+// ArkPsiMimicTurretProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiMimicTurretProperties : public ArkReflectedObject
+{ // Size=96 (0x60)
 public:
-	class ArkAutoFallbackRangeProperty : public ArkProperty // Id=80194A1 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkAimSpeedProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAimSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13D4DC0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAimSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkAimSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkAimSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty s_ArkAutoFallbackRangeProperty;
-	float m_AutoFallbackRange;
-	
-	class ArkForceMorphOutDelaySecProperty : public ArkProperty // Id=80194A2 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAimSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E10);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328410);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAimSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328410);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty s_ArkForceMorphOutDelaySecProperty;
-	float m_ForceMorphOutDelaySec;
-	
-	class ArkGameNoiseDelaySecProperty : public ArkProperty // Id=80194A3 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMoveSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E20);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty s_ArkGameNoiseDelaySecProperty;
-	float m_GameNoiseDelaySec;
-	
-	class ArkClipOpacityProperty : public ArkProperty // Id=80194A4 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkSprintSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328670);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1064F90);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSprintSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty s_ArkClipOpacityProperty;
-	float m_ClipOpacity;
-	
-	class ArkRigidPropertiesProperty : public ArkProperty // Id=80194A5 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRollSpeedZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328E40);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRollSpeedZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty s_ArkRigidPropertiesProperty;
-	ArkPsiMimicRigidProperties m_RigidProperties;
-	
-	class ArkTurretPropertiesProperty : public ArkProperty // Id=80194A6 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRecoilForceZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328F00);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13D50D0);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRecoilForceZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A830);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A4070);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty s_ArkTurretPropertiesProperty;
-	ArkPsiMimicTurretProperties m_TurretProperties;
-	
-	class ArkOperatorPropertiesProperty : public ArkProperty // Id=80194A7 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1327FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328020);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328BA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty s_ArkOperatorPropertiesProperty;
-	ArkPsiMimicOperatorProperties m_OperatorProperties;
-	
-	class ArkMilitaryOperatorPropertiesProperty : public ArkProperty // Id=80194A8 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDefaultCameraOffsetZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328030);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328200);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDefaultCameraOffsetZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328510);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty s_ArkMilitaryOperatorPropertiesProperty;
-	ArkPsiMimicMilitaryOperatorProperties m_MilitaryOperatorProperties;
-	
-	class ArkEngineeringOperatorPropertiesProperty : public ArkProperty // Id=80194A9 Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAttackCameraOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328210);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328260);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttackCameraOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328C00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty s_ArkEngineeringOperatorPropertiesProperty;
-	ArkPsiMimicEngineeringOperatorProperties m_EngineeringOperatorProperties;
-	
-	class ArkScienceOperatorPropertiesProperty : public ArkProperty // Id=80194AA Size=32
-	{
+	// ArkPsiMimicTurretProperties::ArkModalLegendProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkModalLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328270);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13282D0);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModalLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiMimicTurretProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328C30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiMimicTurretProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x1591850);
 	};
 
-	static ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty s_ArkScienceOperatorPropertiesProperty;
-	ArkPsiMimicScienceOperatorProperties m_ScienceOperatorProperties;
-	
-	class ArkEffectsPropertiesProperty : public ArkProperty // Id=80194AB Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13282E0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328320);
-	};
+	static inline auto s_ArkAimSpeedProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkAimSpeedProperty>(0x2BDACA8);
+	float m_AimSpeed;
+	static inline auto s_ArkAimSpeedZeroGProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkAimSpeedZeroGProperty>(0x2BDACC8);
+	float m_AimSpeedZeroG;
+	static inline auto s_ArkMoveSpeedZeroGProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkMoveSpeedZeroGProperty>(0x2BDACE8);
+	float m_MoveSpeedZeroG;
+	static inline auto s_ArkSprintSpeedZeroGProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkSprintSpeedZeroGProperty>(0x2BDAD08);
+	float m_SprintSpeedZeroG;
+	static inline auto s_ArkRollSpeedZeroGProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkRollSpeedZeroGProperty>(0x2BDAD28);
+	float m_RollSpeedZeroG;
+	static inline auto s_ArkRecoilForceZeroGProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkRecoilForceZeroGProperty>(0x2BDAD48);
+	float m_RecoilForceZeroG;
+	static inline auto s_ArkDefaultCameraOffsetProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetProperty>(0x2BDAD68);
+	Vec3 m_DefaultCameraOffset;
+	static inline auto s_ArkDefaultCameraOffsetZeroGProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkDefaultCameraOffsetZeroGProperty>(0x2BDAD88);
+	Vec3 m_DefaultCameraOffsetZeroG;
+	static inline auto s_ArkAttackCameraOffsetProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkAttackCameraOffsetProperty>(0x2BDADA8);
+	Vec3 m_AttackCameraOffset;
+	static inline auto s_ArkModalLegendProperty = PreyGlobal<ArkPsiMimicTurretProperties::ArkModalLegendProperty>(0x2BDADC8);
+	ArkInputLegend m_ModalLegend;
 
-	static ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty s_ArkEffectsPropertiesProperty;
-	ArkPsiPowerMimicEffectsProperties m_EffectsProperties;
-	
-	class ArkPlayerSignalModifiersProperty : public ArkProperty // Id=80194AC Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328330);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328360);
-		static inline auto FIsArray = PreyFunction<bool(ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty const *const _this, ArkReflectedObject *_pObject)>(0x1328390);
-	};
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
 
-	static ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty s_ArkPlayerSignalModifiersProperty;
-	std::vector<unsigned __int64> m_PlayerSignalModifiers;
-	
-	class ArkObjectSignalModifiersProperty : public ArkProperty // Id=80194AD Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13283A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13283D0);
-		static inline auto FIsArray = PreyFunction<bool(ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty const *const _this, ArkReflectedObject *_pObject)>(0x1328400);
-	};
-
-	static ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty s_ArkObjectSignalModifiersProperty;
-	std::vector<unsigned __int64> m_ObjectSignalModifiers;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
 #if 0
-	void SetAutoFallbackRange(float arg0);
-	const float &GetAutoFallbackRange() const;
-	void SetForceMorphOutDelaySec(float arg0);
-	const float &GetForceMorphOutDelaySec() const;
-	void SetGameNoiseDelaySec(float arg0);
-	const float &GetGameNoiseDelaySec() const;
-	void SetClipOpacity(float arg0);
-	const float &GetClipOpacity() const;
-	void SetRigidProperties(ArkPsiMimicRigidProperties arg0);
-	ArkPsiMimicRigidProperties const &GetRigidProperties() const;
-	void SetTurretProperties(ArkPsiMimicTurretProperties arg0);
-	ArkPsiMimicTurretProperties const &GetTurretProperties() const;
-	void SetOperatorProperties(ArkPsiMimicOperatorProperties arg0);
-	ArkPsiMimicOperatorProperties const &GetOperatorProperties() const;
-	void SetMilitaryOperatorProperties(ArkPsiMimicMilitaryOperatorProperties arg0);
-	ArkPsiMimicMilitaryOperatorProperties const &GetMilitaryOperatorProperties() const;
-	void SetEngineeringOperatorProperties(ArkPsiMimicEngineeringOperatorProperties arg0);
-	ArkPsiMimicEngineeringOperatorProperties const &GetEngineeringOperatorProperties() const;
-	void SetScienceOperatorProperties(ArkPsiMimicScienceOperatorProperties arg0);
-	ArkPsiMimicScienceOperatorProperties const &GetScienceOperatorProperties() const;
-	void SetEffectsProperties(ArkPsiPowerMimicEffectsProperties arg0);
-	ArkPsiPowerMimicEffectsProperties const &GetEffectsProperties() const;
-	std::vector<unsigned __int64> &GetPlayerSignalModifiers();
-	std::vector<unsigned __int64> const &GetPlayerSignalModifiers() const;
-	std::vector<unsigned __int64> &GetObjectSignalModifiers();
-	std::vector<unsigned __int64> const &GetObjectSignalModifiers() const;
+	void SetAimSpeed(float _arg0_);
+	const float& GetAimSpeed() const;
+	void SetAimSpeedZeroG(float _arg0_);
+	const float& GetAimSpeedZeroG() const;
+	void SetMoveSpeedZeroG(float _arg0_);
+	const float& GetMoveSpeedZeroG() const;
+	void SetSprintSpeedZeroG(float _arg0_);
+	const float& GetSprintSpeedZeroG() const;
+	void SetRollSpeedZeroG(float _arg0_);
+	const float& GetRollSpeedZeroG() const;
+	void SetRecoilForceZeroG(float _arg0_);
+	const float& GetRecoilForceZeroG() const;
+	void SetDefaultCameraOffset(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraOffset() const;
+	void SetDefaultCameraOffsetZeroG(Vec3 _arg0_);
+	const Vec3& GetDefaultCameraOffsetZeroG() const;
+	void SetAttackCameraOffset(Vec3 _arg0_);
+	const Vec3& GetAttackCameraOffset() const;
+	void SetModalLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetModalLegend() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A890);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AEA0);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A7E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132ACC0);
 };
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class ArkPsiPowerMimicLevelProperties : public ArkReflectedObject // Id=80194B5 Size=104
-{
+// ArkPsiPowerMimicEffectsProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiPowerMimicEffectsProperties : public ArkReflectedObject
+{ // Size=64 (0x40)
 public:
-	class ArkDisplayNameProperty : public ArkProperty // Id=80194B6 Size=32
-	{
+	// ArkPsiPowerMimicEffectsProperties::ArkMorphEffectDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMorphEffectDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMorphEffectDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkMorphEffectDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkMorphEffectDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty s_ArkDisplayNameProperty;
+	// ArkPsiPowerMimicEffectsProperties::ArkJumpAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkJumpAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkJumpAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkJumpAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkJumpAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiPowerMimicEffectsProperties::ArkMorphInAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMorphInAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMorphInAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkMorphInAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10732F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkMorphInAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiPowerMimicEffectsProperties::ArkMorphOutAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMorphOutAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMorphOutAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkMorphOutAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4F20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkMorphOutAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	// ArkPsiPowerMimicEffectsProperties::ArkMovementParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMovementParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMovementParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkMovementParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15AE4C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkMovementParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+	};
+
+	// ArkPsiPowerMimicEffectsProperties::ArkPersistentParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkPersistentParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPersistentParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkPersistentParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15917F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkPersistentParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088F70);
+	};
+
+	// ArkPsiPowerMimicEffectsProperties::ArkMorphOutParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMorphOutParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMorphOutParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkMorphOutParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1086280);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkMorphOutParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
+	};
+
+	// ArkPsiPowerMimicEffectsProperties::ArkObjectMorphInParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkObjectMorphInParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkObjectMorphInParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicEffectsProperties::ArkObjectMorphInParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1085FB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicEffectsProperties::ArkObjectMorphInParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+	};
+
+	static inline auto s_ArkMorphEffectDurationSecProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkMorphEffectDurationSecProperty>(0x2BDB2E8);
+	float m_MorphEffectDurationSec;
+	static inline auto s_ArkJumpAudioTriggerProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkJumpAudioTriggerProperty>(0x2BDB308);
+	string m_JumpAudioTrigger;
+	static inline auto s_ArkMorphInAudioTriggerProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkMorphInAudioTriggerProperty>(0x2BDB328);
+	string m_MorphInAudioTrigger;
+	static inline auto s_ArkMorphOutAudioTriggerProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkMorphOutAudioTriggerProperty>(0x2BDB348);
+	string m_MorphOutAudioTrigger;
+	static inline auto s_ArkMovementParticleEffectProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkMovementParticleEffectProperty>(0x2BDB368);
+	string m_MovementParticleEffect;
+	static inline auto s_ArkPersistentParticleEffectProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkPersistentParticleEffectProperty>(0x2BDB388);
+	string m_PersistentParticleEffect;
+	static inline auto s_ArkMorphOutParticleEffectProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkMorphOutParticleEffectProperty>(0x2BDB3A8);
+	string m_MorphOutParticleEffect;
+	static inline auto s_ArkObjectMorphInParticleEffectProperty = PreyGlobal<ArkPsiPowerMimicEffectsProperties::ArkObjectMorphInParticleEffectProperty>(0x2BDB3C8);
+	string m_ObjectMorphInParticleEffect;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetMorphEffectDurationSec(float _arg0_);
+	const float& GetMorphEffectDurationSec() const;
+	void SetJumpAudioTrigger(string _arg0_);
+	const string& GetJumpAudioTrigger() const;
+	void SetMorphInAudioTrigger(string _arg0_);
+	const string& GetMorphInAudioTrigger() const;
+	void SetMorphOutAudioTrigger(string _arg0_);
+	const string& GetMorphOutAudioTrigger() const;
+	void SetMovementParticleEffect(string _arg0_);
+	const string& GetMovementParticleEffect() const;
+	void SetPersistentParticleEffect(string _arg0_);
+	const string& GetPersistentParticleEffect() const;
+	void SetMorphOutParticleEffect(string _arg0_);
+	const string& GetMorphOutParticleEffect() const;
+	void SetObjectMorphInParticleEffect(string _arg0_);
+	const string& GetObjectMorphInParticleEffect() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1072C50);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AD60);
+};
+
+// ArkPsiPowerMimicLevelProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiPowerMimicLevelProperties : public ArkReflectedObject
+{ // Size=104 (0x68)
+public:
+	// ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDisplayNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisplayNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	// ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkCooldownDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCooldownDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkPsiCostPerSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPsiCostPerSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A830);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A4070);
+	};
+
+	// ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkTargetingPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTargetingPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13285D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+	};
+
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerMimicLevelProperties::ArkDisplayNameProperty>(0x2BDB588);
 	string m_DisplayName;
-	
-	class ArkDescriptionProperty : public ArkProperty // Id=80194B7 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
-	};
-
-	static ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty s_ArkDescriptionProperty;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerMimicLevelProperties::ArkDescriptionProperty>(0x2BDB5A8);
 	string m_Description;
-	
-	class ArkCooldownDurationSecProperty : public ArkProperty // Id=80194B8 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1064FA0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
-	};
-
-	static ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty s_ArkCooldownDurationSecProperty;
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerMimicLevelProperties::ArkCooldownDurationSecProperty>(0x2BDB5C8);
 	float m_CooldownDurationSec;
-	
-	class ArkPsiCostPerSecProperty : public ArkProperty // Id=80194B9 Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107A830);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty const *const _this, ArkReflectedObject *const _pObject)>(0x15A4070);
-	};
-
-	static ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty s_ArkPsiCostPerSecProperty;
+	static inline auto s_ArkPsiCostPerSecProperty = PreyGlobal<ArkPsiPowerMimicLevelProperties::ArkPsiCostPerSecProperty>(0x2BDB5E8);
 	float m_PsiCostPerSec;
-	
-	class ArkTargetingPropertiesProperty : public ArkProperty // Id=80194BA Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13285D0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10821F0);
-	};
-
-	static ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty s_ArkTargetingPropertiesProperty;
+	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerMimicLevelProperties::ArkTargetingPropertiesProperty>(0x2BDB608);
 	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
-	
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
 #if 0
-	void SetDisplayName(string arg0);
-	string const &GetDisplayName() const;
-	void SetDescription(string arg0);
-	string const &GetDescription() const;
-	void SetCooldownDurationSec(float arg0);
-	const float &GetCooldownDurationSec() const;
-	void SetPsiCostPerSec(float arg0);
-	const float &GetPsiCostPerSec() const;
-	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties arg0);
-	ArkPsiPowerTargetingComponentProperties const &GetTargetingProperties() const;
+	void SetDisplayName(string _arg0_);
+	const string& GetDisplayName() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetCooldownDurationSec(float _arg0_);
+	const float& GetCooldownDurationSec() const;
+	void SetPsiCostPerSec(float _arg0_);
+	const float& GetPsiCostPerSec() const;
+	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties _arg0_);
+	const ArkPsiPowerTargetingComponentProperties& GetTargetingProperties() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A820);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AE00);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A820);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AE00);
 };
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
-class MimicPowerProperties : public ArkReflectedLibrary // Id=80194BB Size=1112
-{
+// ArkPsiPowerMimicUniqueProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class ArkPsiPowerMimicUniqueProperties : public ArkReflectedObject
+{ // Size=872 (0x368)
 public:
+	// ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkAutoFallbackRangeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAutoFallbackRangeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkForceMorphOutDelaySecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkForceMorphOutDelaySecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328410);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkGameNoiseDelaySecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkGameNoiseDelaySecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkClipOpacityProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkClipOpacityProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkRigidPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRigidPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkTurretPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTurretPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x13D50D0);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkOperatorPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkOperatorPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1327FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328020);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkMilitaryOperatorPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMilitaryOperatorPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328030);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328200);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkEngineeringOperatorPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEngineeringOperatorPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328210);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328260);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkScienceOperatorPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkScienceOperatorPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328270);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x13282D0);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkEffectsPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEffectsPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13282E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328320);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkPlayerSignalModifiersProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkPlayerSignalModifiersProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328330);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328360);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty* const _this, ArkReflectedObject* _pObject)>(0x1328390);
+	};
+
+	// ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkObjectSignalModifiersProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkObjectSignalModifiersProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13283A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject)>(0x13283D0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty* const _this, ArkReflectedObject* _pObject)>(0x1328400);
+	};
+
+	static inline auto s_ArkAutoFallbackRangeProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkAutoFallbackRangeProperty>(0x2BDB3E8);
+	float m_AutoFallbackRange;
+	static inline auto s_ArkForceMorphOutDelaySecProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkForceMorphOutDelaySecProperty>(0x2BDB408);
+	float m_ForceMorphOutDelaySec;
+	static inline auto s_ArkGameNoiseDelaySecProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkGameNoiseDelaySecProperty>(0x2BDB428);
+	float m_GameNoiseDelaySec;
+	static inline auto s_ArkClipOpacityProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkClipOpacityProperty>(0x2BDB448);
+	float m_ClipOpacity;
+	static inline auto s_ArkRigidPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkRigidPropertiesProperty>(0x2BDB468);
+	ArkPsiMimicRigidProperties m_RigidProperties;
+	static inline auto s_ArkTurretPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkTurretPropertiesProperty>(0x2BDB488);
+	ArkPsiMimicTurretProperties m_TurretProperties;
+	static inline auto s_ArkOperatorPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkOperatorPropertiesProperty>(0x2BDB4A8);
+	ArkPsiMimicOperatorProperties m_OperatorProperties;
+	static inline auto s_ArkMilitaryOperatorPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkMilitaryOperatorPropertiesProperty>(0x2BDB4C8);
+	ArkPsiMimicMilitaryOperatorProperties m_MilitaryOperatorProperties;
+	static inline auto s_ArkEngineeringOperatorPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkEngineeringOperatorPropertiesProperty>(0x2BDB4E8);
+	ArkPsiMimicEngineeringOperatorProperties m_EngineeringOperatorProperties;
+	static inline auto s_ArkScienceOperatorPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkScienceOperatorPropertiesProperty>(0x2BDB508);
+	ArkPsiMimicScienceOperatorProperties m_ScienceOperatorProperties;
+	static inline auto s_ArkEffectsPropertiesProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkEffectsPropertiesProperty>(0x2BDB528);
+	ArkPsiPowerMimicEffectsProperties m_EffectsProperties;
+	static inline auto s_ArkPlayerSignalModifiersProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkPlayerSignalModifiersProperty>(0x2BDB548);
+	std::vector<uint64_t> m_PlayerSignalModifiers;
+	static inline auto s_ArkObjectSignalModifiersProperty = PreyGlobal<ArkPsiPowerMimicUniqueProperties::ArkObjectSignalModifiersProperty>(0x2BDB568);
+	std::vector<uint64_t> m_ObjectSignalModifiers;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetAutoFallbackRange(float _arg0_);
+	const float& GetAutoFallbackRange() const;
+	void SetForceMorphOutDelaySec(float _arg0_);
+	const float& GetForceMorphOutDelaySec() const;
+	void SetGameNoiseDelaySec(float _arg0_);
+	const float& GetGameNoiseDelaySec() const;
+	void SetClipOpacity(float _arg0_);
+	const float& GetClipOpacity() const;
+	void SetRigidProperties(ArkPsiMimicRigidProperties _arg0_);
+	const ArkPsiMimicRigidProperties& GetRigidProperties() const;
+	void SetTurretProperties(ArkPsiMimicTurretProperties _arg0_);
+	const ArkPsiMimicTurretProperties& GetTurretProperties() const;
+	void SetOperatorProperties(ArkPsiMimicOperatorProperties _arg0_);
+	const ArkPsiMimicOperatorProperties& GetOperatorProperties() const;
+	void SetMilitaryOperatorProperties(ArkPsiMimicMilitaryOperatorProperties _arg0_);
+	const ArkPsiMimicMilitaryOperatorProperties& GetMilitaryOperatorProperties() const;
+	void SetEngineeringOperatorProperties(ArkPsiMimicEngineeringOperatorProperties _arg0_);
+	const ArkPsiMimicEngineeringOperatorProperties& GetEngineeringOperatorProperties() const;
+	void SetScienceOperatorProperties(ArkPsiMimicScienceOperatorProperties _arg0_);
+	const ArkPsiMimicScienceOperatorProperties& GetScienceOperatorProperties() const;
+	void SetEffectsProperties(ArkPsiPowerMimicEffectsProperties _arg0_);
+	const ArkPsiPowerMimicEffectsProperties& GetEffectsProperties() const;
+	std::vector<uint64_t>& GetPlayerSignalModifiers();
+	const std::vector<uint64_t>& GetPlayerSignalModifiers() const;
+	std::vector<uint64_t>& GetObjectSignalModifiers();
+	const std::vector<uint64_t>& GetObjectSignalModifiers() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A890);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AEA0);
+};
+
+// MimicPowerProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+class MimicPowerProperties : public ArkReflectedLibrary
+{ // Size=1112 (0x458)
+public:
+	// MimicPowerProperties::ArkCommonProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkCommonProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCommonProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const MimicPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1591940);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MimicPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+	};
+
+	// MimicPowerProperties::ArkUniqueProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkUniqueProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUniqueProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const MimicPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13286C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MimicPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+	};
+
+	// MimicPowerProperties::ArkLevelsProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowermimicproperties.h
+	class ArkLevelsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkLevelsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const MimicPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328910);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MimicPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x13289F0);
+		static inline auto FIsArray = PreyFunction<bool(const MimicPowerProperties::ArkLevelsProperty* const _this)>(0x1B933B0);
+		static inline auto FReset = PreyFunction<void(const MimicPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x1328A40);
+	};
+
 	using LevelProperties = ArkPsiPowerMimicLevelProperties;
 	using UniqueProperties = ArkPsiPowerMimicUniqueProperties;
-	
-	class ArkCommonProperty : public ArkProperty // Id=80194BC Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(MimicPowerProperties::ArkCommonProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1591940);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(MimicPowerProperties::ArkCommonProperty const *const _this, ArkReflectedObject *const _pObject)>(0x10660A0);
-	};
 
-	static MimicPowerProperties::ArkCommonProperty s_ArkCommonProperty;
+	static inline auto s_ArkCommonProperty = PreyGlobal<MimicPowerProperties::ArkCommonProperty>(0x2BDB628);
 	ArkPsiPowerCommonProperties m_Common;
-	
-	class ArkUniqueProperty : public ArkProperty // Id=80194BD Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(MimicPowerProperties::ArkUniqueProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x13286C0);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(MimicPowerProperties::ArkUniqueProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466C40);
-	};
-
-	static MimicPowerProperties::ArkUniqueProperty s_ArkUniqueProperty;
+	static inline auto s_ArkUniqueProperty = PreyGlobal<MimicPowerProperties::ArkUniqueProperty>(0x2BDB648);
 	ArkPsiPowerMimicUniqueProperties m_Unique;
-	
-	class ArkLevelsProperty : public ArkProperty // Id=80194BE Size=32
-	{
-	public:
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		virtual bool IsArray() const;
-		virtual void Reset(ArkReflectedObject *_pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(MimicPowerProperties::ArkLevelsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1328910);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(MimicPowerProperties::ArkLevelsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x13289F0);
-		static inline auto FIsArray = PreyFunction<bool(MimicPowerProperties::ArkLevelsProperty const *const _this)>(0x1B933B0);
-		static inline auto FReset = PreyFunction<void(MimicPowerProperties::ArkLevelsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1328A40);
-	};
-
-	static MimicPowerProperties::ArkLevelsProperty s_ArkLevelsProperty;
+	static inline auto s_ArkLevelsProperty = PreyGlobal<MimicPowerProperties::ArkLevelsProperty>(0x2BDB668);
 	std::vector<ArkPsiPowerMimicLevelProperties> m_Levels;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	static ArkClass *GetClass() { return FGetClass(); }
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
 	virtual bool Init();
-	virtual ~MimicPowerProperties();
-	
+
 #if 0
-	void SetCommon(ArkPsiPowerCommonProperties arg0);
-	ArkPsiPowerCommonProperties const &GetCommon() const;
-	void SetUnique(ArkPsiPowerMimicUniqueProperties arg0);
-	ArkPsiPowerMimicUniqueProperties const &GetUnique() const;
-	std::vector<ArkPsiPowerMimicLevelProperties> &GetLevels();
-	std::vector<ArkPsiPowerMimicLevelProperties> const &GetLevels() const;
+	void SetCommon(ArkPsiPowerCommonProperties _arg0_);
+	const ArkPsiPowerCommonProperties& GetCommon() const;
+	void SetUnique(ArkPsiPowerMimicUniqueProperties _arg0_);
+	const ArkPsiPowerMimicUniqueProperties& GetUnique() const;
+	std::vector<ArkPsiPowerMimicLevelProperties>& GetLevels();
+	const std::vector<ArkPsiPowerMimicLevelProperties>& GetLevels() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x132A8D0);
-	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x132AF40);
-	static inline auto FInit = PreyFunction<bool(MimicPowerProperties *const _this)>(0x132B030);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x132A8D0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x132AF40);
+	static inline auto FInit = PreyFunction<bool(MimicPowerProperties* const _this)>(0x132B030);
 };
 

@@ -1,15 +1,14 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: Override
-// Prey/GameDll/ark/player/IArkEtherDuplicateListener.h
-class IArkEtherDuplicateListener // Id=80152A8 Size=8
-{
+// IArkEtherDuplicateListener
+// Header:  Prey/GameDll/ark/player/IArkEtherDuplicateListener.h
+class IArkEtherDuplicateListener
+{ // Size=8 (0x8)
 public:
-	virtual void OnEtherDuplicateCreated(const unsigned arg0);
+	virtual void OnEtherDuplicateCreated(const unsigned _arg0_);
 	virtual void OnEtherDuplicateDestroyed(const unsigned _etherDuplicate);
-	
-	static inline auto FOnEtherDuplicateDestroyed = PreyFunction<void(IArkEtherDuplicateListener *const _this, const unsigned _etherDuplicate)>(0xA13080);
+
+	static inline auto FOnEtherDuplicateDestroyed = PreyFunction<void(IArkEtherDuplicateListener* const _this, const unsigned _etherDuplicate)>(0xA13080);
 };
 

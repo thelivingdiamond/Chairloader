@@ -5,11 +5,11 @@
 #include <iostream>
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
+#include <Manager/PathUtils.h>
 #include "ChairManager.h"
 #include "UI.h"
 #include "GamePathDialog.h"
 #include "GameVersion.h"
-#include "PathUtils.h"
 #include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"

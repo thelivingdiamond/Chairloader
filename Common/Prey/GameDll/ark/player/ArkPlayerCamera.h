@@ -1,5 +1,4 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -7,10 +6,10 @@
 struct SViewParams;
 class XmlNodeRef;
 
-// Header: Exact
-// Prey/GameDll/ark/player/ArkPlayerCamera.h
-class ArkPlayerCamera : public IGameObjectView // Id=80173D2 Size=456
-{
+// ArkPlayerCamera
+// Header:  Prey/GameDll/ark/player/ArkPlayerCamera.h
+class ArkPlayerCamera : public IGameObjectView
+{ // Size=456 (0x1C8)
 public:
 	enum class Mode
 	{
@@ -45,7 +44,7 @@ public:
 		BONE_ID_NUM = 17,
 	};
 
-	std::array<string,17> m_boneNames;
+	std::array<CryStringT<char>,17> m_boneNames;
 	std::function<Quat_tpl<float> __cdecl(float)> m_customUpdateFunction;
 	std::function<Vec3_tpl<float> __cdecl(float)> m_customOffsetFunction;
 	std::function<void __cdecl(SViewParams &)> m_customViewFunction;
@@ -67,64 +66,63 @@ public:
 	float m_FPIKWeight;
 	float m_FPIKWeightTarget;
 	float m_stanceChangeInterSpeed;
-	
+
 	void Init() { FInit(this); }
 	void Reset() { FReset(this); }
 	static QuatT GetCameraBoneLocalQuatT() { return FGetCameraBoneLocalQuatT(); }
-	void LoadConfig(XmlNodeRef const &_node) { FLoadConfig(this,_node); }
-	void PrePhysicsUpdate(const float _frameTime) { FPrePhysicsUpdate(this,_frameTime); }
+	void LoadConfig(const XmlNodeRef& _node) { FLoadConfig(this, _node); }
+	void PrePhysicsUpdate(const float _frameTime) { FPrePhysicsUpdate(this, _frameTime); }
 	void SyncEyeOffsetToStanceViewHeight() { FSyncEyeOffsetToStanceViewHeight(this); }
-	void SetCustomUpdateFunction(std::function<Quat_tpl<float> __cdecl(float)> _function) { FSetCustomUpdateFunction(this,_function); }
-	void RemoveCustomUpdateFunction(float _interpolateToUnlockTime) { FRemoveCustomUpdateFunction(this,_interpolateToUnlockTime); }
-	void SetCustomViewFunction(std::function<void __cdecl(SViewParams &)> _function) { FSetCustomViewFunction(this,_function); }
+	void SetCustomUpdateFunction(std::function<Quat_tpl<float> __cdecl(float)> _function) { FSetCustomUpdateFunction(this, _function); }
+	void RemoveCustomUpdateFunction(float _interpolateToUnlockTime) { FRemoveCustomUpdateFunction(this, _interpolateToUnlockTime); }
+	void SetCustomViewFunction(std::function<void __cdecl(SViewParams &)> _function) { FSetCustomViewFunction(this, _function); }
 	void RemoveCustomFunctions() { FRemoveCustomFunctions(this); }
-	std::pair<Vec3,Quat> GetDesiredPositionAndRotation(float _frameTime) { return FGetDesiredPositionAndRotation(this,_frameTime); }
+	std::pair<Vec3, Quat> GetDesiredPositionAndRotation(float _frameTime) { alignas(std::pair<Vec3, Quat>) std::byte _return_buf_[sizeof(std::pair<Vec3, Quat>)]; return *FGetDesiredPositionAndRotation(this, reinterpret_cast<std::pair<Vec3, Quat>*>(_return_buf_), _frameTime); }
 	bool IsLeaning() const { return FIsLeaning(this); }
 	float GetLeanAmount() const { return FGetLeanAmount(this); }
-	int GetJointId(const int _boneId) const { return FGetJointId(this,_boneId); }
+	int GetJointId(const int _boneId) const { return FGetJointId(this, _boneId); }
 	float GetDefaultViewHeightInterpolationSpeed() const { return FGetDefaultViewHeightInterpolationSpeed(this); }
-	void UpdateFPIK(const float _frameTime, const float _pitchWeight) { FUpdateFPIK(this,_frameTime,_pitchWeight); }
-	virtual void UpdateView(SViewParams &_params);
-	virtual void PostUpdateView(SViewParams &_params);
-	static boost::optional<Quat> UpdateIronsightsView(const float _frameTime, Vec3 const &_initialRotation) { return FUpdateIronsightsView(_frameTime,_initialRotation); }
-	virtual ~ArkPlayerCamera();
-	
+	void UpdateFPIK(const float _frameTime, const float _pitchWeight) { FUpdateFPIK(this, _frameTime, _pitchWeight); }
+	virtual void UpdateView(SViewParams& _params);
+	virtual void PostUpdateView(SViewParams& _params);
+	static boost::optional<Quat_tpl<float> > UpdateIronsightsView(const float _frameTime, const Vec3& _initialRotation) { return FUpdateIronsightsView(_frameTime, _initialRotation); }
+
 #if 0
+	ArkPlayerCamera();
 	ArkPlayerCamera::Mode GetMode() const;
 	void RemoveCustomViewFunction();
-	void SetRotation(Quat const &arg0);
+	void SetRotation(const Quat& _arg0_);
 	Quat GetRotation() const;
-	void Serialize(TSerialize arg0);
-	void SetCustomOffsetFunction(std::function<Vec3_tpl<float> __cdecl(float)> arg0);
+	void Serialize(TSerialize _arg0_);
+	void SetCustomOffsetFunction(std::function<Vec3_tpl<float> __cdecl(float)> _arg0_);
 	void RemoveCustomOffsetFunction();
 	void SetAnimationControlled();
-	void SetDeathMode(Vec3 arg0);
-	void SetRecyclerGrenadeDeathMode(Vec3 arg0);
+	void SetDeathMode(const Vec3 _arg0_);
+	void SetRecyclerGrenadeDeathMode(const Vec3 _arg0_);
 	void ClearDeathMode();
-	void AddRecoil(Vec2 arg0, const float arg1, const float arg2);
-	Vec3 const &GetNonLeaningTargetPosition() const;
-	void SetFPIKWeight(const float arg0);
+	void AddRecoil(const Vec2 _arg0_, const float _arg1_, const float _arg2_);
+	const Vec3& GetNonLeaningTargetPosition() const;
+	void SetFPIKWeight(const float _arg0_);
 #endif
-	
-	static inline auto FInit = PreyFunction<void(ArkPlayerCamera *const _this)>(0x145D310);
-	static inline auto FReset = PreyFunction<void(ArkPlayerCamera *const _this)>(0x145DC80);
+
+	static inline auto FInit = PreyFunction<void(ArkPlayerCamera* const _this)>(0x145D310);
+	static inline auto FReset = PreyFunction<void(ArkPlayerCamera* const _this)>(0x145DC80);
 	static inline auto FGetCameraBoneLocalQuatT = PreyFunction<QuatT()>(0x145C480);
-	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerCamera *const _this, XmlNodeRef const &_node)>(0x145D680);
-	static inline auto FPrePhysicsUpdate = PreyFunction<void(ArkPlayerCamera *const _this, const float _frameTime)>(0x145D780);
-	static inline auto FSyncEyeOffsetToStanceViewHeight = PreyFunction<void(ArkPlayerCamera *const _this)>(0x145DD00);
-	static inline auto FSetCustomUpdateFunction = PreyFunction<void(ArkPlayerCamera *const _this, std::function<Quat_tpl<float> __cdecl(float)> _function)>(0x123F3E0);
-	static inline auto FRemoveCustomUpdateFunction = PreyFunction<void(ArkPlayerCamera *const _this, float _interpolateToUnlockTime)>(0x145DC00);
-	static inline auto FSetCustomViewFunction = PreyFunction<void(ArkPlayerCamera *const _this, std::function<void __cdecl(SViewParams &)> _function)>(0x14298B0);
-	static inline auto FRemoveCustomFunctions = PreyFunction<void(ArkPlayerCamera *const _this)>(0x145DC80);
-	static inline auto FGetDesiredPositionAndRotation = PreyFunction<std::pair<Vec3,Quat>(ArkPlayerCamera *const _this, float _frameTime)>(0x145C530);
-	static inline auto FIsLeaning = PreyFunction<bool(ArkPlayerCamera const *const _this)>(0x145D660);
-	static inline auto FGetLeanAmount = PreyFunction<float(ArkPlayerCamera const *const _this)>(0x145D300);
-	static inline auto FGetJointId = PreyFunction<int(ArkPlayerCamera const *const _this, const int _boneId)>(0x145D2A0);
-	static inline auto FGetDefaultViewHeightInterpolationSpeed = PreyFunction<float(ArkPlayerCamera const *const _this)>(0x145C520);
-	static inline auto FUpdateFPIK = PreyFunction<void(ArkPlayerCamera *const _this, const float _frameTime, const float _pitchWeight)>(0x145DD50);
-	static inline auto FUpdateView = PreyFunction<void(ArkPlayerCamera *const _this, SViewParams &_params)>(0x145ED50);
-	static inline auto FPostUpdateView = PreyFunction<void(ArkPlayerCamera *const _this, SViewParams &_params)>(0xA13080);
-	static inline auto FUpdateIronsightsView = PreyFunction<boost::optional<Quat>(const float _frameTime, Vec3 const &_initialRotation)>(0x145E8E0);
-	static inline auto FBitNotArkPlayerCamera = PreyFunction<void(ArkPlayerCamera *const _this)>(0x154E270);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerCamera* const _this, const XmlNodeRef& _node)>(0x145D680);
+	static inline auto FPrePhysicsUpdate = PreyFunction<void(ArkPlayerCamera* const _this, const float _frameTime)>(0x145D780);
+	static inline auto FSyncEyeOffsetToStanceViewHeight = PreyFunction<void(ArkPlayerCamera* const _this)>(0x145DD00);
+	static inline auto FSetCustomUpdateFunction = PreyFunction<void(ArkPlayerCamera* const _this, std::function<Quat_tpl<float> __cdecl(float)> _function)>(0x123F3E0);
+	static inline auto FRemoveCustomUpdateFunction = PreyFunction<void(ArkPlayerCamera* const _this, float _interpolateToUnlockTime)>(0x145DC00);
+	static inline auto FSetCustomViewFunction = PreyFunction<void(ArkPlayerCamera* const _this, std::function<void __cdecl(SViewParams &)> _function)>(0x14298B0);
+	static inline auto FRemoveCustomFunctions = PreyFunction<void(ArkPlayerCamera* const _this)>(0x145DC80);
+	static inline auto FGetDesiredPositionAndRotation = PreyFunction<std::pair<Vec3, Quat>*(ArkPlayerCamera* const _this, std::pair<Vec3, Quat>* _return_value_, float _frameTime)>(0x145C530);
+	static inline auto FIsLeaning = PreyFunction<bool(const ArkPlayerCamera* const _this)>(0x145D660);
+	static inline auto FGetLeanAmount = PreyFunction<float(const ArkPlayerCamera* const _this)>(0x145D300);
+	static inline auto FGetJointId = PreyFunction<int(const ArkPlayerCamera* const _this, const int _boneId)>(0x145D2A0);
+	static inline auto FGetDefaultViewHeightInterpolationSpeed = PreyFunction<float(const ArkPlayerCamera* const _this)>(0x145C520);
+	static inline auto FUpdateFPIK = PreyFunction<void(ArkPlayerCamera* const _this, const float _frameTime, const float _pitchWeight)>(0x145DD50);
+	static inline auto FUpdateView = PreyFunction<void(ArkPlayerCamera* const _this, SViewParams& _params)>(0x145ED50);
+	static inline auto FPostUpdateView = PreyFunction<void(ArkPlayerCamera* const _this, SViewParams& _params)>(0xA13080);
+	static inline auto FUpdateIronsightsView = PreyFunction<boost::optional<Quat_tpl<float> >(const float _frameTime, const Vec3& _initialRotation)>(0x145E8E0);
 };
 

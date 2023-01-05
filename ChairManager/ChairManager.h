@@ -25,7 +25,6 @@ class ChairUninstallWizard;
 class ChairUpdateWizard;
 struct SemanticVersion;
 
-namespace fs = std::filesystem;
 class ChairManager {
 public:
     static ChairManager& Get() { return *m_spInstance; }

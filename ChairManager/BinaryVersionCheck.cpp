@@ -1,8 +1,8 @@
 //
 // Created by theli on 9/2/2022.
 //
+#include <Manager/PathUtils.h>
 #include "BinaryVersionCheck.h"
-#include "PathUtils.h"
 #include <Windows.h>
 #include <winver.h>
 #include "ChairManager.h"

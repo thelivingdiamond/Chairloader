@@ -6,6 +6,36 @@
 
 struct IEntity;
 
+// Header: Exact
+// Prey/GameDll/ark/psicommon/arkpsielectrostaticburst.h
+class ArkPsiThermalBlastProperties : public ArkReflectedObject // Id=801C16A Size=144
+{
+public:
+	class ArkBlastPropertiesProperty : public ArkProperty // Id=801C16B Size=32
+	{
+	public:
+		ArkBlastPropertiesProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FSetValue = PreyFunction<void(ArkPsiThermalBlastProperties::ArkBlastPropertiesProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1580AE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkPsiThermalBlastProperties::ArkBlastPropertiesProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+	};
+
+	static ArkPsiThermalBlastProperties::ArkBlastPropertiesProperty s_ArkBlastPropertiesProperty;
+	ArkPsiBlastProperties m_BlastProperties;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	void SetBlastProperties(ArkPsiBlastProperties arg0);
+	ArkPsiBlastProperties const& GetBlastProperties() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15811D0);
+};
+
 // Header: FromCpp
 // Prey/GameDll/ark/psicommon/arkpsithermalblast.h
 class CArkPsiThermalBlast : public CArkPsiBlast<CArkPsiThermalBlast,CArkPsiBlastProperties<ArkPsiThermalBlastProperties> > // Id=801C18E Size=112
@@ -47,4 +77,3 @@ public:
 	static inline auto FInitializeArea = PreyFunction<void(CArkPsiThermalBlast *const _this)>(0x146F4A0);
 	static inline auto FTriggerExplosion = PreyFunction<bool(CArkPsiThermalBlast *const _this, IEntity const &_entity)>(0x146FA70);
 };
-

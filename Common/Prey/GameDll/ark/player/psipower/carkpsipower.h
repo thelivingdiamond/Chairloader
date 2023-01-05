@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arktutorial.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
 #include <Prey/CryMath/Cry_Color.h>

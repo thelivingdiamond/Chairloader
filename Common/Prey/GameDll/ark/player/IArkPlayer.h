@@ -1,13 +1,12 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: Override
-// Prey/GameDll/ark/player/IArkPlayer.h
-class IArkPlayer // Id=80020C5 Size=8
-{
+// IArkPlayer
+// Header:  Prey/GameDll/ark/player/IArkPlayer.h
+class IArkPlayer
+{ // Size=8 (0x8)
 public:
-	enum EArkPlayerAnimationPriority
+	enum class EArkPlayerAnimationPriority
 	{
 		APAP_Lowest = 0,
 		APAP_Movement = 1,
@@ -18,8 +17,8 @@ public:
 		APAP_Trackview = 7,
 	};
 
-	virtual std::pair<Vec3,Vec3> GetReticleViewPositionAndDir() const = 0;
-	virtual void EnableIdleBreak(const bool arg0) = 0;
-	virtual void InhibitRotation(const bool arg0) = 0;
+	virtual std::pair<Vec3, Vec3> GetReticleViewPositionAndDir() const = 0;
+	virtual void EnableIdleBreak(const bool _bEnable) = 0;
+	virtual void InhibitRotation(const bool _bInhibit) = 0;
 };
 

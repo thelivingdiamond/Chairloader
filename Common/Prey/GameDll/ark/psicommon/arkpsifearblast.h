@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/ArkPsiBlastProperties.h>
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
 class ArkClass;
