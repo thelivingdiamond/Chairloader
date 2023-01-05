@@ -11,6 +11,9 @@ set(SOURCE_FILES
 	App/AppStage.h
 	App/IAppImGui.h
 	
+	Preditor/Project/Project.h
+	Preditor/Project/ProjectManager.h
+
 	Preditor/IPreditorEngine.h
 )
 

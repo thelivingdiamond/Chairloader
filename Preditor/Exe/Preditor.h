@@ -1,7 +1,7 @@
+#include <Preditor/Project/ProjectManager.h>
 #include "App/Application.h"
 #include "ConfigManager.h"
 #include "FlowgraphEditor.h"
-#include "ProjectManager.h"
 #include "ProjectSelectStage.h"
 #include "ProjectStage.h"
 #include "ConfigValidationStage.h"

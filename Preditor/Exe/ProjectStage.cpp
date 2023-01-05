@@ -1,8 +1,7 @@
 #include <WindowManager/WindowManager.h>
 #include <App/AppImGui.h>
+#include <Preditor/Project/ProjectManager.h>
 #include "ProjectStage.h"
-#include "Project.h"
-#include "ProjectManager.h"
 #include "GameViewport.h"
 
 void ProjectStage::Start() {

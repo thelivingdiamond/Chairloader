@@ -2,7 +2,7 @@
 // Created by theli on 10/28/2022.
 //
 
-#include "ProjectManager.h"
+#include <Preditor/Project/ProjectManager.h>
 #include "ConfigManager.h"
 
 static ProjectManager* s_pProjectManager = nullptr;

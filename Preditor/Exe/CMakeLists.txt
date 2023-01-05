@@ -1,6 +1,9 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 	
+	Project/Project.cpp
+	Project/ProjectManager.cpp
+
 	Resources/Preditor.rc
 
 	LoadGameStage.cpp
@@ -22,10 +25,6 @@ set(SOURCE_FILES
 	Flowgraph/UniqueID.h
 	Flowgraph/Node.cpp
 	Flowgraph/IChairFlowgraph.h
-	ProjectManager.cpp
-	ProjectManager.h
-	Project.cpp
-	Project.h
 	ProjectStage.cpp
 	ProjectStage.h
 	ProjectSelectStage.cpp
