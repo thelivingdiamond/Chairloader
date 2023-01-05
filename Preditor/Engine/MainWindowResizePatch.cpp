@@ -74,7 +74,10 @@ void MainWindowResizePatch::InitRenderer()
 	UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
 	Vec2i pos = pSettings->GetWindowRestoredPos();
 	Vec2i size = pSettings->GetWindowRestoredSize();
-	MoveWindow(hWnd, pos.x, pos.y, size.x, size.y, false);
+
+	if (pos.x != UserProjectSettings::INVALID_SIZE && pos.y != UserProjectSettings::INVALID_SIZE &&
+		size.x != UserProjectSettings::INVALID_SIZE && size.y != UserProjectSettings::INVALID_SIZE)
+		MoveWindow(hWnd, pos.x, pos.y, size.x, size.y, false);
 
 	if (pSettings->IsWindowMaximized())
 		ShowWindow(hWnd, SW_SHOWMAXIMIZED);

@@ -8,6 +8,7 @@
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IChairToPreditor.h>
 #include <App/Application.h>
+#include <Preditor/Project/ProjectManager.h>
 #include <imgui.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
@@ -183,6 +184,31 @@ void CSystem_LoadConfiguration_Hook(CSystem* const _this, const char* sFilename,
 		// Override system.cfg params
 		if (!g_InitParams.gameSdkPath.empty())
 			_this->GetIConsole()->GetCVar("sys_game_folder")->Set(g_InitParams.gameSdkPath.u8string().c_str());
+	}
+	else if (!strcmp(sFilename, "user.cfg"))
+	{
+		// Disable fullscreen
+		_this->m_rFullscreen->Set(0);
+
+		// Set window size
+		UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
+		Vec2i size = pSettings->GetWindowRestoredSize();
+
+		if (size.x != UserProjectSettings::INVALID_SIZE && size.y != UserProjectSettings::INVALID_SIZE)
+		{
+			_this->m_rWidth->Set(size.x);
+			_this->m_rHeight->Set(size.y);
+		}
+		else
+		{
+			// Default to working area size of the main monitor
+			RECT rc;
+			if (SystemParametersInfoA(SPI_GETWORKAREA, 0, &rc, 0))
+			{
+				_this->m_rWidth->Set(rc.right - rc.left);
+				_this->m_rHeight->Set(rc.bottom - rc.top);
+			}
+		}
 	}
 }
 
