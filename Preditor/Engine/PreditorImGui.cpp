@@ -1,5 +1,6 @@
 #include <windowsx.h>
 #include <Prey/CryInput/IHardwareMouse.h>
+#include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/GameDll/GameStartup.h>
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -324,9 +325,18 @@ void PreditorImGui::InitImGui()
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     // Ini path
-    static char iniPath[512];
-    snprintf(iniPath, sizeof(iniPath), "%s/imgui_engine.ini", Application::Get()->GetProgramPath().u8string().c_str());
-    io.IniFilename = nullptr;
+    const char* userPath = gEnv->pCryPak->GetAlias("%USER%", false);
+    if (userPath)
+    {
+        static char iniPath[512];
+        snprintf(iniPath, sizeof(iniPath), "%s/imgui_engine.ini", userPath);
+        io.IniFilename = iniPath;
+    }
+    else
+    {
+        CryError("ImGui: Failed to get %USER% path, imgui_engine.ini disabled");
+        io.IniFilename = nullptr;
+    }
 
     ImGui::StyleColorsDark();
 }
