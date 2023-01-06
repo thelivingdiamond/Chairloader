@@ -85,15 +85,9 @@ public:
 		m_bNoDelete = noDelete;
 	}
 
-protected:
-	~CDeviceTextureBase() { Cleanup(); }
-
 private:
 	CDeviceTextureBase(const CDeviceTextureBase &);
 	CDeviceTextureBase &operator=(const CDeviceTextureBase &);
-
-private:
-	int Cleanup();
 };
 
 class CDeviceTexture : public CDeviceTextureBase
@@ -101,7 +95,7 @@ class CDeviceTexture : public CDeviceTextureBase
 public:
 	static inline auto FCleanup = PreyFunction<int(CDeviceTextureBase* _this)>(0x1054080);
 	using CDeviceTextureBase::CDeviceTextureBase;
-	~CDeviceTexture();
+	~CDeviceTexture() { Cleanup(); }
 
 	CDeviceTexture()
 	{
