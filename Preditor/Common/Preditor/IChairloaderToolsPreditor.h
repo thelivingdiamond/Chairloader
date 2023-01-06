@@ -12,4 +12,12 @@ struct IChairloaderToolsPreditor
 
 	//! Shows the "Window" menu on the menu bar.
 	virtual void ShowWindowMenu() = 0;
+
+	//! ModReloading interface.
+	//! @see ModReloading
+	//! @{
+	virtual void CheckModulesForChanges() = 0;
+	virtual void ReloadMods() = 0;
+	virtual bool ReloadLevel() = 0;
+	//! @}
 };

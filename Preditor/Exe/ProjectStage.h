@@ -5,7 +5,7 @@
 struct IChairloaderToolsPreditor;
 class GameViewport;
 
-class ProjectStage : public AppStage
+class ProjectStage : public AppStage, public ISystemEventListener
 {
 public:
     ProjectStage();
@@ -14,6 +14,9 @@ public:
     void Start() override;
     void Update() override;
     void ShowUI(bool* bOpen) override;
+
+    // ISystemEventListener
+    void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
 
 private:
     std::unique_ptr<FlowgraphEditor> m_pFlowgraphEditor;

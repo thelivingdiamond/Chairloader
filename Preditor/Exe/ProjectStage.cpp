@@ -1,4 +1,6 @@
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/CryGame/Game.h>
+#include <Prey/CryGame/IGameFramework.h>
 #include <WindowManager/WindowManager.h>
 #include <App/AppImGui.h>
 #include <Preditor/Project/ProjectManager.h>
@@ -9,10 +11,13 @@
 
 ProjectStage::ProjectStage()
 {
+    gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this);
 }
 
 ProjectStage::~ProjectStage()
 {
+    if (gEnv && gEnv->pSystem)
+        gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }
 
 void ProjectStage::Start() {
@@ -42,12 +47,31 @@ void ProjectStage::ShowUI(bool* bOpen) {
     ImGui::ShowDemoWindow();
 }
 
+void ProjectStage::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
+{
+    if (event == ESYSTEM_EVENT_ACTIVATE)
+    {
+        if (wparam)
+        {
+            // Main window now active
+            m_pChairTools->CheckModulesForChanges();
+        }
+    }
+}
+
 void ProjectStage::DrawMainMenuBar()
 {
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu("File"))
         {
+            if (ImGui::MenuItem("Reload level", nullptr, nullptr, g_pGame->GetIGameFramework()->IsGameStarted()))
+                m_pChairTools->ReloadLevel();
+
+            if (ImGui::MenuItem("Reload mods"))
+                m_pChairTools->ReloadMods();
+            ImGui::Separator();
+
             if (ImGui::MenuItem("Quit"))
                 gEnv->pSystem->Quit();
             ImGui::EndMenu();

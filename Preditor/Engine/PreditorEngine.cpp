@@ -3,6 +3,7 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/CryInput/IHardwareMouse.h>
+#include <Prey/CryGame/Game.h>
 #include <Prey/GameDll/GameStartup.h>
 #include <Prey/GameDll/basiceventlistener.h>
 #include <Chairloader/IChairloaderMod.h>
@@ -121,6 +122,7 @@ public:
 	void InitGame(bool isHotReloading) override
 	{
 		assert(!isHotReloading);
+		g_pGame = gCL->cl->GetCGame();
 		g_PreditorEngine.InitGame();
 	}
 

@@ -6,10 +6,11 @@
 #include <Chairloader/IChairloaderCore.h>
 #include <Chairloader/IModDllManager.h>
 #include "ModReloading.h"
+#include "ChairToolsUtils.h"
 
 ModReloading::ModReloading()
 {
-	m_pDllManager = gChair->GetCore()->GetDllManager();
+	m_pDllManager = ChairToolsUtils::GetDll()->GetCore()->GetDllManager();
 }
 
 void ModReloading::UpdateBeforeSystem()
@@ -57,7 +58,7 @@ bool ModReloading::PerformReload()
 	}
 
 	// ReloadModDLLs can only fail fatally
-	gChair->ReloadModDLLs();
+	ChairToolsUtils::GetDll()->ReloadModDLLs();
 
 	if (needToRestore && !RestoreSavedLevel())
 		return false;

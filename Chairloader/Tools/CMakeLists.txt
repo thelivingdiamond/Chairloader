@@ -6,6 +6,9 @@ set(SHARED_SOURCE_FILES
 	Components/EntityHierarchy.h
 	Components/EntityInspector.cpp
 	Components/EntityInspector.h
+	
+	Editor/ModReloading.cpp
+	Editor/ModReloading.h
 
 	ChairToolsUtils.cpp
 	ChairToolsUtils.h
@@ -22,8 +25,6 @@ set(CHAIR_SOURCE_FILES
 	Editor/Editor.h
 	Editor/EditorView.cpp
 	Editor/EditorView.h
-	Editor/ModReloading.cpp
-	Editor/ModReloading.h
 
 	Trainer/EntityManager.cpp
 	Trainer/EntityManager.h
