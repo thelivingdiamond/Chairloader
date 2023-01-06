@@ -1,6 +1,7 @@
 #include <windowsx.h>
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CrySystem/File/ICryPak.h>
+#include <Prey/CrySystem/Profiling.h>
 #include <Prey/GameDll/GameStartup.h>
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -102,6 +103,7 @@ PreditorImGui::~PreditorImGui()
 
 void PreditorImGui::BeginFrame()
 {
+    CRY_PROFILE_MARKER("PreditorImGui::BeginFrame");
     assert(!m_bIsInFrame);
     // Update context
     if (!ImGui::GetCurrentContext())

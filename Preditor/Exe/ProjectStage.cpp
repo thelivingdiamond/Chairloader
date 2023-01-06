@@ -1,3 +1,4 @@
+#include <Prey/CrySystem/Profiling.h>
 #include <WindowManager/WindowManager.h>
 #include <App/AppImGui.h>
 #include <Preditor/Project/ProjectManager.h>
@@ -25,6 +26,7 @@ void ProjectStage::Update() {
 }
 
 void ProjectStage::ShowUI(bool* bOpen) {
+    CRY_PROFILE_MARKER("ProjectStage::ShowUI");
     DrawMainMenuBar();
 
     WindowManager::Get().Update();

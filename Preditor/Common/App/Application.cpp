@@ -32,6 +32,10 @@ int Application::Run()
 
 	while (m_bIsRunning)
 	{
+		bool pushedMarker = gEnv && gEnv->pJobManager;
+		if (pushedMarker)
+			gEnv->pJobManager->PushProfilingMarker("Application::Run");
+
 		m_pImGui->BeginFrame();
 		Update();
 //        assert(false);
@@ -41,6 +45,9 @@ int Application::Run()
 		PostUpdate();
 
 		m_pImGui->EndFrame();
+
+		if (pushedMarker)
+			gEnv->pJobManager->PopProfilingMarker();
 	}
 
 	return 0;

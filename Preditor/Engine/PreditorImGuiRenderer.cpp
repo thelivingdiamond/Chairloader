@@ -1,4 +1,5 @@
 #include <Prey/CrySystem/System.h>
+#include <Prey/CrySystem/Profiling.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Preditor/IPreditorEngine.h>
 #include "PreditorImGuiRenderer.h"
@@ -62,6 +63,7 @@ void PreditorImGuiRenderer::RenderEnd()
 	if (ImGui::GetCurrentContext() != m_pBackend->GetContext())
 		return;
 
+	CRY_PROFILE_MARKER("PreditorImGuiRenderer::RenderEnd");
 	ImGui::Render();
 
 	// Fill main viewport buffer
