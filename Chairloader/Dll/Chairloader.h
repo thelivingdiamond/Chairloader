@@ -25,7 +25,7 @@ public:
 	void InitSystem(CSystem* pSystem);
 
 	//! Called after CGame::Init
-	void InitGame(IGameFramework* pFramework);
+	void InitGame(CGame* pGame, IGameFramework* pFramework);
 
 	//! Called before CGame::Shutdown.
 	void ShutdownGame();
@@ -53,6 +53,7 @@ private:
 	unsigned m_SavedUpdateFlags = 0;
 
 	IGameFramework* m_pFramework = nullptr;
+	CGame* m_pGame = nullptr;
 	KeyNameMap m_KeyNames;
 
 	void InitHooks();
@@ -70,6 +71,7 @@ public:
 	uintptr_t GetPreyDllBase() override;
 	std::unique_ptr<IChairLogger> CreateLogger() override;
 	bool IsEditorEnabled() override;
+	CGame* GetCGame() override;
 
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
