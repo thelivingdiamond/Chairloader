@@ -363,7 +363,7 @@ bool FlowGraph::loadXML(fs::path path) {
 //        PrototypeNode* prototype = nullptr;
         auto prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
         if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()) {
-            CryWarning("Could not find prototype for node %s, adding prototype", nodeClass.c_str());
+            CryWarning("Could not find prototype for node {}, adding prototype", nodeClass);
             FlowgraphEditor::getInstance()->addUnknownPrototype(nodeClass);
             prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
         }
@@ -808,7 +808,7 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
 //        PrototypeNode* prototype = nullptr;
         auto prototype = FlowgraphEditor::getInstance()->getPrototypes().find(nodeClass);
         if(prototype == FlowgraphEditor::getInstance()->getPrototypes().end()) {
-            CryWarning("Could not find prototype for node %s, adding prototype", nodeClass.c_str());
+            CryWarning("Could not find prototype for node {}, adding prototype", nodeClass);
             FlowgraphEditor::getInstance()->addUnknownPrototype(nodeClass);
             if(node.attribute("EntityGUID")){
                 FlowgraphEditor::getInstance()->getPrototypes().at(nodeClass)->m_bEntity_Node = true;
@@ -826,10 +826,10 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
         }
         std::map<std::string, std::string> setValues;
 //        if(!proto.m_bEntity_Node && node.attribute("EntityGUID")){
-//            CryError("EntityGUID attribute found on non-entity node %s", nodeClass.c_str());
+//            CryError("EntityGUID attribute found on non-entity node {}", nodeClass);
 //        }
 //        if(proto.m_bEntity_Node && !node.attribute("EntityGUID") && !proto.m_bDefault_Entity_node){
-//            CryError("EntityGUID attribute not found on entity node %s", nodeClass.c_str());
+//            CryError("EntityGUID attribute not found on entity node {}", nodeClass);
 //        }
         for(auto &value : node.child("Inputs").attributes()){
             bool found = false;
@@ -884,7 +884,7 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
                     FlowgraphEditor::getInstance()->addPinToPrototype(nodeIn->Proto->Class, newPin);
                     refreshNodesOfClass(nodeIn->Proto->Class);
                     inputPin = nodeIn->getInputPin(portIn);
-                    CryLog("Added new input pin %s to node %s", portIn.c_str(), nodeIn->Proto->Class.c_str());
+                    CryLog("Added new input pin {} to node {}", portIn, nodeIn->Proto->Class);
                 }
             }
             if(!outputPin){
@@ -896,7 +896,7 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
                     FlowgraphEditor::getInstance()->addPinToPrototype(nodeOut->Proto->Class, newPin);
                     refreshNodesOfClass(nodeOut->Proto->Class);
                     outputPin = nodeOut->getOutputPin(portOut);
-                    CryLog("Added new output pin %s to node %s", portOut.c_str(), nodeOut->Proto->Class.c_str());
+                    CryLog("Added new output pin {} to node {}", portOut, nodeOut->Proto->Class);
                 }
             }
         }
@@ -926,7 +926,8 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node &RootNodeIn) {
             if(inputPin && outputPin){
                 addEdge(inputPin->ID, outputPin->ID, edgeID);
             } else {
-                CryError("Could not find input or output pin for edge connecting %s to %s\n with ports %s and %s", nodeIn->Proto->Class.c_str(), nodeOut->Proto->Class.c_str(), portIn.c_str(), portOut.c_str());
+                CryError("Could not find input or output pin for edge connecting {} to {}\n with ports {} and {}",
+                    nodeIn->Proto->Class, nodeOut->Proto->Class, portIn, portOut);
             }
         }
     }

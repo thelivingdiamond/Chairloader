@@ -67,12 +67,12 @@ struct IFlowNode
 {
     struct SActivationInfo // Id=8000F62 Size=48
     {
-        IFlowGraph *pGraph;
-        uint16_t myID;
-        IEntity *pEntity;
-        uint8_t connectPort;
-        TFlowInputData *pInputPorts;
-        void *m_pUserData;
+        IFlowGraph *pGraph = nullptr;
+        uint16_t myID = 0;
+        IEntity *pEntity = nullptr;
+        uint8_t connectPort = 0;
+        TFlowInputData *pInputPorts = nullptr;
+        void *m_pUserData = nullptr;
 
 #if 0
         void __dflt_ctor_closure();

@@ -13,6 +13,87 @@
 #include <filesystem>
 #include "ConfigManager.h"
 
+class CNullFlowGraph : public IFlowGraph
+{
+public:
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<SFlowSystemVoid> const& arg1) {}
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<int> const& arg1) {}
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<float> const& arg1) {}
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<unsigned int> const& arg1) {}
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<Vec3> const& arg1) {}
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<string> const& arg1) {}
+    virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<bool> const& arg1) {}
+
+    virtual void AddRef() {}
+    virtual void Release() {}
+    virtual _smart_ptr<IFlowGraph> Clone() { return nullptr; }
+    virtual void Clear() {}
+    virtual _smart_ptr<IFlowNodeIterator> CreateNodeIterator() { return nullptr; }
+    virtual _smart_ptr<IFlowEdgeIterator> CreateEdgeIterator() { return nullptr; }
+    virtual void SetGraphEntity(unsigned arg0, int arg1) {}
+    virtual unsigned GetGraphEntity(int arg0) const { return 0; }
+    virtual void SetEnabled(bool arg0) {}
+    virtual bool IsEnabled() const { return false; }
+    virtual void SetActive(bool arg0) {}
+    virtual bool IsActive() const { return false; }
+    virtual void UnregisterFromFlowSystem() {}
+    virtual void SetType(IFlowGraph::EFlowGraphType arg0) {}
+    virtual IFlowGraph::EFlowGraphType GetType() const { return eFGT_Default; }
+    virtual void Update() {}
+    virtual bool SerializeXML(XmlNodeRef const& arg0, bool arg1) { return false; }
+    virtual void Serialize(TSerialize arg0) {}
+    virtual void PostSerialize() {}
+    virtual void InitializeValues() {}
+    virtual void PrecacheResources() {}
+    virtual void EnsureSortedEdges() {}
+    virtual SFlowAddress ResolveAddress(const char* arg0, bool arg1) { SFlowAddress a; memset(&a, 0, sizeof(a)); return a; }
+    virtual uint16_t ResolveNode(const char* arg0) { return 0; }
+    virtual uint16_t CreateNode(uint16_t arg0, const char* arg1, void* arg2) { return 0; }
+    virtual uint16_t CreateNode(const char* arg0, const char* arg1, void* arg2) { return 0; }
+    virtual IFlowNodeData* GetNodeData(uint16_t arg0) { return nullptr; }
+    virtual bool SetNodeName(uint16_t arg0, const char* arg1) { return false; }
+    virtual const char* GetNodeName(uint16_t arg0) { return 0; }
+    virtual uint16_t GetNodeTypeId(uint16_t arg0) { return 0; }
+    virtual const char* GetNodeTypeName(uint16_t arg0) { return 0; }
+    virtual void RemoveNode(const char* arg0) {}
+    virtual void RemoveNode(uint16_t arg0) {}
+    virtual void SetUserData(uint16_t arg0, XmlNodeRef const& arg1) {}
+    virtual XmlNodeRef GetUserData(uint16_t arg0) { return 0; }
+    virtual bool LinkNodes(SFlowAddress arg0, SFlowAddress arg1) { return 0; }
+    virtual void UnlinkNodes(SFlowAddress arg0, SFlowAddress arg1) {}
+    virtual void RegisterFlowNodeActivationListener(SFlowNodeActivationListener* arg0) {}
+    virtual void RemoveFlowNodeActivationListener(SFlowNodeActivationListener* arg0) {}
+    virtual bool NotifyFlowNodeActivationListeners(uint16_t arg0, uint8_t arg1, uint16_t arg2, uint8_t arg3, const char* arg4) { return 0; }
+    virtual void SetEntityId(uint16_t arg0, unsigned arg1) {}
+    virtual unsigned GetEntityId(uint16_t arg0) { return 0; }
+    virtual _smart_ptr<IFlowGraph> GetClonedFlowGraph() const { return 0; }
+    virtual void GetNodeConfiguration(uint16_t arg0, SFlowNodeConfig& arg1) {}
+    virtual void SetRegularlyUpdated(uint16_t arg0, bool arg1) {}
+    virtual void RequestFinalActivation(uint16_t arg0) {}
+    virtual void ActivateNode(uint16_t arg0) {}
+    virtual void ActivatePortAny(SFlowAddress arg0, TFlowInputData const& arg1) {}
+    virtual void ActivatePortCString(SFlowAddress arg0, const char* arg1) {}
+    virtual bool SetInputValue(uint16_t arg0, uint8_t arg1, TFlowInputData const& arg2) { return 0; }
+    virtual bool IsOutputConnected(SFlowAddress arg0) { return 0; }
+    virtual TFlowInputData const* GetInputValue(uint16_t arg0, uint8_t arg1) { return 0; }
+    virtual bool GetActivationInfo(const char* arg0, IFlowNode::SActivationInfo& arg1) { return 0; }
+    virtual void SetSuspended(bool arg0) {}
+    virtual bool IsSuspended() const { return 0; }
+    virtual void SetCustomAction(ICustomAction* arg0) {}
+    virtual ICustomAction* GetCustomAction() const { return 0; }
+    virtual void GetMemoryUsage(ICrySizer* arg0) const {}
+    virtual void RemoveGraphTokens(bool arg0) {}
+    virtual bool UpdateGraphToken(int arg0, const char* arg1, EFlowDataTypes arg2) { return 0; }
+    virtual bool LoadGraphToken(int arg0, const char* arg1, EFlowDataTypes arg2) { return 0; }
+    virtual int CloneGraphToken(IFlowGraph::SGraphToken const& arg0) { return 0; }
+    virtual uint64_t GetGraphTokenCount() const { return 0; }
+    virtual IFlowGraph::SGraphToken const* GetGraphToken(uint64_t arg0) const { return 0; }
+    virtual unsigned GetGraphId() const { return 0; }
+    virtual void OnNodeConfigReload(IFlowNodeData& arg0) {}
+    virtual void SetOwningModule(IFlowGraphModule* arg0) {}
+    virtual IFlowGraphModule* GetOwningModule() const { return 0; }
+    virtual void FixCreatePhantomRequestEntityIdOutput(SFlowAddress arg0, unsigned arg1) {}
+};
 
 bool FlowgraphEditor::findGraphNodes(pugi::xml_node &node){
     // recrusively find all nodes with the tag "Graph" in the xml file
@@ -469,8 +550,13 @@ void FlowgraphEditor::addPinToPrototype(PrototypeNode::NodeClass nodeClass, Prot
 }
 
 void FlowgraphEditor::Init() {
-    m_InitFuture = std::async(std::launch::async, [&]() {initAsync();});
+    // Can no longer run everything in async - the engine runs fully now
+    //m_InitFuture = std::async(std::launch::async, [&]() {initAsync();});
+
     AppModule::Init();
+    initAsync();
+    m_UIState = UIState::Editor;
+    m_InitState = InitializationState::COUNT;
 }
 
 void FlowgraphEditor::initAsync() {
@@ -502,7 +588,9 @@ void FlowgraphEditor::initAsync() {
 void FlowgraphEditor::loadPrototypes() {
     auto flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
     for(auto & typeEntry: flowSystem->m_typeNameToIdMap) {
-        auto info = new IFlowNode::SActivationInfo();
+        IFlowNode::SActivationInfo info;
+        CNullFlowGraph nullGraph;
+        info.pGraph = &nullGraph;
         //TODO: Fix timer nodes
         if(/*std::string(typeEntry.first.c_str()) == ("Entity:TacticalScan") ||*/
             /*std::string(typeEntry.first.c_str()) == ("Ark:PlayerMimicEvent") ||*/
@@ -511,7 +599,7 @@ void FlowgraphEditor::loadPrototypes() {
         }
         auto newNode = std::make_shared<PrototypeNode>();
         newNode->Class = typeEntry.first.c_str();
-        auto node = flowSystem->CreateNodeOfType(info, typeEntry.second);
+        auto node = flowSystem->CreateNodeOfType(&info, typeEntry.second);
         SFlowNodeConfig nodeConfig{};
         if(node.get() == nullptr) {
             continue;
@@ -560,7 +648,6 @@ void FlowgraphEditor::loadPrototypes() {
         newNode->setCategory();
         m_PrototypeNodes.insert(std::pair(newNode->Class, newNode));
         node.ReleaseOwnership();
-        delete info;
     }
     // add comment box classes
     auto commentNode = std::make_shared<PrototypeNode>();

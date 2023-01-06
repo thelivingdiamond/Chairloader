@@ -95,7 +95,7 @@ ImColor Node::GetCategoryColor(PrototypeNode::nodeCategory category) {
 void PrototypeNode::setCategory() {
     {
         auto categoryPrefix = Class.substr(0, Class.find_first_of(':'));
-//        CryLog("Category prefix: %s", categoryPrefix.c_str());
+//        CryLog("Category prefix: {}", categoryPrefix.c_str());
         std::transform(categoryPrefix.begin(), categoryPrefix.end(), categoryPrefix.begin(), ::tolower);
         if(categoryPrefix == "ai"){
             Category = nodeCategory::AI;
