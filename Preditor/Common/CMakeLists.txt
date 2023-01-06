@@ -16,6 +16,7 @@ set(SOURCE_FILES
 	Preditor/Project/UserProjectSettings.h
 
 	Preditor/IChairloaderToolsPreditor.h
+	Preditor/IGameViewport.h
 	Preditor/IPreditorEngine.h
 )
 

@@ -2546,7 +2546,7 @@ struct SRenderingPassInfo
 	};
 
 	//! Creating function for RenderingPassInfo, the create functions will fetch all other necessary information like thread id/frame id, etc.
-	static SRenderingPassInfo CreateGeneralPassRenderingInfo(const CCamera& rCamera, uint32 nRenderingFlags = DEFAULT_FLAGS, bool bAuxWindow = false);
+	static SRenderingPassInfo CreateGeneralPassRenderingInfo(const CCamera& rCamera, uint32 nRenderingFlags = DEFAULT_FLAGS, bool bAuxWindow = false) { return FCreateGeneralPassRenderingInfo(rCamera, nRenderingFlags, bAuxWindow); }
 	static SRenderingPassInfo CreateRecursivePassRenderingInfo(const CCamera& rCamera, uint32 nRenderingFlags = DEFAULT_RECURSIVE_FLAGS);
 	static SRenderingPassInfo CreateShadowPassRenderingInfo(CRenderView* pRenderView, const CCamera& rCamera, int nLightFlags, int nShadowMapLod, bool bExtendedLod, bool bIsMGPUCopy, uint32* pShadowGenMask, uint32 nSide, uint32 nShadowFrustumID, uint32 nRenderingFlags = DEFAULT_SHADOWS_FLAGS);
 	static SRenderingPassInfo CreateTempRenderingInfo(const CCamera& rCamera, const SRenderingPassInfo& rPassInfo);
@@ -2679,6 +2679,9 @@ private:
 
 	// Job state to use for all jobs spawned by rendering with this pass.
 	void* m_pJobState;
+
+public:
+	static inline auto FCreateGeneralPassRenderingInfo = PreyFunction<SRenderingPassInfo(CCamera const& rCamera, unsigned nRenderingFlags, bool bAuxWindow)>(0x1E5E60);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

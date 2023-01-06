@@ -18,6 +18,7 @@
 
 #include "PreditorImGui.h"
 #include "EngineSwapChainPatch.h"
+#include "GameViewportPatch.h"
 #include "MainWindowResizePatch.h"
 #include "HardwareMousePatch.h"
 #include "RendererGlobals.h"
@@ -503,6 +504,11 @@ bool PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i ma
 	return HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);
 }
 
+void PreditorEngine::SetGameViewport(IGameViewport* pVP)
+{
+	GameViewportPatch::SetGameViewport(pVP);
+}
+
 IChairloaderMod* PreditorEngine::GetMod()
 {
 	return &g_PreditorAsMod;
@@ -537,6 +543,7 @@ void PreditorEngine::ApplyFullPatches()
 {
 	PreditorImGui::InitHooks();
 	EngineSwapChainPatch::InitHooks();
+	GameViewportPatch::InitHooks();
 	MainWindowResizePatch::InitHooks();
 	HardwareMousePatch::InitHooks();
 

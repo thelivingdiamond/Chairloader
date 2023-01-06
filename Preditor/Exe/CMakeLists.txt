@@ -35,6 +35,8 @@ set(SOURCE_FILES
 	LookingGlass.cpp
 	LookingGlass.h
 	LookingGlass/XMLReference.h
+	SceneViewport.cpp
+	SceneViewport.h
 )
 
 add_executable(Preditor.Exe WIN32

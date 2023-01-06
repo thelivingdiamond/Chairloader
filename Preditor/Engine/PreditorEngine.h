@@ -27,6 +27,7 @@ public:
 	IChairToPreditor* GetIChairToPreditor() override;
 	void SetGameInputEnabled(bool state) override;
 	bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
+	void SetGameViewport(IGameViewport* pVP) override;
 
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;

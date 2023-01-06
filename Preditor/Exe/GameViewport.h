@@ -1,18 +1,31 @@
 #pragma once
 #include <WindowManager/ManagedWindow.h>
+#include <Preditor/IGameViewport.h>
+#include "SceneViewport.h"
 
 struct ITexture;
 
-class GameViewport : public ManagedWindow
+class GameViewport
+	: public ManagedWindow
+	, public IGameViewport
 {
 public:
 	enum class ViewportMode
 	{
+		None,
 		Scene,
 		Game,
 	};
 
 	GameViewport();
+	~GameViewport();
+
+	//! Sets a new viewport mode.
+	void SetViewportMode(ViewportMode mode);
+
+	// IGameViewport
+	bool NeedCustomRender() override;
+	void CustomRender() override;
 
 protected:
 	void PreUpdate() override;
@@ -31,9 +44,11 @@ private:
 	ICVar* m_pCVarWidth = nullptr;
 	ICVar* m_pCVarHeight = nullptr;
 
-	ViewportMode m_ViewportMode = ViewportMode::Game;
+	ViewportMode m_ViewportMode = ViewportMode::None;
 	bool m_bEnableInput = false;
 	bool m_bLockMouse = false;
+
+	SceneViewport m_SceneVp;
 
 	void ShowTopControls();
 	void ShowGameModeControls();

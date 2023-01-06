@@ -1,9 +1,28 @@
 #include <Prey/CryInput/IHardwareMouse.h>
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/CryGame/Game.h>
+#include <Prey/CrySystem/System.h>
 #include <Preditor/IPreditorEngine.h>
 #include "GameViewport.h"
 
+namespace
+{
+
+GameViewport* g_pGameViewport = nullptr;
+
+auto g_CSystem_Render_Hook = CSystem::FRender.MakeHook();
+
+void CSystem_Render_Hook(CSystem* const _this)
+{
+
+}
+
+} // namespace
+
 GameViewport::GameViewport()
 {
+	assert(!g_pGameViewport);
+	g_pGameViewport = this;
 	SetTitle("Viewport");
 	SetPersistentID("GameViewport");
 	m_pViewportTexture = IPreditorEngine::Get()->GetViewportTexture();
@@ -18,6 +37,39 @@ GameViewport::GameViewport()
 
 	// Decrement some initial increment by the engine or something
 	gEnv->pHardwareMouse->DecrementCounter();
+
+	IPreditorEngine::Get()->SetGameViewport(this);
+	SetViewportMode(ViewportMode::Game);
+}
+
+GameViewport::~GameViewport()
+{
+	assert(g_pGameViewport == this);
+	g_pGameViewport = nullptr;
+}
+
+void GameViewport::SetViewportMode(ViewportMode mode)
+{
+	if (m_ViewportMode == mode)
+		return;
+
+	if (m_ViewportMode == ViewportMode::Scene)
+		m_SceneVp.OnDeactivate();
+
+	m_ViewportMode = mode;
+
+	if (mode == ViewportMode::Scene)
+		m_SceneVp.OnActivate();
+}
+
+bool GameViewport::NeedCustomRender()
+{
+	return m_ViewportMode == ViewportMode::Scene;
+}
+
+void GameViewport::CustomRender()
+{
+	m_SceneVp.Render();
 }
 
 void GameViewport::PreUpdate()
@@ -29,6 +81,12 @@ void GameViewport::PreUpdate()
 
 void GameViewport::Update(bool isVisible)
 {
+	// Only game viewport mode in the menu.
+	if (!g_pGame->GetIGameFramework()->IsGameStarted())
+		SetViewportMode(ViewportMode::Game);
+
+	m_SceneVp.Update(isVisible);
+
 	if (isVisible)
 	{
 		bool bFocused = false;
@@ -92,19 +150,26 @@ void GameViewport::ShowContents()
 void GameViewport::ShowTopControls()
 {
 	// Viewport mode
+	bool sceneAvail = g_pGame->GetIGameFramework()->IsGameStarted();
+	ImGui::BeginDisabled(!sceneAvail);
 	if (ImGui::RadioButton("Scene", m_ViewportMode == ViewportMode::Scene))
-		m_ViewportMode = ViewportMode::Scene;
+		SetViewportMode(ViewportMode::Scene);
+	ImGui::EndDisabled();
 	ImGui::SameLine();
-	if (ImGui::RadioButton("Game", m_ViewportMode == ViewportMode::Game))
-		m_ViewportMode = ViewportMode::Game;
 
-	if (m_ViewportMode == ViewportMode::Scene)
+	if (ImGui::RadioButton("Game", m_ViewportMode == ViewportMode::Game))
+		SetViewportMode(ViewportMode::Game);
+
+	switch (m_ViewportMode)
 	{
-		// TODO:
-	}
-	else
-	{
+	case ViewportMode::Scene:
+		m_SceneVp.ShowTopControls();
+		break;
+	case ViewportMode::Game:
 		ShowGameModeControls();
+		break;
+	default:
+		assert(false);
 	}
 }
 
