@@ -32,6 +32,7 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 	// Init the DLL
 	ModuleInitISystem(initInfo.pSystem, dllInfoEx.modName);
 	gCL = initInfo.pChair->GetChairloaderEnvironment();
+	CryAssertSetGlobalFlagAddress(gCL->cl->GetAssertFlagAddress());
 	ModuleInitIChairLogger(dllInfoEx.logTag);
 	m_ModuleBase = gCL->cl->GetPreyDllBase();
 

@@ -22,6 +22,8 @@ static std::unique_ptr<Chairloader> gChairloaderDll;
 Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
+static int CV_cl_asserts;
+
 namespace
 {
 
@@ -217,6 +219,18 @@ void Chairloader::InitSystem(CSystem* pSystem)
 #endif
 		pSystem->SetDevMode(devMode);
 	}
+
+	// Register assert cvar
+#ifdef DEBUG_BUILD
+	const bool defaultAsserts = true;
+#else
+	const bool defaultAsserts = pSystem->IsDevMode();
+#endif
+	REGISTER_CVAR2("cl_asserts", &CV_cl_asserts, defaultAsserts, VF_CHEAT,
+		"0 = Disable Asserts\n"
+		"1 = Enable Asserts\n"
+	);
+	CryAssertSetGlobalFlagAddress(GetAssertFlagAddress());
 
 	// Disabling audio speeds up loading immensely (8 seconds on my hardware)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
@@ -537,6 +551,11 @@ bool Chairloader::IsEditorEnabled()
 CGame* Chairloader::GetCGame()
 {
 	return m_pGame;
+}
+
+int* Chairloader::GetAssertFlagAddress()
+{
+	return &CV_cl_asserts;
 }
 
 void Chairloader::ReloadModDLLs()
