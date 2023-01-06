@@ -305,8 +305,7 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 void ModDllManager::CheckModSdkVersion(Module& mod)
 {
 	bool isValid = false;
-	SemanticVersion currentSDKVersion, modSDKVersion;
-    currentSDKVersion = SemanticVersion{ MOD_SDK_VERSION_MINOR, MOD_SDK_VERSION_MAJOR, MOD_SDK_VERSION_PATCH, MOD_SDK_VERSION_RELEASE_TYPE };
+	SemanticVersion currentSDKVersion{MOD_SDK_VERSION_MINOR, MOD_SDK_VERSION_MAJOR, MOD_SDK_VERSION_PATCH, MOD_SDK_VERSION_RELEASE_TYPE}, modSDKVersion;
     mod.pModIface->GetModSdkVersion(modSDKVersion);
 
     if(modSDKVersion.valid()) {

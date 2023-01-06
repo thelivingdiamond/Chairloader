@@ -7,7 +7,6 @@
 #pragma once
 
 #include <regex>
-#include <boost/format.hpp>
 #include <utility>
 
 struct SemanticVersion {
@@ -32,6 +31,12 @@ struct SemanticVersion {
 
     //! Constructs a version from its components.
     SemanticVersion(uint32_t major, uint32_t minor, uint32_t patch, std::string &releaseType) {
+        m_Major = major;
+        m_Minor = minor;
+        m_Patch = patch;
+        m_ReleaseType = releaseType;
+    }
+    SemanticVersion(uint32_t major, uint32_t minor, uint32_t patch, const char* releaseType) {
         m_Major = major;
         m_Minor = minor;
         m_Patch = patch;
@@ -72,8 +77,13 @@ struct SemanticVersion {
         return m_Major != 0 || m_Minor != 0 || m_Patch != 0 || !m_ReleaseType.empty();
     }
     //! Returns a string representation of the version in the proper Semantic Versioning format.
-    std::string String() {
-        std::string baseVersion = boost::str(boost::format("%d.%d.%d") % m_Major % m_Minor % m_Patch);
+    std::string String() const {
+        std::string baseVersion;
+        baseVersion += std::to_string(m_Major);
+        baseVersion += ".";
+        baseVersion += std::to_string(m_Minor);
+        baseVersion += ".";
+        baseVersion += std::to_string(m_Patch);
         if(!m_ReleaseType.empty()){
             baseVersion += "-" + m_ReleaseType;
         }
