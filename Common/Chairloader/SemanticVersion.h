@@ -18,7 +18,7 @@ struct SemanticVersion {
     SemanticVersion() = default;
 
     //! Parses a version string in the proper Semantic Versioning format.
-    explicit SemanticVersion(std::string &versionStr) {
+    explicit SemanticVersion(std::string versionStr) {
         std::regex versionRegex(R"(^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$)");
         std::smatch match;
         if (std::regex_match(versionStr, match, versionRegex)) {
