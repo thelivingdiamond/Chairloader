@@ -1,6 +1,7 @@
 #ifdef CHAIRLOADER_MOD_SDK
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <Prey/CryGame/Game.h>
 #include <detours/detours.h>
 #include <ChairLoader/IChairloaderImGui.h>
 #include <ChairLoader/ModSDK/ChairloaderModBase.h>
@@ -44,6 +45,7 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 
 void ChairloaderModBase::InitGame(bool isHotReloading)
 {
+	g_pGame = gCL->cl->GetCGame();
 	InitImGui();
 }
 

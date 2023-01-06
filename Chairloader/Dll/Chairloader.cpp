@@ -79,7 +79,7 @@ bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
-		gChairloaderDll->InitGame(pFramework);
+		gChairloaderDll->InitGame(_this, pFramework);
 
 	return result;
 }
@@ -259,9 +259,10 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	m_pRender->SetRenderThreadIsIdle(false);
 }
 
-void Chairloader::InitGame(IGameFramework* pFramework)
+void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
 {
 	CryLog("Chairloader::InitGame");
+	m_pGame = pGame;
 	m_pFramework = pFramework;
 
 	gRenDev->m_pRT->SyncMainWithRender();
@@ -538,6 +539,11 @@ std::unique_ptr<IChairLogger> Chairloader::CreateLogger()
 bool Chairloader::IsEditorEnabled()
 {
 	return m_bEditorEnabled;
+}
+
+CGame* Chairloader::GetCGame()
+{
+	return m_pGame;
 }
 
 void Chairloader::ReloadModDLLs()
