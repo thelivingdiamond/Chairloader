@@ -10,6 +10,7 @@ struct ImGuiContext;
 constexpr int MOD_SDK_VERSION_MAJOR = 0; //!< Increment when breaking API/ABI.
 constexpr int MOD_SDK_VERSION_MINOR = 1; //!< Increment when adding something new to the API.
 constexpr int MOD_SDK_VERSION_PATCH = 0; //!< Increment on a bug-fix with no API/ABI changes.
+constexpr const char* MOD_SDK_VERSION_RELEASE_TYPE = ""; //!< Set to "-alpha", "-beta", "-rc" or "".
 
 struct IChairloaderMod {
 	static constexpr char PROC_INITIALIZE[] = "ClMod_Initialize";
@@ -44,7 +45,7 @@ struct IChairloaderMod {
 	~IChairloaderMod() {}
 
 	//! Gets the Mod SDK version used to build the DLL.
-	virtual void GetModSdkVersion(int& major, int& minor, int& patch) = 0;
+	virtual void GetModSdkVersion(SemanticVersion &version) = 0;
 
     //! Retrieves a mod interface.
     virtual void* QueryInterface(const char* ifaceName) = 0;
