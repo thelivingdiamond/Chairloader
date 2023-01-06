@@ -4,6 +4,7 @@
 struct ISystem;
 struct IGameFramework;
 struct ImGuiContext;
+struct SemanticVersion;
 
 //! This is the version of the Mod SDK. It defines compatibility of mods with Chairloader.
 //! It must follow Semantic Versioning 2.0.0 spec.
