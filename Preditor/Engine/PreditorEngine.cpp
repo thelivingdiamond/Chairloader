@@ -558,6 +558,10 @@ void PreditorEngine::ApplyFullPatches()
 	// jnz loc_7F0000DC8DA1-> jmp loc_7F0000DC8DA1
 	uint8_t throttlePatch[] = { 0xE9, 0xFE, 0x00 };
 	mem::Patch(dllBase + 0xDC8C9E, throttlePatch, 3);
+
+	// CCryAction::PostUpdate: Remove p3DEngine->PrepareOcclusion calls because SceneViewport changes the camera
+	mem::Nop(dllBase + 0x5C6AA7, 0x5C6AAA - 0x5C6AA7);
+	mem::Nop(dllBase + 0x5C6C50, 0x5C6C53 - 0x5C6C50);
 }
 
 void PreditorEngine::ApplyMinimalPatches()

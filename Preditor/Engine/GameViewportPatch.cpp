@@ -18,6 +18,9 @@ void CSystem_Render_Hook(CSystem* const _this)
 {
 	if (!g_pVP || !g_pVP->NeedCustomRender())
 	{
+		// PrepareOcclusion is usually called in CCryAction::PostUpdate
+		// but viewport changes the camera after that.
+		gEnv->p3DEngine->PrepareOcclusion(_this->GetViewCamera());
 		g_CSystem_Render_Hook.InvokeOrig(_this);
 		return;
 	}
