@@ -36,4 +36,7 @@ struct IChairloader {
 
     //! @returns the CGame instance. Modders can use g_pGame (set in ChairloaderModBase).
     virtual CGame* GetCGame() = 0;
+
+    //! @returns the pointer to cl_assert cvar.
+    virtual int* GetAssertFlagAddress() = 0;
 };
