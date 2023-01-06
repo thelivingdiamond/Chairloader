@@ -8,6 +8,8 @@
   "dependencies": [
     "boost-core",
     "boost-format",
+    "boost-variant",
+    "boost-bimap",
     "detours",
     "fmt"
   ]
