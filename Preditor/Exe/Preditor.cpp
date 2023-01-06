@@ -49,6 +49,11 @@ void Preditor::Update()
             QuitApp();
         }
 	}
+
+    // Only the main stage has a dedicated main window.
+    // Dock space needs to be created before any windows.
+    if (m_pProjectStage)
+        ImGui::DockSpaceOverViewport();
 }
 
 void Preditor::ShowUI(bool* bOpen)

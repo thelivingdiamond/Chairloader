@@ -26,20 +26,9 @@ void ProjectStage::Update() {
 
 void ProjectStage::ShowUI(bool* bOpen) {
     DrawMainMenuBar();
-    ImGui::DockSpaceOverViewport();
 
     WindowManager::Get().Update();
     m_pChairTools->Update();
-
-    //ImGui::PushFont(AppImGui::getPrettyFont());
-    if (ImGui::Begin(WINDOW_TITLE.c_str(), bOpen, WINDOW_FLAGS)) {
-        DrawToolbar();
-        Project* pProject = ProjectManager::GetProject();
-        ImGui::Text("Project Name: %s", pProject->GetName().c_str());
-        ImGui::Text("Project Path: %s", pProject->GetPath().u8string().c_str());
-    }
-    ImGui::End();
-    //ImGui::PopFont();
 
     if (m_pFlowgraphEditor) {
         if (m_pFlowgraphEditor->isShown() && !m_pFlowgraphEditor->isInitialized()) {
@@ -49,18 +38,6 @@ void ProjectStage::ShowUI(bool* bOpen) {
     }
 
     ImGui::ShowDemoWindow();
-}
-
-void ProjectStage::DrawToolbar() {
-    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(8, 8));
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
-    if (ImGui::BeginChild("Toolbar", ImVec2(ImGui::GetWindowWidth(), ImGui::GetFrameHeightWithSpacing()), false)) {
-        if (ImGui::Button(ICON_MD_SHARE "##FLOWGRAPHEDITOR")) {
-            m_pFlowgraphEditor->setShown(!m_pFlowgraphEditor->isShown());
-        }
-        ImGui::EndChild();
-    }
-    ImGui::PopStyleVar(2);
 }
 
 void ProjectStage::DrawMainMenuBar()
@@ -77,6 +54,12 @@ void ProjectStage::DrawMainMenuBar()
         if (ImGui::BeginMenu("Window"))
         {
             m_pChairTools->ShowWindowMenu();
+
+            bool flowEditorVisible = m_pFlowgraphEditor->isShown();
+            if (ImGui::MenuItem(ICON_MD_SHARE " FlowGraph Editor", nullptr, &flowEditorVisible)) {
+                m_pFlowgraphEditor->setShown(flowEditorVisible);
+            }
+
             ImGui::EndMenu();
         }
 

@@ -154,7 +154,7 @@ FlowgraphEditor::FlowgraphEditor() {
 
 void FlowgraphEditor::ShowUI() {
     std::scoped_lock lock(m_InitStatusMutex);
-    static ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse;
+    static ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
     static ImGuiDockNodeFlags dockspace_flags = /*ImGuiDockNodeFlags_PassthruCentralNode |*/ ImGuiDockNodeFlags_NoWindowMenuButton;
     if(isShown()) {
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
