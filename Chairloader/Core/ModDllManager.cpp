@@ -94,9 +94,12 @@ void ModDllManager::ReloadModules()
 	std::vector<Module*> modsToReload;
 	for (Module& i : m_Modules)
 	{
-		CRY_ASSERT(i.hModule);
-		if (i.dllInfo.supportsHotReload)
-			modsToReload.push_back(&i);
+		if (!i.bIsRawMod)
+		{
+			CRY_ASSERT(i.hModule);
+			if (i.dllInfo.supportsHotReload)
+				modsToReload.push_back(&i);
+		}
 	}
 
 	// Unload mods in reverse order
