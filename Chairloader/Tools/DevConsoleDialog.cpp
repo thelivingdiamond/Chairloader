@@ -81,7 +81,10 @@ void Command_Find(IConsoleCmdArgs *args) {
 DevConsoleDialog::DevConsoleDialog() {
 	m_pConsole = gEnv->pConsole;
 	m_pLogManager = ChairToolsUtils::GetDll()->GetCore()->GetLogManager();
+
+#ifndef PREDITOR
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
+#endif
 }
 
 void DevConsoleDialog::Show(bool *p_open) {
