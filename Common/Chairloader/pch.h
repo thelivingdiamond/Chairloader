@@ -22,3 +22,4 @@
 #include <ChairLoader/PreyFunction.h>
 #include <ChairLoader/ChairloaderEnv.h>
 #include <ChairLoader/IChairloader.h>
+#include <Chairloader/SemanticVersion.h>

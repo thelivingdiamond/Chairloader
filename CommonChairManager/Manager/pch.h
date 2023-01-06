@@ -40,9 +40,6 @@ namespace fs = std::filesystem;
 // Libraries
 #include <iostream>
 #include <fstream>
-#include <boost/variant.hpp>
-#include <boost/optional.hpp>
-#include <boost/bimap.hpp>
 #include <pugixml.hpp>
 #include <imgui.h>
 #include <imgui_stdlib.h>

@@ -43,13 +43,6 @@ void PlayerManager::draw() {
 
         ImGui::End();
     }
-#ifdef DEBUG_BUILD
-    if(ImGui::Begin("Player Reference Testing")){
-        ImGui::Text("ArkPlayer: %p", ArkPlayer::GetInstancePtr());
-//        ImGui::Text("ArkPlayer: %d", ArkPlayer::GetInstance().m_bInAir);
-    }
-#endif
-    ImGui::End();
 }
 
 void PlayerManager::drawPositionTab() {

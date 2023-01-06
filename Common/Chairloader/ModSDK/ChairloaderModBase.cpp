@@ -8,11 +8,12 @@
 
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
-void ChairloaderModBase::GetModSdkVersion(int& major, int& minor, int& patch)
+void ChairloaderModBase::GetModSdkVersion(SemanticVersion& version)
 {
-	major = MOD_SDK_VERSION_MAJOR;
-	minor = MOD_SDK_VERSION_MINOR;
-	patch = MOD_SDK_VERSION_PATCH;
+	version.m_Major = MOD_SDK_VERSION_MAJOR;
+	version.m_Minor = MOD_SDK_VERSION_MINOR;
+	version.m_Patch = MOD_SDK_VERSION_PATCH;
+    version.m_ReleaseType = MOD_SDK_VERSION_RELEASE_TYPE;
 }
 
 void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
@@ -31,6 +32,7 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 	// Init the DLL
 	ModuleInitISystem(initInfo.pSystem, dllInfoEx.modName);
 	gCL = initInfo.pChair->GetChairloaderEnvironment();
+	CryAssertSetGlobalFlagAddress(gCL->cl->GetAssertFlagAddress());
 	ModuleInitIChairLogger(dllInfoEx.logTag);
 	m_ModuleBase = gCL->cl->GetPreyDllBase();
 

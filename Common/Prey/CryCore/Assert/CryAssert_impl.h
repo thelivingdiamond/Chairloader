@@ -69,9 +69,8 @@ bool CryAssertIsEnabled()
 	static const bool bDefaultIfUnknown = false;
 	#endif
 	const bool bGlobalSuppress = g_pAssertsCVarAddress ? *g_pAssertsCVarAddress == 0 : !bDefaultIfUnknown;
-	const bool bUserSuppress = /*gEnv ? gEnv->bIgnoreAllAsserts :*/ !bDefaultIfUnknown;
 	const bool bModuleSuppress = g_bAssertsAreDisabledForThisModule;
-	return !(bGlobalSuppress || bUserSuppress || bModuleSuppress);
+	return !(bGlobalSuppress || bModuleSuppress);
 }
 
 #endif // defined(USE_CRY_ASSERT)

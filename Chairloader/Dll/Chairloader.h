@@ -78,6 +78,7 @@ public:
 	std::unique_ptr<IChairLogger> CreateLogger() override;
 	bool IsEditorEnabled() override;
 	CGame* GetCGame() override;
+	int* GetAssertFlagAddress() override;
 
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
