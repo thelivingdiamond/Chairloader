@@ -5,6 +5,7 @@ class SceneViewport : public ISystemEventListener
 {
 public:
 	SceneViewport();
+	~SceneViewport();
 
 	//! Called every frame.
 	//! @param	isVisible	Whether the window is visible.
@@ -26,6 +27,9 @@ public:
 	void SetMouseGrabbed(bool state);
 	bool IsMouseGrabbed() { return m_bGrabMouse; }
 
+	//! @see IGameViewport
+	bool HandleInputEventPreGame(const SInputEvent& event);
+
 	// ISystemEventListener
 	void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
 
@@ -40,11 +44,27 @@ private:
 		float farPlane = DEFAULT_FAR;
 	};
 
+	struct InputState
+	{
+		bool fwd = false;
+		bool back = false;
+		bool left = false;
+		bool right = false;
+		bool up = false;
+		bool down = false;
+		bool boost = false;
+	};
+
 	bool m_bActive = false; //!< The viewport is active.
 	bool m_bGrabMouse = false; //!< Grab mouse for camera movement
 	CCamera m_Cam;
 	CameraInfo m_CamInfo;
 
+	InputState m_Input;
+	Vec2 m_SavedMousePos = Vec2(ZERO);
+	float m_MoveSpeed = 0;
+
+	void HandleCameraInput(const SInputEvent& event);
 	void UpdateCamera();
 	void CopyViewCameraTransform();
 };

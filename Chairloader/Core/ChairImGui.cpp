@@ -647,6 +647,9 @@ void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent 
 	if (event.deviceType == eIDT_Mouse && g_ChairImGui.m_ImGuiUsesMouse)
 	 	return;
 
+	if (pPreditorAPI && pPreditorAPI->HandleInputEventPreGame(event))
+		return;
+
 	s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
 }
 

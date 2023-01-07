@@ -1,5 +1,6 @@
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/GameDll/basiceventlistener.h>
+#include <Preditor/IGameViewport.h>
 #include "HardwareMousePatch.h"
 #include "PreditorImGui.h"
 
@@ -7,12 +8,14 @@ namespace
 {
 
 IBasicEventListener* g_pBasicEventListener = nullptr;
+IGameViewport* g_pVP = nullptr;
 ImGuiID g_ViewportId = 0;
 Vec2i g_MinBounds = Vec2i(ZERO);
 Vec2i g_MaxBounds = Vec2i(ZERO);
 
 bool g_bIgnoreSetPos = false;
 
+auto g_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
 auto g_CHardwareMouse_SetHardwareMousePosition_Hook = CHardwareMouse::FSetHardwareMousePosition.MakeHook();
 auto g_CHardwareMouse_GetHardwareMouseClientPosition_Hook = CHardwareMouse::FGetHardwareMouseClientPosition.MakeHook();
 auto g_CHardwareMouse_SetHardwareMouseClientPosition_Hook = CHardwareMouse::FSetHardwareMouseClientPosition.MakeHook();
@@ -28,6 +31,12 @@ int64_t FixUpMouseLParam(HWND hWnd, int64_t lParam)
 	point.x -= g_MinBounds.x;
 	point.y -= g_MinBounds.y;
 	return MAKELPARAM(point.x, point.y);
+}
+
+void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
+{
+	if (!g_pVP || g_pVP->EnableMouseEvents())
+		g_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
 }
 
 void CHardwareMouse_SetHardwareMousePosition_Hook(IHardwareMouse* const _ithis, float fX, float fY)
@@ -110,6 +119,7 @@ void CHardwareMouse_OnSystemEvent_Hook(ISystemEventListener* const _this, ESyste
 
 void HardwareMousePatch::InitHooks()
 {
+	g_CHardwareMouse_Event_Hook.SetHookFunc(&CHardwareMouse_Event_Hook);
 	g_CHardwareMouse_SetHardwareMousePosition_Hook.SetHookFunc(&CHardwareMouse_SetHardwareMousePosition_Hook);
 	g_CHardwareMouse_GetHardwareMouseClientPosition_Hook.SetHookFunc(&CHardwareMouse_GetHardwareMouseClientPosition_Hook);
 	g_CHardwareMouse_SetHardwareMouseClientPosition_Hook.SetHookFunc(&CHardwareMouse_SetHardwareMouseClientPosition_Hook);
@@ -121,6 +131,11 @@ void HardwareMousePatch::InitHooks()
 void HardwareMousePatch::SetIBasicEventListener(IBasicEventListener* ptr)
 {
 	g_pBasicEventListener = ptr;
+}
+
+void HardwareMousePatch::SetGameViewport(IGameViewport* pVP)
+{
+	g_pVP = pVP;
 }
 
 bool HardwareMousePatch::SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max)

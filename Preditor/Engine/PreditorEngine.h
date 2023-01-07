@@ -3,6 +3,7 @@
 #include <Chairloader/PreditorAPI.h>
 #include <Chairloader/IPreditorToChair.h>
 
+struct IGameViewport;
 class PreditorImGui;
 
 class PreditorEngine
@@ -32,6 +33,7 @@ public:
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;
 	bool HandleInputEvent(const SInputEvent& event) override;
+	bool HandleInputEventPreGame(const SInputEvent& event) override;
 
 private:
 	using DllHandle = std::unique_ptr<std::remove_pointer_t<HMODULE>, BOOL(*)(HMODULE)>;
@@ -45,6 +47,7 @@ private:
 
 	std::shared_ptr<PreditorImGui> m_pImGui;
 	bool m_bGameInput = false;
+	IGameViewport* m_pGameViewport = nullptr;
 
 	void ApplyBasePatches();	//!< Applies patches used by both full and minimal engine.
 	void ApplyFullPatches();	//!< Applies patches used by the full engine.

@@ -2,6 +2,7 @@
 #include <imgui.h>
 
 struct IBasicEventListener;
+struct IGameViewport;
 
 //! The patch rewrites some of the methods in CHardwareMouse to support multiple windows.
 class HardwareMousePatch
@@ -9,6 +10,7 @@ class HardwareMousePatch
 public:
 	static void InitHooks();
 	static void SetIBasicEventListener(IBasicEventListener* ptr);
+	static void SetGameViewport(IGameViewport* pVP);
 
 	//! Sets the screen bounds of the viewport window.
 	//! @returns whether it was changed.

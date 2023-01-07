@@ -26,6 +26,8 @@ public:
 	// IGameViewport
 	bool NeedCustomRender() override;
 	void CustomRender() override;
+	bool HandleInputEventPreGame(const SInputEvent& event) override;
+	bool EnableMouseEvents() override;
 
 protected:
 	void PreUpdate() override;

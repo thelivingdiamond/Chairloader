@@ -11,6 +11,7 @@
 #include <Chairloader/IChairToPreditor.h>
 #include <App/Application.h>
 #include <Preditor/Project/ProjectManager.h>
+#include <Preditor/IGameViewport.h>
 #include <imgui.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
@@ -506,7 +507,9 @@ bool PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i ma
 
 void PreditorEngine::SetGameViewport(IGameViewport* pVP)
 {
+	m_pGameViewport = pVP;
 	GameViewportPatch::SetGameViewport(pVP);
+	HardwareMousePatch::SetGameViewport(pVP);
 }
 
 IChairloaderMod* PreditorEngine::GetMod()
@@ -526,6 +529,13 @@ bool PreditorEngine::HandleInputEvent(const SInputEvent& event)
 		// No input to the game
 		return true;
 	}
+}
+
+bool PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
+{
+	if (m_pGameViewport && m_pGameViewport->HandleInputEventPreGame(event))
+		return true;
+	return false;
 }
 
 void PreditorEngine::ApplyBasePatches()

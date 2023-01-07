@@ -3,8 +3,32 @@
 #include <Prey/CryRenderer/IRenderer.h>
 #include "SceneViewport.h"
 
+//! Magic constant to make CV_ed_ViewSens feel like the setting in the options menu
+constexpr float MOUSE_SENS_SCALE = 0.002f / 13;
+
+float CV_ed_ViewMinSpeed;
+float CV_ed_ViewMaxSpeed;
+float CV_ed_ViewAccel;
+float CV_ed_ViewDecel;
+float CV_ed_ViewSens;
+float CV_ed_ViewBoostScale;
+
 SceneViewport::SceneViewport()
 {
+	gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this);
+
+	REGISTER_CVAR2("ed_ViewMinSpeed", &CV_ed_ViewMinSpeed, 3, VF_NULL, "Editor: View minimum speed");
+	REGISTER_CVAR2("ed_ViewMaxSpeed", &CV_ed_ViewMaxSpeed, 20, VF_NULL, "Editor: View maximum speed");
+	REGISTER_CVAR2("ed_ViewAccel", &CV_ed_ViewAccel, 10, VF_NULL, "Editor: View acceleration");
+	REGISTER_CVAR2("ed_ViewDecel", &CV_ed_ViewDecel, 3, VF_NULL, "Editor: View deceleration");
+	REGISTER_CVAR2("ed_ViewSens", &CV_ed_ViewSens, 13, VF_NULL, "Editor: Mouse sensitivity");
+	REGISTER_CVAR2("ed_ViewBoostScale", &CV_ed_ViewBoostScale, 5, VF_NULL, "Editor: Speed boost on SHIFT");
+}
+
+SceneViewport::~SceneViewport()
+{
+	if (gEnv)
+		gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }
 
 void SceneViewport::Update(bool isVisible)
@@ -96,14 +120,42 @@ void SceneViewport::SetMouseGrabbed(bool state)
 
 	if (state)
 	{
+		gEnv->pHardwareMouse->GetHardwareMousePosition(&m_SavedMousePos.x, &m_SavedMousePos.y);
 		gEnv->pHardwareMouse->DecrementCounter();
+		ImGui::SetMouseCursor(ImGuiMouseCursor_None);
 	}
 	else
 	{
 		gEnv->pHardwareMouse->IncrementCounter();
+		gEnv->pHardwareMouse->SetHardwareMousePosition(m_SavedMousePos.x, m_SavedMousePos.y);
+		
+		// Reset input
+		m_Input = InputState();
 	}
 
 	m_bGrabMouse = state;
+}
+
+bool SceneViewport::HandleInputEventPreGame(const SInputEvent& event)
+{
+	if (event.keyId == eKI_Mouse2)
+	{
+		if (event.state == eIS_Pressed)
+			SetMouseGrabbed(true);
+		else if (event.state == eIS_Released)
+			SetMouseGrabbed(false);
+	}
+
+	if (m_bGrabMouse)
+	{
+		HandleCameraInput(event);
+	}
+	else
+	{
+
+	}
+
+	return true;
 }
 
 void SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
@@ -111,6 +163,57 @@ void SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR 
 	if (event == ESYSTEM_EVENT_LEVEL_UNLOAD)
 	{
 		m_CamInfo.transformValid = false;
+	}
+}
+
+void SceneViewport::HandleCameraInput(const SInputEvent& event)
+{
+	if (event.deviceType == eIDT_Keyboard)
+	{
+		if (event.state == eIS_Pressed || event.state == eIS_Released)
+		{
+			bool isPressed = event.state == eIS_Pressed;
+
+			switch (event.keyId)
+			{
+			case eKI_W: m_Input.fwd = isPressed; break;
+			case eKI_A: m_Input.left = isPressed; break;
+			case eKI_S: m_Input.back = isPressed; break;
+			case eKI_D: m_Input.right = isPressed; break;
+			case eKI_Q: m_Input.up = isPressed; break;
+			case eKI_E: m_Input.down = isPressed; break;
+			case eKI_LShift: m_Input.boost = isPressed; break;
+			}
+		}
+
+		return;
+	}
+
+	switch (event.keyId)
+	{
+	case eKI_MouseX:
+	case eKI_MouseY:
+	{
+		// Restore old mouse pos
+		gEnv->pHardwareMouse->SetHardwareMousePosition(m_SavedMousePos.x, m_SavedMousePos.y);
+
+		float sens = CV_ed_ViewSens * MOUSE_SENS_SCALE;
+
+		if (event.keyId == eKI_MouseX)
+		{
+			// Yaw
+			m_CamInfo.rot.z -= event.value * sens;
+			m_CamInfo.rot.z = fmod(m_CamInfo.rot.z, gf_PI2);
+		}
+		else if (event.keyId == eKI_MouseY)
+		{
+			// Pitch
+			m_CamInfo.rot.x -= event.value * sens;
+			m_CamInfo.rot.x = std::clamp(m_CamInfo.rot.x, -gf_PI * 0.5f, gf_PI * 0.5f);
+		}
+		break;
+	}
+
 	}
 }
 
@@ -125,8 +228,59 @@ void SceneViewport::UpdateCamera()
 		CopyViewCameraTransform();
 	}
 
+	Quat rotQuat = Quat(info.rot);
+
+	// Positional input
+	{
+		Vec3 fwd = rotQuat * Vec3(0, 1, 0);
+		Vec3 right = rotQuat * Vec3(1, 0, 0);
+		Vec3 up = rotQuat * Vec3(0, 0, 1);
+		float timeDelta = gEnv->pTimer->GetRealFrameTime();
+
+		Vec3 dir = Vec3(ZERO);
+
+		if (m_Input.fwd)
+			dir += fwd;
+		if (m_Input.back)
+			dir -= fwd;
+
+		if (m_Input.right)
+			dir += right;
+		if (m_Input.left)
+			dir -= right;
+
+		if (m_Input.up)
+			dir += up;
+		if (m_Input.down)
+			dir -= up;
+
+		dir.NormalizeSafe();
+
+		Vec2 speedLimit = Vec2(CV_ed_ViewMinSpeed, CV_ed_ViewMaxSpeed);
+		float accel = CV_ed_ViewAccel;
+
+		if (m_Input.boost)
+		{
+			speedLimit *= CV_ed_ViewBoostScale;
+			accel *= CV_ed_ViewBoostScale;
+		}
+
+		if (dir != Vec3(ZERO))
+		{
+			m_MoveSpeed += accel * timeDelta;
+			m_MoveSpeed = std::clamp(m_MoveSpeed, speedLimit.x, speedLimit.y);
+		}
+		else
+		{
+			m_MoveSpeed -= accel * timeDelta;
+			m_MoveSpeed = std::max(0.0f, m_MoveSpeed);
+		}
+
+		info.pos += dir * m_MoveSpeed * timeDelta;
+	}
+
 	Matrix34 camMat;
-	camMat.SetRotation33(Matrix33(Quat(info.rot)));
+	camMat.SetRotation33(Matrix33(rotQuat));
 	camMat.SetTranslation(info.pos);
 	m_Cam.SetMatrixNoUpdate(camMat);
 	m_Cam.SetFrustum(viewCam.GetViewSurfaceX(), viewCam.GetViewSurfaceZ(), DEG2RAD(info.fov),

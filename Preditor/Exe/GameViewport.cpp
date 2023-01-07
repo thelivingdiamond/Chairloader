@@ -72,6 +72,22 @@ void GameViewport::CustomRender()
 	m_SceneVp.Render();
 }
 
+bool GameViewport::HandleInputEventPreGame(const SInputEvent& event)
+{
+	if (m_ViewportMode == ViewportMode::Scene)
+		return m_SceneVp.HandleInputEventPreGame(event);
+
+	return false;
+}
+
+bool GameViewport::EnableMouseEvents()
+{
+	if (m_ViewportMode == ViewportMode::Scene)
+		return false;
+
+	return true;
+}
+
 void GameViewport::PreUpdate()
 {
 	// Game viewport currently only works in the main window
