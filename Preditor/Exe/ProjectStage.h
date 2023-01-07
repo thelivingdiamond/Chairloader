@@ -3,7 +3,9 @@
 #include "FlowgraphEditor.h"
 
 struct IChairloaderToolsPreditor;
+class ManagedWindow;
 class GameViewport;
+class EntityHierarchyWindow;
 
 class ProjectStage : public AppStage, public ISystemEventListener
 {
@@ -24,6 +26,8 @@ private:
 
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::shared_ptr<GameViewport> m_pGameViewport;
+    std::shared_ptr<EntityHierarchyWindow> m_pEntHierWindow;
 
     void DrawMainMenuBar();
+    void ShowWindowMenuItem(const char* label, ManagedWindow* window);
 };

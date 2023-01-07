@@ -8,6 +8,7 @@
 #include <Preditor/IPreditorEngine.h>
 #include "ProjectStage.h"
 #include "GameViewport.h"
+#include "EntityHierarchyWindow.h"
 
 ProjectStage::ProjectStage()
 {
@@ -24,6 +25,7 @@ void ProjectStage::Start() {
     m_pFlowgraphEditor = std::make_unique<FlowgraphEditor>();
     m_pChairTools = IChairloaderToolsPreditor::CreateInstance(IPreditorEngine::Get()->GetIChairToPreditor());
     m_pGameViewport = WindowManager::Get().Create<GameViewport>();
+    m_pEntHierWindow = WindowManager::Get().Create<EntityHierarchyWindow>();
 }
 
 void ProjectStage::Update() {
@@ -79,6 +81,7 @@ void ProjectStage::DrawMainMenuBar()
 
         if (ImGui::BeginMenu("Window"))
         {
+            ShowWindowMenuItem("Entities", m_pEntHierWindow.get());
             m_pChairTools->ShowWindowMenu();
 
             bool flowEditorVisible = m_pFlowgraphEditor->isShown();
@@ -91,4 +94,11 @@ void ProjectStage::DrawMainMenuBar()
 
         ImGui::EndMainMenuBar();
     }
+}
+
+void ProjectStage::ShowWindowMenuItem(const char* label, ManagedWindow* window)
+{
+    bool isVisible = window->IsVisible();
+    if (ImGui::MenuItem(label, nullptr, &isVisible))
+        window->SetVisible(isVisible);
 }

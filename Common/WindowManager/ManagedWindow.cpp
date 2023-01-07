@@ -33,6 +33,16 @@ void ManagedWindow::SetCloseable(bool state)
 	m_bCloseable = state;
 }
 
+void ManagedWindow::SetVisible(bool state)
+{
+	m_bVisible = state;
+}
+
+void ManagedWindow::SetDestroyOnClose(bool state)
+{
+	m_bDestroyOnClose = state;
+}
+
 void ManagedWindow::CloseWindow()
 {
 	m_bOpen = false;
@@ -47,11 +57,20 @@ bool ManagedWindow::UpdateWindow()
 		if (m_bVisible)
 		{
 			PreUpdate();
-			bool isVisible = ImGui::Begin(m_FullTitle.c_str(), m_bCloseable ? &m_bOpen : nullptr, m_Flags);
+			bool isStillOpen = true;
+			bool isVisible = ImGui::Begin(m_FullTitle.c_str(), m_bCloseable ? &isStillOpen : nullptr, m_Flags);
 			Update(isVisible);
 			if (isVisible)
 				ShowContents();
 			ImGui::End();
+
+			if (!isStillOpen)
+			{
+				if (m_bDestroyOnClose)
+					CloseWindow();
+				else
+					SetVisible(false);
+			}
 		}
 		else
 		{

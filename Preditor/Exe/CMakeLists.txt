@@ -1,23 +1,6 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	
-	Project/Project.cpp
-	Project/ProjectManager.cpp
-	Project/UserProjectSettings.cpp
 
-	Resources/Preditor.rc
-
-	LoadGameStage.cpp
-	LoadGameStage.h
-	ConfigManager.cpp
-	ConfigManager.h
-	Preditor.cpp
-	Preditor.h
-	pch.h
-	FlowgraphEditor.cpp
-	FlowgraphEditor.h
-	GameViewport.cpp
-	GameViewport.h
 	Flowgraph/Flowgraph.cpp
 	Flowgraph/Flowgraph.h
 	Flowgraph/Pin.h
@@ -26,17 +9,36 @@ set(SOURCE_FILES
 	Flowgraph/UniqueID.h
 	Flowgraph/Node.cpp
 	Flowgraph/IChairFlowgraph.h
-	ProjectStage.cpp
-	ProjectStage.h
-	ProjectSelectStage.cpp
-	ProjectSelectStage.h
+	
+	Project/Project.cpp
+	Project/ProjectManager.cpp
+	Project/UserProjectSettings.cpp
+
+	Resources/Preditor.rc
+
+	ConfigManager.cpp
+	ConfigManager.h
 	ConfigValidationStage.cpp
 	ConfigValidationStage.h
+	EntityHierarchyWindow.cpp
+	EntityHierarchyWindow.h
+	FlowgraphEditor.cpp
+	FlowgraphEditor.h
+	GameViewport.cpp
+	GameViewport.h
+	LoadGameStage.cpp
+	LoadGameStage.h
 	LookingGlass.cpp
 	LookingGlass.h
-	LookingGlass/XMLReference.h
+	Preditor.cpp
+	Preditor.h
+	ProjectSelectStage.cpp
+	ProjectSelectStage.h
+	ProjectStage.cpp
+	ProjectStage.h
 	SceneViewport.cpp
 	SceneViewport.h
+	pch.h
 )
 
 add_executable(Preditor.Exe WIN32

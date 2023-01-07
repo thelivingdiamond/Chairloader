@@ -47,6 +47,11 @@ public:
 	void SetVisible(bool state);
 	bool IsVisible() const { return m_bVisible; }
 
+	//! Sets whether the window will be destroyed when it's closed by the user.
+	//! If not, it will become hidden.
+	void SetDestroyOnClose(bool state);
+	bool IsDestoryOnClose() const { return m_bDestroyOnClose; }
+
 	//! Closes the window.
 	void CloseWindow();
 	bool IsWindowOpen() const { return m_bOpen; }
@@ -89,6 +94,9 @@ private:
 
 	//! Whether the window is being displayed.
 	bool m_bVisible = true;
+
+	//! Whether to destroy the window when it's closed.
+	bool m_bDestroyOnClose = true;
 
 	//! Updates m_FullTitle based on IDs.
 	void UpdateFullTitle();
