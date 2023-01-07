@@ -67,4 +67,7 @@ private:
 	void HandleCameraInput(const SInputEvent& event);
 	void UpdateCamera();
 	void CopyViewCameraTransform();
+
+	void DrawAuxGeom();
+	void DrawViewCameraFrustum();
 };

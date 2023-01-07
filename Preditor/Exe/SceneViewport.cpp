@@ -1,6 +1,8 @@
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/Cry3DEngine/I3DEngine.h>
 #include <Prey/CryRenderer/IRenderer.h>
+#include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include "SceneViewport.h"
 
 //! Magic constant to make CV_ed_ViewSens feel like the setting in the options menu
@@ -100,6 +102,8 @@ void SceneViewport::ShowTopControls()
 
 void SceneViewport::Render()
 {
+	DrawAuxGeom();
+
 	CCamera oldCam = gEnv->pSystem->GetViewCamera();
 	UpdateCamera();
 	gEnv->pSystem->SetViewCamera(m_Cam);
@@ -293,4 +297,49 @@ void SceneViewport::CopyViewCameraTransform()
 	m_CamInfo.pos = viewCam.GetMatrix().GetTranslation();
 	m_CamInfo.rot = Ang3(viewCam.GetMatrix());
 	m_CamInfo.rot.y = 0; // Reset roll
+}
+
+void SceneViewport::DrawAuxGeom()
+{
+	DrawViewCameraFrustum();
+}
+
+void SceneViewport::DrawViewCameraFrustum()
+{
+	const CCamera& viewCam = gEnv->pSystem->GetViewCamera();
+	gEnv->pAuxGeomRenderer->DrawSphere(viewCam.GetPosition(), 0.05f, ColorB(255, 0, 0));
+	gEnv->pAuxGeomRenderer->DrawSphere(viewCam.GetOccPos(), 0.03f, ColorB(0, 255, 0));
+
+	// Near plane camera-space pos
+	Vec3 planePos[8];
+	std::fill(planePos, planePos + 4, viewCam.GetEdgeN());
+	planePos[1].x *= -1; // right top
+	planePos[2].x *= -1; // right bottom
+	planePos[2].z *= -1;
+	planePos[3].z *= -1; // left bottom
+
+	// Near plane world pos
+	Matrix34 camMat = viewCam.GetMatrix();
+	for (int i = 0; i < 4; i++)
+		planePos[i] = camMat * planePos[i];
+
+	// 1 meter plane
+	for (int i = 0; i < 4; i++)
+	{
+		Vec3 nearLocal = planePos[i] - viewCam.GetPosition();
+		nearLocal.NormalizeSafe();
+		planePos[i + 4] = viewCam.GetPosition() + nearLocal;
+	}
+
+	// Assemble indices
+	vtx_idx indices[] = {
+		// Near plane
+		0, 1, 1, 2, 2, 3, 3, 0,
+		// 1m plane
+		4, 5, 5, 6, 6, 7, 7, 4,
+		// Edges
+		0, 4, 1, 5, 2, 6, 3, 7,
+	};
+
+	gEnv->pAuxGeomRenderer->DrawLines(planePos, std::size(planePos), indices, std::size(indices), ColorB(0, 255, 255));
 }
