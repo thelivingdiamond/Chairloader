@@ -26,6 +26,8 @@ set(SOURCE_FILES
 	FlowgraphEditor.h
 	GameViewport.cpp
 	GameViewport.h
+	InspectorWindow.cpp
+	InspectorWindow.h
 	LoadGameStage.cpp
 	LoadGameStage.h
 	LookingGlass.cpp

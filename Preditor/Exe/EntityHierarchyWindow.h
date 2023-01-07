@@ -7,7 +7,11 @@
 class EntityHierarchyWindow : public ManagedWindow
 {
 public:
+	static EntityHierarchyWindow* Get();
 	EntityHierarchyWindow();
+
+	EntityId GetSelectedEntity() { return m_Hier.GetSelectedEntity(); }
+	void SetSelectedEntity(EntityId id) { m_Hier.SetSelectedEntity(id); }
 
 protected:
 	void ShowContents() override;

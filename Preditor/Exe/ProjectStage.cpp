@@ -9,6 +9,7 @@
 #include "ProjectStage.h"
 #include "GameViewport.h"
 #include "EntityHierarchyWindow.h"
+#include "InspectorWindow.h"
 
 ProjectStage::ProjectStage()
 {
@@ -26,6 +27,7 @@ void ProjectStage::Start() {
     m_pChairTools = IChairloaderToolsPreditor::CreateInstance(IPreditorEngine::Get()->GetIChairToPreditor());
     m_pGameViewport = WindowManager::Get().Create<GameViewport>();
     m_pEntHierWindow = WindowManager::Get().Create<EntityHierarchyWindow>();
+    m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
 }
 
 void ProjectStage::Update() {
@@ -82,6 +84,7 @@ void ProjectStage::DrawMainMenuBar()
         if (ImGui::BeginMenu("Window"))
         {
             ShowWindowMenuItem("Entities", m_pEntHierWindow.get());
+            ShowWindowMenuItem("Inspector", m_pInspectorWindow.get());
             m_pChairTools->ShowWindowMenu();
 
             bool flowEditorVisible = m_pFlowgraphEditor->isShown();

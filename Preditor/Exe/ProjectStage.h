@@ -6,6 +6,7 @@ struct IChairloaderToolsPreditor;
 class ManagedWindow;
 class GameViewport;
 class EntityHierarchyWindow;
+class InspectorWindow;
 
 class ProjectStage : public AppStage, public ISystemEventListener
 {
@@ -27,6 +28,7 @@ private:
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::shared_ptr<GameViewport> m_pGameViewport;
     std::shared_ptr<EntityHierarchyWindow> m_pEntHierWindow;
+    std::shared_ptr<InspectorWindow> m_pInspectorWindow;
 
     void DrawMainMenuBar();
     void ShowWindowMenuItem(const char* label, ManagedWindow* window);
