@@ -104,6 +104,15 @@ void SceneViewport::Render()
 {
 	DrawAuxGeom();
 
+	// Draw player in the world since camera can now move
+	uint32 oldPlayerFlags = 0;
+	if (ArkPlayer::GetInstancePtr())
+	{
+		IEntity* pEnt = ArkPlayer::GetInstancePtr()->GetEntity();
+		oldPlayerFlags = pEnt->GetSlotFlags(0);
+		pEnt->SetSlotFlags(0, oldPlayerFlags & (~ENTITY_SLOT_RENDER_NEAREST));
+	}
+
 	CCamera oldCam = gEnv->pSystem->GetViewCamera();
 	UpdateCamera();
 	gEnv->pSystem->SetViewCamera(m_Cam);
@@ -115,6 +124,10 @@ void SceneViewport::Render()
 	gEnv->p3DEngine->RenderWorld(renderFlags, renderPassInfo, __FUNCTION__);
 
 	gEnv->pSystem->SetViewCamera(oldCam);
+
+	// Restore slot flags
+	if (ArkPlayer::GetInstancePtr())
+		ArkPlayer::GetInstancePtr()->GetEntity()->SetSlotFlags(0, oldPlayerFlags);
 }
 
 void SceneViewport::SetMouseGrabbed(bool state)
