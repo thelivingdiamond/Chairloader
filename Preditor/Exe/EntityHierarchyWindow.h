@@ -12,6 +12,7 @@ public:
 
 	EntityId GetSelectedEntity() { return m_Hier.GetSelectedEntity(); }
 	void SetSelectedEntity(EntityId id) { m_Hier.SetSelectedEntity(id); }
+	void ScrollToSelectedEntity() { m_Hier.ScrollToSelectedEntity(); }
 
 protected:
 	void ShowContents() override;

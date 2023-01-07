@@ -64,10 +64,15 @@ private:
 	Vec2 m_SavedMousePos = Vec2(ZERO);
 	float m_MoveSpeed = 0;
 
+	//! Casts a ray and selects the closest entity.
+	void SelectEntityByRay(const Ray& ray);
+
+	void HandleViewportInput(const SInputEvent& event);
 	void HandleCameraInput(const SInputEvent& event);
 	void UpdateCamera();
 	void CopyViewCameraTransform();
 
 	void DrawAuxGeom();
+	void DrawSelectedEntity();
 	void DrawViewCameraFrustum();
 };

@@ -2,8 +2,10 @@
 #include <Prey/Cry3DEngine/I3DEngine.h>
 #include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include <Prey/CryPhysics/IPhysics.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include "SceneViewport.h"
+#include "EntityHierarchyWindow.h"
 
 //! Magic constant to make CV_ed_ViewSens feel like the setting in the options menu
 constexpr float MOUSE_SENS_SCALE = 0.002f / 13;
@@ -164,13 +166,9 @@ bool SceneViewport::HandleInputEventPreGame(const SInputEvent& event)
 	}
 
 	if (m_bGrabMouse)
-	{
 		HandleCameraInput(event);
-	}
 	else
-	{
-
-	}
+		HandleViewportInput(event);
 
 	return true;
 }
@@ -180,6 +178,60 @@ void SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR 
 	if (event == ESYSTEM_EVENT_LEVEL_UNLOAD)
 	{
 		m_CamInfo.transformValid = false;
+	}
+}
+
+void SceneViewport::SelectEntityByRay(const Ray& ray)
+{
+	ray_hit hit;
+
+	const unsigned rwiFlags = rwi_stop_at_pierceable | rwi_colltype_any;
+	bool isFound = false;
+
+	if (gEnv->pPhysicalWorld->RayWorldIntersection(ray.origin, ray.direction, ent_all, rwiFlags, &hit, 1, nullptr, nullptr))
+	{
+		int type = hit.pCollider->GetiForeignData();
+		if (type == PHYS_FOREIGN_ID_ENTITY)
+		{
+			IEntity* pEntity = (IEntity*)hit.pCollider->GetForeignData(PHYS_FOREIGN_ID_ENTITY);
+			EntityHierarchyWindow::Get()->SetSelectedEntity(pEntity->GetId());
+			EntityHierarchyWindow::Get()->ScrollToSelectedEntity();
+			isFound = true;
+		}
+	}
+
+	if (!isFound)
+	{
+		EntityHierarchyWindow::Get()->SetSelectedEntity(0);
+	}
+}
+
+void SceneViewport::HandleViewportInput(const SInputEvent& event)
+{
+	switch (event.keyId)
+	{
+	case eKI_Mouse1:
+	{
+		Vec2 mousePos;
+		gEnv->pHardwareMouse->GetHardwareMouseClientPosition(mousePos.x, mousePos.y);
+		Vec2 screenSize(gEnv->pRenderer->GetOverlayWidth(), gEnv->pRenderer->GetOverlayHeight());
+		Vec2 normCoords = 2.0f * mousePos / screenSize - Vec2(1, 1); // [-1; 1)
+
+		if (normCoords.x >= -1 && normCoords.x < 1 &&
+			normCoords.y >= -1 && normCoords.y < 1)
+		{
+			Vec3 scale(-normCoords.x, 1, -normCoords.y);
+			Vec3 nearPoint = m_Cam.GetEdgeN().CompMul(scale);
+			Vec3 farPoint = m_Cam.GetEdgeF().CompMul(scale);
+
+			Vec3 start = m_Cam.GetMatrix() * nearPoint;
+			Vec3 end = m_Cam.GetMatrix() * farPoint;
+			Ray ray(start, end - start);
+			SelectEntityByRay(ray);
+		}
+
+		break;
+	}
 	}
 }
 
@@ -315,6 +367,22 @@ void SceneViewport::CopyViewCameraTransform()
 void SceneViewport::DrawAuxGeom()
 {
 	DrawViewCameraFrustum();
+	DrawSelectedEntity();
+}
+
+void SceneViewport::DrawSelectedEntity()
+{
+	EntityId ent = EntityHierarchyWindow::Get()->GetSelectedEntity();
+	if (ent != INVALID_ENTITYID)
+	{
+		IEntity* pEnt = gEnv->pEntitySystem->GetEntity(ent);
+		if (pEnt)
+		{
+			AABB aabb;
+			pEnt->GetLocalBounds(aabb);
+			gEnv->pAuxGeomRenderer->DrawAABB(aabb, pEnt->GetWorldTM(), false, ColorB(255, 255, 0), eBBD_Faceted);
+		}
+	}
 }
 
 void SceneViewport::DrawViewCameraFrustum()
