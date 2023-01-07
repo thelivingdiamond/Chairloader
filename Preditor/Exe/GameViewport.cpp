@@ -5,24 +5,8 @@
 #include <Preditor/IPreditorEngine.h>
 #include "GameViewport.h"
 
-namespace
-{
-
-GameViewport* g_pGameViewport = nullptr;
-
-auto g_CSystem_Render_Hook = CSystem::FRender.MakeHook();
-
-void CSystem_Render_Hook(CSystem* const _this)
-{
-
-}
-
-} // namespace
-
 GameViewport::GameViewport()
 {
-	assert(!g_pGameViewport);
-	g_pGameViewport = this;
 	SetTitle("Viewport");
 	SetPersistentID("GameViewport");
 	m_pViewportTexture = IPreditorEngine::Get()->GetViewportTexture();
@@ -44,8 +28,6 @@ GameViewport::GameViewport()
 
 GameViewport::~GameViewport()
 {
-	assert(g_pGameViewport == this);
-	g_pGameViewport = nullptr;
 }
 
 void GameViewport::SetViewportMode(ViewportMode mode)
