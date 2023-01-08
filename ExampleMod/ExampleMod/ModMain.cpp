@@ -1,4 +1,5 @@
 #include "ModMain.h"
+#include <Chairloader/ModSDK/ChairGlobalModName.h>
 
 ModMain* gMod = nullptr;
 
@@ -56,6 +57,7 @@ void ModMain::InitHooks()
 void ModMain::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
 	BaseClass::InitSystem(initInfo, dllInfo);
+    ChairSetGlobalModName("TheChair.ExampleMod"); // CHANGE ME
 	// Your code goes here
 }
 
