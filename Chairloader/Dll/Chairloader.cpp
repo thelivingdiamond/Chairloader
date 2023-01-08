@@ -10,11 +10,13 @@
 #include <Chairloader/IModDllManager.h>
 #include <mem.h>
 #include "Chairloader.h"
+#include <Chairloader/IChairVarManager.h>
 
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <detours/detours.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Chairloader/ModSDK/ChairGlobalModName.h>
 
 static ChairloaderGlobalEnvironment s_CLEnv;
 static std::unique_ptr<Chairloader> gChairloaderDll;
@@ -192,7 +194,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	m_WinConsole.InitSystem();
 	CryLog("Chairloader::InitSystem");
 	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
-
+    ChairSetGlobalModName("Chairloader");
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
@@ -305,7 +307,7 @@ void Chairloader::ShutdownGame()
 
 void Chairloader::ShutdownSystem()
 {
-	CryLog("Chairloader::ShutdownSystem");
+	CryLog("Chairloader::ShutdownGame");
 	
 	m_pRender->SetRenderThreadIsIdle(true);
 
@@ -570,4 +572,16 @@ void Chairloader::ReloadModDLLs()
 	m_pCore->GetDllManager()->ReloadModules();
 
 	m_pRender->SetRenderThreadIsIdle(false);
+}
+
+void Chairloader::RegisterCVar(ICVar *pCVar, std::string &modName) {
+    //TODO: do things
+    if(pCVar == nullptr) {
+        CryError("Attempted to register a null cvar for {}", modName);
+        return;
+    }
+    if(pCVar->GetFlags() & VF_DUMPTOCHAIR) {
+        CryLog("Registering CVar {} for {}", pCVar->GetName(), modName);
+        m_pCore->GetCVarManager()->RegisterCVar(pCVar, modName);
+    }
 }

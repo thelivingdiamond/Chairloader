@@ -15,7 +15,7 @@ set(SOURCE_FILES
 	LibD3D11.h
 	imgui_widget_flamegraph.cpp
 	imgui_widget_flamegraph.h
-)
+		Chairloader/IChairVarManager.h)
 
 add_library(Chairloader.Common STATIC ${SOURCE_FILES})
 target_include_directories(Chairloader.Common PUBLIC .)

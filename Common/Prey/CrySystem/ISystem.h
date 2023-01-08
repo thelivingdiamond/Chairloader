@@ -21,6 +21,7 @@
 #include <Prey/CryCore/smartptr.h>
 
 #include "Prey/CryGame/IGame.h"
+#include <Chairloader/ChairVars.h>
 
 //#include <Prey/CryMemory/IMemory.h>          // <> required for Interfuscator
 //#include <Prey/CrySystem/ISystemScheduler.h> // <> required for Interfuscator
@@ -1900,41 +1901,45 @@ static void AssertConsoleExists(void)
 
 //! The following macros allow the help text to be easily stripped out.
 
+
+
+//! Chairloader Specific Macros for Console Variables
+
 //! Preferred way to register a CVar
-#define REGISTER_CVAR(_var, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(( # _var), &(_var), (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_CVAR(_var, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegister(( # _var), &(_var), (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Preferred way to register a CVar with a callback
-#define REGISTER_CVAR_CB(_var, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(( # _var), &(_var), (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+#define REGISTER_CVAR_CB(_var, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 :Internal::ChairRegister(( # _var), &(_var), (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
 
 //! Preferred way to register a string CVar
-#define REGISTER_STRING(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterString(_name, (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_STRING(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegisterString(_name, (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Preferred way to register a string CVar with a callback
-#define REGISTER_STRING_CB(_name, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterString(_name, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+#define REGISTER_STRING_CB(_name, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegisterString(_name, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
 
 //! Preferred way to register an int CVar
-#define REGISTER_INT(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterInt(_name, (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_INT(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegisterInt(_name, (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Preferred way to register an int CVar with a callback
-#define REGISTER_INT_CB(_name, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterInt(_name, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+#define REGISTER_INT_CB(_name, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegisterInt(_name, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
 
 //! Preferred way to register an int64 CVar
-#define REGISTER_INT64(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterInt64(_name, (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_INT64(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegisterInt64(_name, (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Preferred way to register a float CVar
-#define REGISTER_FLOAT(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->RegisterFloat(_name, (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_FLOAT(_name, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegisterFloat(_name, (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Offers more flexibility but more code is required
-#define REGISTER_CVAR2(_name, _var, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, _var, (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_CVAR2(_name, _var, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegister(_name, _var, (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Offers more flexibility but more code is required
-#define REGISTER_CVAR2_CB(_name, _var, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, _var, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+#define REGISTER_CVAR2_CB(_name, _var, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegister(_name, _var, (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
 
 //! Offers more flexibility but more code is required, explicit address taking of destination variable
-#define REGISTER_CVAR3(_name, _var, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, &(_var), (_def_val), (_flags), CVARHELP(_comment)))
+#define REGISTER_CVAR3(_name, _var, _def_val, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegister(_name, &(_var), (_def_val), (_flags), CVARHELP(_comment)))
 
 //! Offers more flexibility but more code is required, explicit address taking of destination variable
-#define REGISTER_CVAR3_CB(_name, _var, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : gEnv->pConsole->Register(_name, &(_var), (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
+#define REGISTER_CVAR3_CB(_name, _var, _def_val, _flags, _comment, _onchangefunction) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? 0 : Internal::ChairRegister(_name, &(_var), (_def_val), (_flags), CVARHELP(_comment), _onchangefunction))
 
 //! Preferred way to register a console command
 #define REGISTER_COMMAND(_name, _func, _flags, _comment) (ASSERT_CONSOLE_EXISTS, gEnv->pConsole == 0 ? (void)0 : gEnv->pConsole->AddCommand(_name, _func, (_flags), CVARHELP(_comment)))

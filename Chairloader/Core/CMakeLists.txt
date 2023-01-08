@@ -23,7 +23,7 @@ set(SOURCE_FILES
 	OverlayLog.h
 	Profiler.cpp
 	Profiler.h
-)
+        ChairVarManager.cpp ChairVarManager.h)
 
 add_library(Chairloader.Core STATIC ${SOURCE_FILES})
 target_include_directories(Chairloader.Core PRIVATE .)

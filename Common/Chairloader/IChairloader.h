@@ -39,4 +39,7 @@ struct IChairloader {
 
     //! @returns the pointer to cl_assert cvar.
     virtual int* GetAssertFlagAddress() = 0;
+
+    virtual void RegisterCVar(ICVar* pCVar, std::string& modName) = 0;
+
 };

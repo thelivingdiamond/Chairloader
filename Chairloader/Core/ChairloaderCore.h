@@ -33,7 +33,9 @@ public:
 	Internal::IModDllManager* GetDllManager() override;
 	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
 
-	std::unique_ptr<IChairLogger> CreateLogger() override;
+    IChairVarManager *GetCVarManager() override;
+
+    std::unique_ptr<IChairLogger> CreateLogger() override;
 
 	const std::string& GetKeyStrHideGui();
 	const std::string& GetKeyStrToggleFreecam();
@@ -47,6 +49,7 @@ private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
 	std::unique_ptr<ModDllManager> m_pModDllManager;
 	std::unique_ptr<ChairloaderGui> m_pGui;
+    std::unique_ptr<IChairVarManager> m_pCVarManager;
 
 	// Keymap
 	EKeyId m_KeyHideGui = eKI_Unknown;
