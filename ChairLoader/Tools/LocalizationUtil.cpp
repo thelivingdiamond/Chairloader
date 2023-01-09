@@ -79,8 +79,8 @@ void LocalizationUtil::InitGame() {
               | (1 << eLID_Traditional_Chinese)
               | (1 << eLID_Simplified_Chinese));
 
-    REGISTER_CVAR2("cl_textLanguage", &m_CurrentTextItem, 0, VF_DUMPTOCHAIR, "Storing the text language for the localization utility, do not change this value!");
-    REGISTER_CVAR2("cl_audioLanguage", &m_CurrentAudioItem, 0, VF_DUMPTOCHAIR, "Storing the audio language for the localization utility, do not change this value!");
+    REGISTER_CVAR2("ch_textLanguage", &m_CurrentTextItem, 0, VF_DUMPTOCHAIR, "Storing the text language for the localization utility, do not change this value!");
+    REGISTER_CVAR2("ch_audioLanguage", &m_CurrentAudioItem, 0, VF_DUMPTOCHAIR, "Storing the audio language for the localization utility, do not change this value!");
     // set the language
     gEnv->pConsole->GetCVar("g_language")->Set(items_internal[m_CurrentTextItem]);
     gEnv->pConsole->GetCVar("g_languageAudio")->Set(items_internal[m_CurrentAudioItem]);
