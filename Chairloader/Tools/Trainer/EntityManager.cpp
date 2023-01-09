@@ -1406,7 +1406,12 @@ void EntityManager::drawMenuBar() {
         if (ImGui::BeginMenu("Trainer")) {
             if (ImGui::BeginMenu("Entity")) {
                 if (ImGui::BeginMenu("Spawn Entity")) {
-                    ImGui::MenuItem("Spawn Last Spawned", nullptr, false, archetypeToSpawn != 0);
+                    std::string lastSpawnedText;
+//                    lastSpawnedText = (lastSpawnedEntity != 0)? std::string("Spawn Last Spawned: (") + gEnv->pEntitySystem->GetEntityArchetype(lastSpawnedEntity)->GetName() + ")" : " Spawn Last Spawned: None";
+
+                    if(ImGui::MenuItem("Spawn Last Quick-Spawned", nullptr, false, lastSpawnedEntity != 0)){
+                        quickSpawnEntity(lastSpawnedEntity);
+                    }
                     ImGui::Separator();
                     ImGui::TextDisabled("Quick Spawns");
                     if (ImGui::BeginMenu("Spawn Typhon")) {
@@ -1604,6 +1609,7 @@ void EntityManager::spawnEntity() {
 void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
     try {
         if (gEnv->pEntitySystem->GetEntityArchetype(archetypeId) != nullptr) {
+            lastSpawnedEntity = archetypeId;
             static Vec3 pos;
             static Quat rot = Quat{ 0,0,0,1 };
             pos = ArkPlayer::GetInstancePtr()->GetEntity()->GetPos();
