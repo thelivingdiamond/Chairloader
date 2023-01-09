@@ -40,6 +40,7 @@ enum EVarFlags
 	VF_CHEAT                   = 0x00000002,      //!< Stays in the default state when cheats are disabled.
 	VF_DEV_ONLY                = 0x00000004,      //!< Cvar is only registered with the console in non release builds.
 	VF_DEDI_ONLY               = 0x00000008,      //!< Cvar is only registered with the console in non release or dedicated server builds.
+	VF_DUMPTOCHAIR             = 0x00000010,      //!< Cvar will be saved by Chairloader, does nothing otherwise
 	VF_NET_SYNCED              = 0x00000080,      //!< Synchronised between server and client(s); server is authoritative.
 	VF_DUMPTODISK              = 0x00000100,
 	VF_READONLY                = 0x00000800,      //!< Can not be changed by the user.

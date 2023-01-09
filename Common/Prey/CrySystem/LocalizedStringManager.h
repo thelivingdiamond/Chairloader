@@ -4,7 +4,7 @@
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/CrySystem/ILocalizationManager.h>
 #include <Prey/CrySystem/ISystem.h>
-#include <Prey/GameDll/ark/VectorMap.h>
+#include <Prey/CryCore/Containers/VectorMap.h>
 
 class HuffmanCoder;
 class ICrySizer;

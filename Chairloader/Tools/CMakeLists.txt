@@ -10,6 +10,8 @@ set(SOURCE_FILES
 	Editor/Editor.h
 	Editor/EditorView.cpp
 	Editor/EditorView.h
+	Editor/ModReloading.cpp
+	Editor/ModReloading.h
 
 	Trainer/EntityManager.cpp
 	Trainer/EntityManager.h

@@ -90,17 +90,13 @@ Editor::~Editor()
 
 void Editor::UpdateBeforeSystem()
 {
-	if (m_bReloadModsNextFrame)
-	{
-		ReloadMods();
-		m_bReloadModsNextFrame = false;
-	}
+	m_ModReloading.UpdateBeforeSystem();
 
 	if (CV_ed_AutoReloadMods && m_bGameWindowIsNowActive)
 	{
 		// Game window is now focused, check mods
 		if (gChair->GetCore()->GetDllManager()->CheckModulesForChanges())
-			m_bReloadModsNextFrame = true;
+			m_ModReloading.ReloadMods();
 		m_bGameWindowIsNowActive = false;
 	}
 
@@ -379,80 +375,6 @@ void Editor::SelectEntInViewport(Vec2 pixelPos)
 	}
 }
 
-bool Editor::ReloadLevel()
-{
-	return SaveAndUnloadLevel() && RestoreSavedLevel();
-}
-
-bool Editor::ReloadMods()
-{
-	CTimeValue startTime = gEnv->pTimer->GetAsyncTime();
-	bool needToRestore = false;
-
-	if (g_pGame->GetIGameFramework()->IsGameStarted())
-	{
-		if (SaveAndUnloadLevel())
-			needToRestore = true;
-		else
-			return false;
-	}
-
-	// ReloadModDLLs can only fail fatally
-	gChair->ReloadModDLLs();
-
-	if (needToRestore && !RestoreSavedLevel())
-		return false;
-
-	CTimeValue endTime = gEnv->pTimer->GetAsyncTime();
-	CryLog("[Editor] Reloaded mods in {:.3f} s.", endTime.GetDifferenceInSeconds(startTime));
-
-	return true;
-}
-
-bool Editor::SaveAndUnloadLevel()
-{
-	auto pGameFw = g_pGame->GetIGameFramework();
-	if (!pGameFw->IsGameStarted())
-		return false;
-
-	if (!pGameFw->CanSave())
-	{
-		CryError("Editor: Can't reload level: can't save at the moment.");
-		return false;
-	}
-
-	// Make a save
-	if (!pGameFw->SaveGame(SAVE_NAME, false, true, eSGR_Command, true))
-	{
-		CryError("Editor: SaveGame failed.");
-		return false;
-	}
-
-	// Unload the level
-	gEnv->pConsole->ExecuteString("disconnect");
-	return true;
-}
-
-bool Editor::RestoreSavedLevel()
-{
-	auto pGameFw = g_pGame->GetIGameFramework();
-
-	// Reload the save
-	ELoadGameResult loadResult = pGameFw->LoadGame(SAVE_NAME, false, true);
-
-	// Delete the save that was just made
-	int curSlot = pGameFw->GetArkSaveLoadSystem().GetCampaignSlot();
-	g_pGame->m_pArkGame->DeleteSave(curSlot, SAVE_NAME);
-
-	if (loadResult != eLGR_Ok)
-	{
-		CryError("Editor: LoadGame failed ({}).", loadResult);
-		return false;
-	}
-
-	return true;
-}
-
 void Editor::ShowUnloadedUI()
 {
 	ImGui::SetNextWindowSize(ImVec2(344, 360), ImGuiCond_FirstUseEver);
@@ -478,7 +400,7 @@ void Editor::ShowUnloadedUI()
 		ImGui::NewLine();
 
 		if (ImGui::Button("Reload Mods"))
-			m_bReloadModsNextFrame = true;
+			m_ModReloading.ReloadMods();
 	}
 	ImGui::End();
 }
@@ -519,10 +441,10 @@ void Editor::ShowRunningUI()
 			m_pView->MoveCameraToPlayer();
 
 		if (ImGui::Button("Reload Level"))
-			ReloadLevel();
+			m_ModReloading.ReloadLevel();
 
 		if (ImGui::Button("Reload Mods"))
-			m_bReloadModsNextFrame = true;
+			m_ModReloading.ReloadMods();
 
 		if (ImGui::TreeNode("Keymap"))
 		{

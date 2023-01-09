@@ -2,6 +2,7 @@
 #include <Chairloader/IChairloaderModule.h>
 
 struct IChairLogger;
+struct IChairVarManager;
 
 namespace Internal
 {
@@ -16,6 +17,7 @@ struct IChairloaderCore : public IChairloaderModule
 
 	virtual ILogManager* GetLogManager() = 0;
 	virtual IModDllManager* GetDllManager() = 0;
+    virtual IChairVarManager* GetCVarManager() = 0;
 
 	//! System initialization
 	virtual void InitSystem() = 0;

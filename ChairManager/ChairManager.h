@@ -16,7 +16,6 @@
 #include "BinaryVersionCheck.h"
 #include "XMLMerger.h"
 #include "ConfigManager.h"
-
 #include <boost/format.hpp>
 
 class GamePathDialog;
@@ -24,8 +23,8 @@ class GameVersion;
 class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
+struct SemanticVersion;
 
-namespace fs = std::filesystem;
 class ChairManager {
 public:
     static ChairManager& Get() { return *m_spInstance; }
@@ -391,8 +390,8 @@ private:
     static inline ChairManager* m_spInstance = nullptr;
 
     //! Chairloader version checking
-    VersionCheck::DLLVersion packagedChairloaderVersion;
-    VersionCheck::DLLVersion installedChairloaderVersion;
+    SemanticVersion* packagedChairloaderVersion;
+    SemanticVersion* installedChairloaderVersion;
     std::string m_githubETag;
 
     //! Chairloader Launch Options

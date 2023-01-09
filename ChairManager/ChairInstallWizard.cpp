@@ -1,8 +1,9 @@
+#include <Manager/PathUtils.h>
 #include "ChairInstallWizard.h"
 #include "GameVersion.h"
-#include "PathUtils.h"
 #include "ChairManager.h"
 #include "BinaryVersionCheck.h"
+#include "../Common/Chairloader/SemanticVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;

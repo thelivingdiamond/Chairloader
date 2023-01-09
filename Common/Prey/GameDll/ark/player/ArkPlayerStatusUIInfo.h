@@ -1,11 +1,10 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: Override
-// Prey/GameDll/ark/player/ArkPlayerStatusUIInfo.h
-class ArkPlayerStatusUIInfo // Id=80138D9 Size=48
-{
+// ArkPlayerStatusUIInfo
+// Header:  Prey/GameDll/ark/player/ArkPlayerStatusUIInfo.h
+class ArkPlayerStatusUIInfo
+{ // Size=48 (0x30)
 public:
 	int m_id;
 	string m_name;
@@ -13,5 +12,9 @@ public:
 	string m_icon;
 	string m_removalText;
 	string m_effectsText;
+
+#if 0
+	ArkPlayerStatusUIInfo();
+#endif
 };
 

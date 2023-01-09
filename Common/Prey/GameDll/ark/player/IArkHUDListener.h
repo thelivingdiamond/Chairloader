@@ -1,12 +1,11 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: Override
-// Prey/GameDll/ark/player/IArkHUDListener.h
-class IArkHUDListener // Id=801554F Size=8
-{
+// IArkHUDListener
+// Header:  Prey/GameDll/ark/player/IArkHUDListener.h
+class IArkHUDListener
+{ // Size=8 (0x8)
 public:
-	virtual void OnEntityUnderReticleChanged(const unsigned arg0, const unsigned arg1);
+	virtual void OnEntityUnderReticleChanged(const unsigned _arg0_, const unsigned _arg1_);
 };
 

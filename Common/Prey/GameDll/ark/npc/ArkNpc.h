@@ -36,6 +36,7 @@
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolume.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolumemanager.h>
+#include <Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h>
 #include <Prey/GameDll/ark/spatial/ArkSpatialManagerEntry.h>
 #include <Prey/GameDll/ark/ArkAiKnowledge.h>
 #include <Prey/GameDLL/ark/perception/ArkAttentiveSubject.h>

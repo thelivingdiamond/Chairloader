@@ -10,17 +10,21 @@
 #include <Chairloader/IModDllManager.h>
 #include <mem.h>
 #include "Chairloader.h"
+#include <Chairloader/IChairVarManager.h>
 
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <detours/detours.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Chairloader/ModSDK/ChairGlobalModName.h>
 
 static ChairloaderGlobalEnvironment s_CLEnv;
 static std::unique_ptr<Chairloader> gChairloaderDll;
 
 Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
+
+static int CV_cl_asserts;
 
 namespace
 {
@@ -78,7 +82,7 @@ bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
-		gChairloaderDll->InitGame(pFramework);
+		gChairloaderDll->InitGame(_this, pFramework);
 
 	return result;
 }
@@ -190,7 +194,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	m_WinConsole.InitSystem();
 	CryLog("Chairloader::InitSystem");
 	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
-
+    ChairSetGlobalModName("Chairloader");
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
@@ -217,6 +221,18 @@ void Chairloader::InitSystem(CSystem* pSystem)
 #endif
 		pSystem->SetDevMode(devMode);
 	}
+
+	// Register assert cvar
+#ifdef DEBUG_BUILD
+	const bool defaultAsserts = true;
+#else
+	const bool defaultAsserts = pSystem->IsDevMode();
+#endif
+	REGISTER_CVAR2("cl_asserts", &CV_cl_asserts, defaultAsserts, VF_CHEAT,
+		"0 = Disable Asserts\n"
+		"1 = Enable Asserts\n"
+	);
+	CryAssertSetGlobalFlagAddress(GetAssertFlagAddress());
 
 	// Disabling audio speeds up loading immensely (8 seconds on my hardware)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
@@ -252,9 +268,10 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	m_pRender->SetRenderThreadIsIdle(false);
 }
 
-void Chairloader::InitGame(IGameFramework* pFramework)
+void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
 {
 	CryLog("Chairloader::InitGame");
+	m_pGame = pGame;
 	m_pFramework = pFramework;
 
 	gRenDev->m_pRT->SyncMainWithRender();
@@ -290,7 +307,7 @@ void Chairloader::ShutdownGame()
 
 void Chairloader::ShutdownSystem()
 {
-	CryLog("Chairloader::ShutdownSystem");
+	CryLog("Chairloader::ShutdownGame");
 	
 	m_pRender->SetRenderThreadIsIdle(true);
 
@@ -533,6 +550,16 @@ bool Chairloader::IsEditorEnabled()
 	return m_bEditorEnabled;
 }
 
+CGame* Chairloader::GetCGame()
+{
+	return m_pGame;
+}
+
+int* Chairloader::GetAssertFlagAddress()
+{
+	return &CV_cl_asserts;
+}
+
 void Chairloader::ReloadModDLLs()
 {
 	// Mods may hook code running in other threads. Make sure as many of them as possible are idle.
@@ -545,4 +572,16 @@ void Chairloader::ReloadModDLLs()
 	m_pCore->GetDllManager()->ReloadModules();
 
 	m_pRender->SetRenderThreadIsIdle(false);
+}
+
+void Chairloader::RegisterCVar(ICVar *pCVar, std::string &modName) {
+    //TODO: do things
+    if(pCVar == nullptr) {
+        CryError("Attempted to register a null cvar for {}", modName);
+        return;
+    }
+    if(pCVar->GetFlags() & VF_DUMPTOCHAIR) {
+        CryLog("Registering CVar {} for {}", pCVar->GetName(), modName);
+        m_pCore->GetCVarManager()->RegisterCVar(pCVar, modName);
+    }
 }

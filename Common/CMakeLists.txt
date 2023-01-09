@@ -27,6 +27,7 @@ set(SOURCE_FILES
 	Chairloader/PreyFunction.cpp
 	Chairloader/PreyFunction.h
 	Chairloader/ValidateCompiler.h
+	Chairloader/SemanticVersion.h
 
 	pugixml/pugiconfig.hpp
 	pugixml/pugixml.cpp
@@ -40,7 +41,8 @@ set(SOURCE_FILES
 	mem.h
 	proc.cpp
 	proc.h
-)
+        Chairloader/ChairVars.h
+		Chairloader/ChairVars.cpp Chairloader/ModSDK/ChairGlobalModName.cpp Chairloader/ModSDK/ChairGlobalModName.h)
 
 add_library(Common STATIC
 	${SOURCE_FILES})

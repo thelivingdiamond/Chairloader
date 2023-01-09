@@ -6,6 +6,7 @@
 #include "ChairUpdateWizard.h"
 #include "ChairManager.h"
 #include "UpdateHandler.h"
+#include "../Common/Chairloader/SemanticVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
@@ -81,7 +82,7 @@ void ChairUpdateWizard::ShowWelcomePage() {
 
 void ChairUpdateWizard::ShowConfirmPage() {
     static bool m_bUpdateAvailable;
-    static VersionCheck::DLLVersion m_LatestVersion, m_CurrentVersion;
+    static SemanticVersion m_LatestVersion, m_CurrentVersion;
     static bool m_bRefresh = true;
     if(m_bRefresh){
         m_bRefresh = false;

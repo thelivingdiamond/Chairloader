@@ -1,22 +1,21 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
-// Header: FromCpp
-// Prey/GameDll/ark/player/ArkPlayerMovementAction.h
-class ArkPlayerMovementAction : public TAction<SAnimationContext> // Id=801C797 Size=144
-{
+// ArkPlayerMovementAction
+// Header:  Prey/GameDll/ark/player/ArkPlayerMovementAction.h
+class ArkPlayerMovementAction : public TAction<SAnimationContext>
+{ // Size=144 (0x90)
 public:
 	enum EArkPlayerMovementState
 	{
 	};
 
 	std::array<int,3> m_fragmentIds;
-	
-	ArkPlayerMovementAction(std::array<int,3> const &_fragmentIds);
+
+	ArkPlayerMovementAction(const std::array<int,3>& _fragmentIds);
 	virtual IAction::EStatus Update(float _timePassed);
-	virtual ~ArkPlayerMovementAction();
-	
-	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkPlayerMovementAction *const _this, float _timePassed)>(0x156DEC0);
+
+	static inline auto FArkPlayerMovementAction = PreyFunction<void(ArkPlayerMovementAction* const _this, const std::array<int,3>& _fragmentIds)>(0x156DE00);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkPlayerMovementAction* const _this, float _timePassed)>(0x156DEC0);
 };
 

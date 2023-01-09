@@ -43,13 +43,13 @@ EditorView::EditorView()
 	assert(!g_pEditorView);
 	g_pEditorView = this;
 
-	REGISTER_CVAR2("ed_ViewMinSpeed", &CV_ed_ViewMinSpeed, 3, VF_NULL, "Editor: View minimum speed");
-	REGISTER_CVAR2("ed_ViewMaxSpeed", &CV_ed_ViewMaxSpeed, 20, VF_NULL, "Editor: View maximum speed");
-	REGISTER_CVAR2("ed_ViewAccel", &CV_ed_ViewAccel, 10, VF_NULL, "Editor: View acceleration");
-	REGISTER_CVAR2("ed_ViewDecel", &CV_ed_ViewDecel, 3, VF_NULL, "Editor: View deceleration");
-	REGISTER_CVAR2("ed_ViewSens", &CV_ed_ViewSens, 13, VF_NULL, "Editor: Mouse sensitivity");
-	REGISTER_CVAR2("ed_ViewBoostScale", &CV_ed_ViewBoostScale, 5, VF_NULL, "Editor: Speed boost on SHIFT");
-	REGISTER_CVAR2("ed_ViewFov", &CV_ed_ViewFov, 90, VF_NULL, "Editor: View Field-of-View (deg)");
+	REGISTER_CVAR2("ed_ViewMinSpeed", &CV_ed_ViewMinSpeed, 3, VF_DUMPTOCHAIR, "Editor: View minimum speed");
+	REGISTER_CVAR2("ed_ViewMaxSpeed", &CV_ed_ViewMaxSpeed, 20, VF_DUMPTOCHAIR, "Editor: View maximum speed");
+	REGISTER_CVAR2("ed_ViewAccel", &CV_ed_ViewAccel, 10, VF_DUMPTOCHAIR, "Editor: View acceleration");
+	REGISTER_CVAR2("ed_ViewDecel", &CV_ed_ViewDecel, 3, VF_DUMPTOCHAIR, "Editor: View deceleration");
+	REGISTER_CVAR2("ed_ViewSens", &CV_ed_ViewSens, 13, VF_DUMPTOCHAIR, "Editor: Mouse sensitivity");
+	REGISTER_CVAR2("ed_ViewBoostScale", &CV_ed_ViewBoostScale, 5, VF_DUMPTOCHAIR, "Editor: Speed boost on SHIFT");
+	REGISTER_CVAR2("ed_ViewFov", &CV_ed_ViewFov, 90, VF_DUMPTOCHAIR, "Editor: View Field-of-View (deg)");
 }
 
 EditorView::~EditorView()

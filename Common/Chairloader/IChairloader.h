@@ -7,6 +7,7 @@
 
 struct IGameFramework;
 struct IChairLogger;
+class CGame;
 
 struct IChairloader {
     //! Gets the Mod SDK version used in Chairloader.
@@ -32,4 +33,13 @@ struct IChairloader {
 
     //! @returns whether editor is currently enabled.
     virtual bool IsEditorEnabled() = 0;
+
+    //! @returns the CGame instance. Modders can use g_pGame (set in ChairloaderModBase).
+    virtual CGame* GetCGame() = 0;
+
+    //! @returns the pointer to cl_assert cvar.
+    virtual int* GetAssertFlagAddress() = 0;
+
+    virtual void RegisterCVar(ICVar* pCVar, std::string& modName) = 0;
+
 };

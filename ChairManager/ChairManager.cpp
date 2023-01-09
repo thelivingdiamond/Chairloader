@@ -5,11 +5,11 @@
 #include <iostream>
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
+#include <Manager/PathUtils.h>
 #include "ChairManager.h"
 #include "UI.h"
 #include "GamePathDialog.h"
 #include "GameVersion.h"
-#include "PathUtils.h"
 #include "winver.h"
 #include "ChairInstallWizard.h"
 #include "ChairUninstallWizard.h"
@@ -17,6 +17,7 @@
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairUpdateWizard.h"
+#include "../Common/Chairloader/SemanticVersion.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -1210,7 +1211,8 @@ void ChairManager::loadModInfoFiles() {
 ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
-    packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
+    packagedChairloaderVersion = new SemanticVersion;
+    *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     cURLpp::initialize();
     LoadModManagerConfig();
     VersionCheck::fetchLatestVersion();
@@ -2165,7 +2167,8 @@ void ChairManager::createDefaultFileStructure() {
 }
 
 void ChairManager::Init() {
-    installedChairloaderVersion = VersionCheck::getInstalledChairloaderVersion();
+    installedChairloaderVersion = new SemanticVersion;
+    *installedChairloaderVersion = VersionCheck::getInstalledChairloaderVersion();
     createDefaultFileStructure();
     // Note: This method may be called mutiple times (e.g. after game path change)
     if (!verifyChairloaderConfigFile())
@@ -2253,7 +2256,7 @@ void ChairManager::DrawDebug() {
             ImGui::EndDisabled();
         }
         if(ImGui::CollapsingHeader("Version Strings")){
-            static VersionCheck::DLLVersion dllVersion;
+            static SemanticVersion dllVersion;
             static std::string version, packagedVersion;
             if(ImGui::Button("Get Chairloader Version")){
                 // get the version string from the chairloader dll

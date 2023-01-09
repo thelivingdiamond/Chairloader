@@ -2,8 +2,8 @@
 // Created by theli on 8/30/2022.
 //
 
+#include <Manager/PathUtils.h>
 #include "ChairUninstallWizard.h"
-#include "PathUtils.h"
 #include "ChairManager.h"
 #include "GameVersion.h"
 

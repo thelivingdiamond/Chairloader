@@ -1,43 +1,41 @@
 // Header file automatically created from a PDB.
-
 #pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
-struct ActionParams;
-struct ActionParamsExcept;
-struct AkPBIModValues;
-class AkRTPCKey;
-struct AkSoundParamsEx;
 class ArkClass;
-struct CounterParameters;
+class IArkValueBase;
 
-// Header: Exact
-// Prey/GameDll/ark/player/psipower/arkpsipowerfaction.h
-class ArkPsiPowerFactionProperties : public ArkReflectedObject // Id=801C0F5 Size=8
-{
+// ArkPsiPowerFactionProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerfaction.h
+class ArkPsiPowerFactionProperties : public ArkReflectedObject
+{ // Size=8 (0x8)
 public:
-	class ArkExecuteAudioTriggerProperty : public ArkProperty // Id=801C0F6 Size=32
-	{
+	// ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerfaction.h
+	class ArkExecuteAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
 	public:
 		ArkExecuteAudioTriggerProperty();
-		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
-		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
-		
-		static inline auto FSetValue = PreyFunction<void(ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+		static inline auto FArkExecuteAudioTriggerPropertyOv2 = PreyFunction<void(ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty* const _this)>(0x1583400);
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
 	};
 
-	static ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty s_ArkExecuteAudioTriggerProperty;
+	static inline auto s_ArkExecuteAudioTriggerProperty = PreyGlobal<ArkPsiPowerFactionProperties::ArkExecuteAudioTriggerProperty>(0x2C03440);
 	string m_ExecuteAudioTrigger;
-	
-	static ArkReflectedObject *Create() { return FCreate(); }
-	
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
 #if 0
-	static ArkClass *GetClass();
-	void SetExecuteAudioTrigger(string arg0);
-	string const &GetExecuteAudioTrigger() const;
+	static ArkClass* GetClass();
+	void SetExecuteAudioTrigger(string _arg0_);
+	const string& GetExecuteAudioTrigger() const;
 #endif
-	
-	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13644E0);
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13644E0);
 };
 

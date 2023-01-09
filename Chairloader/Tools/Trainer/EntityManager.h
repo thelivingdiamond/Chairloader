@@ -24,6 +24,7 @@ private:
     EntityInspector inspector;
 
     uint64_t archetypeToSpawn = 0;
+    uint64_t lastSpawnedEntity = 0;
 
     // archetype filter
     std::string archetypeFilterText, oldArchetypeFilterText;
