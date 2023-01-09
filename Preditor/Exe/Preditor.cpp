@@ -43,6 +43,8 @@ void Preditor::Update()
 			m_pLoadGameStage.reset();
             IPreditorEngine::Get()->SetAppImGui();
             m_pProjectStage = std::make_unique<ProjectStage>();
+            m_pLookingGlass = std::make_unique<LookingGlass>();
+            m_pLookingGlass->Init();
 		}
         else if (m_pProjectStage)
         {
@@ -60,6 +62,8 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
+    if (m_pLookingGlass)
+        m_pLookingGlass->ShowUI();
 }
 
 void Preditor::PostUpdate()

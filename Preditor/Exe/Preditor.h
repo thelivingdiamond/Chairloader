@@ -1,3 +1,4 @@
+#pragma once
 #include <Preditor/Project/ProjectManager.h>
 #include "App/Application.h"
 #include "ConfigManager.h"
@@ -5,6 +6,7 @@
 #include "ProjectSelectStage.h"
 #include "ProjectStage.h"
 #include "ConfigValidationStage.h"
+#include "LookingGlass.h"
 
 struct IGameStartup;
 class LoadGameStage;
@@ -30,6 +32,7 @@ private:
     // MODULES
 	//std::unique_ptr<DevConsoleDialog> m_pDevConsole;
     std::unique_ptr<ProjectManager> m_pProjectManager;
+    std::unique_ptr<LookingGlass> m_pLookingGlass;
 
     // STAGES
     std::unique_ptr<ConfigValidationStage> m_ConfigValidateStage;

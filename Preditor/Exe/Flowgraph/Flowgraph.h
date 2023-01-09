@@ -20,7 +20,7 @@ struct FlowGraph : public IChairFlowgraph {
     ~FlowGraph();
     ImNodesEditorContext* m_Context;
 
-    void draw();
+    virtual void draw();
     void drawTab();
     void update();
 
@@ -180,6 +180,8 @@ public:
 
     bool loadXML(pugi::xml_node &node);
     bool saveXML() override;
+
+    void draw() override;
 };
 
 
