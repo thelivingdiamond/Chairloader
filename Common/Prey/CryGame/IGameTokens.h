@@ -63,23 +63,10 @@ struct IGameToken
 	virtual TFlowInputData const& GetValue() const = 0;
 
 	//! Set token value from a string.
-	virtual void        SetValueAsString(const char* sValue, bool bDefault = false) = 0;
-	virtual const char* GetValueAsString() const = 0;
-	virtual void ResetValue(bool arg0) = 0;
+	virtual void SetValueAsString(const char* sValue, bool bDefault = false) = 0;
+    virtual string GetValueAsString() const = 0;
+    virtual void ResetValue(bool arg0) = 0;
 	// </interfuscator:shuffle>
-
-	//! A small template helper (yes, in the i/f) to get the value.
-	//! Returns true if successful, false otherwise.
-	template<typename T>
-	bool GetValueAs(T& value)
-	{
-		TFlowInputData data;
-		if (GetValue(data))
-		{
-			return data.GetValueWithConversion(value);
-		}
-		return false;
-	}
 };
 
 //! Events that game token event listener can receive.

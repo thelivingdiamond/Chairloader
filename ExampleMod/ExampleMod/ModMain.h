@@ -8,6 +8,9 @@ class ModMain : public ChairloaderModBase
 	//! Fills in the DLL info during initialization.
 	virtual void FillModInfo(ModDllInfoEx& info) override;
 
+    //! Retrieves an interface for the mod.
+    void* QueryInterface(const char *ifaceName) override;
+
 	//! Initializes function hooks before they are installed.
 	virtual void InitHooks() override;
 
@@ -15,7 +18,11 @@ class ModMain : public ChairloaderModBase
 	//! Call order: TODO
 	virtual void InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo) override;
 
-	//! Called after CGame::Init
+    //! Called after CSystem::Init, after all engine modules and mods have been initialized. Allows your mod to get interfaces from other mods.
+    void Connect(const std::vector<IChairloaderMod *> &mods) override;
+
+private:
+    //! Called after CGame::Init
 	//! Call order: TODO
 	virtual void InitGame(bool isHotReloading) override;
 

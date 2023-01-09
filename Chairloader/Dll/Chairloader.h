@@ -4,13 +4,18 @@
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderDll.h>
 #include <Chairloader/IChairloaderTools.h>
+#include <Chairloader/PreditorAPI.h>
+#include <Chairloader/IChairToPreditor.h>
 #include "WinConsole.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 
 class CSystem;
 
-class Chairloader : public Internal::IChairloaderDll {
+class Chairloader
+	: public Internal::IChairloaderDll
+	, public IChairToPreditor
+{
 public:
 	static void CreateInstance();
 	static Chairloader* Get();
@@ -25,7 +30,7 @@ public:
 	void InitSystem(CSystem* pSystem);
 
 	//! Called after CGame::Init
-	void InitGame(IGameFramework* pFramework);
+	void InitGame(CGame* pGame, IGameFramework* pFramework);
 
 	//! Called before CGame::Shutdown.
 	void ShutdownGame();
@@ -45,13 +50,16 @@ public:
 private:
 	WinConsole m_WinConsole;
 	uintptr_t m_ModuleBase = 0;
+	IPreditorToChair* m_pPreditorAPI = nullptr;
 	bool m_bEditorEnabled = false;
+    bool m_bTrainerEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
 	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
 	std::unique_ptr<Internal::IChairloaderTools> m_pTools;
 	unsigned m_SavedUpdateFlags = 0;
 
 	IGameFramework* m_pFramework = nullptr;
+	CGame* m_pGame = nullptr;
 	KeyNameMap m_KeyNames;
 
 	void InitHooks();
@@ -69,6 +77,8 @@ public:
 	uintptr_t GetPreyDllBase() override;
 	std::unique_ptr<IChairLogger> CreateLogger() override;
 	bool IsEditorEnabled() override;
+	CGame* GetCGame() override;
+	int* GetAssertFlagAddress() override;
 
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
@@ -76,4 +86,10 @@ public:
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;
+	void RegisterCVar(ICVar* pCVar, std::string& modName) override;
+	IPreditorToChair* GetPreditorAPI() override;
+
+	// IChairToPreditor
+	void SetIPreditorToChair(IPreditorToChair* pPreditor) override;
+	Internal::IChairloaderDll* GetIChairloaderDll() override;
 };

@@ -232,7 +232,7 @@ void RenderDll::ChairRender::InitRendererModule(CD3D9Renderer* pRenderer)
 	AuxGeom::InitRenderer();
 
 	// Call callbacks
-	for (IChairRenderListener* i : m_InitRenderer)
+	for (IChairRenderListener* i : m_InitRendererModule)
 		i->InitRendererModule(pRenderer);
 }
 

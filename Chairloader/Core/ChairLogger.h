@@ -6,7 +6,9 @@ class ChairLogger : public IChairLogger
 public:
 	// IChairLogger
 	void Log(EChairLogType type, const char* msg, size_t size) override;
-	void FatalError(const char* msg) override;
+    void OverlayLog(EChairLogType type, const char *msg, size_t size) override;
+
+    void FatalError(const char* msg) override;
 	const char* GetName() override;
 	void SetName(const char* name) override;
 

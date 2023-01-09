@@ -24,6 +24,21 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 }
 
+void ModDllManager::RegisterRawMod(const char* name, IChairloaderMod* pMod, bool asFirst)
+{
+	Module* mod;
+	if (asFirst)
+		mod = &(*m_Modules.emplace(m_Modules.begin()));
+	else
+		mod = &m_Modules.emplace_back();
+
+	mod->modName = name;
+	mod->bIsRawMod = true;
+	mod->pModIface = pMod;
+	CheckModSdkVersion(*mod);
+	CryLog("[ModDllManager] Added raw mod {}", name);
+}
+
 void ModDllManager::LoadModules()
 {
 	if (m_bHotReload)
@@ -79,9 +94,12 @@ void ModDllManager::ReloadModules()
 	std::vector<Module*> modsToReload;
 	for (Module& i : m_Modules)
 	{
-		CRY_ASSERT(i.hModule);
-		if (i.dllInfo.supportsHotReload)
-			modsToReload.push_back(&i);
+		if (!i.bIsRawMod)
+		{
+			CRY_ASSERT(i.hModule);
+			if (i.dllInfo.supportsHotReload)
+				modsToReload.push_back(&i);
+		}
 	}
 
 	// Unload mods in reverse order
@@ -116,6 +134,12 @@ bool ModDllManager::CheckModulesForChanges()
 	{
 		if (!mod.bSourceFileModified && mod.dllInfo.supportsHotReload)
 		{
+			if (!fs::exists(mod.sourceDllPath))
+			{
+				CryError("[ModDllManager] Mod {} DLL no longer exists", mod.modName);
+				return false;
+			}
+
 			fs::file_time_type modTime = fs::last_write_time(mod.sourceDllPath);
 			if (modTime != mod.sourceModificationTime)
 			{
@@ -135,6 +159,19 @@ void ModDllManager::CallInitSystem()
 	{
 		InitModule(*it, false);
 	}
+}
+
+void ModDllManager::CallConnect() {
+    std::vector<IChairloaderMod*> mods;
+    mods.reserve(m_Modules.size());
+    for(auto& mod : m_Modules) {
+        mods.push_back(mod.pModIface);
+    }
+    for (auto& mod : m_Modules) {
+        if (mod.pModIface) {
+            mod.pModIface->Connect(mods);
+        }
+    }
 }
 
 void ModDllManager::CallInitGame()
@@ -238,15 +275,18 @@ void ModDllManager::LoadModule(Module& mod)
 
 void ModDllManager::UnloadModule(Module& mod)
 {
-	CRY_ASSERT(mod.hModule);
-	CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
-	mod.pfnShutdown();
-	FreeLibrary(mod.hModule);
+	if (!mod.bIsRawMod)
+	{
+		CRY_ASSERT(mod.hModule);
+		CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
+		mod.pfnShutdown();
+		FreeLibrary(mod.hModule);
 
-	mod.hModule = nullptr;
-	mod.pfnInit = nullptr;
-	mod.pfnShutdown = nullptr;
-	mod.pModIface = nullptr;
+		mod.hModule = nullptr;
+		mod.pfnInit = nullptr;
+		mod.pfnShutdown = nullptr;
+		mod.pModIface = nullptr;
+	}
 }
 
 void ModDllManager::InitModule(Module& mod, bool isHotReloading)
@@ -266,43 +306,26 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 
 	if (mod.modName != mod.dllInfo.modName)
 		CryWarning("[ModDllManager] {}: Name mismatch. DLL says \"{}\"", mod.modName.c_str(), mod.dllInfo.modName);
+
+	if (mod.bIsRawMod && mod.dllInfo.supportsHotReload)
+		mod.dllInfo.supportsHotReload = false;
 }
 
 void ModDllManager::CheckModSdkVersion(Module& mod)
 {
 	bool isValid = false;
-	int major = -1, minor = -1, patch = -1;
-	mod.pModIface->GetModSdkVersion(major, minor, patch);
+	SemanticVersion currentSDKVersion{MOD_SDK_VERSION_MINOR, MOD_SDK_VERSION_MAJOR, MOD_SDK_VERSION_PATCH, MOD_SDK_VERSION_RELEASE_TYPE}, modSDKVersion;
+    mod.pModIface->GetModSdkVersion(modSDKVersion);
 
-	if (major >= 0 && minor >= 0 && patch >= 0)
-	{
-		if (MOD_SDK_VERSION_MAJOR == 0)
-		{
-			// Everything must match 1:1
-			isValid = major == MOD_SDK_VERSION_MAJOR && minor == MOD_SDK_VERSION_MINOR && patch == MOD_SDK_VERSION_PATCH;
-		}
-		else
-		{
-			if (MOD_SDK_VERSION_MAJOR == major)
-			{
-				if (MOD_SDK_VERSION_MINOR > minor)
-				{
-					// e.g. 1.2.0 > 1.1.5
-					isValid = true;
-				}
-				else if (MOD_SDK_VERSION_MINOR == minor)
-				{
-					isValid = MOD_SDK_VERSION_PATCH > patch;
-				}
-			}
-		}
-	}
+    if(modSDKVersion.valid()) {
+        isValid = currentSDKVersion >= modSDKVersion;
+    }
 
 	if (!isValid)
 	{
 		CryFatalError("Mod {} uses a version of Mod SDK that isn't supported by this version of Chairloader\n\n"
-			"Chairloader: {}.{}.{}\n"
-			"Mod: {}.{}.{}", mod.modName, MOD_SDK_VERSION_MAJOR, MOD_SDK_VERSION_MINOR, MOD_SDK_VERSION_PATCH,
-			major, minor, patch);
+			"Chairloader: {}\n"
+			"Mod: {}", mod.modName, currentSDKVersion.String(), modSDKVersion.String());
 	}
 }
+

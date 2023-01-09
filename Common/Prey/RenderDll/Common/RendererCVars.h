@@ -463,3 +463,50 @@ public:
 };
 
 static_assert(sizeof(CRendererCVars) == 88);
+
+// CCVarUpdateRecorder
+// Header:  CryEngine/renderdll/common/RendererCVars.h
+// Include: Prey/RenderDll/Common/RendererCVars.h
+class CCVarUpdateRecorder : public IConsoleVarSink
+{ // Size=64 (0x40)
+public:
+	// CCVarUpdateRecorder::SUpdateRecord
+	// Header:  CryEngine/renderdll/common/RendererCVars.h
+	struct SUpdateRecord
+	{ // Size=80 (0x50)
+		union
+		{
+			int intValue;
+			float floatValue;
+			char stringValue[64];
+		};
+
+		const char* name;
+		int type;
+
+#if 0
+		SUpdateRecord(ICVar* _arg0_);
+#endif
+	};
+
+	using CVarList = std::vector<CCVarUpdateRecorder::SUpdateRecord>;
+
+	std::vector<CCVarUpdateRecorder::SUpdateRecord> m_updatedCVars[2];
+	IConsole* m_pConsole;
+
+	CCVarUpdateRecorder(IConsole* pConsole);
+	virtual ~CCVarUpdateRecorder();
+	virtual bool OnBeforeVarChange(ICVar* pVar, const char* sNewValue);
+	virtual void OnAfterVarChange(ICVar* pVar);
+	void Reset() { FReset(this); }
+	const std::vector<CCVarUpdateRecorder::SUpdateRecord>& GetCVars() const { return FGetCVars(this); }
+	const CCVarUpdateRecorder::SUpdateRecord* GetCVar(const char* cvarName) const { return FGetCVar(this, cvarName); }
+
+	static inline auto FCCVarUpdateRecorderOv1 = PreyFunction<void(CCVarUpdateRecorder* const _this, IConsole* pConsole)>(0xE99960);
+	static inline auto FBitNotCCVarUpdateRecorder = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xE999B0);
+	static inline auto FOnBeforeVarChange = PreyFunction<bool(CCVarUpdateRecorder* const _this, ICVar* pVar, const char* sNewValue)>(0x1B933B0);
+	static inline auto FOnAfterVarChange = PreyFunction<void(CCVarUpdateRecorder* const _this, ICVar* pVar)>(0xEA2390);
+	static inline auto FReset = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEA2670);
+	static inline auto FGetCVars = PreyFunction<const std::vector<CCVarUpdateRecorder::SUpdateRecord>& (const CCVarUpdateRecorder* const _this)>(0xE9AD30);
+	static inline auto FGetCVar = PreyFunction<const CCVarUpdateRecorder::SUpdateRecord* (const CCVarUpdateRecorder* const _this, const char* cvarName)>(0xE9ACC0);
+};

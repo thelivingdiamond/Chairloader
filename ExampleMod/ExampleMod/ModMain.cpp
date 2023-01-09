@@ -1,4 +1,5 @@
 #include "ModMain.h"
+#include <Chairloader/ModSDK/ChairGlobalModName.h>
 
 ModMain* gMod = nullptr;
 
@@ -56,7 +57,19 @@ void ModMain::InitHooks()
 void ModMain::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
 {
 	BaseClass::InitSystem(initInfo, dllInfo);
+    ChairSetGlobalModName("TheChair.ExampleMod"); // CHANGE ME
 	// Your code goes here
+//! CVar example
+#ifdef EXAMPLE
+    // If you want to store variables between restarts, use a CVar with the DUMPTOCHAIR flag.
+    // This will save the value to a file, and the value will be restored on launch.
+    // Cvars can be changed with the console, or by simply changing the variable in code.
+    // A great example would be storing whether a window is open or not.
+    // You will typically use the macros REGISTER_CVAR(...) or REGISTER_CVAR2(...) to register a CVar.
+    // See Common/Prey/CrySystem/IConsole.h for the documentation on CVars
+    static int m_bDoSomething = false;
+    REGISTER_CVAR2("ExampleMod.DoSomething", &m_bDoSomething, 0, VF_DUMPTOCHAIR, "ExampleMod.DoSomething");
+#endif
 }
 
 void ModMain::InitGame(bool isHotReloading)
@@ -110,6 +123,36 @@ void ModMain::Draw()
 void ModMain::MainUpdate(unsigned updateFlags)
 {
 	// Your code goes here
+}
+
+
+
+void *ModMain::QueryInterface(const char *ifaceName) {
+#ifdef EXAMPLE
+    // this is used to return an interface for your mod, if available.
+    // Your mod class should inherit from the interface class. i.e: class ModMain : public ChairloaderModBase, public IExampleMod {
+    // Then you can return the interface pointer here.
+    if (!strcmp(ifaceName, "ExampleMod"))
+        return static_cast<IExampleMod*>(this);
+    // If you have multiple interfaces, you can return as many as you want for even potentially different objects.
+    // if you don't have an interface, just return nullptr.
+#endif
+    return nullptr;
+}
+
+void ModMain::Connect(const std::vector<IChairloaderMod *> &mods) {
+#ifdef EXAMPLE
+    // Example of how to get a mod interface from the list of mods
+    IOtherMod* otherMod = nullptr;
+    for (auto & mod: mods) {
+        otherMod = mod->QueryInterface("IOtherMod001"); // the interface name is defined in the other mod
+        if (otherMod) {
+            break;
+        }
+    }
+
+    // do something with otherMod
+#endif
 }
 
 extern "C" DLL_EXPORT IChairloaderMod* ClMod_Initialize()

@@ -5,6 +5,7 @@
 #include <Prey/CrySystem/Profiling.h>
 #include <Prey/CrySystem/System.h>
 #include <Chairloader/IChairloaderDll.h>
+#include <Chairloader/IPreditorToChair.h>
 #include "ChairImGui.h"
 #include "ImGuiRendererD3D11.h"
 
@@ -17,7 +18,7 @@ static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventList
 static auto s_CBasicEventListener_OnSetCursor_Hook = s_CBasicEventListener_OnSetCursor.MakeHook();
 static auto s_CSystem_RenderEnd_Hook = CSystem::FRenderEnd.MakeHook();
 
-static void CHardwareMouse_Event_Hook(CHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
+static void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
 {
 	// Exclusive ImGui mouse input
 	// Don't pass mouse events to the game and FlashUI
@@ -173,7 +174,11 @@ void ChairImGui::InitBackend() {
 
 	// Load game cursor
 	m_hGameCursor = ::LoadCursorA(GetModuleHandleA(0i64), MAKEINTRESOURCEA(110));
-	CRY_ASSERT_MESSAGE(m_hGameCursor, "Failed to load game cursor. Invalid .exe?");
+	if (!m_hGameCursor)
+	{
+		m_hGameCursor = IDC_ARROW;
+		CryWarning("Failed to load game cursor. Invalid .exe?");
+	}
 
 	// Initialize scale
 	unsigned currentDpi = GetDpiForWindow((HWND)gEnv->pRenderer->GetHWND());
@@ -572,6 +577,10 @@ void ChairImGui::RT_Present()
 }
 
 void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent &event, bool bForce) {
+	IPreditorToChair* pPreditorAPI = gChair->GetPreditorAPI();
+	if (pPreditorAPI && pPreditorAPI->HandleInputEvent(event))
+		return;
+	
 	if (!g_ChairImGui.m_pMainContext)
 	{
 		s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
@@ -637,6 +646,9 @@ void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent 
 
 	if (event.deviceType == eIDT_Mouse && g_ChairImGui.m_ImGuiUsesMouse)
 	 	return;
+
+	if (pPreditorAPI && pPreditorAPI->HandleInputEventPreGame(event))
+		return;
 
 	s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
 }

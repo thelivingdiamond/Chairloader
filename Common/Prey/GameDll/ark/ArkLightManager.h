@@ -2,8 +2,8 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CryCore/Containers/VectorMap.h>
 #include <Prey/GameDll/ark/ArkLightManagerDisruptableData.h>
-#include <Prey/GameDll/ark/VectorMap.h>
 #include <Prey/GameDll/ark/arklightmanager.h>
 
 // Header: FromCpp

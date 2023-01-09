@@ -87,7 +87,7 @@ void LoadChairLoader()
         }
     }
 
-    g_CLModule = LoadLibraryA("ChairLoader.dll");
+    g_CLModule = LoadLibraryExA("ChairLoader.dll", nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     if (!g_CLModule) {
         std::string text = "Failed to load ChairLoader\n" + GetLastErrorAsString();
         MessageBoxA(nullptr, text.c_str(), "Chairloader Loader Error", MB_OK | MB_ICONERROR);

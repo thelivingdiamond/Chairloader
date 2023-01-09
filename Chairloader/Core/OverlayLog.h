@@ -1,26 +1,25 @@
 #pragma once
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include <ChairLoader/IChairloaderGui.h>
+#include <Chairloader/ILogManager.h>
+#include <ConsoleColorParser.h>
 
-class ChairloaderGUILog {
+
+class OverlayLogManager{
 public:
-    // Basic Logging Structs
-
-    ChairloaderGUILog();
-    ~ChairloaderGUILog();
+    OverlayLogManager();
+    ~OverlayLogManager();
     // show persistent transparent log overlay
-    void drawDisplay();
-    // Draw the log history window to display all previous log messages
-    void drawHistory(bool* bShow);
-    // Log Item with std::string, modName, Level, and screenWriting
-    void logItem(std::string msg, const std::string modNameIn, logLevel level = logLevel::normal, bool displayToScreen = true);
-    // Log Item with a premade logMessage
-    void logItem(logMessage message, bool displayToScreen = true);
+    void draw();
+    void setMessageTimeoutInterval(float milliseconds);
 private:
-    const std::string modName = "OverlayLog";
-    std::vector<logMessage> archiveLogQueue;
-    std::vector<logMessage> displayLogQueue;
     uint64_t MessageTimeoutTime = 10000;
-};
 
-extern ChairloaderGUILog* GUILog;
+    class OverlayParser : public ConsoleColorParser
+    {
+    protected:
+        void PrintText(const char* text, size_t size, int color) override;
+        void NewLine() override;
+    };
+    OverlayParser m_Parser;
+};

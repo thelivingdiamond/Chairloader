@@ -585,32 +585,6 @@ static_assert(sizeof(ArkPropertyProfileLibrary) == 56);
 static_assert(sizeof(ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty) == 32);
 static_assert(sizeof(ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty) == 32);
 
-#include "ArkPsiBlastProperties.h"
-static_assert(sizeof(ArkPsiBlastProperties) == 144);
-static_assert(sizeof(ArkPsiBlastProperties::ArkRadiusProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkTriggerRadiusProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkForceProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkFalloffScaleProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkFalloffRadiusProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkDelaySecProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionDelaySecProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkDurationSecProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkUpdateIntervalSecProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkMaxBlastCountProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkSignalPackageIdProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionSignalPackageIdProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkNoiseIdProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkLoudnessIdProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkPreExplosionParticleEffectProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkKillPreExplosionParticleEffectProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionParticleEffectProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkStartDelayAudioTriggerProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkStopDelayAudioTriggerProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionAudioTriggerProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkStartPersistentAudioTriggerProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkStopPersistentAudioTriggerProperty) == 32);
-static_assert(sizeof(ArkPsiBlastProperties::ArkCameraShakeProperty) == 32);
-
 #include "ArkPsiPowerCommonProperties.h"
 static_assert(sizeof(ArkPsiPowerBlackListEntry) == 4);
 static_assert(sizeof(ArkPsiPowerBlackListEntry::ArkPowerProperty) == 32);

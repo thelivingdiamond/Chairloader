@@ -14,7 +14,7 @@ namespace NFlowSystemUtils
 // _unknown/NFlowSystemUtils__IFlowSystemTyped.h
 struct IFlowSystemTyped // Id=8000F54 Size=8
 {
-	virtual ~IFlowSystemTyped();
+	virtual ~IFlowSystemTyped() {}
 	virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<SFlowSystemVoid> const &arg1) = 0;
 	virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<int> const &arg1) = 0;
 	virtual void DoActivatePort(SFlowAddress arg0, NFlowSystemUtils::Wrapper<float> const &arg1) = 0;

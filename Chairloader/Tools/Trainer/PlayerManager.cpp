@@ -10,6 +10,8 @@
 #include <Prey/GameDll/ark/player/arkpsicomponent.h>
 #include <Prey/GameDll/ark/player/ArkPlayerFatigueComponent.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
+#include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
+#include <Prey/GameDll/ark/player/ability/ArkAbilityComponent.h>
 #include <Prey/GameDll/ark/ArkGame.h>
 #include <Prey/GameDll/ark/ArkItemSystem.h>
 #include <Prey/GameDll/arkitem.h>
@@ -41,13 +43,6 @@ void PlayerManager::draw() {
 
         ImGui::End();
     }
-#ifdef DEBUG_BUILD
-    if(ImGui::Begin("Player Reference Testing")){
-        ImGui::Text("ArkPlayer: %p", ArkPlayer::GetInstancePtr());
-//        ImGui::Text("ArkPlayer: %d", ArkPlayer::GetInstance().m_bInAir);
-    }
-#endif
-    ImGui::End();
 }
 
 void PlayerManager::drawPositionTab() {
@@ -555,20 +550,20 @@ void PlayerManager::loadPosition(int saveSlot) {
 		if (positions[saveSlot] != Vec3_tpl{ 0, 0, 0 }) {
 			ArkPlayer::GetInstance().GetEntity()->SetPos(positions[saveSlot]);
 			std::string playerMessage = "Player position set to ";
-			gCL->gui->logItem(
+            OverlayLog(
 				playerMessage + "Pos "+ std::to_string(saveSlot + 1) + " at " + std::to_string(positions[saveSlot].x) + "," +
-				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
 		}
 		else {
-			gCL->gui->logItem(
+            OverlayLog(
 				std::string("Invalid Saved Position: ") + std::to_string(positions[saveSlot].x) + "," +
-				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
 		}
 	}
 }
 void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
 	positions[saveSlot] = ArkPlayer::GetInstance().GetEntity()->GetPos();
-	gCL->gui->logItem("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z), modName);
+    OverlayLog("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
 }
 
 

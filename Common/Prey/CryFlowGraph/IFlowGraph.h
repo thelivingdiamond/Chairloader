@@ -109,7 +109,7 @@ struct IFlowGraph : public NFlowSystemUtils::IFlowSystemTyped // Id=8000F53 Size
 	virtual void SetOwningModule(IFlowGraphModule *arg0) = 0;
 	virtual IFlowGraphModule *GetOwningModule() const = 0;
 	virtual void FixCreatePhantomRequestEntityIdOutput(SFlowAddress arg0, unsigned arg1) = 0;
-	virtual ~IFlowGraph();
+	virtual ~IFlowGraph() {};
 	
 #if 0
 	void ActivatePort(SFlowAddress arg0, TFlowInputData const &arg1);

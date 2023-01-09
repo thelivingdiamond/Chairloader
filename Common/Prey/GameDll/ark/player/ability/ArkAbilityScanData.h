@@ -1,22 +1,23 @@
 // Header file automatically created from a PDB.
-
 #pragma once
 
 class ArkAbilityData;
 
-// Header: Override
-// Prey/GameDll/ark/player/ability/ArkAbilityScanData.h
-class ArkAbilityScanData // Id=8016EAC Size=16
-{
+// ArkAbilityScanData
+// Header:  Prey/GameDll/ark/player/ability/ArkAbilityScanData.h
+class ArkAbilityScanData
+{ // Size=16 (0x10)
 public:
 	int m_requiredScanCount;
-	ArkAbilityData *m_pAbilityData;
-	
+	ArkAbilityData* m_pAbilityData;
+
 #if 0
+	ArkAbilityScanData();
+	ArkAbilityScanData(ArkAbilityData* _arg0_, const int _arg1_);
 	int GetRequiredScanCount() const;
-	ArkAbilityData *GetAbilityData();
-	ArkAbilityData const *GetAbilityData() const;
-	void SetAbilityData(ArkAbilityData *arg0);
+	ArkAbilityData* GetAbilityData();
+	const ArkAbilityData* GetAbilityData() const;
+	void SetAbilityData(ArkAbilityData* _arg0_);
 #endif
 };
 

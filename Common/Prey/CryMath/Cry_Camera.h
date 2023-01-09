@@ -171,7 +171,7 @@ public:
 	uint8 IsOBBVisible_EH(const Vec3& wpos, const OBB& obb, f32 uscale) const;
 
 	// constructor/destructor
-	CCamera() { m_Matrix.SetIdentity(); SetFrustum(640, 480); m_zrangeMin = 0.0f; m_zrangeMax = 1.0f;  m_pMultiCamera = NULL; m_pPortal = NULL; m_JustActivated = 0; m_nPosX = m_nPosY = m_nSizeX = m_nSizeY = 0; m_asymR = 0; m_asymL = 0; m_asymB = 0; m_asymT = 0; }
+	CCamera() { m_Matrix.SetIdentity(); SetFrustum(640, 480); m_zrangeMin = 0.0f; m_zrangeMax = 1.0f;  m_pMultiCamera = NULL; m_pPortal = NULL; m_JustActivated = 0; m_nPosX = m_nPosY = m_nSizeX = m_nSizeY = 0; m_asymR = 0; m_asymL = 0; m_asymB = 0; m_asymT = 0; m_sceneMaskFilter = 1; }
 	~CCamera() {}
 
 	void GetFrustumVertices(Vec3* pVerts) const;
@@ -198,6 +198,7 @@ public:
 
 	void UpdateFrustum();
 	//void GetMemoryUsage(ICrySizer* pSizer) const { /*nothing*/ }
+	void SetSceneMaskFilter(uint8_t filter) { m_sceneMaskFilter = filter; }
 
 private:
 	bool AdditionalCheck(const AABB& aabb) const;
@@ -589,6 +590,7 @@ inline void CCamera::SetFrustum(int nWidth, int nHeight, f32 FOV, f32 nearplane,
 	CRY_MATH_ASSERT(FOV >= 0.0000001f && FOV < gf_PI); // Check if specified FOV is valid.
 
 	m_fov = FOV;
+	m_fovBase = FOV;
 
 	m_Width = nWidth;           // Surface x-resolution.
 	m_Height = nHeight;         // Surface z-resolution.

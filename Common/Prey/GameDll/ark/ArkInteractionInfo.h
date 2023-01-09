@@ -3,7 +3,7 @@
 #pragma once
 
 // Header: Override
-// Prey/GameDll/ark/ArkInteractionInfo.h
+// `
 struct ArkInteractionInfo // Id=8014062 Size=24
 {
 	EArkInteractionType m_interactionType;

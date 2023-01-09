@@ -22,6 +22,22 @@ static WORD g_ConColors[] = {
 #undef B
 #undef I
 
+bool ShutdownHandlerRoutine(DWORD dwCtrlType) {
+    if(gEnv != nullptr) {
+        if(gEnv->pSystem != nullptr) {
+            if (dwCtrlType == CTRL_CLOSE_EVENT || dwCtrlType == CTRL_LOGOFF_EVENT || dwCtrlType == CTRL_SHUTDOWN_EVENT || dwCtrlType == CTRL_C_EVENT) {
+                if(gEnv->pGame!= nullptr){
+                    gEnv->pGame->Shutdown();
+                } else {
+                    gEnv->pSystem->Quit();
+                }
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 void WinConsole::InitConsole()
 {
 	m_Parser.pCon = this;
@@ -29,7 +45,9 @@ void WinConsole::InitConsole()
 	freopen_s(&m_pConsoleFile, "CONOUT$", "w", stdout);
 	m_hStdHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	printf("Welcome to funland sonic\n");
+    SetConsoleCtrlHandler((PHANDLER_ROUTINE)ShutdownHandlerRoutine, TRUE);
 }
+
 
 void WinConsole::InitSystem()
 {

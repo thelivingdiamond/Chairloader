@@ -4,6 +4,7 @@
 class DevConsoleDialog;
 class FileBrowser;
 class PerfOverlay;
+class LocalizationUtil;
 
 class EntityManager;
 class PlayerManager;
@@ -24,6 +25,7 @@ public:
 private:
 	// Dev tools
 	bool m_bDrawDevConsole = false;
+    EKeyId m_KeyToggleConsole = eKI_Unknown;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 	std::unique_ptr<FileBrowser> m_pFileBrowser;
 	std::unique_ptr<PerfOverlay> m_pPerfOverlay;
@@ -37,6 +39,9 @@ private:
 	// Editor
 	bool m_bEnableEditor = false;
 	std::unique_ptr<Editor> m_pEditor;
+
+    // Localization
+    std::unique_ptr<LocalizationUtil> m_pLocalizationUtil;
 
 	void ShowMainMenuBar();
 };

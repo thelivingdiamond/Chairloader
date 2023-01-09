@@ -57,7 +57,7 @@ public:
 	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
 	static CGameStartup *Create(IBasicEventListener &basicEventListener) { return FCreate(basicEventListener); }
 	virtual ~CGameStartup();
-	static int64_t WndProcHndl(HWND *hWnd, unsigned msg, uint64_t wParam, int64_t lParam) { return FWndProcHndl(hWnd,msg,wParam,lParam); }
+	static int64_t WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam) { return FWndProcHndl(hWnd,msg,wParam,lParam); }
 	IBasicEventListener::EAction ProcessMessage(HWND *hWnd, unsigned msg, uint64_t wParam, int64_t lParam) { return FProcessMessage(this,hWnd,msg,wParam,lParam); }
 	
 #if 0
@@ -81,7 +81,7 @@ public:
 	static inline auto FGetRSAKey = PreyFunction<const uint8_t *(CGameStartup const *const _this, unsigned *pKeySize)>(0x17399B0);
 	static inline auto FOnSystemEvent = PreyFunction<void(CGameStartup *const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x173A330);
 	static inline auto FCreate = PreyFunction<CGameStartup *(IBasicEventListener &basicEventListener)>(0x1739910);
-	static inline auto FWndProcHndl = PreyFunction<int64_t(HWND *hWnd, unsigned msg, uint64_t wParam, int64_t lParam)>(0x173B580);
+	static inline auto FWndProcHndl = PreyFunction<int64_t(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)>(0x173B580);
 	static inline auto FProcessMessage = PreyFunction<IBasicEventListener::EAction(CGameStartup *const _this, HWND *hWnd, unsigned msg, uint64_t wParam, int64_t lParam)>(0x173A400);
 };
 

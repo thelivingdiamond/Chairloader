@@ -1,19 +1,21 @@
 #include "OverlayLog.h"
+#include "LogManager.h"
 
-ChairloaderGUILog *GUILog = nullptr;
 
+static OverlayLogManager s_OverlayLog;
 
-ChairloaderGUILog::ChairloaderGUILog() {
-    // No construction needed
+OverlayLogManager::OverlayLogManager() {
 }
-ChairloaderGUILog::~ChairloaderGUILog() {
-    archiveLogQueue.clear();
-    displayLogQueue.clear();
+OverlayLogManager::~OverlayLogManager() {
+//    archiveLogQueue.clear();
+//    displayLogQueue.clear();
 }
+
+
 // show persistent transparent log overlay
-void ChairloaderGUILog::drawDisplay() {
+void OverlayLogManager::draw() {
     auto lastAlpha = ImGui::GetStyle().Alpha;
-    if (!displayLogQueue.empty()) {
+    if (LogManager::Get().GetOverlayMessageCount() > 0) {
         // get screen X and Y
         auto screenX = ImGui::GetIO().DisplaySize.x;
         auto maxWindowSize = ImVec2(700, 150);
@@ -31,8 +33,12 @@ void ChairloaderGUILog::drawDisplay() {
                 ImGuiWindowFlags_NoBringToFrontOnFocus |
                 ImGuiWindowFlags_NoFocusOnAppearing;
         float totalLogHeight = 0.0f;
-        for(auto & logEntry : displayLogQueue){
-            auto textSize = ImGui::CalcTextSize(logEntry.message.c_str(), nullptr, false, maxWindowSize.x + ImGui::GetStyle().WindowPadding.x * 2.0f);
+
+        for(size_t idx = 0; idx < LogManager::Get().GetOverlayMessageCount(); idx++) {
+            char message[1024];
+            uint64_t messageTime;
+            LogManager::Get().GetOverlayMessage(idx, message, sizeof(message), &messageTime);
+            auto textSize = ImGui::CalcTextSize(message, nullptr, false, maxWindowSize.x + ImGui::GetStyle().WindowPadding.x * 2.0f);
             if(textSize.y >= maxWindowSize.y){
                 textSize.y = maxWindowSize.y;
             } else {
@@ -45,18 +51,21 @@ void ChairloaderGUILog::drawDisplay() {
         }
         ImVec2 nextWindowPos = firstWindowPos;
         nextWindowPos.y += totalLogHeight;
-        for (auto itr = displayLogQueue.rbegin(); itr != displayLogQueue.rend(); ++itr) {
+        //  now go through in reverse order and draw the messages
+        for (size_t idx = LogManager::Get().GetOverlayMessageCount(); idx > 0; idx--) {
+            char message[1024];
+            uint64_t messageTime;
+            LogManager::Get().GetOverlayMessage(idx - 1, message, sizeof(message), &messageTime);
             bool entryDelete = false;
             auto currentMillis = std::chrono::duration_cast<std::chrono::milliseconds>(
                     std::chrono::system_clock::now().time_since_epoch()).count();
-            if (currentMillis >= itr->time + MessageTimeoutTime) {
-                std::advance(itr, 1);
-                displayLogQueue.erase(itr.base());
+            if (currentMillis >= messageTime + MessageTimeoutTime) {
+                LogManager::Get().RemoveOverlayMessage(idx - 1);
                 break;
             }
             else {
-                if(currentMillis - itr->time > MessageTimeoutTime - 1000){
-                    auto fadeTime = currentMillis - itr->time - (MessageTimeoutTime - 1000);
+                if(currentMillis - messageTime > MessageTimeoutTime - 1000){
+                    auto fadeTime = currentMillis - messageTime - (MessageTimeoutTime - 1000);
                     auto fadePercent = fadeTime / 1000.0f;
                     ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f - fadePercent);
                     ImGui::SetNextWindowBgAlpha(1.0f - fadePercent);
@@ -66,7 +75,7 @@ void ChairloaderGUILog::drawDisplay() {
                 }
                 ImVec2 nextWindowSize(0,0);
                 ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 3.0f);
-                auto textSize = ImGui::CalcTextSize(itr->message.c_str(), nullptr, false, maxWindowSize.x);
+                auto textSize = ImGui::CalcTextSize(message, nullptr, false, maxWindowSize.x);
                 nextWindowPos.x = firstWindowPos.x;
                 ImVec2 windowPadding = ImGui::GetStyle().WindowPadding;
                 windowPadding.x *= 2;
@@ -87,24 +96,23 @@ void ChairloaderGUILog::drawDisplay() {
                 if(nextWindowPos.y > 0.0f - maxWindowSize.y) {
                     ImGui::SetNextWindowPos(nextWindowPos);
                     ImGui::SetNextWindowSize(nextWindowSize);
-                    if (ImGui::Begin(("##" + itr->message + itr->modName + std::to_string(itr->time)).c_str(), nullptr,
-                                     windowFlags)) {
-                        switch(itr->level){
-                            default:
-                            case(logLevel::normal):
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-                                break;
-                            case(logLevel::warning):
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 0.0f, 1.0f));
-                                break;
-                            case(logLevel::error):
-                                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-                                break;
-                        }
+                    if (ImGui::Begin(("##" + std::string(message) + std::to_string(messageTime) + std::to_string(idx)).c_str(), nullptr, windowFlags)) {
+//                        switch((*itr)->type){
+//                            default:
+//                            case(EChairLogType::Message):
+//                                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+//                                break;
+//                            case(EChairLogType::Warning):
+//                                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 0.0f, 1.0f));
+//                                break;
+//                            case(EChairLogType::Error):
+//                                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+//                                break;
+//                        }
                         ImGui::PushTextWrapPos(0.0f);
-                        ImGui::Text("%s", itr->message.c_str());
+                        m_Parser.ProcessLine(message);
                         ImGui::PopTextWrapPos();
-                        ImGui::PopStyleColor();
+//                        ImGui::PopStyleColor();
                         if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
                             entryDelete = true;
                         }
@@ -113,8 +121,7 @@ void ChairloaderGUILog::drawDisplay() {
                 }
                 ImGui::PopStyleVar(2);
                 if(entryDelete){
-                    std::advance(itr, 1);
-                    displayLogQueue.erase(itr.base());
+                    LogManager::Get().RemoveOverlayMessage(idx - 1);
                     break;
                 }
             }
@@ -122,8 +129,12 @@ void ChairloaderGUILog::drawDisplay() {
 //        ImGui::PopClipRect();
     }
 }
+
+void OverlayLogManager::setMessageTimeoutInterval(float milliseconds) {
+    MessageTimeoutTime = milliseconds;
+}
 // Draw the log history window to display all previous log messages
-void ChairloaderGUILog::drawHistory(bool* bShow) {
+/*void OverlayLogManager::drawHistory(bool* bShow) {
     if (ImGui::Begin("Log History", bShow, ImGuiWindowFlags_NoNavInputs)) {
         if (ImGui::BeginTable("Log Table", 2, ImGuiTableFlags_SizingFixedFit)) {
             ImGui::TableSetupColumn("Time");
@@ -158,17 +169,126 @@ void ChairloaderGUILog::drawHistory(bool* bShow) {
     }
 }
 // Log Item with std::string, modName, Level, and screenWriting
-void ChairloaderGUILog::logItem(std::string msg, const std::string modNameIn, logLevel level, bool displayToScreen) {
+void OverlayLogManager::logItem(std::string msg, const std::string modNameIn, logLevel level, bool displayToScreen) {
     logMessage message(msg, modNameIn, level);
     archiveLogQueue.emplace_back(message);
     if (displayToScreen)
         displayLogQueue.emplace_back(message);
 }
 // Log Item with a premade logMessage
-void ChairloaderGUILog::logItem(logMessage message, bool displayToScreen) {
+void OverlayLogManager::logItem(logMessage message, bool displayToScreen) {
     if (!message.empty()) {
         archiveLogQueue.emplace_back(message);
         if (displayToScreen)
             displayLogQueue.emplace_back(message);
     }
+}*/
+
+
+
+/*
+size_t OverlayLogManager::GetMessageCount() {
+    return m_Messages.size();
+}
+
+void OverlayLogManager::GetMessage(size_t idx, char *buf, size_t bufSize) {
+    cry_strcpy(buf, bufSize, m_Messages[idx].text.data(), m_Messages[idx].text.size());
+}
+
+OverlayLogManager &OverlayLogManager::Get() {
+    return s_OverlayLog;
+}
+
+void OverlayLogManager::InitSystem() {
+    if (m_MainThreadId != gEnv->mMainThreadId)
+        CryFatalError("LogManager wasn't constructed on the main thread");
+}
+
+void OverlayLogManager::Update() {
+    std::vector<Message> msgs = GetQueuedMessages();
+    for (Message& msg : msgs)
+    {
+        Message& newMsg = GetNewMessage();
+        newMsg = std::move(msg);
+        // add to display queue
+        m_MessagesDisplayQueue.emplace_back(&newMsg);
+    }
+}
+
+void OverlayLogManager::AddMessage(const char *text, size_t size, EChairLogType type) {
+    if (m_MainThreadId == CryGetCurrentThreadId())
+    {
+        // Add to the buffer
+        Message& msg = GetNewMessage();
+        msg.text = std::string(text, size);
+        msg.type = type;
+        msg.time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        m_MessagesDisplayQueue.emplace_back(&msg);
+    }
+    else
+    {
+        // Push to the queue
+        Message msg;
+        msg.text = std::string(text, size);
+        msg.type = type;
+        msg.time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        std::scoped_lock lock(m_ThreadQueueMutex);
+        m_ThreadQueue.emplace_back(std::move(msg));
+    }
+}
+
+OverlayLogManager::Message &OverlayLogManager::GetNewMessage() {
+    if (m_Messages.size() < MAX_MSG_COUNT)
+    {
+        // Add new message
+        m_MessagesEnd = (m_MessagesEnd + 1) % MAX_MSG_COUNT;
+        return m_Messages.emplace_back();
+    }
+    else
+    {
+        size_t idx = m_MessagesEnd;
+        m_MessagesEnd = (m_MessagesEnd + 1) % MAX_MSG_COUNT;
+        return m_Messages[idx];
+    }
+}
+
+std::vector<OverlayLogManager::Message> OverlayLogManager::GetQueuedMessages()
+{
+    std::vector<OverlayLogManager::Message> result;
+    std::scoped_lock lock(m_ThreadQueueMutex);
+    m_ThreadQueue.swap(result);
+    return result;
+}
+*/
+
+ImVec4 g_ConColors[] = {
+        ImColor(0, 0, 0, 0),		// 0 Default
+        ImColor(255, 255, 255, 255),// 1 White
+        ImColor(64, 64, 255, 255),	// 2 Blue
+        ImColor(64, 255, 64, 255),	// 3 Green
+        ImColor(255, 64, 64, 255),	// 4 Red
+        ImColor(0, 255, 255, 255),	// 5 Cyan
+        ImColor(255, 255, 0, 255),	// 6 Yellow
+        ImColor(255, 0, 255, 255),	// 7 Magenta
+        ImColor(192, 64, 0, 255),	// 8 Brown
+        ImColor(64, 64, 64, 255),	// 9 Grey
+};
+
+
+void OverlayLogManager::OverlayParser::PrintText(const char *text, size_t size, int colorIdx) {
+    ImVec4 color = g_ConColors[colorIdx];
+    if (color.w != 0) {
+        ImGui::PushStyleColor(ImGuiCol_Text, color);
+    }
+
+    ImGui::TextUnformatted(text, text + size);
+    ImGui::SameLine(0, 0);
+
+    if (color.w != 0) {
+        ImGui::PopStyleColor();
+    }
+}
+
+void OverlayLogManager::OverlayParser::NewLine() {
+    ImGui::NewLine();
 }

@@ -194,6 +194,11 @@ struct ICryPak // Id=800062E Size=8
     enum EPathResolutionRules
     {
         FLAGS_DISABLE_LOCALIZATION = 32768,
+
+        //! If used, the source path will be treated as the destination path and no transformations will be done.
+        //! Pass this flag when the path is to be the actual path on the disk/in the packs and doesn't need adjustment
+        //! (or after it has come through adjustments already). If this is set, AdjustFileName will not map the input
+        //! path into the master folder (Ex: Shaders will not be converted to Game\Shaders).
         FLAGS_PATH_REAL = 65536,
         FLAGS_COPY_DEST_ALWAYS = 131072,
         FLAGS_ADD_TRAILING_SLASH = 262144,

@@ -16,7 +16,7 @@
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicTurretController.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicTurretEntity.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicMedicalOperatorController.h>
-#include <Prey/GameDll/ark/IArkGravShaftListener.h>
+#include <Prey/GameDll/ark/iface/IArkGravShaftListener.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPlayerMimic.h>
 
 class ArkInputLegend;

@@ -35,10 +35,10 @@ struct IChairloaderGui
     virtual bool IsEnabled() = 0;
     virtual void SetEnabled(bool state) = 0;
 
-    virtual void overlayLog(std::string modName, const char* format, ...) = 0;
-    virtual void overlaywarning(std::string modName, const char* format, ...) = 0;
-    virtual void overlayError(std::string modName, const char* format, ...) = 0;
+//    virtual void overlayLog(std::string modName, const char* format, ...) = 0;
+//    virtual void overlaywarning(std::string modName, const char* format, ...) = 0;
+//    virtual void overlayError(std::string modName, const char* format, ...) = 0;
 
-	virtual void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) = 0;
-	virtual void logItem(logMessage message, bool displayToScreen = true) = 0;
+//	virtual void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) = 0;
+//	virtual void logItem(logMessage message, bool displayToScreen = true) = 0;
 };
