@@ -1649,14 +1649,14 @@ void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
             } else {
                 throw("Error, no class found");
             }
-            OverlayLog("spawned an entity: %s", inputName);
+            OverlayLog("spawned an entity: {}", inputName);
         }
         else {
             throw("Error, no archetype found");
         }
     }
     catch (std::string& c) {
-        OverlayLog("%s", c.c_str());
+        OverlayLog("{}", c.c_str());
     }
 }
 
