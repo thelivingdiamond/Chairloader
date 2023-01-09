@@ -134,6 +134,12 @@ bool ModDllManager::CheckModulesForChanges()
 	{
 		if (!mod.bSourceFileModified && mod.dllInfo.supportsHotReload)
 		{
+			if (!fs::exists(mod.sourceDllPath))
+			{
+				CryError("[ModDllManager] Mod {} DLL no longer exists", mod.modName);
+				return false;
+			}
+
 			fs::file_time_type modTime = fs::last_write_time(mod.sourceDllPath);
 			if (modTime != mod.sourceModificationTime)
 			{
