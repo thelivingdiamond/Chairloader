@@ -9,6 +9,7 @@
 #include "ChairLogger.h"
 #include "LogManager.h"
 #include "ModDllManager.h"
+#include "ChairVarManager.h"
 
 constexpr char CONFIG_NAME[] = "Chairloader";
 static PreyGlobal<bool> s_freeCamActive(0x2C09352);
@@ -42,6 +43,8 @@ void ChairloaderCore::InitSystem()
 
 	LogManager::Get().InitSystem();
 	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
+    m_pCVarManager = std::make_unique<ChairVarManager>();
+    m_pCVarManager->InitSystem();
 	gCL->conf = m_pConfigManager.get();
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
@@ -100,6 +103,7 @@ void ChairloaderCore::InitGame()
 
 void ChairloaderCore::ShutdownGame()
 {
+    m_pCVarManager->ShutdownGame();
 	m_pGui = nullptr;
 	ChairImGui::Get().ShutdownGame();
 }
@@ -198,4 +202,8 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     // Failed to get from config, restore default
 	gCL->conf->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
     return defaultKey;
+}
+
+IChairVarManager *ChairloaderCore::GetCVarManager() {
+    return m_pCVarManager.get();
 }

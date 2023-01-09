@@ -86,6 +86,7 @@ public:
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;
+	void RegisterCVar(ICVar* pCVar, std::string& modName) override;
 	IPreditorToChair* GetPreditorAPI() override;
 
 	// IChairToPreditor

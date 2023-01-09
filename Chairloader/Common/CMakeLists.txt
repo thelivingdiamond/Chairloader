@@ -7,6 +7,7 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderModule.h
 	Chairloader/IChairloaderTools.h
 	Chairloader/IChairToPreditor.h
+	Chairloader/IChairVarManager.h
 	Chairloader/ILogManager.h
 	Chairloader/IModDllManager.h
 	Chairloader/IPreditorToChair.h
