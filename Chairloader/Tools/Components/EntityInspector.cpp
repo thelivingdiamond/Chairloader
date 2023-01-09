@@ -217,6 +217,8 @@ void EntityInspector::InspectEntityScript(IEntity* pEnt) {
 
 void EntityInspector::ShowScriptTable(IScriptTable* pScriptTable)
 {
+    ImGui::Text("Script Table: %p", pScriptTable);
+    ImGui::Separator();
     IScriptTable::Iterator iter = pScriptTable->BeginIteration(true);
 
     int propIdx = 0;
@@ -323,6 +325,7 @@ void EntityInspector::ShowScriptTable(IScriptTable* pScriptTable)
     }
 
     pScriptTable->EndIteration(iter);
+    ImGui::Separator();
 }
 
 void EntityInspector::InspectPhysics(IEntity* pEnt) {
@@ -334,6 +337,22 @@ void EntityInspector::InspectPhysics(IEntity* pEnt) {
     if (BeginInspector("Physics")) {
         ImGui::Text("Enabled: %d", pProxy->IsPhysicsEnabled());
         ImGui::InputFloat3("Force", &m_force.x, "%.1f");
+        auto physicalEntity = pProxy->GetPhysicalEntity();
+        //PE_NONE = 0,
+        //        PE_STATIC = 1,
+        //        PE_RIGID = 2,
+        //        PE_WHEELEDVEHICLE = 3,
+        //        PE_LIVING = 4,
+        //        PE_PARTICLE = 5,
+        //        PE_ARTICULATED = 6,
+        //        PE_ROPE = 7,
+        //        PE_SOFT = 8,
+        //        PE_AREA = 9
+        const static std::vector<std::string> typeNames{ "PE_NONE", "PE_STATIC", "PE_RIGID", "PE_WHEELEDVEHICLE", "PE_LIVING", "PE_PARTICLE", "PE_ARTICULATED", "PE_ROPE", "PE_SOFT", "PE_AREA" };
+        if(physicalEntity) {
+            auto type = physicalEntity->GetType();
+            ImGui::Text("Type: %s", typeNames[type].c_str());
+        }
         if (ImGui::Button("Apply Force")) {
             pProxy->AddImpulse(-1, pEnt->GetPos(), m_force, false, 1.0);
         }
