@@ -20,7 +20,23 @@
 #include <GUIUtils.h>
 #include "PlayerManager.h"
 
-// PUBLIC:
+PlayerManager::PlayerManager() {
+    InitGame();
+}
+
+void PlayerManager::InitGame() {
+    //      int enablePosHotKeys = false;
+    //      std::array<ImGuiKey, 5> m_HotKey = { ImGuiKey_1, ImGuiKey_2, ImGuiKey_3, ImGuiKey_4, ImGuiKey_5 };
+    //      int m_StoreModifiers = 0, m_LoadModifiers = 0;
+    REGISTER_CVAR2("ch_player_enablePosHotKeys", &enablePosHotKeys, enablePosHotKeys, VF_DUMPTOCHAIR, "Enable Player Position Hotkeys");
+    REGISTER_CVAR2("ch_player_restoreRotation", &m_bRestoreRotation, m_bRestoreRotation, VF_DUMPTOCHAIR, "Restore Player Rotation");
+    REGISTER_CVAR2("ch_player_hotKey1", &m_HotKey[0], m_HotKey[0], VF_DUMPTOCHAIR, "Player Position Hotkey 1");
+    REGISTER_CVAR2("ch_player_hotKey2", &m_HotKey[1], m_HotKey[1], VF_DUMPTOCHAIR, "Player Position Hotkey 2");
+    REGISTER_CVAR2("ch_player_hotKey3", &m_HotKey[2], m_HotKey[2], VF_DUMPTOCHAIR, "Player Position Hotkey 3");
+    REGISTER_CVAR2("ch_player_hotKey4", &m_HotKey[3], m_HotKey[3], VF_DUMPTOCHAIR, "Player Position Hotkey 4");
+    REGISTER_CVAR2("ch_player_hotKey5", &m_HotKey[4], m_HotKey[4], VF_DUMPTOCHAIR, "Player Position Hotkey 5");
+}
+
 void PlayerManager::draw() {
 
     drawMenuBar();
@@ -47,7 +63,20 @@ void PlayerManager::draw() {
 
 void PlayerManager::drawPositionTab() {
 	if (ImGui::BeginTabItem("Position")) {
-		ImGui::Checkbox("Enable Position Hotkeys", &enablePosHotKeys);
+		ImGui::Checkbox("Enable Position Hotkeys", (bool*)&enablePosHotKeys);
+        ImGui::Checkbox("Restore Rotation", (bool*)&m_bRestoreRotation);
+        if(ImGui::Button("Hotkeys Info")) {
+            ImGui::OpenPopup("Hotkeys");
+        }
+        ImGui::Text("Shift: %i", ImGui::GetIO().KeyShift);
+        ImGui::Text("Ctrl: %i", ImGui::GetIO().KeyCtrl);
+        ImGui::Text("Alt: %i", ImGui::GetIO().KeyAlt);
+        if(ImGui::BeginPopupContextWindow("Hotkeys")){
+            ImGui::Text("Hotkeys are bound to the numpad keys 1-5");
+            ImGui::Text("Press the corresponding key to load the position");
+            ImGui::Text("Hold ctrl to store a position");
+            ImGui::EndPopup();
+        }
 		ImGui::Text("Load Positions:");
 		for (int i = 0; i < 5; i++) {
 			if (ImGui::Button(("Load Pos " + std::to_string(i+1)).c_str())) {
@@ -67,7 +96,7 @@ void PlayerManager::drawPositionTab() {
 		for (int i = 0; i < 5; i++) {
 			if (ImGui::Button(("Save Pos " + std::to_string(i+1)).c_str())) {
 				// index = i;
-				savePosition(i, ArkPlayer::GetInstance().GetEntity()->GetPos());
+                savePosition(i, ArkPlayer::GetInstance().GetEntity()->GetPos(), ArkPlayer::GetInstance().GetEntity()->GetRotation());
 			}
 			ImGui::SameLine();
 		}
@@ -549,21 +578,19 @@ void PlayerManager::loadPosition(int saveSlot) {
 	if (ArkPlayer::GetInstancePtr() != nullptr) {
 		if (positions[saveSlot] != Vec3_tpl{ 0, 0, 0 }) {
 			ArkPlayer::GetInstance().GetEntity()->SetPos(positions[saveSlot]);
-			std::string playerMessage = "Player position set to ";
-            OverlayLog(
-				playerMessage + "Pos "+ std::to_string(saveSlot + 1) + " at " + std::to_string(positions[saveSlot].x) + "," +
-				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
+            if(m_bRestoreRotation)
+                ArkPlayer::GetInstance().GetEntity()->SetRotation(m_rotations[saveSlot]);
+//            OverlayLog("Player position set to Pos {:.1f},{:.1f},{:.1f}", positions[saveSlot].x, positions[saveSlot].y, positions[saveSlot].z);
 		}
 		else {
-            OverlayLog(
-				std::string("Invalid Saved Position: ") + std::to_string(positions[saveSlot].x) + "," +
-				std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
+            OverlayLog("Invalid Saved Position: {:.1f},{:.1f},{:.1f}", positions[saveSlot].x, positions[saveSlot].y, positions[saveSlot].z);
 		}
 	}
 }
-void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos) {
-	positions[saveSlot] = ArkPlayer::GetInstance().GetEntity()->GetPos();
-    OverlayLog("Pos " + std::to_string(saveSlot + 1) + " set to " + std::to_string(positions[saveSlot].x) + "," + std::to_string(positions[saveSlot].y) + "," + std::to_string(positions[saveSlot].z));
+void PlayerManager::savePosition(int saveSlot, Vec3_tpl<float> pos, Quat rot) {
+	positions[saveSlot] = pos;
+    m_rotations[saveSlot] = rot;
+    OverlayLog("Pos {} set to {:.1f},{:.1f},{:.1f}", saveSlot + 1, pos.x, pos.y, pos.z);
 }
 
 
@@ -580,7 +607,6 @@ void PlayerManager::drawMenuBar() {
 				ImGui::MenuItem("God Mode", NULL, &godMode);
 				ImGui::MenuItem("Show Player Manager", NULL, &showPlayerManager);
 				ImGui::EndMenu();
-				// }
 			}
 			ImGui::EndMenu();
 		}
@@ -589,25 +615,31 @@ void PlayerManager::drawMenuBar() {
 }
 
 void PlayerManager::update() {
-//	if (!gEnv->pSystem->IsPaused()) {
-//		abilityRequestHandler(log);
-//	}
-//	checkAbilities(log);
 	static ICVar* g_godMode = gEnv->pConsole->GetCVar("g_godMode");
 	g_godMode->Set(godMode);
-
-//	if (enablePosHotKeys) {
-//		for (int i = 1; i <= 5; i++) {
-//			if (GetAsyncKeyState(0x30 + i) & 1) {
-//				if (GetAsyncKeyState(VK_SHIFT)) {
-//					loadPosition(i - 1);
-//				} else if(GetAsyncKeyState(VK_CONTROL)) {
-//					savePosition(i - 1, ArkPlayer::GetInstance().GetEntity()->GetPos());
-//				}
-//			}
-//		}
-//	}
+    if(enablePosHotKeys)
+        checkHotKeys();
 }
+
+void PlayerManager::checkHotKeys() {
+    if(ArkPlayer::GetInstancePtr() != nullptr) {
+
+        // load hotkeys
+        int i = 0;
+        for (auto &hotkey: m_HotKey) {
+            if (ImGui::IsKeyPressed(hotkey) && ImGui::GetIO().KeyCtrl) {
+                savePosition(i, ArkPlayer::GetInstance().GetEntity()->GetPos(), ArkPlayer::GetInstance().GetEntity()->GetRotation());
+            } else if (ImGui::IsKeyPressed(hotkey)) {
+                loadPosition(i);
+            }
+            i++;
+        }
+    }
+}
+
+
+
+
 
 
 //PRIVATE:

@@ -19,12 +19,13 @@ public:
 		return lhs.name < rhs.name;
 	}
 
-	PlayerManager() {}
+	PlayerManager();
 
     void draw();
 	void drawMenuBar();
 
 	void update();
+    void InitGame();
 private:
 	void drawPositionTab();
 	void drawHealthTab();
@@ -32,10 +33,15 @@ private:
 	void drawInventoryTab();
 
 	void loadPosition(int saveSlot);
-	void savePosition(int saveSlot, Vec3_tpl<float> pos);
+	void savePosition(int saveSlot, Vec3_tpl<float> pos, Quat rot = Quat(ZERO));
 
-	bool enablePosHotKeys = false;
-	std::vector<Vec3_tpl<float>> positions = { {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0} };
+    void checkHotKeys();
+
+	int enablePosHotKeys = false;
+    int m_bRestoreRotation = false;
+    std::array<ImGuiKey, 5> m_HotKey = { ImGuiKey_Keypad1, ImGuiKey_Keypad2, ImGuiKey_Keypad3, ImGuiKey_Keypad4, ImGuiKey_Keypad5 };
+	std::array<Vec3, 5> positions = { Vec3(ZERO), Vec3(ZERO), Vec3(ZERO), Vec3(ZERO), Vec3(ZERO) };
+    std::array<Quat, 5> m_rotations = { Quat(ZERO), Quat(ZERO), Quat(ZERO), Quat(ZERO), Quat(ZERO) };
 
 
 	bool godMode = false;
