@@ -77,6 +77,7 @@ void EntityInspector::InspectTransform(IEntity* pEnt) {
     if (BeginInspector("Transform")) {
         Vec3 pos = pEnt->GetPos();
         Ang3 angles = RAD2DEG(Ang3(pEnt->GetRotation()));
+        Quat rot = pEnt->GetRotation();
         Vec3 scale = pEnt->GetScale();
 
         ImGui::InputFloat3("Position", &pos.x, "%.2f");
@@ -86,6 +87,10 @@ void EntityInspector::InspectTransform(IEntity* pEnt) {
         ImGui::InputFloat3("Rotation (PRY)", &angles.x, "%.2f");
         if (ImGui::IsItemDeactivatedAfterEdit()) {
             pEnt->SetRotation(Quat(DEG2RAD(angles)));
+        }
+        ImGui::InputFloat4("Rotation (Quat)", &rot.v.x, "%.5f");
+        if (ImGui::IsItemDeactivatedAfterEdit()) {
+            pEnt->SetRotation(rot);
         }
         ImGui::InputFloat3("Scale", &scale.x, "%.2f");
         if (ImGui::IsItemDeactivatedAfterEdit()) {
