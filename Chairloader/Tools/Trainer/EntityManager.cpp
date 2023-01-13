@@ -16,6 +16,7 @@ static ClassLibrary gClassLibrary;
 
 EntityManager::EntityManager() {
     oldArchetypeFilterText = " ";
+    InitGame();
 }
 
 EntityManager::~EntityManager() {
@@ -1672,4 +1673,8 @@ void EntityManager::Draw() {
     drawMenuBar();
     drawEntityList(&showEntityList);
     drawEntitySpawner(&showEntitySpawner);
+}
+
+void EntityManager::InitGame() {
+
 }
