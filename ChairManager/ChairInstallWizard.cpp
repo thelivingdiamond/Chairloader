@@ -295,14 +295,14 @@ void ChairInstallWizard::InstallAsyncTask() const
 		m_InstallLog.push_back(std::move(msg));
 	};
 
-	fs::path srcBinPath = fs::current_path() / PathUtils::CHAIRLOADER_BIN_SRC_PATH;
-	fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR;
+	fs::path srcBinPath = fs::current_path() / PathUtils::CHAIRLOADER_BIN_SRC_PATH();
+	fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR();
 
 	printlog("Verifying files...");
 	{
 		bool allFilesExist = true;
 
-		for (const char* name : PathUtils::REQUIRED_CHAIRLOADER_BINARIES)
+		for (const char* name : PathUtils::REQUIRED_CHAIRLOADER_BINARIES())
 		{
 			if (!fs::exists(srcBinPath / name))
 			{

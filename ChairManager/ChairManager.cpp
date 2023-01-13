@@ -2127,9 +2127,9 @@ void ChairManager::createChairloaderConfigFile() {
 
 bool ChairManager::verifyChairloaderInstalled() {
     try{
-        for (const char* fileName : PathUtils::REQUIRED_CHAIRLOADER_BINARIES)
+        for (const char* fileName : PathUtils::REQUIRED_CHAIRLOADER_BINARIES())
         {
-            if (!fs::exists(PreyPath / PathUtils::GAME_BIN_DIR / fileName))
+            if (!fs::exists(PreyPath / PathUtils::GAME_BIN_DIR() / fileName))
                 return false;
         }
 
@@ -2142,7 +2142,7 @@ bool ChairManager::verifyChairloaderInstalled() {
 
 bool ChairManager::verifyDefaultFileStructure() {
     try {
-        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
+        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS())
         {
             if (!fs::is_directory(PreyPath / dirName))
                 return false;
@@ -2157,7 +2157,7 @@ bool ChairManager::verifyDefaultFileStructure() {
 
 void ChairManager::createDefaultFileStructure() {
     try {
-        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
+        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS())
         {
             fs::create_directories(PreyPath / dirName);
         }
@@ -2307,6 +2307,26 @@ void ChairManager::DrawDebug() {
             if(ImGui::Button("Set ETAG")){
                 setETag(newETag);
             }
+        }
+        if(ImGui::CollapsingHeader("Multi Platform Support")){
+            static int i = 0;
+            if(ImGui::RadioButton("Steam", &i, 0)){
+                PathUtils::SetGamePlatform(PathUtils::GamePlatform::steam);
+            }
+            if(ImGui::RadioButton("GOG", &i, 1)){
+                PathUtils::SetGamePlatform(PathUtils::GamePlatform::gog);
+            }
+            if(ImGui::RadioButton("Epic", &i, 2)){
+                PathUtils::SetGamePlatform(PathUtils::GamePlatform::epic);
+            }
+            if(ImGui::RadioButton("Microsoft Store", &i, 3)){
+                PathUtils::SetGamePlatform(PathUtils::GamePlatform::microsoft);
+            }
+            ImGui::Text("GAME BIN: %s", PathUtils::GAME_BIN_DIR());
+            ImGui::Text("GAME EXE: %s", PathUtils::GAME_EXE_PATH());
+            ImGui::Text("GAME DLL: %s", PathUtils::GAME_DLL_PATH());
+            ImGui::Text("GAME PDB: %s", PathUtils::GAME_DLL_PDB_PATH());
+            ImGui::Text("GAME BACKUP: %s", PathUtils::GAME_DLL_BACKUP_PATH());
         }
         ImGui::EndTabItem();
     }
@@ -2486,7 +2506,7 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 
 void ChairManager::launchGame() {
     log(severityLevel::info, "Launching game");
-    fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH;
+    fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH();
     m_chairloaderLaunchOptions = fs::path(m_customArgs + " ").wstring();
     // bool m_bLoadChairloader -nochair
     //        m_bLoadEditor -editor

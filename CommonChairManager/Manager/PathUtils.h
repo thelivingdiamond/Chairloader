@@ -2,39 +2,36 @@
 
 namespace PathUtils
 {
+    enum GamePlatform{
+        steam,
+        gog,
+        epic,
+        microsoft,
+        unknown
+    };
 
 //! Paths to game binaries
 //! @{
-constexpr char GAME_BIN_DIR[] = "Binaries/Danielle/x64/Release";
-constexpr char GAME_EXE_PATH[] = "Binaries/Danielle/x64/Release/Prey.exe";
-constexpr char GAME_DLL_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.dll";
-constexpr char GAME_DLL_PDB_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.pdb";
-constexpr char GAME_DLL_BACKUP_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.dll.chairloader_backup";
+const char* GAME_BIN_DIR();
+const char* GAME_EXE_PATH();
+const char* GAME_DLL_PATH();
+const char* GAME_DLL_PDB_PATH();
+const char* GAME_DLL_BACKUP_PATH();
 //! @}
 
 //! Path to Chairloader files for installation (relative to ModLoader)
-constexpr char CHAIRLOADER_BIN_SRC_PATH[] = "Release";
+const char* CHAIRLOADER_BIN_SRC_PATH();
 
-constexpr const char* REQUIRED_GAME_FILES[] = {
-    GAME_EXE_PATH,
-    "Engine",
-    "GameSDK",
-};
+std::vector<const char*> REQUIRED_GAME_FILES();
 
 //! Chairloader files in GAME_EXE_PATH that are required for Chairloader
-constexpr const char* REQUIRED_CHAIRLOADER_BINARIES[] = {
-    "Chairloader.dll",
-    "mswsock.dll",
-};
+std::vector<const char*> REQUIRED_CHAIRLOADER_BINARIES();
 
 //! Required directories in the game dir for Chairloader to work
-constexpr const char* REQUIRED_CHAIRLOADER_DIRS[] = {
-    "Mods/config",
-    "Mods/Legacy",
-};
+std::vector<const char*> REQUIRED_CHAIRLOADER_DIRS();
 
 //! Path to the Chairloader patch file
-constexpr char CHAIRLOADER_PATCH_PATH[] = "GameSDK/Precache/patch_chairloader.pak";
+const char * CHAIRLOADER_PATCH_PATH();
 
 
 //! Checks if supplied path is a valid Prey path.
@@ -52,5 +49,11 @@ bool ValidateExePath(const fs::path& path, std::string* error = nullptr);
 
 //! Extracts game path from exe path. Call ValidateExePath first.
 fs::path ExePathToGamePath(const fs::path& exePath);
+
+
+void SetGamePlatform(GamePlatform platform);
+
+
+GamePlatform GetGamePlatform();
 
 }
