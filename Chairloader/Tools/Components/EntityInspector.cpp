@@ -75,32 +75,59 @@ void EntityInspector::OnEntityChanged(EntityId entityId)
 
 void EntityInspector::InspectTransform(IEntity* pEnt) {
     if (BeginInspector("Transform")) {
+        static bool m_bHighPrecision;
         Vec3 pos = pEnt->GetPos();
         Ang3 angles = RAD2DEG(Ang3(pEnt->GetRotation()));
         Quat rot = pEnt->GetRotation();
         Vec3 scale = pEnt->GetScale();
 
-        ImGui::InputFloat3("Position", &pos.x, "%.2f");
+        ImGui::Checkbox("High precision", &m_bHighPrecision);
+        const char* format = m_bHighPrecision ? "%.8f" : "%.2f";
+        ImGui::InputFloat3("Position", &pos.x, format);
         if(ImGui::IsItemDeactivatedAfterEdit()){
             pEnt->SetPos(pos);
         }
-        ImGui::InputFloat3("Rotation (PRY)", &angles.x, "%.2f");
+        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", pos.x, pos.y, pos.z).c_str());
+        }
+        ImGui::InputFloat3("Rotation (PRY)", &angles.x, format);
         if (ImGui::IsItemDeactivatedAfterEdit()) {
             pEnt->SetRotation(Quat(DEG2RAD(angles)));
         }
-        ImGui::InputFloat4("Rotation (Quat)", &rot.v.x, "%.5f");
+        if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
+            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
+        }
+        ImGui::InputFloat4("Rotation (Quat)", &rot.v.x, format);
         if (ImGui::IsItemDeactivatedAfterEdit()) {
             pEnt->SetRotation(rot);
         }
-        ImGui::InputFloat3("Scale", &scale.x, "%.2f");
+        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+            ImGui::OpenPopup("Copy Rotation");
+//            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
+        }
+        if(ImGui::BeginPopup("Copy Rotation")){
+            if(ImGui::MenuItem("Copy as Quat (XYZW)")){
+                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
+            }
+            if(ImGui::MenuItem("Copy as Quat (WXYZ)")){
+                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.v.x, rot.v.y, rot.v.z, rot.w).c_str());
+            }
+            if(ImGui::MenuItem("Copy as P,R,Y")){
+                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
+            }
+            ImGui::EndPopup();
+        }
+        ImGui::InputFloat3("Scale", &scale.x, format);
         if (ImGui::IsItemDeactivatedAfterEdit()) {
             pEnt->SetScale(scale);
+        }
+        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", scale.x, scale.y, scale.z).c_str());
         }
 
         if (scale.x != scale.y || scale.x != scale.z) {
             ImGui::TextWrapped("Note: non-uniform scaling is not supported well");
         }
-
         if (ImGui::Button("TP to player") && ArkPlayer::GetInstancePtr())
             pEnt->SetPos(ArkPlayer::GetInstance().GetEntity()->GetPos());
         if(ImGui::Button("TP player to entity") && ArkPlayer::GetInstancePtr())

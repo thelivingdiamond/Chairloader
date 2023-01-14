@@ -11,6 +11,7 @@ public:
     EntityManager();
     ~EntityManager();
     void Draw() ;
+    void InitGame();
     std::string GetModuleName() { return moduleName; };
 private:
     void drawEntitySpawner(bool* bShow);
@@ -31,6 +32,7 @@ private:
 
     std::vector<uint64_t> archetypeFilteredList;
     std::vector<unsigned int> entityDisplayList;
+
 
     // std::unordered_map< uint64_t, IEntityArchetype*>* archetypeList = &((IEntityArchetype*)gEnv->pEntitySystem)->m_pEntityArchetypeManager->m_idToArchetypeMap;
     // std::queue<entityModifyRequest> modifyQueue;
