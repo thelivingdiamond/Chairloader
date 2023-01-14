@@ -17,9 +17,9 @@ set(SOURCE_FILES
         #Miscellaneous
         zipconf.h
         ./Data/Montserrat-Regular.ttf
-        appicon.rc
-        version.rc.in
-        version.rc
+        Resources/appicon.rc
+        Resources/version.rc.in
+        Resources/version.rc
         ChairWizards/ChairUninstallWizard.cpp
         ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
@@ -27,12 +27,12 @@ set(SOURCE_FILES
 
 
 
-set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
+set(APP_ICON_RESOURCE_WINDOWS "Resources/appicon.rc")
 
 message(STATUS "Version: ${_CHAIRLOADER_VERSION_STR}")
 configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
-        ${CMAKE_CURRENT_SOURCE_DIR}/version.rc
+        Resources/version.rc.in
+        Resources/version.rc
         @ONLY)
 
 add_executable(ChairManager WIN32 ${SOURCE_FILES})

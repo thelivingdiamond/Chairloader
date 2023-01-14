@@ -415,7 +415,7 @@ ChairManager/Data/LevelOutput/
 ChairManager/Data/Output/
 ChairManager/Data/ChairManagerConfig.xml
 ChairManager/Data/patch_chairloader.pak
-ChairManager/version.rc
+ChairManager/Resources/version.rc
 ChairLoader/version.rc
 ChairManager/Data/update.zip
 ChairManager/Data/English_xml_patch.pak
