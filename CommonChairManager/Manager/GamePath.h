@@ -19,15 +19,15 @@ public:
 //! Paths to game binaries
 //! @{
     const char* GetGameBinDir();
-    const char* GetGameBinDir(GamePlatform platform);
+    static const char* GetGameBinDir(GamePlatform platform);
     const char* GetGameExePath();
-    const char* GetGameExePath(GamePlatform platform);
+    static const char* GetGameExePath(GamePlatform platform);
     const char* GetGameDllPath();
-    const char* GetGameDllPath(GamePlatform platform);
+    static const char* GetGameDllPath(GamePlatform platform);
     const char* GetGameDllPDBPath();
-    const char* GetGameDllPDBPath(GamePlatform platform);
+    static const char* GetGameDllPDBPath(GamePlatform platform);
     const char* GetGameDllBackupPath();
-    const char* GetGameDllBackupPath(GamePlatform platform);
+    static const char* GetGameDllBackupPath(GamePlatform platform);
 
 //! @}
 
@@ -54,7 +54,7 @@ public:
     GamePlatform GetGamePlatform();
     const char* GetGamePlatformString();
 
-    const char* GetGamePlatformString(GamePlatform platform);
+    static const char* GetGamePlatformString(GamePlatform platform);
 
 //! Checks if supplied path is a valid Prey path.
 //! In particular, checks if all files in GetRequiredGameFiles exist.
@@ -74,19 +74,18 @@ public:
     fs::path ExePathToGamePath(const fs::path& exePath);
 
 
-    GamePlatform DeduceGamePlatform(const fs::path& path);
+    static GamePlatform DeduceGamePlatform(const fs::path& path);
+
+//! Get the path to the game directory
+    const fs::path& GetGamePath(){
+        return m_Path;
+    }
 
 protected:
     friend class ChairManager;
-//! Set the path to the game's executable
-//! \param path The path to the game's executable
+//! Set the path to the game directory
     void SetGamePath(const fs::path& path) {
         m_Path = path;
-    }
-//! Get the path to the game directory
-//! \return the path to the game directory
-    const fs::path& GetGamePath(){
-        return m_Path;
     }
 
 private:
