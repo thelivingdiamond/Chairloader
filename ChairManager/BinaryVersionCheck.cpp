@@ -91,7 +91,7 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
     easyhandle.perform();
     // get the response code
     long http_code = curlpp::infos::ResponseCode::get(easyhandle);
-    ChairManager::Get().log(ChairManager::severityLevel::debug, "HTTP Response Code: %ld", http_code);
+    ChairManager::Get().log(severityLevel::debug, "HTTP Response Code: %ld", http_code);
     if(http_code == 304) {
         // no update available, use the cached version
         m_latestVersion = ChairManager::Get().getCachedLatestVersion();
@@ -105,7 +105,7 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
         // get the etag
 //        auto etag = curlpp::infos::ResponseCode::G
     } catch (std::exception &e) {
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
+        ChairManager::Get().log(severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
         return;
     }
     m_latestVersion = tag_name;

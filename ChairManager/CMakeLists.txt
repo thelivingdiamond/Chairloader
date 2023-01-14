@@ -8,8 +8,8 @@ set(SOURCE_FILES
         ChairWizards/ChairInstallWizard.h
         ChairManager.cpp
         ChairManager.h
-        GamePathDialog.cpp
-        GamePathDialog.h
+        ChairWizards/GamePathDialog.cpp
+        ChairWizards/GamePathDialog.h
         GameVersion.cpp
         GameVersion.h
         pch.h
@@ -23,7 +23,7 @@ set(SOURCE_FILES
         ChairWizards/ChairUninstallWizard.cpp
         ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h)
+        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h)
 
 
 
