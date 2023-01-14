@@ -34,7 +34,7 @@ ConfigManager::ModConfig &ConfigManager::operator[](const char *modName) {
     return (*this)[std::string(modName)];
 }
 
-bool ConfigManager::isConfigPresent(std::string modName){
+bool ConfigManager::isConfigPresent(const std::string& modName){
     try {
         return fs::exists(ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"));
     } catch (fs::filesystem_error& e) {
@@ -43,7 +43,7 @@ bool ConfigManager::isConfigPresent(std::string modName){
     }
 }
 
-void ConfigManager::copyDefaultConfig(std::string modName){
+void ConfigManager::copyDefaultConfig(const std::string& modName){
     try{
         if(fs::exists(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"))){
             fs::copy_file(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"), ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"), fs::copy_options::overwrite_existing);
@@ -59,7 +59,7 @@ void ConfigManager::copyDefaultConfig(std::string modName){
 }
 
 
-void ConfigManager::loadConfig(std::string modName){
+void ConfigManager::loadConfig(const std::string& modName){
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
@@ -177,7 +177,7 @@ void ConfigManager::drawXMLConfigNode(pugi::xml_node node) {
     }
 }
 
-void ConfigManager::setDirty(std::string modName, bool dirty) {
+void ConfigManager::setDirty(const std::string& modName, bool dirty) {
     auto config = std::find(m_modConfigs.begin(), m_modConfigs.end(), modName);
     if(config != m_modConfigs.end()){
         config->dirty = dirty;

@@ -91,19 +91,19 @@ public:
     }
 
     //! copies a config file from the default config directory to the mod's config directory, creates an empty config file if it doesn't exist
-    static void copyDefaultConfig(std::string modName);
+    static void copyDefaultConfig(const std::string &modName);
 
     //! checks if a config file exists in the Config/ directory
-    static bool isConfigPresent(std::string modName);
+    static bool isConfigPresent(const std::string &modName);
 
-    void setDirty(std::string modName, bool dirty);
+    void setDirty(const std::string& modName, bool dirty);
 
     void draw();
 private:
     std::vector<ModConfig> m_modConfigs;
 
 
-    void loadConfig(std::string modName);
+    void loadConfig(const std::string& modName);
     void loadConfigs();
     void drawXMLConfigNode(pugi::xml_node node);
 
