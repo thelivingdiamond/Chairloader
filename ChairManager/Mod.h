@@ -4,6 +4,8 @@
 
 #ifndef CHAIRLOADER_MOD_H
 #define CHAIRLOADER_MOD_H
+
+//TODO: refactor my variables to match the naming convention of the rest of the codebase
 struct Mod{
     std::string modName;
     std::string displayName;
@@ -25,7 +27,7 @@ struct Mod{
     bool operator<( Mod& b ) const {
         return this->loadOrder < b.loadOrder;
     }
-    bool operator ==(std::string rhs){
+    bool operator ==(const std::string& rhs) const{
         return this->modName == rhs;
     }
 };

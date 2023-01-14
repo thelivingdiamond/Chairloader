@@ -5,6 +5,7 @@
 #ifndef CHAIRLOADER_LOGENTRY_H
 #define CHAIRLOADER_LOGENTRY_H
 
+//TODO: rework logging system to be CryLog() compatible
 enum class severityLevel{
     trace,
     debug,
