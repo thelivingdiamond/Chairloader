@@ -12,30 +12,30 @@ namespace PathUtils
 
 //! Paths to game binaries
 //! @{
-const char* GAME_BIN_DIR();
-const char* GAME_EXE_PATH();
-const char* GAME_DLL_PATH();
-const char* GAME_DLL_PDB_PATH();
-const char* GAME_DLL_BACKUP_PATH();
+const char* GetGameBinDir();
+const char* GetGameExePath();
+const char* GetGameDllPath();
+const char* GetGameDllPDBPath();
+const char* GetGameDllBackupPath();
 //! @}
 
 //! Path to Chairloader files for installation (relative to ModLoader)
-const char* CHAIRLOADER_BIN_SRC_PATH();
+const char* GetChairloaderBinSrcPath();
 
-std::vector<const char*> REQUIRED_GAME_FILES();
+std::vector<const char*> GetRequiredGameFiles();
 
-//! Chairloader files in GAME_EXE_PATH that are required for Chairloader
-std::vector<const char*> REQUIRED_CHAIRLOADER_BINARIES();
+//! Chairloader files in GetGameExePath that are required for Chairloader
+std::vector<const char*> GetRequiredChairloaderBinaries();
 
 //! Required directories in the game dir for Chairloader to work
-std::vector<const char*> REQUIRED_CHAIRLOADER_DIRS();
+std::vector<const char*> GetRequiredChairloaderDirs();
 
 //! Path to the Chairloader patch file
-const char * CHAIRLOADER_PATCH_PATH();
+const char * GetChairloaderPatchPath();
 
 
 //! Checks if supplied path is a valid Prey path.
-//! In particular, checks if all files in REQUIRED_GAME_FILES exist.
+//! In particular, checks if all files in GetRequiredGameFiles exist.
 //! @param  path    The path in question
 //! @param  error   Output variable with validation error text. Empty if no error.
 //! @returns whether the path is a valid game path.

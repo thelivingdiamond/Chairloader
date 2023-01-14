@@ -70,7 +70,7 @@ bool PathUtils::ValidateGamePath(const fs::path& path, std::string* error)
             return false;
         }
 
-        for (const char* name : REQUIRED_GAME_FILES())
+        for (const char* name : GetRequiredGameFiles())
         {
             if (!fs::exists(path / name))
             {
@@ -166,45 +166,45 @@ PathUtils::GamePlatform PathUtils::GetGamePlatform() {
 }
 
 
-const char *PathUtils::GAME_BIN_DIR() {
+const char *PathUtils::GetGameBinDir() {
     return GAME_BIN_DIR_STR;
 }
 
-const char *PathUtils::GAME_EXE_PATH() {
+const char *PathUtils::GetGameExePath() {
     return GAME_EXE_PATH_STR;
 }
 
-const char *PathUtils::GAME_DLL_PATH() {
+const char *PathUtils::GetGameDllPath() {
     return GAME_DLL_PATH_STR;
 }
 
-const char *PathUtils::GAME_DLL_PDB_PATH() {
+const char *PathUtils::GetGameDllPDBPath() {
     return GAME_DLL_PDB_PATH_STR;
 }
 
-const char *PathUtils::GAME_DLL_BACKUP_PATH() {
+const char *PathUtils::GetGameDllBackupPath() {
     return GAME_DLL_BACKUP_PATH_STR;
 }
 constexpr char CHAIRLOADER_BIN_SRC_PATH_STR[] = "Release";
 
-const char *PathUtils::CHAIRLOADER_BIN_SRC_PATH() {
+const char *PathUtils::GetChairloaderBinSrcPath() {
     return CHAIRLOADER_BIN_SRC_PATH_STR;
 }
 
 
 
-std::vector<const char *> PathUtils::REQUIRED_GAME_FILES() {
+std::vector<const char *> PathUtils::GetRequiredGameFiles() {
     return REQUIRED_GAME_FILES_ARRAY;
 }
 
-std::vector<const char *> PathUtils::REQUIRED_CHAIRLOADER_BINARIES() {
+std::vector<const char *> PathUtils::GetRequiredChairloaderBinaries() {
     return REQUIRED_CHAIRLOADER_BINARIES_ARRAY;
 }
 
-std::vector<const char *> PathUtils::REQUIRED_CHAIRLOADER_DIRS() {
+std::vector<const char *> PathUtils::GetRequiredChairloaderDirs() {
     return REQUIRED_CHAIRLOADER_DIRS_ARRAY;
 }
 
-const char *PathUtils::CHAIRLOADER_PATCH_PATH() {
+const char *PathUtils::GetChairloaderPatchPath() {
     return CHAIRLOADER_PATCH_PATH_STR;
 }
