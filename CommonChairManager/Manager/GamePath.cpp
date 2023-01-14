@@ -56,9 +56,6 @@ constexpr char CHAIRLOADER_PATCH_PATH_STR[] = "GameSDK/Precache/patch_chairloade
 
 
 
-
-
-
 bool GamePath::ValidateGamePath(const fs::path& path, std::string* error)
 {
     try
@@ -71,7 +68,14 @@ bool GamePath::ValidateGamePath(const fs::path& path, std::string* error)
             return false;
         }
 
-        for (const char* name : GetRequiredGameFiles())
+        auto platform = DeduceGamePlatform(path);
+        if(platform == GamePlatform::Unknown)
+        {
+            if (error) *error = "Unknown game platform";
+            return false;
+        }
+
+        for (const char* name : GetRequiredGameFiles(platform))
         {
             if (!fs::exists(path / name))
             {
@@ -117,97 +121,50 @@ fs::path GamePath::ExePathToGamePath(const fs::path& exePath)
 }
 
 void GamePath::SetGamePlatform(GamePath::GamePlatform platform) {
-    gPlatform = platform;
+    m_Platform = platform;
 }
 
 GamePath::GamePlatform GamePath::GetGamePlatform() {
-    return gPlatform;
+    return m_Platform;
 }
 
 
 const char *GamePath::GetGameBinDir() {
-    switch(gPlatform){
-        case steam:
-            return STEAM_GAME_BIN_DIR;
-        case gog:
-            return GOG_GAME_BIN_DIR;
-        case epic:
-            return EPIC_GAME_BIN_DIR;
-        case microsoft:
-            return MICRO_GAME_BIN_DIR;
-        case unknown:
-            return "";
-    }
+    return GetGameBinDir(m_Platform);
 }
 
 const char *GamePath::GetGameExePath() {
-    switch(gPlatform){
-        case steam:
-            return STEAM_GAME_EXE_PATH;
-        case gog:
-            return GOG_GAME_EXE_PATH;
-        case epic:
-            return EPIC_GAME_EXE_PATH;
-        case microsoft:
-            return MICRO_GAME_EXE_PATH;
-        case unknown:
-            return "";
-    }
+    return GetGameExePath(m_Platform);
 }
 
 const char *GamePath::GetGameDllPath() {
-    switch(gPlatform){
-        case steam:
-            return STEAM_GAME_DLL_PATH;
-        case gog:
-            return GOG_GAME_DLL_PATH;
-        case epic:
-            return EPIC_GAME_DLL_PATH;
-        case microsoft:
-            return MICRO_GAME_DLL_PATH;
-        case unknown:
-            return "";
-    }
+    return GetGameDllPath(m_Platform);
 }
 
 const char *GamePath::GetGameDllPDBPath() {
-    switch(gPlatform){
-        case steam:
-            return STEAM_GAME_DLL_PDB_PATH;
-        case gog:
-            return GOG_GAME_DLL_PDB_PATH;
-        case epic:
-            return EPIC_GAME_DLL_PDB_PATH;
-        case microsoft:
-            return MICRO_GAME_DLL_PDB_PATH;
-        case unknown:
-            return "";
-    }
+    return GetGameDllPDBPath(m_Platform);
 }
 
 const char *GamePath::GetGameDllBackupPath() {
-    switch(gPlatform){
-        case steam:
-            return STEAM_GAME_DLL_BACKUP_PATH;
-        case gog:
-            return GOG_GAME_DLL_BACKUP_PATH;
-        case epic:
-            return EPIC_GAME_DLL_BACKUP_PATH;
-        case microsoft:
-            return MICRO_GAME_DLL_BACKUP_PATH;
-        case unknown:
-            return "";
-    }
+    return GetGameDllBackupPath(m_Platform);
 }
 
 const char *GamePath::GetChairloaderBinSrcPath() {
     return CHAIRLOADER_BIN_SRC_PATH_STR;
 }
 
+
+
 std::vector<const char *> GamePath::GetRequiredGameFiles() {
-    REQUIRED_GAME_FILES_ARRAY[0] = GetGameBinDir();
-    return REQUIRED_GAME_FILES_ARRAY;
+    return GetRequiredGameFiles(m_Platform);
 }
+
+std::vector<const char *> GamePath::GetRequiredGameFiles(GamePath::GamePlatform platform) {
+    auto copyArray = REQUIRED_GAME_FILES_ARRAY;
+    copyArray[0] = GetGameExePath(platform);
+    return copyArray;
+}
+
 
 std::vector<const char *> GamePath::GetRequiredChairloaderBinaries() {
     return REQUIRED_CHAIRLOADER_BINARIES_ARRAY;
@@ -219,4 +176,125 @@ std::vector<const char *> GamePath::GetRequiredChairloaderDirs() {
 
 const char *GamePath::GetChairloaderPatchPath() {
     return CHAIRLOADER_PATCH_PATH_STR;
+}
+
+GamePath::GamePlatform GamePath::DeduceGamePlatform(const fs::path &path) {
+    if (path.empty()) {
+        return GamePlatform::Unknown;
+    }
+    if (fs::exists(path / STEAM_GAME_EXE_PATH)) {
+        return GamePlatform::Steam;
+    }
+    // TODO: if Steam path = Gog then gog is redundant
+    if (fs::exists(path / GOG_GAME_EXE_PATH)) {
+        return GamePlatform::Gog;
+    }
+    if (fs::exists(path / EPIC_GAME_EXE_PATH)) {
+        return GamePlatform::Epic;
+    }
+    if (fs::exists(path / MICRO_GAME_EXE_PATH)) {
+        return GamePlatform::Microsoft;
+    }
+
+    return GamePlatform::Unknown;
+}
+
+const char *GamePath::GetGameBinDir(GamePath::GamePlatform platform) {
+    switch(platform){
+        case GamePlatform::Steam:
+            return STEAM_GAME_BIN_DIR;
+        case GamePlatform::Gog:
+            return GOG_GAME_BIN_DIR;
+        case GamePlatform::Epic:
+            return EPIC_GAME_BIN_DIR;
+        case GamePlatform::Microsoft:
+            return MICRO_GAME_BIN_DIR;
+        case GamePlatform::Unknown:
+            return "";
+    }
+    return "";
+}
+
+const char *GamePath::GetGameExePath(GamePath::GamePlatform platform) {
+    switch(platform){
+        case GamePlatform::Steam:
+            return STEAM_GAME_EXE_PATH;
+        case GamePlatform::Gog:
+            return GOG_GAME_EXE_PATH;
+        case GamePlatform::Epic:
+            return EPIC_GAME_EXE_PATH;
+        case GamePlatform::Microsoft:
+            return MICRO_GAME_EXE_PATH;
+        case GamePlatform::Unknown:
+            return "";
+    }
+    return "";
+}
+
+const char *GamePath::GetGameDllPath(GamePath::GamePlatform platform) {
+    switch(platform){
+        case GamePlatform::Steam:
+            return STEAM_GAME_DLL_PATH;
+        case GamePlatform::Gog:
+            return GOG_GAME_DLL_PATH;
+        case GamePlatform::Epic:
+            return EPIC_GAME_DLL_PATH;
+        case GamePlatform::Microsoft:
+            return MICRO_GAME_DLL_PATH;
+        case GamePlatform::Unknown:
+            return "";
+    }
+    return "";
+}
+
+const char *GamePath::GetGameDllPDBPath(GamePath::GamePlatform platform) {
+    switch(platform){
+        case GamePlatform::Steam:
+            return STEAM_GAME_DLL_PDB_PATH;
+        case GamePlatform::Gog:
+            return GOG_GAME_DLL_PDB_PATH;
+        case GamePlatform::Epic:
+            return EPIC_GAME_DLL_PDB_PATH;
+        case GamePlatform::Microsoft:
+            return MICRO_GAME_DLL_PDB_PATH;
+        case GamePlatform::Unknown:
+            return "";
+    }
+    return "";
+}
+
+const char *GamePath::GetGameDllBackupPath(GamePath::GamePlatform platform) {
+    switch(platform){
+        case GamePlatform::Steam:
+            return STEAM_GAME_DLL_BACKUP_PATH;
+        case GamePlatform::Gog:
+            return GOG_GAME_DLL_BACKUP_PATH;
+        case GamePlatform::Epic:
+            return EPIC_GAME_DLL_BACKUP_PATH;
+        case GamePlatform::Microsoft:
+            return MICRO_GAME_DLL_BACKUP_PATH;
+        case GamePlatform::Unknown:
+            return "";
+    }
+    return "";
+}
+
+const char *GamePath::GetGamePlatformString(GamePath::GamePlatform platform) {
+switch(platform){
+        case GamePlatform::Steam:
+            return "Steam";
+        case GamePlatform::Gog:
+            return "Gog";
+        case GamePlatform::Epic:
+            return "Epic";
+        case GamePlatform::Microsoft:
+            return "Microsoft";
+        case GamePlatform::Unknown:
+            return "Unknown";
+    }
+    return "";
+}
+
+const char *GamePath::GetGamePlatformString() {
+    return GetGamePlatformString(m_Platform);
 }

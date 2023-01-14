@@ -36,7 +36,7 @@ ConfigManager::ModConfig &ConfigManager::operator[](const char *modName) {
 
 bool ConfigManager::isConfigPresent(std::string modName){
     try {
-        return fs::exists(ChairManager::Get().GetPreyPath() / "Mods" / "Config" / (modName + ".xml"));
+        return fs::exists(ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"));
     } catch (fs::filesystem_error& e) {
         ChairManager::Get().log(ChairManager::severityLevel::error, "Error checking for config file: %s", e.what());
         return false;
@@ -45,13 +45,13 @@ bool ConfigManager::isConfigPresent(std::string modName){
 
 void ConfigManager::copyDefaultConfig(std::string modName){
     try{
-        if(fs::exists(ChairManager::Get().GetPreyPath() / "Mods" / modName / (modName + "_default.xml"))){
-            fs::copy_file(ChairManager::Get().GetPreyPath() / "Mods" / modName / (modName + "_default.xml"), ChairManager::Get().GetPreyPath() / "Mods" / "Config" / (modName + ".xml"), fs::copy_options::overwrite_existing);
+        if(fs::exists(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"))){
+            fs::copy_file(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"), ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"), fs::copy_options::overwrite_existing);
         } else {
             ChairManager::Get().log(ChairManager::severityLevel::warning, "Default config file for mod %s not found! Creating empty config file", modName.c_str());
             pugi::xml_document doc;
             doc.append_child(modName.c_str());
-            doc.save_file((ChairManager::Get().GetPreyPath() / "Mods" / "Config" / (modName + ".xml")).string().c_str());
+            doc.save_file((ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml")).string().c_str());
         }
     } catch (fs::filesystem_error& e) {
         ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to copy default config for mod %s : %s", modName.c_str(), e.what());
@@ -63,7 +63,7 @@ void ConfigManager::loadConfig(std::string modName){
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
-    fs::path configPath = ChairManager::Get().GetPreyPath() / "Mods" / "Config" / (modName + ".xml");
+    fs::path configPath = ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml");
     pugi::xml_document doc;
     auto result = doc.load_file(configPath.string().c_str());
     if(result){

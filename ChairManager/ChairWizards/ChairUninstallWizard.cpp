@@ -104,26 +104,26 @@ void ChairUninstallWizard::ShowFinishPage() {
 }
 
 void ChairUninstallWizard::StartUninstall() {
-    fs::path dstBinPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameBinDir();
+    fs::path dstBinPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir();
     try{
         // Removing binaries
-        for(auto & requiredFile : ChairManager::Get().getGamePath()->GetRequiredChairloaderBinaries()){
+        for(auto & requiredFile : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries()){
             remove(dstBinPath / requiredFile);
         }
 
         // Remove patch file
-        fs::remove(ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetChairloaderPatchPath());
+        fs::remove(ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetChairloaderPatchPath());
 
         // remove mods folder
         if(m_bDeleteModFolder){
-            fs::remove_all(ChairManager::Get().GetPreyPath() / "Mods");
+            fs::remove_all(ChairManager::Get().GetGamePath() / "Mods");
         }
         // create a game version instance
         auto m_pGameVersion = std::make_unique<GameVersion>();
 
         //Restore Patch
-        fs::path dllPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllPath();
-        fs::path backupFilePath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllBackupPath();
+        fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
+        fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath();
         if (fs::exists(backupFilePath)) {
             fs::copy_file(backupFilePath, dllPath, fs::copy_options::overwrite_existing);
             m_patched = true;

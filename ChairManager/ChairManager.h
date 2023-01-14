@@ -12,11 +12,13 @@
 #include <filesystem>
 #include <fstream>
 #include <chrono>
-#include <Windows.h>
+#include <windows.h>
 #include "BinaryVersionCheck.h"
 #include "XMLMerger.h"
 #include "ConfigManager.h"
 #include <boost/format.hpp>
+#include "LogEntry.h"
+#include "Mod.h"
 
 class GamePathDialog;
 class GameVersion;
@@ -29,68 +31,20 @@ struct SemanticVersion;
 class ChairManager {
 public:
     static ChairManager& Get() { return *m_spInstance; }
-    enum class severityLevel{
-        trace,
-        debug,
-        info,
-        warning,
-        error,
-        fatal
-    };
-    class LogEntry{
-    public:
-        LogEntry(std::string &messageIn, severityLevel levelIn): message(messageIn), level(levelIn){
-            tm timeStruct{};
-            timeNow = time(nullptr);
-            localtime_s(&timeStruct,&timeNow);
-            timeStamp = boost::str((boost::format("%i:%i:%i") % timeStruct.tm_hour % timeStruct.tm_min % timeStruct.tm_sec));
-            fadeTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-        }
-        std::string message;
-        severityLevel level;
-        std::string timeStamp;
-        time_t timeNow;
-        uint64_t fadeTime;
-    };
-    struct Mod{
-        std::string modName;
-        std::string displayName;
-        std::string version;
-        std::string author;
-        std::string dllName;
-        int loadOrder = -1;
-        pugi::xml_node infoFile;
-        pugi::xml_node configFile;
-        std::vector<std::string> dependencies;
-        // installed = Mod loader remembers
-        // enabled = Mod loader will load
-        // deployed = files are ready
-        bool installed = false,
-             enabled = false,
-             deployed = false,
-             hasXML = false,
-             hasLevelXML = false;
-        bool operator<( Mod& b ) const {
-            return this->loadOrder < b.loadOrder;
-        }
-        bool operator ==(std::string rhs){
-            return this->modName == rhs;
-        }
-    };
 
     ChairManager();
     ~ChairManager();
     void Draw();
     void Update();
 
-    const fs::path& GetPreyPath() { return PreyPath; }
+    const fs::path& GetGamePath();
     // get mods and get legacy mods
     const std::vector<Mod>& GetMods() { return ModList; }
     const std::vector<std::string>& GetLegacyMods() { return LegacyModList; }
     // get config manager
     ConfigManager* GetConfigManager() { return &m_ConfigManager; }
     // is mod enabled
-    bool IsModEnabled(std::string modName){
+    bool IsModEnabled(const std::string& modName){
         for(auto& mod : ModList){
             if(mod.modName == modName){
                 return mod.enabled;
@@ -98,13 +52,18 @@ public:
         }
         return false;
     }
+    std::string GetDisplayName(std::string modName);
+
     const float GetDPIScale() { return dpiScale; }
+
     void updateDPI(float dpiScaleIn){
         updateDPIScaling = true;
         oldDpiScaling = dpiScale;
         dpiScale = dpiScaleIn;
     }
-    std::string GetDisplayName(std::string modName);
+
+
+
     void DeployForInstallWizard();
 
     std::string getETag() {
@@ -117,7 +76,6 @@ public:
         ChairManagerConfigFile.first_child().child("ETag").text().set(eTag.c_str());
         saveModManagerConfigFile();
     }
-
     std::string getCachedLatestVersion() {
         auto versionNode = ChairManagerConfigFile.first_child().child("LatestVersion");
         if(versionNode)
@@ -131,7 +89,7 @@ public:
         saveModManagerConfigFile();
     }
 
-    GamePath* getGamePath(){ return m_pGamePath.get(); }
+    GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
 private:
     //! DPI
     bool updateDPIScaling;
@@ -152,8 +110,6 @@ private:
     State m_State = State::Invalid;
 
     /* Globals */
-    fs::path PreyPath;
-    std::string m_PreyPathString; //!< String used to display the path in UI
     fs::path ChairManagerConfigPath = R"(.\ChairManagerConfig.xml)";
     std::vector<Mod> ModList;
     std::map<std::string, std::string> ModNameToDisplayName;
@@ -203,6 +159,7 @@ private:
         CopyingMainPatch,
         Done
     };
+
     DeployState m_DeployState = DeployState::Invalid;
     std::mutex m_DeployLogMutex;
     void SwitchToDeployScreen();
@@ -238,7 +195,7 @@ private:
     pugi::xml_document ChairloaderConfigFile, ChairManagerConfigFile;
     pugi::xml_node ModListNode;
     inline bool saveChairloaderConfigFile() {
-        return ChairloaderConfigFile.save_file((PreyPath.string() + "/Mods/config/Chairloader.xml").c_str());
+        return ChairloaderConfigFile.save_file((GetGamePath().wstring() + L"/Mods/config/Chairloader.xml").c_str());
     };
     inline bool saveModManagerConfigFile(){
         return ChairManagerConfigFile.save_file(ChairManagerConfigPath.string().c_str());

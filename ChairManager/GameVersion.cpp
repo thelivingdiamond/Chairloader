@@ -104,7 +104,7 @@ GameVersion::GameVersion()
 {
 	LoadKnownVersions();
 	StartAsyncTasks();
-	m_bHasBackup = fs::exists(ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllBackupPath());
+	m_bHasBackup = fs::exists(ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath());
 }
 
 GameVersion::~GameVersion()
@@ -308,8 +308,8 @@ void GameVersion::PatchTheGame() const
 		throw std::runtime_error("Diff file \"" + diffFileName + "\" not found");
 
 	// Make a backup of PreyDll.dll
-	fs::path dllPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllPath();
-	fs::path backupFilePath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllBackupPath();
+	fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
+	fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath();
 	fs::copy_file(dllPath, backupFilePath, fs::copy_options::overwrite_existing);
 
 	// Decompress diff file
@@ -335,8 +335,8 @@ void GameVersion::RestoreBackup()
 {
 	try
 	{
-		fs::path dllPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllPath();
-		fs::path backupFilePath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllBackupPath();
+		fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
+		fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath();
 
 		if (!fs::exists(backupFilePath))
 			throw std::runtime_error("Backup file no longer exists");
@@ -356,7 +356,7 @@ GameVersion::HashGameResult GameVersion::HashGameTask()
 	HashGameResult result;
 
 	// Open the game dll
-	fs::path dllPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllPath();
+	fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
 
 	if (!fs::exists(dllPath))
 		throw std::runtime_error("PreyDll.dll is missing");
