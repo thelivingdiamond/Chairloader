@@ -4,8 +4,8 @@ set(SOURCE_FILES
         UI.cpp
         UI.h
         #ChairManager
-        ChairInstallWizard.cpp
-        ChairInstallWizard.h
+        ChairWizards/ChairInstallWizard.cpp
+        ChairWizards/ChairInstallWizard.h
         ChairManager.cpp
         ChairManager.h
         GamePathDialog.cpp
@@ -20,10 +20,10 @@ set(SOURCE_FILES
         appicon.rc
         version.rc.in
         version.rc
-        ChairUninstallWizard.cpp
-        ChairUninstallWizard.h
+        ChairWizards/ChairUninstallWizard.cpp
+        ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairUpdateWizard.cpp ChairUpdateWizard.h UpdateURL.h)
+        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h)
 
 
 

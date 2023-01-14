@@ -5,18 +5,18 @@
 #include <iostream>
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "ChairManager.h"
 #include "UI.h"
 #include "GamePathDialog.h"
 #include "GameVersion.h"
 #include "winver.h"
-#include "ChairInstallWizard.h"
-#include "ChairUninstallWizard.h"
+#include "ChairWizards/ChairInstallWizard.h"
+#include "ChairWizards/ChairUninstallWizard.h"
 #include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible (TRUE LOL)
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
-#include "ChairUpdateWizard.h"
+#include "ChairWizards/ChairUpdateWizard.h"
 #include "../Common/Chairloader/SemanticVersion.h"
 
 static std::string ErrorMessage;
@@ -69,7 +69,7 @@ void ChairManager::LoadModManagerConfig()
     if (ChairManagerConfigFile.load_file(ChairManagerConfigPath.wstring().c_str())) {
         if (ChairManagerConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairManagerConfigFile.first_child().child("PreyPath").text().as_string());
-            if (PathUtils::ValidateGamePath(path))
+            if (ChairManager::Get().getGamePath()->ValidateGamePath(path))
             {
                 SetGamePath(path);
             }
@@ -123,7 +123,7 @@ void ChairManager::LoadModManagerConfig()
 
 void ChairManager::SetGamePath(const fs::path& path)
 {
-    assert(path.empty() || PathUtils::ValidateGamePath(path));
+    assert(path.empty() || ChairManager::Get().getGamePath()->ValidateGamePath(path));
 
     PreyPath = path;
     m_PreyPathString = path.u8string();
@@ -1213,11 +1213,12 @@ ChairManager::ChairManager() {
     m_spInstance = this;
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
+    m_pGamePath = std::make_unique<GamePath>();
     cURLpp::initialize();
     LoadModManagerConfig();
     VersionCheck::fetchLatestVersion();
 
-    if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
+    if (PreyPath.empty() || !ChairManager::Get().getGamePath()->ValidateGamePath(PreyPath))
         SwitchToGameSelectionDialog(PreyPath);
     else
         SwitchToInstallWizard();
@@ -2127,9 +2128,9 @@ void ChairManager::createChairloaderConfigFile() {
 
 bool ChairManager::verifyChairloaderInstalled() {
     try{
-        for (const char* fileName : PathUtils::GetRequiredChairloaderBinaries())
+        for (const char* fileName : ChairManager::Get().getGamePath()->GetRequiredChairloaderBinaries())
         {
-            if (!fs::exists(PreyPath / PathUtils::GetGameBinDir() / fileName))
+            if (!fs::exists(PreyPath / ChairManager::Get().getGamePath()->GetGameBinDir() / fileName))
                 return false;
         }
 
@@ -2142,7 +2143,7 @@ bool ChairManager::verifyChairloaderInstalled() {
 
 bool ChairManager::verifyDefaultFileStructure() {
     try {
-        for (const char* dirName : PathUtils::GetRequiredChairloaderDirs())
+        for (const char* dirName : ChairManager::Get().getGamePath()->GetRequiredChairloaderDirs())
         {
             if (!fs::is_directory(PreyPath / dirName))
                 return false;
@@ -2157,7 +2158,7 @@ bool ChairManager::verifyDefaultFileStructure() {
 
 void ChairManager::createDefaultFileStructure() {
     try {
-        for (const char* dirName : PathUtils::GetRequiredChairloaderDirs())
+        for (const char* dirName : ChairManager::Get().getGamePath()->GetRequiredChairloaderDirs())
         {
             fs::create_directories(PreyPath / dirName);
         }
@@ -2311,22 +2312,22 @@ void ChairManager::DrawDebug() {
         if(ImGui::CollapsingHeader("Multi Platform Support")){
             static int i = 0;
             if(ImGui::RadioButton("Steam", &i, 0)){
-                PathUtils::SetGamePlatform(PathUtils::GamePlatform::steam);
+                ChairManager::Get().getGamePath()->SetGamePlatform(ChairManager::Get().getGamePath()->GamePlatform::steam);
             }
             if(ImGui::RadioButton("GOG", &i, 1)){
-                PathUtils::SetGamePlatform(PathUtils::GamePlatform::gog);
+                ChairManager::Get().getGamePath()->SetGamePlatform(ChairManager::Get().getGamePath()->GamePlatform::gog);
             }
             if(ImGui::RadioButton("Epic", &i, 2)){
-                PathUtils::SetGamePlatform(PathUtils::GamePlatform::epic);
+                ChairManager::Get().getGamePath()->SetGamePlatform(ChairManager::Get().getGamePath()->GamePlatform::epic);
             }
             if(ImGui::RadioButton("Microsoft Store", &i, 3)){
-                PathUtils::SetGamePlatform(PathUtils::GamePlatform::microsoft);
+                ChairManager::Get().getGamePath()->SetGamePlatform(ChairManager::Get().getGamePath()->GamePlatform::microsoft);
             }
-            ImGui::Text("GAME BIN: %s", PathUtils::GetGameBinDir());
-            ImGui::Text("GAME EXE: %s", PathUtils::GetGameExePath());
-            ImGui::Text("GAME DLL: %s", PathUtils::GetGameDllPath());
-            ImGui::Text("GAME PDB: %s", PathUtils::GetGameDllPDBPath());
-            ImGui::Text("GAME BACKUP: %s", PathUtils::GetGameDllBackupPath());
+            ImGui::Text("GAME BIN: %s", ChairManager::Get().getGamePath()->GetGameBinDir());
+            ImGui::Text("GAME EXE: %s", ChairManager::Get().getGamePath()->GetGameExePath());
+            ImGui::Text("GAME DLL: %s", ChairManager::Get().getGamePath()->GetGameDllPath());
+            ImGui::Text("GAME PDB: %s", ChairManager::Get().getGamePath()->GetGameDllPDBPath());
+            ImGui::Text("GAME BACKUP: %s", ChairManager::Get().getGamePath()->GetGameDllBackupPath());
         }
         ImGui::EndTabItem();
     }
@@ -2506,7 +2507,7 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 
 void ChairManager::launchGame() {
     log(severityLevel::info, "Launching game");
-    fs::path exePath = PreyPath / PathUtils::GetGameExePath();
+    fs::path exePath = PreyPath / ChairManager::Get().getGamePath()->GetGameExePath();
     m_chairloaderLaunchOptions = fs::path(m_customArgs + " ").wstring();
     // bool m_bLoadChairloader -nochair
     //        m_bLoadEditor -editor

@@ -20,6 +20,7 @@
 
 class GamePathDialog;
 class GameVersion;
+class GamePath;
 class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
@@ -39,7 +40,7 @@ public:
     class LogEntry{
     public:
         LogEntry(std::string &messageIn, severityLevel levelIn): message(messageIn), level(levelIn){
-            tm timeStruct;
+            tm timeStruct{};
             timeNow = time(nullptr);
             localtime_s(&timeStruct,&timeNow);
             timeStamp = boost::str((boost::format("%i:%i:%i") % timeStruct.tm_hour % timeStruct.tm_min % timeStruct.tm_sec));
@@ -82,7 +83,7 @@ public:
     void Draw();
     void Update();
 
-    const fs::path& GetGamePath() { return PreyPath; }
+    const fs::path& GetPreyPath() { return PreyPath; }
     // get mods and get legacy mods
     const std::vector<Mod>& GetMods() { return ModList; }
     const std::vector<std::string>& GetLegacyMods() { return LegacyModList; }
@@ -129,6 +130,8 @@ public:
         ChairManagerConfigFile.first_child().child("LatestVersion").text().set(version.c_str());
         saveModManagerConfigFile();
     }
+
+    GamePath* getGamePath(){ return m_pGamePath.get(); }
 private:
     //! DPI
     bool updateDPIScaling;
@@ -388,6 +391,8 @@ private:
     // Create default file structure
     void createDefaultFileStructure();
     static inline ChairManager* m_spInstance = nullptr;
+
+    std::unique_ptr<GamePath> m_pGamePath;
 
     //! Chairloader version checking
     SemanticVersion* packagedChairloaderVersion;

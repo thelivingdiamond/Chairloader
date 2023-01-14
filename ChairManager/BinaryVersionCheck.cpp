@@ -1,7 +1,7 @@
 //
 // Created by theli on 9/2/2022.
 //
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "BinaryVersionCheck.h"
 #include <Windows.h>
 #include <winver.h>
@@ -20,7 +20,7 @@ static std::string m_latestVersion;
 
 
 SemanticVersion VersionCheck::getInstalledChairloaderVersion() {
-    auto szVersionFile = ChairManager::Get().GetGamePath() / PathUtils::GetGameBinDir() / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameBinDir() / "Chairloader.dll";
     return getBinaryVersion(szVersionFile);
 }
 
@@ -53,7 +53,7 @@ std::string VersionCheck::getBinaryVersionString(fs::path szVersionFile) {
 }
 
 std::string VersionCheck::getInstalledChairloaderVersionString() {
-    auto szVersionFile = ChairManager::Get().GetGamePath() / PathUtils::GetGameBinDir() / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameBinDir() / "Chairloader.dll";
     return getBinaryVersionString(szVersionFile);
 }
 

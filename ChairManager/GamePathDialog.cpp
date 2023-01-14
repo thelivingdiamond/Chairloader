@@ -1,6 +1,7 @@
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "GamePathDialog.h"
 #include "ImGuiFileDialog/ImGuiFileDialog.h"
+#include "ChairManager.h"
 
 
 GamePathDialog::Result GamePathDialog::ShowDialog(const char* name, bool* pbIsOpen)
@@ -94,7 +95,7 @@ GamePathDialog::Result GamePathDialog::ShowContents()
 
 void GamePathDialog::SetGamePath(const fs::path& path)
 {
-    fs::path exePath = !path.empty() ? path / PathUtils::GetGameExePath() : path;
+    fs::path exePath = !path.empty() ? path / ChairManager::Get().getGamePath()->GetGameExePath() : path;
     exePath = exePath.lexically_normal();
     std::string pathStr = exePath.u8string();
     snprintf(m_PathInput, sizeof(m_PathInput), "%s", pathStr.c_str());
@@ -111,7 +112,7 @@ void GamePathDialog::ValidatePath()
     if (exePath.empty())
         return;
 
-    if (PathUtils::ValidateGamePath(exePath))
+    if (ChairManager::Get().getGamePath()->ValidateGamePath(exePath))
     {
         // Allow the input of game path instead of exe path
         m_IsValid = true;
@@ -119,8 +120,8 @@ void GamePathDialog::ValidatePath()
         return;
     }
 
-    m_IsValid = PathUtils::ValidateExePath(exePath, &m_ValidationError);
+    m_IsValid = ChairManager::Get().getGamePath()->ValidateExePath(exePath, &m_ValidationError);
 
     if (m_IsValid)
-        m_Path = PathUtils::ExePathToGamePath(exePath);
+        m_Path = ChairManager::Get().getGamePath()->ExePathToGamePath(exePath);
 }

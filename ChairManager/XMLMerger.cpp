@@ -96,14 +96,14 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
     pugi::xml_document originalFile;
     pugi::xml_parse_result modResult;
     if(isLegacyMod) {
-        modResult = modFile.load_file((ChairManager::Get().GetGamePath() / "Mods" / "Legacy" / modName / relativeFilePath).wstring().c_str());
+        modResult = modFile.load_file((ChairManager::Get().GetPreyPath() / "Mods" / "Legacy" / modName / relativeFilePath).wstring().c_str());
     } else {
-        modResult = modFile.load_file((ChairManager::Get().GetGamePath() / "Mods" / modName / "Data" / relativeFilePath).wstring().c_str());
+        modResult = modFile.load_file((ChairManager::Get().GetPreyPath() / "Mods" / modName / "Data" / relativeFilePath).wstring().c_str());
     }
 
     auto originalResult = originalFile.load_file(("PreyFiles" / relativeFilePath).wstring().c_str());
     if(!modResult){
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to load mod file %s: %s", (ChairManager::Get().GetGamePath() / "Mods" / modName / "Data" / relativeFilePath).u8string().c_str(), modResult.description());
+        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to load mod file %s: %s", (ChairManager::Get().GetPreyPath() / "Mods" / modName / "Data" / relativeFilePath).u8string().c_str(), modResult.description());
         return false;
     }
     // this is overwriting the original file, so check if we need to copy to output directory
@@ -123,11 +123,11 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
         //TODO: allow mods to define merging policies for novel files
         //- original file doesn't exist, so we can't merge. if file exists already we *have* to overwrite
         try {
-            fs::copy_file((ChairManager::Get().GetGamePath() / "Mods" / modName / relativeFilePath),
+            fs::copy_file((ChairManager::Get().GetPreyPath() / "Mods" / modName / relativeFilePath),
                           "Output" / relativeFilePath,
                           fs::copy_options::overwrite_existing);
         } catch(std::exception &e){
-            ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to copy mod file %s: %s", (ChairManager::Get().GetGamePath() / "Mods" / modName / relativeFilePath).u8string().c_str(), e.what());
+            ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to copy mod file %s: %s", (ChairManager::Get().GetPreyPath() / "Mods" / modName / relativeFilePath).u8string().c_str(), e.what());
             return false;
         }
     }
