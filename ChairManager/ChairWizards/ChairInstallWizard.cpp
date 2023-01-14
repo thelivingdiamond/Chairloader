@@ -1,9 +1,9 @@
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "ChairInstallWizard.h"
-#include "GameVersion.h"
-#include "ChairManager.h"
-#include "BinaryVersionCheck.h"
-#include "../Common/Chairloader/SemanticVersion.h"
+#include "../GameVersion.h"
+#include "../ChairManager.h"
+#include "../BinaryVersionCheck.h"
+#include "../../Common/Chairloader/SemanticVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
@@ -295,14 +295,14 @@ void ChairInstallWizard::InstallAsyncTask() const
 		m_InstallLog.push_back(std::move(msg));
 	};
 
-	fs::path srcBinPath = fs::current_path() / PathUtils::GetChairloaderBinSrcPath();
-	fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GetGameBinDir();
+	fs::path srcBinPath = fs::current_path() / ChairManager::Get().getGamePath()->GetChairloaderBinSrcPath();
+	fs::path dstBinPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameBinDir();
 
 	printlog("Verifying files...");
 	{
 		bool allFilesExist = true;
 
-		for (const char* name : PathUtils::GetRequiredChairloaderBinaries())
+		for (const char* name : ChairManager::Get().getGamePath()->GetRequiredChairloaderBinaries())
 		{
 			if (!fs::exists(srcBinPath / name))
 			{

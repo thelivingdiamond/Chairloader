@@ -2,10 +2,10 @@
 // Created by theli on 8/30/2022.
 //
 
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "ChairUninstallWizard.h"
-#include "ChairManager.h"
-#include "GameVersion.h"
+#include "../ChairManager.h"
+#include "../GameVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
@@ -104,26 +104,26 @@ void ChairUninstallWizard::ShowFinishPage() {
 }
 
 void ChairUninstallWizard::StartUninstall() {
-    fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GetGameBinDir();
+    fs::path dstBinPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameBinDir();
     try{
         // Removing binaries
-        for(auto & requiredFile : PathUtils::GetRequiredChairloaderBinaries()){
+        for(auto & requiredFile : ChairManager::Get().getGamePath()->GetRequiredChairloaderBinaries()){
             remove(dstBinPath / requiredFile);
         }
 
         // Remove patch file
-        fs::remove(ChairManager::Get().GetGamePath() / PathUtils::GetChairloaderPatchPath());
+        fs::remove(ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetChairloaderPatchPath());
 
         // remove mods folder
         if(m_bDeleteModFolder){
-            fs::remove_all(ChairManager::Get().GetGamePath() / "Mods");
+            fs::remove_all(ChairManager::Get().GetPreyPath() / "Mods");
         }
         // create a game version instance
         auto m_pGameVersion = std::make_unique<GameVersion>();
 
         //Restore Patch
-        fs::path dllPath = ChairManager::Get().GetGamePath() / PathUtils::GetGameDllPath();
-        fs::path backupFilePath = ChairManager::Get().GetGamePath() / PathUtils::GetGameDllBackupPath();
+        fs::path dllPath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllPath();
+        fs::path backupFilePath = ChairManager::Get().GetPreyPath() / ChairManager::Get().getGamePath()->GetGameDllBackupPath();
         if (fs::exists(backupFilePath)) {
             fs::copy_file(backupFilePath, dllPath, fs::copy_options::overwrite_existing);
             m_patched = true;
