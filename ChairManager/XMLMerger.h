@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by theli on 9/10/2022.
 //
@@ -6,6 +8,7 @@
 class XMLMerger {
 public:
     struct mergingPolicy{
+        //! tags used to determine when and which operations to perform
         enum node_tags {
             none = 0,
             merge_children = 1 << 1,
@@ -23,6 +26,7 @@ public:
             unknown, //! no policy has been set, but there is no error. if the file in the mod is not in the base game, this policy will be set. Functionally equivalent to overwrite
             error, //! FUCK
         };
+        //! a structure used to store which attributes to match during match_attribute
         struct attributeMatch {
             std::string attribute_name;
             int priority;
@@ -32,10 +36,10 @@ public:
         std::vector<attributeMatch> attributeMatches;
         pugi::xml_node nodeStructure;
     private:
+        // keep the pugi document private and only expose the root node
         std::shared_ptr<pugi::xml_document> nodeDoc;
     public:
-        bool match_all_attributes = false,
-        wildcard = false;
+        bool match_all_attributes = false;
         fs::path nodePath;
         std::string mod_name;
         mergingPolicy() = default;
@@ -56,16 +60,13 @@ public:
             mod_name = other.mod_name;
             nodeStructure = other.nodeStructure;
         }
-//        mergingPolicy(fs::path path, identification_policy policy, std::vector<attributeMatch> attributeMatches, pugi::xml_node nodeStructure) {
-//            file_path = path;
-//            policy = policy;
-//            attributeMatches = attributeMatches;
-//            nodeDoc = std::make_shared<pugi::xml_document>();
-//            nodeStructure = nodeStructure;
-//        }
+        //! Construct a merging policy
+        //! \param node the mergingPolicy pugi::xml_node
+        //! \param path the file path of the mergingPolicy
+        //! \param modName the name of the mod that the mergingPolicy belongs to
         mergingPolicy(pugi::xml_node node, fs::path path, std::string modName) {
-            mod_name = modName;
-            file_path = path;
+            mod_name = std::move(modName);
+            file_path = std::move(path);
             nodeDoc = std::make_shared<pugi::xml_document>();
             if(node.name() == std::string("mergingPolicy")){
                 policy = parsePolicy(node.attribute("identification_policy").as_string());
@@ -84,6 +85,9 @@ public:
                 policy = identification_policy::error;
             }
         }
+        //! Parse a string into an identification policy
+        //! \param policyName a string containing the name of the policy
+        //! \return
         static identification_policy parsePolicy(std::string policyName){
             if(policyName == "overwrite"){
                 return identification_policy::overwrite;
@@ -99,6 +103,10 @@ public:
                 return identification_policy::error;
             }
         }
+
+        //! returns the node tags for a merging policy node based on its attributes
+        //! \param node the node to get the tags for
+        //! \return
         static node_tags getNodeTags(pugi::xml_node node) {
             node_tags tags = node_tags::none;
             if(node.attribute("merge_children").as_bool()) {
@@ -119,6 +127,8 @@ public:
             return tags;
         }
     };
+
+    //! A structure for finding wildcards
     struct attributeWildcard{
         enum class wildcard_type{
             none,
@@ -146,7 +156,6 @@ public:
     static void resolvePathWildcards(pugi::xml_node node, pugi::xml_node nodeStructure);
     static std::vector<pugi::xml_node>
     resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeStructure, std::string &modName);
-    static void getConfigWildcard(std::string& wildcard, std::string modName);
 
     static bool checkNodeEquality(pugi::xml_node modNode, pugi::xml_node originalNode);
     //! merge one node into another. Copy all attributes and children from the source node into the destination node

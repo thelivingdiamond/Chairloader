@@ -64,6 +64,8 @@ void ChairVarManager::InitSystem() {
     LoadConfig();
     g_pChairVarManager = this;
     REGISTER_COMMAND("chair_savecvars", &SaveCvarCommand, VF_NULL, "Saves the Chairloader CVar config file");
+    REGISTER_CVAR2("ch_chvar_save_interval", &m_SaveInterval, m_SaveInterval, VF_DUMPTOCHAIR, "The interval in seconds between auto saving the Chairloader CVar config file");
+    REGISTER_CVAR2("ch_chvar_save_timer", &m_SaveTimer, m_SaveTimer, VF_NULL, "The timer in seconds until the Chairloader CVar config file is auto saved");
 }
 
 void ChairVarManager::ShutdownGame() {
@@ -126,5 +128,15 @@ void ChairVarManager::SaveConfig() {
         CryWarning("Failed to save Chairloader_CVars.xml");
     } else {
         CryLog("Saved Chairloader_CVars.xml");
+    }
+}
+
+void ChairVarManager::UpdateSystem() {
+    if(m_SaveInterval > 0){
+        m_SaveTimer += gEnv->pTimer->GetFrameTime();
+        if(m_SaveTimer >= m_SaveInterval){
+            SaveConfig();
+            m_SaveTimer = 0;
+        }
     }
 }

@@ -118,6 +118,7 @@ void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 	ChairImGui::Get().UpdateBeforeSystem();
 	m_pGui->update();
 	m_pConfigManager->Update();
+    m_pCVarManager->UpdateSystem();
 
 	m_pGui->draw();
 }
