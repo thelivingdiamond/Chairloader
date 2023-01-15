@@ -34,32 +34,32 @@ ConfigManager::ModConfig &ConfigManager::operator[](const char *modName) {
     return (*this)[std::string(modName)];
 }
 
-bool ConfigManager::isConfigPresent(std::string modName){
+bool ConfigManager::isConfigPresent(const std::string& modName){
     try {
         return fs::exists(ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"));
     } catch (fs::filesystem_error& e) {
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Error checking for config file: %s", e.what());
+        ChairManager::Get().log(severityLevel::error, "Error checking for config file: %s", e.what());
         return false;
     }
 }
 
-void ConfigManager::copyDefaultConfig(std::string modName){
+void ConfigManager::copyDefaultConfig(const std::string& modName){
     try{
         if(fs::exists(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"))){
             fs::copy_file(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"), ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"), fs::copy_options::overwrite_existing);
         } else {
-            ChairManager::Get().log(ChairManager::severityLevel::warning, "Default config file for mod %s not found! Creating empty config file", modName.c_str());
+            ChairManager::Get().log(severityLevel::warning, "Default config file for mod %s not found! Creating empty config file", modName.c_str());
             pugi::xml_document doc;
             doc.append_child(modName.c_str());
             doc.save_file((ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml")).string().c_str());
         }
     } catch (fs::filesystem_error& e) {
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to copy default config for mod %s : %s", modName.c_str(), e.what());
+        ChairManager::Get().log(severityLevel::error, "Failed to copy default config for mod %s : %s", modName.c_str(), e.what());
     }
 }
 
 
-void ConfigManager::loadConfig(std::string modName){
+void ConfigManager::loadConfig(const std::string& modName){
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
@@ -69,7 +69,7 @@ void ConfigManager::loadConfig(std::string modName){
     if(result){
         m_modConfigs.emplace_back(modName, doc, configPath);
     } else {
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to load config for mod %s with Error: %s", modName.c_str(), result.description());
+        ChairManager::Get().log(severityLevel::error, "Failed to load config for mod %s with Error: %s", modName.c_str(), result.description());
     }
 }
 
@@ -90,7 +90,7 @@ void ConfigManager::saveDirtyConfigs() {
     for(auto& config : m_modConfigs){
         if(config.dirty){
             if(!config.saveConfig()){
-                ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
+                ChairManager::Get().log(severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
             }
         }
     }
@@ -100,7 +100,7 @@ void ConfigManager::saveDirtyConfigs() {
 void ConfigManager::saveConfigs() {
     for(auto& config : m_modConfigs){
         if(!config.saveConfig()){
-            ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
+            ChairManager::Get().log(severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
         }
     }
 }
@@ -177,11 +177,11 @@ void ConfigManager::drawXMLConfigNode(pugi::xml_node node) {
     }
 }
 
-void ConfigManager::setDirty(std::string modName, bool dirty) {
+void ConfigManager::setDirty(const std::string& modName, bool dirty) {
     auto config = std::find(m_modConfigs.begin(), m_modConfigs.end(), modName);
     if(config != m_modConfigs.end()){
         config->dirty = dirty;
     } else {
-        ChairManager::Get().log(ChairManager::severityLevel::warning, "Failed to set dirty flag for mod %s, mod not found", modName.c_str());
+        ChairManager::Get().log(severityLevel::warning, "Failed to set dirty flag for mod %s, mod not found", modName.c_str());
     }
 }

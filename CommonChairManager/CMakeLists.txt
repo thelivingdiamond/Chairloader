@@ -27,12 +27,12 @@ set(SOURCE_FILES
 	# ChairManager
 	Manager/BinDiff.cpp
 	Manager/BinDiff.h
-	Manager/PathUtils.cpp
-	Manager/PathUtils.h
 	Manager/pch.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h
-)
+	Manager/GamePath.cpp
+	Manager/GamePath.h
+		)
 
 add_library(CommonChairManager STATIC
 	${SOURCE_FILES}

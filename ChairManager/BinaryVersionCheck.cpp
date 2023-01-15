@@ -1,7 +1,7 @@
 //
 // Created by theli on 9/2/2022.
 //
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "BinaryVersionCheck.h"
 #include <Windows.h>
 #include <winver.h>
@@ -20,7 +20,7 @@ static std::string m_latestVersion;
 
 
 SemanticVersion VersionCheck::getInstalledChairloaderVersion() {
-    auto szVersionFile = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / "Chairloader.dll";
     return getBinaryVersion(szVersionFile);
 }
 
@@ -53,7 +53,7 @@ std::string VersionCheck::getBinaryVersionString(fs::path szVersionFile) {
 }
 
 std::string VersionCheck::getInstalledChairloaderVersionString() {
-    auto szVersionFile = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / "Chairloader.dll";
     return getBinaryVersionString(szVersionFile);
 }
 
@@ -91,7 +91,7 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
     easyhandle.perform();
     // get the response code
     long http_code = curlpp::infos::ResponseCode::get(easyhandle);
-    ChairManager::Get().log(ChairManager::severityLevel::debug, "HTTP Response Code: %ld", http_code);
+    ChairManager::Get().log(severityLevel::debug, "HTTP Response Code: %ld", http_code);
     if(http_code == 304) {
         // no update available, use the cached version
         m_latestVersion = ChairManager::Get().getCachedLatestVersion();
@@ -105,7 +105,7 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
         // get the etag
 //        auto etag = curlpp::infos::ResponseCode::G
     } catch (std::exception &e) {
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
+        ChairManager::Get().log(severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
         return;
     }
     m_latestVersion = tag_name;
