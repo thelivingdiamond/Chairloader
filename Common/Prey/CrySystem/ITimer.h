@@ -15,7 +15,7 @@ struct tm;
 //! Interface to the Timer System.
 struct ITimer
 {
-	enum ETimer
+	enum ETimer : uint8_t
 	{
 		ETIMER_REAL,
 		ETIMER_GAME = 0, //!< Pausable, serialized, frametime is smoothed/scaled/clamped.
