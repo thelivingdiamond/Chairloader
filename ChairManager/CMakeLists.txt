@@ -48,4 +48,8 @@ target_link_libraries(ChairManager
 
 target_precompile_headers(ChairManager PRIVATE pch.h)
 
+set_target_properties(ChairManager PROPERTIES
+	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Data"
+)
+
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

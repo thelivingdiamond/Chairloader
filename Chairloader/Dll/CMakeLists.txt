@@ -26,6 +26,7 @@ target_link_libraries(Chairloader.Dll PRIVATE
 )
 
 set_target_properties(Chairloader.Dll PROPERTIES OUTPUT_NAME "Chairloader")
-cl_output_dir(Chairloader.Dll "Binaries/Danielle/x64/Release")
+cl_output_dir(Chairloader.Dll)
+cl_set_debug_path(Chairloader.Dll)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
