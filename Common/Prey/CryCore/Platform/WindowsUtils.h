@@ -3,6 +3,44 @@
 #pragma once
 #if CRY_PLATFORM_WINDOWS
 	#include "CryWindows.h"
+
+//! Converts an error code from winerror.h (e.g. returned by GetLastError() or from Detours)
+//! into a string.
+//! @param	errorMessageID	The error code.
+//! @returns an English string or empty string if no error.
+inline std::string WindowsErrorToString(DWORD errorMessageID)
+{
+	// Based on:
+	// https://stackoverflow.com/questions/1387064/how-to-get-the-error-message-from-the-error-code-returned-by-getlasterror
+
+	if (errorMessageID == 0) {
+		return std::string(); //No error message has been recorded
+	}
+
+	LPSTR messageBuffer = nullptr;
+
+	// Ask Win32 to give us the string version of that message ID.
+	// The parameters we pass in, tell Win32 to create the buffer that holds the message for us (because we don't yet know how long the message string will be).
+	size_t size = FormatMessageA(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, // dwFlags
+		NULL, // lpSource
+		errorMessageID, // dwMessageId
+		MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), // dwLanguageId
+		(LPSTR)&messageBuffer, // lpBuffer
+		0, // nSize
+		NULL // Arguments
+	);
+
+	// Copy the error message into a std::string.
+	std::string message(messageBuffer, size);
+
+	// Free the Win32's string's buffer.
+	LocalFree(messageBuffer);
+
+	return message;
+}
+
+#if 0
 	#include <CryRenderer/IRenderer.h>
 	#include <CryRenderer/IImage.h>
 	#include <CryCore/smartptr.h>
@@ -198,5 +236,5 @@ static HICON CreateResourceFromTexture(IRenderer* pRenderer, const char* path, E
 
 	return result;
 }
-
+#endif
 #endif

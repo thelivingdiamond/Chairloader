@@ -9,9 +9,19 @@ set(SOURCE_FILES
 	CMakeLists.txt
 	${PREY_HEADER_FILES}
 
+	Chairloader/Hooks/FunctionHook.cpp
+	Chairloader/Hooks/FunctionHook.h
+	Chairloader/Hooks/HookTransaction.cpp
+	Chairloader/Hooks/HookTransaction.h
+
+	Chairloader/ModSDK/ChairGlobalModName.cpp
+	Chairloader/ModSDK/ChairGlobalModName.h
+	Chairloader/ModSDK/ChairloaderModBase.cpp
+	Chairloader/ModSDK/ChairloaderModBase.h
+
 	Chairloader/ChairloaderEnv.h
-	Chairloader/FunctionHook.cpp
-	Chairloader/FunctionHook.h
+	Chairloader/ChairVars.h
+	Chairloader/ChairVars.cpp
 	Chairloader/IChairloader.h
 	Chairloader/IChairloaderConfigManager.h
 	Chairloader/IChairloaderGui.h
@@ -21,8 +31,6 @@ set(SOURCE_FILES
 	Chairloader/IChairloaderMod.h
 	Chairloader/IChairRender.h
 	Chairloader/IRenderAuxGeomEx.h
-	Chairloader/ModSDK/ChairloaderModBase.cpp
-	Chairloader/ModSDK/ChairloaderModBase.h
 	Chairloader/pch.h
 	Chairloader/PreyFunction.cpp
 	Chairloader/PreyFunction.h
@@ -41,8 +49,7 @@ set(SOURCE_FILES
 	mem.h
 	proc.cpp
 	proc.h
-        Chairloader/ChairVars.h
-		Chairloader/ChairVars.cpp Chairloader/ModSDK/ChairGlobalModName.cpp Chairloader/ModSDK/ChairGlobalModName.h)
+)
 
 add_library(Common STATIC
 	${SOURCE_FILES})

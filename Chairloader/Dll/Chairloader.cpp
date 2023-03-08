@@ -4,6 +4,7 @@
 #include <Prey/CryGame/Game.h>
 #include <Prey/CryEntitySystem/EntitySystem.h>
 #include <Prey/CryAction/CryAction.h>
+#include <Chairloader/Hooks/HookTransaction.h>
 #include <Chairloader/PreyFunction.h>
 #include <Chairloader/ChairloaderEnv.h>
 #include <Chairloader/IChairloaderMod.h>
@@ -158,9 +159,9 @@ Chairloader::Chairloader() {
 	PreyFunctionSystem::Init(m_ModuleBase);
 
 	// Install CSystem manual hook for InitSystem
-	DetourTransactionBegin();
+	HookTransaction hookTr;
 	g_CSystem_InitializeEngineModule_Hook.InstallHook(CSystem::FInitializeEngineModule.Get(), &CSystem_InitializeEngineModule_Hook);
-	DetourTransactionCommit();
+	hookTr.CommitOrDie();
 
 	// Instantiate modules
 	m_pCore = Internal::IChairloaderCore::CreateInstance();
@@ -175,10 +176,17 @@ Chairloader::~Chairloader()
 	m_pCore = nullptr;
 
 	// Remove all installed hooks
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	PreyFunctionSystem::RemoveHooks();
-	DetourTransactionCommit();
+	try
+	{
+		HookTransaction hookTr;
+		PreyFunctionSystem::RemoveHooks();
+		hookTr.Commit();
+	}
+	catch (const std::exception& e)
+	{
+		// Can't handle the error any further than log it.
+		CryError("Failed to remove hooks:\n{}", e.what());
+	}
 
 	m_WinConsole.ShutdownConsole();
 
@@ -395,10 +403,9 @@ void Chairloader::InitHooks()
 
 void Chairloader::InstallHooks()
 {
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
+	HookTransaction hookTr;
 	PreyFunctionSystem::InstallHooks();
-	DetourTransactionCommit();
+	hookTr.CommitOrDie();
 }
 
 bool Chairloader::HandleKeyPress(const SInputEvent &event) {
