@@ -5,6 +5,7 @@
 #include <detours/detours.h>
 #include <ChairLoader/IChairloaderImGui.h>
 #include <ChairLoader/ModSDK/ChairloaderModBase.h>
+#include <Chairloader/Hooks/HookTransaction.h>
 
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
@@ -27,7 +28,7 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 	CRY_ASSERT(dllInfoEx.modName != nullptr);
 	CRY_ASSERT(dllInfoEx.logTag != nullptr);
 
-	dllInfo = dllInfoEx;
+	dllInfo = (ModDllInfo)dllInfoEx;
 
 	// Init the DLL
 	ModuleInitISystem(initInfo.pSystem, dllInfoEx.modName);
@@ -37,12 +38,18 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 	m_ModuleBase = gCL->cl->GetPreyDllBase();
 
 	// Install hooks
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	InitHooks();
-	PreyFunctionSystem::Init(m_ModuleBase);
-	PreyFunctionSystem::InstallHooks();
-	DetourTransactionCommit();
+	try
+	{
+		HookTransaction hookTr;
+		InitHooks();
+		PreyFunctionSystem::Init(m_ModuleBase);
+		PreyFunctionSystem::InstallHooks();
+		hookTr.Commit();
+	}
+	catch (const std::exception& e)
+	{
+		CryFatalError("Failed to install hooks:\n{}", e.what());
+	}
 }
 
 void ChairloaderModBase::InitGame(bool isHotReloading)

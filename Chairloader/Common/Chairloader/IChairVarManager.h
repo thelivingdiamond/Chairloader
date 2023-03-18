@@ -26,4 +26,7 @@ struct IChairVarManager {
     //! Called when the game is shutting down, saves the config file.
     virtual void ShutdownGame() = 0;
 
+    //! Called every frame, saves the config file if the save interval has been reached.
+    virtual void UpdateSystem() = 0;
+
 };

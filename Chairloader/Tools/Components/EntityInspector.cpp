@@ -75,95 +75,149 @@ void EntityInspector::OnEntityChanged(EntityId entityId)
 
 void EntityInspector::InspectTransform(IEntity* pEnt) {
     if (BeginInspector("Transform")) {
+        static bool m_bHighPrecision;
         Vec3 pos = pEnt->GetPos();
         Ang3 angles = RAD2DEG(Ang3(pEnt->GetRotation()));
+        Quat rot = pEnt->GetRotation();
         Vec3 scale = pEnt->GetScale();
 
-        if (ImGui::InputFloat3("Position", &pos.x)) {
+        ImGui::Checkbox("High precision", &m_bHighPrecision);
+        const char* format = m_bHighPrecision ? "%.8f" : "%.2f";
+        ImGui::InputFloat3("Position", &pos.x, format);
+        if(ImGui::IsItemDeactivatedAfterEdit()){
             pEnt->SetPos(pos);
         }
-
-        if (ImGui::InputFloat3("Rotation (PRY)", &angles.x)) {
+        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", pos.x, pos.y, pos.z).c_str());
+        }
+        ImGui::InputFloat3("Rotation (PRY)", &angles.x, format);
+        if (ImGui::IsItemDeactivatedAfterEdit()) {
             pEnt->SetRotation(Quat(DEG2RAD(angles)));
         }
-
-        if (ImGui::InputFloat3("Scale", &scale.x)) {
+        if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
+            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
+        }
+        ImGui::InputFloat4("Rotation (Quat)", &rot.v.x, format);
+        if (ImGui::IsItemDeactivatedAfterEdit()) {
+            pEnt->SetRotation(rot);
+        }
+        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+            ImGui::OpenPopup("Copy Rotation");
+//            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
+        }
+        if(ImGui::BeginPopup("Copy Rotation")){
+            if(ImGui::MenuItem("Copy as Quat (XYZW)")){
+                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
+            }
+            if(ImGui::MenuItem("Copy as Quat (WXYZ)")){
+                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.v.x, rot.v.y, rot.v.z, rot.w).c_str());
+            }
+            if(ImGui::MenuItem("Copy as P,R,Y")){
+                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
+            }
+            ImGui::EndPopup();
+        }
+        ImGui::InputFloat3("Scale", &scale.x, format);
+        if (ImGui::IsItemDeactivatedAfterEdit()) {
             pEnt->SetScale(scale);
+        }
+        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
+            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", scale.x, scale.y, scale.z).c_str());
         }
 
         if (scale.x != scale.y || scale.x != scale.z) {
             ImGui::TextWrapped("Note: non-uniform scaling is not supported well");
         }
-
         if (ImGui::Button("TP to player") && ArkPlayer::GetInstancePtr())
             pEnt->SetPos(ArkPlayer::GetInstance().GetEntity()->GetPos());
-
+        if(ImGui::Button("TP player to entity") && ArkPlayer::GetInstancePtr())
+            ArkPlayer::GetInstance().GetEntity()->SetPos(pEnt->GetPos());
         EndInspector();
     }
 }
 
+static const float SLOT_INSPECTOR_HEIGHT = 300.0f;
+
 void EntityInspector::InspectSlots(IEntity* pEnt)
 {
-    int slotCount = pEnt->GetSlotCount();
-    for (int slotIdx = 0; slotIdx < slotCount; slotIdx++)
-    {
-        if (!pEnt->IsSlotValid(slotIdx))
-            continue;
+    if (BeginInspector("Object Slots")) {
+        int slotCount = pEnt->GetSlotCount();
+        static int m_SelectedSlot = 0;
+        if(ImGui::BeginChild("Slot Sidebar", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.2f, ImGui::GetWindowDpiScale() * SLOT_INSPECTOR_HEIGHT), true)) {
+            for (int slotIdx = 0; slotIdx < slotCount; slotIdx++) {
+                if (!pEnt->IsSlotValid(slotIdx))
+                    continue;
 
-        char slotName[64];
-        snprintf(slotName, sizeof(slotName), "Slot %d", slotIdx);
-        if (BeginInspector(slotName)) {
-            SEntitySlotInfo slotInfo;
-            pEnt->GetSlotInfo(slotIdx, slotInfo);
-
-            ImGui::Text("Flags: 0x%X", slotInfo.nFlags);
-            ImGui::Text("Parent Slot: %d", slotInfo.nParentSlot);
-
-            if (slotInfo.pStatObj)
-                ImGui::Text("StatObj");
-            if (slotInfo.pCharacter)
-                ImGui::Text("Character");
-            if (slotInfo.pParticleEmitter)
-                ImGui::Text("ParticleEmitter");
-            if (slotInfo.pLight)
-                ImGui::Text("Light");
-            if (slotInfo.pChildRenderNode)
-                ImGui::Text("ChildRenderNode");
-            if (slotInfo.pGeomCacheRenderNode)
-                ImGui::Text("GeomCacheRenderNode");
-            if (slotInfo.pMaterial)
-                ImGui::Text("Custom material is set");
-
-            if (ImGui::TreeNode("Transform"))
-            {
-                Matrix33 rotMat; slotInfo.pLocalTM->GetRotation33(rotMat);
-                Vec3 pos = slotInfo.pLocalTM->GetTranslation();
-                Ang3 rot = Ang3(rotMat);
-                Vec3 scale = slotInfo.pLocalTM->GetScale();
-
-                bool transformChanged = false;
-                transformChanged |= ImGui::InputFloat3("Position", &pos.x);
-                transformChanged |= ImGui::InputFloat3("Rotation (PRY)", &rot.x);
-                transformChanged |= ImGui::InputFloat3("Scale", &scale.x);
-
-                if (transformChanged)
-                {
-                    Matrix34 newTransform;
-                    newTransform = Matrix34::CreateTranslationMat(pos) * Matrix34::CreateRotationXYZ(rot) * Matrix34::CreateScale(scale);
-                    pEnt->SetSlotLocalTM(slotIdx, newTransform);
+                char slotName[64];
+                snprintf(slotName, sizeof(slotName), "Slot %d", slotIdx);
+                if (ImGui::Selectable(slotName, m_SelectedSlot == slotIdx)) {
+                    m_SelectedSlot = slotIdx;
                 }
-
-                Vec3 cameraSpacePos;
-                pEnt->GetSlotCameraSpacePos(slotIdx, cameraSpacePos);
-                if (ImGui::InputFloat3("Cam-space Pos", &cameraSpacePos.x))
-                {
-                    pEnt->SetSlotCameraSpacePos(slotIdx, cameraSpacePos);
-                }
-
-                ImGui::TreePop();
             }
-            EndInspector();
         }
+        ImGui::EndChild();
+        ImGui::SameLine();
+        if(ImGui::BeginChild("Slot Information", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetWindowDpiScale() * SLOT_INSPECTOR_HEIGHT), false)){
+            if (pEnt->IsSlotValid(m_SelectedSlot)) {
+                char slotName[64];
+                snprintf(slotName, sizeof(slotName), "Slot %d", m_SelectedSlot);
+                SEntitySlotInfo slotInfo;
+                pEnt->GetSlotInfo(m_SelectedSlot, slotInfo);
+                if (ImGui::BeginTabBar("Slots")) {
+                    ImGui::EndTabBar();
+                }
+                ImGui::Text("Flags: 0x%X", slotInfo.nFlags);
+                ImGui::Text("Parent Slot: %d", slotInfo.nParentSlot);
+
+                if (slotInfo.pStatObj)
+                    ImGui::Text("StatObj");
+                if (slotInfo.pCharacter)
+                    ImGui::Text("Character");
+                if (slotInfo.pParticleEmitter)
+                    ImGui::Text("ParticleEmitter");
+                if (slotInfo.pLight)
+                    ImGui::Text("Light");
+                if (slotInfo.pChildRenderNode)
+                    ImGui::Text("ChildRenderNode");
+                if (slotInfo.pGeomCacheRenderNode)
+                    ImGui::Text("GeomCacheRenderNode");
+                if (slotInfo.pMaterial)
+                    ImGui::Text("Custom material is set");
+
+                if (ImGui::TreeNode("Transform")) {
+                    Matrix33 rotMat;
+                    slotInfo.pLocalTM->GetRotation33(rotMat);
+                    Vec3 pos = slotInfo.pLocalTM->GetTranslation();
+                    Ang3 rot = Ang3(rotMat);
+                    Vec3 scale = slotInfo.pLocalTM->GetScale();
+
+                    bool transformChanged = false;
+                    ImGui::InputFloat3("Position", &pos.x, "%.2f");
+                    transformChanged |= ImGui::IsItemDeactivatedAfterEdit();
+                    ImGui::InputFloat3("Rotation (PRY)", &rot.x, "%.2f");
+                    transformChanged |= ImGui::IsItemDeactivatedAfterEdit();
+                    ImGui::InputFloat3("Scale", &scale.x, "%.2f");
+                    transformChanged |= ImGui::IsItemDeactivatedAfterEdit();
+
+                    if (transformChanged) {
+                        Matrix34 newTransform;
+                        newTransform = Matrix34::CreateTranslationMat(pos) * Matrix34::CreateRotationXYZ(rot) * Matrix34::CreateScale(scale);
+                        pEnt->SetSlotLocalTM(m_SelectedSlot, newTransform);
+                    }
+
+                    Vec3 cameraSpacePos;
+                    pEnt->GetSlotCameraSpacePos(m_SelectedSlot, cameraSpacePos);
+                    ImGui::InputFloat3("Cam-space Pos", &cameraSpacePos.x);
+                    if (ImGui::IsItemDeactivatedAfterEdit()) {
+                        pEnt->SetSlotCameraSpacePos(m_SelectedSlot, cameraSpacePos);
+                    }
+
+                    ImGui::TreePop();
+                }
+            }
+        }
+        ImGui::EndChild();
+        EndInspector();
     }
 }
 
@@ -185,6 +239,7 @@ void EntityInspector::InspectEntityScript(IEntity* pEnt) {
         else
         {
             ImGui::Checkbox("Show Functions", &m_bShowScriptFuncs);
+            ImGui::Separator();
             ShowScriptTable(pScriptTable);
         }
 
@@ -194,6 +249,8 @@ void EntityInspector::InspectEntityScript(IEntity* pEnt) {
 
 void EntityInspector::ShowScriptTable(IScriptTable* pScriptTable)
 {
+    ImGui::Text("Script Table: %p", pScriptTable);
+    ImGui::Separator();
     IScriptTable::Iterator iter = pScriptTable->BeginIteration(true);
 
     int propIdx = 0;
@@ -292,13 +349,15 @@ void EntityInspector::ShowScriptTable(IScriptTable* pScriptTable)
                     pScriptTable->SetValue(iter.sKey, val);
                 break;
             }
+            default:
+                break;
             }
         }
-
         propIdx++;
     }
 
     pScriptTable->EndIteration(iter);
+    ImGui::Separator();
 }
 
 void EntityInspector::InspectPhysics(IEntity* pEnt) {
@@ -306,9 +365,29 @@ void EntityInspector::InspectPhysics(IEntity* pEnt) {
     if (!pProxy) {
         return;
     }
-
+    static Vec3 m_force = Vec3(ZERO);
     if (BeginInspector("Physics")) {
         ImGui::Text("Enabled: %d", pProxy->IsPhysicsEnabled());
+        ImGui::InputFloat3("Force", &m_force.x, "%.1f");
+        auto physicalEntity = pProxy->GetPhysicalEntity();
+        //PE_NONE = 0,
+        //        PE_STATIC = 1,
+        //        PE_RIGID = 2,
+        //        PE_WHEELEDVEHICLE = 3,
+        //        PE_LIVING = 4,
+        //        PE_PARTICLE = 5,
+        //        PE_ARTICULATED = 6,
+        //        PE_ROPE = 7,
+        //        PE_SOFT = 8,
+        //        PE_AREA = 9
+        const static std::vector<std::string> typeNames{ "PE_NONE", "PE_STATIC", "PE_RIGID", "PE_WHEELEDVEHICLE", "PE_LIVING", "PE_PARTICLE", "PE_ARTICULATED", "PE_ROPE", "PE_SOFT", "PE_AREA" };
+        if(physicalEntity) {
+            auto type = physicalEntity->GetType();
+            ImGui::Text("Type: %s", typeNames[type].c_str());
+        }
+        if (ImGui::Button("Apply Force")) {
+            pProxy->AddImpulse(-1, pEnt->GetPos(), m_force, false, 1.0);
+        }
         EndInspector();
     }
 }

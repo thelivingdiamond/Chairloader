@@ -4,9 +4,9 @@
 #pragma once
 
 #include "ChairUpdateWizard.h"
-#include "ChairManager.h"
-#include "UpdateHandler.h"
-#include "../Common/Chairloader/SemanticVersion.h"
+#include "../ChairManager.h"
+#include "../UpdateHandler.h"
+#include "../../Common/Chairloader/SemanticVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;

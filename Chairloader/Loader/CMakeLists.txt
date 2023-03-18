@@ -7,6 +7,7 @@ set(SOURCE_FILES
 
 add_library(Chairloader.Loader SHARED ${SOURCE_FILES})
 set_target_properties(Chairloader.Loader PROPERTIES OUTPUT_NAME "mswsock")
-cl_output_dir(Chairloader.Loader "Binaries/Danielle/x64/Release")
+cl_output_dir(Chairloader.Loader)
+cl_set_debug_path(Chairloader.Loader)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

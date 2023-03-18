@@ -67,6 +67,8 @@ void ModMain::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dllInfo)
     // A great example would be storing whether a window is open or not.
     // You will typically use the macros REGISTER_CVAR(...) or REGISTER_CVAR2(...) to register a CVar.
     // See Common/Prey/CrySystem/IConsole.h for the documentation on CVars
+
+    //! Best used for simple user preferences. For more complex data, You will need to use an actual config file.
     static int m_bDoSomething = false;
     REGISTER_CVAR2("ExampleMod.DoSomething", &m_bDoSomething, 0, VF_DUMPTOCHAIR, "ExampleMod.DoSomething");
 #endif

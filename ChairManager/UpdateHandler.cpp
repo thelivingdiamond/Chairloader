@@ -29,11 +29,11 @@ void setError(std::string szError) {
 bool UpdateHandler::isUpdateAvailable() {
     auto latestVersion = VersionCheck::getLatestChairloaderVersion();
     auto installedVersion = VersionCheck::getInstalledChairloaderVersion();
-    ChairManager::Get().log(ChairManager::severityLevel::info , "Online Version: %s", latestVersion.String());
-    ChairManager::Get().log(ChairManager::severityLevel::info , "Installed Version: %s", installedVersion.String());
-    ChairManager::Get().log(ChairManager::severityLevel::info , "Update Available: %s", latestVersion > installedVersion ? "true" : "false");
+    ChairManager::Get().log(severityLevel::info , "Online Version: %s", latestVersion.String());
+    ChairManager::Get().log(severityLevel::info , "Installed Version: %s", installedVersion.String());
+    ChairManager::Get().log(severityLevel::info , "Update Available: %s", latestVersion > installedVersion ? "true" : "false");
     if(latestVersion > installedVersion) {
-        ChairManager::Get().overlayLog(ChairManager::severityLevel::info , "Update Available!");
+        ChairManager::Get().overlayLog(severityLevel::info , "Update Available!");
     }
     return latestVersion > installedVersion;
 }
@@ -50,9 +50,9 @@ void UpdateHandler::downloadUpdate() {
         boost::json::value json = boost::json::parse(result.str());
         // get the download url
         downloadUrl = json.at("assets").at(0).at("browser_download_url").as_string();
-        ChairManager::Get().overlayLog(ChairManager::severityLevel::info, "%s", "Downloading update...");
+        ChairManager::Get().overlayLog(severityLevel::info, "%s", "Downloading update...");
     } catch (std::exception &e) {
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Invalid github response: %s", e.what());
+        ChairManager::Get().log(severityLevel::error, "Invalid github response: %s", e.what());
         setError(("Invalid github response: " + std::string(e.what())));
         return;
     }
@@ -76,7 +76,7 @@ void UpdateHandler::downloadUpdate() {
         downloadHandle.perform();
         fileStream.close();
     } catch (std::exception &e) {
-        ChairManager::Get().overlayLog(ChairManager::severityLevel::error, "Failed to download update: %s", e.what());
+        ChairManager::Get().overlayLog(severityLevel::error, "Failed to download update: %s", e.what());
         setError(("Failed to download update: " + std::string(e.what())));
         return;
     }
@@ -88,7 +88,7 @@ void UpdateHandler::installUpdate() {
         fs::rename("ChairManager.exe", "ChairManager.exe.old");
     } catch (std::exception &e) {
         // not a fatal error
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to rename ChairManager.exe: %s", e.what());
+        ChairManager::Get().log(severityLevel::error, "Failed to rename ChairManager.exe: %s", e.what());
     }
     // extract the zip file
     std::wstring commandArgs = L".\\7za.exe x update.zip -o.\\ -y";
@@ -104,7 +104,7 @@ void UpdateHandler::installUpdate() {
         fs::remove("update.zip");
     } catch (std::exception &e) {
         // not a fatal error
-        ChairManager::Get().log(ChairManager::severityLevel::error, "Failed to remove update.zip: %s", e.what());
+        ChairManager::Get().log(severityLevel::error, "Failed to remove update.zip: %s", e.what());
     }
 }
 
@@ -130,7 +130,7 @@ void UpdateHandler::asyncDownloadCheck() {
     if(!m_bIsDownloading) return;
     if(IsFutureReady(downloadFuture)) {
         downloadFuture.get();
-        ChairManager::Get().overlayLog(ChairManager::severityLevel::info, "Update downloaded successfully!");
+        ChairManager::Get().overlayLog(severityLevel::info, "Update downloaded successfully!");
         m_bIsDownloading = false;
     }
 }
@@ -150,7 +150,7 @@ void UpdateHandler::asyncInstallCheck() {
     if(!m_bIsInstalling) return;
     if(IsFutureReady(installFuture)) {
         installFuture.get();
-        ChairManager::Get().overlayLog(ChairManager::severityLevel::info, "Update installed successfully!");
+        ChairManager::Get().overlayLog(severityLevel::info, "Update installed successfully!");
         m_bIsInstalling = false;
     }
 

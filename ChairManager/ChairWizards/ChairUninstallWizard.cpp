@@ -2,10 +2,10 @@
 // Created by theli on 8/30/2022.
 //
 
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "ChairUninstallWizard.h"
-#include "ChairManager.h"
-#include "GameVersion.h"
+#include "../ChairManager.h"
+#include "../GameVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
@@ -104,15 +104,15 @@ void ChairUninstallWizard::ShowFinishPage() {
 }
 
 void ChairUninstallWizard::StartUninstall() {
-    fs::path dstBinPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_BIN_DIR;
+    fs::path dstBinPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir();
     try{
         // Removing binaries
-        for(auto & requiredFile : PathUtils::REQUIRED_CHAIRLOADER_BINARIES){
+        for(auto & requiredFile : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries()){
             remove(dstBinPath / requiredFile);
         }
 
         // Remove patch file
-        fs::remove(ChairManager::Get().GetGamePath() / PathUtils::CHAIRLOADER_PATCH_PATH);
+        fs::remove(ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetChairloaderPatchPath());
 
         // remove mods folder
         if(m_bDeleteModFolder){
@@ -122,8 +122,8 @@ void ChairUninstallWizard::StartUninstall() {
         auto m_pGameVersion = std::make_unique<GameVersion>();
 
         //Restore Patch
-        fs::path dllPath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_PATH;
-        fs::path backupFilePath = ChairManager::Get().GetGamePath() / PathUtils::GAME_DLL_BACKUP_PATH;
+        fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
+        fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath();
         if (fs::exists(backupFilePath)) {
             fs::copy_file(backupFilePath, dllPath, fs::copy_options::overwrite_existing);
             m_patched = true;

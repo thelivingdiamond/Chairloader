@@ -4,12 +4,12 @@ set(SOURCE_FILES
         UI.cpp
         UI.h
         #ChairManager
-        ChairInstallWizard.cpp
-        ChairInstallWizard.h
+        ChairWizards/ChairInstallWizard.cpp
+        ChairWizards/ChairInstallWizard.h
         ChairManager.cpp
         ChairManager.h
-        GamePathDialog.cpp
-        GamePathDialog.h
+        ChairWizards/GamePathDialog.cpp
+        ChairWizards/GamePathDialog.h
         GameVersion.cpp
         GameVersion.h
         pch.h
@@ -17,22 +17,22 @@ set(SOURCE_FILES
         #Miscellaneous
         zipconf.h
         ./Data/Montserrat-Regular.ttf
-        appicon.rc
-        version.rc.in
-        version.rc
-        ChairUninstallWizard.cpp
-        ChairUninstallWizard.h
+        Resources/appicon.rc
+        Resources/version.rc.in
+        Resources/version.rc
+        ChairWizards/ChairUninstallWizard.cpp
+        ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairUpdateWizard.cpp ChairUpdateWizard.h UpdateURL.h)
+        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h)
 
 
 
-set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
+set(APP_ICON_RESOURCE_WINDOWS "Resources/appicon.rc")
 
 message(STATUS "Version: ${_CHAIRLOADER_VERSION_STR}")
 configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
-        ${CMAKE_CURRENT_SOURCE_DIR}/version.rc
+        Resources/version.rc.in
+        Resources/version.rc
         @ONLY)
 
 add_executable(ChairManager WIN32 ${SOURCE_FILES})
@@ -47,5 +47,9 @@ target_link_libraries(ChairManager
         )
 
 target_precompile_headers(ChairManager PRIVATE pch.h)
+
+set_target_properties(ChairManager PROPERTIES
+	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Data"
+)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

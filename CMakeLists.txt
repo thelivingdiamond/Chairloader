@@ -35,7 +35,28 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI") # /ZI Edit and Continu
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
 # Game path
-set(PREY_PATH "" CACHE PATH "(optional) Path to the game root directory (where Engine and GameSDK are) to automatically install built binaries")
+set(PREY_DLL_DIR "" CACHE PATH "(optional) Path to the game binaries directory (where Prey.exe/.dll are) to automatically install built binaries")
+
+if(PREY_DLL_DIR)
+	get_filename_component(PREY_PATH "${PREY_DLL_DIR}/../../../../" ABSOLUTE)
+	set(PREY_EXE_PATH "${PREY_DLL_DIR}/Prey.exe")
+	
+	if((NOT EXISTS "${PREY_EXE_PATH}"))
+		message(FATAL_ERROR
+			" PREY_DLL_DIR is not valid. Prey.exe not found.\n"
+			" DLL directory: ${PREY_DLL_DIR}\n"
+		)
+	endif()
+	
+	if((NOT EXISTS "${PREY_PATH}/Engine") OR (NOT EXISTS "${PREY_PATH}/GameSDK"))
+		message(FATAL_ERROR
+			" PREY_DLL_DIR is not valid. Engine or GameSDK not found in the root.\n"
+			" DLL directory: ${PREY_DLL_DIR}\n"
+			" Game root directory: ${PREY_PATH}"
+		)
+	endif()
+	
+endif()
 
 # Chairloader Version
 set(_CHAIRLOADER_VERSION_MAJOR 0)  # Increment when breaking changes are made
@@ -46,12 +67,11 @@ set(_CHAIRLOADER_VERSION_TYPE "-rc2")  # Indicates a pre-release version (e.g. "
 
 # Macros and functions
 
-# Sets target's output directory to a path in the game
-# @param targetName Name of the target
-# @param gamePath Path to a directory in the game root
-function(cl_output_dir targetName gamePath)
-	if(PREY_PATH)
-		set(out_path "${PREY_PATH}/${gamePath}")
+# Sets target's output directory to the game binaries dir.
+# @param targetName Name of the target.
+function(cl_output_dir targetName)
+	if(PREY_DLL_DIR)
+		set(out_path "${PREY_DLL_DIR}")
 		set_target_properties(${targetName} PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${out_path}
 			RUNTIME_OUTPUT_DIRECTORY_DEBUG ${out_path}
@@ -63,6 +83,17 @@ function(cl_output_dir targetName gamePath)
 			LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
 			LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
 			LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
+		)
+	endif()
+endfunction()
+
+# Sets target's debugger command and workdir to the game.
+# @param targetName Name of the target.
+function(cl_set_debug_path targetName)
+	if(PREY_EXE_PATH)
+		set_target_properties(${targetName} PROPERTIES
+			VS_DEBUGGER_COMMAND "${PREY_EXE_PATH}"
+			VS_DEBUGGER_WORKING_DIRECTORY "${PREY_PATH}"
 		)
 	endif()
 endfunction()
@@ -105,3 +136,6 @@ add_subdirectory(CommonChairManager)
 add_subdirectory(ChairManager)
 add_subdirectory(BinDiff)
 add_subdirectory(Preditor)
+
+# Set default VS project
+set(VS_STARTUP_PROJECT "Chairloader.Dll")

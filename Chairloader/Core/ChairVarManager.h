@@ -18,6 +18,8 @@ public:
 
     void InitSystem() override;
 
+    void UpdateSystem() override;
+
     void ShutdownGame() override;
 
     void LoadConfig();
@@ -37,6 +39,9 @@ private:
 
     pugi::xml_document m_config;
     pugi::xml_node m_configNode;
+
+    float m_SaveInterval = 90,
+        m_SaveTimer = 0;
 };
 
 

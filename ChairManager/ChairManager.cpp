@@ -5,18 +5,18 @@
 #include <iostream>
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
-#include <Manager/PathUtils.h>
+#include <Manager/GamePath.h>
 #include "ChairManager.h"
 #include "UI.h"
-#include "GamePathDialog.h"
+#include "ChairWizards/GamePathDialog.h"
 #include "GameVersion.h"
 #include "winver.h"
-#include "ChairInstallWizard.h"
-#include "ChairUninstallWizard.h"
+#include "ChairWizards/ChairInstallWizard.h"
+#include "ChairWizards/ChairUninstallWizard.h"
 #include "../ChairLoader/Common/GUIUtils.h" // TODO: That's horrible (TRUE LOL)
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
-#include "ChairUpdateWizard.h"
+#include "ChairWizards/ChairUpdateWizard.h"
 #include "../Common/Chairloader/SemanticVersion.h"
 
 static std::string ErrorMessage;
@@ -69,7 +69,7 @@ void ChairManager::LoadModManagerConfig()
     if (ChairManagerConfigFile.load_file(ChairManagerConfigPath.wstring().c_str())) {
         if (ChairManagerConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairManagerConfigFile.first_child().child("PreyPath").text().as_string());
-            if (PathUtils::ValidateGamePath(path))
+            if (ChairManager::Get().GetGamePathUtil()->ValidateGamePath(path))
             {
                 SetGamePath(path);
             }
@@ -107,7 +107,7 @@ void ChairManager::LoadModManagerConfig()
         log(severityLevel::error, "ChairManager config file not found, creating new");
         ChairManagerConfigFile.reset();
         ChairManagerConfigFile.append_child("ChairManager");
-        ChairManagerConfigFile.first_child().append_child("PreyPath").text().set(PreyPath.wstring().c_str());
+        ChairManagerConfigFile.first_child().append_child("PreyPath").text().set(GetGamePath().wstring().c_str());
         ChairManagerConfigFile.first_child().append_child("ETag").text().set(m_githubETag.c_str());
         auto launchOptionsNode = ChairManagerConfigFile.first_child().append_child("LaunchOptions");
         launchOptionsNode.append_attribute("LoadChairloader").set_value(true);
@@ -123,10 +123,9 @@ void ChairManager::LoadModManagerConfig()
 
 void ChairManager::SetGamePath(const fs::path& path)
 {
-    assert(path.empty() || PathUtils::ValidateGamePath(path));
+    assert(path.empty() || ChairManager::Get().GetGamePathUtil()->ValidateGamePath(path));
 
-    PreyPath = path;
-    m_PreyPathString = path.u8string();
+    m_pGamePath->SetGamePath(path);
     pugi::xml_node cfg = ChairManagerConfigFile.first_child();
 
     if (!path.empty())
@@ -157,6 +156,8 @@ void ChairManager::DrawGamePathSelectionDialog(bool* pbIsOpen)
     {
         log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
         SetGamePath(m_pGamePathDialog->GetGamePath());
+        m_pGamePath->SetGamePlatform(m_pGamePath->DeduceGamePlatform(GetGamePath()));
+        log(severityLevel::info, "Game platform: %s", m_pGamePath->GetGamePlatformString());
         saveModManagerConfigFile();
         m_pGamePathDialog.reset();
         SwitchToInstallWizard();
@@ -519,9 +520,9 @@ void ChairManager::DrawModList() {
                                             ModEntry.modName.c_str());
                                 if (ImGui::Button("Delete")) {
                                     if (!ModEntry.modName.empty()) {
-                                        log(severityLevel::info, "Deleting %s/Mods/%s/", PreyPath.u8string(),
+                                        log(severityLevel::info, "Deleting %s/Mods/%s/", GetGamePath().u8string(),
                                             ModEntry.modName);
-                                        fs::remove_all(PreyPath / "Mods" / ModEntry.modName);
+                                        fs::remove_all(GetGamePath() / "Mods" / ModEntry.modName);
                                         ModList.erase(std::find(ModList.begin(), ModList.end(), ModEntry.modName));
 
                                     }
@@ -777,11 +778,12 @@ void ChairManager::DrawModList() {
 
 void ChairManager::DrawDLLSettings() {
     if(ImGui::BeginTabItem("Settings")){
-        ImGui::InputText("Prey Path", &m_PreyPathString, ImGuiInputTextFlags_ReadOnly);
+        auto preyPathString = GetGamePath().u8string();
+        ImGui::InputText("Prey Path", &preyPathString, ImGuiInputTextFlags_ReadOnly);
 
         if(ImGui::Button("Change Path")){
             m_pGamePathDialog = std::make_unique<GamePathDialog>();
-            m_pGamePathDialog->SetGamePath(PreyPath);
+            m_pGamePathDialog->SetGamePath(GetGamePath());
             ImGui::OpenPopup("Change Game Path");
         }
 
@@ -1076,11 +1078,11 @@ void ChairManager::DrawLog() {
 
 
 fs::path ChairManager::getConfigPath(std::string &modName) {
-    return fs::path{ (PreyPath / "Mods/config" / modName / ".xml").c_str() };
+    return fs::path{ (GetGamePath() / "Mods/config" / modName / ".xml").c_str() };
 }
 
 fs::path ChairManager::getDefaultConfigPath(std::string &modName) {
-    return fs::path{ (PreyPath / "Mods" / modName / modName / "_default.xml").c_str() };
+    return fs::path{ (GetGamePath() / "Mods" / modName / modName / "_default.xml").c_str() };
 }
 bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
     std::string directoryName = directory.filename().u8string();
@@ -1145,7 +1147,7 @@ bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDiffe
 
 void ChairManager::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
-        fs::path modPath = PreyPath / "Mods" / PrevMod.name();
+        fs::path modPath = GetGamePath() / "Mods" / PrevMod.name();
         Mod mod;
         if(LoadModInfoFile(modPath, &mod, false)) {
             FindMod(&mod);
@@ -1162,8 +1164,8 @@ void ChairManager::LoadModsFromConfig() {
     serializeLoadOrder();
 }
 void ChairManager::DetectNewMods() {
-    for(auto &directory : fs::directory_iterator(fs::path(PreyPath.u8string() + "/Mods/"))){
-        if(directory.path() != PreyPath / "Mods/config" && directory.path() != PreyPath / "Mods/Legacy") {
+    for(auto &directory : fs::directory_iterator(fs::path(GetGamePath().u8string() + "/Mods/"))){
+        if(directory.path() != GetGamePath() / "Mods/config" && directory.path() != GetGamePath() / "Mods/Legacy") {
             Mod mod;
             if(LoadModInfoFile(directory.path(), &mod, false)) {
                 if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
@@ -1188,7 +1190,7 @@ void ChairManager::loadModInfoFiles() {
     overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
 //    serializeLoadOrder();
     try {
-        for (auto &directory: fs::directory_iterator(PreyPath / "Mods/Legacy")) {
+        for (auto &directory: fs::directory_iterator(GetGamePath() / "Mods/Legacy")) {
             if (directory.is_directory()) {
                 LegacyModList.emplace_back(directory.path().filename().u8string());
             }
@@ -1213,14 +1215,18 @@ ChairManager::ChairManager() {
     m_spInstance = this;
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
+    m_pGamePath = std::make_unique<GamePath>();
     cURLpp::initialize();
     LoadModManagerConfig();
     VersionCheck::fetchLatestVersion();
 
-    if (PreyPath.empty() || !PathUtils::ValidateGamePath(PreyPath))
-        SwitchToGameSelectionDialog(PreyPath);
-    else
+    if (GetGamePath().empty() || !ChairManager::Get().GetGamePathUtil()->ValidateGamePath(GetGamePath())){
+        SwitchToGameSelectionDialog(GetGamePath());
+    } else {
+        m_pGamePath->SetGamePlatform(m_pGamePath->DeduceGamePlatform(GetGamePath()));
+        log(severityLevel::info, "Game platform: %s", m_pGamePath->GetGamePlatformString());
         SwitchToInstallWizard();
+    }
 }
 
 ChairManager::~ChairManager() {
@@ -1277,7 +1283,7 @@ void ChairManager::FindMod(Mod* modEntry) {
 
 
 
-void ChairManager::SaveMod(ChairManager::Mod *modEntry) {
+void ChairManager::SaveMod(Mod *modEntry) {
     if(modEntry == nullptr) {
         log(severityLevel::error, "Cannot save mod, nullptr was passed");
         return;
@@ -1431,10 +1437,10 @@ bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modN
     ImGuiTreeNodeFlags_ treeFlags = ImGuiTreeNodeFlags_None;
     switch(type) {
         case XMLFile::XMLType::Registered:
-            path = PreyPath / "Mods" / modName / relativePath;
+            path = GetGamePath() / "Mods" / modName / relativePath;
             break;
         case XMLFile::XMLType::Legacy:
-            path = PreyPath / "Mods" / "Legacy" / modName / relativePath;
+            path = GetGamePath() / "Mods" / "Legacy" / modName / relativePath;
             break;
         case XMLFile::XMLType::BaseGame:
             path = fs::path("PreyFiles") / relativePath;
@@ -1457,10 +1463,10 @@ bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modN
                 fs::path childRelativePath;
                 switch(type){
                     case XMLFile::XMLType::Registered:
-                        childRelativePath = childPath.path().wstring().substr((PreyPath / "Mods" / modName).wstring().length() + 1, childPath.path().wstring().length());
+                        childRelativePath = childPath.path().wstring().substr((GetGamePath() / "Mods" / modName).wstring().length() + 1, childPath.path().wstring().length());
                         break;
                     case XMLFile::XMLType::Legacy:
-                        childRelativePath = childPath.path().wstring().substr((PreyPath / "Mods" / "Legacy" / modName).wstring().length() + 1, childPath.path().wstring().length());
+                        childRelativePath = childPath.path().wstring().substr((GetGamePath() / "Mods" / "Legacy" / modName).wstring().length() + 1, childPath.path().wstring().length());
                         break;
                     case XMLFile::XMLType::BaseGame:
                         childRelativePath = childPath.path().wstring().substr((fs::path("PreyFiles")).wstring().length() + 1, childPath.path().wstring().length());
@@ -1478,7 +1484,7 @@ bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modN
         fs::path rootDirectory;
         switch(type){
             case XMLFile::XMLType::Registered:
-                childRelativePath = path.wstring().substr((PreyPath / "Mods" / modName).wstring().length() + 1, path.wstring().length());
+                childRelativePath = path.wstring().substr((GetGamePath() / "Mods" / modName).wstring().length() + 1, path.wstring().length());
                 rootDirectory = *childRelativePath.begin();
                 if(rootDirectory == "Data"){
                     childRelativePath = childRelativePath.wstring().substr(fs::path("Data/").wstring().length(), path.wstring().length());
@@ -1486,7 +1492,7 @@ bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modN
 
                 break;
             case XMLFile::XMLType::Legacy:
-                childRelativePath = path.wstring().substr((PreyPath / "Mods" / "Legacy" / modName).wstring().length() + 1, path.wstring().length());
+                childRelativePath = path.wstring().substr((GetGamePath() / "Mods" / "Legacy" / modName).wstring().length() + 1, path.wstring().length());
                 break;
             case XMLFile::XMLType::BaseGame:
                 childRelativePath = path.wstring().substr((fs::path("PreyFiles")).wstring().length() + 1, path.wstring().length());
@@ -1612,7 +1618,7 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
             auto mod = new Mod;
             if (LoadModInfoFile(fs::path("./temp"), mod, true)) {
                 try {
-                    fs::copy("./temp/", PreyPath / "Mods" / mod->modName,
+                    fs::copy("./temp/", GetGamePath() / "Mods" / mod->modName,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
@@ -1630,7 +1636,7 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
             try {
                 auto BaseModFolder = fileName.filename().replace_extension("");
                 log(severityLevel::info, "Installing Legacy Mod: %s", BaseModFolder.u8string().c_str());
-                fs::copy("./temp/", PreyPath / "Mods" / "Legacy" / BaseModFolder,
+                fs::copy("./temp/", GetGamePath() / "Mods" / "Legacy" / BaseModFolder,
                          fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 log(severityLevel::info, "Mod Installation Succeeded: %s loaded", BaseModFolder.u8string().c_str());
                 loadModInfoFiles();
@@ -1724,7 +1730,7 @@ void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
         m_DeployLogMutex.lock();
         m_DeployState = DeployState::MergingLegacyMods;
         m_DeployLogMutex.unlock();
-        for (auto& directory : fs::directory_iterator(PreyPath / "Mods/Legacy")) {
+        for (auto& directory : fs::directory_iterator(GetGamePath() / "Mods/Legacy")) {
             if (fs::is_directory(directory)) {
                 log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
                 mergeDirectory("", directory.path().filename().u8string(), true);
@@ -1857,15 +1863,15 @@ void ChairManager::OverlayLogElement(LogEntry entry) {
 void ChairManager::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
     fs::path modPath;
     if(legacyMod) {
-        modPath = PreyPath / "Mods/Legacy" / modName / path;
+        modPath = GetGamePath() / "Mods/Legacy" / modName / path;
     } else {
-        modPath = PreyPath / "Mods" / modName / "Data" / path.u8string();
+        modPath = GetGamePath() / "Mods" / modName / "Data" / path.u8string();
     }
     fs::path originalPath = "./PreyFiles" / path;
     fs::path outputPath = "./Output" / path;
     try {
         // merge level files anyway
-        if (is_directory(modPath)/* && modPath != PreyPath.u8string() + "/Mods/" + modName + "/Data/Levels"*/) {
+        if (is_directory(modPath)/* && modPath != GetGamePath().u8string() + "/Mods/" + modName + "/Data/Levels"*/) {
             log(severityLevel::trace, "Exploring directory %s", modPath.u8string().c_str());
             if(!fs::exists(outputPath)) {
                 fs::create_directories(outputPath);
@@ -1951,8 +1957,8 @@ bool ChairManager::packChairloaderPatch() {
                 if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
                     fs::remove_all("./LevelOutput" / basePath / "level/");
                     log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
-                    fs::copy("./LevelOutput" / basePath, PreyPath / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                    log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), PreyPath.u8string() + "/GameSDK/" + basePath.u8string());
+                    fs::copy("./LevelOutput" / basePath, GetGamePath() / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), GetGamePath().u8string() + "/GameSDK/" + basePath.u8string());
                 } else {
                     log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
                 }
@@ -1989,7 +1995,7 @@ bool ChairManager::packChairloaderPatch() {
     } else {
         try {
             fs::remove_all("./Output/Localization/");
-            fs::copy_file("./English_xml_patch.pak", PreyPath / "Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
+            fs::copy_file("./English_xml_patch.pak", GetGamePath() / "Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
         } catch (std::exception &exception) {
             overlayLog(severityLevel::error, "Error removing localization patch files: %s", exception.what());
             return false;
@@ -2028,7 +2034,7 @@ bool ChairManager::copyChairloaderPatch() {
     m_DeployState = DeployState::CopyingMainPatch;
     m_DeployLogMutex.unlock();
     try {
-        fs::copy("patch_chairloader.pak", PreyPath / "GameSDK/Precache",
+        fs::copy("patch_chairloader.pak", GetGamePath() / "GameSDK/Precache",
                  fs::copy_options::overwrite_existing);
         return true;
     } catch (std::exception & exception){
@@ -2111,7 +2117,7 @@ bool ChairManager::copyLocalizationPatch() {
 }
 bool ChairManager::verifyChairloaderConfigFile() {
     try {
-        return fs::exists(PreyPath / "Mods/config/Chairloader.xml");
+        return fs::exists(GetGamePath() / "Mods/config/Chairloader.xml");
     } catch (std::exception &exception) {
         overlayLog(severityLevel::error, "Exception while verifying chairloader.xml: %s", exception.what());
         return false;
@@ -2119,7 +2125,7 @@ bool ChairManager::verifyChairloaderConfigFile() {
 }
 void ChairManager::createChairloaderConfigFile() {
     try {
-        fs::copy("chairloader_default.xml", PreyPath / "Mods/config/Chairloader.xml", fs::copy_options::overwrite_existing);
+        fs::copy("chairloader_default.xml", GetGamePath() / "Mods/config/Chairloader.xml", fs::copy_options::overwrite_existing);
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while creating chairloader config file: %s", exception.what());
     }
@@ -2127,9 +2133,9 @@ void ChairManager::createChairloaderConfigFile() {
 
 bool ChairManager::verifyChairloaderInstalled() {
     try{
-        for (const char* fileName : PathUtils::REQUIRED_CHAIRLOADER_BINARIES)
+        for (const char* fileName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries())
         {
-            if (!fs::exists(PreyPath / PathUtils::GAME_BIN_DIR / fileName))
+            if (!fs::exists(GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / fileName))
                 return false;
         }
 
@@ -2142,9 +2148,9 @@ bool ChairManager::verifyChairloaderInstalled() {
 
 bool ChairManager::verifyDefaultFileStructure() {
     try {
-        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
+        for (const char* dirName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderDirs())
         {
-            if (!fs::is_directory(PreyPath / dirName))
+            if (!fs::is_directory(GetGamePath() / dirName))
                 return false;
         }
 
@@ -2157,9 +2163,9 @@ bool ChairManager::verifyDefaultFileStructure() {
 
 void ChairManager::createDefaultFileStructure() {
     try {
-        for (const char* dirName : PathUtils::REQUIRED_CHAIRLOADER_DIRS)
+        for (const char* dirName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderDirs())
         {
-            fs::create_directories(PreyPath / dirName);
+            fs::create_directories(GetGamePath() / dirName);
         }
     } catch (std::exception & exception){
         overlayLog(severityLevel::error, "Exception while creating default file structure: %s", exception.what());
@@ -2177,7 +2183,7 @@ void ChairManager::Init() {
         createChairloaderConfigFile();
     }
     m_XMLMerger.init();
-    if (!ChairloaderConfigFile.load_file((PreyPath / "Mods/config/Chairloader.xml").c_str())) {
+    if (!ChairloaderConfigFile.load_file((GetGamePath() / "Mods/config/Chairloader.xml").c_str())) {
         throw std::runtime_error("Chairloader config file is corrupted or missing.");
     }
 
@@ -2307,6 +2313,26 @@ void ChairManager::DrawDebug() {
             if(ImGui::Button("Set ETAG")){
                 setETag(newETag);
             }
+        }
+        if(ImGui::CollapsingHeader("Multi Platform Support")){
+            static int i = 0;
+            if(ImGui::RadioButton("Steam", &i, 0)){
+                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Steam);
+            }
+            if(ImGui::RadioButton("GOG", &i, 1)){
+                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Gog);
+            }
+            if(ImGui::RadioButton("Epic", &i, 2)){
+                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Epic);
+            }
+            if(ImGui::RadioButton("Microsoft Store", &i, 3)){
+                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Microsoft);
+            }
+            ImGui::Text("GAME BIN: %s", ChairManager::Get().GetGamePathUtil()->GetGameBinDir());
+            ImGui::Text("GAME EXE: %s", ChairManager::Get().GetGamePathUtil()->GetGameExePath());
+            ImGui::Text("GAME DLL: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllPath());
+            ImGui::Text("GAME PDB: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllPDBPath());
+            ImGui::Text("GAME BACKUP: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath());
         }
         ImGui::EndTabItem();
     }
@@ -2486,7 +2512,7 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 
 void ChairManager::launchGame() {
     log(severityLevel::info, "Launching game");
-    fs::path exePath = PreyPath / PathUtils::GAME_EXE_PATH;
+    fs::path exePath = GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameExePath();
     m_chairloaderLaunchOptions = fs::path(m_customArgs + " ").wstring();
     // bool m_bLoadChairloader -nochair
     //        m_bLoadEditor -editor
@@ -2527,7 +2553,7 @@ void ChairManager::launchGame() {
 
 void ChairManager::removeStartupCinematics() {
     log(severityLevel::info, "Removing startup cinematics");
-    fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
+    fs::path cinematicsPath = GetGamePath() / "GameSDK" / "Videos";
     try {
         fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2",
                    cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup");
@@ -2546,7 +2572,7 @@ void ChairManager::removeStartupCinematics() {
 
 void ChairManager::restoreStartupCinematics() {
     log(severityLevel::info, "Restoring startup cinematics");
-    fs::path cinematicsPath = PreyPath / "GameSDK" / "Videos";
+    fs::path cinematicsPath = GetGamePath() / "GameSDK" / "Videos";
     try {
         fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup",
                    cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2");
@@ -2560,6 +2586,10 @@ void ChairManager::restoreStartupCinematics() {
         log(severityLevel::error, "Failed to restore startup cinematics: %s", e.what());
     }
 
+}
+
+const fs::path &ChairManager::GetGamePath() {
+    return m_pGamePath->GetGamePath();
 }
 
 
