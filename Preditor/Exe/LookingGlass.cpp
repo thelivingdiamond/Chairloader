@@ -77,8 +77,9 @@ void LookingGlass::ShowUI() {
                 }
             }
         }
-        ImGui::End();
     }
+
+    ImGui::End();
     AppModule::ShowUI();
 }
 LookingGlass *LookingGlass::Get() {
