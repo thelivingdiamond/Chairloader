@@ -24,41 +24,41 @@ public:
 
 //! Paths to game binaries
 //! @{
-    const char* GetGameBinDir();
+    const char* GetGameBinDir() const;
     static const char* GetGameBinDir(GamePlatform platform);
-    const char* GetGameExePath();
+    const char* GetGameExePath() const;
     static const char* GetGameExePath(GamePlatform platform);
-    const char* GetGameDllPath();
+    const char* GetGameDllPath() const;
     static const char* GetGameDllPath(GamePlatform platform);
-    const char* GetGameDllPDBPath();
+    const char* GetGameDllPDBPath() const;
     static const char* GetGameDllPDBPath(GamePlatform platform);
-    const char* GetGameDllBackupPath();
+    const char* GetGameDllBackupPath() const;
     static const char* GetGameDllBackupPath(GamePlatform platform);
 
 //! @}
 
 //! Path to Chairloader files for installation (relative to ModLoader)
-    const char* GetChairloaderBinSrcPath();
-    std::vector<const char*> GetRequiredGameFiles();
+    const char* GetChairloaderBinSrcPath() const;
+    std::vector<const char*> GetRequiredGameFiles() const;
 
     static std::vector<const char*> GetRequiredGameFiles(GamePlatform platform);
 
 //! Chairloader files in GetGameExePath that are required for Chairloader
-    std::vector<const char*> GetRequiredChairloaderBinaries();
+    std::vector<const char*> GetRequiredChairloaderBinaries() const;
 
 //! Required directories in the game dir for Chairloader to work
-    std::vector<const char*> GetRequiredChairloaderDirs();
+    std::vector<const char*> GetRequiredChairloaderDirs() const;
 
 
 //! Path to the Chairloader patch file
-    const char * GetChairloaderPatchPath();
+    const char* GetChairloaderPatchPath() const;
 
 //! Sets the game store platform, used to determine the appropriate game path
     void SetGamePlatform(GamePlatform platform);
 
 //! Returns the game store platform
-    GamePlatform GetGamePlatform();
-    const char* GetGamePlatformString();
+    GamePlatform GetGamePlatform() const { return m_Platform; };
+    const char* GetGamePlatformString() const;
 
     static const char* GetGamePlatformString(GamePlatform platform);
 
@@ -67,24 +67,24 @@ public:
 //! @param  path    The path in question
 //! @param  error   Output variable with validation error text. Empty if no error.
 //! @returns whether the path is a valid game path.
-    bool ValidateGamePath(const fs::path& path, std::string* error = nullptr);
+    static bool ValidateGamePath(const fs::path& path, std::string* error = nullptr);
 
 //! Like ValidateGamePath but for Prey.exe path
 //! @param  path    The path in question
 //! @param  error   Output variable with validation error text. Empty if no error.
 //! @returns whether the path is a valid exe path.
-    bool ValidateExePath(const fs::path& path, std::string* error = nullptr);
+    static bool ValidateExePath(const fs::path& path, std::string* error = nullptr);
 
 
 //! Extracts game path from exe path. Call ValidateExePath first.
-    fs::path ExePathToGamePath(const fs::path& exePath);
+    static fs::path ExePathToGamePath(const fs::path& exePath);
 
     //! Deduces the game platform from game root path by checking which files exist.
     //! @returns the platform or GamePlatform::Unknown.
     static GamePlatform DeduceGamePlatform(const fs::path& path);
 
 //! Get the path to the game directory
-    const fs::path& GetGamePath(){
+    const fs::path& GetGamePath() const {
         return m_Path;
     }
 

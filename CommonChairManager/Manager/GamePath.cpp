@@ -124,11 +124,6 @@ void GamePath::SetGamePlatform(GamePath::GamePlatform platform) {
     m_Platform = platform;
 }
 
-GamePath::GamePlatform GamePath::GetGamePlatform() {
-    return m_Platform;
-}
-
-
 bool GamePath::TrySetGamePath(const fs::path& path, std::string* error)
 {
     bool isValid = ValidateGamePath(path, error);
@@ -143,33 +138,31 @@ bool GamePath::TrySetGamePath(const fs::path& path, std::string* error)
     return true;
 }
 
-const char *GamePath::GetGameBinDir() {
+const char *GamePath::GetGameBinDir() const {
     return GetGameBinDir(m_Platform);
 }
 
-const char *GamePath::GetGameExePath() {
+const char *GamePath::GetGameExePath() const {
     return GetGameExePath(m_Platform);
 }
 
-const char *GamePath::GetGameDllPath() {
+const char *GamePath::GetGameDllPath() const {
     return GetGameDllPath(m_Platform);
 }
 
-const char *GamePath::GetGameDllPDBPath() {
+const char *GamePath::GetGameDllPDBPath() const {
     return GetGameDllPDBPath(m_Platform);
 }
 
-const char *GamePath::GetGameDllBackupPath() {
+const char *GamePath::GetGameDllBackupPath() const {
     return GetGameDllBackupPath(m_Platform);
 }
 
-const char *GamePath::GetChairloaderBinSrcPath() {
+const char *GamePath::GetChairloaderBinSrcPath() const {
     return CHAIRLOADER_BIN_SRC_PATH_STR;
 }
 
-
-
-std::vector<const char *> GamePath::GetRequiredGameFiles() {
+std::vector<const char *> GamePath::GetRequiredGameFiles() const {
     return GetRequiredGameFiles(m_Platform);
 }
 
@@ -180,15 +173,15 @@ std::vector<const char *> GamePath::GetRequiredGameFiles(GamePath::GamePlatform 
 }
 
 
-std::vector<const char *> GamePath::GetRequiredChairloaderBinaries() {
+std::vector<const char *> GamePath::GetRequiredChairloaderBinaries() const {
     return REQUIRED_CHAIRLOADER_BINARIES_ARRAY;
 }
 
-std::vector<const char *> GamePath::GetRequiredChairloaderDirs() {
+std::vector<const char *> GamePath::GetRequiredChairloaderDirs() const {
     return REQUIRED_CHAIRLOADER_DIRS_ARRAY;
 }
 
-const char *GamePath::GetChairloaderPatchPath() {
+const char *GamePath::GetChairloaderPatchPath() const {
     return CHAIRLOADER_PATCH_PATH_STR;
 }
 
@@ -309,6 +302,6 @@ switch(platform){
     return "";
 }
 
-const char *GamePath::GetGamePlatformString() {
+const char *GamePath::GetGamePlatformString() const {
     return GetGamePlatformString(m_Platform);
 }
