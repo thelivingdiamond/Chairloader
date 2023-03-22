@@ -9,6 +9,7 @@
 #include <Prey/GameDll/basiceventlistener.h>
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IChairToPreditor.h>
+#include <Chairloader/Hooks/HookTransaction.h>
 #include <App/Application.h>
 #include <Preditor/Project/ProjectManager.h>
 #include <Preditor/IGameViewport.h>
@@ -230,7 +231,7 @@ void CSystem_OpenBasicPaks_Hook(CSystem* const _this)
 		if (g_InitParams.loadGamePaks)
 		{
 			// Load all PAKs from the original GameSDK
-			std::string gameSdkPath = (g_InitParams.enginePath / "GameSDK").u8string();
+			std::string gameSdkPath = (g_InitParams.enginePath.GetGamePath() / "GameSDK").u8string();
 			_this->m_env->pCryPak->AddMod(gameSdkPath.c_str());
 			_this->m_env->pCryPak->OpenPacks((gameSdkPath + "/*.pak").c_str(), ICryPak::FLAGS_PATH_REAL, nullptr);
 			_this->m_env->pCryPak->OpenPacks((gameSdkPath + "/Precache/Patch*.pak").c_str(), ICryPak::FLAGS_PATH_REAL, nullptr);
@@ -318,13 +319,14 @@ void PreditorEngine::Load(const InitParams& params)
 	m_hSystemMSWSock = DllHandle(LoadLibraryExA("mswsock.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32), &FreeLibrary);
 
 	// Change workdir to engine root
-	SetCurrentDirectoryW(params.enginePath.c_str());
+	SetCurrentDirectoryW(params.enginePath.GetGamePath().c_str());
 
 	// Add game directory to DLL search path
-	AddDllDirectory(params.engineBinariesPath.c_str());
+	fs::path binariesPath = params.enginePath.GetGamePath() / params.enginePath.GetGameBinDir();
+	AddDllDirectory(binariesPath.c_str());
 
 	// Load the DLL
-	fs::path dllPath = params.engineBinariesPath / "PreyDll.dll";
+	fs::path dllPath = binariesPath / "PreyDll.dll";
 	DllHandle hPreyDll = DllHandle(LoadLibraryExW(dllPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS), &FreeLibrary);
 
 	if (!hPreyDll)
@@ -336,7 +338,7 @@ void PreditorEngine::Load(const InitParams& params)
 	if (!params.minimal)
 	{
 		// Load Chairloader
-		fs::path chairPath = params.engineBinariesPath / "Chairloader.dll";
+		fs::path chairPath = binariesPath / "Chairloader.dll";
 		DllHandle hChairDll = DllHandle(LoadLibraryExW(chairPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS), &FreeLibrary);
 
 		if (!hChairDll)

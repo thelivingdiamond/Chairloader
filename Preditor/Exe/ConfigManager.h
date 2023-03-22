@@ -1,7 +1,6 @@
 #pragma once
 
 #include "pch.h"
-#include "Manager/GamePath.h"
 #include "App/AppModule.h"
 #include "pugixml.hpp"
 #include "ImGui/imgui.h"
@@ -22,7 +21,7 @@ public:
 
     void ShowUI() override;
 
-    GamePath& getGamePath() { return m_gamePath; }
+    fs::path& getGamePath() { return m_gamePath; }
     fs::path& getPreyFilesPath() { return m_PreyFilesPath; }
     pugi::xml_node& getConfigNode() { return m_configNode; }
 
@@ -36,7 +35,7 @@ public:
 
 protected:
     static constexpr char CONFIG_FILE_NAME[] = "ModToolKitConfig.xml";
-    GamePath m_gamePath;
+    fs::path m_gamePath;
     fs::path m_PreyFilesPath;
 
     std::shared_ptr<pugi::xml_document> m_configFile;

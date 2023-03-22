@@ -16,12 +16,21 @@ void LoadGameStage::Start()
 	try
 	{
 		UpdateProgressText("Loading PreyDll.dll...");
+		
+		// Parse game path
+		GamePath gamePath;
+		{
+			const fs::path& configGamePath = ConfigManager::Get()->getGamePath();
+			std::string error;
+
+			if (!gamePath.TrySetGamePath(configGamePath, &error))
+				throw std::runtime_error("Failed to set game path: " + error);
+		}
 
 		fs::path projRuntime = ProjectManager::GetProject()->GetRuntimePath();
 		IPreditorEngine::InitParams params;
 		params.progressCallback = [&](const char* msg) { UpdateProgressText(msg); };
-		params.enginePath = ConfigManager::Get()->getGamePath();
-		params.engineBinariesPath = params.enginePath / PathUtils::GAME_BIN_DIR;
+		params.enginePath = gamePath;
 		params.modDirPath = projRuntime / "GameSDK";
 		params.userPath = projRuntime / "User";
 		params.chairloaderConfigPath = projRuntime / "Config";

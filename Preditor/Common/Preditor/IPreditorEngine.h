@@ -1,4 +1,5 @@
 #pragma once
+#include <Manager/GamePath.h>
 
 struct IGameStartup;
 struct ITexture;
@@ -14,11 +15,8 @@ struct IPreditorEngine
 		//! Called when loading stage changes.
 		ProgressCallback progressCallback;
 
-		//! Path to the engine root
-		fs::path enginePath;
-
-		//! Path to the game binaries directory.
-		fs::path engineBinariesPath;
+		//! Path to the game engine.
+		GamePath enginePath;
 
 		//! Optional path to the GameSDK directory to use.
 		fs::path gameSdkPath;

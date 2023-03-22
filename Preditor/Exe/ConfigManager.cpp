@@ -1,3 +1,4 @@
+#include <Manager/GamePath.h>
 #include "ConfigManager.h"
 #include "ImGui/imgui_stdlib.h"
 #include "App/AppImGui.h"
@@ -78,11 +79,14 @@ void ConfigManager::showConfigWindow() {
 }
 
 bool ConfigManager::validateConfigPaths(std::string &error) {
-    bool valid = false;
-    valid = PathUtils::ValidateGamePath(m_gamePath, &error);
+    bool valid = true;
+
+    valid &= GamePath::ValidateGamePath(m_gamePath, &error);
+
     if(!fs::exists(m_PreyFilesPath)){
         error = "Prey Files Path does not exist";
         valid = false;
     }
+
     return valid;
 }
