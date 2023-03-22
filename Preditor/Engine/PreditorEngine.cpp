@@ -433,9 +433,9 @@ void PreditorEngine::Shutdown()
 
 	if (m_hPreyDll)
 	{
-		DetourTransactionBegin();
+		HookTransaction ht;
 		PreyFunctionSystem::RemoveHooks();
-		DetourTransactionCommit();
+		ht.Commit();
 
 		m_hPreyDll = nullptr;
 	}
@@ -637,8 +637,7 @@ void PreditorEngine::ApplyMinimalPatches()
 
 void PreditorEngine::InstallHooks()
 {
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
+	HookTransaction ht;
 	PreyFunctionSystem::InstallHooks();
-	DetourTransactionCommit();
+	ht.Commit();
 }
