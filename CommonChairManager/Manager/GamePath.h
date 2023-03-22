@@ -16,6 +16,12 @@ public:
         Unknown
     };
 
+    //! Tries to set the path to game directory and the platform.
+    //! Checks that game files exist and deduces platform based on which binaries exist.
+    //! @param  path    Path to game root.
+    //! @returns whether path and platform were set successfully.
+    bool TrySetGamePath(const fs::path& path, std::string* error = nullptr);
+
 //! Paths to game binaries
 //! @{
     const char* GetGameBinDir();
@@ -35,7 +41,7 @@ public:
     const char* GetChairloaderBinSrcPath();
     std::vector<const char*> GetRequiredGameFiles();
 
-    std::vector<const char*> GetRequiredGameFiles(GamePlatform platform);
+    static std::vector<const char*> GetRequiredGameFiles(GamePlatform platform);
 
 //! Chairloader files in GetGameExePath that are required for Chairloader
     std::vector<const char*> GetRequiredChairloaderBinaries();
@@ -73,7 +79,8 @@ public:
 //! Extracts game path from exe path. Call ValidateExePath first.
     fs::path ExePathToGamePath(const fs::path& exePath);
 
-
+    //! Deduces the game platform from game root path by checking which files exist.
+    //! @returns the platform or GamePlatform::Unknown.
     static GamePlatform DeduceGamePlatform(const fs::path& path);
 
 //! Get the path to the game directory

@@ -129,6 +129,20 @@ GamePath::GamePlatform GamePath::GetGamePlatform() {
 }
 
 
+bool GamePath::TrySetGamePath(const fs::path& path, std::string* error)
+{
+    bool isValid = ValidateGamePath(path, error);
+    if (!isValid)
+        return false;
+
+    GamePlatform plat = DeduceGamePlatform(path);
+    assert(plat != GamePlatform::Unknown);
+
+    m_Path = path;
+    m_Platform = plat;
+    return true;
+}
+
 const char *GamePath::GetGameBinDir() {
     return GetGameBinDir(m_Platform);
 }
