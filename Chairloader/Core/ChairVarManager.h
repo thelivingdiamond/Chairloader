@@ -35,7 +35,7 @@ private:
 
     std::map<std::string, std::vector<CVarSaveData>> m_cvars;
 
-    const fs::path m_configPath = "Mods/config/Chairloader_CVars.xml";
+    const fs::path m_configPathFromMods = "config/Chairloader_CVars.xml";
 
     pugi::xml_document m_config;
     pugi::xml_node m_configNode;

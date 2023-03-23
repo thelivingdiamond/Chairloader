@@ -15,7 +15,7 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	ModuleInfo info;
 	info.modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "modName"));
 	info.loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(xmlNode, "loadOrder"));
-	info.modDirPath = fs::current_path() / "Mods" / fs::u8path(info.modName);
+	info.modDirPath = gChair->GetModsPath() / fs::u8path(info.modName);
 
 	fs::path dllName = fs::u8path(boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "dllName")));
 	info.sourceDllPath = info.modDirPath / dllName;

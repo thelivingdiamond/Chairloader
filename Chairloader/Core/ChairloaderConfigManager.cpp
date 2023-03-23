@@ -1,4 +1,5 @@
 #pragma once
+#include <Chairloader/IChairloaderDll.h>
 #include "ChairloaderConfigManager.h"
 
 ChairloaderConfigManager::ChairloaderConfigManager() {
@@ -398,11 +399,11 @@ bool ChairloaderConfigManager::createDefaultModConfig(std::string modName) {
 }
 
 fs::path ChairloaderConfigManager::getConfigPath(std::string modName) {
-	return fs::path{ ("./Mods/config/" + modName + ".xml").c_str() };
+	return gChair->GetModsPath() / "config" / fs::u8path(modName + ".xml");
 }
 
 fs::path ChairloaderConfigManager::getDefaultConfigPath(std::string modName) {
-	return fs::path{ ("./Mods/" + modName + "/" + modName + "_default.xml").c_str() };
+	return gChair->GetModsPath() / fs::u8path(modName) / fs::u8path(modName + "_default.xml");
 }
 
 bool ChairloaderConfigManager::getConfigDirty(std::string modName) {

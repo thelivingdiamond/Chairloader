@@ -2,6 +2,7 @@
 // Created by theli on 1/6/2023.
 //
 
+#include <Chairloader/IChairloaderDll.h>
 #include "ChairVarManager.h"
 static ChairVarManager* g_pChairVarManager = nullptr;
 
@@ -73,17 +74,18 @@ void ChairVarManager::ShutdownGame() {
 }
 
 void ChairVarManager::LoadConfig() {
-    auto success = m_config.load_file(m_configPath.wstring().c_str());
+    fs::path configPath = gChair->GetModsPath() / m_configPathFromMods;
+    auto success = m_config.load_file(configPath.c_str());
     if(!success) {
         m_configNode = m_config.append_child("Chairloader_CVars");
-        m_config.save_file(m_configPath.wstring().c_str());
+        m_config.save_file(configPath.c_str());
         CryWarning("Chairloader_CVars.xml not found, creating new file.");
     } else {
         m_configNode = m_config.child("Chairloader_CVars");
     }
     if(!m_configNode) {
         m_configNode = m_config.append_child("Chairloader_CVars");
-        m_config.save_file(m_configPath.wstring().c_str());
+        m_config.save_file(configPath.c_str());
         CryWarning("Chairloader_CVars.xml is corrupted, creating new file.");
     }
     for(auto& modChild: m_configNode.children("Mod")){
@@ -123,7 +125,8 @@ void ChairVarManager::SaveConfig() {
             }
         }
     }
-    auto success = m_config.save_file(m_configPath.wstring().c_str());
+    fs::path configPath = gChair->GetModsPath() / m_configPathFromMods;
+    auto success = m_config.save_file(configPath.c_str());
     if(!success) {
         CryWarning("Failed to save Chairloader_CVars.xml");
     } else {

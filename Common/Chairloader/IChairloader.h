@@ -42,4 +42,6 @@ struct IChairloader {
 
     virtual void RegisterCVar(ICVar* pCVar, std::string& modName) = 0;
 
+    //! @returns the path to the Mods directory.
+    virtual const fs::path& GetModsPath() = 0;
 };

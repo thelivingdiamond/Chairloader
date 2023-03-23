@@ -45,6 +45,7 @@ public:
 private:
 	WinConsole m_WinConsole;
 	uintptr_t m_ModuleBase = 0;
+	fs::path m_ModsDirPath;
 	bool m_bEditorEnabled = false;
     bool m_bTrainerEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
@@ -57,6 +58,7 @@ private:
 	KeyNameMap m_KeyNames;
 
 	void InitHooks();
+	void InitPaths();
 	void InstallHooks();
 
     // init m_KeyNames. Call once
@@ -82,4 +84,5 @@ public:
 	void ReloadModDLLs() override;
 
     void RegisterCVar(ICVar *pCVar, std::string &modName) override;
+	const fs::path& GetModsPath() override;
 };
