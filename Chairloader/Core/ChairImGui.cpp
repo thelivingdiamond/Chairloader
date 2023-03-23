@@ -73,6 +73,14 @@ void ChairImGui::InitGame()
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	ImGui::StyleColorsDark();
 
+	// Set paths to the config dir
+	// Path strings must exist for as long as the ImGui context so they are static.
+	fs::path configDir = gChair->GetModsPath() / "config";
+	static std::string iniPath = (configDir / "Chairloader_ImGui.ini").u8string();
+	static std::string logPath = (configDir / "Chairloader_ImGui_Log.txt").u8string();
+	io.IniFilename = iniPath.c_str();
+	io.LogFilename = logPath.c_str();
+
 	m_pRenderer = std::make_unique<ImGuiRendererD3D11>();
 	gEnv->pRenderer->RegisterSyncWithMainListener(this);
 	gCL->pRender->AddListener(this);
