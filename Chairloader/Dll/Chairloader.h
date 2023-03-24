@@ -75,6 +75,8 @@ public:
 	bool IsEditorEnabled() override;
 	CGame* GetCGame() override;
 	int* GetAssertFlagAddress() override;
+	void RegisterCVar(ICVar* pCVar, std::string& modName) override;
+	const fs::path& GetModsPath() override;
 
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
@@ -82,7 +84,4 @@ public:
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;
-
-    void RegisterCVar(ICVar *pCVar, std::string &modName) override;
-	const fs::path& GetModsPath() override;
 };
