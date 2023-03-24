@@ -2,7 +2,7 @@
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryGame/Game.h>
 #include <Prey/CrySystem/System.h>
-#include <Preditor/IPreditorEngine.h>
+#include <Preditor/Engine/IPreditorEngine.h>
 #include "GameViewport.h"
 
 GameViewport::GameViewport()

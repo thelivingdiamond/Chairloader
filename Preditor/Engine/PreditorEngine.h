@@ -1,5 +1,5 @@
 #pragma once
-#include <Preditor/IPreditorEngine.h>
+#include <Preditor/Engine/IPreditorEngine.h>
 #include <Chairloader/PreditorAPI.h>
 #include <Chairloader/IPreditorToChair.h>
 

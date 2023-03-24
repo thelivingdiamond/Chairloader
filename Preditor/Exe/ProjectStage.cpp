@@ -5,7 +5,7 @@
 #include <App/AppImGui.h>
 #include <Preditor/Project/ProjectManager.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
-#include <Preditor/IPreditorEngine.h>
+#include <Preditor/Engine/IPreditorEngine.h>
 #include "ProjectStage.h"
 #include "GameViewport.h"
 #include "EntityHierarchyWindow.h"

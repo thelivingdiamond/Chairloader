@@ -2,7 +2,7 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CryGame/IGameStartup.h>
 #include <WindowManager/WindowManager.h>
-#include <Preditor/IPreditorEngine.h>
+#include <Preditor/Engine/IPreditorEngine.h>
 #include "App/AppStage.h"
 #include "Preditor.h"
 #include "LoadGameStage.h"

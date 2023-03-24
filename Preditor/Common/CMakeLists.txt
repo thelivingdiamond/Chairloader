@@ -11,13 +11,14 @@ set(SOURCE_FILES
 	App/AppStage.h
 	App/IAppImGui.h
 	
+	Preditor/Engine/IPreditorEngine.h
+
 	Preditor/Project/Project.h
 	Preditor/Project/ProjectManager.h
 	Preditor/Project/UserProjectSettings.h
 
 	Preditor/IChairloaderToolsPreditor.h
 	Preditor/IGameViewport.h
-	Preditor/IPreditorEngine.h
 )
 
 add_library(Preditor.Common STATIC ${SOURCE_FILES})

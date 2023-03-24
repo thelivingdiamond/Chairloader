@@ -1,7 +1,7 @@
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/Profiling.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
-#include <Preditor/IPreditorEngine.h>
+#include <Preditor/Engine/IPreditorEngine.h>
 #include "PreditorImGuiRenderer.h"
 #include "PreditorImGui.h"
 
